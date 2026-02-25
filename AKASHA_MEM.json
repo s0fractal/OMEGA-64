@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AAAAA",
     "ABBB0000",
     "60660000",
     "0BBB0000",
@@ -199,15 +198,10 @@
     "AA0A00AA",
     "66666600",
     "0A0A000A",
-    "AAA0AAAA"
+    "AAA0AAAA",
+    "A6666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025510217
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE SYNC OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025513463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025513698
     }
   ]
 }
