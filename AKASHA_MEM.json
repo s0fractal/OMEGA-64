@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660000",
     "00606000",
     "AA0AA0AA",
     "AA00AAAA",
@@ -199,15 +198,10 @@
     "AABBCCDD",
     "AA00AA00",
     "AA0A0AA0",
-    "BA000000"
+    "BA000000",
+    "66600066"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029460864
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW GIVING BLOOM",
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029478521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029479439
     }
   ]
 }
