@@ -121,12 +121,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022109359
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -209,6 +203,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022114952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022115229
     }
   ]
 }
