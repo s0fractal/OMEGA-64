@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041113585
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041114444
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041117635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041117838
     }
   ]
 }
