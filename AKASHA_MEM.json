@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023146866
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023147348
@@ -259,6 +253,12 @@
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023150626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023151175
     }
   ]
 }
