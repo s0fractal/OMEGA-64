@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020574042
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020580091
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020580867
     }
   ]
 }
