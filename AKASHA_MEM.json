@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCC0F",
     "00060600",
     "0EE00EEF",
     "AAAAAAAA",
@@ -199,15 +198,10 @@
     "00660666",
     "0AAAAA0A",
     "A6060660",
-    "AA0A000A"
+    "AA0A000A",
+    "60060000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041464422
-    },
     {
       "origin": "ARCHIVIST",
       "text": "GUARD SHIELD IMMUNE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041467652
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041467923
     }
   ]
 }
