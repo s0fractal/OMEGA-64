@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019984245
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "STRIKE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019998724
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019999576
     }
   ]
 }
