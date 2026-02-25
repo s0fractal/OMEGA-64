@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023529385
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023529893
@@ -270,6 +264,12 @@
       "text": "SPARK BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772023535973
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023536269
     }
   ]
 }
