@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041729067
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041729757
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041737643
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "RECON WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041738379
     }
   ]
 }
