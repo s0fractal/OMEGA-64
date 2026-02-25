@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041065767
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041068118
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041068364
     }
   ]
 }
