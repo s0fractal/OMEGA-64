@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036285615
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036285818
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772036288693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036288896
     }
   ]
 }
