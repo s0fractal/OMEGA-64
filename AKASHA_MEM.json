@@ -27,12 +27,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019666279
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM STABLE BLOOM",
       "mood": "HARMONIC",
@@ -115,6 +109,12 @@
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019675905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019676583
     }
   ]
 }
