@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041344490
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041349271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041349402
     }
   ]
 }
