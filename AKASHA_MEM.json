@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021278607
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
@@ -179,6 +173,12 @@
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021317960
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021319681
     }
   ]
 }
