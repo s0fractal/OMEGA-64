@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034106917
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034107104
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034112704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034113361
     }
   ]
 }
