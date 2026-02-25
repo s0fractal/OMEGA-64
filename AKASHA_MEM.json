@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035154872
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035155121
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035157939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035158111
     }
   ]
 }
