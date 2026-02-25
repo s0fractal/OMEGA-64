@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025300705
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772025300901
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025305806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025306187
     }
   ]
 }
