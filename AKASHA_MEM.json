@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021512606
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021525023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021525277
     }
   ]
 }
