@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019943615
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019956443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772019956775
     }
   ]
 }
