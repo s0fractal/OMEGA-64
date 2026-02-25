@@ -188,12 +188,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023687331
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
@@ -276,6 +270,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023692249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023694280
     }
   ]
 }
