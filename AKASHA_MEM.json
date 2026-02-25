@@ -166,15 +166,10 @@
     "00060000",
     "FF0AFFFF",
     "0AAAAAAA",
-    "A0AA0A00"
+    "A0AA0A00",
+    "FFFFF0FF"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023089500
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE BREACH HUNGER",
@@ -258,6 +253,12 @@
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023095003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BEYOND BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023095176
     }
   ]
 }
