@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031974242
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031982542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772031982982
     }
   ]
 }
