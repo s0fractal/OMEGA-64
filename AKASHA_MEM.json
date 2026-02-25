@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA000",
     "AAAAAA00",
     "06060606",
     "66066060",
@@ -199,15 +198,10 @@
     "00AA0AAA",
     "0A00AA0A",
     "AAAAAAA0",
-    "AA0A0AA0"
+    "AA0A0AA0",
+    "A0AAA00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038050930
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038054419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038054644
     }
   ]
 }
