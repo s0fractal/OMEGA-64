@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037572648
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037572855
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037578810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037578996
     }
   ]
 }
