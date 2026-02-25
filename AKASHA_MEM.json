@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022053436
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022061548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022061787
     }
   ]
 }
