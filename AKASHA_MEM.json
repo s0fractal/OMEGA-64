@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037456365
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037456555
@@ -291,6 +285,12 @@
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037459072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037459277
     }
   ]
 }
