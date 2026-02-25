@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xBB0000FCFFFF0A04'
 energy: 49.9
-x: 747
-'y': 417
+x: 746
+'y': 419
 resonance: 12.13
-thought: WANDER_PASSIVE
+thought: WANDER_BONDING
 logic: BB0000FC
 signals: []
 bond_strengths:
