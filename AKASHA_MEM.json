@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033657019
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033657203
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033659546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033659695
     }
   ]
 }
