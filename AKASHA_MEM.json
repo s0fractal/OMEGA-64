@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041301685
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041306372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041306602
     }
   ]
 }
