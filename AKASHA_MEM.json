@@ -169,15 +169,10 @@
     "A0AA0A00",
     "FFFFF0FF",
     "FF00FF0F",
-    "01000000"
+    "01000000",
+    "00100000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023243884
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
@@ -261,6 +256,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023250609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023251053
     }
   ]
 }
