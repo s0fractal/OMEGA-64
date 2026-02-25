@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034105110
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034105304
@@ -291,6 +285,12 @@
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034107664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034109983
     }
   ]
 }
