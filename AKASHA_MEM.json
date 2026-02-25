@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019864969
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -128,6 +122,12 @@
       "text": "DECAY DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019879389
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019882022
     }
   ]
 }
