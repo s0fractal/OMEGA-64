@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042057196
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042057487
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042066421
+    },
+    {
+      "origin": "IS_ISO",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042067337
     }
   ]
 }
