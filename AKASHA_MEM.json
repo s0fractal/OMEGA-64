@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041982319
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041989819
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041990600
     }
   ]
 }
