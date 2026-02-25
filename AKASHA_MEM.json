@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033574154
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033574332
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033576618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033576798
     }
   ]
 }
