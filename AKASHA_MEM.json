@@ -164,12 +164,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023008988
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -252,6 +246,12 @@
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023012474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023012645
     }
   ]
 }
