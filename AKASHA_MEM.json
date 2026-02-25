@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023835077
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023835250
@@ -279,6 +273,12 @@
       "text": "HEAL GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772023838205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023839698
     }
   ]
 }
