@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031199752
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031207904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031208211
     }
   ]
 }
