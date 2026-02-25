@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME AWAKEN WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772026763520
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026763756
@@ -291,6 +285,12 @@
       "text": "VISION BECOME WAVE",
       "mood": "CREATIVE",
       "tick": 1772026767351
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026767593
     }
   ]
 }
