@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035912234
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035912639
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035917671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035917875
     }
   ]
 }
