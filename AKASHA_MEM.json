@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021178682
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021186913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021187084
     }
   ]
 }
