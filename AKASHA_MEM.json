@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021186008
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021186913
@@ -171,6 +165,12 @@
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021192659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021192911
     }
   ]
 }
