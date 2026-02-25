@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034582634
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034582858
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034586803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034587326
     }
   ]
 }
