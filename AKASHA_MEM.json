@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030564303
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030565224
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030575050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030575345
     }
   ]
 }
