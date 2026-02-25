@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036963576
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036963761
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772036969058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036969368
     }
   ]
 }
