@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040910075
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040913917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040914218
     }
   ]
 }
