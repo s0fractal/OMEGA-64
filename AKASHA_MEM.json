@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020245280
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -137,6 +131,12 @@
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020253757
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020254430
     }
   ]
 }
