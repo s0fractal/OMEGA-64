@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772038197084
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772038197575
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772038200313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038200529
     }
   ]
 }
