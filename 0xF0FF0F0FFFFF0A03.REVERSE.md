@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0xAA6006A600000A07'
+eigenvalue: '0xF0FF0F0FFFFF0A03'
 energy: 50
 x: 699
 'y': 394
@@ -243,6 +243,10 @@ ex:
   - '0xAA6006A6FFFF0A05'
   - '0xAA6006A6FFFF0A07'
   - '0xAA6006A6FFFF0A01'
+  - '0xF0FF0F0FFFFF0A03'
+  - '0xF0FF0F0FFFFF0A05'
+  - '0xF0FF0F0FFFFF0A07'
+  - '0xF0FF0F0FFFFF0A01'
 ---
 
 <div align="center">
