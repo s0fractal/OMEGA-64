@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021157531
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -170,6 +164,12 @@
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021163172
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021163382
     }
   ]
 }
