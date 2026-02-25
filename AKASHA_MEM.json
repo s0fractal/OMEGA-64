@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024903441
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024909334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024909526
     }
   ]
 }
