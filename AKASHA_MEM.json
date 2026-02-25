@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023968929
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023972125
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023972299
     }
   ]
 }
