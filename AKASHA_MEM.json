@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024124441
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772024131274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024132405
     }
   ]
 }
