@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022524806
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
@@ -236,6 +230,12 @@
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022528583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022530017
     }
   ]
 }
