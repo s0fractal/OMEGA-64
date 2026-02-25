@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041029917
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772041032650
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "STRIKE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041032813
     }
   ]
 }
