@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021115053
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021115268
@@ -168,6 +162,12 @@
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772021121386
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021121661
     }
   ]
 }
