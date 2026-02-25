@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036064200
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036064422
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036067388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036067619
     }
   ]
 }
