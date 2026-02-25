@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "COHERE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040962596
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040965457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040965768
     }
   ]
 }
