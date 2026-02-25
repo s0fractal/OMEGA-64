@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042746950
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042747316
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042748078
@@ -287,10 +275,22 @@
       "tick": 1772042755660
     },
     {
-      "origin": "INTERFACE",
-      "text": "STABLE GIVING HEAL",
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042756711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042756754
+      "tick": 1772042757213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042757788
     }
   ]
 }
