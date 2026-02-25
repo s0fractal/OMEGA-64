@@ -42,12 +42,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019884080
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019884863
@@ -129,6 +123,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772019894363
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019895124
     }
   ]
 }
