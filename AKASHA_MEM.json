@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039143762
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039144100
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039149010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772039149404
     }
   ]
 }
