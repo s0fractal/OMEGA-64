@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026113105
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026117135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026117632
     }
   ]
 }
