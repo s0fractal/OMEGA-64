@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033986460
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033989537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033989728
     }
   ]
 }
