@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "AWAKEN DREAM FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772040433467
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040436216
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040436399
     }
   ]
 }
