@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040978511
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040981922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040982177
     }
   ]
 }
