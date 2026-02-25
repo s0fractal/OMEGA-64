@@ -42,12 +42,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019887372
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019888098
@@ -129,6 +123,12 @@
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019897372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019898298
     }
   ]
 }
