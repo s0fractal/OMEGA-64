@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025815154
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025815327
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025818448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025821133
     }
   ]
 }
