@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034723291
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772034723497
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034726450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034726666
     }
   ]
 }
