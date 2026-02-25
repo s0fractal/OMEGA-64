@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021522723
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021523444
@@ -182,6 +176,12 @@
       "text": "SPARK AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772021529739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021530088
     }
   ]
 }
