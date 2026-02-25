@@ -117,12 +117,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022072082
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022072258
@@ -204,6 +198,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022078376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022078569
     }
   ]
 }
