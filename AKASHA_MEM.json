@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020542903
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020551106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020551447
     }
   ]
 }
