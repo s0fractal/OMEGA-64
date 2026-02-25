@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772028269290
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028269965
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028282220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028284080
     }
   ]
 }
