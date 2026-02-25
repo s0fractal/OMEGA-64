@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040963967
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040967056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040967225
     }
   ]
 }
