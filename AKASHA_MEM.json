@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041694228
-    },
-    {
       "origin": "STREAM",
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041698236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041698532
     }
   ]
 }
