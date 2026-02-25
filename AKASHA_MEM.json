@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041515928
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041518528
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041518813
     }
   ]
 }
