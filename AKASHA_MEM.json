@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028061566
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028062038
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028077472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028078241
     }
   ]
 }
