@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021325071
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -179,6 +173,12 @@
       "text": "EVOLVE EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021367073
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021371139
     }
   ]
 }
