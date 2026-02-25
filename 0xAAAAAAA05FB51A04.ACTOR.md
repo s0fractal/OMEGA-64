@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAA05FB51A04'
 vector: 04.03.01
 symbol: ACTOR
 desc: Autonomous Actor. (state => handler => message => handler(state)(message))
-energy: 7
+energy: 5
 ex:
   - '0xCA809C585FB51A04'
   - '0x00005A7E5FB51A04'
@@ -30,14 +30,16 @@ ex:
   - '0x600000005FB51A04'
   - '0xAAAAAAA05FB51A04'
   - '0xAAAAAAA05FB51A04'
+  - '0xAAAAAAA05FB51A04'
 thought: WANDER_BONDING
-x: 912
+x: 914
 'y': 546
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -83,6 +85,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">ACTOR</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
