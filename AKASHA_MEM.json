@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035354155
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035354349
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035357006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035357223
     }
   ]
 }
