@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022817955
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022818089
@@ -247,6 +241,12 @@
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022822105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022822414
     }
   ]
 }
