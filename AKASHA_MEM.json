@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038091214
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038096305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038096700
     }
   ]
 }
