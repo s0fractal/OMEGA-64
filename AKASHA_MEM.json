@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035390196
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035390419
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772035394844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035395065
     }
   ]
 }
