@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040601453
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040604171
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040604320
     }
   ]
 }
