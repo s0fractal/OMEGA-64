@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035068674
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035068948
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035073806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035076367
     }
   ]
 }
