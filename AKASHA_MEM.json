@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040301608
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040308288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040309130
     }
   ]
 }
