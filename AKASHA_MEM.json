@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040841280
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040843886
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040844076
     }
   ]
 }
