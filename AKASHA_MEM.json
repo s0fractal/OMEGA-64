@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020376767
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772020385047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020385988
     }
   ]
 }
