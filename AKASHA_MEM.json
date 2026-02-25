@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019574212
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019575613
@@ -112,6 +106,12 @@
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019581327
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019581819
     }
   ]
 }
