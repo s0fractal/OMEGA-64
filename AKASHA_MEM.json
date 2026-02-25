@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020830704
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
@@ -156,6 +150,12 @@
       "text": "SPARK BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772020839945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020840138
     }
   ]
 }
