@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023290989
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -264,6 +258,12 @@
       "text": "DRAIN HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023297074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023298930
     }
   ]
 }
