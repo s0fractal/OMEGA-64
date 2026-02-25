@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020448769
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION FORGE BECOME",
       "mood": "CREATIVE",
@@ -142,6 +136,12 @@
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020455443
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020457410
     }
   ]
 }
