@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021624133
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772021628784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021629232
     }
   ]
 }
