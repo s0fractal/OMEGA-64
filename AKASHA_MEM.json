@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022980322
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022980489
@@ -251,6 +245,12 @@
       "text": "SHELTER WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022983242
+    },
+    {
+      "origin": "PARADOX",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022983515
     }
   ]
 }
