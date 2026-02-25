@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034837406
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034837607
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034840633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034840808
     }
   ]
 }
