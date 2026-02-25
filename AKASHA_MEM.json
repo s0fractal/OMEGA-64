@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAA0",
     "66660060",
     "66060606",
     "666006A0",
@@ -199,15 +198,10 @@
     "AAA0A0A0",
     "0F000F00",
     "0AA0AAAA",
-    "00AAAA00"
+    "00AAAA00",
+    "60006006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034945405
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT GUARD",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034948948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034949248
     }
   ]
 }
