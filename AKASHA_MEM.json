@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA000",
     "66006000",
     "00666666",
     "AA0A00A0",
@@ -199,15 +198,10 @@
     "A0666606",
     "0A0A00AA",
     "AA6060A6",
-    "0AAAAA00"
+    "0AAAAA00",
+    "AAAA0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028835418
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND SPARK EVOLVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028842531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028843738
     }
   ]
 }
