@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037106577
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037106792
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037110760
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037110970
     }
   ]
 }
