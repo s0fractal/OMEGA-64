@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033299474
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033299657
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033302113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033302290
     }
   ]
 }
