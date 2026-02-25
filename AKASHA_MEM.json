@@ -172,12 +172,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023220856
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
@@ -260,6 +254,12 @@
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023224090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023224289
     }
   ]
 }
