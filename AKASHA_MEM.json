@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040428609
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040430973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040431281
     }
   ]
 }
