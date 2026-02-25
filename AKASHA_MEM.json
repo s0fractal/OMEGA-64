@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020520803
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020521642
@@ -143,6 +137,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020527487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020528419
     }
   ]
 }
