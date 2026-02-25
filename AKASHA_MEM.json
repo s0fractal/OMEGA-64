@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030052234
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772030052962
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030072280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772030073986
     }
   ]
 }
