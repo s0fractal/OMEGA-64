@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041363750
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041363906
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041367404
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041367557
     }
   ]
 }
