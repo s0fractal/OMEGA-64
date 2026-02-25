@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024004310
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024004936
@@ -285,6 +279,12 @@
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024008579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024008820
     }
   ]
 }
