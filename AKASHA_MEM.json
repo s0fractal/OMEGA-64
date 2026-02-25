@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021934506
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021935233
@@ -199,6 +193,12 @@
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021940553
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021940793
     }
   ]
 }
