@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036759593
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036759756
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036762655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036762863
     }
   ]
 }
