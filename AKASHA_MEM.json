@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038279515
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038279732
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038282605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038282836
     }
   ]
 }
