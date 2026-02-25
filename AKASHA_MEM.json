@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021689964
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021690088
@@ -191,6 +185,12 @@
       "text": "BECOME SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772021695225
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021695378
     }
   ]
 }
