@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019515791
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019524127
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019524641
     }
   ]
 }
