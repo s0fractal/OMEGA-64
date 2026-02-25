@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STRIFE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040822592
-    },
-    {
-      "origin": "STREAM",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040823591
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040827357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040827503
     }
   ]
 }
