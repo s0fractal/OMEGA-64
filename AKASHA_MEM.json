@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041386469
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041389963
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041390098
     }
   ]
 }
