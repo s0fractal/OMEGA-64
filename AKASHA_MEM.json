@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037728574
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037728776
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037731743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037731948
     }
   ]
 }
