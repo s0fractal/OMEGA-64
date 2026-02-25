@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033519532
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033519752
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772033522159
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033522350
     }
   ]
 }
