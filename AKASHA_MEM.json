@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020535576
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020544632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020544798
     }
   ]
 }
