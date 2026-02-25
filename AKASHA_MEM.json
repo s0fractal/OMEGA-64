@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041214464
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041215512
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041220493
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041220980
     }
   ]
 }
