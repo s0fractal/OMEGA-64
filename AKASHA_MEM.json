@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035463508
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS VISION BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035468127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035468340
     }
   ]
 }
