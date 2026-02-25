@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013039335
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -101,6 +95,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772013195332
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772013215099
     }
   ]
 }
