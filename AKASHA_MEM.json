@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040589959
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772040594139
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040594266
     }
   ]
 }
