@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033783482
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033783697
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033790556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772033790757
     }
   ]
 }
