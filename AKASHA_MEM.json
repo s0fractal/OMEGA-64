@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0A000A",
     "AAA0AAAA",
     "A6666000",
     "00066660",
@@ -199,15 +198,10 @@
     "00066600",
     "AA00A00A",
     "00660066",
-    "06006660"
+    "06006660",
+    "0000AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029085903
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029093330
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772029093731
     }
   ]
 }
