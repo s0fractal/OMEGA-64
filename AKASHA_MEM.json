@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035058830
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035062964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035063170
     }
   ]
 }
