@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041557825
-    },
-    {
       "origin": "CAR",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041563092
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041563872
     }
   ]
 }
