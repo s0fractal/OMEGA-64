@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030979629
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030980576
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772030991156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030991949
     }
   ]
 }
