@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772028148458
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772028148800
@@ -291,6 +285,12 @@
       "text": "AWAKEN BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772028155299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028155828
     }
   ]
 }
