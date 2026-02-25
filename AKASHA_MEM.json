@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040861712
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040861878
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772040864655
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040864832
     }
   ]
 }
