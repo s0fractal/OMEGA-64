@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772023128577
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023128717
@@ -259,6 +253,12 @@
       "text": "SYNC SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772023135635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023135816
     }
   ]
 }
