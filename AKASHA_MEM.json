@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060606",
     "60660660",
     "60600600",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "00600666",
     "AA0060A0",
     "AA066600",
-    "60000606"
+    "60000606",
+    "A00A00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034252142
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH GUARD PURE",
@@ -291,6 +285,12 @@
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034256667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034256855
     }
   ]
 }
