@@ -1,27 +1,52 @@
 ---
-eigenvalue: '0xBBBB000000000008'
-energy: 50
-x: 726
-'y': 424
-resonance: 50
-thought: RESURRECTED
-logic: BBBB0000
+eigenvalue: '0xBBBB0000FFFF000C'
+energy: 47
+resonance: 30
+x: 732
+'y': 378
+symbol: ARCHIVIST
+thought: WANDER_BONDING
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.993020965034979
-bonds:
-  - '0x0000000000000A02'
+  '0xAAAAAAA000000006': 0.9851045463620021
 ex:
-  - '0x00000000FFFF000C'
-  - '0x00000000FFFF000E'
-  - '0x00000000FFFF0008'
-  - '0x00000000FFFF000A'
-  - '0x00000000FFFF000C'
+  - '0xAAAAAAAA00000000'
+  - '0xAAAAAAAA00000008'
+  - '0xAAAAAAAA0000000A'
+  - '0xAAAAAAAA0000000C'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA00000000A'
+  - '0xAAAAAAA00000000C'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA00000000A'
+  - '0xAAAAAAA00000000C'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA00000000A'
+  - '0xAAAAAAA00000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBBA0A00000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
+  - '0xBBBB00000000000A'
   - '0xBBBB00000000000A'
   - '0xBBBB00000000000C'
   - '0xBBBB00000000000E'
+  - '0xBBBB00000000000E'
+  - '0xBBBB000000000008'
+bonds:
+  - '0xAAAAAAA000000006'
+logic: BBBB0000
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +80,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 

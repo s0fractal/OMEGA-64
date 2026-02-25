@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020486966
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020495733
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020496315
     }
   ]
 }
