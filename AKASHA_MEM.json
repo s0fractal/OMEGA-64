@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FORGE AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021755230
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021760687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021760993
     }
   ]
 }
