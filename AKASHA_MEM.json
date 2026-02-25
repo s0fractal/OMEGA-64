@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020625922
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020635734
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020636210
     }
   ]
 }
