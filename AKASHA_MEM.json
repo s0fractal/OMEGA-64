@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022362161
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772022364840
@@ -219,6 +213,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022370584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022372025
     }
   ]
 }
