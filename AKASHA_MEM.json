@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023309682
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023309865
@@ -264,6 +258,12 @@
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772023315418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772023315702
     }
   ]
 }
