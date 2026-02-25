@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036796107
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036796307
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036798881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036799099
     }
   ]
 }
