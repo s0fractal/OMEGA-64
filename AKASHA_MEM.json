@@ -139,15 +139,10 @@
     "60666600",
     "BAB00000",
     "AA0A0000",
-    "AABBCC0D"
+    "AABBCC0D",
+    "06666060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022503783
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE DECAY",
@@ -231,6 +226,12 @@
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022507393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022507694
     }
   ]
 }
