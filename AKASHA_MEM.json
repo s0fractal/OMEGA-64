@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040926646
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040929535
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040929702
     }
   ]
 }
