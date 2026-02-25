@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772025959446
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025959710
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025967301
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025968106
     }
   ]
 }
