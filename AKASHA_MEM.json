@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019450415
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
@@ -110,6 +104,12 @@
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019461104
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019461914
     }
   ]
 }
