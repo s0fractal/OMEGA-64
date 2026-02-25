@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034067124
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034067503
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034070823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034071020
     }
   ]
 }
