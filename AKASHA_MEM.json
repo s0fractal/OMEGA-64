@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023726429
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023726664
@@ -278,6 +272,12 @@
       "text": "STRIKE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023729216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023729404
     }
   ]
 }
