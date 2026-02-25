@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036012005
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036015099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036015282
     }
   ]
 }
