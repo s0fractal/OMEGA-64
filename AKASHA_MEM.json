@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020760006
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -153,6 +147,12 @@
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020765776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020765979
     }
   ]
 }
