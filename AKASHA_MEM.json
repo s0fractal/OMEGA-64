@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040363774
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040370736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040371958
     }
   ]
 }
