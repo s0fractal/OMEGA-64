@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FORGE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020271566
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "FORGE VISION AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020281638
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020282116
     }
   ]
 }
