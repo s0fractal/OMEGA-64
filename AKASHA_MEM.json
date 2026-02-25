@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606000",
     "60006000",
     "66660660",
     "AABBC0DD",
@@ -199,15 +198,10 @@
     "AA000AAA",
     "AA0A00A0",
     "AA0000A0",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "0BBB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035301315
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE HEAL STABLE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035305400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035305582
     }
   ]
 }
