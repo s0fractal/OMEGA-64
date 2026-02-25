@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026200392
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026200581
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772026205928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026206956
     }
   ]
 }
