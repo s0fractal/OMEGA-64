@@ -136,12 +136,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022392238
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022392822
@@ -223,6 +217,12 @@
       "text": "GUARD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022398121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022398794
     }
   ]
 }
