@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0x000AAAAA0000000C'
+eigenvalue: '0x000AAAAAFFFF0008'
 energy: 50
 resonance: 30
-x: 738
-'y': 417
+x: 665
+'y': 382
 symbol: ARCHIVIST
 thought: RESURRECTED
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.9782294672887405
+  '0xAAAAAAA000000006': 0.9792086759647052
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
