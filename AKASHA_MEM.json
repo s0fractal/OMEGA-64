@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772030991156
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030991949
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031001573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031002276
     }
   ]
 }
