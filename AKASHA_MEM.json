@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022121266
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022121518
@@ -210,6 +204,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022128793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022130258
     }
   ]
 }
