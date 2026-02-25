@@ -177,12 +177,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023333016
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
@@ -265,6 +259,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023336177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023336346
     }
   ]
 }
