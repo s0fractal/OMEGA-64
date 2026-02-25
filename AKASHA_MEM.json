@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021255546
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -176,6 +170,12 @@
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021261992
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021262205
     }
   ]
 }
