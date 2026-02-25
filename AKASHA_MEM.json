@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041007348
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041010419
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041010546
     }
   ]
 }
