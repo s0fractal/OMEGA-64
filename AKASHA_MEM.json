@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041757054
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041766426
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041766723
     }
   ]
 }
