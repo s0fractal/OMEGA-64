@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037960888
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037964866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037968763
     }
   ]
 }
