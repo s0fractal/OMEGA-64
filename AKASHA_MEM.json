@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034979229
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772034979551
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034983554
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772034983769
     }
   ]
 }
