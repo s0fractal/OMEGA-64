@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772017498500
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772017575610
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772017581893
     }
   ]
 }
