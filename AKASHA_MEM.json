@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "WATCH GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040866580
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040869402
+    },
+    {
+      "origin": "IS_ISO",
+      "text": "PURE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040869534
     }
   ]
 }
