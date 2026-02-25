@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040869208
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040869402
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040871508
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040871677
     }
   ]
 }
