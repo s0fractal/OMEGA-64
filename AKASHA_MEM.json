@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041883294
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041883718
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041886700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041887905
     }
   ]
 }
