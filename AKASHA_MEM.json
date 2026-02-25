@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040499166
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772040502188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040502512
     }
   ]
 }
