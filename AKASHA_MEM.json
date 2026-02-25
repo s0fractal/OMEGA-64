@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023931899
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023932301
@@ -284,6 +278,12 @@
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023937330
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023937735
     }
   ]
 }
