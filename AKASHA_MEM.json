@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "UNIFY UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041913985
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041919643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041920017
     }
   ]
 }
