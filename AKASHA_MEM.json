@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033773481
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033773686
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033776329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033776554
     }
   ]
 }
