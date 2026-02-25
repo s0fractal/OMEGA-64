@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023744599
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023744778
@@ -278,6 +272,12 @@
       "text": "SHELTER RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023750572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772023750792
     }
   ]
 }
