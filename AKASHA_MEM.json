@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022321238
-    },
-    {
       "origin": "PARADOX",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
@@ -217,6 +211,12 @@
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022326839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022327288
     }
   ]
 }
