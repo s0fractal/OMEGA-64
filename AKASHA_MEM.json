@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041129742
-    },
-    {
       "origin": "SUCC",
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041133784
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041133938
     }
   ]
 }
