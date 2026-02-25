@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060600",
     "A0666660",
     "AA0A000A",
     "A6600606",
@@ -199,15 +198,10 @@
     "A00A00A0",
     "AA0AAA0A",
     "0A0AA000",
-    "60600600"
+    "60600600",
+    "F00FF000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038588956
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS DRAIN",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038593373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772038594267
     }
   ]
 }
