@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xFFFFFF0FFFFF000A'
 energy: 47.5
-x: 684
-'y': 382
+x: 678
+'y': 385
 resonance: 1000
-thought: ORBIT_PASSIVE
+thought: ORBIT_MATING
 logic: FFFFFF0F
 ex:
   - '0xFFFFFFFF00000000'
