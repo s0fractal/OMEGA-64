@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020855331
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772020855617
@@ -157,6 +151,12 @@
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020861556
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020862126
     }
   ]
 }
