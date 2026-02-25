@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034016549
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772034020485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034020686
     }
   ]
 }
