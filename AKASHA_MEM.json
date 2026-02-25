@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041346008
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772041350534
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041350832
     }
   ]
 }
