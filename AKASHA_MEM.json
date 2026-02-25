@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037182822
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037183013
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037185667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037186229
     }
   ]
 }
