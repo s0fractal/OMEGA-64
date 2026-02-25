@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036960711
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036960879
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036965970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036966412
     }
   ]
 }
