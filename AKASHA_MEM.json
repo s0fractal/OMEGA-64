@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040938392
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040941158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040941330
     }
   ]
 }
