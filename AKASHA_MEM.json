@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022156910
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -210,6 +204,12 @@
       "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022162652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022163396
     }
   ]
 }
