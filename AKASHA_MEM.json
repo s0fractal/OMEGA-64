@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020547674
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772020547855
@@ -143,6 +137,12 @@
       "text": "SHOCK STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020555162
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020555598
     }
   ]
 }
