@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041220493
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041223846
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041224037
     }
   ]
 }
