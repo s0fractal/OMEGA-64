@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021124979
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "FORGE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021129499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021129957
     }
   ]
 }
