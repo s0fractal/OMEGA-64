@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034627060
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034627259
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034629911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE AWAKEN BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772034630112
     }
   ]
 }
