@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021761154
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021761328
@@ -195,6 +189,12 @@
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772021766719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021766887
     }
   ]
 }
