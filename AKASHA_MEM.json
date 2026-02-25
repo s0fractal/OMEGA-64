@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022151252
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022159277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022159539
     }
   ]
 }
