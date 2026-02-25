@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "COHERE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040884106
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040887089
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040887525
     }
   ]
 }
