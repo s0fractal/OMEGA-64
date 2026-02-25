@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037792359
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037792568
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772037795564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037795765
     }
   ]
 }
