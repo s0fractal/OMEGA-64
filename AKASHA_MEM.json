@@ -15,12 +15,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772013215099
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772013218011
@@ -102,6 +96,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772014154383
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772014169288
     }
   ]
 }
