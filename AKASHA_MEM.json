@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038181720
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038181951
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038185588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038185802
     }
   ]
 }
