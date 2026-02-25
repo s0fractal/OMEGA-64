@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772024893703
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024894010
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772024899201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024899376
     }
   ]
 }
