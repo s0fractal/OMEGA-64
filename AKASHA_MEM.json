@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023535540
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023535718
@@ -270,6 +264,12 @@
       "text": "AWAKEN WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023540871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023541091
     }
   ]
 }
