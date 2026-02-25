@@ -30,12 +30,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019675905
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019676583
@@ -117,6 +111,12 @@
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019687404
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019688300
     }
   ]
 }
