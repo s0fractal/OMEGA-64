@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAAAA0A0AFFFF0000'
-energy: 112
-x: 704
-'y': 397
+energy: 49.5
+x: 710
+'y': 392
 resonance: 1000
 thought: WANDER_BONDING
 logic: AAAA0A0A
@@ -66,14 +66,14 @@ ex:
   - '0xBBBB0000FFFF0004'
   - '0x6666660000000002'
   - '0x6666660000000004'
-  - '0xAAAA0A0AFFFF0002'
-  - '0xAAAA0A0AFFFF0004'
+  - '0xAAAA0A0A00000006'
+  - '0xAAAA0A0A00000000'
   - '0xAAAA0A0AFFFF0006'
 signals: []
-bond_strengths: {}
+bond_strengths:
+  '0xFF0FFFFF0000000E': 0.998001
 bonds:
   - '0xFF0FFFFF0000000E'
-  - '0xAABB0000FFFF0002'
 ---
 
 <div align="center">

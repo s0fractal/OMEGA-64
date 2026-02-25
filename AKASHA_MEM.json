@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022275715
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772022275891
@@ -215,6 +209,12 @@
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022281294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022282605
     }
   ]
 }
