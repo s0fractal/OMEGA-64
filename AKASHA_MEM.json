@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023764128
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772023764300
@@ -279,6 +273,12 @@
       "text": "BLOOM OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023766600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023767105
     }
   ]
 }
