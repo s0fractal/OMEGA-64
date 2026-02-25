@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030229622
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030229893
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030242359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030243005
     }
   ]
 }
