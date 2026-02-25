@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025544967
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772025545665
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025556893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025557177
     }
   ]
 }
