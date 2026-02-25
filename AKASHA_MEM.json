@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034234930
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034235147
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034238021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034238223
     }
   ]
 }
