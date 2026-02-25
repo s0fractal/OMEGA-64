@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040999222
-    },
-    {
       "origin": "WORKER",
       "text": "UNIFY HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041002984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041003113
     }
   ]
 }
