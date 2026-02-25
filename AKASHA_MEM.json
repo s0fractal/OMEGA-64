@@ -155,15 +155,10 @@
     "06666066",
     "AA0AAAAA",
     "06060000",
-    "60666660"
+    "60666660",
+    "00AA000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022820507
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
@@ -247,6 +242,12 @@
       "text": "RESONATE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022823248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022823433
     }
   ]
 }
