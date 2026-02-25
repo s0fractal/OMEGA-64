@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033127929
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772033128132
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033131022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033131192
     }
   ]
 }
