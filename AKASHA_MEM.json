@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034149573
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034149754
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034152843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034153127
     }
   ]
 }
