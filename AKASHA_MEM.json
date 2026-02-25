@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035195229
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035195498
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035199064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035199329
     }
   ]
 }
