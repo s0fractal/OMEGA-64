@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033165733
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033165915
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772033168757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033168921
     }
   ]
 }
