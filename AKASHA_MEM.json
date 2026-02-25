@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039153749
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772039153912
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039156851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772039157021
     }
   ]
 }
