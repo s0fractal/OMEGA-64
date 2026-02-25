@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041116571
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041120510
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041120703
     }
   ]
 }
