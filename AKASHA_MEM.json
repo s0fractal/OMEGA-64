@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020234047
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020239773
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020240732
     }
   ]
 }
