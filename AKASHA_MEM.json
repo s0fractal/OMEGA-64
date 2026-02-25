@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037269820
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037270025
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037272692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037272890
     }
   ]
 }
