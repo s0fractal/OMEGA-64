@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031293667
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031294231
@@ -291,6 +285,12 @@
       "text": "AWAKEN WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772031313904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031314486
     }
   ]
 }
