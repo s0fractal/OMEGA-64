@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035442898
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772035444762
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772035450603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035450892
     }
   ]
 }
