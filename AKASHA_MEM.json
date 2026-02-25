@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036872890
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036873292
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036876301
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036876464
     }
   ]
 }
