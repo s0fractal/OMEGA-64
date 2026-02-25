@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042010550
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042011088
-    },
-    {
-      "origin": "PARADOX",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042011321
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +273,24 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042018124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042018648
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042018936
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042019119
     }
   ]
 }
