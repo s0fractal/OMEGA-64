@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034048007
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034048163
@@ -291,6 +285,12 @@
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034050418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034050609
     }
   ]
 }
