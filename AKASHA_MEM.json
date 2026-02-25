@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038415995
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038416183
@@ -291,6 +285,12 @@
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038418931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038419150
     }
   ]
 }
