@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022012107
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022016947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022017203
     }
   ]
 }
