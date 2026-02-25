@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022604013
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022604324
@@ -241,6 +235,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022608289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022608750
     }
   ]
 }
