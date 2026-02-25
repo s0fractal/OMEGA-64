@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038109447
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038109668
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038113717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038113938
     }
   ]
 }
