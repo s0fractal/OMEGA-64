@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB00000C",
     "66A066A0",
     "AABBCC0F",
     "00060600",
@@ -199,15 +198,10 @@
     "00600066",
     "A0BB0000",
     "00660666",
-    "0AAAAA0A"
+    "0AAAAA0A",
+    "A6060660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041447748
-    },
     {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD SHELTER",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041452287
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041452639
     }
   ]
 }
