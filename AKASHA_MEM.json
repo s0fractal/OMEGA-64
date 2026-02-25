@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA00A",
     "06060000",
     "AAAAA0A0",
     "66600600",
@@ -199,15 +198,10 @@
     "0AAA0AA0",
     "6A666000",
     "66060000",
-    "00000606"
+    "00000606",
+    "BB0B0000"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "IMMUNE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031468442
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL COHERE RESONATE",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031474668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031475122
     }
   ]
 }
