@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040878911
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772040879045
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040882543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040882671
     }
   ]
 }
