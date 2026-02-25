@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN VISION EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772024032807
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024032989
@@ -286,6 +280,12 @@
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772024036189
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024036417
     }
   ]
 }
