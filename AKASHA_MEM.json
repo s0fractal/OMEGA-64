@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019602092
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019603857
@@ -114,6 +108,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019611157
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019611945
     }
   ]
 }
