@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021894028
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021894191
@@ -197,6 +191,12 @@
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021897260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021897390
     }
   ]
 }
