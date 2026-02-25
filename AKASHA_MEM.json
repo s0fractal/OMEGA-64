@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000FF00F",
     "AA00AA0A",
     "AA00AAAA",
     "A00A00A0",
@@ -199,15 +198,10 @@
     "AA6006A6",
     "AA660600",
     "66000606",
-    "AA00000A"
+    "AA00000A",
+    "66006606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033682072
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE BLOOM UNIFY",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033689806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033690168
     }
   ]
 }
