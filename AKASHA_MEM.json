@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032874235
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032874423
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032876821
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032876997
     }
   ]
 }
