@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033695969
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033696162
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033698487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033698809
     }
   ]
 }
