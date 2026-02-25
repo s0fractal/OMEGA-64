@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022486700
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -231,6 +225,12 @@
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022491331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022491547
     }
   ]
 }
