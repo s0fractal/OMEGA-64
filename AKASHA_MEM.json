@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039117547
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039117762
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039120574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039120755
     }
   ]
 }
