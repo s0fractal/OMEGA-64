@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021757947
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021758937
@@ -195,6 +189,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021763360
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021763522
     }
   ]
 }
