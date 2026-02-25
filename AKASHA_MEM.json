@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020673490
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020673766
@@ -150,6 +144,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020680747
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020680928
     }
   ]
 }
