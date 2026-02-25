@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021171748
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -170,6 +164,12 @@
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021177101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021177272
     }
   ]
 }
