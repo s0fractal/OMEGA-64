@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022551753
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022552671
@@ -237,6 +231,12 @@
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022557421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022557691
     }
   ]
 }
