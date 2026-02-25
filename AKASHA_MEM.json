@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040982431
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040985809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040985953
     }
   ]
 }
