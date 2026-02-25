@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772029271222
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029271456
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029276459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772029277112
     }
   ]
 }
