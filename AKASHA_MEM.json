@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020500108
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020508201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020508324
     }
   ]
 }
