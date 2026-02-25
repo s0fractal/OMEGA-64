@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028736144
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028736757
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028744072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772028744478
     }
   ]
 }
