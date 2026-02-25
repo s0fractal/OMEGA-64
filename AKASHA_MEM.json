@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023706297
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023709580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023709736
     }
   ]
 }
