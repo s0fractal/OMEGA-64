@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020496712
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020503793
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020504965
     }
   ]
 }
