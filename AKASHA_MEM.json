@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022286500
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -215,6 +209,12 @@
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022289231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022289436
     }
   ]
 }
