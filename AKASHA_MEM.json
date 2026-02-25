@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772017546809
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772017555592
@@ -109,6 +103,12 @@
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017619168
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772017625701
     }
   ]
 }
