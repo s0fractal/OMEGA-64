@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021608046
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021608215
@@ -189,6 +183,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021613800
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021614585
     }
   ]
 }
