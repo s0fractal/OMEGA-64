@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036176359
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036176591
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036181021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036181260
     }
   ]
 }
