@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024671987
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024675480
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772024688190
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772024688551
     }
   ]
 }
