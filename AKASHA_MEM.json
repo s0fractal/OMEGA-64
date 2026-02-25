@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035150961
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035151660
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035155988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035156196
     }
   ]
 }
