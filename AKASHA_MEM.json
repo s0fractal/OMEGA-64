@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021000550
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021006416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021006581
     }
   ]
 }
