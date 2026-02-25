@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038379637
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038379846
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038382532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038382701
     }
   ]
 }
