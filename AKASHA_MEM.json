@@ -42,12 +42,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DECAY DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019879389
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019882022
@@ -129,6 +123,12 @@
       "text": "STRIFE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019892119
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019893061
     }
   ]
 }
