@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023035801
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772023036130
@@ -254,6 +248,12 @@
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023040638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023040913
     }
   ]
 }
