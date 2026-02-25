@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772036367961
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036368167
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036370930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036371149
     }
   ]
 }
