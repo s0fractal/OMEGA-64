@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025425175
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025425368
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772025434039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025434250
     }
   ]
 }
