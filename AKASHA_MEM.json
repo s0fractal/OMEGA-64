@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_STREAM",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037086882
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037091123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037091392
     }
   ]
 }
