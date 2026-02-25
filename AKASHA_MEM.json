@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041900439
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041904573
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041904747
     }
   ]
 }
