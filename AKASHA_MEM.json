@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040936584
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040940073
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040940253
     }
   ]
 }
