@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024037038
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024037227
@@ -287,6 +281,12 @@
       "text": "HUNGER SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024040440
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024040606
     }
   ]
 }
