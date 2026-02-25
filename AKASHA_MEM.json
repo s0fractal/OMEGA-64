@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035524811
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035525032
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035527746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035527987
     }
   ]
 }
