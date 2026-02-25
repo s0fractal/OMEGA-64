@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06066060",
     "AA0A0A0A",
     "AA0AAAA0",
     "A000000D",
@@ -199,15 +198,10 @@
     "66066066",
     "A0AAAA00",
     "AAA0A000",
-    "AA000000"
+    "AA000000",
+    "60660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039178244
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS COHERE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039181145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039181313
     }
   ]
 }
