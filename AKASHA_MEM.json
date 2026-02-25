@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042040950
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042041957
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772042050889
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042051553
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042051797
     }
   ]
 }
