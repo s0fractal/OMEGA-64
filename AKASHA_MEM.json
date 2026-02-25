@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024043751
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -287,6 +281,12 @@
       "text": "WAVE EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024048731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024049022
     }
   ]
 }
