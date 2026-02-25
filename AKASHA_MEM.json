@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024943950
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024949020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024949802
     }
   ]
 }
