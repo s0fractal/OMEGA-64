@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041349535
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041353308
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041353462
     }
   ]
 }
