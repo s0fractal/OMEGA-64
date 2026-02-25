@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032975848
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032978633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032978816
     }
   ]
 }
