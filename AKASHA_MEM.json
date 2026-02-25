@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772029670202
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772029670881
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029681566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772029682298
     }
   ]
 }
