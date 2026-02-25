@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016872301
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016884124
@@ -107,6 +101,12 @@
       "text": "DECAY BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016967655
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016976689
     }
   ]
 }
