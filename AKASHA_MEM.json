@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037543041
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772037543306
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037550397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037550612
     }
   ]
 }
