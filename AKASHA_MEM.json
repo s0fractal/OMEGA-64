@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031816286
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031816663
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031823255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031823782
     }
   ]
 }
