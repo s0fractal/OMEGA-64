@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035585239
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035585564
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035589044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035589250
     }
   ]
 }
