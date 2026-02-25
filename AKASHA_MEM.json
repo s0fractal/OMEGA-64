@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021049423
-    },
-    {
       "origin": "PARADOX",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
@@ -165,6 +159,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021057889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021058441
     }
   ]
 }
