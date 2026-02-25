@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020700849
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020701603
@@ -150,6 +144,12 @@
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020709638
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020709823
     }
   ]
 }
