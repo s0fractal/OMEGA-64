@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033003586
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033003759
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033005979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033006119
     }
   ]
 }
