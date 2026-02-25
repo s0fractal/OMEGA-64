@@ -117,12 +117,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022077125
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
@@ -205,6 +199,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022081220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022081406
     }
   ]
 }
