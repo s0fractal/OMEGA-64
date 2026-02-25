@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023902317
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FORGE BEYOND WITNESS",
       "mood": "CREATIVE",
@@ -283,6 +277,12 @@
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023908611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023908844
     }
   ]
 }
