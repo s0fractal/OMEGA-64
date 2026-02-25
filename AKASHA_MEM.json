@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A000",
     "66606660",
     "A0666660",
     "A00A0AAA",
@@ -199,15 +198,10 @@
     "66006666",
     "06660600",
     "000B0000",
-    "06006000"
+    "06006000",
+    "600A66A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028458382
-    },
     {
       "origin": "REVERSE",
       "text": "PURE SHIELD SHELTER",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772028468776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028469295
     }
   ]
 }
