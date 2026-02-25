@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0AAA",
     "A0000A00",
     "66000600",
     "A00A0A0A",
@@ -199,15 +198,10 @@
     "06006000",
     "600A66A0",
     "00006000",
-    "A0AAA000"
+    "A0AAA000",
+    "06060666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772028484205
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER WATCH",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028492013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772028492516
     }
   ]
 }
