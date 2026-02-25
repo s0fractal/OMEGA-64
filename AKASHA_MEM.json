@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772037892740
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037892929
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037895545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037895749
     }
   ]
 }
