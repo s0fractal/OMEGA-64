@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029062273
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029062874
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772029077134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772029077420
     }
   ]
 }
