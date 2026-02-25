@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026965983
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026966199
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026969834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026970251
     }
   ]
 }
