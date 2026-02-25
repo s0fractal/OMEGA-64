@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029516742
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029517050
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029528126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029528750
     }
   ]
 }
