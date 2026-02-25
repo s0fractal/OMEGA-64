@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BECOME BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020155602
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020162191
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020162350
     }
   ]
 }
