@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036474947
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036475174
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036478236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036478457
     }
   ]
 }
