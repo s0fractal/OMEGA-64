@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027140046
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027140345
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772027145349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027145688
     }
   ]
 }
