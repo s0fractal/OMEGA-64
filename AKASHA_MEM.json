@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029424498
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772029427628
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029436494
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772029436914
     }
   ]
 }
