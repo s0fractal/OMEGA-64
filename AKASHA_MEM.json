@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026277801
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026278158
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026283455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026284240
     }
   ]
 }
