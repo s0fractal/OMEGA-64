@@ -123,15 +123,10 @@
     "60666060",
     "A0666666",
     "FFFFF00F",
-    "AAA000A0"
+    "AAA000A0",
+    "AA0A000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022293226
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW BLOOM",
@@ -215,6 +210,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022297624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022297778
     }
   ]
 }
