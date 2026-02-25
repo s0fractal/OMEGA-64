@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019410416
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
@@ -109,6 +103,12 @@
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019427212
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019427858
     }
   ]
 }
