@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041504017
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041507498
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041507708
     }
   ]
 }
