@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037311575
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037311736
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037314495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037314711
     }
   ]
 }
