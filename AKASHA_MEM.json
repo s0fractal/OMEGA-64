@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041850729
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041855606
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041855933
     }
   ]
 }
