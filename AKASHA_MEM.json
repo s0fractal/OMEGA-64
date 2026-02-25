@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032792261
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032792455
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032796050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032796262
     }
   ]
 }
