@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIKE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022588197
-    },
-    {
-      "origin": "INTERFACE",
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022588668
@@ -239,6 +233,12 @@
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772022592682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022593261
     }
   ]
 }
