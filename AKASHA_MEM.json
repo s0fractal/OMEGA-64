@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021110969
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021116680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021117048
     }
   ]
 }
