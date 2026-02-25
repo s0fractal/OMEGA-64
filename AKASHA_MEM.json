@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022934619
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022940715
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022940888
     }
   ]
 }
