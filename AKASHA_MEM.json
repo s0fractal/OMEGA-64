@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020175369
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020186621
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020187030
     }
   ]
 }
