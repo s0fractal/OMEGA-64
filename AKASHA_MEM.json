@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036820439
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772036820773
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772036826112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036826314
     }
   ]
 }
