@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031749855
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031750254
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031755172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031755571
     }
   ]
 }
