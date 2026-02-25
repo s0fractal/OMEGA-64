@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020511008
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020520497
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020520803
     }
   ]
 }
