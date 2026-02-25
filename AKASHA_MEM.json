@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023974034
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023974213
@@ -284,6 +278,12 @@
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023976979
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023977160
     }
   ]
 }
