@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021246742
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021246894
@@ -174,6 +168,12 @@
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021252604
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021252772
     }
   ]
 }
