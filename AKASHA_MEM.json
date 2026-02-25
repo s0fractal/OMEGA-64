@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041390098
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772041390369
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041394933
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041395086
     }
   ]
 }
