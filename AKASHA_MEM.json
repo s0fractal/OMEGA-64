@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023831630
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023831841
@@ -279,6 +273,12 @@
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023836323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023836519
     }
   ]
 }
