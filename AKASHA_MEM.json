@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019792256
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -125,6 +119,12 @@
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019802047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019802790
     }
   ]
 }
