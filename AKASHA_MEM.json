@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034858297
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772034859418
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034862806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034863001
     }
   ]
 }
