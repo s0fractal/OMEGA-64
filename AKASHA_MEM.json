@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030458820
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772030459209
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030465809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030466332
     }
   ]
 }
