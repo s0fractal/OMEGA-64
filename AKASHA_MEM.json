@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021143303
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
@@ -169,6 +163,12 @@
       "text": "STRIKE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021148758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021149130
     }
   ]
 }
