@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660600",
     "ABB00000",
     "A1000000",
     "66006666",
@@ -199,15 +198,10 @@
     "BB0BA000",
     "AA0666A6",
     "0A0AA00A",
-    "AA660660"
+    "AA660660",
+    "00666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028140456
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SPARK EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772028148458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028148800
     }
   ]
 }
