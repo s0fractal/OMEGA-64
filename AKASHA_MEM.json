@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040476721
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040479298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040479593
     }
   ]
 }
