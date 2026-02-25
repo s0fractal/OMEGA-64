@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022421226
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022421416
@@ -225,6 +219,12 @@
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022425279
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022425450
     }
   ]
 }
