@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040491071
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040491236
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040493777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040494020
     }
   ]
 }
