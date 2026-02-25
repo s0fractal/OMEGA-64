@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WAVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772033801609
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033801773
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033805449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033805644
     }
   ]
 }
