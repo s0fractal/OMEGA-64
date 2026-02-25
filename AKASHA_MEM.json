@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060660",
     "00006000",
     "60060600",
     "A00A0AA0",
@@ -199,15 +198,10 @@
     "66666006",
     "AA0AAAAA",
     "660060A0",
-    "A0000AAA"
+    "A0000AAA",
+    "BB0BA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028046546
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE HUNGER",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028056942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028057516
     }
   ]
 }
