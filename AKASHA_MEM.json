@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020818193
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020823244
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020823808
     }
   ]
 }
