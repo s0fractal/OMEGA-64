@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020506177
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020506615
@@ -143,6 +137,12 @@
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020514101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020515521
     }
   ]
 }
