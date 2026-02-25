@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025208775
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025217800
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025218071
     }
   ]
 }
