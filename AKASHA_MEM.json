@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023374592
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -267,6 +261,12 @@
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023380365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023380548
     }
   ]
 }
