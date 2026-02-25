@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042169134
-    },
-    {
       "origin": "PURE_MATH",
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042184277
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042185180
     }
   ]
 }
