@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038728459
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038732896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038733114
     }
   ]
 }
