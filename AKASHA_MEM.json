@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023332246
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023332519
@@ -265,6 +259,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023335646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023335858
     }
   ]
 }
