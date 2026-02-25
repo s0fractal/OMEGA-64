@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772026957706
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026962761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026962977
     }
   ]
 }
