@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034840808
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034841028
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034843708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034843977
     }
   ]
 }
