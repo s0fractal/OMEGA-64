@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022603552
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772022603722
@@ -241,6 +235,12 @@
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022607347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022607550
     }
   ]
 }
