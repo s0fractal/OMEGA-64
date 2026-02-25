@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040961651
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040961821
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040964747
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BEYOND EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772040964893
     }
   ]
 }
