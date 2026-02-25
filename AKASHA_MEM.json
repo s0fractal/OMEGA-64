@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041065168
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041067664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041067789
     }
   ]
 }
