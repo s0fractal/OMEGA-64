@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAAA9AB5593A'
 vector: 07.07.00
 symbol: INTERFACE
 desc: System Interface Membrane. Wraps data in a semantic tag.
-energy: 42
+energy: 50
 ex:
   - '0x5DE8BD259AB5593E'
   - '0x0000FB529AB5593E'
@@ -24,17 +24,13 @@ ex:
   - '0xBBB000009AB5593C'
   - '0xAAAAAAAA9AB5593C'
   - '0xAAAAAAAA9AB5593C'
-  - '0xAAAAAAAA9AB5593E'
-  - '0xAAAAAAAA9AB5593E'
-  - '0xAAAAAAAA9AB55938'
-  - '0xAAAAAAAA9AB5593A'
+  - '0xAAAAAAAA9AB5593C'
   - '0xAAAAAAAA9AB5593C'
   - '0xAAAAAAAA9AB5593E'
   - '0xAAAAAAAA9AB55938'
-  - '0xAAAAAAAA9AB5593A'
-thought: WANDER_BONDING
-x: 463
-'y': 258
+thought: RESURRECTED
+x: 461
+'y': 260
 signals: []
 resonance: 250
 bonds: []
@@ -42,8 +38,6 @@ bond_strengths: {}
 logic: AAAAAAAA
 ---
 
-<div align="center">
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +71,6 @@ logic: AAAAAAAA
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">INTERFACE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
-</div>
 </div>
 
 
