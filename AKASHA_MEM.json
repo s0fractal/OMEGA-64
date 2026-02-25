@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020947815
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020956213
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020956561
     }
   ]
 }
