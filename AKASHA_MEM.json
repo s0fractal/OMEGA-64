@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015982234
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015984743
@@ -107,6 +101,12 @@
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016067851
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772016077655
     }
   ]
 }
