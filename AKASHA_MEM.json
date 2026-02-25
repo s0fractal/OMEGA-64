@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040920491
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "AWAKEN WITNESS BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040923578
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040923709
     }
   ]
 }
