@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022706066
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022706239
@@ -242,6 +236,12 @@
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022710984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022711187
     }
   ]
 }
