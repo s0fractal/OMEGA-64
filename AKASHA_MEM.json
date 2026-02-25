@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035165634
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035165848
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035168527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035168720
     }
   ]
 }
