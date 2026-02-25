@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033549314
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033549620
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033554047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033554196
     }
   ]
 }
