@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021511588
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021524570
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021525023
     }
   ]
 }
