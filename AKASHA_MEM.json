@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020313683
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020323644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020324058
     }
   ]
 }
