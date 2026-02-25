@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036360016
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772036360223
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036363867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036364091
     }
   ]
 }
