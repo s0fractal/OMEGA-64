@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042737761
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042744089
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042745593
     }
   ]
 }
