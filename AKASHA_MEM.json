@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024938749
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024938934
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024944380
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024944636
     }
   ]
 }
