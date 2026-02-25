@@ -128,12 +128,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022295785
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -216,6 +210,12 @@
       "text": "COHERE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022300254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022300570
     }
   ]
 }
