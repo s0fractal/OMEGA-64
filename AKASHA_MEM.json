@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040205534
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040216234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040217381
     }
   ]
 }
