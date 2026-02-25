@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022069850
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772022070030
@@ -203,6 +197,12 @@
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022076700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022076891
     }
   ]
 }
