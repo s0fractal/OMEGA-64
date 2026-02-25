@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019656919
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019657493
@@ -114,6 +108,12 @@
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019664821
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019665642
     }
   ]
 }
