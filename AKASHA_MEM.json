@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021555232
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -184,6 +178,12 @@
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021563603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021564003
     }
   ]
 }
