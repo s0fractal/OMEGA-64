@@ -73,15 +73,10 @@
     "000AAAAA",
     "ABBB0000",
     "60660000",
-    "0BBB0000"
+    "0BBB0000",
+    "AA0AAA0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021056956
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY HUNGER DRAIN",
@@ -165,6 +160,12 @@
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021063362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021064241
     }
   ]
 }
