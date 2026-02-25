@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000A000",
     "A0AAA000",
     "66000606",
     "BB0B0000",
@@ -199,15 +198,10 @@
     "66AA66A0",
     "0BB00000",
     "00000000",
-    "A6666600"
+    "A6666600",
+    "66660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME VISION DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772027838457
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772027856483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027857310
     }
   ]
 }
