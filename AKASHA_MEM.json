@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023033860
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023034507
@@ -254,6 +248,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023038629
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023038957
     }
   ]
 }
