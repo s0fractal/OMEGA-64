@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020440019
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "VISION FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772020449373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772020449673
     }
   ]
 }
