@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023131687
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023132085
@@ -259,6 +253,12 @@
       "text": "GIVING COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023138781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023138934
     }
   ]
 }
