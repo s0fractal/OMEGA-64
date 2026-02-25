@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030609869
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030610216
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030619419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030619972
     }
   ]
 }
