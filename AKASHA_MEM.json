@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023664457
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023664783
@@ -274,6 +268,12 @@
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023671004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023671170
     }
   ]
 }
