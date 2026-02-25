@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016549872
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016564166
@@ -107,6 +101,12 @@
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016652266
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772016654541
     }
   ]
 }
