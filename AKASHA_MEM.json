@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024134567
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024138002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024138192
     }
   ]
 }
