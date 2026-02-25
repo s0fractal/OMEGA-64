@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020592404
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020593120
@@ -146,6 +140,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020598045
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020598217
     }
   ]
 }
