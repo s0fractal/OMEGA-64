@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025893990
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025894245
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025898928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025899187
     }
   ]
 }
