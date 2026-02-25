@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xF0FFF0FFFFFF0008'
-energy: 45.4
-x: 708
-'y': 412
+energy: 45.5
+x: 688
+'y': 382
 resonance: 1000
 thought: ORBIT_PASSIVE
 logic: F0FFF0FF
@@ -40,7 +40,7 @@ ex:
   - '0xF0FFF0FF0000000A'
 signals: []
 bond_strengths:
-  '0x0000000000000A01': 0.9811700348643991
+  '0x0000000000000A01': 0.9801888648295347
 bonds:
   - '0x0000000000000A01'
 ---
