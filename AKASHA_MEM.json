@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026153793
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026157069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026157495
     }
   ]
 }
