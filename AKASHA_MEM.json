@@ -174,12 +174,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023240125
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023240469
@@ -261,6 +255,12 @@
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023247516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023247694
     }
   ]
 }
