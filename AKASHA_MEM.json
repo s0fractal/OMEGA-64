@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020474232
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020482018
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020482849
     }
   ]
 }
