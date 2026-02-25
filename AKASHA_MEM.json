@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037434632
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037434933
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037439006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772037439224
     }
   ]
 }
