@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025292096
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025292350
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025299054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025299369
     }
   ]
 }
