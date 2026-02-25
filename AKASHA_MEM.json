@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022619092
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022619254
@@ -241,6 +235,12 @@
       "text": "BEYOND WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772022624514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022624633
     }
   ]
 }
