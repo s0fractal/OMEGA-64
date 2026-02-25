@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025138394
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025138612
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772025141646
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025142165
     }
   ]
 }
