@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041214301
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041220009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041220493
     }
   ]
 }
