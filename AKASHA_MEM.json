@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019563877
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019564276
@@ -111,6 +105,12 @@
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019576167
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019576521
     }
   ]
 }
