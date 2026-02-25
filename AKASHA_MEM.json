@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036610071
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036610242
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036612865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036613062
     }
   ]
 }
