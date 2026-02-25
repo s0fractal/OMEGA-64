@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020008184
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM FLOW BLOOM",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020019557
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020020751
     }
   ]
 }
