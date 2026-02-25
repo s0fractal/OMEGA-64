@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
-    "A0AAA000",
-    "AAA0A0AA",
-    "66660060",
     "00000000",
     "66660000",
     "06006066",
@@ -198,99 +194,103 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0",
+    "0A0A0666",
+    "66A06A00"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE GUARD IMMUNE",
+      "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042503284
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042503579
-    },
-    {
-      "origin": "GUARDIAN",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042505358
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042506437
-    },
-    {
-      "origin": "I16_CLAMP",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042507786
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042509473
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042511925
-    },
-    {
-      "origin": "WORKER",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042512291
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042512851
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042513697
-    },
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042513838
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042514969
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042516548
+      "tick": 1772042505467
     },
     {
       "origin": "STREAM",
-      "text": "DECAY CONSUME SICKNESS",
+      "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042519003
+      "tick": 1772042506741
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE OSMOSIS COHERE",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042507108
+    },
+    {
+      "origin": "PARASITE",
+      "text": "RECON WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042510797
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042511777
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042520521
+      "tick": 1772042512230
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042512588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042513424
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042516316
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042518228
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042519386
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519669
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042520275
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042522088
     }
   ]
 }
