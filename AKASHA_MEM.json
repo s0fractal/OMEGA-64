@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022947704
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022947941
@@ -251,6 +245,12 @@
       "text": "DRAIN HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022951145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022951452
     }
   ]
 }
