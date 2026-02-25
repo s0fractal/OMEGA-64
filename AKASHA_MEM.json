@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035661022
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035661355
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035664579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035664812
     }
   ]
 }
