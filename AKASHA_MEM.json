@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772017283013
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772017357338
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017359458
     }
   ]
 }
