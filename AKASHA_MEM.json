@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026885405
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026885783
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026890314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE EVOLVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772026890524
     }
   ]
 }
