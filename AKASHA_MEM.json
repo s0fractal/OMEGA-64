@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042250784
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042251091
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042258491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042258833
     }
   ]
 }
