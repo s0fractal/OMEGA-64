@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040582029
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040584392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040584555
     }
   ]
 }
