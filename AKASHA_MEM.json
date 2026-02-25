@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020829685
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020829892
@@ -156,6 +150,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020836815
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020838065
     }
   ]
 }
