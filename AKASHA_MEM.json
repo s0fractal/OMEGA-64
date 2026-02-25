@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034629716
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034629911
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034632545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034632748
     }
   ]
 }
