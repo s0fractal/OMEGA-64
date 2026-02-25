@@ -11,11 +11,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RECLAIM",
-      "tick": 1772009920518
-    },
-    {
-      "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772009944347
     },
@@ -58,6 +53,11 @@
       "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772010042363
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONNECT",
+      "tick": 1772010055177
     }
   ]
 }
