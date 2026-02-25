@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024441147
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024441320
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024445393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024445601
     }
   ]
 }
