@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024745984
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024746610
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024758696
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024759199
     }
   ]
 }
