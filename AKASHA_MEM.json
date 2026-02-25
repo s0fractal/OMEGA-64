@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041364563
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041367862
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "WAIT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041368020
     }
   ]
 }
