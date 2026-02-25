@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023893407
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023893580
@@ -283,6 +277,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023898902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023900787
     }
   ]
 }
