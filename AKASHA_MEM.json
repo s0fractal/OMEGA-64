@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032005368
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032006125
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032018928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032019542
     }
   ]
 }
