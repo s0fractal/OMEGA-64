@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041012394
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041015254
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041015554
     }
   ]
 }
