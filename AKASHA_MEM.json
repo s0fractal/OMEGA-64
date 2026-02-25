@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66060606",
     "666006A0",
     "AAB0C00D",
     "A0AAAAA0",
@@ -199,15 +198,10 @@
     "0AA0AAAA",
     "00AAAA00",
     "60006006",
-    "AAAAAAA0"
+    "AAAAAAA0",
+    "06000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034968700
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH GUARD WAIT",
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034973537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034973705
     }
   ]
 }
