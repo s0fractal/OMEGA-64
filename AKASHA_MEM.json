@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016248757
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772016360428
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016365081
     }
   ]
 }
