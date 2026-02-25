@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020281126
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE VISION AWAKEN",
       "mood": "CREATIVE",
@@ -138,6 +132,12 @@
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772020288627
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020288794
     }
   ]
 }
