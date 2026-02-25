@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022117400
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022117654
@@ -210,6 +204,12 @@
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022121751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022121915
     }
   ]
 }
