@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020588776
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020589135
@@ -146,6 +140,12 @@
       "text": "SHOCK STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020594816
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020595549
     }
   ]
 }
