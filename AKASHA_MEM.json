@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024547392
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024547929
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024554438
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024555273
     }
   ]
 }
