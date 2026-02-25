@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022182066
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -212,6 +206,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022189648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022190698
     }
   ]
 }
