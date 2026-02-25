@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035289862
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035290461
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772035295904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035296069
     }
   ]
 }
