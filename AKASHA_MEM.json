@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "UNIFY OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041950709
-    },
-    {
       "origin": "SOMA",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041955140
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041955742
     }
   ]
 }
