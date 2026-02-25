@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041618120
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041623892
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041624115
     }
   ]
 }
