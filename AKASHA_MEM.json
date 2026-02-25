@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041660172
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041663056
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041663182
     }
   ]
 }
