@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A000A",
     "00066066",
     "A0666666",
     "0000A0AA",
@@ -199,15 +198,10 @@
     "A00AA0A0",
     "0000AA0A",
     "A0AA0AAA",
-    "00660000"
+    "00660000",
+    "0AAAA00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035421984
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD RECON WAIT",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035425525
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035425890
     }
   ]
 }
