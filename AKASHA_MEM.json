@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024144785
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024148941
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024149144
     }
   ]
 }
