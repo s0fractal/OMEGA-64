@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014249735
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -104,6 +98,12 @@
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772014409028
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014429394
     }
   ]
 }
