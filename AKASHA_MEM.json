@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022356699
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022357323
@@ -219,6 +213,12 @@
       "text": "BECOME BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772022360896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022361043
     }
   ]
 }
