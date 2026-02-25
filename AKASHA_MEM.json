@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038050551
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772038050755
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038054040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038054232
     }
   ]
 }
