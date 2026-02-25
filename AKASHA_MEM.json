@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020172310
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020173014
@@ -136,6 +130,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020184523
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020184676
     }
   ]
 }
