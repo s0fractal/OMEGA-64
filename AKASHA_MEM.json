@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040624048
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040626970
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040627106
     }
   ]
 }
