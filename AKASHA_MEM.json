@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032265816
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032266095
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032270982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032271178
     }
   ]
 }
