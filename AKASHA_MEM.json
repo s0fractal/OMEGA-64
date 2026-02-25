@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041656257
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041657393
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041659737
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041659909
     }
   ]
 }
