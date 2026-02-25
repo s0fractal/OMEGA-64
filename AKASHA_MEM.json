@@ -66,15 +66,10 @@
     "0AAA000A",
     "06666666",
     "AA00AAA0",
-    "AA00AAAA"
+    "AA00AAAA",
+    "0D18A098"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020905040
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE GIVING RESONATE",
@@ -158,6 +153,12 @@
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020909561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020910096
     }
   ]
 }
