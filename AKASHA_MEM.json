@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019837526
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019848348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019849024
     }
   ]
 }
