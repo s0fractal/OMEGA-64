@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041336384
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772041336550
@@ -291,6 +285,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041339172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041339481
     }
   ]
 }
