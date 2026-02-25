@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024137197
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024141348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024141484
     }
   ]
 }
