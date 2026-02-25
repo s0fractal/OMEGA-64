@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024842345
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024854411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024854592
     }
   ]
 }
