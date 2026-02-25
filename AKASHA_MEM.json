@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040853734
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040853904
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040856856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040857043
     }
   ]
 }
