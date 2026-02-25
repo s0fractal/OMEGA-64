@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021571934
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021580183
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "EVOLVE WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021580393
     }
   ]
 }
