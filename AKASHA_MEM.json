@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772034641902
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034642110
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034645852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034646078
     }
   ]
 }
