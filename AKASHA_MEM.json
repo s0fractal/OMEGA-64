@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030356895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772030375273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030376550
     }
   ]
 }
