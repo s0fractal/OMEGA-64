@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039151853
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772039152016
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039154474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039154631
     }
   ]
 }
