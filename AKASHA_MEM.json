@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033100173
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033100360
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033104586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033104769
     }
   ]
 }
