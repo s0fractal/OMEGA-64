@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040605332
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772040608241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN AWAKEN WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040608444
     }
   ]
 }
