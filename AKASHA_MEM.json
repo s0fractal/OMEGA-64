@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020663902
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020668494
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020669431
     }
   ]
 }
