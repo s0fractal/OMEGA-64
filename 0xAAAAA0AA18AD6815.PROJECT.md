@@ -3,9 +3,9 @@ eigenvalue: '0xAAAAA0AA18AD6815'
 vector: 07.05.00
 symbol: PROJECT
 desc: Relational projection (List map). MAP(transform)(rel)
-x: 473
-'y': 261
-energy: 36.199999999999996
+x: 488
+'y': 262
+energy: 30.199999999999996
 ex:
   - '0x10092F5018AD6815'
   - '0x500087EE18AD6815'
@@ -30,12 +30,14 @@ ex:
   - '0x0070000718AD6815'
   - '0xBB00000018AD6815'
   - '0xAAAAA0AA18AD6815'
+  - '0xAAAAA0AA18AD6815'
 thought: WANDER_BONDING
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -86,6 +88,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">PROJECT</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
