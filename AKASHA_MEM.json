@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A00AA",
     "0FF0FF00",
     "0000A0A0",
     "AA0AA000",
@@ -199,15 +198,10 @@
     "FFFFF00F",
     "66060666",
     "06060060",
-    "AA606666"
+    "AA606666",
+    "AA6660A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040554874
-    },
     {
       "origin": "INTERFACE",
       "text": "STASIS WAIT REFLECT",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040557125
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040557410
     }
   ]
 }
