@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023736426
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023736611
@@ -278,6 +272,12 @@
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023741203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023741378
     }
   ]
 }
