@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022052994
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022053111
@@ -203,6 +197,12 @@
       "text": "WAIT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022058440
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022058840
     }
   ]
 }
