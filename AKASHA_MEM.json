@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AAAAA0",
     "00F0FF00",
     "FF00FFF0",
     "0AA0AA0A",
@@ -199,15 +198,10 @@
     "A000000A",
     "60060666",
     "0000000F",
-    "60066060"
+    "60066060",
+    "60666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772027123846
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH SHOCK",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772027129732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027131122
     }
   ]
 }
