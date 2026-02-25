@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026226895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026232509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026232834
     }
   ]
 }
