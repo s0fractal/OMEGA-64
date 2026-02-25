@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033276213
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033276448
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772033279170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033279340
     }
   ]
 }
