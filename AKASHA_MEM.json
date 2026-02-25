@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034976794
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034978823
@@ -291,6 +285,12 @@
       "text": "AWAKEN DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034982955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034983148
     }
   ]
 }
