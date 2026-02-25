@@ -11,12 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772010948903
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -99,6 +93,12 @@
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772012914372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012923369
     }
   ]
 }
