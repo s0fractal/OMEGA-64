@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034126865
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772034127021
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772034129723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034129958
     }
   ]
 }
