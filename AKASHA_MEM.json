@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040466278
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040469069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040469278
     }
   ]
 }
