@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021915139
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -199,6 +193,12 @@
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021924368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021924578
     }
   ]
 }
