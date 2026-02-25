@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0BA000",
     "AA0666A6",
     "0A0AA00A",
     "AA660660",
@@ -199,15 +198,10 @@
     "00AAAA0A",
     "60066000",
     "A6606006",
-    "0AAAA000"
+    "0AAAA000",
+    "B0BF000C"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032564863
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW GIVING",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032567799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032567946
     }
   ]
 }
