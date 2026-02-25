@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAAADC2EB5E9'
 vector: 05.00.00
 symbol: TENSOR
 desc: Tensor constructor. VECTOR(dims)(values)
-energy: 43
+energy: 39
 ex:
   - '0x95DA9A3CDC2EB5E9'
   - '0x0000B97BDC2EB5E9'
@@ -17,14 +17,16 @@ ex:
   - '0x00000000DC2EB5E9'
   - '0x00000000DC2EB5E9'
   - '0x00000000DC2EB5E9'
+  - '0xAAAAAAAADC2EB5E9'
 thought: WANDER_BONDING
-x: 702
-'y': 357
+x: 715
+'y': 373
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -66,6 +68,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">TENSOR</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
