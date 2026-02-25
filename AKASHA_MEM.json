@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024041290
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -287,6 +281,12 @@
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024045061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024045440
     }
   ]
 }
