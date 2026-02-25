@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025046545
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025046842
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772025053437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025053793
     }
   ]
 }
