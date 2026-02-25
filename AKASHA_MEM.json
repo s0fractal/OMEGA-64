@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034591152
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034591366
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034595034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034595193
     }
   ]
 }
