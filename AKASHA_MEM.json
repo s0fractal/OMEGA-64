@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020039907
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020053116
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772020053804
     }
   ]
 }
