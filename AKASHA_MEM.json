@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020182944
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020190751
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020191010
     }
   ]
 }
