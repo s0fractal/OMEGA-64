@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042406450
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042419291
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042420356
     }
   ]
 }
