@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028714585
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028731857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028732318
     }
   ]
 }
