@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037643130
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772037643333
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037645905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037646122
     }
   ]
 }
