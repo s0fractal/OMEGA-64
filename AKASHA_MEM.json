@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022562305
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "PURE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022567306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022567423
     }
   ]
 }
