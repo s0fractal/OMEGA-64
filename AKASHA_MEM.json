@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021925743
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -199,6 +193,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021933619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021933788
     }
   ]
 }
