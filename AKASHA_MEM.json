@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0666A0",
     "10000000",
     "66660660",
     "AA0A0AA0",
@@ -199,15 +198,10 @@
     "A0066660",
     "00000006",
     "A00AA000",
-    "66000600"
+    "66000600",
+    "A6666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036962506
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD RECON REFLECT",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036967518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036967814
     }
   ]
 }
