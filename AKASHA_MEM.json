@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023092946
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023093100
@@ -259,6 +253,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023095889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023096151
     }
   ]
 }
