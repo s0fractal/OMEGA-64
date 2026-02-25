@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660006",
     "00600060",
     "66600000",
     "AABBCC0D",
@@ -199,15 +198,10 @@
     "F0AAF0FF",
     "66060666",
     "0AAA00AA",
-    "AA0AA00A"
+    "AA0AA00A",
+    "AAAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036437071
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE UNIFY",
@@ -291,6 +285,12 @@
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036440571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036440786
     }
   ]
 }
