@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035830589
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035830971
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035837722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035838109
     }
   ]
 }
