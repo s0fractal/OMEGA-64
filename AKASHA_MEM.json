@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034913597
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034913763
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034916428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034916623
     }
   ]
 }
