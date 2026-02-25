@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019907354
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019917502
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019918668
     }
   ]
 }
