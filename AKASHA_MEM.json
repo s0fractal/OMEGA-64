@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040355307
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040361378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040361534
     }
   ]
 }
