@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022711774
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022711942
@@ -243,6 +237,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022717842
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022719136
     }
   ]
 }
