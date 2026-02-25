@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037250559
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772037250770
@@ -291,6 +285,12 @@
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037257248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037257494
     }
   ]
 }
