@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037702895
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037703170
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037707463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037707635
     }
   ]
 }
