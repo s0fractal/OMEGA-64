@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037092496
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772037092830
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037097969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037098202
     }
   ]
 }
