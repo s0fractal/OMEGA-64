@@ -197,12 +197,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024011129
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
@@ -285,6 +279,12 @@
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024015393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024015583
     }
   ]
 }
