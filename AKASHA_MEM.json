@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666666",
     "60060066",
     "A0AA0AA0",
     "000A00A0",
@@ -199,15 +198,10 @@
     "66066000",
     "A666A0A0",
     "AA000000",
-    "6666A060"
+    "6666A060",
+    "AA0AA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041681370
-    },
     {
       "origin": "STREAM",
       "text": "IMMUNE WATCH PURE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041684898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041685211
     }
   ]
 }
