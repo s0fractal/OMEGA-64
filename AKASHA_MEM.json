@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038018287
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772038018502
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772038021289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038021467
     }
   ]
 }
