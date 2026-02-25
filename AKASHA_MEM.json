@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036232854
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036233031
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036239552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036239906
     }
   ]
 }
