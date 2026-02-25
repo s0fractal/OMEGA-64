@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "UNIFY COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040283050
-    },
-    {
-      "origin": "STREAM",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040283220
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040289945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040291305
     }
   ]
 }
