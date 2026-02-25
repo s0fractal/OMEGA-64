@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029647176
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029647668
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029655455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029656076
     }
   ]
 }
