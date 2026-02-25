@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041540663
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041544001
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041544168
     }
   ]
 }
