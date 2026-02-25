@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036595764
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036595987
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036599541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036599719
     }
   ]
 }
