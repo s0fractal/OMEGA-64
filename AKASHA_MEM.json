@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021881648
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -197,6 +191,12 @@
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021887978
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021888938
     }
   ]
 }
