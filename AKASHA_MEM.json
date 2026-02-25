@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032784877
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032789124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032789314
     }
   ]
 }
