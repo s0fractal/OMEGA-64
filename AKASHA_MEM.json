@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040888524
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAVE EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772040891431
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040891640
     }
   ]
 }
