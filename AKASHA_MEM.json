@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020816954
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020822930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020823095
     }
   ]
 }
