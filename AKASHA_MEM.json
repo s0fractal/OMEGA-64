@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039931120
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039938610
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772039939030
     }
   ]
 }
