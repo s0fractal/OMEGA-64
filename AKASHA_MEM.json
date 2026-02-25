@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017487715
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772017570938
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772017573426
     }
   ]
 }
