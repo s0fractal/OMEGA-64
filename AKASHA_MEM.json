@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021228481
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021228665
@@ -174,6 +168,12 @@
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021233106
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021233886
     }
   ]
 }
