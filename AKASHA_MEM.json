@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040721737
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040721887
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040724999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040725179
     }
   ]
 }
