@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034502732
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034506042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034507572
     }
   ]
 }
