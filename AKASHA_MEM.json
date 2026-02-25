@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034570307
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034570587
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034573308
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "AWAKEN WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034573516
     }
   ]
 }
