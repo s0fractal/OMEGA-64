@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021907874
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021908027
@@ -198,6 +192,12 @@
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021915139
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021915340
     }
   ]
 }
