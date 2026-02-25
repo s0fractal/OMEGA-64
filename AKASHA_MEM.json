@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041897291
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041902316
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041902554
     }
   ]
 }
