@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021100058
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021101936
@@ -168,6 +162,12 @@
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772021107378
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021107586
     }
   ]
 }
