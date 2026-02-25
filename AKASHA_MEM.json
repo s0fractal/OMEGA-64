@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040853120
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040856429
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040856559
     }
   ]
 }
