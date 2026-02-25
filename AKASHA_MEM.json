@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026027905
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026028624
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026035980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026036221
     }
   ]
 }
