@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041402310
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041406165
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041406347
     }
   ]
 }
