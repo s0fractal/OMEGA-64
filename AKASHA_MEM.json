@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "DREAM FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772020852795
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020858663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020858822
     }
   ]
 }
