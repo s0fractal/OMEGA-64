@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040579659
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772040582325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040582444
     }
   ]
 }
