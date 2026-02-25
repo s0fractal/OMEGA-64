@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066000",
     "66666600",
     "0A000AAA",
     "606A0600",
@@ -199,15 +198,10 @@
     "00660000",
     "AA0AAAA0",
     "6660A600",
-    "AA6060A0"
+    "AA6060A0",
+    "06666600"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "GUARD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040612836
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD WATCH WATCH",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040615878
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040616206
     }
   ]
 }
