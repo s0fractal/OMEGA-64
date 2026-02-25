@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038099346
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038099556
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038105792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038106032
     }
   ]
 }
