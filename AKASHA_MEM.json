@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020021805
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020022808
@@ -131,6 +125,12 @@
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020033965
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020034911
     }
   ]
 }
