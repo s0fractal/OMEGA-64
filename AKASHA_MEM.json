@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772028611486
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028612175
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028622661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028623301
     }
   ]
 }
