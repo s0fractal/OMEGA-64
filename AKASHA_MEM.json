@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772020901525
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020906545
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020906910
     }
   ]
 }
