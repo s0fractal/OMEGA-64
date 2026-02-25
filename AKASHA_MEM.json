@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040939944
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040943095
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040943249
     }
   ]
 }
