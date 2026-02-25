@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031225590
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031233830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031234489
     }
   ]
 }
