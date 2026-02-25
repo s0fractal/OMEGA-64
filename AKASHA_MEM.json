@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035034140
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035034380
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035039483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035039726
     }
   ]
 }
