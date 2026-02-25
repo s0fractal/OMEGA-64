@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039081780
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039082004
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039084969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039085184
     }
   ]
 }
