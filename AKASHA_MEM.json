@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031580303
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772031580644
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031587804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031588359
     }
   ]
 }
