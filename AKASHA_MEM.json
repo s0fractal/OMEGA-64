@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040239510
-    },
-    {
-      "origin": "STREAM",
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040240036
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040244819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040244998
     }
   ]
 }
