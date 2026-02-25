@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040710288
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040714034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040714228
     }
   ]
 }
