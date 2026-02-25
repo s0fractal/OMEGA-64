@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035531908
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772035532139
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035539108
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035539451
     }
   ]
 }
