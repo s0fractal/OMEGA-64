@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040549423
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040551925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040552093
     }
   ]
 }
