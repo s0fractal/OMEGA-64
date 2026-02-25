@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020246119
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -137,6 +131,12 @@
       "text": "SICKNESS SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020254430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020256557
     }
   ]
 }
