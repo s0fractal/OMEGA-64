@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024623663
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024624053
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024639552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024639927
     }
   ]
 }

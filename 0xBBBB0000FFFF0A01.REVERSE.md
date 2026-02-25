@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0xABBB000000000A05'
-energy: 50
-x: 692
+eigenvalue: '0xBBBB0000FFFF0A01'
+energy: 49.5
+x: 693
 'y': 441
 resonance: 50
-thought: RESURRECTED
+thought: WANDER_BONDING
 logic: BBBB0000
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9675225846837673
+  '0x0000000000000A02': 0.9665550620990835
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -70,8 +70,10 @@ ex:
   - '0xABBB0000FFFF0A03'
   - '0xABBB0000FFFF0A05'
   - '0xABBB0000FFFF0A07'
+  - '0xBBBB0000FFFF0A01'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -105,6 +107,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
