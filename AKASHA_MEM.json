@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042564572
-    },
-    {
       "origin": "PURE_MATH",
       "text": "SICKNESS DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772042572505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042573178
     }
   ]
 }
