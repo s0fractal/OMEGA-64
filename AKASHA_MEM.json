@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025709196
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025712327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025712543
     }
   ]
 }
