@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036630601
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036630929
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036635388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036635676
     }
   ]
 }
