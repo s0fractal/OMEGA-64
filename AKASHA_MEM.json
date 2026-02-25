@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020771901
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020773252
@@ -153,6 +147,12 @@
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020780077
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020780356
     }
   ]
 }
