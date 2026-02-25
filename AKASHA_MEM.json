@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037268584
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037268826
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037271517
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK EVOLVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772037271714
     }
   ]
 }
