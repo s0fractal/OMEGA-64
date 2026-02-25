@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033751354
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033751506
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033753935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033754120
     }
   ]
 }
