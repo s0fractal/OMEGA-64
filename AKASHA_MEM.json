@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040724074
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040726529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040726697
     }
   ]
 }
