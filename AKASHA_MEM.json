@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037706228
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037707239
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037710234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037710467
     }
   ]
 }
