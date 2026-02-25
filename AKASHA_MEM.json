@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020081689
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020082250
@@ -134,6 +128,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020092476
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020093039
     }
   ]
 }
