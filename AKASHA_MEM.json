@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600600",
     "AA0A000A",
     "A000AA0A",
     "A00AA0AA",
@@ -199,15 +198,10 @@
     "00006666",
     "0AAAAAAA",
     "AA0AAA00",
-    "A0606606"
+    "A0606606",
+    "06060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037185312
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW UNIFY RESONATE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037188596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037188827
     }
   ]
 }
