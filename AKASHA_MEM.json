@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041018877
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041019048
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041021836
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041021966
     }
   ]
 }
