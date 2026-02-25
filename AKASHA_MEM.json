@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026510989
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026511214
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026516119
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026516454
     }
   ]
 }
