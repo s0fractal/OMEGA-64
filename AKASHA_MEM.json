@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034322380
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "VISION WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034326702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034326882
     }
   ]
 }
