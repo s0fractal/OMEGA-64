@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023428376
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023428549
@@ -268,6 +262,12 @@
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023432125
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023433961
     }
   ]
 }
