@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038423527
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772038423758
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772038427313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038427516
     }
   ]
 }
