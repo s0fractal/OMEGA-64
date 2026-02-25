@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041075033
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772041075191
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041077605
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041077856
     }
   ]
 }
