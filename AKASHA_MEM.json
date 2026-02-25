@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041277853
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041282138
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041282462
     }
   ]
 }
