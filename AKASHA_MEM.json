@@ -175,15 +175,10 @@
     "06660660",
     "60006660",
     "66066006",
-    "A00A000A"
+    "A00A000A",
+    "66606000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023401806
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE SYNC OSMOSIS",
@@ -267,6 +262,12 @@
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023405165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023405574
     }
   ]
 }
