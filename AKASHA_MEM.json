@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022809634
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022810469
@@ -247,6 +241,12 @@
       "text": "DREAM BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772022815098
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022815266
     }
   ]
 }
