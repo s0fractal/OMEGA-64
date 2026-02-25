@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025388355
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025388498
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025391630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772025391765
     }
   ]
 }
