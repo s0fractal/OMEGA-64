@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xAA0AA0AAFFFF0A05'
-energy: 47.4
+energy: 50
 x: 702
 'y': 407
 resonance: 50
-thought: WANDER_BONDING
+thought: RESURRECTED
 logic: AA0AA0AA
 signals: []
 bond_strengths:

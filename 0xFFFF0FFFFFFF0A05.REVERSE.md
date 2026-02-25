@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xFFFF0FFFFFFF0A05'
-energy: 42.199999999999996
+energy: 50
 x: 681
 'y': 398
 resonance: 50
-thought: ORBIT_MATING
+thought: RESURRECTED
 logic: FFFF0FFF
 signals: []
 bond_strengths:

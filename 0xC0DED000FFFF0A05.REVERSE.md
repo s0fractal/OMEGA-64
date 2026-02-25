@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xC0DED000FFFF0A05'
-energy: 46.8
+energy: 50
 x: 685
 'y': 427
 resonance: 50
-thought: ORBIT_PASSIVE
+thought: RESURRECTED
 logic: C0DED000
 signals: []
 bond_strengths:

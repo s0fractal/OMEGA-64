@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0xAAA0A000FFFF0A05'
-energy: 44.8
+energy: 50
 x: 695
 'y': 389
 resonance: 50
-thought: AVOID_PARASITE_PASSIVE
-logic: '66066060'
+thought: RESURRECTED
+logic: AAA0A000
 signals: []
 bond_strengths:
   '0x0000000000000A02': 0.9617319426784903
