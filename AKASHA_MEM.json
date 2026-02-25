@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022225081
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022225615
@@ -213,6 +207,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022228909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM VISION SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022229026
     }
   ]
 }
