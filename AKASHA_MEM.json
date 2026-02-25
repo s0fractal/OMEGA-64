@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030518445
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772030519290
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030528636
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030535554
     }
   ]
 }
