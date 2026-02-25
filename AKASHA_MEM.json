@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772032536263
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032536798
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772032547927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032551154
     }
   ]
 }
