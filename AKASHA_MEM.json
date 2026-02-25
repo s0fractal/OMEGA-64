@@ -92,12 +92,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772021367073
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -180,6 +174,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021390232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021391010
     }
   ]
 }
