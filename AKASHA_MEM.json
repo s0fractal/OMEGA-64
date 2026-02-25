@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019832328
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019841175
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019842101
     }
   ]
 }
