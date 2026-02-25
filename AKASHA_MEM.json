@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036535500
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036535698
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036538684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772036539018
     }
   ]
 }
