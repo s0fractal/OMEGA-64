@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039974661
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039976210
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039989712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039990374
     }
   ]
 }
