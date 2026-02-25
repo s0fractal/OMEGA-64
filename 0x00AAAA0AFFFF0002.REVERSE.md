@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x00AAAA0AFFFF0002'
-energy: 49.9
+energy: 50
 resonance: 30
-x: 577
-'y': 281
+x: 585
+'y': 276
 symbol: ARCHIVIST
-thought: SEEK_ALPHA_PASSIVE
+thought: RESURRECTED
 signals: []
 bond_strengths:
-  '0xAAAAAAA00000000E': 0.9502544225688344
+  '0xAAAAAAA00000000E': 0.9512056281970315
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000000'
@@ -209,13 +209,11 @@ ex:
   - '0x00AAAA0AFFFF0006'
   - '0x00AAAA0AFFFF0000'
   - '0x00AAAA0AFFFF0000'
-  - '0x00AAAA0AFFFF0002'
 bonds:
   - '0xAAAAAAA00000000E'
 logic: 00AAAA0A
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +247,6 @@ logic: 00AAAA0A
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 

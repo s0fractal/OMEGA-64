@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038052036
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038052222
@@ -291,6 +285,12 @@
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038055177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038055415
     }
   ]
 }
