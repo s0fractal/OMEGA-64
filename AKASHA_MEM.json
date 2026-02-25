@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024003293
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024003730
@@ -285,6 +279,12 @@
       "text": "DREAM WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772024008105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024008336
     }
   ]
 }
