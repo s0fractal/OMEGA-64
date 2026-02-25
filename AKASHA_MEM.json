@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025646605
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772025651758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025652448
     }
   ]
 }
