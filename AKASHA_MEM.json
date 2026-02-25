@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024575299
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024586107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024586319
     }
   ]
 }
