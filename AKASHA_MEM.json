@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041669884
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041673576
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041673846
     }
   ]
 }
