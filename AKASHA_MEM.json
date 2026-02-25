@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020782259
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020789436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020789939
     }
   ]
 }
