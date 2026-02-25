@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020802733
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -155,6 +149,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020812096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020812300
     }
   ]
 }
