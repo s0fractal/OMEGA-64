@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034471362
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034471515
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034473873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034474069
     }
   ]
 }
