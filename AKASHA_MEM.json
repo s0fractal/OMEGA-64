@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020762511
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020767014
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020767198
     }
   ]
 }
