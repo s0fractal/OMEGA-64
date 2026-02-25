@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WATCH SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042279271
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042279627
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042288435
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042289254
     }
   ]
 }
