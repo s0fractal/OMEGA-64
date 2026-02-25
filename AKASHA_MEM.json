@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040250409
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040253710
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040253883
     }
   ]
 }
