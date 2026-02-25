@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06000600",
     "06666600",
     "000A0A00",
     "0000AAA0",
@@ -199,15 +198,10 @@
     "9018A098",
     "ABBA0000",
     "66600660",
-    "A00AAA00"
+    "A00AAA00",
+    "AA0A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027372819
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE SHIELD",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027378955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027379225
     }
   ]
 }
