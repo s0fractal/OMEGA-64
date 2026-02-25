@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031434611
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031442214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031442594
     }
   ]
 }
