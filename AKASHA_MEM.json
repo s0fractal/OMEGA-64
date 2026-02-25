@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022608750
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022609079
@@ -241,6 +235,12 @@
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022615505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022616562
     }
   ]
 }
