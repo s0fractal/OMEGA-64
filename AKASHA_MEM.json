@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033130852
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033131022
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033134750
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033134964
     }
   ]
 }
