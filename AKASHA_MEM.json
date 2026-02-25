@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022476271
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -230,6 +224,12 @@
       "text": "GUARD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022482164
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022482330
     }
   ]
 }
