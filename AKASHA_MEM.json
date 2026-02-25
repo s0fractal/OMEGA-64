@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040490435
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040490599
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040493042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040493160
     }
   ]
 }
