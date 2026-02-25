@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026163499
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026171011
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026171400
     }
   ]
 }
