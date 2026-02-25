@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040533518
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BEYOND BECOME WITNESS",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040536159
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040536276
     }
   ]
 }
