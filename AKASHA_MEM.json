@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027113566
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027113923
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772027118673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027118957
     }
   ]
 }
