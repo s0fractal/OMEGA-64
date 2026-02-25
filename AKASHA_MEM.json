@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041742447
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041748962
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041749408
     }
   ]
 }
