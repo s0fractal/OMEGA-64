@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035338287
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035338473
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035341955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035342165
     }
   ]
 }
