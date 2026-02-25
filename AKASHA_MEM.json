@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037598043
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037598270
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772037601138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037601363
     }
   ]
 }
