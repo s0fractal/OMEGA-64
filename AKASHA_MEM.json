@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017494254
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772017498500
@@ -108,6 +102,12 @@
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772017573426
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017575610
     }
   ]
 }
