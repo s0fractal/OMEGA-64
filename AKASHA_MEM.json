@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041542484
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041547000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041547308
     }
   ]
 }
