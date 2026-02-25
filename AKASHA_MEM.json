@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022130258
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022130466
@@ -210,6 +204,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772022133272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022133482
     }
   ]
 }
