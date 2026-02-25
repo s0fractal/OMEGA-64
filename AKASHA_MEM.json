@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036353689
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036353906
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036356818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036357035
     }
   ]
 }
