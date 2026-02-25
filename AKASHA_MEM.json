@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772028578790
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028579209
@@ -291,6 +285,12 @@
       "text": "EVOLVE WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772028584489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028585136
     }
   ]
 }
