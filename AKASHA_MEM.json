@@ -18,12 +18,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772015015067
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772015020683
@@ -105,6 +99,12 @@
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015140408
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015153943
     }
   ]
 }
