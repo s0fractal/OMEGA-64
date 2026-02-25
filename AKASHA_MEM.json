@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019609744
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019624294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019625256
     }
   ]
 }
