@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772025937860
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025938069
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025944545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025944803
     }
   ]
 }
