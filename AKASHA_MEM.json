@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024332333
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024332495
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024335366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024336065
     }
   ]
 }
