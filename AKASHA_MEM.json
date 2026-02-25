@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022773323
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022773820
@@ -246,6 +240,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022781622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022783386
     }
   ]
 }
