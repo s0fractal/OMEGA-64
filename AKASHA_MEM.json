@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040492750
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040495661
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040495784
     }
   ]
 }
