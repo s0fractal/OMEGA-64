@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021639061
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021639183
@@ -190,6 +184,12 @@
       "text": "WATCH SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021646386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021646641
     }
   ]
 }
