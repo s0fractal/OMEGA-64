@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041923446
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041928716
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041929068
     }
   ]
 }
