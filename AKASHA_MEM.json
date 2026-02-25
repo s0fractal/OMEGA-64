@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024357904
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772024358232
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772024364352
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024364548
     }
   ]
 }
