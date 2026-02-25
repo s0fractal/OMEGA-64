@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041338294
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041338480
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041342093
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041342326
     }
   ]
 }
