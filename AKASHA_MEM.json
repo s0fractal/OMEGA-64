@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022810469
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772022810651
@@ -247,6 +241,12 @@
       "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022815266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022815435
     }
   ]
 }
