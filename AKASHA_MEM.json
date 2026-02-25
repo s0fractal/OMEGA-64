@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033123655
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033123825
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033126443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033126615
     }
   ]
 }
