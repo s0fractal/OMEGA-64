@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028270560
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772028285053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028286374
     }
   ]
 }
