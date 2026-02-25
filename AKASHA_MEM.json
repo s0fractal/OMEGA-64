@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033014608
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033014778
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033018356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033018539
     }
   ]
 }
