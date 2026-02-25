@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023576615
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023580346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023580496
     }
   ]
 }
