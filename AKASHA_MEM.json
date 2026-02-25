@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BECOME EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772024515375
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772024526424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024527575
     }
   ]
 }
