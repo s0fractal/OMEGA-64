@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020849028
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020849216
@@ -157,6 +151,12 @@
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020855794
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020856321
     }
   ]
 }
