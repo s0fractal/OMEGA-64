@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032220707
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032221121
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032227635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032228038
     }
   ]
 }
