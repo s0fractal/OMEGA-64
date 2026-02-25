@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023414712
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023419287
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023419605
     }
   ]
 }
