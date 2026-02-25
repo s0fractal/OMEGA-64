@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025442091
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772025447825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025448320
     }
   ]
 }
