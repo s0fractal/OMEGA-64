@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034344544
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034344739
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034352677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034352835
     }
   ]
 }
