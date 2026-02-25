@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039844976
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039845416
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039855692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039856464
     }
   ]
 }
