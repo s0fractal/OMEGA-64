@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036193782
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036197336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036197578
     }
   ]
 }
