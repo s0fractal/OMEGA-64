@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033692593
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033692750
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033695053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033695235
     }
   ]
 }
