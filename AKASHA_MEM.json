@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024206762
-    },
-    {
       "origin": "STREAM",
       "text": "RECON REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772024210481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024210789
     }
   ]
 }
