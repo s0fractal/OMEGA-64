@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020848037
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020848538
@@ -157,6 +151,12 @@
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020855331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772020855617
     }
   ]
 }
