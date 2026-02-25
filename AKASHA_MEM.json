@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040935673
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040939088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040939389
     }
   ]
 }
