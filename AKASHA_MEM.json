@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025920846
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025921203
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025930288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772025930552
     }
   ]
 }
