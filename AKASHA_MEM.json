@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022350697
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022350824
@@ -219,6 +213,12 @@
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022354422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022354796
     }
   ]
 }
