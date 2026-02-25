@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -198,99 +197,100 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "AA0A0A00",
-    "AA0A0AAA"
+    "06A60000",
+    "AA0A0AAA",
+    "0AAAA000"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042462068
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042462824
-    },
-    {
       "origin": "INTERFACE",
-      "text": "RESONATE OSMOSIS RESONATE",
+      "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042463504
+      "tick": 1772042466228
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042465001
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042466714
-    },
-    {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042466873
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042467571
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STABLE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042469930
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042470729
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042472298
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042472811
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042473195
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042473891
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042474642
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY STRIKE",
+      "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042482383
+      "tick": 1772042467087
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042470315
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042471171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042472780
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042473151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042473631
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042474115
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042476617
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042476901
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042479187
+    },
+    {
+      "origin": "ALIEN",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042479994
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042480798
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042481922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042482291
     }
   ]
 }
