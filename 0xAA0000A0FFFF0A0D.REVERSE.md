@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAA0000A0FFFF0A0D'
-energy: 47.5
-x: 723
-'y': 446
+energy: 49.9
+x: 718
+'y': 438
 resonance: 50
 thought: WANDER_BONDING
 logic: AA0000A0
@@ -74,7 +74,7 @@ ex:
   - '0x6006066000000A0F'
   - '0x6006066000000A09'
   - '0x6006066000000A0B'
-  - '0xAA0000A000000A0D'
+  - '0xAA0000A0FFFF0A09'
   - '0xAA0000A0FFFF0A0B'
 ---
 
