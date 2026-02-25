@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020901700
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020902491
@@ -158,6 +152,12 @@
       "text": "STRIKE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020906910
+    },
+    {
+      "origin": "PARADOX",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020907631
     }
   ]
 }
