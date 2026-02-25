@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021556156
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE UNIFY SYNC",
       "mood": "HARMONIC",
@@ -184,6 +178,12 @@
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021564896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021565006
     }
   ]
 }
