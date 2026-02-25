@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "GIVING SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041559234
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041563872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041564088
     }
   ]
 }
