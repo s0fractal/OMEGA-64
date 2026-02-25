@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x0AAAAAAAFFFF000A'
 energy: 50
-x: 710
-'y': 395
+x: 709
+'y': 383
 resonance: 1000
 thought: RESURRECTED
 logic: 0AAAAAAA
