@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038175123
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038175394
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038180258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038180769
     }
   ]
 }
