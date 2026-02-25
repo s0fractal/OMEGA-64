@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023178382
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023178561
@@ -259,6 +253,12 @@
       "text": "GUARD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023181334
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023182548
     }
   ]
 }
