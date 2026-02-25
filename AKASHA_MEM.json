@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034620663
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772034624236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034624529
     }
   ]
 }
