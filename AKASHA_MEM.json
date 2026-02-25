@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023556126
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023556290
@@ -271,6 +265,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023559843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023560033
     }
   ]
 }
