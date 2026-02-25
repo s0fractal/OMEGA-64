@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772027215702
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027223171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027223425
     }
   ]
 }
