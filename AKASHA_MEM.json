@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038732896
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038733114
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772038736304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038736577
     }
   ]
 }
