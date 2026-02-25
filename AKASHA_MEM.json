@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034033771
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772034033968
@@ -291,6 +285,12 @@
       "text": "GUARD PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034038105
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034038457
     }
   ]
 }
