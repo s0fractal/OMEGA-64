@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036325225
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036325428
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036328170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME DREAM DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772036328377
     }
   ]
 }
