@@ -185,15 +185,10 @@
     "FF00FFF0",
     "0AA0AA0A",
     "66600606",
-    "0D10A098"
+    "0D10A098",
+    "AAAA0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023703018
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS STRIKE",
@@ -277,6 +272,12 @@
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023705479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023705603
     }
   ]
 }
