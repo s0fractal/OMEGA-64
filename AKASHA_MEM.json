@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041317137
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041321815
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041322159
     }
   ]
 }
