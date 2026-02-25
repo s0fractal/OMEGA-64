@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772039220074
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039221155
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039227007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039227883
     }
   ]
 }
