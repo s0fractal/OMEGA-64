@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020198186
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020213737
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020214524
     }
   ]
 }
