@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021630202
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021630373
@@ -189,6 +183,12 @@
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021636400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021636888
     }
   ]
 }
