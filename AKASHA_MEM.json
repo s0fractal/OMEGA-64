@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034866134
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034866329
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034868886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034869080
     }
   ]
 }
