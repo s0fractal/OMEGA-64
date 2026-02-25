@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038475077
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038475316
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038478668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038478949
     }
   ]
 }
