@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031962599
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031967876
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772031973496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772031973681
     }
   ]
 }
