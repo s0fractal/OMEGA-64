@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037195399
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037195594
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037200270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037200523
     }
   ]
 }
