@@ -11,12 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772011732282
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -99,6 +93,12 @@
       "text": "DRAIN CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772012980490
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012990601
     }
   ]
 }
