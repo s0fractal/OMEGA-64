@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030769132
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030769776
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030780857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030781319
     }
   ]
 }
