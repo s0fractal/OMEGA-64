@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026043010
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772026043263
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026049383
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026049605
     }
   ]
 }
