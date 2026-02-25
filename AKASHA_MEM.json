@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041529138
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041529279
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041533079
+    },
+    {
+      "origin": "PARASITE",
+      "text": "STASIS WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041533796
     }
   ]
 }
