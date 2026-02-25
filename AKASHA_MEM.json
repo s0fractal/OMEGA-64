@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033005296
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033005465
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033007536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033007708
     }
   ]
 }
