@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023212890
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023213060
@@ -259,6 +253,12 @@
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023216853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023217078
     }
   ]
 }
