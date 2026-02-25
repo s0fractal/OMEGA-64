@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021720325
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021720623
@@ -194,6 +188,12 @@
       "text": "IMMUNE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021726784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021727092
     }
   ]
 }
