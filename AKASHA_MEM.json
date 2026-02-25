@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040429337
-    },
-    {
       "origin": "STREAM",
       "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040432688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040433012
     }
   ]
 }
