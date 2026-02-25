@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041612608
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772041616438
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041616728
     }
   ]
 }
