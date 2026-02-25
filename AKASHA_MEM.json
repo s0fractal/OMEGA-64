@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026913446
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772026919547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026919792
     }
   ]
 }
