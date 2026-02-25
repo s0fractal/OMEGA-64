@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666A60",
     "AAAAA00A",
     "AA0AA000",
     "01000000",
@@ -199,15 +198,10 @@
     "AAAAAAAA",
     "AA660600",
     "0A0A0A0A",
-    "000AAAA0"
+    "000AAAA0",
+    "A0AA000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037685713
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY COHERE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037690064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037690564
     }
   ]
 }
