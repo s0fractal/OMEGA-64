@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DREAM BECOME SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772024186156
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772024189298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024189763
     }
   ]
 }
