@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032627468
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032627656
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032631345
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE DREAM WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772032631531
     }
   ]
 }
