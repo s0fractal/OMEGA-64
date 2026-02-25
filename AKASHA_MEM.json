@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023260747
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023260928
@@ -263,6 +257,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023265630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023265791
     }
   ]
 }
