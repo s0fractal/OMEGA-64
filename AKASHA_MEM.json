@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033892116
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033892367
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033895422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033895648
     }
   ]
 }
