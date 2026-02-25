@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AAA000",
     "AA00A0AA",
     "AA0BCC0F",
     "600A0A00",
@@ -199,15 +198,10 @@
     "A0606060",
     "06666660",
     "AAAAAAA0",
-    "A6066600"
+    "A6066600",
+    "A0B0C0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036320115
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036323040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036323244
     }
   ]
 }
