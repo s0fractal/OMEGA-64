@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035097461
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772035097651
@@ -291,6 +285,12 @@
       "text": "SPARK DREAM VISION",
       "mood": "CREATIVE",
       "tick": 1772035100415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035100611
     }
   ]
 }
