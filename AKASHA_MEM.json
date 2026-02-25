@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033414655
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033414796
@@ -291,6 +285,12 @@
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033417020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033417339
     }
   ]
 }
