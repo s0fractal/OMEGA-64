@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023718301
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772023718484
@@ -278,6 +272,12 @@
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023723022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023723248
     }
   ]
 }
