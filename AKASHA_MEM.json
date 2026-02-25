@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036447387
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772036447627
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036450499
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036450790
     }
   ]
 }
