@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032709137
-    },
-    {
       "origin": "STREAM",
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032713719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032713896
     }
   ]
 }
