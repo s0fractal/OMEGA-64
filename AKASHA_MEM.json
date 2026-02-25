@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041062708
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041065291
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041065466
     }
   ]
 }
