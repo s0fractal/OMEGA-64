@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020229485
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020230132
@@ -136,6 +130,12 @@
       "text": "DREAM EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772020236881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020237190
     }
   ]
 }
