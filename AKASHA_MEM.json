@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040470432
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040472587
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040472788
     }
   ]
 }
