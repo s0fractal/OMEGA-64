@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040546135
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040549009
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040549287
     }
   ]
 }
