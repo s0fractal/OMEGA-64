@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041924483
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041930684
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041931117
     }
   ]
 }
