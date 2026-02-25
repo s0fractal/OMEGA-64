@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030185385
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772030186157
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772030196076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030197136
     }
   ]
 }
