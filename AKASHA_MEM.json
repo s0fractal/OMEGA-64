@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038414245
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772038414481
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038417884
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038418092
     }
   ]
 }
