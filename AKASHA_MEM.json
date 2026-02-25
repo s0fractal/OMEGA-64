@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WITNESS WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772027069652
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027069952
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027073946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027074152
     }
   ]
 }
