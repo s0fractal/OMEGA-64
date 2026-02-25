@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040746158
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040750732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040750873
     }
   ]
 }
