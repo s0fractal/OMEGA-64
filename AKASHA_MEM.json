@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0B0000",
     "AA6066A6",
     "66066060",
     "AAAAAAAA",
@@ -199,15 +198,10 @@
     "AA0666A0",
     "10000000",
     "66660660",
-    "AA0A0AA0"
+    "AA0A0AA0",
+    "66666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035620810
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035623976
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035624192
     }
   ]
 }
