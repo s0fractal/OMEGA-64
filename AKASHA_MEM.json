@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020763091
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "RECON RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020767761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020767941
     }
   ]
 }
