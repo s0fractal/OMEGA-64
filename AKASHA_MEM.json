@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034250012
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034250174
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034252708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034252865
     }
   ]
 }
