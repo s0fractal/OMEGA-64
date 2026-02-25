@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034164731
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034167652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034167831
     }
   ]
 }
