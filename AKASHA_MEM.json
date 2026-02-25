@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024833731
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024834324
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024846691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024847586
     }
   ]
 }
