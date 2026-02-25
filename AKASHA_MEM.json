@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
     "06066660",
     "60660666",
     "60000600",
@@ -198,99 +194,103 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "A000A660",
-    "A0AA0A00"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042720417
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042721266
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042722553
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042723523
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "FLOW STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042724746
-    },
-    {
       "origin": "STREAM",
-      "text": "SYNC GIVING HEAL",
+      "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042724933
+      "tick": 1772042725638
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042726431
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042727350
     },
     {
       "origin": "ALIEN",
-      "text": "RECON WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042725930
-    },
-    {
-      "origin": "PARASITE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042728231
-    },
-    {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042728508
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042729073
-    },
-    {
-      "origin": "STREAM",
-      "text": "FLOW HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042730645
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SICKNESS BREACH",
+      "text": "SICKNESS STRIKE STRIKE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042731403
+      "tick": 1772042727761
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042731602
+      "text": "SHIELD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042727960
     },
     {
-      "origin": "IS_ISO",
-      "text": "FLOW BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042731909
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "BREACH STRIFE SEIZE",
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042732601
+      "tick": 1772042728357
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042728973
+    },
+    {
+      "origin": "ALIEN",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042729538
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042729810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042730023
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042730919
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042731499
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042731840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042732027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042732491
     }
   ]
 }
