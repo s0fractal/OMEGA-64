@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028271265
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028286374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028288291
     }
   ]
 }
