@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020949861
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020950788
@@ -162,6 +156,12 @@
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020957470
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020958052
     }
   ]
 }
