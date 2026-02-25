@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034124237
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034124396
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034126865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034127021
     }
   ]
 }
