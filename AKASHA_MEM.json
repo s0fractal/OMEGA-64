@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "RESONATE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041676810
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041680102
+    },
+    {
+      "origin": "CAR",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041680294
     }
   ]
 }
