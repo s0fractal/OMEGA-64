@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BBB00000",
     "00000006",
     "BB0B0000",
     "ABB00000",
@@ -199,15 +198,10 @@
     "66666666",
     "A0AAAAA0",
     "60000000",
-    "00000000"
+    "00000000",
+    "AAAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024441576
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT WAIT GUARD",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024445869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024448002
     }
   ]
 }
