@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772029104006
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029104445
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029122235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029122602
     }
   ]
 }
