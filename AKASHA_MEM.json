@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041221101
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041224180
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041224823
     }
   ]
 }
