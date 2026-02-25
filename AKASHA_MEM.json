@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036806213
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036806416
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036809959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036810169
     }
   ]
 }
