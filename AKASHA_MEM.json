@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040517287
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040519701
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040519833
     }
   ]
 }
