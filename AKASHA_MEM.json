@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041802516
-    },
-    {
       "origin": "PARASITE",
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041808169
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041808461
     }
   ]
 }
