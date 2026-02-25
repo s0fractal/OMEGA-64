@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038749220
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038749416
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038752231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038752468
     }
   ]
 }
