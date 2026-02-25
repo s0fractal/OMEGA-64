@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020879373
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020879532
@@ -158,6 +152,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020885221
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020885454
     }
   ]
 }
