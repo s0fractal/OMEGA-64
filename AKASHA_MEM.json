@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022630808
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022631005
@@ -241,6 +235,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022636521
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022636735
     }
   ]
 }
