@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036211551
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036211796
@@ -291,6 +285,12 @@
       "text": "WITNESS BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772036215463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036215671
     }
   ]
 }
