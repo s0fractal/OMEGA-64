@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024123625
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024123956
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024130605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772024130822
     }
   ]
 }
