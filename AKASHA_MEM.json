@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042491196
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042491374
-    },
-    {
       "origin": "SUCC",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772042505112
+    },
+    {
+      "origin": "ALIEN",
+      "text": "GUARD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042507102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772042507410
     }
   ]
 }
