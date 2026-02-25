@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034620038
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034620233
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034623064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034623747
     }
   ]
 }
