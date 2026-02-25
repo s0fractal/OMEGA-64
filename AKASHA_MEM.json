@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS WAVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040221242
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772040226899
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040227079
     }
   ]
 }
