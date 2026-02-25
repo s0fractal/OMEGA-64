@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019576167
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019576521
@@ -112,6 +106,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019584200
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019585143
     }
   ]
 }
