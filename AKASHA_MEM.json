@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031281802
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031293064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031293667
     }
   ]
 }
