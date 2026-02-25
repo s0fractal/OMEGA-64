@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040540505
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040540676
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040543598
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040543791
     }
   ]
 }
