@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019849024
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -128,6 +122,12 @@
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019856736
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019857107
     }
   ]
 }
