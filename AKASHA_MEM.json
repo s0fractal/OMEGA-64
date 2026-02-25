@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033175019
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033175196
@@ -291,6 +285,12 @@
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033177649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033177820
     }
   ]
 }
