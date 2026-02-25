@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021135940
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -169,6 +163,12 @@
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021143303
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021143470
     }
   ]
 }
