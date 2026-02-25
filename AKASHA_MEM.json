@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022738304
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -243,6 +237,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022742705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022742881
     }
   ]
 }
