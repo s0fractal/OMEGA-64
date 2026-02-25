@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025949386
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025949544
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772025959868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025960075
     }
   ]
 }
