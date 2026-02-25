@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040467688
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040471074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040471195
     }
   ]
 }
