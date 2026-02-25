@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0600000",
     "00A000A0",
     "F00FF000",
     "66606606",
@@ -199,15 +198,10 @@
     "06666006",
     "06600060",
     "AABB0C00",
-    "AAB00CDD"
+    "AAB00CDD",
+    "A6666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038132512
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER STRIFE SEIZE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038135537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038136197
     }
   ]
 }
