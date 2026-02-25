@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038973659
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038973942
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038981420
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038981709
     }
   ]
 }
