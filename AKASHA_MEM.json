@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6060A6",
     "0AAAAA00",
     "AAAA0000",
     "AAAA00AA",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "A6666660",
     "66666660",
-    "00000000"
+    "00000000",
+    "66A666A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032878910
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIKE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032881814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032881986
     }
   ]
 }
