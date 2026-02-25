@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034310357
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034310518
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034316652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034316881
     }
   ]
 }
