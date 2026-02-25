@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772032376915
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032377310
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032382876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032383315
     }
   ]
 }
