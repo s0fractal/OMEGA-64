@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033626750
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033626935
@@ -291,6 +285,12 @@
       "text": "SPARK BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033629214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033629400
     }
   ]
 }
