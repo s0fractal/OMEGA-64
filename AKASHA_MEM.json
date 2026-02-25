@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019902209
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019914147
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019914335
     }
   ]
 }
