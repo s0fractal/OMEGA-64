@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019608032
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019608638
@@ -114,6 +108,12 @@
       "text": "REFLECT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019618110
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019618859
     }
   ]
 }
