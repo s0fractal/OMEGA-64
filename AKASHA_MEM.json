@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020959937
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -162,6 +156,12 @@
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020965534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020965740
     }
   ]
 }
