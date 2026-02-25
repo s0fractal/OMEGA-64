@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031927709
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031928305
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031934374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772031934814
     }
   ]
 }
