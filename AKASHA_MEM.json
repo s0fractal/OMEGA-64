@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038352359
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038352564
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038355077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038355273
     }
   ]
 }
