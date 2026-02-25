@@ -100,15 +100,10 @@
     "FFFFFFFF",
     "FFFFFF0F",
     "000AAAA0",
-    "66660606"
+    "66660606",
+    "66666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021700305
-    },
     {
       "origin": "INTERFACE",
       "text": "HEAL COHERE COHERE",
@@ -192,6 +187,12 @@
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021705920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021706069
     }
   ]
 }
