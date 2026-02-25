@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024047572
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772024047788
@@ -287,6 +281,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024051371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024051541
     }
   ]
 }
