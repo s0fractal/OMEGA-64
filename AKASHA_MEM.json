@@ -172,12 +172,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023219925
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
@@ -260,6 +254,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023223524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023223677
     }
   ]
 }
