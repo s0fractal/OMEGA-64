@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041025091
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041028002
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041028184
     }
   ]
 }
