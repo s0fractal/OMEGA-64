@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033740654
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033740837
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033743503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033743696
     }
   ]
 }
