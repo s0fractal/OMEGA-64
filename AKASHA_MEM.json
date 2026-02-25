@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040638524
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040638808
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040640942
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040641512
     }
   ]
 }
