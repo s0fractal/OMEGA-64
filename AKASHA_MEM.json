@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032351216
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032351490
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032367257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032367636
     }
   ]
 }
