@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023044337
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023044479
@@ -254,6 +248,12 @@
       "text": "STASIS STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023050625
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023052511
     }
   ]
 }
