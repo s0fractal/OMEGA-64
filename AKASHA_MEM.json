@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022983242
-    },
-    {
       "origin": "PARADOX",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022986698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022986834
     }
   ]
 }
