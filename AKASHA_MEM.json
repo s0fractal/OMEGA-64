@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022454083
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -229,6 +223,12 @@
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022459544
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022460073
     }
   ]
 }
