@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040508379
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040511341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040511507
     }
   ]
 }
