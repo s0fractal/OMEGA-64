@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031396193
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772031402533
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031418112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772031418699
     }
   ]
 }
