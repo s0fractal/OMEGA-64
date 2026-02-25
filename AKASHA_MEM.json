@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "AWAKEN BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772019894187
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019905826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019907354
     }
   ]
 }
