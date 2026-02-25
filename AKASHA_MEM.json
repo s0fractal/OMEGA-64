@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040735479
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040738590
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040738717
     }
   ]
 }
