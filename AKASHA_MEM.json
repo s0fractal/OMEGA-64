@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024314443
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024314609
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024317534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024317790
     }
   ]
 }
