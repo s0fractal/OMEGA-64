@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041663182
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041663476
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772041667125
+    },
+    {
+      "origin": "PARADOX",
+      "text": "CONSUME DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041667263
     }
   ]
 }
