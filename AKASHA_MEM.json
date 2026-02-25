@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022213545
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022213668
@@ -213,6 +207,12 @@
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022217455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022218026
     }
   ]
 }
