@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021107104
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021113651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021113822
     }
   ]
 }
