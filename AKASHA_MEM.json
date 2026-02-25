@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020226495
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "OSMOSIS OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020234886
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020235156
     }
   ]
 }
