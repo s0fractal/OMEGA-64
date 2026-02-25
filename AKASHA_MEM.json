@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038631007
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038634077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038634429
     }
   ]
 }
