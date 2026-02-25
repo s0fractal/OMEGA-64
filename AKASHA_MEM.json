@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772024279609
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024279869
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024283142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024283766
     }
   ]
 }
