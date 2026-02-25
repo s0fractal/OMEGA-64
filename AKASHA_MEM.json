@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038329609
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038329827
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038332891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038333076
     }
   ]
 }
