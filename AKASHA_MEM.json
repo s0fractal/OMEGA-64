@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038973942
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038974211
@@ -291,6 +285,12 @@
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038981709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038981953
     }
   ]
 }
