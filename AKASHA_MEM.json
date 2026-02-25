@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024504622
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BECOME EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772024515375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024515688
     }
   ]
 }
