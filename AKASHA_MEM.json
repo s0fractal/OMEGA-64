@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020372359
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020382106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020382298
     }
   ]
 }
