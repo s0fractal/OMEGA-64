@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037747731
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037747905
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037752096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037752343
     }
   ]
 }
