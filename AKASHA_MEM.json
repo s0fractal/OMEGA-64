@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035562170
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035562373
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035565758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035565923
     }
   ]
 }
