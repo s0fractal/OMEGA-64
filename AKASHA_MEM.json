@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022145747
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022146294
@@ -210,6 +204,12 @@
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022151068
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022151252
     }
   ]
 }
