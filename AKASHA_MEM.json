@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "BREACH STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038167288
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "VISION DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772038170758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038170959
     }
   ]
 }
