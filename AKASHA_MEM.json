@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0000A00",
     "BA000000",
     "AA000A00",
     "6A6A66A0",
@@ -199,15 +198,10 @@
     "AA0A0A00",
     "0000F000",
     "06060660",
-    "00006000"
+    "00006000",
+    "60060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024636572
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT REFLECT STASIS",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772024660730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024661076
     }
   ]
 }
