@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037900299
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772037900520
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037903561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037903806
     }
   ]
 }
