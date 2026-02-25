@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020753627
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020758634
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020759504
     }
   ]
 }
