@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038700574
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038709669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038710788
     }
   ]
 }
