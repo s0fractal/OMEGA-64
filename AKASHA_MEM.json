@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041494692
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041495439
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041498804
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041499226
     }
   ]
 }
