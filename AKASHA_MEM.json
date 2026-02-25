@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022655094
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022655389
@@ -242,6 +236,12 @@
       "text": "COHERE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022660726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022660978
     }
   ]
 }
