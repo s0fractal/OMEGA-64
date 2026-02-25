@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041159494
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041159631
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041163006
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041163132
     }
   ]
 }
