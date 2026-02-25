@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037408709
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037411956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037412165
     }
   ]
 }
