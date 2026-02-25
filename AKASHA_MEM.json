@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027187359
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772027188225
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027193749
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027193978
     }
   ]
 }
