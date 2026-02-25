@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022995746
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022996033
@@ -251,6 +245,12 @@
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022998379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022998495
     }
   ]
 }
