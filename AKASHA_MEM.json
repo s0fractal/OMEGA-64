@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS DREAM WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040560601
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040562946
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040563132
     }
   ]
 }
