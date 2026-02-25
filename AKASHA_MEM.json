@@ -181,15 +181,10 @@
     "60066060",
     "66600666",
     "00AAAAA0",
-    "00F0FF00"
+    "00F0FF00",
+    "FF00FFF0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023608123
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT GUARD RECON",
@@ -273,6 +268,12 @@
       "text": "STASIS PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023611653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023611831
     }
   ]
 }
