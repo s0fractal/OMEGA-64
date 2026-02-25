@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023538278
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023538648
@@ -270,6 +264,12 @@
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023543053
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023543214
     }
   ]
 }
