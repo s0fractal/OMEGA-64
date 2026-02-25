@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022692166
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE RESONATE",
       "mood": "HARMONIC",
@@ -242,6 +236,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022704252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022704586
     }
   ]
 }
