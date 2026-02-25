@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040454068
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040456635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040456825
     }
   ]
 }
