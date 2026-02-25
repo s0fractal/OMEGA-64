@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040243852
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040249315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040249506
     }
   ]
 }
