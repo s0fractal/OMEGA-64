@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0000",
     "A0000000",
     "6A6666A6",
     "AA666666",
@@ -199,15 +198,10 @@
     "A00A0AA0",
     "06660600",
     "ABB00000",
-    "A1000000"
+    "A1000000",
+    "66006666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024836225
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS STABLE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024853594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024853801
     }
   ]
 }
