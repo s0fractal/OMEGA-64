@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772035883104
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772035883293
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035886297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035886504
     }
   ]
 }
