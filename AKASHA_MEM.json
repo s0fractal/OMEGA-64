@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027995940
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772027996435
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772028016819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028019920
     }
   ]
 }
