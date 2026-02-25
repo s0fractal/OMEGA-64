@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040422715
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040425630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040425867
     }
   ]
 }
