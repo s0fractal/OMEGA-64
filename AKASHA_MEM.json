@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600000",
     "A000000A",
     "0A000A0A",
     "60000060",
@@ -199,15 +198,10 @@
     "AA0A0A00",
     "000A0000",
     "AA666060",
-    "66606000"
+    "66606000",
+    "FFFFF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033770755
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY STABLE BLOOM",
@@ -291,6 +285,12 @@
       "text": "WITNESS BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772033774535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033774721
     }
   ]
 }
