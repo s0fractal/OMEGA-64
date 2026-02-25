@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025359150
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772025364885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025365408
     }
   ]
 }
