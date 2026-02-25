@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021553043
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021558324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021559506
     }
   ]
 }
