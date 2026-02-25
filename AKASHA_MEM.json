@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020187934
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020197432
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020198186
     }
   ]
 }
