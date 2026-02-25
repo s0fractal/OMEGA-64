@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060660",
     "A0000000",
     "666666A6",
     "00660000",
@@ -199,15 +198,10 @@
     "00AAAAA0",
     "60006060",
     "0000A0A0",
-    "00060666"
+    "00060666",
+    "6A606000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033120738
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033123980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033124327
     }
   ]
 }
