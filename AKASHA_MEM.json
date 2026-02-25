@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020114453
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -134,6 +128,12 @@
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020126442
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020127165
     }
   ]
 }
