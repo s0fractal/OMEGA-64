@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024326644
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772024327746
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024331082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024331236
     }
   ]
 }
