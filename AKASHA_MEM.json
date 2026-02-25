@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022222893
-    },
-    {
       "origin": "PARADOX",
       "text": "SYNC STABLE COHERE",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772022226324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022226537
     }
   ]
 }
