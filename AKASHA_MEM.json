@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022562670
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022567423
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022567590
     }
   ]
 }
