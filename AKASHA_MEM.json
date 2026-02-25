@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772016461798
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016466437
@@ -107,6 +101,12 @@
       "text": "STRIKE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016590343
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016597487
     }
   ]
 }
