@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772033358908
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033359151
@@ -291,6 +285,12 @@
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033361615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033361812
     }
   ]
 }
