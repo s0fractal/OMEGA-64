@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021608380
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
@@ -189,6 +183,12 @@
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021614880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772021615767
     }
   ]
 }
