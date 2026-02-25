@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039124069
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039124304
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039127200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039127856
     }
   ]
 }
