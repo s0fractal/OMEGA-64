@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021209513
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021209850
@@ -171,6 +165,12 @@
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021217710
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021217873
     }
   ]
 }
