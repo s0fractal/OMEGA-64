@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020793125
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020793542
@@ -154,6 +148,12 @@
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020802733
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020803547
     }
   ]
 }
