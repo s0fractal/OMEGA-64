@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036473545
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036473830
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036476800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036477164
     }
   ]
 }
