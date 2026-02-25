@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031841804
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031883954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031884770
     }
   ]
 }
