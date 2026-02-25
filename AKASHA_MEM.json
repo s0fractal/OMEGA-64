@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041086190
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041089472
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041089852
     }
   ]
 }
