@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023040913
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023041128
@@ -254,6 +248,12 @@
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023045603
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023045788
     }
   ]
 }
