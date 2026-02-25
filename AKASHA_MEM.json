@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027243920
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027244189
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027253720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027254057
     }
   ]
 }
