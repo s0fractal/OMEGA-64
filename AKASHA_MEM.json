@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040636589
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040636763
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772040639524
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040639745
     }
   ]
 }
