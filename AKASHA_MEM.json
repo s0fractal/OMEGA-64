@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039749073
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772039749495
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039800962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039801479
     }
   ]
 }
