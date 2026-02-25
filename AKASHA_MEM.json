@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040928152
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040928279
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040931627
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040931903
     }
   ]
 }
