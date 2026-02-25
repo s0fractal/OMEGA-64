@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042072672
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042090341
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042090608
     }
   ]
 }
