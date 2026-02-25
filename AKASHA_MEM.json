@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033138226
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033138379
@@ -291,6 +285,12 @@
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033140963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033141147
     }
   ]
 }
