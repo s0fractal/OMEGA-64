@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041095082
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041098800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772041098992
     }
   ]
 }
