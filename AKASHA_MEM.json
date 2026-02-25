@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040951541
-    },
-    {
       "origin": "WORKER",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "VISION BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772040954754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040955113
     }
   ]
 }
