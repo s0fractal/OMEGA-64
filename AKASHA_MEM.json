@@ -175,12 +175,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023269597
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
@@ -263,6 +257,12 @@
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023272680
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023272992
     }
   ]
 }
