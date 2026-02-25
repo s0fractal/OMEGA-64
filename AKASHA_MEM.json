@@ -88,15 +88,10 @@
     "06666660",
     "9D00A098",
     "AAAAA0AA",
-    "AABB0CDD"
+    "AABB0CDD",
+    "00AAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021373598
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE CONSUME HUNGER",
@@ -180,6 +175,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021392223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021393335
     }
   ]
 }
