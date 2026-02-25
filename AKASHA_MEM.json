@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041678768
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041681966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041682657
     }
   ]
 }
