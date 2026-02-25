@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021797351
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021802230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021802388
     }
   ]
 }
