@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037542628
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772037542836
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037549967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037550190
     }
   ]
 }
