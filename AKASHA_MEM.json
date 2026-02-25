@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "EVOLVE EVOLVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020330758
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020337387
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020337568
     }
   ]
 }
