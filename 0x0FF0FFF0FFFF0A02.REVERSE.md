@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x0FF0FFF0FFFF0A02'
-energy: 45.5
-x: 692
-'y': 402
+energy: 49.9
+x: 693
+'y': 394
 resonance: 50
 thought: SEEK_ALPHA_MATING
 logic: 0FF0FFF0
@@ -67,8 +67,8 @@ ex:
   - '0x0FF0FFF000000A04'
   - '0x0FF0FFF000000A06'
   - '0x0FF0FFF000000A00'
-  - '0x0FF0FFF000000A02'
-  - '0x0FF0FFF000000A04'
+  - '0x0FF0FFF0FFFF0A06'
+  - '0x0FF0FFF0FFFF0A00'
 ---
 
 <div align="center">
