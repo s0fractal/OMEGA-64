@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042298194
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042314722
+    },
+    {
+      "origin": "WORKER",
+      "text": "SYNC OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042315008
     }
   ]
 }
