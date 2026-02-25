@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025570187
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025570386
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772025572775
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025573250
     }
   ]
 }
