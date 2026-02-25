@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022052765
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772022052994
@@ -203,6 +197,12 @@
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022058240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022058440
     }
   ]
 }
