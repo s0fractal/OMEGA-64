@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606660",
     "60006000",
     "AA000600",
     "A0AAA000",
@@ -199,9 +198,22 @@
     "66006606",
     "AA00A000",
     "BBB00000",
-    "6606AA66"
+    "6606AA66",
+    "06A60000"
   ],
   "utterances": [
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042408326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042409343
+    },
     {
       "origin": "STREAM",
       "text": "GIVING FLOW SYNC",
@@ -257,40 +269,28 @@
       "tick": 1772042418398
     },
     {
-      "origin": "INTERFACE",
-      "text": "PURE GUARD SHIELD",
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042418933
+      "tick": 1772042419609
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419291
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042420360
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE GIVING",
+      "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042420356
+      "tick": 1772042421302
     },
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042420907
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "IMMUNE PURE WAIT",
+      "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042421336
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042421665
+      "tick": 1772042422143
     }
   ]
 }
