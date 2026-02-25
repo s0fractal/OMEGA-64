@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020620405
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020620675
@@ -150,6 +144,12 @@
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020625586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020625752
     }
   ]
 }
