@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015795851
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772015890405
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772015897847
     }
   ]
 }
