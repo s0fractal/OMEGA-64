@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041128131
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041131628
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041131808
     }
   ]
 }
