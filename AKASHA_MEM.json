@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031991971
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772031992478
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031996261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031996533
     }
   ]
 }
