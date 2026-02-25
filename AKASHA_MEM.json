@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034492566
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034492771
@@ -291,6 +285,12 @@
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034495320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034495514
     }
   ]
 }
