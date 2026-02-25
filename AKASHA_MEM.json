@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041164360
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041167592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041167727
     }
   ]
 }
