@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020896423
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020901700
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020902491
     }
   ]
 }
