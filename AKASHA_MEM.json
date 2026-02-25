@@ -186,12 +186,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023611213
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -274,6 +268,12 @@
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023614490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023615177
     }
   ]
 }
