@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025210212
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025219431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025219722
     }
   ]
 }
