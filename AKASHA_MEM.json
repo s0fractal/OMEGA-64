@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037556164
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037562335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037562509
     }
   ]
 }
