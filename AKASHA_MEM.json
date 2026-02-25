@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035394228
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035394664
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035397415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035397629
     }
   ]
 }
