@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023634567
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023635198
@@ -274,6 +268,12 @@
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023639276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023639476
     }
   ]
 }
