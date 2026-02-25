@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033842668
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033842850
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033848058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033848237
     }
   ]
 }
