@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040971304
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040974091
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040974540
     }
   ]
 }
