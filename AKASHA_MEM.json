@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041109083
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041112537
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041113406
     }
   ]
 }
