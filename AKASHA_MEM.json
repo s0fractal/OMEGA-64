@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021036675
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT PURE STASIS",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021041617
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021042396
     }
   ]
 }
