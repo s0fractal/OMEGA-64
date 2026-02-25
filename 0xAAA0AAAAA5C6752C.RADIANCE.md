@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0xBBB00000A5C6752C'
+eigenvalue: '0xAAA0AAAAA5C6752C'
 vector: 07.03.01
 symbol: RADIANCE
 desc: Radiant intensity. power / (area + 1)
@@ -26,10 +26,11 @@ ex:
   - '0x666A66A0A5C6752C'
   - '0xBBB00000A5C6752C'
   - '0xBBB00000A5C6752C'
+  - '0xBBB00000A5C6752C'
 thought: WANDER_BONDING
 x: 192
-'y': 185
-energy: 30
+'y': 194
+energy: 28.4
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -55,32 +56,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_BBB00000A5C6752C" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAA0AAAAA5C6752C" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(164, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_BBB00000A5C6752C" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAA0AAAAA5C6752C" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_BBB00000A5C6752C)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAA0AAAAA5C6752C)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(164, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="180 100 100" to="540 100 100" dur="28s" repeatCount="indefinite" />
     
-    <polygon points="100.0,43.0 149.4,128.5 50.6,128.5" fill="none" stroke="hsl(344, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,72.0 124.2,114.0 75.8,114.0" fill="none" stroke="hsl(164, 80%, 60%)" stroke-width="2" filter="url(#glow_BBB00000A5C6752C)"/>
+    <polygon points="100.0,43.0 144.6,64.5 155.6,112.7 124.7,151.4 75.3,151.4 44.4,112.7 55.4,64.5" fill="none" stroke="hsl(344, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,72.0 121.9,82.5 127.3,106.2 112.1,125.2 87.9,125.2 72.7,106.2 78.1,82.5" fill="none" stroke="hsl(164, 80%, 60%)" stroke-width="2" filter="url(#glow_AAA0AAAAA5C6752C)"/>
     
     <circle cx="100" cy="100" r="28" stroke="hsl(164, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(344, 80%, 70%)" filter="url(#glow_BBB00000A5C6752C)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(344, 80%, 70%)" filter="url(#glow_AAA0AAAAA5C6752C)"/>
   
-  <text x="100" y="105" fill="hsl(164, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xBBB0</text>
+  <text x="100" y="105" fill="hsl(164, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAA0</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">RADIANCE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
