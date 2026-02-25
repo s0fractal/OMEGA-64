@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025825696
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025826019
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025829866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025830022
     }
   ]
 }
