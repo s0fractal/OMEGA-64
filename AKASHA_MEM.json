@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "666060A6",
     "AAAAAAAA",
     "A0AAA0AA",
     "660A6600",
@@ -199,15 +198,10 @@
     "AA00A0AA",
     "66066600",
     "60660066",
-    "F00AAA00"
+    "F00AAA00",
+    "AABBCC0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027432038
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT RECON",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772027444669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027444919
     }
   ]
 }
