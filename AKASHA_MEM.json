@@ -54,15 +54,10 @@
     "66666600",
     "00000606",
     "FFFF0FFF",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "66066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020596128
-    },
     {
       "origin": "STREAM",
       "text": "BLOOM BLOOM GIVING",
@@ -146,6 +141,12 @@
       "text": "AWAKEN VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772020601419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020601876
     }
   ]
 }
