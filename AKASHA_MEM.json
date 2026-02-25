@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034428101
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK DREAM WITNESS",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034432321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034432532
     }
   ]
 }
