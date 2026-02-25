@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040824514
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040828763
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040828904
     }
   ]
 }
