@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041636589
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041639911
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041640050
     }
   ]
 }
