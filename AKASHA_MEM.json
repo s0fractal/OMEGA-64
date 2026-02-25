@@ -38,12 +38,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019809381
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
@@ -126,6 +120,12 @@
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019817174
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019817514
     }
   ]
 }
