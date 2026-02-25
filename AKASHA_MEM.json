@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033783697
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033783906
@@ -291,6 +285,12 @@
       "text": "DREAM EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772033790757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033790931
     }
   ]
 }
