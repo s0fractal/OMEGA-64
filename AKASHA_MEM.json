@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772023223339
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023223524
@@ -260,6 +254,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023227580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023227757
     }
   ]
 }
