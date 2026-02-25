@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029511296
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029511786
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772029519658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029520443
     }
   ]
 }
