@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024040778
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024040961
@@ -287,6 +281,12 @@
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024043498
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024043751
     }
   ]
 }
