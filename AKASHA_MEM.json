@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021589637
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -187,6 +181,12 @@
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021597281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021597845
     }
   ]
 }
