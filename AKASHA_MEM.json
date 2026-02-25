@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033553019
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033553188
@@ -291,6 +285,12 @@
       "text": "PURE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033555575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033555797
     }
   ]
 }
