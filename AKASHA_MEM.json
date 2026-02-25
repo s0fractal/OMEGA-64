@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035760221
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035760454
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035763713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035765810
     }
   ]
 }
