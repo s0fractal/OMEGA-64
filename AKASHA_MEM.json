@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024193530
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024193701
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024197463
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024197637
     }
   ]
 }
