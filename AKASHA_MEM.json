@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025975143
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025980158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025980512
     }
   ]
 }
