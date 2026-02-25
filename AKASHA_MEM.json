@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025330666
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025331108
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025335085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025335338
     }
   ]
 }
