@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020157238
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020163894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020164830
     }
   ]
 }
