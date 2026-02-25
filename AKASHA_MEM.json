@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025444901
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025445102
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772025449243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025449468
     }
   ]
 }
