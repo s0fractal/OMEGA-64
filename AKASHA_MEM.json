@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039727583
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039727991
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772039744578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772039745036
     }
   ]
 }
