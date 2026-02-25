@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARASITE",
-      "text": "SHIELD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041046798
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041049553
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041049764
     }
   ]
 }
