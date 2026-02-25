@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022459138
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -229,6 +223,12 @@
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772022463794
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022463952
     }
   ]
 }
