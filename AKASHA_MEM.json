@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041111707
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041116571
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041116770
     }
   ]
 }
