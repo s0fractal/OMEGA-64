@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022532356
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022532826
@@ -237,6 +231,12 @@
       "text": "SEIZE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022536779
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022537192
     }
   ]
 }
