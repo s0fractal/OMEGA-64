@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037153473
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037153761
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037158721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037160431
     }
   ]
 }
