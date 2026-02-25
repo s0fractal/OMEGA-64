@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042712406
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -275,22 +269,28 @@
       "tick": 1772042725930
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042726682
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042730360
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHIELD",
+      "origin": "PARASITE",
+      "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042730646
+      "tick": 1772042728231
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "SYNC RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042728508
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042729073
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042730645
     }
   ]
 }
