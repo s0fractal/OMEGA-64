@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020466498
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020473676
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020474008
     }
   ]
 }
