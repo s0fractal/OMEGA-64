@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022200271
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022206414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022206596
     }
   ]
 }
