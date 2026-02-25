@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0BBC000",
     "A0AA0A0A",
     "00060000",
     "AA0BC0DD",
@@ -199,15 +198,10 @@
     "A00A0000",
     "AA0AAAAA",
     "0AA0000A",
-    "0A0000AA"
+    "0A0000AA",
+    "A0666A60"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034524737
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS PURE WAIT",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034527464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034527660
     }
   ]
 }
