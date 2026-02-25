@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025765151
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025765367
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025770354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025770494
     }
   ]
 }
