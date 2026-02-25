@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037614222
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037614408
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037617581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037617792
     }
   ]
 }
