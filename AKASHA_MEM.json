@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015296048
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -106,6 +100,12 @@
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772015422587
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015438206
     }
   ]
 }
