@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033163434
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033163632
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033165915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033166093
     }
   ]
 }
