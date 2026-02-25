@@ -13,15 +13,10 @@
     "60000000",
     "BABB0000",
     "000A0000",
-    "0000A000"
+    "0000A000",
+    "BB000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WITNESS WITNESS WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772015159592
-    },
     {
       "origin": "INTERFACE",
       "text": "DRAIN HUNGER BREACH",
@@ -105,6 +100,12 @@
       "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015303787
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015322238
     }
   ]
 }
