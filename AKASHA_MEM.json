@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035784652
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035784845
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035788156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035788357
     }
   ]
 }
