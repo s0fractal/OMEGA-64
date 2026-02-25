@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAA00A0",
     "AA00A0AA",
     "FF0FFF00",
     "00600006",
@@ -199,15 +198,10 @@
     "A0666A60",
     "06066666",
     "A0BBC00D",
-    "F0F0FF0F"
+    "F0F0FF0F",
+    "A6600606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034541317
-    },
     {
       "origin": "REVERSE",
       "text": "VISION SPARK EVOLVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034543934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034544092
     }
   ]
 }
