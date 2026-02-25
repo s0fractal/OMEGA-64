@@ -198,99 +198,99 @@
     "60060666",
     "6AA60AA0",
     "6AA06A00",
-    "0AAAA00A",
-    "6A606600"
+    "6A0660A0",
+    "AA666600"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER SHOCK",
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042640202
+      "tick": 1772042634103
     },
     {
-      "origin": "STREAM",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042641086
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042641590
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042642338
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042642853
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042643508
-    },
-    {
-      "origin": "PARASITE",
-      "text": "REFLECT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042646522
-    },
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042647540
-    },
-    {
-      "origin": "CAR",
-      "text": "UNIFY HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042648703
-    },
-    {
-      "origin": "STREAM",
-      "text": "GIVING RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042649457
-    },
-    {
-      "origin": "STREAM",
-      "text": "HUNGER SEIZE STRIKE",
+      "origin": "ALIEN",
+      "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042651040
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042651738
+      "tick": 1772042635531
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS UNIFY FLOW",
+      "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042652262
+      "tick": 1772042636166
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS GIVING FLOW",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042636891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042652492
+      "tick": 1772042637654
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042640054
     },
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH RECON",
+      "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042652888
+      "tick": 1772042640732
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042641254
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042645239
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042646890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042648128
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042648406
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042651689
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042652149
+    },
+    {
+      "origin": "ALIEN",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042652642
     }
   ]
 }
