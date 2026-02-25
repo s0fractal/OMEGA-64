@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772025444255
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025444466
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025448540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025448919
     }
   ]
 }
