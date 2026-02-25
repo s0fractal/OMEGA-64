@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036588556
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036588780
@@ -291,6 +285,12 @@
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036593077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036593340
     }
   ]
 }
