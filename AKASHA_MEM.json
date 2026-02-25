@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026628036
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772026628251
@@ -291,6 +285,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026637896
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026638172
     }
   ]
 }
