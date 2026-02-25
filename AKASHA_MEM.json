@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021592988
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -187,6 +181,12 @@
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021598737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021599042
     }
   ]
 }
