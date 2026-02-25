@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033682587
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033682843
@@ -291,6 +285,12 @@
       "text": "WITNESS SPARK DREAM",
       "mood": "CREATIVE",
       "tick": 1772033690422
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033690734
     }
   ]
 }
