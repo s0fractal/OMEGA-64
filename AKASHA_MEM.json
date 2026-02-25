@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027040194
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027040600
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027044810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027045035
     }
   ]
 }
