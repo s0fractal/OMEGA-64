@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040851309
-    },
-    {
       "origin": "STREAM",
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040853904
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BECOME FORGE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772040854204
     }
   ]
 }
