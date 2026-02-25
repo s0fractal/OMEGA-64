@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STABLE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022439884
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -226,6 +220,12 @@
       "text": "AWAKEN BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022443224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022444825
     }
   ]
 }
