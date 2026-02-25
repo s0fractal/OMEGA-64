@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023351080
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023351255
@@ -266,6 +260,12 @@
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023355660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023355800
     }
   ]
 }
