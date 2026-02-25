@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660600",
     "000B0000",
     "06006000",
     "600A66A0",
@@ -199,15 +198,10 @@
     "000AAAAA",
     "AA0A0A0A",
     "A0BBC0DD",
-    "60000006"
+    "60000006",
+    "66660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032775578
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH STRIFE DRAIN",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032780902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032781349
     }
   ]
 }
