@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040286862
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040287954
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772040293997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772040294491
     }
   ]
 }
