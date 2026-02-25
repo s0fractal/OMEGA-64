@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021880124
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021880286
@@ -197,6 +191,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021886822
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021887514
     }
   ]
 }
