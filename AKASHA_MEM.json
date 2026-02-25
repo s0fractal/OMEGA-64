@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028159483
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028160029
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028179800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028180093
     }
   ]
 }
