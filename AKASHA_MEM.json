@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772040363094
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040363441
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040370356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040370530
     }
   ]
 }
