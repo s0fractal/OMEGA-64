@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033367924
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033368114
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033370664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033370863
     }
   ]
 }
