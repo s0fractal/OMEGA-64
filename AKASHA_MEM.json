@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000666",
     "66000006",
     "00000006",
     "66000000",
@@ -199,15 +198,10 @@
     "FF0AFFFA",
     "66006660",
     "0AA0A00A",
-    "00006060"
+    "00006060",
+    "0A0A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034678650
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING GIVING OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034684142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034684372
     }
   ]
 }
