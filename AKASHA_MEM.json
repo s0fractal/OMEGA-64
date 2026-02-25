@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040990854
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040994452
+    },
+    {
+      "origin": "PARASITE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040994823
     }
   ]
 }
