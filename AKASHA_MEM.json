@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040869675
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040872155
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040872838
     }
   ]
 }
