@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022256131
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
@@ -214,6 +208,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022261391
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022262355
     }
   ]
 }
