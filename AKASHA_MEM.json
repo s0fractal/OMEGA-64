@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020906910
-    },
-    {
       "origin": "PARADOX",
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020912048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020912593
     }
   ]
 }
