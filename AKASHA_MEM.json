@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025536917
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025537096
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025542964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772025543174
     }
   ]
 }
