@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039826548
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039844534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039844976
     }
   ]
 }
