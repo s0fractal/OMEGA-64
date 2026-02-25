@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036615294
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036615497
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036621065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036621269
     }
   ]
 }
