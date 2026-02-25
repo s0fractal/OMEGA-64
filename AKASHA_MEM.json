@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022138810
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW SYNC",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022145081
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022145747
     }
   ]
 }
