@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023868234
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023868445
@@ -282,6 +276,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023873673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023873898
     }
   ]
 }
