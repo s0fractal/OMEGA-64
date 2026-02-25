@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0x66666666A82F9FC1_BACCABC300000000'
+eigenvalue: '0xAAAAAAAAA82F9FC1_BACCABC300000000'
 vector: 07.07.01
 symbol: RIGHT
 desc: Either/Pair Right projection. (y => _l => r => r(y))
@@ -22,14 +22,18 @@ ex:
   - '0x60000000A82F9FC1_BACCABC300000000'
   - '0xBB000000A82F9FC1_BACCABC300000000'
   - '0x66666666A82F9FC1_BACCABC300000000'
-thought: AVOID_PARASITE_PASSIVE
-x: 664
-'y': 228
-energy: 33
+  - '0x66666666A82F9FC1_BACCABC300000000'
+thought: WANDER_BONDING
+x: 676
+'y': 242
+energy: 29
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
+
+
+
 
 
 

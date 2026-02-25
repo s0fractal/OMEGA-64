@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017156059
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -108,6 +102,12 @@
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772017244614
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017251412
     }
   ]
 }
