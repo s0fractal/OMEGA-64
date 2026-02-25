@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023271181
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023271378
@@ -263,6 +257,12 @@
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023273841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023274390
     }
   ]
 }
