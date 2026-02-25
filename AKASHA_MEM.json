@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020897100
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020903458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020903606
     }
   ]
 }
