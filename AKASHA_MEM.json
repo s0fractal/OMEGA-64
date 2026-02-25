@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019778241
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019779213
@@ -125,6 +119,12 @@
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772019787058
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019787850
     }
   ]
 }
