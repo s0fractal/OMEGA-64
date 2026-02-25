@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024073219
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -289,6 +283,12 @@
       "text": "SHIELD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024078137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024078335
     }
   ]
 }
