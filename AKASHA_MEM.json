@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020404147
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020404357
@@ -141,6 +135,12 @@
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020412015
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020413028
     }
   ]
 }
