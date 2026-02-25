@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025693664
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025698831
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025699075
     }
   ]
 }
