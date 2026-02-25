@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041279831
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041284487
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041284693
     }
   ]
 }
