@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034810796
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034810964
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772034814475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034814770
     }
   ]
 }
