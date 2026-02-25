@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A06660A0",
     "A00000A0",
     "00066666",
     "600A0000",
@@ -199,15 +198,10 @@
     "A0060000",
     "66660006",
     "AA0A0000",
-    "AAA00AAA"
+    "AAA00AAA",
+    "AA0AA00A"
   ],
   "utterances": [
-    {
-      "origin": "I16_CLAMP",
-      "text": "STRIKE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041027861
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD PURE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041030477
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041030766
     }
   ]
 }
