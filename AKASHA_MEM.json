@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024047072
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE HEAL HEAL",
       "mood": "HARMONIC",
@@ -287,6 +281,12 @@
       "text": "DREAM FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772024050899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024051197
     }
   ]
 }
