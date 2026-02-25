@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038656810
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038656978
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038660006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038660229
     }
   ]
 }
