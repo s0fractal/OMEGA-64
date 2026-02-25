@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PURE_MATH",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041556440
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041561842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041562397
     }
   ]
 }
