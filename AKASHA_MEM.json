@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040890291
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040893422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040893596
     }
   ]
 }
