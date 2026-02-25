@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036853639
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036853918
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036859661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036859845
     }
   ]
 }
