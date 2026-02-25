@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026997993
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027006227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027006482
     }
   ]
 }
