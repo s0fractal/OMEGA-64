@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023012961
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023013134
@@ -252,6 +246,12 @@
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023020128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023020435
     }
   ]
 }
