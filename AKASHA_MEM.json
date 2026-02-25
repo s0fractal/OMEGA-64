@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023972982
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023973149
@@ -284,6 +278,12 @@
       "text": "IMMUNE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023976030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023976285
     }
   ]
 }
