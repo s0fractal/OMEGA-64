@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019498418
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019507893
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019508615
     }
   ]
 }
