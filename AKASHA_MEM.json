@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772030993100
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031003735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772031004626
     }
   ]
 }
