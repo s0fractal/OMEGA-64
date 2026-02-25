@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041672769
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041676810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041677289
     }
   ]
 }
