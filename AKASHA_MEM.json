@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037781479
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037781705
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037789532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037789781
     }
   ]
 }
