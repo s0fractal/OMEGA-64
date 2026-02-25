@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038462708
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038465720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772038465936
     }
   ]
 }
