@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660060",
     "66606000",
     "00066000",
     "AA0A0A00",
@@ -199,15 +198,10 @@
     "000A0000",
     "A00A000A",
     "000A000F",
-    "AA00A0AA"
+    "AA00A0AA",
+    "AA0666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037006274
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE COHERE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037010180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037010394
     }
   ]
 }
