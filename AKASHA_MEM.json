@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036040456
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036052597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036052778
     }
   ]
 }
