@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015229334
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772015369788
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772015372691
     }
   ]
 }
