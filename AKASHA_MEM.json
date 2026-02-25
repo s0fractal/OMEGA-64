@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022796349
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022797289
@@ -246,6 +240,12 @@
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022803586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022803774
     }
   ]
 }
