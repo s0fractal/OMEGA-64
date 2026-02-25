@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030454646
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030455119
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030460764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772030461598
     }
   ]
 }
