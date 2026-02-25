@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020836815
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020838065
@@ -156,6 +150,12 @@
       "text": "BREACH SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020845762
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020845946
     }
   ]
 }
