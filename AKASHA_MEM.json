@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019892119
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019903360
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019904450
     }
   ]
 }
