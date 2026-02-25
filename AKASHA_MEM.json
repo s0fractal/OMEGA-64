@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A000A000",
     "AA660660",
     "AA0660A0",
     "A0AAAAAA",
@@ -199,15 +198,10 @@
     "A000AA0A",
     "A00AA0AA",
     "60066600",
-    "A1000000"
+    "A1000000",
+    "000AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035851170
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE REFLECT",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035855738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035856289
     }
   ]
 }
