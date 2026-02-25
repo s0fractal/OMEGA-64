@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033338923
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033341726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033341873
     }
   ]
 }
