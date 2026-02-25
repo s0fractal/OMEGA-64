@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023783655
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023783863
@@ -279,6 +273,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023787706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023787881
     }
   ]
 }
