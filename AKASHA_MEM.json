@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035070660
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035077830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035078156
     }
   ]
 }
