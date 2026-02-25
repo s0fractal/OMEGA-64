@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041591434
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041596616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041596900
     }
   ]
 }
