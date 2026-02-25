@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022349251
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022349502
@@ -219,6 +213,12 @@
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022353583
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022353865
     }
   ]
 }
