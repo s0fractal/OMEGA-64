@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033018726
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033018954
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033021804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033021947
     }
   ]
 }
