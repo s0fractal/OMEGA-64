@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022596222
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022596759
@@ -240,6 +234,12 @@
       "text": "CONSUME SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022601025
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022601206
     }
   ]
 }
