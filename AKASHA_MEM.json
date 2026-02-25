@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041740497
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041745150
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041745656
     }
   ]
 }
