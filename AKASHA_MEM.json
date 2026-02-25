@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772034331600
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034331781
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034334542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034334803
     }
   ]
 }
