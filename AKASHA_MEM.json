@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021532408
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -183,6 +177,12 @@
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021545511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021546104
     }
   ]
 }
