@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027597836
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772027598198
@@ -291,6 +285,12 @@
       "text": "FORGE WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772027604034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027604396
     }
   ]
 }
