@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020221951
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020223040
@@ -136,6 +130,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020231247
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020232864
     }
   ]
 }
