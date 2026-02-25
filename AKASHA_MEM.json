@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037655567
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037655737
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037659296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037659458
     }
   ]
 }
