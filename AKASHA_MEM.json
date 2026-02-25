@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "PARADOX",
-      "text": "SHOCK BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040866411
-    },
-    {
-      "origin": "PARADOX",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040866580
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040869208
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040869402
     }
   ]
 }
