@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020358999
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020367668
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020367905
     }
   ]
 }
