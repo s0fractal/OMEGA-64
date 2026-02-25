@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036284319
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036284524
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036287413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036287634
     }
   ]
 }
