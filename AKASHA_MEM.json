@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020912593
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772020917766
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020917975
     }
   ]
 }
