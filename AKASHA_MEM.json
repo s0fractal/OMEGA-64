@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020756823
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020757002
@@ -153,6 +147,12 @@
       "text": "BEYOND AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772020763838
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020763991
     }
   ]
 }
