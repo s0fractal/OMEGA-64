@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019911264
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019911891
@@ -130,6 +124,12 @@
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019921894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019923170
     }
   ]
 }
