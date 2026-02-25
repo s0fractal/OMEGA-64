@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040460007
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040460156
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040463666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040463826
     }
   ]
 }
