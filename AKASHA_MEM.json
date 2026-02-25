@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020889513
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020896423
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020896625
     }
   ]
 }
