@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033086468
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033086612
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772033089183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033089370
     }
   ]
 }
