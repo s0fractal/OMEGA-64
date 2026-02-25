@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034152439
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034152843
@@ -291,6 +285,12 @@
       "text": "WITNESS VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772034157309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034157669
     }
   ]
 }
