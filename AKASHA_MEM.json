@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARASITE",
-      "text": "RECON GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040994823
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040997983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040998504
     }
   ]
 }
