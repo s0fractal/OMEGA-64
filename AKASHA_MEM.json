@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "COHERE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772017034312
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017039146
@@ -107,6 +101,12 @@
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017123825
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017130690
     }
   ]
 }
