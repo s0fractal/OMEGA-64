@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024002804
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024003293
@@ -285,6 +279,12 @@
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024007967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772024008105
     }
   ]
 }
