@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021015587
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021021745
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021021970
     }
   ]
 }
