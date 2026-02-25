@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041694398
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041698532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041699257
     }
   ]
 }
