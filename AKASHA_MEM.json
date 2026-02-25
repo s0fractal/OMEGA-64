@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041845370
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041849544
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041849991
     }
   ]
 }
