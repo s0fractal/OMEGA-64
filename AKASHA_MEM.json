@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023107395
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023114291
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023114758
     }
   ]
 }
