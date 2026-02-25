@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020833477
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020834493
@@ -156,6 +150,12 @@
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020842665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020844248
     }
   ]
 }
