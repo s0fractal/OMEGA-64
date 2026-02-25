@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042430364
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042448207
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042451329
     }
   ]
 }
