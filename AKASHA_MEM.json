@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037744614
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037744840
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037747731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772037747905
     }
   ]
 }
