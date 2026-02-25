@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034161044
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034161239
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034164731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034165021
     }
   ]
 }
