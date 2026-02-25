@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666666",
     "BBB0000C",
     "BBBB0000",
     "60000000",
@@ -199,15 +198,10 @@
     "0000AAA0",
     "AABBCCDD",
     "AAAAAAA0",
-    "60066666"
+    "60066666",
+    "666060A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024282941
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772024285916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024286123
     }
   ]
 }
