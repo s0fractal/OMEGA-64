@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xFFFFF00FFFFF0008'
-energy: 49.8
+energy: 49.9
 resonance: 14.85
-x: 772
+x: 773
 'y': 477
 symbol: ARCHIVIST
 thought: ORBIT_MATING
@@ -121,7 +121,6 @@ logic: FFFFF00F
 ---
 
 <div align="center">
-<div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -154,7 +153,6 @@ logic: FFFFF00F
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 

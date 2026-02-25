@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040221435
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040227079
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040227569
     }
   ]
 }
