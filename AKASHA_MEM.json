@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772016946641
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017039146
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017043509
     }
   ]
 }
