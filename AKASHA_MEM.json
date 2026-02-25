@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034224582
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034227961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034228163
     }
   ]
 }
