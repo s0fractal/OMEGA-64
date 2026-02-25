@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A00A",
     "AABB0C0D",
     "60600006",
     "AAAAAA0A",
@@ -199,15 +198,10 @@
     "A6006000",
     "FFFF0FFF",
     "00666060",
-    "60066000"
+    "60066000",
+    "66666600"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038572931
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH SHELTER WAIT",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038576099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038576329
     }
   ]
 }
