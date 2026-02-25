@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041337308
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041340512
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041341295
     }
   ]
 }
