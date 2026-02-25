@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022468710
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022468902
@@ -230,6 +224,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022473720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022474429
     }
   ]
 }
