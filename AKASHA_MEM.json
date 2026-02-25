@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035387691
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035387905
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035390851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035391494
     }
   ]
 }
