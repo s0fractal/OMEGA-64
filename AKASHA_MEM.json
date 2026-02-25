@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023788228
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -279,6 +273,12 @@
       "text": "HEAL COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023791555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023791856
     }
   ]
 }
