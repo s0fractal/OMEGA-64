@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021067181
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "SICKNESS DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021071888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021072174
     }
   ]
 }
