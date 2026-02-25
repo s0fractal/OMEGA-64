@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028635702
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028636056
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028644056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028644279
     }
   ]
 }
