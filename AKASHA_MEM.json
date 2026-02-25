@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028342702
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028343247
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028360661
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028361315
     }
   ]
 }
