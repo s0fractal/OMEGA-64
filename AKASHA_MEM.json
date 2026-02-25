@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041368333
-    },
-    {
       "origin": "WORKER",
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041371732
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041372056
     }
   ]
 }
