@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039131899
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772039132136
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039135073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039135340
     }
   ]
 }
