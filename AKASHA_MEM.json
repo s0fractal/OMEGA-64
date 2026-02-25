@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066000",
     "66000006",
     "F0FF0F0F",
     "66066006",
@@ -199,15 +198,10 @@
     "66660600",
     "00666000",
     "60060060",
-    "A000000A"
+    "A000000A",
+    "66060606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036586443
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS SHIELD PURE",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036590597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036590826
     }
   ]
 }
