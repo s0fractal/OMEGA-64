@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040229880
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040234018
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040234187
     }
   ]
 }
