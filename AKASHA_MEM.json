@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772038982415
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038982619
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038985769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038985991
     }
   ]
 }
