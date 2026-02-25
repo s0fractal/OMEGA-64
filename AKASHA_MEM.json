@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041161735
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041165119
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041165300
     }
   ]
 }
