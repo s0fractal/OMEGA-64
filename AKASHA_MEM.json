@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041554145
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041554850
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041557825
+    },
+    {
+      "origin": "CAR",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041559234
     }
   ]
 }
