@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036371982
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036372159
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036374968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772036375198
     }
   ]
 }
