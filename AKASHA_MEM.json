@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040941330
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040945333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772040946477
     }
   ]
 }
