@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040331402
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772040337733
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040338005
     }
   ]
 }
