@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032565233
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032565417
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032567946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032568166
     }
   ]
 }
