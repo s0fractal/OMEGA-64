@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025001999
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025002233
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025006742
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025007171
     }
   ]
 }
