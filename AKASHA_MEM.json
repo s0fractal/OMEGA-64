@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0000A",
     "0A0000AA",
     "A0666A60",
     "06066666",
@@ -199,15 +198,10 @@
     "A000A000",
     "AAAA000A",
     "AA0BC00F",
-    "666006A0"
+    "666006A0",
+    "A00A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035893994
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT GUARD SHELTER",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035899188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035899404
     }
   ]
 }
