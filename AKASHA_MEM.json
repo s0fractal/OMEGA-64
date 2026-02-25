@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00AA",
     "AA6660A0",
     "00600060",
     "00060600",
@@ -199,15 +198,10 @@
     "66066060",
     "AAAAAAAA",
     "01000000",
-    "06660060"
+    "06660060",
+    "00600606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034157945
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT WAIT STASIS",
@@ -291,6 +285,12 @@
       "text": "VISION VISION DREAM",
       "mood": "CREATIVE",
       "tick": 1772034160848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034161044
     }
   ]
 }
