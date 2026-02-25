@@ -44,15 +44,10 @@
     "A000AA00",
     "BA0A0000",
     "ABBA0000",
-    "BB0B0A00"
+    "BB0B0A00",
+    "66666000"
   ],
   "utterances": [
-    {
-      "origin": "PARADOX",
-      "text": "DREAM EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772020236881
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH GUARD",
@@ -136,6 +131,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020244720
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020245280
     }
   ]
 }
