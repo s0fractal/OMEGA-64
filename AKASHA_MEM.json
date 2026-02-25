@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0066660",
     "00000006",
     "A00AA000",
     "66000600",
@@ -199,15 +198,10 @@
     "06600000",
     "AAAA0000",
     "0A000A00",
-    "AA0000A0"
+    "AA0000A0",
+    "06006006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038427925
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL FLOW GIVING",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038430662
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038430872
     }
   ]
 }
