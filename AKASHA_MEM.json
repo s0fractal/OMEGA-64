@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021735807
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021735966
@@ -194,6 +188,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021739579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021739745
     }
   ]
 }
