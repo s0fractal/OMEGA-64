@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAA00",
     "AA00AAA0",
     "666A6600",
     "0FF0FFF0",
@@ -199,15 +198,10 @@
     "60600660",
     "60006600",
     "AA0A0000",
-    "000A60A0"
+    "000A60A0",
+    "AABBC00D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031341921
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS GUARD SHIELD",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031350827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031351206
     }
   ]
 }
