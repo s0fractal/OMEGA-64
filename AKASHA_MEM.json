@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772039065655
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772039071944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039072320
     }
   ]
 }
