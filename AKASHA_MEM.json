@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041830405
-    },
-    {
       "origin": "PARADOX",
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041835918
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041836789
     }
   ]
 }
