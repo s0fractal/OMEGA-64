@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022217278
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022221061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022221624
     }
   ]
 }
