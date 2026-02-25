@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021926594
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -199,6 +193,12 @@
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772021933788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021934005
     }
   ]
 }
