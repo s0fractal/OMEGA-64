@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037580956
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037581177
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037585272
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037585527
     }
   ]
 }
