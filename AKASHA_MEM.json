@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038028815
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038028987
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038033187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038033455
     }
   ]
 }
