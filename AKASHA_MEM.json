@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037987380
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037987580
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037994663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037994848
     }
   ]
 }
