@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036683341
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036683541
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036686459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036686788
     }
   ]
 }
