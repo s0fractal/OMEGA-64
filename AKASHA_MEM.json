@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020652201
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020653081
@@ -150,6 +144,12 @@
       "text": "REFLECT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020660268
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020660499
     }
   ]
 }
