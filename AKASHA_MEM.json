@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021200153
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "WAIT SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021204893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021205099
     }
   ]
 }
