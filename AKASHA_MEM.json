@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024193834
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772024194023
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772024197896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024199891
     }
   ]
 }
