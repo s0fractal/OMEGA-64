@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020158983
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772020168615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020170041
     }
   ]
 }
