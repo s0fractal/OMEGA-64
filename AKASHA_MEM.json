@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022642528
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022642685
@@ -241,6 +235,12 @@
       "text": "BECOME FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022646015
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022646502
     }
   ]
 }
