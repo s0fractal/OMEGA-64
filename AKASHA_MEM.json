@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034652813
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034652988
@@ -291,6 +285,12 @@
       "text": "AWAKEN WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034655674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034655850
     }
   ]
 }
