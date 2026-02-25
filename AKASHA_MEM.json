@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027092367
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027098657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027098982
     }
   ]
 }
