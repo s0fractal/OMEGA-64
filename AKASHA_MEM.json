@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666666",
     "60000A00",
     "66006666",
     "06660600",
@@ -199,15 +198,10 @@
     "AA0AAA0A",
     "00666000",
     "AAAAA00A",
-    "000AAAAA"
+    "000AAAAA",
+    "AA0A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032753146
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032755621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032755836
     }
   ]
 }
