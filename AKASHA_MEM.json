@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024039924
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024040146
@@ -287,6 +281,12 @@
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772024042445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024042618
     }
   ]
 }
