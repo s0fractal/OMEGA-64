@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RECON WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042333330
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WATCH IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042333635
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042339589
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042339808
     }
   ]
 }
