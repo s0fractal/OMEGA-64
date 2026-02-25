@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033513758
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033513959
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772033517122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033517310
     }
   ]
 }
