@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023029717
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "SPARK WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023033510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023033631
     }
   ]
 }
