@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024960499
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024960789
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024966664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024966901
     }
   ]
 }
