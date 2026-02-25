@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027224950
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027225185
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772027231940
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027232201
     }
   ]
 }
