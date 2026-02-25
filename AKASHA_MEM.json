@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020439401
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020439840
@@ -142,6 +136,12 @@
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020448254
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020448769
     }
   ]
 }
