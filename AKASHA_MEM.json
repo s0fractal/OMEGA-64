@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029521646
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772029523715
@@ -291,6 +285,12 @@
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029536518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772029537199
     }
   ]
 }
