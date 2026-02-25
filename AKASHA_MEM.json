@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023138166
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023138320
@@ -259,6 +253,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023141863
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023142116
     }
   ]
 }
