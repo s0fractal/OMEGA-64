@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023400669
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023400978
@@ -267,6 +261,12 @@
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023403748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023403923
     }
   ]
 }
