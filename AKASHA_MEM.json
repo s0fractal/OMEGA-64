@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028508402
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028508733
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028520657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772028521760
     }
   ]
 }
