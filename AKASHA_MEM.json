@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023224090
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023224289
@@ -260,6 +254,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023228717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023228898
     }
   ]
 }
