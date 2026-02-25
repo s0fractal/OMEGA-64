@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030816250
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030821254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030821564
     }
   ]
 }
