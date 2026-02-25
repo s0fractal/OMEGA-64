@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041826780
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041831309
+    },
+    {
+      "origin": "WORKER",
+      "text": "REFLECT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041831586
     }
   ]
 }
