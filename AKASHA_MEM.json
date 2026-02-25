@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STRIKE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034332319
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034335401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034335601
     }
   ]
 }
