@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025978062
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025978264
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025982794
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025982982
     }
   ]
 }
