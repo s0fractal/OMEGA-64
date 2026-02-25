@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040302940
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040309352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040309582
     }
   ]
 }
