@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020127709
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020141533
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020142380
     }
   ]
 }
