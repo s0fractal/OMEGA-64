@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041366037
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041366300
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041370152
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041370289
     }
   ]
 }
