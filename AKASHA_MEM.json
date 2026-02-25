@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041086821
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041090158
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041090288
     }
   ]
 }
