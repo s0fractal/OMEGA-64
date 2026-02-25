@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042075917
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772042091166
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042091455
     }
   ]
 }
