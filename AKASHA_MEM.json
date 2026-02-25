@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041892595
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041898094
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041898930
     }
   ]
 }
