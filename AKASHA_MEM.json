@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033388084
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033388275
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772033390530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033390717
     }
   ]
 }
