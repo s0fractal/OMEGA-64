@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022507869
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022508244
@@ -233,6 +227,12 @@
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022512116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022512505
     }
   ]
 }
