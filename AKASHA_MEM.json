@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022471367
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -230,6 +224,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022478129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022478920
     }
   ]
 }
