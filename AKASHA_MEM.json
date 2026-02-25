@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022897549
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772022899873
@@ -250,6 +244,12 @@
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022907703
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022907887
     }
   ]
 }
