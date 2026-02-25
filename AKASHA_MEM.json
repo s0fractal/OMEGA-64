@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024834324
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024834723
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024847586
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024850761
     }
   ]
 }
