@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016104526
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772016109420
@@ -107,6 +101,12 @@
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016209463
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016212022
     }
   ]
 }
