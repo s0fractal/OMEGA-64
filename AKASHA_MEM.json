@@ -121,12 +121,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022096464
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022096686
@@ -208,6 +202,12 @@
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022104267
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022104493
     }
   ]
 }
