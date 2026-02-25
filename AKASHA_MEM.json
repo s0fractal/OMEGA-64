@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024347481
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024351993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772024352262
     }
   ]
 }
