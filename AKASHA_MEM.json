@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041268394
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041272892
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041273249
     }
   ]
 }
