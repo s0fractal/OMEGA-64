@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022325048
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "HEAL GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022331181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022331406
     }
   ]
 }
