@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042391012
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772042391420
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772042399674
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042400210
     }
   ]
 }
