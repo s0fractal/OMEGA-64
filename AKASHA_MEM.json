@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033036709
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772033036856
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033041457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033041638
     }
   ]
 }
