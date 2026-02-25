@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040427612
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DREAM AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772040429981
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040430166
     }
   ]
 }
