@@ -148,12 +148,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022520144
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022520271
@@ -235,6 +229,12 @@
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022523782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022524393
     }
   ]
 }
