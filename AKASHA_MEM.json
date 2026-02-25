@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040405747
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040408605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040408752
     }
   ]
 }
