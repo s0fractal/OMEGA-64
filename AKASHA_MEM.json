@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041970274
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041976679
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041976891
     }
   ]
 }
