@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023362409
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023362575
@@ -266,6 +260,12 @@
       "text": "WAIT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023366604
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023366778
     }
   ]
 }
