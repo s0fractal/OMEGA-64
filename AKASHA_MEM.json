@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041806285
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041811617
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041812059
     }
   ]
 }
