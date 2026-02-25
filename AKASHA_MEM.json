@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033759264
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033759496
@@ -291,6 +285,12 @@
       "text": "EVOLVE EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772033761977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033762138
     }
   ]
 }
