@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037791386
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037791593
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037794246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037794458
     }
   ]
 }
