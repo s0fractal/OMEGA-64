@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024398360
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024398812
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024404469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024405125
     }
   ]
 }
