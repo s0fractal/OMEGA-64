@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042445680
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772042445827
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042462426
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042463473
     }
   ]
 }
