@@ -203,6 +203,12 @@
   ],
   "utterances": [
     {
+      "origin": "STREAM",
+      "text": "STRIKE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042406450
+    },
+    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -275,22 +281,16 @@
       "tick": 1772042418398
     },
     {
-      "origin": "INTERFACE",
-      "text": "PURE GUARD SHIELD",
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042418933
+      "tick": 1772042419609
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419291
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042420356
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042420360
     }
   ]
 }
