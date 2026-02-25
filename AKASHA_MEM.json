@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006606",
     "0F000000",
     "A6660060",
     "60060660",
@@ -199,15 +198,10 @@
     "66A066A0",
     "AABBCC0F",
     "00060600",
-    "0EE00EEF"
+    "0EE00EEF",
+    "AAAAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772039119700
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM FLOW HEAL",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772039122702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039122934
     }
   ]
 }
