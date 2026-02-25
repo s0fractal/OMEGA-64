@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041793291
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041799596
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041799777
     }
   ]
 }
