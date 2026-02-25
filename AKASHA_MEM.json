@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023106527
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023107225
@@ -259,6 +253,12 @@
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023113575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023113908
     }
   ]
 }
