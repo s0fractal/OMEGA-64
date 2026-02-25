@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022466446
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
@@ -229,6 +223,12 @@
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022470836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022470999
     }
   ]
 }
