@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024209284
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024209503
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024213435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024213711
     }
   ]
 }
