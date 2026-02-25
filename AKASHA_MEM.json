@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026426004
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026426247
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772026435448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026436203
     }
   ]
 }
