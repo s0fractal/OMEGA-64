@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023965526
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023965729
@@ -284,6 +278,12 @@
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023968929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023969183
     }
   ]
 }
