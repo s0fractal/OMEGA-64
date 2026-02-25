@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040462430
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040465691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040466118
     }
   ]
 }
