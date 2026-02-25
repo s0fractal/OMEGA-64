@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037917496
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037917718
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037920640
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037921248
     }
   ]
 }
