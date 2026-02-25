@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038245868
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038246148
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038249396
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038249621
     }
   ]
 }
