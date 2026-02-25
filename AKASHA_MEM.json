@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AA0A",
     "AABB0CD0",
     "A6006000",
     "FFFF0FFF",
@@ -199,15 +198,10 @@
     "AA6660A6",
     "0666A660",
     "60060600",
-    "00000606"
+    "00000606",
+    "AA066666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040574262
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE STABLE BLOOM",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040577069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040577328
     }
   ]
 }
