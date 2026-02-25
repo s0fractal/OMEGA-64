@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041548176
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041552716
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041552858
     }
   ]
 }
