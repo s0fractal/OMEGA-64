@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020268897
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020278348
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SPARK EVOLVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772020279539
     }
   ]
 }
