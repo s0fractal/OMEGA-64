@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041140694
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041143909
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041144092
     }
   ]
 }
