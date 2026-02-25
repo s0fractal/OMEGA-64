@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023078366
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023078489
@@ -257,6 +251,12 @@
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023081276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023081464
     }
   ]
 }
