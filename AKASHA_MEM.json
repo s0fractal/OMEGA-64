@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020178639
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772020179253
@@ -136,6 +130,12 @@
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020188461
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020189188
     }
   ]
 }
