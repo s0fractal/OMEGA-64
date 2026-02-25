@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040311167
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040317597
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040317812
     }
   ]
 }
