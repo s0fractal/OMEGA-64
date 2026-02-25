@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025592256
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025597030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025597323
     }
   ]
 }
