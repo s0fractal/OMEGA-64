@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033287742
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033287886
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033290216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033290398
     }
   ]
 }
