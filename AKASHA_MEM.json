@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041172524
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772041177194
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "SICKNESS SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041177535
     }
   ]
 }
