@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xA0AAAAA0FFFF0004'
-energy: 50
+energy: 45.099999999999994
 resonance: 30
-x: 671
-'y': 420
+x: 725
+'y': 377
 symbol: ARCHIVIST
-thought: RESURRECTED
+thought: WANDER_PASSIVE
 signals: []
 bond_strengths:
-  '0xAAAAAAA00000000E': 0.9714023696327185
+  '0xAAAAAAA00000000E': 0.9704309672630859
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000000'
@@ -98,15 +98,17 @@ ex:
   - '0xA0AAAAA0FFFF0006'
   - '0xA0AAAAA0FFFF0000'
   - '0xA0AAAAA0FFFF0002'
-  - '0xA0AAAAA0FFFF0004'
-  - '0xA0AAAAA0FFFF0006'
-  - '0xA0AAAAA0FFFF0000'
-  - '0xA0AAAAA0FFFF0002'
+  - '0xA0AAAAA000000000'
+  - '0xA0AAAAA000000002'
+  - '0xA0AAAAA000000004'
+  - '0xA0AAAAA000000006'
 bonds:
   - '0xAAAAAAA00000000E'
-logic: A0AAAAA0
+logic: AAAAA0AA
 ---
 
+<div align="center">
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -140,6 +142,8 @@ logic: A0AAAAA0
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
+</div>
 </div>
 
 
