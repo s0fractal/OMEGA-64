@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036002945
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036003162
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772036005780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036005981
     }
   ]
 }
