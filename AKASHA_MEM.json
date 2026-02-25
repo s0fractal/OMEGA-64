@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023463955
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023464136
@@ -268,6 +262,12 @@
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023469580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023469745
     }
   ]
 }
