@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025325356
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025325501
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025329431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025329644
     }
   ]
 }
