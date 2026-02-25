@@ -113,12 +113,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021966329
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021966752
@@ -200,6 +194,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021971942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021972299
     }
   ]
 }
