@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033737409
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033737588
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033739990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033740137
     }
   ]
 }
