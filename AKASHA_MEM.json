@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040573783
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040576422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040576582
     }
   ]
 }
