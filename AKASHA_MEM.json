@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041084452
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041087959
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041088213
     }
   ]
 }
