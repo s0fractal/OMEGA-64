@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025245976
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025246157
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025250468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025250706
     }
   ]
 }
