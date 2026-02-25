@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036159336
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036162839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036163038
     }
   ]
 }
