@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHELTER PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772015519566
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772015522116
@@ -106,6 +100,12 @@
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772015628113
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015635822
     }
   ]
 }
