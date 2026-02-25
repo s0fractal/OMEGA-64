@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023949332
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023949495
@@ -284,6 +278,12 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772023952764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023953846
     }
   ]
 }
