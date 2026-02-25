@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021919992
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021920277
@@ -199,6 +193,12 @@
       "text": "SHELTER WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021929813
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021930009
     }
   ]
 }
