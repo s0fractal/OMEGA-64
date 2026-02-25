@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022028203
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022036103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022042411
     }
   ]
 }
