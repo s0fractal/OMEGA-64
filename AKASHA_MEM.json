@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041257576
-    },
-    {
-      "origin": "STREAM",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041257855
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041263088
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041263705
     }
   ]
 }
