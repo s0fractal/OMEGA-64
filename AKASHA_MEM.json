@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020528737
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020528906
@@ -143,6 +137,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020535576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020536604
     }
   ]
 }
