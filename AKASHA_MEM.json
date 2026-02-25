@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036783916
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036784127
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036786676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036786937
     }
   ]
 }
