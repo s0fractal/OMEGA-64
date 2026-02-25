@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033775078
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033775279
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033777835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033777988
     }
   ]
 }
