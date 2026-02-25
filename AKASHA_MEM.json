@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034117223
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034118208
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034124595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034124753
     }
   ]
 }
