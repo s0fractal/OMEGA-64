@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016720670
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772016830571
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772016835217
     }
   ]
 }
