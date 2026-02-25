@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037310921
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037313864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037314075
     }
   ]
 }
