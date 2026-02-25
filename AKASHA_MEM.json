@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034636596
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034636761
@@ -291,6 +285,12 @@
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034639541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034639783
     }
   ]
 }
