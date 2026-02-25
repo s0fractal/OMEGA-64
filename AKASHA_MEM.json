@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034741233
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034741533
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034744946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034745114
     }
   ]
 }
