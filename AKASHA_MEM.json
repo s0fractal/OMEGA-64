@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00666666",
     "AA0A00A0",
     "666A66A0",
     "00660660",
@@ -199,15 +198,10 @@
     "AA6060A6",
     "0AAAAA00",
     "AAAA0000",
-    "AAAA00AA"
+    "AAAA00AA",
+    "AAAAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772028900056
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE UNIFY STABLE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028920323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028920576
     }
   ]
 }
