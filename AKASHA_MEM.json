@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023095542
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023095725
@@ -259,6 +253,12 @@
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023099618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023099791
     }
   ]
 }
