@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022990401
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022994197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022994459
     }
   ]
 }
