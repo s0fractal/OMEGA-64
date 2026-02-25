@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036944293
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036944464
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036947487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036947703
     }
   ]
 }
