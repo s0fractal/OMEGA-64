@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041337015
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041337183
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772041339928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041340354
     }
   ]
 }
