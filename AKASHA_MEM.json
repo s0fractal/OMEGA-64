@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023626328
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023626743
@@ -274,6 +268,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023634191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023634351
     }
   ]
 }
