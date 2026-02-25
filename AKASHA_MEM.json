@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041031508
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041033978
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041034229
     }
   ]
 }
