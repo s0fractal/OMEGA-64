@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0BB0000",
     "00B00000",
     "AAAAA0AA",
     "60006000",
@@ -199,15 +198,10 @@
     "00A0A000",
     "B0B00000",
     "00060660",
-    "66666060"
+    "66666060",
+    "AA6006A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033649696
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE FLOW",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033652726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033652939
     }
   ]
 }
