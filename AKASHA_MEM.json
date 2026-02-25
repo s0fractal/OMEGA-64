@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021985434
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -202,6 +196,12 @@
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021993898
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021994430
     }
   ]
 }
