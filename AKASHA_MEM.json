@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040310972
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040311167
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040316574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040317597
     }
   ]
 }

@@ -435,7 +435,7 @@ thought: RESURRECTED
 x: 279
 'y': 196
 signals: []
-resonance: 50.5
+resonance: 50.99
 bonds: []
 bond_strengths: {}
 logic: AA0A0AAA
