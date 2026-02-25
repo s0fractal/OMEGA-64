@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035939491
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035940370
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035943798
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035944039
     }
   ]
 }
