@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021733525
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
@@ -194,6 +188,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021738151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021738687
     }
   ]
 }
