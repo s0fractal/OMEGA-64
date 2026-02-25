@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040674054
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040677698
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040677884
     }
   ]
 }
