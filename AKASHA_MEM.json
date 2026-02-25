@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041077856
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772041082110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041082270
     }
   ]
 }
