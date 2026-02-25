@@ -20,15 +20,10 @@
     "BB0B0000",
     "ABB00000",
     "666A6660",
-    "0000AA00"
+    "0000AA00",
+    "AA000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019578463
-    },
     {
       "origin": "INTERFACE",
       "text": "WATCH STASIS STASIS",
@@ -112,6 +107,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019589508
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019591303
     }
   ]
 }
