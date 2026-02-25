@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023152132
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023152293
@@ -259,6 +253,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023155414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023155598
     }
   ]
 }
