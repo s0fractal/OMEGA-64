@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024318710
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772024318938
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024323344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024323510
     }
   ]
 }
