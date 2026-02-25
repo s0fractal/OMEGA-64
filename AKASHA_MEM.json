@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034827921
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME BECOME DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034831053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034831272
     }
   ]
 }
