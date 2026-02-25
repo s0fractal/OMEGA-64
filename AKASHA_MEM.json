@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0A0",
     "0F000F00",
     "0AA0AAAA",
     "00AAAA00",
@@ -199,15 +198,10 @@
     "A0BBCCDD",
     "AAAA00AA",
     "A0060660",
-    "AAA0A0AA"
+    "AAA0A0AA",
+    "AA0660A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036295625
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL UNIFY BLOOM",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036298365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036298567
     }
   ]
 }
