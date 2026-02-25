@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026081703
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026081915
@@ -291,6 +285,12 @@
       "text": "BECOME EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772026090280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026090496
     }
   ]
 }
