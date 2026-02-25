@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040525662
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040528362
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040528492
     }
   ]
 }
