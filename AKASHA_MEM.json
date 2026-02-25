@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020770146
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "RESONATE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020776309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020777018
     }
   ]
 }
