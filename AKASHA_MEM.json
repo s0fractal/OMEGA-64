@@ -133,12 +133,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022379280
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -221,6 +215,12 @@
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022386165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022386375
     }
   ]
 }
