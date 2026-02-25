@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041870963
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041875487
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041875709
     }
   ]
 }
