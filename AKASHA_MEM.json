@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041842699
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041848074
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041848239
     }
   ]
 }
