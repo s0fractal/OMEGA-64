@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037010796
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037010999
@@ -291,6 +285,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037016675
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037017364
     }
   ]
 }
