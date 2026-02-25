@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025105622
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025107487
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025112184
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025112627
     }
   ]
 }
