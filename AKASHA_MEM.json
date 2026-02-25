@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041078692
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041082438
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041082567
     }
   ]
 }
