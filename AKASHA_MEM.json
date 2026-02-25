@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAA0",
     "66666660",
     "AA6666A0",
     "AAA00AA0",
@@ -199,15 +198,10 @@
     "ABB00000",
     "6A6606A0",
     "0B0B0000",
-    "60060000"
+    "60060000",
+    "00606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030646915
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS REFLECT GUARD",
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772030656923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772030657319
     }
   ]
 }
