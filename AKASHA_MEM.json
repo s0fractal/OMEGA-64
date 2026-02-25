@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040317597
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040323639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040324761
     }
   ]
 }
