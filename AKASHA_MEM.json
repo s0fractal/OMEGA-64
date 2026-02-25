@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041181428
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041185534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041185953
     }
   ]
 }
