@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033206385
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033206568
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033209222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033210339
     }
   ]
 }
