@@ -89,12 +89,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021257525
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021258907
@@ -176,6 +170,12 @@
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021264452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772021265356
     }
   ]
 }
