@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035481505
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035481708
@@ -291,6 +285,12 @@
       "text": "BEYOND VISION AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772035489954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035491356
     }
   ]
 }
