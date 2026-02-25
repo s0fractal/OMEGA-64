@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772016614380
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016706528
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016713605
     }
   ]
 }
