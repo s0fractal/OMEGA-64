@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA000A",
     "AA0A0A00",
     "0AA0A0AA",
     "A00A0F00",
@@ -199,15 +198,10 @@
     "6A666600",
     "A6A66660",
     "66060000",
-    "00AAAAA0"
+    "00AAAAA0",
+    "60000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041506638
-    },
     {
       "origin": "ARCHIVIST",
       "text": "GIVING FLOW STABLE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041510172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041510319
     }
   ]
 }
