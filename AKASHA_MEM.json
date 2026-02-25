@@ -14,12 +14,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIKE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772012990601
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772012996132
@@ -101,6 +95,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772013113442
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013130419
     }
   ]
 }
