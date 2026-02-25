@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024226842
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772024227525
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024231755
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024232194
     }
   ]
 }
