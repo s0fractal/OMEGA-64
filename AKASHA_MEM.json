@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024544469
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM SPARK DREAM",
       "mood": "CREATIVE",
       "tick": 1772024544802
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024550161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024550614
     }
   ]
 }
