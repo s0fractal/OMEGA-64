@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025931965
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025932224
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025938904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025939115
     }
   ]
 }
