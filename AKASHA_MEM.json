@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020677773
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020677969
@@ -150,6 +144,12 @@
       "text": "HUNGER SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020683392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020684763
     }
   ]
 }
