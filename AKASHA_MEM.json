@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0BCCDD",
     "66666066",
     "00666606",
     "60660600",
@@ -199,15 +198,10 @@
     "0B0A0000",
     "A6666666",
     "00660006",
-    "0AA00AAA"
+    "0AA00AAA",
+    "66006006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027320909
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM STABLE",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027329142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027329390
     }
   ]
 }
