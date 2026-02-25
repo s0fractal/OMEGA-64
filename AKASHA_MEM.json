@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041719273
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041725548
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041726066
     }
   ]
 }
