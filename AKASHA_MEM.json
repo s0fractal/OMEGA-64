@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019792702
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772019802790
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019802954
     }
   ]
 }
