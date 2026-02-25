@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037734298
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037734521
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037737464
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037737886
     }
   ]
 }
