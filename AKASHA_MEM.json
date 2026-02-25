@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034154818
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034155104
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772034159187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034159388
     }
   ]
 }
