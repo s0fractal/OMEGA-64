@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020282116
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020289305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020290121
     }
   ]
 }
