@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020785618
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020785818
@@ -154,6 +148,12 @@
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020793125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020793542
     }
   ]
 }
