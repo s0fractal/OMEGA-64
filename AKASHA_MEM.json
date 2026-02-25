@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035279915
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035280900
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035286555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772035286864
     }
   ]
 }
