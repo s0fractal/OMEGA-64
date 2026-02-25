@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772026500850
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026501039
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772026508699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026508907
     }
   ]
 }
