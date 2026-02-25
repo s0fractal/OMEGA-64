@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030372967
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030373673
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030382969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772030385242
     }
   ]
 }
