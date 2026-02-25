@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FORGE WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772020053804
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020065248
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020066073
     }
   ]
 }
