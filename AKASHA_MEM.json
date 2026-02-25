@@ -81,15 +81,10 @@
     "666666A0",
     "06660000",
     "6A666660",
-    "A0A0AAAA"
+    "A0A0AAAA",
+    "AAAA000A"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "STABLE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021227936
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
@@ -173,6 +168,12 @@
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021232360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021232542
     }
   ]
 }
