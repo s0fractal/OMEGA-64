@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020983741
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020992948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020993150
     }
   ]
 }
