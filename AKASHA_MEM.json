@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021789026
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021789403
@@ -195,6 +189,12 @@
       "text": "WAVE WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772021793025
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021793180
     }
   ]
 }
