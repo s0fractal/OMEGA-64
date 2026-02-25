@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019479437
-    },
-    {
-      "origin": "STREAM",
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019480086
@@ -111,6 +105,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019487603
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019490194
     }
   ]
 }
