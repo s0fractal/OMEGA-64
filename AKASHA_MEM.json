@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032103961
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032104264
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032110892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032111502
     }
   ]
 }
