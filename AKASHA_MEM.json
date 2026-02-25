@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019532835
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019543295
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019543533
     }
   ]
 }
