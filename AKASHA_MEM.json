@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019773302
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019773958
@@ -125,6 +119,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019784664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019785232
     }
   ]
 }
