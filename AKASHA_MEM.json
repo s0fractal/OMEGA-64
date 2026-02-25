@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023836146
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023836323
@@ -279,6 +273,12 @@
       "text": "GIVING COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023841659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023841895
     }
   ]
 }
