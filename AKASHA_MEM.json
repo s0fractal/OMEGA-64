@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021683636
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021683836
@@ -191,6 +185,12 @@
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772021689964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021690088
     }
   ]
 }
