@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023087726
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023087894
@@ -257,6 +251,12 @@
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023093100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023093235
     }
   ]
 }
