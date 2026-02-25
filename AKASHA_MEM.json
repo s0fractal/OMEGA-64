@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00000000",
     "66666666",
     "BBB0000C",
     "BBBB0000",
@@ -199,15 +198,10 @@
     "000A0A00",
     "0000AAA0",
     "AABBCCDD",
-    "AAAAAAA0"
+    "AAAAAAA0",
+    "60066666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024278014
-    },
     {
       "origin": "REVERSE",
       "text": "BECOME BECOME WITNESS",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024282941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024283142
     }
   ]
 }
