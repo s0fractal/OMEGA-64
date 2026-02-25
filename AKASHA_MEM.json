@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021202129
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021206348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021206512
     }
   ]
 }
