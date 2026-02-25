@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042236053
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042236950
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042246560
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042246859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042247095
     }
   ]
 }
