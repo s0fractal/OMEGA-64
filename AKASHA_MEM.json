@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034424197
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034424408
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034428101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772034429725
     }
   ]
 }
