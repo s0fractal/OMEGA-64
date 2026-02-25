@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772026436203
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026436424
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026441909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026442539
     }
   ]
 }
