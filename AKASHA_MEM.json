@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023385598
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
@@ -267,6 +261,12 @@
       "text": "SHIELD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023392434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023394082
     }
   ]
 }
