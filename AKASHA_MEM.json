@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037874575
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037874793
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037879671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037879883
     }
   ]
 }
