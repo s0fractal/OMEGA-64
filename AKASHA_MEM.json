@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "IMMUNE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041680294
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041683660
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041683963
     }
   ]
 }
