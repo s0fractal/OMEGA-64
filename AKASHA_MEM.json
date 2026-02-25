@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041057636
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041060521
+    },
+    {
+      "origin": "WORKER",
+      "text": "SEIZE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041060769
     }
   ]
 }
