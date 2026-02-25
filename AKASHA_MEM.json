@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024030075
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772024030260
@@ -286,6 +280,12 @@
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024033128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024033485
     }
   ]
 }
