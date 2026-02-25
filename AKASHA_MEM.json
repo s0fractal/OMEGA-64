@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034437619
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034443638
+    },
+    {
+      "origin": "PARADOX",
+      "text": "WAIT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034443961
     }
   ]
 }
