@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036765137
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036765342
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036770177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036770440
     }
   ]
 }
