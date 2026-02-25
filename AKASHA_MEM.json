@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041849195
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041854264
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041854421
     }
   ]
 }
