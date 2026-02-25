@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024514802
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024514990
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024523373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024525520
     }
   ]
 }
