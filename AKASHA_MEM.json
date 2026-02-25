@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038433951
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772038434170
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038437163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038437407
     }
   ]
 }
