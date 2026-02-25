@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023052511
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023052743
@@ -254,6 +248,12 @@
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023057776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023057936
     }
   ]
 }
