@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033472478
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772033476321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033476508
     }
   ]
 }
