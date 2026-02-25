@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034747171
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034747378
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034755428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034755630
     }
   ]
 }
