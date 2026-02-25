@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033010613
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033010801
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033013706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033013891
     }
   ]
 }
