@@ -204,6 +204,12 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042402748
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042403118
@@ -263,34 +269,28 @@
       "tick": 1772042410352
     },
     {
-      "origin": "INTERFACE",
-      "text": "SYNC RESONATE FLOW",
+      "origin": "ARCHIVIST",
+      "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042410626
+      "tick": 1772042410558
     },
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042412195
-    },
-    {
-      "origin": "STREAM",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042412762
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE HUNGER DRAIN",
+      "origin": "WAVE_SIGNAL",
+      "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042413276
+      "tick": 1772042410899
+    },
+    {
+      "origin": "ALPHA_ARCHIVIST",
+      "text": "STABLE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042413270
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042413509
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042413535
     }
   ]
 }
