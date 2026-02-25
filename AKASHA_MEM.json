@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666000",
     "A6606606",
     "0AAA0A00",
     "60666660",
@@ -199,15 +198,10 @@
     "AAAAAA00",
     "66606660",
     "60006666",
-    "00606600"
+    "00606600",
+    "000B0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032959218
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM FLOW SYNC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032961690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032961828
     }
   ]
 }
