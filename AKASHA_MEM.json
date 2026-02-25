@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020508324
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "DREAM BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772020518846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020519027
     }
   ]
 }
