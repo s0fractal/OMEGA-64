@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040949067
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040952249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040952401
     }
   ]
 }
