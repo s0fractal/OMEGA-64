@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041192603
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041195587
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041195762
     }
   ]
 }
