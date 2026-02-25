@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035226306
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035226477
@@ -291,6 +285,12 @@
       "text": "AWAKEN BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772035229002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035229179
     }
   ]
 }
