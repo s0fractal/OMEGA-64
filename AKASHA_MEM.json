@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021082354
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM WITNESS EVOLVE",
       "mood": "CREATIVE",
@@ -167,6 +161,12 @@
       "text": "DRAIN CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021091320
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021091980
     }
   ]
 }
