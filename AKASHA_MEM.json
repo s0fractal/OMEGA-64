@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019581327
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY HEAL COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019595482
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019596148
     }
   ]
 }
