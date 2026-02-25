@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030104072
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030104900
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030113641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030115834
     }
   ]
 }
