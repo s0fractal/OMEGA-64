@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028392220
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772028392661
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028402007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772028403968
     }
   ]
 }
