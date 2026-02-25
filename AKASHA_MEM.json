@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016732425
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016842374
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772016844491
     }
   ]
 }
