@@ -170,15 +170,10 @@
     "FFFFF0FF",
     "FF00FF0F",
     "01000000",
-    "00100000"
+    "00100000",
+    "66606666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023254896
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE COHERE FLOW",
@@ -262,6 +257,12 @@
       "text": "GUARD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023258720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023259082
     }
   ]
 }
