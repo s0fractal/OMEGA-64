@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023081276
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023081464
@@ -257,6 +251,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023084757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023085289
     }
   ]
 }
