@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAB00CD0",
     "AA666060",
     "60660066",
     "66660060",
@@ -199,15 +198,10 @@
     "00060666",
     "66660000",
     "A000A00A",
-    "06000600"
+    "06000600",
+    "AA000AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037378942
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS RECON WATCH",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037382717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037382949
     }
   ]
 }
