@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019446549
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -110,6 +104,12 @@
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019457799
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019459150
     }
   ]
 }
