@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041489622
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041492989
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041493131
     }
   ]
 }
