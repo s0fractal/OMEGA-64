@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041529423
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041534019
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041534180
     }
   ]
 }
