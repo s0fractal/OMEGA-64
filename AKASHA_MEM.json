@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021733011
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021737844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021737989
     }
   ]
 }
