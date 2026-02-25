@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042207452
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042223541
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042224218
     }
   ]
 }
