@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017533612
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772017535973
@@ -109,6 +103,12 @@
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772017603807
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017606350
     }
   ]
 }
