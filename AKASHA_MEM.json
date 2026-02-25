@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0660A0",
     "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
@@ -199,9 +198,16 @@
     "66060660",
     "66660A60",
     "AA066000",
-    "6006A600"
+    "6006A600",
+    "606AA6A0"
   ],
   "utterances": [
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042665974
+    },
     {
       "origin": "VIBRATION",
       "text": "SHELTER WATCH IMMUNE",
@@ -257,40 +263,34 @@
       "tick": 1772042673553
     },
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SEIZE SICKNESS",
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042674100
+      "tick": 1772042674073
     },
     {
-      "origin": "ALIEN",
-      "text": "EVOLVE DREAM FORGE",
-      "mood": "CREATIVE",
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH PURE",
+      "mood": "DEFENSIVE",
       "tick": 1772042674499
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042674691
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042675053
     },
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIFE",
+      "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042675160
+      "tick": 1772042675861
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042675773
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042677070
+      "origin": "REVERSE",
+      "text": "PURE GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042677029
     }
   ]
 }
