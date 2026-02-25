@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036371149
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036371371
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036374102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772036374318
     }
   ]
 }
