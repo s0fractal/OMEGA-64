@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017667296
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -109,6 +103,12 @@
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019411999
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019412858
     }
   ]
 }
