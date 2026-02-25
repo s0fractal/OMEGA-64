@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026028624
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772026036221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026036417
     }
   ]
 }
