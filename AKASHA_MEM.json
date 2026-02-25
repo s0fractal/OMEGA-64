@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772028363464
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028364159
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028371375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028371811
     }
   ]
 }
