@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031818414
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772031825983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031826376
     }
   ]
 }
