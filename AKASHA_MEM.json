@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022707870
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022713244
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022713425
     }
   ]
 }
