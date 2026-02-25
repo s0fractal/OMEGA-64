@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035951844
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035952063
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035955308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035956942
     }
   ]
 }
