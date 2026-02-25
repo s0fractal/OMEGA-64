@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026115849
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026116084
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772026120891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026121100
     }
   ]
 }
