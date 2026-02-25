@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031136696
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031136983
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031141692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031141998
     }
   ]
 }
