@@ -139,12 +139,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022446530
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -227,6 +221,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022451344
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022451512
     }
   ]
 }
