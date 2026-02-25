@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA660660",
     "00666000",
     "00666606",
     "01000000",
@@ -199,15 +198,10 @@
     "0AAAA000",
     "B0BF000C",
     "AA0AAA00",
-    "F00FF00F"
+    "F00FF00F",
+    "AAA00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032573004
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER DRAIN",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032578701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032578879
     }
   ]
 }
