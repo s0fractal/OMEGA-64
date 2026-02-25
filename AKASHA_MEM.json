@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020179895
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772020189634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020190587
     }
   ]
 }
