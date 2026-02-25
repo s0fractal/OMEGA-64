@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041367708
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041371117
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041371394
     }
   ]
 }
