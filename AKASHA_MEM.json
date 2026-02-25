@@ -146,15 +146,10 @@
     "06660006",
     "06066600",
     "AA0AAA00",
-    "0AA0AA00"
+    "0AA0AA00",
+    "0BB00000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022583024
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE REFLECT",
@@ -238,6 +233,12 @@
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772022586132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022586311
     }
   ]
 }
