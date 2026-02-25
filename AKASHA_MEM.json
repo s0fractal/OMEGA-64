@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032853971
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032856774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032856942
     }
   ]
 }
