@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027754654
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772027756038
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027764872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027765619
     }
   ]
 }
