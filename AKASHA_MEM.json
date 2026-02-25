@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040199714
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040203842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040204354
     }
   ]
 }
