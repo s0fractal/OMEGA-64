@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0A0A00",
     "06600660",
     "AA0A0000",
     "00066600",
@@ -199,15 +198,10 @@
     "0A0AA000",
     "AAAA0A00",
     "60066000",
-    "66000006"
+    "66000006",
+    "F0FF0F0F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035206368
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW SYNC",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772035209574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772035209793
     }
   ]
 }
