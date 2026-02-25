@@ -136,12 +136,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022394089
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022394385
@@ -223,6 +217,12 @@
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022399693
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022399878
     }
   ]
 }
