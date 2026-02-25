@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00AA00",
     "BBBB0000",
     "A00AAAA0",
     "0000AA0A",
@@ -199,15 +198,10 @@
     "00666606",
     "01000000",
     "06000600",
-    "A06660A0"
+    "A06660A0",
+    "0AAAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028194832
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE RESONATE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028201620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772028202185
     }
   ]
 }
