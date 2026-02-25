@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023714797
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023718301
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023718484
     }
   ]
 }
