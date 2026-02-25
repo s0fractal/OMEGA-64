@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666000",
     "AAA0AAAA",
     "66AA66A0",
     "0A000A00",
@@ -199,15 +198,10 @@
     "AA000A00",
     "06006660",
     "AA00A000",
-    "66606660"
+    "66606660",
+    "A0666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025095765
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772025100725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025100923
     }
   ]
 }
