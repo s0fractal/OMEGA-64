@@ -145,15 +145,10 @@
     "AA00A00A",
     "06660006",
     "06066600",
-    "AA0AAA00"
+    "AA0AAA00",
+    "0AA0AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022571757
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH STASIS STASIS",
@@ -237,6 +232,12 @@
       "text": "STRIFE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022574886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022575498
     }
   ]
 }
