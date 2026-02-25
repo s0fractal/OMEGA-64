@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040681095
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040681249
@@ -291,6 +285,12 @@
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040685832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040686071
     }
   ]
 }
