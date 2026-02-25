@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037182502
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037182662
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037185312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037185477
     }
   ]
 }
