@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021679288
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021680924
@@ -191,6 +185,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021685257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021685562
     }
   ]
 }
