@@ -14,15 +14,10 @@
     "BABB0000",
     "000A0000",
     "0000A000",
-    "BB000000"
+    "BB000000",
+    "BBB00000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772015654010
-    },
     {
       "origin": "INTERFACE",
       "text": "SEIZE SEIZE STRIFE",
@@ -106,6 +101,12 @@
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772015755594
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015760651
     }
   ]
 }
