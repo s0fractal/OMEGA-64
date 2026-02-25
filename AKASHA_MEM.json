@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "FLOW FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019512619
-    },
-    {
-      "origin": "STREAM",
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019513085
@@ -111,6 +105,12 @@
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019519289
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019520826
     }
   ]
 }
