@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020779685
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020779870
@@ -153,6 +147,12 @@
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020785818
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020786279
     }
   ]
 }
