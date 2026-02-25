@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666660",
     "AA6666A0",
     "AAA00AA0",
     "00000606",
@@ -199,15 +198,10 @@
     "6A6606A0",
     "0B0B0000",
     "60060000",
-    "00606660"
+    "00606660",
+    "00666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030658282
-    },
     {
       "origin": "REVERSE",
       "text": "DREAM BECOME FORGE",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030670496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772030670798
     }
   ]
 }
