@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022886333
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022891645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022891778
     }
   ]
 }
