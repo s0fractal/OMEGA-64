@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0B0A0000",
     "AA660660",
     "A0666A60",
     "AAAAA00A",
@@ -199,15 +198,10 @@
     "000A0A0A",
     "06060060",
     "AAAAAAAA",
-    "AA660600"
+    "AA660600",
+    "0A0A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037671986
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772037675261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037675471
     }
   ]
 }
