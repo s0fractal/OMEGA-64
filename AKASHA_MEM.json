@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023306520
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772023306693
@@ -264,6 +258,12 @@
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023311403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023311598
     }
   ]
 }
