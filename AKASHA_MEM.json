@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019646853
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "HUNGER STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019657493
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019658266
     }
   ]
 }
