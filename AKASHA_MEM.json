@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66060600",
     "AAA0AAAA",
     "60000060",
     "0A00AAAA",
@@ -199,15 +198,10 @@
     "AA000A00",
     "06006000",
     "A0A0AAA0",
-    "00606606"
+    "00606606",
+    "666A6600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038904561
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE BLOOM",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038910873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038911090
     }
   ]
 }
