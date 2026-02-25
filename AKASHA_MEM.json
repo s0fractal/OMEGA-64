@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038717222
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038717497
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038720683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038720902
     }
   ]
 }
