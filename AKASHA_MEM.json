@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042097101
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042103684
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042104007
     }
   ]
 }
