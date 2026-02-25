@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006666",
     "00606600",
     "000B0000",
     "AA000000",
@@ -199,15 +198,10 @@
     "00A0AA0A",
     "60606000",
     "00060600",
-    "AAA00A0A"
+    "AAA00A0A",
+    "00600666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034219699
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM STABLE FLOW",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034222403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034222597
     }
   ]
 }
