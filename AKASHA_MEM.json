@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023000902
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023002598
@@ -251,6 +245,12 @@
       "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023007779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023008460
     }
   ]
 }
