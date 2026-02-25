@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041199981
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041205626
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041205808
     }
   ]
 }
