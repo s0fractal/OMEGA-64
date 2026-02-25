@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039123397
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039123596
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039126524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039126702
     }
   ]
 }
