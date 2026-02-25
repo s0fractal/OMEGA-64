@@ -4,9 +4,9 @@ vector: 00.04.01
 symbol: SEND
 desc: Message passing primitive. (m => target => target(m))
 thought: WANDER_BONDING
-x: 922
-'y': 401
-energy: 33
+x: 923
+'y': 403
+energy: 31
 signals: []
 ex:
   - '0x5E76CAB5F845924B'
@@ -36,10 +36,12 @@ ex:
   - '0x0000000007BA9247'
   - '0x0000000007BA9247'
   - '0x0000000007BA9247'
+  - '0xAABBCCDD07BA9247'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -92,6 +94,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>

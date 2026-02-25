@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020804272
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -155,6 +149,12 @@
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020812642
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020812963
     }
   ]
 }
