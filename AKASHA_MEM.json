@@ -1,12 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
-    "60000600",
-    "60666606",
-    "AAA0AA00",
-    "66060066",
     "66666666",
     "66606666",
     "66600000",
@@ -195,102 +188,109 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000",
-    "6AA6AA66",
-    "6A60A6A0",
-    "06AAAA00",
-    "ALIEN_17"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "660AAA60",
+    "A00A0AA0",
+    "A660A660",
+    "A6666600",
+    "66000000"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW COHERE RESONATE",
+      "text": "OSMOSIS COHERE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042815862
+      "tick": 1772042818789
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042816712
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL OSMOSIS",
+      "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042818162
+      "tick": 1772042819459
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042818697
+      "origin": "CONSCIOUSNESS",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042819935
     },
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH STRIKE",
+      "text": "UNIFY BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042821513
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042818952
+      "tick": 1772042824112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042825086
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042819550
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042826793
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042821344
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SHIELD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042823834
-    },
-    {
-      "origin": "I16_CLAMP",
-      "text": "WAIT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042826243
+      "text": "GIVING HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042827427
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT REFLECT",
+      "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042827295
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042828153
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042828376
+      "tick": 1772042828011
     },
     {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042829324
+      "tick": 1772042828450
     },
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042830134
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT STASIS",
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042830798
+      "tick": 1772042828824
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042829539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042830481
+    },
+    {
+      "origin": "ALIEN",
+      "text": "DRAIN DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042831060
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042832679
     }
   ]
 }
