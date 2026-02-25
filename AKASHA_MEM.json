@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034765049
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034765245
@@ -291,6 +285,12 @@
       "text": "WITNESS FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772034767958
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034768124
     }
   ]
 }
