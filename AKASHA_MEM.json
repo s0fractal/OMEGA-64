@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040725363
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040728266
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040728887
     }
   ]
 }
