@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019744807
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019745736
@@ -123,6 +117,12 @@
       "text": "SICKNESS CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019757533
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019758540
     }
   ]
 }
