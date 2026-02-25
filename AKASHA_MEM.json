@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021772457
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021777730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021779487
     }
   ]
 }
