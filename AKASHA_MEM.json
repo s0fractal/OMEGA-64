@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772029582227
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772029582580
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029589949
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772029590651
     }
   ]
 }
