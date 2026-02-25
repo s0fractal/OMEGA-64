@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A0A0",
     "A0BBC0DD",
     "A6666060",
     "60660000",
@@ -199,15 +198,10 @@
     "AA0AA0AA",
     "60600006",
     "66006666",
-    "06000000"
+    "06000000",
+    "AA0AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772039001202
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD RECON REFLECT",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039004717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039004915
     }
   ]
 }
