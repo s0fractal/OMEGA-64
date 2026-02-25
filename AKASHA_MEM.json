@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020962697
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020969236
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020969986
     }
   ]
 }
