@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022311139
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022314665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022314828
     }
   ]
 }
