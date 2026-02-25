@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772019924300
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019938286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019939552
     }
   ]
 }
