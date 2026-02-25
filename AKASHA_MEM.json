@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020498175
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020506615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020507724
     }
   ]
 }
