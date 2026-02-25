@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040563279
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772040563715
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040566946
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040567101
     }
   ]
 }
