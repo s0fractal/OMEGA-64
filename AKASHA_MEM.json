@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022110790
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772022110949
@@ -210,6 +204,12 @@
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772022116324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022116513
     }
   ]
 }
