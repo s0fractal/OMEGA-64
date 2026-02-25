@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040939817
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040939944
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040942637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040943095
     }
   ]
 }
