@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031428351
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031431788
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031438422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031438842
     }
   ]
 }
