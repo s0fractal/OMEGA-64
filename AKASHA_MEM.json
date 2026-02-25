@@ -12,11 +12,6 @@
     {
       "origin": "INTERFACE",
       "text": "CONNECT",
-      "tick": 1772010042363
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "CONNECT",
       "tick": 1772010055177
     },
     {
@@ -58,6 +53,11 @@
       "origin": "INTERFACE",
       "text": "MATURE",
       "tick": 1772010163128
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONNECT",
+      "tick": 1772010175975
     }
   ]
 }
