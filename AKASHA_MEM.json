@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042023847
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042025638
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042026201
@@ -291,6 +279,18 @@
       "text": "CONSUME STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042039132
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042039487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042039760
     }
   ]
 }
