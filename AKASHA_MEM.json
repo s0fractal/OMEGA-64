@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040939389
-    },
-    {
       "origin": "STREAM",
       "text": "PURE IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040942110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040942328
     }
   ]
 }
