@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036811714
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036818225
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036818459
     }
   ]
 }
