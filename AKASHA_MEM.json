@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020888116
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020894961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020895734
     }
   ]
 }
