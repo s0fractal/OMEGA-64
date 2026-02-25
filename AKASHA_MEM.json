@@ -52,12 +52,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020315309
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020316437
@@ -139,6 +133,12 @@
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020324232
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020324897
     }
   ]
 }
