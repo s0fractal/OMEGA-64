@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034760714
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034760876
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034763573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034763808
     }
   ]
 }
