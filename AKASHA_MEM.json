@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020967071
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -163,6 +157,12 @@
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020977241
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020978224
     }
   ]
 }
