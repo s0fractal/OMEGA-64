@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAAA00",
     "AAA0A000",
     "AA000000",
     "60660600",
@@ -199,15 +198,10 @@
     "A06660A0",
     "60000606",
     "AAAA000A",
-    "AA000AA0"
+    "AA000AA0",
+    "6A660660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041541784
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041545235
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041546171
     }
   ]
 }
