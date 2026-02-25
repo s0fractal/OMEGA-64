@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032603614
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772032603798
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032606917
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032607085
     }
   ]
 }
