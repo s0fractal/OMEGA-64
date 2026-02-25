@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040378882
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040386348
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040386529
     }
   ]
 }
