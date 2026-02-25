@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022309523
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022309787
@@ -217,6 +211,12 @@
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022312957
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022313113
     }
   ]
 }
