@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035758674
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772035758873
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035761434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035761620
     }
   ]
 }
