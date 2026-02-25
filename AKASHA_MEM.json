@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033650475
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033653602
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033653904
     }
   ]
 }
