@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037960522
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772037960722
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037963630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037963829
     }
   ]
 }
