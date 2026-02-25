@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772030791569
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030791823
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772030810162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030810484
     }
   ]
 }
