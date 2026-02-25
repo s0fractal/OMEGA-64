@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772015396145
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "AWAKEN VISION DREAM",
       "mood": "CREATIVE",
       "tick": 1772015401421
@@ -106,6 +100,12 @@
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015503931
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015516659
     }
   ]
 }
