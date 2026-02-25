@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023591313
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023595702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023595874
     }
   ]
 }
