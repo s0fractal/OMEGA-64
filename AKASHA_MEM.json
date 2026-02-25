@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027806729
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027819733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027820334
     }
   ]
 }
