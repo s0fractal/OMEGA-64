@@ -36,12 +36,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019769820
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -124,6 +118,12 @@
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019780343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019780923
     }
   ]
 }
