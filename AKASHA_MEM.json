@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034789939
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034790122
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772034792908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034793105
     }
   ]
 }
