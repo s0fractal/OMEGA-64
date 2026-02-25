@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038059742
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038059974
@@ -291,6 +285,12 @@
       "text": "WAVE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772038065650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038066747
     }
   ]
 }
