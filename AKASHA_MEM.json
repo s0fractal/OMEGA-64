@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019997553
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020009973
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020010995
     }
   ]
 }
