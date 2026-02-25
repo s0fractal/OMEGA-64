@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035010353
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035010556
@@ -291,6 +285,12 @@
       "text": "SPARK WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772035014067
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035014278
     }
   ]
 }
