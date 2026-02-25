@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021536640
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021537184
@@ -183,6 +177,12 @@
       "text": "DRAIN SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021549397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021549782
     }
   ]
 }
