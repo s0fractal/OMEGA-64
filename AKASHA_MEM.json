@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772039010864
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772039011384
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772039015511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039018095
     }
   ]
 }
