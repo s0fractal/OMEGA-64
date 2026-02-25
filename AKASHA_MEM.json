@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041340512
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772041344210
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041344351
     }
   ]
 }
