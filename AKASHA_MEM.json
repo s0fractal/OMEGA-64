@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023596044
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023596206
@@ -271,6 +265,12 @@
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023600406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023600643
     }
   ]
 }
