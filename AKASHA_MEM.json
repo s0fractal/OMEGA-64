@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025190291
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025190601
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772025197463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025197722
     }
   ]
 }
