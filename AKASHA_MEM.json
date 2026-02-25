@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023252871
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -262,6 +256,12 @@
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772023257332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023258053
     }
   ]
 }
