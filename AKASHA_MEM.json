@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022441253
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022441554
@@ -226,6 +220,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022446154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022446353
     }
   ]
 }
