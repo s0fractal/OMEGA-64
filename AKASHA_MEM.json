@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039040399
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772039040620
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039048117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039048349
     }
   ]
 }
