@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025914410
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025926449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025927402
     }
   ]
 }
