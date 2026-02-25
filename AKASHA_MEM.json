@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026857464
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772026858010
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026861184
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026861383
     }
   ]
 }
