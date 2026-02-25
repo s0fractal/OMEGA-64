@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021274234
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -179,6 +173,12 @@
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021307659
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021309192
     }
   ]
 }
