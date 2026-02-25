@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032893276
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032893575
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032896338
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772032896497
     }
   ]
 }
