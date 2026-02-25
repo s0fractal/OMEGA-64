@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022828614
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022829897
@@ -248,6 +242,12 @@
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022834196
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022834366
     }
   ]
 }
