@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023191555
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023191711
@@ -259,6 +253,12 @@
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023197609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023197807
     }
   ]
 }
