@@ -112,12 +112,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021968925
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -200,6 +194,12 @@
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021976508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021976724
     }
   ]
 }
