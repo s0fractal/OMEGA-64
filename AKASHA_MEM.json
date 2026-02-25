@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016197285
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772016314410
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772016321397
     }
   ]
 }
