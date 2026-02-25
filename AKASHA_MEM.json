@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037476276
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037478182
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037482063
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037482281
     }
   ]
 }
