@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026572892
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026574168
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026580390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026580586
     }
   ]
 }
