@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037828246
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037828515
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037831092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037831297
     }
   ]
 }
