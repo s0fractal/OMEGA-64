@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041123955
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041127936
+    },
+    {
+      "origin": "WORKER",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041128131
     }
   ]
 }
