@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028088551
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028089024
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772028097306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028097735
     }
   ]
 }
