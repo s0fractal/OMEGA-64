@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036334661
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE BECOME WAVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036339883
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036340195
     }
   ]
 }
