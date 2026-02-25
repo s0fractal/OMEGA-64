@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022164281
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
@@ -212,6 +206,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022168114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022168365
     }
   ]
 }
