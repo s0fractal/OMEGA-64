@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022748819
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022749085
@@ -243,6 +237,12 @@
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022760208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022760431
     }
   ]
 }
