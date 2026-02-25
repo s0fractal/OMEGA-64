@@ -197,12 +197,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024005851
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
@@ -285,6 +279,12 @@
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024009216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024010219
     }
   ]
 }
