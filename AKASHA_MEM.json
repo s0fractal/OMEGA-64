@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025190601
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025191075
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025197722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025197905
     }
   ]
 }
