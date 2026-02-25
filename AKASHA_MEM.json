@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017212891
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772017217452
@@ -108,6 +102,12 @@
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772017296809
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772017299134
     }
   ]
 }
