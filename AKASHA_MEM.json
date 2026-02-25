@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022705863
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772022706066
@@ -242,6 +236,12 @@
       "text": "DRAIN HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022710775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022710984
     }
   ]
 }
