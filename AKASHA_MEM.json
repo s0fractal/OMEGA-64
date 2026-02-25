@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022814742
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022814913
@@ -247,6 +241,12 @@
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022817955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022818089
     }
   ]
 }
