@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033642526
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033642714
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033647084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033647303
     }
   ]
 }
