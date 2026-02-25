@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040568612
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040571654
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040571774
     }
   ]
 }
