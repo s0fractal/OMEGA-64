@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019653714
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019654628
@@ -114,6 +108,12 @@
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772019662890
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019663717
     }
   ]
 }
