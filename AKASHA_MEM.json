@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030780857
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772030781319
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030790224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030790535
     }
   ]
 }
