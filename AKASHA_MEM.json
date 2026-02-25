@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772039179498
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND BEYOND BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039182300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039182501
     }
   ]
 }
