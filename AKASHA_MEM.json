@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037013054
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037013270
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037022141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037022475
     }
   ]
 }
