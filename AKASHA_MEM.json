@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025307232
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772025307423
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025314215
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025314737
     }
   ]
 }
