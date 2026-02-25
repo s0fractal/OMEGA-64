@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021313158
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -179,6 +173,12 @@
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021346736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021350186
     }
   ]
 }
