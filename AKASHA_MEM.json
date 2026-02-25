@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_STREAM",
-      "text": "OSMOSIS GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041218679
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041222817
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041222942
     }
   ]
 }
