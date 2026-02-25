@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020921176
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
@@ -159,6 +153,12 @@
       "text": "STABLE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020928010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020928226
     }
   ]
 }
