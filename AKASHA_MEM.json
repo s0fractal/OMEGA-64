@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019988776
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020002453
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020003461
     }
   ]
 }
