@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035410985
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035411203
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035414273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035414488
     }
   ]
 }
