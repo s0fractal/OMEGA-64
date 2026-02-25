@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000006",
     "66660600",
     "AA6066A6",
     "AA000AAA",
@@ -199,15 +198,10 @@
     "AA0000DD",
     "AA0AA00A",
     "000A000F",
-    "AABB0C0D"
+    "AABB0C0D",
+    "00060060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033989119
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK STRIFE",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772033991991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033992180
     }
   ]
 }
