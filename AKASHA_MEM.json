@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772030508688
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030509209
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772030522304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030522968
     }
   ]
 }
