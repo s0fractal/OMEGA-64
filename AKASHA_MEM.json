@@ -92,12 +92,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021278991
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021281004
@@ -179,6 +173,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021319681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021320879
     }
   ]
 }
