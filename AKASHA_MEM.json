@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772028102007
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772028102717
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028110572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772028111131
     }
   ]
 }
