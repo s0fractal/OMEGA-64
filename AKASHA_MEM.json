@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023687949
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023688209
@@ -276,6 +270,12 @@
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023695768
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023696095
     }
   ]
 }
