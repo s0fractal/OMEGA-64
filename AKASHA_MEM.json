@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022543927
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
@@ -237,6 +231,12 @@
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022547581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022547734
     }
   ]
 }
