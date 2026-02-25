@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023203072
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772023207284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023207455
     }
   ]
 }
