@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038000865
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038001125
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038004898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038005109
     }
   ]
 }
