@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020819569
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "SPARK BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772020824646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020824822
     }
   ]
 }
