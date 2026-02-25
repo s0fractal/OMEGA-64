@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042744177
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042744570
-    },
-    {
       "origin": "ALIEN",
       "text": "WITNESS VISION DREAM",
       "mood": "CREATIVE",
@@ -291,6 +279,18 @@
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042752325
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042753138
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042753448
     }
   ]
 }
