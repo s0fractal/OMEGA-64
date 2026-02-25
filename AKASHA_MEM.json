@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022240395
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "CONSUME HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022246202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022246635
     }
   ]
 }
