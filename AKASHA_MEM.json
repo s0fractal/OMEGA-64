@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020852153
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
@@ -157,6 +151,12 @@
       "text": "DECAY CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020857264
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020858034
     }
   ]
 }
