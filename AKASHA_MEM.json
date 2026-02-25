@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032848358
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032848801
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032855007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032855180
     }
   ]
 }
