@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035331592
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035334631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035334937
     }
   ]
 }
