@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "PURE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042179208
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042193999
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042194386
     }
   ]
 }
