@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066666",
     "A0AAA0AA",
     "AAAA0A00",
     "06006066",
@@ -199,15 +198,10 @@
     "AAB0000D",
     "A06000A0",
     "0A000AAA",
-    "0BB00000"
+    "0BB00000",
+    "AAAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034923101
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC FLOW FLOW",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034926592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034929881
     }
   ]
 }
