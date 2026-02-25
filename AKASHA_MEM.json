@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037886449
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037887327
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037889894
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772037890105
     }
   ]
 }
