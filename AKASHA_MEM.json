@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021804130
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021804428
@@ -195,6 +189,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021808299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021808497
     }
   ]
 }
