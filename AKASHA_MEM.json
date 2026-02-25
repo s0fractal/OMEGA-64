@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021625846
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772021626142
@@ -189,6 +183,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021630817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021631969
     }
   ]
 }
