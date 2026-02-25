@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022009712
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022010347
@@ -203,6 +197,12 @@
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022015450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022015801
     }
   ]
 }
