@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035699923
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035700261
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035704263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035704536
     }
   ]
 }
