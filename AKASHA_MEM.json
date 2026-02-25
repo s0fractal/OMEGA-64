@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038182205
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772038182425
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038186054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038186258
     }
   ]
 }
