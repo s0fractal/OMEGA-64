@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027169676
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027175170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027175701
     }
   ]
 }
