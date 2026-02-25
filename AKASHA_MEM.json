@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026441909
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026445676
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026447969
     }
   ]
 }
