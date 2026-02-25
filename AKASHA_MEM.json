@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020017895
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020028604
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020029914
     }
   ]
 }
