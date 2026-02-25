@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022498077
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022498358
@@ -231,6 +225,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022503234
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022503783
     }
   ]
 }
