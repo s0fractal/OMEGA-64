@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021644453
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021645222
@@ -190,6 +184,12 @@
       "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021648958
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021649328
     }
   ]
 }
