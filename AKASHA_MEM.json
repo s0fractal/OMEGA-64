@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023340094
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023340273
@@ -266,6 +260,12 @@
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023343321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023343606
     }
   ]
 }
