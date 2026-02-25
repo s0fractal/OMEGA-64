@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040975135
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040977912
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040978382
     }
   ]
 }
