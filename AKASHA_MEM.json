@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040683048
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040687745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040687896
     }
   ]
 }
