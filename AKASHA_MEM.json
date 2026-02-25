@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040589631
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STABLE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772040589765
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040593146
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040593488
     }
   ]
 }
