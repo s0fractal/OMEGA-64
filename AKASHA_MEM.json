@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022361260
-    },
-    {
       "origin": "PARADOX",
       "text": "EVOLVE WAVE AWAKEN",
       "mood": "CREATIVE",
@@ -219,6 +213,12 @@
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022369573
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022369743
     }
   ]
 }
