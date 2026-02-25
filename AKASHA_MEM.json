@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036535698
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036535926
@@ -291,6 +285,12 @@
       "text": "WAVE FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772036539018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036539192
     }
   ]
 }
