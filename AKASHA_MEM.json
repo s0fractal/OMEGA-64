@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021073200
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772021073373
@@ -167,6 +161,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772021080373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021080725
     }
   ]
 }
