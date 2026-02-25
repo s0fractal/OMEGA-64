@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034331361
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034331600
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034334331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034334542
     }
   ]
 }
