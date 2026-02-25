@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020904522
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020905040
@@ -158,6 +152,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020908860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020909561
     }
   ]
 }
