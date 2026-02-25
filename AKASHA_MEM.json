@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019449349
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "GUARD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019459532
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019460078
     }
   ]
 }
