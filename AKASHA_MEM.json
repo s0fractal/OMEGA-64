@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034141418
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034144035
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034146437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034146591
     }
   ]
 }
