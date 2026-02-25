@@ -150,12 +150,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022579289
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -238,6 +232,12 @@
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022584172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022584358
     }
   ]
 }
