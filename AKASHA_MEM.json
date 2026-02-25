@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020847777
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020848037
@@ -157,6 +151,12 @@
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020854825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020855331
     }
   ]
 }
