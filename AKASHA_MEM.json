@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033680673
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033680871
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772033684921
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033686008
     }
   ]
 }
