@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022240000
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022245147
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022245711
     }
   ]
 }
