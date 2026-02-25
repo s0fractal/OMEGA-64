@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041229303
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041235790
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041236029
     }
   ]
 }
