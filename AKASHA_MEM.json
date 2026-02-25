@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036193326
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036193782
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772036197126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036197336
     }
   ]
 }
