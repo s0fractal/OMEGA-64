@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x0AA0AAA0FFFF000C'
 energy: 47.5
-resonance: 22.05
-x: 744
-'y': 391
+resonance: 21.83
+x: 680
+'y': 405
 symbol: ARCHIVIST
 thought: SEEK_ALPHA_BONDING
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.9684910757595269
+  '0xAAAAAAA000000006': 0.9675225846837673
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
