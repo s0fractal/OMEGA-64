@@ -119,12 +119,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022079620
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022079919
@@ -206,6 +200,12 @@
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022083518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022083954
     }
   ]
 }
