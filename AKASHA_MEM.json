@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021021011
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021027508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021027849
     }
   ]
 }
