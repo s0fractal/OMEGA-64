@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024420299
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772024424490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024424721
     }
   ]
 }
