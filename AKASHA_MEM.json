@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022079919
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM HEAL",
       "mood": "HARMONIC",
@@ -206,6 +200,12 @@
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022083954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022084207
     }
   ]
 }
