@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033008469
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033008666
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033011176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033011357
     }
   ]
 }
