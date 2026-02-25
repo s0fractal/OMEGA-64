@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035727520
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035727692
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035731028
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035734840
     }
   ]
 }
