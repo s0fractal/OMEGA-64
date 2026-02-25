@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025293185
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025299837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025300164
     }
   ]
 }
