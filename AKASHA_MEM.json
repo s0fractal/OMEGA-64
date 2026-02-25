@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033119325
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033119505
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033122791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033123022
     }
   ]
 }
