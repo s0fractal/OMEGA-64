@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020358362
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020358999
@@ -141,6 +135,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020367320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020367668
     }
   ]
 }
