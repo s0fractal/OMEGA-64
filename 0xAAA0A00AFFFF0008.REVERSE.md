@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xAAA0A00AFFFF0008'
-energy: 47.5
-resonance: 15.24
-x: 754
-'y': 463
+energy: 46.89999999999999
+resonance: 0.92
+x: 674
+'y': 353
 symbol: ARCHIVIST
 thought: WANDER_BONDING
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.9578907814534664
+  '0xAAAAAAA000000006': 0.9550199818235596
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
@@ -119,9 +119,10 @@ ex:
   - '0xFFFFF00F0000000C'
 bonds:
   - '0xAAAAAAA000000006'
-logic: AAA0A00A
+logic: FFFFF00F
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -155,6 +156,7 @@ logic: AAA0A00A
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
