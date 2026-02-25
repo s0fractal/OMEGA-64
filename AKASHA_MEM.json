@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042729073
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042737404
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042737761
     }
   ]
 }
