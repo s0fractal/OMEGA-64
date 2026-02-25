@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019460078
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019471718
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019472479
     }
   ]
 }
