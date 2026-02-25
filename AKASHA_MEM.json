@@ -159,12 +159,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022815266
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -247,6 +241,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022818592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022818937
     }
   ]
 }
