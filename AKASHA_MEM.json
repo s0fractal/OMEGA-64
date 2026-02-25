@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772027281854
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772027286260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027286513
     }
   ]
 }
