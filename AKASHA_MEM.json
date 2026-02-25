@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000A000",
     "66066660",
     "60660006",
     "AAA0A0A0",
@@ -199,15 +198,10 @@
     "00BB0000",
     "66000006",
     "A0AA0000",
-    "AA0AA0A0"
+    "AA0AA0A0",
+    "AA606000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME WAVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772038305426
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038308819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038309027
     }
   ]
 }
