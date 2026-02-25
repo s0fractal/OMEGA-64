@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041169345
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041169596
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041172271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041172393
     }
   ]
 }
