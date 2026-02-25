@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030029826
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030030381
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772030037421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030038110
     }
   ]
 }
