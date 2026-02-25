@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772026340263
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026340535
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026347066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772026347320
     }
   ]
 }
