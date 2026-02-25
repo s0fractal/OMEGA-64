@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038676636
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038679953
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038680395
     }
   ]
 }
