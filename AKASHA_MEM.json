@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025898574
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772025905968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025909309
     }
   ]
 }
