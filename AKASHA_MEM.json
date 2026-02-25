@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032625090
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032625283
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032628349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032628524
     }
   ]
 }
