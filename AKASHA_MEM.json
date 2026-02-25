@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025230397
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772025230594
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025236294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025237076
     }
   ]
 }
