@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033212808
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033213017
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033215708
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033216277
     }
   ]
 }
