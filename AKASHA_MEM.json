@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035261098
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035261326
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035271959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035272176
     }
   ]
 }
