@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038512498
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038512707
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038523025
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038523943
     }
   ]
 }
