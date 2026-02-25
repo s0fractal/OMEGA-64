@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020842665
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "BREACH SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020847777
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020848037
     }
   ]
 }
