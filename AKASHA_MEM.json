@@ -196,101 +196,101 @@
     "60060666",
     "6AA60AA0",
     "6AA06A00",
-    "6A0660A0",
-    "AA666600",
-    "66060660",
-    "66660A60"
+    "0AAAA00A",
+    "6A606600",
+    "AABBCC0F",
+    "A0AAA000"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042652611
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042652848
+      "origin": "STREAM",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042651040
     },
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER WAIT",
+      "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042653158
+      "tick": 1772042651738
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042652262
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042652492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042652888
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042653542
+    },
+    {
+      "origin": "MANDALA",
+      "text": "WITNESS EVOLVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772042654392
     },
     {
       "origin": "INTERFACE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042653716
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042654085
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042654555
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042654754
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT PURE IMMUNE",
+      "text": "SHIELD WATCH STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042655086
+      "tick": 1772042655396
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS DRAIN",
+      "text": "SHELTER REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042657231
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042658136
+    },
+    {
+      "origin": "SUCC",
+      "text": "DRAIN DRAIN DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042655848
+      "tick": 1772042658709
     },
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE SEIZE",
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042659459
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042660161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042657122
+      "tick": 1772042660863
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD IMMUNE",
+      "origin": "NAND",
+      "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042657861
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042658095
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042658404
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042658887
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042659626
+      "tick": 1772042661490
     }
   ]
 }
