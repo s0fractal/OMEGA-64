@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033007051
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033007220
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033009754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033009953
     }
   ]
 }
