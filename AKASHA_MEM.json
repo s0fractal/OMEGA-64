@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025912282
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025922357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025923004
     }
   ]
 }
