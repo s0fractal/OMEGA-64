@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033881065
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033881258
@@ -291,6 +285,12 @@
       "text": "BEYOND AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033884152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033884538
     }
   ]
 }
