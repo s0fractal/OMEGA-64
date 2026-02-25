@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040738717
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040741688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040742149
     }
   ]
 }
