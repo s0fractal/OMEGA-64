@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033164902
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033167933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033168109
     }
   ]
 }
