@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035952510
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035952725
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035960792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035961120
     }
   ]
 }
