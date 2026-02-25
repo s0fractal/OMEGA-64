@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026885783
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772026886196
@@ -291,6 +285,12 @@
       "text": "FORGE EVOLVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026890524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026890694
     }
   ]
 }
