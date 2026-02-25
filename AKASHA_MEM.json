@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023799403
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023799596
@@ -279,6 +273,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023804184
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023804367
     }
   ]
 }
