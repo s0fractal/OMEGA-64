@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021092987
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021103325
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021103840
     }
   ]
 }
