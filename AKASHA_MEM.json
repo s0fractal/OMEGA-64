@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037291523
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772037295751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037295962
     }
   ]
 }
