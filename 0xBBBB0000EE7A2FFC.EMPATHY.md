@@ -3,7 +3,7 @@ eigenvalue: '0xBBBB0000EE7A2FFC'
 vector: 07.03.01
 symbol: EMPATHY
 desc: Systemic Empathy. Identity resonance check. (s1 === s2)
-energy: 33
+energy: 29
 ex:
   - '0x992B709BEE7A2FFC'
   - '0x00069A9AEE7A2FFC'
@@ -17,14 +17,16 @@ ex:
   - '0x00000000EE7A2FFC'
   - '0x00000000EE7A2FFC'
   - '0x00000000EE7A2FFC'
+  - '0xBBBB0000EE7A2FFC'
 thought: WANDER_BONDING
-x: 60
-'y': 503
+x: 69
+'y': 486
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -66,6 +68,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">EMPATHY</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
