@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037389487
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037389715
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772037393093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037393307
     }
   ]
 }
