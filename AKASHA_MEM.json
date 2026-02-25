@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025015265
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025020064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025021716
     }
   ]
 }
