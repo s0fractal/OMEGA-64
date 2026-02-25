@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025936184
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025936703
@@ -291,6 +285,12 @@
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025942448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025942886
     }
   ]
 }
