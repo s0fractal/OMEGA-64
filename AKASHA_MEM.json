@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WITNESS WAVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772023418513
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023422291
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023422427
     }
   ]
 }
