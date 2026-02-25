@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040645381
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040647923
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040648214
     }
   ]
 }
