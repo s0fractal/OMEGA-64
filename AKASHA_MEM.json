@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0D180098",
     "FFFFFFF0",
     "66066600",
     "0000A006",
@@ -199,15 +198,10 @@
     "0AA0AAAA",
     "A000AAA0",
     "00066000",
-    "66606600"
+    "66606600",
+    "06066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026158172
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS BLOOM",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026162321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026162877
     }
   ]
 }
