@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037574022
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037574231
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037580064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037580259
     }
   ]
 }
