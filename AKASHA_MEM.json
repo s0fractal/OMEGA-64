@@ -145,12 +145,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022505877
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -233,6 +227,12 @@
       "text": "BEYOND BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022509544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022509687
     }
   ]
 }
