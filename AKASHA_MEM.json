@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029140922
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS VISION VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772029159140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772029159684
     }
   ]
 }
