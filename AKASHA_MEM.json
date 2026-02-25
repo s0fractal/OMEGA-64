@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041504348
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041504609
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041507708
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041508239
     }
   ]
 }
