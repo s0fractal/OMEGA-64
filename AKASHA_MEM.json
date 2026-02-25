@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00606600",
     "AA6060A0",
     "ABBB0000",
     "06066666",
@@ -199,15 +198,10 @@
     "66000606",
     "0AAA00AA",
     "AA0AA000",
-    "00600606"
+    "00600606",
+    "AA00000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772031812791
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING HEAL SYNC",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031820249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031820832
     }
   ]
 }
