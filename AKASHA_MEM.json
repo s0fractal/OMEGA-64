@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022863704
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022863872
@@ -249,6 +243,12 @@
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022869321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022869564
     }
   ]
 }
