@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028344911
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028345716
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772028362759
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028363464
     }
   ]
 }
