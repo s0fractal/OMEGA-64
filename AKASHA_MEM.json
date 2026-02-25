@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041443281
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041446243
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041446549
     }
   ]
 }
