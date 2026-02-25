@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034979551
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034979781
@@ -291,6 +285,12 @@
       "text": "DREAM WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772034983769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034983982
     }
   ]
 }
