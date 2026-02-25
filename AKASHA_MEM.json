@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040544690
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040547520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040547679
     }
   ]
 }
