@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772015620545
-    },
-    {
-      "origin": "INTERFACE",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772015628113
@@ -106,6 +100,12 @@
       "text": "DRAIN DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772015720483
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772015743034
     }
   ]
 }
