@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041323577
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772041327221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041327936
     }
   ]
 }
