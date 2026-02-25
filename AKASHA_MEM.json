@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060066",
     "A00AA00A",
     "0A0000AA",
     "A0AAA0A0",
@@ -199,15 +198,10 @@
     "AA0666A6",
     "66666660",
     "AA0A0AAA",
-    "06606666"
+    "06606666",
+    "BB00000C"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039102708
-    },
     {
       "origin": "INTERFACE",
       "text": "CONSUME DECAY STRIKE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039112120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039112356
     }
   ]
 }
