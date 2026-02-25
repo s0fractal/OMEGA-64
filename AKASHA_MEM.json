@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036226454
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036226678
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772036229521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036229723
     }
   ]
 }
