@@ -58,12 +58,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020565211
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020566997
@@ -145,6 +139,12 @@
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020573050
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020573258
     }
   ]
 }
