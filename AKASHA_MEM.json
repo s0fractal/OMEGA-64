@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035193127
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772035193427
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035197148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772035197423
     }
   ]
 }
