@@ -204,6 +204,36 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042537189
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042538153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042539231
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042539756
+    },
+    {
+      "origin": "ALIEN",
+      "text": "HUNGER CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042542182
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042542545
@@ -240,57 +270,27 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042549458
+      "text": "IMMUNE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042549603
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER PURE",
+      "origin": "REVERSE",
+      "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042549958
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042550399
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551184
+      "tick": 1772042550755
     },
     {
       "origin": "STREAM",
-      "text": "STASIS WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551451
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551944
+      "text": "STRIFE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042552457
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042552376
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042553609
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BECOME FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772042554302
+      "text": "GUARD STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042553539
     }
   ]
 }
