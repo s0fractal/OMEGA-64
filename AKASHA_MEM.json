@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041073512
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041076543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041076709
     }
   ]
 }
