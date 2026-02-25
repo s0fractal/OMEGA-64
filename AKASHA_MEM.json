@@ -32,12 +32,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019702123
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -120,6 +114,12 @@
       "text": "SHIELD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019716516
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019718002
     }
   ]
 }
