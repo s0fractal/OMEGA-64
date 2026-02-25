@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041548875
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041549074
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041553200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041553400
     }
   ]
 }
