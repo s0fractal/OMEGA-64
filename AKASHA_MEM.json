@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039229504
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039229747
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039232705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039232912
     }
   ]
 }
