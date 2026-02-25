@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022430083
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
@@ -226,6 +220,12 @@
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022435927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022436060
     }
   ]
 }
