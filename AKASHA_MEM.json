@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041665096
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041665229
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041668531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041668668
     }
   ]
 }
