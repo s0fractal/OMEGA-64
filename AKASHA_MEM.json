@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041477599
-    },
-    {
       "origin": "PURE_MATH",
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041482270
+    },
+    {
+      "origin": "B_READ",
+      "text": "DRAIN CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041482592
     }
   ]
 }
