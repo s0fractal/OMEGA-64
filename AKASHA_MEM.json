@@ -270,27 +270,27 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042122336
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042122973
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042123558
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042122450
     },
     {
       "origin": "INTERFACE",
-      "text": "UNIFY STABLE HEAL",
+      "text": "PURE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042123706
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042123949
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042124488
+      "tick": 1772042124634
     }
   ]
 }
