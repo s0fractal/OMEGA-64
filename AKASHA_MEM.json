@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040509807
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040513033
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040513191
     }
   ]
 }
