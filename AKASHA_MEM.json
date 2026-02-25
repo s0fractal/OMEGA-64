@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040511681
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040514241
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040514406
     }
   ]
 }
