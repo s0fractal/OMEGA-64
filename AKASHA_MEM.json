@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032771657
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032771844
@@ -291,6 +285,12 @@
       "text": "AWAKEN EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772032777815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032777972
     }
   ]
 }
