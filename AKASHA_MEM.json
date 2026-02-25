@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024038473
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024038641
@@ -287,6 +281,12 @@
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024041125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024041290
     }
   ]
 }
