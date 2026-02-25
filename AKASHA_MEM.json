@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021052582
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -165,6 +159,12 @@
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021060333
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021061293
     }
   ]
 }
