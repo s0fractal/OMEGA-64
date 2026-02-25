@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023721104
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772023721271
@@ -278,6 +272,12 @@
       "text": "HEAL UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772023724885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023725056
     }
   ]
 }
