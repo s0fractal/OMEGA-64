@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019519289
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "SHELTER WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019528450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019528788
     }
   ]
 }
