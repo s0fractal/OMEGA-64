@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036385215
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036385449
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036389293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036389537
     }
   ]
 }
