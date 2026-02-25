@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036155666
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772036155891
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036159336
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036159584
     }
   ]
 }
