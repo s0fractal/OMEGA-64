@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0B0B0000",
     "60060000",
     "00606660",
     "00666600",
@@ -199,15 +198,10 @@
     "60000666",
     "66000006",
     "00000006",
-    "66000000"
+    "66000000",
+    "ABBA0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033206186
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE STASIS PURE",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033208806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033209222
     }
   ]
 }
