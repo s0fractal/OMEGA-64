@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034274490
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034274787
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772034278382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034278611
     }
   ]
 }
