@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020776309
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE FLOW",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020784697
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020784884
     }
   ]
 }
