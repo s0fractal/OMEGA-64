@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020791658
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020792384
@@ -154,6 +148,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020800770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020801476
     }
   ]
 }
