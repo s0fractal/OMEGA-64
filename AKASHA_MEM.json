@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040243180
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040248953
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DREAM SPARK WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040249141
     }
   ]
 }
