@@ -188,12 +188,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023681616
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE AWAKEN FORGE",
       "mood": "CREATIVE",
@@ -276,6 +270,12 @@
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023686475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023686689
     }
   ]
 }
