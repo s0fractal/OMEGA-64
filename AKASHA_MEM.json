@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772016564166
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772016566720
@@ -107,6 +101,12 @@
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772016654541
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772016661589
     }
   ]
 }
