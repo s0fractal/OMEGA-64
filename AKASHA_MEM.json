@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022924145
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022932472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022932650
     }
   ]
 }
