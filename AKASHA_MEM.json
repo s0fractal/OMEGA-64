@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028952457
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772028953408
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028956938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028957309
     }
   ]
 }
