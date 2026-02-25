@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021626284
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021632397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021632561
     }
   ]
 }
