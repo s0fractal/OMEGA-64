@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021563096
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -184,6 +178,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021566886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021567294
     }
   ]
 }
