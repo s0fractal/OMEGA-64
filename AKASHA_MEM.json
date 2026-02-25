@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025099869
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025100078
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025107888
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025108311
     }
   ]
 }
