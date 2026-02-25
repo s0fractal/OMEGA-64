@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031147220
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772031147623
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031153352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031153815
     }
   ]
 }
