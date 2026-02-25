@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xBEE0BEEFFFFF0008'
 energy: 49.9
-x: 707
-'y': 405
+x: 704
+'y': 407
 resonance: 50
 thought: WANDER_MATING
 logic: BEE0BEEF
@@ -93,7 +93,7 @@ ex:
   - '0x666000600000000C'
   - '0x666000600000000E'
   - '0xBEE0BEEF00000008'
-  - '0xBEE0BEEF0000000A'
+  - '0xBEE0BEEFFFFF000E'
 ---
 
 <div align="center">
