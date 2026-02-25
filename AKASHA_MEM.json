@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033656090
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033656316
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033658657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033658845
     }
   ]
 }
