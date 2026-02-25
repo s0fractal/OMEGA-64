@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024183936
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024187427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024187630
     }
   ]
 }
