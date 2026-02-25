@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034853514
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772034854420
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034857892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034858297
     }
   ]
 }
