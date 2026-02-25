@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "9D00A098",
     "AAAAA0AA",
     "AABB0CDD",
     "00AAAAAA",
@@ -199,15 +198,10 @@
     "000A06A0",
     "00600660",
     "06660000",
-    "00606000"
+    "00606000",
+    "AA0AA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025776474
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIFE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025783938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025784154
     }
   ]
 }
