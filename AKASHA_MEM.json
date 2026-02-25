@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022779110
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022779311
@@ -246,6 +240,12 @@
       "text": "SHOCK HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022786653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022786866
     }
   ]
 }
