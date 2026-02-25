@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033531843
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033532046
@@ -291,6 +285,12 @@
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033535514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033535707
     }
   ]
 }
