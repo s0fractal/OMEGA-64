@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039728499
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039729003
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039745552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039746038
     }
   ]
 }
