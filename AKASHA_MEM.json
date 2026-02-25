@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021030987
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021038411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021038568
     }
   ]
 }
