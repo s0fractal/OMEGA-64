@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022417489
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022417630
@@ -225,6 +219,12 @@
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022421592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772022421762
     }
   ]
 }
