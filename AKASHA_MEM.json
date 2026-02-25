@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037123115
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037123314
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037127284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037127569
     }
   ]
 }
