@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023827218
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023827674
@@ -279,6 +273,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023834890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023835077
     }
   ]
 }
