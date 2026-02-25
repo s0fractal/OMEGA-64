@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023971187
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772023971407
@@ -284,6 +278,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023974213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023974384
     }
   ]
 }
