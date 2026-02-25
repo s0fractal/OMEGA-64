@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024439638
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772024443775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024443914
     }
   ]
 }
