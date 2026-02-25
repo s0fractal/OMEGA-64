@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772034213495
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034213709
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034217719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034217940
     }
   ]
 }
