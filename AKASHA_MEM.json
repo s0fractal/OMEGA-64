@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021646999
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021651962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021652136
     }
   ]
 }
