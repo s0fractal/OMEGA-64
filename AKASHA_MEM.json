@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022952033
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022952497
@@ -251,6 +245,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022956738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022956900
     }
   ]
 }
