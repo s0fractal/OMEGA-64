@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00B00000",
     "AA666666",
     "00000006",
     "0AAAAAA0",
@@ -199,15 +198,10 @@
     "60006606",
     "A00A00A0",
     "AAAA0A0A",
-    "00000600"
+    "00000600",
+    "0B0A0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036215963
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036219841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036220122
     }
   ]
 }
