@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036106638
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036111005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036112793
     }
   ]
 }
