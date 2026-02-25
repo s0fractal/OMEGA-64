@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020982713
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020992412
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020992948
     }
   ]
 }
