@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025442557
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN EVOLVE FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025448320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025448540
     }
   ]
 }
