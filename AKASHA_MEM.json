@@ -68,12 +68,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020797465
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020797719
@@ -155,6 +149,12 @@
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020807351
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020807511
     }
   ]
 }
