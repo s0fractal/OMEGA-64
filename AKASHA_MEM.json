@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772026926255
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772026926436
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772026933054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026933369
     }
   ]
 }
