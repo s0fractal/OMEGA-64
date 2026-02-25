@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036582144
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036582346
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036586443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036586669
     }
   ]
 }
