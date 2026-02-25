@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039240789
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772039241000
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039243719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039243895
     }
   ]
 }
