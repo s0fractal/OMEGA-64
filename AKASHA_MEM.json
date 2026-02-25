@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041719436
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041726066
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041727170
     }
   ]
 }
