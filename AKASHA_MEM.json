@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021048317
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772021048491
@@ -165,6 +159,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021056637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021056956
     }
   ]
 }
