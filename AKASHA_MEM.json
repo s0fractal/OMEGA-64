@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06600660",
     "AA0A0000",
     "00066600",
     "AAA00AA0",
@@ -199,15 +198,10 @@
     "AAAA0A00",
     "60066000",
     "66000006",
-    "F0FF0F0F"
+    "F0FF0F0F",
+    "66066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035218362
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN HUNGER",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035221569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035222529
     }
   ]
 }
