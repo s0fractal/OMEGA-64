@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034389334
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034393166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772034393355
     }
   ]
 }
