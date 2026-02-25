@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020720855
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020721044
@@ -151,6 +145,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020729076
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020729195
     }
   ]
 }
