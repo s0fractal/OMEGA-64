@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040529796
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040529922
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040533078
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040533390
     }
   ]
 }
