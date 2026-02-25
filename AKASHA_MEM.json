@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022963893
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "IMMUNE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022967384
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022967547
     }
   ]
 }
