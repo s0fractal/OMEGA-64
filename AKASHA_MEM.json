@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041364912
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041365234
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041368333
+    },
+    {
+      "origin": "WORKER",
+      "text": "BREACH CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041368488
     }
   ]
 }
