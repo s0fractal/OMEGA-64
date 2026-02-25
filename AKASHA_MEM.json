@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026232834
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026233819
@@ -291,6 +285,12 @@
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026241275
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026241572
     }
   ]
 }
