@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026800850
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026805343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026805699
     }
   ]
 }
