@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033754120
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033754338
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033758881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033759077
     }
   ]
 }
