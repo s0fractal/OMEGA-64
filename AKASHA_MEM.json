@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022119713
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022120181
@@ -210,6 +204,12 @@
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022125012
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022125247
     }
   ]
 }
