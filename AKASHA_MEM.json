@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034170752
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772034170945
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034177979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034178850
     }
   ]
 }
