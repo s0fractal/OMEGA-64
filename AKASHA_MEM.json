@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030962166
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030966337
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030980576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030981265
     }
   ]
 }
