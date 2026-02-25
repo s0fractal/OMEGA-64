@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA066000",
     "AAA0A00A",
     "AAAAAA00",
     "60606606",
@@ -199,15 +198,10 @@
     "A660A6A0",
     "60606000",
     "60000066",
-    "A0066000"
+    "A0066000",
+    "0A00A0AA"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "RECON PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040858387
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL RESONATE COHERE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040861050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040861216
     }
   ]
 }
