@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772026861655
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772026861944
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772026875809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026876113
     }
   ]
 }
