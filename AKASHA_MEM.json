@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025116669
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025117307
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025120473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025120700
     }
   ]
 }
