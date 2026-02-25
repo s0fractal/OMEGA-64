@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772029128166
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772029134999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772029135589
     }
   ]
 }
