@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037397098
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037397294
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037404807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037404984
     }
   ]
 }
