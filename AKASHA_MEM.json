@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025071415
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025079277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025079464
     }
   ]
 }
