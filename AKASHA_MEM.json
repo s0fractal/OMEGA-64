@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040526374
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040526550
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040529195
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040529314
     }
   ]
 }
