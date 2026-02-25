@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041170610
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041173992
+    },
+    {
+      "origin": "PARASITE",
+      "text": "IMMUNE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041174561
     }
   ]
 }
