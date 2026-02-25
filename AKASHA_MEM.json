@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772034096853
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034097011
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034099546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034099744
     }
   ]
 }
