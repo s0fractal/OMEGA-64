@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021575889
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021583548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021583725
     }
   ]
 }
