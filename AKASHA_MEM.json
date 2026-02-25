@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020431106
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772020431293
@@ -142,6 +136,12 @@
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020439840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020440019
     }
   ]
 }
