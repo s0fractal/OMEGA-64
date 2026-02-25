@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034099744
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034099956
@@ -291,6 +285,12 @@
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034102436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034102590
     }
   ]
 }
