@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036195736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772036199196
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036199401
     }
   ]
 }
