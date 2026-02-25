@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020665365
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020670908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020671118
     }
   ]
 }
