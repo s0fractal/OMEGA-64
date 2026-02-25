@@ -63,15 +63,10 @@
     "AA6666A6",
     "0A000000",
     "F0FFF00F",
-    "0AAA000A"
+    "0AAA000A",
+    "06666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020816033
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER BREACH",
@@ -155,6 +150,12 @@
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020822229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020822783
     }
   ]
 }
