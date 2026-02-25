@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023842465
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -279,6 +273,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023847339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023847511
     }
   ]
 }
