@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035170738
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035174290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035174541
     }
   ]
 }
