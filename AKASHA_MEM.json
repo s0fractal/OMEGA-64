@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036669274
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036669449
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036674187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036674402
     }
   ]
 }
