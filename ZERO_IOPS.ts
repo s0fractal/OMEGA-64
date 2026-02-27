@@ -40,9 +40,16 @@ async function zeroIopsPulse() {
         return;
     }
 
-    const logicHex = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(2, 10) : fullEigenvalue.slice(2, 10);
+    const logicHexBase = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0] : fullEigenvalue;
+    const logicHex = logicHexBase.startsWith("0x") ? logicHexBase.slice(2, 10) : logicHexBase.slice(0, 8);
     const timeCode = fullEigenvalue.includes("_") ? `_${fullEigenvalue.split("_")[1]}` : "";
     const remainingEigen = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(10) : fullEigenvalue.slice(10);
+    
+    // Safety: If logic is not hex, abort to prevent corruption
+    if (!/^[0-9A-F]{8}$/i.test(logicHex)) {
+        console.log(`[SKIPPED] ${targetFilename} has non-HEX logic: ${logicHex}`);
+        return;
+    }
     
     console.log(`[TARGET] ${targetFilename} -> Logic: ${logicHex}`);
 
@@ -136,9 +143,12 @@ async function processAtom(targetFilename: string) {
         return;
     }
 
-    const logicHex = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(2, 10) : fullEigenvalue.slice(2, 10);
+    const logicHexBase = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0] : fullEigenvalue;
+    const logicHex = logicHexBase.startsWith("0x") ? logicHexBase.slice(2, 10) : logicHexBase.slice(0, 8);
     const timeCode = fullEigenvalue.includes("_") ? `_${fullEigenvalue.split("_")[1]}` : "";
     const remainingEigen = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(10) : fullEigenvalue.slice(10);
+    
+    if (!/^[0-9A-F]{8}$/i.test(logicHex)) return;
     
     // Parse logic characters into mathematical shifts
     let modifier = 0;

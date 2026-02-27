@@ -8,6 +8,17 @@ __pycache__/
 *.svg
 I.sigma.*
 
+# ALEPH Modules & State
+DIMENSIONS/
+0x*.md
+0x*/
+i.L99.thought.*.md
+i.L*.DUST.md
+legacy_sigma/
+SANCTUARY/
+OMEGA_CORE_LOGIC.md
+export_core.ts
+
 # Quantum derived view (noncanonical)
 i.L??.q.hue
 i.L??.q.phi

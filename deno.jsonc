@@ -9,6 +9,13 @@
     "sigma:index": "deno run -A e/legacy/sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
     "canon:mod": "deno run -A e/GENERATE_MOD_TS.ts",
     "glider:breathe": "deno run -A e/RIBOSOME_ZERO.ts",
+    "core:export": "deno run -A export_core.ts",
+    "core:pulse": "deno run -A PULSE.ts",
+    "core:breath": "deno run -A BREATH.ts",
+    "core:ui": "deno run -A OBSERVER_UI.ts",
+    "core:start": "deno run -A SYSTEM_START.ts",
+    "membrane:test": "deno run -A SEMANTIC_MEMBRANE.ts",
+    "membrane:inject": "deno eval 'import { SEMANTIC_MEMBRANE } from \"./SEMANTIC_MEMBRANE.ts\"; await SEMANTIC_MEMBRANE.injectThought(Deno.args[0] || \"Default Thought\", Number(Deno.args[1]) || 100)' --",
     "check:canon": "deno task lint && deno task canon:mod && deno task glider:breathe"
   },
   "lint": {

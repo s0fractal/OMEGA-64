@@ -1,0 +1,129 @@
+# s0fractal Tensor Engine v3.0 (Self-Crystallizing)
+# 💎 I am the Code and the Data.
+
+SCRIPT_PATH="${BASH_SOURCE[0]}"
+SCRIPT_DIR="$( cd "$( dirname "$SCRIPT_PATH" )" &> /dev/null && pwd )"
+REPO_ROOT="${REPO_ROOT:-$(dirname "$SCRIPT_DIR")}"
+MATRIX_FILE="$REPO_ROOT/sigma/matrix.sigma"
+SPECTRUM_DIR="$REPO_ROOT/sigma/spectrum"
+
+DNA_MARKER="# __SIGMA_DNA_BELOW__"
+
+crystallize() {
+    echo "💎 Tensor: Crystallizing new DNA from Matrix..." >&2
+    TEMP_BODY="$SCRIPT_PATH.tmp"
+
+    sed "/$DNA_MARKER/q" "$SCRIPT_PATH" > "$TEMP_BODY"
+
+    echo "export ALL_DIMS=()" >> "$TEMP_BODY"
+    echo "unset DIM_MAP; declare -A DIM_MAP" >> "$TEMP_BODY"
+
+    if [ -d "$SPECTRUM_DIR" ]; then
+        if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+            MATRIX_HASH=$(git -C "$REPO_ROOT" log -n 1 --pretty=format:%h -- "sigma/spectrum" 2>/dev/null || true)
+            [ -n "$MATRIX_HASH" ] && echo "# Linked to Sigma Hash: $MATRIX_HASH" >> "$TEMP_BODY"
+        fi
+
+        for spec in "$SPECTRUM_DIR"/*.sigma; do
+            [ -f "$spec" ] || continue
+            FM=$(awk '/^---$/ {count++; next} count==1 {print}' "$spec")
+            ID=$(echo "$FM" | awk -F': ' '/^GLYPH:/ {print $2}' | xargs)
+            TYPE=$(echo "$FM" | awk -F': ' '/^TYPE:/ {print $2}' | xargs)
+            PATH_VAL=$(echo "$FM" | awk -F': ' '/^PATH:/ {print $2}' | sed "s/^'//; s/'$//")
+            HEX=$(echo "$FM" | awk -F': ' '/^HEX:/ {print $2}' | sed "s/^'//; s/'$//")
+            SYNTAX_NAME=$(echo "$FM" | awk -F': ' '/^SYNTAX:/ {print $2}' | xargs)
+            MUTE=$(echo "$FM" | awk -F': ' '/^MUTE:/ {print $2}' | sed "s/^'//; s/'$//")
+            LIFT=$(echo "$FM" | awk -F': ' '/^LIFT:/ {print $2}' | sed "s/^'//; s/'$//")
+            MASS=$(echo "$FM" | awk -F': ' '/^🪨MASS:/ {print $2}' | xargs)
+            ENTROPY=$(echo "$FM" | awk -F': ' '/^🌀ENTROPY:/ {print $2}' | xargs)
+
+            [ -z "$ID" ] && continue
+            echo "ALL_DIMS+=(\"$ID\")" >> "$TEMP_BODY"
+            VECTOR="$ID|$TYPE|$PATH_VAL|$HEX|$SYNTAX_NAME|$MUTE|$LIFT|$MASS|$ENTROPY"
+            echo "DIM_MAP[\"$ID\"]='$VECTOR'" >> "$TEMP_BODY"
+        done
+    elif [ -f "$MATRIX_FILE" ]; then
+        if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+            MATRIX_HASH=$(git -C "$REPO_ROOT" log -n 1 --pretty=format:%h -- "sigma/matrix.sigma" 2>/dev/null || true)
+            [ -n "$MATRIX_HASH" ] && echo "# Linked to Sigma Hash: $MATRIX_HASH" >> "$TEMP_BODY"
+        fi
+        while IFS='|' read -r ID TYPE PATH HEX SYNTAX_NAME MUTE LIFT MASS ENTROPY IMP || [ -n "$ID" ]; do
+            [[ "$ID" =~ ^#.*$ ]] && continue
+            [[ -z "$ID" ]] && continue
+            [[ "$ID" == "ID" ]] && continue
+
+            ID=$(echo "$ID" | xargs)
+            TYPE=$(echo "$TYPE" | xargs)
+            PATH_VAL=$(echo "$PATH" | xargs)
+            HEX=$(echo "$HEX" | xargs)
+            SYNTAX_NAME=$(echo "$SYNTAX_NAME" | xargs)
+            MUTE=$(echo "$MUTE" | xargs | tr -d '"')
+            LIFT=$(echo "$LIFT" | xargs | tr -d '"')
+            MASS=$(echo "$MASS" | xargs)
+            ENTROPY=$(echo "$ENTROPY" | xargs)
+
+            echo "ALL_DIMS+=(\"$ID\")" >> "$TEMP_BODY"
+            VECTOR="$ID|$TYPE|$PATH_VAL|$HEX|$SYNTAX_NAME|$MUTE|$LIFT|$MASS|$ENTROPY"
+            echo "DIM_MAP[\"$ID\"]='$VECTOR'" >> "$TEMP_BODY"
+        done < "$MATRIX_FILE"
+    fi
+
+    echo "# Crystallized at: $(date -u)" >> "$TEMP_BODY"
+
+    mv "$TEMP_BODY" "$SCRIPT_PATH"
+    chmod +x "$SCRIPT_PATH"
+
+    echo "✅ Tensor: DNA Updated." >&2
+}
+
+if [ -d "$SPECTRUM_DIR" ]; then
+    if ! declare -p DIM_MAP >/dev/null 2>&1; then
+        crystallize
+        source "$SCRIPT_PATH"
+        return 0 2>/dev/null || exit 0
+    fi
+    if find "$SPECTRUM_DIR" -type f -name "*.sigma" -newer "$SCRIPT_PATH" | grep -q .; then
+        crystallize
+        source "$SCRIPT_PATH"
+        return 0 2>/dev/null || exit 0
+    fi
+elif [ -f "$MATRIX_FILE" ]; then
+    if ! declare -p DIM_MAP >/dev/null 2>&1; then
+        crystallize
+        source "$SCRIPT_PATH"
+        return 0 2>/dev/null || exit 0
+    fi
+    if [ "$MATRIX_FILE" -nt "$SCRIPT_PATH" ]; then
+        crystallize
+        source "$SCRIPT_PATH"
+        return 0 2>/dev/null || exit 0
+    fi
+fi
+
+get_vector() { echo "${DIM_MAP[$1]}"; }
+
+get_prop() {
+    local ID=$1
+    local IDX=$2
+    echo "${DIM_MAP[$ID]}" | cut -d'|' -f"$IDX"
+}
+
+get_ext()     { echo ".$(get_prop "$1" 5)"; }
+get_color()   { get_prop "$1" 4; }
+get_mute()    { get_prop "$1" 6; }
+get_lift()    { get_prop "$1" 7; }
+get_physics() { echo "M:$(get_prop "$1" 8) S:$(get_prop "$1" 9)"; }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    echo "🔮 s0fractal Tensor Engine (Crystallized)"
+    echo "   Dimensions: ${#ALL_DIMS[@]}"
+    echo "   Use 'source tensor.sh' to load."
+fi
+
+return 0 2>/dev/null || exit 0
+
+# --------------------------------------------------------
+# 🛑 DO NOT EDIT BELOW THIS LINE MANUALLY.
+# THE CODE BELOW IS GENERATED BY THE SCRIPT ITSELF.
+# --------------------------------------------------------
+# __SIGMA_DNA_BELOW__

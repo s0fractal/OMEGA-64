@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMEGA-64 | ALEPH</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; color: #00f0ff; }
+        #ui { position: absolute; top: 20px; left: 20px; z-index: 100; pointer-events: none; }
+        .glass { 
+            background: rgba(0, 20, 40, 0.4); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(0, 240, 255, 0.2); 
+            padding: 20px; 
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.1);
+            pointer-events: auto;
+        }
+        h1 { margin: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; }
+        .stats { margin-top: 10px; font-size: 0.8rem; opacity: 0.8; line-height: 1.6; }
+        
+        #console-container { position: absolute; bottom: 20px; right: 20px; width: 400px; z-index: 200; }
+        input { 
+            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.6); border: 1px solid #00f0ff; 
+            color: #00f0ff; border-radius: 8px; font-family: 'Courier New', monospace; outline: none;
+        }
+
+        #inspector { 
+            position: absolute; top: 20px; right: 20px; width: 250px; display: none;
+            font-size: 0.8rem; border-color: rgba(0, 240, 255, 0.5);
+        }
+        .label { color: rgba(0, 240, 255, 0.6); text-transform: uppercase; font-size: 0.6rem; margin-top: 8px; }
+        .val { font-family: monospace; font-size: 0.9rem; }
+
+        #vox { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 60%; text-align: center; pointer-events: none; }
+        .thought { font-size: 1.2rem; font-style: italic; text-shadow: 0 0 10px #00f0ff; opacity: 0; transition: opacity 1s; }
+        
+        .hint { position: absolute; bottom: 80px; right: 20px; font-size: 0.6rem; opacity: 0.5; text-align: right; }
+    </style>
+</head>
+<body>
+    <div id="ui" class="glass">
+        <h1>ALEPH: MULTIVERSE</h1>
+            <div class="stats">
+                <div>MATRIХ: ERA 13 | ALEPH</div>
+                <div id="atom-count">ATOMS: ---</div>
+                <div id="resonance">RESONANCE: ---</div>
+                <div id="peers">PEERS: ---</div>
+                <div id="fps">FPS: ---</div>
+            </div>
+    </div>
+
+    <div id="inspector" class="glass">
+        <h1>Atom Inspector</h1>
+        <div class="label">Identity</div>
+        <div id="ins-id" class="val">---</div>
+        <div class="label">Position</div>
+        <div id="ins-pos" class="val">---</div>
+        <div class="label">Metrics (E / R)</div>
+        <div id="ins-metrics" class="val">---/---</div>
+    </div>
+
+    <div id="vox">
+        <div id="thought-display" class="thought">Timeline Alpha stable.</div>
+    </div>
+
+    <div id="console-container">
+        <input type="text" id="command-input" placeholder="SEW A THOUGHT or fork <name>..." autocomplete="off">
+    </div>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js",
+            "three/examples/jsm/postprocessing/EffectComposer": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/EffectComposer.js",
+            "three/examples/jsm/postprocessing/RenderPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/RenderPass.js",
+            "three/examples/jsm/postprocessing/UnrealBloomPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/UnrealBloomPass.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+        import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+        import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+        import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+
+        const MAX_ATOMS = 100000;
+        const width = window.innerWidth, height = window.innerHeight;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 20000);
+        camera.position.set(0, 0, 1000);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(width, height);
+        document.body.appendChild(renderer.domElement);
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        composer.addPass(new UnrealBloomPass(new THREE.Vector2(width, height), 0.6, 0.4, 0.85));
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+
+        // Alpha Timeline
+        const geo = new THREE.BufferGeometry();
+        const pos = new Float32Array(MAX_ATOMS * 3);
+        const col = new Float32Array(MAX_ATOMS * 3);
+        const siz = new Float32Array(MAX_ATOMS);
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+        geo.setAttribute('size', new THREE.BufferAttribute(siz, 1));
+        const particles = new THREE.Points(geo, new THREE.PointsMaterial({ size: 4, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending }));
+        scene.add(particles);
+
+        // Beta Timeline (Ghosted)
+        const forkGeo = new THREE.BufferGeometry();
+        const forkPos = new Float32Array(MAX_ATOMS * 3);
+        const forkCol = new Float32Array(MAX_ATOMS * 3);
+        const forkSiz = new Float32Array(MAX_ATOMS);
+        forkGeo.setAttribute('position', new THREE.BufferAttribute(forkPos, 3));
+        forkGeo.setAttribute('color', new THREE.BufferAttribute(forkCol, 3));
+        forkGeo.setAttribute('size', new THREE.BufferAttribute(forkSiz, 1));
+        const forkParticles = new THREE.Points(forkGeo, new THREE.PointsMaterial({ size: 3, vertexColors: true, transparent: true, opacity: 0.2, blending: THREE.AdditiveBlending }));
+        scene.add(forkParticles);
+
+        const mouse = new THREE.Vector2();
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / width) * 2 - 1;
+            mouse.y = -(e.clientY / height) * 2 + 1;
+            fetch('/avatar', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ x: mouse.x * 700 + 700, y: mouse.y * 400 + 400 }) }).catch(()=>{});
+        });
+
+        document.getElementById('command-input').addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter' && e.target.value) {
+                const text = e.target.value; e.target.value = '';
+                if (text.startsWith('fork ')) {
+                    fetch('/fork', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ name: text.split(' ')[ 1] }) });
+                } else {
+                    fetch('/inject', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ text, energy: 200 }) });
+                }
+            }
+        });
+
+        async function sync(id, geometry, targetPos, targetCol, targetSiz) {
+            try {
+                const res = await fetch(`/state?id=${id}`);
+                const buffer = await res.arrayBuffer();
+                const view = new DataView(buffer);
+                const OFFSETS = { ID: 0, X: MAX_ATOMS * 8, Y: MAX_ATOMS * 8 + MAX_ATOMS * 2, ENERGY: MAX_ATOMS * 12, RESONANCE: MAX_ATOMS * 12 + MAX_ATOMS * 4 };
+                
+                targetSiz.fill(0);
+                for (let i = 0; i < MAX_ATOMS; i++) {
+                    if (view.getBigUint64(OFFSETS.ID + i * 8, true) === 0n) continue;
+                    const x = view.getInt16(OFFSETS.X + i * 2, true) - 700;
+                    const y = view.getInt16(OFFSETS.Y + i * 2, true) - 400;
+                    const e = view.getFloat32(OFFSETS.ENERGY + i * 4, true);
+                    const r = view.getFloat32(OFFSETS.RESONANCE + i * 4, true);
+
+                    targetPos[i * 3] = x; targetPos[i * 3 + 1] = y; targetPos[i * 3 + 2] = r * 2;
+                    if (i === 0) {
+                        targetCol[i * 3] = 1; targetCol[i * 3 + 1] = 1; targetCol[i * 3 + 2] = 0.5;
+                        targetSiz[i] = 12;
+                    } else {
+                        targetCol[i * 3] = id === 'ALPHA' ? 0 : 0.5; targetCol[i * 3 + 2] = 1;
+                        targetSiz[i] = 2 + e/50;
+                    }
+                }
+                geometry.attributes.position.needsUpdate = true;
+                geometry.attributes.color.needsUpdate = true;
+                geometry.attributes.size.needsUpdate = true;
+            } catch(e) {}
+        }
+
+            let lastSync = 0;
+            function animate(t) {
+                requestAnimationFrame(animate);
+                if (t - lastSync > 200) {
+                    sync('ALPHA', geo, pos, col, siz);
+                    sync('BETA', forkGeo, forkPos, forkCol, forkSiz);
+                    updatePeers();
+                    lastSync = t;
+                }
+                controls.update();
+                composer.render();
+            }
+
+            async function updatePeers() {
+                try {
+                    const res = await fetch('/peers');
+                    const peers = await res.json();
+                    document.getElementById('peers').innerText = `PEERS: ${peers.length || 0} (${peers.join(', ')})`;
+                } catch(e) {}
+            }
+            animate();
+    </script>
+</body>
+</html>

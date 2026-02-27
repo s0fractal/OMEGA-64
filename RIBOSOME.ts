@@ -6,6 +6,8 @@
 import { IMMUNE } from "./IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 import { parse as parseYaml } from "jsr:@std/yaml";
+import { STATE_MATRIX, ATOM_SIZE } from "./STATE_MATRIX.ts";
+import { decodeHex } from "jsr:@std/encoding/hex";
 
 export interface Atom {
     id: string; // The Filename (Address)
@@ -17,31 +19,99 @@ export interface Atom {
 
 export type Lattice = Map<string, Atom>;
 
+// Mapping for Matrix Lookups
+export const ID_TO_IDX = new Map<string, number>();
+export const IDX_TO_ID = new Map<number, string>();
+
+function idToBigInt(id: string): bigint {
+    const hex = id.split('.')[0].replace('0x', '');
+    const cleanHex = hex.replace(/[^0-9a-fA-F]/g, '0').padEnd(16, '0');
+    try {
+        return BigInt(`0x${cleanHex.substring(0, 16)}`);
+    } catch {
+        return 0n;
+    }
+}
+
 export const RIBOSOME = {
-    // Scan and Lift all Atoms in Flatland (./0x*.md)
+    // Scan and Lift all Atoms in Flatland and Vacuum
     lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
         const lattice = new Map<string, Atom>();
+        let idx = 0;
 
-        for await (const entry of Deno.readDir(root)) {
-            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-                const content = await Deno.readTextFile(entry.name);
-                const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-                if (!frontmatterMatch) continue;
+        const scanDirs = [root, `${root}/SINGULARITY/V`];
+        for (const dir of scanDirs) {
+            try {
+                // @ts-ignore
+                for await (const entry of Deno.readDir(dir)) {
+                    if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+                        const fullPath = dir === root ? entry.name : `SINGULARITY/V/${entry.name}`;
+                        // @ts-ignore
+                        const content = await Deno.readTextFile(fullPath);
+                        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (!frontmatterMatch) continue;
 
-                const alpha = parseYaml(frontmatterMatch[1]) as any;
-                const symbol = alpha.symbol ?? entry.name.split('.')[1] ?? "UNKNOWN";
-                const level = alpha.level ?? (alpha.vector ? parseInt(alpha.vector.split('.')[0]) : 0);
+                        const alpha = parseYaml(frontmatterMatch[1]) as any;
+                        const symbol = alpha.symbol ?? entry.name.split('.')[1] ?? "UNKNOWN";
+                        const level = alpha.level ?? (alpha.vector ? parseInt(alpha.vector.split('.')[0]) : 0);
 
-                // For runtime execution, we usually need the BLUE block
-                // But for now, we just store the metadata
-                lattice.set(entry.name, {
-                    id: entry.name,
-                    level: level,
-                    symbol: symbol,
-                    module: null // Module loading happens during specialized injection or dynamic import
-                });
-            }
+                        // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
+                        const atomBigId = idToBigInt(entry.name);
+                        STATE_MATRIX.setId(idx, atomBigId);
+                        STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
+                        STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
+                        STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
+                        STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
+                        STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
+                        
+                        // Logic (Hex to Bytes)
+                        const logic = (alpha.logic || "00000000").replace(/[^0-9a-fA-F]/g, "").padEnd(16, '0');
+                        try {
+                            STATE_MATRIX.setLogic(idx, decodeHex(logic.substring(0, 16)));
+                        } catch { /* skip corrupted logic binary lift */ }
+
+                        ID_TO_IDX.set(fullPath, idx);
+                        IDX_TO_ID.set(idx, fullPath);
+
+                        lattice.set(fullPath, {
+                            id: entry.name,
+                            level: level,
+                            symbol: symbol,
+                            module: null 
+                        });
+
+                        idx++;
+                    }
+                }
+            } catch { /* skip directory if missing */ }
         }
+
+        // 🧬 PASS 2: BOND RESOLUTION
+        for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
+            try {
+                // @ts-ignore
+                const content = await Deno.readTextFile(fullPath);
+                const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+                if (alphaMatch) {
+                    const alpha = parseYaml(alphaMatch[1]) as any;
+                    const bondIds: string[] = alpha.bonds || [];
+                    const bondIndices = new Uint32Array(4);
+                    for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
+                        // Search for the ID in the keys, ignoring directory prefixes
+                        const partnerId = Array.from(ID_TO_IDX.keys()).find(k => {
+                            const basename = k.split('/').pop() || k;
+                            return basename.startsWith(bondIds[i] + ".");
+                        });
+                        if (partnerId) {
+                            bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
+                        }
+                    }
+                    STATE_MATRIX.setBonds(atomIdx, bondIndices);
+                }
+            } catch { /* ignore */ }
+        }
+
+        console.log(`   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`);
 
         // 🛡️ IMMUNE SYSTEM CHECK
         return IMMUNE.inspect(lattice);
