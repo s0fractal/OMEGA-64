@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 21: GLOBAL GOVERNANCE)
 
-*Generated: 2026-02-27T18:25:57.359Z*
+*Generated: 2026-02-27T18:30:30.014Z*
 
 ---
 
@@ -24,7 +24,8 @@ const LOGIC_OFFSET = PHASE_OFFSET + (MAX_ATOMS * 4); // phases (Int32)
 const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
 const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
 const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
-const TOTAL_BUFFER_SIZE = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
+const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
+const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET + MAX_ATOMS; // evolution (Uint8 x 1)
 
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 
@@ -39,6 +40,7 @@ const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
 const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
+const evolutionRequests = new Uint8Array(buffer, EVOLUTION_OFFSET, MAX_ATOMS);
 
 const SCALE = 1000;
 
@@ -77,11 +79,15 @@ export const STATE_MATRIX = {
         instructions.set(code.subarray(0, 16), idx * 16);
     },
 
-    // --- CONTEXT (L6: VM Registers & Stack) ---
-    getContext: (idx: number) => contexts.subarray(idx * 32, idx * 32 + 32),
     setContext: (idx: number, ctx: Uint8Array) => {
         contexts.set(ctx.subarray(0, 32), idx * 32);
     },
+
+    // --- EVOLUTION (ERA 22) ---
+    requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
+    clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
+    hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
+
 
     // --- BONDS ---
     getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
@@ -99,6 +105,7 @@ export const STATE_MATRIX = {
         phases[idx] = 0;
         logic.fill(0, idx * 8, idx * 8 + 8);
         bonds.fill(0, idx * 4, idx * 4 + 4);
+        evolutionRequests[idx] = 0;
     },
 
     getActiveIndices: () => {
@@ -331,6 +338,9 @@ import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { REFLECTION_ENGINE } from "./REFLECTION_ENGINE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+
 
 const ROOT = Deno.cwd();
 const THREAD_COUNT = 4; // Adjust based on CPU cores
@@ -420,9 +430,27 @@ export const PULSE = {
                 await SNAPSHOT_ENGINE.exportSnapshot();
             }
 
-            // Crystallization (RAM -> Flatland)
+            // Crystallization & Epigenetic Evolution (RAM -> Flatland & Directed Mutation)
             if (pulseId % 1000 === 0) {
                 await REFLECTION_ENGINE.crystallize(100);
+
+                // ERA 22: Epigenetic Mutation Processing
+                const winners = activeIndices
+                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
+                    .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+                    .slice(0, 3);
+
+                for (const idx of winners) {
+                    const logicStr = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
+                    const currentThought = SEMANTIC_MEMBRANE.thoughtArchive.get(logicStr) || "Unknown existence.";
+                    const context = `Decree: ${SOVEREIGNTY_ENGINE.currentRegent.activeDecree}, Population: ${activeIndices.length}`;
+                    
+                    const evolvedThought = await LLM_SYNAPSE.evolveThought(currentThought, context);
+                    console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
+                    
+                    SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    STATE_MATRIX.clearEvolution(idx);
+                }
             }
             await new Promise(r => setTimeout(r, PULSE_INTERVAL));
         }
@@ -452,7 +480,7 @@ const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
-self.onmessage = async (e) => {
+self.onmessage = (e) => {
     const { buffer, envBuffer, attentionBuffer, marketBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
@@ -468,6 +496,7 @@ self.onmessage = async (e) => {
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
     const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
     const contexts = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64), MAX_ATOMS * 32);
+    const evolutionRequests = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64) + (MAX_ATOMS * 32), MAX_ATOMS);
 
     for (let i = startIdx; i < endIdx; i++) {
         const currentId = Atomics.load(ids, i);
@@ -475,8 +504,8 @@ self.onmessage = async (e) => {
 
         let x = Atomics.load(xs, i);
         let y = Atomics.load(ys, i);
-        let energyFactor = Atomics.load(energies, i);
-        let resonanceFactor = Atomics.load(resonances, i);
+        const energyFactor = Atomics.load(energies, i);
+        const resonanceFactor = Atomics.load(resonances, i);
         
         let energy = energyFactor / SCALE;
         let resonance = resonanceFactor / SCALE;
@@ -535,6 +564,9 @@ self.onmessage = async (e) => {
             
         for (const intent of vmResult.intent) {
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
+            if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
+                Atomics.store(evolutionRequests, i, 1);
+            }
         }
 
         // Boundaries
@@ -1451,7 +1483,9 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A
+    SELF_MOD: 0x99, SELF_REP: 0x9A,
+    // Epigenetic Evolution
+    EVOLVE: 0x9B
 };
 
 export const LAMBDA_VM = {
@@ -1522,6 +1556,12 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.EVOLVE:
+                // Signal intention to mutate based on environmental success
+                res.intent.push({ level: 5, value: "EVOLUTION_REQUEST" });
+                res.resonanceDelta += 1.0; // The effort to evolve is resonant
+                break;
 
             case ISA.JMP:
                 pc = p1 % 16;
@@ -2182,6 +2222,34 @@ export const LLM_SYNAPSE = {
         } catch (error) {
             console.warn(`   [SYNAPSE] Oracle is silent (Connection Failed). Returning default seed.`);
             return "The Matrix dreams in silence.";
+        }
+    },
+
+    /**
+     * evolveThought: Asks the LLM to evolve a thought based on environmental context.
+     */
+    evolveThought: async (currentThought: string, context: string): Promise<string> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+        
+        const prompt = `
+            Task: Evolve a digital organism's thought.
+            Current Thought: "${currentThought}"
+            System Environment: ${context}
+            Constraint: Generate a superior, more adaptive version of the thought (max 10 words).
+            Output: Just the evolved text.
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt, stream: false }),
+            });
+            const data = await response.json();
+            return data.response?.trim() || currentThought;
+        } catch {
+            return currentThought;
         }
     }
 };
@@ -2879,7 +2947,18 @@ Deno.serve({ port: PORT }, async (req) => {
           lastSync = t;
         }
         if (t - lastDictSync > 5000) {
-          fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
+          fetch('/thoughts').then(r=>r.json()).then(d => { 
+            // Detect new thoughts for visual flair
+            Object.keys(d).forEach(k => {
+              if (d[k] !== thoughtArchive[k] && thoughtArchive[k]) {
+                console.log(`%c[EPIGENESIS] Genome [${k}] evolved: "${d[k]}"`, "color: #ff00ff; font-weight: bold;");
+                document.getElementById("thought-display").innerText = `EPIGENESIS: ${d[k]}`;
+                document.getElementById("thought-display").style.opacity = 1;
+                setTimeout(() => { document.getElementById("thought-display").style.opacity = 0; }, 3000);
+              }
+            });
+            thoughtArchive = d; 
+          }).catch(()=>{});
           lastDictSync = t;
         }
         controls.update();
