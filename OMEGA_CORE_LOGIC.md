@@ -1,6 +1,6 @@
-# OMEGA-64 | CORE LOGIC (ERA 20: THE CHRONOS CONSOLE)
+# OMEGA-64 | CORE LOGIC (ERA 21: GLOBAL GOVERNANCE)
 
-*Generated: 2026-02-27T18:15:34.732Z*
+*Generated: 2026-02-27T18:25:57.359Z*
 
 ---
 
@@ -378,6 +378,8 @@ export const PULSE = {
             }
 
             // Parallel Processing via Workers
+            const currentRegent = SOVEREIGNTY_ENGINE.currentRegent;
+            
             const chunkSize = Math.ceil(MAX_ATOMS / THREAD_COUNT);
             const workerPromises = PULSE.workers.map((worker, i) => {
                 return new Promise((resolve) => {
@@ -389,7 +391,7 @@ export const PULSE = {
                         marketBuffer: PREDICTION_MARKET.buffer,
                         startIdx: i * chunkSize,
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                        mods: { speed: 1.0, decay: 1.0 },
+                        mods: currentRegent.mods,
                         pulseId
                     });
                 });
@@ -401,13 +403,16 @@ export const PULSE = {
             if (pulseId % 100 === 0) {
                 PREDICTION_MARKET.resolveCrisis();
                 
+                // Elect Regent
+                const regent = SOVEREIGNTY_ENGINE.electRegent(activeIndices);
+                
                 // Calculate Thermodynamic Totals for monitoring
                 let totalNutrients = 0;
                 for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) {
                     totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
                 }
                 
-                console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Environment Nutrients: ${totalNutrients}`);
+                console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} (${regent.activeDecree}) | Nutrients: ${totalNutrients}`);
             }
 
             // Persistence (Rapid Genesis Snapshotting every 5000 ticks ~ 1 minute)
@@ -1900,6 +1905,13 @@ export const DECREES: Record<string, any> = {
 };
 
 export const SOVEREIGNTY_ENGINE = {
+    currentRegent: {
+        genome: "NONE",
+        legitimacy: 0,
+        activeDecree: "NONE",
+        mods: DECREES["NONE"]
+    },
+
     // Elect a Regent based on Quadratic Voting (Mitigates whale attacks)
     electRegent: (activeIndices: number[]) => {
         let bestPower = 0;
@@ -1919,7 +1931,7 @@ export const SOVEREIGNTY_ENGINE = {
         if (regentIdx !== -1) {
             const filename = IDX_TO_ID.get(regentIdx)!;
             const logicBytes = STATE_MATRIX.getLogic(regentIdx);
-            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('').substring(0, 8);
+            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
             
             // Select a decree based on the first digit of the regent's logic
             const logicDigit = parseInt(logicStr[0], 16);
@@ -1929,22 +1941,22 @@ export const SOVEREIGNTY_ENGINE = {
             else if (logicDigit <= 11) activeDecree = "MUTATIVE_FEVER";
             else activeDecree = "VOID_STASIS";
 
-            return {
-                regent: filename.split(".")[0],
-                symbol: filename.split(".")[1],
+            SOVEREIGNTY_ENGINE.currentRegent = {
+                genome: logicStr,
                 legitimacy: bestPower * bestPower, // Return raw resonance for display
                 activeDecree,
                 mods: DECREES[activeDecree]
             };
+            return SOVEREIGNTY_ENGINE.currentRegent;
         }
 
-        return {
-            regent: "NONE",
-            symbol: "NONE",
+        SOVEREIGNTY_ENGINE.currentRegent = {
+            genome: "NONE",
             legitimacy: 0,
             activeDecree: "NONE",
             mods: DECREES["NONE"]
         };
+        return SOVEREIGNTY_ENGINE.currentRegent;
     }
 };
 
@@ -2403,6 +2415,31 @@ Deno.serve({ port: PORT }, async (req) => {
         background: rgba(255, 0, 100, 0.4);
       }
 
+      #governance-hud {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(160px);
+        width: 320px;
+        font-size: 0.8rem;
+        border-color: rgba(255, 0, 255, 0.4);
+        text-align: center;
+      }
+      .gov-symbol {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+      .gov-decree {
+        color: #ff00ff;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-top: 5px;
+      }
+      .gov-mods {
+        font-size: 0.65rem;
+        opacity: 0.8;
+      }
+
       #leaderboard {
         position: absolute;
         top: 20px;
@@ -2478,6 +2515,13 @@ Deno.serve({ port: PORT }, async (req) => {
       <button class="snapshot-btn snapshot-save-btn" onclick="saveGenesis()">[ FREEZE TIME (SAVE) ]</button>
       <div id="snapshots-list" style="margin-top: 10px; max-height: 150px; overflow-y: auto;">
         <div style="opacity: 0.5; font-style: italic;">Fetching epochs...</div>
+      </div>
+    </div>
+
+    <div id="governance-hud" class="glass">
+      <h1 style="color: #ff00ff; border-bottom: 1px solid rgba(255,0,255,0.3); padding-bottom: 5px;">👑 GLOBAL GOVERNANCE</h1>
+      <div id="gov-content" style="margin-top: 10px;">
+         <div style="opacity: 0.5; font-style: italic;">Awaiting Regent...</div>
       </div>
     </div>
 
@@ -2889,6 +2933,30 @@ Deno.serve({ port: PORT }, async (req) => {
       setInterval(updateSnapshots, 2000);
       updateSnapshots();
 
+      async function updateGovernance() {
+        try {
+          const res = await fetch("/governance");
+          if (!res.ok) return;
+          const gov = await res.json();
+          const container = document.getElementById("gov-content");
+          if (!gov || gov.genome === "NONE") {
+            container.innerHTML = '<div style="opacity: 0.5; font-style: italic;">Awaiting Regent election...</div>';
+            return;
+          }
+          
+          let html = `
+            <div class="gov-symbol">👑</div>
+            <div class="val" style="color: #ffcc00;">[${gov.genome}]</div>
+            <div class="gov-decree">${gov.activeDecree}</div>
+            <div class="gov-mods" style="margin-top: 5px;">SPD: x${gov.mods.speed} | DCY: x${gov.mods.decay} | MUT: x${gov.mods.mutation}</div>
+          `;
+          container.innerHTML = html;
+        } catch(e) {}
+      }
+
+      setInterval(updateGovernance, 1000);
+      updateGovernance();
+
       animate();
     </script>
   </body>
@@ -3245,6 +3313,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 
@@ -3353,6 +3422,12 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     if (url.pathname === "/snapshots" && req.method === "GET") {
         const list = await SNAPSHOT_ENGINE.listSnapshots();
         return new Response(JSON.stringify(list), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/governance" && req.method === "GET") {
+        return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
         });
     }

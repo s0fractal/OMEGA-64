@@ -58,6 +58,8 @@ export const PULSE = {
             }
 
             // Parallel Processing via Workers
+            const currentRegent = SOVEREIGNTY_ENGINE.currentRegent;
+            
             const chunkSize = Math.ceil(MAX_ATOMS / THREAD_COUNT);
             const workerPromises = PULSE.workers.map((worker, i) => {
                 return new Promise((resolve) => {
@@ -69,7 +71,7 @@ export const PULSE = {
                         marketBuffer: PREDICTION_MARKET.buffer,
                         startIdx: i * chunkSize,
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                        mods: { speed: 1.0, decay: 1.0 },
+                        mods: currentRegent.mods,
                         pulseId
                     });
                 });
@@ -81,13 +83,16 @@ export const PULSE = {
             if (pulseId % 100 === 0) {
                 PREDICTION_MARKET.resolveCrisis();
                 
+                // Elect Regent
+                const regent = SOVEREIGNTY_ENGINE.electRegent(activeIndices);
+                
                 // Calculate Thermodynamic Totals for monitoring
                 let totalNutrients = 0;
                 for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) {
                     totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
                 }
                 
-                console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Environment Nutrients: ${totalNutrients}`);
+                console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} (${regent.activeDecree}) | Nutrients: ${totalNutrients}`);
             }
 
             // Persistence (Rapid Genesis Snapshotting every 5000 ticks ~ 1 minute)

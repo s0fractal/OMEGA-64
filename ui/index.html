@@ -116,6 +116,31 @@
         background: rgba(255, 0, 100, 0.4);
       }
 
+      #governance-hud {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(160px);
+        width: 320px;
+        font-size: 0.8rem;
+        border-color: rgba(255, 0, 255, 0.4);
+        text-align: center;
+      }
+      .gov-symbol {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+      .gov-decree {
+        color: #ff00ff;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-top: 5px;
+      }
+      .gov-mods {
+        font-size: 0.65rem;
+        opacity: 0.8;
+      }
+
       #leaderboard {
         position: absolute;
         top: 20px;
@@ -191,6 +216,13 @@
       <button class="snapshot-btn snapshot-save-btn" onclick="saveGenesis()">[ FREEZE TIME (SAVE) ]</button>
       <div id="snapshots-list" style="margin-top: 10px; max-height: 150px; overflow-y: auto;">
         <div style="opacity: 0.5; font-style: italic;">Fetching epochs...</div>
+      </div>
+    </div>
+
+    <div id="governance-hud" class="glass">
+      <h1 style="color: #ff00ff; border-bottom: 1px solid rgba(255,0,255,0.3); padding-bottom: 5px;">👑 GLOBAL GOVERNANCE</h1>
+      <div id="gov-content" style="margin-top: 10px;">
+         <div style="opacity: 0.5; font-style: italic;">Awaiting Regent...</div>
       </div>
     </div>
 
@@ -601,6 +633,30 @@
 
       setInterval(updateSnapshots, 2000);
       updateSnapshots();
+
+      async function updateGovernance() {
+        try {
+          const res = await fetch("/governance");
+          if (!res.ok) return;
+          const gov = await res.json();
+          const container = document.getElementById("gov-content");
+          if (!gov || gov.genome === "NONE") {
+            container.innerHTML = '<div style="opacity: 0.5; font-style: italic;">Awaiting Regent election...</div>';
+            return;
+          }
+          
+          let html = `
+            <div class="gov-symbol">👑</div>
+            <div class="val" style="color: #ffcc00;">[${gov.genome}]</div>
+            <div class="gov-decree">${gov.activeDecree}</div>
+            <div class="gov-mods" style="margin-top: 5px;">SPD: x${gov.mods.speed} | DCY: x${gov.mods.decay} | MUT: x${gov.mods.mutation}</div>
+          `;
+          container.innerHTML = html;
+        } catch(e) {}
+      }
+
+      setInterval(updateGovernance, 1000);
+      updateGovernance();
 
       animate();
     </script>

@@ -9,6 +9,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 
@@ -117,6 +118,12 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     if (url.pathname === "/snapshots" && req.method === "GET") {
         const list = await SNAPSHOT_ENGINE.listSnapshots();
         return new Response(JSON.stringify(list), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/governance" && req.method === "GET") {
+        return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
         });
     }

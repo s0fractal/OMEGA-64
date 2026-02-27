@@ -13,6 +13,13 @@ export const DECREES: Record<string, any> = {
 };
 
 export const SOVEREIGNTY_ENGINE = {
+    currentRegent: {
+        genome: "NONE",
+        legitimacy: 0,
+        activeDecree: "NONE",
+        mods: DECREES["NONE"]
+    },
+
     // Elect a Regent based on Quadratic Voting (Mitigates whale attacks)
     electRegent: (activeIndices: number[]) => {
         let bestPower = 0;
@@ -32,7 +39,7 @@ export const SOVEREIGNTY_ENGINE = {
         if (regentIdx !== -1) {
             const filename = IDX_TO_ID.get(regentIdx)!;
             const logicBytes = STATE_MATRIX.getLogic(regentIdx);
-            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('').substring(0, 8);
+            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
             
             // Select a decree based on the first digit of the regent's logic
             const logicDigit = parseInt(logicStr[0], 16);
@@ -42,21 +49,21 @@ export const SOVEREIGNTY_ENGINE = {
             else if (logicDigit <= 11) activeDecree = "MUTATIVE_FEVER";
             else activeDecree = "VOID_STASIS";
 
-            return {
-                regent: filename.split(".")[0],
-                symbol: filename.split(".")[1],
+            SOVEREIGNTY_ENGINE.currentRegent = {
+                genome: logicStr,
                 legitimacy: bestPower * bestPower, // Return raw resonance for display
                 activeDecree,
                 mods: DECREES[activeDecree]
             };
+            return SOVEREIGNTY_ENGINE.currentRegent;
         }
 
-        return {
-            regent: "NONE",
-            symbol: "NONE",
+        SOVEREIGNTY_ENGINE.currentRegent = {
+            genome: "NONE",
             legitimacy: 0,
             activeDecree: "NONE",
             mods: DECREES["NONE"]
         };
+        return SOVEREIGNTY_ENGINE.currentRegent;
     }
 };
