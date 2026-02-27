@@ -16,6 +16,7 @@ for (let i = 0; i < projectionMatrix.length; i++) {
 export const SEMANTIC_MEMBRANE = {
     projectionMatrix,
     thoughtArchive: new Map<string, string>(),
+    lineage: new Map<string, string>(), // ERA 23: childGenome -> parentGenome
 
     /**
      * Adapts projection with Homeostatic Plasticity.

@@ -122,6 +122,11 @@ export const PULSE = {
                     console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
                     
                     SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    
+                    // Record Lineage
+                    const childLogic = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
+                    SEMANTIC_MEMBRANE.lineage.set(childLogic, logicStr);
+
                     STATE_MATRIX.clearEvolution(idx);
                 }
             }

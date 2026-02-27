@@ -128,6 +128,12 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
+    if (url.pathname === "/lineage" && req.method === "GET") {
+        return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
     if (url.pathname === "/snapshot/export" && req.method === "POST") {
         const result = await SNAPSHOT_ENGINE.exportSnapshot();
         return new Response(JSON.stringify(result), {
