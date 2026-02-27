@@ -42,10 +42,10 @@ async function exportCore() {
     let output = "# OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
-    // @ts-ignore: Deno is available in runtime
+    // @ts-ignore: Deno.readTextFile is valid in Deno
     for (const file of CORE_FILES) {
         try {
-            // @ts-ignore
+            // @ts-ignore: Dynamic filesystem access
             const content = await Deno.readTextFile(file);
             const ext = file.split('.').pop() === 'ts' ? 'typescript' : 'markdown';
             output += `## FILE: ${file}\n\n\`\`\`${ext}\n${content}\n\`\`\`\n\n---\n\n`;
@@ -54,12 +54,12 @@ async function exportCore() {
         }
     }
 
-    // @ts-ignore
+    // @ts-ignore: Deno.writeTextFile is valid in Deno
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
     console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 22 components.");
 }
 
-// @ts-ignore
+// @ts-ignore: import.meta.main is Deno specific
 if (import.meta.main) {
     await exportCore();
 }
