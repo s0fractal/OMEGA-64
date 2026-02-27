@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-02-27T18:54:08.905Z*
+*Generated: 2026-02-27T19:13:07.113Z*
 
 ---
 
@@ -25,9 +25,11 @@ const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
 const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
 const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
 const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET + MAX_ATOMS; // evolution (Uint8 x 1)
+const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
 
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
+const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
+const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -40,7 +42,9 @@ const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
 const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
-const evolutionRequests = new Uint8Array(buffer, EVOLUTION_OFFSET, MAX_ATOMS);
+
+const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
+const viralGrid = new Uint8Array(viralGridBuffer);
 
 const SCALE = 1000;
 
@@ -48,6 +52,8 @@ export const STATE_MATRIX = {
     MAX_ATOMS,
     buffer,
     SCALE,
+    evolutionRequestsBuffer,
+    viralGridBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -96,16 +102,10 @@ export const STATE_MATRIX = {
     },
 
     // --- SYSTEM ---
-    clear: (idx: number) => {
-        ids[idx] = 0n;
-        xs[idx] = 0;
-        ys[idx] = 0;
-        energies[idx] = 0;
-        resonances[idx] = 0;
-        phases[idx] = 0;
-        logic.fill(0, idx * 8, idx * 8 + 8);
-        bonds.fill(0, idx * 4, idx * 4 + 4);
-        evolutionRequests[idx] = 0;
+    clear: () => {
+        new Uint32Array(buffer).fill(0);
+        new Uint8Array(evolutionRequestsBuffer).fill(0);
+        new Uint8Array(viralGridBuffer).fill(0);
     },
 
     getActiveIndices: () => {
@@ -378,7 +378,11 @@ export const PULSE = {
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
-            PHYSICS_ENGINE.decayPheromones();
+            if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
+            if (pulseId % 10 === 0) {
+                // @ts-ignore: viralGrid exists in STATE_MATRIX
+                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid);
+            }
             
             // Exodus Check (Throttled)
             if (pulseId % 10 === 0) {
@@ -401,7 +405,9 @@ export const PULSE = {
                         marketBuffer: PREDICTION_MARKET.buffer,
                         startIdx: i * chunkSize,
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                        mods: currentRegent.mods,
+                        mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
+                        evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
+                        viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         pulseId
                     });
                 });
@@ -486,11 +492,14 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
     const attention = new Float32Array(attentionBuffer);
+    const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
+    const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
+    const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const marketPool = new Int32Array(marketBuffer, 4, 1);
     const ids = new BigUint64Array(buffer, 0, MAX_ATOMS);
     const xs = new Int16Array(buffer, (MAX_ATOMS * 8), MAX_ATOMS);
@@ -501,7 +510,7 @@ self.onmessage = (e) => {
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
     const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
     const contexts = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64), MAX_ATOMS * 32);
-    const evolutionRequests = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64) + (MAX_ATOMS * 32), MAX_ATOMS);
+
 
     for (let i = startIdx; i < endIdx; i++) {
         const currentId = Atomics.load(ids, i);
@@ -571,6 +580,45 @@ self.onmessage = (e) => {
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
             if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
                 Atomics.store(evolutionRequests, i, 1);
+            }
+        }
+
+        // ERA 24: Horizontal Gene Transfer (Viral Semantics)
+        if (gx >= 0 && gx < 70 && gy >= 0 && gy < 40) {
+            const gridIdx = (gy * 70 + gx) * 9;
+            
+            // 1. BROADCAST: Resonant atoms leak logic into grid
+            if (resonance > 150 && (pulseId + i) % 10 === 0) {
+                const currentIntensity = Atomics.load(viralGrid, gridIdx + 8);
+                // Only overwrite if we are reasonably resonant
+                if (resonance / 5 > currentIntensity) {
+                    for (let b = 0; b < 8; b++) {
+                        Atomics.store(viralGrid, gridIdx + b, Atomics.load(logic, i * 8 + b));
+                    }
+                    Atomics.store(viralGrid, gridIdx + 8, Math.min(255, Math.floor(resonance / 4)));
+                } else {
+                    // Reinforce existing logic if it matches
+                    if (Atomics.load(viralGrid, gridIdx) === Atomics.load(logic, i * 8)) {
+                        Atomics.add(viralGrid, gridIdx + 8, 5);
+                    }
+                }
+            }
+
+            // 2. INFECT: Atoms absorb logic from grid
+            if (resonance < 400 && (pulseId + i) % 50 === 0) {
+                const intensity = Atomics.load(viralGrid, gridIdx + 8);
+                if (intensity > 50) {
+                    const headByte = Atomics.load(viralGrid, gridIdx);
+                    if (headByte !== 0 && headByte !== Atomics.load(logic, i * 8)) {
+                        // Infection chance proportional to intensity
+                        if (Math.random() * 255 < intensity) {
+                            const randByte = Math.floor(Math.random() * 8);
+                            const sourceByte = Atomics.load(viralGrid, gridIdx + randByte);
+                            Atomics.store(logic, i * 8 + randByte, sourceByte);
+                            energy -= 5; 
+                        }
+                    }
+                }
             }
         }
 
@@ -1777,6 +1825,37 @@ export const PHYSICS_ENGINE = {
         }
     },
 
+    diffuseViralSemantics: (viralGrid: Uint8Array) => {
+        for (let y = 0; y < GRID_H; y++) {
+            for (let x = 0; x < GRID_W; x++) {
+                const idx = (y * GRID_W + x) * 9;
+                const intensity = Atomics.load(viralGrid, idx + 8);
+                if (intensity === 0) continue;
+
+                // 1. DECAY
+                Atomics.store(viralGrid, idx + 8, Math.max(0, intensity - 2));
+
+                // 2. DIFFUSE (Random chance to spread logic to neighbors)
+                if (intensity > 150 && Math.random() < 0.1) {
+                    const nx = x + (Math.random() > 0.5 ? 1 : -1);
+                    const ny = y + (Math.random() > 0.5 ? 1 : -1);
+                    if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+                        const nIdx = (ny * GRID_W + nx) * 9;
+                        const nIntensity = Atomics.load(viralGrid, nIdx + 8);
+                        if (nIntensity < intensity / 2) {
+                            // Copy logic and part of intensity
+                            for (let b = 0; b < 8; b++) {
+                                Atomics.store(viralGrid, nIdx + b, Atomics.load(viralGrid, idx + b));
+                            }
+                            Atomics.store(viralGrid, nIdx + 8, Math.floor(intensity / 2));
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+
     // Calculate velocity from Logic (Genome)
     getGenomeVelocity: (logic: string) => {
         let velX = 0;
@@ -2952,6 +3031,26 @@ Deno.serve({ port: PORT }, async (req) => {
         container.innerHTML = html;
       }
 
+      async function syncViralGrid() {
+        try {
+          const res = await fetch("/viral");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          const view = new DataView(buffer);
+
+          for (let i = 0; i < gridCells; i++) {
+            const intensity = view.getUint8(i * 9 + 8);
+            if (intensity > 10) {
+                // Violet/Indigo color for Viral Clouds
+                gridCol[i * 3] = Math.max(gridCol[i * 3], intensity / 255 * 0.8); // R
+                gridCol[i * 3 + 1] = Math.max(gridCol[i * 3 + 1], intensity / 255 * 0.2); // G
+                gridCol[i * 3 + 2] = Math.max(gridCol[i * 3 + 2], intensity / 255 * 1.0); // B
+                gridSiz[i] = Math.max(gridSiz[i], 12 + intensity / 10);
+            }
+          }
+        } catch(e) {}
+      }
+
       function animate(t) {
         requestAnimationFrame(animate);
         
@@ -2960,6 +3059,7 @@ Deno.serve({ port: PORT }, async (req) => {
         if (t - lastSync > 200) {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
+          syncViralGrid();
           updatePeers();
           updateLeaderboard();
           lastSync = t;
@@ -3590,6 +3690,13 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     if (url.pathname === "/lineage" && req.method === "GET") {
         return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)), {
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/viral" && req.method === "GET") {
+        // @ts-ignore: viralGridBuffer is dynamically exposed
+        return new Response(STATE_MATRIX.viralGridBuffer, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
         });
     }
 
