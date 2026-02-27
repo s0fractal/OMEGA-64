@@ -51,7 +51,11 @@ export const PULSE = {
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
-            PHYSICS_ENGINE.decayPheromones();
+            if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
+            if (pulseId % 10 === 0) {
+                // @ts-ignore: viralGrid exists in STATE_MATRIX
+                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid);
+            }
             
             // Exodus Check (Throttled)
             if (pulseId % 10 === 0) {
@@ -74,7 +78,9 @@ export const PULSE = {
                         marketBuffer: PREDICTION_MARKET.buffer,
                         startIdx: i * chunkSize,
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                        mods: currentRegent.mods,
+                        mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
+                        evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
+                        viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         pulseId
                     });
                 });

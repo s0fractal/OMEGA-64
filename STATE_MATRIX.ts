@@ -16,9 +16,11 @@ const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
 const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
 const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
 const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET + MAX_ATOMS; // evolution (Uint8 x 1)
+const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
 
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
+const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
+const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -31,7 +33,9 @@ const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
 const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
-const evolutionRequests = new Uint8Array(buffer, EVOLUTION_OFFSET, MAX_ATOMS);
+
+const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
+const viralGrid = new Uint8Array(viralGridBuffer);
 
 const SCALE = 1000;
 
@@ -39,6 +43,8 @@ export const STATE_MATRIX = {
     MAX_ATOMS,
     buffer,
     SCALE,
+    evolutionRequestsBuffer,
+    viralGridBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -87,16 +93,10 @@ export const STATE_MATRIX = {
     },
 
     // --- SYSTEM ---
-    clear: (idx: number) => {
-        ids[idx] = 0n;
-        xs[idx] = 0;
-        ys[idx] = 0;
-        energies[idx] = 0;
-        resonances[idx] = 0;
-        phases[idx] = 0;
-        logic.fill(0, idx * 8, idx * 8 + 8);
-        bonds.fill(0, idx * 4, idx * 4 + 4);
-        evolutionRequests[idx] = 0;
+    clear: () => {
+        new Uint32Array(buffer).fill(0);
+        new Uint8Array(evolutionRequestsBuffer).fill(0);
+        new Uint8Array(viralGridBuffer).fill(0);
     },
 
     getActiveIndices: () => {

@@ -50,6 +50,37 @@ export const PHYSICS_ENGINE = {
         }
     },
 
+    diffuseViralSemantics: (viralGrid: Uint8Array) => {
+        for (let y = 0; y < GRID_H; y++) {
+            for (let x = 0; x < GRID_W; x++) {
+                const idx = (y * GRID_W + x) * 9;
+                const intensity = Atomics.load(viralGrid, idx + 8);
+                if (intensity === 0) continue;
+
+                // 1. DECAY
+                Atomics.store(viralGrid, idx + 8, Math.max(0, intensity - 2));
+
+                // 2. DIFFUSE (Random chance to spread logic to neighbors)
+                if (intensity > 150 && Math.random() < 0.1) {
+                    const nx = x + (Math.random() > 0.5 ? 1 : -1);
+                    const ny = y + (Math.random() > 0.5 ? 1 : -1);
+                    if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+                        const nIdx = (ny * GRID_W + nx) * 9;
+                        const nIntensity = Atomics.load(viralGrid, nIdx + 8);
+                        if (nIntensity < intensity / 2) {
+                            // Copy logic and part of intensity
+                            for (let b = 0; b < 8; b++) {
+                                Atomics.store(viralGrid, nIdx + b, Atomics.load(viralGrid, idx + b));
+                            }
+                            Atomics.store(viralGrid, nIdx + 8, Math.floor(intensity / 2));
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+
     // Calculate velocity from Logic (Genome)
     getGenomeVelocity: (logic: string) => {
         let velX = 0;

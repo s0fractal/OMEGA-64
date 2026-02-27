@@ -134,6 +134,13 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
+    if (url.pathname === "/viral" && req.method === "GET") {
+        // @ts-ignore: viralGridBuffer is dynamically exposed
+        return new Response(STATE_MATRIX.viralGridBuffer, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
     if (url.pathname === "/snapshot/export" && req.method === "POST") {
         const result = await SNAPSHOT_ENGINE.exportSnapshot();
         return new Response(JSON.stringify(result), {
