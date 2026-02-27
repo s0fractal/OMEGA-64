@@ -5,7 +5,17 @@ import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 const GRID_W = 70;
 const GRID_H = 40;
 
+const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
+const NUTRIENTS = new Int32Array(envBuffer);
+
+const attentionBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Float32
+const ATTENTION_PHEROMONES = new Float32Array(attentionBuffer);
+
 export const PHYSICS_ENGINE = {
+    envBuffer,
+    NUTRIENTS,
+    attentionBuffer,
+    ATTENTION_PHEROMONES,
     // Spatial Memory
     pheromones: {
         "WORKER": new Float32Array(GRID_W * GRID_H),
@@ -20,12 +30,23 @@ export const PHYSICS_ENGINE = {
         return gy * GRID_W + gx;
     },
 
+    seedNutrients: () => {
+        // Uniform or scattered distribution of initial energy
+        for (let i = 0; i < NUTRIENTS.length; i++) {
+            Atomics.store(NUTRIENTS, i, Math.floor(Math.random() * 500) + 100);
+        }
+    },
+
     decayPheromones: () => {
         for (const caste in PHYSICS_ENGINE.pheromones) {
             const p = PHYSICS_ENGINE.pheromones[caste as keyof typeof PHYSICS_ENGINE.pheromones];
             for (let i = 0; i < p.length; i++) {
                 p[i] *= 0.95;
             }
+        }
+        
+        for (let i = 0; i < ATTENTION_PHEROMONES.length; i++) {
+            ATTENTION_PHEROMONES[i] *= 0.90; // Attention decays relatively fast
         }
     },
 

@@ -1,149 +1,163 @@
-// OMEGA-64 | SEMANTIC_MEMBRANE.ts | Era 14: The Turing Mind
-// Bridges textual concepts to Simulated Atoms via Neural Binary Quantization.
+// OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
+// Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { ID_TO_IDX, IDX_TO_ID } from "./RIBOSOME.ts";
 
-/**
- * Neural Binary Quantization (Projection-based)
- * Compresses textual semantic intent into 64 bits (8 bytes).
- * Ensures that Hamming Distance between results correlates with semantic similarity.
- */
-function semanticHash(text: string): Uint8Array {
-    const normalized = text.toLowerCase().replace(/[^a-z0-9 ]/g, "");
-    const logic = new Uint8Array(8);
-    
-    // We simulate a 64-dimensional projection space
-    // Each bit in the 8-byte result is a hyperplane projection
-    for (let bitIdx = 0; bitIdx < 64; bitIdx++) {
-        let projection = 0;
-        
-        // Deterministic pseudo-random plane coefficients per bit
-        // Derived from a static seed to ensure "God" always hashes the same
-        const bitSeed = bitIdx * 1337;
-        
-        for (let i = 0; i < normalized.length; i++) {
-            const charCode = normalized.charCodeAt(i);
-            // Sinusoidal projection (simple LSH variant)
-            projection += Math.sin(bitSeed + i + charCode) * charCode;
-        }
-        
-        // Quantize: If projection > median (0), set bit to 1
-        if (projection > 0) {
-            const byteIdx = Math.floor(bitIdx / 8);
-            const bitInByte = bitIdx % 8;
-            logic[byteIdx] |= (1 << bitInByte);
-        }
-    }
-    
-    return logic;
-}
+const PROJECTION_SIZE = 64;
+const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
+const activityHistory = new Float32Array(PROJECTION_SIZE);
+let lastNormalization = 0;
 
-/**
- * Spatial Projection: Maps text to X, Y based on neural hash.
- */
-function projectPosition(logic: Uint8Array): { x: number, y: number } {
-    // Treat the first 4 bytes as coordinates
-    const sx = (logic[0] << 8) | logic[1];
-    const sy = (logic[2] << 8) | logic[3];
-    
-    const x = 50 + (sx % 1300);
-    const y = 50 + (sy % 700);
-    
-    return { x, y };
+// Initialize with deterministic pseudo-random resonance
+for (let i = 0; i < projectionMatrix.length; i++) {
+    projectionMatrix[i] = Math.sin(i * 0.123); 
 }
 
 export const SEMANTIC_MEMBRANE = {
+    projectionMatrix,
+    thoughtArchive: new Map<string, string>(),
+
     /**
-     * injectThought: Injects a conceptual "Spore" into the Matrix.
+     * Adapts projection with Homeostatic Plasticity.
      */
-    injectThought: async (text: string, weight: number): Promise<number> => {
-        const logic = semanticHash(text);
-        const { x, y } = projectPosition(logic);
+    adapt: (vecA: Float32Array, vecB: Float32Array, resonance: number) => {
+        const learningRate = 0.001 * resonance;
+        const ltdThreshold = 0.1;
         
-        const idx = STATE_MATRIX.findEmptySlot();
-        if (idx === -1) return -1;
-
-        const words = text.split(/\s+/).filter(w => w.length > 3);
-        const keyword = words[0]?.toUpperCase() || "IDEA";
-        // Use Vacuum for thoughts
-        const filename = `SINGULARITY/V/0x9999_${keyword}_${Date.now().toString().slice(-4)}.md`;
-
-        // Commit to Matrix
-        STATE_MATRIX.clear(idx);
-        STATE_MATRIX.setId(idx, BigInt(idx + 1000)); 
-        STATE_MATRIX.setX(idx, x);
-        STATE_MATRIX.setY(idx, y);
-        STATE_MATRIX.setEnergy(idx, weight);
-        STATE_MATRIX.setResonance(idx, 0);
-        STATE_MATRIX.setLogic(idx, logic);
-        
-        ID_TO_IDX.set(filename, idx);
-        IDX_TO_ID.set(idx, filename);
-
-        console.log(`   [MEMBRANE] Neural Injection: "${text}" -> Atom[${idx}]`);
-        
-        const content = `---\ntype: thought\nweight: ${weight}\ngenome: ${Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('')}\n---\n${text}`;
-        // @ts-ignore
-        await Deno.writeTextFile(filename, content);
-        
-        return idx;
-    },
-
-    readVoxPopuli: (): string => {
-        const activeIdx = STATE_MATRIX.getActiveIndices();
-        const survivors = activeIdx
-            .map(idx => ({
-                idx,
-                resonance: STATE_MATRIX.getResonance(idx),
-                energy: STATE_MATRIX.getEnergy(idx),
-                id: IDX_TO_ID.get(idx) || "UNKNOWN"
-            }))
-            .filter(a => a.resonance > 5 || a.energy > 50)
-            .sort((a, b) => b.resonance - a.resonance)
-            .slice(0, 8);
-
-        if (survivors.length === 0) return "The Matrix is quiet.";
-
-        const summary = survivors.map(s => {
-            const basename = s.id.split('/').pop() || s.id;
-            const name = basename.split('.')[1] || "ENTITY";
-            return `${name}(${s.resonance.toFixed(1)})`;
-        }).join(", ");
-
-        return `Collective Voice: ${summary}`;
-    },
-
-    digestConcept: (symbol: string) => {
-        const activeIdx = STATE_MATRIX.getActiveIndices();
-        for (const idx of activeIdx) {
-            const filename = IDX_TO_ID.get(idx);
-            if (filename?.includes(symbol.toUpperCase())) {
-                STATE_MATRIX.setEnergy(idx, 0);
+        for (let i = 0; i < PROJECTION_SIZE; i++) {
+            activityHistory[i] = 0.99 * activityHistory[i] + 0.01 * Math.abs(vecA[i]);
+            for (let j = 0; j < PROJECTION_SIZE; j++) {
+                const correlation = vecA[i] * vecB[j];
+                if (correlation > ltdThreshold && resonance > 10) {
+                    projectionMatrix[i * PROJECTION_SIZE + j] += learningRate * correlation;
+                } else if (correlation < -ltdThreshold) {
+                    projectionMatrix[i * PROJECTION_SIZE + j] -= 0.0001 * Math.abs(correlation);
+                }
             }
         }
+
+        // Synaptic Scaling (Homeostasis) every 1000 adaptations
+        const now = Date.now();
+        if (now - lastNormalization > 60000) { 
+            SEMANTIC_MEMBRANE.normalize();
+            lastNormalization = now;
+        }
+    },
+
+    normalize: () => {
+        for (let i = 0; i < PROJECTION_SIZE; i++) {
+            let sum = 0;
+            for (let j = 0; j < PROJECTION_SIZE; j++) sum += Math.abs(projectionMatrix[i * PROJECTION_SIZE + j]);
+            if (sum > 0) {
+                const scale = 1.0 / sum;
+                for (let j = 0; j < PROJECTION_SIZE; j++) projectionMatrix[i * PROJECTION_SIZE + j] *= scale;
+            }
+        }
+        console.log(`🧠 [MEMBRANE] Synaptic scaling applied.`);
+    },
+
+    resonantHash: (text: string): Uint8Array => {
+        const inputVec = new Float32Array(PROJECTION_SIZE);
+        for (let i = 0; i < Math.min(text.length, PROJECTION_SIZE); i++) inputVec[i] = text.charCodeAt(i) / 255.0;
+
+        const resultVec = new Float32Array(PROJECTION_SIZE);
+        for (let i = 0; i < PROJECTION_SIZE; i++) {
+            let sum = 0;
+            for (let j = 0; j < PROJECTION_SIZE; j++) sum += projectionMatrix[i * PROJECTION_SIZE + j] * inputVec[j];
+            resultVec[i] = sum;
+        }
+
+        const hash = new Uint8Array(8);
+        for (let i = 0; i < 8; i++) {
+            let byte = 0;
+            for (let bit = 0; bit < 8; bit++) if (resultVec[i * 8 + bit] > 0) byte |= (1 << bit);
+            hash[i] = byte;
+        }
+        return hash;
+    },
+
+    project: (text: string, idx: number) => {
+        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+        STATE_MATRIX.setLogic(idx, hash);
+    },
+
+    injectThought: (text: string, weight: number) => {
+        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+        const idx = STATE_MATRIX.findEmptySlot();
+        
+        if (idx !== -1) {
+            // ID generation logic (Pseudo-random 64-bit BigInt)
+            const idBytes = new Uint8Array(8);
+            crypto.getRandomValues(idBytes);
+            let id = 0n;
+            for (let i = 0; i < 8; i++) id = (id << 8n) | BigInt(idBytes[i]);
+            
+            STATE_MATRIX.setId(idx, id);
+            
+            // Genomic Traits derived directly from the semantic hash (LSH)
+            // logic[1] determines Caste. >128 Parasite, <128 Builder.
+            STATE_MATRIX.setLogic(idx, hash);
+            
+            // Energy derived from weight + the first modulus byte of hash
+            const baseEnergy = weight + (hash[0] % 50);
+            STATE_MATRIX.setEnergy(idx, baseEnergy);
+            
+            // Resonance based on aggressiveness (logic[1])
+            const isAggressive = hash[1] > 128;
+            STATE_MATRIX.setResonance(idx, isAggressive ? 100 : 500);
+
+            // Spawn near center
+            STATE_MATRIX.setX(idx, 700 + (Math.random() - 0.5) * 50);
+            STATE_MATRIX.setY(idx, 400 + (Math.random() - 0.5) * 50);
+            
+            // Akashic Archival: Map the Genome Hex to the original English text
+            const hexHash = Array.from(hash).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            SEMANTIC_MEMBRANE.thoughtArchive.set(hexHash, text);
+
+            console.log(`🧬 [MOTOR_OUTPUT] Spawned Emergent Atom [${isAggressive ? 'PARASITE' : 'BUILDER'}] from Thought (Genome: ${hexHash}): "${text.substring(0, 20)}..."`);
+        }
+    },
+
+    readVoxelPopuli: async (rootPath: string): Promise<string[]> => {
+        const thoughts: string[] = [];
+        
+        // --- 1. Scan The Ecological Mood ---
+        let parasiteCount = 0;
+        let builderCount = 0;
+        let totalEnergy = 0;
+        
+        const active = STATE_MATRIX.getActiveIndices();
+        for (const i of active) {
+            const logic = STATE_MATRIX.getLogic(i);
+            if (logic[1] > 128) parasiteCount++;
+            else builderCount++;
+            totalEnergy += STATE_MATRIX.getEnergy(i);
+        }
+        
+        const avgEnergy = active.length > 0 ? (totalEnergy / active.length) : 0;
+        
+        let mood = "ECOLOGICAL MOOD: Balanced.";
+        if (parasiteCount > builderCount * 2) {
+            mood = "CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites.";
+        } else if (builderCount > parasiteCount * 3 && avgEnergy < 50) {
+            mood = "SYSTEM ALERT: The matrix is starving. Builders lack nutrients.";
+        } else if (builderCount > parasiteCount * 2) {
+            mood = "HARMONY: The ecosystem is constructive and building mycelial bonds.";
+        }
+        thoughts.push(`[SYSTEM_STATE] Active Entities: ${active.length}. ${mood}`);
+
+        // --- 2. Scan Textual Memories ---
+        try {
+            // @ts-ignore: Deno types might not be resolved perfectly
+            for await (const entry of Deno.readDir(rootPath)) {
+                if (entry.isFile && entry.name.endsWith(".md")) {
+                    // @ts-ignore: Deno types might not be resolved perfectly
+                    const content = await Deno.readTextFile(`${rootPath}/${entry.name}`);
+                    const thoughtMatch = content.match(/# Thought\n([\s\S]+?)$/m);
+                    if (thoughtMatch) thoughts.push(thoughtMatch[1].trim());
+                }
+            }
+        } catch { /* NOOP */ }
+        return thoughts;
     }
 };
-
-// --- Terminal Test ---
-if (import.meta.main) {
-    console.log("🛡️ SEMANTIC_MEMBRANE | Era 14 | Neural Quantization Test");
-    const h1 = semanticHash("God");
-    const h2 = semanticHash("Deity");
-    const h3 = semanticHash("Dog");
-    
-    const hamming = (a: Uint8Array, b: Uint8Array) => {
-        let dist = 0;
-        for (let i = 0; i < 8; i++) {
-            let xor = a[i] ^ b[i];
-            while (xor > 0) { dist += (xor & 1); xor >>= 1; }
-        }
-        return dist;
-    };
-
-    console.log("   'God'   :", Array.from(h1).map(b => b.toString(16).padStart(2, '0')).join(''));
-    console.log("   'Deity' :", Array.from(h2).map(b => b.toString(16).padStart(2, '0')).join(''));
-    console.log("   'Dog'   :", Array.from(h3).map(b => b.toString(16).padStart(2, '0')).join(''));
-    console.log(`   Dist(God, Deity): ${hamming(h1, h2)} (Lower is closer)`);
-    console.log(`   Dist(God, Dog)  : ${hamming(h1, h3)}`);
-}

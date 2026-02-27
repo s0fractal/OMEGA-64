@@ -5,8 +5,11 @@ import { PULSE } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { TIMELINE_FORK } from "./TIMELINE_FORK.ts";
+import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+
+import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
 const UI_PATH = "./ui/index.html";
@@ -18,9 +21,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     const url = new URL(req.url);
     
     if (url.pathname === "/state") {
-        const id = url.searchParams.get("id") || "ALPHA";
-        const timeline = TIMELINE_FORK.timelines.get(id);
-        const buffer = timeline ? timeline.buffer : STATE_MATRIX.buffer;
+        const buffer = STATE_MATRIX.buffer;
         
         const bufferCopy = new Uint8Array(buffer.byteLength);
         bufferCopy.set(new Uint8Array(buffer));
@@ -29,13 +30,39 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
-    if (url.pathname === "/fork" && req.method === "POST") {
+    if (url.pathname === "/grid") {
+        const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
+        const attention = new Float32Array(PHYSICS_ENGINE.attentionBuffer);
+
+        const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
+        const outEnv = new Int32Array(buffer, 0, env.length);
+        const outAttention = new Float32Array(buffer, env.byteLength, attention.length);
+        
+        outEnv.set(env);
+        outAttention.set(attention);
+
+        return new Response(buffer, {
+            headers: { "Content-Type": "application/octet-stream" }
+        });
+    }
+
+    if (url.pathname === "/crisis" && req.method === "POST") {
         try {
-            const { name } = await req.json();
-            TIMELINE_FORK.branch(name);
-            return new Response("OK", { status: 200 });
+            const { logicHex } = await req.json();
+            const logicBytes = new Uint8Array(8);
+            if (logicHex && logicHex.length === 16) {
+                for (let i = 0; i < 8; i++) {
+                    logicBytes[i] = parseInt(logicHex.substr(i * 2, 2), 16);
+                }
+            } else {
+                // Generate a random crisis mutation if none provided
+                crypto.getRandomValues(logicBytes);
+            }
+            
+            PREDICTION_MARKET.startCrisis(logicBytes);
+            return new Response("Crisis Initiated", { status: 200 });
         } catch (e) {
-            return new Response("Fork Failed", { status: 400 });
+            return new Response("Crisis Failed", { status: 400 });
         }
     }
 
@@ -75,12 +102,19 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     }
 
     if (url.pathname === "/vox") {
-        return new Response(SEMANTIC_MEMBRANE.readVoxPopuli(), {
-            headers: { "Content-Type": "text/plain" }
+        return new Response(JSON.stringify(await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd())), {
+            headers: { "Content-Type": "application/json" }
         });
     }
 
-    // 3. Direct Thought Injection (POST)
+    if (url.pathname === "/thoughts") {
+        return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)), {
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+
+    // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
+    /*
     if (url.pathname === "/inject" && req.method === "POST") {
         try {
             const { text, energy } = await req.json();
@@ -91,6 +125,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             return new Response("Injection Failed", { status: 400 });
         }
     }
+    */
 
     // 4. Spatial Mutation (POST)
     if (url.pathname === "/mutate" && req.method === "POST") {
@@ -118,8 +153,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     if (url.pathname === "/avatar" && req.method === "POST") {
         try {
             const { x, y } = await req.json();
-            STATE_MATRIX.setX(0, x);
-            STATE_MATRIX.setY(0, y);
+            AVATAR_ENGINE.dropPheromone(x, y);
             return new Response("OK", { status: 200 });
         } catch (e) {
             return new Response("Avatar Sync Failed", { status: 400 });
@@ -137,6 +171,18 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
     console.log("💓 [SYSTEM] Pulse Engine Ignited.");
+    
+    // Spawn an emergent Avatar atom to wander the matrix naturally
+    const aIdx = STATE_MATRIX.findEmptySlot();
+    if (aIdx !== -1) {
+        STATE_MATRIX.setId(aIdx, 0x00000000AAAAAAAAn); // Avatar ID
+        STATE_MATRIX.setX(aIdx, 700);
+        STATE_MATRIX.setY(aIdx, 400);
+        STATE_MATRIX.setEnergy(aIdx, 9999); 
+        STATE_MATRIX.setResonance(aIdx, 9999);
+        STATE_MATRIX.setLogic(aIdx, new Uint8Array([0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88]));
+    }
+    
     await PULSE.run();
 })();
 

@@ -1,42 +1,30 @@
-// OMEGA-64 | AVATAR_ENGINE.ts | Era 13: ALEPH
-// Gravitational physics for the God-Atom (Observer Avatar).
+// OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
+// Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { STATE_MATRIX, GOD_ATOM_INDEX } from "./STATE_MATRIX.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 
 export const AVATAR_ENGINE = {
     /**
-     * Applies gravitational pull from the Avatar (Index 0) to nearby atoms.
-     * Atoms near the avatar also gain a resonance boost.
+     * Deposits ATTENTION pheromones into the physics grid at cursor locations.
+     * Atoms will naturally react to this scent based on their genetic logic.
      */
-    applyInfluence: () => {
-        const ax = STATE_MATRIX.getX(GOD_ATOM_INDEX);
-        const ay = STATE_MATRIX.getY(GOD_ATOM_INDEX);
-        const active = STATE_MATRIX.getActiveIndices();
+    dropPheromone: (x: number, y: number) => {
+        const idx = PHYSICS_ENGINE.getGridIdx(x, y);
+        
+        // Spill a highly concentrated dose of attention at the cursor
+        // Capped to prevent float overflow or infinite pooling
+        const current = PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx];
+        if (current < 1000) {
+            PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx] += 100.0;
+        }
 
-        // Constants for the Avatar influence
-        const GRAVITY_STRENGTH = 0.05;
-        const RESONANCE_BOOST = 1.0;
-        const RADIUS = 250;
-        const RADIUS_SQ = RADIUS * RADIUS;
-
-        for (const i of active) {
-            if (i === GOD_ATOM_INDEX) continue;
-
-            const dx = ax - STATE_MATRIX.getX(i);
-            const dy = ay - STATE_MATRIX.getY(i);
-            const distSq = dx * dx + dy * dy;
-
-            if (distSq < RADIUS_SQ && distSq > 1) {
-                const dist = Math.sqrt(distSq);
-                
-                // 1. Gravitational Pull (Physics)
-                const pull = (GRAVITY_STRENGTH * (RADIUS - dist)) / RADIUS;
-                STATE_MATRIX.setX(i, STATE_MATRIX.getX(i) + (dx / dist) * pull);
-                STATE_MATRIX.setY(i, STATE_MATRIX.getY(i) + (dy / dist) * pull);
-
-                // 2. Resonance Boost (Conceptual)
-                const currentRes = STATE_MATRIX.getResonance(i);
-                STATE_MATRIX.setResonance(i, currentRes + (RESONANCE_BOOST / (dist + 10)));
+        // Also spill slightly into immediate neighbors to create a gradient
+        const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
+        for (const [ox, oy] of checkPoints) {
+            const sIdx = PHYSICS_ENGINE.getGridIdx(x + ox, y + oy);
+            const sCurrent = PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx];
+            if (sCurrent < 1000) {
+                PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx] += 25.0;
             }
         }
     }
