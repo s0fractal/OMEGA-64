@@ -27,6 +27,7 @@ const CORE_FILES = [
     "AVATAR_ENGINE.ts",
     "REFLECTION_ENGINE.ts",
     "SYSTEM_START.ts",
+    "ZERO_IOPS.ts",
     "ARCHITECTURE.md",
     "mod.ts",
     "SHIMS.ts",
