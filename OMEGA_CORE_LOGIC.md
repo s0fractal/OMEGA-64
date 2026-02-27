@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-02-27T18:44:33.186Z*
+*Generated: 2026-02-27T18:54:08.905Z*
 
 ---
 
@@ -449,6 +449,11 @@ export const PULSE = {
                     console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
                     
                     SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    
+                    // Record Lineage
+                    const childLogic = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
+                    SEMANTIC_MEMBRANE.lineage.set(childLogic, logicStr);
+
                     STATE_MATRIX.clearEvolution(idx);
                 }
             }
@@ -2025,6 +2030,7 @@ for (let i = 0; i < projectionMatrix.length; i++) {
 export const SEMANTIC_MEMBRANE = {
     projectionMatrix,
     thoughtArchive: new Map<string, string>(),
+    lineage: new Map<string, string>(), // ERA 23: childGenome -> parentGenome
 
     /**
      * Adapts projection with Homeostatic Plasticity.
@@ -2539,6 +2545,13 @@ Deno.serve({ port: PORT }, async (req) => {
         margin-top: 4px; 
         text-transform: uppercase; 
       }
+      .lineage-breadcrumb {
+        font-size: 0.6rem;
+        color: #ff00ff;
+        margin-top: 5px;
+        opacity: 0.7;
+        font-family: monospace;
+      }
       #vox {
         position: absolute;
         bottom: 40px;
@@ -2601,6 +2614,8 @@ Deno.serve({ port: PORT }, async (req) => {
       <div id="ins-pos" class="val">---</div>
       <div class="label">Metrics (E / R)</div>
       <div id="ins-metrics" class="val">---/---</div>
+      <div class="label">Ancestry</div>
+      <div id="ins-ancestry" class="lineage-breadcrumb">---</div>
     </div>
 
     <div id="leaderboard" class="glass">
@@ -2939,6 +2954,9 @@ Deno.serve({ port: PORT }, async (req) => {
 
       function animate(t) {
         requestAnimationFrame(animate);
+        
+        controls.update();
+
         if (t - lastSync > 200) {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
@@ -2946,6 +2964,7 @@ Deno.serve({ port: PORT }, async (req) => {
           updateLeaderboard();
           lastSync = t;
         }
+
         if (t - lastDictSync > 5000) {
           fetch('/thoughts').then(r=>r.json()).then(d => { 
             // Detect new thoughts for visual flair
@@ -2961,18 +2980,8 @@ Deno.serve({ port: PORT }, async (req) => {
           }).catch(()=>{});
           lastDictSync = t;
         }
-        controls.update();
-        composer.render();
-      }
 
-      async function updatePeers() {
-        try {
-          const res = await fetch("/peers");
-          const peers = await res.json();
-          document.getElementById("peers").innerText = `PEERS: ${
-            peers.length || 0
-          } (${peers.join(", ")})`;
-        } catch (e) {}
+        composer.render();
       }
 
       async function updateSnapshots() {
@@ -2991,6 +3000,64 @@ Deno.serve({ port: PORT }, async (req) => {
           container.innerHTML = html;
         } catch (e) {}
       }
+
+      async function updatePeers() {
+        try {
+          const res = await fetch("/peers");
+          if (!res.ok) return;
+          const peers = await res.json();
+          document.getElementById("peers").innerText = `PEERS: ${peers.length || 0} (${peers.join(", ")})`;
+        } catch (e) {}
+      }
+
+      // RAYCASTER INSPECTOR
+      const raycaster = new THREE.Raycaster();
+      raycaster.params.Points.threshold = 10;
+
+      window.addEventListener("click", (e) => {
+        if (e.target.tagName !== "CANVAS") return;
+
+        mouse.x = (e.clientX / width) * 2 - 1;
+        mouse.y = -(e.clientY / height) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+        
+        const intersects = raycaster.intersectObject(particles);
+        if (intersects.length > 0) {
+          const idx = intersects[0].index;
+          document.getElementById("inspector").style.display = "block";
+          
+          fetch(`/state?id=ALPHA`).then(r => r.arrayBuffer()).then(buf => {
+            const view = new DataView(buf);
+            const idValue = view.getBigUint64(idx * 8, true);
+            const energyValue = view.getFloat32(MAX_ATOMS * 12 + idx * 4, true);
+            const resonanceValue = view.getFloat32(MAX_ATOMS * 12 + MAX_ATOMS * 4 + idx * 4, true);
+            
+            let logicBytes = [];
+            for(let b=0; b<8; b++) {
+              logicBytes.push(view.getUint8(MAX_ATOMS * 24 + idx * 8 + b).toString(16).padStart(2, '0').toUpperCase());
+            }
+            const hex = logicBytes.join('');
+            const thought = thoughtArchive[hex] || "Unknown Existence";
+            
+            document.getElementById("ins-id").innerHTML = `<span style="color:#00f0ff;">${idValue.toString(16).toUpperCase()}</span><br/><i style="font-size:0.7rem; color:#fff;">"${thought}"</i>`;
+            document.getElementById("ins-metrics").innerText = `${energyValue.toFixed(1)} / ${resonanceValue.toFixed(1)}`;
+            
+            // TRACE ANCESTRY
+            let path = [];
+            let curr = hex;
+            let d = 0;
+            while(lineageArchive[curr] && d < 5) {
+               curr = lineageArchive[curr];
+               path.push(thoughtArchive[curr] || "Primitive");
+               d++;
+            }
+            document.getElementById("ins-ancestry").innerText = path.length > 0 ? "← " + path.join(" ← ") : "ORIGINAL SEED";
+          });
+        } else {
+          document.getElementById("inspector").style.display = "none";
+        }
+      });
+
 
       window.saveGenesis = async function() {
         try {
@@ -3035,6 +3102,15 @@ Deno.serve({ port: PORT }, async (req) => {
 
       setInterval(updateGovernance, 1000);
       updateGovernance();
+
+      async function updateLineage() {
+        try {
+          const res = await fetch("/lineage");
+          if (res.ok) lineageArchive = await res.json();
+        } catch(e) {}
+      }
+      setInterval(updateLineage, 5000);
+      updateLineage();
 
       animate();
     </script>
@@ -3507,6 +3583,12 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
     if (url.pathname === "/governance" && req.method === "GET") {
         return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/lineage" && req.method === "GET") {
+        return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)), {
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
         });
     }
