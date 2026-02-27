@@ -1,4 +1,4 @@
-// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 14)
+// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 22)
 // Concatenates all core logic files into OMEGA_CORE_LOGIC.md
 
 const CORE_FILES = [
@@ -29,11 +29,17 @@ const CORE_FILES = [
     "SYSTEM_START.ts",
     "ARCHITECTURE.md",
     "mod.ts",
+    "SHIMS.ts",
+    "RIBOSOME_TICK.ts",
+    "STATE_SNAPSHOT.ts",
+    "OBSERVER_LAB.ts",
+    "AKASHA_SERVER.ts",
+    "AKASHA_UI.html",
     "archive/legacy_docs/GEMINI.md"
 ];
 
 async function exportCore() {
-    let output = "# OMEGA-64 | CORE LOGIC (ERA 21: GLOBAL GOVERNANCE)\n\n";
+    let output = "# OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
     // @ts-ignore: Deno is available in runtime
@@ -50,7 +56,7 @@ async function exportCore() {
 
     // @ts-ignore
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
-    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 18 components.");
+    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 22 components.");
 }
 
 // @ts-ignore
