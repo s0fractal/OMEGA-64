@@ -19,7 +19,9 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A
+    SELF_MOD: 0x99, SELF_REP: 0x9A,
+    // Epigenetic Evolution
+    EVOLVE: 0x9B
 };
 
 export const LAMBDA_VM = {
@@ -90,6 +92,12 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.EVOLVE:
+                // Signal intention to mutate based on environmental success
+                res.intent.push({ level: 5, value: "EVOLUTION_REQUEST" });
+                res.resonanceDelta += 1.0; // The effort to evolve is resonant
+                break;
 
             case ISA.JMP:
                 pc = p1 % 16;

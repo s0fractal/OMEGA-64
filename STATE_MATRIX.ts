@@ -3,65 +3,82 @@
 
 export const MAX_ATOMS = 100000;
 export const ATOM_SIZE = 64; // Legacy constant for compatibility
-export const GOD_ATOM_ID = 0xFFFFFFFFFFFFFFFFn;
-export const GOD_ATOM_INDEX = 0;
 
 // Memory offsets for SoA approach (Contiguous blocks per field)
-const BUFFER_SIZE = 
-    (MAX_ATOMS * 8) + // ids (BigUint64)
-    (MAX_ATOMS * 2) * 2 + // xs, ys (Int16)
-    (MAX_ATOMS * 4) * 3 + // energy, resonance, phase (Float32)
-    (MAX_ATOMS * 8) + // logic (Uint8 x 8)
-    (MAX_ATOMS * 4 * 4); // bonds (Uint32 x 4)
+const IDS_OFFSET = 0;
+const XS_OFFSET = IDS_OFFSET + (MAX_ATOMS * 8); // ids (BigUint64)
+const YS_OFFSET = XS_OFFSET + (MAX_ATOMS * 2); // xs (Int16)
+const ENERGY_OFFSET = YS_OFFSET + (MAX_ATOMS * 2); // ys (Int16)
+const RESONANCE_OFFSET = ENERGY_OFFSET + (MAX_ATOMS * 4); // energies (Int32)
+const PHASE_OFFSET = RESONANCE_OFFSET + (MAX_ATOMS * 4); // resonances (Int32)
+const LOGIC_OFFSET = PHASE_OFFSET + (MAX_ATOMS * 4); // phases (Int32)
+const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
+const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
+const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
+const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
+const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET + MAX_ATOMS; // evolution (Uint8 x 1)
 
-const buffer = new SharedArrayBuffer(BUFFER_SIZE);
+const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 
 // TypedArray Views (Structure of Arrays)
-const IDS_OFFSET = 0;
-const XS_OFFSET = IDS_OFFSET + (MAX_ATOMS * 8);
-const YS_OFFSET = XS_OFFSET + (MAX_ATOMS * 2);
-const ENERGY_OFFSET = YS_OFFSET + (MAX_ATOMS * 2);
-const RESONANCE_OFFSET = ENERGY_OFFSET + (MAX_ATOMS * 4);
-const PHASE_OFFSET = RESONANCE_OFFSET + (MAX_ATOMS * 4);
-const LOGIC_OFFSET = PHASE_OFFSET + (MAX_ATOMS * 4);
-const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8);
-
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
 const xs = new Int16Array(buffer, XS_OFFSET, MAX_ATOMS);
 const ys = new Int16Array(buffer, YS_OFFSET, MAX_ATOMS);
-const energies = new Float32Array(buffer, ENERGY_OFFSET, MAX_ATOMS);
-const resonances = new Float32Array(buffer, RESONANCE_OFFSET, MAX_ATOMS);
-const phases = new Float32Array(buffer, PHASE_OFFSET, MAX_ATOMS);
+const energies = new Int32Array(buffer, ENERGY_OFFSET, MAX_ATOMS);
+const resonances = new Int32Array(buffer, RESONANCE_OFFSET, MAX_ATOMS);
+const phases = new Int32Array(buffer, PHASE_OFFSET, MAX_ATOMS);
 const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
+const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
+const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
+const evolutionRequests = new Uint8Array(buffer, EVOLUTION_OFFSET, MAX_ATOMS);
+
+const SCALE = 1000;
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
     buffer,
+    SCALE,
     
     // --- ID ---
-    getId: (idx: number) => ids[idx],
-    setId: (idx: number, id: bigint) => { ids[idx] = id; },
+    getId: (idx: number) => Atomics.load(ids, idx),
+    setId: (idx: number, id: bigint) => { Atomics.store(ids, idx, id); },
 
     // --- POSITIONS ---
-    getX: (idx: number) => xs[idx],
-    setX: (idx: number, val: number) => { xs[idx] = val; },
-    getY: (idx: number) => ys[idx],
-    setY: (idx: number, val: number) => { ys[idx] = val; },
+    getX: (idx: number) => Atomics.load(xs, idx),
+    setX: (idx: number, val: number) => { Atomics.store(xs, idx, val); },
+    getY: (idx: number) => Atomics.load(ys, idx),
+    setY: (idx: number, val: number) => { Atomics.store(ys, idx, val); },
 
-    // --- METRICS ---
-    getEnergy: (idx: number) => energies[idx],
-    setEnergy: (idx: number, val: number) => { energies[idx] = val; },
-    getResonance: (idx: number) => resonances[idx],
-    setResonance: (idx: number, val: number) => { resonances[idx] = val; },
-    getPhase: (idx: number) => phases[idx],
-    setPhase: (idx: number, val: number) => { phases[idx] = val; },
+    // --- METRICS (Fixed-Point) ---
+    getEnergy: (idx: number) => Atomics.load(energies, idx) / SCALE,
+    setEnergy: (idx: number, val: number) => { Atomics.store(energies, idx, Math.round(val * SCALE)); },
+    getResonance: (idx: number) => Atomics.load(resonances, idx) / SCALE,
+    setResonance: (idx: number, val: number) => { Atomics.store(resonances, idx, Math.round(val * SCALE)); },
+    getPhase: (idx: number) => Atomics.load(phases, idx) / SCALE,
+    setPhase: (idx: number, val: number) => { Atomics.store(phases, idx, Math.round(val * SCALE)); },
 
-    // --- GENOME (Logic) ---
+    // --- GENOME (8-Byte Header) ---
     getLogic: (idx: number) => logic.subarray(idx * 8, idx * 8 + 8),
     setLogic: (idx: number, bytes: Uint8Array) => {
         logic.set(bytes.subarray(0, 8), idx * 8);
     },
+
+    // --- CODE (L5: Instruction Blocks) ---
+    getCode: (idx: number) => instructions.subarray(idx * 16, idx * 16 + 16),
+    setCode: (idx: number, code: Uint32Array) => {
+        instructions.set(code.subarray(0, 16), idx * 16);
+    },
+
+    setContext: (idx: number, ctx: Uint8Array) => {
+        contexts.set(ctx.subarray(0, 32), idx * 32);
+    },
+
+    // --- EVOLUTION (ERA 22) ---
+    requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
+    clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
+    hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
+
 
     // --- BONDS ---
     getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
@@ -79,6 +96,7 @@ export const STATE_MATRIX = {
         phases[idx] = 0;
         logic.fill(0, idx * 8, idx * 8 + 8);
         bonds.fill(0, idx * 4, idx * 4 + 4);
+        evolutionRequests[idx] = 0;
     },
 
     getActiveIndices: () => {

@@ -10,7 +10,7 @@ const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
-self.onmessage = async (e) => {
+self.onmessage = (e) => {
     const { buffer, envBuffer, attentionBuffer, marketBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
@@ -26,6 +26,7 @@ self.onmessage = async (e) => {
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
     const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
     const contexts = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64), MAX_ATOMS * 32);
+    const evolutionRequests = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64) + (MAX_ATOMS * 32), MAX_ATOMS);
 
     for (let i = startIdx; i < endIdx; i++) {
         const currentId = Atomics.load(ids, i);
@@ -33,8 +34,8 @@ self.onmessage = async (e) => {
 
         let x = Atomics.load(xs, i);
         let y = Atomics.load(ys, i);
-        let energyFactor = Atomics.load(energies, i);
-        let resonanceFactor = Atomics.load(resonances, i);
+        const energyFactor = Atomics.load(energies, i);
+        const resonanceFactor = Atomics.load(resonances, i);
         
         let energy = energyFactor / SCALE;
         let resonance = resonanceFactor / SCALE;
@@ -93,6 +94,9 @@ self.onmessage = async (e) => {
             
         for (const intent of vmResult.intent) {
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
+            if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
+                Atomics.store(evolutionRequests, i, 1);
+            }
         }
 
         // Boundaries

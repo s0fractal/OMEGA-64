@@ -43,6 +43,34 @@ export const LLM_SYNAPSE = {
             console.warn(`   [SYNAPSE] Oracle is silent (Connection Failed). Returning default seed.`);
             return "The Matrix dreams in silence.";
         }
+    },
+
+    /**
+     * evolveThought: Asks the LLM to evolve a thought based on environmental context.
+     */
+    evolveThought: async (currentThought: string, context: string): Promise<string> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+        
+        const prompt = `
+            Task: Evolve a digital organism's thought.
+            Current Thought: "${currentThought}"
+            System Environment: ${context}
+            Constraint: Generate a superior, more adaptive version of the thought (max 10 words).
+            Output: Just the evolved text.
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt, stream: false }),
+            });
+            const data = await response.json();
+            return data.response?.trim() || currentThought;
+        } catch {
+            return currentThought;
+        }
     }
 };
 

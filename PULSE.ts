@@ -11,6 +11,9 @@ import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { REFLECTION_ENGINE } from "./REFLECTION_ENGINE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+
 
 const ROOT = Deno.cwd();
 const THREAD_COUNT = 4; // Adjust based on CPU cores
@@ -100,9 +103,27 @@ export const PULSE = {
                 await SNAPSHOT_ENGINE.exportSnapshot();
             }
 
-            // Crystallization (RAM -> Flatland)
+            // Crystallization & Epigenetic Evolution (RAM -> Flatland & Directed Mutation)
             if (pulseId % 1000 === 0) {
                 await REFLECTION_ENGINE.crystallize(100);
+
+                // ERA 22: Epigenetic Mutation Processing
+                const winners = activeIndices
+                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
+                    .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+                    .slice(0, 3);
+
+                for (const idx of winners) {
+                    const logicStr = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
+                    const currentThought = SEMANTIC_MEMBRANE.thoughtArchive.get(logicStr) || "Unknown existence.";
+                    const context = `Decree: ${SOVEREIGNTY_ENGINE.currentRegent.activeDecree}, Population: ${activeIndices.length}`;
+                    
+                    const evolvedThought = await LLM_SYNAPSE.evolveThought(currentThought, context);
+                    console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
+                    
+                    SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    STATE_MATRIX.clearEvolution(idx);
+                }
             }
             await new Promise(r => setTimeout(r, PULSE_INTERVAL));
         }

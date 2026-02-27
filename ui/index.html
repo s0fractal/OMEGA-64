@@ -580,7 +580,18 @@
           lastSync = t;
         }
         if (t - lastDictSync > 5000) {
-          fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
+          fetch('/thoughts').then(r=>r.json()).then(d => { 
+            // Detect new thoughts for visual flair
+            Object.keys(d).forEach(k => {
+              if (d[k] !== thoughtArchive[k] && thoughtArchive[k]) {
+                console.log(`%c[EPIGENESIS] Genome [${k}] evolved: "${d[k]}"`, "color: #ff00ff; font-weight: bold;");
+                document.getElementById("thought-display").innerText = `EPIGENESIS: ${d[k]}`;
+                document.getElementById("thought-display").style.opacity = 1;
+                setTimeout(() => { document.getElementById("thought-display").style.opacity = 0; }, 3000);
+              }
+            });
+            thoughtArchive = d; 
+          }).catch(()=>{});
           lastDictSync = t;
         }
         controls.update();
