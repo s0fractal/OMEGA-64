@@ -3,7 +3,7 @@
 
 import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { RIBOSOME, ID_TO_IDX, IDX_TO_ID } from "./RIBOSOME.ts";
-import { SNAP } from "./SNAP.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
@@ -88,9 +88,11 @@ export const PULSE = {
                 }
                 
                 console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Environment Nutrients: ${totalNutrients}`);
-                
-                // Persistence
-                await SNAP.save(ROOT);
+            }
+
+            // Persistence (Rapid Genesis Snapshotting every 5000 ticks ~ 1 minute)
+            if (pulseId % 5000 === 0) {
+                await SNAPSHOT_ENGINE.exportSnapshot();
             }
 
             // Crystallization (RAM -> Flatland)

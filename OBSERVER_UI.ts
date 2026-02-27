@@ -23,9 +23,9 @@ Deno.serve({ port: PORT }, async (req) => {
 
     // 2. Stream the Collective Voice (Vox Populi)
     if (url.pathname === "/vox") {
-        const vox = SEMANTIC_MEMBRANE.readVoxPopuli();
-        return new Response(vox, {
-            headers: { "Content-Type": "text/plain" }
+        const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+        return new Response(JSON.stringify(vox), {
+            headers: { "Content-Type": "application/json" }
         });
     }
 

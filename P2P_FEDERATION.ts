@@ -1,5 +1,5 @@
-// OMEGA-64 | P2P_FEDERATION.ts | Era 13: ALEPH
-// Inter-system atom migration and discovery (Digital Micelium).
+// OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
+// Reliable inter-system atom migration.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
@@ -10,6 +10,7 @@ export interface AtomPacket {
     energy: number;
     resonance: number;
     sourceNode: string;
+    pulseId: number;
 }
 
 const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
@@ -20,11 +21,7 @@ export const P2P_FEDERATION = {
     peers: new Set<string>(CURRENT_PORT === 8000 ? ["http://localhost:8001"] : ["http://localhost:8000"]), 
     nodeId: `OMEGA-${CURRENT_PORT}`,
 
-    /**
-     * Serializes an atom into a packet for transit.
-     * Optimized hex conversion.
-     */
-    serialize: (idx: number): AtomPacket | null => {
+    serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
         const id = IDX_TO_ID.get(idx);
         if (!id) return null;
 
@@ -39,16 +36,13 @@ export const P2P_FEDERATION = {
             logic: logicStr,
             energy: STATE_MATRIX.getEnergy(idx),
             resonance: STATE_MATRIX.getResonance(idx),
-            sourceNode: P2P_FEDERATION.nodeId
+            sourceNode: P2P_FEDERATION.nodeId,
+            pulseId
         };
     },
 
-    /**
-     * Attempts to migrate an atom to a more resonant peer.
-     * Now uses a queue to prevent network saturation.
-     */
     migrate: async (idx: number) => {
-        if (migrationQueue.length > 50) return; // Prevent queue bloat
+        if (migrationQueue.length > 100) return; 
         migrationQueue.push(idx);
         P2P_FEDERATION.processQueue();
     },
@@ -58,43 +52,45 @@ export const P2P_FEDERATION = {
         isProcessingMigration = true;
 
         const idx = migrationQueue.shift()!;
+        // Capture state before transit
         const packet = P2P_FEDERATION.serialize(idx);
+        const atomIdAtStart = STATE_MATRIX.getId(idx);
         
-        if (packet) {
+        if (packet && atomIdAtStart !== 0n) {
             const targetPeer = Array.from(P2P_FEDERATION.peers)[Math.floor(Math.random() * P2P_FEDERATION.peers.size)];
             try {
                 const res = await fetch(`${targetPeer}/federate`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(packet),
-                    signal: AbortSignal.timeout(1000) // Don't hang the loop
+                    signal: AbortSignal.timeout(2000) 
                 });
 
                 if (res.ok) {
-                    STATE_MATRIX.clear(idx);
-                    console.log(`🛸 [FEDERATION] ${packet.id} -> ${targetPeer}`);
+                    // --- RELIABLE HANDSHAKE ---
+                    // Only clear if the atom hasn't changed locally during transit
+                    if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
+                        STATE_MATRIX.clear(idx);
+                        console.log(`🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`);
+                    } else {
+                        console.warn(`🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`);
+                    }
                 }
-            } catch (e) {
-                // Peer down, just drop for now to avoid lag
+            } catch (e: any) {
+                console.error(`🛸 [FEDERATION] Migration failed for ${packet.id}: ${e.message}`);
             }
         }
 
         isProcessingMigration = false;
-        // Small delay before next migration
         if (migrationQueue.length > 0) {
             setTimeout(() => P2P_FEDERATION.processQueue(), 50);
         }
     },
 
-    /**
-     * Logic to decide if an atom should migrate.
-     * Criteria: High resonance potential but low local energy/resonance.
-     */
     checkWanderlust: (idx: number): boolean => {
         const energy = STATE_MATRIX.getEnergy(idx);
         const resonance = STATE_MATRIX.getResonance(idx);
-        
-        // Strict migration trigger to reduce frequency
-        return resonance < 5 && energy > 100 && Math.random() < 0.01;
+        // Atoms only migrate if they have high potential but are in a low resonance environment
+        return resonance < 5 && energy > 150 && Math.random() < 0.005;
     }
 };

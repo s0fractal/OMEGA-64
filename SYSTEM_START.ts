@@ -8,6 +8,7 @@ import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 
@@ -109,6 +110,21 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
     if (url.pathname === "/thoughts") {
         return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)), {
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+
+    if (url.pathname === "/snapshot/export" && req.method === "POST") {
+        const result = await SNAPSHOT_ENGINE.exportSnapshot();
+        return new Response(JSON.stringify(result), {
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+
+    if (url.pathname === "/snapshot/import" && req.method === "POST") {
+        const body = await req.json();
+        const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
+        return new Response(JSON.stringify(result), {
             headers: { "Content-Type": "application/json" }
         });
     }
