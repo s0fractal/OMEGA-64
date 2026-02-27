@@ -114,6 +114,13 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
+    if (url.pathname === "/snapshots" && req.method === "GET") {
+        const list = await SNAPSHOT_ENGINE.listSnapshots();
+        return new Response(JSON.stringify(list), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
     if (url.pathname === "/snapshot/export" && req.method === "POST") {
         const result = await SNAPSHOT_ENGINE.exportSnapshot();
         return new Response(JSON.stringify(result), {

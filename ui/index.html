@@ -79,6 +79,43 @@
         font-size: 0.9rem;
       }
 
+      #chronos-console {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        font-size: 0.8rem;
+        border-color: rgba(0, 255, 100, 0.4);
+        text-align: center;
+      }
+      .snapshot-btn {
+        background: rgba(0, 255, 100, 0.2);
+        border: 1px solid #00ff64;
+        color: #00ff64;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 5px;
+        font-family: monospace;
+        font-size: 0.7rem;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .snapshot-btn:hover {
+        background: rgba(0, 255, 100, 0.4);
+      }
+      .snapshot-save-btn {
+        background: rgba(255, 0, 100, 0.2);
+        border: 1px solid #ff0064;
+        color: #ff0064;
+        font-weight: bold;
+      }
+      .snapshot-save-btn:hover {
+        background: rgba(255, 0, 100, 0.4);
+      }
+
       #leaderboard {
         position: absolute;
         top: 20px;
@@ -146,6 +183,14 @@
         <div id="resonance">RESONANCE: ---</div>
         <div id="peers">PEERS: ---</div>
         <div id="fps">FPS: ---</div>
+      </div>
+    </div>
+
+    <div id="chronos-console" class="glass">
+      <h1 style="color: #00ff64; border-bottom: 1px solid rgba(0,255,100,0.3); padding-bottom: 5px;">⏳ CHRONOS CONSOLE</h1>
+      <button class="snapshot-btn snapshot-save-btn" onclick="saveGenesis()">[ FREEZE TIME (SAVE) ]</button>
+      <div id="snapshots-list" style="margin-top: 10px; max-height: 150px; overflow-y: auto;">
+        <div style="opacity: 0.5; font-style: italic;">Fetching epochs...</div>
       </div>
     </div>
 
@@ -519,6 +564,44 @@
           } (${peers.join(", ")})`;
         } catch (e) {}
       }
+
+      async function updateSnapshots() {
+        try {
+          const res = await fetch("/snapshots");
+          const snaps = await res.json();
+          const container = document.getElementById("snapshots-list");
+          if (snaps.length === 0) {
+            container.innerHTML = '<div style="opacity: 0.5; font-style: italic;">No epochs saved.</div>';
+            return;
+          }
+          let html = '';
+          for (const ts of snaps) {
+            html += `<button class="snapshot-btn" onclick="restoreGenesis('${ts}')">REWIND TO: ${ts.split('T')[1].replace('Z','')}</button>`;
+          }
+          container.innerHTML = html;
+        } catch (e) {}
+      }
+
+      window.saveGenesis = async function() {
+        try {
+          await fetch("/snapshot/export", { method: "POST" });
+          updateSnapshots();
+        } catch (e) {}
+      }
+
+      window.restoreGenesis = async function(ts) {
+        try {
+          await fetch("/snapshot/import", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ timestamp: ts })
+          });
+        } catch (e) {}
+      }
+
+      setInterval(updateSnapshots, 2000);
+      updateSnapshots();
+
       animate();
     </script>
   </body>

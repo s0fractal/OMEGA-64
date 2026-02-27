@@ -82,5 +82,24 @@ export const SNAPSHOT_ENGINE = {
             console.error(`❌ [SNAPSHOT] Import Failed:`, e);
             return { success: false, error: String(e) };
         }
+    },
+
+    /**
+     * Lists all available Genesis Checkpoints sorted by newest first.
+     */
+    listSnapshots: async () => {
+        try {
+            const timestamps: string[] = [];
+            // @ts-ignore: Deno.readDir is valid in Deno
+            for await (const entry of Deno.readDir(SNAPSHOT_DIR)) {
+                if (entry.isFile && entry.name.startsWith("matrix_") && entry.name.endsWith(".bin")) {
+                    const ts = entry.name.replace("matrix_", "").replace(".bin", "");
+                    timestamps.push(ts);
+                }
+            }
+            return timestamps.sort().reverse();
+        } catch {
+            return [];
+        }
     }
 };
