@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-02-27T19:13:07.113Z*
+*Generated: 2026-02-28T03:22:51.736Z*
 
 ---
 
@@ -348,6 +348,8 @@ const PULSE_INTERVAL = 10; // Faster pulses for high-performance era
 
 export const PULSE = {
     workers: [] as Worker[],
+    currentPulseId: 0,
+
 
     initWorkers: () => {
         for (let i = 0; i < THREAD_COUNT; i++) {
@@ -365,31 +367,34 @@ export const PULSE = {
         console.log("-> ROOT Lifted");
 
         console.log("-> Seeding Nutrients");
-        PHYSICS_ENGINE.seedNutrients();
+        PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+
         
         console.log("-> Init Workers");
         PULSE.initWorkers();
         
-        let pulseId = 0;
-
         while (true) {
-            pulseId++;
-            
+
+            PULSE.currentPulseId++;
+            const pulseId = PULSE.currentPulseId;
+
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
             if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
             if (pulseId % 10 === 0) {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
-                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid);
+                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
             }
+
             
             // Exodus Check (Throttled)
             if (pulseId % 10 === 0) {
                 for (const idx of activeIndices) {
-                    if (P2P_FEDERATION.checkWanderlust(idx)) P2P_FEDERATION.migrate(idx);
+                    if (P2P_FEDERATION.checkWanderlust(idx, pulseId)) P2P_FEDERATION.migrate(idx, pulseId);
                 }
             }
+
 
             // Parallel Processing via Workers
             const currentRegent = SOVEREIGNTY_ENGINE.currentRegent;
@@ -486,6 +491,8 @@ if (import.meta.main) {
 
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { LAMBDA_VM } from "./LAMBDA_VM.ts";
+import { PRNG } from "./PRNG.ts";
+
 
 const MAX_ATOMS = 100000;
 const SCALE = 1000;
@@ -611,8 +618,12 @@ self.onmessage = (e) => {
                     const headByte = Atomics.load(viralGrid, gridIdx);
                     if (headByte !== 0 && headByte !== Atomics.load(logic, i * 8)) {
                         // Infection chance proportional to intensity
-                        if (Math.random() * 255 < intensity) {
-                            const randByte = Math.floor(Math.random() * 8);
+                        const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
+                        const { value: v1, next: n1 } = atomPrng.next();
+                        const { value: v2 } = n1.next();
+
+                        if (v1 * 255 < intensity) {
+                            const randByte = Math.floor(v2 * 8);
                             const sourceByte = Atomics.load(viralGrid, gridIdx + randByte);
                             Atomics.store(logic, i * 8 + randByte, sourceByte);
                             energy -= 5; 
@@ -620,6 +631,7 @@ self.onmessage = (e) => {
                     }
                 }
             }
+
         }
 
         // Boundaries
@@ -1546,7 +1558,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- CONTEXT DECODING ---
@@ -1579,18 +1591,24 @@ export const LAMBDA_VM = {
                 let consumed = 0;
                 
                 let current = Atomics.load(state.nutrients, idx);
-                while (current > 0) {
-                    const take = Math.min(current, requested);
-                    const next = current - take;
-                    const actual = Atomics.compareExchange(state.nutrients, idx, current, next);
-                    if (actual === current) {
-                        consumed = take;
-                        break;
+                if (dryRun) {
+                    consumed = Math.min(current, requested);
+                } else {
+                    while (current > 0) {
+                        const take = Math.min(current, requested);
+                        const next = current - take;
+                        const actual = Atomics.compareExchange(state.nutrients, idx, current, next);
+                        if (actual === current) {
+                            consumed = take;
+                            break;
+                        }
+                        current = Atomics.load(state.nutrients, idx);
                     }
-                    current = Atomics.load(state.nutrients, idx);
                 }
 
-                res.energyDelta += consumed / 10;
+                // 1:1 Conservation (Section IV.2 of Manifesto)
+                // Nutrients (Int32) to Energy (float, scaled by 1000 in Matrix)
+                res.energyDelta += consumed / 1000; 
                 if (consumed > 0) {
                     res.resonanceDelta += 0.1;
                 }
@@ -1602,8 +1620,10 @@ export const LAMBDA_VM = {
                 if (state.energy >= betAmount) {
                     res.energyDelta -= betAmount;
                     
-                    // ERA 19: Atomic Thread-Safe additions for Crisis Bets 
-                    Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
+                    if (!dryRun) {
+                        // ERA 19: Atomic Thread-Safe additions for Crisis Bets 
+                        Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
+                    }
                     
                     res.resonanceDelta += 0.5; // Belief increases resonance
                 }
@@ -1627,7 +1647,7 @@ export const LAMBDA_VM = {
 
             case ISA.CALL:
                 if (sp < 8) {
-                    stack[sp++] = (pc + 1) % 16;
+                    if (!dryRun) stack[sp++] = (pc + 1) % 16;
                     pc = p1 % 16;
                     pcJumped = true;
                 }
@@ -1635,22 +1655,23 @@ export const LAMBDA_VM = {
 
             case ISA.RET:
                 if (sp > 0) {
-                    pc = stack[--sp];
+                    if (!dryRun) pc = stack[--sp];
+                    else pc = stack[sp - 1]; // Virtual pop for dryRun
                     pcJumped = true;
                 }
                 break;
 
             case ISA.ADD:
-                regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
                 break;
 
             case ISA.CMP:
-                flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
+                if (!dryRun) flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
                 break;
 
             case ISA.SENSE:
                 // p1 is threshold, set flag if resonance > threshold
-                flags = (state.resonance > (p1 / 10)) ? (flags | 0x01) : (flags & ~0x01);
+                if (!dryRun) flags = (state.resonance > (p1 / 10)) ? (flags | 0x01) : (flags & ~0x01);
                 break;
 
             case ISA.SELF_MOD:
@@ -1670,13 +1691,16 @@ export const LAMBDA_VM = {
         }
 
         // --- CONTEXT UPDATE ---
-        if (!pcJumped) pc = (pc + 1) % 16;
-        context[0] = pc;
-        context[1] = flags;
-        context[18] = sp;
+        if (!dryRun) {
+            if (!pcJumped) pc = (pc + 1) % 16;
+            context[0] = pc;
+            context[1] = flags;
+            context[18] = sp;
+        }
 
         return res;
     }
+
 };
 
 ```
@@ -1805,12 +1829,17 @@ export const PHYSICS_ENGINE = {
         return gy * GRID_W + gx;
     },
 
-    seedNutrients: () => {
+    seedNutrients: (seed: number) => {
+        const prng = new PRNG(seed);
+        let current = prng;
         // Uniform or scattered distribution of initial energy
         for (let i = 0; i < NUTRIENTS.length; i++) {
-            Atomics.store(NUTRIENTS, i, Math.floor(Math.random() * 500) + 100);
+            const { value, next } = current.next();
+            Atomics.store(NUTRIENTS, i, Math.floor(value * 500) + 100);
+            current = next;
         }
     },
+
 
     decayPheromones: () => {
         for (const caste in PHYSICS_ENGINE.pheromones) {
@@ -1825,7 +1854,10 @@ export const PHYSICS_ENGINE = {
         }
     },
 
-    diffuseViralSemantics: (viralGrid: Uint8Array) => {
+    diffuseViralSemantics: (viralGrid: Uint8Array, pulseId: number) => {
+        const prng = new PRNG(pulseId);
+        let current = prng;
+
         for (let y = 0; y < GRID_H; y++) {
             for (let x = 0; x < GRID_W; x++) {
                 const idx = (y * GRID_W + x) * 9;
@@ -1835,10 +1867,17 @@ export const PHYSICS_ENGINE = {
                 // 1. DECAY
                 Atomics.store(viralGrid, idx + 8, Math.max(0, intensity - 2));
 
-                // 2. DIFFUSE (Random chance to spread logic to neighbors)
-                if (intensity > 150 && Math.random() < 0.1) {
-                    const nx = x + (Math.random() > 0.5 ? 1 : -1);
-                    const ny = y + (Math.random() > 0.5 ? 1 : -1);
+                // 2. DIFFUSE (Deterministic chance to spread logic to neighbors)
+                const { value: v1, next: n1 } = current.next();
+                current = n1;
+
+                if (intensity > 150 && v1 < 0.1) {
+                    const { value: v2, next: n2 } = current.next();
+                    const { value: v3, next: n3 } = current.next();
+                    current = n3;
+
+                    const nx = x + (v2 > 0.5 ? 1 : -1);
+                    const ny = y + (v3 > 0.5 ? 1 : -1);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         const nIdx = (ny * GRID_W + nx) * 9;
                         const nIntensity = Atomics.load(viralGrid, nIdx + 8);
@@ -1854,6 +1893,7 @@ export const PHYSICS_ENGINE = {
             }
         }
     },
+
 
 
     // Calculate velocity from Logic (Genome)
@@ -3301,6 +3341,7 @@ export const PREDICTION_MARKET = {
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { PRNG } from "./PRNG.ts";
 
 export interface AtomPacket {
     id: string;
@@ -3339,23 +3380,26 @@ export const P2P_FEDERATION = {
         };
     },
 
-    migrate: async (idx: number) => {
+    migrate: (idx: number, pulseId: number) => {
         if (migrationQueue.length > 100) return; 
         migrationQueue.push(idx);
-        P2P_FEDERATION.processQueue();
+        P2P_FEDERATION.processQueue(pulseId);
     },
 
-    processQueue: async () => {
+    processQueue: async (pulseId: number) => {
         if (isProcessingMigration || migrationQueue.length === 0) return;
         isProcessingMigration = true;
 
         const idx = migrationQueue.shift()!;
-        // Capture state before transit
-        const packet = P2P_FEDERATION.serialize(idx);
         const atomIdAtStart = STATE_MATRIX.getId(idx);
+        const packet = P2P_FEDERATION.serialize(idx, pulseId);
         
         if (packet && atomIdAtStart !== 0n) {
-            const targetPeer = Array.from(P2P_FEDERATION.peers)[Math.floor(Math.random() * P2P_FEDERATION.peers.size)];
+            const prng = new PRNG(PRNG.seedFrom(pulseId, packet.id));
+            const { value: pSelector } = prng.next();
+            const peerList = Array.from(P2P_FEDERATION.peers);
+            const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
+
             try {
                 const res = await fetch(`${targetPeer}/federate`, {
                     method: "POST",
@@ -3365,10 +3409,9 @@ export const P2P_FEDERATION = {
                 });
 
                 if (res.ok) {
-                    // --- RELIABLE HANDSHAKE ---
                     // Only clear if the atom hasn't changed locally during transit
                     if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-                        STATE_MATRIX.clear(idx);
+                        STATE_MATRIX.setId(idx, 0n); // Clear physically
                         console.log(`🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`);
                     } else {
                         console.warn(`🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`);
@@ -3381,17 +3424,27 @@ export const P2P_FEDERATION = {
 
         isProcessingMigration = false;
         if (migrationQueue.length > 0) {
-            setTimeout(() => P2P_FEDERATION.processQueue(), 50);
+            setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
         }
     },
 
-    checkWanderlust: (idx: number): boolean => {
+    checkWanderlust: (idx: number, pulseId: number): boolean => {
+        const id = STATE_MATRIX.getId(idx);
+        if (id === 0n) return false;
+        
         const energy = STATE_MATRIX.getEnergy(idx);
         const resonance = STATE_MATRIX.getResonance(idx);
+        
         // Atoms only migrate if they have high potential but are in a low resonance environment
-        return resonance < 5 && energy > 150 && Math.random() < 0.005;
+        if (resonance < 5 && energy > 150) {
+            const prng = new PRNG(PRNG.seedFrom(pulseId, id.toString()));
+            const { value: v1 } = prng.next();
+            return v1 < 0.005;
+        }
+        return false;
     }
 };
+
 
 ```
 
@@ -3571,6 +3624,8 @@ import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
+import { PRNG } from "./PRNG.ts";
+
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
 const UI_PATH = "./ui/index.html";
@@ -3634,18 +3689,25 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             
             const idx = STATE_MATRIX.findEmptySlot();
             if (idx !== -1) {
-                STATE_MATRIX.setId(idx, BigInt(Math.floor(Math.random() * 1000000))); // Dynamic ID for now
+                const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
+                const { value: vId, next: n1 } = prng.next();
+                const { value: vX, next: n2 } = n1.next();
+                const { value: vY } = n2.next();
+
+                // Deterministic ID based on seed
+                STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF))); 
                 STATE_MATRIX.setEnergy(idx, packet.energy);
                 STATE_MATRIX.setResonance(idx, packet.resonance);
-                // logic: Uint8Array from hex string
+                
                 const logicBytes = new Uint8Array(8);
                 for (let i = 0; i < 8; i++) {
                     logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
                 }
                 STATE_MATRIX.setLogic(idx, logicBytes);
-                // Position randomly in the center
-                STATE_MATRIX.setX(idx, 700 + (Math.random() - 0.5) * 100);
-                STATE_MATRIX.setY(idx, 400 + (Math.random() - 0.5) * 100);
+
+                // Position in a deterministic cluster around the center
+                STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
+                STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
                 
                 return new Response("OK", { status: 200 });
             } else {
@@ -3655,6 +3717,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             return new Response("Federation Failed", { status: 400 });
         }
     }
+
 
     if (url.pathname === "/peers") {
         return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
