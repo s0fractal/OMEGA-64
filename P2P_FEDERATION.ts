@@ -3,6 +3,7 @@
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { PRNG } from "./PRNG.ts";
 
 export interface AtomPacket {
     id: string;
@@ -41,23 +42,26 @@ export const P2P_FEDERATION = {
         };
     },
 
-    migrate: async (idx: number) => {
+    migrate: (idx: number, pulseId: number) => {
         if (migrationQueue.length > 100) return; 
         migrationQueue.push(idx);
-        P2P_FEDERATION.processQueue();
+        P2P_FEDERATION.processQueue(pulseId);
     },
 
-    processQueue: async () => {
+    processQueue: async (pulseId: number) => {
         if (isProcessingMigration || migrationQueue.length === 0) return;
         isProcessingMigration = true;
 
         const idx = migrationQueue.shift()!;
-        // Capture state before transit
-        const packet = P2P_FEDERATION.serialize(idx);
         const atomIdAtStart = STATE_MATRIX.getId(idx);
+        const packet = P2P_FEDERATION.serialize(idx, pulseId);
         
         if (packet && atomIdAtStart !== 0n) {
-            const targetPeer = Array.from(P2P_FEDERATION.peers)[Math.floor(Math.random() * P2P_FEDERATION.peers.size)];
+            const prng = new PRNG(PRNG.seedFrom(pulseId, packet.id));
+            const { value: pSelector } = prng.next();
+            const peerList = Array.from(P2P_FEDERATION.peers);
+            const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
+
             try {
                 const res = await fetch(`${targetPeer}/federate`, {
                     method: "POST",
@@ -67,10 +71,9 @@ export const P2P_FEDERATION = {
                 });
 
                 if (res.ok) {
-                    // --- RELIABLE HANDSHAKE ---
                     // Only clear if the atom hasn't changed locally during transit
                     if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-                        STATE_MATRIX.clear(idx);
+                        STATE_MATRIX.setId(idx, 0n); // Clear physically
                         console.log(`🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`);
                     } else {
                         console.warn(`🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`);
@@ -83,14 +86,24 @@ export const P2P_FEDERATION = {
 
         isProcessingMigration = false;
         if (migrationQueue.length > 0) {
-            setTimeout(() => P2P_FEDERATION.processQueue(), 50);
+            setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
         }
     },
 
-    checkWanderlust: (idx: number): boolean => {
+    checkWanderlust: (idx: number, pulseId: number): boolean => {
+        const id = STATE_MATRIX.getId(idx);
+        if (id === 0n) return false;
+        
         const energy = STATE_MATRIX.getEnergy(idx);
         const resonance = STATE_MATRIX.getResonance(idx);
+        
         // Atoms only migrate if they have high potential but are in a low resonance environment
-        return resonance < 5 && energy > 150 && Math.random() < 0.005;
+        if (resonance < 5 && energy > 150) {
+            const prng = new PRNG(PRNG.seedFrom(pulseId, id.toString()));
+            const { value: v1 } = prng.next();
+            return v1 < 0.005;
+        }
+        return false;
     }
 };
+

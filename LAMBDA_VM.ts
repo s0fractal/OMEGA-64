@@ -29,7 +29,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- CONTEXT DECODING ---
@@ -62,18 +62,24 @@ export const LAMBDA_VM = {
                 let consumed = 0;
                 
                 let current = Atomics.load(state.nutrients, idx);
-                while (current > 0) {
-                    const take = Math.min(current, requested);
-                    const next = current - take;
-                    const actual = Atomics.compareExchange(state.nutrients, idx, current, next);
-                    if (actual === current) {
-                        consumed = take;
-                        break;
+                if (dryRun) {
+                    consumed = Math.min(current, requested);
+                } else {
+                    while (current > 0) {
+                        const take = Math.min(current, requested);
+                        const next = current - take;
+                        const actual = Atomics.compareExchange(state.nutrients, idx, current, next);
+                        if (actual === current) {
+                            consumed = take;
+                            break;
+                        }
+                        current = Atomics.load(state.nutrients, idx);
                     }
-                    current = Atomics.load(state.nutrients, idx);
                 }
 
-                res.energyDelta += consumed / 10;
+                // 1:1 Conservation (Section IV.2 of Manifesto)
+                // Nutrients (Int32) to Energy (float, scaled by 1000 in Matrix)
+                res.energyDelta += consumed / 1000; 
                 if (consumed > 0) {
                     res.resonanceDelta += 0.1;
                 }
@@ -85,8 +91,10 @@ export const LAMBDA_VM = {
                 if (state.energy >= betAmount) {
                     res.energyDelta -= betAmount;
                     
-                    // ERA 19: Atomic Thread-Safe additions for Crisis Bets 
-                    Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
+                    if (!dryRun) {
+                        // ERA 19: Atomic Thread-Safe additions for Crisis Bets 
+                        Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
+                    }
                     
                     res.resonanceDelta += 0.5; // Belief increases resonance
                 }
@@ -110,7 +118,7 @@ export const LAMBDA_VM = {
 
             case ISA.CALL:
                 if (sp < 8) {
-                    stack[sp++] = (pc + 1) % 16;
+                    if (!dryRun) stack[sp++] = (pc + 1) % 16;
                     pc = p1 % 16;
                     pcJumped = true;
                 }
@@ -118,22 +126,23 @@ export const LAMBDA_VM = {
 
             case ISA.RET:
                 if (sp > 0) {
-                    pc = stack[--sp];
+                    if (!dryRun) pc = stack[--sp];
+                    else pc = stack[sp - 1]; // Virtual pop for dryRun
                     pcJumped = true;
                 }
                 break;
 
             case ISA.ADD:
-                regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
                 break;
 
             case ISA.CMP:
-                flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
+                if (!dryRun) flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
                 break;
 
             case ISA.SENSE:
                 // p1 is threshold, set flag if resonance > threshold
-                flags = (state.resonance > (p1 / 10)) ? (flags | 0x01) : (flags & ~0x01);
+                if (!dryRun) flags = (state.resonance > (p1 / 10)) ? (flags | 0x01) : (flags & ~0x01);
                 break;
 
             case ISA.SELF_MOD:
@@ -153,11 +162,14 @@ export const LAMBDA_VM = {
         }
 
         // --- CONTEXT UPDATE ---
-        if (!pcJumped) pc = (pc + 1) % 16;
-        context[0] = pc;
-        context[1] = flags;
-        context[18] = sp;
+        if (!dryRun) {
+            if (!pcJumped) pc = (pc + 1) % 16;
+            context[0] = pc;
+            context[1] = flags;
+            context[18] = sp;
+        }
 
         return res;
     }
+
 };

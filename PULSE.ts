@@ -21,6 +21,8 @@ const PULSE_INTERVAL = 10; // Faster pulses for high-performance era
 
 export const PULSE = {
     workers: [] as Worker[],
+    currentPulseId: 0,
+
 
     initWorkers: () => {
         for (let i = 0; i < THREAD_COUNT; i++) {
@@ -38,31 +40,34 @@ export const PULSE = {
         console.log("-> ROOT Lifted");
 
         console.log("-> Seeding Nutrients");
-        PHYSICS_ENGINE.seedNutrients();
+        PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+
         
         console.log("-> Init Workers");
         PULSE.initWorkers();
         
-        let pulseId = 0;
-
         while (true) {
-            pulseId++;
-            
+
+            PULSE.currentPulseId++;
+            const pulseId = PULSE.currentPulseId;
+
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
             if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
             if (pulseId % 10 === 0) {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
-                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid);
+                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
             }
+
             
             // Exodus Check (Throttled)
             if (pulseId % 10 === 0) {
                 for (const idx of activeIndices) {
-                    if (P2P_FEDERATION.checkWanderlust(idx)) P2P_FEDERATION.migrate(idx);
+                    if (P2P_FEDERATION.checkWanderlust(idx, pulseId)) P2P_FEDERATION.migrate(idx, pulseId);
                 }
             }
+
 
             // Parallel Processing via Workers
             const currentRegent = SOVEREIGNTY_ENGINE.currentRegent;

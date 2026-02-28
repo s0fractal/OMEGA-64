@@ -30,12 +30,17 @@ export const PHYSICS_ENGINE = {
         return gy * GRID_W + gx;
     },
 
-    seedNutrients: () => {
+    seedNutrients: (seed: number) => {
+        const prng = new PRNG(seed);
+        let current = prng;
         // Uniform or scattered distribution of initial energy
         for (let i = 0; i < NUTRIENTS.length; i++) {
-            Atomics.store(NUTRIENTS, i, Math.floor(Math.random() * 500) + 100);
+            const { value, next } = current.next();
+            Atomics.store(NUTRIENTS, i, Math.floor(value * 500) + 100);
+            current = next;
         }
     },
+
 
     decayPheromones: () => {
         for (const caste in PHYSICS_ENGINE.pheromones) {
@@ -50,7 +55,10 @@ export const PHYSICS_ENGINE = {
         }
     },
 
-    diffuseViralSemantics: (viralGrid: Uint8Array) => {
+    diffuseViralSemantics: (viralGrid: Uint8Array, pulseId: number) => {
+        const prng = new PRNG(pulseId);
+        let current = prng;
+
         for (let y = 0; y < GRID_H; y++) {
             for (let x = 0; x < GRID_W; x++) {
                 const idx = (y * GRID_W + x) * 9;
@@ -60,10 +68,17 @@ export const PHYSICS_ENGINE = {
                 // 1. DECAY
                 Atomics.store(viralGrid, idx + 8, Math.max(0, intensity - 2));
 
-                // 2. DIFFUSE (Random chance to spread logic to neighbors)
-                if (intensity > 150 && Math.random() < 0.1) {
-                    const nx = x + (Math.random() > 0.5 ? 1 : -1);
-                    const ny = y + (Math.random() > 0.5 ? 1 : -1);
+                // 2. DIFFUSE (Deterministic chance to spread logic to neighbors)
+                const { value: v1, next: n1 } = current.next();
+                current = n1;
+
+                if (intensity > 150 && v1 < 0.1) {
+                    const { value: v2, next: n2 } = current.next();
+                    const { value: v3, next: n3 } = current.next();
+                    current = n3;
+
+                    const nx = x + (v2 > 0.5 ? 1 : -1);
+                    const ny = y + (v3 > 0.5 ? 1 : -1);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         const nIdx = (ny * GRID_W + nx) * 9;
                         const nIntensity = Atomics.load(viralGrid, nIdx + 8);
@@ -79,6 +94,7 @@ export const PHYSICS_ENGINE = {
             }
         }
     },
+
 
 
     // Calculate velocity from Logic (Genome)

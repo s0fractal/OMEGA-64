@@ -12,6 +12,8 @@ import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
+import { PRNG } from "./PRNG.ts";
+
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
 const UI_PATH = "./ui/index.html";
@@ -75,18 +77,25 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             
             const idx = STATE_MATRIX.findEmptySlot();
             if (idx !== -1) {
-                STATE_MATRIX.setId(idx, BigInt(Math.floor(Math.random() * 1000000))); // Dynamic ID for now
+                const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
+                const { value: vId, next: n1 } = prng.next();
+                const { value: vX, next: n2 } = n1.next();
+                const { value: vY } = n2.next();
+
+                // Deterministic ID based on seed
+                STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF))); 
                 STATE_MATRIX.setEnergy(idx, packet.energy);
                 STATE_MATRIX.setResonance(idx, packet.resonance);
-                // logic: Uint8Array from hex string
+                
                 const logicBytes = new Uint8Array(8);
                 for (let i = 0; i < 8; i++) {
                     logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
                 }
                 STATE_MATRIX.setLogic(idx, logicBytes);
-                // Position randomly in the center
-                STATE_MATRIX.setX(idx, 700 + (Math.random() - 0.5) * 100);
-                STATE_MATRIX.setY(idx, 400 + (Math.random() - 0.5) * 100);
+
+                // Position in a deterministic cluster around the center
+                STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
+                STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
                 
                 return new Response("OK", { status: 200 });
             } else {
@@ -96,6 +105,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             return new Response("Federation Failed", { status: 400 });
         }
     }
+
 
     if (url.pathname === "/peers") {
         return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {

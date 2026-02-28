@@ -5,6 +5,8 @@
 
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { LAMBDA_VM } from "./LAMBDA_VM.ts";
+import { PRNG } from "./PRNG.ts";
+
 
 const MAX_ATOMS = 100000;
 const SCALE = 1000;
@@ -130,8 +132,12 @@ self.onmessage = (e) => {
                     const headByte = Atomics.load(viralGrid, gridIdx);
                     if (headByte !== 0 && headByte !== Atomics.load(logic, i * 8)) {
                         // Infection chance proportional to intensity
-                        if (Math.random() * 255 < intensity) {
-                            const randByte = Math.floor(Math.random() * 8);
+                        const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
+                        const { value: v1, next: n1 } = atomPrng.next();
+                        const { value: v2 } = n1.next();
+
+                        if (v1 * 255 < intensity) {
+                            const randByte = Math.floor(v2 * 8);
                             const sourceByte = Atomics.load(viralGrid, gridIdx + randByte);
                             Atomics.store(logic, i * 8 + randByte, sourceByte);
                             energy -= 5; 
@@ -139,6 +145,7 @@ self.onmessage = (e) => {
                     }
                 }
             }
+
         }
 
         // Boundaries
