@@ -15,13 +15,13 @@ export const BREATH = {
             console.log("\n--- [BREATH] Deep Sample ---");
             
             // 1. Listen to the Matrix (Vox Populi)
-            const vox = SEMANTIC_MEMBRANE.readVoxPopuli();
-            console.log(`   [BREATH] Listening: "${vox}"`);
+            const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+            console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
             
             // 2. Consult the Oracle (LLM Synapse)
-            const thought = await LLM_SYNAPSE.generateThought(vox);
+            const thought = await LLM_SYNAPSE.generateThought(vox.join(" "));
             
-            // 3. Inject back into the Matrix
+            // 3. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;
             await SEMANTIC_MEMBRANE.injectThought(thought, weight);
             

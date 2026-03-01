@@ -21,6 +21,10 @@ const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to th
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
 const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
+const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
+const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
+const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -36,15 +40,23 @@ const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
 const viralGrid = new Uint8Array(viralGridBuffer);
+const quarantineFlags = new Uint8Array(immuneBuffer);
+const messagesA = new Uint8Array(messageBufferA);
+const messagesB = new Uint8Array(messageBufferB);
+const bondStiffness = new Float32Array(bondStiffnessBuffer);
 
 const SCALE = 1000;
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
     buffer,
+    bondStiffnessBuffer,
+    messageBufferA,
+    messageBufferB,
     SCALE,
     evolutionRequestsBuffer,
     viralGridBuffer,
+    immuneBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -84,6 +96,34 @@ export const STATE_MATRIX = {
     requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
     clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
+    
+    // --- IMMUNITY (ERA 26) ---
+    setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
+    getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
+    // Levels: 0 = Healthy, 1 = Flagged (Visual), 2 = Suppressed (NO-OP)
+
+
+    // --- MESSAGING (ERA 27: Collective Intelligence) ---
+    // Dual-buffered to ensure determinism (Read pulse N, Write pulse N)
+    // swap is handled at the start of PULSE.run() loop
+    currentWriteBuffer: messagesA,
+    currentReadBuffer: messagesB,
+    swapMessageBuffers: () => {
+        const temp = STATE_MATRIX.currentWriteBuffer;
+        STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
+        STATE_MATRIX.currentReadBuffer = temp;
+        // Clear the NEW write buffer so it's fresh for this pulse
+        STATE_MATRIX.currentWriteBuffer.fill(0);
+    },
+    getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
+    setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
+
+
+    // --- MORPHOGENESIS (ERA 28) ---
+    getBondStiffness: (atomIdx: number, bondSlot: number) => bondStiffness[atomIdx * 4 + bondSlot],
+    setBondStiffness: (atomIdx: number, bondSlot: number, val: number) => { 
+        bondStiffness[atomIdx * 4 + bondSlot] = val; 
+    },
 
 
     // --- BONDS ---
@@ -97,6 +137,10 @@ export const STATE_MATRIX = {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
+        new Uint8Array(immuneBuffer).fill(0);
+        messagesA.fill(0);
+        messagesB.fill(0);
+        bondStiffness.fill(0);
     },
 
     getActiveIndices: () => {

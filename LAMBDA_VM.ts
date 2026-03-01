@@ -6,6 +6,7 @@ export interface VMResult {
     resonanceDelta: number;
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
+    modifiedStiffness?: { slot: number, value: number };
     outgoingMessages: { targetIdx: number, message: number }[];
 }
 
@@ -21,7 +22,11 @@ export const ISA = {
     // Self-Modification
     SELF_MOD: 0x99, SELF_REP: 0x9A,
     // Epigenetic Evolution
-    EVOLVE: 0x9B
+    EVOLVE: 0x9B,
+    // Atomic Messaging (ERA 27)
+    SEND: 0x60, RECV: 0x61,
+    // Structural Morphogenesis (ERA 28)
+    LOCK: 0x62
 };
 
 export const LAMBDA_VM = {
@@ -29,10 +34,17 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }, dryRun = false): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
+        // --- ERA 26: QUARANTINE ENFORCEMENT ---
+        if (state.quarantineLevel === 2) {
+            // SUPPRESSED: No energy delta, no resonance, no intent. Absolute NO-OP.
+            return res;
+        }
+
         // --- CONTEXT DECODING ---
+
         let pc = context[0] % 16;
         let flags = context[1];
         const regs = context.subarray(2, 10);

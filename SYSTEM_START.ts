@@ -150,6 +150,38 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
         });
     }
+    
+    if (url.pathname === "/immunity" && req.method === "GET") {
+        const buffer = STATE_MATRIX.immuneBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/signals" && req.method === "GET") {
+        const buffer = STATE_MATRIX.currentReadBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/stiffness" && req.method === "GET") {
+        const buffer = STATE_MATRIX.bondStiffnessBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+
+
+
+
 
     if (url.pathname === "/snapshot/export" && req.method === "POST") {
         const result = await SNAPSHOT_ENGINE.exportSnapshot();

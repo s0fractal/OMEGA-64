@@ -36,11 +36,13 @@ function idToBigInt(id: string): bigint {
 export const RIBOSOME = {
     // Scan and Lift all Atoms in Flatland and Vacuum
     lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
+        console.log("   [RIBOSOME] lift started on root: ", root);
         const lattice = new Map<string, Atom>();
         let idx = 0;
 
         const scanDirs = [root, `${root}/SINGULARITY/V`];
         for (const dir of scanDirs) {
+            console.log(`   [RIBOSOME] scanning dir: ${dir}`);
             try {
                 // @ts-ignore
                 for await (const entry of Deno.readDir(dir)) {
@@ -83,10 +85,19 @@ export const RIBOSOME = {
                         idx++;
                     }
                 }
-            } catch { /* skip directory if missing */ }
+            } catch (err) { console.error(`   [RIBOSOME] Error reading dir ${dir}:`, err); }
         }
 
+        console.log(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
+
         // 🧬 PASS 2: BOND RESOLUTION
+        const bondKeyMap = new Map<string, string>();
+        for (const k of ID_TO_IDX.keys()) {
+            const basename = k.split('/').pop() || k;
+            const bondIdStr = basename.split('.')[0]; 
+            bondKeyMap.set(bondIdStr, k);
+        }
+
         for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
             try {
                 // @ts-ignore
@@ -97,24 +108,23 @@ export const RIBOSOME = {
                     const bondIds: string[] = alpha.bonds || [];
                     const bondIndices = new Uint32Array(4);
                     for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
-                        // Search for the ID in the keys, ignoring directory prefixes
-                        const partnerId = Array.from(ID_TO_IDX.keys()).find(k => {
-                            const basename = k.split('/').pop() || k;
-                            return basename.startsWith(bondIds[i] + ".");
-                        });
+                        const partnerId = bondKeyMap.get(bondIds[i]);
                         if (partnerId) {
                             bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
                         }
                     }
                     STATE_MATRIX.setBonds(atomIdx, bondIndices);
                 }
-            } catch { /* ignore */ }
+            } catch (err) { /* ignore */ }
         }
 
         console.log(`   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`);
 
         // 🛡️ IMMUNE SYSTEM CHECK
-        return IMMUNE.inspect(lattice);
+        console.log("   [RIBOSOME] Running IMMUNE check");
+        const out = IMMUNE.inspect(lattice);
+        console.log("   [RIBOSOME] IMMUNE check complete");
+        return out;
     },
 
     // Inject Dependencies into a Pure Atom (Adapted for Flatland)

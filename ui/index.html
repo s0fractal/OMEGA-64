@@ -439,6 +439,36 @@
 
       let thoughtArchive = {};
       let prevailingSpecies = [];
+      let immunityFlags = new Uint8Array(MAX_ATOMS);
+      let signalFlags = new Uint8Array(MAX_ATOMS);
+      let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
+
+      async function syncImmunity() {
+        try {
+          const res = await fetch("/immunity");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          immunityFlags.set(new Uint8Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncSignals() {
+        try {
+          const res = await fetch("/signals");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          signalFlags.set(new Uint8Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncStiffness() {
+        try {
+          const res = await fetch("/stiffness");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          stiffnessFlags.set(new Float32Array(buffer));
+        } catch (e) {}
+      }
 
       async function sync(
         id,
@@ -484,16 +514,53 @@
             targetPos[i * 3] = x;
             targetPos[i * 3 + 1] = y;
             targetPos[i * 3 + 2] = r * 2;
+
+            const qLevel = immunityFlags[i];
+            const signal = signalFlags[i];
+            
+            // ERA 28: Structural Morphogenesis (Any locked bond?)
+            let isLocked = false;
+            for(let b=0; b<4; b++) if(stiffnessFlags[i*4+b] > 0.8) isLocked = true;
+
             if (i === 0) {
               targetCol[i * 3] = 1;
               targetCol[i * 3 + 1] = 1;
               targetCol[i * 3 + 2] = 0.5;
               targetSiz[i] = 12;
+            } else if (qLevel === 2) {
+              // SUPPRESSED: Dark Red/Gray, small
+              targetCol[i * 3] = 0.3;
+              targetCol[i * 3 + 1] = 0.1;
+              targetCol[i * 3 + 2] = 0.1;
+              targetSiz[i] = 1;
+            } else if (qLevel === 1) {
+              // FLAGGED: Orange/Pulsing aura logic
+              const pulse = (Math.sin(Date.now() / 100) + 1) / 2;
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 0.4 * pulse;
+              targetCol[i * 3 + 2] = 0;
+              targetSiz[i] = 6 + pulse * 4;
+            } else if (isLocked) {
+              // ERA 28: CRYSTAL HULL (Bright White/Silver)
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
+              targetSiz[i] = 4 + e / 40;
+            } else if (signal > 0) {
+              // ERA 27: SYNC PULSE (Cyan/Bright Blue)
+              targetCol[i * 3] = 0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
+              targetSiz[i] = 8 + (signal % 8); 
             } else {
               targetCol[i * 3] = id === "ALPHA" ? 0 : 0.5;
+              targetCol[i * 3 + 1] = 0; 
               targetCol[i * 3 + 2] = 1;
               targetSiz[i] = 2 + e / 50;
             }
+
+
+
           }
 
           prevailingSpecies = Object.keys(speciesCount)
@@ -608,6 +675,9 @@
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
           syncViralGrid();
+          syncImmunity();
+          syncSignals();
+          syncStiffness();
           updatePeers();
           updateLeaderboard();
           lastSync = t;

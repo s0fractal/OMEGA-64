@@ -13,7 +13,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -21,7 +21,20 @@ self.onmessage = (e) => {
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
+    const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
+    const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
+    const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
+    const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
+
+    // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
+
+    // worker receives write/read pointers explicitly or pulseId can be used
+    const isAEven = pulseId % 2 === 0;
+    const readBuffer = isAEven ? msgsB : msgsA; // Read from previous pulse's write
+    const writeBuffer = isAEven ? msgsA : msgsB; // Write for next pulse
+
     const marketPool = new Int32Array(marketBuffer, 4, 1);
+
     const ids = new BigUint64Array(buffer, 0, MAX_ATOMS);
     const xs = new Int16Array(buffer, (MAX_ATOMS * 8), MAX_ATOMS);
     const ys = new Int16Array(buffer, (MAX_ATOMS * 8) + (MAX_ATOMS * 2), MAX_ATOMS);
@@ -79,16 +92,23 @@ self.onmessage = (e) => {
             }
             // Normalize and scale by affinity
             const mag = Math.hypot(tropX, tropY) || 1;
-            dx += (tropX / mag) * attentionAffinity * 2.0; 
             dy += (tropY / mag) * attentionAffinity * 2.0;
         }
+
+        const bondView = bonds.subarray(i * 4, i * 4 + 4);
+
+        // --- ERA 28: Bond Constraints ---
+        const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView);
+        dx += fx;
+        dy += fy;
 
         x += Math.round(dx);
         y += Math.round(dy);
 
         // VM EXECUTION (L6: Contextual ISA)
-        const bondView = bonds.subarray(i * 4, i * 4 + 4);
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView });
+        const qLevel = Atomics.load(quarantineFlags, i);
+        const incomingSignal = Atomics.load(readBuffer, i);
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, quarantineLevel: qLevel, incomingMessage: incomingSignal });
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -96,8 +116,35 @@ self.onmessage = (e) => {
         if (vmResult.modifiedCode) {
             Atomics.store(instructions, i * 16 + vmResult.modifiedCode.slot, vmResult.modifiedCode.value);
         }
+
+        if (vmResult.modifiedStiffness) {
+            bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
+        }
+
+        // ERA 27: Message Routing
+        for (const msg of vmResult.outgoingMessages) {
+            if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
+                // Determine if we should use writeBuffer[msg.targetIdx] directly
+                // Using atomic store to the SHARED write buffer
+                Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+            }
+        }
+
+        // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
+        for (let b = 0; b < 4; b++) {
+            const stiffness = bondStiffs[i * 4 + b];
+            const targetIdx = bondView[b];
+            if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                const targetEnergy = Atomics.load(energies, targetIdx) / SCALE;
+                // Average the energy (Simple heat diffusion model)
+                const avg = (energy + targetEnergy) / 2;
+                energy = avg;
+                Atomics.store(energies, targetIdx, Math.round(avg * SCALE));
+            }
+        }
             
         for (const intent of vmResult.intent) {
+
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
             if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
                 Atomics.store(evolutionRequests, i, 1);

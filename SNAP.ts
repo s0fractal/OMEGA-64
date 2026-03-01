@@ -1,12 +1,12 @@
-// OMEGA-64 | SNAP.ts | The Persistent Observer
-// Asynchronously synchronizes the RAM Memory Matrix to the Disk Flatland.
+// OMEGA-64 | SNAP.ts | The Persistent Observer (Era 15)
+// Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
 import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { parse as parseYaml, stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
 
 export const SNAP = {
-    // Sync Matrix State to .md Files
+    // Sync Matrix State to .md Files with Atomic "Write-then-Rename"
     save: async (root: string = Deno.cwd()) => {
         let saved = 0;
         let errors = 0;
@@ -32,17 +32,22 @@ export const SNAP = {
                 const resonance = STATE_MATRIX.getResonance(i);
                 const phase = STATE_MATRIX.getPhase(i);
 
-                // Only update if changed significantly or every N ticks (optimization)
-                // For now, full sync
+                // Update Frontmatter
                 alpha.x = x;
                 alpha.y = y;
                 alpha.energy = Math.floor(energy);
-                alpha.resonance = Number(resonance.toFixed(2));
-                alpha.phase = Number(phase.toFixed(2));
+                alpha.resonance = Number(resonance.toFixed(3));
+                alpha.phase = Number(phase.toFixed(3));
 
                 const updated = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
+                
+                // --- ATOMIC WRITE STRATEGY ---
+                const tmpPath = `${fullPath}.tmp`;
                 // @ts-ignore
-                await Deno.writeTextFile(fullPath, updated);
+                await Deno.writeTextFile(tmpPath, updated);
+                // @ts-ignore
+                await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
+                
                 saved++;
             } catch {
                 errors++;
@@ -50,7 +55,7 @@ export const SNAP = {
         }
         
         if (saved > 0) {
-            console.log(`   [SNAP] Matrix Persistence: ${saved} atoms synced to Disk. (${errors} errors)`);
+            console.log(`   [SNAP] Transactional Sync: ${saved} atoms committed to Disk. (${errors} errors)`);
         }
     }
 };

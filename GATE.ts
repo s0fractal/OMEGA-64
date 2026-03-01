@@ -598,4 +598,43 @@ export const GATE = {
       state_hash: nextHash,
     };
   },
+
+  /**
+   * ERA 26: Collective Immunity
+   * Proactively scans logic signatures for malignant patterns.
+   */
+  detectAntigens: (stateMatrix: any) => {
+     const active = stateMatrix.getActiveIndices();
+     for (const idx of active) {
+        const logic = stateMatrix.getLogic(idx); // Uint8Array(8)
+        let malignancy = 0;
+
+        // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+        // OP 0x20 is FEED. If genomic header is packed with it, it's a parasite.
+        let feedCount = 0;
+        for (let i = 0; i < 8; i++) {
+           if (logic[i] === 0x20) feedCount++;
+        }
+        if (feedCount > 4) malignancy += 50;
+
+        // Pattern 2: Chaos Injection (High entropy logic without bonds)
+        const bonds = stateMatrix.getBonds(idx);
+        let hasBonds = false;
+        for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
+        if (!hasBonds && feedCount > 2) malignancy += 30;
+
+        // Pattern 3: Red Line Violations (Attempting restricted ISA space if any)
+        // ... (Reserved for future patterns) ...
+
+        // Apply Quarantine
+        if (malignancy >= 80) {
+           stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
+        } else if (malignancy >= 30) {
+           stateMatrix.setQuarantine(idx, 1); // FLAGGED
+        } else {
+           stateMatrix.setQuarantine(idx, 0); // CLEAN
+        }
+     }
+  }
 };
+

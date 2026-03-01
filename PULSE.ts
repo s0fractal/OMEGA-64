@@ -13,6 +13,7 @@ import { REFLECTION_ENGINE } from "./REFLECTION_ENGINE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { GATE } from "./GATE.ts";
 
 
 const ROOT = Deno.cwd();
@@ -51,6 +52,7 @@ export const PULSE = {
             PULSE.currentPulseId++;
             const pulseId = PULSE.currentPulseId;
 
+
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
@@ -58,7 +60,13 @@ export const PULSE = {
             if (pulseId % 10 === 0) {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
                 PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
+                
+                // ERA 26: Collective Immunity
+                GATE.detectAntigens(STATE_MATRIX);
             }
+
+            // ERA 27: Atomic Messaging Buffer Swap
+            STATE_MATRIX.swapMessageBuffers();
 
             
             // Exodus Check (Throttled)
@@ -86,6 +94,10 @@ export const PULSE = {
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
+                        immuneBuffer: STATE_MATRIX.immuneBuffer,
+                        messageBufferA: STATE_MATRIX.messageBufferA,
+                        messageBufferB: STATE_MATRIX.messageBufferB,
+                        bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
                         pulseId
                     });
                 });

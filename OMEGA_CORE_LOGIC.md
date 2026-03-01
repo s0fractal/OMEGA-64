@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-02-28T03:22:51.736Z*
+*Generated: 2026-03-01T10:21:24.639Z*
 
 ---
 
@@ -30,6 +30,10 @@ const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to th
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
 const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
+const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
+const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
+const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -45,15 +49,23 @@ const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
 const viralGrid = new Uint8Array(viralGridBuffer);
+const quarantineFlags = new Uint8Array(immuneBuffer);
+const messagesA = new Uint8Array(messageBufferA);
+const messagesB = new Uint8Array(messageBufferB);
+const bondStiffness = new Float32Array(bondStiffnessBuffer);
 
 const SCALE = 1000;
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
     buffer,
+    bondStiffnessBuffer,
+    messageBufferA,
+    messageBufferB,
     SCALE,
     evolutionRequestsBuffer,
     viralGridBuffer,
+    immuneBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -93,6 +105,34 @@ export const STATE_MATRIX = {
     requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
     clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
+    
+    // --- IMMUNITY (ERA 26) ---
+    setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
+    getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
+    // Levels: 0 = Healthy, 1 = Flagged (Visual), 2 = Suppressed (NO-OP)
+
+
+    // --- MESSAGING (ERA 27: Collective Intelligence) ---
+    // Dual-buffered to ensure determinism (Read pulse N, Write pulse N)
+    // swap is handled at the start of PULSE.run() loop
+    currentWriteBuffer: messagesA,
+    currentReadBuffer: messagesB,
+    swapMessageBuffers: () => {
+        const temp = STATE_MATRIX.currentWriteBuffer;
+        STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
+        STATE_MATRIX.currentReadBuffer = temp;
+        // Clear the NEW write buffer so it's fresh for this pulse
+        STATE_MATRIX.currentWriteBuffer.fill(0);
+    },
+    getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
+    setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
+
+
+    // --- MORPHOGENESIS (ERA 28) ---
+    getBondStiffness: (atomIdx: number, bondSlot: number) => bondStiffness[atomIdx * 4 + bondSlot],
+    setBondStiffness: (atomIdx: number, bondSlot: number, val: number) => { 
+        bondStiffness[atomIdx * 4 + bondSlot] = val; 
+    },
 
 
     // --- BONDS ---
@@ -106,6 +146,10 @@ export const STATE_MATRIX = {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
+        new Uint8Array(immuneBuffer).fill(0);
+        messagesA.fill(0);
+        messagesB.fill(0);
+        bondStiffness.fill(0);
     },
 
     getActiveIndices: () => {
@@ -340,6 +384,7 @@ import { REFLECTION_ENGINE } from "./REFLECTION_ENGINE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { GATE } from "./GATE.ts";
 
 
 const ROOT = Deno.cwd();
@@ -378,6 +423,7 @@ export const PULSE = {
             PULSE.currentPulseId++;
             const pulseId = PULSE.currentPulseId;
 
+
             // Main thread sequential tasks
             const activeIndices = STATE_MATRIX.getActiveIndices();
             SPATIAL_HASH.build(activeIndices);
@@ -385,7 +431,13 @@ export const PULSE = {
             if (pulseId % 10 === 0) {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
                 PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
+                
+                // ERA 26: Collective Immunity
+                GATE.detectAntigens(STATE_MATRIX);
             }
+
+            // ERA 27: Atomic Messaging Buffer Swap
+            STATE_MATRIX.swapMessageBuffers();
 
             
             // Exodus Check (Throttled)
@@ -413,6 +465,10 @@ export const PULSE = {
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
+                        immuneBuffer: STATE_MATRIX.immuneBuffer,
+                        messageBufferA: STATE_MATRIX.messageBufferA,
+                        messageBufferB: STATE_MATRIX.messageBufferB,
+                        bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
                         pulseId
                     });
                 });
@@ -499,7 +555,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -507,7 +563,20 @@ self.onmessage = (e) => {
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
+    const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
+    const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
+    const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
+    const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
+
+    // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
+
+    // worker receives write/read pointers explicitly or pulseId can be used
+    const isAEven = pulseId % 2 === 0;
+    const readBuffer = isAEven ? msgsB : msgsA; // Read from previous pulse's write
+    const writeBuffer = isAEven ? msgsA : msgsB; // Write for next pulse
+
     const marketPool = new Int32Array(marketBuffer, 4, 1);
+
     const ids = new BigUint64Array(buffer, 0, MAX_ATOMS);
     const xs = new Int16Array(buffer, (MAX_ATOMS * 8), MAX_ATOMS);
     const ys = new Int16Array(buffer, (MAX_ATOMS * 8) + (MAX_ATOMS * 2), MAX_ATOMS);
@@ -565,16 +634,23 @@ self.onmessage = (e) => {
             }
             // Normalize and scale by affinity
             const mag = Math.hypot(tropX, tropY) || 1;
-            dx += (tropX / mag) * attentionAffinity * 2.0; 
             dy += (tropY / mag) * attentionAffinity * 2.0;
         }
+
+        const bondView = bonds.subarray(i * 4, i * 4 + 4);
+
+        // --- ERA 28: Bond Constraints ---
+        const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView);
+        dx += fx;
+        dy += fy;
 
         x += Math.round(dx);
         y += Math.round(dy);
 
         // VM EXECUTION (L6: Contextual ISA)
-        const bondView = bonds.subarray(i * 4, i * 4 + 4);
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView });
+        const qLevel = Atomics.load(quarantineFlags, i);
+        const incomingSignal = Atomics.load(readBuffer, i);
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, quarantineLevel: qLevel, incomingMessage: incomingSignal });
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -582,8 +658,35 @@ self.onmessage = (e) => {
         if (vmResult.modifiedCode) {
             Atomics.store(instructions, i * 16 + vmResult.modifiedCode.slot, vmResult.modifiedCode.value);
         }
+
+        if (vmResult.modifiedStiffness) {
+            bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
+        }
+
+        // ERA 27: Message Routing
+        for (const msg of vmResult.outgoingMessages) {
+            if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
+                // Determine if we should use writeBuffer[msg.targetIdx] directly
+                // Using atomic store to the SHARED write buffer
+                Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+            }
+        }
+
+        // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
+        for (let b = 0; b < 4; b++) {
+            const stiffness = bondStiffs[i * 4 + b];
+            const targetIdx = bondView[b];
+            if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                const targetEnergy = Atomics.load(energies, targetIdx) / SCALE;
+                // Average the energy (Simple heat diffusion model)
+                const avg = (energy + targetEnergy) / 2;
+                energy = avg;
+                Atomics.store(energies, targetIdx, Math.round(avg * SCALE));
+            }
+        }
             
         for (const intent of vmResult.intent) {
+
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
             if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
                 Atomics.store(evolutionRequests, i, 1);
@@ -1336,7 +1439,46 @@ export const GATE = {
       state_hash: nextHash,
     };
   },
+
+  /**
+   * ERA 26: Collective Immunity
+   * Proactively scans logic signatures for malignant patterns.
+   */
+  detectAntigens: (stateMatrix: any) => {
+     const active = stateMatrix.getActiveIndices();
+     for (const idx of active) {
+        const logic = stateMatrix.getLogic(idx); // Uint8Array(8)
+        let malignancy = 0;
+
+        // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+        // OP 0x20 is FEED. If genomic header is packed with it, it's a parasite.
+        let feedCount = 0;
+        for (let i = 0; i < 8; i++) {
+           if (logic[i] === 0x20) feedCount++;
+        }
+        if (feedCount > 4) malignancy += 50;
+
+        // Pattern 2: Chaos Injection (High entropy logic without bonds)
+        const bonds = stateMatrix.getBonds(idx);
+        let hasBonds = false;
+        for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
+        if (!hasBonds && feedCount > 2) malignancy += 30;
+
+        // Pattern 3: Red Line Violations (Attempting restricted ISA space if any)
+        // ... (Reserved for future patterns) ...
+
+        // Apply Quarantine
+        if (malignancy >= 80) {
+           stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
+        } else if (malignancy >= 30) {
+           stateMatrix.setQuarantine(idx, 1); // FLAGGED
+        } else {
+           stateMatrix.setQuarantine(idx, 0); // CLEAN
+        }
+     }
+  }
 };
+
 
 ```
 
@@ -1535,6 +1677,7 @@ export interface VMResult {
     resonanceDelta: number;
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
+    modifiedStiffness?: { slot: number, value: number };
     outgoingMessages: { targetIdx: number, message: number }[];
 }
 
@@ -1550,7 +1693,11 @@ export const ISA = {
     // Self-Modification
     SELF_MOD: 0x99, SELF_REP: 0x9A,
     // Epigenetic Evolution
-    EVOLVE: 0x9B
+    EVOLVE: 0x9B,
+    // Atomic Messaging (ERA 27)
+    SEND: 0x60, RECV: 0x61,
+    // Structural Morphogenesis (ERA 28)
+    LOCK: 0x62
 };
 
 export const LAMBDA_VM = {
@@ -1558,10 +1705,17 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array }, dryRun = false): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
+        // --- ERA 26: QUARANTINE ENFORCEMENT ---
+        if (state.quarantineLevel === 2) {
+            // SUPPRESSED: No energy delta, no resonance, no intent. Absolute NO-OP.
+            return res;
+        }
+
         // --- CONTEXT DECODING ---
+
         let pc = context[0] % 16;
         let flags = context[1];
         const regs = context.subarray(2, 10);
@@ -1959,30 +2113,45 @@ export const PHYSICS_ENGINE = {
         return { trophX, trophY };
     },
 
-    // Apply Hooke's Law for molecular bonds
-    applyBondSprings: (x: number, y: number, bondIndices: Uint32Array) => {
+    // Apply Hooke's Law (Elastic) or Rigid Constraints (Era 28)
+    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array) => {
         let fx = 0;
         let fy = 0;
-        for (const bIdx of bondIndices) {
-            if (STATE_MATRIX.getId(bIdx) === 0n) continue;
+        const targetDist = 50; // Ideal structural distance
+
+        for (let b = 0; b < 4; b++) {
+            const bIdx = bondIndices[b];
+            if (bIdx === 0 || STATE_MATRIX.getId(bIdx) === 0n) continue;
+
+            const stiffness = STATE_MATRIX.getBondStiffness(idx, b);
             const pX = STATE_MATRIX.getX(bIdx);
             const pY = STATE_MATRIX.getY(bIdx);
             const dx = pX - x;
             const dy = pY - y;
             const dist = Math.hypot(dx, dy) || 1;
             
-            if (dist > 60) {
-                const force = (dist - 60) * 0.1;
+            if (stiffness > 0.8) {
+                // ERA 28: Rigid Locking
+                // Much stronger force with minimal dampening to hold distance
+                const force = (dist - targetDist) * 1.5; 
                 fx += (dx / dist) * force;
                 fy += (dy / dist) * force;
-            } else if (dist < 40) {
-                const force = (40 - dist) * 0.2;
-                fx -= (dx / dist) * force;
-                fy -= (dy / dist) * force;
+            } else {
+                // Legacy: Elastic/Swarm bonding
+                if (dist > 60) {
+                    const force = (dist - 60) * 0.1;
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                } else if (dist < 40) {
+                    const force = (40 - dist) * 0.2;
+                    fx -= (dx / dist) * force;
+                    fy -= (dy / dist) * force;
+                }
             }
         }
         return { fx, fy };
     }
+
 };
 
 ```
@@ -2931,6 +3100,36 @@ Deno.serve({ port: PORT }, async (req) => {
 
       let thoughtArchive = {};
       let prevailingSpecies = [];
+      let immunityFlags = new Uint8Array(MAX_ATOMS);
+      let signalFlags = new Uint8Array(MAX_ATOMS);
+      let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
+
+      async function syncImmunity() {
+        try {
+          const res = await fetch("/immunity");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          immunityFlags.set(new Uint8Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncSignals() {
+        try {
+          const res = await fetch("/signals");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          signalFlags.set(new Uint8Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncStiffness() {
+        try {
+          const res = await fetch("/stiffness");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          stiffnessFlags.set(new Float32Array(buffer));
+        } catch (e) {}
+      }
 
       async function sync(
         id,
@@ -2976,16 +3175,53 @@ Deno.serve({ port: PORT }, async (req) => {
             targetPos[i * 3] = x;
             targetPos[i * 3 + 1] = y;
             targetPos[i * 3 + 2] = r * 2;
+
+            const qLevel = immunityFlags[i];
+            const signal = signalFlags[i];
+            
+            // ERA 28: Structural Morphogenesis (Any locked bond?)
+            let isLocked = false;
+            for(let b=0; b<4; b++) if(stiffnessFlags[i*4+b] > 0.8) isLocked = true;
+
             if (i === 0) {
               targetCol[i * 3] = 1;
               targetCol[i * 3 + 1] = 1;
               targetCol[i * 3 + 2] = 0.5;
               targetSiz[i] = 12;
+            } else if (qLevel === 2) {
+              // SUPPRESSED: Dark Red/Gray, small
+              targetCol[i * 3] = 0.3;
+              targetCol[i * 3 + 1] = 0.1;
+              targetCol[i * 3 + 2] = 0.1;
+              targetSiz[i] = 1;
+            } else if (qLevel === 1) {
+              // FLAGGED: Orange/Pulsing aura logic
+              const pulse = (Math.sin(Date.now() / 100) + 1) / 2;
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 0.4 * pulse;
+              targetCol[i * 3 + 2] = 0;
+              targetSiz[i] = 6 + pulse * 4;
+            } else if (isLocked) {
+              // ERA 28: CRYSTAL HULL (Bright White/Silver)
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
+              targetSiz[i] = 4 + e / 40;
+            } else if (signal > 0) {
+              // ERA 27: SYNC PULSE (Cyan/Bright Blue)
+              targetCol[i * 3] = 0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
+              targetSiz[i] = 8 + (signal % 8); 
             } else {
               targetCol[i * 3] = id === "ALPHA" ? 0 : 0.5;
+              targetCol[i * 3 + 1] = 0; 
               targetCol[i * 3 + 2] = 1;
               targetSiz[i] = 2 + e / 50;
             }
+
+
+
           }
 
           prevailingSpecies = Object.keys(speciesCount)
@@ -3100,6 +3336,9 @@ Deno.serve({ port: PORT }, async (req) => {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
           syncViralGrid();
+          syncImmunity();
+          syncSignals();
+          syncStiffness();
           updatePeers();
           updateLeaderboard();
           lastSync = t;
@@ -3762,6 +4001,38 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
         });
     }
+    
+    if (url.pathname === "/immunity" && req.method === "GET") {
+        const buffer = STATE_MATRIX.immuneBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/signals" && req.method === "GET") {
+        const buffer = STATE_MATRIX.currentReadBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/stiffness" && req.method === "GET") {
+        const buffer = STATE_MATRIX.bondStiffnessBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+
+
+
+
 
     if (url.pathname === "/snapshot/export" && req.method === "POST") {
         const result = await SNAPSHOT_ENGINE.exportSnapshot();

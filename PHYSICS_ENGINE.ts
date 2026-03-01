@@ -160,28 +160,43 @@ export const PHYSICS_ENGINE = {
         return { trophX, trophY };
     },
 
-    // Apply Hooke's Law for molecular bonds
-    applyBondSprings: (x: number, y: number, bondIndices: Uint32Array) => {
+    // Apply Hooke's Law (Elastic) or Rigid Constraints (Era 28)
+    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array) => {
         let fx = 0;
         let fy = 0;
-        for (const bIdx of bondIndices) {
-            if (STATE_MATRIX.getId(bIdx) === 0n) continue;
+        const targetDist = 50; // Ideal structural distance
+
+        for (let b = 0; b < 4; b++) {
+            const bIdx = bondIndices[b];
+            if (bIdx === 0 || STATE_MATRIX.getId(bIdx) === 0n) continue;
+
+            const stiffness = STATE_MATRIX.getBondStiffness(idx, b);
             const pX = STATE_MATRIX.getX(bIdx);
             const pY = STATE_MATRIX.getY(bIdx);
             const dx = pX - x;
             const dy = pY - y;
             const dist = Math.hypot(dx, dy) || 1;
             
-            if (dist > 60) {
-                const force = (dist - 60) * 0.1;
+            if (stiffness > 0.8) {
+                // ERA 28: Rigid Locking
+                // Much stronger force with minimal dampening to hold distance
+                const force = (dist - targetDist) * 1.5; 
                 fx += (dx / dist) * force;
                 fy += (dy / dist) * force;
-            } else if (dist < 40) {
-                const force = (40 - dist) * 0.2;
-                fx -= (dx / dist) * force;
-                fy -= (dy / dist) * force;
+            } else {
+                // Legacy: Elastic/Swarm bonding
+                if (dist > 60) {
+                    const force = (dist - 60) * 0.1;
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                } else if (dist < 40) {
+                    const force = (40 - dist) * 0.2;
+                    fx -= (dx / dist) * force;
+                    fy -= (dy / dist) * force;
+                }
             }
         }
         return { fx, fy };
     }
+
 };
