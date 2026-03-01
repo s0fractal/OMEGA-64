@@ -22,6 +22,8 @@ export interface VMResult {
     morphRequest?: { zone: number, gradAngle: number }; // ERA 59
     secretePlasmidRequest?: { logic: Uint8Array, intensity: number }; // ERA 60
     incorporatePlasmidRequest?: { logic: Uint8Array }; // ERA 60
+    shareRequest?: { bondSlot: number, amount: number }; // ERA 61
+    eatRequest?: { amount: number }; // ERA 61
 }
 
 export const ISA = {
@@ -72,7 +74,9 @@ export const ISA = {
     // Morphogenetic Gradients (ERA 59)
     GRAD: 0x94, MORPH: 0x95,
     // Horizontal Gene Transfer (ERA 60)
-    SECRETE_PLASMID: 0x96, INCORPORATE_PLASMID: 0x97
+    SECRETE_PLASMID: 0x96, INCORPORATE_PLASMID: 0x97,
+    // Symbiotic Bonding (ERA 61)
+    SHARE: 0xA0, EAT: 0xA1
 };
 
 export const LAMBDA_VM = {
@@ -863,6 +867,32 @@ export const LAMBDA_VM = {
                         res.resonanceDelta += 50; // Massive reward for genetic novelty
                         res.energyDelta -= 10;   // Rewiring is metabolically expensive
                     }
+                }
+                break;
+            }
+
+            case ISA.SHARE: {
+                // --- ERA 61: Symbiotic Sharing ---
+                // Share p1 energy with the atom bonded at slot p2 (0-3).
+                if (!dryRun) {
+                    const slot = p2 % 4;
+                    const amount = p1;
+                    if (amount > 0 && state.bonds[slot] > 0) {
+                        res.shareRequest = { bondSlot: slot, amount };
+                        res.energyDelta -= amount; // Deduct immediately from self
+                        res.resonanceDelta += Math.floor(amount / 4); // Altruism reward
+                    }
+                }
+                break;
+            }
+
+            case ISA.EAT: {
+                // --- ERA 61: Active Consumption ---
+                // Actively consume up to p1 nutrients from the current spatial cell.
+                if (!dryRun && p1 > 0) {
+                    res.eatRequest = { amount: p1 };
+                    // We don't change energyDelta here because PULSE_WORKER needs to 
+                    // check if the cell actually has nutrients first.
                 }
                 break;
             }

@@ -326,6 +326,35 @@ self.onmessage = (e) => {
                 Atomics.store(semanticBonuses, i, 0);
             }
 
+            // --- ERA 61: Apply shareRequest ---
+            if (vmResult.shareRequest) {
+                const { bondSlot, amount } = vmResult.shareRequest;
+                const targetIdx = bondView[bondSlot];
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    // Transfer energy up to current balance (clamped by LAMBDA_VM conceptually, but verified here)
+                    const actualAmount = Math.min(amount, Math.floor(energy));
+                    if (actualAmount > 0) {
+                        Atomics.add(energies, targetIdx, actualAmount * SCALE);
+                    }
+                }
+            }
+
+            // --- ERA 61: Apply eatRequest ---
+            if (vmResult.eatRequest) {
+                const { amount } = vmResult.eatRequest;
+                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
+                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
+                const cellBase = gy * 140 + gx;
+                
+                const available = Atomics.load(nutrients, cellBase);
+                if (available > 0) {
+                    const consumed = Math.min(amount, available);
+                    Atomics.sub(nutrients, cellBase, consumed);
+                    energy += consumed;
+                }
+            }
+
+
             // --- ERA 57: Passive Synaptic Plasticity Decay ---
             // Every 10 ticks: decay weights NOT strengthened by HEBB this tick by 1.
             // If HEBB fired, weight grew → skip passive decay for that atom.
