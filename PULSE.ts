@@ -242,6 +242,21 @@ export const PULSE = {
                     STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
                     const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
                     STATE_MATRIX.setId(newIdx, childId);
+
+                    // --- ERA 56: Epigenetic Inheritance (Mitosis) ---
+                    // Child inherits parent's Hebbian weights [0..2] with ±1% noise
+                    for (let s = 0; s < 3; s++) {
+                        let w = STATE_MATRIX.getSynapticValue(idx, s);
+                        if (Math.random() < 0.01) { // 1% noise
+                            w = Math.max(0, Math.min(255, w + (Math.random() < 0.5 ? 1 : -1)));
+                        }
+                        STATE_MATRIX.setSynapticValue(newIdx, s, w);
+                    }
+                    STATE_MATRIX.setSynapticValue(newIdx, 3, 0); // reset FIRE tally
+                    // Register birth tick for lifecycle tracking
+                    const birthTicksView = STATE_MATRIX.birthTicks as unknown as Int32Array;
+                    if (birthTicksView) Atomics.store(birthTicksView, newIdx, pulseId);
+
                     console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}.`);
                 }
             }
@@ -302,6 +317,23 @@ export const PULSE = {
                         
                         const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
                         STATE_MATRIX.setId(newIdx, childId);
+
+                        // --- ERA 56: Epigenetic Inheritance (Meiosis) ---
+                        // Child gets crossover of both parents' Hebbian weights with ±1% noise
+                        for (let s = 0; s < 3; s++) {
+                            const wA = STATE_MATRIX.getSynapticValue(idx, s);
+                            const wB = STATE_MATRIX.getSynapticValue(tIdx, s);
+                            let wChild = Math.round((wA + wB) / 2); // average
+                            if (Math.random() < 0.01) { // 1% noise
+                                wChild = Math.max(0, Math.min(255, wChild + (Math.random() < 0.5 ? 1 : -1)));
+                            }
+                            STATE_MATRIX.setSynapticValue(newIdx, s, wChild);
+                        }
+                        STATE_MATRIX.setSynapticValue(newIdx, 3, 0); // reset FIRE tally
+                        // Register birth tick
+                        const birthTicksViewM = STATE_MATRIX.birthTicks as unknown as Int32Array;
+                        if (birthTicksViewM) Atomics.store(birthTicksViewM, newIdx, pulseId);
+
                         console.log(`💞 [MEIOSIS] Atoms ${idx} and ${tIdx} spawned ${newIdx}.`);
                     }
                 }

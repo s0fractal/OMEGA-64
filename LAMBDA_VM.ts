@@ -58,7 +58,9 @@ export const ISA = {
     // Temporal Cognition (ERA 54)
     AGE: 0x8D, PHASE_LIFE: 0x8E,
     // Quorum Sensing (ERA 55)
-    QUORUM: 0x8F
+    QUORUM: 0x8F,
+    // Epigenetic Inheritance (ERA 56)
+    INHERIT: 0x90
 };
 
 export const LAMBDA_VM = {
@@ -196,6 +198,19 @@ export const LAMBDA_VM = {
                             const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
                             const safeRole = Math.min(7, Math.max(0, state.role));
                             val = Math.min(255, state.quorumData[(gy * 140 + gx) * 8 + safeRole]);
+                        }
+                        break;
+                    }
+                    case 0x0C: { // ERA 56: Imprint age (ticks since last IMPRINT in this cell)
+                        if (state.hiveMemory) {
+                            const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                            const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                            const hBase = (gy * 140 + gx) * 16;
+                            // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
+                            const imprintTick = state.hiveMemory[hBase+8] | (state.hiveMemory[hBase+9] << 8) |
+                                               (state.hiveMemory[hBase+10] << 16) | (state.hiveMemory[hBase+11] << 24);
+                            const imprintAge = (state.age ?? 0) - (imprintTick & 0xFF);
+                            val = Math.min(255, Math.max(0, imprintAge));
                         }
                         break;
                     }
@@ -619,7 +634,32 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.INHERIT: {
+                // --- ERA 56: Epigenetic Inheritance — voluntary weight sync ---
+                // Read hiveMemory imprint at own cell and reinforce own synapticStack[p1%3]
+                // p1 = weight slot to reinforce (0-2)
+                // p2 = reinforce amplitude (0=light +1, >0=use p2 value)
+                if (state.hiveMemory && state.synapticStack && !dryRun) {
+                    const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                    const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                    const hBase = (gy * 140 + gx) * 16;
+                    // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
+                    const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
+                    const slot = p1 % 3;
+                    const amplitude = p2 > 0 ? p2 : 1;
+                    const curWeight = state.synapticStack[slot];
+                    // Move current weight toward reference value by amplitude
+                    const delta = refWeight > curWeight ? amplitude : -amplitude;
+                    state.synapticStack[slot] = Math.max(0, Math.min(255, curWeight + delta));
+                    res.modifiedSynaptic = { slot, value: state.synapticStack[slot] };
+                    res.energyDelta -= 0.5;
+                    res.resonanceDelta += 1; // cultural alignment bonus
+                }
+                break;
+            }
         }
+
 
 
 
