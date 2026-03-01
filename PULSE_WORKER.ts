@@ -7,19 +7,35 @@ import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { LAMBDA_VM } from "./LAMBDA_VM.ts";
 import { PRNG } from "./PRNG.ts";
 
-
 const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
+// ERA 40: Wasm Fast Path Initialization
+let wasmExports: any = null;
+try {
+    const wasmCode = await Deno.readFile(new URL("./omega_wasm_asc/build/lambda_vm.wasm", import.meta.url));
+    const wasmModule = await WebAssembly.instantiate(wasmCode, {
+        env: {
+            memory: new WebAssembly.Memory({ initial: 1 }),
+            abort: () => console.error("Wasm aborted.")
+        }
+    });
+    wasmExports = wasmModule.instance.exports;
+    console.log("   [WORKER] Wasm LambdaVM kernel ready. ⚡🕸️");
+} catch (e) {
+    console.error("   [WORKER] Wasm LambdaVM failed to load. Falling back to TS.", e);
+}
+
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
     const attention = new Float32Array(attentionBuffer);
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
+    const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
@@ -29,6 +45,11 @@ self.onmessage = (e) => {
     const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
     const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
     const roles = new Uint8Array(roleRegistryBuffer); // ERA 33: Metabolic Specialization
+    const semanticBonuses = new Uint8Array(semanticBonusesBuffer); // ERA 36: Cognitive Scaffolding
+    const senderSignaturesA = new Uint8Array(senderSignatureBufferA); // ERA 38: Sender Signatures
+    const senderSignaturesB = new Uint8Array(senderSignatureBufferB); // ERA 38: Sender Signatures
+
+    const trustedSet = new Set<string>(trustedSignatures || []);
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -36,6 +57,8 @@ self.onmessage = (e) => {
     const isAEven = pulseId % 2 === 0;
     const readBuffer = isAEven ? msgsB : msgsA; // Read from previous pulse's write
     const writeBuffer = isAEven ? msgsA : msgsB; // Write for next pulse
+    const readSignatures = isAEven ? senderSignaturesB : senderSignaturesA;
+    const writeSignatures = isAEven ? senderSignaturesA : senderSignaturesB;
 
     const marketPool = new Int32Array(marketBuffer, 4, 1);
 
@@ -69,7 +92,16 @@ self.onmessage = (e) => {
         const context = contexts.subarray(i * 32, i * 32 + 32);
 
         const isDivine = resonance > DIVINITY_THRESHOLD;
-        energy -= isDivine ? 0 : 0.05 * mods.decay;
+        
+        // --- ERA 35: Stigmergic Shelter ---
+        // Atoms near structures (density > 50) receive a survival bonus
+        const gx_init = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+        const gy_init = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const currentStructureCell = Atomics.load(structureGrid, gy_init * 70 + gx_init);
+        const currentDensity = (currentStructureCell >> 8) & 0xFF;
+        const shelterBonus = currentDensity > 50 ? 0.8 : 1.0;
+
+        energy -= isDivine ? 0 : (0.05 * mods.decay * shelterBonus);
 
         // Physics & DNA Logic
         const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -126,11 +158,25 @@ self.onmessage = (e) => {
         // VM EXECUTION (L6: Contextual ISA)
         const quarantineLevel = Atomics.load(quarantineFlags, i);
         const incomingMessage = Atomics.load(readBuffer, i);
+        
+        // ERA 38: Diplomatic Check
+        let isDiplomatic = false;
+        if (incomingMessage > 0) {
+            let sig = "";
+            for (let b = 0; b < 8; b++) {
+                sig += Atomics.load(readSignatures, i * 8 + b).toString(16).padStart(2, '0');
+            }
+            if (trustedSet.has(sig.toUpperCase())) isDiplomatic = true;
+        }
+
         // Prepare State Object for VM
         const currentRole = Atomics.load(roles, i);
+        const currentBonuses = Atomics.load(semanticBonuses, i);
         
-        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, quarantineLevel, incomingMessage };
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState);
+        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
+        
+        // ERA 40: Execute with Wasm Fast Path
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, wasmExports);
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -215,6 +261,11 @@ self.onmessage = (e) => {
                 // Determine if we should use writeBuffer[msg.targetIdx] directly
                 // Using atomic store to the SHARED write buffer
                 Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+                
+                // ERA 38: Store Sender Signature for Diplomatic Signaling
+                for (let b = 0; b < 8; b++) {
+                    Atomics.store(writeSignatures, msg.targetIdx * 8 + b, logicBytes[b]);
+                }
 
                 // ERA 29: Hebbian Potentiation - "Fire together, wire together"
                 if (msg.sourceBondSlot !== undefined) {
@@ -285,6 +336,9 @@ self.onmessage = (e) => {
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
             if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
                 Atomics.store(evolutionRequests, i, 1);
+            }
+            if (intent.level === 10 && intent.value === "spawn") {
+                Atomics.store(spawnRequests, i, 1);
             }
         }
 

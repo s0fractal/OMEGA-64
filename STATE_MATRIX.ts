@@ -19,8 +19,10 @@ const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 
 const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
 
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
-const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
-const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
+const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
+const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
+const viralGridBuffer = new SharedArrayBuffer(1400 * 800); // 1.12MB byte array for viral RNA + 1-byte intensity
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
@@ -29,6 +31,9 @@ const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30:
 const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
 const memoryGridBuffer = new SharedArrayBuffer(70 * 40 * 8); // ERA 32: 70x40 grid of 8-byte bytecode (2x Int32)
 const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
+const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
+const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
+const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -43,6 +48,7 @@ const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
+const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -52,6 +58,9 @@ const synapticStack = new Int32Array(synapticStackBuffer);
 const structureGrid = new Int32Array(structureGridBuffer);
 const memoryGrid = new Uint8Array(memoryGridBuffer);
 const roles = new Uint8Array(roleRegistryBuffer);
+const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
+const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
+const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 
 const SCALE = 1000;
 
@@ -61,8 +70,10 @@ export const STATE_MATRIX = {
     bondStiffnessBuffer,
     messageBufferA,
     messageBufferB,
+    marketBuffer,
     SCALE,
     evolutionRequestsBuffer,
+    spawnRequestsBuffer,
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -74,6 +85,12 @@ export const STATE_MATRIX = {
     memoryGrid,
     roleRegistryBuffer,
     roles,
+    semanticBonusesBuffer,
+    semanticBonuses,
+    senderSignatureBufferA,
+    senderSignatureBufferB,
+    senderSignaturesA,
+    senderSignaturesB,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -114,6 +131,11 @@ export const STATE_MATRIX = {
     clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
     
+    // --- MITOSIS (ERA 41) ---
+    requestSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 1); },
+    clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
+    hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
+
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
     getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
@@ -125,12 +147,20 @@ export const STATE_MATRIX = {
     // swap is handled at the start of PULSE.run() loop
     currentWriteBuffer: messagesA,
     currentReadBuffer: messagesB,
+    currentWriteSignatures: senderSignaturesA,
+    currentReadSignatures: senderSignaturesB,
     swapMessageBuffers: () => {
-        const temp = STATE_MATRIX.currentWriteBuffer;
+        const tempBuf = STATE_MATRIX.currentWriteBuffer;
         STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
-        STATE_MATRIX.currentReadBuffer = temp;
-        // Clear the NEW write buffer so it's fresh for this pulse
+        STATE_MATRIX.currentReadBuffer = tempBuf;
+        
+        const tempSig = STATE_MATRIX.currentWriteSignatures;
+        STATE_MATRIX.currentWriteSignatures = STATE_MATRIX.currentReadSignatures;
+        STATE_MATRIX.currentReadSignatures = tempSig;
+
+        // Clear the NEW write buffers
         STATE_MATRIX.currentWriteBuffer.fill(0);
+        STATE_MATRIX.currentWriteSignatures.fill(0);
     },
     getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
     setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
@@ -159,6 +189,7 @@ export const STATE_MATRIX = {
     clear: () => {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
+        new Uint8Array(spawnRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);
@@ -168,6 +199,9 @@ export const STATE_MATRIX = {
         structureGrid.fill(0);
         memoryGrid.fill(0);
         roles.fill(0);
+        semanticBonuses.fill(0);
+        senderSignaturesA.fill(0);
+        senderSignaturesB.fill(0);
     },
 
     getActiveIndices: () => {

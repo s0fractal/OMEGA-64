@@ -3,6 +3,7 @@
 
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
 
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
@@ -18,8 +19,13 @@ export const BREATH = {
             const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
             console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
             
-            // 2. Consult the Oracle (LLM Synapse)
-            const thought = await LLM_SYNAPSE.generateThought(vox.join(" "));
+            // 2. Audit Archived Intent (Historical Context)
+            const historicalBriefing = await AUDIT_ENGINE.generateHistoricalBriefing();
+            console.log(`   [BREATH] Historical Briefing: "${historicalBriefing.substring(0, 50)}..."`);
+
+            // 3. Consult the Oracle (LLM Synapse)
+            const combinedContext = `${historicalBriefing} | CURRENT MOOD: ${vox.join(" ")}`;
+            const thought = await LLM_SYNAPSE.generateThought(combinedContext);
             
             // 3. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;

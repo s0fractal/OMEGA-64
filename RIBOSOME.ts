@@ -7,6 +7,7 @@ import { IMMUNE } from "./IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 import { parse as parseYaml } from "jsr:@std/yaml";
 import { STATE_MATRIX, ATOM_SIZE } from "./STATE_MATRIX.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { decodeHex } from "jsr:@std/encoding/hex";
 
 export interface Atom {
@@ -37,6 +38,34 @@ export const RIBOSOME = {
     // Scan and Lift all Atoms in Flatland and Vacuum
     lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
         console.log("   [RIBOSOME] lift started on root: ", root);
+
+        // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
+        const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+        if (snapshots.length > 0) {
+            const latest = snapshots[0];
+            console.log(`   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`);
+            const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
+            if (status.success) {
+                console.log("   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊");
+                // Reconstruct a mock lattice from active indices for compatibility
+                const lattice = new Map<string, Atom>();
+                const activeIndices = STATE_MATRIX.getActiveIndices();
+                for (const idx of activeIndices) {
+                    const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, '0').toUpperCase();
+                    // We don't have the full AST/logic string here perfectly, but 
+                    // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
+                    ID_TO_IDX.set(idHex, idx);
+                    IDX_TO_ID.set(idx, idHex);
+                    lattice.set(idHex, { id: idHex, level: 0, module: {}, symbol: "HYDRATED" });
+                }
+                // Return immediately, bypassing filesystem parsing
+                return lattice;
+            } else {
+                console.warn("   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.");
+                STATE_MATRIX.clear(); // Reset before fallback
+            }
+        }
+
         const lattice = new Map<string, Atom>();
         let idx = 0;
 

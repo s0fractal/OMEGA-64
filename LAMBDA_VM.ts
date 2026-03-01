@@ -47,9 +47,21 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
+    // ERA 40: Inject optional WebAssembly Kernel for extreme scale execution
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
+        // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
+        const bonuses = state.semanticBonuses || 0;
+        const isSwift = (bonuses & 1) === 1;
+        const isGuardian = (bonuses & 2) === 2;
+        const isHarvest = (bonuses & 4) === 4;
+
+        // --- ERA 38: Metabolic Taxation (Cognitive Load) ---
+        if (bonuses > 0) {
+            res.energyDelta -= 0.05;
+        }
+
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
         if (state.quarantineLevel === 2) {
             // SUPPRESSED: No energy delta, no resonance, no intent. Absolute NO-OP.
@@ -72,10 +84,43 @@ export const LAMBDA_VM = {
 
         let pcJumped = false;
 
+        // --- ERA 40: Wasm Fast Path (Zero-Copy Interception) ---
+        if (wasm && (op === ISA.MOVE || op === ISA.ADD || op === ISA.SUB || op === ISA.LOAD || op === ISA.STORE)) {
+            const u8 = new Uint8Array(wasm.memory.buffer);
+            const f32 = new Float32Array(wasm.memory.buffer);
+
+            // 1. Write Input (0..36)
+            u8[0] = op;
+            u8[1] = p1;
+            u8[2] = p2;
+            u8[3] = p3;
+            u8[4] = state.semanticBonuses || 0;
+            u8.set(context, 5);
+
+            // 2. Execute Wasm Kernel
+            if (wasm.execute_atom() === 1) {
+                // 3. Read Output (64..115)
+                res.energyDelta += f32[(64 >> 2) + 0];
+                res.resonanceDelta += f32[(64 >> 2) + 1];
+                
+                if (u8[64 + 8] === 1) { // hasIntent
+                    const dx = f32[(64 >> 2) + 3]; // offset 76
+                    const dy = f32[(64 >> 2) + 4]; // offset 80
+                    res.intent.push({ level: 4, value: { dx, dy } });
+                }
+                
+                // Write back mutated registers/stack context
+                context.set(u8.subarray(64 + 20, 64 + 20 + 32));
+
+                if (!pcJumped) context[0] = (pc + 1) % 16;
+                return res; // Fast Return. Bypasses TS AST completely!
+            }
+        }
+
         switch (op) {
             case ISA.MOVE:
                 res.intent.push({ level: 4, value: { dx: (p1 - 128) / 10, dy: (p2 - 128) / 10 } });
-                res.energyDelta -= 1;
+                res.energyDelta -= isSwift ? 0 : 1; // Swift bonus: Free movement
                 break;
 
             case ISA.FEED: {
@@ -104,7 +149,8 @@ export const LAMBDA_VM = {
 
                 // 1:1 Conservation (Section IV.2 of Manifesto)
                 // Nutrients (Int32) to Energy (float, scaled by 1000 in Matrix)
-                res.energyDelta += consumed / 1000; 
+                // ERA 36: Harvest bonus (20% increased efficiency)
+                res.energyDelta += (consumed / 1000) * (isHarvest ? 1.2 : 1.0); 
                 if (consumed > 0) {
                     res.resonanceDelta += 0.1;
                 }
@@ -225,7 +271,12 @@ export const LAMBDA_VM = {
             case ISA.RECV:
                 // Read incoming signal into p1 register
                 if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
-                res.resonanceDelta += 0.2;
+                // ERA 38: Diplomatic Signaling (Boost resonance if message is from an Ally)
+                if ((state as any).isDiplomatic) {
+                    res.resonanceDelta += 2.0;
+                } else {
+                    res.resonanceDelta += 0.2;
+                }
                 break;
 
             case ISA.LOCK: {
@@ -261,7 +312,7 @@ export const LAMBDA_VM = {
                 if (state.resonance > 40) {
                     res.modifiedStructure = { type: p1 % 8, density: Math.min(255, p2) };
                     res.energyDelta -= 10;
-                    res.resonanceDelta -= 20; // Structuralization costs resonance
+                    res.resonanceDelta -= isGuardian ? 10 : 20; // Guardian bonus: 50% resonance discount
                 }
                 break;
 

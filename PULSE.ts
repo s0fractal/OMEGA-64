@@ -37,11 +37,17 @@ export const PULSE = {
         console.log("🛡️ OMEGA-64 | ERA 14: THE TURING MIND | PULSE ACTIVE");
         
         console.log("-> Lifting ROOT");
-        await RIBOSOME.lift(ROOT);
+        const lattice = await RIBOSOME.lift(ROOT);
         console.log("-> ROOT Lifted");
 
-        console.log("-> Seeding Nutrients");
-        PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+        // ERA 39: If we hydrated from a snapshot, we don't want to overwrite the loaded envBuffer 
+        // with a fresh seed unless this is a true cold start.
+        if (!lattice.has("HYDRATED")) {
+            console.log("-> Seeding Nutrients (Cold Start)");
+            PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+        } else {
+            console.log("-> Nutrients Hydrated (Warm Start)");
+        }
 
         
         console.log("-> Init Workers");
@@ -97,6 +103,7 @@ export const PULSE = {
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
+                        spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer, // ERA 41
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         immuneBuffer: STATE_MATRIX.immuneBuffer,
                         messageBufferA: STATE_MATRIX.messageBufferA,
@@ -106,12 +113,59 @@ export const PULSE = {
                         structureGridBuffer: STATE_MATRIX.structureGridBuffer,
                         memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
                         roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
+                        semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
+                        senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
+                        senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
+                        trustedSignatures: Array.from(GATE.trustedSignatures),
                         pulseId
                     });
                 });
             });
 
             await Promise.all(workerPromises);
+
+            // --- ERA 41: Epigenetic Inheritance & Heredity (Mitosis) ---
+            for (const idx of activeIndices) {
+                if (STATE_MATRIX.hasSpawnRequest(idx)) {
+                    STATE_MATRIX.clearSpawn(idx);
+                    const newIdx = STATE_MATRIX.findEmptySlot();
+                    
+                    if (newIdx !== -1) {
+                        // 1. Division of Capital (50/50 split)
+                        const parentEnergy = STATE_MATRIX.getEnergy(idx);
+                        const parentResonance = STATE_MATRIX.getResonance(idx);
+                        
+                        const childEnergy = parentEnergy / 2;
+                        const childResonance = parentResonance / 2;
+                        
+                        STATE_MATRIX.setEnergy(idx, childEnergy);
+                        STATE_MATRIX.setResonance(idx, childResonance);
+                        
+                        STATE_MATRIX.setEnergy(newIdx, childEnergy);
+                        STATE_MATRIX.setResonance(newIdx, childResonance);
+
+                        // 2. Epigenetic Heredity
+                        STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx)); // Genome
+                        STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));   // Learned Instructions
+                        
+                        // 3. Systemic Context
+                        STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx]; // Trophic Role
+                        STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx]; // Cognitive Bonus
+
+                        // 4. Topological Placement
+                        const px = STATE_MATRIX.getX(idx);
+                        const py = STATE_MATRIX.getY(idx);
+                        STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10)); // Slight offset
+                        STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
+                        
+                        // 5. Genesis Identity
+                        const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                        STATE_MATRIX.setId(newIdx, childId);
+
+                        console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}. Inheritance successful. Child ID: ${childId.toString(16)}`);
+                    }
+                }
+            }
 
             // Convergence, Crisis Resolution & Reporting
             if (pulseId % 100 === 0) {
@@ -138,10 +192,18 @@ export const PULSE = {
             if (pulseId % 1000 === 0) {
                 await REFLECTION_ENGINE.crystallize(100);
 
+                // ERA 37: Economic Dividend Distribution
+                PREDICTION_MARKET.distributeDividends();
+
                 // ERA 22: Epigenetic Mutation Processing
-                const winners = activeIndices
-                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
+                // ERA 36: ORACLE PRIORITY QUEUE (Top 5% Resonance)
+                const cognitiveThresholdCount = Math.ceil(activeIndices.length * 0.05);
+                const cognitiveElite = activeIndices
                     .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+                    .slice(0, cognitiveThresholdCount);
+
+                const winners = cognitiveElite
+                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
                     .slice(0, 3);
 
                 for (const idx of winners) {
@@ -153,6 +215,8 @@ export const PULSE = {
                     console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
                     
                     SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    // Update bonuses for the new thought
+                    SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
                     
                     // Record Lineage
                     const childLogic = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');

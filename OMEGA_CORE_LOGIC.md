@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-03-01T17:13:21.223Z*
+*Generated: 2026-03-01T19:03:32.297Z*
 
 ---
 
@@ -28,8 +28,10 @@ const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 
 const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
 
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
-const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
-const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
+const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
+const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
+const viralGridBuffer = new SharedArrayBuffer(1400 * 800); // 1.12MB byte array for viral RNA + 1-byte intensity
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
@@ -38,6 +40,9 @@ const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30:
 const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
 const memoryGridBuffer = new SharedArrayBuffer(70 * 40 * 8); // ERA 32: 70x40 grid of 8-byte bytecode (2x Int32)
 const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
+const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
+const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
+const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -52,6 +57,7 @@ const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
+const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -61,6 +67,9 @@ const synapticStack = new Int32Array(synapticStackBuffer);
 const structureGrid = new Int32Array(structureGridBuffer);
 const memoryGrid = new Uint8Array(memoryGridBuffer);
 const roles = new Uint8Array(roleRegistryBuffer);
+const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
+const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
+const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 
 const SCALE = 1000;
 
@@ -70,8 +79,10 @@ export const STATE_MATRIX = {
     bondStiffnessBuffer,
     messageBufferA,
     messageBufferB,
+    marketBuffer,
     SCALE,
     evolutionRequestsBuffer,
+    spawnRequestsBuffer,
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -83,6 +94,12 @@ export const STATE_MATRIX = {
     memoryGrid,
     roleRegistryBuffer,
     roles,
+    semanticBonusesBuffer,
+    semanticBonuses,
+    senderSignatureBufferA,
+    senderSignatureBufferB,
+    senderSignaturesA,
+    senderSignaturesB,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -123,6 +140,11 @@ export const STATE_MATRIX = {
     clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
     
+    // --- MITOSIS (ERA 41) ---
+    requestSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 1); },
+    clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
+    hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
+
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
     getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
@@ -134,12 +156,20 @@ export const STATE_MATRIX = {
     // swap is handled at the start of PULSE.run() loop
     currentWriteBuffer: messagesA,
     currentReadBuffer: messagesB,
+    currentWriteSignatures: senderSignaturesA,
+    currentReadSignatures: senderSignaturesB,
     swapMessageBuffers: () => {
-        const temp = STATE_MATRIX.currentWriteBuffer;
+        const tempBuf = STATE_MATRIX.currentWriteBuffer;
         STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
-        STATE_MATRIX.currentReadBuffer = temp;
-        // Clear the NEW write buffer so it's fresh for this pulse
+        STATE_MATRIX.currentReadBuffer = tempBuf;
+        
+        const tempSig = STATE_MATRIX.currentWriteSignatures;
+        STATE_MATRIX.currentWriteSignatures = STATE_MATRIX.currentReadSignatures;
+        STATE_MATRIX.currentReadSignatures = tempSig;
+
+        // Clear the NEW write buffers
         STATE_MATRIX.currentWriteBuffer.fill(0);
+        STATE_MATRIX.currentWriteSignatures.fill(0);
     },
     getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
     setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
@@ -168,6 +198,7 @@ export const STATE_MATRIX = {
     clear: () => {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
+        new Uint8Array(spawnRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);
@@ -177,6 +208,9 @@ export const STATE_MATRIX = {
         structureGrid.fill(0);
         memoryGrid.fill(0);
         roles.fill(0);
+        semanticBonuses.fill(0);
+        senderSignaturesA.fill(0);
+        senderSignaturesB.fill(0);
     },
 
     getActiveIndices: () => {
@@ -213,6 +247,7 @@ import { IMMUNE } from "./IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 import { parse as parseYaml } from "jsr:@std/yaml";
 import { STATE_MATRIX, ATOM_SIZE } from "./STATE_MATRIX.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { decodeHex } from "jsr:@std/encoding/hex";
 
 export interface Atom {
@@ -243,6 +278,34 @@ export const RIBOSOME = {
     // Scan and Lift all Atoms in Flatland and Vacuum
     lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
         console.log("   [RIBOSOME] lift started on root: ", root);
+
+        // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
+        const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+        if (snapshots.length > 0) {
+            const latest = snapshots[0];
+            console.log(`   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`);
+            const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
+            if (status.success) {
+                console.log("   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊");
+                // Reconstruct a mock lattice from active indices for compatibility
+                const lattice = new Map<string, Atom>();
+                const activeIndices = STATE_MATRIX.getActiveIndices();
+                for (const idx of activeIndices) {
+                    const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, '0').toUpperCase();
+                    // We don't have the full AST/logic string here perfectly, but 
+                    // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
+                    ID_TO_IDX.set(idHex, idx);
+                    IDX_TO_ID.set(idx, idHex);
+                    lattice.set(idHex, { id: idHex, level: 0, module: {}, symbol: "HYDRATED" });
+                }
+                // Return immediately, bypassing filesystem parsing
+                return lattice;
+            } else {
+                console.warn("   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.");
+                STATE_MATRIX.clear(); // Reset before fallback
+            }
+        }
+
         const lattice = new Map<string, Atom>();
         let idx = 0;
 
@@ -435,11 +498,17 @@ export const PULSE = {
         console.log("🛡️ OMEGA-64 | ERA 14: THE TURING MIND | PULSE ACTIVE");
         
         console.log("-> Lifting ROOT");
-        await RIBOSOME.lift(ROOT);
+        const lattice = await RIBOSOME.lift(ROOT);
         console.log("-> ROOT Lifted");
 
-        console.log("-> Seeding Nutrients");
-        PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+        // ERA 39: If we hydrated from a snapshot, we don't want to overwrite the loaded envBuffer 
+        // with a fresh seed unless this is a true cold start.
+        if (!lattice.has("HYDRATED")) {
+            console.log("-> Seeding Nutrients (Cold Start)");
+            PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+        } else {
+            console.log("-> Nutrients Hydrated (Warm Start)");
+        }
 
         
         console.log("-> Init Workers");
@@ -459,6 +528,10 @@ export const PULSE = {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
                 PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
                 
+                // ERA 34: Structural Decay & Memory Leaking
+                // @ts-ignore: structureGrid and memoryGrid exist in STATE_MATRIX
+                PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
+
                 // ERA 26: Collective Immunity
                 GATE.detectAntigens(STATE_MATRIX);
             }
@@ -491,6 +564,7 @@ export const PULSE = {
                         endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
+                        spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer, // ERA 41
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         immuneBuffer: STATE_MATRIX.immuneBuffer,
                         messageBufferA: STATE_MATRIX.messageBufferA,
@@ -500,12 +574,59 @@ export const PULSE = {
                         structureGridBuffer: STATE_MATRIX.structureGridBuffer,
                         memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
                         roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
+                        semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
+                        senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
+                        senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
+                        trustedSignatures: Array.from(GATE.trustedSignatures),
                         pulseId
                     });
                 });
             });
 
             await Promise.all(workerPromises);
+
+            // --- ERA 41: Epigenetic Inheritance & Heredity (Mitosis) ---
+            for (const idx of activeIndices) {
+                if (STATE_MATRIX.hasSpawnRequest(idx)) {
+                    STATE_MATRIX.clearSpawn(idx);
+                    const newIdx = STATE_MATRIX.findEmptySlot();
+                    
+                    if (newIdx !== -1) {
+                        // 1. Division of Capital (50/50 split)
+                        const parentEnergy = STATE_MATRIX.getEnergy(idx);
+                        const parentResonance = STATE_MATRIX.getResonance(idx);
+                        
+                        const childEnergy = parentEnergy / 2;
+                        const childResonance = parentResonance / 2;
+                        
+                        STATE_MATRIX.setEnergy(idx, childEnergy);
+                        STATE_MATRIX.setResonance(idx, childResonance);
+                        
+                        STATE_MATRIX.setEnergy(newIdx, childEnergy);
+                        STATE_MATRIX.setResonance(newIdx, childResonance);
+
+                        // 2. Epigenetic Heredity
+                        STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx)); // Genome
+                        STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));   // Learned Instructions
+                        
+                        // 3. Systemic Context
+                        STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx]; // Trophic Role
+                        STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx]; // Cognitive Bonus
+
+                        // 4. Topological Placement
+                        const px = STATE_MATRIX.getX(idx);
+                        const py = STATE_MATRIX.getY(idx);
+                        STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10)); // Slight offset
+                        STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
+                        
+                        // 5. Genesis Identity
+                        const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                        STATE_MATRIX.setId(newIdx, childId);
+
+                        console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}. Inheritance successful. Child ID: ${childId.toString(16)}`);
+                    }
+                }
+            }
 
             // Convergence, Crisis Resolution & Reporting
             if (pulseId % 100 === 0) {
@@ -532,10 +653,18 @@ export const PULSE = {
             if (pulseId % 1000 === 0) {
                 await REFLECTION_ENGINE.crystallize(100);
 
+                // ERA 37: Economic Dividend Distribution
+                PREDICTION_MARKET.distributeDividends();
+
                 // ERA 22: Epigenetic Mutation Processing
-                const winners = activeIndices
-                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
+                // ERA 36: ORACLE PRIORITY QUEUE (Top 5% Resonance)
+                const cognitiveThresholdCount = Math.ceil(activeIndices.length * 0.05);
+                const cognitiveElite = activeIndices
                     .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+                    .slice(0, cognitiveThresholdCount);
+
+                const winners = cognitiveElite
+                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
                     .slice(0, 3);
 
                 for (const idx of winners) {
@@ -547,6 +676,8 @@ export const PULSE = {
                     console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
                     
                     SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                    // Update bonuses for the new thought
+                    SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
                     
                     // Record Lineage
                     const childLogic = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -580,19 +711,35 @@ import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { LAMBDA_VM } from "./LAMBDA_VM.ts";
 import { PRNG } from "./PRNG.ts";
 
-
 const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
+// ERA 40: Wasm Fast Path Initialization
+let wasmExports: any = null;
+try {
+    const wasmCode = await Deno.readFile(new URL("./omega_wasm_asc/build/lambda_vm.wasm", import.meta.url));
+    const wasmModule = await WebAssembly.instantiate(wasmCode, {
+        env: {
+            memory: new WebAssembly.Memory({ initial: 1 }),
+            abort: () => console.error("Wasm aborted.")
+        }
+    });
+    wasmExports = wasmModule.instance.exports;
+    console.log("   [WORKER] Wasm LambdaVM kernel ready. ⚡🕸️");
+} catch (e) {
+    console.error("   [WORKER] Wasm LambdaVM failed to load. Falling back to TS.", e);
+}
+
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
     const attention = new Float32Array(attentionBuffer);
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
+    const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
@@ -602,6 +749,11 @@ self.onmessage = (e) => {
     const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
     const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
     const roles = new Uint8Array(roleRegistryBuffer); // ERA 33: Metabolic Specialization
+    const semanticBonuses = new Uint8Array(semanticBonusesBuffer); // ERA 36: Cognitive Scaffolding
+    const senderSignaturesA = new Uint8Array(senderSignatureBufferA); // ERA 38: Sender Signatures
+    const senderSignaturesB = new Uint8Array(senderSignatureBufferB); // ERA 38: Sender Signatures
+
+    const trustedSet = new Set<string>(trustedSignatures || []);
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -609,6 +761,8 @@ self.onmessage = (e) => {
     const isAEven = pulseId % 2 === 0;
     const readBuffer = isAEven ? msgsB : msgsA; // Read from previous pulse's write
     const writeBuffer = isAEven ? msgsA : msgsB; // Write for next pulse
+    const readSignatures = isAEven ? senderSignaturesB : senderSignaturesA;
+    const writeSignatures = isAEven ? senderSignaturesA : senderSignaturesB;
 
     const marketPool = new Int32Array(marketBuffer, 4, 1);
 
@@ -642,7 +796,16 @@ self.onmessage = (e) => {
         const context = contexts.subarray(i * 32, i * 32 + 32);
 
         const isDivine = resonance > DIVINITY_THRESHOLD;
-        energy -= isDivine ? 0 : 0.05 * mods.decay;
+        
+        // --- ERA 35: Stigmergic Shelter ---
+        // Atoms near structures (density > 50) receive a survival bonus
+        const gx_init = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+        const gy_init = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const currentStructureCell = Atomics.load(structureGrid, gy_init * 70 + gx_init);
+        const currentDensity = (currentStructureCell >> 8) & 0xFF;
+        const shelterBonus = currentDensity > 50 ? 0.8 : 1.0;
+
+        energy -= isDivine ? 0 : (0.05 * mods.decay * shelterBonus);
 
         // Physics & DNA Logic
         const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -699,11 +862,25 @@ self.onmessage = (e) => {
         // VM EXECUTION (L6: Contextual ISA)
         const quarantineLevel = Atomics.load(quarantineFlags, i);
         const incomingMessage = Atomics.load(readBuffer, i);
+        
+        // ERA 38: Diplomatic Check
+        let isDiplomatic = false;
+        if (incomingMessage > 0) {
+            let sig = "";
+            for (let b = 0; b < 8; b++) {
+                sig += Atomics.load(readSignatures, i * 8 + b).toString(16).padStart(2, '0');
+            }
+            if (trustedSet.has(sig.toUpperCase())) isDiplomatic = true;
+        }
+
         // Prepare State Object for VM
         const currentRole = Atomics.load(roles, i);
+        const currentBonuses = Atomics.load(semanticBonuses, i);
         
-        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, quarantineLevel, incomingMessage };
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState);
+        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
+        
+        // ERA 40: Execute with Wasm Fast Path
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, wasmExports);
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -788,6 +965,11 @@ self.onmessage = (e) => {
                 // Determine if we should use writeBuffer[msg.targetIdx] directly
                 // Using atomic store to the SHARED write buffer
                 Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+                
+                // ERA 38: Store Sender Signature for Diplomatic Signaling
+                for (let b = 0; b < 8; b++) {
+                    Atomics.store(writeSignatures, msg.targetIdx * 8 + b, logicBytes[b]);
+                }
 
                 // ERA 29: Hebbian Potentiation - "Fire together, wire together"
                 if (msg.sourceBondSlot !== undefined) {
@@ -858,6 +1040,9 @@ self.onmessage = (e) => {
             if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
             if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
                 Atomics.store(evolutionRequests, i, 1);
+            }
+            if (intent.level === 10 && intent.value === "spawn") {
+                Atomics.store(spawnRequests, i, 1);
             }
         }
 
@@ -1632,43 +1817,70 @@ export const GATE = {
     };
   },
 
-  /**
-   * ERA 26: Collective Immunity
-   * Proactively scans logic signatures for malignant patterns.
-   */
-  detectAntigens: (stateMatrix: any) => {
-     const active = stateMatrix.getActiveIndices();
-     for (const idx of active) {
-        const logic = stateMatrix.getLogic(idx); // Uint8Array(8)
-        let malignancy = 0;
+   /**
+    * ERA 35: Immune Learning (Ally Registry)
+    * Whitelist for "Good Viruses" that have proven their worth.
+    */
+   trustedSignatures: new Set<string>(),
 
-        // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
-        // OP 0x20 is FEED. If genomic header is packed with it, it's a parasite.
-        let feedCount = 0;
-        for (let i = 0; i < 8; i++) {
-           if (logic[i] === 0x20) feedCount++;
-        }
-        if (feedCount > 4) malignancy += 50;
+   /**
+    * ERA 26: Collective Immunity
+    * Proactively scans logic signatures for malignant patterns.
+    * ERA 35: Updated with Immune Learning Loop.
+    */
+   detectAntigens: (stateMatrix: any) => {
+      const active = stateMatrix.getActiveIndices();
+      for (const idx of active) {
+         const logic = stateMatrix.getLogic(idx) as Uint8Array;
+         let logicStr = "";
+         for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
+         
+         // 🛡️ Era 35: Whitelist Bypass
+         if (GATE.trustedSignatures.has(logicStr)) {
+            stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
+            continue;
+         }
 
-        // Pattern 2: Chaos Injection (High entropy logic without bonds)
-        const bonds = stateMatrix.getBonds(idx);
-        let hasBonds = false;
-        for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
-        if (!hasBonds && feedCount > 2) malignancy += 30;
+         let malignancy = 0;
 
-        // Pattern 3: Red Line Violations (Attempting restricted ISA space if any)
-        // ... (Reserved for future patterns) ...
+         // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+         let feedCount = 0;
+         for (let i = 0; i < 8; i++) {
+            if (logic[i] === 0x20) feedCount++;
+         }
+         if (feedCount > 4) malignancy += 50;
 
-        // Apply Quarantine
-        if (malignancy >= 80) {
-           stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
-        } else if (malignancy >= 30) {
-           stateMatrix.setQuarantine(idx, 1); // FLAGGED
-        } else {
-           stateMatrix.setQuarantine(idx, 0); // CLEAN
-        }
-     }
-  }
+         // Pattern 2: Chaos Injection (High entropy logic without bonds)
+         const bonds = stateMatrix.getBonds(idx);
+         let hasBonds = false;
+         for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
+         if (!hasBonds && feedCount > 2) malignancy += 30;
+
+         // Pattern 3: Red Line Violations (Attempting restricted ISA space)
+         // ... (Reserved) ...
+
+         // --- ERA 35: Learning Loop ---
+         // If an atom is exceptionally successful despite malignancy, learn its signature
+         const energy = stateMatrix.getEnergy(idx);
+         const resonance = stateMatrix.getResonance(idx);
+         if (malignancy >= 30 && energy > 200 && resonance > 150) {
+            if (!GATE.trustedSignatures.has(logicStr)) {
+               console.log(`🛡️ [IMMUNE_LEARNING] New Ally Manifested: ${logicStr} (Energy: ${energy.toFixed(1)})`);
+               GATE.trustedSignatures.add(logicStr);
+               malignancy = 0; // Immediate pardon
+            }
+         }
+
+         // Apply Quarantine
+         if (malignancy >= 80) {
+            stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
+         } else if (malignancy >= 30) {
+            stateMatrix.setQuarantine(idx, 1); // FLAGGED
+         } else {
+            stateMatrix.setQuarantine(idx, 0); // CLEAN
+         }
+      }
+   }
 };
 
 
@@ -1910,9 +2122,21 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
+    // ERA 40: Inject optional WebAssembly Kernel for extreme scale execution
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
+        // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
+        const bonuses = state.semanticBonuses || 0;
+        const isSwift = (bonuses & 1) === 1;
+        const isGuardian = (bonuses & 2) === 2;
+        const isHarvest = (bonuses & 4) === 4;
+
+        // --- ERA 38: Metabolic Taxation (Cognitive Load) ---
+        if (bonuses > 0) {
+            res.energyDelta -= 0.05;
+        }
+
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
         if (state.quarantineLevel === 2) {
             // SUPPRESSED: No energy delta, no resonance, no intent. Absolute NO-OP.
@@ -1935,10 +2159,43 @@ export const LAMBDA_VM = {
 
         let pcJumped = false;
 
+        // --- ERA 40: Wasm Fast Path (Zero-Copy Interception) ---
+        if (wasm && (op === ISA.MOVE || op === ISA.ADD || op === ISA.SUB || op === ISA.LOAD || op === ISA.STORE)) {
+            const u8 = new Uint8Array(wasm.memory.buffer);
+            const f32 = new Float32Array(wasm.memory.buffer);
+
+            // 1. Write Input (0..36)
+            u8[0] = op;
+            u8[1] = p1;
+            u8[2] = p2;
+            u8[3] = p3;
+            u8[4] = state.semanticBonuses || 0;
+            u8.set(context, 5);
+
+            // 2. Execute Wasm Kernel
+            if (wasm.execute_atom() === 1) {
+                // 3. Read Output (64..115)
+                res.energyDelta += f32[(64 >> 2) + 0];
+                res.resonanceDelta += f32[(64 >> 2) + 1];
+                
+                if (u8[64 + 8] === 1) { // hasIntent
+                    const dx = f32[(64 >> 2) + 3]; // offset 76
+                    const dy = f32[(64 >> 2) + 4]; // offset 80
+                    res.intent.push({ level: 4, value: { dx, dy } });
+                }
+                
+                // Write back mutated registers/stack context
+                context.set(u8.subarray(64 + 20, 64 + 20 + 32));
+
+                if (!pcJumped) context[0] = (pc + 1) % 16;
+                return res; // Fast Return. Bypasses TS AST completely!
+            }
+        }
+
         switch (op) {
             case ISA.MOVE:
                 res.intent.push({ level: 4, value: { dx: (p1 - 128) / 10, dy: (p2 - 128) / 10 } });
-                res.energyDelta -= 1;
+                res.energyDelta -= isSwift ? 0 : 1; // Swift bonus: Free movement
                 break;
 
             case ISA.FEED: {
@@ -1967,7 +2224,8 @@ export const LAMBDA_VM = {
 
                 // 1:1 Conservation (Section IV.2 of Manifesto)
                 // Nutrients (Int32) to Energy (float, scaled by 1000 in Matrix)
-                res.energyDelta += consumed / 1000; 
+                // ERA 36: Harvest bonus (20% increased efficiency)
+                res.energyDelta += (consumed / 1000) * (isHarvest ? 1.2 : 1.0); 
                 if (consumed > 0) {
                     res.resonanceDelta += 0.1;
                 }
@@ -2088,7 +2346,12 @@ export const LAMBDA_VM = {
             case ISA.RECV:
                 // Read incoming signal into p1 register
                 if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
-                res.resonanceDelta += 0.2;
+                // ERA 38: Diplomatic Signaling (Boost resonance if message is from an Ally)
+                if ((state as any).isDiplomatic) {
+                    res.resonanceDelta += 2.0;
+                } else {
+                    res.resonanceDelta += 0.2;
+                }
                 break;
 
             case ISA.LOCK: {
@@ -2124,7 +2387,7 @@ export const LAMBDA_VM = {
                 if (state.resonance > 40) {
                     res.modifiedStructure = { type: p1 % 8, density: Math.min(255, p2) };
                     res.energyDelta -= 10;
-                    res.resonanceDelta -= 20; // Structuralization costs resonance
+                    res.resonanceDelta -= isGuardian ? 10 : 20; // Guardian bonus: 50% resonance discount
                 }
                 break;
 
@@ -2151,9 +2414,15 @@ export const LAMBDA_VM = {
 
             case ISA.SPEC:
                 // p1 is the requested role (1: Producer, 2: Constructor, 3: Siphon)
-                // Requires resonance > 100 to specialize
+                // ERA 34: Trophic Plasticity
+                // If already specialized, switching role costs 50% current energy & resonance
                 if (state.resonance > 100) {
-                    res.modifiedRole = p1 % 4; // 0 is generalist/reset
+                    const newRole = p1 % 4;
+                    if (state.role !== undefined && state.role !== 0 && state.role !== newRole) {
+                        res.energyDelta -= (state.energy * 0.5);
+                        res.resonanceDelta -= (state.resonance * 0.5);
+                    }
+                    res.modifiedRole = newRole;
                     res.energyDelta -= 20;
                     res.resonanceDelta -= 30;
                 }
@@ -2467,6 +2736,47 @@ export const PHYSICS_ENGINE = {
             }
         }
         return { fx, fy };
+    },
+
+    /**
+     * ERA 34: Structural Decay & Memory Leaking
+     * Decays structureGrid density and leaks memoryGrid into viralGrid.
+     */
+    decayStructures: (structureGrid: Int32Array, memoryGrid: Uint8Array, viralGrid: Uint8Array) => {
+        const GRID_W = 70;
+        const GRID_H = 40;
+
+        for (let i = 0; i < GRID_W * GRID_H; i++) {
+            const cell = Atomics.load(structureGrid, i);
+            let density = (cell >> 8) & 0xFF;
+            const type = cell & 0xFF;
+
+            if (density > 0) {
+                // Radioactive Decay of Architecture
+                density = Math.max(0, density - 1);
+                Atomics.store(structureGrid, i, (density << 8) | type);
+
+                // ERA 34: Memory Leaking (The Soil Remembers)
+                // If density is low, logic begins to bleed into the environment
+                if (density > 0 && density < 50) {
+                    const gridIdx = i * 9; // viralGrid is 70x40x9
+                    // Leak bytecode from memoryGrid to viralGrid logic slots [0-7]
+                    for (let b = 0; b < 8; b++) {
+                        const logicByte = memoryGrid[i * 8 + b];
+                        if (logicByte !== 0) {
+                            Atomics.store(viralGrid, gridIdx + b, logicByte);
+                        }
+                    }
+                    // Set viral intensity based on residual density
+                    Atomics.store(viralGrid, gridIdx + 8, Math.min(255, 50 - density));
+                }
+
+                // Total decay clears memory
+                if (density === 0) {
+                    for (let b = 0; b < 8; b++) memoryGrid[i * 8 + b] = 0;
+                }
+            }
+        }
     }
 
 };
@@ -2735,6 +3045,29 @@ export const SEMANTIC_MEMBRANE = {
             SEMANTIC_MEMBRANE.thoughtArchive.set(hexHash, text);
 
             console.log(`🧬 [MOTOR_OUTPUT] Spawned Emergent Atom [${isAggressive ? 'PARASITE' : 'BUILDER'}] from Thought (Genome: ${hexHash}): "${text.substring(0, 20)}..."`);
+            
+            // --- ERA 36: Cognitive Scaffolding ---
+            SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
+        }
+    },
+
+    getBonuses: (text: string): number => {
+        let mask = 0;
+        const low = text.toLowerCase();
+        if (low.includes("swift") || low.includes("fast") || low.includes("quick") || low.includes("light")) mask |= 1; // Bit 0: SWIFT (MOVE)
+        if (low.includes("guardian") || low.includes("shield") || low.includes("protect") || low.includes("wall")) mask |= 2; // Bit 1: GUARDIAN (BUILD)
+        if (low.includes("harvest") || low.includes("sun") || low.includes("feed") || low.includes("grow")) mask |= 4; // Bit 2: HARVEST (FEED)
+        return mask;
+    },
+
+    updateSemanticBonuses: (idx: number) => {
+        const logic = STATE_MATRIX.getLogic(idx);
+        const hexHash = Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+        const thought = SEMANTIC_MEMBRANE.thoughtArchive.get(hexHash);
+        if (thought) {
+            const bonuses = SEMANTIC_MEMBRANE.getBonuses(thought);
+            // @ts-ignore: semanticBonuses is a custom buffer added in Era 36
+            Atomics.store(STATE_MATRIX.semanticBonuses, idx, bonuses);
         }
     },
 
@@ -2792,9 +3125,11 @@ export const SEMANTIC_MEMBRANE = {
         const GRID_H = 40;
 
         for (let i = 0; i < GRID_W * GRID_H; i++) {
-            const density = grid[i];
-            if (density > 100) {
-                // Potential Archaelogical Site
+            const cell = grid[i];
+            const density = (cell >> 8) & 0xFF; // Pack: [Density (8 bits) | Type (8 bits)]
+            
+            if (density > 50 && density < 150) {
+                // Potential Archaelogical Site (Moderate density = Ruins)
                 const bytecode = memory.subarray(i * 8, i * 8 + 8);
                 const hasMemory = Array.from(bytecode).some((b: number) => b !== 0);
                 
@@ -2953,6 +3288,7 @@ if (import.meta.main) {
 
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
 
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
@@ -2968,8 +3304,13 @@ export const BREATH = {
             const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
             console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
             
-            // 2. Consult the Oracle (LLM Synapse)
-            const thought = await LLM_SYNAPSE.generateThought(vox.join(" "));
+            // 2. Audit Archived Intent (Historical Context)
+            const historicalBriefing = await AUDIT_ENGINE.generateHistoricalBriefing();
+            console.log(`   [BREATH] Historical Briefing: "${historicalBriefing.substring(0, 50)}..."`);
+
+            // 3. Consult the Oracle (LLM Synapse)
+            const combinedContext = `${historicalBriefing} | CURRENT MOOD: ${vox.join(" ")}`;
+            const thought = await LLM_SYNAPSE.generateThought(combinedContext);
             
             // 3. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;
@@ -3692,6 +4033,7 @@ const SCALE = 1000;
 
 export const PREDICTION_MARKET = {
     buffer: marketBuffer,
+    successfulGenomes: new Map<string, number>(), // ERA 37: Track successful mutation signatures
 
     startCrisis: (newLogic: Uint8Array) => {
         if (Atomics.load(marketState, 0) === 1) {
@@ -3718,14 +4060,16 @@ export const PREDICTION_MARKET = {
         const finalBet = Atomics.load(betPoolInt, 0) / SCALE;
 
         if (finalBet >= CRISIS_THRESHOLD) {
-            console.log(`🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${finalBet.toFixed(2)}. Applying globally...`);
+            const winnersHex = Array.from(proposedLogic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            console.log(`🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${finalBet.toFixed(2)}. Signature [${winnersHex}] is now Blessed.`);
             
+            // ERA 37: Record success
+            const currentWins = PREDICTION_MARKET.successfulGenomes.get(winnersHex) || 0;
+            PREDICTION_MARKET.successfulGenomes.set(winnersHex, currentWins + 1);
+
             // Apply the mutation to all active atoms in the single STATE_MATRIX
             const active = STATE_MATRIX.getActiveIndices();
             for (const idx of active) {
-                // Determine compatibility or survival. 
-                // For now, we ruthlessly overwrite their logic with the proposed genome.
-                // If they can't survive with this new logic in the physics loop, they will starve.
                 STATE_MATRIX.setLogic(idx, proposedLogic);
                 
                 // Minor energy penalty for adopting the mutation (adaptability toll)
@@ -3734,6 +4078,47 @@ export const PREDICTION_MARKET = {
             }
         } else {
             console.log(`🛑 [MARKET] CRISIS AVERTED. Insufficient Energy Bet: ${finalBet.toFixed(2)} / ${CRISIS_THRESHOLD}. Status Quo maintained.`);
+        }
+    },
+
+    /**
+     * ERA 37: Fractal Dividends
+     * Periodically distributes portions of the market pool to successful genetic lineages.
+     */
+    distributeDividends: () => {
+        const currentPool = Atomics.load(betPoolInt, 0) / SCALE;
+        if (currentPool < 100) return; // Only distribute if there's enough capital
+
+        const dividend = currentPool * 0.1; // 10% dividend
+        if (Atomics.compareExchange(betPoolInt, 0, Math.round(currentPool * SCALE), Math.round((currentPool - dividend) * SCALE)) !== Math.round(currentPool * SCALE)) {
+            return; // Concurrency guard
+        }
+
+        const active = STATE_MATRIX.getActiveIndices();
+        const winners = active.filter(idx => {
+            const logic = STATE_MATRIX.getLogic(idx);
+            const hex = Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            return PREDICTION_MARKET.successfulGenomes.has(hex);
+        });
+
+        if (winners.length === 0) return;
+
+        // Weight distribution by the number of historical wins
+        let totalWinWeight = 0;
+        const weights = winners.map(idx => {
+            const hex = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const w = PREDICTION_MARKET.successfulGenomes.get(hex) || 1;
+            totalWinWeight += w;
+            return w;
+        });
+
+        console.log(`💹 [MARKET] Distributing ${dividend.toFixed(1)} energy dividends to ${winners.length} successful atoms...`);
+        
+        for (let i = 0; i < winners.length; i++) {
+            const idx = winners[i];
+            const share = (weights[i] / totalWinWeight) * dividend;
+            const currentEnergy = STATE_MATRIX.getEnergy(idx);
+            STATE_MATRIX.setEnergy(idx, currentEnergy + share);
         }
     }
 };
@@ -4358,190 +4743,348 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
 ---
 
-## FILE: ZERO_IOPS.ts
+## FILE: WASM_MIGRATION_RFC.md
+
+```markdown
+# OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
+
+## 1. Executive Summary
+
+Currently, OMEGA-64's `LAMBDA_VM.ts` executes in the V8 JS engine using
+TypeScript. While Deno is fast, executing complex 16-register bytecode for
+>50,000 atoms per pulse (`PULSE_WORKER.ts`) creates a significant CPU
+bottleneck.
+
+This RFC proposes migrating the core `LAMBDA_VM` and potentially physics
+calculations to a **WebAssembly (Wasm) module written in Rust**. This will
+provide near-native execution speeds (estimated 10x-50x improvement), zero-cost
+abstractions for byte manipulation, and explicit memory control, allowing the
+Matrix to scale beyond 100,000 atoms without dropping the pulse rate.
+
+## 2. Shared Memory Architecture (Zero-Copy)
+
+To avoid the overhead of copying data between JS and Wasm, we will utilize
+`WebAssembly.Memory` backed by `SharedArrayBuffer` (which we already use heavily
+in `STATE_MATRIX.ts`).
+
+### The Layout
+
+The existing SoA (Structure of Arrays) layout in `STATE_MATRIX.buffer` aligns
+perfectly with Wasm linear memory.
+
+- Deno will allocate the `SharedArrayBuffer` (e.g., 50MB).
+- Deno will pass this buffer to the Wasm module during instantiation:
+  ```javascript
+  const wasmMemory = new WebAssembly.Memory({
+    initial: 1000,
+    maximum: 2000,
+    shared: true,
+  });
+  // Map our STATE_MATRIX over the wasmMemory.buffer
+  ```
+- Rust will access pointers to the various arrays (energies, resonances, codes)
+  directly using raw pointers or `js-sys` TypedArrays.
+
+## 3. The Rust implementation (`lambda_vm.rs`)
+
+### Data Structures
+
+```rust
+#[repr(C)]
+pub struct VmState {
+    pub x: i16,
+    pub y: i16,
+    pub energy: f32, // Or fixed-point i32 mapped from Deno
+    pub resonance: f32,
+    pub semantic_bonuses: u8,
+    // ... other contextual data
+}
+
+#[repr(C)]
+pub struct VmResult {
+    pub energy_delta: f32,
+    pub resonance_delta: f32,
+    pub message_out: u8,
+    pub intent_count: u8,
+    // Intents stored in a fixed array to avoid heap allocation across FFI
+    pub intents: [Intent; 4], 
+}
+```
+
+### Execution Loop
+
+The `execute` function will be exported to JS:
+
+```rust
+#[no_mangle]
+pub extern "C" fn execute_atom(
+    atom_index: usize,
+    pc: u32,
+    state_ptr: *mut VmState,
+    result_ptr: *mut VmResult
+) {
+    // 1. Read atom's memory and registers directly from shared buffer
+    // 2. Decode instruction
+    // 3. Match opcode & apply semantic bonuses
+    // 4. Write back to result_ptr
+}
+```
+
+## 4. Migration Strategy (Phased Approach)
+
+### Phase 1: Wasm Worker (Opt-in)
+
+- Write the Rust VM handling only basic opcodes (`MOVE`, `ADD`, `LOAD`,
+  `STORE`).
+- Compile to Wasm using `wasm-pack`.
+- Update `PULSE_WORKER.ts` to instantiate the Wasm module.
+- Add a fallback mechanism: If an atom encounters an advanced/unsupported opcode
+  (like `ENCODE` or `DECODE`), it bails out of Wasm and `PULSE_WORKER.ts`
+  finishes the execution using the legacy TypeScript `LAMBDA_VM`.
+
+### Phase 2: Complete ISA Port
+
+- Port all architectural stigmergy, semantic processing, and memetic replication
+  to Rust.
+- Wasm handles 100% of atom execution.
+
+### Phase 3: Spatial Hash & Physics Port
+
+- Move `PHYSICS_ENGINE` collision detection and nutrient diffusion into Wasm,
+  heavily utilizing SIMD instructions (if enabled) for grid convolutions.
+
+## 5. Security & Isolation
+
+By compiling the logic to Wasm, we enforce a strict sandbox. Atoms will
+literally be incapable of executing arbitrary system calls (no filesystem
+access, no network access), cementing the core axiom of the Matrix: "The VM is
+the Universe."
+
+## 6. Expected Outcomes
+
+- **Throughput**: Execution of a 16-instruction block drops from ~100ns to ~2ns.
+- **Capacity**: Maximum atom count increases from 50k to 500k+.
+- **Predictability**: Wasm provides strictly deterministic floating-point and
+  integer math, removing any V8 engine JIT unpredictability across different OS
+  architectures.
+
+```
+
+---
+
+## FILE: omega_wasm_asc/assembly/index.ts
 
 ```typescript
-// OMEGA-64 | ZERO_IOPS.ts | The Code-Is-Address Singularity
-// Parses 8-character hex strings in filenames directly into JavaScript Combinators.
+// OMEGA-64 | Wasm Kernel (AssemblyScript)
 
-// Combinator Axioms as Lambda Expressions
-const I = (x: any) => x;                    // 8
-const K = (x: any) => (y: any) => x;        // 9
-const S = (x: any) => (y: any) => (z: any) => (x(z))(y(z)); // A
-const Y = (f: any) => ((x: any) => f(x(x)))((x: any) => f(x(x))); // B
+export const IN_PTR: u32 = 0;
+export const OUT_PTR: u32 = 64;
 
-const ROOT = Deno.cwd();
+const ISA_MOVE: u8 = 0x10;
+const ISA_ADD: u8  = 0x40;
+const ISA_SUB: u8  = 0x41;
+const ISA_LOAD: u8 = 0x50;
+const ISA_STORE: u8 = 0x51;
 
-async function logAkasha(msg: string) {
-    try {
-        const timestamp = new Date().toISOString();
-        await Deno.writeTextFile("AKASHA.log", `[${timestamp}] ${msg}\n`, { append: true });
-    } catch { /* ignore */ }
+export function execute_atom(): u8 {
+    let op = load<u8>(IN_PTR + 0);
+    let p1 = load<u8>(IN_PTR + 1);
+    let p2 = load<u8>(IN_PTR + 2);
+    let p3 = load<u8>(IN_PTR + 3);
+    let bonuses = load<u8>(IN_PTR + 4);
+
+    let isSwift = (bonuses & 1) == 1;
+
+    let energyDelta: f32 = 0.0;
+    if (bonuses > 0) energyDelta -= 0.05;
+
+    // Reset Outputs
+    store<f32>(OUT_PTR + 0, energyDelta);
+    store<f32>(OUT_PTR + 4, 0.0); // resonanceDelta
+    store<u8>(OUT_PTR + 8, 0); // hasIntent
+    store<f32>(OUT_PTR + 12, 0.0); // intentDx
+    store<f32>(OUT_PTR + 16, 0.0); // intentDy
+
+    // Copy context to output context
+    for (let i: u32 = 0; i < 32; i++) {
+        let v = load<u8>(IN_PTR + 5 + i);
+        store<u8>(OUT_PTR + 20 + i, v);
+    }
+
+    if (op == ISA_MOVE) {
+        store<u8>(OUT_PTR + 8, 1); // hasIntent = 1;
+        let dx: f32 = (f32(p1) - 128.0) / 10.0;
+        let dy: f32 = (f32(p2) - 128.0) / 10.0;
+        store<f32>(OUT_PTR + 12, dx);
+        store<f32>(OUT_PTR + 16, dy);
+
+        if (!isSwift) energyDelta -= 1.0;
+        store<f32>(OUT_PTR + 0, energyDelta);
+        return 1; // Handled
+    }
+    
+    if (op == ISA_ADD) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8)); // REG2
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8)); // REG3
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 + v2); // wrap implicitly
+        return 1;
+    }
+
+    if (op == ISA_SUB) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 - v2);
+        return 1;
+    }
+
+    if (op == ISA_LOAD) {
+        let sp = load<u8>(OUT_PTR + 20 + 18) % 8; // context[18] is SP
+        if (p2 == 0) { // REG => REG
+            let val = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+            store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val);
+        } else if (p2 == 1) { // STACK => REG
+            // Stack is 10..17
+            let val = load<u8>(OUT_PTR + 20 + 10 + sp);
+            store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val);
+        }
+        return 1;
+    }
+
+    if (op == ISA_STORE) {
+        if (p1 == 1) { // REG => STACK
+            let sp = load<u8>(OUT_PTR + 20 + 18) % 8;
+            let val = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+            store<u8>(OUT_PTR + 20 + 10 + sp, val);
+            // sp++
+            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8);
+        }
+        return 1;
+    }
+
+    return 0; // Unhandled
 }
 
-async function zeroIopsPulse() {
-    console.log("🌀 ZERO-IOPS ENGINE INITIATED 🌀");
+```
+
+---
+
+## FILE: test_hybrid_storage.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { RIBOSOME } from "./RIBOSOME.ts";
+
+console.log("📦 [TEST] Verifying Era 39: Hybrid Storage...");
+
+async function runTest() {
+    // 1. Setup mock state
+    console.log("   [TEST] Seeding mock state...");
+    STATE_MATRIX.clear();
+    STATE_MATRIX.setId(0, 123456789n);
+    STATE_MATRIX.setEnergy(0, 999.0);
     
-    const atoms = [];
-    for await (const entry of Deno.readDir(ROOT)) {
-        if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-            atoms.push(entry.name);
-        }
+    // 2. Export snapshot
+    console.log("   [TEST] Exporting snapshot...");
+    const dump = await SNAPSHOT_ENGINE.exportSnapshot();
+    if (!dump.success) {
+        console.log("❌ [TEST] Failed to export snapshot.");
+        Deno.exit(1);
     }
 
-    if (atoms.length === 0) return;
-
-    // Pick a random atom
-    const targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
-    const parts = targetFilename.split(".");
-    const fullEigenvalue = parts[0];
-    const symbol = parts[1];
-    
-    // Safety guard against special system atoms
-    if (symbol === "DUST" || symbol === "GRAVITY_WELL" || symbol === "PARASITE" || symbol === "RETRO_PING" || symbol === "CHRONOS_MIRROR" || symbol === "CODE_VECTOR_SINGULARITY") {
-        console.log(`[SKIPPED] Cannot perform Zero-IOPS math on anomaly: ${symbol}`);
-        return;
+    // 3. Clear state completely
+    STATE_MATRIX.clear();
+    if (STATE_MATRIX.getId(0) === 123456789n) {
+        console.log("❌ [TEST] Failed to clear state.");
+        Deno.exit(1);
     }
 
-    const logicHexBase = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0] : fullEigenvalue;
-    const logicHex = logicHexBase.startsWith("0x") ? logicHexBase.slice(2, 10) : logicHexBase.slice(0, 8);
-    const timeCode = fullEigenvalue.includes("_") ? `_${fullEigenvalue.split("_")[1]}` : "";
-    const remainingEigen = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(10) : fullEigenvalue.slice(10);
-    
-    // Safety: If logic is not hex, abort to prevent corruption
-    if (!/^[0-9A-F]{8}$/i.test(logicHex)) {
-        console.log(`[SKIPPED] ${targetFilename} has non-HEX logic: ${logicHex}`);
-        return;
-    }
-    
-    console.log(`[TARGET] ${targetFilename} -> Logic: ${logicHex}`);
+    // 4. Test Hybrid Lift
+    console.log("   [TEST] Running RIBOSOME.lift()...");
+    const start = performance.now();
+    const lattice = await RIBOSOME.lift();
+    const end = performance.now();
 
-    // Parse logic characters into mathematical shifts
-    let modifier = 0;
-    
-    for (let i = 0; i < logicHex.length; i++) {
-        const char = logicHex[i];
-        switch(char) {
-            case '8': // I
-                modifier += 0;
-                break;
-            case '9': // K
-                modifier += 1;
-                break;
-            case 'A': // S
-                modifier += 2;
-                break;
-            case 'B': // Y
-                modifier += 3;
-                break;
-            case 'C': // ROT
-                modifier ^= 0xC;
-                break;
-            case 'D': // SYNC
-                modifier &= 0xD;
-                break;
-            case 'E': // APP
-                modifier |= 0xE;
-                break;
-            case 'F': // ESC
-                modifier = ~modifier;
-                break;
-            default:
-                // Treat basic numbers as linear offsets
-                modifier += parseInt(char, 16);
-        }
+    // 5. Verify results
+    const loadedId = STATE_MATRIX.getId(0);
+    const loadedEnergy = STATE_MATRIX.getEnergy(0);
+
+    console.log(`   [TEST] Lift took ${(end - start).toFixed(2)}ms`);
+    console.log(`   [TEST] Restored ID: ${loadedId} (Target: 123456789)`);
+    console.log(`   [TEST] Restored Energy: ${loadedEnergy} (Target: 999)`);
+
+    let isHydrated = false;
+    for (const atom of lattice.values()) {
+        if (atom.symbol === "HYDRATED") isHydrated = true;
     }
 
-    modifier = Math.abs(modifier) % 16; // Constrain to single hex digit
-    const modHex = modifier.toString(16).toUpperCase();
-    
-    // We apply the mathematical modifier to shift the logic signature purely in memory
-    const shiftedLogic = logicHex.slice(1) + modHex;
-    const newEigenvalue = `0x${shiftedLogic}${remainingEigen}${timeCode}`;
-    const newFilename = `${newEigenvalue}.${symbol}.md`;
-
-    if (targetFilename !== newFilename) {
-        console.log(`[SHIFT] Math applied. Moving ${targetFilename} -> ${newFilename}`);
-        await logAkasha(`🌀 ZERO-IOPS: Math applied to ${symbol} (${logicHex} -> ${shiftedLogic})`);
-        // The core tenet: Rename the file without ever reading its contents
-        try {
-            await Deno.rename(targetFilename, newFilename);
-        } catch (e) {
-            console.error(`[ERROR] Math rename failed:`, e);
-        }
+    if (isHydrated && loadedId === 123456789n && loadedEnergy === 999.0) {
+        console.log("✅ [TEST] Hybrid Storage verified. ⚡🧊");
+        Deno.exit(0);
     } else {
-        console.log(`[STABLE] Logic ${logicHex} is an eigen-state. No movement needed.`);
+        console.log("❌ [TEST] Hybrid Storage mismatch.");
+        Deno.exit(1);
     }
 }
 
-// Allow calling directly or exporting
-if (import.meta.main) {
-    const isMass = Deno.args.includes("mass");
-    if (isMass) {
-        console.log("🌀 MASS TRANSMUTATION INITIATED 🌀");
-        const atoms: string[] = [];
-        for await (const entry of Deno.readDir(ROOT)) {
-            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-                atoms.push(entry.name);
-            }
+runTest();
+
+```
+
+---
+
+## FILE: test_wasm_vm.ts
+
+```typescript
+const WASM_PATH = "./omega_wasm_asc/build/lambda_vm.wasm";
+
+async function testWasm() {
+    console.log("🕸️ [TEST] Loading Wasm Module...");
+    const wasmCode = await Deno.readFile(WASM_PATH);
+    const wasmModule = await WebAssembly.instantiate(wasmCode, {
+        env: {
+            memory: new WebAssembly.Memory({ initial: 1 }),
+            abort: () => console.log("Abort called")
         }
-        // Run 5 iterations of random pulses or just loop once through all
-        for (let i = 0; i < atoms.length; i++) {
-             // We can just call zeroIopsPulse multiple times but it's random
-             // Better to just loop through atoms
-             const target = atoms[i];
-             await processAtom(target);
-        }
+    });
+
+    const exports = wasmModule.instance.exports as any;
+    const memory = new Uint8Array(exports.memory.buffer);
+    const memoryF32 = new Float32Array(exports.memory.buffer);
+    
+    // Test ISA_ADD (0x40)
+    console.log("   [TEST] Testing ISA_ADD (r0 = r1 + r2)");
+    // Input Buffer at 0
+    memory[0] = 0x40; // op (ADD)
+    memory[1] = 0;    // p1 (dest r0)
+    memory[2] = 1;    // p2 (src r1)
+    memory[3] = 2;    // p3 (src r2)
+    memory[4] = 0;    // bonuses
+    
+    // Context starts at 5. Registers start at Context[2] => offset 5 + 2 = 7
+    memory[7 + 1] = 15; // r1 = 15
+    memory[7 + 2] = 27; // r2 = 27
+
+    const handled = exports.execute_atom();
+    
+    if (handled !== 1) {
+        console.log("❌ [TEST] Wasm refused to handle ISA_ADD.");
+        Deno.exit(1);
+    }
+
+    // Output Buffer at 64. Context starts at 64 + 20 = 84. Registers start at 84 + 2 = 86
+    const r0 = memory[86 + 0];
+    console.log(`   [TEST] Result r0 = ${r0} (Target: 42)`);
+
+    if (r0 === 42) {
+        console.log("✅ [TEST] Wasm ISA_ADD works perfectly. ⚡🕸️");
     } else {
-        await zeroIopsPulse();
+        console.log("❌ [TEST] Wasm math failed.");
+        Deno.exit(1);
     }
 }
 
-async function processAtom(targetFilename: string) {
-    const parts = targetFilename.split(".");
-    const fullEigenvalue = parts[0];
-    const symbol = parts[1];
-    
-    if (["DUST", "GRAVITY_WELL", "PARASITE", "RETRO_PING", "CHRONOS_MIRROR", "CODE_VECTOR_SINGULARITY", "AKASHA"].some(s => symbol.includes(s))) {
-        return;
-    }
-
-    const logicHexBase = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0] : fullEigenvalue;
-    const logicHex = logicHexBase.startsWith("0x") ? logicHexBase.slice(2, 10) : logicHexBase.slice(0, 8);
-    const timeCode = fullEigenvalue.includes("_") ? `_${fullEigenvalue.split("_")[1]}` : "";
-    const remainingEigen = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(10) : fullEigenvalue.slice(10);
-    
-    if (!/^[0-9A-F]{8}$/i.test(logicHex)) return;
-    
-    // Parse logic characters into mathematical shifts
-    let modifier = 0;
-    for (let i = 0; i < logicHex.length; i++) {
-        const char = logicHex[i];
-        switch(char) {
-            case '8': modifier += 0; break;
-            case '9': modifier += 1; break;
-            case 'A': modifier += 2; break;
-            case 'B': modifier += 3; break;
-            case 'C': modifier ^= 0xC; break;
-            case 'D': modifier &= 0xD; break;
-            case 'E': modifier |= 0xE; break;
-            case 'F': modifier = ~modifier; break;
-            default: modifier += parseInt(char, 16);
-        }
-    }
-
-    modifier = Math.abs(modifier) % 16;
-    const modHex = modifier.toString(16).toUpperCase();
-    const shiftedLogic = logicHex.slice(1) + modHex;
-    const newEigenvalue = `0x${shiftedLogic}${remainingEigen}${timeCode}`;
-    const newFilename = `${newEigenvalue}.${symbol}.md`;
-
-    if (targetFilename !== newFilename) {
-        try {
-            await Deno.rename(targetFilename, newFilename);
-        } catch { /* ignore */ }
-    }
-}
+testWasm();
 
 ```
 

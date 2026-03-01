@@ -5,8 +5,10 @@ const ROOT = Deno.cwd();
 
 // Core files that the Mycelium is forbidden to eat (The DNA of the engine itself)
 const INDIGESTIBLE = [
-    "PULSE.ts", "GATE.ts", "RIBOSOME_TICK.ts", "AKASHA_SERVER.ts", 
+    "PULSE.ts", "PULSE_WORKER.ts", "GATE.ts", "RIBOSOME.ts", "RIBOSOME_TICK.ts", "AKASHA_SERVER.ts", 
     "P2P_SYNAPSE.ts", "AKASHA_UI.html", "MYCELIUM.ts", "ENZYME_DIGEST.ts",
+    "STATE_MATRIX.ts", "PHYSICS_ENGINE.ts", "SEMANTIC_MEMBRANE.ts", "LLM_SYNAPSE.ts",
+    "BREATH.ts", "ZERO_IOPS.ts", "REFLECTION_ENGINE.ts", "SNAPSHOT_ENGINE.ts",
     "mod.ts", "deno.json", "pulse.log", "debug.log", "synapse.log"
 ];
 

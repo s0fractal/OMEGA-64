@@ -116,6 +116,29 @@ export const SEMANTIC_MEMBRANE = {
             SEMANTIC_MEMBRANE.thoughtArchive.set(hexHash, text);
 
             console.log(`🧬 [MOTOR_OUTPUT] Spawned Emergent Atom [${isAggressive ? 'PARASITE' : 'BUILDER'}] from Thought (Genome: ${hexHash}): "${text.substring(0, 20)}..."`);
+            
+            // --- ERA 36: Cognitive Scaffolding ---
+            SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
+        }
+    },
+
+    getBonuses: (text: string): number => {
+        let mask = 0;
+        const low = text.toLowerCase();
+        if (low.includes("swift") || low.includes("fast") || low.includes("quick") || low.includes("light")) mask |= 1; // Bit 0: SWIFT (MOVE)
+        if (low.includes("guardian") || low.includes("shield") || low.includes("protect") || low.includes("wall")) mask |= 2; // Bit 1: GUARDIAN (BUILD)
+        if (low.includes("harvest") || low.includes("sun") || low.includes("feed") || low.includes("grow")) mask |= 4; // Bit 2: HARVEST (FEED)
+        return mask;
+    },
+
+    updateSemanticBonuses: (idx: number) => {
+        const logic = STATE_MATRIX.getLogic(idx);
+        const hexHash = Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+        const thought = SEMANTIC_MEMBRANE.thoughtArchive.get(hexHash);
+        if (thought) {
+            const bonuses = SEMANTIC_MEMBRANE.getBonuses(thought);
+            // @ts-ignore: semanticBonuses is a custom buffer added in Era 36
+            Atomics.store(STATE_MATRIX.semanticBonuses, idx, bonuses);
         }
     },
 

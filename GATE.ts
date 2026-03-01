@@ -599,42 +599,69 @@ export const GATE = {
     };
   },
 
-  /**
-   * ERA 26: Collective Immunity
-   * Proactively scans logic signatures for malignant patterns.
-   */
-  detectAntigens: (stateMatrix: any) => {
-     const active = stateMatrix.getActiveIndices();
-     for (const idx of active) {
-        const logic = stateMatrix.getLogic(idx); // Uint8Array(8)
-        let malignancy = 0;
+   /**
+    * ERA 35: Immune Learning (Ally Registry)
+    * Whitelist for "Good Viruses" that have proven their worth.
+    */
+   trustedSignatures: new Set<string>(),
 
-        // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
-        // OP 0x20 is FEED. If genomic header is packed with it, it's a parasite.
-        let feedCount = 0;
-        for (let i = 0; i < 8; i++) {
-           if (logic[i] === 0x20) feedCount++;
-        }
-        if (feedCount > 4) malignancy += 50;
+   /**
+    * ERA 26: Collective Immunity
+    * Proactively scans logic signatures for malignant patterns.
+    * ERA 35: Updated with Immune Learning Loop.
+    */
+   detectAntigens: (stateMatrix: any) => {
+      const active = stateMatrix.getActiveIndices();
+      for (const idx of active) {
+         const logic = stateMatrix.getLogic(idx) as Uint8Array;
+         let logicStr = "";
+         for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
+         
+         // 🛡️ Era 35: Whitelist Bypass
+         if (GATE.trustedSignatures.has(logicStr)) {
+            stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
+            continue;
+         }
 
-        // Pattern 2: Chaos Injection (High entropy logic without bonds)
-        const bonds = stateMatrix.getBonds(idx);
-        let hasBonds = false;
-        for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
-        if (!hasBonds && feedCount > 2) malignancy += 30;
+         let malignancy = 0;
 
-        // Pattern 3: Red Line Violations (Attempting restricted ISA space if any)
-        // ... (Reserved for future patterns) ...
+         // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+         let feedCount = 0;
+         for (let i = 0; i < 8; i++) {
+            if (logic[i] === 0x20) feedCount++;
+         }
+         if (feedCount > 4) malignancy += 50;
 
-        // Apply Quarantine
-        if (malignancy >= 80) {
-           stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
-        } else if (malignancy >= 30) {
-           stateMatrix.setQuarantine(idx, 1); // FLAGGED
-        } else {
-           stateMatrix.setQuarantine(idx, 0); // CLEAN
-        }
-     }
-  }
+         // Pattern 2: Chaos Injection (High entropy logic without bonds)
+         const bonds = stateMatrix.getBonds(idx);
+         let hasBonds = false;
+         for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
+         if (!hasBonds && feedCount > 2) malignancy += 30;
+
+         // Pattern 3: Red Line Violations (Attempting restricted ISA space)
+         // ... (Reserved) ...
+
+         // --- ERA 35: Learning Loop ---
+         // If an atom is exceptionally successful despite malignancy, learn its signature
+         const energy = stateMatrix.getEnergy(idx);
+         const resonance = stateMatrix.getResonance(idx);
+         if (malignancy >= 30 && energy > 200 && resonance > 150) {
+            if (!GATE.trustedSignatures.has(logicStr)) {
+               console.log(`🛡️ [IMMUNE_LEARNING] New Ally Manifested: ${logicStr} (Energy: ${energy.toFixed(1)})`);
+               GATE.trustedSignatures.add(logicStr);
+               malignancy = 0; // Immediate pardon
+            }
+         }
+
+         // Apply Quarantine
+         if (malignancy >= 80) {
+            stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
+         } else if (malignancy >= 30) {
+            stateMatrix.setQuarantine(idx, 1); // FLAGGED
+         } else {
+            stateMatrix.setQuarantine(idx, 0); // CLEAN
+         }
+      }
+   }
 };
 
