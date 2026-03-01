@@ -15,8 +15,13 @@ const BUFFER_SIZE = TOTAL_CELLS * (CELL_CAPACITY + 1) * 4;
 const buffer = new SharedArrayBuffer(BUFFER_SIZE);
 const gridView = new Int32Array(buffer);
 
+// ERA 55: Role-census per cell (8 role slots per cell, role=0..7)
+const quorumBuffer = new SharedArrayBuffer(TOTAL_CELLS * 8 * 4);
+const quorumView = new Int32Array(quorumBuffer);
+
 export const SPATIAL_HASH = {
-    buffer, // Export buffer for web worker inclusion
+    buffer,
+    quorumBuffer, // ERA 55: role census per cell
     CELL_CAPACITY,
 
     build: (activeIndices: number[]) => {
@@ -45,18 +50,25 @@ export const SPATIAL_HASH = {
                 // --- ERA 50: Local Phase Tracking ---
                 const myPhase = Atomics.load((STATE_MATRIX as any).phases, idx);
                 Atomics.add(gridView, offset + (CELL_CAPACITY), Number(myPhase));
+
+                // --- ERA 55: Role census per cell ---
+                const myRole = STATE_MATRIX.getRole ? STATE_MATRIX.getRole(idx) : 0;
+                const safeRole = Math.min(7, Math.max(0, myRole));
+                Atomics.add(quorumView, cellIdx * 8 + safeRole, 1);
             }
         }
 
-        // Finalize phase averages
+        // Finalize phase averages + reset quorum counts for next sweep
         for (let i = 0; i < TOTAL_CELLS; i++) {
             const offset = i * (CELL_CAPACITY + 1);
             const count = Atomics.load(gridView, offset);
             if (count > 0) {
                 const sum = Atomics.load(gridView, offset + (CELL_CAPACITY));
-                Atomics.store(gridView, offset + (CELL_CAPACITY), 0); // Reset sum for next tick
-                Atomics.store(gridView, offset + 31, Math.floor(sum / count)); // Store average in slot 31
+                Atomics.store(gridView, offset + (CELL_CAPACITY), 0);
+                Atomics.store(gridView, offset + 31, Math.floor(sum / count));
             }
+            // Reset quorum tallies for next tick
+            for (let r = 0; r < 8; r++) quorumView[i * 8 + r] = 0;
         }
     },
 

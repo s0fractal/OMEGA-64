@@ -17,6 +17,7 @@ export interface VMResult {
     hebbRequest?: { bondSlot: number }; // ERA 52
     roleRequest?: { role: number }; // ERA 53
     apoptosisRequest?: boolean; // ERA 54
+    quorumRequest?: { collectiveType: number, quorumCount: number }; // ERA 55
 }
 
 export const ISA = {
@@ -55,7 +56,9 @@ export const ISA = {
     // Emergent Roles (ERA 53)
     ATTUNE: 0x8C,
     // Temporal Cognition (ERA 54)
-    AGE: 0x8D, PHASE_LIFE: 0x8E
+    AGE: 0x8D, PHASE_LIFE: 0x8E,
+    // Quorum Sensing (ERA 55)
+    QUORUM: 0x8F
 };
 
 export const LAMBDA_VM = {
@@ -63,7 +66,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, pheromoneGrid: Int32Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean, hiveMemory?: Uint8Array, age?: number }, dryRun = false, wasm?: any): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, pheromoneGrid: Int32Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean, hiveMemory?: Uint8Array, age?: number, quorumData?: Int32Array }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
@@ -185,6 +188,15 @@ export const LAMBDA_VM = {
                         else if (a < 200) val = 1;
                         else if (a < 400) val = 2;
                         else val = 3;
+                        break;
+                    }
+                    case 0x0B: { // ERA 55: Same-role quorum count in local cell
+                        if (state.quorumData && state.role !== undefined) {
+                            const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                            const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                            const safeRole = Math.min(7, Math.max(0, state.role));
+                            val = Math.min(255, state.quorumData[(gy * 140 + gx) * 8 + safeRole]);
+                        }
                         break;
                     }
                 }
@@ -570,7 +582,45 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.QUORUM: {
+                // --- ERA 55: Quorum Sensing ---
+                // p1 = quorum threshold (default 5)
+                // p2 = collective behavior type:
+                //   0 = resonance cascade (broadcast resonance boost)
+                //   1 = coordinated STAMP (pheromone flood, intent level 19)
+                //   2 = role lock (lock current role, suppress ATTUNE)
+                const threshold = p1 > 0 ? p1 : 5;
+
+                if (state.quorumData && state.role !== undefined && !dryRun) {
+                    const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                    const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                    const safeRole = Math.min(7, Math.max(0, state.role));
+                    const quorumCount = state.quorumData[(gy * 140 + gx) * 8 + safeRole];
+
+                    if (quorumCount >= threshold) {
+                        const collectiveType = p2 % 3;
+                        res.quorumRequest = { collectiveType, quorumCount };
+
+                        if (collectiveType === 0) {
+                            // Resonance cascade — collective amplification
+                            res.resonanceDelta += Math.min(50, quorumCount * 2);
+                            res.energyDelta -= 3;
+                        } else if (collectiveType === 1) {
+                            // Coordinated STAMP — pheromone flood
+                            res.intent.push({ level: 19, value: { role: safeRole, intensity: Math.min(255, quorumCount * 10) } });
+                            res.energyDelta -= 8;
+                        } else {
+                            // Role lock — freeze role identity
+                            res.resonanceDelta += 5;
+                            res.energyDelta -= 1;
+                        }
+                    }
+                }
+                break;
+            }
         }
+
 
 
 

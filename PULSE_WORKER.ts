@@ -12,7 +12,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, quorumBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views
     const nutrients = new Int32Array(envBuffer);
@@ -30,6 +30,7 @@ self.onmessage = (e) => {
     const pheroGrid = new Int32Array(pheroGridBuffer);
     const hiveMemory = hiveMemoryBuffer ? new Uint8Array(hiveMemoryBuffer) : undefined;
     const birthTicks = birthTickBuffer ? new Int32Array(birthTickBuffer) : null;
+    const quorumData = quorumBuffer ? new Int32Array(quorumBuffer) : undefined;
     const quarantineFlags = new Uint8Array(immuneBuffer);
     const msgsA = new Uint8Array(messageBufferA);
     const msgsB = new Uint8Array(messageBufferB);
@@ -165,7 +166,7 @@ self.onmessage = (e) => {
             const currentBonuses = Atomics.load(semanticBonuses, i);
 
             const age = birthTicks ? Math.max(0, pulseId - Atomics.load(birthTicks, i)) : 0;
-            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age };
+            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age, quorumData };
             const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
             
             energy += vmResult.energyDelta;

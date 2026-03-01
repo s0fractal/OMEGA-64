@@ -159,6 +159,7 @@ export const PULSE = {
                     pheroGridBuffer: (STATE_MATRIX as any).pheroGridBuffer,
                     hiveMemoryBuffer: STATE_MATRIX.hiveMemoryBuffer,
                     birthTickBuffer: STATE_MATRIX.birthTickBuffer,
+                    quorumBuffer: SPATIAL_HASH.quorumBuffer,
                     roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
                     semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
                     senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,

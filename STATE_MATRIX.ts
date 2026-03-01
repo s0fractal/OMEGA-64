@@ -293,6 +293,10 @@ export const STATE_MATRIX = {
         Atomics.store(synapticStack, atomIdx * 4 + slot, val);
     },
 
+    // --- ROLE REGISTRY (ERA 33) ---
+    getRole: (atomIdx: number): number => roles[atomIdx],
+    setRole: (atomIdx: number, role: number) => { Atomics.store(roles as unknown as Int32Array, atomIdx, role); },
+
 
     // --- BONDS ---
     getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
