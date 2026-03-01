@@ -22,7 +22,8 @@ const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
 const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
-const viralGridBuffer = new SharedArrayBuffer(1400 * 800); // 1.12MB byte array for viral RNA + 1-byte intensity
+const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 42: Int32Array (AtomIdx -> TargetIdx)
+const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
@@ -49,6 +50,7 @@ const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
 const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
+const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -74,6 +76,7 @@ export const STATE_MATRIX = {
     SCALE,
     evolutionRequestsBuffer,
     spawnRequestsBuffer,
+    meiosisRequestsBuffer,
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -136,6 +139,11 @@ export const STATE_MATRIX = {
     clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
     hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
 
+    // --- MEIOSIS (ERA 42) ---
+    requestMeiosis: (initiatorIdx: number, targetIdx: number) => { Atomics.store(meiosisRequests, initiatorIdx, targetIdx); },
+    clearMeiosis: (idx: number) => { Atomics.store(meiosisRequests, idx, 0); },
+    getMeiosisTarget: (idx: number) => Atomics.load(meiosisRequests, idx),
+
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
     getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
@@ -190,6 +198,7 @@ export const STATE_MATRIX = {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
         new Uint8Array(spawnRequestsBuffer).fill(0);
+        new Int32Array(meiosisRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);

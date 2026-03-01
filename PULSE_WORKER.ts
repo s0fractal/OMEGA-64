@@ -28,7 +28,7 @@ try {
 }
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -36,6 +36,7 @@ self.onmessage = (e) => {
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
     const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
+    const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42: Meiosis Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
@@ -339,6 +340,12 @@ self.onmessage = (e) => {
             }
             if (intent.level === 10 && intent.value === "spawn") {
                 Atomics.store(spawnRequests, i, 1);
+            }
+            if (intent.level === 11 && intent.value.type === "meiosis") {
+                const targetIdx = bondView[intent.value.targetBondSlot];
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    Atomics.store(meiosisRequests, i, targetIdx);
+                }
             }
         }
 

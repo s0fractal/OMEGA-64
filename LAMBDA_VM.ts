@@ -25,7 +25,7 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A,
+    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C,
     // Epigenetic Evolution
     EVOLVE: 0x9B,
     // Atomic Messaging (ERA 27)
@@ -254,6 +254,16 @@ export const LAMBDA_VM = {
                 if (state.energy > 150) {
                     res.intent.push({ level: 10, value: "spawn" });
                     res.energyDelta -= 80;
+                }
+                break;
+
+            case ISA.CROSS_REP:
+                // ERA 42: Genetic Recombination (Meiosis)
+                // p1 specifies the bond slot (0-3) to target for mating
+                if (state.energy > 150) {
+                    // Costly to initiate meiosis
+                    res.energyDelta -= 100;
+                    res.intent.push({ level: 11, value: { type: "meiosis", targetBondSlot: p1 % 4 } });
                 }
                 break;
 

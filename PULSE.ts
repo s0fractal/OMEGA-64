@@ -104,6 +104,7 @@ export const PULSE = {
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
                         spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer, // ERA 41
+                        meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer, // ERA 42
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         immuneBuffer: STATE_MATRIX.immuneBuffer,
                         messageBufferA: STATE_MATRIX.messageBufferA,
@@ -163,6 +164,71 @@ export const PULSE = {
                         STATE_MATRIX.setId(newIdx, childId);
 
                         console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}. Inheritance successful. Child ID: ${childId.toString(16)}`);
+                    }
+                }
+
+                // --- ERA 42: Genetic Recombination (Meiosis) ---
+                const targetIdx = STATE_MATRIX.getMeiosisTarget(idx);
+                if (targetIdx !== 0) {
+                    STATE_MATRIX.clearMeiosis(idx);
+                    // Ensure both A and B are active and have sufficient energy (Energy pooling threshold)
+                    const energyA = STATE_MATRIX.getEnergy(idx);
+                    const energyB = STATE_MATRIX.getEnergy(targetIdx);
+
+                    if (energyA > 100 && energyB > 100) {
+                        const newIdx = STATE_MATRIX.findEmptySlot();
+                        if (newIdx !== -1) {
+                            // 1. Capital Pooling (30/30/60 split)
+                            const contributionA_E = energyA * 0.3;
+                            const contributionB_E = energyB * 0.3;
+                            
+                            STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
+                            STATE_MATRIX.setEnergy(targetIdx, energyB - contributionB_E);
+                            STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
+
+                            const resA = STATE_MATRIX.getResonance(idx);
+                            const resB = STATE_MATRIX.getResonance(targetIdx);
+                            const contributionA_R = resA * 0.3;
+                            const contributionB_R = resB * 0.3;
+
+                            STATE_MATRIX.setResonance(idx, resA - contributionA_R);
+                            STATE_MATRIX.setResonance(targetIdx, resB - contributionB_R);
+                            STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
+
+                            // 2. Recombination (Crossover)
+                            const logicA = STATE_MATRIX.getLogic(idx);
+                            const logicB = STATE_MATRIX.getLogic(targetIdx);
+                            const newLogic = new Uint8Array(8);
+                            newLogic.set(logicA.subarray(0, 4), 0);
+                            newLogic.set(logicB.subarray(4, 8), 4);
+                            STATE_MATRIX.setLogic(newIdx, newLogic);
+
+                            const codeA = STATE_MATRIX.getCode(idx);
+                            const codeB = STATE_MATRIX.getCode(targetIdx);
+                            const newCode = new Uint32Array(16);
+                            for (let p = 0; p < 16; p++) {
+                                newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p]; // Interleaving epigenetic memory
+                            }
+                            STATE_MATRIX.setCode(newIdx, newCode);
+
+                            // 3. Systemic Context
+                            STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[targetIdx];
+                            STATE_MATRIX.semanticBonuses[newIdx] = Math.max(STATE_MATRIX.semanticBonuses[idx], STATE_MATRIX.semanticBonuses[targetIdx]); // Inherit best cognition
+
+                            // 4. Topological Placement
+                            const pxA = STATE_MATRIX.getX(idx);
+                            const pyA = STATE_MATRIX.getY(idx);
+                            const pxB = STATE_MATRIX.getX(targetIdx);
+                            const pyB = STATE_MATRIX.getY(targetIdx);
+                            STATE_MATRIX.setX(newIdx, Math.floor((pxA + pxB) / 2));
+                            STATE_MATRIX.setY(newIdx, Math.floor((pyA + pyB) / 2));
+
+                            // 5. Genesis Identity
+                            const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                            STATE_MATRIX.setId(newIdx, childId);
+
+                            console.log(`💞 [MEIOSIS] Atoms ${idx} and ${targetIdx} spawned ${newIdx}. Crossover successful. Child ID: ${childId.toString(16)}`);
+                        }
                     }
                 }
             }

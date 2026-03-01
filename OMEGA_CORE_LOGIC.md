@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-03-01T19:03:32.297Z*
+*Generated: 2026-03-01T19:12:51.095Z*
 
 ---
 
@@ -31,7 +31,8 @@ const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
 const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
-const viralGridBuffer = new SharedArrayBuffer(1400 * 800); // 1.12MB byte array for viral RNA + 1-byte intensity
+const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 42: Int32Array (AtomIdx -> TargetIdx)
+const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
@@ -58,6 +59,7 @@ const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
 const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
+const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -83,6 +85,7 @@ export const STATE_MATRIX = {
     SCALE,
     evolutionRequestsBuffer,
     spawnRequestsBuffer,
+    meiosisRequestsBuffer,
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -145,6 +148,11 @@ export const STATE_MATRIX = {
     clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
     hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
 
+    // --- MEIOSIS (ERA 42) ---
+    requestMeiosis: (initiatorIdx: number, targetIdx: number) => { Atomics.store(meiosisRequests, initiatorIdx, targetIdx); },
+    clearMeiosis: (idx: number) => { Atomics.store(meiosisRequests, idx, 0); },
+    getMeiosisTarget: (idx: number) => Atomics.load(meiosisRequests, idx),
+
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
     getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
@@ -199,6 +207,7 @@ export const STATE_MATRIX = {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
         new Uint8Array(spawnRequestsBuffer).fill(0);
+        new Int32Array(meiosisRequestsBuffer).fill(0);
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);
@@ -565,6 +574,7 @@ export const PULSE = {
                         mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
                         evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
                         spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer, // ERA 41
+                        meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer, // ERA 42
                         viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                         immuneBuffer: STATE_MATRIX.immuneBuffer,
                         messageBufferA: STATE_MATRIX.messageBufferA,
@@ -624,6 +634,71 @@ export const PULSE = {
                         STATE_MATRIX.setId(newIdx, childId);
 
                         console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}. Inheritance successful. Child ID: ${childId.toString(16)}`);
+                    }
+                }
+
+                // --- ERA 42: Genetic Recombination (Meiosis) ---
+                const targetIdx = STATE_MATRIX.getMeiosisTarget(idx);
+                if (targetIdx !== 0) {
+                    STATE_MATRIX.clearMeiosis(idx);
+                    // Ensure both A and B are active and have sufficient energy (Energy pooling threshold)
+                    const energyA = STATE_MATRIX.getEnergy(idx);
+                    const energyB = STATE_MATRIX.getEnergy(targetIdx);
+
+                    if (energyA > 100 && energyB > 100) {
+                        const newIdx = STATE_MATRIX.findEmptySlot();
+                        if (newIdx !== -1) {
+                            // 1. Capital Pooling (30/30/60 split)
+                            const contributionA_E = energyA * 0.3;
+                            const contributionB_E = energyB * 0.3;
+                            
+                            STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
+                            STATE_MATRIX.setEnergy(targetIdx, energyB - contributionB_E);
+                            STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
+
+                            const resA = STATE_MATRIX.getResonance(idx);
+                            const resB = STATE_MATRIX.getResonance(targetIdx);
+                            const contributionA_R = resA * 0.3;
+                            const contributionB_R = resB * 0.3;
+
+                            STATE_MATRIX.setResonance(idx, resA - contributionA_R);
+                            STATE_MATRIX.setResonance(targetIdx, resB - contributionB_R);
+                            STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
+
+                            // 2. Recombination (Crossover)
+                            const logicA = STATE_MATRIX.getLogic(idx);
+                            const logicB = STATE_MATRIX.getLogic(targetIdx);
+                            const newLogic = new Uint8Array(8);
+                            newLogic.set(logicA.subarray(0, 4), 0);
+                            newLogic.set(logicB.subarray(4, 8), 4);
+                            STATE_MATRIX.setLogic(newIdx, newLogic);
+
+                            const codeA = STATE_MATRIX.getCode(idx);
+                            const codeB = STATE_MATRIX.getCode(targetIdx);
+                            const newCode = new Uint32Array(16);
+                            for (let p = 0; p < 16; p++) {
+                                newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p]; // Interleaving epigenetic memory
+                            }
+                            STATE_MATRIX.setCode(newIdx, newCode);
+
+                            // 3. Systemic Context
+                            STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[targetIdx];
+                            STATE_MATRIX.semanticBonuses[newIdx] = Math.max(STATE_MATRIX.semanticBonuses[idx], STATE_MATRIX.semanticBonuses[targetIdx]); // Inherit best cognition
+
+                            // 4. Topological Placement
+                            const pxA = STATE_MATRIX.getX(idx);
+                            const pyA = STATE_MATRIX.getY(idx);
+                            const pxB = STATE_MATRIX.getX(targetIdx);
+                            const pyB = STATE_MATRIX.getY(targetIdx);
+                            STATE_MATRIX.setX(newIdx, Math.floor((pxA + pxB) / 2));
+                            STATE_MATRIX.setY(newIdx, Math.floor((pyA + pyB) / 2));
+
+                            // 5. Genesis Identity
+                            const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                            STATE_MATRIX.setId(newIdx, childId);
+
+                            console.log(`💞 [MEIOSIS] Atoms ${idx} and ${targetIdx} spawned ${newIdx}. Crossover successful. Child ID: ${childId.toString(16)}`);
+                        }
                     }
                 }
             }
@@ -732,7 +807,7 @@ try {
 }
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -740,6 +815,7 @@ self.onmessage = (e) => {
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
     const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
+    const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42: Meiosis Requests
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
@@ -1043,6 +1119,12 @@ self.onmessage = (e) => {
             }
             if (intent.level === 10 && intent.value === "spawn") {
                 Atomics.store(spawnRequests, i, 1);
+            }
+            if (intent.level === 11 && intent.value.type === "meiosis") {
+                const targetIdx = bondView[intent.value.targetBondSlot];
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    Atomics.store(meiosisRequests, i, targetIdx);
+                }
             }
         }
 
@@ -2100,7 +2182,7 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A,
+    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C,
     // Epigenetic Evolution
     EVOLVE: 0x9B,
     // Atomic Messaging (ERA 27)
@@ -2329,6 +2411,16 @@ export const LAMBDA_VM = {
                 if (state.energy > 150) {
                     res.intent.push({ level: 10, value: "spawn" });
                     res.energyDelta -= 80;
+                }
+                break;
+
+            case ISA.CROSS_REP:
+                // ERA 42: Genetic Recombination (Meiosis)
+                // p1 specifies the bond slot (0-3) to target for mating
+                if (state.energy > 150) {
+                    // Costly to initiate meiosis
+                    res.energyDelta -= 100;
+                    res.intent.push({ level: 11, value: { type: "meiosis", targetBondSlot: p1 % 4 } });
                 }
                 break;
 
