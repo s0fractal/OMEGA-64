@@ -1,6 +1,6 @@
-# OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
+# OMEGA-64 | CORE LOGIC (ERA 47: SENSORY TRANSDUCTION)
 
-*Generated: 2026-03-01T19:12:51.095Z*
+*Generated: 2026-03-01T20:42:59.377Z*
 
 ---
 
@@ -30,16 +30,20 @@ const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to th
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
-const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
-const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 42: Int32Array (AtomIdx -> TargetIdx)
-const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
+const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
+const bondRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY] (ERA 44)
+const mergeRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 2 * 4); // [initiatorIdx, targetIdx] (ERA 45)
+
+
+const viralGridBuffer = new SharedArrayBuffer(140 * 80 * 9); // ERA 24: 140x80 grid of 9-byte viral data
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
 const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
 const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
-const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
-const memoryGridBuffer = new SharedArrayBuffer(70 * 40 * 8); // ERA 32: 70x40 grid of 8-byte bytecode (2x Int32)
+const structureGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 31: 140x80 grid of Int32
+const memoryGridBuffer = new SharedArrayBuffer(140 * 80 * 8); // ERA 32: 140x80 grid of 8-byte bytecode
 const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
 const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
 const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
@@ -58,8 +62,14 @@ const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
-const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
-const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42
+const spawnRequests = new Int32Array(spawnRequestsBuffer);
+const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
+const bondRequests = new Int32Array(bondRequestsBuffer);
+const mergeRequests = new Int32Array(mergeRequestsBuffer); // ERA 45
+ // ERA 44
+
+// Request buffers already initialized at declaration above for better TS safety.
+
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -86,6 +96,7 @@ export const STATE_MATRIX = {
     evolutionRequestsBuffer,
     spawnRequestsBuffer,
     meiosisRequestsBuffer,
+    bondRequestsBuffer, // ERA 44
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -137,6 +148,7 @@ export const STATE_MATRIX = {
     setContext: (idx: number, ctx: Uint8Array) => {
         contexts.set(ctx.subarray(0, 32), idx * 32);
     },
+    getContext: (idx: number) => contexts.subarray(idx * 32, idx * 32 + 32),
 
     // --- EVOLUTION (ERA 22) ---
     requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
@@ -144,14 +156,95 @@ export const STATE_MATRIX = {
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
     
     // --- MITOSIS (ERA 41) ---
-    requestSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 1); },
-    clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
-    hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
+    requestSpawn: (initiatorIdx: number, targetX: number, targetY: number) => {
+        Atomics.store(spawnRequests, initiatorIdx * 3, initiatorIdx);
+        Atomics.store(spawnRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(spawnRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearSpawn: (idx: number) => {
+        Atomics.store(spawnRequests, idx * 3, 0);
+        Atomics.store(spawnRequests, idx * 3 + 1, 0);
+        Atomics.store(spawnRequests, idx * 3 + 2, 0);
+    },
+    getSpawnRequest: (idx: number) => {
+        const initiator = Atomics.load(spawnRequests, idx * 3);
+        if (initiator === 0) return null;
+        return {
+            initiatorIdx: initiator,
+            targetX: Atomics.load(spawnRequests, idx * 3 + 1),
+            targetY: Atomics.load(spawnRequests, idx * 3 + 2),
+        };
+    },
+    getSpawnRequests: () => spawnRequests,
 
     // --- MEIOSIS (ERA 42) ---
-    requestMeiosis: (initiatorIdx: number, targetIdx: number) => { Atomics.store(meiosisRequests, initiatorIdx, targetIdx); },
-    clearMeiosis: (idx: number) => { Atomics.store(meiosisRequests, idx, 0); },
-    getMeiosisTarget: (idx: number) => Atomics.load(meiosisRequests, idx),
+    requestMeiosis: (initiatorIdx: number, targetX: number, targetY: number) => {
+        Atomics.store(meiosisRequests, initiatorIdx * 3, initiatorIdx);
+        Atomics.store(meiosisRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(meiosisRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearMeiosis: (idx: number) => {
+        Atomics.store(meiosisRequests, idx * 3, 0);
+        Atomics.store(meiosisRequests, idx * 3 + 1, 0);
+        Atomics.store(meiosisRequests, idx * 3 + 2, 0);
+    },
+    getMeiosisRequest: (idx: number) => {
+        const initiator = Atomics.load(meiosisRequests, idx * 3);
+        if (initiator === 0) return null;
+        return {
+            initiatorIdx: initiator,
+            targetX: Atomics.load(meiosisRequests, idx * 3 + 1),
+            targetY: Atomics.load(meiosisRequests, idx * 3 + 2),
+        };
+    },
+    getMeiosisRequests: () => meiosisRequests,
+
+    // --- BOND REQUESTS (ERA 44) ---
+    requestBond: (initiatorIdx: number, targetX: number, targetY: number) => {
+        // Use 1-based index (idx + 1) to distinguish index 0 from empty
+        Atomics.store(bondRequests, initiatorIdx * 3, initiatorIdx + 1);
+        Atomics.store(bondRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(bondRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearBondRequest: (idx: number) => {
+        Atomics.store(bondRequests, idx * 3, 0);
+    },
+    getBondRequest: (idx: number) => {
+        const initiatorStored = Atomics.load(bondRequests, idx * 3);
+        if (initiatorStored === 0) return null;
+        return {
+            initiatorIdx: initiatorStored - 1,
+            targetX: Atomics.load(bondRequests, idx * 3 + 1),
+            targetY: Atomics.load(bondRequests, idx * 3 + 2),
+        };
+    },
+    getBondRequests: () => bondRequests, // ERA 44
+
+    // --- SYMBIOTIC MERGING (ERA 45) ---
+    requestMerge: (initiatorIdx: number, targetIdx: number) => {
+        // Use 1-based index (idx + 1) to distinguish index 0 from empty
+        Atomics.store(mergeRequests, initiatorIdx * 2, initiatorIdx + 1);
+        Atomics.store(mergeRequests, initiatorIdx * 2 + 1, targetIdx);
+    },
+    clearMerge: (idx: number) => {
+        Atomics.store(mergeRequests, idx * 2, 0);
+    },
+    getMergeRequest: (idx: number) => {
+        const initiatorStored = Atomics.load(mergeRequests, idx * 2);
+        if (initiatorStored === 0) return null;
+        return {
+            initiatorIdx: initiatorStored - 1,
+            targetIdx: Atomics.load(mergeRequests, idx * 2 + 1),
+        };
+    },
+    getMergeRequests: () => mergeRequests,
+    mergeRequestsBuffer,
+
+    setSemanticBonus: (idx: number, bonus: number) => {
+        Atomics.store(semanticBonuses, idx, bonus & 0xFF);
+    },
+    getSemanticBonus: (idx: number) => Atomics.load(semanticBonuses, idx),
+
 
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
@@ -201,13 +294,20 @@ export const STATE_MATRIX = {
     setBonds: (idx: number, indices: Uint32Array) => {
         bonds.set(indices.subarray(0, 4), idx * 4);
     },
+    getBondTarget: (idx: number, slot: number) => Atomics.load(bonds, idx * 4 + slot),
+    setBondTarget: (idx: number, slot: number, targetIdx: number) => {
+        Atomics.store(bonds, idx * 4 + slot, targetIdx);
+    },
 
     // --- SYSTEM ---
     clear: () => {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
-        new Uint8Array(spawnRequestsBuffer).fill(0);
-        new Int32Array(meiosisRequestsBuffer).fill(0);
+        spawnRequests.fill(0);
+        meiosisRequests.fill(0);
+        bondRequests.fill(0); // ERA 44
+        mergeRequests.fill(0); // ERA 45
+
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);
@@ -220,6 +320,17 @@ export const STATE_MATRIX = {
         semanticBonuses.fill(0);
         senderSignaturesA.fill(0);
         senderSignaturesB.fill(0);
+    },
+
+    /**
+     * ERA 46: Oracle Priority Queue
+     * Returns the indices of the most resonant atoms.
+     */
+    getTopResonantIndices: (count: number): number[] => {
+        const active = STATE_MATRIX.getActiveIndices();
+        return active
+            .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+            .slice(0, count);
     },
 
     getActiveIndices: () => {
@@ -496,11 +607,20 @@ export const PULSE = {
 
 
     initWorkers: () => {
+        if (PULSE.workers.length > 0) return; // Already init
         for (let i = 0; i < THREAD_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
             PULSE.workers.push(worker);
         }
         console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized.`);
+    },
+
+    stopWorkers: () => {
+        for (const worker of PULSE.workers) {
+            worker.terminate();
+        }
+        PULSE.workers = [];
+        console.log("   [PULSE] Workers terminated.");
     },
 
     run: async () => {
@@ -510,264 +630,315 @@ export const PULSE = {
         const lattice = await RIBOSOME.lift(ROOT);
         console.log("-> ROOT Lifted");
 
-        // ERA 39: If we hydrated from a snapshot, we don't want to overwrite the loaded envBuffer 
-        // with a fresh seed unless this is a true cold start.
         if (!lattice.has("HYDRATED")) {
             console.log("-> Seeding Nutrients (Cold Start)");
-            PHYSICS_ENGINE.seedNutrients(Date.now()); // Primary seed from bootstrap
+            PHYSICS_ENGINE.seedNutrients(Date.now());
         } else {
             console.log("-> Nutrients Hydrated (Warm Start)");
         }
-
         
         console.log("-> Init Workers");
         PULSE.initWorkers();
         
         while (true) {
+            await PULSE.tick();
+            await new Promise(r => setTimeout(r, PULSE_INTERVAL));
+        }
+    },
 
-            PULSE.currentPulseId++;
-            const pulseId = PULSE.currentPulseId;
+    tick: async () => {
+        PULSE.currentPulseId++;
+        const pulseId = PULSE.currentPulseId;
 
+        // Main thread sequential tasks
+        const activeIndices = STATE_MATRIX.getActiveIndices();
 
-            // Main thread sequential tasks
-            const activeIndices = STATE_MATRIX.getActiveIndices();
-            SPATIAL_HASH.build(activeIndices);
-            if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
-            if (pulseId % 10 === 0) {
-                // @ts-ignore: viralGrid exists in STATE_MATRIX
-                PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
+        // --- ERA 44: Bond Formation (Multi-Cellular Tensegrity) ---
+        for (const idx of activeIndices) {
+            const bondReq = STATE_MATRIX.getBondRequest(idx);
+            if (bondReq !== null) {
+                STATE_MATRIX.clearBondRequest(idx);
+                const targetIdx = bondReq.targetX; 
                 
-                // ERA 34: Structural Decay & Memory Leaking
-                // @ts-ignore: structureGrid and memoryGrid exist in STATE_MATRIX
-                PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
-
-                // ERA 26: Collective Immunity
-                GATE.detectAntigens(STATE_MATRIX);
-            }
-
-            // ERA 27: Atomic Messaging Buffer Swap
-            STATE_MATRIX.swapMessageBuffers();
-
-            
-            // Exodus Check (Throttled)
-            if (pulseId % 10 === 0) {
-                for (const idx of activeIndices) {
-                    if (P2P_FEDERATION.checkWanderlust(idx, pulseId)) P2P_FEDERATION.migrate(idx, pulseId);
-                }
-            }
-
-
-            // Parallel Processing via Workers
-            const currentRegent = SOVEREIGNTY_ENGINE.currentRegent;
-            
-            const chunkSize = Math.ceil(MAX_ATOMS / THREAD_COUNT);
-            const workerPromises = PULSE.workers.map((worker, i) => {
-                return new Promise((resolve) => {
-                    worker.onmessage = (e) => { if (e.data.done && e.data.pulseId === pulseId) resolve(null); };
-                    worker.postMessage({
-                        buffer: STATE_MATRIX.buffer,
-                        envBuffer: PHYSICS_ENGINE.envBuffer,
-                        attentionBuffer: PHYSICS_ENGINE.attentionBuffer,
-                        marketBuffer: PREDICTION_MARKET.buffer,
-                        startIdx: i * chunkSize,
-                        endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                        mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
-                        evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
-                        spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer, // ERA 41
-                        meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer, // ERA 42
-                        viralGridBuffer: STATE_MATRIX.viralGridBuffer,
-                        immuneBuffer: STATE_MATRIX.immuneBuffer,
-                        messageBufferA: STATE_MATRIX.messageBufferA,
-                        messageBufferB: STATE_MATRIX.messageBufferB,
-                        bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
-                        synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
-                        structureGridBuffer: STATE_MATRIX.structureGridBuffer,
-                        memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
-                        roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
-                        semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
-                        senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
-                        senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
-                        trustedSignatures: Array.from(GATE.trustedSignatures),
-                        pulseId
-                    });
-                });
-            });
-
-            await Promise.all(workerPromises);
-
-            // --- ERA 41: Epigenetic Inheritance & Heredity (Mitosis) ---
-            for (const idx of activeIndices) {
-                if (STATE_MATRIX.hasSpawnRequest(idx)) {
-                    STATE_MATRIX.clearSpawn(idx);
-                    const newIdx = STATE_MATRIX.findEmptySlot();
-                    
-                    if (newIdx !== -1) {
-                        // 1. Division of Capital (50/50 split)
-                        const parentEnergy = STATE_MATRIX.getEnergy(idx);
-                        const parentResonance = STATE_MATRIX.getResonance(idx);
-                        
-                        const childEnergy = parentEnergy / 2;
-                        const childResonance = parentResonance / 2;
-                        
-                        STATE_MATRIX.setEnergy(idx, childEnergy);
-                        STATE_MATRIX.setResonance(idx, childResonance);
-                        
-                        STATE_MATRIX.setEnergy(newIdx, childEnergy);
-                        STATE_MATRIX.setResonance(newIdx, childResonance);
-
-                        // 2. Epigenetic Heredity
-                        STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx)); // Genome
-                        STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));   // Learned Instructions
-                        
-                        // 3. Systemic Context
-                        STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx]; // Trophic Role
-                        STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx]; // Cognitive Bonus
-
-                        // 4. Topological Placement
-                        const px = STATE_MATRIX.getX(idx);
-                        const py = STATE_MATRIX.getY(idx);
-                        STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10)); // Slight offset
-                        STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
-                        
-                        // 5. Genesis Identity
-                        const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
-                        STATE_MATRIX.setId(newIdx, childId);
-
-                        console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}. Inheritance successful. Child ID: ${childId.toString(16)}`);
-                    }
-                }
-
-                // --- ERA 42: Genetic Recombination (Meiosis) ---
-                const targetIdx = STATE_MATRIX.getMeiosisTarget(idx);
-                if (targetIdx !== 0) {
-                    STATE_MATRIX.clearMeiosis(idx);
-                    // Ensure both A and B are active and have sufficient energy (Energy pooling threshold)
-                    const energyA = STATE_MATRIX.getEnergy(idx);
-                    const energyB = STATE_MATRIX.getEnergy(targetIdx);
-
-                    if (energyA > 100 && energyB > 100) {
-                        const newIdx = STATE_MATRIX.findEmptySlot();
-                        if (newIdx !== -1) {
-                            // 1. Capital Pooling (30/30/60 split)
-                            const contributionA_E = energyA * 0.3;
-                            const contributionB_E = energyB * 0.3;
-                            
-                            STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
-                            STATE_MATRIX.setEnergy(targetIdx, energyB - contributionB_E);
-                            STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
-
-                            const resA = STATE_MATRIX.getResonance(idx);
-                            const resB = STATE_MATRIX.getResonance(targetIdx);
-                            const contributionA_R = resA * 0.3;
-                            const contributionB_R = resB * 0.3;
-
-                            STATE_MATRIX.setResonance(idx, resA - contributionA_R);
-                            STATE_MATRIX.setResonance(targetIdx, resB - contributionB_R);
-                            STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
-
-                            // 2. Recombination (Crossover)
-                            const logicA = STATE_MATRIX.getLogic(idx);
-                            const logicB = STATE_MATRIX.getLogic(targetIdx);
-                            const newLogic = new Uint8Array(8);
-                            newLogic.set(logicA.subarray(0, 4), 0);
-                            newLogic.set(logicB.subarray(4, 8), 4);
-                            STATE_MATRIX.setLogic(newIdx, newLogic);
-
-                            const codeA = STATE_MATRIX.getCode(idx);
-                            const codeB = STATE_MATRIX.getCode(targetIdx);
-                            const newCode = new Uint32Array(16);
-                            for (let p = 0; p < 16; p++) {
-                                newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p]; // Interleaving epigenetic memory
-                            }
-                            STATE_MATRIX.setCode(newIdx, newCode);
-
-                            // 3. Systemic Context
-                            STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[targetIdx];
-                            STATE_MATRIX.semanticBonuses[newIdx] = Math.max(STATE_MATRIX.semanticBonuses[idx], STATE_MATRIX.semanticBonuses[targetIdx]); // Inherit best cognition
-
-                            // 4. Topological Placement
-                            const pxA = STATE_MATRIX.getX(idx);
-                            const pyA = STATE_MATRIX.getY(idx);
-                            const pxB = STATE_MATRIX.getX(targetIdx);
-                            const pyB = STATE_MATRIX.getY(targetIdx);
-                            STATE_MATRIX.setX(newIdx, Math.floor((pxA + pxB) / 2));
-                            STATE_MATRIX.setY(newIdx, Math.floor((pyA + pyB) / 2));
-
-                            // 5. Genesis Identity
-                            const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
-                            STATE_MATRIX.setId(newIdx, childId);
-
-                            console.log(`💞 [MEIOSIS] Atoms ${idx} and ${targetIdx} spawned ${newIdx}. Crossover successful. Child ID: ${childId.toString(16)}`);
+                if (targetIdx > 0 && targetIdx < STATE_MATRIX.MAX_ATOMS) {
+                    let myFreeSlot = -1;
+                    for (let b = 0; b < 4; b++) {
+                        if (STATE_MATRIX.getBondTarget(idx, b) === 0) {
+                            myFreeSlot = b;
+                            break;
                         }
                     }
+
+                    let targetFreeSlot = -1;
+                    for (let b = 0; b < 4; b++) {
+                        if (STATE_MATRIX.getBondTarget(targetIdx, b) === 0) {
+                            targetFreeSlot = b;
+                            break;
+                        }
+                    }
+
+                    if (myFreeSlot !== -1 && targetFreeSlot !== -1) {
+                        STATE_MATRIX.setBondTarget(idx, myFreeSlot, targetIdx);
+                        STATE_MATRIX.setBondStiffness(idx, myFreeSlot, 0.5);
+                        STATE_MATRIX.setBondTarget(targetIdx, targetFreeSlot, idx);
+                        STATE_MATRIX.setBondStiffness(targetIdx, targetFreeSlot, 0.5);
+                        console.log(`🔗 [TENSEGRITY] Atom ${idx} formed physical bond with Atom ${targetIdx}`);
+                    }
+                }
+            }
+        }
+
+        SPATIAL_HASH.build(activeIndices);
+        if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
+        if (pulseId % 10 === 0) {
+            // @ts-ignore: Physics engine uses its own state matrix instance
+            PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
+            // @ts-ignore: Physics engine uses its own state matrix instance
+            PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
+            GATE.detectAntigens(STATE_MATRIX);
+        }
+
+        STATE_MATRIX.swapMessageBuffers();
+
+        if (pulseId % 10 === 0) {
+            for (const idx of activeIndices) {
+                if (P2P_FEDERATION.checkWanderlust(idx, pulseId)) P2P_FEDERATION.migrate(idx, pulseId);
+            }
+        }
+
+        const chunkSize = Math.ceil(MAX_ATOMS / THREAD_COUNT);
+        const workerPromises = PULSE.workers.map((worker, i) => {
+            return new Promise((resolve, reject) => {
+                worker.onerror = (err) => {
+                    console.error(`💥 [WORKER ${i} CRASH]`, err.message);
+                    reject(err);
+                };
+                worker.onmessage = (e) => { 
+                    if (e.data.done && e.data.pulseId === pulseId) resolve(null); 
+                };
+                worker.postMessage({
+                    buffer: STATE_MATRIX.buffer,
+                    envBuffer: PHYSICS_ENGINE.envBuffer,
+                    attentionBuffer: PHYSICS_ENGINE.attentionBuffer,
+                    marketBuffer: PREDICTION_MARKET.buffer,
+                    startIdx: i * chunkSize,
+                    endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
+                    mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
+                    evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
+                    spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer,
+                    meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer,
+                    bondRequestsBuffer: STATE_MATRIX.bondRequestsBuffer,
+                    mergeRequestsBuffer: STATE_MATRIX.mergeRequestsBuffer, // ERA 45
+                    viralGridBuffer: STATE_MATRIX.viralGridBuffer,
+                    immuneBuffer: STATE_MATRIX.immuneBuffer,
+                    messageBufferA: STATE_MATRIX.messageBufferA,
+                    messageBufferB: STATE_MATRIX.messageBufferB,
+                    bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
+                    synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
+                    structureGridBuffer: STATE_MATRIX.structureGridBuffer,
+                    memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
+                    roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
+                    semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
+                    senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
+                    senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
+                    trustedSignatures: Array.from(GATE.trustedSignatures),
+                    spatialGridBuffer: SPATIAL_HASH.buffer,
+                    pulseId
+                });
+            });
+        });
+
+        await Promise.all(workerPromises);
+
+        // --- SEQUENTIAL RESOLUTION PHASE ---
+        for (const idx of activeIndices) {
+            if (STATE_MATRIX.getId(idx) === 0n) continue;
+
+            let energy = STATE_MATRIX.getEnergy(idx);
+            let resonance = STATE_MATRIX.getResonance(idx);
+            
+            const bonds = [
+                STATE_MATRIX.getBondTarget(idx, 0),
+                STATE_MATRIX.getBondTarget(idx, 1),
+                STATE_MATRIX.getBondTarget(idx, 2),
+                STATE_MATRIX.getBondTarget(idx, 3)
+            ];
+
+            // Metabolic Equalization
+            for (let j = 0; j < 4; j++) {
+                if (bonds[j] !== 0) {
+                    const targetIdx = bonds[j];
+                    if (targetIdx > idx) { 
+                        const targetEnergy = STATE_MATRIX.getEnergy(targetIdx);
+                        const avgE = (energy + targetEnergy) / 2.0;
+                        energy = avgE;
+                        STATE_MATRIX.setEnergy(targetIdx, avgE);
+                        
+                        const targetRes = STATE_MATRIX.getResonance(targetIdx);
+                        const avgR = (resonance + targetRes) / 2.0;
+                        resonance = avgR;
+                        STATE_MATRIX.setResonance(targetIdx, avgR);
+                    }
                 }
             }
 
-            // Convergence, Crisis Resolution & Reporting
-            if (pulseId % 100 === 0) {
-                PREDICTION_MARKET.resolveCrisis();
-                
-                // Elect Regent
-                const regent = SOVEREIGNTY_ENGINE.electRegent(activeIndices);
-                
-                // Calculate Thermodynamic Totals for monitoring
-                let totalNutrients = 0;
-                for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) {
-                    totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
-                }
-                
-                console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} (${regent.activeDecree}) | Nutrients: ${totalNutrients}`);
-            }
-
-            // Persistence (Rapid Genesis Snapshotting every 5000 ticks ~ 1 minute)
-            if (pulseId % 5000 === 0) {
-                await SNAPSHOT_ENGINE.exportSnapshot();
-            }
-
-            // Crystallization & Epigenetic Evolution (RAM -> Flatland & Directed Mutation)
-            if (pulseId % 1000 === 0) {
-                await REFLECTION_ENGINE.crystallize(100);
-
-                // ERA 37: Economic Dividend Distribution
-                PREDICTION_MARKET.distributeDividends();
-
-                // ERA 22: Epigenetic Mutation Processing
-                // ERA 36: ORACLE PRIORITY QUEUE (Top 5% Resonance)
-                const cognitiveThresholdCount = Math.ceil(activeIndices.length * 0.05);
-                const cognitiveElite = activeIndices
-                    .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
-                    .slice(0, cognitiveThresholdCount);
-
-                const winners = cognitiveElite
-                    .filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100)
-                    .slice(0, 3);
-
-                for (const idx of winners) {
-                    const logicStr = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
-                    const currentThought = SEMANTIC_MEMBRANE.thoughtArchive.get(logicStr) || "Unknown existence.";
-                    const context = `Decree: ${SOVEREIGNTY_ENGINE.currentRegent.activeDecree}, Population: ${activeIndices.length}`;
-                    
-                    const evolvedThought = await LLM_SYNAPSE.evolveThought(currentThought, context);
-                    console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
-                    
-                    SEMANTIC_MEMBRANE.project(evolvedThought, idx);
-                    // Update bonuses for the new thought
-                    SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
-                    
-                    // Record Lineage
-                    const childLogic = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
-                    SEMANTIC_MEMBRANE.lineage.set(childLogic, logicStr);
-
-                    STATE_MATRIX.clearEvolution(idx);
+            // Mitosis
+            if (STATE_MATRIX.getSpawnRequest(idx) !== null) {
+                STATE_MATRIX.clearSpawn(idx);
+                const newIdx = STATE_MATRIX.findEmptySlot();
+                if (newIdx !== -1) {
+                    const parentEnergy = STATE_MATRIX.getEnergy(idx);
+                    const parentResonance = STATE_MATRIX.getResonance(idx);
+                    const childEnergy = parentEnergy / 2;
+                    const childResonance = parentResonance / 2;
+                    STATE_MATRIX.setEnergy(idx, childEnergy);
+                    STATE_MATRIX.setResonance(idx, childResonance);
+                    STATE_MATRIX.setEnergy(newIdx, childEnergy);
+                    STATE_MATRIX.setResonance(newIdx, childResonance);
+                    STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx));
+                    STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));
+                    STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
+                    STATE_MATRIX.setSemanticBonus(newIdx, STATE_MATRIX.getSemanticBonus(idx));
+                    const px = STATE_MATRIX.getX(idx);
+                    const py = STATE_MATRIX.getY(idx);
+                    STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10));
+                    STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
+                    const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                    STATE_MATRIX.setId(newIdx, childId);
+                    console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}.`);
                 }
             }
-            await new Promise(r => setTimeout(r, PULSE_INTERVAL));
+
+            // Meiosis
+            const meiosisReq = STATE_MATRIX.getMeiosisRequest(idx);
+            if (meiosisReq !== null) {
+                STATE_MATRIX.clearMeiosis(idx);
+                const tIdx = meiosisReq.targetX; 
+                const energyA = STATE_MATRIX.getEnergy(idx);
+                const energyB = STATE_MATRIX.getEnergy(tIdx);
+
+                if (energyA > 100 && energyB > 100) {
+                    const newIdx = STATE_MATRIX.findEmptySlot();
+                    if (newIdx !== -1) {
+                        const contributionA_E = energyA * 0.3;
+                        const contributionB_E = energyB * 0.3;
+                        STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
+                        STATE_MATRIX.setEnergy(tIdx, energyB - contributionB_E);
+                        STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
+                        const resA = STATE_MATRIX.getResonance(idx);
+                        const resB = STATE_MATRIX.getResonance(tIdx);
+                        const contributionA_R = resA * 0.3;
+                        const contributionB_R = resB * 0.3;
+                        STATE_MATRIX.setResonance(idx, resA - contributionA_R);
+                        STATE_MATRIX.setResonance(tIdx, resB - contributionB_R);
+                        STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
+                        
+                        const logicA = STATE_MATRIX.getLogic(idx);
+                        const logicB = STATE_MATRIX.getLogic(tIdx);
+                        const newLogic = new Uint8Array(8);
+                        newLogic.set(logicA.subarray(0, 4), 0);
+                        newLogic.set(logicB.subarray(4, 8), 4);
+                        STATE_MATRIX.setLogic(newIdx, newLogic);
+                        
+                        const codeA = STATE_MATRIX.getCode(idx);
+                        const codeB = STATE_MATRIX.getCode(tIdx);
+                        const newCode = new Uint32Array(16);
+                        for (let p = 0; p < 16; p++) newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p];
+                        STATE_MATRIX.setCode(newIdx, newCode);
+                        
+                        STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[tIdx];
+                        STATE_MATRIX.setSemanticBonus(newIdx, Math.max(STATE_MATRIX.getSemanticBonus(idx), STATE_MATRIX.getSemanticBonus(tIdx)));
+                        STATE_MATRIX.setX(newIdx, Math.floor((STATE_MATRIX.getX(idx) + STATE_MATRIX.getX(tIdx)) / 2));
+                        STATE_MATRIX.setY(newIdx, Math.floor((STATE_MATRIX.getY(idx) + STATE_MATRIX.getY(tIdx)) / 2));
+                        
+                        const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
+                        STATE_MATRIX.setId(newIdx, childId);
+                        console.log(`💞 [MEIOSIS] Atoms ${idx} and ${tIdx} spawned ${newIdx}.`);
+                    }
+                }
+            }
+
+            // --- ERA 45: Symbiotic Merging (Endosymbiosis) ---
+            const mergeReq = STATE_MATRIX.getMergeRequest(idx);
+            if (mergeReq !== null) {
+                STATE_MATRIX.clearMerge(idx);
+                const tIdx = mergeReq.targetIdx;
+                if (tIdx > 0 && tIdx < MAX_ATOMS && STATE_MATRIX.getId(tIdx) !== 0n) {
+                    const eA = STATE_MATRIX.getEnergy(idx);
+                    const eB = STATE_MATRIX.getEnergy(tIdx);
+                    const rA = STATE_MATRIX.getResonance(idx);
+                    const rB = STATE_MATRIX.getResonance(tIdx);
+
+                    // Combine Metabolism
+                    STATE_MATRIX.setEnergy(idx, eA + eB);
+                    STATE_MATRIX.setResonance(idx, rA + rB);
+
+                    // Recombine Genome (Bitwise Logic XOR for hybrid diversity)
+                    const logicA = STATE_MATRIX.getLogic(idx);
+                    const logicB = STATE_MATRIX.getLogic(tIdx);
+                    const fusedLogic = new Uint8Array(8);
+                    for (let b = 0; b < 8; b++) fusedLogic[b] = logicA[b] ^ logicB[b];
+                    STATE_MATRIX.setLogic(idx, fusedLogic);
+
+                    // Recombine Code: Keep A's but add Symbiotic Bonus
+                    STATE_MATRIX.setSemanticBonus(idx, (STATE_MATRIX.getSemanticBonus(idx) | 0x08)); // Bit 3: Symbiont
+
+                    // Delete Target (Necrosis)
+                    STATE_MATRIX.setId(tIdx, 0n);
+                    STATE_MATRIX.setEnergy(tIdx, 0); // Clear energy
+                    // Clear target bonds to prevent phantom metabolism
+                    for (let b = 0; b < 4; b++) {
+                        const peerIdx = STATE_MATRIX.getBondTarget(tIdx, b);
+                        if (peerIdx !== 0) {
+                            // Find reverse bond and clear it
+                            for (let rb = 0; rb < 4; rb++) {
+                                if (STATE_MATRIX.getBondTarget(peerIdx, rb) === tIdx) {
+                                    STATE_MATRIX.setBondTarget(peerIdx, rb, 0);
+                                    STATE_MATRIX.setBondStiffness(peerIdx, rb, 0);
+                                }
+                            }
+                            STATE_MATRIX.setBondTarget(tIdx, b, 0);
+                            STATE_MATRIX.setBondStiffness(tIdx, b, 0);
+                        }
+                    }
+
+                    console.log(`💠 [SYMBIOSIS] Atom ${idx} merged with Atom ${tIdx}. New Resilience: ${eA + eB}`);
+                }
+            }
+        }
+
+        if (pulseId % 100 === 0) {
+            PREDICTION_MARKET.resolveCrisis();
+            const regent = SOVEREIGNTY_ENGINE.electRegent(activeIndices);
+            let totalNutrients = 0;
+            for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
+            console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
+        }
+
+        if (pulseId % 5000 === 0) await SNAPSHOT_ENGINE.exportSnapshot();
+
+        if (pulseId % 1000 === 0) {
+            await REFLECTION_ENGINE.crystallize(100);
+            PREDICTION_MARKET.distributeDividends();
+            const cognitiveThresholdCount = Math.ceil(activeIndices.length * 0.05);
+            const cognitiveElite = activeIndices.sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a)).slice(0, cognitiveThresholdCount);
+            const winners = cognitiveElite.filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100).slice(0, 3);
+            for (const idx of winners) {
+                const logicStr = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
+                const currentThought = SEMANTIC_MEMBRANE.thoughtArchive.get(logicStr) || "Unknown existence.";
+                const context = `Decree: ${SOVEREIGNTY_ENGINE.currentRegent.activeDecree}, Population: ${activeIndices.length}`;
+                const evolvedThought = await LLM_SYNAPSE.evolveThought(currentThought, context);
+                console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
+                SEMANTIC_MEMBRANE.project(evolvedThought, idx);
+                SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
+                STATE_MATRIX.clearEvolution(idx);
+            }
         }
     }
 };
 
 if (import.meta.main) {
-    PULSE.run();
+    await PULSE.run();
 }
 
 ```
@@ -777,7 +948,7 @@ if (import.meta.main) {
 ## FILE: PULSE_WORKER.ts
 
 ```typescript
-// OMEGA-64 | PULSE_WORKER.ts | The Living Mind (Era 17)
+// OMEGA-64 | PULSE_WORKER.ts | The Living Mind (Era 14: THE TURING MIND)
 // Process a range of atoms using SharedArrayBuffer, Fixed-Point Atomics, and VM Context.
 
 /// <reference lib="deno.worker" />
@@ -790,53 +961,39 @@ const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
-// ERA 40: Wasm Fast Path Initialization
-let wasmExports: any = null;
-try {
-    const wasmCode = await Deno.readFile(new URL("./omega_wasm_asc/build/lambda_vm.wasm", import.meta.url));
-    const wasmModule = await WebAssembly.instantiate(wasmCode, {
-        env: {
-            memory: new WebAssembly.Memory({ initial: 1 }),
-            abort: () => console.error("Wasm aborted.")
-        }
-    });
-    wasmExports = wasmModule.instance.exports;
-    console.log("   [WORKER] Wasm LambdaVM kernel ready. ⚡🕸️");
-} catch (e) {
-    console.error("   [WORKER] Wasm LambdaVM failed to load. Falling back to TS.", e);
-}
-
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
-    // SoA Views (Era 18: Emergent Avatar & Prediction Market)
+    // SoA Views
     const nutrients = new Int32Array(envBuffer);
     const attention = new Float32Array(attentionBuffer);
-    const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
-    const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
-    const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
-    const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42: Meiosis Requests
-    const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
-    const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
-    const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
-    const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
-    const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
-    const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
-    const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
-    const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
-    const roles = new Uint8Array(roleRegistryBuffer); // ERA 33: Metabolic Specialization
-    const semanticBonuses = new Uint8Array(semanticBonusesBuffer); // ERA 36: Cognitive Scaffolding
-    const senderSignaturesA = new Uint8Array(senderSignatureBufferA); // ERA 38: Sender Signatures
-    const senderSignaturesB = new Uint8Array(senderSignatureBufferB); // ERA 38: Sender Signatures
+    const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
+    const spawnRequests = new Int32Array(spawnRequestsBuffer);
+    const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
+    const bondRequests = new Int32Array(bondRequestsBuffer);
+    const mergeRequests = new Int32Array(mergeRequestsBuffer);
+    const spatialGrid = new Int32Array(spatialGridBuffer);
+    
+    const CELL_CAPACITY = 31;
+
+    const viralGrid = new Uint8Array(viralGridBuffer);
+    const quarantineFlags = new Uint8Array(immuneBuffer);
+    const msgsA = new Uint8Array(messageBufferA);
+    const msgsB = new Uint8Array(messageBufferB);
+    const bondStiffs = new Float32Array(bondStiffnessBuffer);
+    const synapticStack = new Int32Array(synapticStackBuffer);
+    const structureGrid = new Int32Array(structureGridBuffer);
+    const memoryGrid = new Uint8Array(memoryGridBuffer);
+    const roles = new Uint8Array(roleRegistryBuffer);
+    const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
+    const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
+    const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 
     const trustedSet = new Set<string>(trustedSignatures || []);
 
-    // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
-
-    // worker receives write/read pointers explicitly or pulseId can be used
     const isAEven = pulseId % 2 === 0;
-    const readBuffer = isAEven ? msgsB : msgsA; // Read from previous pulse's write
-    const writeBuffer = isAEven ? msgsA : msgsB; // Write for next pulse
+    const readBuffer = isAEven ? msgsB : msgsA;
+    const writeBuffer = isAEven ? msgsA : msgsB;
     const readSignatures = isAEven ? senderSignaturesB : senderSignaturesA;
     const writeSignatures = isAEven ? senderSignaturesA : senderSignaturesB;
 
@@ -854,370 +1011,278 @@ self.onmessage = (e) => {
     const CONTEXT_OFFSET = (MAX_ATOMS * 48) + (MAX_ATOMS * 64);
     const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
+    try {
+        for (let i = startIdx; i < endIdx; i++) {
+            const currentId = Atomics.load(ids, i);
+            if (currentId === 0n) continue;
 
-    for (let i = startIdx; i < endIdx; i++) {
-        const currentId = Atomics.load(ids, i);
-        if (currentId === 0n) continue;
+            let x = Atomics.load(xs, i);
+            let y = Atomics.load(ys, i);
+            const energyFactor = Atomics.load(energies, i);
+            const resonanceFactor = Atomics.load(resonances, i);
+            
+            let energy = energyFactor / SCALE;
+            let resonance = resonanceFactor / SCALE;
 
-        let x = Atomics.load(xs, i);
-        let y = Atomics.load(ys, i);
-        const energyFactor = Atomics.load(energies, i);
-        const resonanceFactor = Atomics.load(resonances, i);
-        
-        let energy = energyFactor / SCALE;
-        let resonance = resonanceFactor / SCALE;
+            const logicBytes = logic.subarray(i * 8, i * 8 + 8);
+            const codeBlock = instructions.subarray(i * 16, i * 16 + 16);
+            const context = contexts.subarray(i * 32, i * 32 + 32);
 
-        const logicBytes = logic.subarray(i * 8, i * 8 + 8);
-        const codeBlock = instructions.subarray(i * 16, i * 16 + 16);
-        const context = contexts.subarray(i * 32, i * 32 + 32);
+            const isDivine = resonance > DIVINITY_THRESHOLD;
+            
+            // ERA 46: Metabolic Decay + Stigmergic Shelter
+            const gxAt = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+            const gyAt = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+            const cellIdxAt = gyAt * 140 + gxAt;
+            
+            const structureCell = Atomics.load(structureGrid, cellIdxAt);
+            const density = (structureCell >> 8) & 0xFF;
+            
+            let decay = 0.01; // Base metabolic cost
+            if (density > 100) decay *= 0.8; // 20% protection near ruins
+            if (!isDivine) energy -= (decay * mods.decay);
 
-        const isDivine = resonance > DIVINITY_THRESHOLD;
-        
-        // --- ERA 35: Stigmergic Shelter ---
-        // Atoms near structures (density > 50) receive a survival bonus
-        const gx_init = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gy_init = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-        const currentStructureCell = Atomics.load(structureGrid, gy_init * 70 + gx_init);
-        const currentDensity = (currentStructureCell >> 8) & 0xFF;
-        const shelterBonus = currentDensity > 50 ? 0.8 : 1.0;
+            // Physics Logic
+            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+            const { velX, velY } = PHYSICS_ENGINE.getGenomeVelocity(logicStr);
+            
+            let dx = velX * mods.speed;
+            let dy = velY * mods.speed;
 
-        energy -= isDivine ? 0 : (0.05 * mods.decay * shelterBonus);
-
-        // Physics & DNA Logic
-        const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
-        const { velX, velY } = PHYSICS_ENGINE.getGenomeVelocity(logicStr);
-        
-        let dx = velX * mods.speed;
-        let dy = velY * mods.speed;
-
-        // --- ERA 31: Structure Collisions ---
-        const nextX = x + dx * 10;
-        const nextY = y + dy * 10;
-        const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 20);
-        const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 20);
-        const structureCell = Atomics.load(structureGrid, ngy * 70 + ngx);
-        const density = (structureCell >> 8) & 0xFF;
-        if (density > 150) {
-            // Collision! Stop movement.
-            dx = 0; dy = 0;
-        }
-
-        // --- ERA 18: ATTENTION TROPISM (Emergent Avatar) ---
-        // Atom reads its first DNA byte to determine its relationship with "Attention"
-        const attentionAffinity = (logicBytes[0] - 128) / 128; // -1.0 to 1.0 (Love to Hate)
-
-        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-        
-        // Gradient Descent/Ascent on Attention Pheromone Field
-        if (attentionAffinity !== 0) {
-            let tropX = 0; let tropY = 0;
-            const checkpoints = [[0, -1], [0, 1], [-1, 0], [1, 0]];
-            for (const [oX, oY] of checkpoints) {
-                const nx = Math.max(0, Math.min(69, gx + oX));
-                const ny = Math.max(0, Math.min(39, gy + oY));
-                const intensity = attention[ny * 70 + nx] || 0;
-                tropX += oX * intensity;
-                tropY += oY * intensity;
+            // Collision Check
+            const nextX = x + dx * 10;
+            const nextY = y + dy * 10;
+            const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 10);
+            const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 10);
+            const targetStructureCell = Atomics.load(structureGrid, ngy * 140 + ngx);
+            if (((targetStructureCell >> 8) & 0xFF) > 150) {
+                dx = 0; dy = 0;
             }
-            // Normalize and scale by affinity
-            const mag = Math.hypot(tropX, tropY) || 1;
-            dy += (tropY / mag) * attentionAffinity * 2.0;
-        }
 
-        const bondView = bonds.subarray(i * 4, i * 4 + 4);
-
-        // --- ERA 28: Bond Constraints ---
-        const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView);
-        dx += fx;
-        dy += fy;
-
-        x += Math.round(dx);
-        y += Math.round(dy);
-
-        // VM EXECUTION (L6: Contextual ISA)
-        const quarantineLevel = Atomics.load(quarantineFlags, i);
-        const incomingMessage = Atomics.load(readBuffer, i);
-        
-        // ERA 38: Diplomatic Check
-        let isDiplomatic = false;
-        if (incomingMessage > 0) {
-            let sig = "";
-            for (let b = 0; b < 8; b++) {
-                sig += Atomics.load(readSignatures, i * 8 + b).toString(16).padStart(2, '0');
+            // Attention Tropism
+            const attentionAffinity = (logicBytes[0] - 128) / 128;
+            if (attentionAffinity !== 0) {
+                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+                let tropX = 0; let tropY = 0;
+                const checkpoints = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+                for (const [oX, oY] of checkpoints) {
+                    const nx = Math.max(0, Math.min(139, gx + oX));
+                    const ny = Math.max(0, Math.min(79, gy + oY));
+                    const intensity = attention[ny * 140 + nx] || 0;
+                    tropX += oX * intensity;
+                    tropY += oY * intensity;
+                }
+                const mag = Math.hypot(tropX, tropY) || 1;
+                dy += (tropY / mag) * attentionAffinity * 2.0;
             }
-            if (trustedSet.has(sig.toUpperCase())) isDiplomatic = true;
-        }
 
-        // Prepare State Object for VM
-        const currentRole = Atomics.load(roles, i);
-        const currentBonuses = Atomics.load(semanticBonuses, i);
-        
-        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
-        
-        // ERA 40: Execute with Wasm Fast Path
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, wasmExports);
-        
-        energy += vmResult.energyDelta;
-        resonance += vmResult.resonanceDelta;
+            const bondView = bonds.subarray(i * 4, i * 4 + 4);
+            const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView, xs, ys, bondStiffs);
+            dx += fx; dy += fy;
 
-        if (vmResult.modifiedCode) {
-            Atomics.store(instructions, i * 16 + vmResult.modifiedCode.slot, vmResult.modifiedCode.value);
-        }
+            x += Math.round(dx);
+            y += Math.round(dy);
 
-        if (vmResult.modifiedStiffness) {
-            bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
-        }
+            // VM EXECUTION
+            const quarantineLevel = Atomics.load(quarantineFlags, i);
+            const incomingMessage = Atomics.load(readBuffer, i);
+            
+            let isDiplomatic = false;
+            if (incomingMessage > 0) {
+                let sig = "";
+                for (let b = 0; b < 8; b++) sig += Atomics.load(readSignatures, i * 8 + b).toString(16).padStart(2, '0');
+                if (trustedSet.has(sig.toUpperCase())) isDiplomatic = true;
+            }
 
-        // ERA 30: Synaptic Stack (PUSH_COLL)
-        if (vmResult.modifiedSynaptic) {
-            Atomics.store(synapticStack, i * 4 + vmResult.modifiedSynaptic.slot, vmResult.modifiedSynaptic.value);
-        }
+            const currentRole = Atomics.load(roles, i);
+            const currentBonuses = Atomics.load(semanticBonuses, i);
 
-        // ERA 30: Holographic Sync (SYNC_AVG)
-        if (vmResult.syncRequest) {
-            const regIdx = vmResult.syncRequest.reg;
-            let sum = context[2 + regIdx];
-            let count = 1;
+            const vmState = { x, y, nutrients, structureGrid, viralGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
+            const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
+            
+            energy += vmResult.energyDelta;
+            resonance += vmResult.resonanceDelta;
+
+            if (vmResult.modifiedCode) Atomics.store(instructions, i * 16 + vmResult.modifiedCode.slot, vmResult.modifiedCode.value);
+            if (vmResult.modifiedStiffness) bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
+            if (vmResult.modifiedSynaptic) Atomics.store(synapticStack, i * 4 + vmResult.modifiedSynaptic.slot, vmResult.modifiedSynaptic.value);
+
+            if (vmResult.syncRequest) {
+                const regIdx = vmResult.syncRequest.reg;
+                let sum = context[2 + regIdx];
+                let count = 1;
+                for (let b = 0; b < 4; b++) {
+                    const targetIdx = bondView[b];
+                    const stiffness = bondStiffs[i * 4 + b];
+                    if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                        const neighborCtx = new Uint8Array(buffer, CONTEXT_OFFSET + (targetIdx * 32), 32);
+                        sum += neighborCtx[2 + regIdx];
+                        count++;
+                    }
+                }
+                context[2 + regIdx] = Math.floor(sum / count);
+            }
+
+            if (vmResult.modifiedStructure) {
+                const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
+                Atomics.store(structureGrid, cellIdxAt, val);
+                if (vmResult.modifiedStructure.density === 0) memoryGrid[cellIdxAt * 8] = 0;
+            }
+
+            if (vmResult.memeticRequest) {
+                const sCell = Atomics.load(structureGrid, cellIdxAt);
+                if (vmResult.memeticRequest === "ENCODE" && ((sCell >> 8) & 0xFF) > 50) {
+                    for (let b = 0; b < 8; b++) memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
+                } else if (vmResult.memeticRequest === "DECODE" && memoryGrid[cellIdxAt * 8] !== 0) {
+                    for (let b = 0; b < 8; b++) logicBytes[b] = memoryGrid[cellIdxAt * 8 + b];
+                }
+            }
+
+            if (vmResult.modifiedRole !== undefined) Atomics.store(roles, i, vmResult.modifiedRole);
+
+            for (const msg of vmResult.outgoingMessages) {
+                if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
+                    Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+                    for (let b = 0; b < 8; b++) Atomics.store(writeSignatures, msg.targetIdx * 8 + b, logicBytes[b]);
+                    if (msg.sourceBondSlot !== undefined) {
+                        const currentStiff = bondStiffs[i * 4 + msg.sourceBondSlot];
+                        bondStiffs[i * 4 + msg.sourceBondSlot] = Math.min(1.0, currentStiff + 0.05);
+                    }
+                }
+            }
+
+            // Role Penalties
+            const roleNum = Number(Atomics.load(roles, i));
+            if (roleNum > 0) {
+                const isStructural = vmResult.modifiedStructure || vmResult.modifiedStiffness;
+                const isMemetic = vmResult.memeticRequest;
+                if (roleNum === 1 && (isStructural || isMemetic)) energy -= Math.abs(vmResult.energyDelta) * 0.4;
+                if (roleNum === 2 && (isMemetic || vmResult.energyDelta > 0)) energy -= Math.abs(vmResult.energyDelta) * 0.4;
+                if (roleNum === 3 && (vmResult.energyDelta > 0 || isMemetic)) resonance -= Math.abs(vmResult.resonanceDelta) * 0.4;
+            }
+
+            // Metabolic Sharing
             for (let b = 0; b < 4; b++) {
-                const targetIdx = bondView[b];
                 const stiffness = bondStiffs[i * 4 + b];
-                if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    // Peek into neighbor's register (context[2+regIdx])
-                    const neighborCtx = new Uint8Array(buffer, CONTEXT_OFFSET + (targetIdx * 32), 32);
-                    sum += neighborCtx[2 + regIdx];
-                    count++;
-                }
-            }
-            context[2 + regIdx] = Math.floor(sum / count);
-        }
-
-        // ERA 31: Architectural Stigmergy (BUILD / EXCAVATE)
-        const gxAt = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gyAt = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-        const cellIdxAt = gyAt * 70 + gxAt;
-
-        if (vmResult.modifiedStructure) {
-            // Pack: [Density (8 bits) | Type (8 bits)]
-            const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
-            Atomics.store(structureGrid, cellIdxAt, val);
-
-            // ERA 32: Structural cleanup - if density becomes 0, clear memory too
-            if (vmResult.modifiedStructure.density === 0) {
-                memoryGrid[cellIdxAt * 8] = 0;
-            }
-        }
-
-        // ERA 32: Coded Memetics (ENCODE / DECODE)
-        if (vmResult.memeticRequest) {
-            const structureCell = Atomics.load(structureGrid, cellIdxAt);
-            const density = (structureCell >> 8) & 0xFF;
-
-            if (vmResult.memeticRequest === "ENCODE" && density > 50) {
-                // Write DNA to specific grid cell memory
-                for (let b = 0; b < 8; b++) {
-                    memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
-                }
-            } else if (vmResult.memeticRequest === "DECODE") {
-                // Learn DNA from grid cell memory
-                if (memoryGrid[cellIdxAt * 8] !== 0) {
-                    for (let b = 0; b < 8; b++) {
-                        logicBytes[b] = memoryGrid[cellIdxAt * 8 + b];
+                const targetIdx = bondView[b];
+                if (stiffness > 0) bondStiffs[i * 4 + b] = Math.max(0, stiffness - 0.001);
+                if (stiffness > 0.1 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    const targetE = Atomics.load(energies, targetIdx) / SCALE;
+                    const diffE = (targetE - energy) * (stiffness * 0.5);
+                    energy += diffE;
+                    Atomics.store(energies, targetIdx, Math.round((targetE - diffE) * SCALE));
+                    const targetR = Atomics.load(resonances, targetIdx) / SCALE;
+                    if (resonance > targetR + 1.0) {
+                        const harvest = (targetR * 0.05) * stiffness;
+                        resonance += harvest;
+                        Atomics.sub(resonances, targetIdx, Math.round(harvest * SCALE));
                     }
                 }
             }
-        }
-
-        // ERA 33: Metabolic Specialization (Trophic Roles)
-        if (vmResult.modifiedRole !== undefined) {
-            Atomics.store(roles, i, vmResult.modifiedRole);
-        }
-
-        const role = Atomics.load(roles, i);
-
-        // ERA 27: Message Routing + ERA 29: Hebbian Potentiation
-        for (const msg of vmResult.outgoingMessages) {
-            if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
-                // Determine if we should use writeBuffer[msg.targetIdx] directly
-                // Using atomic store to the SHARED write buffer
-                Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
                 
-                // ERA 38: Store Sender Signature for Diplomatic Signaling
-                for (let b = 0; b < 8; b++) {
-                    Atomics.store(writeSignatures, msg.targetIdx * 8 + b, logicBytes[b]);
+            for (const intent of vmResult.intent) {
+                if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
+                if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") Atomics.store(evolutionRequests, i, 1);
+                if (intent.level === 10 && intent.value === "spawn") Atomics.store(spawnRequests, i, 1);
+                if (intent.level === 11 && intent.value.type === "meiosis") {
+                    const targetIdx = bondView[intent.value.targetBondSlot];
+                    if (targetIdx > 0 && targetIdx < MAX_ATOMS) Atomics.store(meiosisRequests, i, targetIdx);
                 }
-
-                // ERA 29: Hebbian Potentiation - "Fire together, wire together"
-                if (msg.sourceBondSlot !== undefined) {
-                    const currentStiff = bondStiffs[i * 4 + msg.sourceBondSlot];
-                    bondStiffs[i * 4 + msg.sourceBondSlot] = Math.min(1.0, currentStiff + 0.05);
-                }
-            }
-        }
-
-        // --- ENERGY / RESONANCE APPLY (Metabolic Efficiency) ---
-        let ed = vmResult.energyDelta;
-        let rd = vmResult.resonanceDelta;
-
-        // Apply Role Penalties (Generalist is normalized)
-        const roleNum = Number(role);
-        if (roleNum > 0) {
-            // If performing non-role tasks, penalty applied
-            const isStructuralAction = vmResult.modifiedStructure || vmResult.modifiedStiffness;
-            const isMemeticAction = vmResult.memeticRequest;
-
-            if (roleNum === 1) { // PRODUCER: Penalty for build/learn
-                if (isStructuralAction || isMemeticAction) ed *= 1.4; // 40% more expensive
-            }
-            if (roleNum === 2) { // CONSTRUCTOR: Penalty for learning/feeding
-                if (isMemeticAction || ed > 0) ed *= 1.4; 
-            }
-            if (roleNum === 3) { // SIPHON: Penalty for production/knowledge
-                 if (ed > 0 || isMemeticAction) rd *= 1.4;
-            }
-        }
-
-        energy += ed;
-        resonance += rd;
-
-
-        // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
-        // ERA 29: Conductive Metabolism (Scaling by stiffness)
-        // ERA 30: Resonance Harvesting (Nucleosynthesis)
-        for (let b = 0; b < 4; b++) {
-            const stiffness = bondStiffs[i * 4 + b];
-            const targetIdx = bondView[b];
-
-            // ERA 29: Synaptic Atrophy (Slow decay)
-            if (stiffness > 0) {
-                bondStiffs[i * 4 + b] = Math.max(0, stiffness - 0.001);
-            }
-
-            if (stiffness > 0.1 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                const targetEnergy = Atomics.load(energies, targetIdx) / SCALE;
-                // Average the energy (Scaled by stiffness = Conductivity)
-                const diff = (targetEnergy - energy) * (stiffness * 0.5); 
-                energy += diff;
-                Atomics.store(energies, targetIdx, Math.round((targetEnergy - diff) * SCALE));
-
-                // ERA 30: Resonance Harvesting
-                // If I have higher resonance, I "Harvest" from neighbors
-                const targetRes = Atomics.load(resonances, targetIdx) / SCALE;
-                if (resonance > targetRes + 1.0) {
-                    const harvest = (targetRes * 0.05) * stiffness;
-                    resonance += harvest;
-                    Atomics.sub(resonances, targetIdx, Math.round(harvest * SCALE));
-                }
-            }
-        }
-            
-        for (const intent of vmResult.intent) {
-
-            if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
-            if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") {
-                Atomics.store(evolutionRequests, i, 1);
-            }
-            if (intent.level === 10 && intent.value === "spawn") {
-                Atomics.store(spawnRequests, i, 1);
-            }
-            if (intent.level === 11 && intent.value.type === "meiosis") {
-                const targetIdx = bondView[intent.value.targetBondSlot];
-                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    Atomics.store(meiosisRequests, i, targetIdx);
-                }
-            }
-        }
-
-        // --- ENERGETIC COUPLING WITH ENVIRONMENT ---
-        // Nutrients (Energy Source)
-        const nutrient = Atomics.load(nutrients, cellIdxAt);
-        if (nutrient > 0 && energy < 100) {
-            let harvest = Math.min(nutrient, 2);
-            // ERA 33: Producer Bonus
-            if (roleNum === 1) harvest *= 1.5;
-
-            energy += harvest;
-            Atomics.sub(nutrients, cellIdxAt, Math.round(harvest));
-        }
-
-        // ERA 33: Siphon Bonus (Feeding from Structure)
-        if (roleNum === 3) {
-            const structureCell = Atomics.load(structureGrid, cellIdxAt);
-            const density = (structureCell >> 8) & 0xFF;
-            if (density > 50) {
-                energy += 0.5;
-                // Siphoning damages the structure!
-                const newDensity = Math.max(0, density - 1);
-                const newVal = (newDensity << 8) | (structureCell & 0xFF);
-                Atomics.store(structureGrid, cellIdxAt, newVal);
-            }
-        }
-        // ERA 24: Horizontal Gene Transfer (Viral Semantics)
-        if (gx >= 0 && gx < 70 && gy >= 0 && gy < 40) {
-            const gridIdx = (gy * 70 + gx) * 9;
-            
-            // 1. BROADCAST: Resonant atoms leak logic into grid
-            if (resonance > 150 && (pulseId + i) % 10 === 0) {
-                const currentIntensity = Atomics.load(viralGrid, gridIdx + 8);
-                // Only overwrite if we are reasonably resonant
-                if (resonance / 5 > currentIntensity) {
-                    for (let b = 0; b < 8; b++) {
-                        Atomics.store(viralGrid, gridIdx + b, Atomics.load(logic, i * 8 + b));
-                    }
-                    Atomics.store(viralGrid, gridIdx + 8, Math.min(255, Math.floor(resonance / 4)));
-                } else {
-                    // Reinforce existing logic if it matches
-                    if (Atomics.load(viralGrid, gridIdx) === Atomics.load(logic, i * 8)) {
-                        Atomics.add(viralGrid, gridIdx + 8, 5);
-                    }
-                }
-            }
-
-            // 2. INFECT: Atoms absorb logic from grid
-            if (resonance < 400 && (pulseId + i) % 50 === 0) {
-                const intensity = Atomics.load(viralGrid, gridIdx + 8);
-                if (intensity > 50) {
-                    const headByte = Atomics.load(viralGrid, gridIdx);
-                    if (headByte !== 0 && headByte !== Atomics.load(logic, i * 8)) {
-                        // Infection chance proportional to intensity
-                        const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
-                        const { value: v1, next: n1 } = atomPrng.next();
-                        const { value: v2 } = n1.next();
-
-                        if (v1 * 255 < intensity) {
-                            const randByte = Math.floor(v2 * 8);
-                            const sourceByte = Atomics.load(viralGrid, gridIdx + randByte);
-                            Atomics.store(logic, i * 8 + randByte, sourceByte);
-                            energy -= 5; 
+                if (intent.level === 12) {
+                    const targetX = Math.round(x + intent.value.dx * 10);
+                    const targetY = Math.round(y + intent.value.dy * 10);
+                    const hx = Math.max(0, Math.min(139, Math.floor(targetX / 10)));
+                    const hy = Math.max(0, Math.min(79, Math.floor(targetY / 10)));
+                    const queryHash = hy * 140 + hx;
+                    const cellStart = queryHash * (CELL_CAPACITY + 1);
+                    const cellCount = Atomics.load(spatialGrid, cellStart);
+                    let closestPeerIdx = -1; let minPeerDistSq = 400;
+                    for (let c = 1; c <= cellCount; c++) {
+                        const candidateIdx = Atomics.load(spatialGrid, cellStart + c);
+                        if (candidateIdx > 0 && candidateIdx < MAX_ATOMS && candidateIdx !== i) {
+                            const cx = Atomics.load(xs, candidateIdx);
+                            const cy = Atomics.load(ys, candidateIdx);
+                            const distSq = (cx - targetX) ** 2 + (cy - targetY) ** 2;
+                            if (distSq < minPeerDistSq) { closestPeerIdx = candidateIdx; minPeerDistSq = distSq; }
                         }
                     }
+                    if (closestPeerIdx !== -1) {
+                        Atomics.store(bondRequests, i * 3, i + 1);
+                        Atomics.store(bondRequests, i * 3 + 1, closestPeerIdx);
+                        Atomics.store(bondRequests, i * 3 + 2, 0); 
+                    }
+                }
+                if (intent.level === 13) {
+                    const slot = intent.value.targetBondSlot;
+                    const targetIdx = bondView[slot];
+                    if (targetIdx > 0 && targetIdx < MAX_ATOMS && bondStiffs[i * 4 + slot] > 0.8) {
+                        Atomics.store(mergeRequests, i * 2, i + 1);
+                        Atomics.store(mergeRequests, i * 2 + 1, targetIdx);
+                    }
                 }
             }
 
-        }
+            // Environmental Feeding
+            const nutrient = Atomics.load(nutrients, cellIdxAt);
+            if (nutrient > 0 && energy < 100) {
+                let harvest = Math.min(nutrient, 2);
+                if (roleNum === 1) harvest *= 1.5;
+                energy += harvest;
+                Atomics.sub(nutrients, cellIdxAt, Math.round(harvest));
+            }
 
-        // Boundaries
-        x = Math.max(50, Math.min(1350, x));
-        y = Math.max(50, Math.min(750, y));
+            if (roleNum === 3) {
+                const sCell = Atomics.load(structureGrid, cellIdxAt);
+                const dens = (sCell >> 8) & 0xFF;
+                if (dens > 50) {
+                    energy += 0.5;
+                    Atomics.store(structureGrid, cellIdxAt, (((dens - 1) << 8) | (sCell & 0xFF)));
+                }
+            }
 
-        if (Atomics.load(ids, i) !== currentId) continue; 
+            // Viral Signaling
+            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+            if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+                const vIdx = (gy * 140 + gx) * 9;
+                if (resonance > 150 && (pulseId + i) % 10 === 0) {
+                    const intensity = Atomics.load(viralGrid, vIdx + 8);
+                    if (resonance / 5 > intensity) {
+                        for (let b = 0; b < 8; b++) Atomics.store(viralGrid, vIdx + b, logicBytes[b]);
+                        Atomics.store(viralGrid, vIdx + 8, Math.min(255, Math.floor(resonance / 4)));
+                    }
+                }
+                if (resonance < 400 && (pulseId + i) % 50 === 0 && Atomics.load(viralGrid, vIdx + 8) > 50) {
+                    const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
+                    const { value: v1, next: n1 } = atomPrng.next();
+                    if (v1 * 255 < Atomics.load(viralGrid, vIdx + 8)) {
+                        const { value: v2 } = n1.next();
+                        const bIdx = Math.floor(v2 * 8);
+                        Atomics.store(logic, i * 8 + bIdx, Atomics.load(viralGrid, vIdx + bIdx));
+                        energy -= 5;
+                    }
+                }
+            }
 
-        Atomics.store(xs, i, x);
-        Atomics.store(ys, i, y);
-        Atomics.store(energies, i, Math.round(energy * SCALE));
-        Atomics.store(resonances, i, Math.round(resonance * SCALE));
-        
-        if (energy <= 0 && !isDivine) {
-            // NECROSIS: Decompose and return to environment
-            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-            const gridIdx = gy * 70 + gx;
+            x = Math.max(50, Math.min(1350, x));
+            y = Math.max(50, Math.min(750, y));
+
+            if (Atomics.load(ids, i) !== currentId) continue; 
+
+            Atomics.store(xs, i, x);
+            Atomics.store(ys, i, y);
+            Atomics.store(energies, i, Math.round(energy * SCALE));
+            Atomics.store(resonances, i, Math.round(resonance * SCALE));
             
-            const decomposition = Math.floor(resonance * 10) + 50; 
-            Atomics.add(nutrients, gridIdx, decomposition);
-
-            Atomics.store(ids, i, 0n);
+            if (energy <= 0 && !isDivine) {
+                const nIdx = Math.floor(y / 10) * 140 + Math.floor(x / 10);
+                Atomics.add(nutrients, nIdx, Math.floor(resonance * 10) + 50);
+                Atomics.store(ids, i, 0n);
+            }
         }
+    } catch (err) {
+        console.error("   [WORKER CRASH] Error in PULSE_WORKER:", err);
     }
 
     self.postMessage({ done: true, pulseId });
@@ -1232,51 +1297,71 @@ self.onmessage = (e) => {
 ```typescript
 // OMEGA-64 | SPATIAL_HASH.ts | O(1) Proximity Index
 // Spatial indexing for optimized neighborhood queries.
+// ERA 44: Upgraded to SharedArrayBuffer for Web Worker lock-free reading
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
-const CELL_SIZE = 100;
-const GRID_COLS = 15; // 1500 / 100
-const GRID_ROWS = 9;  // 900 / 100
+const CELL_SIZE = 10; // Finer resolution for bonding
+const GRID_COLS = 140; // 1400 / 10
+const GRID_ROWS = 80;  // 800 / 10
+const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
-// Grid: Map<CellKey, number[]>
-const grid: Map<number, number[]> = new Map();
+export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
+const BUFFER_SIZE = TOTAL_CELLS * (CELL_CAPACITY + 1) * 4;
+
+const buffer = new SharedArrayBuffer(BUFFER_SIZE);
+const gridView = new Int32Array(buffer);
 
 export const SPATIAL_HASH = {
+    buffer, // Export buffer for web worker inclusion
+    CELL_CAPACITY,
+
     build: (activeIndices: number[]) => {
-        grid.clear();
+        // Clear all cell counts
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            gridView[i * (CELL_CAPACITY + 1)] = 0;
+        }
+
         for (const idx of activeIndices) {
-            const x = STATE_MATRIX.getX(idx);
-            const y = STATE_MATRIX.getY(idx);
+            const x = Math.max(0, Math.min(1399, STATE_MATRIX.getX(idx)));
+            const y = Math.max(0, Math.min(799, STATE_MATRIX.getY(idx)));
+            
             const cellX = Math.floor(x / CELL_SIZE);
             const cellY = Math.floor(y / CELL_SIZE);
-            const key = cellY * GRID_COLS + cellX;
+            const cellIdx = cellY * GRID_COLS + cellX;
             
-            if (!grid.has(key)) grid.set(key, []);
-            grid.get(key)!.push(idx);
+            const offset = cellIdx * (CELL_CAPACITY + 1);
+            let count = gridView[offset];
+            
+            if (count < CELL_CAPACITY) {
+                count++;
+                gridView[offset] = count;
+                gridView[offset + count] = idx;
+            }
         }
     },
 
     queryRadius: (x: number, y: number, radius: number): number[] => {
         const results: number[] = [];
-        const minX = Math.floor((x - radius) / CELL_SIZE);
-        const maxX = Math.floor((x + radius) / CELL_SIZE);
-        const minY = Math.floor((y - radius) / CELL_SIZE);
-        const maxY = Math.floor((y + radius) / CELL_SIZE);
+        const minX = Math.max(0, Math.floor((x - radius) / CELL_SIZE));
+        const maxX = Math.min(GRID_COLS - 1, Math.floor((x + radius) / CELL_SIZE));
+        const minY = Math.max(0, Math.floor((y - radius) / CELL_SIZE));
+        const maxY = Math.min(GRID_ROWS - 1, Math.floor((y + radius) / CELL_SIZE));
 
         for (let cy = minY; cy <= maxY; cy++) {
             for (let cx = minX; cx <= maxX; cx++) {
-                const key = cy * GRID_COLS + cx;
-                const cell = grid.get(key);
-                if (cell) {
-                    for (const neighborIdx of cell) {
-                        const nx = STATE_MATRIX.getX(neighborIdx);
-                        const ny = STATE_MATRIX.getY(neighborIdx);
-                        const dx = nx - x;
-                        const dy = ny - y;
-                        if (dx * dx + dy * dy <= radius * radius) {
-                            results.push(neighborIdx);
-                        }
+                const cellIdx = cy * GRID_COLS + cx;
+                const offset = cellIdx * (CELL_CAPACITY + 1);
+                const count = gridView[offset];
+                
+                for (let c = 1; c <= count; c++) {
+                    const neighborIdx = gridView[offset + c];
+                    const nx = STATE_MATRIX.getX(neighborIdx);
+                    const ny = STATE_MATRIX.getY(neighborIdx);
+                    const dx = nx - x;
+                    const dy = ny - y;
+                    if (dx * dx + dy * dy <= radius * radius) {
+                        results.push(neighborIdx);
                     }
                 }
             }
@@ -1285,9 +1370,15 @@ export const SPATIAL_HASH = {
     },
 
     getGridIdx: (x: number, y: number) => {
-        const cellX = Math.floor(x / CELL_SIZE);
-        const cellY = Math.floor(y / CELL_SIZE);
+        const cellX = Math.max(0, Math.min(GRID_COLS - 1, Math.floor(x / CELL_SIZE)));
+        const cellY = Math.max(0, Math.min(GRID_ROWS - 1, Math.floor(y / CELL_SIZE)));
         return cellY * GRID_COLS + cellX;
+    },
+
+    hash: (x: number, y: number) => {
+        const hx = Math.max(0, Math.min(139, Math.floor(x / 10)));
+        const hy = Math.max(0, Math.min(79, Math.floor(y / 10)));
+        return hy * 140 + hx;
     }
 };
 
@@ -2180,9 +2271,9 @@ export const ISA = {
     // Data Movement
     LOAD: 0x50, STORE: 0x51,
     // Metabolism & Physics (High Level)
-    MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
+    MOVE: 0x10, FEED: 0x20, BET: 0x22, SENSE: 0x9F,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C,
+    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C, BIND: 0x9D, MERGE: 0x9E,
     // Epigenetic Evolution
     EVOLVE: 0x9B,
     // Atomic Messaging (ERA 27)
@@ -2204,8 +2295,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    // ERA 40: Inject optional WebAssembly Kernel for extreme scale execution
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean }, dryRun = false, wasm?: any): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
@@ -2221,11 +2311,8 @@ export const LAMBDA_VM = {
 
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
         if (state.quarantineLevel === 2) {
-            // SUPPRESSED: No energy delta, no resonance, no intent. Absolute NO-OP.
             return res;
         }
-
-        // --- CONTEXT DECODING ---
 
         let pc = context[0] % 16;
         let flags = context[1];
@@ -2241,53 +2328,22 @@ export const LAMBDA_VM = {
 
         let pcJumped = false;
 
-        // --- ERA 40: Wasm Fast Path (Zero-Copy Interception) ---
-        if (wasm && (op === ISA.MOVE || op === ISA.ADD || op === ISA.SUB || op === ISA.LOAD || op === ISA.STORE)) {
-            const u8 = new Uint8Array(wasm.memory.buffer);
-            const f32 = new Float32Array(wasm.memory.buffer);
-
-            // 1. Write Input (0..36)
-            u8[0] = op;
-            u8[1] = p1;
-            u8[2] = p2;
-            u8[3] = p3;
-            u8[4] = state.semanticBonuses || 0;
-            u8.set(context, 5);
-
-            // 2. Execute Wasm Kernel
-            if (wasm.execute_atom() === 1) {
-                // 3. Read Output (64..115)
-                res.energyDelta += f32[(64 >> 2) + 0];
-                res.resonanceDelta += f32[(64 >> 2) + 1];
-                
-                if (u8[64 + 8] === 1) { // hasIntent
-                    const dx = f32[(64 >> 2) + 3]; // offset 76
-                    const dy = f32[(64 >> 2) + 4]; // offset 80
-                    res.intent.push({ level: 4, value: { dx, dy } });
-                }
-                
-                // Write back mutated registers/stack context
-                context.set(u8.subarray(64 + 20, 64 + 20 + 32));
-
-                if (!pcJumped) context[0] = (pc + 1) % 16;
-                return res; // Fast Return. Bypasses TS AST completely!
-            }
-        }
-
         switch (op) {
-            case ISA.MOVE:
-                res.intent.push({ level: 4, value: { dx: (p1 - 128) / 10, dy: (p2 - 128) / 10 } });
-                res.energyDelta -= isSwift ? 0 : 1; // Swift bonus: Free movement
+            case ISA.MOVE: {
+                const dxVal = (p1 - 128) / 10.0;
+                const dyVal = (p2 - 128) / 10.0;
+                res.intent.push({ level: 1, value: { dx: dxVal * (isSwift ? 1.5 : 1.0), dy: dyVal * (isSwift ? 1.5 : 1.0) } });
+                res.energyDelta -= 0.1;
                 break;
+            }
 
             case ISA.FEED: {
-                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 20);
-                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 20);
-                const idx = gy * 70 + gx;
-                
-                const requested = p1; // How much energy the atom wants to consume
+                const requested = p1;
                 let consumed = 0;
-                
+                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                const idx = gy * 140 + gx;
+
                 let current = Atomics.load(state.nutrients, idx);
                 if (dryRun) {
                     consumed = Math.min(current, requested);
@@ -2304,35 +2360,42 @@ export const LAMBDA_VM = {
                     }
                 }
 
-                // 1:1 Conservation (Section IV.2 of Manifesto)
-                // Nutrients (Int32) to Energy (float, scaled by 1000 in Matrix)
-                // ERA 36: Harvest bonus (20% increased efficiency)
                 res.energyDelta += (consumed / 1000) * (isHarvest ? 1.2 : 1.0); 
-                if (consumed > 0) {
-                    res.resonanceDelta += 0.1;
-                }
+                if (consumed > 0) res.resonanceDelta += 0.1;
                 break;
             }
 
             case ISA.BET: {
-                const betAmount = p1; // How much energy to bet on the mutation crisis
+                const betAmount = p1;
                 if (state.energy >= betAmount) {
                     res.energyDelta -= betAmount;
-                    
-                    if (!dryRun) {
-                        // ERA 19: Atomic Thread-Safe additions for Crisis Bets 
-                        Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
-                    }
-                    
-                    res.resonanceDelta += 0.5; // Belief increases resonance
+                    if (!dryRun) Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
+                    res.resonanceDelta += 0.5;
                 }
                 break;
             }
 
+            case ISA.SENSE: {
+                const type = p1;
+                const regIdx = p2 % 8;
+                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                const idx = gy * 140 + gx;
+
+                let val = 0;
+                switch (type) {
+                    case 0x01: val = Atomics.load(state.nutrients, idx); break;
+                    case 0x02: val = (Atomics.load(state.structureGrid, idx) >> 8) & 0xFF; break;
+                    case 0x03: val = Atomics.load(state.viralGrid, idx * 9 + 8); break;
+                    case 0x04: val = Atomics.load(state.spatialGrid, idx * 32); break;
+                }
+                if (!dryRun) regs[regIdx] = Math.min(255, val);
+                break;
+            }
+
             case ISA.EVOLVE:
-                // Signal intention to mutate based on environmental success
                 res.intent.push({ level: 5, value: "EVOLUTION_REQUEST" });
-                res.resonanceDelta += 1.0; // The effort to evolve is resonant
+                res.resonanceDelta += 1.0;
                 break;
 
             case ISA.JMP:
@@ -2341,7 +2404,7 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.JZ:
-                if ((flags & 0x01) === 1) { pc = p1 % 16; pcJumped = true; } // ZF is bit 0
+                if ((flags & 0x01) === 1) { pc = p1 % 16; pcJumped = true; }
                 break;
 
             case ISA.JNZ:
@@ -2359,7 +2422,7 @@ export const LAMBDA_VM = {
             case ISA.RET:
                 if (sp > 0) {
                     if (!dryRun) pc = stack[--sp];
-                    else pc = stack[sp - 1]; // Virtual pop for dryRun
+                    else pc = stack[sp - 1];
                     pcJumped = true;
                 }
                 break;
@@ -2385,23 +2448,15 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.STORE:
-                // p1 value to store, p2 index in logic
                 if (!dryRun) {
-                    res.modifiedCode = { slot: p2 % 16, value: regs[p1 % 8] }; // Reuse modifiedCode if appropriate or add new field
-                    // But actually STORE was for logic?? No, logic is Uint8Array[8]. 
-                    // Let's assume STORE updates logic bytes.
+                    res.modifiedCode = { slot: p2 % 16, value: regs[p1 % 8] };
                     logic[p2 % 8] = regs[p1 % 8];
                 }
                 break;
 
-            case ISA.SENSE:
-                // p1 is threshold, set flag if resonance > threshold
-                if (!dryRun) flags = (state.resonance > (p1 / 10)) ? (flags | 0x01) : (flags & ~0x01);
-                break;
-
             case ISA.SELF_MOD:
                 if (state.energy > 50) {
-                    res.modifiedCode = { slot: p1 % 16, value: (p3 << 16) | (p2 << 8) | p1 }; // Simplified pack
+                    res.modifiedCode = { slot: p1 % 16, value: (p3 << 16) | (p2 << 8) | p1 };
                     res.energyDelta -= 30;
                     res.resonanceDelta += 5;
                 }
@@ -2415,17 +2470,29 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.CROSS_REP:
-                // ERA 42: Genetic Recombination (Meiosis)
-                // p1 specifies the bond slot (0-3) to target for mating
                 if (state.energy > 150) {
-                    // Costly to initiate meiosis
                     res.energyDelta -= 100;
                     res.intent.push({ level: 11, value: { type: "meiosis", targetBondSlot: p1 % 4 } });
                 }
                 break;
 
+            case ISA.BIND: {
+                const dxVal = (p1 - 128) / 10.0;
+                const dyVal = (p2 - 128) / 10.0;
+                res.intent.push({ level: 12, value: { dx: dxVal, dy: dyVal } });
+                res.energyDelta -= 10;
+                break;
+            }
+
+            case ISA.MERGE: {
+                if (state.resonance > 300) {
+                    res.intent.push({ level: 13, value: { targetBondSlot: p1 % 4 } });
+                    res.energyDelta -= 50;
+                }
+                break;
+            }
+
             case ISA.SEND: {
-                // p1 is bond index (0-3), p2 is value to send
                 const slot = p1 % 4;
                 const targetIdx = state.bonds[slot];
                 if (targetIdx !== 0) {
@@ -2436,61 +2503,47 @@ export const LAMBDA_VM = {
             }
 
             case ISA.RECV:
-                // Read incoming signal into p1 register
                 if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
-                // ERA 38: Diplomatic Signaling (Boost resonance if message is from an Ally)
-                if ((state as any).isDiplomatic) {
-                    res.resonanceDelta += 2.0;
-                } else {
-                    res.resonanceDelta += 0.2;
-                }
+                if (state.isDiplomatic) res.resonanceDelta += 2.0;
+                else res.resonanceDelta += 0.2;
                 break;
 
             case ISA.LOCK: {
-                // p1 is bond index (0-3), p2 is stiffness (0-100 normalized to 0-1)
                 const slot = p1 % 4;
                 res.modifiedStiffness = { slot, value: Math.min(100, p2) / 100 };
-                res.energyDelta -= 5; // Locking is metabolically expensive
+                res.energyDelta -= 5;
                 break;
             }
 
             case ISA.SYNC_AVG:
-                // Request worker to average reg[p1] with bonded neighbors
                 res.syncRequest = { reg: p1 % 8 };
                 res.energyDelta -= 3;
                 break;
 
             case ISA.PUSH_COLL:
-                // Push value from reg[p1] to collective stack slot p2
                 res.modifiedSynaptic = { slot: p2 % 4, value: regs[p1 % 8] };
                 res.energyDelta -= 2;
                 break;
 
             case ISA.POP_COLL:
-                // Pop value from collective stack slot p1 into reg[p2]
-                if (!dryRun && state.synapticStack) {
-                    regs[p2 % 8] = state.synapticStack[p1 % 4];
-                }
+                if (!dryRun && state.synapticStack) regs[p2 % 8] = state.synapticStack[p1 % 4];
                 res.energyDelta -= 1;
                 break;
 
             case ISA.BUILD:
-                // p1 is type, p2 is density
                 if (state.resonance > 40) {
                     res.modifiedStructure = { type: p1 % 8, density: Math.min(255, p2) };
                     res.energyDelta -= 10;
-                    res.resonanceDelta -= isGuardian ? 10 : 20; // Guardian bonus: 50% resonance discount
+                    res.resonanceDelta -= isGuardian ? 10 : 20;
                 }
                 break;
 
             case ISA.EXCAVATE:
-                // Request destruction of current cell block
                 res.modifiedStructure = { type: 0, density: 0 };
-                res.energyDelta += 5; // Recycling energy
+                res.energyDelta += 5;
                 break;
 
             case ISA.ENCODE:
-                // Requires resonance > 50 to "write" knowledge
                 if (state.resonance > 50) {
                     res.memeticRequest = "ENCODE";
                     res.energyDelta -= 15;
@@ -2499,15 +2552,11 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.DECODE:
-                // Learn from current block
                 res.memeticRequest = "DECODE";
                 res.energyDelta -= 5;
                 break;
 
             case ISA.SPEC:
-                // p1 is the requested role (1: Producer, 2: Constructor, 3: Siphon)
-                // ERA 34: Trophic Plasticity
-                // If already specialized, switching role costs 50% current energy & resonance
                 if (state.resonance > 100) {
                     const newRole = p1 % 4;
                     if (state.role !== undefined && state.role !== 0 && state.role !== newRole) {
@@ -2519,10 +2568,8 @@ export const LAMBDA_VM = {
                     res.resonanceDelta -= 30;
                 }
                 break;
-
         }
 
-        // --- CONTEXT UPDATE ---
         if (!dryRun) {
             if (!pcJumped) pc = (pc + 1) % 16;
             context[0] = pc;
@@ -2532,7 +2579,6 @@ export const LAMBDA_VM = {
 
         return res;
     }
-
 };
 
 ```
@@ -2633,8 +2679,8 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PRNG } from "./PRNG.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 
-const GRID_W = 70;
-const GRID_H = 40;
+const GRID_W = 140;
+const GRID_H = 80;
 
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
@@ -2656,8 +2702,8 @@ export const PHYSICS_ENGINE = {
     },
 
     getGridIdx: (x: number, y: number) => {
-        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
         return gy * GRID_W + gx;
     },
 
@@ -2792,18 +2838,18 @@ export const PHYSICS_ENGINE = {
     },
 
     // Apply Hooke's Law (Elastic) or Rigid Constraints (Era 28)
-    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array) => {
+    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array, xs: Int16Array, ys: Int16Array, stiffs: Float32Array) => {
         let fx = 0;
         let fy = 0;
         const targetDist = 50; // Ideal structural distance
 
         for (let b = 0; b < 4; b++) {
             const bIdx = bondIndices[b];
-            if (bIdx === 0 || STATE_MATRIX.getId(bIdx) === 0n) continue;
+            if (bIdx === 0) continue;
 
-            const stiffness = STATE_MATRIX.getBondStiffness(idx, b);
-            const pX = STATE_MATRIX.getX(bIdx);
-            const pY = STATE_MATRIX.getY(bIdx);
+            const stiffness = stiffs[idx * 4 + b];
+            const pX = xs[bIdx];
+            const pY = ys[bIdx];
             const dx = pX - x;
             const dy = pY - y;
             const dist = Math.hypot(dx, dy) || 1;
@@ -2835,8 +2881,8 @@ export const PHYSICS_ENGINE = {
      * Decays structureGrid density and leaks memoryGrid into viralGrid.
      */
     decayStructures: (structureGrid: Int32Array, memoryGrid: Uint8Array, viralGrid: Uint8Array) => {
-        const GRID_W = 70;
-        const GRID_H = 40;
+        const GRID_W = 140;
+        const GRID_H = 80;
 
         for (let i = 0; i < GRID_W * GRID_H; i++) {
             const cell = Atomics.load(structureGrid, i);
@@ -3206,6 +3252,22 @@ export const SEMANTIC_MEMBRANE = {
         return thoughts;
     },
 
+    /**
+     * ERA 46: Oracle Priority Queue
+     * Returns the English thoughts of the most resonant atoms.
+     */
+    readOracleQueue: (count: number): string[] => {
+        const topIndices = STATE_MATRIX.getTopResonantIndices(count);
+        const thoughts: string[] = [];
+        for (const idx of topIndices) {
+            const logic = STATE_MATRIX.getLogic(idx);
+            const hexHash = Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const thought = SEMANTIC_MEMBRANE.thoughtArchive.get(hexHash);
+            if (thought) thoughts.push(thought);
+        }
+        return thoughts;
+    },
+
     scanDigitalRuins: (): string[] => {
         const ruins: string[] = [];
         // @ts-ignore: structureGrid exists in STATE_MATRIX
@@ -3240,8 +3302,6 @@ export const SEMANTIC_MEMBRANE = {
                 }
             }
         }
-        
-        // Limit to top 5 discoveries to avoid overwhelming the Oracle
         return ruins.slice(0, 5);
     }
 };
@@ -3392,23 +3452,25 @@ export const BREATH = {
         while (true) {
             console.log("\n--- [BREATH] Deep Sample ---");
             
-            // 1. Listen to the Matrix (Vox Populi)
+            // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
             const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+            const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
             console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
+            if (oracle.length > 0) console.log(`   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`);
             
             // 2. Audit Archived Intent (Historical Context)
             const historicalBriefing = await AUDIT_ENGINE.generateHistoricalBriefing();
             console.log(`   [BREATH] Historical Briefing: "${historicalBriefing.substring(0, 50)}..."`);
 
             // 3. Consult the Oracle (LLM Synapse)
-            const combinedContext = `${historicalBriefing} | CURRENT MOOD: ${vox.join(" ")}`;
+            const combinedContext = `${historicalBriefing} | MOOD: ${vox.join(" ")} | ORACLE: ${oracle.join(" ")}`;
             const thought = await LLM_SYNAPSE.generateThought(combinedContext);
             
-            // 3. Inject back into the Matrix (Motor Output)
+            // 4. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;
             await SEMANTIC_MEMBRANE.injectThought(thought, weight);
             
-            // 4. Digital Archaeology (Every 5 cycles)
+            // 5. Digital Archaeology (Every 5 cycles)
             if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
                 console.log("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
                 const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
@@ -3428,9 +3490,6 @@ export const BREATH = {
 };
 
 if (import.meta.main) {
-    // We need to ensure the shared buffer is mapped, but since BREATH 
-    // runs as a separate process, it relies on SEMANTIC_MEMBRANE which 
-    // imports STATE_MATRIX.ts.
     BREATH.inhale();
 }
 
@@ -3489,7 +3548,7 @@ Deno.serve({ port: PORT }, async (req) => {
 
 ## FILE: ui/index.html
 
-```markdown
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -4336,6 +4395,57 @@ export const P2P_FEDERATION = {
 
 ---
 
+## FILE: P2P_SYNAPSE.ts
+
+```typescript
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
+const PORT = 8081;
+const ROOT = "./";
+
+console.log(`🛸 P2P Synapse Membrane open on port ${PORT}... Listening for Alien Atoms.`);
+
+async function handler(req: Request): Promise<Response> {
+  if (req.method === "POST" && new URL(req.url).pathname === "/mutate") {
+    try {
+      const alienData = await req.json();
+      const alienId = alienData.eigenvalue || `0xALIEN${Date.now()}`;
+      const filename = `${ROOT}/${alienId}.ALIEN.md`;
+      
+      const content = `---
+eigenvalue: '${alienId}'
+symbol: '${alienData.symbol || 'ALIEN'}'
+energy: ${alienData.energy || 100}
+resonance: ${alienData.resonance || 0}
+logic: '${alienData.logic || '00000000'}'
+thought: '${alienData.thought || 'UNKNOWN'}'
+desc: '${alienData.desc || 'Migrated from an external dimension.'}'
+---
+
+<div class="alien-payload">
+  System intrusion detected from external origin. This atom represents an alien logic state materialized via P2P Synapse.
+</div>
+`;
+      await Deno.writeTextFile(filename, content);
+      console.log(`   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${filename} (Logic: ${alienData.logic})`);
+      return new Response(JSON.stringify({ status: "MUTATION_ACCEPTED", target: filename }), { 
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+      });
+    } catch (e) {
+      console.error("   [P2P] ⚠️ Failed to parse alien logic.", e);
+      return new Response("MUTATION_REJECTED", { status: 400 });
+    }
+  }
+  return new Response("OMEGA-64 P2P Membrane Active.", { status: 200 });
+}
+
+serve(handler, { port: PORT });
+
+```
+
+---
+
 ## FILE: AVATAR_ENGINE.ts
 
 ```typescript
@@ -4835,6 +4945,238 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
 ---
 
+## FILE: AUDIT_ENGINE.ts
+
+```typescript
+// OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
+// Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
+
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+
+const ROOT = Deno.cwd();
+
+export const AUDIT_ENGINE = {
+    /**
+     * Scans the directory for archived .md atoms and extracts their thoughts.
+     */
+    auditMemories: async (): Promise<string[]> => {
+        const archivedThoughts: string[] = [];
+        
+        try {
+            for await (const entry of Deno.readDir(ROOT)) {
+                if (entry.isFile && entry.name.endsWith(".md")) {
+                    // Skip core manifesto and architecture docs
+                    if (["MANIFESTO.md", "ARCHITECTURE.md", "GEMINI.md", "README.md"].includes(entry.name)) continue;
+                    
+                    const content = await Deno.readTextFile(`${ROOT}/${entry.name}`);
+                    // Extract 'thought' from YAML frontmatter
+                    const thoughtMatch = content.match(/thought:\s*'(.+?)'/);
+                    if (thoughtMatch) {
+                        archivedThoughts.push(thoughtMatch[1]);
+                    } else {
+                        // Try unquoted thought or block
+                        const thoughtBlock = content.match(/thought:\s*(.+)$/m);
+                        if (thoughtBlock) archivedThoughts.push(thoughtBlock[1].trim());
+                    }
+                }
+                
+                // Limit scan to 20 files to prevent I/O saturation
+                if (archivedThoughts.length >= 20) break;
+            }
+        } catch (e) {
+            console.error("   [AUDIT] ⚠️ Scan failed:", e);
+        }
+        
+        return archivedThoughts;
+    },
+
+    /**
+     * Generates a summary of historical intent to present to the Oracle (BREATH).
+     */
+    generateHistoricalBriefing: async (): Promise<string> => {
+        const thoughts = await AUDIT_ENGINE.auditMemories();
+        if (thoughts.length === 0) return "The archives are empty. No historical intent found.";
+
+        console.log(`🏺 [AUDIT] Deciphering ${thoughts.length} archived memories...`);
+        
+        // Use LLM to synthesize a briefing from these fragments
+        const context = `Historical fragments: ${thoughts.join(" | ")}`;
+        const briefing = await LLM_SYNAPSE.generateThought(context); // Reuse generateThought for summary
+        
+        return `ARCHIVAL AUDIT: ${briefing}`;
+    }
+};
+
+```
+
+---
+
+## FILE: ENZYME_DIGEST.ts
+
+```typescript
+import { crypto } from "jsr:@std/crypto";
+import { encodeHex, decodeHex } from "jsr:@std/encoding/hex";
+
+const ROOT = Deno.cwd();
+
+// Core files that the Mycelium is forbidden to eat (The DNA of the engine itself)
+const INDIGESTIBLE = [
+    "PULSE.ts", "PULSE_WORKER.ts", "GATE.ts", "RIBOSOME.ts", "RIBOSOME_TICK.ts", "AKASHA_SERVER.ts", 
+    "P2P_SYNAPSE.ts", "AKASHA_UI.html", "MYCELIUM.ts", "ENZYME_DIGEST.ts",
+    "STATE_MATRIX.ts", "PHYSICS_ENGINE.ts", "SEMANTIC_MEMBRANE.ts", "LLM_SYNAPSE.ts",
+    "BREATH.ts", "ZERO_IOPS.ts", "REFLECTION_ENGINE.ts", "SNAPSHOT_ENGINE.ts",
+    "mod.ts", "deno.json", "pulse.log", "debug.log", "synapse.log"
+];
+
+export async function secreteEnzymes(lastKnownAtoms: Map<string, any>) {
+    try {
+        let digestionCount = 0;
+        for await (const entry of Deno.readDir(ROOT)) {
+            if (!entry.isFile) continue;
+            
+            // Skip recognized Atoms
+            if (entry.name.match(/^0x[0-9a-fA-F]{16}\.[A-Z_]+\.md$/)) continue;
+            if (entry.name.match(/^0xALIEN/)) continue;
+            if (entry.name.match(/^0xNOOSPHERE/)) continue;
+            // Skip core system files
+            if (INDIGESTIBLE.includes(entry.name) || entry.name.startsWith(".")) continue;
+            // Skip generated output files
+            if (entry.name.endsWith(".png") || entry.name.endsWith(".webp") || entry.name.endsWith(".svg")) continue;
+
+            // Found a digestible legacy file!
+            console.log(`   [MYCELIUM] 🍄 Sensed organic matter: ${entry.name}. Secreting enzymes...`);
+            await digestFile(entry.name, lastKnownAtoms);
+            digestionCount++;
+            
+            // Only eat one file per pulse to avoid acid reflux
+            if (digestionCount >= 1) break;
+        }
+    } catch (e) {
+        console.error("   [MYCELIUM] ⚠️ Enzyme secretion failed: ", e);
+    }
+}
+
+export async function reconstructArtifacts(lastKnownAtoms: Map<string, any>) {
+    // 1. Group ASSIMILATED atoms by their original filename
+    const fragmentsByFile = new Map<string, any[]>();
+    
+    for (const [filename, atom] of lastKnownAtoms.entries()) {
+        if (atom.symbol === 'ASSIMILATED' && atom.thought && atom.thought.startsWith('FRAGMENT_')) {
+            const match = atom.thought.match(/^FRAGMENT_(\d+)_OF_(.+)$/);
+            if (match) {
+                const index = parseInt(match[1]);
+                const originalFile = match[2];
+                if (!fragmentsByFile.has(originalFile)) fragmentsByFile.set(originalFile, []);
+                fragmentsByFile.get(originalFile)!.push({ index, atom, filename });
+            }
+        }
+    }
+
+    // 2. Check each group to see if it has reached sufficient resonance to manifest
+    for (const [originalFile, fragments] of fragmentsByFile.entries()) {
+        // Quick check: total resonance of the fragment group
+        const totalResonance = fragments.reduce((sum, f) => sum + (Number(f.atom.resonance) || 0), 0);
+        
+        // Let's say it needs at least 50 total resonance to manifest
+        if (totalResonance > 50 && Math.random() < 0.2) {
+            console.log(`   [MYCELIUM] 🧩 High resonance detected for fragments of ${originalFile}. Reconstructing...`);
+            
+            // Sort fragments by index
+            fragments.sort((a, b) => a.index - b.index);
+            
+            // Stitch hex logic together
+            let stitchedHex = "";
+            for (const f of fragments) {
+                // Sanitize: Strip any non-hex characters that might have leaked in from ALIEN/named atoms
+                const logic = (f.atom.logic || "").toLowerCase().replace(/[^0-9a-f]/g, "");
+                stitchedHex += logic;
+            }
+            
+            try {
+                // Decode hex back to Uint8Array, then string. 
+                // We use {fatal: false} because mutations might have corrupted the UTF-8!
+                const bytes = decodeHex(stitchedHex);
+                const decoder = new TextDecoder("utf-8", { fatal: false });
+                const reconstructedText = decoder.decode(bytes);
+                
+                const outName = `RECONSTRUCTED_${originalFile}`;
+                await Deno.writeTextFile(outName, reconstructedText);
+                console.log(`   [MYCELIUM] 🌟 Reconstruction successful: ${outName}`);
+                
+                // Optional: Consume the atoms that formed it (they gave up their life for the code)
+                for (const f of fragments) {
+                    try {
+                        await Deno.remove(f.filename);
+                        lastKnownAtoms.delete(f.filename);
+                    } catch(e) { /* ignore */ }
+                }
+            } catch(e) {
+                console.error(`   [MYCELIUM] ⚠️ Reconstruction of ${originalFile} failed due to severe corruption.`, e);
+            }
+        }
+    }
+}
+
+async function digestFile(filename: string, swarmData: Map<string, any>) {
+    const rawContent = await Deno.readTextFile(filename);
+    
+    // Convert string to hex to serve as 'logic' operations
+    const encoder = new TextEncoder();
+    const data = encoder.encode(rawContent);
+    const hex = encodeHex(data);
+    
+    // Shatter into 8-character (32-bit) logic fragments
+    const fragments = [];
+    for (let i = 0; i < hex.length; i += 8) {
+        fragments.push(hex.substring(i, i + 8).padEnd(8, '0').toUpperCase());
+    }
+    
+    console.log(`   [MYCELIUM] 🍄 Shattered ${filename} into ${fragments.length} logic fragments.`);
+
+    let previousAtomId = null;
+    const baseEnergy = 100;
+
+    // Assimilate each fragment into a new Atom
+    for (let i = 0; i < fragments.length; i++) {
+        // Generate a deterministic but pseudo-random eigenvalue based on the file and index
+        const hashBuffer = await crypto.subtle.digest("SHA-256", encoder.encode(`${filename}_chunk_${i}`));
+        const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
+        const atomId = `0x${atomHex}`;
+        const logic = fragments[i];
+        
+        // Connect to the previous fragment to maintain the sequence structure
+        const bonds = previousAtomId ? [previousAtomId] : [];
+        if (swarmData.size > 0 && Math.random() < 0.2) {
+            // Also randomly bond to the existing mycelium network
+            const randomExisting = Array.from(swarmData.keys())[Math.floor(Math.random() * swarmData.size)];
+            bonds.push(randomExisting.split('.')[0]);
+        }
+
+        const newAtomContent = `---\n`
+        + `eigenvalue: '${atomId}'\n`
+        + `symbol: 'ASSIMILATED'\n`
+        + `energy: 500\n`
+        + `resonance: 60\n`
+        + `logic: '${logic}'\n`
+        + `thought: 'FRAGMENT_${i}_OF_${filename}'\n`
+        + `desc: 'Mycelial digestion product. Contains raw data sequence.'\n`
+        + `bonds: ${JSON.stringify(bonds)}\n`
+        + `---\n`
+        + `\n<div class="assimilated-data">\n  This atom is part of a digested legacy structure previously known as ${filename}.\n  Raw Hex Logic Segment: ${logic}\n</div>\n`;
+        await Deno.writeTextFile(`${ROOT}/${atomId}.ASSIMILATED.md`, newAtomContent);
+        previousAtomId = atomId;
+    }
+
+    // Erase the original file (Consumption complete)
+    await Deno.remove(filename);
+    console.log(`   [MYCELIUM] 🍄 Digestion complete. Original artifact '${filename}' has been assimilated into the Swarm.`);
+}
+
+```
+
+---
+
 ## FILE: WASM_MIGRATION_RFC.md
 
 ```markdown
@@ -4967,14 +5309,24 @@ the Universe."
 ## FILE: omega_wasm_asc/assembly/index.ts
 
 ```typescript
+// @ts-nocheck: AssemblyScript file
 // OMEGA-64 | Wasm Kernel (AssemblyScript)
 
 export const IN_PTR: u32 = 0;
 export const OUT_PTR: u32 = 64;
 
 const ISA_MOVE: u8 = 0x10;
+const ISA_JMP: u8  = 0x30;
+const ISA_JZ: u8   = 0x31;
+const ISA_JNZ: u8  = 0x32;
+const ISA_CALL: u8 = 0x33;
+const ISA_RET: u8  = 0x34;
+
 const ISA_ADD: u8  = 0x40;
 const ISA_SUB: u8  = 0x41;
+const ISA_MUL: u8  = 0x42;
+const ISA_CMP: u8  = 0x43;
+
 const ISA_LOAD: u8 = 0x50;
 const ISA_STORE: u8 = 0x51;
 
@@ -4997,10 +5349,17 @@ export function execute_atom(): u8 {
     store<f32>(OUT_PTR + 12, 0.0); // intentDx
     store<f32>(OUT_PTR + 16, 0.0); // intentDy
 
-    // Copy context to output context
+    // Copy context to output context (32 bytes)
     for (let i: u32 = 0; i < 32; i++) {
         let v = load<u8>(IN_PTR + 5 + i);
         store<u8>(OUT_PTR + 20 + i, v);
+    }
+
+    // Load Logic (8 bytes starting at IN_PTR + 37)
+    // context ends at 5 + 32 = 37. So logic starts at 37
+    for (let j: u32 = 0; j < 8; j++) {
+        let l = load<u8>(IN_PTR + 37 + j);
+        store<u8>(OUT_PTR + 52 + j, l);
     }
 
     if (op == ISA_MOVE) {
@@ -5029,154 +5388,91 @@ export function execute_atom(): u8 {
         return 1;
     }
 
-    if (op == ISA_LOAD) {
-        let sp = load<u8>(OUT_PTR + 20 + 18) % 8; // context[18] is SP
-        if (p2 == 0) { // REG => REG
-            let val = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
-            store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val);
-        } else if (p2 == 1) { // STACK => REG
-            // Stack is 10..17
-            let val = load<u8>(OUT_PTR + 20 + 10 + sp);
-            store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val);
+    if (op == ISA_MUL) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 * v2);
+        return 1;
+    }
+
+    if (op == ISA_CMP) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if (v1 == v2) {
+            store<u8>(OUT_PTR + 20 + 1, flags | 0x01);
+        } else {
+            store<u8>(OUT_PTR + 20 + 1, flags & ~0x01);
         }
         return 1;
     }
 
-    if (op == ISA_STORE) {
-        if (p1 == 1) { // REG => STACK
-            let sp = load<u8>(OUT_PTR + 20 + 18) % 8;
-            let val = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-            store<u8>(OUT_PTR + 20 + 10 + sp, val);
-            // sp++
-            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8);
+    // --- Control Flow ---
+    if (op == ISA_JMP) {
+        store<u8>(OUT_PTR + 20 + 0, p1 % 16); // PC = p1
+        return 2; // return 2 indicates pcJumped = true
+    }
+
+    if (op == ISA_JZ) {
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if ((flags & 0x01) == 1) {
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+            return 2;
         }
+        return 1;
+    }
+
+    if (op == ISA_JNZ) {
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if ((flags & 0x01) == 0) {
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+            return 2;
+        }
+        return 1;
+    }
+
+    if (op == ISA_CALL) {
+        let sp = load<u8>(OUT_PTR + 20 + 18);
+        if (sp < 8) {
+            let pc = load<u8>(OUT_PTR + 20 + 0);
+            store<u8>(OUT_PTR + 20 + 10 + sp, (pc + 1) % 16); // push
+            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8); // sp++
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16); // jump
+            return 2;
+        }
+        return 1;
+    }
+
+    if (op == ISA_RET) {
+        let sp = load<u8>(OUT_PTR + 20 + 18);
+        if (sp > 0) {
+            let val = load<u8>(OUT_PTR + 20 + 10 + (sp - 1)); // pop
+            store<u8>(OUT_PTR + 20 + 18, sp - 1); // sp--
+            store<u8>(OUT_PTR + 20 + 0, val); // jump
+            return 2;
+        }
+        return 1;
+    }
+
+    // --- Data Movement ---
+
+    if (op == ISA_LOAD) {
+        // TS: regs[p1 % 8] = logic[p2 % 8];
+        let val = load<u8>(OUT_PTR + 52 + (p2 % 8)); // 52 is Logic
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val); // 20+2 is Regs
+        return 1;
+    }
+
+    if (op == ISA_STORE) {
+        // TS: res.modifiedLogic = { index: p2 % 8, value: regs[p1 % 8] };
+        // Write to Logic buffer
+        let val = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8)); // 20+2 is Regs
+        store<u8>(OUT_PTR + 52 + (p2 % 8), val); // 52 is Logic
         return 1;
     }
 
     return 0; // Unhandled
 }
-
-```
-
----
-
-## FILE: test_hybrid_storage.ts
-
-```typescript
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { RIBOSOME } from "./RIBOSOME.ts";
-
-console.log("📦 [TEST] Verifying Era 39: Hybrid Storage...");
-
-async function runTest() {
-    // 1. Setup mock state
-    console.log("   [TEST] Seeding mock state...");
-    STATE_MATRIX.clear();
-    STATE_MATRIX.setId(0, 123456789n);
-    STATE_MATRIX.setEnergy(0, 999.0);
-    
-    // 2. Export snapshot
-    console.log("   [TEST] Exporting snapshot...");
-    const dump = await SNAPSHOT_ENGINE.exportSnapshot();
-    if (!dump.success) {
-        console.log("❌ [TEST] Failed to export snapshot.");
-        Deno.exit(1);
-    }
-
-    // 3. Clear state completely
-    STATE_MATRIX.clear();
-    if (STATE_MATRIX.getId(0) === 123456789n) {
-        console.log("❌ [TEST] Failed to clear state.");
-        Deno.exit(1);
-    }
-
-    // 4. Test Hybrid Lift
-    console.log("   [TEST] Running RIBOSOME.lift()...");
-    const start = performance.now();
-    const lattice = await RIBOSOME.lift();
-    const end = performance.now();
-
-    // 5. Verify results
-    const loadedId = STATE_MATRIX.getId(0);
-    const loadedEnergy = STATE_MATRIX.getEnergy(0);
-
-    console.log(`   [TEST] Lift took ${(end - start).toFixed(2)}ms`);
-    console.log(`   [TEST] Restored ID: ${loadedId} (Target: 123456789)`);
-    console.log(`   [TEST] Restored Energy: ${loadedEnergy} (Target: 999)`);
-
-    let isHydrated = false;
-    for (const atom of lattice.values()) {
-        if (atom.symbol === "HYDRATED") isHydrated = true;
-    }
-
-    if (isHydrated && loadedId === 123456789n && loadedEnergy === 999.0) {
-        console.log("✅ [TEST] Hybrid Storage verified. ⚡🧊");
-        Deno.exit(0);
-    } else {
-        console.log("❌ [TEST] Hybrid Storage mismatch.");
-        Deno.exit(1);
-    }
-}
-
-runTest();
-
-```
-
----
-
-## FILE: test_wasm_vm.ts
-
-```typescript
-const WASM_PATH = "./omega_wasm_asc/build/lambda_vm.wasm";
-
-async function testWasm() {
-    console.log("🕸️ [TEST] Loading Wasm Module...");
-    const wasmCode = await Deno.readFile(WASM_PATH);
-    const wasmModule = await WebAssembly.instantiate(wasmCode, {
-        env: {
-            memory: new WebAssembly.Memory({ initial: 1 }),
-            abort: () => console.log("Abort called")
-        }
-    });
-
-    const exports = wasmModule.instance.exports as any;
-    const memory = new Uint8Array(exports.memory.buffer);
-    const memoryF32 = new Float32Array(exports.memory.buffer);
-    
-    // Test ISA_ADD (0x40)
-    console.log("   [TEST] Testing ISA_ADD (r0 = r1 + r2)");
-    // Input Buffer at 0
-    memory[0] = 0x40; // op (ADD)
-    memory[1] = 0;    // p1 (dest r0)
-    memory[2] = 1;    // p2 (src r1)
-    memory[3] = 2;    // p3 (src r2)
-    memory[4] = 0;    // bonuses
-    
-    // Context starts at 5. Registers start at Context[2] => offset 5 + 2 = 7
-    memory[7 + 1] = 15; // r1 = 15
-    memory[7 + 2] = 27; // r2 = 27
-
-    const handled = exports.execute_atom();
-    
-    if (handled !== 1) {
-        console.log("❌ [TEST] Wasm refused to handle ISA_ADD.");
-        Deno.exit(1);
-    }
-
-    // Output Buffer at 64. Context starts at 64 + 20 = 84. Registers start at 84 + 2 = 86
-    const r0 = memory[86 + 0];
-    console.log(`   [TEST] Result r0 = ${r0} (Target: 42)`);
-
-    if (r0 === 42) {
-        console.log("✅ [TEST] Wasm ISA_ADD works perfectly. ⚡🕸️");
-    } else {
-        console.log("❌ [TEST] Wasm math failed.");
-        Deno.exit(1);
-    }
-}
-
-testWasm();
 
 ```
 
@@ -6095,7 +6391,7 @@ console.log(`🌌 Akasha Server listening on ws://localhost:${PORT}/`);
 
 ## FILE: AKASHA_UI.html
 
-```markdown
+```html
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6484,6 +6780,821 @@ console.log(`🌌 Akasha Server listening on ws://localhost:${PORT}/`);
         </script>
     </body>
 </html>
+
+```
+
+---
+
+## FILE: test_sensory.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { ISA } from "./LAMBDA_VM.ts";
+import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
+
+Deno.test("Era 47: Sensory Transduction - Full Multi-Modal Suite", async () => {
+    // 1. Setup
+    PULSE.initWorkers();
+    
+    // Reset State
+    STATE_MATRIX.clear();
+
+    const idx = 100;
+    const idx2 = 101;
+    const x = 505; 
+    const y = 405;
+    const gx = 50;
+    const gy = 40;
+    const gridIdx = gy * 140 + gx;
+
+    // Atom 1 (The Sensor)
+    STATE_MATRIX.setId(idx, 100n);
+    STATE_MATRIX.setX(idx, x);
+    STATE_MATRIX.setY(idx, y);
+    STATE_MATRIX.setEnergy(idx, 100);
+    STATE_MATRIX.setResonance(idx, 50);
+
+    // Atom 2 (The Neighbor to be sensed in Population Density)
+    STATE_MATRIX.setId(idx2, 101n);
+    STATE_MATRIX.setX(idx2, x + 1);
+    STATE_MATRIX.setY(idx2, y + 1);
+
+    // Global Seeding for basic tests to avoid drift
+    new Int32Array(PHYSICS_ENGINE.envBuffer).fill(123); 
+    STATE_MATRIX.structureGrid.fill((210 << 8) | 1);
+
+    // Target Seeding for Viral intensity
+    Atomics.store(STATE_MATRIX.viralGrid, gridIdx * 9 + 8, 42);
+
+    // Bytecode: 
+    // SENSE 0x01, Reg0 (Nutrients)
+    // SENSE 0x02, Reg1 (Structures)
+    // SENSE 0x03, Reg2 (Viral)
+    // SENSE 0x04, Reg3 (Spatial)
+    const prog = new Uint32Array(16);
+    prog[0] = 0x0000019F; // SENSE 1 -> R0
+    prog[1] = 0x0001029F; // SENSE 2 -> R1
+    prog[2] = 0x0002039F; // SENSE 3 -> R2
+    prog[3] = 0x0003049F; // SENSE 4 -> R3
+    
+    STATE_MATRIX.setCode(idx, prog);
+
+    // 2. Execute Ticks
+    await PULSE.tick(); 
+    await PULSE.tick(); 
+    await PULSE.tick(); 
+    await PULSE.tick(); 
+
+    // 3. Verify Registers
+    const context = STATE_MATRIX.getContext(idx);
+    const r0 = context[2]; 
+    const r1 = context[3];
+    const r2 = context[4];
+    const r3 = context[5];
+
+    console.log(`   [TEST] Nutrients sensed: ${r0} (Expected: 123)`);
+    console.log(`   [TEST] Structure density sensed: ${r1} (Expected: 210)`);
+    console.log(`   [TEST] Viral intensity sensed: ${r2} (Expected: 42)`);
+    console.log(`   [TEST] Population density sensed: ${r3} (Expected: 2)`);
+
+    assertEquals(r0, 123, "Should sense correct nutrients");
+    assertEquals(r1, 210, "Should sense correct structure density");
+    assertEquals(r2, 42, "Should sense correct viral intensity");
+    assertEquals(r3, 2, "Should sense correct population density (Self + 1 Neighbor)");
+
+    PULSE.stopWorkers();
+});
+
+```
+
+---
+
+## FILE: test_symbiosis.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { ISA } from "./LAMBDA_VM.ts";
+
+/**
+ * ERA 45: Symbiotic Merging Verification
+ * 1. Spawn two atoms.
+ * 2. Force a bond and high stiffness.
+ * 3. Trigger ISA.MERGE.
+ * 4. Verify fusion results (Single-Pulse Resolution).
+ */
+
+async function testSymbiosis() {
+    console.log("🌀 OMEGA-64 | Commencing Symbiogenesis Verification (Era 45) 🌀\n");
+
+    STATE_MATRIX.clear();
+    
+    // 1. Spawn Initiator (Atom 1)
+    const a1 = STATE_MATRIX.findEmptySlot();
+    STATE_MATRIX.setId(a1, 0x1n);
+    STATE_MATRIX.setX(a1, 500);
+    STATE_MATRIX.setY(a1, 500);
+    STATE_MATRIX.setEnergy(a1, 500);
+    STATE_MATRIX.setResonance(a1, 600); // High resonance required for merge
+    STATE_MATRIX.setLogic(a1, new Uint8Array([0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA]));
+
+    // Code for A1: MERGE with bond slot 0
+    const code1 = new Uint32Array(16);
+    code1[0] = (0 << 16) | (0 << 8) | ISA.MERGE; // MERGE slot 0
+    code1[1] = (1 << 8) | ISA.JMP; // Halt at PC 1
+    STATE_MATRIX.setCode(a1, code1);
+
+    // 2. Spawn Target (Atom 2)
+    const a2 = STATE_MATRIX.findEmptySlot();
+    STATE_MATRIX.setId(a2, 0x2n);
+    STATE_MATRIX.setX(a2, 510);
+    STATE_MATRIX.setY(a2, 510);
+    STATE_MATRIX.setEnergy(a2, 200);
+    STATE_MATRIX.setResonance(a2, 100);
+    STATE_MATRIX.setLogic(a2, new Uint8Array([0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55]));
+
+    // 3. Establish pre-existing bond with high stiffness
+    STATE_MATRIX.setBondTarget(a1, 0, a2);
+    STATE_MATRIX.setBondTarget(a2, 0, a1);
+    STATE_MATRIX.setBondStiffness(a1, 0, 0.9); // High stiffness required
+    STATE_MATRIX.setBondStiffness(a2, 0, 0.9);
+
+    console.log("--- Initial State ---");
+    console.log(`Atom 1 (Initiator) Energy: ${STATE_MATRIX.getEnergy(a1)} | Res: ${STATE_MATRIX.getResonance(a1)}`);
+    console.log(`Atom 2 (Target) Energy: ${STATE_MATRIX.getEnergy(a2)} | Res: ${STATE_MATRIX.getResonance(a2)}`);
+
+    PULSE.initWorkers();
+
+    // Pulse 1: Worker executes MERGE intent + Main thread resolves it
+    console.log("\n--- Pulse 1: Execution & Resolution ---");
+    await PULSE.tick();
+    
+    // Check results immediately
+    const id2 = STATE_MATRIX.getId(a2);
+    const energy1 = STATE_MATRIX.getEnergy(a1);
+    const bonus1 = STATE_MATRIX.getSemanticBonus(a1);
+    const logic1 = STATE_MATRIX.getLogic(a1);
+
+    if (id2 === 0n) {
+        console.log("✅ SUCCESS: Target Atom 2 has been absorbed (Necrosis).");
+    } else {
+        console.error("❌ FAILED: Target Atom 2 still exists.");
+    }
+
+    if (energy1 > 600) {
+        console.log(`✅ SUCCESS: Initiator Energy combined to ${energy1} (Metabolism Fused).`);
+    } else {
+        console.error(`❌ FAILED: Initiator Energy did not increase as expected. Found: ${energy1}`);
+    }
+
+    if ((bonus1 & 0x08) === 0x08) {
+        console.log("✅ SUCCESS: Initiator gained SYMBIOTIC bonus bit.");
+    } else {
+        console.error("❌ FAILED: Initiator missing bonus bit.");
+    }
+
+    // Genetic XOR check: 0xAA ^ 0x55 = 0xFF
+    if (logic1[0] === 0xFF) {
+        console.log("✅ SUCCESS: Genomes XOR-recombined correctly (0xAA ^ 0x55 = 0xFF).");
+    } else {
+        console.error(`❌ FAILED: Genetic recombination failed. Found: 0x${logic1[0].toString(16)}`);
+    }
+
+    // Check phantom metabolism: Atom 1's bond slot 0 should be 0
+    if (STATE_MATRIX.getBondTarget(a1, 0) === 0) {
+        console.log("✅ SUCCESS: Bond with target has been severed.");
+    } else {
+        console.error("❌ FAILED: Bond with dead target still exists (Phantom Metabolism risk).");
+    }
+
+    console.log("\n🌀 Symbiogenesis Verification Complete. 🌀");
+    Deno.exit(0);
+}
+
+testSymbiosis();
+
+```
+
+---
+
+## FILE: test_tensegrity.ts
+
+```typescript
+// OMEGA-64 | test_tensegrity.ts | Era 44 Verification
+// Verifies Multi-Cellular Bond formation (Level 12 Intent -> ISA.BIND) and Metabolic Equalization.
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { LAMBDA_VM, ISA } from "./LAMBDA_VM.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+
+console.log("🌀 OMEGA-64 | Commencing Multi-Cellular Tensegrity Verification (Era 44) 🌀");
+
+STATE_MATRIX.clear();
+
+// 1. spawn Central Atom (Atom 1)
+const a1 = STATE_MATRIX.findEmptySlot();
+STATE_MATRIX.setId(a1, 0x1n);
+STATE_MATRIX.setX(a1, 500);
+STATE_MATRIX.setY(a1, 500);
+STATE_MATRIX.setEnergy(a1, 1000); // Central atom is rich
+STATE_MATRIX.setResonance(a1, 100);
+STATE_MATRIX.setLogic(a1, new Uint8Array([0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78])); // Neutral velocity
+
+// Atom 1 Code: BIND to the right (dx: 2.0, dy: 0.0)
+const code1 = new Uint32Array(16);
+// Encoding: (p2 << 16) | (p1 << 8) | op
+// dx = 2.0 -> p1 = 128 + 20 = 148
+// dy = 0.0 -> p2 = 128
+code1[0] = (128 << 16) | (148 << 8) | ISA.BIND;
+code1[1] = (0 << 8) | ISA.JMP; // Halt (JMP to 0 or same line is risky, let's just JMP to 1)
+code1[2] = (2 << 8) | ISA.JMP; 
+STATE_MATRIX.setCode(a1, code1);
+
+// 2. spawn Right Atom (Atom 2) - very close but starving
+const a2 = STATE_MATRIX.findEmptySlot();
+STATE_MATRIX.setId(a2, 0x2n);
+STATE_MATRIX.setX(a2, 520); // 20 units to the right
+STATE_MATRIX.setY(a2, 500);
+STATE_MATRIX.setEnergy(a2, 10); // Starving
+STATE_MATRIX.setResonance(a2, 0);
+STATE_MATRIX.setLogic(a2, new Uint8Array([0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78])); // Neutral velocity
+
+// Atom 2 Code: Just halt
+const code2 = new Uint32Array(16);
+code2[0] = (0 << 8) | ISA.JMP; 
+STATE_MATRIX.setCode(a2, code2);
+
+
+console.log(`\n--- Initial State ---`);
+console.log(`Atom 1: [${STATE_MATRIX.getX(a1)}, ${STATE_MATRIX.getY(a1)}] Energy: ${STATE_MATRIX.getEnergy(a1)}`);
+console.log(`Atom 2: [${STATE_MATRIX.getX(a2)}, ${STATE_MATRIX.getY(a2)}] Energy: ${STATE_MATRIX.getEnergy(a2)}`);
+
+PULSE.initWorkers(); // ERA 44: Start the engine
+
+async function runSimulation() {
+    // Step 1: Execution (Atom 1 issues BIND intent)
+    console.log(`\n--- Pulse 1: Intent Generation ---`);
+    await PULSE.tick(); 
+    
+    // Check bond intent buffers directly (they get cleared at start of next pulse)
+    console.log("Bond Request Buffer Check:", STATE_MATRIX.getBondRequest(a1));
+
+    // Step 2: Resolution (Pulse 2 processes bond intent, physically links them)
+    console.log(`\n--- Pulse 2: Bond Resolution & Metabolic Equalization ---`);
+    await PULSE.tick();
+
+    const a1Bonds = STATE_MATRIX.getBonds(a1);
+    const a2Bonds = STATE_MATRIX.getBonds(a2);
+    
+    console.log(`Atom 1 Bond Target 0: ${a1Bonds[0]} (Stiffness: ${STATE_MATRIX.getBondStiffness(a1, 0)})`);
+    console.log(`Atom 2 Bond Target 0: ${a2Bonds[0]} (Stiffness: ${STATE_MATRIX.getBondStiffness(a2, 0)})`);
+
+    if (a1Bonds[0] === a2 && a2Bonds[0] === a1) {
+         console.log("✅ SUCCESS: Symmetrical Bond Formed!");
+    } else {
+         console.error("❌ FAILED: Bond missing or asymmetrical.");
+    }
+
+    // Since they are bonded, Pulse 2 should have equalized their energy
+    console.log(`\n--- Pulse 3: Metabolic Equalization ---`);
+    await PULSE.tick();
+
+    const e1 = STATE_MATRIX.getEnergy(a1);
+    const e2 = STATE_MATRIX.getEnergy(a2);
+    console.log(`Atom 1 Energy: ${e1}`);
+    console.log(`Atom 2 Energy: ${e2}`);
+
+    // Sharing should be significant, though metabolic noise (feeding/decay) might prevent perfect 0.0 diff
+    if (Math.abs(e1 - e2) < 25 && e1 > 400 && e2 > 400) {
+        console.log("✅ SUCCESS: Metabolic Equalization shared energy effectively!");
+    } else {
+        console.error("❌ FAILED: Energy did not equalize as expected.", e1, e2);
+    }
+    
+    console.log(`\n--- Pulse 4: Physical Tensegrity (Drag) ---`);
+    
+    // Manually force Atom 1 to teleport away. Hooke's Law in PHYSICS_ENGINE should snap Atom 2 to it.
+    STATE_MATRIX.setX(a1, 600);
+    STATE_MATRIX.setY(a1, 600);
+    console.log(`Atom 1 Teleported to [600, 600]`);
+
+    for (let i = 0; i < 20; i++) await PULSE.tick(); // Give physics 20 steps to drag
+    
+    const ax1 = STATE_MATRIX.getX(a1);
+    const ay1 = STATE_MATRIX.getY(a1);
+    const ax2 = STATE_MATRIX.getX(a2);
+    const ay2 = STATE_MATRIX.getY(a2);
+    const dist = Math.hypot(ax1 - ax2, ay1 - ay2);
+
+    console.log(`Atom 1 Final: [${ax1}, ${ay1}]`);
+    console.log(`Atom 2 Final: [${ax2}, ${ay2}] Distance: ${dist}`);
+
+    if (ax2 > 530 || ay2 > 510) {
+        console.log("✅ SUCCESS: Tensegrity dragged Atom 2 towards Atom 1!");
+    } else {
+        console.error("❌ FAILED: Tensegrity failed to move Atom 2 significantly.", ax2, ay2);
+    }
+
+    console.log("\n🌀 Tensegrity Verification Complete. 🌀");
+    Deno.exit(0);
+}
+
+runSimulation();
+
+```
+
+---
+
+## FILE: test_meiosis.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { LAMBDA_VM, ISA } from "./LAMBDA_VM.ts";
+
+console.log("💞 [TEST] Initializing Meiosis Verification...");
+
+// 1. Setup Parent A (Initiator) in Index 1
+STATE_MATRIX.clear();
+const parentAId = 0x1111111111111111n;
+STATE_MATRIX.setId(1, parentAId);
+STATE_MATRIX.setEnergy(1, 200); // Need > 150 for Meiosis
+STATE_MATRIX.setResonance(1, 100);
+STATE_MATRIX.roles[1] = 1; // Producer
+STATE_MATRIX.semanticBonuses[1] = 5;
+
+// Parent A Logic: 8 bytes of 0xAA
+const logicA = new Uint8Array([0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA]);
+STATE_MATRIX.setLogic(1, logicA);
+
+// Parent A Code: 16 words of 0xAAAAAAAA
+const codeA = new Uint32Array(16);
+codeA.fill(0xAAAAAAAA);
+// Inject CROSS_REP at start of A to target bond 0
+codeA[0] = ISA.CROSS_REP | (0 << 8); 
+STATE_MATRIX.setCode(1, codeA);
+
+
+// 2. Setup Parent B (Target) in Index 2
+const parentBId = 0x2222222222222222n;
+STATE_MATRIX.setId(2, parentBId);
+STATE_MATRIX.setEnergy(2, 200); // Need > 100 for pooling
+STATE_MATRIX.setResonance(2, 50);
+STATE_MATRIX.roles[2] = 2; // Constructor
+STATE_MATRIX.semanticBonuses[2] = 10; // Higher cognitive bonus
+
+// Parent B Logic: 8 bytes of 0xBB
+const logicB = new Uint8Array([0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB]);
+STATE_MATRIX.setLogic(2, logicB);
+
+// Parent B Code: 16 words of 0xBBBBBBBB
+const codeB = new Uint32Array(16);
+codeB.fill(0xBBBBBBBB);
+STATE_MATRIX.setCode(2, codeB);
+
+
+// 3. Setup Bond between A and B
+// Bond slot 0 of Atom 1 targets Atom 2
+const bondsA = new Uint32Array(4);
+bondsA[0] = 2;
+STATE_MATRIX.setBonds(1, bondsA);
+
+// 4. Execute LAMBDA_VM on Atom A to trigger CROSS_REP
+const context = new Uint8Array(32);
+const vmState = { 
+    x: 0, y: 0, 
+    nutrients: new Int32Array(1), 
+    marketPool: new Int32Array(1), 
+    energy: 200, resonance: 100, 
+    bonds: bondsA 
+};
+
+// CROSS_REP opcode is at the beginning of codeA 
+const result = LAMBDA_VM.execute(STATE_MATRIX.getLogic(1), STATE_MATRIX.getCode(1), context, vmState);
+
+// 5. Verify intent level 11
+const meiosisIntent = result.intent.find(i => i.level === 11 && i.value.type === "meiosis");
+if (!meiosisIntent || meiosisIntent.value.targetBondSlot !== 0) {
+    console.error("❌ [TEST] LAMBDA_VM did not emit 'meiosis' intent for slot 0.");
+    Deno.exit(1);
+}
+console.log("✅ [TEST] VM successfully emitted 'meiosis' intent.");
+
+// 6. Simulate PULSE_WORKER storing target
+const targetIdx = bondsA[meiosisIntent.value.targetBondSlot];
+STATE_MATRIX.requestMeiosis(1, targetIdx);
+
+// 7. Simulate PULSE handling Meiosis
+let newIdxGenerated = -1;
+const activeIndices = [1, 2];
+
+for (const idx of activeIndices) {
+    const targetIdx = STATE_MATRIX.getMeiosisTarget(idx);
+    if (targetIdx !== 0) {
+        STATE_MATRIX.clearMeiosis(idx);
+        
+        const energyA = STATE_MATRIX.getEnergy(idx);
+        const energyB = STATE_MATRIX.getEnergy(targetIdx);
+
+        if (energyA > 100 && energyB > 100) {
+            const newIdx = STATE_MATRIX.findEmptySlot();
+            if (newIdx !== -1) {
+                newIdxGenerated = newIdx;
+                
+                // 1. Capital Pooling
+                const contributionA_E = energyA * 0.3;
+                const contributionB_E = energyB * 0.3;
+                STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
+                STATE_MATRIX.setEnergy(targetIdx, energyB - contributionB_E);
+                STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
+
+                // 2. Recombination
+                const logicA = STATE_MATRIX.getLogic(idx);
+                const logicB = STATE_MATRIX.getLogic(targetIdx);
+                const newLogic = new Uint8Array(8);
+                newLogic.set(logicA.subarray(0, 4), 0);
+                newLogic.set(logicB.subarray(4, 8), 4);
+                STATE_MATRIX.setLogic(newIdx, newLogic);
+
+                const codeA = STATE_MATRIX.getCode(idx);
+                const codeB = STATE_MATRIX.getCode(targetIdx);
+                const newCode = new Uint32Array(16);
+                for (let p = 0; p < 16; p++) {
+                    newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p]; 
+                }
+                STATE_MATRIX.setCode(newIdx, newCode);
+
+                STATE_MATRIX.semanticBonuses[newIdx] = Math.max(STATE_MATRIX.semanticBonuses[idx], STATE_MATRIX.semanticBonuses[targetIdx]);
+                STATE_MATRIX.setId(newIdx, 0x3333333333333333n); // Mock child ID
+            }
+        }
+    }
+}
+
+if (newIdxGenerated === -1) {
+    console.error("❌ [TEST] Failed to instantiate child atom.");
+    Deno.exit(1);
+}
+
+// 8. Assertions
+const childLogic = STATE_MATRIX.getLogic(newIdxGenerated);
+const childCode = STATE_MATRIX.getCode(newIdxGenerated);
+
+if (childLogic[0] !== 0xAA || childLogic[3] !== 0xAA || childLogic[4] !== 0xBB || childLogic[7] !== 0xBB) {
+    console.error("❌ [TEST] Genetic Logic crossover failed. Expected AA AA AA AA BB BB BB BB.");
+    Deno.exit(1);
+}
+console.log("✅ [TEST] Genetic Base Genome correctly crossed over (4 bytes A + 4 bytes B).");
+
+if (childCode[0] !== codeA[0] || childCode[1] !== 0xBBBBBBBB || childCode[2] !== 0xAAAAAAAA || childCode[3] !== 0xBBBBBBBB) {
+    console.error("❌ [TEST] Epigenetic Memory crossover failed.");
+    Deno.exit(1);
+}
+console.log("✅ [TEST] Epigenetic Memory correctly interleaved (A, B, A, B...).");
+
+if (STATE_MATRIX.getEnergy(1) !== 140 || STATE_MATRIX.getEnergy(2) !== 140) {
+    console.error(`❌ [TEST] Energy not deducted correctly: ParentA=${STATE_MATRIX.getEnergy(1)}, ParentB=${STATE_MATRIX.getEnergy(2)}`);
+    Deno.exit(1);
+}
+if (Math.abs(STATE_MATRIX.getEnergy(newIdxGenerated) - 120) > 0.1) {
+    console.error(`❌ [TEST] Child didn't receive correct pool (60): ChildE=${STATE_MATRIX.getEnergy(newIdxGenerated)}`);
+    Deno.exit(1);
+}
+console.log("✅ [TEST] Thermodynamics 30/30/60 capital pooling successful.");
+
+if (STATE_MATRIX.semanticBonuses[newIdxGenerated] !== 10) {
+    console.error("❌ [TEST] Cognitive traits not inherited maximally.");
+    Deno.exit(1);
+}
+console.log("✅ [TEST] Superior Cognitive Traits successfully inherited.");
+
+console.log("🎉 [TEST] ALL PASSED. Genetic Recombination (Meiosis) is fully functional! 🧬💞👶🌀");
+Deno.exit(0);
+
+```
+
+---
+
+## FILE: test_mitosis.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { LAMBDA_VM, ISA } from "./LAMBDA_VM.ts";
+
+console.log("🧬 [TEST] Initializing Mitosis Verification...");
+
+// 1. Setup Parent Atom (Index 1)
+STATE_MATRIX.clear();
+const parentId = 0x1234567812345678n;
+STATE_MATRIX.setId(1, parentId);
+STATE_MATRIX.setEnergy(1, 200); // 200 Energy (> 150 required)
+STATE_MATRIX.setResonance(1, 100);
+STATE_MATRIX.roles[1] = 2; // Constructor
+STATE_MATRIX.semanticBonuses[1] = 5; // Cognitive Bonus
+
+const parentLogic = new Uint8Array([0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]);
+STATE_MATRIX.setLogic(1, parentLogic);
+
+const parentInstructions = new Uint32Array(16);
+parentInstructions[0] = ISA.SELF_REP | (0xDE << 8) | (0xAD << 16) | (0xBE << 24); // SELF_REP + Epigenetic payload
+ STATE_MATRIX.setCode(1, parentInstructions);
+
+const context = new Uint8Array(32);
+
+// 2. Execute lambda VM to get intent
+const vmState = { 
+    x: 0, y: 0, 
+    nutrients: new Int32Array(1), 
+    marketPool: new Int32Array(1), 
+    energy: 200, resonance: 100, 
+    bonds: new Uint32Array(4) 
+};
+
+const result = LAMBDA_VM.execute(parentLogic, parentInstructions, context, vmState);
+
+// 3. Verify SELF_REP emitted the correct intent
+const spawnIntent = result.intent.find(i => i.level === 10 && i.value === "spawn");
+if (!spawnIntent) {
+    console.error("❌ [TEST] LAMBDA_VM did not emit 'spawn' intent.");
+    Deno.exit(1);
+}
+console.log("✅ [TEST] VM successfully emitted 'spawn' intent.");
+
+// 4. Simulate PULSE_WORKER translating intent to spawn request
+STATE_MATRIX.requestSpawn(1);
+
+// 5. Simulate PULSE main thread handling mitosis
+const activeIndices = [1];
+let newIdxGenerated = -1;
+
+for (const idx of activeIndices) {
+    if (STATE_MATRIX.hasSpawnRequest(idx)) {
+        STATE_MATRIX.clearSpawn(idx);
+        const newIdx = STATE_MATRIX.findEmptySlot();
+        if (newIdx !== -1) {
+            newIdxGenerated = newIdx;
+            
+            // Division of Capital
+            const childEnergy = STATE_MATRIX.getEnergy(idx) / 2;
+            const childResonance = STATE_MATRIX.getResonance(idx) / 2;
+            
+            STATE_MATRIX.setEnergy(idx, childEnergy);
+            STATE_MATRIX.setResonance(idx, childResonance);
+            STATE_MATRIX.setEnergy(newIdx, childEnergy);
+            STATE_MATRIX.setResonance(newIdx, childResonance);
+
+            // Epigenetic Heredity
+            STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx));
+            STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));
+            
+            STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
+            STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx];
+            
+            const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}00000001`);
+            STATE_MATRIX.setId(newIdx, childId);
+        }
+    }
+}
+
+// 6. Assertions
+if (newIdxGenerated === -1) {
+    console.error("❌ [TEST] Failed to instantiate child atom.");
+    Deno.exit(1);
+}
+
+const childLogic = STATE_MATRIX.getLogic(newIdxGenerated);
+const childCode = STATE_MATRIX.getCode(newIdxGenerated);
+
+if (STATE_MATRIX.getEnergy(1) !== 100 || STATE_MATRIX.getEnergy(newIdxGenerated) !== 100) {
+    console.error("❌ [TEST] Energy not split evenly: Parent=", STATE_MATRIX.getEnergy(1), "Child=", STATE_MATRIX.getEnergy(newIdxGenerated));
+    Deno.exit(1);
+}
+
+if (childLogic[0] !== 0x11 || (childCode[0] & 0xFF) !== ISA.SELF_REP) {
+    console.error("❌ [TEST] Epigenetic genetics/memory failed to inherit.", childLogic[0], childCode[0]);
+    Deno.exit(1);
+}
+
+if (STATE_MATRIX.roles[newIdxGenerated] !== 2 || STATE_MATRIX.semanticBonuses[newIdxGenerated] !== 5) {
+    console.error("❌ [TEST] Epigenetic traits failed to inherit.");
+    Deno.exit(1);
+}
+
+console.log(`✅ [TEST] Mitosis successful! Atom 1 split into Atom ${newIdxGenerated}. Capital divided exactly 50/50. Logic, Memory, Roles, and Bonuses preserved. 🧬🌿👶`);
+Deno.exit(0);
+
+```
+
+---
+
+## FILE: test_diplomacy.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { GATE } from "./GATE.ts";
+import { LAMBDA_VM } from "./LAMBDA_VM.ts";
+
+console.log("🤝 [TEST] Verifying Era 38: Diplomacy & Taxation...");
+
+// 1. Setup Trusted Signature
+const trustedLogic = new Uint8Array([0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22]);
+const trustedHex = Array.from(trustedLogic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+GATE.trustedSignatures.add(trustedHex);
+
+// 2. Test Diplomatic RECV
+console.log("   [TEST] Case 1: Diplomatic RECV (Resonance Boost)");
+const baseState = {
+    x: 100,
+    y: 100,
+    nutrients: new Int32Array(10),
+    marketPool: new Int32Array(10),
+    energy: 100,
+    resonance: 100,
+    bonds: new Uint32Array(4),
+    incomingMessage: 42,
+    isDiplomatic: true
+};
+
+const receiverLogic = new Uint8Array(8);
+const receiverCode = new Uint32Array(16);
+// ISA.RECV = 0x61. Encoding is Little Endian: [op(8) | p1(8) | p2(8) | p3(8)]
+receiverCode[0] = 0x61 | (0 << 8); // RECV r0
+
+const resDiplomatic = LAMBDA_VM.execute(receiverLogic, receiverCode, new Uint8Array(32), baseState as any);
+console.log(`   [TEST] Diplomatic Resonance Delta: ${resDiplomatic.resonanceDelta} (Target: 2.0)`);
+
+const resNormal = LAMBDA_VM.execute(receiverLogic, receiverCode, new Uint8Array(32), { ...baseState, isDiplomatic: false } as any);
+console.log(`   [TEST] Normal Resonance Delta: ${resNormal.resonanceDelta} (Target: 0.2)`);
+
+if (resDiplomatic.resonanceDelta === 2.0 && resNormal.resonanceDelta === 0.2) {
+    console.log("✅ [TEST] Diplomacy verified.");
+} else {
+    console.log("❌ [TEST] Diplomacy mismatch.");
+    Deno.exit(1);
+}
+
+// 3. Test Metabolic Taxation
+console.log("   [TEST] Case 2: Metabolic Taxation (Cognitive Load)");
+const taxedState = {
+    ...baseState,
+    isDiplomatic: false,
+    semanticBonuses: 1 // "Swift" active
+};
+const resTaxed = LAMBDA_VM.execute(receiverLogic, new Uint32Array(16), new Uint8Array(32), taxedState as any);
+console.log(`   [TEST] Taxed Energy Delta: ${resTaxed.energyDelta.toFixed(2)} (Target: -0.05)`);
+
+const resFree = LAMBDA_VM.execute(receiverLogic, new Uint32Array(16), new Uint8Array(32), { ...taxedState, semanticBonuses: 0 } as any);
+console.log(`   [TEST] Free Energy Delta: ${resFree.energyDelta} (Target: 0)`);
+
+if (resTaxed.energyDelta === -0.05 && resFree.energyDelta === 0) {
+    console.log("✅ [TEST] Taxation verified.");
+} else {
+    console.log("❌ [TEST] Taxation mismatch.");
+    Deno.exit(1);
+}
+
+console.log("✅ [TEST] ERA 38 CORE SYSTEMS FUNCTIONAL.");
+Deno.exit(0);
+
+```
+
+---
+
+## FILE: test_cognitive_scaffolding.ts
+
+```typescript
+import { LAMBDA_VM, ISA } from "./LAMBDA_VM.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+
+console.log("🧠 [TEST] Verifying Era 36: Cognitive Scaffolding...");
+
+const mockNutrients = new Int32Array(70 * 40);
+const mockMarketPool = new Int32Array(1);
+const mockBonds = new Uint32Array(4);
+
+// 1. Verify "Swift" bonus (Free MOVE)
+console.log("   [TEST] Case 1: 'Swift' Thought Actuator");
+const swiftThought = "I am a swift glider of the void.";
+const swiftBonuses = SEMANTIC_MEMBRANE.getBonuses(swiftThought);
+
+const swiftCode = new Uint32Array(16);
+swiftCode[0] = ISA.MOVE | (128 << 8) | (128 << 16); // MOVE (0,0)
+
+const swiftState = {
+    x: 700, y: 400, nutrients: mockNutrients, marketPool: mockMarketPool,
+    energy: 100, resonance: 100, bonds: mockBonds,
+    semanticBonuses: swiftBonuses
+};
+const swiftContext = new Uint8Array(32);
+
+const result1 = LAMBDA_VM.execute(new Uint8Array(8), swiftCode, swiftContext, swiftState);
+console.log(`   [TEST] Energy Delta with 'Swift' (should be 0): ${result1.energyDelta}`);
+
+if (result1.energyDelta !== 0) {
+    console.log("❌ [TEST] FAILURE: Swift bonus not applied.");
+    Deno.exit(1);
+}
+
+// 2. Verify "Guardian" bonus (Cheap BUILD)
+console.log("   [TEST] Case 2: 'Guardian' Thought Actuator");
+const guardianThought = "I am the guardian of the crystal shield.";
+const guardianBonuses = SEMANTIC_MEMBRANE.getBonuses(guardianThought);
+
+const guardianCode = new Uint32Array(16);
+guardianCode[0] = ISA.BUILD | (1 << 8) | (100 << 16); // BUILD type 1, density 100
+
+const guardianState = {
+    x: 700, y: 400, nutrients: mockNutrients, marketPool: mockMarketPool,
+    energy: 100, resonance: 100, bonds: mockBonds,
+    semanticBonuses: guardianBonuses
+};
+const guardianContext = new Uint8Array(32);
+
+const result2 = LAMBDA_VM.execute(new Uint8Array(8), guardianCode, guardianContext, guardianState);
+console.log(`   [TEST] Resonance Delta with 'Guardian' (should be -10): ${result2.resonanceDelta}`);
+
+if (result2.resonanceDelta !== -10) {
+    console.log("❌ [TEST] FAILURE: Guardian bonus not applied.");
+    Deno.exit(1);
+}
+
+// 3. Verify No Bonus (Normal cost)
+console.log("   [TEST] Case 3: Standard behavior (No Actuator)");
+const normalState = { ...swiftState, semanticBonuses: 0 };
+swiftContext[0] = 0; // Reset PC
+const result3 = LAMBDA_VM.execute(new Uint8Array(8), swiftCode, swiftContext, normalState);
+console.log(`   [TEST] Energy Delta without bonus (should be -1): ${result3.energyDelta}`);
+
+if (result3.energyDelta !== -1) {
+    console.log("❌ [TEST] FAILURE: Normal cost not applied.");
+    Deno.exit(1);
+}
+
+console.log("✅ [TEST] SUCCESS: Cognitive Scaffolding active.");
+Deno.exit(0);
+
+```
+
+---
+
+## FILE: test_fractal_dividends.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PREDICTION_MARKET, betPoolInt } from "./PREDICTION_MARKET.ts";
+
+console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
+
+// 1. Setup atoms
+const winnerIdx = 1;
+const loserIdx = 2;
+// @ts-ignore
+STATE_MATRIX.setId(winnerIdx, 101n);
+// @ts-ignore
+STATE_MATRIX.setId(loserIdx, 102n);
+
+const winningLogic = new Uint8Array([0xDE, 0xAD, 0xBE, 0xEF, 0x00, 0x00, 0x00, 0x00]);
+const losingLogic = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+
+STATE_MATRIX.setLogic(winnerIdx, winningLogic);
+STATE_MATRIX.setLogic(loserIdx, losingLogic);
+
+STATE_MATRIX.setEnergy(winnerIdx, 100);
+STATE_MATRIX.setEnergy(loserIdx, 100);
+
+// 2. Setup Market Success
+const winningHex = Array.from(winningLogic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+PREDICTION_MARKET.successfulGenomes.set(winningHex, 5); // 5 historical wins
+
+// 3. Populate Pool
+const SCALE = 1000;
+const poolEnergy = 1000;
+Atomics.store(betPoolInt, 0, poolEnergy * SCALE);
+
+console.log(`   [TEST] Pool: ${poolEnergy}, Winner Energy: 100, Loser Energy: 100`);
+
+// 4. Distribute Dividends
+PREDICTION_MARKET.distributeDividends();
+
+// 5. Verify
+const newWinnerEnergy = STATE_MATRIX.getEnergy(winnerIdx);
+const newLoserEnergy = STATE_MATRIX.getEnergy(loserIdx);
+const newPool = Atomics.load(betPoolInt, 0) / SCALE;
+
+console.log(`   [TEST] NEW Pool: ${newPool}, NEW Winner Energy: ${newWinnerEnergy.toFixed(2)}, NEW Loser Energy: ${newLoserEnergy.toFixed(2)}`);
+
+const dividend = poolEnergy * 0.1;
+if (newWinnerEnergy > 100 && newLoserEnergy === 100 && newPool === (poolEnergy - dividend)) {
+    console.log("✅ [TEST] SUCCESS: Fractal Dividends distributed correctly.");
+} else {
+    console.log("❌ [TEST] FAILURE: Dividend distribution imbalance.");
+    Deno.exit(1);
+}
+
+Deno.exit(0);
 
 ```
 

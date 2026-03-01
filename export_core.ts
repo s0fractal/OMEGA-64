@@ -1,4 +1,4 @@
-// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 22)
+// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 47)
 // Concatenates all core logic files into OMEGA_CORE_LOGIC.md
 
 const CORE_FILES = [
@@ -24,16 +24,14 @@ const CORE_FILES = [
     "ui/index.html",
     "PREDICTION_MARKET.ts",
     "P2P_FEDERATION.ts",
+    "P2P_SYNAPSE.ts",
     "AVATAR_ENGINE.ts",
     "REFLECTION_ENGINE.ts",
     "SYSTEM_START.ts",
+    "AUDIT_ENGINE.ts",
+    "ENZYME_DIGEST.ts",
     "WASM_MIGRATION_RFC.md",
     "omega_wasm_asc/assembly/index.ts",
-    "test_hybrid_storage.ts",
-    "test_wasm_vm.ts",
-    "test_meiosis.ts",
-    "run_pulse.ts",
-    "omega_wasm_asc/build/lambda_vm.wasm",
     "ARCHITECTURE.md",
     "mod.ts",
     "SHIMS.ts",
@@ -42,11 +40,19 @@ const CORE_FILES = [
     "OBSERVER_LAB.ts",
     "AKASHA_SERVER.ts",
     "AKASHA_UI.html",
+    "test_sensory.ts",
+    "test_symbiosis.ts",
+    "test_tensegrity.ts",
+    "test_meiosis.ts",
+    "test_mitosis.ts",
+    "test_diplomacy.ts",
+    "test_cognitive_scaffolding.ts",
+    "test_fractal_dividends.ts",
     "archive/legacy_docs/GEMINI.md"
 ];
 
 async function exportCore() {
-    let output = "# OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)\n\n";
+    let output = "# OMEGA-64 | CORE LOGIC (ERA 47: SENSORY TRANSDUCTION)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
     // @ts-ignore: Deno.readTextFile is valid in Deno
@@ -54,8 +60,9 @@ async function exportCore() {
         try {
             // @ts-ignore: Dynamic filesystem access
             const content = await Deno.readTextFile(file);
-            const ext = file.split('.').pop() === 'ts' ? 'typescript' : 'markdown';
-            output += `## FILE: ${file}\n\n\`\`\`${ext}\n${content}\n\`\`\`\n\n---\n\n`;
+            const ext = file.split('.').pop();
+            const lang = (ext === 'ts' || ext === 'tsx') ? 'typescript' : (ext === 'html' ? 'html' : 'markdown');
+            output += `## FILE: ${file}\n\n\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
         } catch (e: any) {
             console.warn(`[SKIP] Could not read ${file}:`, e.message);
         }
@@ -63,7 +70,7 @@ async function exportCore() {
 
     // @ts-ignore: Deno.writeTextFile is valid in Deno
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
-    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 22 components.");
+    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 47 components.");
 }
 
 // @ts-ignore: import.meta.main is Deno specific
