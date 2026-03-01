@@ -12,31 +12,23 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 // ERA 40: Wasm Fast Path Initialization
-let wasmExports: any = null;
-try {
-    const wasmCode = await Deno.readFile(new URL("./omega_wasm_asc/build/lambda_vm.wasm", import.meta.url));
-    const wasmModule = await WebAssembly.instantiate(wasmCode, {
-        env: {
-            memory: new WebAssembly.Memory({ initial: 1 }),
-            abort: () => console.error("Wasm aborted.")
-        }
-    });
-    wasmExports = wasmModule.instance.exports;
-    console.log("   [WORKER] Wasm LambdaVM kernel ready. ⚡🕸️");
-} catch (e) {
-    console.error("   [WORKER] Wasm LambdaVM failed to load. Falling back to TS.", e);
-}
+
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, spatialGridBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
     const attention = new Float32Array(attentionBuffer);
     const market = new Float32Array(marketBuffer); // ERA 18: Prediction Market
     const evolutionRequests = new Uint8Array(evolutionRequestsBuffer); // ERA 18: Evolution Requests
-    const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
+    const spawnRequests = new Int32Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
     const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42: Meiosis Requests
+    const bondRequests = new Int32Array(bondRequestsBuffer); // ERA 44: Bond Requests
+    const spatialGrid = new Int32Array(spatialGridBuffer); // ERA 44: Spatial Grid
+    
+    const CELL_CAPACITY = 31; // Must match SPATIAL_HASH.CELL_CAPACITY
+
     const viralGrid = new Uint8Array(viralGridBuffer); // ERA 24: Viral Grid
     const quarantineFlags = new Uint8Array(immuneBuffer); // ERA 26: Quarantine Flags
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
@@ -76,9 +68,10 @@ self.onmessage = (e) => {
     const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 
-    for (let i = startIdx; i < endIdx; i++) {
-        const currentId = Atomics.load(ids, i);
-        if (currentId === 0n) continue;
+    try {
+        for (let i = startIdx; i < endIdx; i++) {
+            const currentId = Atomics.load(ids, i);
+            if (currentId === 0n) continue;
 
         let x = Atomics.load(xs, i);
         let y = Atomics.load(ys, i);
@@ -114,9 +107,9 @@ self.onmessage = (e) => {
         // --- ERA 31: Structure Collisions ---
         const nextX = x + dx * 10;
         const nextY = y + dy * 10;
-        const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 20);
-        const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 20);
-        const structureCell = Atomics.load(structureGrid, ngy * 70 + ngx);
+        const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 10);
+        const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 10);
+        const structureCell = Atomics.load(structureGrid, ngy * 140 + ngx);
         const density = (structureCell >> 8) & 0xFF;
         if (density > 150) {
             // Collision! Stop movement.
@@ -127,17 +120,17 @@ self.onmessage = (e) => {
         // Atom reads its first DNA byte to determine its relationship with "Attention"
         const attentionAffinity = (logicBytes[0] - 128) / 128; // -1.0 to 1.0 (Love to Hate)
 
-        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
         
         // Gradient Descent/Ascent on Attention Pheromone Field
         if (attentionAffinity !== 0) {
             let tropX = 0; let tropY = 0;
             const checkpoints = [[0, -1], [0, 1], [-1, 0], [1, 0]];
             for (const [oX, oY] of checkpoints) {
-                const nx = Math.max(0, Math.min(69, gx + oX));
-                const ny = Math.max(0, Math.min(39, gy + oY));
-                const intensity = attention[ny * 70 + nx] || 0;
+                const nx = Math.max(0, Math.min(139, gx + oX));
+                const ny = Math.max(0, Math.min(79, gy + oY));
+                const intensity = attention[ny * 140 + nx] || 0;
                 tropX += oX * intensity;
                 tropY += oY * intensity;
             }
@@ -149,7 +142,7 @@ self.onmessage = (e) => {
         const bondView = bonds.subarray(i * 4, i * 4 + 4);
 
         // --- ERA 28: Bond Constraints ---
-        const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView);
+        const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView, xs, ys, bondStiffs);
         dx += fx;
         dy += fy;
 
@@ -177,7 +170,7 @@ self.onmessage = (e) => {
         const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
         
         // ERA 40: Execute with Wasm Fast Path
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, wasmExports);
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -347,6 +340,44 @@ self.onmessage = (e) => {
                     Atomics.store(meiosisRequests, i, targetIdx);
                 }
             }
+            if (intent.level === 12) {
+                // BIND Intent (ERA 44)
+                const dxVal = intent.value.dx;
+                const dyVal = intent.value.dy;
+                const targetX = Math.round(x + dxVal * 10);
+                const targetY = Math.round(y + dyVal * 10);
+                
+                // SPATIAL_HASH.hash inlined for Worker:
+                const hx = Math.max(0, Math.min(139, Math.floor(targetX / 10)));
+                const hy = Math.max(0, Math.min(79, Math.floor(targetY / 10)));
+                const queryHash = hy * 140 + hx;
+
+                const cellStart = queryHash * (CELL_CAPACITY + 1);
+                const cellCount = Atomics.load(spatialGrid, cellStart);
+
+                let closestPeerIdx = -1;
+                let minPeerDistSq = 400; // Search radius ~20 units
+
+                for (let c = 1; c <= cellCount; c++) {
+                    const candidateIdx = Atomics.load(spatialGrid, cellStart + c);
+                    if (candidateIdx > 0 && candidateIdx < MAX_ATOMS && candidateIdx !== i) {
+                        const cx = Atomics.load(xs, candidateIdx);
+                        const cy = Atomics.load(ys, candidateIdx);
+                        const distSq = (cx - targetX) ** 2 + (cy - targetY) ** 2;
+
+                        if (distSq < minPeerDistSq) {
+                            closestPeerIdx = candidateIdx;
+                            minPeerDistSq = distSq;
+                        }
+                    }
+                }
+
+                if (closestPeerIdx !== -1) {
+                    Atomics.store(bondRequests, i * 3, i + 1); // ERA 44: idx + 1 sentinel
+                    Atomics.store(bondRequests, i * 3 + 1, closestPeerIdx);
+                    Atomics.store(bondRequests, i * 3 + 2, 0); 
+                }
+            }
         }
 
         // --- ENERGETIC COUPLING WITH ENVIRONMENT ---
@@ -439,6 +470,9 @@ self.onmessage = (e) => {
 
             Atomics.store(ids, i, 0n);
         }
+    }
+    } catch (err) {
+        console.error("   [WORKER CRASH] Error in PULSE_WORKER:", err);
     }
 
     self.postMessage({ done: true, pulseId });

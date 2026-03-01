@@ -25,7 +25,7 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C,
+    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C, BIND: 0x9D,
     // Epigenetic Evolution
     EVOLVE: 0x9B,
     // Atomic Messaging (ERA 27)
@@ -73,6 +73,12 @@ export const LAMBDA_VM = {
         let pc = context[0] % 16;
         let flags = context[1];
         const regs = context.subarray(2, 10);
+        // Check Wasm Fast-Path Support (Era 39 & Era 43)
+        // Supported: MOVE, ADD, SUB, MUL, CMP, LOAD, STORE, JMP, JZ, JNZ, CALL, RET
+        const fastPathOps = new Set([
+            0x10, 0x40, 0x41, 0x42, 0x43, 0x50, 0x51, 
+            0x30, 0x31, 0x32, 0x33, 0x34
+        ]);
         const stack = context.subarray(10, 18);
         let sp = context[18] % 8;
 
@@ -89,17 +95,19 @@ export const LAMBDA_VM = {
             const u8 = new Uint8Array(wasm.memory.buffer);
             const f32 = new Float32Array(wasm.memory.buffer);
 
-            // 1. Write Input (0..36)
+            // 1. Write Input (0..44)
             u8[0] = op;
             u8[1] = p1;
             u8[2] = p2;
             u8[3] = p3;
             u8[4] = state.semanticBonuses || 0;
-            u8.set(context, 5);
+            u8.set(context, 5); // 32 bytes Context (0..31)
+            u8.set(logic, 37); // 8 bytes Logic (Base Genome)
 
             // 2. Execute Wasm Kernel
-            if (wasm.execute_atom() === 1) {
-                // 3. Read Output (64..115)
+            const wasmResult = wasm.execute_atom();
+            if (wasmResult > 0) {
+                // 3. Read Output (64..123)
                 res.energyDelta += f32[(64 >> 2) + 0];
                 res.resonanceDelta += f32[(64 >> 2) + 1];
                 
@@ -111,6 +119,14 @@ export const LAMBDA_VM = {
                 
                 // Write back mutated registers/stack context
                 context.set(u8.subarray(64 + 20, 64 + 20 + 32));
+                
+                // Write back mutated logic (Era 43 Viral Stores)
+                logic.set(u8.subarray(64 + 52, 64 + 52 + 8));
+
+                if (wasmResult === 2) {
+                    pcJumped = true; // Wasm Kernel explicitly asked to jump PC
+                    pc = context[0]; // Update local PC tracking var
+                }
 
                 if (!pcJumped) context[0] = (pc + 1) % 16;
                 return res; // Fast Return. Bypasses TS AST completely!
@@ -266,6 +282,16 @@ export const LAMBDA_VM = {
                     res.intent.push({ level: 11, value: { type: "meiosis", targetBondSlot: p1 % 4 } });
                 }
                 break;
+
+            case ISA.BIND: {
+                // ERA 44: Multi-Cellular Tensegrity
+                // p1: dx (0-255, center 128), p2: dy (0-255, center 128)
+                const dxVal = (p1 - 128) / 10.0;
+                const dyVal = (p2 - 128) / 10.0;
+                res.intent.push({ level: 12, value: { dx: dxVal, dy: dyVal } });
+                res.energyDelta -= 10; // Binding costs energy
+                break;
+            }
 
             case ISA.SEND: {
                 // p1 is bond index (0-3), p2 is value to send

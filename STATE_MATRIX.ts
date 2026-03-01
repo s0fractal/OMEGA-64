@@ -21,16 +21,18 @@ const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to th
 const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
-const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 41
-const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 42: Int32Array (AtomIdx -> TargetIdx)
-const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
+const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
+const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
+const bondRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY] (ERA 44)
+
+const viralGridBuffer = new SharedArrayBuffer(140 * 80 * 9); // ERA 24: 140x80 grid of 9-byte viral data
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
 const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
 const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
-const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
-const memoryGridBuffer = new SharedArrayBuffer(70 * 40 * 8); // ERA 32: 70x40 grid of 8-byte bytecode (2x Int32)
+const structureGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 31: 140x80 grid of Int32
+const memoryGridBuffer = new SharedArrayBuffer(140 * 80 * 8); // ERA 32: 140x80 grid of 8-byte bytecode
 const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
 const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
 const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
@@ -49,8 +51,12 @@ const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16
 const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
-const spawnRequests = new Uint8Array(spawnRequestsBuffer); // ERA 41
-const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42
+const spawnRequests = new Int32Array(spawnRequestsBuffer);
+const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
+const bondRequests = new Int32Array(bondRequestsBuffer); // ERA 44
+
+// Request buffers already initialized at declaration above for better TS safety.
+
 const viralGrid = new Uint8Array(viralGridBuffer);
 const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
@@ -77,6 +83,7 @@ export const STATE_MATRIX = {
     evolutionRequestsBuffer,
     spawnRequestsBuffer,
     meiosisRequestsBuffer,
+    bondRequestsBuffer, // ERA 44
     viralGridBuffer,
     viralGrid,
     immuneBuffer,
@@ -135,14 +142,69 @@ export const STATE_MATRIX = {
     hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
     
     // --- MITOSIS (ERA 41) ---
-    requestSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 1); },
-    clearSpawn: (idx: number) => { Atomics.store(spawnRequests, idx, 0); },
-    hasSpawnRequest: (idx: number) => Atomics.load(spawnRequests, idx) === 1,
+    requestSpawn: (initiatorIdx: number, targetX: number, targetY: number) => {
+        Atomics.store(spawnRequests, initiatorIdx * 3, initiatorIdx);
+        Atomics.store(spawnRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(spawnRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearSpawn: (idx: number) => {
+        Atomics.store(spawnRequests, idx * 3, 0);
+        Atomics.store(spawnRequests, idx * 3 + 1, 0);
+        Atomics.store(spawnRequests, idx * 3 + 2, 0);
+    },
+    getSpawnRequest: (idx: number) => {
+        const initiator = Atomics.load(spawnRequests, idx * 3);
+        if (initiator === 0) return null;
+        return {
+            initiatorIdx: initiator,
+            targetX: Atomics.load(spawnRequests, idx * 3 + 1),
+            targetY: Atomics.load(spawnRequests, idx * 3 + 2),
+        };
+    },
+    getSpawnRequests: () => spawnRequests,
 
     // --- MEIOSIS (ERA 42) ---
-    requestMeiosis: (initiatorIdx: number, targetIdx: number) => { Atomics.store(meiosisRequests, initiatorIdx, targetIdx); },
-    clearMeiosis: (idx: number) => { Atomics.store(meiosisRequests, idx, 0); },
-    getMeiosisTarget: (idx: number) => Atomics.load(meiosisRequests, idx),
+    requestMeiosis: (initiatorIdx: number, targetX: number, targetY: number) => {
+        Atomics.store(meiosisRequests, initiatorIdx * 3, initiatorIdx);
+        Atomics.store(meiosisRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(meiosisRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearMeiosis: (idx: number) => {
+        Atomics.store(meiosisRequests, idx * 3, 0);
+        Atomics.store(meiosisRequests, idx * 3 + 1, 0);
+        Atomics.store(meiosisRequests, idx * 3 + 2, 0);
+    },
+    getMeiosisRequest: (idx: number) => {
+        const initiator = Atomics.load(meiosisRequests, idx * 3);
+        if (initiator === 0) return null;
+        return {
+            initiatorIdx: initiator,
+            targetX: Atomics.load(meiosisRequests, idx * 3 + 1),
+            targetY: Atomics.load(meiosisRequests, idx * 3 + 2),
+        };
+    },
+    getMeiosisRequests: () => meiosisRequests,
+
+    // --- BOND REQUESTS (ERA 44) ---
+    requestBond: (initiatorIdx: number, targetX: number, targetY: number) => {
+        // Use 1-based index (idx + 1) to distinguish index 0 from empty
+        Atomics.store(bondRequests, initiatorIdx * 3, initiatorIdx + 1);
+        Atomics.store(bondRequests, initiatorIdx * 3 + 1, targetX);
+        Atomics.store(bondRequests, initiatorIdx * 3 + 2, targetY);
+    },
+    clearBondRequest: (idx: number) => {
+        Atomics.store(bondRequests, idx * 3, 0);
+    },
+    getBondRequest: (idx: number) => {
+        const initiatorStored = Atomics.load(bondRequests, idx * 3);
+        if (initiatorStored === 0) return null;
+        return {
+            initiatorIdx: initiatorStored - 1,
+            targetX: Atomics.load(bondRequests, idx * 3 + 1),
+            targetY: Atomics.load(bondRequests, idx * 3 + 2),
+        };
+    },
+    getBondRequests: () => bondRequests, // ERA 44
 
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
@@ -192,13 +254,18 @@ export const STATE_MATRIX = {
     setBonds: (idx: number, indices: Uint32Array) => {
         bonds.set(indices.subarray(0, 4), idx * 4);
     },
+    getBondTarget: (idx: number, slot: number) => Atomics.load(bonds, idx * 4 + slot),
+    setBondTarget: (idx: number, slot: number, targetIdx: number) => {
+        Atomics.store(bonds, idx * 4 + slot, targetIdx);
+    },
 
     // --- SYSTEM ---
     clear: () => {
         new Uint32Array(buffer).fill(0);
         new Uint8Array(evolutionRequestsBuffer).fill(0);
-        new Uint8Array(spawnRequestsBuffer).fill(0);
-        new Int32Array(meiosisRequestsBuffer).fill(0);
+        spawnRequests.fill(0);
+        meiosisRequests.fill(0);
+        bondRequests.fill(0); // ERA 44
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);

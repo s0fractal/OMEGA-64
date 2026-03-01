@@ -2,8 +2,8 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PRNG } from "./PRNG.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 
-const GRID_W = 70;
-const GRID_H = 40;
+const GRID_W = 140;
+const GRID_H = 80;
 
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
@@ -25,8 +25,8 @@ export const PHYSICS_ENGINE = {
     },
 
     getGridIdx: (x: number, y: number) => {
-        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+        const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
         return gy * GRID_W + gx;
     },
 
@@ -161,18 +161,18 @@ export const PHYSICS_ENGINE = {
     },
 
     // Apply Hooke's Law (Elastic) or Rigid Constraints (Era 28)
-    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array) => {
+    applyBondSprings: (idx: number, x: number, y: number, bondIndices: Uint32Array, xs: Int16Array, ys: Int16Array, stiffs: Float32Array) => {
         let fx = 0;
         let fy = 0;
         const targetDist = 50; // Ideal structural distance
 
         for (let b = 0; b < 4; b++) {
             const bIdx = bondIndices[b];
-            if (bIdx === 0 || STATE_MATRIX.getId(bIdx) === 0n) continue;
+            if (bIdx === 0) continue;
 
-            const stiffness = STATE_MATRIX.getBondStiffness(idx, b);
-            const pX = STATE_MATRIX.getX(bIdx);
-            const pY = STATE_MATRIX.getY(bIdx);
+            const stiffness = stiffs[idx * 4 + b];
+            const pX = xs[bIdx];
+            const pY = ys[bIdx];
             const dx = pX - x;
             const dy = pY - y;
             const dist = Math.hypot(dx, dy) || 1;
@@ -204,8 +204,8 @@ export const PHYSICS_ENGINE = {
      * Decays structureGrid density and leaks memoryGrid into viralGrid.
      */
     decayStructures: (structureGrid: Int32Array, memoryGrid: Uint8Array, viralGrid: Uint8Array) => {
-        const GRID_W = 70;
-        const GRID_H = 40;
+        const GRID_W = 140;
+        const GRID_H = 80;
 
         for (let i = 0; i < GRID_W * GRID_H; i++) {
             const cell = Atomics.load(structureGrid, i);
