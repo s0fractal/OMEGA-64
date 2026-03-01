@@ -178,6 +178,21 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
+    if (url.pathname === "/bonds" && req.method === "GET") {
+        // Bonds are 4 Uint32s per atom (16 bytes) at a specific offset
+        // We'll export the raw portion of the buffer
+        const BONDS_OFFSET = (100000 * 8) + (100000 * 2) + (100000 * 2) + (100000 * 4) + (100000 * 4) + (100000 * 4) + (100000 * 8); 
+        const BONDS_SIZE = 100000 * 4 * 4;
+        const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
+        const copy = new Uint8Array(view.byteLength);
+        copy.set(view);
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+
+
 
 
 

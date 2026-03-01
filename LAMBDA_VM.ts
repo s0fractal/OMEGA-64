@@ -7,7 +7,7 @@ export interface VMResult {
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
     modifiedStiffness?: { slot: number, value: number };
-    outgoingMessages: { targetIdx: number, message: number }[];
+    outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
 }
 
 export const ISA = {
@@ -125,6 +125,10 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.JZ:
+                if ((flags & 0x01) === 1) { pc = p1 % 16; pcJumped = true; } // ZF is bit 0
+                break;
+
+            case ISA.JNZ:
                 if ((flags & 0x01) === 0) { pc = p1 % 16; pcJumped = true; }
                 break;
 
@@ -148,8 +152,30 @@ export const LAMBDA_VM = {
                 if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
                 break;
 
+            case ISA.SUB:
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] - regs[p3 % 8]) & 0xFF;
+                break;
+
+            case ISA.MUL:
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] * regs[p3 % 8]) & 0xFF;
+                break;
+
             case ISA.CMP:
                 if (!dryRun) flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
+                break;
+
+            case ISA.LOAD:
+                if (!dryRun) regs[p1 % 8] = logic[p2 % 8];
+                break;
+
+            case ISA.STORE:
+                // p1 value to store, p2 index in logic
+                if (!dryRun) {
+                    res.modifiedCode = { slot: p2 % 16, value: regs[p1 % 8] }; // Reuse modifiedCode if appropriate or add new field
+                    // But actually STORE was for logic?? No, logic is Uint8Array[8]. 
+                    // Let's assume STORE updates logic bytes.
+                    logic[p2 % 8] = regs[p1 % 8];
+                }
                 break;
 
             case ISA.SENSE:
@@ -171,6 +197,32 @@ export const LAMBDA_VM = {
                     res.energyDelta -= 80;
                 }
                 break;
+
+            case ISA.SEND: {
+                // p1 is bond index (0-3), p2 is value to send
+                const slot = p1 % 4;
+                const targetIdx = state.bonds[slot];
+                if (targetIdx !== 0) {
+                    res.outgoingMessages.push({ targetIdx, message: p2, sourceBondSlot: slot });
+                    res.energyDelta -= 2;
+                }
+                break;
+            }
+
+            case ISA.RECV:
+                // Read incoming signal into p1 register
+                if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
+                res.resonanceDelta += 0.2;
+                break;
+
+            case ISA.LOCK: {
+                // p1 is bond index (0-3), p2 is stiffness (0-100 normalized to 0-1)
+                const slot = p1 % 4;
+                res.modifiedStiffness = { slot, value: Math.min(100, p2) / 100 };
+                res.energyDelta -= 5; // Locking is metabolically expensive
+                break;
+            }
+
         }
 
         // --- CONTEXT UPDATE ---

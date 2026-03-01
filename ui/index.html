@@ -336,6 +336,24 @@
       );
       scene.add(particles);
 
+      // ERA 29: NEURAL FIRE (Bonds)
+      const MAX_VIS_BONDS = MAX_ATOMS * 4;
+      const bondGeo = new THREE.BufferGeometry();
+      const bondPos = new Float32Array(MAX_VIS_BONDS * 2 * 3);
+      const bondCol = new Float32Array(MAX_VIS_BONDS * 2 * 3);
+      bondGeo.setAttribute("position", new THREE.BufferAttribute(bondPos, 3));
+      bondGeo.setAttribute("color", new THREE.BufferAttribute(bondCol, 3));
+      const bondLines = new THREE.LineSegments(
+        bondGeo,
+        new THREE.LineBasicMaterial({
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.4,
+          blending: THREE.AdditiveBlending,
+        }),
+      );
+      scene.add(bondLines);
+
       // Thermodynamic Grid (Nutrients & Pheromones)
       const GRID_W = 70;
       const GRID_H = 40;
@@ -442,6 +460,7 @@
       let immunityFlags = new Uint8Array(MAX_ATOMS);
       let signalFlags = new Uint8Array(MAX_ATOMS);
       let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
+      let bondIndices = new Uint32Array(MAX_ATOMS * 4);
 
       async function syncImmunity() {
         try {
@@ -467,6 +486,15 @@
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
           stiffnessFlags.set(new Float32Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncBonds() {
+        try {
+          const res = await fetch("/bonds");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          bondIndices.set(new Uint32Array(buffer));
         } catch (e) {}
       }
 
@@ -567,6 +595,50 @@
             .map(hex => ({ hex, count: speciesCount[hex].count, avgEnergy: Math.floor(speciesCount[hex].energy / speciesCount[hex].count) }))
             .sort((a,b) => b.count - a.count)
             .slice(0, 5);
+
+          // ERA 29: Line Buffer Update
+          let bondVIdx = 0;
+          for (let i = 0; i < MAX_ATOMS; i++) {
+            if (ids[i] === 0n) continue;
+            const x1 = targetPos[i * 3];
+            const y1 = targetPos[i * 3 + 1];
+            const z1 = targetPos[i * 3 + 2];
+
+            for (let b = 0; b < 4; b++) {
+              const bIdx = bondIndices[i * 4 + b];
+              const stiffness = stiffnessFlags[i * 4 + b];
+              if (bIdx > 0 && bIdx < MAX_ATOMS && (stiffness > 0.1 || signalFlags[i] > 0)) {
+                const x2 = targetPos[bIdx * 3];
+                const y2 = targetPos[bIdx * 3 + 1];
+                const z2 = targetPos[bIdx * 3 + 2];
+
+                bondPos[bondVIdx * 3] = x1;
+                bondPos[bondVIdx * 3 + 1] = y1;
+                bondPos[bondVIdx * 3 + 2] = z1;
+                bondPos[(bondVIdx + 1) * 3] = x2;
+                bondPos[(bondVIdx + 1) * 3 + 1] = y2;
+                bondPos[(bondVIdx + 1) * 3 + 2] = z2;
+
+                // Color by stiffness (Neural Fire: orange to yellow)
+                // If signaling, make it even brighter (Fire effect)
+                const isFiring = signalFlags[i] > 0;
+                const r = 1.0;
+                const g = 0.4 + (stiffness * 0.6) + (isFiring ? 0.2 : 0);
+                const bVal = stiffness * 0.2 + (isFiring ? 0.3 : 0);
+                bondCol[bondVIdx * 3] = r;
+                bondCol[bondVIdx * 3 + 1] = g;
+                bondCol[bondVIdx * 3 + 2] = bVal;
+                bondCol[(bondVIdx + 1) * 3] = r;
+                bondCol[(bondVIdx + 1) * 3 + 1] = g;
+                bondCol[(bondVIdx + 1) * 3 + 2] = bVal;
+
+                bondVIdx += 2;
+              }
+            }
+          }
+          bondGeo.setDrawRange(0, bondVIdx);
+          bondGeo.attributes.position.needsUpdate = true;
+          bondGeo.attributes.color.needsUpdate = true;
 
           geometry.attributes.position.needsUpdate = true;
           geometry.attributes.color.needsUpdate = true;
@@ -678,6 +750,7 @@
           syncImmunity();
           syncSignals();
           syncStiffness();
+          syncBonds();
           updatePeers();
           updateLeaderboard();
           lastSync = t;

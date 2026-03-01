@@ -121,25 +121,38 @@ self.onmessage = (e) => {
             bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
         }
 
-        // ERA 27: Message Routing
+        // ERA 27: Message Routing + ERA 29: Hebbian Potentiation
         for (const msg of vmResult.outgoingMessages) {
             if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
                 // Determine if we should use writeBuffer[msg.targetIdx] directly
                 // Using atomic store to the SHARED write buffer
                 Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+
+                // ERA 29: Hebbian Potentiation - "Fire together, wire together"
+                if (msg.sourceBondSlot !== undefined) {
+                    const currentStiff = bondStiffs[i * 4 + msg.sourceBondSlot];
+                    bondStiffs[i * 4 + msg.sourceBondSlot] = Math.min(1.0, currentStiff + 0.05);
+                }
             }
         }
 
         // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
+        // ERA 29: Conductive Metabolism (Scaling by stiffness)
         for (let b = 0; b < 4; b++) {
             const stiffness = bondStiffs[i * 4 + b];
             const targetIdx = bondView[b];
-            if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+
+            // ERA 29: Synaptic Atrophy (Slow decay)
+            if (stiffness > 0) {
+                bondStiffs[i * 4 + b] = Math.max(0, stiffness - 0.001);
+            }
+
+            if (stiffness > 0.1 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
                 const targetEnergy = Atomics.load(energies, targetIdx) / SCALE;
-                // Average the energy (Simple heat diffusion model)
-                const avg = (energy + targetEnergy) / 2;
-                energy = avg;
-                Atomics.store(energies, targetIdx, Math.round(avg * SCALE));
+                // Average the energy (Scaled by stiffness = Conductivity)
+                const diff = (targetEnergy - energy) * (stiffness * 0.5); 
+                energy += diff;
+                Atomics.store(energies, targetIdx, Math.round((targetEnergy - diff) * SCALE));
             }
         }
             
