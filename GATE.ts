@@ -606,11 +606,71 @@ export const GATE = {
    trustedSignatures: new Set<string>(),
 
    /**
+    * ERA 62: Immune Memory (Symbiogenesis)
+    * Tracks average resonance of novel plasmids to determine if they become Canon.
+    * Key: 8-byte logic hex, Value: accumulated symbiosis score.
+    */
+   immuneMemory: new Map<string, number>(),
+
+   evaluateSymbiosis: (stateMatrix: any) => {
+      // --- ERA 62: Evaluate Pro-Resonant Viral Logic ---
+      const active = stateMatrix.getActiveIndices();
+      const variantStats = new Map<string, { count: number, totalResonance: number }>();
+      let baseResonanceSum = 0;
+      let baseCount = 0;
+
+      for (const idx of active) {
+         const logic = stateMatrix.getLogic(idx) as Uint8Array;
+         let logicStr = "";
+         for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
+         
+         const resonance = stateMatrix.getResonance(idx);
+         
+         if (GATE.trustedSignatures.has(logicStr)) {
+             // Treat established allies and original canon as baseline
+             baseCount++;
+             baseResonanceSum += resonance;
+         } else {
+             // Track novel variants
+             const stats = variantStats.get(logicStr) || { count: 0, totalResonance: 0 };
+             stats.count++;
+             stats.totalResonance += resonance;
+             variantStats.set(logicStr, stats);
+         }
+      }
+
+      const baselineAvg = baseCount > 0 ? baseResonanceSum / baseCount : 15000; // 150 default
+
+      // Reward variants that outperform the baseline or spread widely while healthy
+      for (const [logicStr, stats] of variantStats.entries()) {
+         const avgResonance = stats.totalResonance / stats.count;
+         let score = GATE.immuneMemory.get(logicStr) || 0;
+         
+         if (avgResonance > baselineAvg && stats.count >= 3) {
+             score += 10; // Reward successful propagation
+         } else if (avgResonance < baselineAvg * 0.5) {
+             score -= 5; // Penalize toxic variants
+         }
+         
+         GATE.immuneMemory.set(logicStr, Math.max(0, score));
+
+         // If score exceeds threshold, promote to Canon!
+         if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
+             console.log(`🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${(avgResonance/100).toFixed(1)} > Baseline: ${(baselineAvg/100).toFixed(1)})`);
+             GATE.trustedSignatures.add(logicStr);
+         }
+      }
+   },
+
+   /**
     * ERA 26: Collective Immunity
     * Proactively scans logic signatures for malignant patterns.
-    * ERA 35: Updated with Immune Learning Loop.
+    * ERA 62: Integrated with evaluateSymbiosis.
     */
    detectAntigens: (stateMatrix: any) => {
+      // Run the Era 62 symbiosis evaluator first
+      GATE.evaluateSymbiosis(stateMatrix);
+
       const active = stateMatrix.getActiveIndices();
       const viralGrid = stateMatrix.viralGrid; 
 
@@ -619,7 +679,7 @@ export const GATE = {
          let logicStr = "";
          for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
          
-         // 🛡️ Era 35: Whitelist Bypass
+         // 🛡️ Era 35/62: Whitelist Bypass
          if (GATE.trustedSignatures.has(logicStr)) {
             stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
             continue;
@@ -655,17 +715,6 @@ export const GATE = {
          let hasBonds = false;
          for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
          if (!hasBonds && feedCount > 2) malignancy += 30;
-
-         // --- ERA 35: Learning Loop ---
-         const energy = stateMatrix.getEnergy(idx);
-         const resonance = stateMatrix.getResonance(idx);
-         if (malignancy >= 30 && energy > 200 && resonance > 150) {
-            if (!GATE.trustedSignatures.has(logicStr)) {
-               console.log(`🛡️ [IMMUNE_LEARNING] New Ally Manifested: ${logicStr} (Energy: ${energy.toFixed(1)})`);
-               GATE.trustedSignatures.add(logicStr);
-               malignancy = 0; // Immediate pardon
-            }
-         }
 
          // Apply Quarantine
          if (malignancy >= 80) {
