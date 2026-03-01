@@ -34,6 +34,14 @@ export const PULSE = {
         console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized.`);
     },
 
+    stopWorkers: () => {
+        for (const worker of PULSE.workers) {
+            worker.terminate();
+        }
+        PULSE.workers = [];
+        console.log("   [PULSE] Workers terminated.");
+    },
+
     run: async () => {
         console.log("🛡️ OMEGA-64 | ERA 14: THE TURING MIND | PULSE ACTIVE");
         

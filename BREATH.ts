@@ -15,23 +15,25 @@ export const BREATH = {
         while (true) {
             console.log("\n--- [BREATH] Deep Sample ---");
             
-            // 1. Listen to the Matrix (Vox Populi)
+            // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
             const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+            const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
             console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
+            if (oracle.length > 0) console.log(`   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`);
             
             // 2. Audit Archived Intent (Historical Context)
             const historicalBriefing = await AUDIT_ENGINE.generateHistoricalBriefing();
             console.log(`   [BREATH] Historical Briefing: "${historicalBriefing.substring(0, 50)}..."`);
 
             // 3. Consult the Oracle (LLM Synapse)
-            const combinedContext = `${historicalBriefing} | CURRENT MOOD: ${vox.join(" ")}`;
+            const combinedContext = `${historicalBriefing} | MOOD: ${vox.join(" ")} | ORACLE: ${oracle.join(" ")}`;
             const thought = await LLM_SYNAPSE.generateThought(combinedContext);
             
-            // 3. Inject back into the Matrix (Motor Output)
+            // 4. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;
             await SEMANTIC_MEMBRANE.injectThought(thought, weight);
             
-            // 4. Digital Archaeology (Every 5 cycles)
+            // 5. Digital Archaeology (Every 5 cycles)
             if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
                 console.log("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
                 const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
@@ -51,8 +53,5 @@ export const BREATH = {
 };
 
 if (import.meta.main) {
-    // We need to ensure the shared buffer is mapped, but since BREATH 
-    // runs as a separate process, it relies on SEMANTIC_MEMBRANE which 
-    // imports STATE_MATRIX.ts.
     BREATH.inhale();
 }

@@ -139,6 +139,7 @@ export const STATE_MATRIX = {
     setContext: (idx: number, ctx: Uint8Array) => {
         contexts.set(ctx.subarray(0, 32), idx * 32);
     },
+    getContext: (idx: number) => contexts.subarray(idx * 32, idx * 32 + 32),
 
     // --- EVOLUTION (ERA 22) ---
     requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
@@ -310,6 +311,17 @@ export const STATE_MATRIX = {
         semanticBonuses.fill(0);
         senderSignaturesA.fill(0);
         senderSignaturesB.fill(0);
+    },
+
+    /**
+     * ERA 46: Oracle Priority Queue
+     * Returns the indices of the most resonant atoms.
+     */
+    getTopResonantIndices: (count: number): number[] => {
+        const active = STATE_MATRIX.getActiveIndices();
+        return active
+            .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
+            .slice(0, count);
     },
 
     getActiveIndices: () => {

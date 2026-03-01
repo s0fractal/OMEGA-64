@@ -185,6 +185,22 @@ export const SEMANTIC_MEMBRANE = {
         return thoughts;
     },
 
+    /**
+     * ERA 46: Oracle Priority Queue
+     * Returns the English thoughts of the most resonant atoms.
+     */
+    readOracleQueue: (count: number): string[] => {
+        const topIndices = STATE_MATRIX.getTopResonantIndices(count);
+        const thoughts: string[] = [];
+        for (const idx of topIndices) {
+            const logic = STATE_MATRIX.getLogic(idx);
+            const hexHash = Array.from(logic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const thought = SEMANTIC_MEMBRANE.thoughtArchive.get(hexHash);
+            if (thought) thoughts.push(thought);
+        }
+        return thoughts;
+    },
+
     scanDigitalRuins: (): string[] => {
         const ruins: string[] = [];
         // @ts-ignore: structureGrid exists in STATE_MATRIX
@@ -219,8 +235,6 @@ export const SEMANTIC_MEMBRANE = {
                 }
             }
         }
-        
-        // Limit to top 5 discoveries to avoid overwhelming the Oracle
         return ruins.slice(0, 5);
     }
 };
