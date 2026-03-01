@@ -108,7 +108,7 @@ export const PULSE = {
         }
 
         SPATIAL_HASH.build(activeIndices);
-        if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
+        if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones((STATE_MATRIX as any).pheromoneGrid);
         if (pulseId % 10 === 0) {
             // @ts-ignore: Physics engine uses its own state matrix instance
             PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
@@ -156,6 +156,9 @@ export const PULSE = {
                     synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
                     structureGridBuffer: STATE_MATRIX.structureGridBuffer,
                     memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
+                    pheroGridBuffer: (STATE_MATRIX as any).pheroGridBuffer,
+                    hiveMemoryBuffer: STATE_MATRIX.hiveMemoryBuffer,
+                    birthTickBuffer: STATE_MATRIX.birthTickBuffer,
                     roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
                     semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
                     senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
@@ -214,8 +217,22 @@ export const PULSE = {
                     STATE_MATRIX.setResonance(idx, childResonance);
                     STATE_MATRIX.setEnergy(newIdx, childEnergy);
                     STATE_MATRIX.setResonance(newIdx, childResonance);
-                    STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx));
-                    STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));
+
+                    // --- ERA 48: Epigenetic Noise (Mitosis) ---
+                    const logic = new Uint8Array(STATE_MATRIX.getLogic(idx));
+                    if (Math.random() < 0.001) { // 0.1% mutation
+                        logic[Math.floor(Math.random() * 8)] ^= (1 << Math.floor(Math.random() * 8));
+                        console.log(`🧬 [MUTATION] Logic mutation in child ${newIdx}`);
+                    }
+                    STATE_MATRIX.setLogic(newIdx, logic);
+
+                    const code = new Uint32Array(STATE_MATRIX.getCode(idx));
+                    if (Math.random() < 0.001) { // 0.1% mutation
+                        code[Math.floor(Math.random() * 16)] ^= (1 << Math.floor(Math.random() * 32));
+                        console.log(`🧬 [MUTATION] Code mutation in child ${newIdx}`);
+                    }
+                    STATE_MATRIX.setCode(newIdx, code);
+
                     STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
                     STATE_MATRIX.setSemanticBonus(newIdx, STATE_MATRIX.getSemanticBonus(idx));
                     const px = STATE_MATRIX.getX(idx);
@@ -257,12 +274,24 @@ export const PULSE = {
                         const newLogic = new Uint8Array(8);
                         newLogic.set(logicA.subarray(0, 4), 0);
                         newLogic.set(logicB.subarray(4, 8), 4);
+                        
+                        // --- ERA 48: Epigenetic Noise (Meiosis Logic) ---
+                        if (Math.random() < 0.001) {
+                            newLogic[Math.floor(Math.random() * 8)] ^= (1 << Math.floor(Math.random() * 8));
+                            console.log(`🧬 [MUTATION] Logic mutation in Meiosis child ${newIdx}`);
+                        }
                         STATE_MATRIX.setLogic(newIdx, newLogic);
                         
                         const codeA = STATE_MATRIX.getCode(idx);
                         const codeB = STATE_MATRIX.getCode(tIdx);
                         const newCode = new Uint32Array(16);
                         for (let p = 0; p < 16; p++) newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p];
+
+                        // --- ERA 48: Epigenetic Noise (Meiosis Code) ---
+                        if (Math.random() < 0.001) {
+                            newCode[Math.floor(Math.random() * 16)] ^= (1 << Math.floor(Math.random() * 32));
+                            console.log(`🧬 [MUTATION] Code mutation in Meiosis child ${newIdx}`);
+                        }
                         STATE_MATRIX.setCode(newIdx, newCode);
                         
                         STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[tIdx];

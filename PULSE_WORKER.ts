@@ -12,7 +12,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views
     const nutrients = new Int32Array(envBuffer);
@@ -27,6 +27,9 @@ self.onmessage = (e) => {
     const CELL_CAPACITY = 31;
 
     const viralGrid = new Uint8Array(viralGridBuffer);
+    const pheroGrid = new Int32Array(pheroGridBuffer);
+    const hiveMemory = hiveMemoryBuffer ? new Uint8Array(hiveMemoryBuffer) : undefined;
+    const birthTicks = birthTickBuffer ? new Int32Array(birthTickBuffer) : null;
     const quarantineFlags = new Uint8Array(immuneBuffer);
     const msgsA = new Uint8Array(messageBufferA);
     const msgsB = new Uint8Array(messageBufferB);
@@ -54,11 +57,12 @@ self.onmessage = (e) => {
     const ys = new Int16Array(buffer, (MAX_ATOMS * 8) + (MAX_ATOMS * 2), MAX_ATOMS);
     const energies = new Int32Array(buffer, (MAX_ATOMS * 12), MAX_ATOMS);
     const resonances = new Int32Array(buffer, (MAX_ATOMS * 12) + (MAX_ATOMS * 4), MAX_ATOMS);
+    const phases = new Int32Array(buffer, (MAX_ATOMS * 20), MAX_ATOMS);
     const logic = new Uint8Array(buffer, (MAX_ATOMS * 24), MAX_ATOMS * 8); 
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
-    const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
+    const instructions = new Uint32Array(buffer, (MAX_ATOMS * 48), MAX_ATOMS * 16);
     
-    const CONTEXT_OFFSET = (MAX_ATOMS * 48) + (MAX_ATOMS * 64);
+    const CONTEXT_OFFSET = (MAX_ATOMS * 112);
     const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
     try {
@@ -134,6 +138,18 @@ self.onmessage = (e) => {
             x += Math.round(dx);
             y += Math.round(dy);
 
+            // --- ERA 50: Collective Resonance ---
+            if (density > 5) {
+                const localPhaseAvg = Atomics.load(spatialGrid, cellIdxAt * 32 + 31) / SCALE; // Sync calculated in build
+                const myPhase = resonanceFactor / SCALE; // Phase is resonance factor in some contexts? 
+                // Wait, phase is its own field:
+                const myPhaseVal = Atomics.load(phases, i) / SCALE;
+                if (Math.abs(myPhaseVal - localPhaseAvg) < 0.1) {
+                    resonance += 1.0;
+                    energy += 1.0; // Collective meta-gain
+                }
+            }
+
             // VM EXECUTION
             const quarantineLevel = Atomics.load(quarantineFlags, i);
             const incomingMessage = Atomics.load(readBuffer, i);
@@ -148,7 +164,8 @@ self.onmessage = (e) => {
             const currentRole = Atomics.load(roles, i);
             const currentBonuses = Atomics.load(semanticBonuses, i);
 
-            const vmState = { x, y, nutrients, structureGrid, viralGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic };
+            const age = birthTicks ? Math.max(0, pulseId - Atomics.load(birthTicks, i)) : 0;
+            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age };
             const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
             
             energy += vmResult.energyDelta;
@@ -185,11 +202,78 @@ self.onmessage = (e) => {
                 if (vmResult.memeticRequest === "ENCODE" && ((sCell >> 8) & 0xFF) > 50) {
                     for (let b = 0; b < 8; b++) memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
                 } else if (vmResult.memeticRequest === "DECODE" && memoryGrid[cellIdxAt * 8] !== 0) {
-                    for (let b = 0; b < 8; b++) logicBytes[b] = memoryGrid[cellIdxAt * 8 + b];
+                    for (let b = 0; b < 8; b++) Atomics.store(logic, i * 8 + b, memoryGrid[cellIdxAt * 8 + b]);
                 }
             }
 
             if (vmResult.modifiedRole !== undefined) Atomics.store(roles, i, vmResult.modifiedRole);
+
+            // --- ERA 51: Collective Memory — IMPRINT ---
+            if (vmResult.imprintRequest && hiveMemory) {
+                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+                const hBase = (gy * 140 + gx) * 16;
+                const phero = vmResult.imprintRequest.pheroSnapshot;
+                const phase = vmResult.imprintRequest.phaseSnapshot;
+                // bytes 0-3: pheromone snapshot (Int32 LE)
+                hiveMemory[hBase + 0] = phero & 0xFF;
+                hiveMemory[hBase + 1] = (phero >> 8) & 0xFF;
+                hiveMemory[hBase + 2] = (phero >> 16) & 0xFF;
+                hiveMemory[hBase + 3] = (phero >> 24) & 0xFF;
+                // bytes 4-5: phase (Int16 LE)
+                hiveMemory[hBase + 4] = phase & 0xFF;
+                hiveMemory[hBase + 5] = (phase >> 8) & 0xFF;
+                // bytes 6-7: role + resonance tier
+                hiveMemory[hBase + 6] = Atomics.load(roles, i);
+                hiveMemory[hBase + 7] = Math.min(255, Math.floor(resonance / 100));
+                // bytes 8-11: pulseId (tick timestamp)
+                hiveMemory[hBase + 8] = pulseId & 0xFF;
+                hiveMemory[hBase + 9] = (pulseId >> 8) & 0xFF;
+                hiveMemory[hBase + 10] = (pulseId >> 16) & 0xFF;
+                hiveMemory[hBase + 11] = (pulseId >> 24) & 0xFF;
+            }
+
+            // --- ERA 52: Neural Substrate — HEBB + FIRE ---
+            if (vmResult.hebbRequest) {
+                const slot = vmResult.hebbRequest.bondSlot;
+                const targetIdx = bondView[slot];
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    const neighbourResonance = Atomics.load(resonances, targetIdx) / SCALE;
+                    if (neighbourResonance > 200) {
+                        // "Fire together → wire together": increment weight up to 255
+                        const curWeight = Atomics.load(synapticStack, i * 4 + slot);
+                        if (curWeight < 255) Atomics.add(synapticStack, i * 4 + slot, 1);
+                    }
+                }
+            }
+
+            for (const intent of vmResult.intent) {
+                if (intent.level === 18) { // FIRE: weighted resonance signal
+                    const { bondSlot, amplitude, weight } = intent.value;
+                    const targetIdx = bondView[bondSlot];
+                    if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                        const delta = Math.round((weight / 255) * amplitude * SCALE);
+                        Atomics.add(resonances, targetIdx, delta);
+                        // --- ERA 53: Increment signal tally (slot 3) ---
+                        const curTally = Atomics.load(synapticStack, targetIdx * 4 + 3);
+                        if (curTally < 255) Atomics.add(synapticStack, targetIdx * 4 + 3, 1);
+                    }
+                }
+            }
+
+            // --- ERA 53: Apply emergent role if ATTUNE fired ---
+            if (vmResult.roleRequest) {
+                const newRole = vmResult.roleRequest.role;
+                Atomics.store(roles, i, newRole);
+            }
+
+            // --- ERA 54: Apoptosis (Senescent dissolution) ---
+            if (vmResult.apoptosisRequest) {
+                // Zero out the atom ID → slot freed for reuse
+                ids[i] = 0n;
+                // Clear birth tick
+                if (birthTicks) Atomics.store(birthTicks, i, 0);
+            }
 
             for (const msg of vmResult.outgoingMessages) {
                 if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
@@ -248,21 +332,46 @@ self.onmessage = (e) => {
                     const cellStart = queryHash * (CELL_CAPACITY + 1);
                     const cellCount = Atomics.load(spatialGrid, cellStart);
                     let closestPeerIdx = -1; let minPeerDistSq = 400;
-                    for (let c = 1; c <= cellCount; c++) {
-                        const candidateIdx = Atomics.load(spatialGrid, cellStart + c);
-                        if (candidateIdx > 0 && candidateIdx < MAX_ATOMS && candidateIdx !== i) {
-                            const cx = Atomics.load(xs, candidateIdx);
-                            const cy = Atomics.load(ys, candidateIdx);
-                            const distSq = (cx - targetX) ** 2 + (cy - targetY) ** 2;
-                            if (distSq < minPeerDistSq) { closestPeerIdx = candidateIdx; minPeerDistSq = distSq; }
+                    if (cellCount > 0) {
+                        for (let j = 1; j <= cellCount; j++) {
+                            const neighborIdx = Atomics.load(spatialGrid, cellStart + j);
+                            if (neighborIdx === i) continue;
+                            const dxPeer = Atomics.load(xs, neighborIdx) - targetX;
+                            const dyPeer = Atomics.load(ys, neighborIdx) - targetY;
+                            const dSq = dxPeer * dxPeer + dyPeer * dyPeer;
+                            if (dSq < minPeerDistSq) { minPeerDistSq = dSq; closestPeerIdx = neighborIdx; }
                         }
                     }
                     if (closestPeerIdx !== -1) {
                         Atomics.store(bondRequests, i * 3, i + 1);
                         Atomics.store(bondRequests, i * 3 + 1, closestPeerIdx);
-                        Atomics.store(bondRequests, i * 3 + 2, 0); 
                     }
                 }
+                
+                // --- ERA 50: Swarm Intents ---
+                if (intent.level === 15 && intent.value === "SYNC_PHASE") {
+                    let avgPhase = Atomics.load(phases, i);
+                    let phaseCount = 1;
+                    for (let b = 0; b < 4; b++) {
+                        const targetIdx = bondView[b];
+                        if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                            avgPhase += Atomics.load(phases, targetIdx);
+                            phaseCount++;
+                        }
+                    }
+                    Atomics.store(phases, i, Math.floor(avgPhase / phaseCount));
+                }
+
+                if (intent.level === 16) {
+                    const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+                    const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+                    const pIdx = gy * 140 + gx;
+                    const existing = Atomics.load(pheroGrid, pIdx);
+                    const existingIntensity = (existing >> 8) & 0xFFFFFF;
+                    const newIntensity = Math.min(0xFFFFFF, existingIntensity + intent.value.intensity);
+                    Atomics.store(pheroGrid, pIdx, (newIntensity << 8) | (intent.value.type & 0xFF));
+                }
+
                 if (intent.level === 13) {
                     const slot = intent.value.targetBondSlot;
                     const targetIdx = bondView[slot];
@@ -303,10 +412,16 @@ self.onmessage = (e) => {
                         Atomics.store(viralGrid, vIdx + 8, Math.min(255, Math.floor(resonance / 4)));
                     }
                 }
-                if (resonance < 400 && (pulseId + i) % 50 === 0 && Atomics.load(viralGrid, vIdx + 8) > 50) {
+                const viralIntensity = Atomics.load(viralGrid, vIdx + 8);
+                const isFlagged = quarantineLevel >= 1;
+
+                if (!isFlagged && (pulseId + i) % 50 === 0 && viralIntensity > 50) {
+                    // Resonance-based resistance: higher resonance = harder to infect
+                    const resistance = (resonance / 2); // 400 resonance -> 200 resistance
                     const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
                     const { value: v1, next: n1 } = atomPrng.next();
-                    if (v1 * 255 < Atomics.load(viralGrid, vIdx + 8)) {
+                    
+                    if (v1 * 255 < (viralIntensity - resistance)) {
                         const { value: v2 } = n1.next();
                         const bIdx = Math.floor(v2 * 8);
                         Atomics.store(logic, i * 8 + bIdx, Atomics.load(viralGrid, vIdx + bIdx));

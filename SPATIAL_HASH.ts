@@ -20,9 +20,9 @@ export const SPATIAL_HASH = {
     CELL_CAPACITY,
 
     build: (activeIndices: number[]) => {
-        // Clear all cell counts
+        // Clear all cell counts atomics-safely
         for (let i = 0; i < TOTAL_CELLS; i++) {
-            gridView[i * (CELL_CAPACITY + 1)] = 0;
+            Atomics.store(gridView, i * (CELL_CAPACITY + 1), 0);
         }
 
         for (const idx of activeIndices) {
@@ -34,12 +34,28 @@ export const SPATIAL_HASH = {
             const cellIdx = cellY * GRID_COLS + cellX;
             
             const offset = cellIdx * (CELL_CAPACITY + 1);
-            let count = gridView[offset];
             
-            if (count < CELL_CAPACITY) {
-                count++;
-                gridView[offset] = count;
-                gridView[offset + count] = idx;
+            // Atomic update of count
+            const count = Atomics.load(gridView, offset);
+            if (count < CELL_CAPACITY - 1) { // Leave last slot for phase sum
+                const newCount = count + 1;
+                Atomics.store(gridView, offset + newCount, idx);
+                Atomics.store(gridView, offset, newCount);
+                
+                // --- ERA 50: Local Phase Tracking ---
+                const myPhase = Atomics.load((STATE_MATRIX as any).phases, idx);
+                Atomics.add(gridView, offset + (CELL_CAPACITY), Number(myPhase));
+            }
+        }
+
+        // Finalize phase averages
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            const offset = i * (CELL_CAPACITY + 1);
+            const count = Atomics.load(gridView, offset);
+            if (count > 0) {
+                const sum = Atomics.load(gridView, offset + (CELL_CAPACITY));
+                Atomics.store(gridView, offset + (CELL_CAPACITY), 0); // Reset sum for next tick
+                Atomics.store(gridView, offset + 31, Math.floor(sum / count)); // Store average in slot 31
             }
         }
     },
@@ -55,10 +71,10 @@ export const SPATIAL_HASH = {
             for (let cx = minX; cx <= maxX; cx++) {
                 const cellIdx = cy * GRID_COLS + cx;
                 const offset = cellIdx * (CELL_CAPACITY + 1);
-                const count = gridView[offset];
+                const count = Atomics.load(gridView, offset);
                 
                 for (let c = 1; c <= count; c++) {
-                    const neighborIdx = gridView[offset + c];
+                    const neighborIdx = Atomics.load(gridView, offset + c);
                     const nx = STATE_MATRIX.getX(neighborIdx);
                     const ny = STATE_MATRIX.getY(neighborIdx);
                     const dx = nx - x;

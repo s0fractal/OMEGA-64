@@ -612,6 +612,8 @@ export const GATE = {
     */
    detectAntigens: (stateMatrix: any) => {
       const active = stateMatrix.getActiveIndices();
+      const viralGrid = stateMatrix.viralGrid; 
+
       for (const idx of active) {
          const logic = stateMatrix.getLogic(idx) as Uint8Array;
          let logicStr = "";
@@ -624,6 +626,22 @@ export const GATE = {
          }
 
          let malignancy = 0;
+
+         // --- ERA 49: Viral Load Detection ---
+         const x = stateMatrix.getX(idx);
+         const y = stateMatrix.getY(idx);
+         const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+         const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+         const vIdx = (gy * 140 + gx) * 9;
+         
+         const viralIntensity = Number(Atomics.load(viralGrid, vIdx + 8));
+         if (viralIntensity > 50) {
+            let matches = 0;
+            for (let b = 0; b < 8; b++) {
+               if (Number(logic[b]) === Number(Atomics.load(viralGrid, vIdx + b))) matches++;
+            }
+            if (matches >= 4) malignancy += (matches * 10); // Logic matches local virus
+         }
 
          // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
          let feedCount = 0;
@@ -638,11 +656,7 @@ export const GATE = {
          for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
          if (!hasBonds && feedCount > 2) malignancy += 30;
 
-         // Pattern 3: Red Line Violations (Attempting restricted ISA space)
-         // ... (Reserved) ...
-
          // --- ERA 35: Learning Loop ---
-         // If an atom is exceptionally successful despite malignancy, learn its signature
          const energy = stateMatrix.getEnergy(idx);
          const resonance = stateMatrix.getResonance(idx);
          if (malignancy >= 30 && energy > 200 && resonance > 150) {
@@ -656,7 +670,7 @@ export const GATE = {
          // Apply Quarantine
          if (malignancy >= 80) {
             stateMatrix.setQuarantine(idx, 2); // SUPPRESSED
-         } else if (malignancy >= 30) {
+         } else if (malignancy >= 40) {
             stateMatrix.setQuarantine(idx, 1); // FLAGGED
          } else {
             stateMatrix.setQuarantine(idx, 0); // CLEAN

@@ -42,7 +42,7 @@ export const PHYSICS_ENGINE = {
     },
 
 
-    decayPheromones: () => {
+    decayPheromones: (pheroGrid?: Int32Array) => {
         for (const caste in PHYSICS_ENGINE.pheromones) {
             const p = PHYSICS_ENGINE.pheromones[caste as keyof typeof PHYSICS_ENGINE.pheromones];
             for (let i = 0; i < p.length; i++) {
@@ -50,6 +50,21 @@ export const PHYSICS_ENGINE = {
             }
         }
         
+        // --- ERA 50: Persistent Pheromone Decay ---
+        if (pheroGrid) {
+            for (let i = 0; i < 140 * 80; i++) {
+                const cell = Atomics.load(pheroGrid, i);
+                if (cell === 0) continue;
+                const intensity = (cell >> 8) & 0xFFFFFF;
+                const type = cell & 0xFF;
+                if (intensity > 10) {
+                    Atomics.store(pheroGrid, i, ((intensity - 5) << 8) | type);
+                } else {
+                    Atomics.store(pheroGrid, i, 0);
+                }
+            }
+        }
+
         for (let i = 0; i < ATTENTION_PHEROMONES.length; i++) {
             ATTENTION_PHEROMONES[i] *= 0.90; // Attention decays relatively fast
         }

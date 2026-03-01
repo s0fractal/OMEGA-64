@@ -37,6 +37,9 @@ const structureGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 31: 140x
 const memoryGridBuffer = new SharedArrayBuffer(140 * 80 * 8); // ERA 32: 140x80 grid of 8-byte bytecode
 const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
 const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
+const pheroGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 50: Pheromone Grid
+const hiveMemoryBuffer = new SharedArrayBuffer(140 * 80 * 16); // ERA 51: Collective Memory (16 bytes/cell)
+const birthTickBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 54: Temporal Cognition (spawn tick)
 const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
 const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
 
@@ -71,6 +74,9 @@ const structureGrid = new Int32Array(structureGridBuffer);
 const memoryGrid = new Uint8Array(memoryGridBuffer);
 const roles = new Uint8Array(roleRegistryBuffer);
 const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
+const pheroGrid = new Int32Array(pheroGridBuffer);
+const hiveMemory = new Uint8Array(hiveMemoryBuffer); // ERA 51: Collective Memory
+const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognition
 const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
 const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 
@@ -93,6 +99,8 @@ export const STATE_MATRIX = {
     immuneBuffer,
     quarantineFlags,
     synapticStackBuffer,
+    phases,
+    bondStiffness,
     structureGridBuffer,
     structureGrid,
     memoryGridBuffer,
@@ -101,6 +109,12 @@ export const STATE_MATRIX = {
     roles,
     semanticBonusesBuffer,
     semanticBonuses,
+    pheromoneGrid: pheroGrid,
+    pheroGridBuffer,
+    hiveMemoryBuffer, // ERA 51
+    hiveMemory,       // ERA 51
+    birthTickBuffer,  // ERA 54
+    birthTicks,       // ERA 54
     senderSignatureBufferA,
     senderSignatureBufferB,
     senderSignaturesA,
@@ -300,6 +314,7 @@ export const STATE_MATRIX = {
         mergeRequests.fill(0); // ERA 45
 
         new Uint8Array(viralGridBuffer).fill(0);
+        new Uint8Array(pheroGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);
         messagesB.fill(0);

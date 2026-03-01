@@ -7,12 +7,16 @@ export interface VMResult {
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
     modifiedStiffness?: { slot: number, value: number };
-    modifiedSynaptic?: { slot: number, value: number }; // ERA 30: PUSH_COLL
-    syncRequest?: { reg: number }; // ERA 30: SYNC_AVG (Worker will handle)
-    modifiedStructure?: { type: number, density: number }; // ERA 31: BUILD/EXCAVATE
-    memeticRequest?: "ENCODE" | "DECODE"; // ERA 32: Cultural Inheritance
-    modifiedRole?: number; // ERA 33: Metabolic Specialization (SPEC)
+    modifiedSynaptic?: { slot: number, value: number };
+    syncRequest?: { reg: number };
+    modifiedStructure?: { type: number, density: number };
+    memeticRequest?: "ENCODE" | "DECODE";
+    modifiedRole?: number;
     outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
+    imprintRequest?: { pheroSnapshot: number, phaseSnapshot: number, pulseId: number }; // ERA 51
+    hebbRequest?: { bondSlot: number }; // ERA 52
+    roleRequest?: { role: number }; // ERA 53
+    apoptosisRequest?: boolean; // ERA 54
 }
 
 export const ISA = {
@@ -39,7 +43,19 @@ export const ISA = {
     // Coded Memetics (ERA 32)
     ENCODE: 0x82, DECODE: 0x83,
     // Metabolic Specialization (ERA 33)
-    SPEC: 0x84
+    SPEC: 0x84,
+    // Viral PURGE (ERA 49)
+    PURGE: 0x85,
+    // Swarm Intelligence (ERA 50)
+    SYNC: 0x86, STAMP: 0x87,
+    // Collective Memory (ERA 51)
+    IMPRINT: 0x88, RECALL: 0x89,
+    // Neural Substrate (ERA 52)
+    HEBB: 0x8A, FIRE: 0x8B,
+    // Emergent Roles (ERA 53)
+    ATTUNE: 0x8C,
+    // Temporal Cognition (ERA 54)
+    AGE: 0x8D, PHASE_LIFE: 0x8E
 };
 
 export const LAMBDA_VM = {
@@ -47,7 +63,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean }, dryRun = false, wasm?: any): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, pheromoneGrid: Int32Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean, hiveMemory?: Uint8Array, age?: number }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
@@ -140,8 +156,43 @@ export const LAMBDA_VM = {
                     case 0x02: val = (Atomics.load(state.structureGrid, idx) >> 8) & 0xFF; break;
                     case 0x03: val = Atomics.load(state.viralGrid, idx * 9 + 8); break;
                     case 0x04: val = Atomics.load(state.spatialGrid, idx * 32); break;
+                    case 0x05: val = Atomics.load(state.spatialGrid, idx * 32 + 31); break; // Local Phase Average
+                    case 0x06: val = (Atomics.load(state.pheromoneGrid, idx) >>> 8) & 0xFF; break; // Pheromone Intensity
+                    case 0x07: { // ERA 51: Hive Memory intensity
+                        if (state.hiveMemory) {
+                            const hBase = idx * 16;
+                            const raw = (state.hiveMemory[hBase] | (state.hiveMemory[hBase+1] << 8) |
+                                         (state.hiveMemory[hBase+2] << 16) | (state.hiveMemory[hBase+3] << 24));
+                            val = (raw >>> 8) & 0xFF;
+                        }
+                        break;
+                    }
+                    case 0x08: { // ERA 52: Synaptic weight of bond p2%4
+                        if (state.synapticStack) {
+                            val = Math.min(255, state.synapticStack[p2 % 4]);
+                        }
+                        break;
+                    }
+                    case 0x09: { // ERA 53: Incoming FIRE signal tally (slot 3)
+                        if (state.synapticStack) {
+                            val = Math.min(255, state.synapticStack[3]);
+                        }
+                        break;
+                    }
+                    case 0x0A: { // ERA 54: Age bucket (0=young, 1=mature, 2=aged, 3=senescent)
+                        const a = state.age ?? 0;
+                        if (a < 50) val = 0;
+                        else if (a < 200) val = 1;
+                        else if (a < 400) val = 2;
+                        else val = 3;
+                        break;
+                    }
                 }
-                if (!dryRun) regs[regIdx] = Math.min(255, val);
+                if (!dryRun) {
+                    regs[regIdx] = Math.min(255, val);
+                    // --- ERA 48: Metabolic Balancing ---
+                    res.energyDelta -= 0.5; // Information is a metabolic resource
+                }
                 break;
             }
 
@@ -214,19 +265,37 @@ export const LAMBDA_VM = {
                 }
                 break;
 
-            case ISA.SELF_REP:
-                if (state.energy > 150) {
+            case ISA.SELF_REP: {
+                // --- ERA 48: High-Density Friction ---
+                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+                const baseCost = 80;
+                const friction = density > 10 ? (density - 10) * 10 : 0;
+                const totalCost = baseCost + friction;
+
+                if (state.energy > (totalCost + 70)) {
                     res.intent.push({ level: 10, value: "spawn" });
-                    res.energyDelta -= 80;
+                    res.energyDelta -= totalCost;
                 }
                 break;
+            }
 
-            case ISA.CROSS_REP:
-                if (state.energy > 150) {
-                    res.energyDelta -= 100;
+            case ISA.CROSS_REP: {
+                // --- ERA 48: High-Density Friction ---
+                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+                const baseCost = 100;
+                const friction = density > 10 ? (density - 10) * 15 : 0;
+                const totalCost = baseCost + friction;
+
+                if (state.energy > (totalCost + 50)) {
+                    res.energyDelta -= totalCost;
                     res.intent.push({ level: 11, value: { type: "meiosis", targetBondSlot: p1 % 4 } });
                 }
                 break;
+            }
 
             case ISA.BIND: {
                 const dxVal = (p1 - 128) / 10.0;
@@ -320,7 +389,191 @@ export const LAMBDA_VM = {
                     res.resonanceDelta -= 30;
                 }
                 break;
+
+            case ISA.PURGE: {
+                // --- ERA 49: Viral Shielding (Immune Resolution) ---
+                if (state.energy > 60) {
+                    res.memeticRequest = "DECODE"; // Reuse existing memetic path to restore from memoryGrid
+                    res.energyDelta -= 50;
+                    res.resonanceDelta += 5;
+                }
+                break;
+            }
+
+            case ISA.SYNC: {
+                // --- ERA 50: Collective Coordination ---
+                res.intent.push({ level: 15, value: "SYNC_PHASE" });
+                res.energyDelta -= 5;
+                res.resonanceDelta += 2;
+                break;
+            }
+
+            case ISA.STAMP: {
+                // --- ERA 50: Stigmergy (Pheromones) ---
+                if (state.resonance > 30) {
+                    res.intent.push({ level: 16, value: { type: p1 % 8, intensity: Math.min(255, p2) } });
+                    res.energyDelta -= 10;
+                    res.resonanceDelta -= 2;
+                }
+                break;
+            }
+
+            case ISA.IMPRINT: {
+                // --- ERA 51: Collective Memory — encode snapshot ---
+                // Read current local pheromone + phase and request worker to write to hiveMemory
+                if (state.resonance > 20 && !dryRun) {
+                    const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                    const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                    const pIdx = gy * 140 + gx;
+                    const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
+                    const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
+                    res.imprintRequest = { pheroSnapshot: pheroSnap, phaseSnapshot: Math.round(phaseSnap), pulseId: 0 };
+                    res.energyDelta -= 5;
+                    res.resonanceDelta -= 1;
+                }
+                break;
+            }
+
+            case ISA.RECALL: {
+                // --- ERA 51: Collective Memory — read snapshot into register ---
+                // p1 = field (0=phero intensity, 1=pheromone type, 2=phase)
+                // p2 = destination register index
+                if (state.hiveMemory && !dryRun) {
+                    const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                    const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                    const hBase = (gy * 140 + gx) * 16;
+                    const raw32 = state.hiveMemory[hBase] | (state.hiveMemory[hBase+1] << 8) |
+                                  (state.hiveMemory[hBase+2] << 16) | (state.hiveMemory[hBase+3] << 24);
+                    let recalled = 0;
+                    if (p1 === 0) recalled = (raw32 >>> 8) & 0xFF; // phero intensity
+                    if (p1 === 1) recalled = raw32 & 0xFF;          // phero type
+                    if (p1 === 2) recalled = state.hiveMemory[hBase + 4] | (state.hiveMemory[hBase + 5] << 8); // phase
+                    regs[p2 % 8] = Math.min(255, recalled);
+                    res.energyDelta -= 0.3;
+                }
+                break;
+            }
+
+            case ISA.HEBB: {
+                // --- ERA 52: Hebbian Plasticity ---
+                // p1 = bond slot (0-3); strengthen if both atoms resonating strongly
+                // "Fire together → wire together"
+                const HEBB_THRESHOLD = 200; // raw resonance (×SCALE = 0.2)
+                const slot = p1 % 4;
+                if (state.resonance > HEBB_THRESHOLD && state.synapticStack && !dryRun) {
+                    // Check neighbour resonance via spatialGrid density as a proxy
+                    // (actual resonance comparison happens in PULSE_WORKER)
+                    const targetIdx = state.bonds[slot];
+                    if (targetIdx > 0) {
+                        res.hebbRequest = { bondSlot: slot };
+                        res.energyDelta -= 1;
+                    }
+                }
+                break;
+            }
+
+            case ISA.FIRE: {
+                // --- ERA 52: Synaptic Signal Propagation ---
+                // p1 = bond slot; p2 = amplitude (0-255)
+                // Emit signal weighted by synapticStack[p1]
+                const slot = p1 % 4;
+                const amplitude = p2;
+                if (state.synapticStack && !dryRun) {
+                    const weight = state.synapticStack[slot]; // 0..255 scaled
+                    if (weight > 10) {
+                        res.intent.push({
+                            level: 18,
+                            value: { bondSlot: slot, amplitude, weight }
+                        });
+                        res.energyDelta -= (weight / 255) * amplitude * 0.1;
+                    }
+                }
+                break;
+            }
+
+            case ISA.ATTUNE: {
+                // --- ERA 53: Emergent Roles ---
+                // Read incoming FIRE signal tally from synapticStack[3].
+                // If tally exceeds threshold, auto-specialize into the role
+                // derived from dominant incoming synapse weight (slots 0–2).
+                // p1 = tally threshold (0=use default 20)
+                // p2 = role override (0=auto-derive from weights)
+                if (state.synapticStack && !dryRun) {
+                    const tally = state.synapticStack[3]; // incoming FIRE count
+                    const threshold = p1 > 0 ? p1 : 20;
+                    if (tally >= threshold) {
+                        let role: number;
+                        if (p2 > 0) {
+                            role = p2; // explicit override
+                        } else {
+                            // Derive role from the slot with the highest weight
+                            const w0 = state.synapticStack[0];
+                            const w1 = state.synapticStack[1];
+                            const w2 = state.synapticStack[2];
+                            if (w0 >= w1 && w0 >= w2)      role = 1; // Producer
+                            else if (w1 >= w0 && w1 >= w2) role = 2; // Guardian
+                            else                            role = 3; // Architect
+                        }
+                        res.roleRequest = { role };
+                        res.energyDelta -= 5;
+                        res.resonanceDelta += 10; // differentiation bonus
+                    }
+                }
+                break;
+            }
+
+            case ISA.AGE: {
+                // --- ERA 54: Temporal Cognition — read own age ---
+                // p1 = destination register
+                if (!dryRun) {
+                    const ageVal = Math.min(255, state.age ?? 0);
+                    regs[p1 % 8] = ageVal;
+                }
+                res.energyDelta -= 0.1;
+                break;
+            }
+
+            case ISA.PHASE_LIFE: {
+                // --- ERA 54: Lifecycle Phase Effects ---
+                // Reads age and applies phase-appropriate effect.
+                // Young   (0–49):   growth bonus — resonance +5
+                // Mature  (50–199): productivity — energy recoup + hive imprint eligible
+                // Aged    (200–399): teaching — FIRE amplitude boosted via resonanceDelta
+                // Senescent (400+): apoptosis — emit self-dissolution request
+                const age = state.age ?? 0;
+                if (!dryRun) {
+                    if (age < 50) {
+                        // Young: grow
+                        res.resonanceDelta += 5;
+                        res.energyDelta -= 0.5;
+                    } else if (age < 200) {
+                        // Mature: productive, slight energy recoup from nutrients
+                        res.resonanceDelta += 2;
+                        res.energyDelta += 0.5; // mature efficiency
+                    } else if (age < 400) {
+                        // Aged: teaching — emit FIRE across all bonds
+                        for (let b = 0; b < 4; b++) {
+                            if (state.bonds[b] > 0 && state.synapticStack) {
+                                const w = state.synapticStack[b];
+                                if (w > 10) {
+                                    res.intent.push({ level: 18, value: { bondSlot: b, amplitude: 150, weight: w } });
+                                }
+                            }
+                        }
+                        res.energyDelta -= 2;
+                    } else {
+                        // Senescent: apoptosis request
+                        res.apoptosisRequest = true;
+                        res.resonanceDelta += 20; // final resonance burst — wisdom transfer
+                        res.energyDelta -= 50;
+                    }
+                }
+                break;
+            }
         }
+
+
+
 
         if (!dryRun) {
             if (!pcJumped) pc = (pc + 1) % 16;
