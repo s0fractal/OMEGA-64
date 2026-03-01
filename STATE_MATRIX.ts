@@ -28,6 +28,7 @@ const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28:
 const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
 const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
 const memoryGridBuffer = new SharedArrayBuffer(70 * 40 * 8); // ERA 32: 70x40 grid of 8-byte bytecode (2x Int32)
+const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -50,6 +51,7 @@ const bondStiffness = new Float32Array(bondStiffnessBuffer);
 const synapticStack = new Int32Array(synapticStackBuffer);
 const structureGrid = new Int32Array(structureGridBuffer);
 const memoryGrid = new Uint8Array(memoryGridBuffer);
+const roles = new Uint8Array(roleRegistryBuffer);
 
 const SCALE = 1000;
 
@@ -62,10 +64,14 @@ export const STATE_MATRIX = {
     SCALE,
     evolutionRequestsBuffer,
     viralGridBuffer,
+    viralGrid,
     immuneBuffer,
+    quarantineFlags,
     synapticStackBuffer,
     structureGridBuffer,
     memoryGridBuffer,
+    roleRegistryBuffer,
+    roles,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -159,6 +165,7 @@ export const STATE_MATRIX = {
         synapticStack.fill(0);
         structureGrid.fill(0);
         memoryGrid.fill(0);
+        roles.fill(0);
     },
 
     getActiveIndices: () => {

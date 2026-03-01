@@ -13,7 +13,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -28,6 +28,7 @@ self.onmessage = (e) => {
     const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
     const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
     const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
+    const roles = new Uint8Array(roleRegistryBuffer); // ERA 33: Metabolic Specialization
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -123,9 +124,13 @@ self.onmessage = (e) => {
         y += Math.round(dy);
 
         // VM EXECUTION (L6: Contextual ISA)
-        const qLevel = Atomics.load(quarantineFlags, i);
-        const incomingSignal = Atomics.load(readBuffer, i);
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, quarantineLevel: qLevel, incomingMessage: incomingSignal });
+        const quarantineLevel = Atomics.load(quarantineFlags, i);
+        const incomingMessage = Atomics.load(readBuffer, i);
+        // Prepare State Object for VM
+        const currentRole = Atomics.load(roles, i);
+        
+        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, quarantineLevel, incomingMessage };
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState);
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -162,44 +167,47 @@ self.onmessage = (e) => {
         }
 
         // ERA 31: Architectural Stigmergy (BUILD / EXCAVATE)
+        const gxAt = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+        const gyAt = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const cellIdxAt = gyAt * 70 + gxAt;
+
         if (vmResult.modifiedStructure) {
-            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-            const cellIdx = gy * 70 + gx;
             // Pack: [Density (8 bits) | Type (8 bits)]
             const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
-            Atomics.store(structureGrid, cellIdx, val);
+            Atomics.store(structureGrid, cellIdxAt, val);
 
             // ERA 32: Structural cleanup - if density becomes 0, clear memory too
             if (vmResult.modifiedStructure.density === 0) {
-                memoryGrid[(gy * 70 + gx) * 8] = 0;
-                // We'll just clear the first byte as a flag for "Empty"
+                memoryGrid[cellIdxAt * 8] = 0;
             }
         }
 
         // ERA 32: Coded Memetics (ENCODE / DECODE)
         if (vmResult.memeticRequest) {
-            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-            const cellIdx = gy * 70 + gx;
-            const structureCell = Atomics.load(structureGrid, cellIdx);
+            const structureCell = Atomics.load(structureGrid, cellIdxAt);
             const density = (structureCell >> 8) & 0xFF;
 
             if (vmResult.memeticRequest === "ENCODE" && density > 50) {
                 // Write DNA to specific grid cell memory
                 for (let b = 0; b < 8; b++) {
-                    memoryGrid[cellIdx * 8 + b] = logicBytes[b];
+                    memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
                 }
             } else if (vmResult.memeticRequest === "DECODE") {
                 // Learn DNA from grid cell memory
-                // Only if someone wrote there (first byte non-zero for simplicity)
-                if (memoryGrid[cellIdx * 8] !== 0) {
+                if (memoryGrid[cellIdxAt * 8] !== 0) {
                     for (let b = 0; b < 8; b++) {
-                        logicBytes[b] = memoryGrid[cellIdx * 8 + b];
+                        logicBytes[b] = memoryGrid[cellIdxAt * 8 + b];
                     }
                 }
             }
         }
+
+        // ERA 33: Metabolic Specialization (Trophic Roles)
+        if (vmResult.modifiedRole !== undefined) {
+            Atomics.store(roles, i, vmResult.modifiedRole);
+        }
+
+        const role = Atomics.load(roles, i);
 
         // ERA 27: Message Routing + ERA 29: Hebbian Potentiation
         for (const msg of vmResult.outgoingMessages) {
@@ -215,6 +223,32 @@ self.onmessage = (e) => {
                 }
             }
         }
+
+        // --- ENERGY / RESONANCE APPLY (Metabolic Efficiency) ---
+        let ed = vmResult.energyDelta;
+        let rd = vmResult.resonanceDelta;
+
+        // Apply Role Penalties (Generalist is normalized)
+        const roleNum = Number(role);
+        if (roleNum > 0) {
+            // If performing non-role tasks, penalty applied
+            const isStructuralAction = vmResult.modifiedStructure || vmResult.modifiedStiffness;
+            const isMemeticAction = vmResult.memeticRequest;
+
+            if (roleNum === 1) { // PRODUCER: Penalty for build/learn
+                if (isStructuralAction || isMemeticAction) ed *= 1.4; // 40% more expensive
+            }
+            if (roleNum === 2) { // CONSTRUCTOR: Penalty for learning/feeding
+                if (isMemeticAction || ed > 0) ed *= 1.4; 
+            }
+            if (roleNum === 3) { // SIPHON: Penalty for production/knowledge
+                 if (ed > 0 || isMemeticAction) rd *= 1.4;
+            }
+        }
+
+        energy += ed;
+        resonance += rd;
+
 
         // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
         // ERA 29: Conductive Metabolism (Scaling by stiffness)
@@ -254,6 +288,30 @@ self.onmessage = (e) => {
             }
         }
 
+        // --- ENERGETIC COUPLING WITH ENVIRONMENT ---
+        // Nutrients (Energy Source)
+        const nutrient = Atomics.load(nutrients, cellIdxAt);
+        if (nutrient > 0 && energy < 100) {
+            let harvest = Math.min(nutrient, 2);
+            // ERA 33: Producer Bonus
+            if (roleNum === 1) harvest *= 1.5;
+
+            energy += harvest;
+            Atomics.sub(nutrients, cellIdxAt, Math.round(harvest));
+        }
+
+        // ERA 33: Siphon Bonus (Feeding from Structure)
+        if (roleNum === 3) {
+            const structureCell = Atomics.load(structureGrid, cellIdxAt);
+            const density = (structureCell >> 8) & 0xFF;
+            if (density > 50) {
+                energy += 0.5;
+                // Siphoning damages the structure!
+                const newDensity = Math.max(0, density - 1);
+                const newVal = (newDensity << 8) | (structureCell & 0xFF);
+                Atomics.store(structureGrid, cellIdxAt, newVal);
+            }
+        }
         // ERA 24: Horizontal Gene Transfer (Viral Semantics)
         if (gx >= 0 && gx < 70 && gy >= 0 && gy < 40) {
             const gridIdx = (gy * 70 + gx) * 9;

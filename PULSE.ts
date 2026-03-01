@@ -101,6 +101,7 @@ export const PULSE = {
                         synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
                         structureGridBuffer: STATE_MATRIX.structureGridBuffer,
                         memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
+                        roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
                         pulseId
                     });
                 });

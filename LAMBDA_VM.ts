@@ -11,6 +11,7 @@ export interface VMResult {
     syncRequest?: { reg: number }; // ERA 30: SYNC_AVG (Worker will handle)
     modifiedStructure?: { type: number, density: number }; // ERA 31: BUILD/EXCAVATE
     memeticRequest?: "ENCODE" | "DECODE"; // ERA 32: Cultural Inheritance
+    modifiedRole?: number; // ERA 33: Metabolic Specialization (SPEC)
     outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
 }
 
@@ -36,7 +37,9 @@ export const ISA = {
     // Architectural Stigmergy (ERA 31)
     BUILD: 0x80, EXCAVATE: 0x81,
     // Coded Memetics (ERA 32)
-    ENCODE: 0x82, DECODE: 0x83
+    ENCODE: 0x82, DECODE: 0x83,
+    // Metabolic Specialization (ERA 33)
+    SPEC: 0x84
 };
 
 export const LAMBDA_VM = {
@@ -44,7 +47,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
@@ -281,6 +284,16 @@ export const LAMBDA_VM = {
                 // Learn from current block
                 res.memeticRequest = "DECODE";
                 res.energyDelta -= 5;
+                break;
+
+            case ISA.SPEC:
+                // p1 is the requested role (1: Producer, 2: Constructor, 3: Siphon)
+                // Requires resonance > 100 to specialize
+                if (state.resonance > 100) {
+                    res.modifiedRole = p1 % 4; // 0 is generalist/reset
+                    res.energyDelta -= 20;
+                    res.resonanceDelta -= 30;
+                }
                 break;
 
         }

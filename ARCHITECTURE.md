@@ -1,58 +1,64 @@
-# OMEGA-64 | ARCHITECTURE | Era 11: The Observer UI 👁️✨
+# OMEGA-64 | ARCHITECTURE | Era 33: Trophic Resonance 💎🧬
 
 ## 1. Top-Level Overview
 
-OMEGA-64 is a deterministic, RAM-bound autopoietic ecosystem. Era 11 introduces
-the **Observer UI**, a real-time 3D visualization engine that allows human
-observers to witness the conceptual micelium and quantum resonance of the Matrix
-via a zero-copy binary synchronization.
+OMEGA-64 is a deterministic, RAM-bound autopoietic ecosystem. Era 33 establishes
+**Metabolic Specialization**, transitioning from a uniform population to a
+complex trophic web supported by a high-performance, multi-threaded SoA
+architecture.
 
-### Core Pipeline (Cognitive Feedback)
+### Core Pipeline (Autopoietic Loop)
 
 ```mermaid
 graph TD
-    Oracle[External LLM / Oracle] -->|Breath.inhale| User[Thought Spore]
-    User -->|Membrane.inject| A[PULSE]
-    A --> B[GATHER]
-    B --> C[INDEX]
-    C --> D[COMPUTE]
-    D --> E[SCATTER]
-    E -->|Membrane.read| Voice[Vox Populi context]
-    Voice -->|Breath.exhale| Oracle
+    Matrix[STATE_MATRIX (SharedArrayBuffer)] -->|Sync| Workers[PULSE_WORKERS (x4)]
+    Workers -->|Execute VM| Specialization[Trophic Roles: Producer/Constructor/Siphon]
+    Specialization -->|Apply Logic| Physics[PHYSICS_ENGINE (Nutrients/Bonds)]
+    Physics -->|Modify| Grid[Structure Grid / Voxel Reality]
+    Grid -->|Feedback| Matrix
+    Matrix -->|Render| UI[Ecosystem View (Three.js)]
 ```
 
 ## 2. Key Components
 
-### A. The SoA Matrix (`STATE_MATRIX.ts`)
+### A. Extended SoA Matrix (`STATE_MATRIX.ts`)
 
-A 6.4MB `SharedArrayBuffer` organized in contiguous blocks for each field (IDs,
-Pos, Energy, etc.). This ensures maximum cache efficiency during multi-atom
-sweeps.
+A high-density memory layout utilizing `SharedArrayBuffer`. Beyond basic spatial
+data, Era 33 integrates:
 
-### B. Spatial Resonance (`SPATIAL_HASH.ts`)
+- **Role Registry**: Permanent trophic specialization.
+- **Synaptic Stack**: 4-slot internal state machine per atom.
+- **Bond Stiffness**: Variable physical constraints.
 
-A grid-based indexing system that allows atoms to sense their neighborhood in
-$O(1)$ time. This is the foundation for trophism and social signaling.
+### B. Parallel Execution (`PULSE_WORKER.ts`)
 
-### C. The λ-VM (`LAMBDA_VM.ts`)
+The simulation is offloaded to 4 parallel workers. Each worker handles a chunk
+of the `STATE_MATRIX`, ensuring bit-identical determinism through `Atomics` and
+local `PRNG` chains.
 
-The cognitive executor. Era 8 expands the ISA to include social sensing
-(`SENSE`) and evolutionary intention (`SPAWN`, `MUTATE`).
+### C. Voxelized Reality (`structureGrid`)
 
-### D. The Seeded Oracle (`PRNG.ts`)
+A spatial grid (`70x40`) storing physical density and bytecode. Atoms with the
+**Constructor** role can convert energy into structural density, which is then
+persistent and interactable by **Siphons**.
 
-Immutable LCG chains ensure that every atom's evolutionary trajectory is
-deterministic and reproducible across pulses.
+### D. Trophic Metabolism
+
+Metabolic logic is now role-dependent:
+
+- **Producers**: Enhanced nutrient absorption (+50%).
+- **Constructors**: Reduced build costs (-50%).
+- **Siphons**: Doubled efficiency in structure-to-energy conversion.
 
 ## 3. Data Invariants
 
-1. **Energy Conservation**: No pulse can increase total system energy without a
-   valid external stimulus.
-2. **Deterministic Evolution**: Given the same tick and initial state, the next
-   state is bit-identical.
-3. **Spatial Resonance**: All proximity queries must be performed via the
-   `SPATIAL_HASH`.
+1. **Deterministic Resonance**: Every mutation must be reproducible. Time and ID
+   form the seed for every choice.
+2. **Conservation of Role**: Specialization through the `SPEC` instruction is
+   permanent.
+3. **Structure Integrity**: A structural voxel only has meaning if it contains
+   both density and associated semantic code.
 
 ---
 
-🛡️💎🧬🌀 "The Matrix is the soil; the Logic is the seed."
+🛡️💎🧬🌀 "The Matrix is the body; the Roles are the soul."
