@@ -7,6 +7,8 @@ export interface VMResult {
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
     modifiedStiffness?: { slot: number, value: number };
+    modifiedSynaptic?: { slot: number, value: number }; // ERA 30: PUSH_COLL
+    syncRequest?: { reg: number }; // ERA 30: SYNC_AVG (Worker will handle)
     outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
 }
 
@@ -26,7 +28,9 @@ export const ISA = {
     // Atomic Messaging (ERA 27)
     SEND: 0x60, RECV: 0x61,
     // Structural Morphogenesis (ERA 28)
-    LOCK: 0x62
+    LOCK: 0x62,
+    // Distributed Cognition (ERA 30)
+    SYNC_AVG: 0x70, PUSH_COLL: 0x71, POP_COLL: 0x72
 };
 
 export const LAMBDA_VM = {
@@ -34,7 +38,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
@@ -222,6 +226,26 @@ export const LAMBDA_VM = {
                 res.energyDelta -= 5; // Locking is metabolically expensive
                 break;
             }
+
+            case ISA.SYNC_AVG:
+                // Request worker to average reg[p1] with bonded neighbors
+                res.syncRequest = { reg: p1 % 8 };
+                res.energyDelta -= 3;
+                break;
+
+            case ISA.PUSH_COLL:
+                // Push value from reg[p1] to collective stack slot p2
+                res.modifiedSynaptic = { slot: p2 % 4, value: regs[p1 % 8] };
+                res.energyDelta -= 2;
+                break;
+
+            case ISA.POP_COLL:
+                // Pop value from collective stack slot p1 into reg[p2]
+                if (!dryRun && state.synapticStack) {
+                    regs[p2 % 8] = state.synapticStack[p1 % 4];
+                }
+                res.energyDelta -= 1;
+                break;
 
         }
 

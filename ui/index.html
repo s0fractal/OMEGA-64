@@ -461,6 +461,7 @@
       let signalFlags = new Uint8Array(MAX_ATOMS);
       let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
       let bondIndices = new Uint32Array(MAX_ATOMS * 4);
+      let synapseFlags = new Int32Array(MAX_ATOMS * 4);
 
       async function syncImmunity() {
         try {
@@ -495,6 +496,15 @@
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
           bondIndices.set(new Uint32Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncSynapses() {
+        try {
+          const res = await fetch("/synapses");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          synapseFlags.set(new Int32Array(buffer));
         } catch (e) {}
       }
 
@@ -587,6 +597,14 @@
               targetSiz[i] = 2 + e / 50;
             }
 
+            // ERA 30: Nucleus Visualization (High Resonance)
+            if (r > 800) {
+              targetSiz[i] *= 2.5;
+              targetCol[i * 3] = 1.0; // GOLD
+              targetCol[i * 3 + 1] = 0.8;
+              targetCol[i * 3 + 2] = 0.0;
+            }
+
 
 
           }
@@ -621,10 +639,19 @@
 
                 // Color by stiffness (Neural Fire: orange to yellow)
                 // If signaling, make it even brighter (Fire effect)
+                // ERA 30: Thought Waves (Pulsing segments based on Synaptic Stack activity)
                 const isFiring = signalFlags[i] > 0;
+                const synapseSum = Math.abs(synapseFlags[i * 4]) + Math.abs(synapseFlags[i * 4 + 1]);
+                const isThinking = synapseSum > 0;
+
                 const r = 1.0;
-                const g = 0.4 + (stiffness * 0.6) + (isFiring ? 0.2 : 0);
-                const bVal = stiffness * 0.2 + (isFiring ? 0.3 : 0);
+                let g = 0.4 + (stiffness * 0.6) + (isFiring ? 0.2 : 0);
+                let bVal = stiffness * 0.2 + (isFiring ? 0.3 : 0);
+                
+                if (isThinking) {
+                   g += 0.4; bVal += 0.6; // Turn to Cyan/White for Thought
+                }
+
                 bondCol[bondVIdx * 3] = r;
                 bondCol[bondVIdx * 3 + 1] = g;
                 bondCol[bondVIdx * 3 + 2] = bVal;
@@ -751,6 +778,7 @@
           syncSignals();
           syncStiffness();
           syncBonds();
+          syncSynapses();
           updatePeers();
           updateLeaderboard();
           lastSync = t;

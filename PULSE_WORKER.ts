@@ -13,7 +13,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -25,6 +25,7 @@ self.onmessage = (e) => {
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
     const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
     const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
+    const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -43,7 +44,9 @@ self.onmessage = (e) => {
     const logic = new Uint8Array(buffer, (MAX_ATOMS * 24), MAX_ATOMS * 8); 
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
     const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
-    const contexts = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64), MAX_ATOMS * 32);
+    
+    const CONTEXT_OFFSET = (MAX_ATOMS * 48) + (MAX_ATOMS * 64);
+    const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 
     for (let i = startIdx; i < endIdx; i++) {
@@ -121,6 +124,29 @@ self.onmessage = (e) => {
             bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
         }
 
+        // ERA 30: Synaptic Stack (PUSH_COLL)
+        if (vmResult.modifiedSynaptic) {
+            Atomics.store(synapticStack, i * 4 + vmResult.modifiedSynaptic.slot, vmResult.modifiedSynaptic.value);
+        }
+
+        // ERA 30: Holographic Sync (SYNC_AVG)
+        if (vmResult.syncRequest) {
+            const regIdx = vmResult.syncRequest.reg;
+            let sum = context[2 + regIdx];
+            let count = 1;
+            for (let b = 0; b < 4; b++) {
+                const targetIdx = bondView[b];
+                const stiffness = bondStiffs[i * 4 + b];
+                if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    // Peek into neighbor's register (context[2+regIdx])
+                    const neighborCtx = new Uint8Array(buffer, CONTEXT_OFFSET + (targetIdx * 32), 32);
+                    sum += neighborCtx[2 + regIdx];
+                    count++;
+                }
+            }
+            context[2 + regIdx] = Math.floor(sum / count);
+        }
+
         // ERA 27: Message Routing + ERA 29: Hebbian Potentiation
         for (const msg of vmResult.outgoingMessages) {
             if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
@@ -138,6 +164,7 @@ self.onmessage = (e) => {
 
         // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
         // ERA 29: Conductive Metabolism (Scaling by stiffness)
+        // ERA 30: Resonance Harvesting (Nucleosynthesis)
         for (let b = 0; b < 4; b++) {
             const stiffness = bondStiffs[i * 4 + b];
             const targetIdx = bondView[b];
@@ -153,6 +180,15 @@ self.onmessage = (e) => {
                 const diff = (targetEnergy - energy) * (stiffness * 0.5); 
                 energy += diff;
                 Atomics.store(energies, targetIdx, Math.round((targetEnergy - diff) * SCALE));
+
+                // ERA 30: Resonance Harvesting
+                // If I have higher resonance, I "Harvest" from neighbors
+                const targetRes = Atomics.load(resonances, targetIdx) / SCALE;
+                if (resonance > targetRes + 1.0) {
+                    const harvest = (targetRes * 0.05) * stiffness;
+                    resonance += harvest;
+                    Atomics.sub(resonances, targetIdx, Math.round(harvest * SCALE));
+                }
             }
         }
             

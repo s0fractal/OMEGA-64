@@ -25,6 +25,7 @@ const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine fla
 const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
 const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
+const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -44,6 +45,7 @@ const quarantineFlags = new Uint8Array(immuneBuffer);
 const messagesA = new Uint8Array(messageBufferA);
 const messagesB = new Uint8Array(messageBufferB);
 const bondStiffness = new Float32Array(bondStiffnessBuffer);
+const synapticStack = new Int32Array(synapticStackBuffer);
 
 const SCALE = 1000;
 
@@ -57,6 +59,7 @@ export const STATE_MATRIX = {
     evolutionRequestsBuffer,
     viralGridBuffer,
     immuneBuffer,
+    synapticStackBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -125,6 +128,12 @@ export const STATE_MATRIX = {
         bondStiffness[atomIdx * 4 + bondSlot] = val; 
     },
 
+    // --- SYNAPTIC STACK (ERA 30) ---
+    getSynapticValue: (atomIdx: number, slot: number) => Atomics.load(synapticStack, atomIdx * 4 + slot),
+    setSynapticValue: (atomIdx: number, slot: number, val: number) => {
+        Atomics.store(synapticStack, atomIdx * 4 + slot, val);
+    },
+
 
     // --- BONDS ---
     getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
@@ -141,6 +150,7 @@ export const STATE_MATRIX = {
         messagesA.fill(0);
         messagesB.fill(0);
         bondStiffness.fill(0);
+        synapticStack.fill(0);
     },
 
     getActiveIndices: () => {
