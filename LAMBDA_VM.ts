@@ -288,9 +288,15 @@ export const LAMBDA_VM = {
 
             case ISA.SPEC:
                 // p1 is the requested role (1: Producer, 2: Constructor, 3: Siphon)
-                // Requires resonance > 100 to specialize
+                // ERA 34: Trophic Plasticity
+                // If already specialized, switching role costs 50% current energy & resonance
                 if (state.resonance > 100) {
-                    res.modifiedRole = p1 % 4; // 0 is generalist/reset
+                    const newRole = p1 % 4;
+                    if (state.role !== undefined && state.role !== 0 && state.role !== newRole) {
+                        res.energyDelta -= (state.energy * 0.5);
+                        res.resonanceDelta -= (state.resonance * 0.5);
+                    }
+                    res.modifiedRole = newRole;
                     res.energyDelta -= 20;
                     res.resonanceDelta -= 30;
                 }

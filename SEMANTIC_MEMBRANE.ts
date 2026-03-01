@@ -173,9 +173,11 @@ export const SEMANTIC_MEMBRANE = {
         const GRID_H = 40;
 
         for (let i = 0; i < GRID_W * GRID_H; i++) {
-            const density = grid[i];
-            if (density > 100) {
-                // Potential Archaelogical Site
+            const cell = grid[i];
+            const density = (cell >> 8) & 0xFF; // Pack: [Density (8 bits) | Type (8 bits)]
+            
+            if (density > 50 && density < 150) {
+                // Potential Archaelogical Site (Moderate density = Ruins)
                 const bytecode = memory.subarray(i * 8, i * 8 + 8);
                 const hasMemory = Array.from(bytecode).some((b: number) => b !== 0);
                 

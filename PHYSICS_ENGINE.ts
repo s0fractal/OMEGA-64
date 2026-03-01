@@ -197,6 +197,47 @@ export const PHYSICS_ENGINE = {
             }
         }
         return { fx, fy };
+    },
+
+    /**
+     * ERA 34: Structural Decay & Memory Leaking
+     * Decays structureGrid density and leaks memoryGrid into viralGrid.
+     */
+    decayStructures: (structureGrid: Int32Array, memoryGrid: Uint8Array, viralGrid: Uint8Array) => {
+        const GRID_W = 70;
+        const GRID_H = 40;
+
+        for (let i = 0; i < GRID_W * GRID_H; i++) {
+            const cell = Atomics.load(structureGrid, i);
+            let density = (cell >> 8) & 0xFF;
+            const type = cell & 0xFF;
+
+            if (density > 0) {
+                // Radioactive Decay of Architecture
+                density = Math.max(0, density - 1);
+                Atomics.store(structureGrid, i, (density << 8) | type);
+
+                // ERA 34: Memory Leaking (The Soil Remembers)
+                // If density is low, logic begins to bleed into the environment
+                if (density > 0 && density < 50) {
+                    const gridIdx = i * 9; // viralGrid is 70x40x9
+                    // Leak bytecode from memoryGrid to viralGrid logic slots [0-7]
+                    for (let b = 0; b < 8; b++) {
+                        const logicByte = memoryGrid[i * 8 + b];
+                        if (logicByte !== 0) {
+                            Atomics.store(viralGrid, gridIdx + b, logicByte);
+                        }
+                    }
+                    // Set viral intensity based on residual density
+                    Atomics.store(viralGrid, gridIdx + 8, Math.min(255, 50 - density));
+                }
+
+                // Total decay clears memory
+                if (density === 0) {
+                    for (let b = 0; b < 8; b++) memoryGrid[i * 8 + b] = 0;
+                }
+            }
+        }
     }
 
 };

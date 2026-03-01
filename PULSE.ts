@@ -61,6 +61,10 @@ export const PULSE = {
                 // @ts-ignore: viralGrid exists in STATE_MATRIX
                 PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
                 
+                // ERA 34: Structural Decay & Memory Leaking
+                // @ts-ignore: structureGrid and memoryGrid exist in STATE_MATRIX
+                PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
+
                 // ERA 26: Collective Immunity
                 GATE.detectAntigens(STATE_MATRIX);
             }
