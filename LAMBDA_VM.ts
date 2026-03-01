@@ -19,6 +19,9 @@ export interface VMResult {
     apoptosisRequest?: boolean; // ERA 54
     quorumRequest?: { collectiveType: number, quorumCount: number }; // ERA 55
     lockPhaseRequest?: { targetPhase: number }; // ERA 58
+    morphRequest?: { zone: number, gradAngle: number }; // ERA 59
+    secretePlasmidRequest?: { logic: Uint8Array, intensity: number }; // ERA 60
+    incorporatePlasmidRequest?: { logic: Uint8Array }; // ERA 60
 }
 
 export const ISA = {
@@ -65,7 +68,11 @@ export const ISA = {
     // Synaptic Plasticity Decay (ERA 57)
     DECAY: 0x91,
     // Resonance Oscillators (ERA 58)
-    OSCILLATE: 0x92, LOCK_PHASE: 0x93
+    OSCILLATE: 0x92, LOCK_PHASE: 0x93,
+    // Morphogenetic Gradients (ERA 59)
+    GRAD: 0x94, MORPH: 0x95,
+    // Horizontal Gene Transfer (ERA 60)
+    SECRETE_PLASMID: 0x96, INCORPORATE_PLASMID: 0x97
 };
 
 export const LAMBDA_VM = {
@@ -230,6 +237,14 @@ export const LAMBDA_VM = {
                         const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
                         const cellBase = (gy * 140 + gx) * 32;
                         val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
+                        break;
+                    }
+                    case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
+                        const px = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
+                        const py = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+                        const dx = (state.pheromoneGrid[(py * 140 + px + 1)] - state.pheromoneGrid[(py * 140 + px - 1)]);
+                        const dy = (state.pheromoneGrid[((py + 1) * 140 + px)] - state.pheromoneGrid[((py - 1) * 140 + px)]);
+                        val = Math.min(255, Math.floor(Math.sqrt(dx * dx + dy * dy) / 100));
                         break;
                     }
                 }
@@ -758,7 +773,102 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.GRAD: {
+                // --- ERA 59: Morphogenetic Gradient Direction ---
+                // Reads local pheromone gradient and encodes direction as 0-255 angle.
+                // 0=right, 64=up, 128=left, 192=down. Stores in register p1.
+                // p2: 0=angle, 1=dx-component, 2=dy-component
+                const gPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
+                const gPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+                const gDx = state.pheromoneGrid[gPy * 140 + gPx + 1] - state.pheromoneGrid[gPy * 140 + gPx - 1];
+                const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] - state.pheromoneGrid[(gPy - 1) * 140 + gPx];
+                let gradVal: number;
+                if (p2 === 1) {
+                    gradVal = Math.min(255, Math.max(0, Math.floor((gDx + 32767) / 257)));
+                } else if (p2 === 2) {
+                    gradVal = Math.min(255, Math.max(0, Math.floor((gDy + 32767) / 257)));
+                } else {
+                    // Angle: atan2(dy,dx) mapped 0..255
+                    const angle = Math.atan2(gDy, gDx); // -π..+π
+                    gradVal = Math.floor(((angle + Math.PI) / (2 * Math.PI)) * 255) & 0xFF;
+                }
+                if (!dryRun) regs[p1 % 8] = gradVal;
+                break;
+            }
+
+            case ISA.MORPH: {
+                // --- ERA 59: Morphogenetic Differentiation ---
+                // Classifies local pheromone concentration into 3 spatial zones:
+                //   Zone 0 = Apex    (high:  concentration > p1*100)  → Architect role
+                //   Zone 1 = Slope   (mid:   concentration > p2*100)  → Guardian role
+                //   Zone 2 = Base    (low:   otherwise)               → Producer role
+                // Emits morphRequest with zone + gradient angle.
+                if (!dryRun) {
+                    const mPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
+                    const mPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+                    const conc = Math.abs(state.pheromoneGrid[mPy * 140 + mPx]);
+                    const hiThresh = (p1 > 0 ? p1 : 10) * 100;
+                    const loThresh = (p2 > 0 ? p2 : 3) * 100;
+                    const zone = conc > hiThresh ? 0 : conc > loThresh ? 1 : 2;
+                    // Gradient angle for orientation
+                    const mDx = state.pheromoneGrid[mPy * 140 + mPx + 1] - state.pheromoneGrid[mPy * 140 + mPx - 1];
+                    const mDy = state.pheromoneGrid[(mPy + 1) * 140 + mPx] - state.pheromoneGrid[(mPy - 1) * 140 + mPx];
+                    const gradAngle = Math.floor(((Math.atan2(mDy, mDx) + Math.PI) / (2 * Math.PI)) * 255) & 0xFF;
+                    res.morphRequest = { zone, gradAngle };
+                    // Role suggestion per zone
+                    const suggestedRole = zone === 0 ? 3 : zone === 1 ? 2 : 1; // Arch / Guard / Prod
+                    res.resonanceDelta += (3 - zone) * 2; // apex gets max bonus
+                    res.energyDelta -= 2;
+                    // Also push potential role transition via existing roleRequest
+                    if (!res.roleRequest) res.roleRequest = { role: suggestedRole };
+                }
+                break;
+            }
+
+            case ISA.SECRETE_PLASMID: {
+                // --- ERA 60: Horizontal Gene Transfer (Secretion) ---
+                // Writes atom's own 8-byte logic signature to the cell's viralGrid.
+                // p1 = intensity/TTL of the plasmid (added to 9th byte).
+                if (!dryRun) {
+                    const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
+                    const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+                    // cellBase for viralGrid is 9 bytes per cell
+                    const cellBase = (gy * 140 + gx) * 9;
+                    const intensity = p1 > 0 ? p1 : 128; // default intensity
+                    res.secretePlasmidRequest = { logic: new Uint8Array(logic), intensity };
+                    res.energyDelta -= 5; // secretion costs macroscopic energy
+                }
+                break;
+            }
+
+            case ISA.INCORPORATE_PLASMID: {
+                // --- ERA 60: Horizontal Gene Transfer (Absorption) ---
+                // Reads viralGrid at current cell. If intensity (byte 8) > p1 threshold,
+                // incorporates it by overwriting own 8-byte logic.
+                if (!dryRun) {
+                    const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
+                    const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+                    const cellBase = (gy * 140 + gx) * 9;
+                    const threshold = p1 > 0 ? p1 : 50;
+                    const plasmidIntensity = state.viralGrid[cellBase + 8];
+                    
+                    if (plasmidIntensity > threshold) {
+                        // Absorb the plasmid
+                        const plasmidLogic = new Uint8Array(8);
+                        for (let j = 0; j < 8; j++) {
+                            plasmidLogic[j] = state.viralGrid[cellBase + j];
+                        }
+                        res.incorporatePlasmidRequest = { logic: plasmidLogic };
+                        res.resonanceDelta += 50; // Massive reward for genetic novelty
+                        res.energyDelta -= 10;   // Rewiring is metabolically expensive
+                    }
+                }
+                break;
+            }
         }
+
+
 
 
 

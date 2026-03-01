@@ -289,6 +289,43 @@ self.onmessage = (e) => {
                 Atomics.store(phases, i, vmResult.lockPhaseRequest.targetPhase * SCALE);
             }
 
+            // --- ERA 59: Apply morphRequest (store zone in context byte 19) ---
+            if (vmResult.morphRequest) {
+                // Zone is stored in context[19] as spatial identity marker (0=apex, 1=slope, 2=base)
+                context[19] = vmResult.morphRequest.zone;
+            }
+
+            // --- ERA 60: Apply secretePlasmidRequest ---
+            if (vmResult.secretePlasmidRequest) {
+                const { logic: plasmidLogic, intensity } = vmResult.secretePlasmidRequest;
+                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
+                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
+                const cellBase = (gy * 140 + gx) * 9;
+                for (let j = 0; j < 8; j++) {
+                    Atomics.store(viralGrid, cellBase + j, plasmidLogic[j]);
+                }
+                const oldIntensity = Atomics.load(viralGrid, cellBase + 8);
+                Atomics.store(viralGrid, cellBase + 8, Math.min(255, oldIntensity + intensity));
+            }
+
+            // --- ERA 60: Apply incorporatePlasmidRequest ---
+            if (vmResult.incorporatePlasmidRequest) {
+                const { logic: plasmidLogic } = vmResult.incorporatePlasmidRequest;
+                for (let j = 0; j < 8; j++) {
+                    logicBytes[j] = plasmidLogic[j];
+                    Atomics.store(logic, i * 8 + j, plasmidLogic[j]);
+                }
+                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
+                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
+                const cellBase = (gy * 140 + gx) * 9;
+                const oldIntensity = Atomics.load(viralGrid, cellBase + 8);
+                Atomics.store(viralGrid, cellBase + 8, Math.max(0, oldIntensity - 10)); // consumes intensity
+                
+                // Identity mutation: reset role and semantic bonuses
+                Atomics.store(roles, i, 0); 
+                Atomics.store(semanticBonuses, i, 0);
+            }
+
             // --- ERA 57: Passive Synaptic Plasticity Decay ---
             // Every 10 ticks: decay weights NOT strengthened by HEBB this tick by 1.
             // If HEBB fired, weight grew → skip passive decay for that atom.
