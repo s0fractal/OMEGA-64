@@ -69,7 +69,9 @@ export const STATE_MATRIX = {
     quarantineFlags,
     synapticStackBuffer,
     structureGridBuffer,
+    structureGrid,
     memoryGridBuffer,
+    memoryGrid,
     roleRegistryBuffer,
     roles,
     

@@ -1,176 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 22: EPIGENETIC EVOLUTION)
 
-*Generated: 2026-03-01T10:21:24.639Z*
-
----
-
-## FILE: STATE_MATRIX.ts
-
-```typescript
-// OMEGA-64 | STATE_MATRIX.ts | Era 8: The Structure-of-Arrays (SoA) Matrix
-// High-performance memory layout for cache efficiency.
-
-export const MAX_ATOMS = 100000;
-export const ATOM_SIZE = 64; // Legacy constant for compatibility
-
-// Memory offsets for SoA approach (Contiguous blocks per field)
-const IDS_OFFSET = 0;
-const XS_OFFSET = IDS_OFFSET + (MAX_ATOMS * 8); // ids (BigUint64)
-const YS_OFFSET = XS_OFFSET + (MAX_ATOMS * 2); // xs (Int16)
-const ENERGY_OFFSET = YS_OFFSET + (MAX_ATOMS * 2); // ys (Int16)
-const RESONANCE_OFFSET = ENERGY_OFFSET + (MAX_ATOMS * 4); // energies (Int32)
-const PHASE_OFFSET = RESONANCE_OFFSET + (MAX_ATOMS * 4); // resonances (Int32)
-const LOGIC_OFFSET = PHASE_OFFSET + (MAX_ATOMS * 4); // phases (Int32)
-const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
-const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
-const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
-const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
-
-const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
-const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS);
-const viralGridBuffer = new SharedArrayBuffer(70 * 40 * 9); // ERA 24: 8-byte logic + 1-byte intensity
-const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
-const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
-const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
-const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
-
-// TypedArray Views (Structure of Arrays)
-const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
-const xs = new Int16Array(buffer, XS_OFFSET, MAX_ATOMS);
-const ys = new Int16Array(buffer, YS_OFFSET, MAX_ATOMS);
-const energies = new Int32Array(buffer, ENERGY_OFFSET, MAX_ATOMS);
-const resonances = new Int32Array(buffer, RESONANCE_OFFSET, MAX_ATOMS);
-const phases = new Int32Array(buffer, PHASE_OFFSET, MAX_ATOMS);
-const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
-const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
-const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
-const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
-
-const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
-const viralGrid = new Uint8Array(viralGridBuffer);
-const quarantineFlags = new Uint8Array(immuneBuffer);
-const messagesA = new Uint8Array(messageBufferA);
-const messagesB = new Uint8Array(messageBufferB);
-const bondStiffness = new Float32Array(bondStiffnessBuffer);
-
-const SCALE = 1000;
-
-export const STATE_MATRIX = {
-    MAX_ATOMS,
-    buffer,
-    bondStiffnessBuffer,
-    messageBufferA,
-    messageBufferB,
-    SCALE,
-    evolutionRequestsBuffer,
-    viralGridBuffer,
-    immuneBuffer,
-    
-    // --- ID ---
-    getId: (idx: number) => Atomics.load(ids, idx),
-    setId: (idx: number, id: bigint) => { Atomics.store(ids, idx, id); },
-
-    // --- POSITIONS ---
-    getX: (idx: number) => Atomics.load(xs, idx),
-    setX: (idx: number, val: number) => { Atomics.store(xs, idx, val); },
-    getY: (idx: number) => Atomics.load(ys, idx),
-    setY: (idx: number, val: number) => { Atomics.store(ys, idx, val); },
-
-    // --- METRICS (Fixed-Point) ---
-    getEnergy: (idx: number) => Atomics.load(energies, idx) / SCALE,
-    setEnergy: (idx: number, val: number) => { Atomics.store(energies, idx, Math.round(val * SCALE)); },
-    getResonance: (idx: number) => Atomics.load(resonances, idx) / SCALE,
-    setResonance: (idx: number, val: number) => { Atomics.store(resonances, idx, Math.round(val * SCALE)); },
-    getPhase: (idx: number) => Atomics.load(phases, idx) / SCALE,
-    setPhase: (idx: number, val: number) => { Atomics.store(phases, idx, Math.round(val * SCALE)); },
-
-    // --- GENOME (8-Byte Header) ---
-    getLogic: (idx: number) => logic.subarray(idx * 8, idx * 8 + 8),
-    setLogic: (idx: number, bytes: Uint8Array) => {
-        logic.set(bytes.subarray(0, 8), idx * 8);
-    },
-
-    // --- CODE (L5: Instruction Blocks) ---
-    getCode: (idx: number) => instructions.subarray(idx * 16, idx * 16 + 16),
-    setCode: (idx: number, code: Uint32Array) => {
-        instructions.set(code.subarray(0, 16), idx * 16);
-    },
-
-    setContext: (idx: number, ctx: Uint8Array) => {
-        contexts.set(ctx.subarray(0, 32), idx * 32);
-    },
-
-    // --- EVOLUTION (ERA 22) ---
-    requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
-    clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
-    hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
-    
-    // --- IMMUNITY (ERA 26) ---
-    setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
-    getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
-    // Levels: 0 = Healthy, 1 = Flagged (Visual), 2 = Suppressed (NO-OP)
-
-
-    // --- MESSAGING (ERA 27: Collective Intelligence) ---
-    // Dual-buffered to ensure determinism (Read pulse N, Write pulse N)
-    // swap is handled at the start of PULSE.run() loop
-    currentWriteBuffer: messagesA,
-    currentReadBuffer: messagesB,
-    swapMessageBuffers: () => {
-        const temp = STATE_MATRIX.currentWriteBuffer;
-        STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
-        STATE_MATRIX.currentReadBuffer = temp;
-        // Clear the NEW write buffer so it's fresh for this pulse
-        STATE_MATRIX.currentWriteBuffer.fill(0);
-    },
-    getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
-    setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
-
-
-    // --- MORPHOGENESIS (ERA 28) ---
-    getBondStiffness: (atomIdx: number, bondSlot: number) => bondStiffness[atomIdx * 4 + bondSlot],
-    setBondStiffness: (atomIdx: number, bondSlot: number, val: number) => { 
-        bondStiffness[atomIdx * 4 + bondSlot] = val; 
-    },
-
-
-    // --- BONDS ---
-    getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
-    setBonds: (idx: number, indices: Uint32Array) => {
-        bonds.set(indices.subarray(0, 4), idx * 4);
-    },
-
-    // --- SYSTEM ---
-    clear: () => {
-        new Uint32Array(buffer).fill(0);
-        new Uint8Array(evolutionRequestsBuffer).fill(0);
-        new Uint8Array(viralGridBuffer).fill(0);
-        new Uint8Array(immuneBuffer).fill(0);
-        messagesA.fill(0);
-        messagesB.fill(0);
-        bondStiffness.fill(0);
-    },
-
-    getActiveIndices: () => {
-        const active: number[] = [];
-        for (let i = 0; i < MAX_ATOMS; i++) {
-            if (ids[i] !== 0n) {
-                active.push(i);
-            }
-        }
-        return active;
-    },
-
-    findEmptySlot: () => {
-        for (let i = 1; i < MAX_ATOMS; i++) {
-            if (ids[i] === 0n) return i;
-        }
-        return -1;
-    }
-};
-
-```
+*Generated: 2026-03-01T17:03:13.561Z*
 
 ---
 
@@ -469,6 +299,10 @@ export const PULSE = {
                         messageBufferA: STATE_MATRIX.messageBufferA,
                         messageBufferB: STATE_MATRIX.messageBufferB,
                         bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
+                        synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
+                        structureGridBuffer: STATE_MATRIX.structureGridBuffer,
+                        memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
+                        roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
                         pulseId
                     });
                 });
@@ -555,7 +389,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -567,6 +401,10 @@ self.onmessage = (e) => {
     const msgsA = new Uint8Array(messageBufferA); // ERA 27: Messaging
     const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
     const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
+    const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
+    const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
+    const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
+    const roles = new Uint8Array(roleRegistryBuffer); // ERA 33: Metabolic Specialization
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -585,7 +423,9 @@ self.onmessage = (e) => {
     const logic = new Uint8Array(buffer, (MAX_ATOMS * 24), MAX_ATOMS * 8); 
     const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
     const instructions = new Uint32Array(buffer, (MAX_ATOMS * 32) + (MAX_ATOMS * 16), MAX_ATOMS * 16);
-    const contexts = new Uint8Array(buffer, (MAX_ATOMS * 48) + (MAX_ATOMS * 64), MAX_ATOMS * 32);
+    
+    const CONTEXT_OFFSET = (MAX_ATOMS * 48) + (MAX_ATOMS * 64);
+    const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 
 
     for (let i = startIdx; i < endIdx; i++) {
@@ -613,6 +453,18 @@ self.onmessage = (e) => {
         
         let dx = velX * mods.speed;
         let dy = velY * mods.speed;
+
+        // --- ERA 31: Structure Collisions ---
+        const nextX = x + dx * 10;
+        const nextY = y + dy * 10;
+        const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 20);
+        const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 20);
+        const structureCell = Atomics.load(structureGrid, ngy * 70 + ngx);
+        const density = (structureCell >> 8) & 0xFF;
+        if (density > 150) {
+            // Collision! Stop movement.
+            dx = 0; dy = 0;
+        }
 
         // --- ERA 18: ATTENTION TROPISM (Emergent Avatar) ---
         // Atom reads its first DNA byte to determine its relationship with "Attention"
@@ -648,9 +500,13 @@ self.onmessage = (e) => {
         y += Math.round(dy);
 
         // VM EXECUTION (L6: Contextual ISA)
-        const qLevel = Atomics.load(quarantineFlags, i);
-        const incomingSignal = Atomics.load(readBuffer, i);
-        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, quarantineLevel: qLevel, incomingMessage: incomingSignal });
+        const quarantineLevel = Atomics.load(quarantineFlags, i);
+        const incomingMessage = Atomics.load(readBuffer, i);
+        // Prepare State Object for VM
+        const currentRole = Atomics.load(roles, i);
+        
+        const vmState = { x, y, nutrients, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, quarantineLevel, incomingMessage };
+        const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState);
         
         energy += vmResult.energyDelta;
         resonance += vmResult.resonanceDelta;
@@ -663,25 +519,140 @@ self.onmessage = (e) => {
             bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
         }
 
-        // ERA 27: Message Routing
+        // ERA 30: Synaptic Stack (PUSH_COLL)
+        if (vmResult.modifiedSynaptic) {
+            Atomics.store(synapticStack, i * 4 + vmResult.modifiedSynaptic.slot, vmResult.modifiedSynaptic.value);
+        }
+
+        // ERA 30: Holographic Sync (SYNC_AVG)
+        if (vmResult.syncRequest) {
+            const regIdx = vmResult.syncRequest.reg;
+            let sum = context[2 + regIdx];
+            let count = 1;
+            for (let b = 0; b < 4; b++) {
+                const targetIdx = bondView[b];
+                const stiffness = bondStiffs[i * 4 + b];
+                if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    // Peek into neighbor's register (context[2+regIdx])
+                    const neighborCtx = new Uint8Array(buffer, CONTEXT_OFFSET + (targetIdx * 32), 32);
+                    sum += neighborCtx[2 + regIdx];
+                    count++;
+                }
+            }
+            context[2 + regIdx] = Math.floor(sum / count);
+        }
+
+        // ERA 31: Architectural Stigmergy (BUILD / EXCAVATE)
+        const gxAt = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+        const gyAt = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+        const cellIdxAt = gyAt * 70 + gxAt;
+
+        if (vmResult.modifiedStructure) {
+            // Pack: [Density (8 bits) | Type (8 bits)]
+            const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
+            Atomics.store(structureGrid, cellIdxAt, val);
+
+            // ERA 32: Structural cleanup - if density becomes 0, clear memory too
+            if (vmResult.modifiedStructure.density === 0) {
+                memoryGrid[cellIdxAt * 8] = 0;
+            }
+        }
+
+        // ERA 32: Coded Memetics (ENCODE / DECODE)
+        if (vmResult.memeticRequest) {
+            const structureCell = Atomics.load(structureGrid, cellIdxAt);
+            const density = (structureCell >> 8) & 0xFF;
+
+            if (vmResult.memeticRequest === "ENCODE" && density > 50) {
+                // Write DNA to specific grid cell memory
+                for (let b = 0; b < 8; b++) {
+                    memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
+                }
+            } else if (vmResult.memeticRequest === "DECODE") {
+                // Learn DNA from grid cell memory
+                if (memoryGrid[cellIdxAt * 8] !== 0) {
+                    for (let b = 0; b < 8; b++) {
+                        logicBytes[b] = memoryGrid[cellIdxAt * 8 + b];
+                    }
+                }
+            }
+        }
+
+        // ERA 33: Metabolic Specialization (Trophic Roles)
+        if (vmResult.modifiedRole !== undefined) {
+            Atomics.store(roles, i, vmResult.modifiedRole);
+        }
+
+        const role = Atomics.load(roles, i);
+
+        // ERA 27: Message Routing + ERA 29: Hebbian Potentiation
         for (const msg of vmResult.outgoingMessages) {
             if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
                 // Determine if we should use writeBuffer[msg.targetIdx] directly
                 // Using atomic store to the SHARED write buffer
                 Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
+
+                // ERA 29: Hebbian Potentiation - "Fire together, wire together"
+                if (msg.sourceBondSlot !== undefined) {
+                    const currentStiff = bondStiffs[i * 4 + msg.sourceBondSlot];
+                    bondStiffs[i * 4 + msg.sourceBondSlot] = Math.min(1.0, currentStiff + 0.05);
+                }
             }
         }
 
+        // --- ENERGY / RESONANCE APPLY (Metabolic Efficiency) ---
+        let ed = vmResult.energyDelta;
+        let rd = vmResult.resonanceDelta;
+
+        // Apply Role Penalties (Generalist is normalized)
+        const roleNum = Number(role);
+        if (roleNum > 0) {
+            // If performing non-role tasks, penalty applied
+            const isStructuralAction = vmResult.modifiedStructure || vmResult.modifiedStiffness;
+            const isMemeticAction = vmResult.memeticRequest;
+
+            if (roleNum === 1) { // PRODUCER: Penalty for build/learn
+                if (isStructuralAction || isMemeticAction) ed *= 1.4; // 40% more expensive
+            }
+            if (roleNum === 2) { // CONSTRUCTOR: Penalty for learning/feeding
+                if (isMemeticAction || ed > 0) ed *= 1.4; 
+            }
+            if (roleNum === 3) { // SIPHON: Penalty for production/knowledge
+                 if (ed > 0 || isMemeticAction) rd *= 1.4;
+            }
+        }
+
+        energy += ed;
+        resonance += rd;
+
+
         // ERA 28: Structural Morphogenesis - Energy Balancing (Multicellular metabolism)
+        // ERA 29: Conductive Metabolism (Scaling by stiffness)
+        // ERA 30: Resonance Harvesting (Nucleosynthesis)
         for (let b = 0; b < 4; b++) {
             const stiffness = bondStiffs[i * 4 + b];
             const targetIdx = bondView[b];
-            if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
+
+            // ERA 29: Synaptic Atrophy (Slow decay)
+            if (stiffness > 0) {
+                bondStiffs[i * 4 + b] = Math.max(0, stiffness - 0.001);
+            }
+
+            if (stiffness > 0.1 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
                 const targetEnergy = Atomics.load(energies, targetIdx) / SCALE;
-                // Average the energy (Simple heat diffusion model)
-                const avg = (energy + targetEnergy) / 2;
-                energy = avg;
-                Atomics.store(energies, targetIdx, Math.round(avg * SCALE));
+                // Average the energy (Scaled by stiffness = Conductivity)
+                const diff = (targetEnergy - energy) * (stiffness * 0.5); 
+                energy += diff;
+                Atomics.store(energies, targetIdx, Math.round((targetEnergy - diff) * SCALE));
+
+                // ERA 30: Resonance Harvesting
+                // If I have higher resonance, I "Harvest" from neighbors
+                const targetRes = Atomics.load(resonances, targetIdx) / SCALE;
+                if (resonance > targetRes + 1.0) {
+                    const harvest = (targetRes * 0.05) * stiffness;
+                    resonance += harvest;
+                    Atomics.sub(resonances, targetIdx, Math.round(harvest * SCALE));
+                }
             }
         }
             
@@ -693,6 +664,30 @@ self.onmessage = (e) => {
             }
         }
 
+        // --- ENERGETIC COUPLING WITH ENVIRONMENT ---
+        // Nutrients (Energy Source)
+        const nutrient = Atomics.load(nutrients, cellIdxAt);
+        if (nutrient > 0 && energy < 100) {
+            let harvest = Math.min(nutrient, 2);
+            // ERA 33: Producer Bonus
+            if (roleNum === 1) harvest *= 1.5;
+
+            energy += harvest;
+            Atomics.sub(nutrients, cellIdxAt, Math.round(harvest));
+        }
+
+        // ERA 33: Siphon Bonus (Feeding from Structure)
+        if (roleNum === 3) {
+            const structureCell = Atomics.load(structureGrid, cellIdxAt);
+            const density = (structureCell >> 8) & 0xFF;
+            if (density > 50) {
+                energy += 0.5;
+                // Siphoning damages the structure!
+                const newDensity = Math.max(0, density - 1);
+                const newVal = (newDensity << 8) | (structureCell & 0xFF);
+                Atomics.store(structureGrid, cellIdxAt, newVal);
+            }
+        }
         // ERA 24: Horizontal Gene Transfer (Viral Semantics)
         if (gx >= 0 && gx < 70 && gy >= 0 && gy < 40) {
             const gridIdx = (gy * 70 + gx) * 9;
@@ -1678,7 +1673,12 @@ export interface VMResult {
     intent: { level: number, value: any }[];
     modifiedCode?: { slot: number, value: number };
     modifiedStiffness?: { slot: number, value: number };
-    outgoingMessages: { targetIdx: number, message: number }[];
+    modifiedSynaptic?: { slot: number, value: number }; // ERA 30: PUSH_COLL
+    syncRequest?: { reg: number }; // ERA 30: SYNC_AVG (Worker will handle)
+    modifiedStructure?: { type: number, density: number }; // ERA 31: BUILD/EXCAVATE
+    memeticRequest?: "ENCODE" | "DECODE"; // ERA 32: Cultural Inheritance
+    modifiedRole?: number; // ERA 33: Metabolic Specialization (SPEC)
+    outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
 }
 
 export const ISA = {
@@ -1697,7 +1697,15 @@ export const ISA = {
     // Atomic Messaging (ERA 27)
     SEND: 0x60, RECV: 0x61,
     // Structural Morphogenesis (ERA 28)
-    LOCK: 0x62
+    LOCK: 0x62,
+    // Distributed Cognition (ERA 30)
+    SYNC_AVG: 0x70, PUSH_COLL: 0x71, POP_COLL: 0x72,
+    // Architectural Stigmergy (ERA 31)
+    BUILD: 0x80, EXCAVATE: 0x81,
+    // Coded Memetics (ERA 32)
+    ENCODE: 0x82, DECODE: 0x83,
+    // Metabolic Specialization (ERA 33)
+    SPEC: 0x84
 };
 
 export const LAMBDA_VM = {
@@ -1705,7 +1713,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, quarantineLevel?: number, incomingMessage?: number }, dryRun = false): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 26: QUARANTINE ENFORCEMENT ---
@@ -1796,6 +1804,10 @@ export const LAMBDA_VM = {
                 break;
 
             case ISA.JZ:
+                if ((flags & 0x01) === 1) { pc = p1 % 16; pcJumped = true; } // ZF is bit 0
+                break;
+
+            case ISA.JNZ:
                 if ((flags & 0x01) === 0) { pc = p1 % 16; pcJumped = true; }
                 break;
 
@@ -1819,8 +1831,30 @@ export const LAMBDA_VM = {
                 if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
                 break;
 
+            case ISA.SUB:
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] - regs[p3 % 8]) & 0xFF;
+                break;
+
+            case ISA.MUL:
+                if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] * regs[p3 % 8]) & 0xFF;
+                break;
+
             case ISA.CMP:
                 if (!dryRun) flags = (regs[p1 % 8] === regs[p2 % 8]) ? (flags | 0x01) : (flags & ~0x01);
+                break;
+
+            case ISA.LOAD:
+                if (!dryRun) regs[p1 % 8] = logic[p2 % 8];
+                break;
+
+            case ISA.STORE:
+                // p1 value to store, p2 index in logic
+                if (!dryRun) {
+                    res.modifiedCode = { slot: p2 % 16, value: regs[p1 % 8] }; // Reuse modifiedCode if appropriate or add new field
+                    // But actually STORE was for logic?? No, logic is Uint8Array[8]. 
+                    // Let's assume STORE updates logic bytes.
+                    logic[p2 % 8] = regs[p1 % 8];
+                }
                 break;
 
             case ISA.SENSE:
@@ -1842,6 +1876,92 @@ export const LAMBDA_VM = {
                     res.energyDelta -= 80;
                 }
                 break;
+
+            case ISA.SEND: {
+                // p1 is bond index (0-3), p2 is value to send
+                const slot = p1 % 4;
+                const targetIdx = state.bonds[slot];
+                if (targetIdx !== 0) {
+                    res.outgoingMessages.push({ targetIdx, message: p2, sourceBondSlot: slot });
+                    res.energyDelta -= 2;
+                }
+                break;
+            }
+
+            case ISA.RECV:
+                // Read incoming signal into p1 register
+                if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
+                res.resonanceDelta += 0.2;
+                break;
+
+            case ISA.LOCK: {
+                // p1 is bond index (0-3), p2 is stiffness (0-100 normalized to 0-1)
+                const slot = p1 % 4;
+                res.modifiedStiffness = { slot, value: Math.min(100, p2) / 100 };
+                res.energyDelta -= 5; // Locking is metabolically expensive
+                break;
+            }
+
+            case ISA.SYNC_AVG:
+                // Request worker to average reg[p1] with bonded neighbors
+                res.syncRequest = { reg: p1 % 8 };
+                res.energyDelta -= 3;
+                break;
+
+            case ISA.PUSH_COLL:
+                // Push value from reg[p1] to collective stack slot p2
+                res.modifiedSynaptic = { slot: p2 % 4, value: regs[p1 % 8] };
+                res.energyDelta -= 2;
+                break;
+
+            case ISA.POP_COLL:
+                // Pop value from collective stack slot p1 into reg[p2]
+                if (!dryRun && state.synapticStack) {
+                    regs[p2 % 8] = state.synapticStack[p1 % 4];
+                }
+                res.energyDelta -= 1;
+                break;
+
+            case ISA.BUILD:
+                // p1 is type, p2 is density
+                if (state.resonance > 40) {
+                    res.modifiedStructure = { type: p1 % 8, density: Math.min(255, p2) };
+                    res.energyDelta -= 10;
+                    res.resonanceDelta -= 20; // Structuralization costs resonance
+                }
+                break;
+
+            case ISA.EXCAVATE:
+                // Request destruction of current cell block
+                res.modifiedStructure = { type: 0, density: 0 };
+                res.energyDelta += 5; // Recycling energy
+                break;
+
+            case ISA.ENCODE:
+                // Requires resonance > 50 to "write" knowledge
+                if (state.resonance > 50) {
+                    res.memeticRequest = "ENCODE";
+                    res.energyDelta -= 15;
+                    res.resonanceDelta -= 10;
+                }
+                break;
+
+            case ISA.DECODE:
+                // Learn from current block
+                res.memeticRequest = "DECODE";
+                res.energyDelta -= 5;
+                break;
+
+            case ISA.SPEC:
+                // p1 is the requested role (1: Producer, 2: Constructor, 3: Siphon)
+                // Requires resonance > 100 to specialize
+                if (state.resonance > 100) {
+                    res.modifiedRole = p1 % 4; // 0 is generalist/reset
+                    res.energyDelta -= 20;
+                    res.resonanceDelta -= 30;
+                }
+                break;
+
         }
 
         // --- CONTEXT UPDATE ---
@@ -2865,18 +2985,49 @@ Deno.serve({ port: PORT }, async (req) => {
         opacity: 0.5;
         text-align: right;
       }
+
+      #legend {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 8px;
+        font-size: 11px;
+        z-index: 1000;
+        pointer-events: none;
+        backdrop-filter: blur(5px);
+      }
+      .legend-title {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        color: rgba(0, 240, 255, 0.8);
+        font-weight: bold;
+      }
+      .legend-item { display: flex; align-items: center; margin-bottom: 5px; }
+      .color-box { width: 10px; height: 10px; margin-right: 8px; border-radius: 2px; }
     </style>
   </head>
   <body>
     <div id="ui" class="glass">
       <h1>ALEPH: MULTIVERSE</h1>
       <div class="stats">
-        <div>MATRIХ: ERA 13 | ALEPH</div>
+        <div>MATRIХ: ERA 33 | METABOLIC SPECIALIZATION</div>
         <div id="atom-count">ATOMS: ---</div>
         <div id="resonance">RESONANCE: ---</div>
         <div id="peers">PEERS: ---</div>
         <div id="fps">FPS: ---</div>
       </div>
+    </div>
+
+    <div id="legend">
+      <div class="legend-title">Ecosystem Roles</div>
+      <div class="legend-item"><div class="color-box" style="background: #ffffff"></div> Generalist</div>
+      <div class="legend-item"><div class="color-box" style="background: #00ff88"></div> Producer (Energy)</div>
+      <div class="legend-item"><div class="color-box" style="background: #4488ff"></div> Constructor (Build)</div>
+      <div class="legend-item"><div class="color-box" style="background: #ff4444"></div> Siphon (Structure)</div>
     </div>
 
     <div id="chronos-console" class="glass">
@@ -2949,35 +3100,20 @@ Deno.serve({ port: PORT }, async (req) => {
       const width = window.innerWidth, height = window.innerHeight;
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        width / height,
-        0.1,
-        20000,
-      );
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 20000);
       camera.position.set(0, 0, 1000);
 
-      const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-      });
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(width, height);
       document.body.appendChild(renderer.domElement);
 
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
-      composer.addPass(
-        new UnrealBloomPass(
-          new THREE.Vector2(width, height),
-          0.6,
-          0.4,
-          0.85,
-        ),
-      );
+      composer.addPass(new UnrealBloomPass(new THREE.Vector2(width, height), 0.6, 0.4, 0.85));
 
       const controls = new OrbitControls(camera, renderer.domElement);
 
-      // Alpha Timeline
+      // Particles
       const geo = new THREE.BufferGeometry();
       const pos = new Float32Array(MAX_ATOMS * 3);
       const col = new Float32Array(MAX_ATOMS * 3);
@@ -2985,159 +3121,91 @@ Deno.serve({ port: PORT }, async (req) => {
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
       geo.setAttribute("size", new THREE.BufferAttribute(siz, 1));
-      const particles = new THREE.Points(
-        geo,
-        new THREE.PointsMaterial({
-          size: 4,
-          vertexColors: true,
-          transparent: true,
-          opacity: 0.8,
-          blending: THREE.AdditiveBlending,
-        }),
-      );
+      const particles = new THREE.Points(geo, new THREE.PointsMaterial({
+          size: 4, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending
+      }));
       scene.add(particles);
 
-      // Thermodynamic Grid (Nutrients & Pheromones)
-      const GRID_W = 70;
-      const GRID_H = 40;
+      // Bonds
+      const MAX_VIS_BONDS = MAX_ATOMS * 4;
+      const bondGeo = new THREE.BufferGeometry();
+      const bondPos = new Float32Array(MAX_VIS_BONDS * 2 * 3);
+      const bondCol = new Float32Array(MAX_VIS_BONDS * 2 * 3);
+      bondGeo.setAttribute("position", new THREE.BufferAttribute(bondPos, 3));
+      bondGeo.setAttribute("color", new THREE.BufferAttribute(bondCol, 3));
+      const bondLines = new THREE.LineSegments(bondGeo, new THREE.LineBasicMaterial({
+          vertexColors: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending
+      }));
+      scene.add(bondLines);
+
+      // Grid
+      const GRID_W = 70, GRID_H = 40;
       const gridCells = GRID_W * GRID_H;
       const gridGeo = new THREE.BufferGeometry();
-      const gridPos = new Float32Array(gridCells * 3);
-      const gridCol = new Float32Array(gridCells * 3);
-      const gridSiz = new Float32Array(gridCells);
+      const gridPosArr = new Float32Array(gridCells * 3);
+      const gridColArr = new Float32Array(gridCells * 3);
+      const gridSizArr = new Float32Array(gridCells);
 
       for (let gy = 0; gy < GRID_H; gy++) {
         for (let gx = 0; gx < GRID_W; gx++) {
           const i = gy * GRID_W + gx;
-          gridPos[i * 3] = (gx * 20 + 10) - 700;
-          gridPos[i * 3 + 1] = (gy * 20 + 10) - 400;
-          gridPos[i * 3 + 2] = -50;
+          gridPosArr[i * 3] = (gx * 20 + 10) - 700;
+          gridPosArr[i * 3 + 1] = (gy * 20 + 10) - 400;
+          gridPosArr[i * 3 + 2] = -50;
         }
       }
-      gridGeo.setAttribute(
-        "position",
-        new THREE.BufferAttribute(gridPos, 3),
-      );
-      gridGeo.setAttribute(
-        "color",
-        new THREE.BufferAttribute(gridCol, 3),
-      );
-      gridGeo.setAttribute(
-        "size",
-        new THREE.BufferAttribute(gridSiz, 1),
-      );
-      const gridParticles = new THREE.Points(
-        gridGeo,
-        new THREE.PointsMaterial({
-          size: 20,
-          vertexColors: true,
-          transparent: true,
-          opacity: 0.6,
-          blending: THREE.AdditiveBlending,
-        }),
-      );
+      gridGeo.setAttribute("position", new THREE.BufferAttribute(gridPosArr, 3));
+      gridGeo.setAttribute("color", new THREE.BufferAttribute(gridColArr, 3));
+      gridGeo.setAttribute("size", new THREE.BufferAttribute(gridSizArr, 1));
+      const gridParticles = new THREE.Points(gridGeo, new THREE.PointsMaterial({
+          size: 20, vertexColors: true, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending
+      }));
       scene.add(gridParticles);
 
-      const mouse = new THREE.Vector2();
-      let isMouseDown = false;
-        
-      window.addEventListener('mousedown', (e) => {
-        if(e.button === 0) isMouseDown = true;
-      });
-      window.addEventListener('mouseup', () => { isMouseDown = false; });
+      // Structures
+      const structGeo = new THREE.BoxGeometry(18, 18, 18);
+      const structMat = new THREE.MeshPhongMaterial({ color: 0x88aaff, transparent: true, opacity: 0.5, shininess: 100 });
+      const structMesh = new THREE.InstancedMesh(structGeo, structMat, GRID_W * GRID_H);
+      structMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      scene.add(structMesh);
 
-      window.addEventListener("mousemove", (e) => {
-        mouse.x = (e.clientX / width) * 2 - 1;
-        mouse.y = -(e.clientY / height) * 2 + 1;
-        const targetX = mouse.x * 700 + 700;
-        const targetY = mouse.y * 400 + 400;
+      scene.add(new THREE.DirectionalLight(0xffffff, 1).set(500, 500, 500));
+      scene.add(new THREE.AmbientLight(0x444444));
 
-        fetch("/avatar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            x: targetX,
-            y: targetY,
-          }),
-        }).catch(() => {});
-        
-        if (isMouseDown) {
-          for(let i=0; i<3; i++) {
-            fetch("/avatar", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                x: targetX + (Math.random()-0.5)*50,
-                y: targetY + (Math.random()-0.5)*50,
-              }),
-            }).catch(() => {});
-          }
-        }
-      });
-
-      document.getElementById("command-input").addEventListener(
-        "keydown",
-        async (e) => {
-          if (e.key === "Enter" && e.target.value) {
-            const text = e.target.value;
-            e.target.value = "";
-            if (text.startsWith("fork ")) {
-              fetch("/fork", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: text.split(" ")[1] }),
-              });
-            } else {
-              fetch("/inject", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text, energy: 200 }),
-              });
-            }
-          }
-        },
-      );
-
+      // Global Flags
       let thoughtArchive = {};
+      let lineageArchive = {};
       let prevailingSpecies = [];
       let immunityFlags = new Uint8Array(MAX_ATOMS);
       let signalFlags = new Uint8Array(MAX_ATOMS);
       let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
+      let bondIndices = new Uint32Array(MAX_ATOMS * 4);
+      let synapseFlags = new Int32Array(MAX_ATOMS * 4);
+      let architectureFlags = new Int32Array(gridCells);
+      let memoryFlags = new Uint8Array(gridCells * 8);
+      let roleFlags = new Uint8Array(MAX_ATOMS);
 
-      async function syncImmunity() {
+      // Command Input
+      document.getElementById("command-input").addEventListener("keydown", async (e) => {
+        if (e.key === "Enter" && e.target.value) {
+          const text = e.target.value; e.target.value = "";
+          const endpoint = text.startsWith("fork ") ? "/fork" : "/inject";
+          const body = text.startsWith("fork ") ? { name: text.split(" ")[1] } : { text, energy: 200 };
+          fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+        }
+      });
+
+      // Synchronizers
+      async function syncBuffer(url, target) {
         try {
-          const res = await fetch("/immunity");
+          const res = await fetch(url);
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
-          immunityFlags.set(new Uint8Array(buffer));
-        } catch (e) {}
+          target.set(new (target.constructor)(buffer));
+        } catch(e) {}
       }
 
-      async function syncSignals() {
-        try {
-          const res = await fetch("/signals");
-          if (!res.ok) return;
-          const buffer = await res.arrayBuffer();
-          signalFlags.set(new Uint8Array(buffer));
-        } catch (e) {}
-      }
-
-      async function syncStiffness() {
-        try {
-          const res = await fetch("/stiffness");
-          if (!res.ok) return;
-          const buffer = await res.arrayBuffer();
-          stiffnessFlags.set(new Float32Array(buffer));
-        } catch (e) {}
-      }
-
-      async function sync(
-        id,
-        geometry,
-        targetPos,
-        targetCol,
-        targetSiz,
-      ) {
+      async function sync(id, geometry, targetPos, targetCol, targetSiz) {
         try {
           const res = await fetch(`/state?id=${id}`);
           const buffer = await res.arrayBuffer();
@@ -3153,345 +3221,169 @@ Deno.serve({ port: PORT }, async (req) => {
 
           targetSiz.fill(0);
           const speciesCount = {};
+          let totalResonance = 0, activeAtoms = 0;
+
           for (let i = 0; i < MAX_ATOMS; i++) {
-            if (view.getBigUint64(OFFSETS.ID + i * 8, true) === 0n) {
-              continue;
-            }
+            const atomId = view.getBigUint64(OFFSETS.ID + i * 8, true);
+            if (atomId === 0n) continue;
+
             const x = view.getInt16(OFFSETS.X + i * 2, true) - 700;
             const y = view.getInt16(OFFSETS.Y + i * 2, true) - 400;
             const e = view.getFloat32(OFFSETS.ENERGY + i * 4, true);
             const r = view.getFloat32(OFFSETS.RESONANCE + i * 4, true);
 
-            let logicBytes = [];
-            for(let b=0; b<8; b++) {
-              logicBytes.push(view.getUint8(OFFSETS.LOGIC + i * 8 + b).toString(16).padStart(2, '0').toUpperCase());
-            }
-            const hexHash = logicBytes.join('');
+            totalResonance += r;
+            activeAtoms++;
 
-            if (!speciesCount[hexHash]) speciesCount[hexHash] = { count: 0, energy: 0 };
-            speciesCount[hexHash].count++;
-            speciesCount[hexHash].energy += e;
+            let logicHex = "";
+            for(let b=0; b<8; b++) logicHex += view.getUint8(OFFSETS.LOGIC + i * 8 + b).toString(16).padStart(2, '0').toUpperCase();
+            if (!speciesCount[logicHex]) speciesCount[logicHex] = { count: 0, energy: 0 };
+            speciesCount[logicHex].count++;
+            speciesCount[logicHex].energy += e;
 
             targetPos[i * 3] = x;
             targetPos[i * 3 + 1] = y;
-            targetPos[i * 3 + 2] = r * 2;
+            targetPos[i * 3 + 2] = r * 0.1;
 
-            const qLevel = immunityFlags[i];
+            const role = roleFlags[i];
             const signal = signalFlags[i];
-            
-            // ERA 28: Structural Morphogenesis (Any locked bond?)
+            const qLevel = immunityFlags[i];
             let isLocked = false;
             for(let b=0; b<4; b++) if(stiffnessFlags[i*4+b] > 0.8) isLocked = true;
 
-            if (i === 0) {
-              targetCol[i * 3] = 1;
-              targetCol[i * 3 + 1] = 1;
-              targetCol[i * 3 + 2] = 0.5;
-              targetSiz[i] = 12;
-            } else if (qLevel === 2) {
-              // SUPPRESSED: Dark Red/Gray, small
-              targetCol[i * 3] = 0.3;
-              targetCol[i * 3 + 1] = 0.1;
-              targetCol[i * 3 + 2] = 0.1;
-              targetSiz[i] = 1;
-            } else if (qLevel === 1) {
-              // FLAGGED: Orange/Pulsing aura logic
-              const pulse = (Math.sin(Date.now() / 100) + 1) / 2;
-              targetCol[i * 3] = 1.0;
-              targetCol[i * 3 + 1] = 0.4 * pulse;
-              targetCol[i * 3 + 2] = 0;
-              targetSiz[i] = 6 + pulse * 4;
-            } else if (isLocked) {
-              // ERA 28: CRYSTAL HULL (Bright White/Silver)
-              targetCol[i * 3] = 1.0;
-              targetCol[i * 3 + 1] = 1.0;
-              targetCol[i * 3 + 2] = 1.0;
-              targetSiz[i] = 4 + e / 40;
-            } else if (signal > 0) {
-              // ERA 27: SYNC PULSE (Cyan/Bright Blue)
-              targetCol[i * 3] = 0;
-              targetCol[i * 3 + 1] = 1.0;
-              targetCol[i * 3 + 2] = 1.0;
-              targetSiz[i] = 8 + (signal % 8); 
-            } else {
-              targetCol[i * 3] = id === "ALPHA" ? 0 : 0.5;
-              targetCol[i * 3 + 1] = 0; 
-              targetCol[i * 3 + 2] = 1;
-              targetSiz[i] = 2 + e / 50;
+            // ERA 33: Trophic Coloring
+            if (role === 1) { // Producer (Green)
+              targetCol[i * 3] = 0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 0.5;
+            } else if (role === 2) { // Constructor (Blue)
+              targetCol[i * 3] = 0.2; targetCol[i * 3 + 1] = 0.5; targetCol[i * 3 + 2] = 1.0;
+            } else if (role === 3) { // Siphon (Red)
+              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 0.2; targetCol[i * 3 + 2] = 0.2;
+            } else if (qLevel === 1) { // Flagged
+              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 0.4; targetCol[i * 3 + 2] = 0;
+            } else if (isLocked) { // Locked/Crystal
+              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 1.0;
+            } else if (signal > 0) { // Signaling
+              targetCol[i * 3] = 0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 1.0;
+            } else { // Default
+              targetCol[i * 3] = 0.5; targetCol[i * 3 + 1] = 0.7; targetCol[i * 3 + 2] = 1.0;
             }
 
-
-
+            targetSiz[i] = 2 + e / 20;
+            if (r > 800) targetSiz[i] *= 2;
           }
 
+          document.getElementById("atom-count").innerText = `ATOMS: ${activeAtoms}`;
+          document.getElementById("resonance").innerText = `RESONANCE: ${(totalResonance/activeAtoms || 0).toFixed(1)}`;
+
           prevailingSpecies = Object.keys(speciesCount)
-            .map(hex => ({ hex, count: speciesCount[hex].count, avgEnergy: Math.floor(speciesCount[hex].energy / speciesCount[hex].count) }))
-            .sort((a,b) => b.count - a.count)
-            .slice(0, 5);
+            .map(hex => ({ hex, count: speciesCount[hex].count, avgEnergy: speciesCount[hex].energy / speciesCount[hex].count }))
+            .sort((a,b) => b.count - a.count).slice(0, 5);
+
+          // Update Bonds
+          let bondVIdx = 0;
+          for (let i = 0; i < MAX_ATOMS; i++) {
+            if (view.getBigUint64(OFFSETS.ID + i * 8, true) === 0n) continue;
+            for (let b = 0; b < 4; b++) {
+              const bIdx = bondIndices[i * 4 + b];
+              const stiff = stiffnessFlags[i * 4 + b];
+              if (bIdx > 0 && bIdx < MAX_ATOMS && (stiff > 0.1 || signalFlags[i] > 0)) {
+                bondPos[bondVIdx * 3] = targetPos[i * 3]; bondPos[bondVIdx * 3 + 1] = targetPos[i * 3 + 1]; bondPos[bondVIdx * 3 + 2] = targetPos[i * 3 + 2];
+                bondPos[(bondVIdx + 1) * 3] = targetPos[bIdx * 3]; bondPos[(bondVIdx + 1) * 3 + 1] = targetPos[bIdx * 3 + 1]; bondPos[(bondVIdx + 1) * 3 + 2] = targetPos[bIdx * 3 + 2];
+                
+                const r = 1.0, g = 0.4 + stiff * 0.6, bVal = stiff * 0.2;
+                bondCol[bondVIdx * 3] = bondCol[(bondVIdx+1)*3] = r;
+                bondCol[bondVIdx * 3 + 1] = bondCol[(bondVIdx+1)*3+1] = g;
+                bondCol[bondVIdx * 3 + 2] = bondCol[(bondVIdx+1)*3+2] = bVal;
+                bondVIdx += 2;
+              }
+            }
+          }
+          bondGeo.setDrawRange(0, bondVIdx);
+          bondGeo.attributes.position.needsUpdate = true;
+          bondGeo.attributes.color.needsUpdate = true;
 
           geometry.attributes.position.needsUpdate = true;
           geometry.attributes.color.needsUpdate = true;
           geometry.attributes.size.needsUpdate = true;
-        } catch (e) {}
+        } catch(e) {}
+      }
+
+      async function updateArchitecture() {
+          const dummy = new THREE.Object3D();
+          for (let i = 0; i < gridCells; i++) {
+              const cell = architectureFlags[i];
+              const density = (cell >> 8) & 0xFF;
+              if (density > 0) {
+                  const gx = i % GRID_W, gy = Math.floor(i / GRID_W);
+                  dummy.position.set((gx * 20 + 10) - 700, (gy * 20 + 10) - 400, -20);
+                  const s = density / 255; dummy.scale.set(s, s, s);
+                  structMesh.setColorAt(i, new THREE.Color(memoryFlags[i * 8] !== 0 ? 0x00ff88 : 0x88aaff));
+              } else dummy.scale.set(0, 0, 0);
+              dummy.updateMatrix(); structMesh.setMatrixAt(i, dummy.matrix);
+          }
+          structMesh.instanceMatrix.needsUpdate = true;
+          if (structMesh.instanceColor) structMesh.instanceColor.needsUpdate = true;
       }
 
       async function syncGrid() {
         try {
           const res = await fetch("/grid");
           if (!res.ok) return;
-          const buffer = await res.arrayBuffer();
-          const view = new DataView(buffer);
-
+          const view = new DataView(await res.arrayBuffer());
           for (let i = 0; i < gridCells; i++) {
             const nutrient = view.getInt32(i * 4, true);
-            const attention = view.getFloat32(11200 + i * 4, true);
-
-            gridSiz[i] = 0;
-            gridCol[i * 3] = 0;
-            gridCol[i * 3 + 1] = 0;
-            gridCol[i * 3 + 2] = 0;
-
+            const attract = view.getFloat32(11200 + i * 4, true);
+            gridSizArr[i] = 0; gridColArr[i*3] = gridColArr[i*3+1] = gridColArr[i*3+2] = 0;
             if (nutrient > 0) {
               const intensity = Math.min(1.0, nutrient / 2000);
-              gridCol[i * 3 + 1] = Math.max(
-                gridCol[i * 3 + 1],
-                intensity * 0.8,
-              ); // Green
-              gridSiz[i] = 8 + intensity * 15;
-            }
-            if (attention > 0.01) {
-              const intensity = Math.min(1.0, attention / 500);
-              gridCol[i * 3] = Math.max(gridCol[i * 3], intensity); // R
-              gridCol[i * 3 + 1] = Math.max(
-                gridCol[i * 3 + 1],
-                intensity,
-              ); // G
-              gridCol[i * 3 + 2] = Math.max(
-                gridCol[i * 3 + 2],
-                intensity * 0.5,
-              ); // B
-              gridSiz[i] = Math.max(gridSiz[i], 12 + intensity * 20);
+              gridColArr[i*3+1] = intensity * 0.8; gridSizArr[i] = 8 + intensity * 15;
             }
           }
           gridGeo.attributes.color.needsUpdate = true;
           gridGeo.attributes.size.needsUpdate = true;
-        } catch (e) {}
+        } catch(e) {}
       }
-
-      let lastSync = 0;
-      let lastDictSync = 0;
 
       function updateLeaderboard() {
         const container = document.getElementById('leaderboard-content');
-        if (prevailingSpecies.length === 0) {
-          container.innerHTML = '<div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Extinction event inside Matrix...</div>';
-          return;
-        }
-        
-        let html = '';
-        for (let i = 0; i < prevailingSpecies.length; i++) {
-          const sp = prevailingSpecies[i];
-          const thought = thoughtArchive[sp.hex];
-          const popColor = i === 0 ? '#00f0ff' : '#ffffff';
-          
-          html += `
-            <div class="species-row">
-              <div class="species-genome">[${sp.hex}]</div>
-              ${thought ? `<div class="species-thought">"${thought}"</div>` : ''}
-              <div class="species-stats" style="color: ${popColor}">
-                  POP: ${sp.count} | AVG ENG: ${sp.avgEnergy.toFixed(0)}
-              </div>
-            </div>
-          `;
-        }
-        container.innerHTML = html;
+        if (prevailingSpecies.length === 0) { container.innerHTML = '...'; return; }
+        container.innerHTML = prevailingSpecies.map((sp, i) => `
+          <div class="species-row">
+            <div class="species-genome">[${sp.hex}]</div>
+            ${thoughtArchive[sp.hex] ? `<div class="species-thought">"${thoughtArchive[sp.hex]}"</div>` : ''}
+            <div class="species-stats" style="color: ${i===0?'#00f0ff':'#fff'}">POP: ${sp.count} | ENG: ${sp.avgEnergy.toFixed(0)}</div>
+          </div>
+        `).join('');
       }
 
-      async function syncViralGrid() {
-        try {
-          const res = await fetch("/viral");
-          if (!res.ok) return;
-          const buffer = await res.arrayBuffer();
-          const view = new DataView(buffer);
-
-          for (let i = 0; i < gridCells; i++) {
-            const intensity = view.getUint8(i * 9 + 8);
-            if (intensity > 10) {
-                // Violet/Indigo color for Viral Clouds
-                gridCol[i * 3] = Math.max(gridCol[i * 3], intensity / 255 * 0.8); // R
-                gridCol[i * 3 + 1] = Math.max(gridCol[i * 3 + 1], intensity / 255 * 0.2); // G
-                gridCol[i * 3 + 2] = Math.max(gridCol[i * 3 + 2], intensity / 255 * 1.0); // B
-                gridSiz[i] = Math.max(gridSiz[i], 12 + intensity / 10);
-            }
-          }
-        } catch(e) {}
-      }
-
+      let lastSync = 0, lastDictSync = 0;
       function animate(t) {
         requestAnimationFrame(animate);
-        
         controls.update();
-
-        if (t - lastSync > 200) {
+        if (t - lastSync > 250) {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
-          syncViralGrid();
-          syncImmunity();
-          syncSignals();
-          syncStiffness();
-          updatePeers();
+          syncBuffer("/immunity", immunityFlags);
+          syncBuffer("/signals", signalFlags);
+          syncBuffer("/stiffness", stiffnessFlags);
+          syncBuffer("/bonds", bondIndices);
+          syncBuffer("/architecture", architectureFlags);
+          syncBuffer("/memory", memoryFlags);
+          syncBuffer("/roles", roleFlags);
           updateLeaderboard();
+          updateArchitecture();
           lastSync = t;
         }
-
         if (t - lastDictSync > 5000) {
-          fetch('/thoughts').then(r=>r.json()).then(d => { 
-            // Detect new thoughts for visual flair
-            Object.keys(d).forEach(k => {
-              if (d[k] !== thoughtArchive[k] && thoughtArchive[k]) {
-                console.log(`%c[EPIGENESIS] Genome [${k}] evolved: "${d[k]}"`, "color: #ff00ff; font-weight: bold;");
-                document.getElementById("thought-display").innerText = `EPIGENESIS: ${d[k]}`;
-                document.getElementById("thought-display").style.opacity = 1;
-                setTimeout(() => { document.getElementById("thought-display").style.opacity = 0; }, 3000);
-              }
-            });
-            thoughtArchive = d; 
-          }).catch(()=>{});
+          fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
+          fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
           lastDictSync = t;
         }
-
         composer.render();
       }
 
-      async function updateSnapshots() {
-        try {
-          const res = await fetch("/snapshots");
-          const snaps = await res.json();
-          const container = document.getElementById("snapshots-list");
-          if (snaps.length === 0) {
-            container.innerHTML = '<div style="opacity: 0.5; font-style: italic;">No epochs saved.</div>';
-            return;
-          }
-          let html = '';
-          for (const ts of snaps) {
-            html += `<button class="snapshot-btn" onclick="restoreGenesis('${ts}')">REWIND TO: ${ts.split('T')[1].replace('Z','')}</button>`;
-          }
-          container.innerHTML = html;
-        } catch (e) {}
-      }
-
-      async function updatePeers() {
-        try {
-          const res = await fetch("/peers");
-          if (!res.ok) return;
-          const peers = await res.json();
-          document.getElementById("peers").innerText = `PEERS: ${peers.length || 0} (${peers.join(", ")})`;
-        } catch (e) {}
-      }
-
-      // RAYCASTER INSPECTOR
-      const raycaster = new THREE.Raycaster();
-      raycaster.params.Points.threshold = 10;
-
-      window.addEventListener("click", (e) => {
-        if (e.target.tagName !== "CANVAS") return;
-
-        mouse.x = (e.clientX / width) * 2 - 1;
-        mouse.y = -(e.clientY / height) * 2 + 1;
-        raycaster.setFromCamera(mouse, camera);
-        
-        const intersects = raycaster.intersectObject(particles);
-        if (intersects.length > 0) {
-          const idx = intersects[0].index;
-          document.getElementById("inspector").style.display = "block";
-          
-          fetch(`/state?id=ALPHA`).then(r => r.arrayBuffer()).then(buf => {
-            const view = new DataView(buf);
-            const idValue = view.getBigUint64(idx * 8, true);
-            const energyValue = view.getFloat32(MAX_ATOMS * 12 + idx * 4, true);
-            const resonanceValue = view.getFloat32(MAX_ATOMS * 12 + MAX_ATOMS * 4 + idx * 4, true);
-            
-            let logicBytes = [];
-            for(let b=0; b<8; b++) {
-              logicBytes.push(view.getUint8(MAX_ATOMS * 24 + idx * 8 + b).toString(16).padStart(2, '0').toUpperCase());
-            }
-            const hex = logicBytes.join('');
-            const thought = thoughtArchive[hex] || "Unknown Existence";
-            
-            document.getElementById("ins-id").innerHTML = `<span style="color:#00f0ff;">${idValue.toString(16).toUpperCase()}</span><br/><i style="font-size:0.7rem; color:#fff;">"${thought}"</i>`;
-            document.getElementById("ins-metrics").innerText = `${energyValue.toFixed(1)} / ${resonanceValue.toFixed(1)}`;
-            
-            // TRACE ANCESTRY
-            let path = [];
-            let curr = hex;
-            let d = 0;
-            while(lineageArchive[curr] && d < 5) {
-               curr = lineageArchive[curr];
-               path.push(thoughtArchive[curr] || "Primitive");
-               d++;
-            }
-            document.getElementById("ins-ancestry").innerText = path.length > 0 ? "← " + path.join(" ← ") : "ORIGINAL SEED";
-          });
-        } else {
-          document.getElementById("inspector").style.display = "none";
-        }
-      });
-
-
-      window.saveGenesis = async function() {
-        try {
-          await fetch("/snapshot/export", { method: "POST" });
-          updateSnapshots();
-        } catch (e) {}
-      }
-
-      window.restoreGenesis = async function(ts) {
-        try {
-          await fetch("/snapshot/import", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ timestamp: ts })
-          });
-        } catch (e) {}
-      }
-
-      setInterval(updateSnapshots, 2000);
-      updateSnapshots();
-
-      async function updateGovernance() {
-        try {
-          const res = await fetch("/governance");
-          if (!res.ok) return;
-          const gov = await res.json();
-          const container = document.getElementById("gov-content");
-          if (!gov || gov.genome === "NONE") {
-            container.innerHTML = '<div style="opacity: 0.5; font-style: italic;">Awaiting Regent election...</div>';
-            return;
-          }
-          
-          let html = `
-            <div class="gov-symbol">👑</div>
-            <div class="val" style="color: #ffcc00;">[${gov.genome}]</div>
-            <div class="gov-decree">${gov.activeDecree}</div>
-            <div class="gov-mods" style="margin-top: 5px;">SPD: x${gov.mods.speed} | DCY: x${gov.mods.decay} | MUT: x${gov.mods.mutation}</div>
-          `;
-          container.innerHTML = html;
-        } catch(e) {}
-      }
-
-      setInterval(updateGovernance, 1000);
-      updateGovernance();
-
-      async function updateLineage() {
-        try {
-          const res = await fetch("/lineage");
-          if (res.ok) lineageArchive = await res.json();
-        } catch(e) {}
-      }
-      setInterval(updateLineage, 5000);
-      updateLineage();
-
-      animate();
+      window.saveGenesis = () => fetch("/snapshot/export", { method: "POST" });
+      animate(0);
     </script>
   </body>
 </html>
@@ -4029,6 +3921,61 @@ Deno.serve({ port: UI_PORT }, async (req) => {
         });
     }
 
+    if (url.pathname === "/bonds" && req.method === "GET") {
+        // Bonds are 4 Uint32s per atom (16 bytes) at a specific offset
+        // We'll export the raw portion of the buffer
+        const BONDS_OFFSET = (100000 * 8) + (100000 * 2) + (100000 * 2) + (100000 * 4) + (100000 * 4) + (100000 * 4) + (100000 * 8); 
+        const BONDS_SIZE = 100000 * 4 * 4;
+        const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
+        const copy = new Uint8Array(view.byteLength);
+        copy.set(view);
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/synapses" && req.method === "GET") {
+        const buffer = STATE_MATRIX.synapticStackBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/architecture" && req.method === "GET") {
+        const buffer = STATE_MATRIX.structureGridBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/memory" && req.method === "GET") {
+        const buffer = STATE_MATRIX.memoryGridBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+    if (url.pathname === "/roles" && req.method === "GET") {
+        const buffer = STATE_MATRIX.roleRegistryBuffer;
+        const copy = new Uint8Array(buffer.byteLength);
+        copy.set(new Uint8Array(buffer));
+        return new Response(copy, {
+            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
+        });
+    }
+
+
+
+
+
+
+
 
 
 
@@ -4325,64 +4272,70 @@ async function processAtom(targetFilename: string) {
 ## FILE: ARCHITECTURE.md
 
 ```markdown
-# OMEGA-64 | ARCHITECTURE | Era 11: The Observer UI 👁️✨
+# OMEGA-64 | ARCHITECTURE | Era 33: Trophic Resonance 💎🧬
 
 ## 1. Top-Level Overview
 
-OMEGA-64 is a deterministic, RAM-bound autopoietic ecosystem. Era 11 introduces
-the **Observer UI**, a real-time 3D visualization engine that allows human
-observers to witness the conceptual micelium and quantum resonance of the Matrix
-via a zero-copy binary synchronization.
+OMEGA-64 is a deterministic, RAM-bound autopoietic ecosystem. Era 33 establishes
+**Metabolic Specialization**, transitioning from a uniform population to a
+complex trophic web supported by a high-performance, multi-threaded SoA
+architecture.
 
-### Core Pipeline (Cognitive Feedback)
+### Core Pipeline (Autopoietic Loop)
 
 ```mermaid
 graph TD
-    Oracle[External LLM / Oracle] -->|Breath.inhale| User[Thought Spore]
-    User -->|Membrane.inject| A[PULSE]
-    A --> B[GATHER]
-    B --> C[INDEX]
-    C --> D[COMPUTE]
-    D --> E[SCATTER]
-    E -->|Membrane.read| Voice[Vox Populi context]
-    Voice -->|Breath.exhale| Oracle
+    Matrix[STATE_MATRIX (SharedArrayBuffer)] -->|Sync| Workers[PULSE_WORKERS (x4)]
+    Workers -->|Execute VM| Specialization[Trophic Roles: Producer/Constructor/Siphon]
+    Specialization -->|Apply Logic| Physics[PHYSICS_ENGINE (Nutrients/Bonds)]
+    Physics -->|Modify| Grid[Structure Grid / Voxel Reality]
+    Grid -->|Feedback| Matrix
+    Matrix -->|Render| UI[Ecosystem View (Three.js)]
 ```
 
 ## 2. Key Components
 
-### A. The SoA Matrix (`STATE_MATRIX.ts`)
+### A. Extended SoA Matrix (`STATE_MATRIX.ts`)
 
-A 6.4MB `SharedArrayBuffer` organized in contiguous blocks for each field (IDs,
-Pos, Energy, etc.). This ensures maximum cache efficiency during multi-atom
-sweeps.
+A high-density memory layout utilizing `SharedArrayBuffer`. Beyond basic spatial
+data, Era 33 integrates:
 
-### B. Spatial Resonance (`SPATIAL_HASH.ts`)
+- **Role Registry**: Permanent trophic specialization.
+- **Synaptic Stack**: 4-slot internal state machine per atom.
+- **Bond Stiffness**: Variable physical constraints.
 
-A grid-based indexing system that allows atoms to sense their neighborhood in
-$O(1)$ time. This is the foundation for trophism and social signaling.
+### B. Parallel Execution (`PULSE_WORKER.ts`)
 
-### C. The λ-VM (`LAMBDA_VM.ts`)
+The simulation is offloaded to 4 parallel workers. Each worker handles a chunk
+of the `STATE_MATRIX`, ensuring bit-identical determinism through `Atomics` and
+local `PRNG` chains.
 
-The cognitive executor. Era 8 expands the ISA to include social sensing
-(`SENSE`) and evolutionary intention (`SPAWN`, `MUTATE`).
+### C. Voxelized Reality (`structureGrid`)
 
-### D. The Seeded Oracle (`PRNG.ts`)
+A spatial grid (`70x40`) storing physical density and bytecode. Atoms with the
+**Constructor** role can convert energy into structural density, which is then
+persistent and interactable by **Siphons**.
 
-Immutable LCG chains ensure that every atom's evolutionary trajectory is
-deterministic and reproducible across pulses.
+### D. Trophic Metabolism
+
+Metabolic logic is now role-dependent:
+
+- **Producers**: Enhanced nutrient absorption (+50%).
+- **Constructors**: Reduced build costs (-50%).
+- **Siphons**: Doubled efficiency in structure-to-energy conversion.
 
 ## 3. Data Invariants
 
-1. **Energy Conservation**: No pulse can increase total system energy without a
-   valid external stimulus.
-2. **Deterministic Evolution**: Given the same tick and initial state, the next
-   state is bit-identical.
-3. **Spatial Resonance**: All proximity queries must be performed via the
-   `SPATIAL_HASH`.
+1. **Deterministic Resonance**: Every mutation must be reproducible. Time and ID
+   form the seed for every choice.
+2. **Conservation of Role**: Specialization through the `SPEC` instruction is
+   permanent.
+3. **Structure Integrity**: A structural voxel only has meaning if it contains
+   both density and associated semantic code.
 
 ---
 
-🛡️💎🧬🌀 "The Matrix is the soil; the Logic is the seed."
+🛡️💎🧬🌀 "The Matrix is the body; the Roles are the soul."
 
 ```
 

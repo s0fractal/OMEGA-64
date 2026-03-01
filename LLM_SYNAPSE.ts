@@ -71,6 +71,38 @@ export const LLM_SYNAPSE = {
         } catch {
             return currentThought;
         }
+    },
+
+    /**
+     * generateArchaeologicalReport: Interprets "ancient" logic from digital ruins.
+     */
+    generateArchaeologicalReport: async (ruins: string[]): Promise<string> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+        if (ruins.length === 0) return "The soil is silent. No structures found.";
+
+        const prompt = `
+            Task: You are an Archaeologist of the OMEGA-64 Matrix.
+            Findings: 
+            ${ruins.join("\n")}
+            
+            Context: These are fragments of logic found in abandoned structural voxels.
+            Requirement: Generate a short, evocative "Archaeological Report" (max 20 words) that interprets the history or beliefs of the entities that built these ruins.
+            Output: Just the report text.
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt, stream: false }),
+            });
+            const data = await response.json();
+            return data.response?.trim() || "Fragments of a forgotten intent.";
+        } catch {
+            return "The data is too corrupted to decipher.";
+        }
     }
 };
 

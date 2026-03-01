@@ -25,6 +25,18 @@ export const BREATH = {
             const weight = 80 + Math.random() * 40;
             await SEMANTIC_MEMBRANE.injectThought(thought, weight);
             
+            // 4. Digital Archaeology (Every 5 cycles)
+            if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
+                console.log("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
+                const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
+                if (ruins.length > 0) {
+                    const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
+                    console.log(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
+                } else {
+                    console.log("   [ARCHAEOLOGY] No ruins found in this sector.");
+                }
+            }
+
             console.log(`   [BREATH] Exhale complete. Next cycle in ${BREATH_INTERVAL_MS/1000}s.`);
             
             await new Promise(r => setTimeout(r, BREATH_INTERVAL_MS));

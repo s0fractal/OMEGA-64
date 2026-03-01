@@ -160,5 +160,42 @@ export const SEMANTIC_MEMBRANE = {
             }
         } catch { /* NOOP */ }
         return thoughts;
+    },
+
+    scanDigitalRuins: (): string[] => {
+        const ruins: string[] = [];
+        // @ts-ignore: structureGrid exists in STATE_MATRIX
+        const grid = STATE_MATRIX.structureGrid;
+        // @ts-ignore: memoryGrid exists in STATE_MATRIX
+        const memory = STATE_MATRIX.memoryGrid;
+        
+        const GRID_W = 70;
+        const GRID_H = 40;
+
+        for (let i = 0; i < GRID_W * GRID_H; i++) {
+            const density = grid[i];
+            if (density > 100) {
+                // Potential Archaelogical Site
+                const bytecode = memory.subarray(i * 8, i * 8 + 8);
+                const hasMemory = Array.from(bytecode).some((b: number) => b !== 0);
+                
+                if (hasMemory) {
+                    const hexHash = Array.from(bytecode).map((b: number) => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+                    const thought = SEMANTIC_MEMBRANE.thoughtArchive.get(hexHash);
+                    
+                    const x = i % GRID_W;
+                    const y = Math.floor(i / GRID_W);
+                    
+                    if (thought) {
+                        ruins.push(`Found preserved logic at [${x},${y}]: "${thought}" (Genome: ${hexHash})`);
+                    } else {
+                        ruins.push(`Found ancient ruins at [${x},${y}] with unknown genome: ${hexHash}`);
+                    }
+                }
+            }
+        }
+        
+        // Limit to top 5 discoveries to avoid overwhelming the Oracle
+        return ruins.slice(0, 5);
     }
 };
