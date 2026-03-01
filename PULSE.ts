@@ -102,9 +102,9 @@ export const PULSE = {
         SPATIAL_HASH.build(activeIndices);
         if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones();
         if (pulseId % 10 === 0) {
-            // @ts-ignore
+            // @ts-ignore: Physics engine uses its own state matrix instance
             PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
-            // @ts-ignore
+            // @ts-ignore: Physics engine uses its own state matrix instance
             PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
             GATE.detectAntigens(STATE_MATRIX);
         }
@@ -138,6 +138,8 @@ export const PULSE = {
                     evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
                     spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer,
                     meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer,
+                    bondRequestsBuffer: STATE_MATRIX.bondRequestsBuffer,
+                    mergeRequestsBuffer: STATE_MATRIX.mergeRequestsBuffer, // ERA 45
                     viralGridBuffer: STATE_MATRIX.viralGridBuffer,
                     immuneBuffer: STATE_MATRIX.immuneBuffer,
                     messageBufferA: STATE_MATRIX.messageBufferA,
@@ -151,7 +153,6 @@ export const PULSE = {
                     senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
                     senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
                     trustedSignatures: Array.from(GATE.trustedSignatures),
-                    bondRequestsBuffer: STATE_MATRIX.bondRequestsBuffer,
                     spatialGridBuffer: SPATIAL_HASH.buffer,
                     pulseId
                 });
@@ -160,7 +161,10 @@ export const PULSE = {
 
         await Promise.all(workerPromises);
 
+        // --- SEQUENTIAL RESOLUTION PHASE ---
         for (const idx of activeIndices) {
+            if (STATE_MATRIX.getId(idx) === 0n) continue;
+
             let energy = STATE_MATRIX.getEnergy(idx);
             let resonance = STATE_MATRIX.getResonance(idx);
             
@@ -171,6 +175,7 @@ export const PULSE = {
                 STATE_MATRIX.getBondTarget(idx, 3)
             ];
 
+            // Metabolic Equalization
             for (let j = 0; j < 4; j++) {
                 if (bonds[j] !== 0) {
                     const targetIdx = bonds[j];
@@ -188,6 +193,7 @@ export const PULSE = {
                 }
             }
 
+            // Mitosis
             if (STATE_MATRIX.getSpawnRequest(idx) !== null) {
                 STATE_MATRIX.clearSpawn(idx);
                 const newIdx = STATE_MATRIX.findEmptySlot();
@@ -203,7 +209,7 @@ export const PULSE = {
                     STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx));
                     STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));
                     STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
-                    STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx];
+                    STATE_MATRIX.setSemanticBonus(newIdx, STATE_MATRIX.getSemanticBonus(idx));
                     const px = STATE_MATRIX.getX(idx);
                     const py = STATE_MATRIX.getY(idx);
                     STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10));
@@ -214,6 +220,7 @@ export const PULSE = {
                 }
             }
 
+            // Meiosis
             const meiosisReq = STATE_MATRIX.getMeiosisRequest(idx);
             if (meiosisReq !== null) {
                 STATE_MATRIX.clearMeiosis(idx);
@@ -236,25 +243,77 @@ export const PULSE = {
                         STATE_MATRIX.setResonance(idx, resA - contributionA_R);
                         STATE_MATRIX.setResonance(tIdx, resB - contributionB_R);
                         STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
+                        
                         const logicA = STATE_MATRIX.getLogic(idx);
                         const logicB = STATE_MATRIX.getLogic(tIdx);
                         const newLogic = new Uint8Array(8);
                         newLogic.set(logicA.subarray(0, 4), 0);
                         newLogic.set(logicB.subarray(4, 8), 4);
                         STATE_MATRIX.setLogic(newIdx, newLogic);
+                        
                         const codeA = STATE_MATRIX.getCode(idx);
                         const codeB = STATE_MATRIX.getCode(tIdx);
                         const newCode = new Uint32Array(16);
                         for (let p = 0; p < 16; p++) newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p];
                         STATE_MATRIX.setCode(newIdx, newCode);
+                        
                         STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[tIdx];
-                        STATE_MATRIX.semanticBonuses[newIdx] = Math.max(STATE_MATRIX.semanticBonuses[idx], STATE_MATRIX.semanticBonuses[tIdx]);
+                        STATE_MATRIX.setSemanticBonus(newIdx, Math.max(STATE_MATRIX.getSemanticBonus(idx), STATE_MATRIX.getSemanticBonus(tIdx)));
                         STATE_MATRIX.setX(newIdx, Math.floor((STATE_MATRIX.getX(idx) + STATE_MATRIX.getX(tIdx)) / 2));
                         STATE_MATRIX.setY(newIdx, Math.floor((STATE_MATRIX.getY(idx) + STATE_MATRIX.getY(tIdx)) / 2));
+                        
                         const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
                         STATE_MATRIX.setId(newIdx, childId);
                         console.log(`💞 [MEIOSIS] Atoms ${idx} and ${tIdx} spawned ${newIdx}.`);
                     }
+                }
+            }
+
+            // --- ERA 45: Symbiotic Merging (Endosymbiosis) ---
+            const mergeReq = STATE_MATRIX.getMergeRequest(idx);
+            if (mergeReq !== null) {
+                STATE_MATRIX.clearMerge(idx);
+                const tIdx = mergeReq.targetIdx;
+                if (tIdx > 0 && tIdx < MAX_ATOMS && STATE_MATRIX.getId(tIdx) !== 0n) {
+                    const eA = STATE_MATRIX.getEnergy(idx);
+                    const eB = STATE_MATRIX.getEnergy(tIdx);
+                    const rA = STATE_MATRIX.getResonance(idx);
+                    const rB = STATE_MATRIX.getResonance(tIdx);
+
+                    // Combine Metabolism
+                    STATE_MATRIX.setEnergy(idx, eA + eB);
+                    STATE_MATRIX.setResonance(idx, rA + rB);
+
+                    // Recombine Genome (Bitwise Logic XOR for hybrid diversity)
+                    const logicA = STATE_MATRIX.getLogic(idx);
+                    const logicB = STATE_MATRIX.getLogic(tIdx);
+                    const fusedLogic = new Uint8Array(8);
+                    for (let b = 0; b < 8; b++) fusedLogic[b] = logicA[b] ^ logicB[b];
+                    STATE_MATRIX.setLogic(idx, fusedLogic);
+
+                    // Recombine Code: Keep A's but add Symbiotic Bonus
+                    STATE_MATRIX.setSemanticBonus(idx, (STATE_MATRIX.getSemanticBonus(idx) | 0x08)); // Bit 3: Symbiont
+
+                    // Delete Target (Necrosis)
+                    STATE_MATRIX.setId(tIdx, 0n);
+                    STATE_MATRIX.setEnergy(tIdx, 0); // Clear energy
+                    // Clear target bonds to prevent phantom metabolism
+                    for (let b = 0; b < 4; b++) {
+                        const peerIdx = STATE_MATRIX.getBondTarget(tIdx, b);
+                        if (peerIdx !== 0) {
+                            // Find reverse bond and clear it
+                            for (let rb = 0; rb < 4; rb++) {
+                                if (STATE_MATRIX.getBondTarget(peerIdx, rb) === tIdx) {
+                                    STATE_MATRIX.setBondTarget(peerIdx, rb, 0);
+                                    STATE_MATRIX.setBondStiffness(peerIdx, rb, 0);
+                                }
+                            }
+                            STATE_MATRIX.setBondTarget(tIdx, b, 0);
+                            STATE_MATRIX.setBondStiffness(tIdx, b, 0);
+                        }
+                    }
+
+                    console.log(`💠 [SYMBIOSIS] Atom ${idx} merged with Atom ${tIdx}. New Resilience: ${eA + eB}`);
                 }
             }
         }

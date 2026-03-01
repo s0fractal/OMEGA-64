@@ -24,6 +24,8 @@ const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
 const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
 const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
 const bondRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY] (ERA 44)
+const mergeRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 2 * 4); // [initiatorIdx, targetIdx] (ERA 45)
+
 
 const viralGridBuffer = new SharedArrayBuffer(140 * 80 * 9); // ERA 24: 140x80 grid of 9-byte viral data
 const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
@@ -53,7 +55,9 @@ const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
 const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
 const spawnRequests = new Int32Array(spawnRequestsBuffer);
 const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
-const bondRequests = new Int32Array(bondRequestsBuffer); // ERA 44
+const bondRequests = new Int32Array(bondRequestsBuffer);
+const mergeRequests = new Int32Array(mergeRequestsBuffer); // ERA 45
+ // ERA 44
 
 // Request buffers already initialized at declaration above for better TS safety.
 
@@ -206,6 +210,32 @@ export const STATE_MATRIX = {
     },
     getBondRequests: () => bondRequests, // ERA 44
 
+    // --- SYMBIOTIC MERGING (ERA 45) ---
+    requestMerge: (initiatorIdx: number, targetIdx: number) => {
+        // Use 1-based index (idx + 1) to distinguish index 0 from empty
+        Atomics.store(mergeRequests, initiatorIdx * 2, initiatorIdx + 1);
+        Atomics.store(mergeRequests, initiatorIdx * 2 + 1, targetIdx);
+    },
+    clearMerge: (idx: number) => {
+        Atomics.store(mergeRequests, idx * 2, 0);
+    },
+    getMergeRequest: (idx: number) => {
+        const initiatorStored = Atomics.load(mergeRequests, idx * 2);
+        if (initiatorStored === 0) return null;
+        return {
+            initiatorIdx: initiatorStored - 1,
+            targetIdx: Atomics.load(mergeRequests, idx * 2 + 1),
+        };
+    },
+    getMergeRequests: () => mergeRequests,
+    mergeRequestsBuffer,
+
+    setSemanticBonus: (idx: number, bonus: number) => {
+        Atomics.store(semanticBonuses, idx, bonus & 0xFF);
+    },
+    getSemanticBonus: (idx: number) => Atomics.load(semanticBonuses, idx),
+
+
     // --- IMMUNITY (ERA 26) ---
     setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
     getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
@@ -266,6 +296,8 @@ export const STATE_MATRIX = {
         spawnRequests.fill(0);
         meiosisRequests.fill(0);
         bondRequests.fill(0); // ERA 44
+        mergeRequests.fill(0); // ERA 45
+
         new Uint8Array(viralGridBuffer).fill(0);
         new Uint8Array(immuneBuffer).fill(0);
         messagesA.fill(0);

@@ -25,7 +25,7 @@ export const ISA = {
     // Metabolism & Physics (High Level)
     MOVE: 0x10, FEED: 0x20, SENSE: 0x21, BET: 0x22,
     // Self-Modification
-    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C, BIND: 0x9D,
+    SELF_MOD: 0x99, SELF_REP: 0x9A, CROSS_REP: 0x9C, BIND: 0x9D, MERGE: 0x9E,
     // Epigenetic Evolution
     EVOLVE: 0x9B,
     // Atomic Messaging (ERA 27)
@@ -290,6 +290,16 @@ export const LAMBDA_VM = {
                 const dyVal = (p2 - 128) / 10.0;
                 res.intent.push({ level: 12, value: { dx: dxVal, dy: dyVal } });
                 res.energyDelta -= 10; // Binding costs energy
+                break;
+            }
+
+            case ISA.MERGE: {
+                // ERA 45: Symbiotic Merging
+                // p1 is bond index (0-3) to target for fusion
+                if (state.resonance > 300) {
+                    res.intent.push({ level: 13, value: { targetBondSlot: p1 % 4 } });
+                    res.energyDelta -= 50; // Merging is metabolically expensive
+                }
                 break;
             }
 

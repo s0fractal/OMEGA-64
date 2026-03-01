@@ -15,7 +15,7 @@ const DIVINITY_THRESHOLD = 800;
 
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, spatialGridBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -25,6 +25,7 @@ self.onmessage = (e) => {
     const spawnRequests = new Int32Array(spawnRequestsBuffer); // ERA 41: Mitosis Requests
     const meiosisRequests = new Int32Array(meiosisRequestsBuffer); // ERA 42: Meiosis Requests
     const bondRequests = new Int32Array(bondRequestsBuffer); // ERA 44: Bond Requests
+    const mergeRequests = new Int32Array(mergeRequestsBuffer); // ERA 45: Merge Requests
     const spatialGrid = new Int32Array(spatialGridBuffer); // ERA 44: Spatial Grid
     
     const CELL_CAPACITY = 31; // Must match SPATIAL_HASH.CELL_CAPACITY
@@ -376,6 +377,18 @@ self.onmessage = (e) => {
                     Atomics.store(bondRequests, i * 3, i + 1); // ERA 44: idx + 1 sentinel
                     Atomics.store(bondRequests, i * 3 + 1, closestPeerIdx);
                     Atomics.store(bondRequests, i * 3 + 2, 0); 
+                }
+            }
+            if (intent.level === 13) {
+                // MERGE Intent (ERA 45)
+                const slot = intent.value.targetBondSlot;
+                const targetIdx = bondView[slot];
+                const stiffness = bondStiffs[i * 4 + slot];
+
+                // Symbiogenesis requires deep structural coupling (Stiffness > 0.8)
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS && stiffness > 0.8) {
+                    Atomics.store(mergeRequests, i * 2, i + 1); // 1-based sentinel
+                    Atomics.store(mergeRequests, i * 2 + 1, targetIdx);
                 }
             }
         }
