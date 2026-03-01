@@ -99,6 +99,7 @@ export const PULSE = {
                         messageBufferB: STATE_MATRIX.messageBufferB,
                         bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
                         synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
+                        structureGridBuffer: STATE_MATRIX.structureGridBuffer,
                         pulseId
                     });
                 });

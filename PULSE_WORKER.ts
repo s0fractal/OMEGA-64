@@ -13,7 +13,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -26,6 +26,7 @@ self.onmessage = (e) => {
     const msgsB = new Uint8Array(messageBufferB); // ERA 27: Messaging
     const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
     const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
+    const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -74,6 +75,18 @@ self.onmessage = (e) => {
         
         let dx = velX * mods.speed;
         let dy = velY * mods.speed;
+
+        // --- ERA 31: Structure Collisions ---
+        const nextX = x + dx * 10;
+        const nextY = y + dy * 10;
+        const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 20);
+        const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 20);
+        const structureCell = Atomics.load(structureGrid, ngy * 70 + ngx);
+        const density = (structureCell >> 8) & 0xFF;
+        if (density > 150) {
+            // Collision! Stop movement.
+            dx = 0; dy = 0;
+        }
 
         // --- ERA 18: ATTENTION TROPISM (Emergent Avatar) ---
         // Atom reads its first DNA byte to determine its relationship with "Attention"
@@ -145,6 +158,16 @@ self.onmessage = (e) => {
                 }
             }
             context[2 + regIdx] = Math.floor(sum / count);
+        }
+
+        // ERA 31: Architectural Stigmergy (BUILD / EXCAVATE)
+        if (vmResult.modifiedStructure) {
+            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+            const cellIdx = gy * 70 + gx;
+            // Pack: [Density (8 bits) | Type (8 bits)]
+            const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
+            Atomics.store(structureGrid, cellIdx, val);
         }
 
         // ERA 27: Message Routing + ERA 29: Hebbian Potentiation

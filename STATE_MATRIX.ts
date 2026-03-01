@@ -26,6 +26,7 @@ const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signa
 const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
 const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
 const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
+const structureGridBuffer = new SharedArrayBuffer(70 * 40 * 4); // ERA 31: 70x40 grid of Int32 (Density/Type)
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -46,6 +47,7 @@ const messagesA = new Uint8Array(messageBufferA);
 const messagesB = new Uint8Array(messageBufferB);
 const bondStiffness = new Float32Array(bondStiffnessBuffer);
 const synapticStack = new Int32Array(synapticStackBuffer);
+const structureGrid = new Int32Array(structureGridBuffer);
 
 const SCALE = 1000;
 
@@ -60,6 +62,7 @@ export const STATE_MATRIX = {
     viralGridBuffer,
     immuneBuffer,
     synapticStackBuffer,
+    structureGridBuffer,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -151,6 +154,7 @@ export const STATE_MATRIX = {
         messagesB.fill(0);
         bondStiffness.fill(0);
         synapticStack.fill(0);
+        structureGrid.fill(0);
     },
 
     getActiveIndices: () => {

@@ -395,6 +395,24 @@
       );
       scene.add(gridParticles);
 
+      // ERA 31: VOXELIZED REALITY (Structures)
+      const structGeo = new THREE.BoxGeometry(18, 18, 18);
+      const structMat = new THREE.MeshPhongMaterial({
+        color: 0x88aaff,
+        transparent: true,
+        opacity: 0.5,
+        shininess: 100
+      });
+      const structMesh = new THREE.InstancedMesh(structGeo, structMat, GRID_W * GRID_H);
+      structMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      scene.add(structMesh);
+
+      // Light for voxels
+      const sun = new THREE.DirectionalLight(0xffffff, 1);
+      sun.position.set(500, 500, 500);
+      scene.add(sun);
+      scene.add(new THREE.AmbientLight(0x444444));
+
       const mouse = new THREE.Vector2();
       let isMouseDown = false;
         
@@ -462,6 +480,7 @@
       let stiffnessFlags = new Float32Array(MAX_ATOMS * 4);
       let bondIndices = new Uint32Array(MAX_ATOMS * 4);
       let synapseFlags = new Int32Array(MAX_ATOMS * 4);
+      let architectureFlags = new Int32Array(GRID_W * GRID_H);
 
       async function syncImmunity() {
         try {
@@ -505,6 +524,15 @@
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
           synapseFlags.set(new Int32Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncArchitecture() {
+        try {
+          const res = await fetch("/architecture");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          architectureFlags.set(new Int32Array(buffer));
         } catch (e) {}
       }
 
@@ -673,6 +701,28 @@
         } catch (e) {}
       }
 
+      async function updateArchitecture() {
+          const dummy = new THREE.Object3D();
+          for (let gy = 0; gy < GRID_H; gy++) {
+              for (let gx = 0; gx < GRID_W; gx++) {
+                  const i = gy * GRID_W + gx;
+                  const cell = architectureFlags[i];
+                  const density = (cell >> 8) & 0xFF;
+                  
+                  if (density > 0) {
+                      dummy.position.set((gx * 20 + 10) - 700, (gy * 20 + 10) - 400, -20);
+                      const s = density / 255;
+                      dummy.scale.set(s, s, s);
+                  } else {
+                      dummy.scale.set(0, 0, 0);
+                  }
+                  dummy.updateMatrix();
+                  structMesh.setMatrixAt(i, dummy.matrix);
+              }
+          }
+          structMesh.instanceMatrix.needsUpdate = true;
+      }
+
       async function syncGrid() {
         try {
           const res = await fetch("/grid");
@@ -779,8 +829,10 @@
           syncStiffness();
           syncBonds();
           syncSynapses();
+          syncArchitecture();
           updatePeers();
           updateLeaderboard();
+          updateArchitecture();
           lastSync = t;
         }
 
