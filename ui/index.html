@@ -481,6 +481,7 @@
       let bondIndices = new Uint32Array(MAX_ATOMS * 4);
       let synapseFlags = new Int32Array(MAX_ATOMS * 4);
       let architectureFlags = new Int32Array(GRID_W * GRID_H);
+      let memoryFlags = new Uint8Array(GRID_W * GRID_H * 8);
 
       async function syncImmunity() {
         try {
@@ -533,6 +534,15 @@
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
           architectureFlags.set(new Int32Array(buffer));
+        } catch (e) {}
+      }
+
+      async function syncMemory() {
+        try {
+          const res = await fetch("/memory");
+          if (!res.ok) return;
+          const buffer = await res.arrayBuffer();
+          memoryFlags.set(new Uint8Array(buffer));
         } catch (e) {}
       }
 
@@ -708,11 +718,19 @@
                   const i = gy * GRID_W + gx;
                   const cell = architectureFlags[i];
                   const density = (cell >> 8) & 0xFF;
+                  const hasCode = memoryFlags[i * 8] !== 0;
                   
                   if (density > 0) {
                       dummy.position.set((gx * 20 + 10) - 700, (gy * 20 + 10) - 400, -20);
                       const s = density / 255;
                       dummy.scale.set(s, s, s);
+
+                      // ERA 32: Color Data Blocks (Glyphs)
+                      if (hasCode) {
+                          structMesh.setColorAt(i, new THREE.Color(0x00ff88)); // Matrix Green
+                      } else {
+                          structMesh.setColorAt(i, new THREE.Color(0x88aaff)); // Standard Blue
+                      }
                   } else {
                       dummy.scale.set(0, 0, 0);
                   }
@@ -721,6 +739,7 @@
               }
           }
           structMesh.instanceMatrix.needsUpdate = true;
+          if (structMesh.instanceColor) structMesh.instanceColor.needsUpdate = true;
       }
 
       async function syncGrid() {
@@ -830,6 +849,7 @@
           syncBonds();
           syncSynapses();
           syncArchitecture();
+          syncMemory();
           updatePeers();
           updateLeaderboard();
           updateArchitecture();

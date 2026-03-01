@@ -13,7 +13,7 @@ const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
 self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, viralGridBuffer, immuneBuffer, messageBufferA, messageBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, startIdx, endIdx, mods, pulseId } = e.data;
     
     // SoA Views (Era 18: Emergent Avatar & Prediction Market)
     const nutrients = new Int32Array(envBuffer);
@@ -27,6 +27,7 @@ self.onmessage = (e) => {
     const bondStiffs = new Float32Array(bondStiffnessBuffer); // ERA 28: Structural Morphogenesis
     const synapticStack = new Int32Array(synapticStackBuffer); // ERA 30: Distributed Cognition
     const structureGrid = new Int32Array(structureGridBuffer); // ERA 31: Architectural Stigmergy
+    const memoryGrid = new Uint8Array(memoryGridBuffer); // ERA 32: Coded Memetics
 
     // Buffer swap for determinism is handled by PULSE.ts by choosing which is read/write
 
@@ -168,6 +169,36 @@ self.onmessage = (e) => {
             // Pack: [Density (8 bits) | Type (8 bits)]
             const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
             Atomics.store(structureGrid, cellIdx, val);
+
+            // ERA 32: Structural cleanup - if density becomes 0, clear memory too
+            if (vmResult.modifiedStructure.density === 0) {
+                memoryGrid[(gy * 70 + gx) * 8] = 0;
+                // We'll just clear the first byte as a flag for "Empty"
+            }
+        }
+
+        // ERA 32: Coded Memetics (ENCODE / DECODE)
+        if (vmResult.memeticRequest) {
+            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+            const cellIdx = gy * 70 + gx;
+            const structureCell = Atomics.load(structureGrid, cellIdx);
+            const density = (structureCell >> 8) & 0xFF;
+
+            if (vmResult.memeticRequest === "ENCODE" && density > 50) {
+                // Write DNA to specific grid cell memory
+                for (let b = 0; b < 8; b++) {
+                    memoryGrid[cellIdx * 8 + b] = logicBytes[b];
+                }
+            } else if (vmResult.memeticRequest === "DECODE") {
+                // Learn DNA from grid cell memory
+                // Only if someone wrote there (first byte non-zero for simplicity)
+                if (memoryGrid[cellIdx * 8] !== 0) {
+                    for (let b = 0; b < 8; b++) {
+                        logicBytes[b] = memoryGrid[cellIdx * 8 + b];
+                    }
+                }
+            }
         }
 
         // ERA 27: Message Routing + ERA 29: Hebbian Potentiation

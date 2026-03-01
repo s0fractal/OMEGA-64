@@ -10,6 +10,7 @@ export interface VMResult {
     modifiedSynaptic?: { slot: number, value: number }; // ERA 30: PUSH_COLL
     syncRequest?: { reg: number }; // ERA 30: SYNC_AVG (Worker will handle)
     modifiedStructure?: { type: number, density: number }; // ERA 31: BUILD/EXCAVATE
+    memeticRequest?: "ENCODE" | "DECODE"; // ERA 32: Cultural Inheritance
     outgoingMessages: { targetIdx: number, message: number, sourceBondSlot?: number }[];
 }
 
@@ -33,7 +34,9 @@ export const ISA = {
     // Distributed Cognition (ERA 30)
     SYNC_AVG: 0x70, PUSH_COLL: 0x71, POP_COLL: 0x72,
     // Architectural Stigmergy (ERA 31)
-    BUILD: 0x80, EXCAVATE: 0x81
+    BUILD: 0x80, EXCAVATE: 0x81,
+    // Coded Memetics (ERA 32)
+    ENCODE: 0x82, DECODE: 0x83
 };
 
 export const LAMBDA_VM = {
@@ -263,6 +266,21 @@ export const LAMBDA_VM = {
                 // Request destruction of current cell block
                 res.modifiedStructure = { type: 0, density: 0 };
                 res.energyDelta += 5; // Recycling energy
+                break;
+
+            case ISA.ENCODE:
+                // Requires resonance > 50 to "write" knowledge
+                if (state.resonance > 50) {
+                    res.memeticRequest = "ENCODE";
+                    res.energyDelta -= 15;
+                    res.resonanceDelta -= 10;
+                }
+                break;
+
+            case ISA.DECODE:
+                // Learn from current block
+                res.memeticRequest = "DECODE";
+                res.energyDelta -= 5;
                 break;
 
         }

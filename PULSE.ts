@@ -100,6 +100,7 @@ export const PULSE = {
                         bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
                         synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
                         structureGridBuffer: STATE_MATRIX.structureGridBuffer,
+                        memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
                         pulseId
                     });
                 });
