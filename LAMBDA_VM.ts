@@ -18,6 +18,7 @@ export interface VMResult {
     roleRequest?: { role: number }; // ERA 53
     apoptosisRequest?: boolean; // ERA 54
     quorumRequest?: { collectiveType: number, quorumCount: number }; // ERA 55
+    lockPhaseRequest?: { targetPhase: number }; // ERA 58
 }
 
 export const ISA = {
@@ -62,7 +63,9 @@ export const ISA = {
     // Epigenetic Inheritance (ERA 56)
     INHERIT: 0x90,
     // Synaptic Plasticity Decay (ERA 57)
-    DECAY: 0x91
+    DECAY: 0x91,
+    // Resonance Oscillators (ERA 58)
+    OSCILLATE: 0x92, LOCK_PHASE: 0x93
 };
 
 export const LAMBDA_VM = {
@@ -70,7 +73,7 @@ export const LAMBDA_VM = {
      * Executes one instruction from the atom's bytecode.
      * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
      */
-    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, pheromoneGrid: Int32Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean, hiveMemory?: Uint8Array, age?: number, quorumData?: Int32Array }, dryRun = false, wasm?: any): VMResult => {
+    execute: (logic: Uint8Array, code: Uint32Array, context: Uint8Array, state: { x: number, y: number, nutrients: Int32Array, structureGrid: Int32Array, viralGrid: Uint8Array, pheromoneGrid: Int32Array, spatialGrid: Int32Array, marketPool: Int32Array, energy: number, resonance: number, bonds: Uint32Array, synapticStack?: Int32Array, role?: number, semanticBonuses?: number, quarantineLevel?: number, incomingMessage?: number, isDiplomatic?: boolean, hiveMemory?: Uint8Array, age?: number, quorumData?: Int32Array, phase?: number }, dryRun = false, wasm?: any): VMResult => {
         const res: VMResult = { energyDelta: 0, resonanceDelta: 0, intent: [], outgoingMessages: [] };
         
         // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
@@ -220,6 +223,13 @@ export const LAMBDA_VM = {
                         if (state.synapticStack) {
                             val = Math.min(state.synapticStack[0], state.synapticStack[1], state.synapticStack[2]);
                         }
+                        break;
+                    }
+                    case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
+                        const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
+                        const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+                        const cellBase = (gy * 140 + gx) * 32;
+                        val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
                         break;
                     }
                 }
@@ -704,7 +714,52 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.OSCILLATE: {
+                // --- ERA 58: Resonance Oscillators ---
+                // Broadcasts a phase ripple to co-located atoms.
+                // p1 = amplitude (0=auto from resonance, >0=explicit)
+                // p2 = reach (0=same cell only, 1=adjacent cells)
+                if (!dryRun) {
+                    const ownPhase = state.phase ?? 128;
+                    const amplitude = p1 > 0 ? p1 : Math.min(255, Math.floor(state.resonance / 10));
+                    // Sinusoidal component: sin(phase*2π/255) maps to [-1..+1]
+                    const sinComponent = Math.sin((ownPhase / 255) * Math.PI * 2);
+                    const waveAmplitude = Math.round(amplitude * sinComponent);
+                    if (Math.abs(waveAmplitude) > 0) {
+                        res.intent.push({
+                            level: 20,
+                            value: { phase: ownPhase, waveAmplitude, reach: p2 }
+                        });
+                        res.energyDelta -= Math.abs(waveAmplitude) * 0.05;
+                    }
+                }
+                break;
+            }
+
+            case ISA.LOCK_PHASE: {
+                // --- ERA 58: Phase Lock ---
+                // Snaps own phase to local average (constructive) or +128 (destructive).
+                // p1: 0=constructive (sync), 1=destructive (anti-phase)
+                // Reads spatialGrid slot 31 = local phase average
+                if (!dryRun) {
+                    const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
+                    const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+                    const cellAvgPhase = state.spatialGrid[(gy * 140 + gx) * 32 + 31];
+                    const targetPhase = p1 === 1
+                        ? (cellAvgPhase + 128) % 256  // destructive: anti-phase
+                        : cellAvgPhase;                // constructive: sync
+                    res.lockPhaseRequest = { targetPhase };
+                    // Resonance bonus scales with how close own phase is to target
+                    const phaseDiff = Math.abs((state.phase ?? 128) - cellAvgPhase);
+                    const alignment = 1 - phaseDiff / 255;
+                    res.resonanceDelta += Math.round(alignment * 5);
+                    res.energyDelta -= 1;
+                }
+                break;
+            }
         }
+
 
 
 

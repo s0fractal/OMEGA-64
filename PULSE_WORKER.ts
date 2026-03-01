@@ -164,9 +164,10 @@ self.onmessage = (e) => {
 
             const currentRole = Atomics.load(roles, i);
             const currentBonuses = Atomics.load(semanticBonuses, i);
+            const currentPhase = Atomics.load(phases, i) / SCALE; // 0..255 float
 
             const age = birthTicks ? Math.max(0, pulseId - Atomics.load(birthTicks, i)) : 0;
-            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age, quorumData };
+            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age, quorumData, phase: Math.round(currentPhase) & 0xFF };
             const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
             
             energy += vmResult.energyDelta;
@@ -260,12 +261,32 @@ self.onmessage = (e) => {
                         if (curTally < 255) Atomics.add(synapticStack, targetIdx * 4 + 3, 1);
                     }
                 }
+                if (intent.level === 20) { // ERA 58: OSCILLATE — phase ripple to co-cell atoms
+                    const { waveAmplitude } = intent.value;
+                    if (waveAmplitude !== 0) {
+                        const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
+                        const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
+                        const cellBase = (gy * 140 + gx) * 32;
+                        const count = Math.min(30, spatialGrid[cellBase]);
+                        for (let c = 1; c <= count; c++) {
+                            const nIdx = spatialGrid[cellBase + c];
+                            if (nIdx > 0 && nIdx < MAX_ATOMS && nIdx !== i) {
+                                Atomics.add(resonances, nIdx, Math.round(waveAmplitude * SCALE * 0.1));
+                            }
+                        }
+                    }
+                }
             }
 
             // --- ERA 53: Apply emergent role if ATTUNE fired ---
             if (vmResult.roleRequest) {
                 const newRole = vmResult.roleRequest.role;
                 Atomics.store(roles, i, newRole);
+            }
+
+            // --- ERA 58: Apply lockPhaseRequest ---
+            if (vmResult.lockPhaseRequest) {
+                Atomics.store(phases, i, vmResult.lockPhaseRequest.targetPhase * SCALE);
             }
 
             // --- ERA 57: Passive Synaptic Plasticity Decay ---
