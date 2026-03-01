@@ -60,7 +60,9 @@ export const ISA = {
     // Quorum Sensing (ERA 55)
     QUORUM: 0x8F,
     // Epigenetic Inheritance (ERA 56)
-    INHERIT: 0x90
+    INHERIT: 0x90,
+    // Synaptic Plasticity Decay (ERA 57)
+    DECAY: 0x91
 };
 
 export const LAMBDA_VM = {
@@ -211,6 +213,12 @@ export const LAMBDA_VM = {
                                                (state.hiveMemory[hBase+10] << 16) | (state.hiveMemory[hBase+11] << 24);
                             const imprintAge = (state.age ?? 0) - (imprintTick & 0xFF);
                             val = Math.min(255, Math.max(0, imprintAge));
+                        }
+                        break;
+                    }
+                    case 0x0D: { // ERA 57: Minimum weight across synapticStack[0..2]
+                        if (state.synapticStack) {
+                            val = Math.min(state.synapticStack[0], state.synapticStack[1], state.synapticStack[2]);
                         }
                         break;
                     }
@@ -658,7 +666,46 @@ export const LAMBDA_VM = {
                 }
                 break;
             }
+
+            case ISA.DECAY: {
+                // --- ERA 57: Synaptic Plasticity Decay ---
+                // Explicit pruning: find the weakest synapse slot [0..2] and decrement it.
+                // p1 = slot override (0-2: specific slot; 3=all three; default=auto-weakest)
+                // p2 = decay rate (default 2)
+                if (state.synapticStack && !dryRun) {
+                    const rate = p2 > 0 ? p2 : 2;
+                    if (p1 >= 3) {
+                        // Decay all three slots
+                        for (let s = 0; s < 3; s++) {
+                            const cur = state.synapticStack[s];
+                            if (cur > 0) {
+                                state.synapticStack[s] = Math.max(0, cur - rate);
+                                res.modifiedSynaptic = { slot: s, value: state.synapticStack[s] };
+                            }
+                        }
+                    } else if (p1 > 0) {
+                        // Decay specific slot
+                        const cur = state.synapticStack[p1];
+                        state.synapticStack[p1] = Math.max(0, cur - rate);
+                        res.modifiedSynaptic = { slot: p1, value: state.synapticStack[p1] };
+                    } else {
+                        // Auto: find and decay weakest slot
+                        let minSlot = 0;
+                        if (state.synapticStack[1] < state.synapticStack[minSlot]) minSlot = 1;
+                        if (state.synapticStack[2] < state.synapticStack[minSlot]) minSlot = 2;
+                        const cur = state.synapticStack[minSlot];
+                        if (cur > 0) {
+                            state.synapticStack[minSlot] = Math.max(0, cur - rate);
+                            res.modifiedSynaptic = { slot: minSlot, value: state.synapticStack[minSlot] };
+                        }
+                    }
+                    res.energyDelta += 0.5;   // pruning releases metabolic energy
+                    res.resonanceDelta += 1;   // neural efficiency bonus
+                }
+                break;
+            }
         }
+
 
 
 

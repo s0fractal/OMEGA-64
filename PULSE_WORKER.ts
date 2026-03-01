@@ -268,6 +268,17 @@ self.onmessage = (e) => {
                 Atomics.store(roles, i, newRole);
             }
 
+            // --- ERA 57: Passive Synaptic Plasticity Decay ---
+            // Every 10 ticks: decay weights NOT strengthened by HEBB this tick by 1.
+            // If HEBB fired, weight grew → skip passive decay for that atom.
+            const didHebb = vmResult.hebbRequest !== undefined;
+            if (!didHebb && pulseId % 10 === 0) {
+                for (let s = 0; s < 3; s++) {
+                    const cur = Atomics.load(synapticStack, i * 4 + s);
+                    if (cur > 0) Atomics.sub(synapticStack, i * 4 + s, 1);
+                }
+            }
+
             // --- ERA 54: Apoptosis (Senescent dissolution) ---
             if (vmResult.apoptosisRequest) {
                 // Zero out the atom ID → slot freed for reuse
