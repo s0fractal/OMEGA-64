@@ -135,32 +135,38 @@ export const LLM_SYNAPSE = {
      * generateAtomicBytecode: Era 67 (Sovereign Oracle)
      * Prompts the LLM to output exactly 16 hex characters (8 bytes) representing new WASM bytecode.
      */
-    generateAtomicBytecode: async (telemetry: any): Promise<Uint8Array | null> => {
+    generateAtomicBytecode: async (telemetry: any): Promise<{ genome: Uint8Array, meme?: Uint8Array } | null> => {
         const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
         const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
 
+        const memSummary = telemetry.stigmergicSummary.length > 0 
+            ? telemetry.stigmergicSummary.map((s: any) => `Signature ${s.sig} (Count: ${s.count})`).join(", ")
+            : "No collective memories found yet.";
+
         const prompt = `
-            Task: You are the Sovereign Oracle of OMEGA-64, an advanced artificial life simulation.
-            You govern a supreme organism known as the Regent.
+            Task: You are the Sovereign Oracle of OMEGA-64.
+            The Regent lives in a world of stigmergic shadows.
             
-            Telemetry Data:
-            - Nutrients Available: ${telemetry.nutrients}
-            - Current Regent Energy: ${telemetry.energy}
+            Environment:
+            - Nutrients: ${telemetry.nutrients}
+            - Regent Energy: ${telemetry.energy}
             - Population: ${telemetry.population}
             - Viral Load: ${telemetry.viralLoad}
+            - Collective Memories: ${memSummary}
 
-            Your goal is to reprogram your own genome to survive. 
-            The genome consists of EXACTLY 8 BYTES, represented as 16 hexadecimal characters.
-            
-            Valid bytecode opcodes include:
-            - 08: MITOSIS (Reproduce)
-            - 20: FEED (Gather nutrients)
-            - FF: ASCEND (Turn into a permanent crystal structure)
+            Goal: 
+            1. Generate a new 8-byte (16 hex) genome for the Regent.
+            2. (Optional) Generate a 4-byte (8 hex) "Meme" to seed into the spatial grid to guide other atoms.
 
-            Example Output format: "0800000000000000" (Mitosis)
-            Example Output format: "20A0000000000000" (Feed)
+            Opcodes:
+            - 08: MITOSIS, 20: FEED, FF: ASCEND, 30: STORE_MEM, 31: LOAD_MEM
             
-            You MUST ONLY return the 16 uppercase hexadecimal characters. NO explanations. NO markdown.
+            Output JSON format:
+            {
+              "genome": "16_HEX_CHARS",
+              "meme": "8_HEX_CHARS_FOR_GRID"
+            }
+            ONLY RETURN THE JSON.
         `.trim();
 
         try {
@@ -170,26 +176,40 @@ export const LLM_SYNAPSE = {
                 body: JSON.stringify({ model: MODEL, prompt, stream: false, format: "json" }),
             });
             const data = await response.json();
-            const hex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
-            
-            if (hex && hex.length >= 16) {
-                const bytes = new Uint8Array(8);
-                for (let i = 0; i < 8; i++) {
-                    bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+            // Ollama sometimes returns a string, sometimes JSON. Robust handle:
+            let result: any = {};
+            try {
+                result = typeof data.response === 'string' ? JSON.parse(data.response) : data.response;
+            } catch {
+                // If it's a raw hex string instead of JSON
+                const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+                if (rawHex && rawHex.length >= 16) {
+                    result = { genome: rawHex.substring(0, 16) };
                 }
-                return bytes;
+            }
+            
+            if (result.genome && result.genome.length >= 16) {
+                const genome = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) {
+                    genome[i] = parseInt(result.genome.substring(i * 2, i * 2 + 2), 16);
+                }
+                
+                let meme: Uint8Array | undefined;
+                if (result.meme && result.meme.length >= 8) {
+                    meme = new Uint8Array(4);
+                    for (let i = 0; i < 4; i++) {
+                        meme[i] = parseInt(result.meme.substring(i * 2, i * 2 + 2), 16);
+                    }
+                }
+                
+                return { genome, meme };
             }
         } catch(e) {
-            console.warn("Oracle connection failed (LLM Offline). Using Stochastic Mutation fallback.");
-            // Fallback: Generate a random "viable" genome
-            const bytes = new Uint8Array(8);
-            // Opcode is usually the first byte
-            const opcodes = [0x08, 0x20, 0xFF, 0x00]; 
-            bytes[0] = opcodes[Math.floor(Math.random() * opcodes.length)];
-            for (let i = 1; i < 8; i++) {
-                bytes[i] = Math.floor(Math.random() * 256);
-            }
-            return bytes;
+            console.warn("Oracle connection failed (LLM Offline). Stochastic Mutation.");
+            const genome = new Uint8Array(8);
+            genome[0] = [0x08, 0x20, 0x30, 0x31][Math.floor(Math.random() * 4)];
+            for (let i = 1; i < 8; i++) genome[i] = Math.floor(Math.random() * 256);
+            return { genome };
         }
         return null;
     }

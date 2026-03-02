@@ -50,5 +50,21 @@ export const ECOLOGY_ENGINE = {
         if (logic.startsWith("A")) return "ARCHIVIST";
         if (symbol === "PARASITE") return "PARASITE";
         return "NEUTRAL";
+    },
+
+    // ERA 67: Stigmergic Decay
+    // Clears the memory grid slowly to ensure only reinforced paths persist.
+    processGridDecay: () => {
+        const grid = STATE_MATRIX.memoryGrid;
+        // Simple decay: every N ticks, randomly clear some cells
+        // Or systematically decrement 'intensity' if we define an intensity byte
+        for (let i = 0; i < grid.length; i++) {
+            if (grid[i] > 0) {
+                // Stochastic decay: 5% chance to decrease
+                if (Math.random() < 0.05) {
+                    grid[i] = Math.max(0, grid[i] - 1);
+                }
+            }
+        }
     }
 };

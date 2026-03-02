@@ -1,72 +1,119 @@
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
-// Flat memory offsets (MUST match STATE_MATRIX.ts exactly)
+@external("env", "trace_atom")
+declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void;
+
+// EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
 const IDS_OFFSET: usize = 0;
-const XS_OFFSET: usize = IDS_OFFSET + (<usize>MAX_ATOMS * 8);
-const YS_OFFSET: usize = XS_OFFSET + (<usize>MAX_ATOMS * 2);
-const ENERGY_OFFSET: usize = YS_OFFSET + (<usize>MAX_ATOMS * 2);
-const RESONANCE_OFFSET: usize = ENERGY_OFFSET + (<usize>MAX_ATOMS * 4);
-const PHASE_OFFSET: usize = RESONANCE_OFFSET + (<usize>MAX_ATOMS * 4);
-const LOGIC_OFFSET: usize = PHASE_OFFSET + (<usize>MAX_ATOMS * 4);
-const BONDS_OFFSET: usize = LOGIC_OFFSET + (<usize>MAX_ATOMS * 8);
-const INSTRUCTIONS_OFFSET: usize = BONDS_OFFSET + (<usize>MAX_ATOMS * 16);
-const CONTEXT_OFFSET: usize = INSTRUCTIONS_OFFSET + (<usize>MAX_ATOMS * 64);
-const EVOLUTION_OFFSET: usize = CONTEXT_OFFSET + (<usize>MAX_ATOMS * 32);
-const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
+const XS_OFFSET: usize = 800000;
+const YS_OFFSET: usize = 1000000;
+const ENERGY_OFFSET: usize = 1200000;
+const RESONANCE_OFFSET: usize = 1600000;
+const PHASE_OFFSET: usize = 2000000;
+const LOGIC_OFFSET: usize = 2400000;
+const BONDS_OFFSET: usize = 3200000;
+const STIFFNESS_OFFSET: usize = 4800000;
+const BOND_REQUESTS_OFFSET: usize = 18800000;
+const SPATIAL_GRID_OFFSET: usize = 20000000;
 
-// ISA Constants
-const ISA_NOP: u8 = 0x00;
-const ISA_MITOSIS: u8 = 0x08;
-const ISA_JMP: u8 = 0x02;
+const ISA_BIND: u8 = 0x40;
+const ISA_SHARE: u8 = 0x41;
 
-// Intent Encoder helper
-// Combines opcode + 3 args into a single u32 word for zero-allocation cross-ffi writing
-@inline
-function writeIntent(atomIdx: i32, opcode: u8, arg1: u8, arg2: u8, arg3: u8): void {
-    let intent: u32 = (opcode as u32) | ((arg1 as u32) << 8) | ((arg2 as u32) << 16) | ((arg3 as u32) << 24);
-    store<u32>(INTENT_OFFSET + (atomIdx << 2) as usize, intent);
+@inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
+@inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
+@inline function getX(idx: i32): i16 { return load<i16>(XS_OFFSET + (idx << 1) as usize); }
+@inline function getY(idx: i32): i16 { return load<i16>(YS_OFFSET + (idx << 1) as usize); }
+@inline function getLogicByte(idx: i32, slot: i32): u8 { return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize); }
+@inline function getBondTarget(atomIdx: i32, slot: i32): i32 { return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
+@inline function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void { store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx); }
+@inline function getBondStiffness(atomIdx: i32, slot: i32): f32 { return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
+@inline function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void { store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, val); }
+@inline function writeBondRequest(initiator: i32, target: i32): void { 
+    let offset = BOND_REQUESTS_OFFSET + (initiator * 12); 
+    store<i32>(offset as usize, initiator + 1); 
+    store<i32>(offset + 4 as usize, target); 
 }
-
-// Atom Accessors
-@inline
-function getEnergy(idx: i32): i32 {
-    return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
+@inline function getSpatialGridCount(gx: i32, gy: i32): i32 { 
+    let cellIdx = gy * 140 + gx; 
+    return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) as usize); 
 }
-
-@inline
-function setEnergy(idx: i32, val: i32): void {
-    store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
-}
-
-@inline
-function getResonance(idx: i32): i32 {
-    return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
-}
-
-@inline
-function setResonance(idx: i32, val: i32): void {
-    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val);
+@inline function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 { 
+    let cellIdx = gy * 140 + gx; 
+    return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize); 
 }
 
 export function execute_atom(atomIndex: i32): void {
-    // Basic test function to prove FFI isolation
     let energy = getEnergy(atomIndex);
-    let resonance = getResonance(atomIndex);
+    let x = getX(atomIndex);
+    let y = getY(atomIndex);
+    let gx = (x as i32) / 10;
+    let gy = (y as i32) / 10;
     
-    // Decrement energy minimally for living
-    setEnergy(atomIndex, energy - 1);
-    
-    // Naturally grow resonance by 1 (0.001 per tick in float)
-    // Needs to reach > 100 to be elected Regent
-    setResonance(atomIndex, resonance + 1); 
-    
-    // If energy > 50000, queue mitosis (0x08 opcode for PULSE_WORKER to resolve later)
-    if (energy > 50000) {
-       writeIntent(atomIndex, ISA_MITOSIS, 0, 0, 0); 
-    } else {
-       // NOP intent
-       writeIntent(atomIndex, ISA_NOP, 0, 0, 0);
-    }
-}
+    const opcode = getLogicByte(atomIndex, 0);
 
+    if (opcode == ISA_BIND) {
+        let nearestIdx: i32 = -1;
+        let minDistSq: i32 = 10000; 
+
+        for (let ox = -5; ox <= 5; ox++) {
+            for (let oy = -5; oy <= 5; oy++) {
+                let nx = gx + ox;
+                let ny = gy + oy;
+                if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+                    let count = getSpatialGridCount(nx, ny);
+                    for (let c = 0; c < count; c++) {
+                        let otherIdx = getSpatialGridAtom(nx, ny, c);
+                        if (otherIdx != atomIndex && otherIdx >= 0) {
+                            let dx = (getX(otherIdx) - x) as i32;
+                            let dy = (getY(otherIdx) - y) as i32;
+                            let dSq = dx * dx + dy * dy;
+                            if (dSq < minDistSq) {
+                                minDistSq = dSq;
+                                nearestIdx = otherIdx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (nearestIdx != -1) {
+            writeBondRequest(atomIndex, nearestIdx);
+            trace_atom(atomIndex, opcode as i32, x as i32, y as i32, nearestIdx);
+        }
+    } else if (opcode == ISA_SHARE) {
+        for (let b = 0; b < 4; b++) {
+            let target = getBondTarget(atomIndex, b);
+            if (target > 0 && target < MAX_ATOMS) {
+                let stiffness = getBondStiffness(atomIndex, b);
+                let share = (energy / 10);
+                energy -= share;
+                setEnergy(target, getEnergy(target) + share);
+                if (stiffness < 1.0) setBondStiffness(atomIndex, b, stiffness + 0.05);
+                trace_atom(atomIndex, opcode as i32, x as i32, y as i32, target);
+                break; 
+            }
+        }
+    }
+
+    // Passive Metabolism & Sharing across active bonds
+    for (let b = 0; b < 4; b++) {
+        let target = getBondTarget(atomIndex, b);
+        if (target > 0 && target < MAX_ATOMS) {
+            let stiffness = getBondStiffness(atomIndex, b);
+            let targetE = getEnergy(target);
+            let diff = targetE - energy;
+            if (diff != 0) {
+                let flux = ((diff as f32) * (stiffness * 0.1)) as i32;
+                energy += flux;
+                setEnergy(target, targetE - flux);
+            }
+            // Hebbian Decay: Bonds weaken slightly every tick unless reinforced by ISA_SHARE
+            if (stiffness > 0.01) setBondStiffness(atomIndex, b, stiffness - 0.001);
+            else { setBondTarget(atomIndex, b, 0); setBondStiffness(atomIndex, b, 0); }
+        }
+    }
+
+    // Passive decay
+    setEnergy(atomIndex, energy - 1);
+}

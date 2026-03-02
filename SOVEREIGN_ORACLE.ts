@@ -19,15 +19,40 @@ export const SOVEREIGN_ORACLE = {
         try {
             console.log(`👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`);
             
-            const newBytecode = await LLM_SYNAPSE.generateAtomicBytecode(telemetry);
+            const memSummary = STATE_MATRIX.getMemorySummary();
+            const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({ ...telemetry, stigmergicSummary: memSummary });
             
-            if (newBytecode && newBytecode.length === 8) {
+            if (oracleResult && oracleResult.genome) {
+                const newBytecode = oracleResult.genome;
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
                     STATE_MATRIX.setLogic(regentIndex, newBytecode);
                     const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('');
                     console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex.toUpperCase()}]`);
                     SOVEREIGNTY_ENGINE.currentRegent.genome = hex.toUpperCase();
+
+                    // --- ERA 67: MEMETIC INJECTION ---
+                    if (oracleResult.meme) {
+                        const memeHex = Array.from(oracleResult.meme).map(b => b.toString(16).padStart(2, '0')).join('');
+                        console.log(`🌀 [ORACLE] Memetic Injection! Seeding Grid with: [${memeHex.toUpperCase()}]`);
+                        
+                        // Seed the 3x3 area around the Regent
+                        const rx = Math.floor(STATE_MATRIX.getX(regentIndex) / 10);
+                        const ry = Math.floor(STATE_MATRIX.getY(regentIndex) / 10);
+                        
+                        for (let dx = -1; dx <= 1; dx++) {
+                            for (let dy = -1; dy <= 1; dy++) {
+                                const gx = rx + dx;
+                                const gy = ry + dy;
+                                if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+                                    const gridIdx = (gy * 140 + gx) * 8;
+                                    // Set energy (1000) + meme (4 bytes)
+                                    STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx); // 1000 in little endian
+                                    STATE_MATRIX.memoryGrid.set(oracleResult.meme, gridIdx + 4);
+                                }
+                            }
+                        }
+                    }
                 } else {
                     console.log(`👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`);
                 }

@@ -1,7 +1,3 @@
-// OMEGA-64 | SPATIAL_HASH.ts | O(1) Proximity Index
-// Spatial indexing for optimized neighborhood queries.
-// ERA 44: Upgraded to SharedArrayBuffer for Web Worker lock-free reading
-
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
@@ -10,17 +6,14 @@ const GRID_ROWS = 80;  // 800 / 10
 const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
-const BUFFER_SIZE = TOTAL_CELLS * (CELL_CAPACITY + 1) * 4;
-
-const buffer = new SharedArrayBuffer(BUFFER_SIZE);
-const gridView = new Int32Array(buffer);
+const gridView = (STATE_MATRIX as any).spatialGrid; // Linked to WASM Memory
 
 // ERA 55: Role-census per cell (8 role slots per cell, role=0..7)
 const quorumBuffer = new SharedArrayBuffer(TOTAL_CELLS * 8 * 4);
 const quorumView = new Int32Array(quorumBuffer);
 
 export const SPATIAL_HASH = {
-    buffer,
+    buffer: STATE_MATRIX.buffer,
     quorumBuffer, // ERA 55: role census per cell
     CELL_CAPACITY,
 
@@ -52,7 +45,7 @@ export const SPATIAL_HASH = {
                 Atomics.add(gridView, offset + (CELL_CAPACITY), Number(myPhase));
 
                 // --- ERA 55: Role census per cell ---
-                const myRole = STATE_MATRIX.getRole ? STATE_MATRIX.getRole(idx) : 0;
+                const myRole = (STATE_MATRIX as any).roles[idx]; // Access roles directly
                 const safeRole = Math.min(7, Math.max(0, myRole));
                 Atomics.add(quorumView, cellIdx * 8 + safeRole, 1);
             }
@@ -68,7 +61,7 @@ export const SPATIAL_HASH = {
                 Atomics.store(gridView, offset + 31, Math.floor(sum / count));
             }
             // Reset quorum tallies for next tick
-            for (let r = 0; r < 8; r++) quorumView[i * 8 + r] = 0;
+            for (let r = 0; r < 8; r++) Atomics.store(quorumView, i * 8 + r, 0);
         }
     },
 
