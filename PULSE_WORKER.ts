@@ -22,7 +22,6 @@ self.onmessage = async (e) => {
                     memory: wasmMemory,
                     abort: (msg: any) => console.error("   [WASM ABORT]:", msg),
                     trace_atom: (idx: number, op: number, gx: number, gy: number, target: number) => {
-                        // Keep traces for observation but they can be silenced later if needed
                         if (idx <= 10) {
                             console.log(`   [WASM TRACE] Atom ${idx} | OP: 0x${op.toString(16)} | Pos: (${gx},${gy}) | Target: ${target}`);
                         }
@@ -57,7 +56,12 @@ self.onmessage = async (e) => {
                 let x = Atomics.load(xs, i);
                 let y = Atomics.load(ys, i);
 
-                // Normal Execution with Physics
+                // --- NEURAL VERIFICATION ISOLATION ---
+                if (currentId <= 10n) {
+                    execute_atom_fn(i);
+                    continue;
+                }
+
                 const logicBytes = logic.subarray(i * 8, i * 8 + 8);
                 const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
                 
