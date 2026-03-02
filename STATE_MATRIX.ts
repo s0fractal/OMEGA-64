@@ -76,6 +76,13 @@ export const STATE_MATRIX = {
         return active;
     },
 
+    findFreeSlot: (): number => {
+        for (let i = 0; i < MAX_ATOMS; i++) {
+            if (Atomics.load(ids, i) === 0n) return i;
+        }
+        return -1;
+    },
+
     getMatrixResonance: () => {
         let total = 0;
         for (let i = 0; i < 140 * 80; i++) {

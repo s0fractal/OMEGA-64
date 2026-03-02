@@ -99,7 +99,71 @@ export const PULSE = {
         workers[0].postMessage({ type: "TICK_MATRIX", pulseId: Date.now() });
         await matrixDone;
 
-        // 4. Rebuild Spatial Lattice
+        // 4. Phase 20: Drain Spawn Queue — materialize child atoms
+        //    SPAWN_GRID ring-buffer: head at byte 37MB+1MB, data after +8 bytes
+        //    Each slot = 16 bytes: u64 genome | i16 cx | i16 cy | i32 energy
+        {
+            const SPAWN_BASE   = 1000000 + 37000000; // SAFETY_BUFFER + 37MB
+            const SPAWN_HEAD_OFF = SPAWN_BASE;
+            const SPAWN_DATA_OFF = SPAWN_BASE + 8;
+            const SPAWN_MAX    = 1024;
+            const SPAWN_SLOT   = 16;
+
+            const headView  = new Int32Array(sharedBuffer, SPAWN_HEAD_OFF, 2);
+            const readHead  = Atomics.load(headView, 1);   // [1] = read cursor
+            const writeHead = Atomics.load(headView, 0);   // [0] = write cursor
+
+            let spawned = 0;
+            let cursor = readHead;
+
+            while (cursor !== writeHead % SPAWN_MAX && spawned < 64) {
+                const slotOff = SPAWN_DATA_OFF + cursor * SPAWN_SLOT;
+                const genomeLo = new Uint32Array(sharedBuffer, slotOff, 1)[0];
+
+                // Only process non-empty slots (genomeLo ≠ 0)
+                if (genomeLo !== 0) {
+                    const genomeHi = new Uint32Array(sharedBuffer, slotOff + 4, 1)[0];
+                    const cx = new Int16Array(sharedBuffer, slotOff + 8, 1)[0];
+                    const cy = new Int16Array(sharedBuffer, slotOff + 10, 1)[0];
+                    const childEnergy = new Int32Array(sharedBuffer, slotOff + 12, 1)[0];
+
+                    // Find first free atom slot
+                    const freeIdx = STATE_MATRIX.getActiveIndices().length < MAX_ATOMS
+                        ? STATE_MATRIX.findFreeSlot()
+                        : -1;
+
+                    if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
+                        const childId = BigInt(Date.now()) ^ BigInt(freeIdx);
+                        STATE_MATRIX.setId(freeIdx, childId);
+                        STATE_MATRIX.setX(freeIdx, cx * 10 + 5);
+                        STATE_MATRIX.setY(freeIdx, cy * 10 + 5);
+                        STATE_MATRIX.setEnergy(freeIdx, Math.max(childEnergy, 500));
+                        STATE_MATRIX.setResonance(freeIdx, 50);
+                        STATE_MATRIX.setPhase(freeIdx, 0);
+                        // Reconstruct genome from lo+hi u32
+                        const genome = new Uint8Array(8);
+                        new Uint32Array(genome.buffer)[0] = genomeLo;
+                        new Uint32Array(genome.buffer)[1] = genomeHi;
+                        STATE_MATRIX.setLogic(freeIdx, genome);
+                        spawned++;
+                    }
+
+                    // Clear the slot
+                    new Uint32Array(sharedBuffer, slotOff, 1)[0] = 0;
+                }
+
+                cursor = (cursor + 1) % SPAWN_MAX;
+            }
+
+            // Advance read cursor
+            Atomics.store(headView, 1, cursor);
+
+            if (spawned > 0) {
+                console.log(`🌱 [PULSE] Spawned ${spawned} child atoms from REPLICATE queue!`);
+            }
+        }
+
+        // 5. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
     }
 };

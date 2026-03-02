@@ -37,6 +37,22 @@ const CRYSTAL_OSCILLATOR: i32 = 5;
 // Global coherence broadcast channel — written by SOVEREIGN_ORACLE, read by ISA_SENSE
 const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 36000000;
 
+// Phase 20: Self-Replication
+// SPAWN_GRID: ring-buffer of pending child-atom requests written by ISA_REPLICATE,
+// read and materialized by PULSE.ts in JS space. Each slot = 16 bytes:
+//   [0..7]  parent genome (u64)
+//   [8..9]  spawn x (i16)
+//   [10..11] spawn y (i16)
+//   [12..15] parent energy / 2 (i32)
+const ISA_REPLICATE: u8 = 0x4A;
+const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 37000000;
+const SPAWN_MAX: i32 = 1024;    // ring-buffer capacity
+const SPAWN_SLOT: i32 = 16;     // bytes per spawn request
+// Atomic write-head lives at SPAWN_GRID_OFF
+const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
+// Spawn data starts after 8-byte header
+const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
+
 // Colony / Territory constants
 const CRYSTAL_COLONY: i32 = 3;
 const COLONY_THRESHOLD: i32 = 5;
@@ -102,6 +118,34 @@ export function execute_atom(atomIndex: i32): void {
     let gy = (y as i32) / 10;
     
     const opcode = getLogicByte(atomIndex, 0);
+
+    // --- Phase 20: Self-Replication (EARLY CHECK — before action potential resets resonance) ---
+    if (opcode == ISA_REPLICATE && energy > 1500 && resonance > 200) {
+        const spawnDx: i32 = (resonance % 3) - 1;
+        const spawnDy: i32 = ((resonance * 7) % 3) - 1;
+        const childGx: i32 = gx + spawnDx;
+        const childGy: i32 = gy + spawnDy;
+
+        if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
+            const slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
+            const slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
+            const parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+            const mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
+            const mutMask: u64 = (mutSeed as u64) << 16;
+            const childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
+
+            store<u64>(slotOff, childGenome);
+            store<i16>((slotOff + 8) as usize, childGx as i16);
+            store<i16>((slotOff + 10) as usize, childGy as i16);
+            store<i32>((slotOff + 12) as usize, energy >> 1);
+
+            // Parent pays the reproduction tax
+            energy = energy >> 1;
+            setEnergy(atomIndex, energy);
+            setResonance(atomIndex, resonance + 30);
+        }
+        return; // Replicate takes the whole tick
+    }
 
     // --- Phase 9: Neural Processing ---
     if (phase > 0) {
@@ -329,6 +373,44 @@ export function execute_atom(atomIndex: i32): void {
                 if (cType > 0) {
                     atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 10);
                 }
+            }
+        }
+    }
+
+    // --- Phase 20: Self-Replication (ISA_REPLICATE) ---
+    if (opcode == ISA_REPLICATE) {
+        // Minimum fitness gate: need surplus energy AND some resonance
+        if (energy > 1500 && resonance > 200) {
+            // Choose adjacent spawn cell (prefer direction of resonance gradient)
+            let spawnDx: i32 = (resonance % 3) - 1; // -1, 0, or 1
+            let spawnDy: i32 = ((resonance * 7) % 3) - 1;
+            let childGx: i32 = gx + spawnDx;
+            let childGy: i32 = gy + spawnDy;
+
+            // Bounds check
+            if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
+                // Only spawn into empty space (no competing atom grid check — JS handles collisions)
+                // Atomically claim a slot in SPAWN_GRID ring-buffer
+                let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
+                let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
+
+                // Copy parent genome to slot, with small mutation in byte 2
+                let parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+
+                // Mutate genome byte 2 deterministically
+                let mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
+                let mutMask: u64 = (mutSeed as u64) << 16;
+                // 25% chance of mutation (when seed bit 0 and 1 both set)
+                let childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
+
+                store<u64>(slotOff, childGenome);
+                store<i16>((slotOff + 8) as usize, childGx as i16);
+                store<i16>((slotOff + 10) as usize, childGy as i16);
+                store<i32>((slotOff + 12) as usize, energy >> 1); // Half energy for child
+
+                // Parent pays the reproduction tax: half energy + small resonance boost (pride!)
+                energy = energy >> 1;
+                setResonance(atomIndex, resonance + 30);
             }
         }
     }
