@@ -23,8 +23,9 @@ const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
 const ISA_READ_MATRIX: u8 = 0x43;
 const ISA_INJECT: u8 = 0x44;
-const ISA_BROADCAST: u8 = 0x45;    // Colony beacon
-const ISA_ANNEX: u8 = 0x46;        // Territorial expansion
+const ISA_BROADCAST: u8 = 0x45;
+const ISA_ANNEX: u8 = 0x46;
+const ISA_MUTATE: u8 = 0x47;       // Fitness-driven genome mutation
 const ISA_ASCEND: u8 = 0xFF;
 
 // Colony / Territory constants
@@ -261,6 +262,45 @@ export function execute_atom(atomIndex: i32): void {
                         }
                     }
                     setResonance(atomIndex, resonance + 5); // Aggressor gains
+                }
+            }
+        }
+    }
+
+    // --- Phase 17: Fitness-Driven Mutation (ISA_MUTATE) ---
+    if (opcode == ISA_MUTATE) {
+        // Mutation pressure is INVERSE of resonance:
+        // Low resonance  = high temperature = high mutation rate (desperate)
+        // High resonance = low temperature  = low mutation rate  (stable)
+        let pressure = 1000 - (resonance > 1000 ? 1000 : resonance); // 0..1000
+
+        // Stochastic mutation gate: higher pressure → more likely to mutate
+        let seed = (atomIndex * 1664525 + resonance + energy) & 0x7FFFFFFF;
+        let mutationGate = seed % 1000;
+
+        if (mutationGate < pressure) {
+            // Mutate: flip a random byte in logic bytes 1..7 (byte 0 = opcode, keep it)
+            let byteIdx = (seed % 7) + 1;  // bytes 1-7
+            let bitMask: u8 = ((1 << ((seed % 8) as i32)) as i32 & 0xFF) as u8;
+            let logOff: usize = (LOGIC_OFFSET + (atomIndex << 3) as usize) + byteIdx;
+            let old = load<u8>(logOff);
+            store<u8>(logOff, old ^ bitMask); // Flip one bit
+
+            // Energy cost of mutation
+            energy = energy > 50 ? energy - 50 : 0;
+
+            // === Fitness Propagation ===
+            // High-energy survivors broadcast their genome as a fitness beacon
+            if (energy > 2000) {
+                let cellIdx = gy * 140 + gx;
+                let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+                if (crystalType > 0) {
+                    // Stamp full genome into memoryGrid as a CRYSTAL_MEME
+                    let genome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+                    let mOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+                    store<u64>(mOff, genome);
+                    // Upgrade crystal to CRYSTAL_MEME to propagate winning genome
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_MEME);
                 }
             }
         }
