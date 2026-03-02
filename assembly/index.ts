@@ -23,7 +23,12 @@ const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
 const ISA_READ_MATRIX: u8 = 0x43;  // Read local crystal signal → resonance
 const ISA_INJECT: u8 = 0x44;       // Inject surplus resonance → crystal signal
+const ISA_BROADCAST: u8 = 0x45;    // Stamp genome hash into memoryGrid (colony beacon)
 const ISA_ASCEND: u8 = 0xFF;
+
+// Colony constants
+const CRYSTAL_COLONY: i32 = 3;     // Structure type for collective crystallization
+const COLONY_THRESHOLD: i32 = 5;   // Min colony markers to trigger crystallization
 
 // Memetic Horizontal Transfer constants
 const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 33000000;
@@ -186,6 +191,32 @@ export function execute_atom(atomIndex: i32): void {
                 setResonance(atomIndex, resonance - injection);
             }
         }
+
+    } else if (opcode == ISA_BROADCAST) {
+        // --- Phase 15: Colony Broadcast ---
+        // Compute a 4-byte genome hash from this atom's logic bytes
+        let l0 = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+        let cellIdx = gy * 140 + gx;
+        let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+
+        // Read existing colony counter from upper 4 bytes of meme slot
+        let existing = load<u64>(memeOff);
+        let sameGenome = ((existing & 0xFFFFFFFF) as u32) == l0;
+        let count = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
+
+        // Write genome hash + count back
+        store<u64>(memeOff, (l0 as u64) | ((count as u64) << 32));
+
+        // Collective crystallization: enough tribe members → become CRYSTAL_COLONY
+        if (count >= COLONY_THRESHOLD) {
+            let structType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+            if (structType == 0) {
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_COLONY);
+                atomic.store<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 500); // Seed colony resonance
+            }
+        }
+        // Boost own resonance slightly for broadcasting
+        setResonance(atomIndex, resonance + 10);
     }
 
     // --- Memetic Horizontal Transfer ---
