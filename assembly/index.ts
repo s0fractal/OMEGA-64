@@ -21,14 +21,16 @@ const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 20000000;
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
-const ISA_READ_MATRIX: u8 = 0x43;  // Read local crystal signal → resonance
-const ISA_INJECT: u8 = 0x44;       // Inject surplus resonance → crystal signal
-const ISA_BROADCAST: u8 = 0x45;    // Stamp genome hash into memoryGrid (colony beacon)
+const ISA_READ_MATRIX: u8 = 0x43;
+const ISA_INJECT: u8 = 0x44;
+const ISA_BROADCAST: u8 = 0x45;    // Colony beacon
+const ISA_ANNEX: u8 = 0x46;        // Territorial expansion
 const ISA_ASCEND: u8 = 0xFF;
 
-// Colony constants
-const CRYSTAL_COLONY: i32 = 3;     // Structure type for collective crystallization
-const COLONY_THRESHOLD: i32 = 5;   // Min colony markers to trigger crystallization
+// Colony / Territory constants
+const CRYSTAL_COLONY: i32 = 3;
+const COLONY_THRESHOLD: i32 = 5;
+const DECAY_COUNTER_OFF: usize = SAFETY_BUFFER + 35000000; // Decay tick counters
 
 // Memetic Horizontal Transfer constants
 const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 33000000;
@@ -217,6 +219,51 @@ export function execute_atom(atomIndex: i32): void {
         }
         // Boost own resonance slightly for broadcasting
         setResonance(atomIndex, resonance + 10);
+
+    } else if (opcode == ISA_ANNEX) {
+        // --- Phase 16: Territorial Expansion ---
+        // Attempt to annex up to 2 neighboring cells into this colony
+        let myGenome = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+
+        // Probe orthogonal neighbors
+        let dirs: i32[] = [1, -1, 140, -140];
+        for (let d = 0; d < 4; d++) {
+            let ni = gy * 140 + gx + dirs[d];
+            if (ni < 0 || ni >= 140 * 80) continue;
+
+            let neighborType = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+
+            if (neighborType == 0) {
+                // Neutral — stamp our genome beacon
+                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
+                let existing = load<u64>(mOff);
+                let sameGenome = ((existing & 0xFFFFFFFF) as u32) == myGenome;
+                let count: i32 = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
+                store<u64>(mOff, (myGenome as u64) | ((count as u64) << 32));
+                if (count >= COLONY_THRESHOLD) {
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), CRYSTAL_COLONY);
+                    atomic.store<i32>(SIGNAL_GRID_OFF + (ni << 2), 300);
+                }
+            } else if (neighborType == CRYSTAL_COLONY) {
+                // Occupied by ANOTHER colony — contest!
+                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
+                let existing = load<u64>(mOff);
+                let incumbentGenome = (existing & 0xFFFFFFFF) as u32;
+                if (incumbentGenome != myGenome) {
+                    // Territory contest: aggressor drains signal
+                    let currentSig = atomic.load<i32>(SIGNAL_GRID_OFF + (ni << 2));
+                    if (currentSig > 50) {
+                        atomic.add<i32>(SIGNAL_GRID_OFF + (ni << 2), -50);
+                        // If drained to near-zero, reset to neutral
+                        if (currentSig - 50 <= 0) {
+                            atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), 0);
+                            store<u64>(mOff, 0); // Clear beacon
+                        }
+                    }
+                    setResonance(atomIndex, resonance + 5); // Aggressor gains
+                }
+            }
+        }
     }
 
     // --- Memetic Horizontal Transfer ---
