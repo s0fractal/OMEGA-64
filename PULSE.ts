@@ -1,6 +1,7 @@
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 import { STATE_MATRIX, MAX_ATOMS, sharedBuffer } from "./STATE_MATRIX.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
+import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
 
 const WORKER_COUNT = 4; // We can keep 4, but for the test we'll ensure index 1 is handled clearly.
 
@@ -33,7 +34,6 @@ export const PULSE = {
 
     tick: async () => {
         const active = STATE_MATRIX.getActiveIndices();
-        if (active.length === 0) return;
 
         // 1. Resolve Sequential Logic (Bonds, Spawns)
         for (const i of active) {
@@ -70,7 +70,10 @@ export const PULSE = {
         }
         await Promise.all(workerPromises);
 
-        // 3. Rebuild Spatial Lattice
+        // 3. Matrix Engine (Planetary Brain)
+        MATRIX_ENGINE.tick();
+
+        // 4. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
     }
 };

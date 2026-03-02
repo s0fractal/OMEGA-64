@@ -19,6 +19,8 @@ const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
 const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
 const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, 140 * 80 * 32);
+const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80); // 1 int per cell (density/type)
+const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80);    // 1 int per cell (resonance)
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
@@ -28,6 +30,8 @@ export const STATE_MATRIX = {
     phases,
     roles,
     spatialGrid,
+    structureGrid,
+    signalGrid,
     
     getId: (i: number) => Atomics.load(ids, i),
     getX: (i: number) => Atomics.load(xs, i),
