@@ -25,8 +25,12 @@ const ISA_READ_MATRIX: u8 = 0x43;
 const ISA_INJECT: u8 = 0x44;
 const ISA_BROADCAST: u8 = 0x45;
 const ISA_ANNEX: u8 = 0x46;
-const ISA_MUTATE: u8 = 0x47;       // Fitness-driven genome mutation
+const ISA_MUTATE: u8 = 0x47;
+const ISA_RESONATE: u8 = 0x48;     // Atom synchronizes with crystal oscillation
 const ISA_ASCEND: u8 = 0xFF;
+
+// Crystal type constants
+const CRYSTAL_OSCILLATOR: i32 = 5; // Standing-wave accumulator
 
 // Colony / Territory constants
 const CRYSTAL_COLONY: i32 = 3;
@@ -387,15 +391,43 @@ export function tick_matrix(): void {
                 }
             }
 
-            // Logic Gate Processing (Experimental)
+            // Phase 18: Oscillation Detection — convergent signal from 3+ neighbors
+            // sustains and amplifies the wave, encoding memory in memoryGrid amplitude
+            let converging: i32 = 0;
+            for (let n = 0; n < 4; n++) {
+                const nni = neighbors[n];
+                if (nni == -1) continue;
+                const nnType = atomic.load<i32>(STRUCTURE_GRID_OFF + (nni << 2));
+                if (nnType > 0) {
+                    const nnRes = atomic.load<i32>(SIGNAL_GRID_OFF + (nni << 2));
+                    // Convergent if neighbor has signal flowing toward us
+                    if (nnRes > currentRes) converging++;
+                }
+            }
+
+            if (converging >= 3) {
+                // Standing wave detected: amplify current signal
+                currentRes += 50;
+                // Mark as oscillator crystal
+                if (type == 1) {
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), CRYSTAL_OSCILLATOR);
+                }
+                // Accumulate amplitude in memoryGrid (persistent standing wave memory)
+                let mOff: usize = MEMORY_GRID_OFF + (i << 3) as usize;
+                let prevAmp = load<u32>(mOff as usize);
+                let newAmp = prevAmp + 1 > 65535 ? 65535 : prevAmp + 1;
+                store<u32>(mOff as usize, newAmp);
+            }
+
+            // Logic Gate Processing
             if (type > 5) {
-                // Threshold gate
+                // Threshold gate (type 6)
                 if (currentRes < 200) currentRes = 0;
             }
 
             // Passive Decay & Persistence
             currentRes = currentRes > 5 ? currentRes - 5 : 0;
-            
+
             atomic.store<i32>(SIGNAL_GRID_OFF + (i << 2), currentRes);
         }
     }
