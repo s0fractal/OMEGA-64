@@ -21,7 +21,14 @@ const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 20000000;
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
+const ISA_READ_MATRIX: u8 = 0x43;  // Read local crystal signal → resonance
+const ISA_INJECT: u8 = 0x44;       // Inject surplus resonance → crystal signal
 const ISA_ASCEND: u8 = 0xFF;
+
+// Memetic Horizontal Transfer constants
+const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 33000000;
+const CRYSTAL_MEME: i32 = 10;       // Type for memetic nodes
+const MEME_TRANSFER_PROB: i32 = 8;  // ~12.5% chance per tick for meme absorption
 
 const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 31000000;
 const SIGNAL_GRID_OFF: usize    = SAFETY_BUFFER + 32000000;
@@ -151,6 +158,52 @@ export function execute_atom(atomIndex: i32): void {
             } else {
                 // Throttled: Rollback increment
                 atomic.sub<i32>(ASCENSION_STATS_OFF, 1);
+            }
+        }
+
+    // --- Phase 14: Bio-Matrix Coupling ---
+
+    } else if (opcode == ISA_READ_MATRIX) {
+        // Read local crystal signal into atom's resonance
+        let cellIdx = gy * 140 + gx;
+        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+        if (crystalType > 0) {
+            let localSignal = atomic.load<i32>(SIGNAL_GRID_OFF + (cellIdx << 2));
+            // Attune: add a fraction of local signal to own resonance
+            let attunement = localSignal >> 2; // 25% absorption
+            setResonance(atomIndex, resonance + attunement);
+        }
+
+    } else if (opcode == ISA_INJECT) {
+        // Inject surplus resonance into the crystal at this position
+        if (resonance > 200) {
+            let cellIdx = gy * 140 + gx;
+            let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+            if (crystalType > 0) {
+                // Inject half of surplus resonance into signal grid
+                let injection = resonance >> 1;
+                atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), injection);
+                setResonance(atomIndex, resonance - injection);
+            }
+        }
+    }
+
+    // --- Memetic Horizontal Transfer ---
+    // If standing on a CRYSTAL_MEME, stochastically absorb the stored genome
+    {
+        let cellIdx = gy * 140 + gx;
+        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+        if (crystalType == CRYSTAL_MEME) {
+            // Simple stochastic gate using atomIndex as entropy source
+            let dice = (atomIndex * 2654435769 + resonance) & 0x7FFFFFFF;
+            if ((dice % MEME_TRANSFER_PROB) == 0) {
+                // Absorb the stored 8-byte meme genome into atom's logic
+                let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+                let meme = load<u64>(memeOff);
+                if (meme != 0) {
+                    // Overwrite first 4 bytes of logic with meme bytes
+                    store<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize, (meme & 0xFFFFFFFF) as u32);
+                }
             }
         }
     }
