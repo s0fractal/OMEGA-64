@@ -6,6 +6,7 @@ const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: (idx: number) => void;
+let tick_matrix_fn: (() => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 
 self.onmessage = async (e) => {
@@ -30,6 +31,7 @@ self.onmessage = async (e) => {
             });
             wasmInstance = instantiated.instance;
             execute_atom_fn = wasmInstance.exports.execute_atom as any;
+            tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
             self.postMessage({ type: "READY" });
         } catch (err) {
             console.error("   [WORKER] WASM LOAD ERROR:", err);
@@ -82,5 +84,10 @@ self.onmessage = async (e) => {
         }
 
         self.postMessage({ type: "DONE", pulseId });
+    }
+
+    if (type === "TICK_MATRIX") {
+        if (tick_matrix_fn) tick_matrix_fn();
+        self.postMessage({ type: "MATRIX_DONE", pulseId });
     }
 };

@@ -8,6 +8,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
     lastConsultTick: 0,
+    guidanceCache: new Set<string>(), // Store Hex strings of successful genomes
 
     interpretResonance: () => {
         const matrixRes = STATE_MATRIX.getMatrixResonance();
@@ -43,13 +44,21 @@ export const SOVEREIGN_ORACLE = {
             
             if (oracleResult && oracleResult.genome) {
                 const newBytecode = oracleResult.genome;
+                const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+                
+                SOVEREIGN_ORACLE.guidanceCache.add(hex);
+                if (SOVEREIGN_ORACLE.guidanceCache.size > 100) {
+                    // Evict oldest (Set doesn't have easy eviction, but we'll just keep it simple)
+                    const first = SOVEREIGN_ORACLE.guidanceCache.values().next().value;
+                    SOVEREIGN_ORACLE.guidanceCache.delete(first);
+                }
+
                 console.log(`👁️ [ORACLE] Oracle responded with genome of length ${newBytecode.length}`);
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
                     STATE_MATRIX.setLogic(regentIndex, newBytecode);
-                    const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('');
-                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex.toUpperCase()}]`);
-                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex.toUpperCase();
+                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex}]`);
+                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex;
 
                     // --- ERA 67: MEMETIC INJECTION ---
                     if (oracleResult.meme) {
@@ -81,6 +90,19 @@ export const SOVEREIGN_ORACLE = {
             }
         } catch (err) {
             console.error(`👁️ [ORACLE] Connection severed:`, err);
+            
+            // --- ERA 68: CACHE FALLBACK ---
+            if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
+                const cacheArray = Array.from(SOVEREIGN_ORACLE.guidanceCache);
+                const cachedHex = cacheArray[Math.floor(Math.random() * cacheArray.length)];
+                const bytes = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
+                
+                if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+                    STATE_MATRIX.setLogic(regentIndex, bytes);
+                    console.log(`♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${cachedHex}]`);
+                }
+            }
         } finally {
             SOVEREIGN_ORACLE.isConsulting = false;
         }

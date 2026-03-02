@@ -19,19 +19,24 @@ export const SNAPSHOT_ENGINE = {
         const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
         const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
         const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
-
         try {
             // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
-            await Deno.writeFile(matrixPath, new Uint8Array(STATE_MATRIX.buffer));
+            const matrixData = new Uint8Array(STATE_MATRIX.buffer);
+            await Deno.writeFile(matrixPath, matrixData);
 
             // 2. Binary dump of the Thermodynamics Grid (Nutrients)
             await Deno.writeFile(physicsPath, new Uint8Array(PHYSICS_ENGINE.envBuffer));
 
             // 3. JSON dump of the LLM Knowledge / Thoughts
             const akashicData = Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive);
+            
+            // --- ERA 68: CHECKSUM FOOTER ---
+            const checksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
+            (akashicData as any)._checksum = checksum;
+
             await Deno.writeTextFile(akashicPath, JSON.stringify(akashicData, null, 2));
 
-            console.log(`💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (${(STATE_MATRIX.buffer.byteLength / 1024 / 1024).toFixed(2)} MB)`);
+            console.log(`💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${checksum.toString(16).toUpperCase()})`);
             return { timestamp, success: true };
         } catch (e) {
             console.error(`❌ [SNAPSHOT] Export Failed:`, e);
@@ -64,16 +69,29 @@ export const SNAPSHOT_ENGINE = {
                 console.warn(`⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`);
             }
 
-            // 3. Restore Akashic Records
+            // 3. Restore Akashic Records & Verify Checksum
             try {
                 const akashicText = await Deno.readTextFile(akashicPath);
                 const akashicData = JSON.parse(akashicText);
+                
+                // --- ERA 68: INTEGRITY VERIFICATION ---
+                const expectedChecksum = akashicData._checksum;
+                if (expectedChecksum !== undefined) {
+                    const actualChecksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
+                    if (actualChecksum !== expectedChecksum) {
+                        throw new Error(`Integrity Violation: Predicted ${expectedChecksum.toString(16)}, Found ${actualChecksum.toString(16)}`);
+                    }
+                    console.log(`🛡️ [SNAPSHOT] Integrity Verified: Checksum ${actualChecksum.toString(16).toUpperCase()}`);
+                }
+
                 SEMANTIC_MEMBRANE.thoughtArchive.clear();
                 for (const [hash, thought] of Object.entries(akashicData)) {
+                    if (hash === "_checksum") continue;
                     SEMANTIC_MEMBRANE.thoughtArchive.set(hash, thought as string);
                 }
-            } catch {
-                console.warn(`⚠️ [SNAPSHOT] No Akashic History found for ${timestamp}. Thoughts lost in time.`);
+            } catch (e: any) {
+                if (e.message?.includes("Integrity Violation")) throw e;
+                console.warn(`⚠️ [SNAPSHOT] No history or metadata for ${timestamp}:`, e);
             }
 
             console.log(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);

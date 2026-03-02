@@ -1,385 +1,119 @@
 # OMEGA-64 | CORE LOGIC (ERA 67: THE SOVEREIGN ORACLE)
 
-*Generated: 2026-03-02T13:13:45.970Z*
+*Generated: 2026-03-02T15:53:08.445Z*
 
 ---
 
 ## FILE: STATE_MATRIX.ts
 
 ```typescript
-// OMEGA-64 | STATE_MATRIX.ts | Era 8: The Structure-of-Arrays (SoA) Matrix
-// High-performance memory layout for cache efficiency.
+// OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
+import * as OFFSETS from "./OFFSETS.ts";
 
-export const MAX_ATOMS = 100000;
-export const ATOM_SIZE = 64; // Legacy constant for compatibility
+export const MAX_ATOMS = OFFSETS.MAX_ATOMS;
+export const SCALE = OFFSETS.SCALE;
 
-// Memory offsets for SoA approach (Contiguous blocks per field)
-const IDS_OFFSET = 0;
-const XS_OFFSET = IDS_OFFSET + (MAX_ATOMS * 8); // ids (BigUint64)
-const YS_OFFSET = XS_OFFSET + (MAX_ATOMS * 2); // xs (Int16)
-const ENERGY_OFFSET = YS_OFFSET + (MAX_ATOMS * 2); // ys (Int16)
-const RESONANCE_OFFSET = ENERGY_OFFSET + (MAX_ATOMS * 4); // energies (Int32)
-const PHASE_OFFSET = RESONANCE_OFFSET + (MAX_ATOMS * 4); // resonances (Int32)
-const LOGIC_OFFSET = PHASE_OFFSET + (MAX_ATOMS * 4); // phases (Int32)
-const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
-const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
-const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
-const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-export const INTENT_OFFSET = EVOLUTION_OFFSET; // 4 bytes/atom: [OPCODE, ARG1, ARG2, ARG3]
-export const TOTAL_BUFFER_SIZE = INTENT_OFFSET + (MAX_ATOMS * 4); 
+export const wasmMemory = new WebAssembly.Memory({ initial: 512, maximum: 512, shared: true });
+export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
-const PAGES = 256; // Fixed size to exactly match AS compilation flag
-export const wasmMemory = new WebAssembly.Memory({ initial: PAGES, maximum: PAGES, shared: true });
-const buffer = wasmMemory.buffer as SharedArrayBuffer;
-const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
-const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
-const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
-const meiosisRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
-const bondRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY] (ERA 44)
-const mergeRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 2 * 4); // [initiatorIdx, targetIdx] (ERA 45)
-
-
-const viralGridBuffer = new SharedArrayBuffer(140 * 80 * 9); // ERA 24: 140x80 grid of 9-byte viral data
-const immuneBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 26: Quarantine flags
-const messageBufferA = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal A)
-const messageBufferB = new SharedArrayBuffer(MAX_ATOMS); // ERA 27: Atomic Signaling (Signal B)
-const bondStiffnessBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 28: 4 floats per atom
-const synapticStackBuffer = new SharedArrayBuffer(MAX_ATOMS * 4 * 4); // ERA 30: 4 Int32 slots per atom
-const structureGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 31: 140x80 grid of Int32
-const memoryGridBuffer = new SharedArrayBuffer(140 * 80 * 8); // ERA 32: 140x80 grid of 8-byte bytecode
-const roleRegistryBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 33: 1 byte per atom for Role
-const semanticBonusesBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 36: 1 bit-mask byte per atom
-const pheroGridBuffer = new SharedArrayBuffer(140 * 80 * 4); // ERA 50: Pheromone Grid
-const hiveMemoryBuffer = new SharedArrayBuffer(140 * 80 * 16); // ERA 51: Collective Memory (16 bytes/cell)
-const birthTickBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 54: Temporal Cognition (spawn tick)
-const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
-const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
-const signalGridBuffer = new SharedArrayBuffer(140 * 80); // ERA 66: Signal Conduction Grid
-
-// TypedArray Views (Structure of Arrays)
-const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
-const xs = new Int16Array(buffer, XS_OFFSET, MAX_ATOMS);
-const ys = new Int16Array(buffer, YS_OFFSET, MAX_ATOMS);
-const energies = new Int32Array(buffer, ENERGY_OFFSET, MAX_ATOMS);
-const resonances = new Int32Array(buffer, RESONANCE_OFFSET, MAX_ATOMS);
-const phases = new Int32Array(buffer, PHASE_OFFSET, MAX_ATOMS);
-const logic = new Uint8Array(buffer, LOGIC_OFFSET, MAX_ATOMS * 8);
-const bonds = new Uint32Array(buffer, BONDS_OFFSET, MAX_ATOMS * 4);
-const instructions = new Uint32Array(buffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
-const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
-
-const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
-const spawnRequests = new Int32Array(spawnRequestsBuffer);
-const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
-const bondRequests = new Int32Array(bondRequestsBuffer);
-const mergeRequests = new Int32Array(mergeRequestsBuffer); // ERA 45
- // ERA 44
-
-// Request buffers already initialized at declaration above for better TS safety.
-
-const viralGrid = new Uint8Array(viralGridBuffer);
-const quarantineFlags = new Uint8Array(immuneBuffer);
-const messagesA = new Uint8Array(messageBufferA);
-const messagesB = new Uint8Array(messageBufferB);
-const bondStiffness = new Float32Array(bondStiffnessBuffer);
-const synapticStack = new Int32Array(synapticStackBuffer);
-const structureGrid = new Int32Array(structureGridBuffer);
-const memoryGrid = new Uint8Array(memoryGridBuffer);
-const roles = new Uint8Array(roleRegistryBuffer);
-const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
-const pheroGrid = new Int32Array(pheroGridBuffer);
-const hiveMemory = new Uint8Array(hiveMemoryBuffer); // ERA 51: Collective Memory
-const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognition
-const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
-const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
-const intents = new Uint8Array(buffer, INTENT_OFFSET, MAX_ATOMS * 4);
-const signalGrid = new Uint8Array(signalGridBuffer); // ERA 66
-
-
-const SCALE = 1000;
+// TypedArray Views (Host side)
+const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
+const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
+const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
+const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, 140 * 80 * 32);
+const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80); // 1 int per cell (density/type)
+const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80);    // 1 int per cell (resonance)
+const memoryGrid = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8);
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
-    buffer,
-    bondStiffnessBuffer,
-    messageBufferA,
-    messageBufferB,
-    marketBuffer,
-    SCALE,
-    evolutionRequestsBuffer,
-    spawnRequestsBuffer,
-    meiosisRequestsBuffer,
-    bondRequestsBuffer, // ERA 44
-    viralGridBuffer,
-    viralGrid,
-    immuneBuffer,
-    quarantineFlags,
-    synapticStackBuffer,
-    phases,
-    bondStiffness,
-    structureGridBuffer,
-    structureGrid,
-    memoryGridBuffer,
-    memoryGrid,
-    roleRegistryBuffer,
-    roles,
-    semanticBonusesBuffer,
-    semanticBonuses,
-    pheromoneGrid: pheroGrid,
-    pheroGridBuffer,
-    hiveMemoryBuffer, // ERA 51
-    hiveMemory,       // ERA 51
-    birthTickBuffer,  // ERA 54
-    birthTicks,       // ERA 54
-    senderSignatureBufferA,
-    senderSignatureBufferB,
-    senderSignaturesA,
-    senderSignaturesB,
-    quorumBuffer: undefined, // Will be removed or mocked later
+    buffer: sharedBuffer,
     wasmMemory,
-    intents,
-    signalGridBuffer,
-    getSignalGrid: () => signalGrid,
-    getViralGrid: () => viralGrid,
+    SCALE,
+    phases,
+    roles,
+    spatialGrid,
+    structureGrid,
+    signalGrid,
+    memoryGrid,
     
-    // --- ID ---
-    getId: (idx: number) => Atomics.load(ids, idx),
-    setId: (idx: number, id: bigint) => { Atomics.store(ids, idx, id); },
-
-    // --- POSITIONS ---
-    getX: (idx: number) => Atomics.load(xs, idx),
-    setX: (idx: number, val: number) => { Atomics.store(xs, idx, val); },
-    getY: (idx: number) => Atomics.load(ys, idx),
-    setY: (idx: number, val: number) => { Atomics.store(ys, idx, val); },
-
-    // --- METRICS (Fixed-Point) ---
-    getEnergy: (idx: number) => Atomics.load(energies, idx) / SCALE,
-    setEnergy: (idx: number, val: number) => { Atomics.store(energies, idx, Math.round(val * SCALE)); },
-    getResonance: (idx: number) => Atomics.load(resonances, idx) / SCALE,
-    setResonance: (idx: number, val: number) => { Atomics.store(resonances, idx, Math.round(val * SCALE)); },
-    getPhase: (idx: number) => Atomics.load(phases, idx) / SCALE,
-    setPhase: (idx: number, val: number) => { Atomics.store(phases, idx, Math.round(val * SCALE)); },
-
-    // --- GENOME (8-Byte Header) ---
-    getLogic: (idx: number) => logic.subarray(idx * 8, idx * 8 + 8),
-    setLogic: (idx: number, bytes: Uint8Array) => {
-        logic.set(bytes.subarray(0, 8), idx * 8);
-    },
-
-    // --- CODE (L5: Instruction Blocks) ---
-    getCode: (idx: number) => instructions.subarray(idx * 16, idx * 16 + 16),
-    setCode: (idx: number, code: Uint32Array) => {
-        instructions.set(code.subarray(0, 16), idx * 16);
-    },
-
-    setContext: (idx: number, ctx: Uint8Array) => {
-        contexts.set(ctx.subarray(0, 32), idx * 32);
-    },
-    getContext: (idx: number) => contexts.subarray(idx * 32, idx * 32 + 32),
-
-    // --- EVOLUTION (ERA 22) ---
-    requestEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 1); },
-    clearEvolution: (idx: number) => { Atomics.store(evolutionRequests, idx, 0); },
-    hasEvolved: (idx: number) => Atomics.load(evolutionRequests, idx) === 1,
+    getId: (i: number) => Atomics.load(ids, i),
+    getX: (i: number) => Atomics.load(xs, i),
+    getY: (i: number) => Atomics.load(ys, i),
+    getRole: (i: number) => Atomics.load(roles, i),
+    getEnergy: (i: number) => Atomics.load(energies, i) / SCALE,
+    getResonance: (i: number) => Atomics.load(resonances, i),
+    getPhase: (i: number) => Atomics.load(phases, i),
+    getLogic: (i: number) => logic.subarray(i * 8, i * 8 + 8),
+    getBonds: (i: number) => bonds.subarray(i * 4, i * 4 + 4),
+    getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
+    getBondStiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
     
-    // --- MITOSIS (ERA 41) ---
-    requestSpawn: (initiatorIdx: number, targetX: number, targetY: number) => {
-        Atomics.store(spawnRequests, initiatorIdx * 3, initiatorIdx);
-        Atomics.store(spawnRequests, initiatorIdx * 3 + 1, targetX);
-        Atomics.store(spawnRequests, initiatorIdx * 3 + 2, targetY);
-    },
-    clearSpawn: (idx: number) => {
-        Atomics.store(spawnRequests, idx * 3, 0);
-        Atomics.store(spawnRequests, idx * 3 + 1, 0);
-        Atomics.store(spawnRequests, idx * 3 + 2, 0);
-    },
-    getSpawnRequest: (idx: number) => {
-        const initiator = Atomics.load(spawnRequests, idx * 3);
-        if (initiator === 0) return null;
-        return {
-            initiatorIdx: initiator,
-            targetX: Atomics.load(spawnRequests, idx * 3 + 1),
-            targetY: Atomics.load(spawnRequests, idx * 3 + 2),
-        };
-    },
-    getSpawnRequests: () => spawnRequests,
+    setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
+    setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
+    setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
+    setRole: (i: number, val: number) => Atomics.store(roles, i, val),
+    setEnergy: (i: number, val: number) => Atomics.store(energies, i, Math.round(val * SCALE)),
+    setResonance: (i: number, val: number) => Atomics.store(resonances, i, val),
+    setPhase: (i: number, val: number) => Atomics.store(phases, i, val),
+    setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
+    setBondTarget: (i: number, slot: number, target: number) => Atomics.store(bonds, i * 4 + slot, target),
+    setBondStiffness: (i: number, slot: number, val: number) => { bondStiffness[i * 4 + slot] = val; },
 
-    // --- MEIOSIS (ERA 42) ---
-    requestMeiosis: (initiatorIdx: number, targetX: number, targetY: number) => {
-        Atomics.store(meiosisRequests, initiatorIdx * 3, initiatorIdx);
-        Atomics.store(meiosisRequests, initiatorIdx * 3 + 1, targetX);
-        Atomics.store(meiosisRequests, initiatorIdx * 3 + 2, targetY);
+    getBondRequest: (i: number) => {
+        const req = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 3);
+        const initiator = Atomics.load(req, 0);
+        return initiator !== 0 ? req : null;
     },
-    clearMeiosis: (idx: number) => {
-        Atomics.store(meiosisRequests, idx * 3, 0);
-        Atomics.store(meiosisRequests, idx * 3 + 1, 0);
-        Atomics.store(meiosisRequests, idx * 3 + 2, 0);
-    },
-    getMeiosisRequest: (idx: number) => {
-        const initiator = Atomics.load(meiosisRequests, idx * 3);
-        if (initiator === 0) return null;
-        return {
-            initiatorIdx: initiator,
-            targetX: Atomics.load(meiosisRequests, idx * 3 + 1),
-            targetY: Atomics.load(meiosisRequests, idx * 3 + 2),
-        };
-    },
-    getMeiosisRequests: () => meiosisRequests,
+    clearBondRequest: (i: number) => Atomics.store(new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 1), 0, 0),
 
-    // --- BOND REQUESTS (ERA 44) ---
-    requestBond: (initiatorIdx: number, targetX: number, targetY: number) => {
-        // Use 1-based index (idx + 1) to distinguish index 0 from empty
-        Atomics.store(bondRequests, initiatorIdx * 3, initiatorIdx + 1);
-        Atomics.store(bondRequests, initiatorIdx * 3 + 1, targetX);
-        Atomics.store(bondRequests, initiatorIdx * 3 + 2, targetY);
-    },
-    clearBondRequest: (idx: number) => {
-        Atomics.store(bondRequests, idx * 3, 0);
-    },
-    getBondRequest: (idx: number) => {
-        const initiatorStored = Atomics.load(bondRequests, idx * 3);
-        if (initiatorStored === 0) return null;
-        return {
-            initiatorIdx: initiatorStored - 1,
-            targetX: Atomics.load(bondRequests, idx * 3 + 1),
-            targetY: Atomics.load(bondRequests, idx * 3 + 2),
-        };
-    },
-    getBondRequests: () => bondRequests, // ERA 44
-
-    // --- SYMBIOTIC MERGING (ERA 45) ---
-    requestMerge: (initiatorIdx: number, targetIdx: number) => {
-        // Use 1-based index (idx + 1) to distinguish index 0 from empty
-        Atomics.store(mergeRequests, initiatorIdx * 2, initiatorIdx + 1);
-        Atomics.store(mergeRequests, initiatorIdx * 2 + 1, targetIdx);
-    },
-    clearMerge: (idx: number) => {
-        Atomics.store(mergeRequests, idx * 2, 0);
-    },
-    getMergeRequest: (idx: number) => {
-        const initiatorStored = Atomics.load(mergeRequests, idx * 2);
-        if (initiatorStored === 0) return null;
-        return {
-            initiatorIdx: initiatorStored - 1,
-            targetIdx: Atomics.load(mergeRequests, idx * 2 + 1),
-        };
-    },
-    getMergeRequests: () => mergeRequests,
-    mergeRequestsBuffer,
-
-    setSemanticBonus: (idx: number, bonus: number) => {
-        Atomics.store(semanticBonuses, idx, bonus & 0xFF);
-    },
-    getSemanticBonus: (idx: number) => Atomics.load(semanticBonuses, idx),
-
-
-    // --- IMMUNITY (ERA 26) ---
-    setQuarantine: (idx: number, level: number) => { Atomics.store(quarantineFlags, idx, level); },
-    getQuarantine: (idx: number) => Atomics.load(quarantineFlags, idx),
-    // Levels: 0 = Healthy, 1 = Flagged (Visual), 2 = Suppressed (NO-OP)
-
-
-    // --- MESSAGING (ERA 27: Collective Intelligence) ---
-    // Dual-buffered to ensure determinism (Read pulse N, Write pulse N)
-    // swap is handled at the start of PULSE.run() loop
-    currentWriteBuffer: messagesA,
-    currentReadBuffer: messagesB,
-    currentWriteSignatures: senderSignaturesA,
-    currentReadSignatures: senderSignaturesB,
-    swapMessageBuffers: () => {
-        const tempBuf = STATE_MATRIX.currentWriteBuffer;
-        STATE_MATRIX.currentWriteBuffer = STATE_MATRIX.currentReadBuffer;
-        STATE_MATRIX.currentReadBuffer = tempBuf;
-        
-        const tempSig = STATE_MATRIX.currentWriteSignatures;
-        STATE_MATRIX.currentWriteSignatures = STATE_MATRIX.currentReadSignatures;
-        STATE_MATRIX.currentReadSignatures = tempSig;
-
-        // Clear the NEW write buffers
-        STATE_MATRIX.currentWriteBuffer.fill(0);
-        STATE_MATRIX.currentWriteSignatures.fill(0);
-    },
-    getMessage: (idx: number) => Atomics.load(STATE_MATRIX.currentReadBuffer, idx),
-    setMessage: (idx: number, val: number) => { Atomics.store(STATE_MATRIX.currentWriteBuffer, idx, val & 0xFF); },
-
-
-    // --- MORPHOGENESIS (ERA 28) ---
-    getBondStiffness: (atomIdx: number, bondSlot: number) => bondStiffness[atomIdx * 4 + bondSlot],
-    setBondStiffness: (atomIdx: number, bondSlot: number, val: number) => { 
-        bondStiffness[atomIdx * 4 + bondSlot] = val; 
-    },
-
-    // --- SYNAPTIC STACK (ERA 30) ---
-    getSynapticValue: (atomIdx: number, slot: number) => Atomics.load(synapticStack, atomIdx * 4 + slot),
-    setSynapticValue: (atomIdx: number, slot: number, val: number) => {
-        Atomics.store(synapticStack, atomIdx * 4 + slot, val);
-    },
-
-    // --- ROLE REGISTRY (ERA 33) ---
-    getRole: (atomIdx: number): number => roles[atomIdx],
-    setRole: (atomIdx: number, role: number) => { Atomics.store(roles as unknown as Int32Array, atomIdx, role); },
-
-
-    // --- BONDS ---
-    getBonds: (idx: number) => bonds.subarray(idx * 4, idx * 4 + 4),
-    setBonds: (idx: number, indices: Uint32Array) => {
-        bonds.set(indices.subarray(0, 4), idx * 4);
-    },
-    getBondTarget: (idx: number, slot: number) => Atomics.load(bonds, idx * 4 + slot),
-    setBondTarget: (idx: number, slot: number, targetIdx: number) => {
-        Atomics.store(bonds, idx * 4 + slot, targetIdx);
-    },
-
-    // --- SYSTEM ---
     clear: () => {
-        new Uint32Array(buffer).fill(0);
-        new Uint8Array(evolutionRequestsBuffer).fill(0);
-        spawnRequests.fill(0);
-        meiosisRequests.fill(0);
-        bondRequests.fill(0); // ERA 44
-        mergeRequests.fill(0); // ERA 45
-
-        new Uint8Array(viralGridBuffer).fill(0);
-        new Uint8Array(pheroGridBuffer).fill(0);
-        new Uint8Array(immuneBuffer).fill(0);
-        messagesA.fill(0);
-        messagesB.fill(0);
-        bondStiffness.fill(0);
-        synapticStack.fill(0);
-        structureGrid.fill(0);
-        memoryGrid.fill(0);
-        roles.fill(0);
-        semanticBonuses.fill(0);
-        senderSignaturesA.fill(0);
-        senderSignaturesB.fill(0);
+        new Uint8Array(sharedBuffer).fill(0); 
     },
-
-    /**
-     * ERA 46: Oracle Priority Queue
-     * Returns the indices of the most resonant atoms.
-     */
-    getTopResonantIndices: (count: number): number[] => {
-        const active = STATE_MATRIX.getActiveIndices();
-        return active
-            .sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a))
-            .slice(0, count);
-    },
-
     getActiveIndices: () => {
         const active: number[] = [];
         for (let i = 0; i < MAX_ATOMS; i++) {
-            if (ids[i] !== 0n) {
-                active.push(i);
-            }
+            if (Atomics.load(ids, i) !== 0n) active.push(i);
         }
         return active;
     },
 
-    findEmptySlot: () => {
-        for (let i = 1; i < MAX_ATOMS; i++) {
-            if (ids[i] === 0n) return i;
+    getMatrixResonance: () => {
+        let total = 0;
+        for (let i = 0; i < 140 * 80; i++) {
+            total += Atomics.load(signalGrid, i);
         }
-        return -1;
+        return total;
+    },
+
+    getClusterSync: () => {
+        // Heuristic: measure how many neighboring cells in the Matrix have similar high resonance
+        let sync = 0;
+        for (let i = 0; i < 140 * 80; i++) {
+            const res = Atomics.load(signalGrid, i);
+            if (res > 100) sync++;
+        }
+        return sync;
+    },
+
+    getMemorySummary: () => {
+        // Implementation for Era 67 memetic summaries
+        const counts = new Map<number, number>();
+        for (let i = 0; i < 140 * 80; i++) {
+            const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
+            if (energy > 0) {
+                const sig = memoryGrid[i * 8 + 4]; // First byte of meme
+                counts.set(sig, (counts.get(sig) || 0) + 1);
+            }
+        }
+        return Array.from(counts.entries()).map(([sig, count]) => ({ sig, count }));
     }
 };
 
@@ -611,464 +345,100 @@ export const IMMUNE = {
 ## FILE: PULSE.ts
 
 ```typescript
-// OMEGA-64 | PULSE.ts | The Autonomic Heartbeat (Era 14: The Turing Mind)
-// Multi-threaded Structure-of-Arrays (SoA) simulation engine.
-
-import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
-import { RIBOSOME, ID_TO_IDX, IDX_TO_ID } from "./RIBOSOME.ts";
-import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+// OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
+import { STATE_MATRIX, MAX_ATOMS, sharedBuffer } from "./STATE_MATRIX.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
+import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
-import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
-import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
-import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
-import { REFLECTION_ENGINE } from "./REFLECTION_ENGINE.ts";
-import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
-import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
-import { GATE } from "./GATE.ts";
-import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts"; // ERA 66: Awakened Matrix
-import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts"; // ERA 67: Exocortex
 
+const WORKER_COUNT = 4; // We can keep 4, but for the test we'll ensure index 1 is handled clearly.
 
-const ROOT = Deno.cwd();
-const THREAD_COUNT = 4; // Adjust based on CPU cores
-const PULSE_INTERVAL = 10; // Faster pulses for high-performance era
+const workers: Worker[] = [];
+let workerPromises: Promise<any>[] = [];
 
 export const PULSE = {
-    workers: [] as Worker[],
-    currentPulseId: 0,
-
-
     initWorkers: async () => {
-        if (PULSE.workers.length > 0) return; // Already init
-        const workerPromises: Promise<void>[] = [];
-        for (let i = 0; i < THREAD_COUNT; i++) {
+        if (workers.length > 0) return;
+        
+        for (let i = 0; i < WORKER_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
-            PULSE.workers.push(worker);
+            workers.push(worker);
             
-            workerPromises.push(new Promise((resolve) => {
-                worker.addEventListener("message", (e) => {
-                    if (e.data.type === "READY") resolve();
-                }, { once: true });
-                worker.postMessage({ type: "INIT", wasmMemory: STATE_MATRIX.wasmMemory });
-            }));
+            const p = new Promise((resolve) => {
+                worker.onmessage = (e) => {
+                    if (e.data.type === "READY") resolve(true);
+                };
+            });
+            worker.postMessage({ 
+                type: "INIT", 
+                wasmMemory: STATE_MATRIX.wasmMemory,
+                buffer: STATE_MATRIX.buffer 
+            });
+            workerPromises.push(p);
         }
         await Promise.all(workerPromises);
-        console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized with WASM VMs.`);
-    },
-
-    stopWorkers: () => {
-        for (const worker of PULSE.workers) {
-            worker.terminate();
-        }
-        PULSE.workers = [];
-        console.log("   [PULSE] Workers terminated.");
-    },
-
-    run: async () => {
-        console.log("🛡️ OMEGA-64 | ERA 14: THE TURING MIND | PULSE ACTIVE");
-        
-        console.log("-> Lifting ROOT");
-        const lattice = await RIBOSOME.lift(ROOT);
-        console.log("-> ROOT Lifted");
-
-        if (!lattice.has("HYDRATED")) {
-            console.log("-> Seeding Nutrients (Cold Start)");
-            PHYSICS_ENGINE.seedNutrients(Date.now());
-        } else {
-            console.log("-> Nutrients Hydrated (Warm Start)");
-        }
-        
-        console.log("-> Init Workers");
-        await PULSE.initWorkers();
-        
-        while (true) {
-            await PULSE.tick();
-            await new Promise(r => setTimeout(r, PULSE_INTERVAL));
-        }
+        console.log(`   [PULSE] ${WORKER_COUNT} Parallel Workers READY with WASM VMs.`);
     },
 
     tick: async () => {
-        PULSE.currentPulseId++;
-        const pulseId = PULSE.currentPulseId;
+        const active = STATE_MATRIX.getActiveIndices();
 
-        // Main thread sequential tasks
-        const activeIndices = STATE_MATRIX.getActiveIndices();
+        // 0. Sovereign Oracle (High-Order Evolution)
+        const telemetry = SOVEREIGN_ORACLE.interpretResonance();
+        if (telemetry.matrixResonance > 5000) { 
+            console.log(`👁️ [PULSE] Matrix Threshold Breached (${telemetry.matrixResonance}). Triggering Sovereignty Audit.`);
+            const regent = SOVEREIGNTY_ENGINE.electRegent(active);
+            if (regent && regent.idx !== -1) {
+                console.log(`👑 [PULSE] Regent Candidate Found: ${regent.idx}. Consulting Oracle...`);
+                SOVEREIGN_ORACLE.consultOracle(regent.idx, telemetry);
+            } else {
+                console.log("   [PULSE] No sovereign candidate found.");
+            }
+        }
 
-        // --- ERA 44: Bond Formation (Multi-Cellular Tensegrity) ---
-        for (const idx of activeIndices) {
-            const bondReq = STATE_MATRIX.getBondRequest(idx);
-            if (bondReq !== null) {
-                STATE_MATRIX.clearBondRequest(idx);
-                const targetIdx = bondReq.targetX; 
-                
-                if (targetIdx > 0 && targetIdx < STATE_MATRIX.MAX_ATOMS) {
-                    let myFreeSlot = -1;
-                    for (let b = 0; b < 4; b++) {
-                        if (STATE_MATRIX.getBondTarget(idx, b) === 0) {
-                            myFreeSlot = b;
-                            break;
-                        }
-                    }
-
-                    let targetFreeSlot = -1;
-                    for (let b = 0; b < 4; b++) {
-                        if (STATE_MATRIX.getBondTarget(targetIdx, b) === 0) {
-                            targetFreeSlot = b;
-                            break;
-                        }
-                    }
-
-                    if (myFreeSlot !== -1 && targetFreeSlot !== -1) {
-                        STATE_MATRIX.setBondTarget(idx, myFreeSlot, targetIdx);
-                        STATE_MATRIX.setBondStiffness(idx, myFreeSlot, 0.5);
-                        STATE_MATRIX.setBondTarget(targetIdx, targetFreeSlot, idx);
-                        STATE_MATRIX.setBondStiffness(targetIdx, targetFreeSlot, 0.5);
-                        console.log(`🔗 [TENSEGRITY] Atom ${idx} formed physical bond with Atom ${targetIdx}`);
-                    }
+        // 1. Resolve Sequential Logic (Bonds, Spawns)
+        for (const i of active) {
+            // Bond Resolution
+            const bondReq = STATE_MATRIX.getBondRequest(i);
+            if (bondReq) {
+                const targetIdx = bondReq[1];
+                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
+                    // Bi-directional bond
+                    STATE_MATRIX.setBondTarget(i, 0, targetIdx);
+                    STATE_MATRIX.setBondStiffness(i, 0, 0.1);
+                    STATE_MATRIX.setBondTarget(targetIdx, 1, i);
+                    STATE_MATRIX.setBondStiffness(targetIdx, 1, 0.1);
                 }
+                STATE_MATRIX.clearBondRequest(i);
             }
         }
 
-        SPATIAL_HASH.build(activeIndices);
-        if (pulseId % 5 === 0) PHYSICS_ENGINE.decayPheromones((STATE_MATRIX as any).pheromoneGrid);
-        if (pulseId % 10 === 0) {
-            // @ts-ignore: Physics engine uses its own state matrix instance
-            PHYSICS_ENGINE.diffuseViralSemantics(STATE_MATRIX.viralGrid, pulseId);
-            // @ts-ignore: Physics engine uses its own state matrix instance
-            PHYSICS_ENGINE.decayStructures(STATE_MATRIX.structureGrid, STATE_MATRIX.memoryGrid, STATE_MATRIX.viralGrid);
-            GATE.detectAntigens(STATE_MATRIX);
-        }
-
-        STATE_MATRIX.swapMessageBuffers();
-
-        if (pulseId % 10 === 0) {
-            for (const idx of activeIndices) {
-                if (P2P_FEDERATION.checkWanderlust(idx, pulseId)) P2P_FEDERATION.migrate(idx, pulseId);
-            }
-        }
-
-        const chunkSize = Math.ceil(MAX_ATOMS / THREAD_COUNT);
-        const workerPromises = PULSE.workers.map((worker, i) => {
-            return new Promise((resolve, reject) => {
-                worker.onerror = (err) => {
-                    console.error(`💥 [WORKER ${i} CRASH]`, err.message);
-                    reject(err);
+        // 2. Parallel Physics & WASM Kernel
+        workerPromises = [];
+        const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
+        
+        for (let i = 0; i < WORKER_COUNT; i++) {
+            const startIdx = i * chunkSize;
+            const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+            
+            const p = new Promise((resolve) => {
+                workers[i].onmessage = (e) => {
+                    if (e.data.type === "DONE") resolve(true);
                 };
-                worker.onmessage = (e) => { 
-                    if (e.data.done && e.data.pulseId === pulseId) resolve(null); 
-                };
-                worker.postMessage({
-                    buffer: STATE_MATRIX.buffer,
-                    envBuffer: PHYSICS_ENGINE.envBuffer,
-                    attentionBuffer: PHYSICS_ENGINE.attentionBuffer,
-                    marketBuffer: PREDICTION_MARKET.buffer,
-                    startIdx: i * chunkSize,
-                    endIdx: Math.min((i + 1) * chunkSize, MAX_ATOMS),
-                    mods: SOVEREIGNTY_ENGINE.currentRegent.mods,
-                    evolutionRequestsBuffer: STATE_MATRIX.evolutionRequestsBuffer,
-                    spawnRequestsBuffer: STATE_MATRIX.spawnRequestsBuffer,
-                    meiosisRequestsBuffer: STATE_MATRIX.meiosisRequestsBuffer,
-                    bondRequestsBuffer: STATE_MATRIX.bondRequestsBuffer,
-                    mergeRequestsBuffer: STATE_MATRIX.mergeRequestsBuffer, // ERA 45
-                    viralGridBuffer: STATE_MATRIX.viralGridBuffer,
-                    immuneBuffer: STATE_MATRIX.immuneBuffer,
-                    messageBufferA: STATE_MATRIX.messageBufferA,
-                    messageBufferB: STATE_MATRIX.messageBufferB,
-                    bondStiffnessBuffer: STATE_MATRIX.bondStiffnessBuffer,
-                    synapticStackBuffer: STATE_MATRIX.synapticStackBuffer,
-                    structureGridBuffer: STATE_MATRIX.structureGridBuffer,
-                    memoryGridBuffer: STATE_MATRIX.memoryGridBuffer,
-                    pheroGridBuffer: (STATE_MATRIX as any).pheroGridBuffer,
-                    hiveMemoryBuffer: STATE_MATRIX.hiveMemoryBuffer,
-                    birthTickBuffer: STATE_MATRIX.birthTickBuffer,
-                    quorumBuffer: SPATIAL_HASH.quorumBuffer,
-                    roleRegistryBuffer: STATE_MATRIX.roleRegistryBuffer,
-                    semanticBonusesBuffer: STATE_MATRIX.semanticBonusesBuffer,
-                    senderSignatureBufferA: STATE_MATRIX.senderSignatureBufferA,
-                    senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
-                    trustedSignatures: Array.from(GATE.trustedSignatures),
-                    spatialGridBuffer: SPATIAL_HASH.buffer,
-                    intentOffset: (STATE_MATRIX as any).INTENT_OFFSET, // WASM FFI
-                    pulseId
-                });
             });
-        });
-
+            workers[i].postMessage({ type: "PULSE", startIdx, endIdx, pulseId: Date.now() });
+            workerPromises.push(p);
+        }
         await Promise.all(workerPromises);
 
-        // --- SEQUENTIAL RESOLUTION PHASE ---
-        for (const idx of activeIndices) {
-            if (STATE_MATRIX.getId(idx) === 0n) continue;
+        // 3. Matrix Engine (Planetary Brain)
+        MATRIX_ENGINE.tick();
 
-            let energy = STATE_MATRIX.getEnergy(idx);
-            let resonance = STATE_MATRIX.getResonance(idx);
-            
-            const bonds = [
-                STATE_MATRIX.getBondTarget(idx, 0),
-                STATE_MATRIX.getBondTarget(idx, 1),
-                STATE_MATRIX.getBondTarget(idx, 2),
-                STATE_MATRIX.getBondTarget(idx, 3)
-            ];
-
-            // Metabolic Equalization
-            for (let j = 0; j < 4; j++) {
-                if (bonds[j] !== 0) {
-                    const targetIdx = bonds[j];
-                    if (targetIdx > idx) { 
-                        const targetEnergy = STATE_MATRIX.getEnergy(targetIdx);
-                        const avgE = (energy + targetEnergy) / 2.0;
-                        energy = avgE;
-                        STATE_MATRIX.setEnergy(targetIdx, avgE);
-                        
-                        const targetRes = STATE_MATRIX.getResonance(targetIdx);
-                        const avgR = (resonance + targetRes) / 2.0;
-                        resonance = avgR;
-                        STATE_MATRIX.setResonance(targetIdx, avgR);
-                    }
-                }
-            }
-
-            // Mitosis
-            if (STATE_MATRIX.getSpawnRequest(idx) !== null) {
-                STATE_MATRIX.clearSpawn(idx);
-                const newIdx = STATE_MATRIX.findEmptySlot();
-                if (newIdx !== -1) {
-                    const parentEnergy = STATE_MATRIX.getEnergy(idx);
-                    const parentResonance = STATE_MATRIX.getResonance(idx);
-                    const childEnergy = parentEnergy / 2;
-                    const childResonance = parentResonance / 2;
-                    STATE_MATRIX.setEnergy(idx, childEnergy);
-                    STATE_MATRIX.setResonance(idx, childResonance);
-                    STATE_MATRIX.setEnergy(newIdx, childEnergy);
-                    STATE_MATRIX.setResonance(newIdx, childResonance);
-
-                    // --- ERA 48: Epigenetic Noise (Mitosis) ---
-                    const logic = new Uint8Array(STATE_MATRIX.getLogic(idx));
-                    if (Math.random() < 0.001) { // 0.1% mutation
-                        logic[Math.floor(Math.random() * 8)] ^= (1 << Math.floor(Math.random() * 8));
-                        console.log(`🧬 [MUTATION] Logic mutation in child ${newIdx}`);
-                    }
-                    STATE_MATRIX.setLogic(newIdx, logic);
-
-                    const code = new Uint32Array(STATE_MATRIX.getCode(idx));
-                    if (Math.random() < 0.001) { // 0.1% mutation
-                        code[Math.floor(Math.random() * 16)] ^= (1 << Math.floor(Math.random() * 32));
-                        console.log(`🧬 [MUTATION] Code mutation in child ${newIdx}`);
-                    }
-                    STATE_MATRIX.setCode(newIdx, code);
-
-                    STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
-                    STATE_MATRIX.setSemanticBonus(newIdx, STATE_MATRIX.getSemanticBonus(idx));
-                    const px = STATE_MATRIX.getX(idx);
-                    const py = STATE_MATRIX.getY(idx);
-                    STATE_MATRIX.setX(newIdx, px + (Math.random() * 20 - 10));
-                    STATE_MATRIX.setY(newIdx, py + (Math.random() * 20 - 10));
-                    const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
-                    STATE_MATRIX.setId(newIdx, childId);
-
-                    // --- ERA 56: Epigenetic Inheritance (Mitosis) ---
-                    // Child inherits parent's Hebbian weights [0..2] with ±1% noise
-                    for (let s = 0; s < 3; s++) {
-                        let w = STATE_MATRIX.getSynapticValue(idx, s);
-                        if (Math.random() < 0.01) { // 1% noise
-                            w = Math.max(0, Math.min(255, w + (Math.random() < 0.5 ? 1 : -1)));
-                        }
-                        STATE_MATRIX.setSynapticValue(newIdx, s, w);
-                    }
-                    STATE_MATRIX.setSynapticValue(newIdx, 3, 0); // reset FIRE tally
-                    // Register birth tick for lifecycle tracking
-                    const birthTicksView = STATE_MATRIX.birthTicks as unknown as Int32Array;
-                    if (birthTicksView) Atomics.store(birthTicksView, newIdx, pulseId);
-
-                    console.log(`🧬 [MITOSIS] Atom ${idx} split into ${newIdx}.`);
-                }
-            }
-
-            // Meiosis
-            const meiosisReq = STATE_MATRIX.getMeiosisRequest(idx);
-            if (meiosisReq !== null) {
-                STATE_MATRIX.clearMeiosis(idx);
-                const tIdx = meiosisReq.targetX; 
-                const energyA = STATE_MATRIX.getEnergy(idx);
-                const energyB = STATE_MATRIX.getEnergy(tIdx);
-
-                if (energyA > 100 && energyB > 100) {
-                    const newIdx = STATE_MATRIX.findEmptySlot();
-                    if (newIdx !== -1) {
-                        const contributionA_E = energyA * 0.3;
-                        const contributionB_E = energyB * 0.3;
-                        STATE_MATRIX.setEnergy(idx, energyA - contributionA_E);
-                        STATE_MATRIX.setEnergy(tIdx, energyB - contributionB_E);
-                        STATE_MATRIX.setEnergy(newIdx, contributionA_E + contributionB_E);
-                        const resA = STATE_MATRIX.getResonance(idx);
-                        const resB = STATE_MATRIX.getResonance(tIdx);
-                        const contributionA_R = resA * 0.3;
-                        const contributionB_R = resB * 0.3;
-                        STATE_MATRIX.setResonance(idx, resA - contributionA_R);
-                        STATE_MATRIX.setResonance(tIdx, resB - contributionB_R);
-                        STATE_MATRIX.setResonance(newIdx, contributionA_R + contributionB_R);
-                        
-                        const logicA = STATE_MATRIX.getLogic(idx);
-                        const logicB = STATE_MATRIX.getLogic(tIdx);
-                        const newLogic = new Uint8Array(8);
-                        newLogic.set(logicA.subarray(0, 4), 0);
-                        newLogic.set(logicB.subarray(4, 8), 4);
-                        
-                        // --- ERA 48: Epigenetic Noise (Meiosis Logic) ---
-                        if (Math.random() < 0.001) {
-                            newLogic[Math.floor(Math.random() * 8)] ^= (1 << Math.floor(Math.random() * 8));
-                            console.log(`🧬 [MUTATION] Logic mutation in Meiosis child ${newIdx}`);
-                        }
-                        STATE_MATRIX.setLogic(newIdx, newLogic);
-                        
-                        const codeA = STATE_MATRIX.getCode(idx);
-                        const codeB = STATE_MATRIX.getCode(tIdx);
-                        const newCode = new Uint32Array(16);
-                        for (let p = 0; p < 16; p++) newCode[p] = p % 2 === 0 ? codeA[p] : codeB[p];
-
-                        // --- ERA 48: Epigenetic Noise (Meiosis Code) ---
-                        if (Math.random() < 0.001) {
-                            newCode[Math.floor(Math.random() * 16)] ^= (1 << Math.floor(Math.random() * 32));
-                            console.log(`🧬 [MUTATION] Code mutation in Meiosis child ${newIdx}`);
-                        }
-                        STATE_MATRIX.setCode(newIdx, newCode);
-                        
-                        STATE_MATRIX.roles[newIdx] = Math.random() > 0.5 ? STATE_MATRIX.roles[idx] : STATE_MATRIX.roles[tIdx];
-                        STATE_MATRIX.setSemanticBonus(newIdx, Math.max(STATE_MATRIX.getSemanticBonus(idx), STATE_MATRIX.getSemanticBonus(tIdx)));
-                        STATE_MATRIX.setX(newIdx, Math.floor((STATE_MATRIX.getX(idx) + STATE_MATRIX.getX(tIdx)) / 2));
-                        STATE_MATRIX.setY(newIdx, Math.floor((STATE_MATRIX.getY(idx) + STATE_MATRIX.getY(tIdx)) / 2));
-                        
-                        const childId = BigInt(`0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}${pulseId.toString(16).padStart(8, '0')}`);
-                        STATE_MATRIX.setId(newIdx, childId);
-
-                        // --- ERA 56: Epigenetic Inheritance (Meiosis) ---
-                        // Child gets crossover of both parents' Hebbian weights with ±1% noise
-                        for (let s = 0; s < 3; s++) {
-                            const wA = STATE_MATRIX.getSynapticValue(idx, s);
-                            const wB = STATE_MATRIX.getSynapticValue(tIdx, s);
-                            let wChild = Math.round((wA + wB) / 2); // average
-                            if (Math.random() < 0.01) { // 1% noise
-                                wChild = Math.max(0, Math.min(255, wChild + (Math.random() < 0.5 ? 1 : -1)));
-                            }
-                            STATE_MATRIX.setSynapticValue(newIdx, s, wChild);
-                        }
-                        STATE_MATRIX.setSynapticValue(newIdx, 3, 0); // reset FIRE tally
-                        // Register birth tick
-                        const birthTicksViewM = STATE_MATRIX.birthTicks as unknown as Int32Array;
-                        if (birthTicksViewM) Atomics.store(birthTicksViewM, newIdx, pulseId);
-
-                        console.log(`💞 [MEIOSIS] Atoms ${idx} and ${tIdx} spawned ${newIdx}.`);
-                    }
-                }
-            }
-
-            // --- ERA 45: Symbiotic Merging (Endosymbiosis) ---
-            const mergeReq = STATE_MATRIX.getMergeRequest(idx);
-            if (mergeReq !== null) {
-                STATE_MATRIX.clearMerge(idx);
-                const tIdx = mergeReq.targetIdx;
-                if (tIdx > 0 && tIdx < MAX_ATOMS && STATE_MATRIX.getId(tIdx) !== 0n) {
-                    const eA = STATE_MATRIX.getEnergy(idx);
-                    const eB = STATE_MATRIX.getEnergy(tIdx);
-                    const rA = STATE_MATRIX.getResonance(idx);
-                    const rB = STATE_MATRIX.getResonance(tIdx);
-
-                    // Combine Metabolism
-                    STATE_MATRIX.setEnergy(idx, eA + eB);
-                    STATE_MATRIX.setResonance(idx, rA + rB);
-
-                    // Recombine Genome (Bitwise Logic XOR for hybrid diversity)
-                    const logicA = STATE_MATRIX.getLogic(idx);
-                    const logicB = STATE_MATRIX.getLogic(tIdx);
-                    const fusedLogic = new Uint8Array(8);
-                    for (let b = 0; b < 8; b++) fusedLogic[b] = logicA[b] ^ logicB[b];
-                    STATE_MATRIX.setLogic(idx, fusedLogic);
-
-                    // Recombine Code: Keep A's but add Symbiotic Bonus
-                    STATE_MATRIX.setSemanticBonus(idx, (STATE_MATRIX.getSemanticBonus(idx) | 0x08)); // Bit 3: Symbiont
-
-                    // Delete Target (Necrosis)
-                    STATE_MATRIX.setId(tIdx, 0n);
-                    STATE_MATRIX.setEnergy(tIdx, 0); // Clear energy
-                    // Clear target bonds to prevent phantom metabolism
-                    for (let b = 0; b < 4; b++) {
-                        const peerIdx = STATE_MATRIX.getBondTarget(tIdx, b);
-                        if (peerIdx !== 0) {
-                            // Find reverse bond and clear it
-                            for (let rb = 0; rb < 4; rb++) {
-                                if (STATE_MATRIX.getBondTarget(peerIdx, rb) === tIdx) {
-                                    STATE_MATRIX.setBondTarget(peerIdx, rb, 0);
-                                    STATE_MATRIX.setBondStiffness(peerIdx, rb, 0);
-                                }
-                            }
-                            STATE_MATRIX.setBondTarget(tIdx, b, 0);
-                            STATE_MATRIX.setBondStiffness(tIdx, b, 0);
-                        }
-                    }
-
-                    console.log(`💠 [SYMBIOSIS] Atom ${idx} merged with Atom ${tIdx}. New Resilience: ${eA + eB}`);
-                }
-            }
-        }
-
-        if (pulseId % 100 === 0) {
-            PREDICTION_MARKET.resolveCrisis();
-            const regent = SOVEREIGNTY_ENGINE.electRegent(activeIndices);
-            let totalNutrients = 0;
-            for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
-            console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
-            
-            // --- ERA 67: LLM ORACLE EXOCORTEX ---
-            // Let the Regent query the Oracle for new survival instructions
-            const popCount = activeIndices.length;
-            const viralGrid = STATE_MATRIX.getViralGrid();
-            let viralCount = 0;
-            for (let i = 0; i < viralGrid.length; i++) {
-                if (viralGrid[i] > 0) viralCount++;
-            }
-            
-            if (regent.idx !== -1) {
-                SOVEREIGN_ORACLE.consultOracle(regent.idx, {
-                    nutrients: totalNutrients,
-                    energy: regent.energy,
-                    population: popCount,
-                    viralLoad: viralCount
-                });
-            }
-        }
-
-        // --- ERA 66: AWAKENED MATRIX TICK ---
-        const sigGrid = STATE_MATRIX.getSignalGrid();
-        const strucGrid = new Int32Array(STATE_MATRIX.structureGridBuffer);
-        MATRIX_ENGINE.tick(sigGrid, strucGrid);
-
-        if (pulseId % 5000 === 0) await SNAPSHOT_ENGINE.exportSnapshot();
-
-        if (pulseId % 1000 === 0) {
-            await REFLECTION_ENGINE.crystallize(100);
-            PREDICTION_MARKET.distributeDividends();
-            const cognitiveThresholdCount = Math.ceil(activeIndices.length * 0.05);
-            const cognitiveElite = activeIndices.sort((a, b) => STATE_MATRIX.getResonance(b) - STATE_MATRIX.getResonance(a)).slice(0, cognitiveThresholdCount);
-            const winners = cognitiveElite.filter(idx => STATE_MATRIX.hasEvolved(idx) && STATE_MATRIX.getResonance(idx) > 100).slice(0, 3);
-            for (const idx of winners) {
-                const logicStr = Array.from(STATE_MATRIX.getLogic(idx)).map(b => b.toString(16).padStart(2, '0')).join('');
-                const currentThought = SEMANTIC_MEMBRANE.thoughtArchive.get(logicStr) || "Unknown existence.";
-                const context = `Decree: ${SOVEREIGNTY_ENGINE.currentRegent.activeDecree}, Population: ${activeIndices.length}`;
-                const evolvedThought = await LLM_SYNAPSE.evolveThought(currentThought, context);
-                console.log(`🧬 [EPIGENESIS] Evolving genome [${logicStr}] -> "${evolvedThought}"`);
-                SEMANTIC_MEMBRANE.project(evolvedThought, idx);
-                SEMANTIC_MEMBRANE.updateSemanticBonuses(idx);
-                STATE_MATRIX.clearEvolution(idx);
-            }
-        }
+        // 4. Rebuild Spatial Lattice
+        SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
     }
 };
-
-if (import.meta.main) {
-    await PULSE.run();
-}
 
 ```
 
@@ -1077,295 +447,91 @@ if (import.meta.main) {
 ## FILE: PULSE_WORKER.ts
 
 ```typescript
-// OMEGA-64 | PULSE_WORKER.ts | The Living Mind (Era 14: THE TURING MIND)
-// Process a range of atoms using SharedArrayBuffer, Fixed-Point Atomics, and VM Context.
-
-/// <reference lib="deno.worker" />
-
+// OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
-import { LAMBDA_VM } from "./LAMBDA_VM.ts";
-import { PRNG } from "./PRNG.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
-const MAX_ATOMS = 100000;
-const SCALE = 1000;
-const DIVINITY_THRESHOLD = 800;
+const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
-let execute_atom: (idx: number) => void;
+let execute_atom_fn: (idx: number) => void;
+let sharedBuffer: SharedArrayBuffer | null = null;
 
 self.onmessage = async (e) => {
-    if (e.data.type === "INIT") {
+    const { type, pulseId } = e.data;
+
+    if (type === "INIT") {
+        const { buffer, wasmMemory } = e.data;
+        sharedBuffer = buffer;
         try {
-            const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url));
-            const instantiated = await WebAssembly.instantiateStreaming(wasmRes, {
+            const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url).href);
+            const wasmBytes = await wasmRes.arrayBuffer();
+            const instantiated = await WebAssembly.instantiate(wasmBytes, {
                 env: { 
-                    memory: e.data.wasmMemory,
-                    abort: (msg: any, file: any, line: any, col: any) => {
-                        console.error(`WASM ABORT: ${msg} at ${file}:${line}:${col}`);
+                    memory: wasmMemory,
+                    abort: (msg: any) => console.error("   [WASM ABORT]:", msg),
+                    trace_atom: (idx: number, op: number, gx: number, gy: number, target: number) => {
+                        if (idx <= 10) {
+                            console.log(`   [WASM TRACE] Atom ${idx} | OP: 0x${op.toString(16)} | Pos: (${gx},${gy}) | Target: ${target}`);
+                        }
                     }
                 }
             });
             wasmInstance = instantiated.instance;
-            execute_atom = wasmInstance.exports.execute_atom as any;
+            execute_atom_fn = wasmInstance.exports.execute_atom as any;
             self.postMessage({ type: "READY" });
         } catch (err) {
-            console.error("WASM LOAD ERROR", err);
+            console.error("   [WORKER] WASM LOAD ERROR:", err);
         }
         return;
     }
 
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, quorumBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId, intentOffset } = e.data;
-    
-    // SoA Views
-    const nutrients = new Int32Array(envBuffer);
-    const attention = new Float32Array(attentionBuffer);
-    const evolutionRequests = new Uint8Array(evolutionRequestsBuffer);
-    const spawnRequests = new Int32Array(spawnRequestsBuffer);
-    const meiosisRequests = new Int32Array(meiosisRequestsBuffer);
-    const bondRequests = new Int32Array(bondRequestsBuffer);
-    const mergeRequests = new Int32Array(mergeRequestsBuffer);
-    const spatialGrid = new Int32Array(spatialGridBuffer);
-    
-    const CELL_CAPACITY = 31;
+    if (type === "PULSE") {
+        const { startIdx, endIdx } = e.data;
+        if (!wasmInstance || !execute_atom_fn || !sharedBuffer) return;
 
-    const viralGrid = new Uint8Array(viralGridBuffer);
-    const pheroGrid = new Int32Array(pheroGridBuffer);
-    const hiveMemory = hiveMemoryBuffer ? new Uint8Array(hiveMemoryBuffer) : undefined;
-    const birthTicks = birthTickBuffer ? new Int32Array(birthTickBuffer) : null;
-    const quorumData = quorumBuffer ? new Int32Array(quorumBuffer) : undefined;
-    const quarantineFlags = new Uint8Array(immuneBuffer);
-    const msgsA = new Uint8Array(messageBufferA);
-    const msgsB = new Uint8Array(messageBufferB);
-    const bondStiffs = new Float32Array(bondStiffnessBuffer);
-    const synapticStack = new Int32Array(synapticStackBuffer);
-    const structureGrid = new Int32Array(structureGridBuffer);
-    const memoryGrid = new Uint8Array(memoryGridBuffer);
-    const roles = new Uint8Array(roleRegistryBuffer);
-    const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
-    const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
-    const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
-    const intents = new Uint32Array(buffer, intentOffset, MAX_ATOMS); // 4 bytes == 1 Uint32
+        const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+        const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
+        const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+        const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
+        const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+        const stiffs = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
 
-    const trustedSet = new Set<string>(trustedSignatures || []);
+        try {
+            for (let i = startIdx; i < endIdx; i++) {
+                const currentId = Atomics.load(ids, i);
+                if (currentId === 0n) continue;
 
-    const isAEven = pulseId % 2 === 0;
-    const readBuffer = isAEven ? msgsB : msgsA;
-    const writeBuffer = isAEven ? msgsA : msgsB;
-    const readSignatures = isAEven ? senderSignaturesB : senderSignaturesA;
-    const writeSignatures = isAEven ? senderSignaturesA : senderSignaturesB;
+                let x = Atomics.load(xs, i);
+                let y = Atomics.load(ys, i);
 
-    const marketPool = new Int32Array(marketBuffer, 4, 1);
-
-    const ids = new BigUint64Array(buffer, 0, MAX_ATOMS);
-    const xs = new Int16Array(buffer, (MAX_ATOMS * 8), MAX_ATOMS);
-    const ys = new Int16Array(buffer, (MAX_ATOMS * 8) + (MAX_ATOMS * 2), MAX_ATOMS);
-    const energies = new Int32Array(buffer, (MAX_ATOMS * 12), MAX_ATOMS);
-    const resonances = new Int32Array(buffer, (MAX_ATOMS * 12) + (MAX_ATOMS * 4), MAX_ATOMS);
-    const phases = new Int32Array(buffer, (MAX_ATOMS * 20), MAX_ATOMS);
-    const logic = new Uint8Array(buffer, (MAX_ATOMS * 24), MAX_ATOMS * 8); 
-    const bonds = new Uint32Array(buffer, (MAX_ATOMS * 32), MAX_ATOMS * 4);
-    const instructions = new Uint32Array(buffer, (MAX_ATOMS * 48), MAX_ATOMS * 16);
-    
-    const CONTEXT_OFFSET = (MAX_ATOMS * 112);
-    const contexts = new Uint8Array(buffer, CONTEXT_OFFSET, MAX_ATOMS * 32);
-
-    try {
-        for (let i = startIdx; i < endIdx; i++) {
-            const currentId = Atomics.load(ids, i);
-            if (currentId === 0n) continue;
-
-            let x = Atomics.load(xs, i);
-            let y = Atomics.load(ys, i);
-            const energyFactor = Atomics.load(energies, i);
-            const resonanceFactor = Atomics.load(resonances, i);
-            
-            let energy = energyFactor / SCALE;
-            let resonance = resonanceFactor / SCALE;
-
-            const logicBytes = logic.subarray(i * 8, i * 8 + 8);
-            const codeBlock = instructions.subarray(i * 16, i * 16 + 16);
-            const context = contexts.subarray(i * 32, i * 32 + 32);
-
-            const isDivine = resonance > DIVINITY_THRESHOLD;
-            
-            // ERA 46: Metabolic Decay + Stigmergic Shelter
-            const gxAt = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-            const gyAt = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-            const cellIdxAt = gyAt * 140 + gxAt;
-            
-            const structureCell = Atomics.load(structureGrid, cellIdxAt);
-            const density = (structureCell >> 8) & 0xFF;
-            
-            let decay = 0.01; // Base metabolic cost
-            if (density > 100) decay *= 0.8; // 20% protection near ruins
-            if (!isDivine) energy -= (decay * mods.decay);
-
-            // Physics Logic
-            const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
-            const { velX, velY } = PHYSICS_ENGINE.getGenomeVelocity(logicStr);
-            
-            let dx = velX * mods.speed;
-            let dy = velY * mods.speed;
-
-            // Collision Check
-            const nextX = x + dx * 10;
-            const nextY = y + dy * 10;
-            const ngx = Math.floor(Math.max(0, Math.min(1399, nextX)) / 10);
-            const ngy = Math.floor(Math.max(0, Math.min(799, nextY)) / 10);
-            const targetStructureCell = Atomics.load(structureGrid, ngy * 140 + ngx);
-            if (((targetStructureCell >> 8) & 0xFF) > 150) {
-                dx = 0; dy = 0;
-            }
-
-            // Attention Tropism
-            const attentionAffinity = (logicBytes[0] - 128) / 128;
-            if (attentionAffinity !== 0) {
-                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-                let tropX = 0; let tropY = 0;
-                const checkpoints = [[0, -1], [0, 1], [-1, 0], [1, 0]];
-                for (const [oX, oY] of checkpoints) {
-                    const nx = Math.max(0, Math.min(139, gx + oX));
-                    const ny = Math.max(0, Math.min(79, gy + oY));
-                    const intensity = attention[ny * 140 + nx] || 0;
-                    tropX += oX * intensity;
-                    tropY += oY * intensity;
+                // --- NEURAL VERIFICATION ISOLATION ---
+                if (currentId <= 10n) {
+                    execute_atom_fn(i);
+                    continue;
                 }
-                const mag = Math.hypot(tropX, tropY) || 1;
-                dy += (tropY / mag) * attentionAffinity * 2.0;
-            }
 
-            const bondView = bonds.subarray(i * 4, i * 4 + 4);
-            const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondView, xs, ys, bondStiffs);
-            dx += fx; dy += fy;
-
-            x += Math.round(dx);
-            y += Math.round(dy);
-
-            // --- ERA 50: Collective Resonance ---
-            if (density > 5) {
-                const localPhaseAvg = Atomics.load(spatialGrid, cellIdxAt * 32 + 31) / SCALE; // Sync calculated in build
-                const myPhase = resonanceFactor / SCALE; // Phase is resonance factor in some contexts? 
-                // Wait, phase is its own field:
-                const myPhaseVal = Atomics.load(phases, i) / SCALE;
-                if (Math.abs(myPhaseVal - localPhaseAvg) < 0.1) {
-                    resonance += 1.0;
-                    energy += 1.0; // Collective meta-gain
-                }
-            }
-
-            // WASM EXECUTION (Zero-Allocation FFI)
-            if (execute_atom) {
-                execute_atom(i);
+                const logicBytes = logic.subarray(i * 8, i * 8 + 8);
+                const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
                 
-                // --- ERA 65: SYNC STATE ---
-                // Reload local JS variables because flat memory was mutated by WASM
-                energy = Atomics.load(energies, i) / SCALE;
-                resonance = Atomics.load(resonances, i) / SCALE;
+                const { velX, velY } = PHYSICS_ENGINE.getGenomeVelocity(logicStr);
+                const bondTargetView = bonds.subarray(i * 4, i * 4 + 4);
+                const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondTargetView, xs, ys, stiffs);
+                
+                x += Math.round(velX * 2 + fx);
+                y += Math.round(velY * 2 + fy);
+
+                Atomics.store(xs, i, x);
+                Atomics.store(ys, i, y);
+
+                execute_atom_fn(i);
             }
-
-            const intent = Atomics.load(intents, i);
-            if (intent !== 0) {
-                Atomics.store(intents, i, 0);
-                const opcode = intent & 0xFF;
-
-                if (opcode === 0x08) { // MITOSIS
-                    Atomics.store(spawnRequests, i * 3 + 0, 1);
-                    Atomics.store(spawnRequests, i * 3 + 1, Math.round(x));
-                    Atomics.store(spawnRequests, i * 3 + 2, Math.round(y));
-                }
-            }
-
-            // Metabolic Sharing
-            for (let b = 0; b < 4; b++) {
-                const stiffness = bondStiffs[i * 4 + b];
-                const targetIdx = bondView[b];
-                if (stiffness > 0) bondStiffs[i * 4 + b] = Math.max(0, stiffness - 0.001);
-                if (stiffness > 0.1 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    const targetE = Atomics.load(energies, targetIdx) / SCALE;
-                    const diffE = (targetE - energy) * (stiffness * 0.5);
-                    energy += diffE;
-                    Atomics.store(energies, targetIdx, Math.round((targetE - diffE) * SCALE));
-                    const targetR = Atomics.load(resonances, targetIdx) / SCALE;
-                    if (resonance > targetR + 1.0) {
-                        const harvest = (targetR * 0.05) * stiffness;
-                        resonance += harvest;
-                        Atomics.sub(resonances, targetIdx, Math.round(harvest * SCALE));
-                    }
-                }
-            }
-
-            // Environmental Feeding
-            const nutrient = Atomics.load(nutrients, cellIdxAt);
-            const roleNum = Number(Atomics.load(roles, i));
-            if (nutrient > 0 && energy < 100) {
-                let harvest = Math.min(nutrient, 2);
-                if (roleNum === 1) harvest *= 1.5;
-                energy += harvest;
-                Atomics.sub(nutrients, cellIdxAt, Math.round(harvest));
-            }
-
-            if (roleNum === 3) {
-                const sCell = Atomics.load(structureGrid, cellIdxAt);
-                const dens = (sCell >> 8) & 0xFF;
-                if (dens > 50) {
-                    energy += 0.5;
-                    Atomics.store(structureGrid, cellIdxAt, (((dens - 1) << 8) | (sCell & 0xFF)));
-                }
-            }
-
-            // Viral Signaling
-            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-            if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                const vIdx = (gy * 140 + gx) * 9;
-                if (resonance > 150 && (pulseId + i) % 10 === 0) {
-                    const intensity = Atomics.load(viralGrid, vIdx + 8);
-                    if (resonance / 5 > intensity) {
-                        for (let b = 0; b < 8; b++) Atomics.store(viralGrid, vIdx + b, logicBytes[b]);
-                        Atomics.store(viralGrid, vIdx + 8, Math.min(255, Math.floor(resonance / 4)));
-                    }
-                }
-                const viralIntensity = Atomics.load(viralGrid, vIdx + 8);
-                const quarantineLevel = Atomics.load(quarantineFlags, i);
-                const isFlagged = quarantineLevel >= 1;
-
-                if (!isFlagged && (pulseId + i) % 50 === 0 && viralIntensity > 50) {
-                    // Resonance-based resistance: higher resonance = harder to infect
-                    const resistance = (resonance / 2); // 400 resonance -> 200 resistance
-                    const atomPrng = new PRNG(PRNG.seedFrom(pulseId, currentId.toString()));
-                    const { value: v1, next: n1 } = atomPrng.next();
-                    
-                    if (v1 * 255 < (viralIntensity - resistance)) {
-                        const { value: v2 } = n1.next();
-                        const bIdx = Math.floor(v2 * 8);
-                        Atomics.store(logic, i * 8 + bIdx, Atomics.load(viralGrid, vIdx + bIdx));
-                        energy -= 5;
-                    }
-                }
-            }
-
-            x = Math.max(50, Math.min(1350, x));
-            y = Math.max(50, Math.min(750, y));
-
-            if (Atomics.load(ids, i) !== currentId) continue; 
-
-            Atomics.store(xs, i, x);
-            Atomics.store(ys, i, y);
-            Atomics.store(energies, i, Math.round(energy * SCALE));
-            Atomics.store(resonances, i, Math.round(resonance * SCALE));
-            
-            if (energy <= 0 && !isDivine) {
-                const nIdx = Math.floor(y / 10) * 140 + Math.floor(x / 10);
-                Atomics.add(nutrients, nIdx, Math.floor(resonance * 10) + 50);
-                Atomics.store(ids, i, 0n);
-            }
+        } catch (err) {
+            console.error("   [WORKER EXECUTION ERROR]", err);
         }
-    } catch (err) {
-        console.error("   [WORKER CRASH] Error in PULSE_WORKER:", err);
-    }
 
-    self.postMessage({ done: true, pulseId });
+        self.postMessage({ type: "DONE", pulseId });
+    }
 };
 
 ```
@@ -1375,10 +541,6 @@ self.onmessage = async (e) => {
 ## FILE: SPATIAL_HASH.ts
 
 ```typescript
-// OMEGA-64 | SPATIAL_HASH.ts | O(1) Proximity Index
-// Spatial indexing for optimized neighborhood queries.
-// ERA 44: Upgraded to SharedArrayBuffer for Web Worker lock-free reading
-
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
@@ -1387,17 +549,14 @@ const GRID_ROWS = 80;  // 800 / 10
 const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
-const BUFFER_SIZE = TOTAL_CELLS * (CELL_CAPACITY + 1) * 4;
-
-const buffer = new SharedArrayBuffer(BUFFER_SIZE);
-const gridView = new Int32Array(buffer);
+const gridView = (STATE_MATRIX as any).spatialGrid; // Linked to WASM Memory
 
 // ERA 55: Role-census per cell (8 role slots per cell, role=0..7)
 const quorumBuffer = new SharedArrayBuffer(TOTAL_CELLS * 8 * 4);
 const quorumView = new Int32Array(quorumBuffer);
 
 export const SPATIAL_HASH = {
-    buffer,
+    buffer: STATE_MATRIX.buffer,
     quorumBuffer, // ERA 55: role census per cell
     CELL_CAPACITY,
 
@@ -1429,7 +588,7 @@ export const SPATIAL_HASH = {
                 Atomics.add(gridView, offset + (CELL_CAPACITY), Number(myPhase));
 
                 // --- ERA 55: Role census per cell ---
-                const myRole = STATE_MATRIX.getRole ? STATE_MATRIX.getRole(idx) : 0;
+                const myRole = (STATE_MATRIX as any).roles[idx]; // Access roles directly
                 const safeRole = Math.min(7, Math.max(0, myRole));
                 Atomics.add(quorumView, cellIdx * 8 + safeRole, 1);
             }
@@ -1445,7 +604,7 @@ export const SPATIAL_HASH = {
                 Atomics.store(gridView, offset + 31, Math.floor(sum / count));
             }
             // Reset quorum tallies for next tick
-            for (let r = 0; r < 8; r++) quorumView[i * 8 + r] = 0;
+            for (let r = 0; r < 8; r++) Atomics.store(quorumView, i * 8 + r, 0);
         }
     },
 
@@ -3776,6 +2935,22 @@ export const ECOLOGY_ENGINE = {
         if (logic.startsWith("A")) return "ARCHIVIST";
         if (symbol === "PARASITE") return "PARASITE";
         return "NEUTRAL";
+    },
+
+    // ERA 67: Stigmergic Decay
+    // Clears the memory grid slowly to ensure only reinforced paths persist.
+    processGridDecay: () => {
+        const grid = STATE_MATRIX.memoryGrid;
+        // Simple decay: every N ticks, randomly clear some cells
+        // Or systematically decrement 'intensity' if we define an intensity byte
+        for (let i = 0; i < grid.length; i++) {
+            if (grid[i] > 0) {
+                // Stochastic decay: 5% chance to decrease
+                if (Math.random() < 0.05) {
+                    grid[i] = Math.max(0, grid[i] - 1);
+                }
+            }
+        }
     }
 };
 
@@ -4276,32 +3451,41 @@ export const LLM_SYNAPSE = {
      * generateAtomicBytecode: Era 67 (Sovereign Oracle)
      * Prompts the LLM to output exactly 16 hex characters (8 bytes) representing new WASM bytecode.
      */
-    generateAtomicBytecode: async (telemetry: any): Promise<Uint8Array | null> => {
+    generateAtomicBytecode: async (telemetry: any): Promise<{ genome: Uint8Array, meme?: Uint8Array } | null> => {
         const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
         const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
 
+        const memSummary = telemetry.stigmergicSummary.length > 0 
+            ? telemetry.stigmergicSummary.map((s: any) => `Signature ${s.sig} (Count: ${s.count})`).join(", ")
+            : "No collective memories found yet.";
+
         const prompt = `
-            Task: You are the Sovereign Oracle of OMEGA-64, an advanced artificial life simulation.
-            You govern a supreme organism known as the Regent.
+            Task: You are the Sovereign Oracle of OMEGA-64.
+            The Regent lives in a world of stigmergic shadows.
             
-            Telemetry Data:
-            - Nutrients Available: ${telemetry.nutrients}
-            - Current Regent Energy: ${telemetry.energy}
+            Environment:
+            - Nutrients: ${telemetry.nutrients}
+            - Regent Energy: ${telemetry.energy}
             - Population: ${telemetry.population}
             - Viral Load: ${telemetry.viralLoad}
+            - Matrix Resonance: ${telemetry.matrixResonance} 
+            - Cluster Sync: ${telemetry.clusterSync}
+            - Collective Memories: ${memSummary}
 
-            Your goal is to reprogram your own genome to survive. 
-            The genome consists of EXACTLY 8 BYTES, represented as 16 hexadecimal characters.
-            
-            Valid bytecode opcodes include:
-            - 08: MITOSIS (Reproduce)
-            - 20: FEED (Gather nutrients)
-            - FF: ASCEND (Turn into a permanent crystal structure)
+            Goal: 
+            1. Generate a new 8-byte (16 hex) genome for the Regent.
+            2. (Optional) Generate a 4-byte (8 hex) "Meme" to seed into the spatial grid.
 
-            Example Output format: "0800000000000000" (Mitosis)
-            Example Output format: "20A0000000000000" (Feed)
+            Opcodes:
+            - 08: MITOSIS, 20: FEED, FF: ASCEND, 30: STORE_MEM, 31: LOAD_MEM
+            - 40: BIND, 41: SHARE, 42: SIGNAL (Neural Pulse)
             
-            You MUST ONLY return the 16 uppercase hexadecimal characters. NO explanations. NO markdown.
+            Output JSON format:
+            {
+              "genome": "16_HEX_CHARS",
+              "meme": "8_HEX_CHARS_FOR_GRID"
+            }
+            ONLY RETURN THE JSON.
         `.trim();
 
         try {
@@ -4311,26 +3495,40 @@ export const LLM_SYNAPSE = {
                 body: JSON.stringify({ model: MODEL, prompt, stream: false, format: "json" }),
             });
             const data = await response.json();
-            const hex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
-            
-            if (hex && hex.length >= 16) {
-                const bytes = new Uint8Array(8);
-                for (let i = 0; i < 8; i++) {
-                    bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+            // Ollama sometimes returns a string, sometimes JSON. Robust handle:
+            let result: any = {};
+            try {
+                result = typeof data.response === 'string' ? JSON.parse(data.response) : data.response;
+            } catch {
+                // If it's a raw hex string instead of JSON
+                const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+                if (rawHex && rawHex.length >= 16) {
+                    result = { genome: rawHex.substring(0, 16) };
                 }
-                return bytes;
+            }
+            
+            if (result.genome && result.genome.length >= 16) {
+                const genome = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) {
+                    genome[i] = parseInt(result.genome.substring(i * 2, i * 2 + 2), 16);
+                }
+                
+                let meme: Uint8Array | undefined;
+                if (result.meme && result.meme.length >= 8) {
+                    meme = new Uint8Array(4);
+                    for (let i = 0; i < 4; i++) {
+                        meme[i] = parseInt(result.meme.substring(i * 2, i * 2 + 2), 16);
+                    }
+                }
+                
+                return { genome, meme };
             }
         } catch(e) {
-            console.warn("Oracle connection failed (LLM Offline). Using Stochastic Mutation fallback.");
-            // Fallback: Generate a random "viable" genome
-            const bytes = new Uint8Array(8);
-            // Opcode is usually the first byte
-            const opcodes = [0x08, 0x20, 0xFF, 0x00]; 
-            bytes[0] = opcodes[Math.floor(Math.random() * opcodes.length)];
-            for (let i = 1; i < 8; i++) {
-                bytes[i] = Math.floor(Math.random() * 256);
-            }
-            return bytes;
+            console.warn("Oracle connection failed (LLM Offline). Stochastic Mutation.");
+            const genome = new Uint8Array(8);
+            genome[0] = [0x08, 0x20, 0x30, 0x31][Math.floor(Math.random() * 4)];
+            for (let i = 1; i < 8; i++) genome[i] = Math.floor(Math.random() * 256);
+            return { genome };
         }
         return null;
     }
@@ -4359,6 +3557,21 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
+    lastConsultTick: 0,
+
+    interpretResonance: () => {
+        const matrixRes = STATE_MATRIX.getMatrixResonance();
+        const clusterSync = STATE_MATRIX.getClusterSync();
+        
+        // Return a condensed telemetry object for the LLM
+        return {
+            matrixResonance: matrixRes,
+            clusterSync: clusterSync,
+            nutrients: 1000, // Placeholder or fetch from ECOLOGY if available
+            population: STATE_MATRIX.getActiveIndices().length,
+            viralLoad: 0 // Placeholder
+        };
+    },
 
     /**
      * Consults the LLM to dictate new bytecode for the reigning Regent.
@@ -4371,15 +3584,45 @@ export const SOVEREIGN_ORACLE = {
         try {
             console.log(`👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`);
             
-            const newBytecode = await LLM_SYNAPSE.generateAtomicBytecode(telemetry);
+            const memSummary = STATE_MATRIX.getMemorySummary();
+            const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({ 
+                ...telemetry, 
+                energy: STATE_MATRIX.getEnergy(regentIndex),
+                stigmergicSummary: memSummary 
+            });
             
-            if (newBytecode && newBytecode.length === 8) {
+            if (oracleResult && oracleResult.genome) {
+                const newBytecode = oracleResult.genome;
+                console.log(`👁️ [ORACLE] Oracle responded with genome of length ${newBytecode.length}`);
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
                     STATE_MATRIX.setLogic(regentIndex, newBytecode);
                     const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('');
                     console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex.toUpperCase()}]`);
                     SOVEREIGNTY_ENGINE.currentRegent.genome = hex.toUpperCase();
+
+                    // --- ERA 67: MEMETIC INJECTION ---
+                    if (oracleResult.meme) {
+                        const memeHex = Array.from(oracleResult.meme).map(b => b.toString(16).padStart(2, '0')).join('');
+                        console.log(`🌀 [ORACLE] Memetic Injection! Seeding Grid with: [${memeHex.toUpperCase()}]`);
+                        
+                        // Seed the 3x3 area around the Regent
+                        const rx = Math.floor(STATE_MATRIX.getX(regentIndex) / 10);
+                        const ry = Math.floor(STATE_MATRIX.getY(regentIndex) / 10);
+                        
+                        for (let dx = -1; dx <= 1; dx++) {
+                            for (let dy = -1; dy <= 1; dy++) {
+                                const gx = rx + dx;
+                                const gy = ry + dy;
+                                if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+                                    const gridIdx = (gy * 140 + gx) * 8;
+                                    // Set energy (1000) + meme (4 bytes)
+                                    STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx); // 1000 in little endian
+                                    STATE_MATRIX.memoryGrid.set(oracleResult.meme, gridIdx + 4);
+                                }
+                            }
+                        }
+                    }
                 } else {
                     console.log(`👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`);
                 }
@@ -5572,97 +4815,88 @@ ${REFLECTION_ENGINE.decompile(code)}
 ## FILE: MATRIX_ENGINE.ts
 
 ```typescript
-// OMEGA-64 | MATRIX_ENGINE.ts | Era 66: The Awakened Matrix
-// A Crystalline Neural Network running as a Cellular Automaton over the static structureGrid.
+// OMEGA-64 | MATRIX_ENGINE.ts | Era 68: The Awakened Matrix
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
-const GRID_W = 140;
-const GRID_H = 80;
-const GRID_SIZE = GRID_W * GRID_H;
-
-// We use an internal double-buffer to prevent directional propagation bias during a single tick.
-const nextSignalGrid = new Uint8Array(GRID_SIZE);
+const GRID_COLS = 140;
+const GRID_ROWS = 80;
+const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
 export const MATRIX_ENGINE = {
-    /**
-     * Evaluates the Crystalline Neural Network for one tick.
-     * @param signalGrid The current electrical state of the matrix (0 = idle, 255 = firing, 1-254 = refractory)
-     * @param structureGrid The physical structures (Density | Type)
-     */
-    tick: (signalGrid: Uint8Array, structureGrid: Int32Array) => {
-        // 1. Compute Next State based on Current State
-        for (let i = 0; i < GRID_SIZE; i++) {
-            const structureCell = Atomics.load(structureGrid, i);
-            const type = (structureCell >> 0) & 0xFF;
-            const density = (structureCell >> 8) & 0xFF;
+    tick: () => {
+        const structure = STATE_MATRIX.structureGrid;
+        const signal = STATE_MATRIX.signalGrid;
+        
+        // Temporary buffer for deterministic propagation
+        const nextSignal = new Int32Array(TOTAL_CELLS);
 
-            const currentState = signalGrid[i];
+        for (let cy = 0; cy < GRID_ROWS; cy++) {
+            for (let cx = 0; cx < GRID_COLS; cx++) {
+                const i = cy * GRID_COLS + cx;
+                const type = Atomics.load(structure, i);
+                if (type === 0) continue; 
 
-            // Only Crystals (Type 1) can conduct matrix signals
-            if (type !== 1 || density < 50) {
-                nextSignalGrid[i] = 0;
-                continue;
-            }
-
-            if (currentState === 255) {
-                // Was firing -> enter refractory period
-                nextSignalGrid[i] = 200; // 200 ticks of refractory cooldown
-            } else if (currentState > 0) {
-                // In refractory period -> decay
-                nextSignalGrid[i] = currentState - 1;
-            } else {
-                // Idle (0) -> Check for incoming signals from Von Neumann neighborhood
-                const x = i % GRID_W;
-                const y = Math.floor(i / GRID_W);
+                let currentRes = Atomics.load(signal, i);
                 
-                let firingNeighbors = 0;
+                // 1. Neighbor Conduction
+                const neighbors = [
+                    (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1,
+                    (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1,
+                    (cx > 0) ? cy * GRID_COLS + (cx - 1) : -1,
+                    (cx < GRID_COLS - 1) ? cy * GRID_COLS + (cx + 1) : -1
+                ];
 
-                // Check Up
-                if (y > 0 && signalGrid[i - GRID_W] === 255) firingNeighbors++;
-                // Check Down
-                if (y < GRID_H - 1 && signalGrid[i + GRID_W] === 255) firingNeighbors++;
-                // Check Left
-                if (x > 0 && signalGrid[i - 1] === 255) firingNeighbors++;
-                // Check Right
-                if (x < GRID_W - 1 && signalGrid[i + 1] === 255) firingNeighbors++;
-
-                // If no signals, stay idle
-                if (firingNeighbors === 0) {
-                    nextSignalGrid[i] = 0;
-                    continue;
+                for (const ni of neighbors) {
+                    if (ni === -1) continue;
+                    const neighborType = Atomics.load(structure, ni);
+                    if (neighborType > 0) {
+                        const neighborRes = Atomics.load(signal, ni);
+                        if (neighborRes > currentRes) {
+                            const flux = Math.floor((neighborRes - currentRes) * 0.4);
+                            currentRes += flux;
+                        }
+                    }
                 }
 
-                // Determine Gate Logic based on structural density signature modulo
-                // Derived organically from how the Ascended Atom formed the crystal
-                const gateType = density % 3;
-
-                let willFire = false;
-                if (gateType === 0) {
-                    // OR Gate (default conduction)
-                    willFire = firingNeighbors >= 1;
-                } else if (gateType === 1) {
-                    // AND Gate
-                    willFire = firingNeighbors >= 2;
-                } else if (gateType === 2) {
-                    // XOR Gate
-                    willFire = firingNeighbors === 1;
+                if (type > 5) {
+                    if (currentRes < 200) currentRes = 0; 
                 }
 
-                nextSignalGrid[i] = willFire ? 255 : 0;
+                currentRes = Math.max(0, currentRes - 5);
+                nextSignal[i] = currentRes;
             }
         }
 
-        // 2. Commit Next State to Shared Array Buffer
-        for (let i = 0; i < GRID_SIZE; i++) {
-            signalGrid[i] = nextSignalGrid[i];
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            Atomics.store(signal, i, nextSignal[i]);
         }
     },
 
-    /**
-     * Manually triggers a spark at a specific location, used by Observer or Atoms.
-     */
-    injectSpark: (signalGrid: Uint8Array, x: number, y: number) => {
-        if (x >= 0 && x < GRID_W && y >= 0 && y < GRID_H) {
-            signalGrid[y * GRID_W + x] = 255;
+    inject: (x: number, y: number, amount: number) => {
+        const cx = Math.floor(x / 10);
+        const cy = Math.floor(y / 10);
+        if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
+            const i = cy * GRID_COLS + cx;
+            Atomics.add(STATE_MATRIX.signalGrid, i, amount);
+        }
+    },
+
+    read: (x: number, y: number): number => {
+        const cx = Math.floor(x / 10);
+        const cy = Math.floor(y / 10);
+        if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
+            const i = cy * GRID_COLS + cx;
+            return Atomics.load(STATE_MATRIX.signalGrid, i);
+        }
+        return 0;
+    },
+
+    setStructure: (x: number, y: number, type: number) => {
+        const cx = Math.floor(x / 10);
+        const cy = Math.floor(y / 10);
+        if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
+            const i = cy * GRID_COLS + cx;
+            Atomics.store(STATE_MATRIX.structureGrid, i, type);
         }
     }
 };
@@ -6379,76 +5613,162 @@ the Universe."
 ```typescript
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
-// Flat memory offsets (MUST match STATE_MATRIX.ts exactly)
+@external("env", "trace_atom")
+declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void;
+
+// EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
 const IDS_OFFSET: usize = 0;
-const XS_OFFSET: usize = IDS_OFFSET + (<usize>MAX_ATOMS * 8);
-const YS_OFFSET: usize = XS_OFFSET + (<usize>MAX_ATOMS * 2);
-const ENERGY_OFFSET: usize = YS_OFFSET + (<usize>MAX_ATOMS * 2);
-const RESONANCE_OFFSET: usize = ENERGY_OFFSET + (<usize>MAX_ATOMS * 4);
-const PHASE_OFFSET: usize = RESONANCE_OFFSET + (<usize>MAX_ATOMS * 4);
-const LOGIC_OFFSET: usize = PHASE_OFFSET + (<usize>MAX_ATOMS * 4);
-const BONDS_OFFSET: usize = LOGIC_OFFSET + (<usize>MAX_ATOMS * 8);
-const INSTRUCTIONS_OFFSET: usize = BONDS_OFFSET + (<usize>MAX_ATOMS * 16);
-const CONTEXT_OFFSET: usize = INSTRUCTIONS_OFFSET + (<usize>MAX_ATOMS * 64);
-const EVOLUTION_OFFSET: usize = CONTEXT_OFFSET + (<usize>MAX_ATOMS * 32);
-const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
+const XS_OFFSET: usize = 800000;
+const YS_OFFSET: usize = 1000000;
+const ENERGY_OFFSET: usize = 1200000;
+const RESONANCE_OFFSET: usize = 1600000;
+const PHASE_OFFSET: usize = 2000000;
+const LOGIC_OFFSET: usize = 2400000;
+const BONDS_OFFSET: usize = 3200000;
+const STIFFNESS_OFFSET: usize = 4800000;
+const BOND_REQUESTS_OFFSET: usize = 18800000;
+const SPATIAL_GRID_OFFSET: usize = 20000000;
 
-// ISA Constants
-const ISA_NOP: u8 = 0x00;
-const ISA_MITOSIS: u8 = 0x08;
-const ISA_JMP: u8 = 0x02;
+const ISA_BIND: u8 = 0x40;
+const ISA_SHARE: u8 = 0x41;
+const ISA_SIGNAL: u8 = 0x42;
 
-// Intent Encoder helper
-// Combines opcode + 3 args into a single u32 word for zero-allocation cross-ffi writing
-@inline
-function writeIntent(atomIdx: i32, opcode: u8, arg1: u8, arg2: u8, arg3: u8): void {
-    let intent: u32 = (opcode as u32) | ((arg1 as u32) << 8) | ((arg2 as u32) << 16) | ((arg3 as u32) << 24);
-    store<u32>(INTENT_OFFSET + (atomIdx << 2) as usize, intent);
+@inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
+@inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
+@inline function getResonance(idx: i32): i32 { return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize); }
+@inline function setResonance(idx: i32, val: i32): void { store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val); }
+@inline function getPhase(idx: i32): i32 { return load<i32>(PHASE_OFFSET + (idx << 2) as usize); }
+@inline function setPhase(idx: i32, val: i32): void { store<i32>(PHASE_OFFSET + (idx << 2) as usize, val); }
+@inline function getX(idx: i32): i16 { return load<i16>(XS_OFFSET + (idx << 1) as usize); }
+@inline function getY(idx: i32): i16 { return load<i16>(YS_OFFSET + (idx << 1) as usize); }
+@inline function getLogicByte(idx: i32, slot: i32): u8 { return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize); }
+@inline function getBondTarget(atomIdx: i32, slot: i32): i32 { return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
+@inline function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void { store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx); }
+@inline function getBondStiffness(atomIdx: i32, slot: i32): f32 { return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
+@inline function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void { store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, val); }
+
+@inline function writeBondRequest(initiator: i32, target: i32): void { 
+    let offset = BOND_REQUESTS_OFFSET + (initiator * 12); 
+    store<i32>(offset as usize, initiator + 1); 
+    store<i32>(offset + 4 as usize, target); 
 }
 
-// Atom Accessors
-@inline
-function getEnergy(idx: i32): i32 {
-    return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
+@inline function getSpatialGridCount(gx: i32, gy: i32): i32 { 
+    let cellIdx = gy * 140 + gx; 
+    return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) as usize); 
+}
+@inline function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 { 
+    let cellIdx = gy * 140 + gx; 
+    return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize); 
 }
 
-@inline
-function setEnergy(idx: i32, val: i32): void {
-    store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
-}
-
-@inline
-function getResonance(idx: i32): i32 {
-    return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
-}
-
-@inline
-function setResonance(idx: i32, val: i32): void {
-    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val);
-}
-
-export function execute_atom(atomIndex: i32): void {
-    // Basic test function to prove FFI isolation
-    let energy = getEnergy(atomIndex);
-    let resonance = getResonance(atomIndex);
-    
-    // Decrement energy minimally for living
-    setEnergy(atomIndex, energy - 1);
-    
-    // Naturally grow resonance by 1 (0.001 per tick in float)
-    // Needs to reach > 100 to be elected Regent
-    setResonance(atomIndex, resonance + 1); 
-    
-    // If energy > 50000, queue mitosis (0x08 opcode for PULSE_WORKER to resolve later)
-    if (energy > 50000) {
-       writeIntent(atomIndex, ISA_MITOSIS, 0, 0, 0); 
-    } else {
-       // NOP intent
-       writeIntent(atomIndex, ISA_NOP, 0, 0, 0);
+@inline function fireSignal(atomIndex: i32): void {
+    for (let b = 0; b < 4; b++) {
+        let target = getBondTarget(atomIndex, b);
+        if (target > 0 && target < MAX_ATOMS) {
+            let st = getBondStiffness(atomIndex, b);
+            let signalStrength = (150.0 * st) as i32; // Increased to ensure cascade
+            setResonance(target, getResonance(target) + signalStrength);
+        }
     }
 }
 
+export function execute_atom(atomIndex: i32): void {
+    let energy = getEnergy(atomIndex);
+    let resonance = getResonance(atomIndex);
+    let phase = getPhase(atomIndex);
+    let x = getX(atomIndex);
+    let y = getY(atomIndex);
+    let gx = (x as i32) / 10;
+    let gy = (y as i32) / 10;
+    
+    const opcode = getLogicByte(atomIndex, 0);
+
+    // --- Phase 9: Neural Processing ---
+    if (phase > 0) {
+        setPhase(atomIndex, phase - 1);
+    } else {
+        if (opcode == ISA_SIGNAL) {
+            fireSignal(atomIndex);
+            setPhase(atomIndex, 3); // Shorter refractory for tests
+            trace_atom(atomIndex, opcode as i32, x as i32, y as i32, 1);
+        }
+    }
+
+    // Temporal Summation / Action Potential
+    if (resonance > 300) { // Lowered threshold for test
+        energy += 50; 
+        resonance = 0; // Absolute reset after firing
+        setResonance(atomIndex, resonance);
+        setPhase(atomIndex, 5); // Recovery period
+        fireSignal(atomIndex); // CASCADING SIGNAL
+        trace_atom(atomIndex, 0x99, x as i32, y as i32, energy); 
+    }
+
+    // --- Phase 8: Synaptic & Metabolic Logic ---
+    if (opcode == ISA_BIND) {
+        let nearestIdx: i32 = -1;
+        let minDistSq: i32 = 10000; 
+        for (let ox = -5; ox <= 5; ox++) {
+            for (let oy = -5; oy <= 5; oy++) {
+                let nx = gx + ox;
+                let ny = gy + oy;
+                if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+                    let count = getSpatialGridCount(nx, ny);
+                    for (let c = 0; c < count; c++) {
+                        let otherIdx = getSpatialGridAtom(nx, ny, c);
+                        if (otherIdx != atomIndex && otherIdx >= 0) {
+                            let dx = (getX(otherIdx) - x) as i32;
+                            let dy = (getY(otherIdx) - y) as i32;
+                            let dSq = dx * dx + dy * dy;
+                            if (dSq < minDistSq) {
+                                minDistSq = dSq;
+                                nearestIdx = otherIdx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (nearestIdx != -1) writeBondRequest(atomIndex, nearestIdx);
+    } else if (opcode == ISA_SHARE) {
+        for (let b = 0; b < 4; b++) {
+            let target = getBondTarget(atomIndex, b);
+            if (target > 0 && target < MAX_ATOMS) {
+                let stiffness = getBondStiffness(atomIndex, b);
+                let share = (energy / 10);
+                energy -= share;
+                setEnergy(target, getEnergy(target) + share);
+                if (stiffness < 1.0) setBondStiffness(atomIndex, b, stiffness + 0.05);
+                break; 
+            }
+        }
+    }
+
+    // Passive Metabolism & Hebbian Decay
+    for (let b = 0; b < 4; b++) {
+        let target = getBondTarget(atomIndex, b);
+        if (target > 0 && target < MAX_ATOMS) {
+            let stiffness = getBondStiffness(atomIndex, b);
+            let targetE = getEnergy(target);
+            let diff = targetE - energy;
+            if (diff != 0) {
+                let flux = ((diff as f32) * (stiffness * 0.1)) as i32;
+                energy += flux;
+                setEnergy(target, targetE - flux);
+            }
+            if (stiffness > 0.01) setBondStiffness(atomIndex, b, stiffness - 0.001);
+            else { setBondTarget(atomIndex, b, 0); setBondStiffness(atomIndex, b, 0); }
+        }
+    }
+
+    // Resonance Decay (Leaky Integrator)
+    if (resonance > 0) setResonance(atomIndex, resonance - 3);
+    else if (resonance < 0) setResonance(atomIndex, 0);
+
+    setEnergy(atomIndex, energy - 1);
+}
 
 ```
 

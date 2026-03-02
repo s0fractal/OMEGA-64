@@ -37,6 +37,10 @@ export const PULSE = {
     tick: async () => {
         const active = STATE_MATRIX.getActiveIndices();
 
+        // Reset Ascension Counter (32-bit int at offset)
+        // Offset Calculation: SAFETY_BUFFER (1M) + ASC_OFF (34M) = 35M
+        Atomics.store(new Int32Array(sharedBuffer, 35000000, 1), 0, 0);
+
         // 0. Sovereign Oracle (High-Order Evolution)
         const telemetry = SOVEREIGN_ORACLE.interpretResonance();
         if (telemetry.matrixResonance > 5000) { 
@@ -85,8 +89,15 @@ export const PULSE = {
         }
         await Promise.all(workerPromises);
 
-        // 3. Matrix Engine (Planetary Brain)
-        MATRIX_ENGINE.tick();
+        // 3. Matrix Engine (Planetary Brain — WASM-Accelerated via worker[0])
+        // Only one worker needs to run tick_matrix since it operates on shared memory
+        const matrixDone = new Promise<void>((resolve) => {
+            workers[0].onmessage = (e) => {
+                if (e.data.type === "MATRIX_DONE") resolve();
+            };
+        });
+        workers[0].postMessage({ type: "TICK_MATRIX", pulseId: Date.now() });
+        await matrixDone;
 
         // 4. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());

@@ -5,21 +5,28 @@ declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: 
 
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
-const IDS_OFFSET: usize = 0;
-const XS_OFFSET: usize = 800000;
-const YS_OFFSET: usize = 1000000;
-const ENERGY_OFFSET: usize = 1200000;
-const RESONANCE_OFFSET: usize = 1600000;
-const PHASE_OFFSET: usize = 2000000;
-const LOGIC_OFFSET: usize = 2400000;
-const BONDS_OFFSET: usize = 3200000;
-const STIFFNESS_OFFSET: usize = 4800000;
-const BOND_REQUESTS_OFFSET: usize = 18800000;
-const SPATIAL_GRID_OFFSET: usize = 20000000;
+const SAFETY_BUFFER: usize = 1000000;
+const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
+const XS_OFFSET: usize = SAFETY_BUFFER + 800000;
+const YS_OFFSET: usize = SAFETY_BUFFER + 1000000;
+const ENERGY_OFFSET: usize = SAFETY_BUFFER + 1200000;
+const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 1600000;
+const PHASE_OFFSET: usize = SAFETY_BUFFER + 2000000;
+const LOGIC_OFFSET: usize = SAFETY_BUFFER + 2400000;
+const BONDS_OFFSET: usize = SAFETY_BUFFER + 3200000;
+const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 4800000;
+const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 18800000;
+const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 20000000;
 
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
+const ISA_ASCEND: u8 = 0xFF;
+
+const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 31000000;
+const SIGNAL_GRID_OFF: usize    = SAFETY_BUFFER + 32000000;
+const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 34000000;
+const MAX_ASCENSIONS: i32 = 64;
 
 @inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
 @inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
@@ -131,6 +138,21 @@ export function execute_atom(atomIndex: i32): void {
                 break; 
             }
         }
+    } else if (opcode == ISA_ASCEND) {
+        if (energy > 500) {
+            // Atomic Governor Pattern: Atomically increment and check old value
+            let old = atomic.add<i32>(ASCENSION_STATS_OFF, 1);
+            if (old < MAX_ASCENSIONS) {
+                // Perform Ascension
+                let cellIdx = gy * 140 + gx;
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), 1); // Mark as crystal
+                energy = 0; // Consumption
+                store<u64>(IDS_OFFSET + (atomIndex << 3), 0); // Deactivate atom
+            } else {
+                // Throttled: Rollback increment
+                atomic.sub<i32>(ASCENSION_STATS_OFF, 1);
+            }
+        }
     }
 
     // Passive Metabolism & Hebbian Decay
@@ -155,4 +177,55 @@ export function execute_atom(atomIndex: i32): void {
     else if (resonance < 0) setResonance(atomIndex, 0);
 
     setEnergy(atomIndex, energy - 1);
+}
+
+// --- Phase 13: Crystalline Matrix Neural Engine ---
+
+export function tick_matrix(): void {
+    const GRID_COLS = 140;
+    const GRID_ROWS = 80;
+
+    for (let cy = 0; cy < GRID_ROWS; cy++) {
+        for (let cx = 0; cx < GRID_COLS; cx++) {
+            const i = cy * GRID_COLS + cx;
+            const type = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
+            if (type == 0) continue;
+
+            let currentRes = atomic.load<i32>(SIGNAL_GRID_OFF + (i << 2));
+            
+            // neighbor index offsets: Up, Down, Left, Right
+            const nUp = (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1;
+            const nDown = (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1;
+            const nLeft = (cx > 0) ? cy * GRID_COLS + (cx - 1) : -1;
+            const nRight = (cx < GRID_COLS - 1) ? cy * GRID_COLS + (cx + 1) : -1;
+
+            const neighbors = [nUp, nDown, nLeft, nRight];
+
+            for (let n = 0; n < 4; n++) {
+                const ni = neighbors[n];
+                if (ni == -1) continue;
+                
+                const neighborType = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+                if (neighborType > 0) {
+                    const neighborRes = atomic.load<i32>(SIGNAL_GRID_OFF + (ni << 2));
+                    if (neighborRes > currentRes) {
+                        // Conductive Flux (40% transmission)
+                        const flux = ((neighborRes - currentRes) * 4) / 10;
+                        currentRes += flux;
+                    }
+                }
+            }
+
+            // Logic Gate Processing (Experimental)
+            if (type > 5) {
+                // Threshold gate
+                if (currentRes < 200) currentRes = 0;
+            }
+
+            // Passive Decay & Persistence
+            currentRes = currentRes > 5 ? currentRes - 5 : 0;
+            
+            atomic.store<i32>(SIGNAL_GRID_OFF + (i << 2), currentRes);
+        }
+    }
 }

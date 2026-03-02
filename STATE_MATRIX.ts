@@ -4,7 +4,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 export const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 export const SCALE = OFFSETS.SCALE;
 
-export const wasmMemory = new WebAssembly.Memory({ initial: 512, maximum: 512, shared: true });
+export const wasmMemory = new WebAssembly.Memory({ initial: 1024, maximum: 1024, shared: true });
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 // TypedArray Views (Host side)
