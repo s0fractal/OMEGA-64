@@ -1,4 +1,4 @@
-// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 66)
+// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 67)
 // Concatenates all core logic files into OMEGA_CORE_LOGIC.md
 
 const CORE_FILES = [
@@ -19,6 +19,7 @@ const CORE_FILES = [
     "SOVEREIGNTY_ENGINE.ts",
     "SEMANTIC_MEMBRANE.ts",
     "LLM_SYNAPSE.ts",
+    "SOVEREIGN_ORACLE.ts",
     "BREATH.ts",
     "OBSERVER_UI.ts",
     "ui/index.html",
@@ -57,7 +58,7 @@ const CORE_FILES = [
 ];
 
 async function exportCore() {
-    let output = "# OMEGA-64 | CORE LOGIC (ERA 66: THE AWAKENED MATRIX)\n\n";
+    let output = "# OMEGA-64 | CORE LOGIC (ERA 67: THE SOVEREIGN ORACLE)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
     // @ts-ignore: Deno.readTextFile is valid in Deno
@@ -75,7 +76,7 @@ async function exportCore() {
 
     // @ts-ignore: Deno.writeTextFile is valid in Deno
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
-    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 66 components.");
+    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 67: Sovereign Oracle components.");
 }
 
 // @ts-ignore: import.meta.main is Deno specific

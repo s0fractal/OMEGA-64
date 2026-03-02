@@ -19,7 +19,12 @@ self.onmessage = async (e) => {
         try {
             const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url));
             const instantiated = await WebAssembly.instantiateStreaming(wasmRes, {
-                env: { memory: e.data.wasmMemory }
+                env: { 
+                    memory: e.data.wasmMemory,
+                    abort: (msg: any, file: any, line: any, col: any) => {
+                        console.error(`WASM ABORT: ${msg} at ${file}:${line}:${col}`);
+                    }
+                }
             });
             wasmInstance = instantiated.instance;
             execute_atom = wasmInstance.exports.execute_atom as any;
@@ -173,6 +178,11 @@ self.onmessage = async (e) => {
             // WASM EXECUTION (Zero-Allocation FFI)
             if (execute_atom) {
                 execute_atom(i);
+                
+                // --- ERA 65: SYNC STATE ---
+                // Reload local JS variables because flat memory was mutated by WASM
+                energy = Atomics.load(energies, i) / SCALE;
+                resonance = Atomics.load(resonances, i) / SCALE;
             }
 
             const intent = Atomics.load(intents, i);

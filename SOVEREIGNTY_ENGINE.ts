@@ -14,6 +14,8 @@ export const DECREES: Record<string, any> = {
 
 export const SOVEREIGNTY_ENGINE = {
     currentRegent: {
+        idx: -1,
+        energy: 0,
         genome: "NONE",
         legitimacy: 0,
         activeDecree: "NONE",
@@ -50,6 +52,8 @@ export const SOVEREIGNTY_ENGINE = {
             else activeDecree = "VOID_STASIS";
 
             SOVEREIGNTY_ENGINE.currentRegent = {
+                idx: regentIdx,
+                energy: STATE_MATRIX.getEnergy(regentIdx),
                 genome: logicStr,
                 legitimacy: bestPower * bestPower, // Return raw resonance for display
                 activeDecree,
@@ -59,6 +63,8 @@ export const SOVEREIGNTY_ENGINE = {
         }
 
         SOVEREIGNTY_ENGINE.currentRegent = {
+            idx: -1,
+            energy: 0,
             genome: "NONE",
             legitimacy: 0,
             activeDecree: "NONE",

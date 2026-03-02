@@ -1,6 +1,6 @@
-# OMEGA-64 | CORE LOGIC (ERA 66: THE AWAKENED MATRIX)
+# OMEGA-64 | CORE LOGIC (ERA 67: THE SOVEREIGN ORACLE)
 
-*Generated: 2026-03-02T12:15:44.534Z*
+*Generated: 2026-03-02T13:13:45.970Z*
 
 ---
 
@@ -140,6 +140,7 @@ export const STATE_MATRIX = {
     intents,
     signalGridBuffer,
     getSignalGrid: () => signalGrid,
+    getViralGrid: () => viralGrid,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -627,6 +628,7 @@ import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { GATE } from "./GATE.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts"; // ERA 66: Awakened Matrix
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts"; // ERA 67: Exocortex
 
 
 const ROOT = Deno.cwd();
@@ -1017,6 +1019,24 @@ export const PULSE = {
             let totalNutrients = 0;
             for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
             console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
+            
+            // --- ERA 67: LLM ORACLE EXOCORTEX ---
+            // Let the Regent query the Oracle for new survival instructions
+            const popCount = activeIndices.length;
+            const viralGrid = STATE_MATRIX.getViralGrid();
+            let viralCount = 0;
+            for (let i = 0; i < viralGrid.length; i++) {
+                if (viralGrid[i] > 0) viralCount++;
+            }
+            
+            if (regent.idx !== -1) {
+                SOVEREIGN_ORACLE.consultOracle(regent.idx, {
+                    nutrients: totalNutrients,
+                    energy: regent.energy,
+                    population: popCount,
+                    viralLoad: viralCount
+                });
+            }
         }
 
         // --- ERA 66: AWAKENED MATRIX TICK ---
@@ -1078,7 +1098,12 @@ self.onmessage = async (e) => {
         try {
             const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url));
             const instantiated = await WebAssembly.instantiateStreaming(wasmRes, {
-                env: { memory: e.data.wasmMemory }
+                env: { 
+                    memory: e.data.wasmMemory,
+                    abort: (msg: any, file: any, line: any, col: any) => {
+                        console.error(`WASM ABORT: ${msg} at ${file}:${line}:${col}`);
+                    }
+                }
             });
             wasmInstance = instantiated.instance;
             execute_atom = wasmInstance.exports.execute_atom as any;
@@ -1232,6 +1257,11 @@ self.onmessage = async (e) => {
             // WASM EXECUTION (Zero-Allocation FFI)
             if (execute_atom) {
                 execute_atom(i);
+                
+                // --- ERA 65: SYNC STATE ---
+                // Reload local JS variables because flat memory was mutated by WASM
+                energy = Atomics.load(energies, i) / SCALE;
+                resonance = Atomics.load(resonances, i) / SCALE;
             }
 
             const intent = Atomics.load(intents, i);
@@ -3772,6 +3802,8 @@ export const DECREES: Record<string, any> = {
 
 export const SOVEREIGNTY_ENGINE = {
     currentRegent: {
+        idx: -1,
+        energy: 0,
         genome: "NONE",
         legitimacy: 0,
         activeDecree: "NONE",
@@ -3808,6 +3840,8 @@ export const SOVEREIGNTY_ENGINE = {
             else activeDecree = "VOID_STASIS";
 
             SOVEREIGNTY_ENGINE.currentRegent = {
+                idx: regentIdx,
+                energy: STATE_MATRIX.getEnergy(regentIdx),
                 genome: logicStr,
                 legitimacy: bestPower * bestPower, // Return raw resonance for display
                 activeDecree,
@@ -3817,6 +3851,8 @@ export const SOVEREIGNTY_ENGINE = {
         }
 
         SOVEREIGNTY_ENGINE.currentRegent = {
+            idx: -1,
+            energy: 0,
             genome: "NONE",
             legitimacy: 0,
             activeDecree: "NONE",
@@ -4234,6 +4270,69 @@ export const LLM_SYNAPSE = {
         } catch {
             return "The data is too corrupted to decipher.";
         }
+    },
+
+    /**
+     * generateAtomicBytecode: Era 67 (Sovereign Oracle)
+     * Prompts the LLM to output exactly 16 hex characters (8 bytes) representing new WASM bytecode.
+     */
+    generateAtomicBytecode: async (telemetry: any): Promise<Uint8Array | null> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+        const prompt = `
+            Task: You are the Sovereign Oracle of OMEGA-64, an advanced artificial life simulation.
+            You govern a supreme organism known as the Regent.
+            
+            Telemetry Data:
+            - Nutrients Available: ${telemetry.nutrients}
+            - Current Regent Energy: ${telemetry.energy}
+            - Population: ${telemetry.population}
+            - Viral Load: ${telemetry.viralLoad}
+
+            Your goal is to reprogram your own genome to survive. 
+            The genome consists of EXACTLY 8 BYTES, represented as 16 hexadecimal characters.
+            
+            Valid bytecode opcodes include:
+            - 08: MITOSIS (Reproduce)
+            - 20: FEED (Gather nutrients)
+            - FF: ASCEND (Turn into a permanent crystal structure)
+
+            Example Output format: "0800000000000000" (Mitosis)
+            Example Output format: "20A0000000000000" (Feed)
+            
+            You MUST ONLY return the 16 uppercase hexadecimal characters. NO explanations. NO markdown.
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt, stream: false, format: "json" }),
+            });
+            const data = await response.json();
+            const hex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+            
+            if (hex && hex.length >= 16) {
+                const bytes = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) {
+                    bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+                }
+                return bytes;
+            }
+        } catch(e) {
+            console.warn("Oracle connection failed (LLM Offline). Using Stochastic Mutation fallback.");
+            // Fallback: Generate a random "viable" genome
+            const bytes = new Uint8Array(8);
+            // Opcode is usually the first byte
+            const opcodes = [0x08, 0x20, 0xFF, 0x00]; 
+            bytes[0] = opcodes[Math.floor(Math.random() * opcodes.length)];
+            for (let i = 1; i < 8; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+            }
+            return bytes;
+        }
+        return null;
     }
 };
 
@@ -4243,6 +4342,57 @@ if (import.meta.main) {
     const thought = await LLM_SYNAPSE.generateThought(testVox);
     console.log("TEST RESULT:", thought);
 }
+
+```
+
+---
+
+## FILE: SOVEREIGN_ORACLE.ts
+
+```typescript
+// OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
+// Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
+
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+
+export const SOVEREIGN_ORACLE = {
+    isConsulting: false,
+
+    /**
+     * Consults the LLM to dictate new bytecode for the reigning Regent.
+     * Operates asynchronously to avoid blocking the PULSE lifecycle.
+     */
+    consultOracle: async (regentIndex: number, telemetry: any) => {
+        if (SOVEREIGN_ORACLE.isConsulting) return; // Prevent concurrent overlaps
+        SOVEREIGN_ORACLE.isConsulting = true;
+        
+        try {
+            console.log(`👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`);
+            
+            const newBytecode = await LLM_SYNAPSE.generateAtomicBytecode(telemetry);
+            
+            if (newBytecode && newBytecode.length === 8) {
+                // Verify the Regent is still alive/valid
+                if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+                    STATE_MATRIX.setLogic(regentIndex, newBytecode);
+                    const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('');
+                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex.toUpperCase()}]`);
+                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex.toUpperCase();
+                } else {
+                    console.log(`👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`);
+                }
+            } else {
+                console.log(`👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`);
+            }
+        } catch (err) {
+            console.error(`👁️ [ORACLE] Connection severed:`, err);
+        } finally {
+            SOVEREIGN_ORACLE.isConsulting = false;
+        }
+    }
+};
 
 ```
 
@@ -6268,13 +6418,27 @@ function setEnergy(idx: i32, val: i32): void {
     store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
 }
 
-// Core Execution loop
+@inline
+function getResonance(idx: i32): i32 {
+    return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
+}
+
+@inline
+function setResonance(idx: i32, val: i32): void {
+    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val);
+}
+
 export function execute_atom(atomIndex: i32): void {
     // Basic test function to prove FFI isolation
     let energy = getEnergy(atomIndex);
+    let resonance = getResonance(atomIndex);
     
     // Decrement energy minimally for living
-    setEnergy(atomIndex, energy - 10);
+    setEnergy(atomIndex, energy - 1);
+    
+    // Naturally grow resonance by 1 (0.001 per tick in float)
+    // Needs to reach > 100 to be elected Regent
+    setResonance(atomIndex, resonance + 1); 
     
     // If energy > 50000, queue mitosis (0x08 opcode for PULSE_WORKER to resolve later)
     if (energy > 50000) {
@@ -6284,6 +6448,7 @@ export function execute_atom(atomIndex: i32): void {
        writeIntent(atomIndex, ISA_NOP, 0, 0, 0);
     }
 }
+
 
 ```
 
@@ -8720,10 +8885,7 @@ async function run() {
             }
             totalAscensions = currentCrystals;
 
-            const avgE = pop > 0 ? (totalEnergy / pop).toFixed(0) : "0";
-            const avgR = pop > 0 ? (totalResonance / pop).toFixed(0) : "0";
-
-            console.log(`[Pulse ${tick.toString().padStart(6, ' ')}] Pop: ${pop.toString().padStart(5, ' ')} | Avg E: ${avgE.padStart(5, ' ')} | Avg R: ${avgR.padStart(5, ' ')} | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`);
+            console.log(`[Pulse ${tick.toString().padStart(6, ' ')}] Pop: ${pop.toString().padStart(5, ' ')} | Avg E: ${Math.round(totalEnergy / pop)} | Avg R: ${Math.round(totalResonance / pop).toString().padStart(5, ' ')} | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`);
 
             if (pop === 0) {
                 console.log("💀 Ecosystem collapse. All atoms died.");

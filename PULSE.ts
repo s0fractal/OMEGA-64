@@ -15,6 +15,7 @@ import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { GATE } from "./GATE.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts"; // ERA 66: Awakened Matrix
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts"; // ERA 67: Exocortex
 
 
 const ROOT = Deno.cwd();
@@ -405,6 +406,24 @@ export const PULSE = {
             let totalNutrients = 0;
             for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
             console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
+            
+            // --- ERA 67: LLM ORACLE EXOCORTEX ---
+            // Let the Regent query the Oracle for new survival instructions
+            const popCount = activeIndices.length;
+            const viralGrid = STATE_MATRIX.getViralGrid();
+            let viralCount = 0;
+            for (let i = 0; i < viralGrid.length; i++) {
+                if (viralGrid[i] > 0) viralCount++;
+            }
+            
+            if (regent.idx !== -1) {
+                SOVEREIGN_ORACLE.consultOracle(regent.idx, {
+                    nutrients: totalNutrients,
+                    energy: regent.energy,
+                    population: popCount,
+                    viralLoad: viralCount
+                });
+            }
         }
 
         // --- ERA 66: AWAKENED MATRIX TICK ---

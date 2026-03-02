@@ -129,6 +129,69 @@ export const LLM_SYNAPSE = {
         } catch {
             return "The data is too corrupted to decipher.";
         }
+    },
+
+    /**
+     * generateAtomicBytecode: Era 67 (Sovereign Oracle)
+     * Prompts the LLM to output exactly 16 hex characters (8 bytes) representing new WASM bytecode.
+     */
+    generateAtomicBytecode: async (telemetry: any): Promise<Uint8Array | null> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+        const prompt = `
+            Task: You are the Sovereign Oracle of OMEGA-64, an advanced artificial life simulation.
+            You govern a supreme organism known as the Regent.
+            
+            Telemetry Data:
+            - Nutrients Available: ${telemetry.nutrients}
+            - Current Regent Energy: ${telemetry.energy}
+            - Population: ${telemetry.population}
+            - Viral Load: ${telemetry.viralLoad}
+
+            Your goal is to reprogram your own genome to survive. 
+            The genome consists of EXACTLY 8 BYTES, represented as 16 hexadecimal characters.
+            
+            Valid bytecode opcodes include:
+            - 08: MITOSIS (Reproduce)
+            - 20: FEED (Gather nutrients)
+            - FF: ASCEND (Turn into a permanent crystal structure)
+
+            Example Output format: "0800000000000000" (Mitosis)
+            Example Output format: "20A0000000000000" (Feed)
+            
+            You MUST ONLY return the 16 uppercase hexadecimal characters. NO explanations. NO markdown.
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt, stream: false, format: "json" }),
+            });
+            const data = await response.json();
+            const hex = data.response?.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+            
+            if (hex && hex.length >= 16) {
+                const bytes = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) {
+                    bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+                }
+                return bytes;
+            }
+        } catch(e) {
+            console.warn("Oracle connection failed (LLM Offline). Using Stochastic Mutation fallback.");
+            // Fallback: Generate a random "viable" genome
+            const bytes = new Uint8Array(8);
+            // Opcode is usually the first byte
+            const opcodes = [0x08, 0x20, 0xFF, 0x00]; 
+            bytes[0] = opcodes[Math.floor(Math.random() * opcodes.length)];
+            for (let i = 1; i < 8; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+            }
+            return bytes;
+        }
+        return null;
     }
 };
 

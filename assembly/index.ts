@@ -39,13 +39,27 @@ function setEnergy(idx: i32, val: i32): void {
     store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
 }
 
-// Core Execution loop
+@inline
+function getResonance(idx: i32): i32 {
+    return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
+}
+
+@inline
+function setResonance(idx: i32, val: i32): void {
+    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val);
+}
+
 export function execute_atom(atomIndex: i32): void {
     // Basic test function to prove FFI isolation
     let energy = getEnergy(atomIndex);
+    let resonance = getResonance(atomIndex);
     
     // Decrement energy minimally for living
-    setEnergy(atomIndex, energy - 10);
+    setEnergy(atomIndex, energy - 1);
+    
+    // Naturally grow resonance by 1 (0.001 per tick in float)
+    // Needs to reach > 100 to be elected Regent
+    setResonance(atomIndex, resonance + 1); 
     
     // If energy > 50000, queue mitosis (0x08 opcode for PULSE_WORKER to resolve later)
     if (energy > 50000) {
@@ -55,3 +69,4 @@ export function execute_atom(atomIndex: i32): void {
        writeIntent(atomIndex, ISA_NOP, 0, 0, 0);
     }
 }
+

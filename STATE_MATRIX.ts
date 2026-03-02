@@ -131,6 +131,7 @@ export const STATE_MATRIX = {
     intents,
     signalGridBuffer,
     getSignalGrid: () => signalGrid,
+    getViralGrid: () => viralGrid,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),

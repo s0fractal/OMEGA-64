@@ -94,10 +94,7 @@ async function run() {
             }
             totalAscensions = currentCrystals;
 
-            const avgE = pop > 0 ? (totalEnergy / pop).toFixed(0) : "0";
-            const avgR = pop > 0 ? (totalResonance / pop).toFixed(0) : "0";
-
-            console.log(`[Pulse ${tick.toString().padStart(6, ' ')}] Pop: ${pop.toString().padStart(5, ' ')} | Avg E: ${avgE.padStart(5, ' ')} | Avg R: ${avgR.padStart(5, ' ')} | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`);
+            console.log(`[Pulse ${tick.toString().padStart(6, ' ')}] Pop: ${pop.toString().padStart(5, ' ')} | Avg E: ${Math.round(totalEnergy / pop)} | Avg R: ${Math.round(totalResonance / pop).toString().padStart(5, ' ')} | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`);
 
             if (pop === 0) {
                 console.log("💀 Ecosystem collapse. All atoms died.");
