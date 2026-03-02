@@ -1,6 +1,7 @@
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
@@ -32,6 +33,10 @@ export const BREATH = {
             // 4. Inject back into the Matrix (Motor Output)
             const weight = 80 + Math.random() * 40;
             await SEMANTIC_MEMBRANE.injectThought(thought, weight);
+            
+            // Phase 23: Entropy Flux (Negative Entropy Injection)
+            const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
+            console.log(`   [BREATH] Negentropy Flux: +${(weight * 2).toFixed(1)} energy units across ${energyInjected} atoms`);
             
             // 5. Digital Archaeology (Every 5 cycles)
             if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {

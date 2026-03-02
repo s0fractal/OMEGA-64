@@ -108,355 +108,176 @@ const MAX_ASCENSIONS: i32 = 64;
     }
 }
 
+const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 6400000;
+const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 12800000;
+
+// RISC-I Opcodes
+const OP_NOP: u8 = 0x00;
+const OP_SET: u8 = 0x01; // SET Reg, Imm8
+const OP_GET: u8 = 0x02; // GET Reg, Prop
+const OP_PUT: u8 = 0x03; // PUT Reg, Prop
+const OP_ADD: u8 = 0x04; // ADD R1, R2
+const OP_SUB: u8 = 0x05; // SUB R1, R2
+const OP_JZ:  u8 = 0x10; // JZ Reg, RelAddr
+const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
+const OP_JMP: u8 = 0x12; // JMP RelAddr
+const OP_REPLICATE: u8 = 0x80;
+const OP_SIGNAL: u8 = 0x81;
+const OP_BIND: u8 = 0x82;
+const OP_SHARE: u8 = 0x83;
+
+// Property IDs for GET/PUT
+const PROP_ENERGY: u8 = 0;
+const PROP_RESONANCE: u8 = 1;
+const PROP_X: u8 = 2;
+const PROP_Y: u8 = 3;
+const PROP_PHASE: u8 = 4;
+
+@inline function getReg(atomIdx: i32, reg: i32): i32 {
+    return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize);
+}
+@inline function setReg(atomIdx: i32, reg: i32, val: i32): void {
+    store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize, val);
+}
+@inline function getPC(atomIdx: i32): u8 {
+    return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize);
+}
+@inline function setPC(atomIdx: i32, val: u8): void {
+    store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize, val);
+}
+
 export function execute_atom(atomIndex: i32): void {
+    let pc = getPC(atomIndex);
     let energy = getEnergy(atomIndex);
     let resonance = getResonance(atomIndex);
-    let phase = getPhase(atomIndex);
-    let x = getX(atomIndex);
-    let y = getY(atomIndex);
-    let gx = (x as i32) / 10;
-    let gy = (y as i32) / 10;
+    const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
     
-    const opcode = getLogicByte(atomIndex, 0);
+    // Safety: 16 instructions per tick max to prevent infinite loops
+    let step: i32 = 0;
+    for (; step < 16; step++) {
+        const op = load<u8>(instr_base + (pc as usize));
+        if (op == OP_NOP) break;
 
-    // --- Phase 20: Self-Replication (EARLY CHECK — before action potential resets resonance) ---
-    if (opcode == ISA_REPLICATE && energy > 1500 && resonance > 200) {
-        const spawnDx: i32 = (resonance % 3) - 1;
-        const spawnDy: i32 = ((resonance * 7) % 3) - 1;
-        const childGx: i32 = gx + spawnDx;
-        const childGy: i32 = gy + spawnDy;
-
-        if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
-            const slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
-            const slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
-            const parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
-            const mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
-            const mutMask: u64 = (mutSeed as u64) << 16;
-            const childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
-
-            store<u64>(slotOff, childGenome);
-            store<i16>((slotOff + 8) as usize, childGx as i16);
-            store<i16>((slotOff + 10) as usize, childGy as i16);
-            store<i32>((slotOff + 12) as usize, energy >> 1);
-
-            // Parent pays the reproduction tax
-            energy = energy >> 1;
-            setEnergy(atomIndex, energy);
-            setResonance(atomIndex, resonance + 30);
+        switch (op) {
+            case OP_SET: {
+                let reg = load<u8>(instr_base + (pc + 1) as usize);
+                let imm = load<u8>(instr_base + (pc + 2) as usize);
+                setReg(atomIndex, reg as i32, imm as i32);
+                pc += 3;
+                break;
+            }
+            case OP_GET: {
+                let reg = load<u8>(instr_base + (pc + 1) as usize);
+                let prop = load<u8>(instr_base + (pc + 2) as usize);
+                let val: i32 = 0;
+                if (prop == PROP_ENERGY) val = energy;
+                else if (prop == PROP_RESONANCE) val = resonance;
+                else if (prop == PROP_X) val = getX(atomIndex) as i32;
+                else if (prop == PROP_Y) val = getY(atomIndex) as i32;
+                else if (prop == PROP_PHASE) val = getPhase(atomIndex);
+                setReg(atomIndex, reg as i32, val);
+                pc += 3;
+                break;
+            }
+            case OP_PUT: {
+                let reg = load<u8>(instr_base + (pc + 1) as usize);
+                let prop = load<u8>(instr_base + (pc + 2) as usize);
+                let val = getReg(atomIndex, reg as i32);
+                if (prop == PROP_ENERGY) energy = val;
+                else if (prop == PROP_RESONANCE) resonance = val;
+                else if (prop == PROP_PHASE) setPhase(atomIndex, val);
+                pc += 3;
+                break;
+            }
+            case OP_ADD: {
+                let r1 = load<u8>(instr_base + (pc + 1) as usize);
+                let r2 = load<u8>(instr_base + (pc + 2) as usize);
+                setReg(atomIndex, r1 as i32, getReg(atomIndex, r1 as i32) + getReg(atomIndex, r2 as i32));
+                pc += 3;
+                break;
+            }
+            case OP_SUB: {
+                let r1 = load<u8>(instr_base + (pc + 1) as usize);
+                let r2 = load<u8>(instr_base + (pc + 2) as usize);
+                setReg(atomIndex, r1 as i32, getReg(atomIndex, r1 as i32) - getReg(atomIndex, r2 as i32));
+                pc += 3;
+                break;
+            }
+            case OP_JNZ: {
+                let reg = load<u8>(instr_base + (pc + 1) as usize);
+                let target = load<u8>(instr_base + (pc + 2) as usize);
+                if (getReg(atomIndex, reg as i32) != 0) pc = target;
+                else pc += 3;
+                break;
+            }
+            case OP_JMP: {
+                pc = load<u8>(instr_base + (pc + 1) as usize);
+                break;
+            }
+            case OP_REPLICATE: {
+                // Kernel syscall: Replicate if possible
+                if (energy > 1500 && resonance > 200) {
+                    let rx = getX(atomIndex) as i32;
+                    let ry = getY(atomIndex) as i32;
+                    let gx = rx / 10;
+                    let gy = ry / 10;
+                    let spawnDx: i32 = (resonance % 3) - 1;
+                    let spawnDy: i32 = ((resonance * 7) % 3) - 1;
+                    let childGx: i32 = gx + spawnDx;
+                    let childGy: i32 = gy + spawnDy;
+                    
+                    if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
+                        let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
+                        let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
+                        let parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+                        store<u64>(slotOff, parentGenome);
+                        store<i16>((slotOff + 8) as usize, childGx as i16);
+                        store<i16>((slotOff + 10) as usize, childGy as i16);
+                        store<i32>((slotOff + 12) as usize, energy >> 1);
+                        energy = energy >> 1;
+                        resonance = resonance + 30;
+                    }
+                }
+                pc += 1;
+                break;
+            }
+            case OP_SIGNAL: {
+                fireSignal(atomIndex);
+                pc += 1;
+                break;
+            }
+            default: {
+                pc = 0; // Reset or stop
+                step = 16;
+                break;
+            }
         }
-        return; // Replicate takes the whole tick
+        if (pc >= 64) pc = 0;
     }
+    setPC(atomIndex, pc);
 
-    // --- Phase 9: Neural Processing ---
-    if (phase > 0) {
-        setPhase(atomIndex, phase - 1);
-    } else {
-        if (opcode == ISA_SIGNAL) {
+    // --- Phase 23: Entropy Flux (Metabolism) ---
+    // step is the number of instructions executed (0 to 16)
+    let metabolicCost = 1 + (step >> 1); // 1 to 9 energy units per tick
+    
+    // Auto-Firing Action Potential
+    if (resonance > 300) {
+        if (energy > 200) {
+            energy -= 200; // Firing has a systemic price
+            setResonance(atomIndex, 0);
+            setPhase(atomIndex, 5);
             fireSignal(atomIndex);
-            setPhase(atomIndex, 3); // Shorter refractory for tests
-            trace_atom(atomIndex, opcode as i32, x as i32, y as i32, 1);
+        } else {
+            // Failure to fire due to low energy (stasis)
+            setResonance(atomIndex, 280); 
         }
     }
 
-    // Temporal Summation / Action Potential
-    if (resonance > 300) { // Lowered threshold for test
-        energy += 50; 
-        resonance = 0; // Absolute reset after firing
-        setResonance(atomIndex, resonance);
-        setPhase(atomIndex, 5); // Recovery period
-        fireSignal(atomIndex); // CASCADING SIGNAL
-        trace_atom(atomIndex, 0x99, x as i32, y as i32, energy); 
-    }
-
-    // --- Phase 8: Synaptic & Metabolic Logic ---
-    if (opcode == ISA_BIND) {
-        let nearestIdx: i32 = -1;
-        let minDistSq: i32 = 10000; 
-        for (let ox = -5; ox <= 5; ox++) {
-            for (let oy = -5; oy <= 5; oy++) {
-                let nx = gx + ox;
-                let ny = gy + oy;
-                if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
-                    let count = getSpatialGridCount(nx, ny);
-                    for (let c = 0; c < count; c++) {
-                        let otherIdx = getSpatialGridAtom(nx, ny, c);
-                        if (otherIdx != atomIndex && otherIdx >= 0) {
-                            let dx = (getX(otherIdx) - x) as i32;
-                            let dy = (getY(otherIdx) - y) as i32;
-                            let dSq = dx * dx + dy * dy;
-                            if (dSq < minDistSq) {
-                                minDistSq = dSq;
-                                nearestIdx = otherIdx;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (nearestIdx != -1) writeBondRequest(atomIndex, nearestIdx);
-    } else if (opcode == ISA_SHARE) {
-        for (let b = 0; b < 4; b++) {
-            let target = getBondTarget(atomIndex, b);
-            if (target > 0 && target < MAX_ATOMS) {
-                let stiffness = getBondStiffness(atomIndex, b);
-                let share = (energy / 10);
-                energy -= share;
-                setEnergy(target, getEnergy(target) + share);
-                if (stiffness < 1.0) setBondStiffness(atomIndex, b, stiffness + 0.05);
-                break; 
-            }
-        }
-    } else if (opcode == ISA_ASCEND) {
-        if (energy > 500) {
-            // Atomic Governor Pattern: Atomically increment and check old value
-            let old = atomic.add<i32>(ASCENSION_STATS_OFF, 1);
-            if (old < MAX_ASCENSIONS) {
-                // Perform Ascension
-                let cellIdx = gy * 140 + gx;
-                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), 1); // Mark as crystal
-                energy = 0; // Consumption
-                store<u64>(IDS_OFFSET + (atomIndex << 3), 0); // Deactivate atom
-            } else {
-                // Throttled: Rollback increment
-                atomic.sub<i32>(ASCENSION_STATS_OFF, 1);
-            }
-        }
-
-    // --- Phase 14: Bio-Matrix Coupling ---
-
-    } else if (opcode == ISA_READ_MATRIX) {
-        // Read local crystal signal into atom's resonance
-        let cellIdx = gy * 140 + gx;
-        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-        if (crystalType > 0) {
-            let localSignal = atomic.load<i32>(SIGNAL_GRID_OFF + (cellIdx << 2));
-            // Attune: add a fraction of local signal to own resonance
-            let attunement = localSignal >> 2; // 25% absorption
-            setResonance(atomIndex, resonance + attunement);
-        }
-
-    } else if (opcode == ISA_INJECT) {
-        // Inject surplus resonance into the crystal at this position
-        if (resonance > 200) {
-            let cellIdx = gy * 140 + gx;
-            let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-            if (crystalType > 0) {
-                // Inject half of surplus resonance into signal grid
-                let injection = resonance >> 1;
-                atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), injection);
-                setResonance(atomIndex, resonance - injection);
-            }
-        }
-
-    } else if (opcode == ISA_BROADCAST) {
-        // --- Phase 15: Colony Broadcast ---
-        // Compute a 4-byte genome hash from this atom's logic bytes
-        let l0 = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
-        let cellIdx = gy * 140 + gx;
-        let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-
-        // Read existing colony counter from upper 4 bytes of meme slot
-        let existing = load<u64>(memeOff);
-        let sameGenome = ((existing & 0xFFFFFFFF) as u32) == l0;
-        let count = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
-
-        // Write genome hash + count back
-        store<u64>(memeOff, (l0 as u64) | ((count as u64) << 32));
-
-        // Collective crystallization: enough tribe members → become CRYSTAL_COLONY
-        if (count >= COLONY_THRESHOLD) {
-            let structType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-            if (structType == 0) {
-                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_COLONY);
-                atomic.store<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 500); // Seed colony resonance
-            }
-        }
-        // Boost own resonance slightly for broadcasting
-        setResonance(atomIndex, resonance + 10);
-
-    } else if (opcode == ISA_ANNEX) {
-        // --- Phase 16: Territorial Expansion ---
-        // Attempt to annex up to 2 neighboring cells into this colony
-        let myGenome = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
-
-        // Probe orthogonal neighbors
-        let dirs: i32[] = [1, -1, 140, -140];
-        for (let d = 0; d < 4; d++) {
-            let ni = gy * 140 + gx + dirs[d];
-            if (ni < 0 || ni >= 140 * 80) continue;
-
-            let neighborType = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
-
-            if (neighborType == 0) {
-                // Neutral — stamp our genome beacon
-                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
-                let existing = load<u64>(mOff);
-                let sameGenome = ((existing & 0xFFFFFFFF) as u32) == myGenome;
-                let count: i32 = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
-                store<u64>(mOff, (myGenome as u64) | ((count as u64) << 32));
-                if (count >= COLONY_THRESHOLD) {
-                    atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), CRYSTAL_COLONY);
-                    atomic.store<i32>(SIGNAL_GRID_OFF + (ni << 2), 300);
-                }
-            } else if (neighborType == CRYSTAL_COLONY) {
-                // Occupied by ANOTHER colony — contest!
-                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
-                let existing = load<u64>(mOff);
-                let incumbentGenome = (existing & 0xFFFFFFFF) as u32;
-                if (incumbentGenome != myGenome) {
-                    // Territory contest: aggressor drains signal
-                    let currentSig = atomic.load<i32>(SIGNAL_GRID_OFF + (ni << 2));
-                    if (currentSig > 50) {
-                        atomic.add<i32>(SIGNAL_GRID_OFF + (ni << 2), -50);
-                        // If drained to near-zero, reset to neutral
-                        if (currentSig - 50 <= 0) {
-                            atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), 0);
-                            store<u64>(mOff, 0); // Clear beacon
-                        }
-                    }
-                    setResonance(atomIndex, resonance + 5); // Aggressor gains
-                }
-            }
-        }
-    }
-
-    // --- Phase 17: Fitness-Driven Mutation (ISA_MUTATE) ---
-    if (opcode == ISA_MUTATE) {
-        // Mutation pressure is INVERSE of resonance:
-        // Low resonance  = high temperature = high mutation rate (desperate)
-        // High resonance = low temperature  = low mutation rate  (stable)
-        let pressure = 1000 - (resonance > 1000 ? 1000 : resonance); // 0..1000
-
-        // Stochastic mutation gate: higher pressure → more likely to mutate
-        let seed = (atomIndex * 1664525 + resonance + energy) & 0x7FFFFFFF;
-        let mutationGate = seed % 1000;
-
-        if (mutationGate < pressure) {
-            // Mutate: flip a random byte in logic bytes 1..7 (byte 0 = opcode, keep it)
-            let byteIdx = (seed % 7) + 1;  // bytes 1-7
-            let bitMask: u8 = ((1 << ((seed % 8) as i32)) as i32 & 0xFF) as u8;
-            let logOff: usize = (LOGIC_OFFSET + (atomIndex << 3) as usize) + byteIdx;
-            let old = load<u8>(logOff);
-            store<u8>(logOff, old ^ bitMask); // Flip one bit
-
-            // Energy cost of mutation
-            energy = energy > 50 ? energy - 50 : 0;
-
-            // === Fitness Propagation ===
-            // High-energy survivors broadcast their genome as a fitness beacon
-            if (energy > 2000) {
-                let cellIdx = gy * 140 + gx;
-                let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-                if (crystalType > 0) {
-                    // Stamp full genome into memoryGrid as a CRYSTAL_MEME
-                    let genome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
-                    let mOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-                    store<u64>(mOff, genome);
-                    // Upgrade crystal to CRYSTAL_MEME to propagate winning genome
-                    atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_MEME);
-                }
-            }
-        }
-    }
-
-    // --- Phase 19: Planetary Consciousness (ISA_SENSE) ---
-    if (opcode == ISA_SENSE) {
-        // Read global neural coherence written by SOVEREIGN_ORACLE
-        let coherence = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
-        if (coherence > 0) {
-            let boost: i32 = coherence > 500 ? 50 : coherence / 10;
-            setResonance(atomIndex, resonance + boost);
-            // If fully coherent: amplify local crystal signal
-            if (coherence > 1000) {
-                let cellIdx = gy * 140 + gx;
-                let cType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-                if (cType > 0) {
-                    atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 10);
-                }
-            }
-        }
-    }
-
-    // --- Phase 20: Self-Replication (ISA_REPLICATE) ---
-    if (opcode == ISA_REPLICATE) {
-        // Minimum fitness gate: need surplus energy AND some resonance
-        if (energy > 1500 && resonance > 200) {
-            // Choose adjacent spawn cell (prefer direction of resonance gradient)
-            let spawnDx: i32 = (resonance % 3) - 1; // -1, 0, or 1
-            let spawnDy: i32 = ((resonance * 7) % 3) - 1;
-            let childGx: i32 = gx + spawnDx;
-            let childGy: i32 = gy + spawnDy;
-
-            // Bounds check
-            if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
-                // Only spawn into empty space (no competing atom grid check — JS handles collisions)
-                // Atomically claim a slot in SPAWN_GRID ring-buffer
-                let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
-                let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
-
-                // Copy parent genome to slot, with small mutation in byte 2
-                let parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
-
-                // Mutate genome byte 2 deterministically
-                let mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
-                let mutMask: u64 = (mutSeed as u64) << 16;
-                // 25% chance of mutation (when seed bit 0 and 1 both set)
-                let childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
-
-                store<u64>(slotOff, childGenome);
-                store<i16>((slotOff + 8) as usize, childGx as i16);
-                store<i16>((slotOff + 10) as usize, childGy as i16);
-                store<i32>((slotOff + 12) as usize, energy >> 1); // Half energy for child
-
-                // Parent pays the reproduction tax: half energy + small resonance boost (pride!)
-                energy = energy >> 1;
-                setResonance(atomIndex, resonance + 30);
-            }
-        }
-    }
-
-    // --- Memetic Horizontal Transfer ---
-    // If standing on a CRYSTAL_MEME, stochastically absorb the stored genome
-    {
-        let cellIdx = gy * 140 + gx;
-        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
-        if (crystalType == CRYSTAL_MEME) {
-            // Simple stochastic gate using atomIndex as entropy source
-            let dice = (atomIndex * 2654435769 + resonance) & 0x7FFFFFFF;
-            if ((dice % MEME_TRANSFER_PROB) == 0) {
-                // Absorb the stored 8-byte meme genome into atom's logic
-                let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-                let meme = load<u64>(memeOff);
-                if (meme != 0) {
-                    // Overwrite first 4 bytes of logic with meme bytes
-                    store<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize, (meme & 0xFFFFFFFF) as u32);
-                }
-            }
-        }
-    }
-
-    // Passive Metabolism & Hebbian Decay
-    for (let b = 0; b < 4; b++) {
-        let target = getBondTarget(atomIndex, b);
-        if (target > 0 && target < MAX_ATOMS) {
-            let stiffness = getBondStiffness(atomIndex, b);
-            let targetE = getEnergy(target);
-            let diff = targetE - energy;
-            if (diff != 0) {
-                let flux = ((diff as f32) * (stiffness * 0.1)) as i32;
-                energy += flux;
-                setEnergy(target, targetE - flux);
-            }
-            if (stiffness > 0.01) setBondStiffness(atomIndex, b, stiffness - 0.001);
-            else { setBondTarget(atomIndex, b, 0); setBondStiffness(atomIndex, b, 0); }
-        }
-    }
-
-    // Resonance Decay (Leaky Integrator)
-    if (resonance > 0) setResonance(atomIndex, resonance - 3);
-    else if (resonance < 0) setResonance(atomIndex, 0);
-
-    setEnergy(atomIndex, energy - 1);
+    // Passive Decay (Resonance)
+    if (resonance > 0) setResonance(atomIndex, resonance - 2);
+    
+    // Apply metabolic tax
+    setEnergy(atomIndex, energy > metabolicCost ? energy - metabolicCost : 0);
 }
 
 // --- Phase 13: Crystalline Matrix Neural Engine ---

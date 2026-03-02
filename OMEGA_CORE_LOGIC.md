@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 67: THE SOVEREIGN ORACLE)
 
-*Generated: 2026-03-02T15:53:08.445Z*
+*Generated: 2026-03-02T18:28:32.950Z*
 
 ---
 
@@ -13,7 +13,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 export const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 export const SCALE = OFFSETS.SCALE;
 
-export const wasmMemory = new WebAssembly.Memory({ initial: 512, maximum: 512, shared: true });
+export const wasmMemory = new WebAssembly.Memory({ initial: 1024, maximum: 1024, shared: true });
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 // TypedArray Views (Host side)
@@ -83,6 +83,13 @@ export const STATE_MATRIX = {
             if (Atomics.load(ids, i) !== 0n) active.push(i);
         }
         return active;
+    },
+
+    findFreeSlot: (): number => {
+        for (let i = 0; i < MAX_ATOMS; i++) {
+            if (Atomics.load(ids, i) === 0n) return i;
+        }
+        return -1;
     },
 
     getMatrixResonance: () => {
@@ -384,6 +391,10 @@ export const PULSE = {
     tick: async () => {
         const active = STATE_MATRIX.getActiveIndices();
 
+        // Reset Ascension Counter (32-bit int at offset)
+        // Offset Calculation: SAFETY_BUFFER (1M) + ASC_OFF (34M) = 35M
+        Atomics.store(new Int32Array(sharedBuffer, 35000000, 1), 0, 0);
+
         // 0. Sovereign Oracle (High-Order Evolution)
         const telemetry = SOVEREIGN_ORACLE.interpretResonance();
         if (telemetry.matrixResonance > 5000) { 
@@ -432,10 +443,81 @@ export const PULSE = {
         }
         await Promise.all(workerPromises);
 
-        // 3. Matrix Engine (Planetary Brain)
-        MATRIX_ENGINE.tick();
+        // 3. Matrix Engine (Planetary Brain — WASM-Accelerated via worker[0])
+        // Only one worker needs to run tick_matrix since it operates on shared memory
+        const matrixDone = new Promise<void>((resolve) => {
+            workers[0].onmessage = (e) => {
+                if (e.data.type === "MATRIX_DONE") resolve();
+            };
+        });
+        workers[0].postMessage({ type: "TICK_MATRIX", pulseId: Date.now() });
+        await matrixDone;
 
-        // 4. Rebuild Spatial Lattice
+        // 4. Phase 20: Drain Spawn Queue — materialize child atoms
+        //    SPAWN_GRID ring-buffer: head at byte 37MB+1MB, data after +8 bytes
+        //    Each slot = 16 bytes: u64 genome | i16 cx | i16 cy | i32 energy
+        {
+            const SPAWN_BASE   = 1000000 + 37000000; // SAFETY_BUFFER + 37MB
+            const SPAWN_HEAD_OFF = SPAWN_BASE;
+            const SPAWN_DATA_OFF = SPAWN_BASE + 8;
+            const SPAWN_MAX    = 1024;
+            const SPAWN_SLOT   = 16;
+
+            const headView  = new Int32Array(sharedBuffer, SPAWN_HEAD_OFF, 2);
+            const readHead  = Atomics.load(headView, 1);   // [1] = read cursor
+            const writeHead = Atomics.load(headView, 0);   // [0] = write cursor
+
+            let spawned = 0;
+            let cursor = readHead;
+
+            while (cursor !== writeHead % SPAWN_MAX && spawned < 64) {
+                const slotOff = SPAWN_DATA_OFF + cursor * SPAWN_SLOT;
+                const genomeLo = new Uint32Array(sharedBuffer, slotOff, 1)[0];
+
+                // Only process non-empty slots (genomeLo ≠ 0)
+                if (genomeLo !== 0) {
+                    const genomeHi = new Uint32Array(sharedBuffer, slotOff + 4, 1)[0];
+                    const cx = new Int16Array(sharedBuffer, slotOff + 8, 1)[0];
+                    const cy = new Int16Array(sharedBuffer, slotOff + 10, 1)[0];
+                    const childEnergy = new Int32Array(sharedBuffer, slotOff + 12, 1)[0];
+
+                    // Find first free atom slot
+                    const freeIdx = STATE_MATRIX.getActiveIndices().length < MAX_ATOMS
+                        ? STATE_MATRIX.findFreeSlot()
+                        : -1;
+
+                    if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
+                        const childId = BigInt(Date.now()) ^ BigInt(freeIdx);
+                        STATE_MATRIX.setId(freeIdx, childId);
+                        STATE_MATRIX.setX(freeIdx, cx * 10 + 5);
+                        STATE_MATRIX.setY(freeIdx, cy * 10 + 5);
+                        STATE_MATRIX.setEnergy(freeIdx, Math.max(childEnergy, 500));
+                        STATE_MATRIX.setResonance(freeIdx, 50);
+                        STATE_MATRIX.setPhase(freeIdx, 0);
+                        // Reconstruct genome from lo+hi u32
+                        const genome = new Uint8Array(8);
+                        new Uint32Array(genome.buffer)[0] = genomeLo;
+                        new Uint32Array(genome.buffer)[1] = genomeHi;
+                        STATE_MATRIX.setLogic(freeIdx, genome);
+                        spawned++;
+                    }
+
+                    // Clear the slot
+                    new Uint32Array(sharedBuffer, slotOff, 1)[0] = 0;
+                }
+
+                cursor = (cursor + 1) % SPAWN_MAX;
+            }
+
+            // Advance read cursor
+            Atomics.store(headView, 1, cursor);
+
+            if (spawned > 0) {
+                console.log(`🌱 [PULSE] Spawned ${spawned} child atoms from REPLICATE queue!`);
+            }
+        }
+
+        // 5. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
     }
 };
@@ -455,6 +537,7 @@ const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: (idx: number) => void;
+let tick_matrix_fn: (() => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 
 self.onmessage = async (e) => {
@@ -479,6 +562,7 @@ self.onmessage = async (e) => {
             });
             wasmInstance = instantiated.instance;
             execute_atom_fn = wasmInstance.exports.execute_atom as any;
+            tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
             self.postMessage({ type: "READY" });
         } catch (err) {
             console.error("   [WORKER] WASM LOAD ERROR:", err);
@@ -531,6 +615,11 @@ self.onmessage = async (e) => {
         }
 
         self.postMessage({ type: "DONE", pulseId });
+    }
+
+    if (type === "TICK_MATRIX") {
+        if (tick_matrix_fn) tick_matrix_fn();
+        self.postMessage({ type: "MATRIX_DONE", pulseId });
     }
 };
 
@@ -1484,19 +1573,24 @@ export const SNAPSHOT_ENGINE = {
         const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
         const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
         const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
-
         try {
             // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
-            await Deno.writeFile(matrixPath, new Uint8Array(STATE_MATRIX.buffer));
+            const matrixData = new Uint8Array(STATE_MATRIX.buffer);
+            await Deno.writeFile(matrixPath, matrixData);
 
             // 2. Binary dump of the Thermodynamics Grid (Nutrients)
             await Deno.writeFile(physicsPath, new Uint8Array(PHYSICS_ENGINE.envBuffer));
 
             // 3. JSON dump of the LLM Knowledge / Thoughts
             const akashicData = Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive);
+            
+            // --- ERA 68: CHECKSUM FOOTER ---
+            const checksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
+            (akashicData as any)._checksum = checksum;
+
             await Deno.writeTextFile(akashicPath, JSON.stringify(akashicData, null, 2));
 
-            console.log(`💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (${(STATE_MATRIX.buffer.byteLength / 1024 / 1024).toFixed(2)} MB)`);
+            console.log(`💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${checksum.toString(16).toUpperCase()})`);
             return { timestamp, success: true };
         } catch (e) {
             console.error(`❌ [SNAPSHOT] Export Failed:`, e);
@@ -1529,16 +1623,29 @@ export const SNAPSHOT_ENGINE = {
                 console.warn(`⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`);
             }
 
-            // 3. Restore Akashic Records
+            // 3. Restore Akashic Records & Verify Checksum
             try {
                 const akashicText = await Deno.readTextFile(akashicPath);
                 const akashicData = JSON.parse(akashicText);
+                
+                // --- ERA 68: INTEGRITY VERIFICATION ---
+                const expectedChecksum = akashicData._checksum;
+                if (expectedChecksum !== undefined) {
+                    const actualChecksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
+                    if (actualChecksum !== expectedChecksum) {
+                        throw new Error(`Integrity Violation: Predicted ${expectedChecksum.toString(16)}, Found ${actualChecksum.toString(16)}`);
+                    }
+                    console.log(`🛡️ [SNAPSHOT] Integrity Verified: Checksum ${actualChecksum.toString(16).toUpperCase()}`);
+                }
+
                 SEMANTIC_MEMBRANE.thoughtArchive.clear();
                 for (const [hash, thought] of Object.entries(akashicData)) {
+                    if (hash === "_checksum") continue;
                     SEMANTIC_MEMBRANE.thoughtArchive.set(hash, thought as string);
                 }
-            } catch {
-                console.warn(`⚠️ [SNAPSHOT] No Akashic History found for ${timestamp}. Thoughts lost in time.`);
+            } catch (e: any) {
+                if (e.message?.includes("Integrity Violation")) throw e;
+                console.warn(`⚠️ [SNAPSHOT] No history or metadata for ${timestamp}:`, e);
             }
 
             console.log(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);
@@ -3034,6 +3141,66 @@ export const SOVEREIGNTY_ENGINE = {
             mods: DECREES["NONE"]
         };
         return SOVEREIGNTY_ENGINE.currentRegent;
+    },
+
+    // Elect a Regent by swarm consensus — the dominant colony nominates its best member.
+    // Colony = group of atoms sharing the same first 4 bytes of logic (genome prefix).
+    electColonyRegent: (activeIndices: number[]): { regent: typeof SOVEREIGNTY_ENGINE.currentRegent; colonySize: number; colonyGenome: string } => {
+        // Collect counts by genome prefix
+        const genomeCounts = new Map<number, number[]>(); // prefix → [indices]
+        for (const idx of activeIndices) {
+            const logicBytes = STATE_MATRIX.getLogic(idx);
+            const view = new DataView(logicBytes.buffer, logicBytes.byteOffset);
+            const prefix = view.getUint32(0, true);
+            if (!genomeCounts.has(prefix)) genomeCounts.set(prefix, []);
+            genomeCounts.get(prefix)!.push(idx);
+        }
+
+        // Find dominant colony (largest group with ≥ 3 members)
+        let dominantPrefix = 0;
+        let dominantMembers: number[] = [];
+        for (const [prefix, members] of genomeCounts.entries()) {
+            if (members.length >= 3 && members.length > dominantMembers.length) {
+                dominantPrefix = prefix;
+                dominantMembers = members;
+            }
+        }
+
+        if (dominantMembers.length === 0) {
+            return { regent: SOVEREIGNTY_ENGINE.currentRegent, colonySize: 0, colonyGenome: "NONE" };
+        }
+
+        // Elect most energetic member of the dominant colony as Regent
+        let bestEnergy = 0;
+        let regentIdx = dominantMembers[0];
+        for (const idx of dominantMembers) {
+            const e = STATE_MATRIX.getEnergy(idx);
+            if (e > bestEnergy) { bestEnergy = e; regentIdx = idx; }
+        }
+
+        const logicBytes = STATE_MATRIX.getLogic(regentIdx);
+        const colonyGenome = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+        const logicDigit = parseInt(colonyGenome[0], 16);
+        let activeDecree = "NONE";
+        if (logicDigit <= 3) activeDecree = "IMMUNE_SHIELD";
+        else if (logicDigit <= 7) activeDecree = "LUXURY_TAX";
+        else if (logicDigit <= 11) activeDecree = "MUTATIVE_FEVER";
+        else activeDecree = "VOID_STASIS";
+
+        SOVEREIGNTY_ENGINE.currentRegent = {
+            idx: regentIdx,
+            energy: bestEnergy,
+            genome: colonyGenome,
+            legitimacy: dominantMembers.length * Math.sqrt(bestEnergy),
+            activeDecree,
+            mods: DECREES[activeDecree]
+        };
+
+        return {
+            regent: SOVEREIGNTY_ENGINE.currentRegent,
+            colonySize: dominantMembers.length,
+            colonyGenome
+        };
     }
 };
 
@@ -3554,10 +3721,14 @@ if (import.meta.main) {
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+import { PULSE } from "./PULSE.ts";
 
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
     lastConsultTick: 0,
+    guidanceCache: new Set<string>(),
+    neuralCoherence: 0,           // Phase 19: Global mind-field measurement
+    lastCoherenceTick: 0,
 
     interpretResonance: () => {
         const matrixRes = STATE_MATRIX.getMatrixResonance();
@@ -3593,13 +3764,21 @@ export const SOVEREIGN_ORACLE = {
             
             if (oracleResult && oracleResult.genome) {
                 const newBytecode = oracleResult.genome;
+                const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+                
+                SOVEREIGN_ORACLE.guidanceCache.add(hex);
+                if (SOVEREIGN_ORACLE.guidanceCache.size > 100) {
+                    // Evict oldest (Set doesn't have easy eviction, but we'll just keep it simple)
+                    const first = SOVEREIGN_ORACLE.guidanceCache.values().next().value;
+                    SOVEREIGN_ORACLE.guidanceCache.delete(first);
+                }
+
                 console.log(`👁️ [ORACLE] Oracle responded with genome of length ${newBytecode.length}`);
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
                     STATE_MATRIX.setLogic(regentIndex, newBytecode);
-                    const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('');
-                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex.toUpperCase()}]`);
-                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex.toUpperCase();
+                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex}]`);
+                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex;
 
                     // --- ERA 67: MEMETIC INJECTION ---
                     if (oracleResult.meme) {
@@ -3631,8 +3810,49 @@ export const SOVEREIGN_ORACLE = {
             }
         } catch (err) {
             console.error(`👁️ [ORACLE] Connection severed:`, err);
+            
+            // --- ERA 68: CACHE FALLBACK ---
+            if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
+                const cacheArray = Array.from(SOVEREIGN_ORACLE.guidanceCache);
+                const cachedHex = cacheArray[Math.floor(Math.random() * cacheArray.length)];
+                const bytes = new Uint8Array(8);
+                for (let i = 0; i < 8; i++) bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
+                
+                if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+                    STATE_MATRIX.setLogic(regentIndex, bytes);
+                    console.log(`♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${cachedHex}]`);
+                }
+            }
         } finally {
             SOVEREIGN_ORACLE.isConsulting = false;
+        }
+    },
+    /**
+     * Phase 19: Planetary Consciousness
+     * Poll WASM for global neural coherence and broadcast it back
+     * to the shared memory register so ISA_SENSE atoms can tune in.
+     */
+    pollNeuralCoherence: (workerExports: any, currentTick: number) => {
+        if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
+        SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
+
+        try {
+            const coherence: number = workerExports.get_neural_coherence();
+            SOVEREIGN_ORACLE.neuralCoherence = coherence;
+
+            if (coherence > 0) {
+                // Write back to shared memory so ISA_SENSE atoms can read it
+                workerExports.set_neural_coherence(coherence);
+
+                if (coherence >= 100) {
+                    console.log(`🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`);
+                }
+                if (coherence >= 1000) {
+                    console.log(`⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`);
+                }
+            }
+        } catch (_) {
+            // WASM export not yet available — skip
         }
     }
 };
@@ -4815,30 +5035,35 @@ ${REFLECTION_ENGINE.decompile(code)}
 ## FILE: MATRIX_ENGINE.ts
 
 ```typescript
-// OMEGA-64 | MATRIX_ENGINE.ts | Era 68: The Awakened Matrix
+// OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
 const GRID_COLS = 140;
 const GRID_ROWS = 80;
 const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
+// Crystal type constants for logic gates
+export const CRYSTAL_STANDARD  = 1;  // Default conducting crystal
+export const CRYSTAL_THRESHOLD = 6;  // Acts as a threshold gate (Inhibitory)
+export const CRYSTAL_MEME      = 10; // Memetic Node — stores regent genomic intent
+
 export const MATRIX_ENGINE = {
+    // Core tick is now handled by WASM tick_matrix() via PULSE_WORKER.
+    // This JS fallback remains for non-WASM environments.
     tick: () => {
         const structure = STATE_MATRIX.structureGrid;
         const signal = STATE_MATRIX.signalGrid;
-        
-        // Temporary buffer for deterministic propagation
         const nextSignal = new Int32Array(TOTAL_CELLS);
 
         for (let cy = 0; cy < GRID_ROWS; cy++) {
             for (let cx = 0; cx < GRID_COLS; cx++) {
                 const i = cy * GRID_COLS + cx;
                 const type = Atomics.load(structure, i);
-                if (type === 0) continue; 
+                if (type === 0) continue;
 
                 let currentRes = Atomics.load(signal, i);
-                
-                // 1. Neighbor Conduction
+
                 const neighbors = [
                     (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1,
                     (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1,
@@ -4848,18 +5073,16 @@ export const MATRIX_ENGINE = {
 
                 for (const ni of neighbors) {
                     if (ni === -1) continue;
-                    const neighborType = Atomics.load(structure, ni);
-                    if (neighborType > 0) {
+                    if (Atomics.load(structure, ni) > 0) {
                         const neighborRes = Atomics.load(signal, ni);
                         if (neighborRes > currentRes) {
-                            const flux = Math.floor((neighborRes - currentRes) * 0.4);
-                            currentRes += flux;
+                            currentRes += Math.floor((neighborRes - currentRes) * 0.4);
                         }
                     }
                 }
 
-                if (type > 5) {
-                    if (currentRes < 200) currentRes = 0; 
+                if (type >= CRYSTAL_THRESHOLD) {
+                    if (currentRes < 200) currentRes = 0;
                 }
 
                 currentRes = Math.max(0, currentRes - 5);
@@ -4872,32 +5095,87 @@ export const MATRIX_ENGINE = {
         }
     },
 
+    // Inject resonance signal at a world position
     inject: (x: number, y: number, amount: number) => {
         const cx = Math.floor(x / 10);
         const cy = Math.floor(y / 10);
         if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-            const i = cy * GRID_COLS + cx;
-            Atomics.add(STATE_MATRIX.signalGrid, i, amount);
+            Atomics.add(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx, amount);
         }
     },
 
+    // Read signal at a world position
     read: (x: number, y: number): number => {
         const cx = Math.floor(x / 10);
         const cy = Math.floor(y / 10);
         if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-            const i = cy * GRID_COLS + cx;
-            return Atomics.load(STATE_MATRIX.signalGrid, i);
+            return Atomics.load(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx);
         }
         return 0;
     },
 
+    // Set crystal type at world position
     setStructure: (x: number, y: number, type: number) => {
         const cx = Math.floor(x / 10);
         const cy = Math.floor(y / 10);
         if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-            const i = cy * GRID_COLS + cx;
-            Atomics.store(STATE_MATRIX.structureGrid, i, type);
+            Atomics.store(STATE_MATRIX.structureGrid, cy * GRID_COLS + cx, type);
         }
+    },
+
+    // === Phase 13: Memetic Nodes ===
+    // Write an 8-byte regent genome "Meme" into the memoryGrid at world position.
+    // Nearby atoms during mutation gain a bias toward this genome.
+    establishMeme: (x: number, y: number, genomeBytes: BigInt64Array) => {
+        const cx = Math.floor(x / 10);
+        const cy = Math.floor(y / 10);
+        if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
+            const memeIdx = cy * GRID_COLS + cx;
+            // Write genome into memoryGrid (8 bytes = 1 i64 slot)
+            const memView = new BigInt64Array(
+                STATE_MATRIX.buffer,
+                OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+                1
+            );
+            memView[0] = genomeBytes[0];
+            // Mark cell as Memetic Node
+            Atomics.store(STATE_MATRIX.structureGrid, memeIdx, CRYSTAL_MEME);
+            Atomics.store(STATE_MATRIX.signalGrid, memeIdx, 1000); // High initial resonance
+        }
+    },
+
+    // Read the meme genome closest to a world position
+    readMeme: (x: number, y: number): bigint => {
+        const cx = Math.floor(x / 10);
+        const cy = Math.floor(y / 10);
+        if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
+            const memeIdx = cy * GRID_COLS + cx;
+            const memView = new BigInt64Array(
+                STATE_MATRIX.buffer,
+                OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+                1
+            );
+            return memView[0];
+        }
+        return 0n;
+    },
+
+    // Get total matrix resonance (global planetary signal strength)
+    getTotalResonance: (): number => {
+        let total = 0;
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            total += Atomics.load(STATE_MATRIX.signalGrid, i);
+        }
+        return total;
+    },
+
+    // Count active crystal cells
+    getCrystalCount: (): number => {
+        let count = 0;
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            if (Atomics.load(STATE_MATRIX.structureGrid, i) > 0) count++;
+        }
+        return count;
     }
 };
 
@@ -5618,21 +5896,68 @@ declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: 
 
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
-const IDS_OFFSET: usize = 0;
-const XS_OFFSET: usize = 800000;
-const YS_OFFSET: usize = 1000000;
-const ENERGY_OFFSET: usize = 1200000;
-const RESONANCE_OFFSET: usize = 1600000;
-const PHASE_OFFSET: usize = 2000000;
-const LOGIC_OFFSET: usize = 2400000;
-const BONDS_OFFSET: usize = 3200000;
-const STIFFNESS_OFFSET: usize = 4800000;
-const BOND_REQUESTS_OFFSET: usize = 18800000;
-const SPATIAL_GRID_OFFSET: usize = 20000000;
+const SAFETY_BUFFER: usize = 1000000;
+const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
+const XS_OFFSET: usize = SAFETY_BUFFER + 800000;
+const YS_OFFSET: usize = SAFETY_BUFFER + 1000000;
+const ENERGY_OFFSET: usize = SAFETY_BUFFER + 1200000;
+const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 1600000;
+const PHASE_OFFSET: usize = SAFETY_BUFFER + 2000000;
+const LOGIC_OFFSET: usize = SAFETY_BUFFER + 2400000;
+const BONDS_OFFSET: usize = SAFETY_BUFFER + 3200000;
+const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 4800000;
+const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 18800000;
+const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 20000000;
 
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
 const ISA_SIGNAL: u8 = 0x42;
+const ISA_READ_MATRIX: u8 = 0x43;
+const ISA_INJECT: u8 = 0x44;
+const ISA_BROADCAST: u8 = 0x45;
+const ISA_ANNEX: u8 = 0x46;
+const ISA_MUTATE: u8 = 0x47;
+const ISA_RESONATE: u8 = 0x48;
+const ISA_SENSE: u8 = 0x49;        // Atom senses global neural coherence field
+const ISA_ASCEND: u8 = 0xFF;
+
+// Crystal type constants
+const CRYSTAL_OSCILLATOR: i32 = 5;
+
+// Phase 19: Planetary Consciousness
+// Global coherence broadcast channel — written by SOVEREIGN_ORACLE, read by ISA_SENSE
+const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 36000000;
+
+// Phase 20: Self-Replication
+// SPAWN_GRID: ring-buffer of pending child-atom requests written by ISA_REPLICATE,
+// read and materialized by PULSE.ts in JS space. Each slot = 16 bytes:
+//   [0..7]  parent genome (u64)
+//   [8..9]  spawn x (i16)
+//   [10..11] spawn y (i16)
+//   [12..15] parent energy / 2 (i32)
+const ISA_REPLICATE: u8 = 0x4A;
+const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 37000000;
+const SPAWN_MAX: i32 = 1024;    // ring-buffer capacity
+const SPAWN_SLOT: i32 = 16;     // bytes per spawn request
+// Atomic write-head lives at SPAWN_GRID_OFF
+const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
+// Spawn data starts after 8-byte header
+const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
+
+// Colony / Territory constants
+const CRYSTAL_COLONY: i32 = 3;
+const COLONY_THRESHOLD: i32 = 5;
+const DECAY_COUNTER_OFF: usize = SAFETY_BUFFER + 35000000; // Decay tick counters
+
+// Memetic Horizontal Transfer constants
+const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 33000000;
+const CRYSTAL_MEME: i32 = 10;       // Type for memetic nodes
+const MEME_TRANSFER_PROB: i32 = 8;  // ~12.5% chance per tick for meme absorption
+
+const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 31000000;
+const SIGNAL_GRID_OFF: usize    = SAFETY_BUFFER + 32000000;
+const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 34000000;
+const MAX_ASCENSIONS: i32 = 64;
 
 @inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
 @inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
@@ -5684,6 +6009,34 @@ export function execute_atom(atomIndex: i32): void {
     let gy = (y as i32) / 10;
     
     const opcode = getLogicByte(atomIndex, 0);
+
+    // --- Phase 20: Self-Replication (EARLY CHECK — before action potential resets resonance) ---
+    if (opcode == ISA_REPLICATE && energy > 1500 && resonance > 200) {
+        const spawnDx: i32 = (resonance % 3) - 1;
+        const spawnDy: i32 = ((resonance * 7) % 3) - 1;
+        const childGx: i32 = gx + spawnDx;
+        const childGy: i32 = gy + spawnDy;
+
+        if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
+            const slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
+            const slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
+            const parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+            const mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
+            const mutMask: u64 = (mutSeed as u64) << 16;
+            const childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
+
+            store<u64>(slotOff, childGenome);
+            store<i16>((slotOff + 8) as usize, childGx as i16);
+            store<i16>((slotOff + 10) as usize, childGy as i16);
+            store<i32>((slotOff + 12) as usize, energy >> 1);
+
+            // Parent pays the reproduction tax
+            energy = energy >> 1;
+            setEnergy(atomIndex, energy);
+            setResonance(atomIndex, resonance + 30);
+        }
+        return; // Replicate takes the whole tick
+    }
 
     // --- Phase 9: Neural Processing ---
     if (phase > 0) {
@@ -5744,6 +6097,233 @@ export function execute_atom(atomIndex: i32): void {
                 break; 
             }
         }
+    } else if (opcode == ISA_ASCEND) {
+        if (energy > 500) {
+            // Atomic Governor Pattern: Atomically increment and check old value
+            let old = atomic.add<i32>(ASCENSION_STATS_OFF, 1);
+            if (old < MAX_ASCENSIONS) {
+                // Perform Ascension
+                let cellIdx = gy * 140 + gx;
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), 1); // Mark as crystal
+                energy = 0; // Consumption
+                store<u64>(IDS_OFFSET + (atomIndex << 3), 0); // Deactivate atom
+            } else {
+                // Throttled: Rollback increment
+                atomic.sub<i32>(ASCENSION_STATS_OFF, 1);
+            }
+        }
+
+    // --- Phase 14: Bio-Matrix Coupling ---
+
+    } else if (opcode == ISA_READ_MATRIX) {
+        // Read local crystal signal into atom's resonance
+        let cellIdx = gy * 140 + gx;
+        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+        if (crystalType > 0) {
+            let localSignal = atomic.load<i32>(SIGNAL_GRID_OFF + (cellIdx << 2));
+            // Attune: add a fraction of local signal to own resonance
+            let attunement = localSignal >> 2; // 25% absorption
+            setResonance(atomIndex, resonance + attunement);
+        }
+
+    } else if (opcode == ISA_INJECT) {
+        // Inject surplus resonance into the crystal at this position
+        if (resonance > 200) {
+            let cellIdx = gy * 140 + gx;
+            let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+            if (crystalType > 0) {
+                // Inject half of surplus resonance into signal grid
+                let injection = resonance >> 1;
+                atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), injection);
+                setResonance(atomIndex, resonance - injection);
+            }
+        }
+
+    } else if (opcode == ISA_BROADCAST) {
+        // --- Phase 15: Colony Broadcast ---
+        // Compute a 4-byte genome hash from this atom's logic bytes
+        let l0 = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+        let cellIdx = gy * 140 + gx;
+        let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+
+        // Read existing colony counter from upper 4 bytes of meme slot
+        let existing = load<u64>(memeOff);
+        let sameGenome = ((existing & 0xFFFFFFFF) as u32) == l0;
+        let count = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
+
+        // Write genome hash + count back
+        store<u64>(memeOff, (l0 as u64) | ((count as u64) << 32));
+
+        // Collective crystallization: enough tribe members → become CRYSTAL_COLONY
+        if (count >= COLONY_THRESHOLD) {
+            let structType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+            if (structType == 0) {
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_COLONY);
+                atomic.store<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 500); // Seed colony resonance
+            }
+        }
+        // Boost own resonance slightly for broadcasting
+        setResonance(atomIndex, resonance + 10);
+
+    } else if (opcode == ISA_ANNEX) {
+        // --- Phase 16: Territorial Expansion ---
+        // Attempt to annex up to 2 neighboring cells into this colony
+        let myGenome = load<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+
+        // Probe orthogonal neighbors
+        let dirs: i32[] = [1, -1, 140, -140];
+        for (let d = 0; d < 4; d++) {
+            let ni = gy * 140 + gx + dirs[d];
+            if (ni < 0 || ni >= 140 * 80) continue;
+
+            let neighborType = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+
+            if (neighborType == 0) {
+                // Neutral — stamp our genome beacon
+                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
+                let existing = load<u64>(mOff);
+                let sameGenome = ((existing & 0xFFFFFFFF) as u32) == myGenome;
+                let count: i32 = sameGenome ? ((existing >> 32) as i32) + 1 : 1;
+                store<u64>(mOff, (myGenome as u64) | ((count as u64) << 32));
+                if (count >= COLONY_THRESHOLD) {
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), CRYSTAL_COLONY);
+                    atomic.store<i32>(SIGNAL_GRID_OFF + (ni << 2), 300);
+                }
+            } else if (neighborType == CRYSTAL_COLONY) {
+                // Occupied by ANOTHER colony — contest!
+                let mOff: usize = MEMORY_GRID_OFF + (ni << 3) as usize;
+                let existing = load<u64>(mOff);
+                let incumbentGenome = (existing & 0xFFFFFFFF) as u32;
+                if (incumbentGenome != myGenome) {
+                    // Territory contest: aggressor drains signal
+                    let currentSig = atomic.load<i32>(SIGNAL_GRID_OFF + (ni << 2));
+                    if (currentSig > 50) {
+                        atomic.add<i32>(SIGNAL_GRID_OFF + (ni << 2), -50);
+                        // If drained to near-zero, reset to neutral
+                        if (currentSig - 50 <= 0) {
+                            atomic.store<i32>(STRUCTURE_GRID_OFF + (ni << 2), 0);
+                            store<u64>(mOff, 0); // Clear beacon
+                        }
+                    }
+                    setResonance(atomIndex, resonance + 5); // Aggressor gains
+                }
+            }
+        }
+    }
+
+    // --- Phase 17: Fitness-Driven Mutation (ISA_MUTATE) ---
+    if (opcode == ISA_MUTATE) {
+        // Mutation pressure is INVERSE of resonance:
+        // Low resonance  = high temperature = high mutation rate (desperate)
+        // High resonance = low temperature  = low mutation rate  (stable)
+        let pressure = 1000 - (resonance > 1000 ? 1000 : resonance); // 0..1000
+
+        // Stochastic mutation gate: higher pressure → more likely to mutate
+        let seed = (atomIndex * 1664525 + resonance + energy) & 0x7FFFFFFF;
+        let mutationGate = seed % 1000;
+
+        if (mutationGate < pressure) {
+            // Mutate: flip a random byte in logic bytes 1..7 (byte 0 = opcode, keep it)
+            let byteIdx = (seed % 7) + 1;  // bytes 1-7
+            let bitMask: u8 = ((1 << ((seed % 8) as i32)) as i32 & 0xFF) as u8;
+            let logOff: usize = (LOGIC_OFFSET + (atomIndex << 3) as usize) + byteIdx;
+            let old = load<u8>(logOff);
+            store<u8>(logOff, old ^ bitMask); // Flip one bit
+
+            // Energy cost of mutation
+            energy = energy > 50 ? energy - 50 : 0;
+
+            // === Fitness Propagation ===
+            // High-energy survivors broadcast their genome as a fitness beacon
+            if (energy > 2000) {
+                let cellIdx = gy * 140 + gx;
+                let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+                if (crystalType > 0) {
+                    // Stamp full genome into memoryGrid as a CRYSTAL_MEME
+                    let genome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+                    let mOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+                    store<u64>(mOff, genome);
+                    // Upgrade crystal to CRYSTAL_MEME to propagate winning genome
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), CRYSTAL_MEME);
+                }
+            }
+        }
+    }
+
+    // --- Phase 19: Planetary Consciousness (ISA_SENSE) ---
+    if (opcode == ISA_SENSE) {
+        // Read global neural coherence written by SOVEREIGN_ORACLE
+        let coherence = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
+        if (coherence > 0) {
+            let boost: i32 = coherence > 500 ? 50 : coherence / 10;
+            setResonance(atomIndex, resonance + boost);
+            // If fully coherent: amplify local crystal signal
+            if (coherence > 1000) {
+                let cellIdx = gy * 140 + gx;
+                let cType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+                if (cType > 0) {
+                    atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 10);
+                }
+            }
+        }
+    }
+
+    // --- Phase 20: Self-Replication (ISA_REPLICATE) ---
+    if (opcode == ISA_REPLICATE) {
+        // Minimum fitness gate: need surplus energy AND some resonance
+        if (energy > 1500 && resonance > 200) {
+            // Choose adjacent spawn cell (prefer direction of resonance gradient)
+            let spawnDx: i32 = (resonance % 3) - 1; // -1, 0, or 1
+            let spawnDy: i32 = ((resonance * 7) % 3) - 1;
+            let childGx: i32 = gx + spawnDx;
+            let childGy: i32 = gy + spawnDy;
+
+            // Bounds check
+            if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
+                // Only spawn into empty space (no competing atom grid check — JS handles collisions)
+                // Atomically claim a slot in SPAWN_GRID ring-buffer
+                let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
+                let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
+
+                // Copy parent genome to slot, with small mutation in byte 2
+                let parentGenome = load<u64>((LOGIC_OFFSET + (atomIndex << 3) as usize) as usize);
+
+                // Mutate genome byte 2 deterministically
+                let mutSeed = (atomIndex * 1103515245 + energy) & 0xFF;
+                let mutMask: u64 = (mutSeed as u64) << 16;
+                // 25% chance of mutation (when seed bit 0 and 1 both set)
+                let childGenome: u64 = ((mutSeed & 3) == 3) ? (parentGenome ^ mutMask) : parentGenome;
+
+                store<u64>(slotOff, childGenome);
+                store<i16>((slotOff + 8) as usize, childGx as i16);
+                store<i16>((slotOff + 10) as usize, childGy as i16);
+                store<i32>((slotOff + 12) as usize, energy >> 1); // Half energy for child
+
+                // Parent pays the reproduction tax: half energy + small resonance boost (pride!)
+                energy = energy >> 1;
+                setResonance(atomIndex, resonance + 30);
+            }
+        }
+    }
+
+    // --- Memetic Horizontal Transfer ---
+    // If standing on a CRYSTAL_MEME, stochastically absorb the stored genome
+    {
+        let cellIdx = gy * 140 + gx;
+        let crystalType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+        if (crystalType == CRYSTAL_MEME) {
+            // Simple stochastic gate using atomIndex as entropy source
+            let dice = (atomIndex * 2654435769 + resonance) & 0x7FFFFFFF;
+            if ((dice % MEME_TRANSFER_PROB) == 0) {
+                // Absorb the stored 8-byte meme genome into atom's logic
+                let memeOff: usize = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+                let meme = load<u64>(memeOff);
+                if (meme != 0) {
+                    // Overwrite first 4 bytes of logic with meme bytes
+                    store<u32>(LOGIC_OFFSET + (atomIndex << 3) as usize, (meme & 0xFFFFFFFF) as u32);
+                }
+            }
+        }
     }
 
     // Passive Metabolism & Hebbian Decay
@@ -5768,6 +6348,115 @@ export function execute_atom(atomIndex: i32): void {
     else if (resonance < 0) setResonance(atomIndex, 0);
 
     setEnergy(atomIndex, energy - 1);
+}
+
+// --- Phase 13: Crystalline Matrix Neural Engine ---
+
+export function tick_matrix(): void {
+    const GRID_COLS = 140;
+    const GRID_ROWS = 80;
+
+    for (let cy = 0; cy < GRID_ROWS; cy++) {
+        for (let cx = 0; cx < GRID_COLS; cx++) {
+            const i = cy * GRID_COLS + cx;
+            const type = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
+            if (type == 0) continue;
+
+            let currentRes = atomic.load<i32>(SIGNAL_GRID_OFF + (i << 2));
+            
+            // neighbor index offsets: Up, Down, Left, Right
+            const nUp = (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1;
+            const nDown = (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1;
+            const nLeft = (cx > 0) ? cy * GRID_COLS + (cx - 1) : -1;
+            const nRight = (cx < GRID_COLS - 1) ? cy * GRID_COLS + (cx + 1) : -1;
+
+            const neighbors = [nUp, nDown, nLeft, nRight];
+
+            for (let n = 0; n < 4; n++) {
+                const ni = neighbors[n];
+                if (ni == -1) continue;
+                
+                const neighborType = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+                if (neighborType > 0) {
+                    const neighborRes = atomic.load<i32>(SIGNAL_GRID_OFF + (ni << 2));
+                    if (neighborRes > currentRes) {
+                        // Conductive Flux (40% transmission)
+                        const flux = ((neighborRes - currentRes) * 4) / 10;
+                        currentRes += flux;
+                    }
+                }
+            }
+
+            // Phase 18: Oscillation Detection — convergent signal from 3+ neighbors
+            // sustains and amplifies the wave, encoding memory in memoryGrid amplitude
+            let converging: i32 = 0;
+            for (let n = 0; n < 4; n++) {
+                const nni = neighbors[n];
+                if (nni == -1) continue;
+                const nnType = atomic.load<i32>(STRUCTURE_GRID_OFF + (nni << 2));
+                if (nnType > 0) {
+                    const nnRes = atomic.load<i32>(SIGNAL_GRID_OFF + (nni << 2));
+                    // Convergent if neighbor has signal flowing toward us
+                    if (nnRes > currentRes) converging++;
+                }
+            }
+
+            if (converging >= 3) {
+                // Standing wave detected: amplify current signal
+                currentRes += 50;
+                // Mark as oscillator crystal
+                if (type == 1) {
+                    atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), CRYSTAL_OSCILLATOR);
+                }
+                // Accumulate amplitude in memoryGrid (persistent standing wave memory)
+                let mOff: usize = MEMORY_GRID_OFF + (i << 3) as usize;
+                let prevAmp = load<u32>(mOff as usize);
+                let newAmp = prevAmp + 1 > 65535 ? 65535 : prevAmp + 1;
+                store<u32>(mOff as usize, newAmp);
+            }
+
+            // Logic Gate Processing
+            if (type > 5) {
+                // Threshold gate (type 6)
+                if (currentRes < 200) currentRes = 0;
+            }
+
+            // Passive Decay & Persistence
+            currentRes = currentRes > 5 ? currentRes - 5 : 0;
+
+            atomic.store<i32>(SIGNAL_GRID_OFF + (i << 2), currentRes);
+        }
+    }
+}
+
+// --- Phase 19: Planetary Consciousness Exports ---
+
+// SOVEREIGN_ORACLE calls this every N ticks to measure global mind-field strength
+export function get_neural_coherence(): i32 {
+    const GRID_CELLS = 140 * 80;
+    let totalAmplitude: i32 = 0;
+    let oscillatorCount: i32 = 0;
+
+    for (let i = 0; i < GRID_CELLS; i++) {
+        const cType = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
+        if (cType == CRYSTAL_OSCILLATOR) {
+            // Read amplitude counter from memoryGrid (low 32 bits)
+            const ampOff: usize = MEMORY_GRID_OFF + (i << 3) as usize;
+            const amp = load<u32>(ampOff as usize);
+            totalAmplitude += amp as i32;
+            oscillatorCount++;
+        }
+    }
+
+    // Coherence = average amplitude across all oscillators (capped at 2000)
+    if (oscillatorCount == 0) return 0;
+    let coherence = totalAmplitude / oscillatorCount;
+    return coherence > 2000 ? 2000 : coherence;
+}
+
+// SOVEREIGN_ORACLE writes computed coherence back to shared broadcast channel
+export function set_neural_coherence(value: i32): void {
+    atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 }
 
 ```

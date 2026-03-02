@@ -3,7 +3,7 @@
 
 import { PULSE } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
@@ -13,6 +13,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 import { PRNG } from "./PRNG.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
@@ -75,7 +76,7 @@ Deno.serve({ port: UI_PORT }, async (req) => {
             const packet = await req.json();
             console.log(`🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`);
             
-            const idx = STATE_MATRIX.findEmptySlot();
+            const idx = STATE_MATRIX.findFreeSlot();
             if (idx !== -1) {
                 const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
                 const { value: vId, next: n1 } = prng.next();
@@ -179,10 +180,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     }
 
     if (url.pathname === "/bonds" && req.method === "GET") {
-        // Bonds are 4 Uint32s per atom (16 bytes) at a specific offset
-        // We'll export the raw portion of the buffer
-        const BONDS_OFFSET = (100000 * 8) + (100000 * 2) + (100000 * 2) + (100000 * 4) + (100000 * 4) + (100000 * 4) + (100000 * 8); 
-        const BONDS_SIZE = 100000 * 4 * 4;
+        const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
+        const BONDS_SIZE = MAX_ATOMS * 4 * 4;
         const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
         const copy = new Uint8Array(view.byteLength);
         copy.set(view);
@@ -311,19 +310,19 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
     console.log("💓 [SYSTEM] Pulse Engine Ignited.");
+    await PULSE.initWorkers();
     
     // Spawn an emergent Avatar atom to wander the matrix naturally
-    const aIdx = STATE_MATRIX.findEmptySlot();
+    const aIdx = STATE_MATRIX.findFreeSlot();
     if (aIdx !== -1) {
-        STATE_MATRIX.setId(aIdx, 0x00000000AAAAAAAAn); // Avatar ID
-        STATE_MATRIX.setX(aIdx, 700);
-        STATE_MATRIX.setY(aIdx, 400);
-        STATE_MATRIX.setEnergy(aIdx, 9999); 
-        STATE_MATRIX.setResonance(aIdx, 9999);
-        STATE_MATRIX.setLogic(aIdx, new Uint8Array([0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88]));
+        const avatarGenome = new Uint8Array([0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88]);
+        STATE_MATRIX.seedAtom(aIdx, 0x00000000AAAAAAAAn, 700, 400, 9999, 9999, avatarGenome);
     }
     
-    await PULSE.run();
+    while (true) {
+        await PULSE.tick();
+        await new Promise(r => setTimeout(r, 16));
+    }
 })();
 
 // 3. Start Cognitive Breathing Loop (Background)

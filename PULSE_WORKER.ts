@@ -43,6 +43,18 @@ self.onmessage = async (e) => {
         const { startIdx, endIdx } = e.data;
         if (!wasmInstance || !execute_atom_fn || !sharedBuffer) return;
 
+        const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
+        
+        // Wait for WASM_TICKING state (1)
+        // If Host is locking (2) or Idle (0), we don't start yet.
+        while (Atomics.load(syncState, 0) !== 1) {
+            Atomics.wait(syncState, 0, 0, 1); // Wait if 0, expect 1
+            if (Atomics.load(syncState, 0) === 2) {
+                // If it's 2, we must wait for it to become 0 then 1
+                Atomics.wait(syncState, 0, 2, 5); 
+            }
+        }
+
         const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
         const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
         const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);

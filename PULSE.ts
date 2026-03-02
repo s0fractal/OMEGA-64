@@ -1,5 +1,6 @@
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 import { STATE_MATRIX, MAX_ATOMS, sharedBuffer } from "./STATE_MATRIX.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
@@ -11,6 +12,7 @@ const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
 
 export const PULSE = {
+    currentPulseId: Date.now(),
     initWorkers: async () => {
         if (workers.length > 0) return;
         
@@ -35,33 +37,32 @@ export const PULSE = {
     },
 
     tick: async () => {
+        const { syncState, tickCounter, SYNC } = STATE_MATRIX;
+        PULSE.currentPulseId = Date.now();
+
+        // 1. Enter WASM_TICKING State
+        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+
         const active = STATE_MATRIX.getActiveIndices();
 
-        // Reset Ascension Counter (32-bit int at offset)
-        // Offset Calculation: SAFETY_BUFFER (1M) + ASC_OFF (34M) = 35M
-        Atomics.store(new Int32Array(sharedBuffer, 35000000, 1), 0, 0);
+        // Reset Ascension Counter
+        Atomics.store(new Int32Array(sharedBuffer, OFFSETS.ASCENSION_STATS_OFFSET, 1), 0, 0);
 
-        // 0. Sovereign Oracle (High-Order Evolution)
+        // 0. Sovereign Oracle
         const telemetry = SOVEREIGN_ORACLE.interpretResonance();
         if (telemetry.matrixResonance > 5000) { 
-            console.log(`👁️ [PULSE] Matrix Threshold Breached (${telemetry.matrixResonance}). Triggering Sovereignty Audit.`);
             const regent = SOVEREIGNTY_ENGINE.electRegent(active);
             if (regent && regent.idx !== -1) {
-                console.log(`👑 [PULSE] Regent Candidate Found: ${regent.idx}. Consulting Oracle...`);
                 SOVEREIGN_ORACLE.consultOracle(regent.idx, telemetry);
-            } else {
-                console.log("   [PULSE] No sovereign candidate found.");
             }
         }
 
-        // 1. Resolve Sequential Logic (Bonds, Spawns)
+        // 1. Resolve Sequential Logic
         for (const i of active) {
-            // Bond Resolution
             const bondReq = STATE_MATRIX.getBondRequest(i);
             if (bondReq) {
                 const targetIdx = bondReq[1];
                 if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    // Bi-directional bond
                     STATE_MATRIX.setBondTarget(i, 0, targetIdx);
                     STATE_MATRIX.setBondStiffness(i, 0, 0.1);
                     STATE_MATRIX.setBondTarget(targetIdx, 1, i);
@@ -89,8 +90,7 @@ export const PULSE = {
         }
         await Promise.all(workerPromises);
 
-        // 3. Matrix Engine (Planetary Brain — WASM-Accelerated via worker[0])
-        // Only one worker needs to run tick_matrix since it operates on shared memory
+        // 3. Matrix Engine
         const matrixDone = new Promise<void>((resolve) => {
             workers[0].onmessage = (e) => {
                 if (e.data.type === "MATRIX_DONE") resolve();
@@ -99,71 +99,56 @@ export const PULSE = {
         workers[0].postMessage({ type: "TICK_MATRIX", pulseId: Date.now() });
         await matrixDone;
 
-        // 4. Phase 20: Drain Spawn Queue — materialize child atoms
-        //    SPAWN_GRID ring-buffer: head at byte 37MB+1MB, data after +8 bytes
-        //    Each slot = 16 bytes: u64 genome | i16 cx | i16 cy | i32 energy
-        {
-            const SPAWN_BASE   = 1000000 + 37000000; // SAFETY_BUFFER + 37MB
-            const SPAWN_HEAD_OFF = SPAWN_BASE;
-            const SPAWN_DATA_OFF = SPAWN_BASE + 8;
-            const SPAWN_MAX    = 1024;
-            const SPAWN_SLOT   = 16;
+        // --- TRANSITION TO HOST_LOCK ---
+        // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
+        Atomics.store(syncState, 0, SYNC.HOST_LOCK);
 
-            const headView  = new Int32Array(sharedBuffer, SPAWN_HEAD_OFF, 2);
-            const readHead  = Atomics.load(headView, 1);   // [1] = read cursor
-            const writeHead = Atomics.load(headView, 0);   // [0] = write cursor
+        // 4. Drain Spawn Queue
+        {
+            const headView  = new Int32Array(sharedBuffer, OFFSETS.SPAWN_REQUESTS_OFFSET, 2);
+            const readHead  = Atomics.load(headView, 1);
+            const writeHead = Atomics.load(headView, 0);
 
             let spawned = 0;
             let cursor = readHead;
 
-            while (cursor !== writeHead % SPAWN_MAX && spawned < 64) {
-                const slotOff = SPAWN_DATA_OFF + cursor * SPAWN_SLOT;
+            while (cursor !== writeHead % 1024 && spawned < 64) {
+                const slotOff = OFFSETS.SPAWN_REQUESTS_OFFSET + 8 + cursor * 16;
                 const genomeLo = new Uint32Array(sharedBuffer, slotOff, 1)[0];
 
-                // Only process non-empty slots (genomeLo ≠ 0)
                 if (genomeLo !== 0) {
                     const genomeHi = new Uint32Array(sharedBuffer, slotOff + 4, 1)[0];
                     const cx = new Int16Array(sharedBuffer, slotOff + 8, 1)[0];
                     const cy = new Int16Array(sharedBuffer, slotOff + 10, 1)[0];
                     const childEnergy = new Int32Array(sharedBuffer, slotOff + 12, 1)[0];
 
-                    // Find first free atom slot
-                    const freeIdx = STATE_MATRIX.getActiveIndices().length < MAX_ATOMS
-                        ? STATE_MATRIX.findFreeSlot()
-                        : -1;
+                    const freeIdx = STATE_MATRIX.findFreeSlot();
 
                     if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
                         const childId = BigInt(Date.now()) ^ BigInt(freeIdx);
-                        STATE_MATRIX.setId(freeIdx, childId);
-                        STATE_MATRIX.setX(freeIdx, cx * 10 + 5);
-                        STATE_MATRIX.setY(freeIdx, cy * 10 + 5);
-                        STATE_MATRIX.setEnergy(freeIdx, Math.max(childEnergy, 500));
-                        STATE_MATRIX.setResonance(freeIdx, 50);
-                        STATE_MATRIX.setPhase(freeIdx, 0);
-                        // Reconstruct genome from lo+hi u32
                         const genome = new Uint8Array(8);
                         new Uint32Array(genome.buffer)[0] = genomeLo;
                         new Uint32Array(genome.buffer)[1] = genomeHi;
-                        STATE_MATRIX.setLogic(freeIdx, genome);
+                        
+                        // Seed atom with standard biological script and genome
+                        STATE_MATRIX.seedAtom(freeIdx, childId, cx * 10 + 5, cy * 10 + 5, Math.max(childEnergy, 500) / STATE_MATRIX.SCALE, 0, genome);
                         spawned++;
                     }
-
-                    // Clear the slot
                     new Uint32Array(sharedBuffer, slotOff, 1)[0] = 0;
                 }
-
-                cursor = (cursor + 1) % SPAWN_MAX;
+                cursor = (cursor + 1) % 1024;
             }
-
-            // Advance read cursor
             Atomics.store(headView, 1, cursor);
-
-            if (spawned > 0) {
-                console.log(`🌱 [PULSE] Spawned ${spawned} child atoms from REPLICATE queue!`);
-            }
+            if (spawned > 0) console.log(`🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`);
         }
 
         // 5. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
+
+        // Increment Global Tick Counter
+        Atomics.add(tickCounter, 0, 1);
+
+        // 6. Return to IDLE
+        Atomics.store(syncState, 0, SYNC.IDLE);
     }
 };
