@@ -2,6 +2,8 @@
 import { STATE_MATRIX, MAX_ATOMS, sharedBuffer } from "./STATE_MATRIX.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
+import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 const WORKER_COUNT = 4; // We can keep 4, but for the test we'll ensure index 1 is handled clearly.
 
@@ -34,6 +36,19 @@ export const PULSE = {
 
     tick: async () => {
         const active = STATE_MATRIX.getActiveIndices();
+
+        // 0. Sovereign Oracle (High-Order Evolution)
+        const telemetry = SOVEREIGN_ORACLE.interpretResonance();
+        if (telemetry.matrixResonance > 5000) { 
+            console.log(`👁️ [PULSE] Matrix Threshold Breached (${telemetry.matrixResonance}). Triggering Sovereignty Audit.`);
+            const regent = SOVEREIGNTY_ENGINE.electRegent(active);
+            if (regent && regent.idx !== -1) {
+                console.log(`👑 [PULSE] Regent Candidate Found: ${regent.idx}. Consulting Oracle...`);
+                SOVEREIGN_ORACLE.consultOracle(regent.idx, telemetry);
+            } else {
+                console.log("   [PULSE] No sovereign candidate found.");
+            }
+        }
 
         // 1. Resolve Sequential Logic (Bonds, Spawns)
         for (const i of active) {

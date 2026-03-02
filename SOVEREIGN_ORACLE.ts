@@ -7,6 +7,21 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
+    lastConsultTick: 0,
+
+    interpretResonance: () => {
+        const matrixRes = STATE_MATRIX.getMatrixResonance();
+        const clusterSync = STATE_MATRIX.getClusterSync();
+        
+        // Return a condensed telemetry object for the LLM
+        return {
+            matrixResonance: matrixRes,
+            clusterSync: clusterSync,
+            nutrients: 1000, // Placeholder or fetch from ECOLOGY if available
+            population: STATE_MATRIX.getActiveIndices().length,
+            viralLoad: 0 // Placeholder
+        };
+    },
 
     /**
      * Consults the LLM to dictate new bytecode for the reigning Regent.
@@ -20,10 +35,15 @@ export const SOVEREIGN_ORACLE = {
             console.log(`👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`);
             
             const memSummary = STATE_MATRIX.getMemorySummary();
-            const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({ ...telemetry, stigmergicSummary: memSummary });
+            const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({ 
+                ...telemetry, 
+                energy: STATE_MATRIX.getEnergy(regentIndex),
+                stigmergicSummary: memSummary 
+            });
             
             if (oracleResult && oracleResult.genome) {
                 const newBytecode = oracleResult.genome;
+                console.log(`👁️ [ORACLE] Oracle responded with genome of length ${newBytecode.length}`);
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
                     STATE_MATRIX.setLogic(regentIndex, newBytecode);

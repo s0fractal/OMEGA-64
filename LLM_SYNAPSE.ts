@@ -152,14 +152,17 @@ export const LLM_SYNAPSE = {
             - Regent Energy: ${telemetry.energy}
             - Population: ${telemetry.population}
             - Viral Load: ${telemetry.viralLoad}
+            - Matrix Resonance: ${telemetry.matrixResonance} 
+            - Cluster Sync: ${telemetry.clusterSync}
             - Collective Memories: ${memSummary}
 
             Goal: 
             1. Generate a new 8-byte (16 hex) genome for the Regent.
-            2. (Optional) Generate a 4-byte (8 hex) "Meme" to seed into the spatial grid to guide other atoms.
+            2. (Optional) Generate a 4-byte (8 hex) "Meme" to seed into the spatial grid.
 
             Opcodes:
             - 08: MITOSIS, 20: FEED, FF: ASCEND, 30: STORE_MEM, 31: LOAD_MEM
+            - 40: BIND, 41: SHARE, 42: SIGNAL (Neural Pulse)
             
             Output JSON format:
             {

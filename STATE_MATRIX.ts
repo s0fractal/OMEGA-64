@@ -21,6 +21,7 @@ const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, M
 const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, 140 * 80 * 32);
 const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80); // 1 int per cell (density/type)
 const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80);    // 1 int per cell (resonance)
+const memoryGrid = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8);
 
 export const STATE_MATRIX = {
     MAX_ATOMS,
@@ -32,6 +33,7 @@ export const STATE_MATRIX = {
     spatialGrid,
     structureGrid,
     signalGrid,
+    memoryGrid,
     
     getId: (i: number) => Atomics.load(ids, i),
     getX: (i: number) => Atomics.load(xs, i),
@@ -72,5 +74,36 @@ export const STATE_MATRIX = {
             if (Atomics.load(ids, i) !== 0n) active.push(i);
         }
         return active;
+    },
+
+    getMatrixResonance: () => {
+        let total = 0;
+        for (let i = 0; i < 140 * 80; i++) {
+            total += Atomics.load(signalGrid, i);
+        }
+        return total;
+    },
+
+    getClusterSync: () => {
+        // Heuristic: measure how many neighboring cells in the Matrix have similar high resonance
+        let sync = 0;
+        for (let i = 0; i < 140 * 80; i++) {
+            const res = Atomics.load(signalGrid, i);
+            if (res > 100) sync++;
+        }
+        return sync;
+    },
+
+    getMemorySummary: () => {
+        // Implementation for Era 67 memetic summaries
+        const counts = new Map<number, number>();
+        for (let i = 0; i < 140 * 80; i++) {
+            const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
+            if (energy > 0) {
+                const sig = memoryGrid[i * 8 + 4]; // First byte of meme
+                counts.set(sig, (counts.get(sig) || 0) + 1);
+            }
+        }
+        return Array.from(counts.entries()).map(([sig, count]) => ({ sig, count }));
     }
 };
