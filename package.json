@@ -1,0 +1,27 @@
+{
+  "name": "omega",
+  "version": "1.0.0",
+  "description": "> **Status:** intentionally unfinished > > **Purpose:** to be read, not trusted > > **Audience:** humans, models, and anyone confident enough to be wrong",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s0fractal/OMEGA-64.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/s0fractal/OMEGA-64/issues"
+  },
+  "homepage": "https://github.com/s0fractal/OMEGA-64#readme",
+  "devDependencies": {
+    "assemblyscript": "^0.28.9"
+  }
+}

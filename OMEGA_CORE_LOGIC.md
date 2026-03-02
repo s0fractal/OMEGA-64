@@ -1,6 +1,6 @@
-# OMEGA-64 | CORE LOGIC (ERA 47: SENSORY TRANSDUCTION)
+# OMEGA-64 | CORE LOGIC (ERA 65: ZERO-ALLOCATION WASM & SIMHASH)
 
-*Generated: 2026-03-02T00:28:53.643Z*
+*Generated: 2026-03-02T11:48:28.913Z*
 
 ---
 
@@ -25,9 +25,12 @@ const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
 const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
 const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
 const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
+export const INTENT_OFFSET = EVOLUTION_OFFSET; // 4 bytes/atom: [OPCODE, ARG1, ARG2, ARG3]
+export const TOTAL_BUFFER_SIZE = INTENT_OFFSET + (MAX_ATOMS * 4); 
 
-const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
+const PAGES = 256; // Fixed size to exactly match AS compilation flag
+export const wasmMemory = new WebAssembly.Memory({ initial: PAGES, maximum: PAGES, shared: true });
+const buffer = wasmMemory.buffer as SharedArrayBuffer;
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
 const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
@@ -88,6 +91,8 @@ const hiveMemory = new Uint8Array(hiveMemoryBuffer); // ERA 51: Collective Memor
 const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognition
 const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
 const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
+const intents = new Uint8Array(buffer, INTENT_OFFSET, MAX_ATOMS * 4);
+
 
 const SCALE = 1000;
 
@@ -128,6 +133,8 @@ export const STATE_MATRIX = {
     senderSignatureBufferB,
     senderSignaturesA,
     senderSignaturesB,
+    wasmMemory,
+    intents,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -625,13 +632,22 @@ export const PULSE = {
     currentPulseId: 0,
 
 
-    initWorkers: () => {
+    initWorkers: async () => {
         if (PULSE.workers.length > 0) return; // Already init
+        const workerPromises: Promise<void>[] = [];
         for (let i = 0; i < THREAD_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
             PULSE.workers.push(worker);
+            
+            workerPromises.push(new Promise((resolve) => {
+                worker.addEventListener("message", (e) => {
+                    if (e.data.type === "READY") resolve();
+                }, { once: true });
+                worker.postMessage({ type: "INIT", wasmMemory: STATE_MATRIX.wasmMemory });
+            }));
         }
-        console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized.`);
+        await Promise.all(workerPromises);
+        console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized with WASM VMs.`);
     },
 
     stopWorkers: () => {
@@ -657,7 +673,7 @@ export const PULSE = {
         }
         
         console.log("-> Init Workers");
-        PULSE.initWorkers();
+        await PULSE.initWorkers();
         
         while (true) {
             await PULSE.tick();
@@ -766,6 +782,7 @@ export const PULSE = {
                     senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
                     trustedSignatures: Array.from(GATE.trustedSignatures),
                     spatialGridBuffer: SPATIAL_HASH.buffer,
+                    intentOffset: (STATE_MATRIX as any).INTENT_OFFSET, // WASM FFI
                     pulseId
                 });
             });
@@ -1042,8 +1059,26 @@ const MAX_ATOMS = 100000;
 const SCALE = 1000;
 const DIVINITY_THRESHOLD = 800;
 
-self.onmessage = (e) => {
-    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, quorumBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId } = e.data;
+let wasmInstance: WebAssembly.Instance | null = null;
+let execute_atom: (idx: number) => void;
+
+self.onmessage = async (e) => {
+    if (e.data.type === "INIT") {
+        try {
+            const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url));
+            const instantiated = await WebAssembly.instantiateStreaming(wasmRes, {
+                env: { memory: e.data.wasmMemory }
+            });
+            wasmInstance = instantiated.instance;
+            execute_atom = wasmInstance.exports.execute_atom as any;
+            self.postMessage({ type: "READY" });
+        } catch (err) {
+            console.error("WASM LOAD ERROR", err);
+        }
+        return;
+    }
+
+    const { buffer, envBuffer, attentionBuffer, marketBuffer, evolutionRequestsBuffer, spawnRequestsBuffer, meiosisRequestsBuffer, bondRequestsBuffer, mergeRequestsBuffer, spatialGridBuffer, viralGridBuffer, pheroGridBuffer, hiveMemoryBuffer, birthTickBuffer, quorumBuffer, immuneBuffer, messageBufferA, messageBufferB, senderSignatureBufferA, senderSignatureBufferB, bondStiffnessBuffer, synapticStackBuffer, structureGridBuffer, memoryGridBuffer, roleRegistryBuffer, semanticBonusesBuffer, trustedSignatures, startIdx, endIdx, mods, pulseId, intentOffset } = e.data;
     
     // SoA Views
     const nutrients = new Int32Array(envBuffer);
@@ -1073,6 +1108,7 @@ self.onmessage = (e) => {
     const semanticBonuses = new Uint8Array(semanticBonusesBuffer);
     const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
     const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
+    const intents = new Uint32Array(buffer, intentOffset, MAX_ATOMS); // 4 bytes == 1 Uint32
 
     const trustedSet = new Set<string>(trustedSignatures || []);
 
@@ -1182,275 +1218,21 @@ self.onmessage = (e) => {
                 }
             }
 
-            // VM EXECUTION
-            const quarantineLevel = Atomics.load(quarantineFlags, i);
-            const incomingMessage = Atomics.load(readBuffer, i);
-            
-            let isDiplomatic = false;
-            if (incomingMessage > 0) {
-                let sig = "";
-                for (let b = 0; b < 8; b++) sig += Atomics.load(readSignatures, i * 8 + b).toString(16).padStart(2, '0');
-                if (trustedSet.has(sig.toUpperCase())) isDiplomatic = true;
+            // WASM EXECUTION (Zero-Allocation FFI)
+            if (execute_atom) {
+                execute_atom(i);
             }
 
-            const currentRole = Atomics.load(roles, i);
-            const currentBonuses = Atomics.load(semanticBonuses, i);
-            const currentPhase = Atomics.load(phases, i) / SCALE; // 0..255 float
+            const intent = Atomics.load(intents, i);
+            if (intent !== 0) {
+                Atomics.store(intents, i, 0);
+                const opcode = intent & 0xFF;
 
-            const age = birthTicks ? Math.max(0, pulseId - Atomics.load(birthTicks, i)) : 0;
-            const vmState = { x, y, nutrients, structureGrid, viralGrid, pheromoneGrid: pheroGrid, spatialGrid, marketPool, energy, resonance, bonds: bondView, synapticStack: synapticStack.subarray(i * 4, i * 4 + 4), role: currentRole, semanticBonuses: currentBonuses, quarantineLevel, incomingMessage, isDiplomatic, hiveMemory, age, quorumData, phase: Math.round(currentPhase) & 0xFF };
-            const vmResult = LAMBDA_VM.execute(logicBytes, codeBlock, context, vmState, false, null);
-            
-            energy += vmResult.energyDelta;
-            resonance += vmResult.resonanceDelta;
-
-            if (vmResult.modifiedCode) Atomics.store(instructions, i * 16 + vmResult.modifiedCode.slot, vmResult.modifiedCode.value);
-            if (vmResult.modifiedStiffness) bondStiffs[i * 4 + vmResult.modifiedStiffness.slot] = vmResult.modifiedStiffness.value;
-            if (vmResult.modifiedSynaptic) Atomics.store(synapticStack, i * 4 + vmResult.modifiedSynaptic.slot, vmResult.modifiedSynaptic.value);
-
-            if (vmResult.syncRequest) {
-                const regIdx = vmResult.syncRequest.reg;
-                let sum = context[2 + regIdx];
-                let count = 1;
-                for (let b = 0; b < 4; b++) {
-                    const targetIdx = bondView[b];
-                    const stiffness = bondStiffs[i * 4 + b];
-                    if (stiffness > 0.5 && targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                        const neighborCtx = new Uint8Array(buffer, CONTEXT_OFFSET + (targetIdx * 32), 32);
-                        sum += neighborCtx[2 + regIdx];
-                        count++;
-                    }
+                if (opcode === 0x08) { // MITOSIS
+                    Atomics.store(spawnRequests, i * 3 + 0, 1);
+                    Atomics.store(spawnRequests, i * 3 + 1, Math.round(x));
+                    Atomics.store(spawnRequests, i * 3 + 2, Math.round(y));
                 }
-                context[2 + regIdx] = Math.floor(sum / count);
-            }
-
-            if (vmResult.modifiedStructure) {
-                const val = (vmResult.modifiedStructure.density << 8) | (vmResult.modifiedStructure.type & 0xFF);
-                Atomics.store(structureGrid, cellIdxAt, val);
-                if (vmResult.modifiedStructure.density === 0) memoryGrid[cellIdxAt * 8] = 0;
-            }
-
-            if (vmResult.memeticRequest) {
-                const sCell = Atomics.load(structureGrid, cellIdxAt);
-                if (vmResult.memeticRequest === "ENCODE" && ((sCell >> 8) & 0xFF) > 50) {
-                    for (let b = 0; b < 8; b++) memoryGrid[cellIdxAt * 8 + b] = logicBytes[b];
-                } else if (vmResult.memeticRequest === "DECODE" && memoryGrid[cellIdxAt * 8] !== 0) {
-                    for (let b = 0; b < 8; b++) Atomics.store(logic, i * 8 + b, memoryGrid[cellIdxAt * 8 + b]);
-                }
-            }
-
-            if (vmResult.modifiedRole !== undefined) Atomics.store(roles, i, vmResult.modifiedRole);
-
-            // --- ERA 51: Collective Memory — IMPRINT ---
-            if (vmResult.imprintRequest && hiveMemory) {
-                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-                const hBase = (gy * 140 + gx) * 16;
-                const phero = vmResult.imprintRequest.pheroSnapshot;
-                const phase = vmResult.imprintRequest.phaseSnapshot;
-                // bytes 0-3: pheromone snapshot (Int32 LE)
-                hiveMemory[hBase + 0] = phero & 0xFF;
-                hiveMemory[hBase + 1] = (phero >> 8) & 0xFF;
-                hiveMemory[hBase + 2] = (phero >> 16) & 0xFF;
-                hiveMemory[hBase + 3] = (phero >> 24) & 0xFF;
-                // bytes 4-5: phase (Int16 LE)
-                hiveMemory[hBase + 4] = phase & 0xFF;
-                hiveMemory[hBase + 5] = (phase >> 8) & 0xFF;
-                // bytes 6-7: role + resonance tier
-                hiveMemory[hBase + 6] = Atomics.load(roles, i);
-                hiveMemory[hBase + 7] = Math.min(255, Math.floor(resonance / 100));
-                // bytes 8-11: pulseId (tick timestamp)
-                hiveMemory[hBase + 8] = pulseId & 0xFF;
-                hiveMemory[hBase + 9] = (pulseId >> 8) & 0xFF;
-                hiveMemory[hBase + 10] = (pulseId >> 16) & 0xFF;
-                hiveMemory[hBase + 11] = (pulseId >> 24) & 0xFF;
-            }
-
-            // --- ERA 52: Neural Substrate — HEBB + FIRE ---
-            if (vmResult.hebbRequest) {
-                const slot = vmResult.hebbRequest.bondSlot;
-                const targetIdx = bondView[slot];
-                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    const neighbourResonance = Atomics.load(resonances, targetIdx) / SCALE;
-                    if (neighbourResonance > 200) {
-                        // "Fire together → wire together": increment weight up to 255
-                        const curWeight = Atomics.load(synapticStack, i * 4 + slot);
-                        if (curWeight < 255) Atomics.add(synapticStack, i * 4 + slot, 1);
-                    }
-                }
-            }
-
-            for (const intent of vmResult.intent) {
-                if (intent.level === 18) { // FIRE: weighted resonance signal
-                    const { bondSlot, amplitude, weight } = intent.value;
-                    const targetIdx = bondView[bondSlot];
-                    if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                        const delta = Math.round((weight / 255) * amplitude * SCALE);
-                        Atomics.add(resonances, targetIdx, delta);
-                        // --- ERA 53: Increment signal tally (slot 3) ---
-                        const curTally = Atomics.load(synapticStack, targetIdx * 4 + 3);
-                        if (curTally < 255) Atomics.add(synapticStack, targetIdx * 4 + 3, 1);
-                    }
-                }
-                if (intent.level === 20) { // ERA 58: OSCILLATE — phase ripple to co-cell atoms
-                    const { waveAmplitude } = intent.value;
-                    if (waveAmplitude !== 0) {
-                        const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
-                        const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
-                        const cellBase = (gy * 140 + gx) * 32;
-                        const count = Math.min(30, spatialGrid[cellBase]);
-                        for (let c = 1; c <= count; c++) {
-                            const nIdx = spatialGrid[cellBase + c];
-                            if (nIdx > 0 && nIdx < MAX_ATOMS && nIdx !== i) {
-                                Atomics.add(resonances, nIdx, Math.round(waveAmplitude * SCALE * 0.1));
-                            }
-                        }
-                    }
-                }
-            }
-
-            // --- ERA 53: Apply emergent role if ATTUNE fired ---
-            if (vmResult.roleRequest) {
-                const newRole = vmResult.roleRequest.role;
-                Atomics.store(roles, i, newRole);
-            }
-
-            // --- ERA 58: Apply lockPhaseRequest ---
-            if (vmResult.lockPhaseRequest) {
-                Atomics.store(phases, i, vmResult.lockPhaseRequest.targetPhase * SCALE);
-            }
-
-            // --- ERA 59: Apply morphRequest (store zone in context byte 19) ---
-            if (vmResult.morphRequest) {
-                // Zone is stored in context[19] as spatial identity marker (0=apex, 1=slope, 2=base)
-                context[19] = vmResult.morphRequest.zone;
-            }
-
-            // --- ERA 60: Apply secretePlasmidRequest ---
-            if (vmResult.secretePlasmidRequest) {
-                const { logic: plasmidLogic, intensity } = vmResult.secretePlasmidRequest;
-                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
-                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
-                const cellBase = (gy * 140 + gx) * 9;
-                for (let j = 0; j < 8; j++) {
-                    Atomics.store(viralGrid, cellBase + j, plasmidLogic[j]);
-                }
-                const oldIntensity = Atomics.load(viralGrid, cellBase + 8);
-                Atomics.store(viralGrid, cellBase + 8, Math.min(255, oldIntensity + intensity));
-            }
-
-            // --- ERA 60: Apply incorporatePlasmidRequest ---
-            if (vmResult.incorporatePlasmidRequest) {
-                const { logic: plasmidLogic } = vmResult.incorporatePlasmidRequest;
-                for (let j = 0; j < 8; j++) {
-                    logicBytes[j] = plasmidLogic[j];
-                    Atomics.store(logic, i * 8 + j, plasmidLogic[j]);
-                }
-                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
-                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
-                const cellBase = (gy * 140 + gx) * 9;
-                const oldIntensity = Atomics.load(viralGrid, cellBase + 8);
-                Atomics.store(viralGrid, cellBase + 8, Math.max(0, oldIntensity - 10)); // consumes intensity
-                
-                // Identity mutation: reset role and semantic bonuses
-                Atomics.store(roles, i, 0); 
-                Atomics.store(semanticBonuses, i, 0);
-            }
-
-            // --- ERA 61: Apply shareRequest ---
-            if (vmResult.shareRequest) {
-                const { bondSlot, amount } = vmResult.shareRequest;
-                const targetIdx = bondView[bondSlot];
-                if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                    // Transfer energy up to current balance (clamped by LAMBDA_VM conceptually, but verified here)
-                    const actualAmount = Math.min(amount, Math.floor(energy));
-                    if (actualAmount > 0) {
-                        Atomics.add(energies, targetIdx, actualAmount * SCALE);
-                    }
-                }
-            }
-
-            // --- ERA 61: Apply eatRequest ---
-            if (vmResult.eatRequest) {
-                const { amount } = vmResult.eatRequest;
-                const gx = Math.max(0, Math.min(139, Math.floor(x / 10)));
-                const gy = Math.max(0, Math.min(79, Math.floor(y / 10)));
-                const cellBase = gy * 140 + gx;
-                
-                const available = Atomics.load(nutrients, cellBase);
-                if (available > 0) {
-                    const consumed = Math.min(amount, available);
-                    Atomics.sub(nutrients, cellBase, consumed);
-                    energy += consumed;
-                }
-            }
-
-            // --- ERA 63: Apply phiRequest ---
-            if (vmResult.phiRequest) {
-                const currentPhase = Atomics.load(phases, i);
-                const newPhase = (currentPhase + vmResult.phiRequest.amount) % 256;
-                Atomics.store(phases, i, newPhase);
-                // Also update Phase in vmState for the next execute tick if necessary, but
-                // since this is end of pulse, it will be read fresh next pulse.
-            }
-
-            // --- ERA 64: Apply ascendRequest (The Convergence) ---
-            if (vmResult.ascendRequest) {
-                // Crystalize into the Matrixland structureGrid
-                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-                const cellIdx = gy * 140 + gx;
-                
-                // Write max density (255) and type 1 (Crystal Altar)
-                // structureCell format: (type & 0xFF) | ((density & 0xFF) << 8)
-                const crystalData = 1 | (255 << 8);
-                Atomics.store(structureGrid, cellIdx, crystalData);
-                
-                // Atom sacrifices itself to become eternal structure
-                Atomics.store(ids, i, 0n);
-                energy = 0;
-            }
-
-
-
-            // --- ERA 57: Passive Synaptic Plasticity Decay ---
-            // Every 10 ticks: decay weights NOT strengthened by HEBB this tick by 1.
-            // If HEBB fired, weight grew → skip passive decay for that atom.
-            const didHebb = vmResult.hebbRequest !== undefined;
-            if (!didHebb && pulseId % 10 === 0) {
-                for (let s = 0; s < 3; s++) {
-                    const cur = Atomics.load(synapticStack, i * 4 + s);
-                    if (cur > 0) Atomics.sub(synapticStack, i * 4 + s, 1);
-                }
-            }
-
-            // --- ERA 54: Apoptosis (Senescent dissolution) ---
-            if (vmResult.apoptosisRequest) {
-                // Zero out the atom ID → slot freed for reuse
-                ids[i] = 0n;
-                // Clear birth tick
-                if (birthTicks) Atomics.store(birthTicks, i, 0);
-            }
-
-            for (const msg of vmResult.outgoingMessages) {
-                if (msg.targetIdx > 0 && msg.targetIdx < MAX_ATOMS) {
-                    Atomics.store(writeBuffer, msg.targetIdx, msg.message & 0xFF);
-                    for (let b = 0; b < 8; b++) Atomics.store(writeSignatures, msg.targetIdx * 8 + b, logicBytes[b]);
-                    if (msg.sourceBondSlot !== undefined) {
-                        const currentStiff = bondStiffs[i * 4 + msg.sourceBondSlot];
-                        bondStiffs[i * 4 + msg.sourceBondSlot] = Math.min(1.0, currentStiff + 0.05);
-                    }
-                }
-            }
-
-            // Role Penalties
-            const roleNum = Number(Atomics.load(roles, i));
-            if (roleNum > 0) {
-                const isStructural = vmResult.modifiedStructure || vmResult.modifiedStiffness;
-                const isMemetic = vmResult.memeticRequest;
-                if (roleNum === 1 && (isStructural || isMemetic)) energy -= Math.abs(vmResult.energyDelta) * 0.4;
-                if (roleNum === 2 && (isMemetic || vmResult.energyDelta > 0)) energy -= Math.abs(vmResult.energyDelta) * 0.4;
-                if (roleNum === 3 && (vmResult.energyDelta > 0 || isMemetic)) resonance -= Math.abs(vmResult.resonanceDelta) * 0.4;
             }
 
             // Metabolic Sharing
@@ -1471,76 +1253,10 @@ self.onmessage = (e) => {
                     }
                 }
             }
-                
-            for (const intent of vmResult.intent) {
-                if (intent.level === 4) { x += Math.round(intent.value.dx); y += Math.round(intent.value.dy); }
-                if (intent.level === 5 && intent.value === "EVOLUTION_REQUEST") Atomics.store(evolutionRequests, i, 1);
-                if (intent.level === 10 && intent.value === "spawn") Atomics.store(spawnRequests, i, 1);
-                if (intent.level === 11 && intent.value.type === "meiosis") {
-                    const targetIdx = bondView[intent.value.targetBondSlot];
-                    if (targetIdx > 0 && targetIdx < MAX_ATOMS) Atomics.store(meiosisRequests, i, targetIdx);
-                }
-                if (intent.level === 12) {
-                    const targetX = Math.round(x + intent.value.dx * 10);
-                    const targetY = Math.round(y + intent.value.dy * 10);
-                    const hx = Math.max(0, Math.min(139, Math.floor(targetX / 10)));
-                    const hy = Math.max(0, Math.min(79, Math.floor(targetY / 10)));
-                    const queryHash = hy * 140 + hx;
-                    const cellStart = queryHash * (CELL_CAPACITY + 1);
-                    const cellCount = Atomics.load(spatialGrid, cellStart);
-                    let closestPeerIdx = -1; let minPeerDistSq = 400;
-                    if (cellCount > 0) {
-                        for (let j = 1; j <= cellCount; j++) {
-                            const neighborIdx = Atomics.load(spatialGrid, cellStart + j);
-                            if (neighborIdx === i) continue;
-                            const dxPeer = Atomics.load(xs, neighborIdx) - targetX;
-                            const dyPeer = Atomics.load(ys, neighborIdx) - targetY;
-                            const dSq = dxPeer * dxPeer + dyPeer * dyPeer;
-                            if (dSq < minPeerDistSq) { minPeerDistSq = dSq; closestPeerIdx = neighborIdx; }
-                        }
-                    }
-                    if (closestPeerIdx !== -1) {
-                        Atomics.store(bondRequests, i * 3, i + 1);
-                        Atomics.store(bondRequests, i * 3 + 1, closestPeerIdx);
-                    }
-                }
-                
-                // --- ERA 50: Swarm Intents ---
-                if (intent.level === 15 && intent.value === "SYNC_PHASE") {
-                    let avgPhase = Atomics.load(phases, i);
-                    let phaseCount = 1;
-                    for (let b = 0; b < 4; b++) {
-                        const targetIdx = bondView[b];
-                        if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-                            avgPhase += Atomics.load(phases, targetIdx);
-                            phaseCount++;
-                        }
-                    }
-                    Atomics.store(phases, i, Math.floor(avgPhase / phaseCount));
-                }
-
-                if (intent.level === 16) {
-                    const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-                    const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-                    const pIdx = gy * 140 + gx;
-                    const existing = Atomics.load(pheroGrid, pIdx);
-                    const existingIntensity = (existing >> 8) & 0xFFFFFF;
-                    const newIntensity = Math.min(0xFFFFFF, existingIntensity + intent.value.intensity);
-                    Atomics.store(pheroGrid, pIdx, (newIntensity << 8) | (intent.value.type & 0xFF));
-                }
-
-                if (intent.level === 13) {
-                    const slot = intent.value.targetBondSlot;
-                    const targetIdx = bondView[slot];
-                    if (targetIdx > 0 && targetIdx < MAX_ATOMS && bondStiffs[i * 4 + slot] > 0.8) {
-                        Atomics.store(mergeRequests, i * 2, i + 1);
-                        Atomics.store(mergeRequests, i * 2 + 1, targetIdx);
-                    }
-                }
-            }
 
             // Environmental Feeding
             const nutrient = Atomics.load(nutrients, cellIdxAt);
+            const roleNum = Number(Atomics.load(roles, i));
             if (nutrient > 0 && energy < 100) {
                 let harvest = Math.min(nutrient, 2);
                 if (roleNum === 1) harvest *= 1.5;
@@ -1570,6 +1286,7 @@ self.onmessage = (e) => {
                     }
                 }
                 const viralIntensity = Atomics.load(viralGrid, vIdx + 8);
+                const quarantineLevel = Atomics.load(quarantineFlags, i);
                 const isFlagged = quarantineLevel >= 1;
 
                 if (!isFlagged && (pulseId + i) % 50 === 0 && viralIntensity > 50) {
@@ -4109,6 +3826,7 @@ export const SOVEREIGNTY_ENGINE = {
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -4118,6 +3836,22 @@ let lastNormalization = 0;
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
     projectionMatrix[i] = Math.sin(i * 0.123); 
+}
+
+let hyperplanes: Float32Array[] = [];
+function getHyperplanes(dim: number): Float32Array[] {
+    if (hyperplanes.length === 64 && hyperplanes[0].length === dim) return hyperplanes;
+    hyperplanes = [];
+    for (let i = 0; i < 64; i++) {
+        const plane = new Float32Array(dim);
+        for (let j = 0; j < dim; j++) {
+            const u1 = Math.sin(i * 13.37 + j * 9.99) || 0.001;
+            const u2 = Math.cos(i * 4.2 + j * 7.77);
+            plane[j] = Math.sqrt(-2.0 * Math.log(Math.abs(u1))) * Math.cos(2.0 * Math.PI * u2);
+        }
+        hyperplanes.push(plane);
+    }
+    return hyperplanes;
 }
 
 export const SEMANTIC_MEMBRANE = {
@@ -4164,33 +3898,38 @@ export const SEMANTIC_MEMBRANE = {
         console.log(`🧠 [MEMBRANE] Synaptic scaling applied.`);
     },
 
-    resonantHash: (text: string): Uint8Array => {
-        const inputVec = new Float32Array(PROJECTION_SIZE);
-        for (let i = 0; i < Math.min(text.length, PROJECTION_SIZE); i++) inputVec[i] = text.charCodeAt(i) / 255.0;
-
-        const resultVec = new Float32Array(PROJECTION_SIZE);
-        for (let i = 0; i < PROJECTION_SIZE; i++) {
-            let sum = 0;
-            for (let j = 0; j < PROJECTION_SIZE; j++) sum += projectionMatrix[i * PROJECTION_SIZE + j] * inputVec[j];
-            resultVec[i] = sum;
-        }
-
+    /**
+     * ERA 65: SimHash (Cosine LSH) Vector Quantization
+     */
+    quantizeThought: async (text: string): Promise<Uint8Array> => {
+        const embedding = await LLM_SYNAPSE.getEmbedding(text);
+        const dim = embedding.length;
         const hash = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-            let byte = 0;
-            for (let bit = 0; bit < 8; bit++) if (resultVec[i * 8 + bit] > 0) byte |= (1 << bit);
-            hash[i] = byte;
+        if (dim === 0) return hash;
+
+        const planes = getHyperplanes(dim);
+        for (let bitIndex = 0; bitIndex < 64; bitIndex++) {
+            const plane = planes[bitIndex];
+            let dotProduct = 0;
+            for (let j = 0; j < dim; j++) {
+                dotProduct += embedding[j] * plane[j];
+            }
+            if (dotProduct > 0) {
+                const byteIndex = Math.floor(bitIndex / 8);
+                const bitOffset = bitIndex % 8;
+                hash[byteIndex] |= (1 << bitOffset);
+            }
         }
         return hash;
     },
 
-    project: (text: string, idx: number) => {
-        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+    project: async (text: string, idx: number) => {
+        const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
         STATE_MATRIX.setLogic(idx, hash);
     },
 
-    injectThought: (text: string, weight: number) => {
-        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+    injectThought: async (text: string, weight: number) => {
+        const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
         const idx = STATE_MATRIX.findEmptySlot();
         
         if (idx !== -1) {
@@ -4425,6 +4164,32 @@ export const LLM_SYNAPSE = {
             return data.response?.trim() || currentThought;
         } catch {
             return currentThought;
+        }
+    },
+
+    /**
+     * getEmbedding: Fetches a semantic vector representing the text.
+     */
+    getEmbedding: async (text: string): Promise<number[]> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL_EMBED") || "http://localhost:11434/api/embeddings";
+        const MODEL = Deno.env.get("OLLAMA_EMBED_MODEL") || "nomic-embed-text";
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt: text }),
+            });
+            if (!response.ok) throw new Error("Embedding API failed");
+            const data = await response.json();
+            return data.embedding || [];
+        } catch {
+            console.warn(`   [SYNAPSE] Embedding failed for "${text.substring(0, 15)}...". Using pseudo-random fallback.`);
+            // Pseudo-random fallback based on string characters (Era 40+ fallback mechanics)
+            const fallback = new Array(768);
+            for (let i = 0; i < 768; i++) {
+                fallback[i] = Math.sin(text.charCodeAt(i % text.length) * (i + 1));
+            }
+            return fallback;
         }
     },
 
@@ -6346,172 +6111,65 @@ the Universe."
 
 ---
 
-## FILE: omega_wasm_asc/assembly/index.ts
+## FILE: assembly/index.ts
 
 ```typescript
-// @ts-nocheck: AssemblyScript file
-// OMEGA-64 | Wasm Kernel (AssemblyScript)
+// OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
-export const IN_PTR: u32 = 0;
-export const OUT_PTR: u32 = 64;
+// Flat memory offsets (MUST match STATE_MATRIX.ts exactly)
+const MAX_ATOMS: i32 = 100000;
+const IDS_OFFSET: usize = 0;
+const XS_OFFSET: usize = IDS_OFFSET + (<usize>MAX_ATOMS * 8);
+const YS_OFFSET: usize = XS_OFFSET + (<usize>MAX_ATOMS * 2);
+const ENERGY_OFFSET: usize = YS_OFFSET + (<usize>MAX_ATOMS * 2);
+const RESONANCE_OFFSET: usize = ENERGY_OFFSET + (<usize>MAX_ATOMS * 4);
+const PHASE_OFFSET: usize = RESONANCE_OFFSET + (<usize>MAX_ATOMS * 4);
+const LOGIC_OFFSET: usize = PHASE_OFFSET + (<usize>MAX_ATOMS * 4);
+const BONDS_OFFSET: usize = LOGIC_OFFSET + (<usize>MAX_ATOMS * 8);
+const INSTRUCTIONS_OFFSET: usize = BONDS_OFFSET + (<usize>MAX_ATOMS * 16);
+const CONTEXT_OFFSET: usize = INSTRUCTIONS_OFFSET + (<usize>MAX_ATOMS * 64);
+const EVOLUTION_OFFSET: usize = CONTEXT_OFFSET + (<usize>MAX_ATOMS * 32);
+const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
 
-const ISA_MOVE: u8 = 0x10;
-const ISA_JMP: u8  = 0x30;
-const ISA_JZ: u8   = 0x31;
-const ISA_JNZ: u8  = 0x32;
-const ISA_CALL: u8 = 0x33;
-const ISA_RET: u8  = 0x34;
+// ISA Constants
+const ISA_NOP: u8 = 0x00;
+const ISA_MITOSIS: u8 = 0x08;
+const ISA_JMP: u8 = 0x02;
 
-const ISA_ADD: u8  = 0x40;
-const ISA_SUB: u8  = 0x41;
-const ISA_MUL: u8  = 0x42;
-const ISA_CMP: u8  = 0x43;
+// Intent Encoder helper
+// Combines opcode + 3 args into a single u32 word for zero-allocation cross-ffi writing
+@inline
+function writeIntent(atomIdx: i32, opcode: u8, arg1: u8, arg2: u8, arg3: u8): void {
+    let intent: u32 = (opcode as u32) | ((arg1 as u32) << 8) | ((arg2 as u32) << 16) | ((arg3 as u32) << 24);
+    store<u32>(INTENT_OFFSET + (atomIdx << 2) as usize, intent);
+}
 
-const ISA_LOAD: u8 = 0x50;
-const ISA_STORE: u8 = 0x51;
+// Atom Accessors
+@inline
+function getEnergy(idx: i32): i32 {
+    return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
+}
 
-export function execute_atom(): u8 {
-    let op = load<u8>(IN_PTR + 0);
-    let p1 = load<u8>(IN_PTR + 1);
-    let p2 = load<u8>(IN_PTR + 2);
-    let p3 = load<u8>(IN_PTR + 3);
-    let bonuses = load<u8>(IN_PTR + 4);
+@inline
+function setEnergy(idx: i32, val: i32): void {
+    store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
+}
 
-    let isSwift = (bonuses & 1) == 1;
-
-    let energyDelta: f32 = 0.0;
-    if (bonuses > 0) energyDelta -= 0.05;
-
-    // Reset Outputs
-    store<f32>(OUT_PTR + 0, energyDelta);
-    store<f32>(OUT_PTR + 4, 0.0); // resonanceDelta
-    store<u8>(OUT_PTR + 8, 0); // hasIntent
-    store<f32>(OUT_PTR + 12, 0.0); // intentDx
-    store<f32>(OUT_PTR + 16, 0.0); // intentDy
-
-    // Copy context to output context (32 bytes)
-    for (let i: u32 = 0; i < 32; i++) {
-        let v = load<u8>(IN_PTR + 5 + i);
-        store<u8>(OUT_PTR + 20 + i, v);
-    }
-
-    // Load Logic (8 bytes starting at IN_PTR + 37)
-    // context ends at 5 + 32 = 37. So logic starts at 37
-    for (let j: u32 = 0; j < 8; j++) {
-        let l = load<u8>(IN_PTR + 37 + j);
-        store<u8>(OUT_PTR + 52 + j, l);
-    }
-
-    if (op == ISA_MOVE) {
-        store<u8>(OUT_PTR + 8, 1); // hasIntent = 1;
-        let dx: f32 = (f32(p1) - 128.0) / 10.0;
-        let dy: f32 = (f32(p2) - 128.0) / 10.0;
-        store<f32>(OUT_PTR + 12, dx);
-        store<f32>(OUT_PTR + 16, dy);
-
-        if (!isSwift) energyDelta -= 1.0;
-        store<f32>(OUT_PTR + 0, energyDelta);
-        return 1; // Handled
-    }
+// Core Execution loop
+export function execute_atom(atomIndex: i32): void {
+    // Basic test function to prove FFI isolation
+    let energy = getEnergy(atomIndex);
     
-    if (op == ISA_ADD) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8)); // REG2
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8)); // REG3
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 + v2); // wrap implicitly
-        return 1;
+    // Decrement energy minimally for living
+    setEnergy(atomIndex, energy - 10);
+    
+    // If energy > 50000, queue mitosis (0x08 opcode for PULSE_WORKER to resolve later)
+    if (energy > 50000) {
+       writeIntent(atomIndex, ISA_MITOSIS, 0, 0, 0); 
+    } else {
+       // NOP intent
+       writeIntent(atomIndex, ISA_NOP, 0, 0, 0);
     }
-
-    if (op == ISA_SUB) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 - v2);
-        return 1;
-    }
-
-    if (op == ISA_MUL) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 * v2);
-        return 1;
-    }
-
-    if (op == ISA_CMP) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if (v1 == v2) {
-            store<u8>(OUT_PTR + 20 + 1, flags | 0x01);
-        } else {
-            store<u8>(OUT_PTR + 20 + 1, flags & ~0x01);
-        }
-        return 1;
-    }
-
-    // --- Control Flow ---
-    if (op == ISA_JMP) {
-        store<u8>(OUT_PTR + 20 + 0, p1 % 16); // PC = p1
-        return 2; // return 2 indicates pcJumped = true
-    }
-
-    if (op == ISA_JZ) {
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if ((flags & 0x01) == 1) {
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_JNZ) {
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if ((flags & 0x01) == 0) {
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_CALL) {
-        let sp = load<u8>(OUT_PTR + 20 + 18);
-        if (sp < 8) {
-            let pc = load<u8>(OUT_PTR + 20 + 0);
-            store<u8>(OUT_PTR + 20 + 10 + sp, (pc + 1) % 16); // push
-            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8); // sp++
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16); // jump
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_RET) {
-        let sp = load<u8>(OUT_PTR + 20 + 18);
-        if (sp > 0) {
-            let val = load<u8>(OUT_PTR + 20 + 10 + (sp - 1)); // pop
-            store<u8>(OUT_PTR + 20 + 18, sp - 1); // sp--
-            store<u8>(OUT_PTR + 20 + 0, val); // jump
-            return 2;
-        }
-        return 1;
-    }
-
-    // --- Data Movement ---
-
-    if (op == ISA_LOAD) {
-        // TS: regs[p1 % 8] = logic[p2 % 8];
-        let val = load<u8>(OUT_PTR + 52 + (p2 % 8)); // 52 is Logic
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val); // 20+2 is Regs
-        return 1;
-    }
-
-    if (op == ISA_STORE) {
-        // TS: res.modifiedLogic = { index: p2 % 8, value: regs[p1 % 8] };
-        // Write to Logic buffer
-        let val = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8)); // 20+2 is Regs
-        store<u8>(OUT_PTR + 52 + (p2 % 8), val); // 52 is Logic
-        return 1;
-    }
-
-    return 0; // Unhandled
 }
 
 ```
@@ -8678,6 +8336,207 @@ if (newWinnerEnergy > 100 && newLoserEnergy === 100 && newPool === (poolEnergy -
 }
 
 Deno.exit(0);
+
+```
+
+---
+
+## FILE: test_simhash.ts
+
+```typescript
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+
+async function testSimHash() {
+    const phrases = [
+        "A peaceful garden of blue flowers",
+        "A quiet garden of bright blue flowers", // Should be very close to the first
+        "Constructing a massive obsidian fortress",
+        "Building a giant black stone castle", // Should be very close to the third
+        "Burning inferno of absolute chaos",
+        "The quick brown fox jumps over the lazy dog"
+    ];
+
+    console.log("🧪 Testing Era 65 Semantic SimHash (LSH)\n");
+    for (const phrase of phrases) {
+        const hash = await SEMANTIC_MEMBRANE.quantizeThought(phrase);
+        const hex = Array.from(hash).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+        console.log(`[GENOME: ${hex}] | THOUGHT: "${phrase}"`);
+    }
+}
+
+testSimHash();
+
+```
+
+---
+
+## FILE: test_intent_buffer.ts
+
+```typescript
+import { STATE_MATRIX, INTENT_OFFSET, wasmMemory } from "./STATE_MATRIX.ts";
+
+async function testIntentBuffer() {
+    console.log("🧪 Testing Zero-Allocation WASM Intent Buffer");
+    
+    // 1. Initialize Atom 0 with high energy
+    STATE_MATRIX.setId(0, 1n);
+    STATE_MATRIX.setEnergy(0, 100000); // 100 * SCALE
+    
+    // 2. Load WASM
+    const wasmCode = await Deno.readFile("./build/release.wasm");
+    const wasmModule = await WebAssembly.compile(wasmCode);
+    const instance = await WebAssembly.instantiate(wasmModule, {
+        env: { memory: wasmMemory }
+    });
+    const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+    
+    // 3. Ensure Intent Buffer is empty
+    const intents = new Uint32Array(wasmMemory.buffer, INTENT_OFFSET, 100000);
+    intents[0] = 0;
+    
+    // 4. Execute WASM 
+    execute_atom(0);
+    
+    // 5. Verify Intent was written directly to SharedMemory (Should be 0x08 for Mitosis)
+    const rawIntent = intents[0];
+    const opcode = rawIntent & 0xFF;
+    
+    console.log(`[ATOM 0] Energy after tick: ${STATE_MATRIX.getEnergy(0)}`);
+    console.log(`[ATOM 0] Intent Buffer Hex: 0x${rawIntent.toString(16).padStart(8, '0')}`);
+    
+    if (opcode === 0x08) {
+        console.log("✅ SUCCESS: WASM successfully wrote MITOSIS intent to shared memory without FFI allocations.");
+    } else {
+        console.log("❌ FAILED: Intent not found or incorrect.");
+    }
+}
+
+testIntentBuffer();
+
+```
+
+---
+
+## FILE: run_ecosystem.ts
+
+```typescript
+// OMEGA-64 | run_ecosystem.ts | Long-term Evolution Simulator
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { ISA } from "./LAMBDA_VM.ts";
+
+const TOTAL_TICKS = 50000;
+const LOG_INTERVAL = 100;
+const SEED_COUNT = 100;
+
+function seedEcosystem() {
+    STATE_MATRIX.clear();
+    console.log("🌱 Seeding Ecosystem with Primordial Cells...");
+
+    // Basic Producer Logic
+    // EAT (10) -> CROSS_REP (bond slot 0) -> PHASE_LIFE -> SELF_REP -> JMP 0
+    const producerLogic = new Uint8Array([0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11]);
+    const producerCode = new Uint32Array(16);
+    producerCode[0] = (20 << 8) | ISA.EAT;
+    producerCode[1] = ISA.CROSS_REP;
+    producerCode[2] = ISA.PHASE_LIFE;
+    producerCode[3] = ISA.SELF_REP;
+    producerCode[4] = ISA.JMP;
+
+    // Advanced Seeder (attempts Phi packing and Ascension if successful)
+    const ascenderLogic = new Uint8Array([0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+    const ascenderCode = new Uint32Array(16);
+    ascenderCode[0] = (25 << 8) | ISA.EAT;     // Eat 25
+    ascenderCode[1] = ISA.PHASE_LIFE;          // Ageing & Apoptosis
+    ascenderCode[2] = ISA.PHI;                 // Shift Phase by Golden Angle
+    ascenderCode[3] = (10 << 8) | ISA.SHARE;   // Altruism
+    ascenderCode[4] = ISA.ASCEND;              // Attempt Ascension
+    ascenderCode[5] = ISA.SELF_REP;            // Reproduce
+    ascenderCode[6] = ISA.JMP;                 // Loop
+
+    // Atoms no longer rely on nutrients, they are given infinite initial energy.
+    for (let i = 0; i < SEED_COUNT; i++) {
+        const idx = STATE_MATRIX.findEmptySlot();
+        if (idx === -1) break;
+        
+        STATE_MATRIX.setId(idx, BigInt(i + 1));
+        // Random placement across the 1400x800 map
+        STATE_MATRIX.setX(idx, Math.floor(Math.random() * 1400));
+        STATE_MATRIX.setY(idx, Math.floor(Math.random() * 800));
+        STATE_MATRIX.setEnergy(idx, 100000 + Math.random() * 20000); // Massive energy for endless execution
+        STATE_MATRIX.setResonance(idx, 100);
+        
+        if (i < SEED_COUNT * 0.8) {
+            STATE_MATRIX.setLogic(idx, producerLogic);
+            STATE_MATRIX.setCode(idx, producerCode);
+        } else {
+            STATE_MATRIX.setLogic(idx, ascenderLogic);
+            STATE_MATRIX.setCode(idx, ascenderCode);
+        }
+    }
+}
+
+async function run() {
+    console.log(`🌌 Starting OMEGA-64 Continuous Evolution for ${TOTAL_TICKS} Ticks...`);
+    seedEcosystem();
+    PULSE.initWorkers();
+
+    let maxPopulation = 0;
+    let totalAscensions = 0;
+
+    const startTime = Date.now();
+
+    for (let tick = 1; tick <= TOTAL_TICKS; tick++) {
+        await PULSE.tick();
+
+        if (tick % LOG_INTERVAL === 0) {
+            const active = STATE_MATRIX.getActiveIndices();
+            const pop = active.length;
+            if (pop > maxPopulation) maxPopulation = pop;
+
+            let totalEnergy = 0;
+            let totalResonance = 0;
+            let oldest = 0;
+
+            for (const idx of active) {
+                totalEnergy += STATE_MATRIX.getEnergy(idx);
+                totalResonance += STATE_MATRIX.getResonance(idx);
+                const age = tick - (STATE_MATRIX.birthTicks ? Atomics.load(STATE_MATRIX.birthTicks as unknown as Int32Array, idx) : tick);
+                if (age > oldest && age < tick) oldest = age;
+            }
+
+            // Count ascensions by looking at the structure grid
+            let currentCrystals = 0;
+            for (let i = 0; i < 140 * 80; i++) {
+                const cell = Atomics.load(STATE_MATRIX.structureGrid, i);
+                if ((cell & 0xFF) === 1 && ((cell >> 8) & 0xFF) === 255) {
+                    currentCrystals++;
+                }
+            }
+            totalAscensions = currentCrystals;
+
+            const avgE = pop > 0 ? (totalEnergy / pop).toFixed(0) : "0";
+            const avgR = pop > 0 ? (totalResonance / pop).toFixed(0) : "0";
+
+            console.log(`[Pulse ${tick.toString().padStart(6, ' ')}] Pop: ${pop.toString().padStart(5, ' ')} | Avg E: ${avgE.padStart(5, ' ')} | Avg R: ${avgR.padStart(5, ' ')} | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`);
+
+            if (pop === 0) {
+                console.log("💀 Ecosystem collapse. All atoms died.");
+                break;
+            }
+        }
+    }
+
+    const elapsed = Date.now() - startTime;
+    console.log(`\n✅ Simulation Ended in ${(elapsed / 1000).toFixed(2)}s.`);
+    console.log(`Max Population: ${maxPopulation}`);
+    console.log(`Matrixland Ascensions (Crystals): ${totalAscensions}`);
+    PULSE.stopWorkers();
+    Deno.exit(0);
+}
+
+run();
 
 ```
 

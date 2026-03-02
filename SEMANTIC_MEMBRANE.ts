@@ -2,6 +2,7 @@
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -11,6 +12,22 @@ let lastNormalization = 0;
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
     projectionMatrix[i] = Math.sin(i * 0.123); 
+}
+
+let hyperplanes: Float32Array[] = [];
+function getHyperplanes(dim: number): Float32Array[] {
+    if (hyperplanes.length === 64 && hyperplanes[0].length === dim) return hyperplanes;
+    hyperplanes = [];
+    for (let i = 0; i < 64; i++) {
+        const plane = new Float32Array(dim);
+        for (let j = 0; j < dim; j++) {
+            const u1 = Math.sin(i * 13.37 + j * 9.99) || 0.001;
+            const u2 = Math.cos(i * 4.2 + j * 7.77);
+            plane[j] = Math.sqrt(-2.0 * Math.log(Math.abs(u1))) * Math.cos(2.0 * Math.PI * u2);
+        }
+        hyperplanes.push(plane);
+    }
+    return hyperplanes;
 }
 
 export const SEMANTIC_MEMBRANE = {
@@ -57,33 +74,38 @@ export const SEMANTIC_MEMBRANE = {
         console.log(`🧠 [MEMBRANE] Synaptic scaling applied.`);
     },
 
-    resonantHash: (text: string): Uint8Array => {
-        const inputVec = new Float32Array(PROJECTION_SIZE);
-        for (let i = 0; i < Math.min(text.length, PROJECTION_SIZE); i++) inputVec[i] = text.charCodeAt(i) / 255.0;
-
-        const resultVec = new Float32Array(PROJECTION_SIZE);
-        for (let i = 0; i < PROJECTION_SIZE; i++) {
-            let sum = 0;
-            for (let j = 0; j < PROJECTION_SIZE; j++) sum += projectionMatrix[i * PROJECTION_SIZE + j] * inputVec[j];
-            resultVec[i] = sum;
-        }
-
+    /**
+     * ERA 65: SimHash (Cosine LSH) Vector Quantization
+     */
+    quantizeThought: async (text: string): Promise<Uint8Array> => {
+        const embedding = await LLM_SYNAPSE.getEmbedding(text);
+        const dim = embedding.length;
         const hash = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-            let byte = 0;
-            for (let bit = 0; bit < 8; bit++) if (resultVec[i * 8 + bit] > 0) byte |= (1 << bit);
-            hash[i] = byte;
+        if (dim === 0) return hash;
+
+        const planes = getHyperplanes(dim);
+        for (let bitIndex = 0; bitIndex < 64; bitIndex++) {
+            const plane = planes[bitIndex];
+            let dotProduct = 0;
+            for (let j = 0; j < dim; j++) {
+                dotProduct += embedding[j] * plane[j];
+            }
+            if (dotProduct > 0) {
+                const byteIndex = Math.floor(bitIndex / 8);
+                const bitOffset = bitIndex % 8;
+                hash[byteIndex] |= (1 << bitOffset);
+            }
         }
         return hash;
     },
 
-    project: (text: string, idx: number) => {
-        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+    project: async (text: string, idx: number) => {
+        const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
         STATE_MATRIX.setLogic(idx, hash);
     },
 
-    injectThought: (text: string, weight: number) => {
-        const hash = SEMANTIC_MEMBRANE.resonantHash(text);
+    injectThought: async (text: string, weight: number) => {
+        const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
         const idx = STATE_MATRIX.findEmptySlot();
         
         if (idx !== -1) {

@@ -74,6 +74,32 @@ export const LLM_SYNAPSE = {
     },
 
     /**
+     * getEmbedding: Fetches a semantic vector representing the text.
+     */
+    getEmbedding: async (text: string): Promise<number[]> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL_EMBED") || "http://localhost:11434/api/embeddings";
+        const MODEL = Deno.env.get("OLLAMA_EMBED_MODEL") || "nomic-embed-text";
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ model: MODEL, prompt: text }),
+            });
+            if (!response.ok) throw new Error("Embedding API failed");
+            const data = await response.json();
+            return data.embedding || [];
+        } catch {
+            console.warn(`   [SYNAPSE] Embedding failed for "${text.substring(0, 15)}...". Using pseudo-random fallback.`);
+            // Pseudo-random fallback based on string characters (Era 40+ fallback mechanics)
+            const fallback = new Array(768);
+            for (let i = 0; i < 768; i++) {
+                fallback[i] = Math.sin(text.charCodeAt(i % text.length) * (i + 1));
+            }
+            return fallback;
+        }
+    },
+
+    /**
      * generateArchaeologicalReport: Interprets "ancient" logic from digital ruins.
      */
     generateArchaeologicalReport: async (ruins: string[]): Promise<string> => {

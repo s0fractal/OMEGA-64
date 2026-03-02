@@ -25,13 +25,22 @@ export const PULSE = {
     currentPulseId: 0,
 
 
-    initWorkers: () => {
+    initWorkers: async () => {
         if (PULSE.workers.length > 0) return; // Already init
+        const workerPromises: Promise<void>[] = [];
         for (let i = 0; i < THREAD_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
             PULSE.workers.push(worker);
+            
+            workerPromises.push(new Promise((resolve) => {
+                worker.addEventListener("message", (e) => {
+                    if (e.data.type === "READY") resolve();
+                }, { once: true });
+                worker.postMessage({ type: "INIT", wasmMemory: STATE_MATRIX.wasmMemory });
+            }));
         }
-        console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized.`);
+        await Promise.all(workerPromises);
+        console.log(`   [PULSE] ${THREAD_COUNT} Parallel Workers initialized with WASM VMs.`);
     },
 
     stopWorkers: () => {
@@ -57,7 +66,7 @@ export const PULSE = {
         }
         
         console.log("-> Init Workers");
-        PULSE.initWorkers();
+        await PULSE.initWorkers();
         
         while (true) {
             await PULSE.tick();
@@ -166,6 +175,7 @@ export const PULSE = {
                     senderSignatureBufferB: STATE_MATRIX.senderSignatureBufferB,
                     trustedSignatures: Array.from(GATE.trustedSignatures),
                     spatialGridBuffer: SPATIAL_HASH.buffer,
+                    intentOffset: (STATE_MATRIX as any).INTENT_OFFSET, // WASM FFI
                     pulseId
                 });
             });

@@ -16,9 +16,12 @@ const BONDS_OFFSET = LOGIC_OFFSET + (MAX_ATOMS * 8); // logic (Uint8 x 8)
 const INSTRUCTIONS_OFFSET = BONDS_OFFSET + (MAX_ATOMS * 16); // bonds (Uint32 x 4)
 const CONTEXT_OFFSET = INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64); // instructions (Uint32 x 16)
 const EVOLUTION_OFFSET = CONTEXT_OFFSET + (MAX_ATOMS * 32); // context (Uint8 x 32)
-const TOTAL_BUFFER_SIZE = EVOLUTION_OFFSET; // We've moved evolution/viral to their own buffers for thread safety
+export const INTENT_OFFSET = EVOLUTION_OFFSET; // 4 bytes/atom: [OPCODE, ARG1, ARG2, ARG3]
+export const TOTAL_BUFFER_SIZE = INTENT_OFFSET + (MAX_ATOMS * 4); 
 
-const buffer = new SharedArrayBuffer(TOTAL_BUFFER_SIZE);
+const PAGES = 256; // Fixed size to exactly match AS compilation flag
+export const wasmMemory = new WebAssembly.Memory({ initial: PAGES, maximum: PAGES, shared: true });
+const buffer = wasmMemory.buffer as SharedArrayBuffer;
 const marketBuffer = new SharedArrayBuffer(8); // Pool: [Total Bet] + Padding
 const evolutionRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS); // ERA 18
 const spawnRequestsBuffer = new SharedArrayBuffer(MAX_ATOMS * 3 * 4); // [requesterIdx, targetX, targetY]
@@ -79,6 +82,8 @@ const hiveMemory = new Uint8Array(hiveMemoryBuffer); // ERA 51: Collective Memor
 const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognition
 const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
 const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
+const intents = new Uint8Array(buffer, INTENT_OFFSET, MAX_ATOMS * 4);
+
 
 const SCALE = 1000;
 
@@ -119,6 +124,8 @@ export const STATE_MATRIX = {
     senderSignatureBufferB,
     senderSignaturesA,
     senderSignaturesB,
+    wasmMemory,
+    intents,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
