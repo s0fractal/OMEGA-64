@@ -4,11 +4,14 @@
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+import { PULSE } from "./PULSE.ts";
 
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
     lastConsultTick: 0,
-    guidanceCache: new Set<string>(), // Store Hex strings of successful genomes
+    guidanceCache: new Set<string>(),
+    neuralCoherence: 0,           // Phase 19: Global mind-field measurement
+    lastCoherenceTick: 0,
 
     interpretResonance: () => {
         const matrixRes = STATE_MATRIX.getMatrixResonance();
@@ -105,6 +108,34 @@ export const SOVEREIGN_ORACLE = {
             }
         } finally {
             SOVEREIGN_ORACLE.isConsulting = false;
+        }
+    },
+    /**
+     * Phase 19: Planetary Consciousness
+     * Poll WASM for global neural coherence and broadcast it back
+     * to the shared memory register so ISA_SENSE atoms can tune in.
+     */
+    pollNeuralCoherence: (workerExports: any, currentTick: number) => {
+        if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
+        SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
+
+        try {
+            const coherence: number = workerExports.get_neural_coherence();
+            SOVEREIGN_ORACLE.neuralCoherence = coherence;
+
+            if (coherence > 0) {
+                // Write back to shared memory so ISA_SENSE atoms can read it
+                workerExports.set_neural_coherence(coherence);
+
+                if (coherence >= 100) {
+                    console.log(`🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`);
+                }
+                if (coherence >= 1000) {
+                    console.log(`⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`);
+                }
+            }
+        } catch (_) {
+            // WASM export not yet available — skip
         }
     }
 };

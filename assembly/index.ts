@@ -26,11 +26,16 @@ const ISA_INJECT: u8 = 0x44;
 const ISA_BROADCAST: u8 = 0x45;
 const ISA_ANNEX: u8 = 0x46;
 const ISA_MUTATE: u8 = 0x47;
-const ISA_RESONATE: u8 = 0x48;     // Atom synchronizes with crystal oscillation
+const ISA_RESONATE: u8 = 0x48;
+const ISA_SENSE: u8 = 0x49;        // Atom senses global neural coherence field
 const ISA_ASCEND: u8 = 0xFF;
 
 // Crystal type constants
-const CRYSTAL_OSCILLATOR: i32 = 5; // Standing-wave accumulator
+const CRYSTAL_OSCILLATOR: i32 = 5;
+
+// Phase 19: Planetary Consciousness
+// Global coherence broadcast channel — written by SOVEREIGN_ORACLE, read by ISA_SENSE
+const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 36000000;
 
 // Colony / Territory constants
 const CRYSTAL_COLONY: i32 = 3;
@@ -310,6 +315,24 @@ export function execute_atom(atomIndex: i32): void {
         }
     }
 
+    // --- Phase 19: Planetary Consciousness (ISA_SENSE) ---
+    if (opcode == ISA_SENSE) {
+        // Read global neural coherence written by SOVEREIGN_ORACLE
+        let coherence = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
+        if (coherence > 0) {
+            let boost: i32 = coherence > 500 ? 50 : coherence / 10;
+            setResonance(atomIndex, resonance + boost);
+            // If fully coherent: amplify local crystal signal
+            if (coherence > 1000) {
+                let cellIdx = gy * 140 + gx;
+                let cType = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+                if (cType > 0) {
+                    atomic.add<i32>(SIGNAL_GRID_OFF + (cellIdx << 2), 10);
+                }
+            }
+        }
+    }
+
     // --- Memetic Horizontal Transfer ---
     // If standing on a CRYSTAL_MEME, stochastically absorb the stored genome
     {
@@ -431,4 +454,34 @@ export function tick_matrix(): void {
             atomic.store<i32>(SIGNAL_GRID_OFF + (i << 2), currentRes);
         }
     }
+}
+
+// --- Phase 19: Planetary Consciousness Exports ---
+
+// SOVEREIGN_ORACLE calls this every N ticks to measure global mind-field strength
+export function get_neural_coherence(): i32 {
+    const GRID_CELLS = 140 * 80;
+    let totalAmplitude: i32 = 0;
+    let oscillatorCount: i32 = 0;
+
+    for (let i = 0; i < GRID_CELLS; i++) {
+        const cType = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
+        if (cType == CRYSTAL_OSCILLATOR) {
+            // Read amplitude counter from memoryGrid (low 32 bits)
+            const ampOff: usize = MEMORY_GRID_OFF + (i << 3) as usize;
+            const amp = load<u32>(ampOff as usize);
+            totalAmplitude += amp as i32;
+            oscillatorCount++;
+        }
+    }
+
+    // Coherence = average amplitude across all oscillators (capped at 2000)
+    if (oscillatorCount == 0) return 0;
+    let coherence = totalAmplitude / oscillatorCount;
+    return coherence > 2000 ? 2000 : coherence;
+}
+
+// SOVEREIGN_ORACLE writes computed coherence back to shared broadcast channel
+export function set_neural_coherence(value: i32): void {
+    atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 }
