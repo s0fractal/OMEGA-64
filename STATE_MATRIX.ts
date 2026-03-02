@@ -45,6 +45,7 @@ const hiveMemoryBuffer = new SharedArrayBuffer(140 * 80 * 16); // ERA 51: Collec
 const birthTickBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 54: Temporal Cognition (spawn tick)
 const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
 const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
+const signalGridBuffer = new SharedArrayBuffer(140 * 80); // ERA 66: Signal Conduction Grid
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -83,6 +84,7 @@ const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognitio
 const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
 const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 const intents = new Uint8Array(buffer, INTENT_OFFSET, MAX_ATOMS * 4);
+const signalGrid = new Uint8Array(signalGridBuffer); // ERA 66
 
 
 const SCALE = 1000;
@@ -124,8 +126,11 @@ export const STATE_MATRIX = {
     senderSignatureBufferB,
     senderSignaturesA,
     senderSignaturesB,
+    quorumBuffer: undefined, // Will be removed or mocked later
     wasmMemory,
     intents,
+    signalGridBuffer,
+    getSignalGrid: () => signalGrid,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),

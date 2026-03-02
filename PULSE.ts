@@ -14,6 +14,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { GATE } from "./GATE.ts";
+import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts"; // ERA 66: Awakened Matrix
 
 
 const ROOT = Deno.cwd();
@@ -405,6 +406,11 @@ export const PULSE = {
             for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
             console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
         }
+
+        // --- ERA 66: AWAKENED MATRIX TICK ---
+        const sigGrid = STATE_MATRIX.getSignalGrid();
+        const strucGrid = new Int32Array(STATE_MATRIX.structureGridBuffer);
+        MATRIX_ENGINE.tick(sigGrid, strucGrid);
 
         if (pulseId % 5000 === 0) await SNAPSHOT_ENGINE.exportSnapshot();
 

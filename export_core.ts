@@ -1,4 +1,4 @@
-// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 65)
+// OMEGA-64 | export_core.ts | System Consolidation Utility (Era 66)
 // Concatenates all core logic files into OMEGA_CORE_LOGIC.md
 
 const CORE_FILES = [
@@ -27,6 +27,7 @@ const CORE_FILES = [
     "P2P_SYNAPSE.ts",
     "AVATAR_ENGINE.ts",
     "REFLECTION_ENGINE.ts",
+    "MATRIX_ENGINE.ts",
     "SYSTEM_START.ts",
     "AUDIT_ENGINE.ts",
     "ENZYME_DIGEST.ts",
@@ -50,12 +51,13 @@ const CORE_FILES = [
     "test_fractal_dividends.ts",
     "test_simhash.ts",
     "test_intent_buffer.ts",
+    "test_matrix_engine.ts",
     "run_ecosystem.ts",
     "archive/legacy_docs/GEMINI.md"
 ];
 
 async function exportCore() {
-    let output = "# OMEGA-64 | CORE LOGIC (ERA 65: ZERO-ALLOCATION WASM & SIMHASH)\n\n";
+    let output = "# OMEGA-64 | CORE LOGIC (ERA 66: THE AWAKENED MATRIX)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
     // @ts-ignore: Deno.readTextFile is valid in Deno
@@ -73,7 +75,7 @@ async function exportCore() {
 
     // @ts-ignore: Deno.writeTextFile is valid in Deno
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
-    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 65 components.");
+    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 66 components.");
 }
 
 // @ts-ignore: import.meta.main is Deno specific

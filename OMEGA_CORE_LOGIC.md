@@ -1,6 +1,6 @@
-# OMEGA-64 | CORE LOGIC (ERA 65: ZERO-ALLOCATION WASM & SIMHASH)
+# OMEGA-64 | CORE LOGIC (ERA 66: THE AWAKENED MATRIX)
 
-*Generated: 2026-03-02T11:48:28.913Z*
+*Generated: 2026-03-02T12:15:44.534Z*
 
 ---
 
@@ -54,6 +54,7 @@ const hiveMemoryBuffer = new SharedArrayBuffer(140 * 80 * 16); // ERA 51: Collec
 const birthTickBuffer = new SharedArrayBuffer(MAX_ATOMS * 4); // ERA 54: Temporal Cognition (spawn tick)
 const senderSignatureBufferA = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal A
 const senderSignatureBufferB = new SharedArrayBuffer(MAX_ATOMS * 8); // ERA 38: Sender identity for Signal B
+const signalGridBuffer = new SharedArrayBuffer(140 * 80); // ERA 66: Signal Conduction Grid
 
 // TypedArray Views (Structure of Arrays)
 const ids = new BigUint64Array(buffer, IDS_OFFSET, MAX_ATOMS);
@@ -92,6 +93,7 @@ const birthTicks = new Int32Array(birthTickBuffer); // ERA 54: Temporal Cognitio
 const senderSignaturesA = new Uint8Array(senderSignatureBufferA);
 const senderSignaturesB = new Uint8Array(senderSignatureBufferB);
 const intents = new Uint8Array(buffer, INTENT_OFFSET, MAX_ATOMS * 4);
+const signalGrid = new Uint8Array(signalGridBuffer); // ERA 66
 
 
 const SCALE = 1000;
@@ -133,8 +135,11 @@ export const STATE_MATRIX = {
     senderSignatureBufferB,
     senderSignaturesA,
     senderSignaturesB,
+    quorumBuffer: undefined, // Will be removed or mocked later
     wasmMemory,
     intents,
+    signalGridBuffer,
+    getSignalGrid: () => signalGrid,
     
     // --- ID ---
     getId: (idx: number) => Atomics.load(ids, idx),
@@ -621,6 +626,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { GATE } from "./GATE.ts";
+import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts"; // ERA 66: Awakened Matrix
 
 
 const ROOT = Deno.cwd();
@@ -1012,6 +1018,11 @@ export const PULSE = {
             for (let i = 0; i < PHYSICS_ENGINE.NUTRIENTS.length; i++) totalNutrients += Atomics.load(PHYSICS_ENGINE.NUTRIENTS, i);
             console.log(`💓 Pulse #${pulseId} | Atoms: ${activeIndices.length} | Regent: ${regent.genome} | Nutrients: ${totalNutrients}`);
         }
+
+        // --- ERA 66: AWAKENED MATRIX TICK ---
+        const sigGrid = STATE_MATRIX.getSignalGrid();
+        const strucGrid = new Int32Array(STATE_MATRIX.structureGridBuffer);
+        MATRIX_ENGINE.tick(sigGrid, strucGrid);
 
         if (pulseId % 5000 === 0) await SNAPSHOT_ENGINE.exportSnapshot();
 
@@ -5408,6 +5419,108 @@ ${REFLECTION_ENGINE.decompile(code)}
 
 ---
 
+## FILE: MATRIX_ENGINE.ts
+
+```typescript
+// OMEGA-64 | MATRIX_ENGINE.ts | Era 66: The Awakened Matrix
+// A Crystalline Neural Network running as a Cellular Automaton over the static structureGrid.
+
+const GRID_W = 140;
+const GRID_H = 80;
+const GRID_SIZE = GRID_W * GRID_H;
+
+// We use an internal double-buffer to prevent directional propagation bias during a single tick.
+const nextSignalGrid = new Uint8Array(GRID_SIZE);
+
+export const MATRIX_ENGINE = {
+    /**
+     * Evaluates the Crystalline Neural Network for one tick.
+     * @param signalGrid The current electrical state of the matrix (0 = idle, 255 = firing, 1-254 = refractory)
+     * @param structureGrid The physical structures (Density | Type)
+     */
+    tick: (signalGrid: Uint8Array, structureGrid: Int32Array) => {
+        // 1. Compute Next State based on Current State
+        for (let i = 0; i < GRID_SIZE; i++) {
+            const structureCell = Atomics.load(structureGrid, i);
+            const type = (structureCell >> 0) & 0xFF;
+            const density = (structureCell >> 8) & 0xFF;
+
+            const currentState = signalGrid[i];
+
+            // Only Crystals (Type 1) can conduct matrix signals
+            if (type !== 1 || density < 50) {
+                nextSignalGrid[i] = 0;
+                continue;
+            }
+
+            if (currentState === 255) {
+                // Was firing -> enter refractory period
+                nextSignalGrid[i] = 200; // 200 ticks of refractory cooldown
+            } else if (currentState > 0) {
+                // In refractory period -> decay
+                nextSignalGrid[i] = currentState - 1;
+            } else {
+                // Idle (0) -> Check for incoming signals from Von Neumann neighborhood
+                const x = i % GRID_W;
+                const y = Math.floor(i / GRID_W);
+                
+                let firingNeighbors = 0;
+
+                // Check Up
+                if (y > 0 && signalGrid[i - GRID_W] === 255) firingNeighbors++;
+                // Check Down
+                if (y < GRID_H - 1 && signalGrid[i + GRID_W] === 255) firingNeighbors++;
+                // Check Left
+                if (x > 0 && signalGrid[i - 1] === 255) firingNeighbors++;
+                // Check Right
+                if (x < GRID_W - 1 && signalGrid[i + 1] === 255) firingNeighbors++;
+
+                // If no signals, stay idle
+                if (firingNeighbors === 0) {
+                    nextSignalGrid[i] = 0;
+                    continue;
+                }
+
+                // Determine Gate Logic based on structural density signature modulo
+                // Derived organically from how the Ascended Atom formed the crystal
+                const gateType = density % 3;
+
+                let willFire = false;
+                if (gateType === 0) {
+                    // OR Gate (default conduction)
+                    willFire = firingNeighbors >= 1;
+                } else if (gateType === 1) {
+                    // AND Gate
+                    willFire = firingNeighbors >= 2;
+                } else if (gateType === 2) {
+                    // XOR Gate
+                    willFire = firingNeighbors === 1;
+                }
+
+                nextSignalGrid[i] = willFire ? 255 : 0;
+            }
+        }
+
+        // 2. Commit Next State to Shared Array Buffer
+        for (let i = 0; i < GRID_SIZE; i++) {
+            signalGrid[i] = nextSignalGrid[i];
+        }
+    },
+
+    /**
+     * Manually triggers a spark at a specific location, used by Observer or Atoms.
+     */
+    injectSpark: (signalGrid: Uint8Array, x: number, y: number) => {
+        if (x >= 0 && x < GRID_W && y >= 0 && y < GRID_H) {
+            signalGrid[y * GRID_W + x] = 255;
+        }
+    }
+};
+
+```
+
+---
+
 ## FILE: SYSTEM_START.ts
 
 ```typescript
@@ -8412,6 +8525,97 @@ async function testIntentBuffer() {
 }
 
 testIntentBuffer();
+
+```
+
+---
+
+## FILE: test_matrix_engine.ts
+
+```typescript
+// test_matrix_engine.ts
+import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
+
+const GRID_W = 140;
+const GRID_H = 80;
+
+const signalGrid = new Uint8Array(GRID_W * GRID_H);
+const structureGrid = new Int32Array(GRID_W * GRID_H);
+
+// Helper to set structure
+function setStructure(x: number, y: number, type: number, density: number) {
+    structureGrid[y * GRID_W + x] = (density << 8) | type;
+}
+
+// Helper to get signal
+function getSignal(x: number, y: number) {
+    return signalGrid[y * GRID_W + x];
+}
+
+console.log("💎 Testing MATRIX_ENGINE...");
+
+// Test 1: Conduction along a wire (OR gate logic: 51 % 3 == 0)
+// Crystal row from (10,10) to (13,10)
+setStructure(10, 10, 1, 51);
+setStructure(11, 10, 1, 51);
+setStructure(12, 10, 1, 51);
+
+// Spark at (10, 10)
+MATRIX_ENGINE.injectSpark(signalGrid, 10, 10);
+console.assert(getSignal(10, 10) === 255, "Spark failed");
+
+// Tick 1
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(10, 10) === 200, "Refractory failed");
+console.assert(getSignal(11, 10) === 255, "Conduction to +1x failed");
+
+// Tick 2
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(10, 10) === 199, "Refractory decay failed");
+console.assert(getSignal(11, 10) === 200, "Refractory 2 failed");
+console.assert(getSignal(12, 10) === 255, "Conduction to +2x failed");
+
+console.log("✅ Conduction test passed.");
+
+// Test 2: AND Gate (Density 52 % 3 == 1)
+// Center at (20, 20), AND gate.
+setStructure(20, 20, 1, 52); 
+// Inputs at (19, 20) and (20, 19). Both OR wires (51).
+setStructure(19, 20, 1, 51);
+setStructure(20, 19, 1, 51);
+
+MATRIX_ENGINE.injectSpark(signalGrid, 19, 20); // Only 1 input fires
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(20, 20) === 0, "AND gate fired incorrectly with 1 input");
+
+// Refractory period resets... Let's just manually clear signalGrid around there
+signalGrid.fill(0);
+MATRIX_ENGINE.injectSpark(signalGrid, 19, 20);
+MATRIX_ENGINE.injectSpark(signalGrid, 20, 19); // Both inputs fire
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(20, 20) === 255, "AND gate failed to fire with 2 inputs");
+
+console.log("✅ AND Gate test passed.");
+
+// Test 3: XOR Gate (Density 53 % 3 == 2)
+setStructure(30, 30, 1, 53);
+setStructure(29, 30, 1, 51);
+setStructure(30, 29, 1, 51);
+
+signalGrid.fill(0);
+MATRIX_ENGINE.injectSpark(signalGrid, 29, 30); // 1 input
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(30, 30) === 255, "XOR gate failed to fire with 1 input");
+
+signalGrid.fill(0);
+MATRIX_ENGINE.injectSpark(signalGrid, 29, 30); // 2 inputs
+MATRIX_ENGINE.injectSpark(signalGrid, 30, 29);
+MATRIX_ENGINE.tick(signalGrid, structureGrid);
+console.assert(getSignal(30, 30) === 0, "XOR gate fired incorrectly with 2 inputs");
+
+console.log("✅ XOR Gate test passed.");
+
+console.log("🎉 MATRIX_ENGINE tests complete!");
 
 ```
 
