@@ -24,6 +24,8 @@ export interface VMResult {
     incorporatePlasmidRequest?: { logic: Uint8Array }; // ERA 60
     shareRequest?: { bondSlot: number, amount: number }; // ERA 61
     eatRequest?: { amount: number }; // ERA 61
+    phiRequest?: { amount: number }; // ERA 63
+    ascendRequest?: boolean; // ERA 64
 }
 
 export const ISA = {
@@ -76,7 +78,11 @@ export const ISA = {
     // Horizontal Gene Transfer (ERA 60)
     SECRETE_PLASMID: 0x96, INCORPORATE_PLASMID: 0x97,
     // Symbiotic Bonding (ERA 61)
-    SHARE: 0xA0, EAT: 0xA1
+    SHARE: 0xA0, EAT: 0xA1,
+    // The Golden Angle (ERA 63)
+    PHI: 0xA2,
+    // Ascension / Crystallization (ERA 64)
+    ASCEND: 0xFF
 };
 
 export const LAMBDA_VM = {
@@ -893,6 +899,27 @@ export const LAMBDA_VM = {
                     res.eatRequest = { amount: p1 };
                     // We don't change energyDelta here because PULSE_WORKER needs to 
                     // check if the cell actually has nutrients first.
+                }
+                break;
+            }
+
+            case ISA.PHI: {
+                // --- ERA 63: The Golden Angle ---
+                // Shifts phase by the Golden Angle (137.5 deg = ~97 in 256 byte space)
+                // If p1=0, shifts by 97. If p1>0, shifts by p1 (custom angle).
+                if (!dryRun) {
+                    const shiftAmount = p1 === 0 ? 97 : p1;
+                    res.phiRequest = { amount: shiftAmount };
+                    res.resonanceDelta += 2; // Small harmony reward for packing
+                }
+                break;
+            }
+
+            case ISA.ASCEND: {
+                // --- ERA 64: The Convergence ---
+                // Requires minimum 5000 energy and 500 resonance to ascend.
+                if (!dryRun && state.energy >= 5000 && state.resonance >= 500) {
+                    res.ascendRequest = true;
                 }
                 break;
             }

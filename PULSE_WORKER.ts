@@ -354,6 +354,33 @@ self.onmessage = (e) => {
                 }
             }
 
+            // --- ERA 63: Apply phiRequest ---
+            if (vmResult.phiRequest) {
+                const currentPhase = Atomics.load(phases, i);
+                const newPhase = (currentPhase + vmResult.phiRequest.amount) % 256;
+                Atomics.store(phases, i, newPhase);
+                // Also update Phase in vmState for the next execute tick if necessary, but
+                // since this is end of pulse, it will be read fresh next pulse.
+            }
+
+            // --- ERA 64: Apply ascendRequest (The Convergence) ---
+            if (vmResult.ascendRequest) {
+                // Crystalize into the Matrixland structureGrid
+                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+                const cellIdx = gy * 140 + gx;
+                
+                // Write max density (255) and type 1 (Crystal Altar)
+                // structureCell format: (type & 0xFF) | ((density & 0xFF) << 8)
+                const crystalData = 1 | (255 << 8);
+                Atomics.store(structureGrid, cellIdx, crystalData);
+                
+                // Atom sacrifices itself to become eternal structure
+                Atomics.store(ids, i, 0n);
+                energy = 0;
+            }
+
+
 
             // --- ERA 57: Passive Synaptic Plasticity Decay ---
             // Every 10 ticks: decay weights NOT strengthened by HEBB this tick by 1.
