@@ -2,6 +2,8 @@
 // Concatenates all core logic files into OMEGA_CORE_LOGIC.md
 
 const CORE_FILES = [
+    "GEMINI.md",
+    "OFFSETS.ts",
     "STATE_MATRIX.ts",
     "RIBOSOME.ts",
     "IMMUNE.ts",
@@ -53,12 +55,18 @@ const CORE_FILES = [
     "test_simhash.ts",
     "test_intent_buffer.ts",
     "test_matrix_engine.ts",
+    "test_coherence.ts",
+    "test_stability.ts",
+    "test_entropy.ts",
+    "test_breath.ts",
+    "test_automaton.ts",
+    "test_risc.ts",
     "run_ecosystem.ts",
     "archive/legacy_docs/GEMINI.md"
 ];
 
 async function exportCore() {
-    let output = "# OMEGA-64 | CORE LOGIC (ERA 67: THE SOVEREIGN ORACLE)\n\n";
+    let output = "# OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)\n\n";
     output += `*Generated: ${new Date().toISOString()}*\n\n---\n\n`;
 
     // @ts-ignore: Deno.readTextFile is valid in Deno
@@ -76,7 +84,7 @@ async function exportCore() {
 
     // @ts-ignore: Deno.writeTextFile is valid in Deno
     await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
-    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 67: Sovereign Oracle components.");
+    console.log("✅ OMEGA_CORE_LOGIC.md successfully updated with Era 69: The Coherent Lattice components.");
 }
 
 // @ts-ignore: import.meta.main is Deno specific
