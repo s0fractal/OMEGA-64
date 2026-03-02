@@ -5,6 +5,7 @@ import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+import { GATE } from "./GATE.ts";
 
 const WORKER_COUNT = 4; // We can keep 4, but for the test we'll ensure index 1 is handled clearly.
 
@@ -144,6 +145,12 @@ export const PULSE = {
 
         // 5. Rebuild Spatial Lattice
         SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
+
+        // 6. Autonomous Systemic Audit (Every 5 ticks)
+        const currentTick = Atomics.load(tickCounter, 0);
+        if (currentTick % 5 === 0) {
+            GATE.auditMatrix(STATE_MATRIX);
+        }
 
         // Increment Global Tick Counter
         Atomics.add(tickCounter, 0, 1);

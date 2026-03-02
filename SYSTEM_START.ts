@@ -312,13 +312,6 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     console.log("💓 [SYSTEM] Pulse Engine Ignited.");
     await PULSE.initWorkers();
     
-    // Spawn an emergent Avatar atom to wander the matrix naturally
-    const aIdx = STATE_MATRIX.findFreeSlot();
-    if (aIdx !== -1) {
-        const avatarGenome = new Uint8Array([0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88]);
-        STATE_MATRIX.seedAtom(aIdx, 0x00000000AAAAAAAAn, 700, 400, 9999, 9999, avatarGenome);
-    }
-    
     while (true) {
         await PULSE.tick();
         await new Promise(r => setTimeout(r, 16));
