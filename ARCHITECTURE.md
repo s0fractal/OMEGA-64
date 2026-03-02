@@ -1,64 +1,73 @@
-# OMEGA-64 | ARCHITECTURE | Era 33: Trophic Resonance 💎🧬
+# OMEGA-64 | ARCHITECTURE | Era 69: The Coherent Lattice 💎🛡️
 
 ## 1. Top-Level Overview
 
-OMEGA-64 is a deterministic, RAM-bound autopoietic ecosystem. Era 33 establishes
-**Metabolic Specialization**, transitioning from a uniform population to a
-complex trophic web supported by a high-performance, multi-threaded SoA
-architecture.
+OMEGA-64 is a deterministic, **Pure Automaton** existing within a vaster
+**SharedArrayBuffer** (The Matrix). Era 69 establishes **Absolute Coherence**,
+where the system operates as a self-governing organism without privileged
+"Divine" entities, regulated by an autonomous **Gateway Audit**.
 
-### Core Pipeline (Autopoietic Loop)
+### Core pipeline (The Autopoietic Heartbeat)
 
 ```mermaid
 graph TD
-    Matrix[STATE_MATRIX (SharedArrayBuffer)] -->|Sync| Workers[PULSE_WORKERS (x4)]
-    Workers -->|Execute VM| Specialization[Trophic Roles: Producer/Constructor/Siphon]
-    Specialization -->|Apply Logic| Physics[PHYSICS_ENGINE (Nutrients/Bonds)]
-    Physics -->|Modify| Grid[Structure Grid / Voxel Reality]
-    Grid -->|Feedback| Matrix
-    Matrix -->|Render| UI[Ecosystem View (Three.js)]
+    Matrix[STATE_MATRIX (SharedArrayBuffer)] -->|Sync| Workers[PULSE_WORKERS (xN)]
+    Workers -->|Execute RISC-I VM| Atoms[Distributed Logic in Instruction Memory]
+    Atoms -->|Propose Mutations| Proposals[DeltaProposals]
+    Proposals -->|Filter| Gate[GATE / Autonomous Audit]
+    Gate -->|Metabolic Cost| Entropy[Entropy Flux / Energy Decay]
+    Entropy -->|Admit| Matrix
+    Host[External Breath] -->|Inject Energy| Matrix
+    Matrix -->|Voxel Render| UI[OBSERVER_UI (Three.js)]
 ```
 
 ## 2. Key Components
 
-### A. Extended SoA Matrix (`STATE_MATRIX.ts`)
+### A. The Coherent Matrix (`STATE_MATRIX.ts`)
 
-A high-density memory layout utilizing `SharedArrayBuffer`. Beyond basic spatial
-data, Era 33 integrates:
+A high-density memory lattice utilizing `SharedArrayBuffer` and `Atomics` to
+eliminate "Torn Reads". It stores:
 
-- **Role Registry**: Permanent trophic specialization.
-- **Synaptic Stack**: 4-slot internal state machine per atom.
-- **Bond Stiffness**: Variable physical constraints.
+- **64-byte Atom Profiles**: ID, X/Y, Energy, Resonance, Phase, Logic, Bonds.
+- **Instruction Memory**: 64 bytes per atom for localized RISC scripts.
+- **Execution Context**: Registers and PC for deep parallel persistence.
 
-### B. Parallel Execution (`PULSE_WORKER.ts`)
+### B. Distributed VM (`PULSE_WORKER.ts` / `LAMBDA_VM.ts`)
 
-The simulation is offloaded to 4 parallel workers. Each worker handles a chunk
-of the `STATE_MATRIX`, ensuring bit-identical determinism through `Atomics` and
-local `PRNG` chains.
+Each atom is a sovereign VM. The **RISC-I ISA** allows atoms to:
 
-### C. Voxelized Reality (`structureGrid`)
+- **SENSE**: Read grid resonance and nearby atom properties.
+- **ACT**: Move, replicate, signal, and bind.
+- **EVOLVE**: Mutate their own instruction memory through `ISA_MUTATE`.
 
-A spatial grid (`70x40`) storing physical density and bytecode. Atoms with the
-**Constructor** role can convert energy into structural density, which is then
-persistent and interactable by **Siphons**.
+### C. Autonomous Governance (`GATE.ts`)
 
-### D. Trophic Metabolism
+The **Gate** acts as the system's "conscience" and "immune system":
 
-Metabolic logic is now role-dependent:
+- **Deterministic Audit**: Runs every 5 ticks via `auditMatrix`.
+- **Malignancy Detection**: Identifies and recycles "antigen" logic or starved
+  atoms.
+- **Metabolic Enforcement**: Charging energy for mutations, ensuring an
+  entropy-bound economy.
 
-- **Producers**: Enhanced nutrient absorption (+50%).
-- **Constructors**: Reduced build costs (-50%).
-- **Siphons**: Doubled efficiency in structure-to-energy conversion.
+### D. Thermodynamic Cycle (`BREATH.ts`)
+
+The system follows a strict energy budget:
+
+- **Entropy Flux**: Every VM operation and mutation consumes energy.
+- **External Breath**: The host provides a periodic "Inhale" of energy to keep
+  the civilization alive.
 
 ## 3. Data Invariants
 
-1. **Deterministic Resonance**: Every mutation must be reproducible. Time and ID
-   form the seed for every choice.
-2. **Conservation of Role**: Specialization through the `SPEC` instruction is
-   permanent.
-3. **Structure Integrity**: A structural voxel only has meaning if it contains
-   both density and associated semantic code.
+1. **Absolute Coherence**: No state mutation occurs without Gate admission and
+   atomic synchronization.
+2. **Deterministic Resonance**: Every system state is a reproducible function of
+   time and seed.
+3. **Genetic Autonomy**: Atoms are sovereign; their behavior is dictated by
+   their localized instruction memory, not global hardcoding.
 
 ---
 
-🛡️💎🧬🌀 "The Matrix is the body; the Roles are the soul."
+🛡️💎🧬🌀 "We do not program life. We set the constants in which life is
+inevitable."
