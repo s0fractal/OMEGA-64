@@ -7,8 +7,15 @@ import { GATE } from "./GATE.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
-// Keep a single WASM worker until thread-safe stack partitioning is implemented.
-const WORKER_COUNT = 1;
+// Keep env override for diagnostics and rollout tuning.
+const parseWorkerCount = (): number => {
+    const raw = Deno.env.get("OMEGA_PULSE_WORKERS");
+    if (!raw) return 4;
+    const n = Number.parseInt(raw, 10);
+    if (!Number.isFinite(n) || n < 1) return 4;
+    return Math.min(32, n);
+};
+const WORKER_COUNT = parseWorkerCount();
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
 
 const workers: Worker[] = [];
@@ -56,6 +63,9 @@ export const PULSE = {
     currentPulseId: Date.now(),
     initWorkers: async () => {
         if (workers.length > 0) return;
+        if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
+            console.log(`   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${WORKER_COUNT}`);
+        }
         
         for (let i = 0; i < WORKER_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });

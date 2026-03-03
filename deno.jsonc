@@ -21,7 +21,8 @@
     "wasm:build": "deno run -A build_wasm.ts",
     "test:resonance": "deno run -A test_resonance_protocol.ts",
     "test:swarm": "deno run -A test_swarm.ts",
-    "vector10:verify": "deno task wasm:build && deno task test:resonance && deno task test:swarm"
+    "test:worker-coherence": "deno run -A test_wasm_worker_coherence.ts",
+    "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm"
   },
   "lint": {
     "exclude": ["I.ts", "UI/", "SINGULARITY/"],

@@ -1,0 +1,48 @@
+# WASM Thread-Safe Roadmap (Deno + AssemblyScript)
+
+## Why this roadmap exists
+
+- Multiple WASM instances currently share one `SharedArrayBuffer`.
+- Earlier, this produced sporadic lattice corruption (spontaneous nonzero IDs in empty matrix).
+- Recent fixes (hot-path no-allocation rewrite + coherence guards) restored stable 4-worker operation.
+- We keep this roadmap to prevent regressions and harden concurrency further.
+
+Current guardrail:
+
+- Default runtime is 4 workers (`OMEGA_PULSE_WORKERS` optional override).
+- Coherence baseline test is mandatory in verify flow.
+
+## Phase 1: Deterministic Baseline (completed)
+
+- Enforce memory-layout coherence before build (`wasm_layout_guard.ts`).
+- Add empty-matrix coherence test (`test_wasm_worker_coherence.ts`).
+- Remove hot-path heap allocations in `assembly/index.ts` (array literals).
+
+Acceptance:
+
+- `deno task vector10:verify` stays green.
+- `test_wasm_worker_coherence.ts` stays green with `OMEGA_PULSE_WORKERS=4`.
+
+## Phase 2: Parallel hardening (next)
+
+- Extend coherence test to long run (`>=1000` ticks).
+- Add stress seeds with mixed VM opcodes, spawn pressure, and structure writes.
+- Track worker-level fault counters and auto-retry on timeout before failing tick.
+
+Acceptance:
+
+- `OMEGA_PULSE_WORKERS=4 deno run -A test_wasm_worker_coherence.ts` is green for at least 1000 ticks.
+
+## Phase 3: Safety gates
+
+- Add a startup self-test:
+  - run dry ticks on empty matrix;
+  - if nonzero atoms appear, auto-fallback to `1` worker for current process.
+- Add CI matrix:
+  - `OMEGA_PULSE_WORKERS=4` required;
+  - `OMEGA_PULSE_WORKERS=1` fallback gate.
+
+Acceptance:
+
+- No spontaneous atoms in either mode.
+- No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts`.

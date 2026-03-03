@@ -144,3 +144,5 @@ health indicator loop:
 - `deno task wasm:layout`
 - `deno task wasm:build`
 - `deno task vector10:verify`
+- `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
+- `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
