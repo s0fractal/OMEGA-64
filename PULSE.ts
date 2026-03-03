@@ -22,9 +22,6 @@ const parseStrictDeterminism = (): boolean => {
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
-const GRID_W = 140;
-const GRID_H = 80;
-const GRID_CELLS = GRID_W * GRID_H;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
@@ -173,16 +170,6 @@ export const PULSE = {
                 readEnergies.set(energies);
                 readResonances.set(resonances);
             }
-            // 2a.2 Clear structure intent buffers before parallel execute phase.
-            {
-                const buildOwners = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS);
-                const buildValues = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS);
-                const chargeIntents = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS);
-                buildOwners.fill(0);
-                buildValues.fill(0);
-                chargeIntents.fill(0);
-            }
-
             // 2b. Execute Physics (WASM)
             // Transition to WASM_TICKING (1) to unblock workers
             Atomics.store(syncState, 0, SYNC.WASM_TICKING);

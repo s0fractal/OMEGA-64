@@ -95,16 +95,14 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     while (true) {
         const snapshot = atomic.load<i32>(ownerPtr);
         if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
+        const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
+        if (ownerToken < winningOwner) return;
 
         const observed = atomic.cmpxchg<i32>(ownerPtr, snapshot, snapshot | STRUCTURE_INTENT_LOCK_BIT);
         if (observed != snapshot) continue;
 
-        let winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
-        if (ownerToken >= winningOwner) {
-            atomic.store<i32>(valuePtr, buildValue);
-            winningOwner = ownerToken;
-        }
-        atomic.store<i32>(ownerPtr, winningOwner);
+        atomic.store<i32>(valuePtr, buildValue);
+        atomic.store<i32>(ownerPtr, ownerToken);
         return;
     }
 }
