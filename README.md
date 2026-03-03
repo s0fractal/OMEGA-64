@@ -199,6 +199,8 @@ health indicator loop:
   hash-chain/tamper-detection gate)
 - `deno task test:ledger-chain` (ledger append/verify hash-chain anchoring +
   tamper-detection gate)
+- `deno task test:checkpoint-chain` (checkpoint save/verify hash-chain
+  anchoring + tamper-detection gate)
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)
@@ -217,7 +219,8 @@ health indicator loop:
 - `deno task test:crystalline` / `deno task test:neural` /
   `deno task test:quantum` (Vector 8/9/7 direct probes)
 - `deno task verify:coherence` (extended end-to-end verification chain; starts
-  with `test:runtime-monoculture` and includes `test:ledger-chain`)
+  with `test:runtime-monoculture` and includes `test:ledger-chain` +
+  `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
   structure-intent determinism gate)
 - GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml`
