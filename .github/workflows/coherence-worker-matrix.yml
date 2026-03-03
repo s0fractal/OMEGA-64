@@ -42,7 +42,7 @@ jobs:
 
       - name: Build resilience audit artifact
         if: matrix.worker_count == 4
-        run: deno task test:worker-resilience-budget
+        run: deno task test:worker-resilience-trend
 
       - name: Upload audits
         if: always()
@@ -55,4 +55,6 @@ jobs:
             WORKER_RESILIENCE_AUDIT.json
             WORKER_RESILIENCE_BUDGET.json
             WORKER_RESILIENCE_BUDGET.md
+            WORKER_RESILIENCE_TREND.json
+            WORKER_RESILIENCE_TREND.md
           if-no-files-found: ignore

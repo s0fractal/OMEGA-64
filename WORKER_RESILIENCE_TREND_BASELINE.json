@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-03-03T16:58:00.000Z",
+  "source": "manual-baseline-worker4-local",
+  "summary": {
+    "totalRetries": 258,
+    "totalScenarioDurationMs": 4242,
+    "driftAuditDurationMs": 1626,
+    "totalAuditDurationMs": 5868
+  },
+  "scenarios": [
+    {
+      "scenario": "worker-timeout-retry",
+      "totalRetries": 5,
+      "durationMs": 299
+    },
+    {
+      "scenario": "worker-timeout-retry-multi",
+      "totalRetries": 11,
+      "durationMs": 406
+    },
+    {
+      "scenario": "worker-jitter-resilience",
+      "totalRetries": 66,
+      "durationMs": 1068
+    },
+    {
+      "scenario": "spawn-jitter-resilience",
+      "totalRetries": 176,
+      "durationMs": 2469
+    }
+  ]
+}
