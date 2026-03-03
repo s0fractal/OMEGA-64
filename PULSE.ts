@@ -6,6 +6,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 
 const WORKER_COUNT = 4;
+const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
@@ -15,13 +16,20 @@ const nextPulseId = (): number => Date.now() + Math.floor(Math.random() * 1_000_
 const waitForWorkerMessage = <T = any>(
     worker: Worker,
     expectedType: string,
-    expectedPulseId?: number
+    expectedPulseId?: number,
+    timeoutMs: number = WORKER_RESPONSE_TIMEOUT_MS,
 ): Promise<T> => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+            worker.removeEventListener("message", listener);
+            reject(new Error(`[PULSE] Worker timeout waiting for ${expectedType}`));
+        }, timeoutMs);
+
         const listener = (e: MessageEvent) => {
             const data = e.data;
             if (!data || data.type !== expectedType) return;
             if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) return;
+            clearTimeout(timeout);
             worker.removeEventListener("message", listener);
             resolve(data as T);
         };
@@ -32,10 +40,11 @@ const waitForWorkerMessage = <T = any>(
 const postAndWait = async <T = any>(
     worker: Worker,
     message: Record<string, unknown>,
-    expectedType: string
+    expectedType: string,
+    timeoutMs?: number,
 ): Promise<T> => {
     const pulseId = typeof message.pulseId === "number" ? message.pulseId : undefined;
-    const pending = waitForWorkerMessage<T>(worker, expectedType, pulseId);
+    const pending = waitForWorkerMessage<T>(worker, expectedType, pulseId, timeoutMs);
     worker.postMessage(message);
     return await pending;
 };
@@ -62,6 +71,10 @@ export const PULSE = {
     },
 
     tick: async () => {
+        if (workers.length === 0) {
+            await PULSE.initWorkers();
+        }
+
         const { syncState, tickCounter, SYNC } = STATE_MATRIX;
         // 0. Sovereign Oracle Peak Detection & Coherence Polling
         const currentTick = Atomics.load(tickCounter, 0);
