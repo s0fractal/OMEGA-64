@@ -87,12 +87,13 @@ const MAX_ASCENSIONS: i32 = 64;
 }
 const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
 const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
+const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
 @inline function publishBuildIntent(cellIdx: i32, ownerAtomIdx: i32, buildValue: i32): void {
     const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
     const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
     const ownerToken = ownerAtomIdx + 1;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const snapshot = atomic.load<i32>(ownerPtr);
         if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
         const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
@@ -112,7 +113,7 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     if (charge < 0) charge = 0;
     if (charge > 255) charge = 255;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const current = atomic.load<i32>(ptr);
         if (charge <= current) return;
         const observed = atomic.cmpxchg<i32>(ptr, current, charge);
@@ -124,7 +125,7 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
     const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const ownerRaw = atomic.load<i32>(ownerPtr);
         if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
         if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
@@ -132,6 +133,9 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
         }
         return atomic.load<i32>(gridPtr);
     }
+
+    // Stale lock fallback: preserve forward progress under adversarial contention.
+    return atomic.load<i32>(gridPtr);
 }
 @inline function readStructureCharge(cellIdx: i32): i32 {
     const cellVal = readStructureCell(cellIdx);
