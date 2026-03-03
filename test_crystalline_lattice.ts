@@ -2,7 +2,6 @@
 import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
-import process from "node:process";
 
 async function test_crystalline_lattice() {
     console.log("💎 [TEST] Starting Crystalline Lattice (WASM Grid) Verification...");
@@ -79,10 +78,10 @@ async function test_crystalline_lattice() {
     }
 
     console.log("💎 [TEST] Verification Complete.");
-    process.exit(0);
+    Deno.exit(0);
 }
 
 test_crystalline_lattice().catch(err => {
     console.error("   [TEST CRASH]", err);
-    process.exit(1);
+    Deno.exit(1);
 });

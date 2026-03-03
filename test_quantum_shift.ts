@@ -1,4 +1,3 @@
-import process from "node:process";
 import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
@@ -68,13 +67,13 @@ async function runTest() {
 
     if (success) {
         console.log("\n✅ VECTOR 7 VERIFIED: Absolute WASM Coherence Achieved.");
-        process.exit(0);
+        Deno.exit(0);
     } else {
-        process.exit(1);
+        Deno.exit(1);
     }
 }
 
 runTest().catch((err) => {
     console.error(err);
-    process.exit(1);
+    Deno.exit(1);
 });

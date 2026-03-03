@@ -2,7 +2,6 @@
 import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
-import process from "node:process";
 
 async function test_neural_synthesis() {
     console.log("🧬 [TEST] Starting Neural Synthesis (Vector 9) Verification...");
@@ -94,10 +93,10 @@ async function test_neural_synthesis() {
     }
 
     console.log("🧬 [TEST] Neural Synthesis Verification Complete.");
-    process.exit(failed ? 1 : 0);
+    Deno.exit(failed ? 1 : 0);
 }
 
 test_neural_synthesis().catch(err => {
     console.error("   [TEST CRASH]", err);
-    process.exit(1);
+    Deno.exit(1);
 });
