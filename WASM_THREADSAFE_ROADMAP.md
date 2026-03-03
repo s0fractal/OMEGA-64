@@ -66,12 +66,16 @@ Acceptance:
 - Completed resilience trend regression gate:
   - `test_worker_resilience_trend.ts` compares current audit/budget metrics to `WORKER_RESILIENCE_TREND_BASELINE.json` with ratio+delta thresholds;
   - wired into matrix/nightly soak via `deno task test:worker-resilience-trend`.
+- Completed soak stability slope gate:
+  - `test_worker_soak_stability.ts` runs extended spawn+jitter soak and enforces slope/cap thresholds for RSS, heap, backlog, retry-rate, and windowed tick latency;
+  - wired into matrix/nightly soak artifact stage via `deno task test:worker-soak-stability`.
 
 Acceptance:
 
 - No spontaneous atoms in either mode.
 - No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts` (enforced by verify chain).
-- Long-run 4-worker soak remains green (`test:worker-coherence:long` + `test:worker-resilience-trend`).
+- Long-run 4-worker soak remains green (`test:worker-coherence:long` + `test:worker-resilience-trend` + `test:worker-soak-stability`).
 - Verify chain preserves Deno-only execution surface (`deno task test:runtime-monoculture` stays green).
 - Resilience budgets remain green (`deno task test:worker-resilience-budget`) with zero failures and zero non-strict drift.
 - Resilience trend regression gate remains green (`deno task test:worker-resilience-trend`) against canonical baseline.
+- Soak stability gate remains green (`deno task test:worker-soak-stability`) with bounded slope/cap metrics.
