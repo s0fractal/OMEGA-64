@@ -5,14 +5,11 @@ import { PULSE } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
-
-import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
-import { PRNG } from "./PRNG.ts";
+import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 
@@ -95,21 +92,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const denied = requireControlAuth(req);
     if (denied) return denied;
     try {
-      const { logicHex } = await req.json();
-      const logicBytes = new Uint8Array(8);
-      if (logicHex && logicHex.length === 16) {
-        for (let i = 0; i < 8; i++) {
-          logicBytes[i] = parseInt(logicHex.substr(i * 2, 2), 16);
-        }
-      } else {
-        // Generate a random crisis mutation if none provided
-        crypto.getRandomValues(logicBytes);
-      }
-
-      PREDICTION_MARKET.startCrisis(logicBytes);
-      return new Response("Crisis Initiated", { status: 200 });
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueCrisis(body?.logicHex);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Crisis Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_CRISIS_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
@@ -121,35 +117,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       LOGGER.info(
         `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
       );
-
-      const idx = STATE_MATRIX.findFreeSlot();
-      if (idx !== -1) {
-        const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
-        const { value: vId, next: n1 } = prng.next();
-        const { value: vX, next: n2 } = n1.next();
-        const { value: vY } = n2.next();
-
-        // Deterministic ID based on seed
-        STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
-        STATE_MATRIX.setEnergy(idx, packet.energy);
-        STATE_MATRIX.setResonance(idx, packet.resonance);
-
-        const logicBytes = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-          logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
-        }
-        STATE_MATRIX.setLogic(idx, logicBytes);
-
-        // Position in a deterministic cluster around the center
-        STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
-        STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
-
-        return new Response("OK", { status: 200 });
-      } else {
-        return new Response("Matrix Full", { status: 507 });
-      }
+      const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
+        packet,
+        PULSE.currentPulseId,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Federation Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_FEDERATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
@@ -328,11 +311,24 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   if (url.pathname === "/snapshot/import" && req.method === "POST") {
     const denied = requireControlAuth(req);
     if (denied) return denied;
-    const body = await req.json();
-    const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
-    return new Response(JSON.stringify(result), {
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueSnapshotImport(
+        body?.timestamp,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_SNAPSHOT_IMPORT_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
   }
 
   // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
@@ -355,23 +351,24 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const { x, y, deltaEnergy, radius } = await req.json();
-      LOGGER.info(
-        `⚡ [GOD_MODE] Mutation at (${x}, ${y}) | Delta: ${deltaEnergy} | Radius: ${radius}`,
+      const queued = CONTROL_INTENT_QUEUE.enqueueMutate(
+        x,
+        y,
+        deltaEnergy,
+        radius,
       );
-
-      const r2 = radius * radius;
-      for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
-        if (STATE_MATRIX.getId(i) === 0n) continue;
-        const dx = STATE_MATRIX.getX(i) - x;
-        const dy = STATE_MATRIX.getY(i) - y;
-        if (dx * dx + dy * dy < r2) {
-          const current = STATE_MATRIX.getEnergy(i);
-          STATE_MATRIX.setEnergy(i, Math.max(0, current + deltaEnergy));
-        }
-      }
-      return new Response("OK", { status: 200 });
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Mutation Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_MUTATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
@@ -381,10 +378,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const { x, y } = await req.json();
-      AVATAR_ENGINE.dropPheromone(x, y);
-      return new Response("OK", { status: 200 });
+      const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(x, y);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Avatar Sync Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_AVATAR_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 

@@ -23,6 +23,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "build_wasm.ts",
   "wasm_layout_guard.ts",
   "SYSTEM_START.ts",
+  "CONTROL_INTENT_QUEUE.ts",
   "PULSE.ts",
   "PULSE_WORKER.ts",
   "STATE_MATRIX.ts",

@@ -21,6 +21,17 @@ const SYSTEM_CONTROLLED_POST_PATHS = [
   "/mutate",
   "/avatar",
 ] as const;
+const SYSTEM_CONTROLLED_POST_QUEUE_CALLS: Record<
+  typeof SYSTEM_CONTROLLED_POST_PATHS[number],
+  string | null
+> = {
+  "/crisis": "enqueueCrisis",
+  "/federate": "enqueueFederate",
+  "/snapshot/export": null,
+  "/snapshot/import": "enqueueSnapshotImport",
+  "/mutate": "enqueueMutate",
+  "/avatar": "enqueueAvatar",
+};
 
 const requireSnippet = (
   source: string,
@@ -162,6 +173,13 @@ const main = async () => {
     "System mutating routes must call control auth",
     violations,
   );
+  requireSnippet(
+    system,
+    "CONTROL_INTENT_QUEUE",
+    SYSTEM_PATH,
+    "System mutating routes must enqueue intents via control queue",
+    violations,
+  );
   for (const path of SYSTEM_CONTROLLED_POST_PATHS) {
     const marker = `if (url.pathname === "${path}" && req.method === "POST") {`;
     const start = system.indexOf(marker);
@@ -177,6 +195,21 @@ const main = async () => {
       violations.push({
         file: SYSTEM_PATH,
         reason: `POST route ${path} must enforce requireControlAuth(req)`,
+      });
+    }
+    const queueCall = SYSTEM_CONTROLLED_POST_QUEUE_CALLS[path];
+    if (queueCall && !block.includes(queueCall)) {
+      violations.push({
+        file: SYSTEM_PATH,
+        reason:
+          `POST route ${path} must enqueue via CONTROL_INTENT_QUEUE.${queueCall}(...)`,
+      });
+    }
+    if (queueCall && block.includes("STATE_MATRIX.set")) {
+      violations.push({
+        file: SYSTEM_PATH,
+        reason:
+          `POST route ${path} must not apply STATE_MATRIX writes directly`,
       });
     }
   }

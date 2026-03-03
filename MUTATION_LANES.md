@@ -50,7 +50,10 @@ internal high-speed mutation loops.
   set to interoperate with guarded `/federate`.
 - `SYSTEM_START.ts`: binds loopback by default (`OMEGA_SYSTEM_HOST`) and all
   mutating POST routes require explicit control enable/token
-  (`OMEGA_SYSTEM_CONTROL_ENABLE`, `OMEGA_SYSTEM_CONTROL_TOKEN`).
+  (`OMEGA_SYSTEM_CONTROL_ENABLE`, `OMEGA_SYSTEM_CONTROL_TOKEN`); mutating
+  requests are enqueued into `CONTROL_INTENT_QUEUE.ts`.
 - Canonical crystallization remains in `GATE`.
 - Internal fast-lane mutations are aggregated and emitted by
   `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.
+- External control intents are drained and applied only during `HOST_LOCK`
+  (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).

@@ -2,6 +2,7 @@
   "era": "69",
   "core_entry_files": [
     "SYSTEM_START.ts",
+    "CONTROL_INTENT_QUEUE.ts",
     "PULSE.ts",
     "PULSE_WORKER.ts",
     "STATE_MATRIX.ts",

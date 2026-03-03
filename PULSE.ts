@@ -6,6 +6,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -999,6 +1000,12 @@ export const PULSE = {
       if (oracleDrain.applied > 0 || oracleDrain.dropped > 0) {
         LOGGER.debug(
           `👁️ [ORACLE] Host-lock drain applied=${oracleDrain.applied} skipped=${oracleDrain.skipped} dropped=${oracleDrain.dropped}`,
+        );
+      }
+      const controlDrain = await CONTROL_INTENT_QUEUE.applyHostLockBudget();
+      if (controlDrain.drained > 0 || controlDrain.failed > 0) {
+        LOGGER.debug(
+          `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
 
