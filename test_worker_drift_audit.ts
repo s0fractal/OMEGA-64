@@ -1,5 +1,6 @@
 const CAPTURE_MARKER = "__OMEGA_DETERMINISM_CAPTURE__";
 const REPORT_PATH = "WORKER_DRIFT_AUDIT.md";
+const REPORT_JSON_PATH = "WORKER_DRIFT_AUDIT.json";
 
 type CapturePayload = {
     workerCount: number;
@@ -202,6 +203,26 @@ ${formatAtomTable(nonStrictMetrics.topAtomDrifts)}
 `;
 
     await Deno.writeTextFile(REPORT_PATH, report);
+    await Deno.writeTextFile(
+        REPORT_JSON_PATH,
+        JSON.stringify(
+            {
+                generatedAt: now,
+                strict: {
+                    worker1: strictOne,
+                    worker4: strictFour,
+                    metrics: strictMetrics,
+                },
+                nonStrict: {
+                    worker1: nonStrictOne,
+                    worker4: nonStrictFour,
+                    metrics: nonStrictMetrics,
+                },
+            },
+            null,
+            2,
+        ),
+    );
 };
 
 async function main() {
@@ -224,6 +245,7 @@ async function main() {
         `   non-strict drift atoms=${nonStrictMetrics.atomDiffCount}, structure=${nonStrictMetrics.structureDiffCount}, signal=${nonStrictMetrics.signalDiffCount}, maxPos=${nonStrictMetrics.maxPosDrift}`,
     );
     console.log(`   report: ${REPORT_PATH}`);
+    console.log(`   reportJson: ${REPORT_JSON_PATH}`);
 
     if (!strictMetrics.hashEqual) {
         throw new Error("[AUDIT] strict determinism gate failed.");

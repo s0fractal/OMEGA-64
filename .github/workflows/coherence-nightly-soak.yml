@@ -34,19 +34,16 @@ jobs:
       - name: Run long coherence burn-in
         run: deno task test:worker-coherence:long
 
-      - name: Run jitter chaos gate
-        run: deno task test:worker-jitter-resilience
+      - name: Run resilience audit suite
+        run: deno task test:worker-resilience-audit
 
-      - name: Run spawn-pressure jitter gate
-        run: deno task test:spawn-jitter-resilience
-
-      - name: Run worker drift audit
-        run: deno task test:worker-drift-audit
-
-      - name: Upload drift audit
+      - name: Upload audits
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nightly-worker4-drift-audit
-          path: WORKER_DRIFT_AUDIT.md
+          name: nightly-worker4-audits
+          path: |
+            WORKER_DRIFT_AUDIT.md
+            WORKER_DRIFT_AUDIT.json
+            WORKER_RESILIENCE_AUDIT.json
           if-no-files-found: ignore

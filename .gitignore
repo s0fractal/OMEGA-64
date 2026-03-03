@@ -45,6 +45,8 @@ omega_wasm_asc/
 build/
 *.wasm
 WORKER_DRIFT_AUDIT.md
+WORKER_DRIFT_AUDIT.json
+WORKER_RESILIENCE_AUDIT.json
 node_modules/
 worker_test.js
 mandala_raw.svg

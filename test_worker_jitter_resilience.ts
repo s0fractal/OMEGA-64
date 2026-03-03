@@ -4,6 +4,8 @@ const retryMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS") ??
 const jitterMinMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_JITTER_MIN_MS") ?? "12", 10);
 const jitterMaxMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_JITTER_MAX_MS") ?? "30", 10);
 const ticks = Number.parseInt(Deno.env.get("OMEGA_WORKER_JITTER_TICKS") ?? "6", 10);
+const CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
+const captureMode = Deno.args.includes("--capture");
 
 Deno.env.set("OMEGA_PULSE_WORKERS", "4");
 Deno.env.set("OMEGA_STRICT_DETERMINISM", "0");
@@ -54,6 +56,24 @@ async function main() {
 
         if (totalRetries < 4) {
             throw new Error(`[TEST] Expected retries across jitter run, got totalRetries=${totalRetries}`);
+        }
+
+        if (captureMode) {
+            console.log(
+                `${CAPTURE_MARKER}${JSON.stringify({
+                    scenario: "worker-jitter-resilience",
+                    workerCount: 4,
+                    timeoutMs,
+                    retryCount,
+                    retryMs,
+                    jitterMinMs,
+                    jitterMaxMs,
+                    ticks,
+                    totalRetries,
+                    totalFailures: stats.reduce((acc, w) => acc + w.failures, 0),
+                    stats,
+                })}`,
+            );
         }
 
         await PULSE.setWorkerDebugJitter(0, 0);

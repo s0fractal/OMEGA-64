@@ -40,10 +40,17 @@ jobs:
       - name: Verify coherence deep
         run: deno task verify:coherence:deep
 
-      - name: Upload drift audit
+      - name: Build resilience audit artifact
+        if: matrix.worker_count == 4
+        run: deno task test:worker-resilience-audit
+
+      - name: Upload audits
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: worker-${{ matrix.worker_count }}-drift-audit
-          path: WORKER_DRIFT_AUDIT.md
+          name: worker-${{ matrix.worker_count }}-audits
+          path: |
+            WORKER_DRIFT_AUDIT.md
+            WORKER_DRIFT_AUDIT.json
+            WORKER_RESILIENCE_AUDIT.json
           if-no-files-found: ignore

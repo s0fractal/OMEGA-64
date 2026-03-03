@@ -2,6 +2,8 @@ const timeoutMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS
 const retryCount = Number.parseInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT") ?? "2", 10);
 const retryMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS") ?? "45", 10);
 const debugDelayMs = Number.parseInt(Deno.env.get("OMEGA_WORKER_DEBUG_DELAY_MS") ?? "20", 10);
+const CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
+const captureMode = Deno.args.includes("--capture");
 
 Deno.env.set("OMEGA_PULSE_WORKERS", "1");
 Deno.env.set("OMEGA_STRICT_DETERMINISM", "1");
@@ -40,6 +42,22 @@ async function main() {
         }
         if (w0.failures !== 0) {
             throw new Error(`[TEST] Expected zero worker failures, got=${w0.failures}`);
+        }
+
+        if (captureMode) {
+            console.log(
+                `${CAPTURE_MARKER}${JSON.stringify({
+                    scenario: "worker-timeout-retry",
+                    workerCount: 1,
+                    timeoutMs,
+                    retryCount,
+                    retryMs,
+                    debugDelayMs,
+                    totalRetries: w0.retryWaits,
+                    totalFailures: w0.failures,
+                    stats: [w0],
+                })}`,
+            );
         }
 
         await PULSE.setWorkerDebugDelay(0);

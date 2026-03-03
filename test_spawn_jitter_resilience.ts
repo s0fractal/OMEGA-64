@@ -9,6 +9,8 @@ const ticks = Number.parseInt(Deno.env.get("OMEGA_SPAWN_JITTER_TICKS") ?? "16", 
 const seed = Number.parseInt(Deno.env.get("OMEGA_SPAWN_JITTER_SEED") ?? "424242", 10);
 const replicators = Number.parseInt(Deno.env.get("OMEGA_SPAWN_JITTER_REPLICATORS") ?? "10", 10);
 const architects = Number.parseInt(Deno.env.get("OMEGA_SPAWN_JITTER_ARCHITECTS") ?? "6", 10);
+const CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
+const captureMode = Deno.args.includes("--capture");
 
 Deno.env.set("OMEGA_PULSE_WORKERS", "4");
 Deno.env.set("OMEGA_STRICT_DETERMINISM", "0");
@@ -118,12 +120,14 @@ async function main() {
         await PULSE.setWorkerDebugJitter(jitterMinMs, jitterMaxMs);
 
         let peakActive = initialActive;
+        let finalActive = initialActive;
 
         for (let t = 0; t < ticks; t++) {
             await PULSE.tick();
 
             const active = assertWorldInvariants();
             peakActive = Math.max(peakActive, active);
+            finalActive = active;
 
             const writeHead = Atomics.load(spawnHead, 0);
             const readHead = Atomics.load(spawnHead, 1);
@@ -153,6 +157,30 @@ async function main() {
         }
         if (totalRetries < 4) {
             throw new Error(`[TEST] Expected retries across spawn+jitter run, got totalRetries=${totalRetries}`);
+        }
+
+        if (captureMode) {
+            console.log(
+                `${CAPTURE_MARKER}${JSON.stringify({
+                    scenario: "spawn-jitter-resilience",
+                    workerCount: 4,
+                    timeoutMs,
+                    retryCount,
+                    retryMs,
+                    jitterMinMs,
+                    jitterMaxMs,
+                    ticks,
+                    seed,
+                    replicators,
+                    architects,
+                    initialActive,
+                    finalActive,
+                    peakActive,
+                    totalRetries,
+                    totalFailures: stats.reduce((acc, w) => acc + w.failures, 0),
+                    stats,
+                })}`,
+            );
         }
 
         await PULSE.setWorkerDebugJitter(0, 0);
