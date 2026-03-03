@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T21:07:52.547Z*
-*Exported Files: 59*
-*Manifest SHA256: f2a33d0b7327e96ca1fa3ef9a1c192934dfb474574e422500e61e61348bf61f4*
-*Export Set SHA256: bdabdc0c4c02c6aaafb8afe84a1696b09493731122588d1c336e0f01057c50df*
-*Git Commit: 8ce481dce83b*
+*Generated: 2026-03-03T23:07:13.712Z*
+*Exported Files: 63*
+*Manifest SHA256: 4ed6c06a3ec045697d1d558d624fc29f3baf6f06712a85fd2d7e729d641fb48e*
+*Export Set SHA256: ef0de89e746947572a8b92d802ddf60cd64756401866c7597ac7732643926001*
+*Git Commit: fcb21c92bb42*
 
 ---
 
@@ -2303,6 +2303,10 @@ export const CONTROL_INTENT_QUEUE = {
     "PULSE_WORKER.ts",
     "STATE_MATRIX.ts",
     "GATE.ts",
+    "GATE_VALIDATOR.ts",
+    "GATE_MERGER.ts",
+    "GATE_BUDGET.ts",
+    "GATE_LEDGER.ts",
     "STATE_SNAPSHOT.ts",
     "RIBOSOME.ts",
     "RIBOSOME_TICK.ts",
@@ -2477,6 +2481,531 @@ export const parseEnvBoundedInt = (
 
 ---
 
+## FILE: GATE_BUDGET.ts
+
+```typescript
+export type GateMergedDelta = Array<{ level: number; value: number }>;
+
+const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {
+  let total = 0;
+  for (const val of combinedDelta.values()) {
+    total += Math.abs(Math.round(val));
+  }
+  return total;
+};
+
+const computeScaleFactor = (
+  totalAbsDelta: number,
+  maxTotalAbsDeltaPerTick: number,
+): number => {
+  if (totalAbsDelta <= 0) return 1;
+  if (totalAbsDelta <= maxTotalAbsDeltaPerTick) return 1;
+  return maxTotalAbsDeltaPerTick / totalAbsDelta;
+};
+
+const flattenScaledDelta = (
+  combinedDelta: Map<number, number>,
+  scaleFactor: number,
+): GateMergedDelta =>
+  Array.from(combinedDelta.entries()).map(([level, value]) => ({
+    level,
+    value: Math.round(value * scaleFactor),
+  }));
+
+export const GATE_BUDGET = {
+  totalAbsDeltaRounded,
+  computeScaleFactor,
+  flattenScaledDelta,
+};
+
+```
+
+---
+
+## FILE: GATE_LEDGER.ts
+
+```typescript
+import {
+  type BridgeModeEvent,
+  type GateConfig,
+  type LedgerEvent,
+} from "./STATE_SNAPSHOT.ts";
+import {
+  CHECKPOINT_CHECKPOINT as CHECKPOINT,
+  LEDGER__08_00_LEDGER as LEDGER,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX,
+} from "./SHIMS.ts";
+
+export const persistGateLedgerArtifacts = async (
+  bridgeEvent: BridgeModeEvent,
+  event: LedgerEvent,
+  config: GateConfig,
+  envelopeIndexPath: string,
+  nextTick: number,
+  nextHash: string,
+  nextStateI16: Int16Array,
+  autoCheckpointInterval: number,
+): Promise<void> => {
+  await LEDGER.append(bridgeEvent);
+  await LEDGER.append(event);
+
+  if (!config.dry_run) {
+    await PROPOSAL_ENVELOPE_INDEX.appendFromLedgerEvent(
+      event,
+      envelopeIndexPath,
+    );
+  }
+
+  if (!config.dry_run && nextTick % autoCheckpointInterval === 0) {
+    try {
+      await CHECKPOINT.save(
+        {
+          tick: nextTick,
+          state_hash: nextHash,
+          state_i16: nextStateI16,
+        },
+        "AUTO_INTERVAL",
+      );
+    } catch {
+      // Checkpoints are safety accelerators, not mutation authority.
+    }
+  }
+};
+
+```
+
+---
+
+## FILE: GATE_MERGER.ts
+
+```typescript
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot,
+} from "./STATE_SNAPSHOT.ts";
+import { LOAD_LOAD as LOAD } from "./SHIMS.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { GATE_BUDGET } from "./GATE_BUDGET.ts";
+
+type I16Limits = {
+  max: number;
+  span: number;
+};
+
+export type GateAcceptedProposalMetric = {
+  proposal_id: string;
+  agent_id: string;
+  confidence: number;
+  reliability_base: number;
+  reliability_effective: number;
+  phase_coherence?: number;
+  weight: number;
+  physical_cost: number;
+  agent_phase_u16?: number;
+};
+
+const clamp01 = (x: number): number => {
+  if (x < 0) return 0;
+  if (x > 1) return 1;
+  return x;
+};
+
+const phaseCoherence = (
+  agentPhase: number,
+  delta: Array<{ level: number; value: number }>,
+  phase_u16: Uint16Array | undefined,
+  i16: I16Limits,
+): number => {
+  if (delta.length === 0) return 1;
+  let weighted = 0;
+  let weightSum = 0;
+  for (const d of delta) {
+    const levelPhase = phase_u16 ? phase_u16[d.level] : 0;
+    let dPhi = Math.abs(agentPhase - levelPhase);
+    if (dPhi > i16.max) dPhi = i16.span - dPhi;
+    const angle = (dPhi / i16.max) * Math.PI;
+    const coherence = (1 + Math.cos(angle)) / 2;
+    const w = Math.max(1, Math.abs(d.value));
+    weighted += coherence * w;
+    weightSum += w;
+  }
+  return weightSum > 0 ? clamp01(weighted / weightSum) : 1;
+};
+
+export const mergeGateProposals = (
+  state: StateSnapshot,
+  validProposals: DeltaProposal[],
+  config: GateConfig,
+  decision: GateDecision,
+  i16: I16Limits,
+): {
+  acceptedProposalMetrics: GateAcceptedProposalMetric[];
+  maxTotalCost: number;
+} => {
+  const acceptedProposalMetrics: GateAcceptedProposalMetric[] = [];
+  const reliabilityMode = config.reliability_mode ?? "STATIC";
+  const reliabilityFloor = clamp01(config.reliability_floor ?? 0);
+  const maxTotalCost =
+    Number.isFinite(config.max_total_cost_per_tick ?? Infinity)
+      ? Math.max(0, config.max_total_cost_per_tick ?? Infinity)
+      : Infinity;
+
+  validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+
+  const combinedDelta = new Map<number, number>();
+
+  for (const p of validProposals) {
+    if ((p as any).resonance !== undefined) {
+      LOGGER.debug(
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
+          (p as any).resonance
+        }`,
+      );
+    } else {
+      LOGGER.debug(
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
+      );
+    }
+
+    let physicalCost = 0;
+    const agentPhase = p.agent_phase_u16 ?? 0;
+    for (const d of p.delta) {
+      const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
+      const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
+      const load = LOAD.calculate({
+        entropy: levelEntropy,
+        phase: agentPhase,
+        weight: Math.abs(d.value),
+      }, levelPhase);
+      physicalCost += Math.abs(d.value) + load;
+    }
+
+    const atomResonance = (p as any).resonance || 0;
+    if (atomResonance > 0) {
+      const discountFactor = Math.min(0.95, atomResonance / 500);
+      physicalCost = physicalCost * (1 - discountFactor);
+      LOGGER.debug(
+        `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
+          Math.abs(p.delta[0]?.value || 0)
+        }, Res: ${atomResonance.toFixed(1)}, Discount: ${
+          (discountFactor * 100).toFixed(1)
+        }%`,
+      );
+    }
+
+    const finalCost = Math.round(physicalCost);
+
+    if (finalCost > (config.max_cost_per_agent || Infinity)) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.COST_OVER_BUDGET,
+      });
+      continue;
+    }
+
+    const nextTotalCost = decision.cost_used + finalCost;
+    if (nextTotalCost > maxTotalCost) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.COST_OVER_BUDGET,
+      });
+      continue;
+    }
+
+    decision.accepted_proposals.push(p.proposal_id);
+    decision.cost_used = nextTotalCost;
+
+    const reliabilityBase = clamp01(
+      config.reliability_weight.get(p.agent_id) ?? 1.0,
+    );
+    let phaseCoherenceScore: number | undefined = undefined;
+    let agentReliability = reliabilityBase;
+    if (reliabilityMode === "PHASE_COHERENCE") {
+      phaseCoherenceScore = p.agent_phase_u16 === undefined
+        ? 1
+        : phaseCoherence(p.agent_phase_u16, p.delta, state.phase_u16, i16);
+      const modulation = reliabilityFloor +
+        (1 - reliabilityFloor) * phaseCoherenceScore;
+      agentReliability *= modulation;
+    }
+    agentReliability = clamp01(agentReliability);
+    const weight = p.confidence * agentReliability;
+    acceptedProposalMetrics.push({
+      proposal_id: p.proposal_id,
+      agent_id: p.agent_id,
+      confidence: p.confidence,
+      reliability_base: reliabilityBase,
+      reliability_effective: agentReliability,
+      phase_coherence: phaseCoherenceScore,
+      weight,
+      physical_cost: finalCost,
+      agent_phase_u16: p.agent_phase_u16,
+    });
+
+    for (const d of p.delta) {
+      let val = d.value;
+      if (Math.abs(val) > config.max_abs_delta_per_level) {
+        val = Math.sign(val) * config.max_abs_delta_per_level;
+      }
+
+      const weightedVal = val * weight;
+      const current = combinedDelta.get(d.level) || 0;
+      combinedDelta.set(d.level, current + weightedVal);
+    }
+  }
+
+  const totalAbsDelta = GATE_BUDGET.totalAbsDeltaRounded(combinedDelta);
+  decision.budget_used = totalAbsDelta;
+  const scaleFactor = GATE_BUDGET.computeScaleFactor(
+    totalAbsDelta,
+    config.max_total_abs_delta_per_tick,
+  );
+  decision.accepted_delta = GATE_BUDGET.flattenScaledDelta(
+    combinedDelta,
+    scaleFactor,
+  );
+
+  return {
+    acceptedProposalMetrics,
+    maxTotalCost,
+  };
+};
+
+```
+
+---
+
+## FILE: GATE_VALIDATOR.ts
+
+```typescript
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot,
+} from "./STATE_SNAPSHOT.ts";
+import {
+  AGENT_SIGNATURE,
+  CANON_CAUSAL_BRIDGE,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX,
+} from "./SHIMS.ts";
+
+type GateBridgeResolution = {
+  mode: "GREEN" | "AMBER" | "RED";
+  reason: string;
+};
+
+export type GateValidationResult = {
+  validProposals: DeltaProposal[];
+  proposalDigest: string;
+  envelopeHashByProposal: Map<string, string>;
+  canonBoundProposals: string[];
+  blockedCanonProposals: string[];
+};
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    const body = entries
+      .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+      .join(",");
+    return `{${body}}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+export const validateGateProposals = async (
+  state: StateSnapshot,
+  proposals: DeltaProposal[],
+  config: GateConfig,
+  decision: GateDecision,
+  bridgeResolution: GateBridgeResolution,
+  i16Span: number,
+  envelopeIndexPath: string,
+): Promise<GateValidationResult> => {
+  const signaturePolicy = config.signature_policy ?? "DISABLED";
+  const signatureKeys = config.agent_signature_keys;
+  const antiReplayWindow = Math.max(
+    0,
+    Math.floor(config.anti_replay_window_ticks ?? 0),
+  );
+  const historicalEnvelopeHashes = antiReplayWindow > 0
+    ? await PROPOSAL_ENVELOPE_INDEX.getRecentEnvelopeHashes(
+      state.tick - antiReplayWindow,
+      state.tick,
+      envelopeIndexPath,
+    )
+    : new Set<string>();
+  const envelopeHashByProposal = new Map<string, string>();
+  const seenEnvelopeHashesInTick = new Set<string>();
+
+  const canonicalProposalList = proposals
+    .map((p) => AGENT_SIGNATURE.toCanonicalObject(p))
+    .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+  const proposalDigest = await sha256Hex(
+    stableStringify(canonicalProposalList),
+  );
+
+  const validProposals: DeltaProposal[] = [];
+  const canonBoundProposals: string[] = [];
+  const blockedCanonProposals: string[] = [];
+
+  for (const p of proposals) {
+    const envelopeHash = await AGENT_SIGNATURE.proposalEnvelopeHash(p);
+    envelopeHashByProposal.set(p.proposal_id, envelopeHash);
+    if (
+      p.proposal_envelope_hash && p.proposal_envelope_hash !== envelopeHash
+    ) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH,
+      });
+      continue;
+    }
+    if (antiReplayWindow > 0) {
+      if (
+        seenEnvelopeHashesInTick.has(envelopeHash) ||
+        historicalEnvelopeHashes.has(envelopeHash)
+      ) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.REPLAY_ENVELOPE_DUPLICATE,
+        });
+        continue;
+      }
+      seenEnvelopeHashesInTick.add(envelopeHash);
+    }
+    if (CANON_CAUSAL_BRIDGE.isCanonBound(p)) {
+      canonBoundProposals.push(p.proposal_id);
+      if (bridgeResolution.mode !== "GREEN") {
+        blockedCanonProposals.push(p.proposal_id);
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.CANON_PATH_REQUIRES_GREEN_BRIDGE,
+        });
+        continue;
+      }
+    }
+    if (signaturePolicy !== "DISABLED") {
+      const key = signatureKeys?.get(p.agent_id);
+      if (!key) {
+        if (
+          signaturePolicy === "REQUIRED" || p.agent_signature ||
+          p.signature_scheme
+        ) {
+          decision.rejected_proposals.push({
+            proposal_id: p.proposal_id,
+            reason: REJECTION.SIGNATURE_KEY_MISSING,
+          });
+          continue;
+        }
+      } else {
+        if (!p.agent_signature) {
+          if (signaturePolicy === "REQUIRED") {
+            decision.rejected_proposals.push({
+              proposal_id: p.proposal_id,
+              reason: REJECTION.SIGNATURE_REQUIRED,
+            });
+            continue;
+          }
+        } else {
+          const verify = await AGENT_SIGNATURE.verifyProposal(p, key);
+          if (!verify.ok) {
+            decision.rejected_proposals.push({
+              proposal_id: p.proposal_id,
+              reason: verify.reason ?? REJECTION.SIGNATURE_INVALID,
+            });
+            continue;
+          }
+        }
+      }
+    }
+    if (p.tick !== state.tick) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.TICK_MISMATCH,
+      });
+      continue;
+    }
+    if (p.base_state_hash !== state.state_hash) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.BASE_HASH_MISMATCH,
+      });
+      continue;
+    }
+    if (!p.delta || p.delta.length === 0) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.EMPTY_DELTA,
+      });
+      continue;
+    }
+    if (
+      p.delta.some((d) =>
+        !Number.isInteger(d.level) ||
+        d.level < 0 ||
+        d.level > 63 ||
+        !Number.isFinite(d.value)
+      )
+    ) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.OUT_OF_RANGE_VALUE,
+      });
+      continue;
+    }
+    if (
+      p.agent_phase_u16 !== undefined &&
+      (
+        !Number.isInteger(p.agent_phase_u16) ||
+        p.agent_phase_u16 < 0 ||
+        p.agent_phase_u16 > i16Span
+      )
+    ) {
+      decision.rejected_proposals.push({
+        proposal_id: p.proposal_id,
+        reason: REJECTION.OUT_OF_RANGE_VALUE,
+      });
+      continue;
+    }
+
+    validProposals.push(p);
+  }
+
+  return {
+    validProposals,
+    proposalDigest,
+    envelopeHashByProposal,
+    canonBoundProposals,
+    blockedCanonProposals,
+  };
+};
+
+```
+
+---
+
 ## FILE: GATE.ts
 
 ```typescript
@@ -2486,25 +3015,24 @@ import {
   type GateConfig,
   type GateDecision,
   type LedgerEvent,
-  REJECTION,
   type StateSnapshot,
 } from "./STATE_SNAPSHOT.ts";
 import {
-  AGENT_SIGNATURE,
   CANON_CAUSAL_BRIDGE,
-  CHECKPOINT_CHECKPOINT as CHECKPOINT,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
   I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP,
   I16_LIMITS_I16_LIMITS as I16_LIMITS,
   INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET,
   LEDGER__08_00_LEDGER as LEDGER,
-  LOAD_LOAD as LOAD,
   PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX,
   TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
 } from "./SHIMS.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { validateGateProposals } from "./GATE_VALIDATOR.ts";
+import { mergeGateProposals } from "./GATE_MERGER.ts";
+import { persistGateLedgerArtifacts } from "./GATE_LEDGER.ts";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -2551,33 +3079,6 @@ const sha256Hex = async (input: string): Promise<string> => {
   return toHex(digest);
 };
 
-const clamp01 = (x: number): number => {
-  if (x < 0) return 0;
-  if (x > 1) return 1;
-  return x;
-};
-
-const phaseCoherence = (
-  agentPhase: number,
-  delta: Array<{ level: number; value: number }>,
-  phase_u16?: Uint16Array,
-): number => {
-  if (delta.length === 0) return 1;
-  let weighted = 0;
-  let weightSum = 0;
-  for (const d of delta) {
-    const levelPhase = phase_u16 ? phase_u16[d.level] : 0;
-    let dPhi = Math.abs(agentPhase - levelPhase);
-    if (dPhi > I16.max) dPhi = I16.span - dPhi;
-    const angle = (dPhi / I16.max) * Math.PI;
-    const coherence = (1 + Math.cos(angle)) / 2; // [0..1]
-    const w = Math.max(1, Math.abs(d.value));
-    weighted += coherence * w;
-    weightSum += w;
-  }
-  return weightSum > 0 ? clamp01(weighted / weightSum) : 1;
-};
-
 export const GATE = {
   /**
    * The Core Function: Process proposals and produce a decision.
@@ -2596,333 +3097,35 @@ export const GATE = {
       cost_used: 0,
       accepted_delta: [],
     };
-    const acceptedProposalMetrics: Array<{
-      proposal_id: string;
-      agent_id: string;
-      confidence: number;
-      reliability_base: number;
-      reliability_effective: number;
-      phase_coherence?: number;
-      weight: number;
-      physical_cost: number;
-      agent_phase_u16?: number;
-    }> = [];
     const proposalById = new Map(proposals.map((p) => [p.proposal_id, p]));
     const bridgeResolution = CANON_CAUSAL_BRIDGE.resolveMode(
       runtime.bridge_invariant_report,
     );
-    const canonBoundProposals: string[] = [];
-    const blockedCanonProposals: string[] = [];
-    const signaturePolicy = config.signature_policy ?? "DISABLED";
-    const signatureKeys = config.agent_signature_keys;
-    const reliabilityMode = config.reliability_mode ?? "STATIC";
-    const reliabilityFloor = clamp01(config.reliability_floor ?? 0);
-    const maxTotalCost =
-      Number.isFinite(config.max_total_cost_per_tick ?? Infinity)
-        ? Math.max(0, config.max_total_cost_per_tick ?? Infinity)
-        : Infinity;
     const envelopeIndexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(
       LEDGER.STORAGE_PATH,
     );
-    const antiReplayWindow = Math.max(
-      0,
-      Math.floor(config.anti_replay_window_ticks ?? 0),
+    const {
+      validProposals,
+      proposalDigest,
+      envelopeHashByProposal,
+      canonBoundProposals,
+      blockedCanonProposals,
+    } = await validateGateProposals(
+      state,
+      proposals,
+      config,
+      decision,
+      bridgeResolution,
+      I16.span,
+      envelopeIndexPath,
     );
-    const historicalEnvelopeHashes = antiReplayWindow > 0
-      ? await PROPOSAL_ENVELOPE_INDEX.getRecentEnvelopeHashes(
-        state.tick - antiReplayWindow,
-        state.tick,
-        envelopeIndexPath,
-      )
-      : new Set<string>();
-    const envelopeHashByProposal = new Map<string, string>();
-    const seenEnvelopeHashesInTick = new Set<string>();
-
-    const canonicalProposalList = proposals
-      .map((p) => AGENT_SIGNATURE.toCanonicalObject(p))
-      .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
-    const proposalDigest = await sha256Hex(
-      stableStringify(canonicalProposalList),
+    const { acceptedProposalMetrics, maxTotalCost } = mergeGateProposals(
+      state,
+      validProposals,
+      config,
+      decision,
+      I16,
     );
-
-    // 1. Validation & Filtering
-    const validProposals: DeltaProposal[] = [];
-
-    for (const p of proposals) {
-      const envelopeHash = await AGENT_SIGNATURE.proposalEnvelopeHash(p);
-      envelopeHashByProposal.set(p.proposal_id, envelopeHash);
-      if (
-        p.proposal_envelope_hash && p.proposal_envelope_hash !== envelopeHash
-      ) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH,
-        });
-        continue;
-      }
-      if (antiReplayWindow > 0) {
-        if (
-          seenEnvelopeHashesInTick.has(envelopeHash) ||
-          historicalEnvelopeHashes.has(envelopeHash)
-        ) {
-          decision.rejected_proposals.push({
-            proposal_id: p.proposal_id,
-            reason: REJECTION.REPLAY_ENVELOPE_DUPLICATE,
-          });
-          continue;
-        }
-        seenEnvelopeHashesInTick.add(envelopeHash);
-      }
-      if (CANON_CAUSAL_BRIDGE.isCanonBound(p)) {
-        canonBoundProposals.push(p.proposal_id);
-        if (bridgeResolution.mode !== "GREEN") {
-          blockedCanonProposals.push(p.proposal_id);
-          decision.rejected_proposals.push({
-            proposal_id: p.proposal_id,
-            reason: REJECTION.CANON_PATH_REQUIRES_GREEN_BRIDGE,
-          });
-          continue;
-        }
-      }
-      if (signaturePolicy !== "DISABLED") {
-        const key = signatureKeys?.get(p.agent_id);
-        if (!key) {
-          if (
-            signaturePolicy === "REQUIRED" || p.agent_signature ||
-            p.signature_scheme
-          ) {
-            decision.rejected_proposals.push({
-              proposal_id: p.proposal_id,
-              reason: REJECTION.SIGNATURE_KEY_MISSING,
-            });
-            continue;
-          }
-        } else {
-          if (!p.agent_signature) {
-            if (signaturePolicy === "REQUIRED") {
-              decision.rejected_proposals.push({
-                proposal_id: p.proposal_id,
-                reason: REJECTION.SIGNATURE_REQUIRED,
-              });
-              continue;
-            }
-          } else {
-            const verify = await AGENT_SIGNATURE.verifyProposal(p, key);
-            if (!verify.ok) {
-              decision.rejected_proposals.push({
-                proposal_id: p.proposal_id,
-                reason: verify.reason ?? REJECTION.SIGNATURE_INVALID,
-              });
-              continue;
-            }
-          }
-        }
-      }
-      // Check 1: Tick Mismatch
-      if (p.tick !== state.tick) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.TICK_MISMATCH,
-        });
-        continue;
-      }
-      // Check 2: Base Hash Mismatch
-      if (p.base_state_hash !== state.state_hash) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.BASE_HASH_MISMATCH,
-        });
-        continue;
-      }
-      // Check 3: Schema/Values (Simplified)
-      if (!p.delta || p.delta.length === 0) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.EMPTY_DELTA,
-        });
-        continue;
-      }
-      if (
-        p.delta.some((d) =>
-          !Number.isInteger(d.level) ||
-          d.level < 0 ||
-          d.level > 63 ||
-          !Number.isFinite(d.value)
-        )
-      ) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.OUT_OF_RANGE_VALUE,
-        });
-        continue;
-      }
-      if (
-        p.agent_phase_u16 !== undefined &&
-        (
-          !Number.isInteger(p.agent_phase_u16) ||
-          p.agent_phase_u16 < 0 ||
-          p.agent_phase_u16 > I16.span
-        )
-      ) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.OUT_OF_RANGE_VALUE,
-        });
-        continue;
-      }
-
-      // ... Additional checks (bounds, cost) would go here ...
-
-      validProposals.push(p);
-    }
-
-    // 2. Deterministic Sort (Canonical Order)
-    validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
-
-    // 3. Merge with Budget Enforcement
-    const combinedDelta = new Map<number, number>();
-
-    for (const p of validProposals) {
-      if ((p as any).resonance !== undefined) {
-        LOGGER.debug(
-          `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
-            (p as any).resonance
-          }`,
-        );
-      } else {
-        LOGGER.debug(
-          `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
-        );
-      }
-
-      // Calculate Physical Cost using LOAD model
-      let physicalCost = 0;
-      const agentPhase = p.agent_phase_u16 ?? 0;
-      for (const d of p.delta) {
-        // Get current level properties from state (if available)
-        const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
-        const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
-
-        // Calculate Load of this specific mutation
-        // Agent phase is proposal-local; level phase is substrate-local.
-        const load = LOAD.calculate({
-          entropy: levelEntropy,
-          phase: agentPhase,
-          weight: Math.abs(d.value),
-        }, levelPhase);
-
-        // Simplified Cost: Base Cost + Load Penalty
-        // cost = |delta| + Load
-        physicalCost += Math.abs(d.value) + load;
-      }
-
-      // --- PROOF OF RESONANCE (PoR): Zero-Friction Routing ---
-      // Atoms that have proven high topological utility (Resonance)
-      // experience less friction (cost) when modifying the state.
-      const atomResonance = (p as any).resonance || 0;
-      let discountLabel = "";
-      if (atomResonance > 0) {
-        // The higher the resonance, the greater the discount (cap at 95%)
-        const discountFactor = Math.min(0.95, atomResonance / 500);
-        physicalCost = physicalCost * (1 - discountFactor);
-        discountLabel = `(PoR Discount: ${(discountFactor * 100).toFixed(1)}%)`;
-        LOGGER.debug(
-          `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
-            Math.abs(p.delta[0]?.value || 0)
-          }, Res: ${atomResonance.toFixed(1)}, Discount: ${
-            (discountFactor * 100).toFixed(1)
-          }%`,
-        );
-      }
-
-      const finalCost = Math.round(physicalCost);
-
-      // Check cost budget per agent with measured physical cost.
-      if (finalCost > (config.max_cost_per_agent || Infinity)) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.COST_OVER_BUDGET,
-        });
-        continue;
-      }
-
-      // Check total cost budget for this tick (energy budget).
-      const nextTotalCost = decision.cost_used + finalCost;
-      if (nextTotalCost > maxTotalCost) {
-        decision.rejected_proposals.push({
-          proposal_id: p.proposal_id,
-          reason: REJECTION.COST_OVER_BUDGET,
-        });
-        continue;
-      }
-
-      decision.accepted_proposals.push(p.proposal_id);
-      decision.cost_used = nextTotalCost;
-
-      // 4. Weighted Merge Logic
-      // Weight = Confidence (0..1) * Reliability (0..1)
-      const reliabilityBase = clamp01(
-        config.reliability_weight.get(p.agent_id) ?? 1.0,
-      );
-      let phaseCoherenceScore: number | undefined = undefined;
-      let agentReliability = reliabilityBase;
-      if (reliabilityMode === "PHASE_COHERENCE") {
-        phaseCoherenceScore = p.agent_phase_u16 === undefined
-          ? 1
-          : phaseCoherence(p.agent_phase_u16, p.delta, state.phase_u16);
-        const modulation = reliabilityFloor +
-          (1 - reliabilityFloor) * phaseCoherenceScore;
-        agentReliability *= modulation;
-      }
-      agentReliability = clamp01(agentReliability);
-      const weight = p.confidence * agentReliability;
-      acceptedProposalMetrics.push({
-        proposal_id: p.proposal_id,
-        agent_id: p.agent_id,
-        confidence: p.confidence,
-        reliability_base: reliabilityBase,
-        reliability_effective: agentReliability,
-        phase_coherence: phaseCoherenceScore,
-        weight,
-        physical_cost: finalCost,
-        agent_phase_u16: p.agent_phase_u16,
-      });
-
-      for (const d of p.delta) {
-        // Clip per level
-        let val = d.value;
-        if (Math.abs(val) > config.max_abs_delta_per_level) {
-          val = Math.sign(val) * config.max_abs_delta_per_level;
-        }
-
-        // Accumulate Weighted Delta (Float)
-        const weightedVal = val * weight;
-        const current = combinedDelta.get(d.level) || 0;
-        combinedDelta.set(d.level, current + weightedVal);
-      }
-    }
-
-    // 5. Global Budget Enforcement & Scaling
-    // Calculate total absolute delta of the merged vector (using rounded values for check)
-    let totalAbsDelta = 0;
-    for (const val of combinedDelta.values()) {
-      totalAbsDelta += Math.abs(Math.round(val));
-    }
-    decision.budget_used = totalAbsDelta;
-
-    let scaleFactor = 1.0;
-    if (totalAbsDelta > config.max_total_abs_delta_per_tick) {
-      scaleFactor = config.max_total_abs_delta_per_tick / totalAbsDelta;
-      // telemetry: scaling deltas by budget constraint
-    }
-
-    // 6. Flatten & Scale & Round Delta
-    decision.accepted_delta = Array.from(combinedDelta.entries()).map((
-      [level, value],
-    ) => ({
-      level,
-      value: Math.round(value * scaleFactor), // Final Integer Rounding
-    }));
 
     // 5. Apply Mutation (OR Dry Run)
     const nextStateI16 = new Int16Array(state.state_i16); // Clone
@@ -3080,30 +3283,16 @@ export const GATE = {
       throw new Error("🔴 RED LINE VIOLATION: DRY_RUN_PURITY. System Halted.");
     }
 
-    await LEDGER.append(bridgeEvent);
-    await LEDGER.append(event);
-    if (!config.dry_run) {
-      await PROPOSAL_ENVELOPE_INDEX.appendFromLedgerEvent(
-        event,
-        envelopeIndexPath,
-      );
-    }
-
-    if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {
-      try {
-        await CHECKPOINT.save(
-          {
-            tick: nextTick,
-            state_hash: nextHash,
-            state_i16: nextStateI16,
-          },
-          "AUTO_INTERVAL",
-        );
-      } catch (e) {
-        // Checkpoints are safety accelerators, not mutation authority.
-        // checkpoint save failed (telemetry handled outside canonical band)
-      }
-    }
+    await persistGateLedgerArtifacts(
+      bridgeEvent,
+      event,
+      config,
+      envelopeIndexPath,
+      nextTick,
+      nextHash,
+      nextStateI16,
+      AUTO_CHECKPOINT_INTERVAL,
+    );
 
     return {
       tick: nextTick,
