@@ -632,7 +632,7 @@ export function execute_atom(atomIndex: i32): void {
                     let gx = getX(atomIndex) / 10;
                     let gy = getY(atomIndex) / 10;
                     let gridIdx = gy * 140 + gx;
-                    store<i32>(SIGNAL_GRID_OFF + (gridIdx << 2) as usize, (p2 as i32 << 8) | (p3 as i32));
+                    store<i32>(SIGNAL_GRID_OFF + (gridIdx << 2) as usize, ((p2 as i32) << 8) | (p3 as i32));
                 } else if (mode == 3) { // BANK_DEPOSIT val
                     let val = p2 as i32;
                     if (energy >= val) {
@@ -714,7 +714,7 @@ export function execute_atom(atomIndex: i32): void {
                         
                         if (tx >= 0 && tx < 140 && ty >= 0 && ty < 80) {
                             let cellIdx = ty * 140 + tx;
-                            let newVal = (state as i32 << 24) | (type as i32 & 0xFF);
+                            let newVal = ((state as i32) << 24) | ((type as i32) & 0xFF);
                             atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), newVal);
                         }
                     }
