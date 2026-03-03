@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T18:20:11.224Z*
+*Generated: 2026-03-03T18:32:07.378Z*
 *Exported Files: 51*
 
 ---
@@ -712,60 +712,82 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
 export const BREATH = {
-    inhale: async () => {
-        console.log("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
-        
-        while (true) {
-            console.log("\n--- [BREATH] Deep Sample ---");
-            
-            // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
-            const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
-            const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
-            console.log(`   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`);
-            if (oracle.length > 0) console.log(`   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`);
-            
-            // 2. Audit Archived Intent (Historical Context)
-            const historicalBriefing = await AUDIT_ENGINE.generateHistoricalBriefing();
-            console.log(`   [BREATH] Historical Briefing: "${historicalBriefing.substring(0, 50)}..."`);
+  inhale: async () => {
+    LOGGER.info("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
 
-            // 3. Consult the Oracle (LLM Synapse)
-            const combinedContext = `${historicalBriefing} | MOOD: ${vox.join(" ")} | ORACLE: ${oracle.join(" ")}`;
-            const thought = await LLM_SYNAPSE.generateThought(combinedContext);
-            
-            // 4. Inject back into the Matrix (Motor Output)
-            const weight = 80 + Math.random() * 40;
-            await SEMANTIC_MEMBRANE.injectThought(thought, weight);
-            
-            // Phase 23: Entropy Flux (Negative Entropy Injection)
-            const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
-            console.log(`   [BREATH] Negentropy Flux: +${(weight * 2).toFixed(1)} energy units across ${energyInjected} atoms`);
-            
-            // 5. Digital Archaeology (Every 5 cycles)
-            if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
-                console.log("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
-                const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
-                if (ruins.length > 0) {
-                    const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
-                    console.log(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
-                } else {
-                    console.log("   [ARCHAEOLOGY] No ruins found in this sector.");
-                }
-            }
+    while (true) {
+      LOGGER.info("\n--- [BREATH] Deep Sample ---");
 
-            console.log(`   [BREATH] Exhale complete. Next cycle in ${BREATH_INTERVAL_MS/1000}s.`);
-            
-            await new Promise(r => setTimeout(r, BREATH_INTERVAL_MS));
+      // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
+      const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+      const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
+      LOGGER.info(
+        `   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`,
+      );
+      if (oracle.length > 0) {
+        LOGGER.info(
+          `   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`,
+        );
+      }
+
+      // 2. Audit Archived Intent (Historical Context)
+      const historicalBriefing = await AUDIT_ENGINE
+        .generateHistoricalBriefing();
+      LOGGER.info(
+        `   [BREATH] Historical Briefing: "${
+          historicalBriefing.substring(0, 50)
+        }..."`,
+      );
+
+      // 3. Consult the Oracle (LLM Synapse)
+      const combinedContext = `${historicalBriefing} | MOOD: ${
+        vox.join(" ")
+      } | ORACLE: ${oracle.join(" ")}`;
+      const thought = await LLM_SYNAPSE.generateThought(combinedContext);
+
+      // 4. Inject back into the Matrix (Motor Output)
+      const weight = 80 + Math.random() * 40;
+      await SEMANTIC_MEMBRANE.injectThought(thought, weight);
+
+      // Phase 23: Entropy Flux (Negative Entropy Injection)
+      const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
+      LOGGER.info(
+        `   [BREATH] Negentropy Flux: +${
+          (weight * 2).toFixed(1)
+        } energy units across ${energyInjected} atoms`,
+      );
+
+      // 5. Digital Archaeology (Every 5 cycles)
+      if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
+        LOGGER.info("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
+        const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
+        if (ruins.length > 0) {
+          const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
+          LOGGER.info(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
+        } else {
+          LOGGER.info("   [ARCHAEOLOGY] No ruins found in this sector.");
         }
+      }
+
+      LOGGER.info(
+        `   [BREATH] Exhale complete. Next cycle in ${
+          BREATH_INTERVAL_MS / 1000
+        }s.`,
+      );
+
+      await new Promise((r) => setTimeout(r, BREATH_INTERVAL_MS));
     }
+  },
 };
 
 if (import.meta.main) {
-    BREATH.inhale();
+  BREATH.inhale();
 }
 
 ```
@@ -6837,11 +6859,25 @@ ${REFLECTION_ENGINE.decompile(code)}
 // OMEGA-64 | RIBOSOME_TICK.ts | Zero-IOPS Execution Kernel
 // Interprets the Logic Prefix (8 hex chars) directly from eigenvalues.
 
+import { LOGGER } from "./LOGGER.ts";
+
 export const MAPPING: Record<string, string> = {
-  "0": "[0]", "1": "[1]", "2": "[2]", "3": "[3]",
-  "4": "[4]", "5": "[5]", "6": "[6]", "7": "[7]",
-  "8": "I",   "9": "K",   "A": "S",   "B": "Y",
-  "C": "ROT", "D": "SYNC","E": "->",  "F": "ESC"
+  "0": "[0]",
+  "1": "[1]",
+  "2": "[2]",
+  "3": "[3]",
+  "4": "[4]",
+  "5": "[5]",
+  "6": "[6]",
+  "7": "[7]",
+  "8": "I",
+  "9": "K",
+  "A": "S",
+  "B": "Y",
+  "C": "ROT",
+  "D": "SYNC",
+  "E": "->",
+  "F": "ESC",
 };
 
 export interface QuantumFrame {
@@ -6856,8 +6892,12 @@ export const RIBOSOME_TICK = {
    * (Zero-IOPS: We only need the first 8 chars)
    */
   decode: (eigenvalue: string): string[] => {
-    const raw = eigenvalue.startsWith("0x") ? eigenvalue.slice(2, 10) : eigenvalue.slice(0, 8);
-    return raw.split("").map(char => MAPPING[char.toUpperCase()] ?? `[${char}]`);
+    const raw = eigenvalue.startsWith("0x")
+      ? eigenvalue.slice(2, 10)
+      : eigenvalue.slice(0, 8);
+    return raw.split("").map((char) =>
+      MAPPING[char.toUpperCase()] ?? `[${char}]`
+    );
   },
 
   /**
@@ -6865,61 +6905,59 @@ export const RIBOSOME_TICK = {
    * Implements a simple stack-based combinator engine.
    */
   reduce: (logicHex: string): string => {
-    const ops = logicHex.startsWith("0x") ? logicHex.slice(2, 10) : logicHex.slice(0, 8);
+    const ops = logicHex.startsWith("0x")
+      ? logicHex.slice(2, 10)
+      : logicHex.slice(0, 8);
     const stack: string[] = ops.split("").reverse(); // Push ops onto stack in reverse
     const output: string[] = [];
 
     let safety = 0;
     while (stack.length > 0 && safety < 128) {
-        safety++;
-        const op = stack.pop()!.toUpperCase();
-        
-        // I Combinator (8)
-        if (op === '8') {
-            if (stack.length > 0) {
-                // I x -> x
-            }
+      safety++;
+      const op = stack.pop()!.toUpperCase();
+
+      // I Combinator (8)
+      if (op === "8") {
+        if (stack.length > 0) {
+          // I x -> x
         }
-        // K Combinator (9)
-        else if (op === '9') {
-            if (stack.length >= 2) {
-                const x = stack.pop()!;
-                stack.pop(); // drop y
-                stack.push(x);
-            }
+      } // K Combinator (9)
+      else if (op === "9") {
+        if (stack.length >= 2) {
+          const x = stack.pop()!;
+          stack.pop(); // drop y
+          stack.push(x);
         }
-        // S Combinator (A)
-        else if (op === 'A') {
-            if (stack.length >= 3) {
-                const x = stack.pop()!;
-                const y = stack.pop()!;
-                const z = stack.pop()!;
-                // S x y z -> x z (y z)
-                stack.push(z);
-                stack.push(y);
-                stack.push(z);
-                stack.push(x);
-            }
+      } // S Combinator (A)
+      else if (op === "A") {
+        if (stack.length >= 3) {
+          const x = stack.pop()!;
+          const y = stack.pop()!;
+          const z = stack.pop()!;
+          // S x y z -> x z (y z)
+          stack.push(z);
+          stack.push(y);
+          stack.push(z);
+          stack.push(x);
         }
-        // ROT Operator (C)
-        else if (op === 'C') {
-            if (stack.length >= 2) {
-                const a = stack.shift()!;
-                stack.push(a);
-            }
+      } // ROT Operator (C)
+      else if (op === "C") {
+        if (stack.length >= 2) {
+          const a = stack.shift()!;
+          stack.push(a);
         }
-        // SYNC (D) / ESC (F) / -> (E) - No-ops in pure logic
-        else if (['D', 'E', 'F'].includes(op)) {
-            // Control Signal Detected
-        }
-        // Constants / Numerals (0-7)
-        else {
-            output.push(op);
-        }
+      } // SYNC (D) / ESC (F) / -> (E) - No-ops in pure logic
+      else if (["D", "E", "F"].includes(op)) {
+        // Control Signal Detected
+      } // Constants / Numerals (0-7)
+      else {
+        output.push(op);
+      }
     }
 
     // Reconstruct resulting logic hex (padded to 8 chars)
-    const result = (output.join("") + stack.reverse().join("")).padEnd(8, "0").slice(0, 8);
+    const result = (output.join("") + stack.reverse().join("")).padEnd(8, "0")
+      .slice(0, 8);
     return result;
   },
 
@@ -6927,21 +6965,21 @@ export const RIBOSOME_TICK = {
    * Verification: B1 -> NOT -> B0
    */
   verify: () => {
-    console.log("🛡️ OMEGA-64 | ZERO-IOPS VERIFICATION | PHASE XXIII");
+    LOGGER.info("🛡️ OMEGA-64 | ZERO-IOPS VERIFICATION | PHASE XXIII");
 
     const B1_HEX = "3EB92A1B";
-    const NOT_HEX = "F1E1B929"; 
-    
-    console.log(`\n🧪 EXECUTING REDUCTION: NOT(B1)`);
+    const NOT_HEX = "F1E1B929";
+
+    LOGGER.info(`\n🧪 EXECUTING REDUCTION: NOT(B1)`);
     const result = RIBOSOME_TICK.reduce(NOT_HEX + B1_HEX);
-    
-    console.log(`   [FINAL] 0x${result}`);
-    console.log("✅ VERIFICATION SUCCESSFUL: Zero-IOPS Logic Reduced.");
-  }
+
+    LOGGER.info(`   [FINAL] 0x${result}`);
+    LOGGER.info("✅ VERIFICATION SUCCESSFUL: Zero-IOPS Logic Reduced.");
+  },
 };
 
 if (import.meta.main) {
-    RIBOSOME_TICK.verify();
+  RIBOSOME_TICK.verify();
 }
 
 ```
@@ -6959,16 +6997,17 @@ if (import.meta.main) {
 import { IMMUNE } from "./IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 import { parse as parseYaml } from "jsr:@std/yaml";
-import { STATE_MATRIX, ATOM_SIZE } from "./STATE_MATRIX.ts";
+import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { decodeHex } from "jsr:@std/encoding/hex";
+import { LOGGER } from "./LOGGER.ts";
 
 export interface Atom {
-    id: string; // The Filename (Address)
-    level: number;
-    module: any; // The Exported Logic
-    symbol: string;
-    topo?: { r: number, theta: number, op: string };
+  id: string; // The Filename (Address)
+  level: number;
+  module: any; // The Exported Logic
+  symbol: string;
+  topo?: { r: number; theta: number; op: string };
 }
 
 export type Lattice = Map<string, Atom>;
@@ -6978,150 +7017,176 @@ export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
 
 function idToBigInt(id: string): bigint {
-    const hex = id.split('.')[0].replace('0x', '');
-    const cleanHex = hex.replace(/[^0-9a-fA-F]/g, '0').padEnd(16, '0');
-    try {
-        return BigInt(`0x${cleanHex.substring(0, 16)}`);
-    } catch {
-        return 0n;
-    }
+  const hex = id.split(".")[0].replace("0x", "");
+  const cleanHex = hex.replace(/[^0-9a-fA-F]/g, "0").padEnd(16, "0");
+  try {
+    return BigInt(`0x${cleanHex.substring(0, 16)}`);
+  } catch {
+    return 0n;
+  }
 }
 
 export const RIBOSOME = {
-    // Scan and Lift all Atoms in Flatland and Vacuum
-    lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
-        console.log("   [RIBOSOME] lift started on root: ", root);
+  // Scan and Lift all Atoms in Flatland and Vacuum
+  lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
+    LOGGER.info("   [RIBOSOME] lift started on root: ", root);
 
-        // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
-        const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
-        if (snapshots.length > 0) {
-            const latest = snapshots[0];
-            console.log(`   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`);
-            const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
-            if (status.success) {
-                console.log("   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊");
-                // Reconstruct a mock lattice from active indices for compatibility
-                const lattice = new Map<string, Atom>();
-                const activeIndices = STATE_MATRIX.getActiveIndices();
-                for (const idx of activeIndices) {
-                    const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, '0').toUpperCase();
-                    // We don't have the full AST/logic string here perfectly, but 
-                    // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
-                    ID_TO_IDX.set(idHex, idx);
-                    IDX_TO_ID.set(idx, idHex);
-                    lattice.set(idHex, { id: idHex, level: 0, module: {}, symbol: "HYDRATED" });
-                }
-                // Return immediately, bypassing filesystem parsing
-                return lattice;
-            } else {
-                console.warn("   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.");
-                STATE_MATRIX.clear(); // Reset before fallback
-            }
-        }
-
+    // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
+    const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+    if (snapshots.length > 0) {
+      const latest = snapshots[0];
+      LOGGER.info(
+        `   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`,
+      );
+      const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
+      if (status.success) {
+        LOGGER.info(
+          "   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊",
+        );
+        // Reconstruct a mock lattice from active indices for compatibility
         const lattice = new Map<string, Atom>();
-        let idx = 0;
-
-        const scanDirs = [root, `${root}/SINGULARITY/V`];
-        for (const dir of scanDirs) {
-            console.log(`   [RIBOSOME] scanning dir: ${dir}`);
-            try {
-                // @ts-ignore
-                for await (const entry of Deno.readDir(dir)) {
-                    if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-                        const fullPath = dir === root ? entry.name : `SINGULARITY/V/${entry.name}`;
-                        // @ts-ignore
-                        const content = await Deno.readTextFile(fullPath);
-                        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-                        if (!frontmatterMatch) continue;
-
-                        const alpha = parseYaml(frontmatterMatch[1]) as any;
-                        const symbol = alpha.symbol ?? entry.name.split('.')[1] ?? "UNKNOWN";
-                        const level = alpha.level ?? (alpha.vector ? parseInt(alpha.vector.split('.')[0]) : 0);
-
-                        // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
-                        const atomBigId = idToBigInt(entry.name);
-                        STATE_MATRIX.setId(idx, atomBigId);
-                        STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
-                        STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
-                        STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
-                        STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
-                        STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
-                        
-                        // Logic (Hex to Bytes)
-                        const logic = (alpha.logic || "00000000").replace(/[^0-9a-fA-F]/g, "").padEnd(16, '0');
-                        try {
-                            STATE_MATRIX.setLogic(idx, decodeHex(logic.substring(0, 16)));
-                        } catch { /* skip corrupted logic binary lift */ }
-
-                        ID_TO_IDX.set(fullPath, idx);
-                        IDX_TO_ID.set(idx, fullPath);
-
-                        lattice.set(fullPath, {
-                            id: entry.name,
-                            level: level,
-                            symbol: symbol,
-                            module: null 
-                        });
-
-                        idx++;
-                    }
-                }
-            } catch (err) { console.error(`   [RIBOSOME] Error reading dir ${dir}:`, err); }
+        const activeIndices = STATE_MATRIX.getActiveIndices();
+        for (const idx of activeIndices) {
+          const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, "0")
+            .toUpperCase();
+          // We don't have the full AST/logic string here perfectly, but
+          // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
+          ID_TO_IDX.set(idHex, idx);
+          IDX_TO_ID.set(idx, idHex);
+          lattice.set(idHex, {
+            id: idHex,
+            level: 0,
+            module: {},
+            symbol: "HYDRATED",
+          });
         }
-
-        console.log(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
-
-        // 🧬 PASS 2: BOND RESOLUTION
-        const bondKeyMap = new Map<string, string>();
-        for (const k of ID_TO_IDX.keys()) {
-            const basename = k.split('/').pop() || k;
-            const bondIdStr = basename.split('.')[0]; 
-            bondKeyMap.set(bondIdStr, k);
-        }
-
-        for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
-            try {
-                // @ts-ignore
-                const content = await Deno.readTextFile(fullPath);
-                const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-                if (alphaMatch) {
-                    const alpha = parseYaml(alphaMatch[1]) as any;
-                    const bondIds: string[] = alpha.bonds || [];
-                    const bondIndices = new Uint32Array(4);
-                    for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
-                        const partnerId = bondKeyMap.get(bondIds[i]);
-                        if (partnerId) {
-                            bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
-                        }
-                    }
-                    STATE_MATRIX.setBonds(atomIdx, bondIndices);
-                }
-            } catch (err) { /* ignore */ }
-        }
-
-        console.log(`   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`);
-
-        // 🛡️ IMMUNE SYSTEM CHECK
-        console.log("   [RIBOSOME] Running IMMUNE check");
-        const out = IMMUNE.inspect(lattice);
-        console.log("   [RIBOSOME] IMMUNE check complete");
-        return out;
-    },
-
-    // Inject Dependencies into a Pure Atom (Adapted for Flatland)
-    inject: async (id: string, lattice: Map<string, Atom>) => {
-        const target = lattice.get(id);
-        if (!target) return null;
-
-        // Implementation for Flatland injection...
-        return null; 
+        // Return immediately, bypassing filesystem parsing
+        return lattice;
+      } else {
+        LOGGER.warn(
+          "   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.",
+        );
+        STATE_MATRIX.clear(); // Reset before fallback
+      }
     }
+
+    const lattice = new Map<string, Atom>();
+    let idx = 0;
+
+    const scanDirs = [root, `${root}/SINGULARITY/V`];
+    for (const dir of scanDirs) {
+      LOGGER.info(`   [RIBOSOME] scanning dir: ${dir}`);
+      try {
+        // @ts-ignore
+        for await (const entry of Deno.readDir(dir)) {
+          if (
+            entry.isFile && entry.name.startsWith("0x") &&
+            entry.name.endsWith(".md")
+          ) {
+            const fullPath = dir === root
+              ? entry.name
+              : `SINGULARITY/V/${entry.name}`;
+            // @ts-ignore
+            const content = await Deno.readTextFile(fullPath);
+            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+            if (!frontmatterMatch) continue;
+
+            const alpha = parseYaml(frontmatterMatch[1]) as any;
+            const symbol = alpha.symbol ?? entry.name.split(".")[1] ??
+              "UNKNOWN";
+            const level = alpha.level ??
+              (alpha.vector ? parseInt(alpha.vector.split(".")[0]) : 0);
+
+            // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
+            const atomBigId = idToBigInt(entry.name);
+            STATE_MATRIX.setId(idx, atomBigId);
+            STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
+            STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
+            STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
+            STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
+            STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
+
+            // Logic (Hex to Bytes)
+            const logic = (alpha.logic || "00000000").replace(
+              /[^0-9a-fA-F]/g,
+              "",
+            ).padEnd(16, "0");
+            try {
+              STATE_MATRIX.setLogic(idx, decodeHex(logic.substring(0, 16)));
+            } catch { /* skip corrupted logic binary lift */ }
+
+            ID_TO_IDX.set(fullPath, idx);
+            IDX_TO_ID.set(idx, fullPath);
+
+            lattice.set(fullPath, {
+              id: entry.name,
+              level: level,
+              symbol: symbol,
+              module: null,
+            });
+
+            idx++;
+          }
+        }
+      } catch (err) {
+        LOGGER.error(`   [RIBOSOME] Error reading dir ${dir}:`, err);
+      }
+    }
+
+    LOGGER.info(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
+
+    // 🧬 PASS 2: BOND RESOLUTION
+    const bondKeyMap = new Map<string, string>();
+    for (const k of ID_TO_IDX.keys()) {
+      const basename = k.split("/").pop() || k;
+      const bondIdStr = basename.split(".")[0];
+      bondKeyMap.set(bondIdStr, k);
+    }
+
+    for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
+      try {
+        // @ts-ignore
+        const content = await Deno.readTextFile(fullPath);
+        const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        if (alphaMatch) {
+          const alpha = parseYaml(alphaMatch[1]) as any;
+          const bondIds: string[] = alpha.bonds || [];
+          const bondIndices = new Uint32Array(4);
+          for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
+            const partnerId = bondKeyMap.get(bondIds[i]);
+            if (partnerId) {
+              bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
+            }
+          }
+          STATE_MATRIX.setBonds(atomIdx, bondIndices);
+        }
+      } catch (err) { /* ignore */ }
+    }
+
+    LOGGER.info(
+      `   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`,
+    );
+
+    // 🛡️ IMMUNE SYSTEM CHECK
+    LOGGER.info("   [RIBOSOME] Running IMMUNE check");
+    const out = IMMUNE.inspect(lattice);
+    LOGGER.info("   [RIBOSOME] IMMUNE check complete");
+    return out;
+  },
+
+  // Inject Dependencies into a Pure Atom (Adapted for Flatland)
+  inject: async (id: string, lattice: Map<string, Atom>) => {
+    const target = lattice.get(id);
+    if (!target) return null;
+
+    // Implementation for Flatland injection...
+    return null;
+  },
 };
 
 if (import.meta.main) {
-    const lattice = await RIBOSOME.lift();
-    console.log(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
+  const lattice = await RIBOSOME.lift();
+  LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
 }
 
 ```
@@ -9172,63 +9237,72 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 // OMEGA-64 | SNAP.ts | The Persistent Observer (Era 15)
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
-import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
-import { parse as parseYaml, stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
+import {
+  parse as parseYaml,
+  stringify as stringifyYaml,
+} from "jsr:@std/yaml@^1.0.5";
+import { LOGGER } from "./LOGGER.ts";
 
 export const SNAP = {
-    // Sync Matrix State to .md Files with Atomic "Write-then-Rename"
-    save: async (root: string = Deno.cwd()) => {
-        let saved = 0;
-        let errors = 0;
+  // Sync Matrix State to .md Files with Atomic "Write-then-Rename"
+  save: async (root: string = Deno.cwd()) => {
+    let saved = 0;
+    let errors = 0;
 
-        for (let i = 0; i < MAX_ATOMS; i++) {
-            if (STATE_MATRIX.getId(i) === 0n) continue;
+    for (let i = 0; i < MAX_ATOMS; i++) {
+      if (STATE_MATRIX.getId(i) === 0n) continue;
 
-            const fullPath = IDX_TO_ID.get(i);
-            if (!fullPath) continue;
+      const fullPath = IDX_TO_ID.get(i);
+      if (!fullPath) continue;
 
-            try {
-                // @ts-ignore
-                const content = await Deno.readTextFile(fullPath);
-                const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-                if (!fmMatch) continue;
+      try {
+        // @ts-ignore
+        const content = await Deno.readTextFile(fullPath);
+        const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        if (!fmMatch) continue;
 
-                const alpha = parseYaml(fmMatch[1]) as any;
-                
-                // Sync from RAM Matrix
-                const x = STATE_MATRIX.getX(i);
-                const y = STATE_MATRIX.getY(i);
-                const energy = STATE_MATRIX.getEnergy(i);
-                const resonance = STATE_MATRIX.getResonance(i);
-                const phase = STATE_MATRIX.getPhase(i);
+        const alpha = parseYaml(fmMatch[1]) as any;
 
-                // Update Frontmatter
-                alpha.x = x;
-                alpha.y = y;
-                alpha.energy = Math.floor(energy);
-                alpha.resonance = Number(resonance.toFixed(3));
-                alpha.phase = Number(phase.toFixed(3));
+        // Sync from RAM Matrix
+        const x = STATE_MATRIX.getX(i);
+        const y = STATE_MATRIX.getY(i);
+        const energy = STATE_MATRIX.getEnergy(i);
+        const resonance = STATE_MATRIX.getResonance(i);
+        const phase = STATE_MATRIX.getPhase(i);
 
-                const updated = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
-                
-                // --- ATOMIC WRITE STRATEGY ---
-                const tmpPath = `${fullPath}.tmp`;
-                // @ts-ignore
-                await Deno.writeTextFile(tmpPath, updated);
-                // @ts-ignore
-                await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
-                
-                saved++;
-            } catch {
-                errors++;
-            }
-        }
-        
-        if (saved > 0) {
-            console.log(`   [SNAP] Transactional Sync: ${saved} atoms committed to Disk. (${errors} errors)`);
-        }
+        // Update Frontmatter
+        alpha.x = x;
+        alpha.y = y;
+        alpha.energy = Math.floor(energy);
+        alpha.resonance = Number(resonance.toFixed(3));
+        alpha.phase = Number(phase.toFixed(3));
+
+        const updated = content.replace(
+          /^---\n[\s\S]+?\n---\n/,
+          `---\n${stringifyYaml(alpha)}---\n`,
+        );
+
+        // --- ATOMIC WRITE STRATEGY ---
+        const tmpPath = `${fullPath}.tmp`;
+        // @ts-ignore
+        await Deno.writeTextFile(tmpPath, updated);
+        // @ts-ignore
+        await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
+
+        saved++;
+      } catch {
+        errors++;
+      }
     }
+
+    if (saved > 0) {
+      LOGGER.info(
+        `   [SNAP] Transactional Sync: ${saved} atoms committed to Disk. (${errors} errors)`,
+      );
+    }
+  },
 };
 
 ```
@@ -9245,121 +9319,154 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { ensureDir } from "jsr:@std/fs@0.224.0/ensure-dir";
+import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 
 export const SNAPSHOT_ENGINE = {
-    /**
-     * Dumps the entire 6.4MB Memory Matrix + Akashic History to disk instantly.
-     */
-    exportSnapshot: async () => {
-        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        await ensureDir(SNAPSHOT_DIR);
+  /**
+   * Dumps the entire 6.4MB Memory Matrix + Akashic History to disk instantly.
+   */
+  exportSnapshot: async () => {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    await ensureDir(SNAPSHOT_DIR);
 
-        const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
-        const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
-        const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
-        try {
-            // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
-            const matrixData = new Uint8Array(STATE_MATRIX.buffer);
-            await Deno.writeFile(matrixPath, matrixData);
+    const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
+    const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
+    const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
+    try {
+      // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
+      const matrixData = new Uint8Array(STATE_MATRIX.buffer);
+      await Deno.writeFile(matrixPath, matrixData);
 
-            // 2. Binary dump of the Thermodynamics Grid (Nutrients)
-            await Deno.writeFile(physicsPath, new Uint8Array(PHYSICS_ENGINE.envBuffer));
+      // 2. Binary dump of the Thermodynamics Grid (Nutrients)
+      await Deno.writeFile(
+        physicsPath,
+        new Uint8Array(PHYSICS_ENGINE.envBuffer),
+      );
 
-            // 3. JSON dump of the LLM Knowledge / Thoughts
-            const akashicData = Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive);
-            
-            // --- ERA 68: CHECKSUM FOOTER ---
-            const checksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
-            (akashicData as any)._checksum = checksum;
+      // 3. JSON dump of the LLM Knowledge / Thoughts
+      const akashicData = Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive);
 
-            await Deno.writeTextFile(akashicPath, JSON.stringify(akashicData, null, 2));
+      // --- ERA 68: CHECKSUM FOOTER ---
+      const checksum = matrixData.reduce(
+        (acc, val) => (acc + val) % 0xFFFFFFFF,
+        0,
+      );
+      (akashicData as any)._checksum = checksum;
 
-            console.log(`💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${checksum.toString(16).toUpperCase()})`);
-            return { timestamp, success: true };
-        } catch (e) {
-            console.error(`❌ [SNAPSHOT] Export Failed:`, e);
-            return { success: false, error: String(e) };
-        }
-    },
+      await Deno.writeTextFile(
+        akashicPath,
+        JSON.stringify(akashicData, null, 2),
+      );
 
-    /**
-     * Instantly overwrites the RAM Matrix with a historical `.bin` state.
-     */
-    importSnapshot: async (timestamp: string) => {
-        const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
-        const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
-        const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
-
-        try {
-            // 1. Restore Matrix Memory Buffer
-            const matrixData = await Deno.readFile(matrixPath);
-            if (matrixData.length === STATE_MATRIX.buffer.byteLength) {
-                new Uint8Array(STATE_MATRIX.buffer).set(matrixData);
-            } else {
-                throw new Error("Matrix Payload Size Mismatch");
-            }
-
-            // 2. Restore Thermodynamics Grid
-            try {
-                const physicsData = await Deno.readFile(physicsPath);
-                new Uint8Array(PHYSICS_ENGINE.envBuffer).set(physicsData);
-            } catch {
-                console.warn(`⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`);
-            }
-
-            // 3. Restore Akashic Records & Verify Checksum
-            try {
-                const akashicText = await Deno.readTextFile(akashicPath);
-                const akashicData = JSON.parse(akashicText);
-                
-                // --- ERA 68: INTEGRITY VERIFICATION ---
-                const expectedChecksum = akashicData._checksum;
-                if (expectedChecksum !== undefined) {
-                    const actualChecksum = matrixData.reduce((acc, val) => (acc + val) % 0xFFFFFFFF, 0);
-                    if (actualChecksum !== expectedChecksum) {
-                        throw new Error(`Integrity Violation: Predicted ${expectedChecksum.toString(16)}, Found ${actualChecksum.toString(16)}`);
-                    }
-                    console.log(`🛡️ [SNAPSHOT] Integrity Verified: Checksum ${actualChecksum.toString(16).toUpperCase()}`);
-                }
-
-                SEMANTIC_MEMBRANE.thoughtArchive.clear();
-                for (const [hash, thought] of Object.entries(akashicData)) {
-                    if (hash === "_checksum") continue;
-                    SEMANTIC_MEMBRANE.thoughtArchive.set(hash, thought as string);
-                }
-            } catch (e: any) {
-                if (e.message?.includes("Integrity Violation")) throw e;
-                console.warn(`⚠️ [SNAPSHOT] No history or metadata for ${timestamp}:`, e);
-            }
-
-            console.log(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);
-            return { success: true };
-        } catch (e) {
-            console.error(`❌ [SNAPSHOT] Import Failed:`, e);
-            return { success: false, error: String(e) };
-        }
-    },
-
-    /**
-     * Lists all available Genesis Checkpoints sorted by newest first.
-     */
-    listSnapshots: async () => {
-        try {
-            const timestamps: string[] = [];
-            // @ts-ignore: Deno.readDir is valid in Deno
-            for await (const entry of Deno.readDir(SNAPSHOT_DIR)) {
-                if (entry.isFile && entry.name.startsWith("matrix_") && entry.name.endsWith(".bin")) {
-                    const ts = entry.name.replace("matrix_", "").replace(".bin", "");
-                    timestamps.push(ts);
-                }
-            }
-            return timestamps.sort().reverse();
-        } catch {
-            return [];
-        }
+      LOGGER.info(
+        `💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${
+          checksum.toString(16).toUpperCase()
+        })`,
+      );
+      return { timestamp, success: true };
+    } catch (e) {
+      LOGGER.error(`❌ [SNAPSHOT] Export Failed:`, e);
+      return { success: false, error: String(e) };
     }
+  },
+
+  /**
+   * Instantly overwrites the RAM Matrix with a historical `.bin` state.
+   */
+  importSnapshot: async (timestamp: string) => {
+    const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
+    const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
+    const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
+
+    try {
+      // 1. Restore Matrix Memory Buffer
+      const matrixData = await Deno.readFile(matrixPath);
+      if (matrixData.length === STATE_MATRIX.buffer.byteLength) {
+        new Uint8Array(STATE_MATRIX.buffer).set(matrixData);
+      } else {
+        throw new Error("Matrix Payload Size Mismatch");
+      }
+
+      // 2. Restore Thermodynamics Grid
+      try {
+        const physicsData = await Deno.readFile(physicsPath);
+        new Uint8Array(PHYSICS_ENGINE.envBuffer).set(physicsData);
+      } catch {
+        LOGGER.warn(
+          `⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`,
+        );
+      }
+
+      // 3. Restore Akashic Records & Verify Checksum
+      try {
+        const akashicText = await Deno.readTextFile(akashicPath);
+        const akashicData = JSON.parse(akashicText);
+
+        // --- ERA 68: INTEGRITY VERIFICATION ---
+        const expectedChecksum = akashicData._checksum;
+        if (expectedChecksum !== undefined) {
+          const actualChecksum = matrixData.reduce(
+            (acc, val) => (acc + val) % 0xFFFFFFFF,
+            0,
+          );
+          if (actualChecksum !== expectedChecksum) {
+            throw new Error(
+              `Integrity Violation: Predicted ${
+                expectedChecksum.toString(16)
+              }, Found ${actualChecksum.toString(16)}`,
+            );
+          }
+          LOGGER.info(
+            `🛡️ [SNAPSHOT] Integrity Verified: Checksum ${
+              actualChecksum.toString(16).toUpperCase()
+            }`,
+          );
+        }
+
+        SEMANTIC_MEMBRANE.thoughtArchive.clear();
+        for (const [hash, thought] of Object.entries(akashicData)) {
+          if (hash === "_checksum") continue;
+          SEMANTIC_MEMBRANE.thoughtArchive.set(hash, thought as string);
+        }
+      } catch (e: any) {
+        if (e.message?.includes("Integrity Violation")) throw e;
+        LOGGER.warn(
+          `⚠️ [SNAPSHOT] No history or metadata for ${timestamp}:`,
+          e,
+        );
+      }
+
+      LOGGER.info(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);
+      return { success: true };
+    } catch (e) {
+      LOGGER.error(`❌ [SNAPSHOT] Import Failed:`, e);
+      return { success: false, error: String(e) };
+    }
+  },
+
+  /**
+   * Lists all available Genesis Checkpoints sorted by newest first.
+   */
+  listSnapshots: async () => {
+    try {
+      const timestamps: string[] = [];
+      // @ts-ignore: Deno.readDir is valid in Deno
+      for await (const entry of Deno.readDir(SNAPSHOT_DIR)) {
+        if (
+          entry.isFile && entry.name.startsWith("matrix_") &&
+          entry.name.endsWith(".bin")
+        ) {
+          const ts = entry.name.replace("matrix_", "").replace(".bin", "");
+          timestamps.push(ts);
+        }
+      }
+      return timestamps.sort().reverse();
+    } catch {
+      return [];
+    }
+  },
 };
 
 ```
@@ -10648,7 +10755,7 @@ export const STRUCTURE_ENGINE = {
 
 import { PULSE } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
-import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
@@ -10659,250 +10766,289 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
 import { PRNG } from "./PRNG.ts";
 import * as OFFSETS from "./OFFSETS.ts";
-
+import { LOGGER } from "./LOGGER.ts";
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
 const UI_PATH = "./ui/index.html";
 
-console.log("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 
 // 1. Initialize Observer UI Server
 Deno.serve({ port: UI_PORT }, async (req) => {
-    const url = new URL(req.url);
-    
-    if (url.pathname === "/state") {
-        const buffer = STATE_MATRIX.buffer;
-        
-        const bufferCopy = new Uint8Array(buffer.byteLength);
-        bufferCopy.set(new Uint8Array(buffer));
-        return new Response(bufferCopy, {
-            headers: { "Content-Type": "application/octet-stream" }
-        });
-    }
+  const url = new URL(req.url);
 
-    if (url.pathname === "/grid") {
-        const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
-        const attention = new Float32Array(PHYSICS_ENGINE.attentionBuffer);
+  if (url.pathname === "/state") {
+    const buffer = STATE_MATRIX.buffer;
 
-        const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
-        const outEnv = new Int32Array(buffer, 0, env.length);
-        const outAttention = new Float32Array(buffer, env.byteLength, attention.length);
-        
-        outEnv.set(env);
-        outAttention.set(attention);
+    const bufferCopy = new Uint8Array(buffer.byteLength);
+    bufferCopy.set(new Uint8Array(buffer));
+    return new Response(bufferCopy, {
+      headers: { "Content-Type": "application/octet-stream" },
+    });
+  }
 
-        return new Response(buffer, {
-            headers: { "Content-Type": "application/octet-stream" }
-        });
-    }
+  if (url.pathname === "/grid") {
+    const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
+    const attention = new Float32Array(PHYSICS_ENGINE.attentionBuffer);
 
-    if (url.pathname === "/crisis" && req.method === "POST") {
-        try {
-            const { logicHex } = await req.json();
-            const logicBytes = new Uint8Array(8);
-            if (logicHex && logicHex.length === 16) {
-                for (let i = 0; i < 8; i++) {
-                    logicBytes[i] = parseInt(logicHex.substr(i * 2, 2), 16);
-                }
-            } else {
-                // Generate a random crisis mutation if none provided
-                crypto.getRandomValues(logicBytes);
-            }
-            
-            PREDICTION_MARKET.startCrisis(logicBytes);
-            return new Response("Crisis Initiated", { status: 200 });
-        } catch (e) {
-            return new Response("Crisis Failed", { status: 400 });
+    const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
+    const outEnv = new Int32Array(buffer, 0, env.length);
+    const outAttention = new Float32Array(
+      buffer,
+      env.byteLength,
+      attention.length,
+    );
+
+    outEnv.set(env);
+    outAttention.set(attention);
+
+    return new Response(buffer, {
+      headers: { "Content-Type": "application/octet-stream" },
+    });
+  }
+
+  if (url.pathname === "/crisis" && req.method === "POST") {
+    try {
+      const { logicHex } = await req.json();
+      const logicBytes = new Uint8Array(8);
+      if (logicHex && logicHex.length === 16) {
+        for (let i = 0; i < 8; i++) {
+          logicBytes[i] = parseInt(logicHex.substr(i * 2, 2), 16);
         }
+      } else {
+        // Generate a random crisis mutation if none provided
+        crypto.getRandomValues(logicBytes);
+      }
+
+      PREDICTION_MARKET.startCrisis(logicBytes);
+      return new Response("Crisis Initiated", { status: 200 });
+    } catch (e) {
+      return new Response("Crisis Failed", { status: 400 });
     }
+  }
 
-    if (url.pathname === "/federate" && req.method === "POST") {
-        try {
-            const packet = await req.json();
-            console.log(`🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`);
-            
-            const idx = STATE_MATRIX.findFreeSlot();
-            if (idx !== -1) {
-                const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
-                const { value: vId, next: n1 } = prng.next();
-                const { value: vX, next: n2 } = n1.next();
-                const { value: vY } = n2.next();
+  if (url.pathname === "/federate" && req.method === "POST") {
+    try {
+      const packet = await req.json();
+      LOGGER.info(
+        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
+      );
 
-                // Deterministic ID based on seed
-                STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF))); 
-                STATE_MATRIX.setEnergy(idx, packet.energy);
-                STATE_MATRIX.setResonance(idx, packet.resonance);
-                
-                const logicBytes = new Uint8Array(8);
-                for (let i = 0; i < 8; i++) {
-                    logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
-                }
-                STATE_MATRIX.setLogic(idx, logicBytes);
+      const idx = STATE_MATRIX.findFreeSlot();
+      if (idx !== -1) {
+        const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
+        const { value: vId, next: n1 } = prng.next();
+        const { value: vX, next: n2 } = n1.next();
+        const { value: vY } = n2.next();
 
-                // Position in a deterministic cluster around the center
-                STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
-                STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
-                
-                return new Response("OK", { status: 200 });
-            } else {
-                return new Response("Matrix Full", { status: 507 });
-            }
-        } catch (e) {
-            return new Response("Federation Failed", { status: 400 });
+        // Deterministic ID based on seed
+        STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
+        STATE_MATRIX.setEnergy(idx, packet.energy);
+        STATE_MATRIX.setResonance(idx, packet.resonance);
+
+        const logicBytes = new Uint8Array(8);
+        for (let i = 0; i < 8; i++) {
+          logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
         }
+        STATE_MATRIX.setLogic(idx, logicBytes);
+
+        // Position in a deterministic cluster around the center
+        STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
+        STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
+
+        return new Response("OK", { status: 200 });
+      } else {
+        return new Response("Matrix Full", { status: 507 });
+      }
+    } catch (e) {
+      return new Response("Federation Failed", { status: 400 });
     }
+  }
 
+  if (url.pathname === "/peers") {
+    return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
-    if (url.pathname === "/peers") {
-        return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
-            headers: { "Content-Type": "application/json" }
-        });
-    }
+  if (url.pathname === "/vox") {
+    return new Response(
+      JSON.stringify(await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd())),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
 
-    if (url.pathname === "/vox") {
-        return new Response(JSON.stringify(await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd())), {
-            headers: { "Content-Type": "application/json" }
-        });
-    }
+  if (url.pathname === "/thoughts") {
+    return new Response(
+      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
 
-    if (url.pathname === "/thoughts") {
-        return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)), {
-            headers: { "Content-Type": "application/json" }
-        });
-    }
+  if (url.pathname === "/snapshots" && req.method === "GET") {
+    const list = await SNAPSHOT_ENGINE.listSnapshots();
+    return new Response(JSON.stringify(list), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/snapshots" && req.method === "GET") {
-        const list = await SNAPSHOT_ENGINE.listSnapshots();
-        return new Response(JSON.stringify(list), {
-            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/governance" && req.method === "GET") {
+    return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/governance" && req.method === "GET") {
-        return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
-            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/lineage" && req.method === "GET") {
+    return new Response(
+      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
+  }
 
-    if (url.pathname === "/lineage" && req.method === "GET") {
-        return new Response(JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)), {
-            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/viral" && req.method === "GET") {
+    // @ts-ignore: viralGridBuffer is dynamically exposed
+    return new Response(STATE_MATRIX.viralGridBuffer, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/viral" && req.method === "GET") {
-        // @ts-ignore: viralGridBuffer is dynamically exposed
-        return new Response(STATE_MATRIX.viralGridBuffer, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
-    
-    if (url.pathname === "/immunity" && req.method === "GET") {
-        const buffer = STATE_MATRIX.immuneBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/immunity" && req.method === "GET") {
+    const buffer = STATE_MATRIX.immuneBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/signals" && req.method === "GET") {
-        const buffer = STATE_MATRIX.currentReadBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/signals" && req.method === "GET") {
+    const buffer = STATE_MATRIX.currentReadBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/stiffness" && req.method === "GET") {
-        const buffer = STATE_MATRIX.bondStiffnessBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/stiffness" && req.method === "GET") {
+    const buffer = STATE_MATRIX.bondStiffnessBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/bonds" && req.method === "GET") {
-        const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
-        const BONDS_SIZE = MAX_ATOMS * 4 * 4;
-        const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
-        const copy = new Uint8Array(view.byteLength);
-        copy.set(view);
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/bonds" && req.method === "GET") {
+    const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
+    const BONDS_SIZE = MAX_ATOMS * 4 * 4;
+    const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
+    const copy = new Uint8Array(view.byteLength);
+    copy.set(view);
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/synapses" && req.method === "GET") {
-        const buffer = STATE_MATRIX.synapticStackBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/synapses" && req.method === "GET") {
+    const buffer = STATE_MATRIX.synapticStackBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/architecture" && req.method === "GET") {
-        const buffer = STATE_MATRIX.structureGridBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/architecture" && req.method === "GET") {
+    const buffer = STATE_MATRIX.structureGridBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/memory" && req.method === "GET") {
-        const buffer = STATE_MATRIX.memoryGridBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/memory" && req.method === "GET") {
+    const buffer = STATE_MATRIX.memoryGridBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
-    if (url.pathname === "/roles" && req.method === "GET") {
-        const buffer = STATE_MATRIX.roleRegistryBuffer;
-        const copy = new Uint8Array(buffer.byteLength);
-        copy.set(new Uint8Array(buffer));
-        return new Response(copy, {
-            headers: { "Content-Type": "application/octet-stream", "Access-Control-Allow-Origin": "*" }
-        });
-    }
+  if (url.pathname === "/roles" && req.method === "GET") {
+    const buffer = STATE_MATRIX.roleRegistryBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 
+  if (url.pathname === "/snapshot/export" && req.method === "POST") {
+    const result = await SNAPSHOT_ENGINE.exportSnapshot();
+    return new Response(JSON.stringify(result), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
+  if (url.pathname === "/snapshot/import" && req.method === "POST") {
+    const body = await req.json();
+    const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
+    return new Response(JSON.stringify(result), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
-
-
-
-
-
-
-
-
-
-    if (url.pathname === "/snapshot/export" && req.method === "POST") {
-        const result = await SNAPSHOT_ENGINE.exportSnapshot();
-        return new Response(JSON.stringify(result), {
-            headers: { "Content-Type": "application/json" }
-        });
-    }
-
-    if (url.pathname === "/snapshot/import" && req.method === "POST") {
-        const body = await req.json();
-        const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
-        return new Response(JSON.stringify(result), {
-            headers: { "Content-Type": "application/json" }
-        });
-    }
-
-    // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
-    /*
+  // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
+  /*
     if (url.pathname === "/inject" && req.method === "POST") {
         try {
             const { text, energy } = await req.json();
-            console.log(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
+            LOGGER.info(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
             await SEMANTIC_MEMBRANE.injectThought(text, energy || 100);
             return new Response("OK", { status: 200 });
         } catch (e) {
@@ -10911,63 +11057,65 @@ Deno.serve({ port: UI_PORT }, async (req) => {
     }
     */
 
-    // 4. Spatial Mutation (POST)
-    if (url.pathname === "/mutate" && req.method === "POST") {
-        try {
-            const { x, y, deltaEnergy, radius } = await req.json();
-            console.log(`⚡ [GOD_MODE] Mutation at (${x}, ${y}) | Delta: ${deltaEnergy} | Radius: ${radius}`);
-            
-            const r2 = radius * radius;
-            for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
-                if (STATE_MATRIX.getId(i) === 0n) continue;
-                const dx = STATE_MATRIX.getX(i) - x;
-                const dy = STATE_MATRIX.getY(i) - y;
-                if (dx*dx + dy*dy < r2) {
-                    const current = STATE_MATRIX.getEnergy(i);
-                    STATE_MATRIX.setEnergy(i, Math.max(0, current + deltaEnergy));
-                }
-            }
-            return new Response("OK", { status: 200 });
-        } catch (e) {
-            return new Response("Mutation Failed", { status: 400 });
-        }
-    }
-
-    // 5. Avatar Cursor Sync (POST)
-    if (url.pathname === "/avatar" && req.method === "POST") {
-        try {
-            const { x, y } = await req.json();
-            AVATAR_ENGINE.dropPheromone(x, y);
-            return new Response("OK", { status: 200 });
-        } catch (e) {
-            return new Response("Avatar Sync Failed", { status: 400 });
-        }
-    }
-
+  // 4. Spatial Mutation (POST)
+  if (url.pathname === "/mutate" && req.method === "POST") {
     try {
-        const html = await Deno.readTextFile(UI_PATH);
-        return new Response(html, { headers: { "Content-Type": "text/html" } });
+      const { x, y, deltaEnergy, radius } = await req.json();
+      LOGGER.info(
+        `⚡ [GOD_MODE] Mutation at (${x}, ${y}) | Delta: ${deltaEnergy} | Radius: ${radius}`,
+      );
+
+      const r2 = radius * radius;
+      for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
+        if (STATE_MATRIX.getId(i) === 0n) continue;
+        const dx = STATE_MATRIX.getX(i) - x;
+        const dy = STATE_MATRIX.getY(i) - y;
+        if (dx * dx + dy * dy < r2) {
+          const current = STATE_MATRIX.getEnergy(i);
+          STATE_MATRIX.setEnergy(i, Math.max(0, current + deltaEnergy));
+        }
+      }
+      return new Response("OK", { status: 200 });
     } catch (e) {
-        return new Response("UI not found.", { status: 404 });
+      return new Response("Mutation Failed", { status: 400 });
     }
+  }
+
+  // 5. Avatar Cursor Sync (POST)
+  if (url.pathname === "/avatar" && req.method === "POST") {
+    try {
+      const { x, y } = await req.json();
+      AVATAR_ENGINE.dropPheromone(x, y);
+      return new Response("OK", { status: 200 });
+    } catch (e) {
+      return new Response("Avatar Sync Failed", { status: 400 });
+    }
+  }
+
+  try {
+    const html = await Deno.readTextFile(UI_PATH);
+    return new Response(html, { headers: { "Content-Type": "text/html" } });
+  } catch (e) {
+    return new Response("UI not found.", { status: 404 });
+  }
 });
 
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
-    console.log("💓 [SYSTEM] Pulse Engine Ignited.");
-    await PULSE.initWorkers();
-    
-    while (true) {
-        await PULSE.tick();
-        await new Promise(r => setTimeout(r, 16));
-    }
+  LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
+  await PULSE.initWorkers();
+
+  while (true) {
+    await PULSE.tick();
+    await new Promise((r) => setTimeout(r, 16));
+  }
 })();
 
 // 3. Start Cognitive Breathing Loop (Background)
 (async () => {
-    console.log("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
-    await new Promise(r => setTimeout(r, 5000));
-    await BREATH.inhale();
+  LOGGER.info("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
+  await new Promise((r) => setTimeout(r, 5000));
+  await BREATH.inhale();
 })();
 
 ```
