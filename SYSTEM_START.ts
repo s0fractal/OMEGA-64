@@ -17,12 +17,48 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
+const HOST = (Deno.env.get("OMEGA_SYSTEM_HOST") ?? "127.0.0.1").trim() ||
+  "127.0.0.1";
 const UI_PATH = "./ui/index.html";
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+const CONTROL_ENABLE = parseBool(
+  Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
+  false,
+);
+const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const requireControlAuth = (req: Request): Response | null => {
+  if (!CONTROL_ENABLE) {
+    return new Response("Control plane disabled", { status: 403 });
+  }
+  if (CONTROL_TOKEN.length === 0) {
+    return null;
+  }
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+LOGGER.info(
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
+    CONTROL_TOKEN.length > 0
+  }`,
+);
 
 // 1. Initialize Observer UI Server
-Deno.serve({ port: UI_PORT }, async (req) => {
+Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const url = new URL(req.url);
 
   if (url.pathname === "/state") {
@@ -56,6 +92,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/crisis" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const { logicHex } = await req.json();
       const logicBytes = new Uint8Array(8);
@@ -76,6 +114,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const packet = await req.json();
       LOGGER.info(
@@ -277,6 +317,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/snapshot/export" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     const result = await SNAPSHOT_ENGINE.exportSnapshot();
     return new Response(JSON.stringify(result), {
       headers: { "Content-Type": "application/json" },
@@ -284,6 +326,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/snapshot/import" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     const body = await req.json();
     const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
     return new Response(JSON.stringify(result), {
@@ -307,6 +351,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
   // 4. Spatial Mutation (POST)
   if (url.pathname === "/mutate" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const { x, y, deltaEnergy, radius } = await req.json();
       LOGGER.info(
@@ -331,6 +377,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
   // 5. Avatar Cursor Sync (POST)
   if (url.pathname === "/avatar" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const { x, y } = await req.json();
       AVATAR_ENGINE.dropPheromone(x, y);

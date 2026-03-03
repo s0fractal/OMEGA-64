@@ -11,6 +11,15 @@ const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 const REQUIRED_DOC = "MUTATION_LANES.md";
 const AKASHA_PATH = "AKASHA_SERVER.ts";
 const P2P_PATH = "P2P_SYNAPSE.ts";
+const SYSTEM_PATH = "SYSTEM_START.ts";
+const SYSTEM_CONTROLLED_POST_PATHS = [
+  "/crisis",
+  "/federate",
+  "/snapshot/export",
+  "/snapshot/import",
+  "/mutate",
+  "/avatar",
+] as const;
 
 const requireSnippet = (
   source: string,
@@ -41,6 +50,7 @@ const main = async () => {
 
   const akasha = await Deno.readTextFile(AKASHA_PATH);
   const p2p = await Deno.readTextFile(P2P_PATH);
+  const system = await Deno.readTextFile(SYSTEM_PATH);
 
   // External ingress must not bind wide-open by default.
   requireSnippet(
@@ -71,6 +81,20 @@ const main = async () => {
     "P2P must bind explicit hostname",
     violations,
   );
+  requireSnippet(
+    system,
+    `"127.0.0.1"`,
+    SYSTEM_PATH,
+    "System host default must be loopback",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "Deno.serve({ hostname: HOST, port: UI_PORT }",
+    SYSTEM_PATH,
+    "System server must bind explicit hostname",
+    violations,
+  );
 
   // /mutate must be operator-gated and path-confined.
   requireSnippet(
@@ -94,6 +118,45 @@ const main = async () => {
     "P2P writes must be confined to root prefix",
     violations,
   );
+  requireSnippet(
+    system,
+    "CONTROL_ENABLE",
+    SYSTEM_PATH,
+    "System control plane must be explicitly gated",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "x-omega-control-token",
+    SYSTEM_PATH,
+    "System control plane must support token auth",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "requireControlAuth(req)",
+    SYSTEM_PATH,
+    "System mutating routes must call control auth",
+    violations,
+  );
+  for (const path of SYSTEM_CONTROLLED_POST_PATHS) {
+    const marker = `if (url.pathname === "${path}" && req.method === "POST") {`;
+    const start = system.indexOf(marker);
+    if (start < 0) {
+      violations.push({
+        file: SYSTEM_PATH,
+        reason: `Expected controlled POST route marker for ${path}`,
+      });
+      continue;
+    }
+    const block = system.slice(start, start + 400);
+    if (!block.includes("requireControlAuth(req)")) {
+      violations.push({
+        file: SYSTEM_PATH,
+        reason: `POST route ${path} must enforce requireControlAuth(req)`,
+      });
+    }
+  }
 
   // External ingress must not mutate runtime state directly.
   for (

@@ -9,7 +9,8 @@ internal high-speed mutation loops.
 
 ### 1) External Ingress Lane (Untrusted)
 
-- Surfaces: `AKASHA_SERVER.ts`, `P2P_SYNAPSE.ts`, UI/WebSocket clients.
+- Surfaces: `AKASHA_SERVER.ts`, `P2P_SYNAPSE.ts`, `SYSTEM_START.ts`,
+  UI/WebSocket clients.
 - Default posture: read-only visualization.
 - Any external mutation endpoint must be disabled by default, local-bind only,
   and protected by explicit operator intent (env gate/token).
@@ -44,6 +45,9 @@ internal high-speed mutation loops.
   default.
 - `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
   env/token gates when enabled.
+- `SYSTEM_START.ts`: binds loopback by default (`OMEGA_SYSTEM_HOST`) and all
+  mutating POST routes require explicit control enable/token
+  (`OMEGA_SYSTEM_CONTROL_ENABLE`, `OMEGA_SYSTEM_CONTROL_TOKEN`).
 - Canonical crystallization remains in `GATE`.
 - Internal fast-lane mutations are aggregated and emitted by
   `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.
