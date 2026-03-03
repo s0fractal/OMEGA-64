@@ -927,18 +927,207 @@ const defaultEnvelopeIndexPath = (): string =>
 const resolveEnvelopeIndexPath = (path?: string): string =>
   path ?? PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
 
+const ENVELOPE_INDEX_CHAIN_VERSION = "proposal-envelope-index/v1";
+const envelopeIndexSeenByPath = new Map<string, Set<string>>();
+const envelopeIndexTailByPath = new Map<string, string | null>();
+const envelopeIndexCacheLoaded = new Set<string>();
+
+const getEnvelopeIndexSeen = (path: string): Set<string> => {
+  let seen = envelopeIndexSeenByPath.get(path);
+  if (!seen) {
+    seen = new Set<string>();
+    envelopeIndexSeenByPath.set(path, seen);
+  }
+  return seen;
+};
+
+const canonicalEnvelopeIndexPayload = (entry: {
+  tick: number;
+  proposal_id: string;
+  envelope_hash: string;
+  source_event_id?: string;
+}): string =>
+  stableStringify({
+    tick: entry.tick,
+    proposal_id: entry.proposal_id,
+    envelope_hash: entry.envelope_hash,
+    source_event_id: entry.source_event_id,
+  });
+
+const envelopeIndexRecordHash = async (
+  entry: {
+    tick: number;
+    proposal_id: string;
+    envelope_hash: string;
+    source_event_id?: string;
+  },
+  prevIndexHash: string | null,
+): Promise<string> =>
+  await sha256Hex(stableStringify({
+    chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
+    prev_index_hash: prevIndexHash,
+    payload: JSON.parse(canonicalEnvelopeIndexPayload(entry)),
+  }));
+
+const readJsonlLines = async (path: string): Promise<string[]> => {
+  try {
+    const raw = await Deno.readTextFile(path);
+    return raw.split("\n").map((x) => x.trim()).filter((x) => x.length > 0);
+  } catch {
+    return [];
+  }
+};
+
+const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
+  if (envelopeIndexCacheLoaded.has(path)) return;
+  const seen = getEnvelopeIndexSeen(path);
+  let tail: string | null = null;
+  const lines = await readJsonlLines(path);
+  for (const line of lines) {
+    try {
+      const row = JSON.parse(line) as Record<string, unknown>;
+      const tick = Number(row.tick);
+      const proposalId = typeof row.proposal_id === "string"
+        ? row.proposal_id
+        : "";
+      const envelopeHash = normalizeHex64(row.envelope_hash) ?? "";
+      const sourceEventId = typeof row.source_event_id === "string"
+        ? row.source_event_id
+        : undefined;
+      if (
+        !Number.isInteger(tick) || tick < 0 || proposalId.length === 0 ||
+        envelopeHash.length === 0
+      ) {
+        continue;
+      }
+      seen.add(envelopeHash);
+      const recordedHash = normalizeHex64(row.index_hash);
+      if (recordedHash) {
+        tail = recordedHash;
+      } else {
+        tail = await envelopeIndexRecordHash({
+          tick,
+          proposal_id: proposalId,
+          envelope_hash: envelopeHash,
+          source_event_id: sourceEventId,
+        }, tail);
+      }
+    } catch {
+      // ignore malformed historical lines in cache warmup
+    }
+  }
+  envelopeIndexTailByPath.set(path, tail);
+  envelopeIndexCacheLoaded.add(path);
+};
+
 export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
   STORAGE_PATH: defaultEnvelopeIndexPath(),
-  add: () => {},
-  check: () => false,
+  add: (envelopeHash?: string, path?: string): void => {
+    const hash = normalizeHex64(envelopeHash);
+    if (!hash) return;
+    const indexPath = resolveEnvelopeIndexPath(path);
+    getEnvelopeIndexSeen(indexPath).add(hash);
+  },
+  check: (envelopeHash?: string, path?: string): boolean => {
+    const hash = normalizeHex64(envelopeHash);
+    if (!hash) return false;
+    const indexPath = resolveEnvelopeIndexPath(path);
+    return getEnvelopeIndexSeen(indexPath).has(hash);
+  },
   pathForLedger: (ledgerPath: string) =>
     `${ledgerPath}.proposal_envelope_index.jsonl`,
-  resetCacheForTests: (_path?: string) => {},
-  verifyChainDetailed: (_path?: string) => ({
-    ok: true,
-    checked_records: 0,
-    failures: [] as string[],
-  }),
+  resetCacheForTests: (path?: string) => {
+    if (path) {
+      const p = resolveEnvelopeIndexPath(path);
+      envelopeIndexSeenByPath.delete(p);
+      envelopeIndexTailByPath.delete(p);
+      envelopeIndexCacheLoaded.delete(p);
+      return;
+    }
+    envelopeIndexSeenByPath.clear();
+    envelopeIndexTailByPath.clear();
+    envelopeIndexCacheLoaded.clear();
+  },
+  verifyChainDetailed: async (path?: string) => {
+    const indexPath = resolveEnvelopeIndexPath(path);
+    const lines = await readJsonlLines(indexPath);
+    const failures: string[] = [];
+    let prevHash: string | null = null;
+
+    for (let i = 0; i < lines.length; i++) {
+      const lineNo = i + 1;
+      let row: Record<string, unknown>;
+      try {
+        row = JSON.parse(lines[i]) as Record<string, unknown>;
+      } catch {
+        failures.push(`ENVELOPE_INDEX_JSON_PARSE_FAIL_AT_LINE_${lineNo}`);
+        continue;
+      }
+
+      const tick = Number(row.tick);
+      const proposalId = typeof row.proposal_id === "string"
+        ? row.proposal_id
+        : "";
+      const envelopeHash = normalizeHex64(row.envelope_hash);
+      const sourceEventId = typeof row.source_event_id === "string"
+        ? row.source_event_id
+        : undefined;
+      if (!Number.isInteger(tick) || tick < 0) {
+        failures.push(`ENVELOPE_INDEX_TICK_INVALID_AT_LINE_${lineNo}`);
+        continue;
+      }
+      if (proposalId.length === 0) {
+        failures.push(`ENVELOPE_INDEX_PROPOSAL_ID_INVALID_AT_LINE_${lineNo}`);
+        continue;
+      }
+      if (!envelopeHash) {
+        failures.push(`ENVELOPE_INDEX_ENVELOPE_HASH_INVALID_AT_LINE_${lineNo}`);
+        continue;
+      }
+      if (
+        row.chain_version !== undefined &&
+        row.chain_version !== ENVELOPE_INDEX_CHAIN_VERSION
+      ) {
+        failures.push(
+          `ENVELOPE_INDEX_CHAIN_VERSION_UNSUPPORTED_AT_LINE_${lineNo}`,
+        );
+      }
+
+      const expectedHash = await envelopeIndexRecordHash({
+        tick,
+        proposal_id: proposalId,
+        envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+      }, prevHash);
+
+      const recordedPrev = row.prev_index_hash === null
+        ? null
+        : normalizeHex64(row.prev_index_hash);
+      const hasRecordedPrev = row.prev_index_hash !== undefined;
+      if (hasRecordedPrev && recordedPrev !== prevHash) {
+        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
+      }
+
+      const recordedHash = normalizeHex64(row.index_hash);
+      if (row.index_hash !== undefined && !recordedHash) {
+        failures.push(`ENVELOPE_INDEX_RECORD_HASH_INVALID_AT_LINE_${lineNo}`);
+      }
+      if (!hasRecordedPrev && recordedHash && i > 0) {
+        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISSING_AT_LINE_${lineNo}`);
+      }
+      if (recordedHash && recordedHash !== expectedHash) {
+        failures.push(`ENVELOPE_INDEX_RECORD_HASH_MISMATCH_AT_LINE_${lineNo}`);
+      }
+
+      prevHash = recordedHash ?? expectedHash;
+    }
+
+    return {
+      ok: failures.length === 0,
+      checked_records: lines.length,
+      failures,
+    };
+  },
   getRecentEnvelopeHashes: async (
     startTick: number,
     endTick: number,
@@ -957,25 +1146,43 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
   },
   appendFromLedgerEvent: async (event: any, path?: string): Promise<void> => {
     const indexPath = resolveEnvelopeIndexPath(path);
+    await ensureEnvelopeIndexCache(indexPath);
+    const seen = getEnvelopeIndexSeen(indexPath);
     const tick = Number(event?.tick ?? -1);
     const envelopes = Array.isArray(event?.accepted_proposal_envelopes)
       ? event.accepted_proposal_envelopes
       : [];
+    const sourceEventId = typeof event?.event_id === "string"
+      ? event.event_id
+      : undefined;
+    let prevIndexHash = envelopeIndexTailByPath.get(indexPath) ?? null;
 
     for (const env of envelopes) {
       const proposalId = typeof env?.proposal_id === "string"
         ? env.proposal_id
         : "";
-      const envelopeHash = typeof env?.envelope_hash === "string"
-        ? env.envelope_hash
-        : "";
+      const envelopeHash = normalizeHex64(env?.envelope_hash) ?? "";
       if (!envelopeHash) continue;
+      const indexHash = await envelopeIndexRecordHash({
+        tick,
+        proposal_id: proposalId,
+        envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+      }, prevIndexHash);
       await appendJsonl(indexPath, {
         tick,
         proposal_id: proposalId,
         envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+        chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
+        prev_index_hash: prevIndexHash,
+        index_hash: indexHash,
       });
+      seen.add(envelopeHash);
+      prevIndexHash = indexHash;
     }
+    envelopeIndexTailByPath.set(indexPath, prevIndexHash);
+    envelopeIndexCacheLoaded.add(indexPath);
   },
 };
 

@@ -195,6 +195,8 @@ health indicator loop:
   gate with tamper detection)
 - `deno task test:bridge-policy` (canon-bridge membrane verify + crystallization
   policy hash/version verification gate)
+- `deno task test:proposal-envelope-index` (proposal envelope replay index
+  hash-chain/tamper-detection gate)
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)
