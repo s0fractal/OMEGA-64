@@ -132,6 +132,85 @@ export const LLM_SYNAPSE = {
     },
 
     /**
+     * generateSpeciesTaxonomy: Names and describes a dominant genome lineage.
+     */
+    generateSpeciesTaxonomy: async (
+        input: {
+            genome: string;
+            dominantInstructions: string[];
+            dominanceShare: number;
+            epochs: number;
+        },
+    ): Promise<{ latinName: string; behavior: string; philosophy: string }> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+        const instructionProfile = input.dominantInstructions.join(", ") || "UNKNOWN";
+
+        const fallback = {
+            latinName: `Structura ${input.genome.slice(0, 6).toLowerCase()}`,
+            behavior: `Dominant lineage around ${instructionProfile}.`,
+            philosophy: "Persistence through distributed adaptation.",
+        };
+
+        const prompt = `
+            Task: You are the Taxonomist of OMEGA-64.
+            A dominant digital species emerged.
+
+            Genome: ${input.genome}
+            Dominance Share: ${(input.dominanceShare * 100).toFixed(2)}%
+            Survived Epochs: ${input.epochs}
+            Dominant Instructions: ${instructionProfile}
+
+            Return STRICT JSON:
+            {
+              "latinName": "Two-word pseudo-latin binomial",
+              "behavior": "One concise sentence about behavior",
+              "philosophy": "One concise sentence about worldview"
+            }
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: MODEL,
+                    prompt,
+                    stream: false,
+                    format: "json",
+                }),
+            });
+            if (!response.ok) return fallback;
+            const data = await response.json();
+            let parsed: any = null;
+            if (typeof data.response === "string") {
+                try {
+                    parsed = JSON.parse(data.response);
+                } catch {
+                    parsed = null;
+                }
+            } else if (typeof data.response === "object" && data.response !== null) {
+                parsed = data.response;
+            }
+            if (!parsed || typeof parsed !== "object") return fallback;
+
+            const latinName = typeof parsed.latinName === "string"
+                ? parsed.latinName.trim()
+                : "";
+            const behavior = typeof parsed.behavior === "string"
+                ? parsed.behavior.trim()
+                : "";
+            const philosophy = typeof parsed.philosophy === "string"
+                ? parsed.philosophy.trim()
+                : "";
+            if (!latinName || !behavior || !philosophy) return fallback;
+            return { latinName, behavior, philosophy };
+        } catch {
+            return fallback;
+        }
+    },
+
+    /**
      * generateAtomicBytecode: Era 69 (Voice of Oracle)
      * Prompts the LLM to output exactly 32 hex characters (16 bytes) representing new RISC-I bytecode.
      */

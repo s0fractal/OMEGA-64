@@ -13,6 +13,7 @@ import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -48,6 +49,7 @@ LOGGER.info(
     CONTROL_TOKEN.length > 0
   }`,
 );
+await AKASHA_CODEX.start();
 
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
@@ -184,6 +186,50 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         },
       },
     );
+  }
+
+  if (url.pathname === "/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 8);
+    return new Response(JSON.stringify(snapshot), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/species" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.species), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/chronicles" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.chronicles), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/relics" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.relics), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   }
 
   if (url.pathname === "/viral" && req.method === "GET") {

@@ -6,6 +6,7 @@ import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
@@ -37,11 +38,15 @@ export const BREATH = {
           historicalBriefing.substring(0, 50)
         }..."`,
       );
+      const codexChronicle = await AKASHA_CODEX.getChronicleContext(3);
+      LOGGER.info(
+        `   [BREATH] Codex Chronicle: "${codexChronicle.substring(0, 60)}..."`,
+      );
 
       // 3. Consult the Oracle (LLM Synapse)
       const combinedContext = `${historicalBriefing} | MOOD: ${
         vox.join(" ")
-      } | ORACLE: ${oracle.join(" ")}`;
+      } | ORACLE: ${oracle.join(" ")} | CODEX: ${codexChronicle}`;
       const thought = await LLM_SYNAPSE.generateThought(combinedContext);
 
       // 4. Inject back into the Matrix (Motor Output)

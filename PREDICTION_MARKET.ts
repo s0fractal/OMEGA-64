@@ -2,6 +2,7 @@
 // Replaces Parallel Realities. Crisis triggers mutations that atoms bet on.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 // 16-byte Shared Buffer:
 // [0-3]: Int32 isActive (0 or 1)
@@ -42,9 +43,13 @@ export const PREDICTION_MARKET = {
 
         Atomics.store(marketState, 0, 0);
         const finalBet = Atomics.load(betPoolInt, 0) / SCALE;
+        const proposalHex = Array.from(proposedLogic).map((b) =>
+          b.toString(16).padStart(2, "0")
+        ).join("").toUpperCase();
+        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
 
         if (finalBet >= CRISIS_THRESHOLD) {
-            const winnersHex = Array.from(proposedLogic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const winnersHex = proposalHex;
             console.log(`🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${finalBet.toFixed(2)}. Signature [${winnersHex}] is now Blessed.`);
             
             // ERA 37: Record success
@@ -60,8 +65,15 @@ export const PREDICTION_MARKET = {
                 const currentEnergy = STATE_MATRIX.getEnergy(idx);
                 STATE_MATRIX.setEnergy(idx, Math.max(0, currentEnergy - 10)); 
             }
+            AKASHA_CODEX.recordMarketResolution(tick, true, finalBet, winnersHex);
         } else {
             console.log(`🛑 [MARKET] CRISIS AVERTED. Insufficient Energy Bet: ${finalBet.toFixed(2)} / ${CRISIS_THRESHOLD}. Status Quo maintained.`);
+            AKASHA_CODEX.recordMarketResolution(
+              tick,
+              false,
+              finalBet,
+              proposalHex,
+            );
         }
     },
 

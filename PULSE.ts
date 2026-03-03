@@ -9,6 +9,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -976,6 +977,7 @@ export const PULSE = {
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
+      AKASHA_CODEX.observePulse(currentTick, activeIdx.length);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);

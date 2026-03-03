@@ -3,6 +3,9 @@
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+
+let lastAnnouncedDecree = "NONE";
 
 export const DECREES: Record<string, any> = {
     "NONE": { decay: 1.0, speed: 1.0, mutation: 1.0, label: "DEMOCRACY" },
@@ -59,6 +62,16 @@ export const SOVEREIGNTY_ENGINE = {
                 activeDecree,
                 mods: DECREES[activeDecree]
             };
+            if (activeDecree !== lastAnnouncedDecree) {
+                lastAnnouncedDecree = activeDecree;
+                const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+                AKASHA_CODEX.recordDecreeShift(
+                    tick,
+                    activeDecree,
+                    logicStr,
+                    bestPower * bestPower,
+                );
+            }
             return SOVEREIGNTY_ENGINE.currentRegent;
         }
 
@@ -70,6 +83,11 @@ export const SOVEREIGNTY_ENGINE = {
             activeDecree: "NONE",
             mods: DECREES["NONE"]
         };
+        if (lastAnnouncedDecree !== "NONE") {
+            lastAnnouncedDecree = "NONE";
+            const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+            AKASHA_CODEX.recordDecreeShift(tick, "NONE", "NONE", 0);
+        }
         return SOVEREIGNTY_ENGINE.currentRegent;
     },
 
@@ -125,6 +143,16 @@ export const SOVEREIGNTY_ENGINE = {
             activeDecree,
             mods: DECREES[activeDecree]
         };
+        if (activeDecree !== lastAnnouncedDecree) {
+            lastAnnouncedDecree = activeDecree;
+            const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+            AKASHA_CODEX.recordDecreeShift(
+                tick,
+                activeDecree,
+                colonyGenome,
+                dominantMembers.length * Math.sqrt(bestEnergy),
+            );
+        }
 
         return {
             regent: SOVEREIGNTY_ENGINE.currentRegent,

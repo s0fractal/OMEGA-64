@@ -41,6 +41,7 @@
     "ENV_PARSE.ts",
     "RUNTIME_POLICY.ts",
     "OFFSETS.ts",
+    "AKASHA_CODEX.ts",
     "mod.ts",
     "SHIMS.ts"
   ],

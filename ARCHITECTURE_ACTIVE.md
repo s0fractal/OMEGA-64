@@ -1,4 +1,4 @@
-# OMEGA-64 | Active Architecture (Era 69)
+# OMEGA-64 | Active Architecture (Era 70)
 
 This document is the canonical architecture snapshot for active runtime and
 export context. It intentionally excludes historical era narratives.
@@ -12,6 +12,8 @@ export context. It intentionally excludes historical era narratives.
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
    `SNAPSHOT_ENGINE.ts`
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
+7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
+   `./codex/chronicles`, `./codex/relics`)
 
 ## Deterministic Pulse Pipeline
 
@@ -22,6 +24,17 @@ export context. It intentionally excludes historical era narratives.
 5. `TICK_MATRIX` executes structure/signal matrix pass.
 6. Host applies sequential actions (bond requests, spawn queue drain).
 7. `GATE.tick()` performs admission, budgeting, policy checks, and ledgering.
+
+## Era 70 Additions
+
+- `ATTENTION_FIELD` is now canonical shared-memory lattice state:
+  `OFFSETS.ATTENTION_FIELD_OFFSET` + `STATE_MATRIX.attentionField`.
+- Observer presence enters through `/avatar` and decays in host pulse.
+- WASM trophism (`assembly/index.ts`) applies role-specific response to
+  attention gradients.
+- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
+  API snapshots via `/codex*` endpoints.
+- `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
 
 ## Governance and Integrity
 

@@ -1,10 +1,790 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T23:35:29.192Z*
-*Exported Files: 63*
-*Manifest SHA256: 4ed6c06a3ec045697d1d558d624fc29f3baf6f06712a85fd2d7e729d641fb48e*
-*Export Set SHA256: ef0de89e746947572a8b92d802ddf60cd64756401866c7597ac7732643926001*
-*Git Commit: 6b10f146f0f5*
+*Generated: 2026-03-03T23:47:23.562Z*
+*Exported Files: 64*
+*Manifest SHA256: 76a7b4ec9b972f74c82ab40ebb666d3b433ad613725f2e374c31f9ee0bda7caf*
+*Export Set SHA256: fecd5db84f21dc6be4f22e58f14e4d478e256d2d8ac9e41139cee73e55811ff6*
+*Git Commit: 2dbc6efbd141*
+
+---
+
+## FILE: AKASHA_CODEX.ts
+
+```typescript
+// OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
+// Persistent, human-readable archive of species, chronicles, and relics.
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { LOGGER } from "./LOGGER.ts";
+
+const CODEX_ROOT = "codex";
+const SPECIES_DIR = `${CODEX_ROOT}/species`;
+const CHRONICLES_DIR = `${CODEX_ROOT}/chronicles`;
+const RELICS_DIR = `${CODEX_ROOT}/relics`;
+
+const STATE_FILE = `${CODEX_ROOT}/state.json`;
+const SPECIES_INDEX_FILE = `${SPECIES_DIR}/index.json`;
+const CHRONICLES_INDEX_FILE = `${CHRONICLES_DIR}/index.json`;
+const RELICS_INDEX_FILE = `${RELICS_DIR}/index.json`;
+
+const EPOCH_TICKS = 10_000;
+const DOMINANCE_THRESHOLD = 0.05;
+const MIN_EPOCHS_FOR_DISCOVERY = 3;
+const RELIC_MIN_BLOCKS = 48;
+const MAX_CHRONICLES = 512;
+const MAX_RELICS = 256;
+const MAX_RELIC_SIGNATURES = 512;
+
+type SpeciesEntry = {
+  id: string;
+  genome: string;
+  latinName: string;
+  behavior: string;
+  philosophy: string;
+  dominantInstructions: string[];
+  firstRecordedTick: number;
+  lastDominantTick: number;
+  dominantEpochs: number;
+  peakShare: number;
+  filePath: string;
+  createdAt: string;
+};
+
+type ChronicleEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  type: string;
+  title: string;
+  body: string;
+  createdAt: string;
+};
+
+type RelicEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  signature: string;
+  size: number;
+  bounds: { x0: number; y0: number; x1: number; y1: number };
+  summary: string;
+  snapshotPath: string;
+  filePath: string;
+  createdAt: string;
+};
+
+type CodexState = {
+  version: number;
+  epochTicks: number;
+  lastEpochScanTick: number;
+  populationPeak: number;
+  lastPopulation: number;
+  lastMassExtinctionTick: number;
+  lastDecree: string;
+  lastDecreeTick: number;
+  genomeEpochs: Record<string, number[]>;
+  relicSignatures: string[];
+};
+
+type GenomeStats = {
+  genome: string;
+  count: number;
+  share: number;
+  sampleIndices: number[];
+};
+
+type RelicCandidate = {
+  cells: number[];
+  bounds: { x0: number; y0: number; x1: number; y1: number };
+  size: number;
+  signatureBase: string;
+};
+
+type TaxonomyResult = {
+  latinName: string;
+  behavior: string;
+  philosophy: string;
+};
+
+const OPCODE_NAMES: Record<number, string> = {
+  0x00: "NOP",
+  0x01: "SET",
+  0x02: "GET",
+  0x03: "PUT",
+  0x04: "ADD",
+  0x05: "SUB",
+  0x10: "JZ",
+  0x11: "JNZ",
+  0x12: "JMP",
+  0x80: "REPLICATE",
+  0x81: "SIGNAL",
+  0x82: "BIND",
+  0x83: "SHARE",
+  0xA4: "PLUG",
+  0xA5: "TENSEGRITY",
+  0xA6: "COLLECTIVE",
+  0xA7: "ROLE",
+  0xA8: "BUILD",
+  0xA9: "SENSE",
+};
+
+const fallbackState = (): CodexState => ({
+  version: 1,
+  epochTicks: EPOCH_TICKS,
+  lastEpochScanTick: -1,
+  populationPeak: 0,
+  lastPopulation: 0,
+  lastMassExtinctionTick: -1,
+  lastDecree: "NONE",
+  lastDecreeTick: -1,
+  genomeEpochs: {},
+  relicSignatures: [],
+});
+
+let started = false;
+let loadPromise: Promise<void> | null = null;
+let writeQueue: Promise<void> = Promise.resolve();
+let pendingEpochScanTick = -1;
+let state: CodexState = fallbackState();
+let speciesIndex: SpeciesEntry[] = [];
+let chronicleIndex: ChronicleEntry[] = [];
+let relicIndex: RelicEntry[] = [];
+
+const nowIso = (): string => new Date().toISOString();
+
+const toHex = (bytes: Uint8Array): string =>
+  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("")
+    .toUpperCase();
+
+const asArray = <T>(value: unknown): T[] => Array.isArray(value) ? value as T[] : [];
+
+const readJsonFile = async <T>(path: string, fallback: T): Promise<T> => {
+  try {
+    const raw = await Deno.readTextFile(path);
+    return JSON.parse(raw) as T;
+  } catch {
+    return fallback;
+  }
+};
+
+const writeJsonFile = async (path: string, value: unknown): Promise<void> => {
+  await Deno.writeTextFile(path, JSON.stringify(value, null, 2));
+};
+
+const slugify = (value: string): string =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
+    .slice(0, 64) || "unnamed";
+
+const stableId = (prefix: string, tick: number, suffix: string): string => {
+  const compact = suffix.replace(/[^a-zA-Z0-9]/g, "").slice(0, 12) || "seed";
+  return `${prefix}-${tick}-${compact}`;
+};
+
+const opcodeLength = (op: number): number => {
+  if (
+    op === 0x01 || op === 0x02 || op === 0x03 || op === 0x04 || op === 0x05 ||
+    op === 0x10 || op === 0x11 || op === 0x12 || op === 0xA7 || op === 0x83 ||
+    op === 0xA8 || op === 0xA9 || op === 0xA4
+  ) return 3;
+  if (op === 0xA5 || op === 0xA6) return 4;
+  return 1;
+};
+
+const summarizeInstructions = (sampleIndices: number[]): string[] => {
+  const counts = new Map<string, number>();
+  for (const idx of sampleIndices) {
+    const script = STATE_MATRIX.getInstructions(idx);
+    let pc = 0;
+    let steps = 0;
+    while (pc >= 0 && pc < 64 && steps < 16) {
+      const op = script[pc];
+      if (op === 0x00) break;
+      const name = OPCODE_NAMES[op] ?? `OP_${op.toString(16).toUpperCase()}`;
+      counts.set(name, (counts.get(name) ?? 0) + 1);
+      pc += opcodeLength(op);
+      steps++;
+    }
+  }
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 4)
+    .map(([name]) => name);
+};
+
+const speciesNameForGenome = (genome: string): string => {
+  const hit = speciesIndex.find((entry) => entry.genome === genome);
+  return hit ? hit.latinName : `Genome ${genome.slice(0, 8)}`;
+};
+
+const ensureStorage = async (): Promise<void> => {
+  if (!loadPromise) {
+    loadPromise = (async () => {
+      await Deno.mkdir(SPECIES_DIR, { recursive: true });
+      await Deno.mkdir(CHRONICLES_DIR, { recursive: true });
+      await Deno.mkdir(RELICS_DIR, { recursive: true });
+
+      state = await readJsonFile<CodexState>(STATE_FILE, fallbackState());
+      if (typeof state.version !== "number") {
+        state = fallbackState();
+      }
+      state.epochTicks = EPOCH_TICKS;
+      state.genomeEpochs = state.genomeEpochs ?? {};
+      state.relicSignatures = asArray<string>(state.relicSignatures).slice(
+        -MAX_RELIC_SIGNATURES,
+      );
+
+      speciesIndex = asArray<SpeciesEntry>(
+        await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
+      );
+      chronicleIndex = asArray<ChronicleEntry>(
+        await readJsonFile<ChronicleEntry[]>(CHRONICLES_INDEX_FILE, []),
+      ).sort((a, b) => b.tick - a.tick);
+      relicIndex = asArray<RelicEntry>(
+        await readJsonFile<RelicEntry[]>(RELICS_INDEX_FILE, []),
+      ).sort((a, b) => b.tick - a.tick);
+    })();
+  }
+  await loadPromise;
+};
+
+const persistState = async (): Promise<void> => {
+  await writeJsonFile(STATE_FILE, state);
+};
+
+const persistIndexes = async (): Promise<void> => {
+  await Promise.all([
+    writeJsonFile(SPECIES_INDEX_FILE, speciesIndex),
+    writeJsonFile(CHRONICLES_INDEX_FILE, chronicleIndex),
+    writeJsonFile(RELICS_INDEX_FILE, relicIndex),
+    persistState(),
+  ]);
+};
+
+const enqueueWrite = (job: () => Promise<void>): void => {
+  writeQueue = writeQueue.then(job).catch((err) => {
+    LOGGER.warn(`📚 [CODEX] write queue error: ${String(err)}`);
+  });
+};
+
+const appendChronicle = async (
+  tick: number,
+  type: string,
+  title: string,
+  body: string,
+): Promise<void> => {
+  const epoch = Math.floor(tick / EPOCH_TICKS);
+  const id = stableId("chronicle", tick, `${type}-${title}`);
+  const entry: ChronicleEntry = {
+    id,
+    tick,
+    epoch,
+    type,
+    title,
+    body,
+    createdAt: nowIso(),
+  };
+  chronicleIndex.unshift(entry);
+  if (chronicleIndex.length > MAX_CHRONICLES) {
+    chronicleIndex.length = MAX_CHRONICLES;
+  }
+
+  const path = `${CHRONICLES_DIR}/${id}.md`;
+  const markdown = [
+    `# ${title}`,
+    "",
+    `- Tick: ${tick}`,
+    `- Epoch: ${epoch}`,
+    `- Type: ${type}`,
+    `- Recorded: ${entry.createdAt}`,
+    "",
+    body,
+    "",
+  ].join("\n");
+  await Deno.writeTextFile(path, markdown);
+  await persistIndexes();
+};
+
+const collectGenomeStats = (): { population: number; dominant: GenomeStats[] } => {
+  const active = STATE_MATRIX.getActiveIndices();
+  const population = active.length;
+  if (population === 0) return { population, dominant: [] };
+
+  const statsMap = new Map<string, { count: number; sampleIndices: number[] }>();
+  for (const idx of active) {
+    const genome = toHex(STATE_MATRIX.getLogic(idx));
+    const slot = statsMap.get(genome) ?? { count: 0, sampleIndices: [] };
+    slot.count++;
+    if (slot.sampleIndices.length < 16) slot.sampleIndices.push(idx);
+    statsMap.set(genome, slot);
+  }
+
+  const dominant: GenomeStats[] = [];
+  for (const [genome, stat] of statsMap.entries()) {
+    const share = stat.count / population;
+    if (share >= DOMINANCE_THRESHOLD) {
+      dominant.push({
+        genome,
+        count: stat.count,
+        share,
+        sampleIndices: stat.sampleIndices,
+      });
+    }
+  }
+  dominant.sort((a, b) => b.share - a.share);
+  return { population, dominant };
+};
+
+const fallbackTaxonomy = (
+  genome: string,
+  dominantInstructions: string[],
+): TaxonomyResult => {
+  const genus = [
+    "Structura",
+    "Mycelia",
+    "Nexa",
+    "Aethera",
+    "Crypta",
+    "Lumen",
+    "Fracta",
+    "Vorax",
+  ];
+  const species = [
+    "stabilis",
+    "migrans",
+    "tenax",
+    "resonans",
+    "noctis",
+    "lucens",
+    "silentis",
+    "orbitae",
+  ];
+  const a = Number.parseInt(genome.slice(0, 2), 16) % genus.length;
+  const b = Number.parseInt(genome.slice(2, 4), 16) % species.length;
+  const stack = dominantInstructions.length > 0
+    ? dominantInstructions.join(", ")
+    : "adaptive scripts";
+  return {
+    latinName: `${genus[a]} ${species[b]}`,
+    behavior: `Dominant lineage specializing in ${stack}.`,
+    philosophy:
+      "Survival through iterative structure and opportunistic resonance.",
+  };
+};
+
+const discoverSpecies = async (
+  tick: number,
+  stat: GenomeStats,
+  epochs: number,
+): Promise<void> => {
+  if (speciesIndex.some((entry) => entry.genome === stat.genome)) return;
+
+  const dominantInstructions = summarizeInstructions(stat.sampleIndices);
+  const fallback = fallbackTaxonomy(stat.genome, dominantInstructions);
+  let taxonomy: TaxonomyResult = fallback;
+  try {
+    const llmTaxonomy = await LLM_SYNAPSE.generateSpeciesTaxonomy({
+      genome: stat.genome,
+      dominantInstructions,
+      dominanceShare: stat.share,
+      epochs,
+    });
+    if (
+      llmTaxonomy.latinName.trim().length > 0 &&
+      llmTaxonomy.behavior.trim().length > 0
+    ) {
+      taxonomy = llmTaxonomy;
+    }
+  } catch {
+    taxonomy = fallback;
+  }
+
+  const id = stableId("species", tick, stat.genome);
+  const slug = slugify(taxonomy.latinName);
+  const filePath = `${SPECIES_DIR}/${slug}_${stat.genome.slice(0, 8)}.md`;
+  const entry: SpeciesEntry = {
+    id,
+    genome: stat.genome,
+    latinName: taxonomy.latinName,
+    behavior: taxonomy.behavior,
+    philosophy: taxonomy.philosophy,
+    dominantInstructions,
+    firstRecordedTick: tick,
+    lastDominantTick: tick,
+    dominantEpochs: epochs,
+    peakShare: stat.share,
+    filePath,
+    createdAt: nowIso(),
+  };
+
+  speciesIndex.unshift(entry);
+  await Deno.writeTextFile(
+    filePath,
+    [
+      `# ${entry.latinName}`,
+      "",
+      `- Genome: \`${entry.genome}\``,
+      `- First Recorded Tick: ${entry.firstRecordedTick}`,
+      `- Dominant Epochs: ${entry.dominantEpochs}`,
+      `- Peak Share: ${(entry.peakShare * 100).toFixed(2)}%`,
+      `- Dominant Instructions: ${entry.dominantInstructions.join(", ") || "n/a"}`,
+      `- Created At: ${entry.createdAt}`,
+      "",
+      "## Behavioral Profile",
+      entry.behavior,
+      "",
+      "## Structural Philosophy",
+      entry.philosophy,
+      "",
+    ].join("\n"),
+  );
+
+  await appendChronicle(
+    tick,
+    "species_discovery",
+    `New Species Recorded: ${entry.latinName}`,
+    `Genome ${entry.genome} crossed ${(stat.share * 100).toFixed(2)}% population share and persisted across ${epochs} macro-epochs.`,
+  );
+};
+
+const typeSymbol = (value: number): string => {
+  if (value === 0) return ".";
+  if (value === 1) return "w";
+  if (value === 2) return "n";
+  if (value === 3) return "d";
+  if (value === 4) return "s";
+  if (value === 5) return "k";
+  if (value === 6) return "c";
+  return "x";
+};
+
+const hashHex = async (input: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const findRelicCandidate = (): RelicCandidate | null => {
+  const grid = STATE_MATRIX.structureGrid;
+  const visited = new Uint8Array(140 * 80);
+  const active = STATE_MATRIX.getActiveIndices();
+  const occupied = new Uint8Array(140 * 80);
+  for (const idx of active) {
+    const x = STATE_MATRIX.getX(idx);
+    const y = STATE_MATRIX.getY(idx);
+    const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
+    const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+    occupied[gy * 140 + gx] = 1;
+  }
+
+  let best: RelicCandidate | null = null;
+  const queue = new Int32Array(140 * 80);
+
+  for (let i = 0; i < 140 * 80; i++) {
+    const type = grid[i] & 0xFF;
+    if (type === 0 || visited[i] === 1) continue;
+
+    let head = 0;
+    let tail = 0;
+    queue[tail++] = i;
+    visited[i] = 1;
+    const cells: number[] = [];
+    let x0 = 139;
+    let y0 = 79;
+    let x1 = 0;
+    let y1 = 0;
+    let hasOccupant = occupied[i] === 1;
+
+    while (head < tail) {
+      const cur = queue[head++];
+      cells.push(cur);
+      const cx = cur % 140;
+      const cy = Math.floor(cur / 140);
+      if (cx < x0) x0 = cx;
+      if (cy < y0) y0 = cy;
+      if (cx > x1) x1 = cx;
+      if (cy > y1) y1 = cy;
+
+      const nbs = [cur - 140, cur + 140, cur - 1, cur + 1];
+      for (const n of nbs) {
+        if (n < 0 || n >= 140 * 80) continue;
+        const nx = n % 140;
+        const ny = Math.floor(n / 140);
+        if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
+        if (visited[n] === 1) continue;
+        if ((grid[n] & 0xFF) === 0) continue;
+        visited[n] = 1;
+        queue[tail++] = n;
+        if (occupied[n] === 1) hasOccupant = true;
+      }
+    }
+
+    if (hasOccupant) continue;
+    if (cells.length < RELIC_MIN_BLOCKS) continue;
+
+    const signatureBase = cells
+      .slice(0, 512)
+      .map((cell) => `${cell}:${grid[cell] & 0xFF}`)
+      .join("|");
+
+    const candidate: RelicCandidate = {
+      cells,
+      bounds: { x0, y0, x1, y1 },
+      size: cells.length,
+      signatureBase,
+    };
+    if (!best || candidate.size > best.size) best = candidate;
+  }
+
+  return best;
+};
+
+const recordRelic = async (tick: number): Promise<void> => {
+  const candidate = findRelicCandidate();
+  if (!candidate) return;
+
+  const signature = await hashHex(candidate.signatureBase);
+  if (state.relicSignatures.includes(signature)) return;
+
+  const { x0, y0, x1, y1 } = candidate.bounds;
+  const rows: string[] = [];
+  for (let y = y0; y <= y1; y++) {
+    let row = "";
+    for (let x = x0; x <= x1; x++) {
+      const idx = y * 140 + x;
+      row += typeSymbol(STATE_MATRIX.structureGrid[idx] & 0xFF);
+    }
+    rows.push(row);
+  }
+
+  const hints = [
+    `Relic bounds: (${x0},${y0})-(${x1},${y1})`,
+    `Relic size: ${candidate.size} blocks`,
+    `Symbol map: ${rows.slice(0, 8).join(" / ")}`,
+  ];
+  const report = await LLM_SYNAPSE.generateArchaeologicalReport(hints);
+
+  const id = stableId("relic", tick, signature);
+  const snapshotPath = `${RELICS_DIR}/${id}.json`;
+  const filePath = `${RELICS_DIR}/${id}.md`;
+  const epoch = Math.floor(tick / EPOCH_TICKS);
+  const entry: RelicEntry = {
+    id,
+    tick,
+    epoch,
+    signature,
+    size: candidate.size,
+    bounds: candidate.bounds,
+    summary: report,
+    snapshotPath,
+    filePath,
+    createdAt: nowIso(),
+  };
+
+  await writeJsonFile(snapshotPath, {
+    tick,
+    epoch,
+    signature,
+    bounds: candidate.bounds,
+    rows,
+  });
+  await Deno.writeTextFile(
+    filePath,
+    [
+      `# Relic ${id}`,
+      "",
+      `- Tick: ${tick}`,
+      `- Epoch: ${epoch}`,
+      `- Size: ${candidate.size} blocks`,
+      `- Bounds: (${x0},${y0})-(${x1},${y1})`,
+      `- Signature: ${signature}`,
+      "",
+      "## Archaeological Note",
+      report,
+      "",
+      "## Snapshot",
+      `JSON: ${snapshotPath}`,
+      "",
+    ].join("\n"),
+  );
+
+  relicIndex.unshift(entry);
+  if (relicIndex.length > MAX_RELICS) relicIndex.length = MAX_RELICS;
+  state.relicSignatures.push(signature);
+  if (state.relicSignatures.length > MAX_RELIC_SIGNATURES) {
+    state.relicSignatures = state.relicSignatures.slice(-MAX_RELIC_SIGNATURES);
+  }
+
+  await appendChronicle(
+    tick,
+    "relic_discovery",
+    "Archaeological Relic Cataloged",
+    `A dormant structure of ${candidate.size} blocks was archived as ${id}.`,
+  );
+};
+
+const runEpochScan = async (tick: number): Promise<void> => {
+  await ensureStorage();
+  if (tick <= state.lastEpochScanTick) return;
+
+  const epoch = Math.floor(tick / EPOCH_TICKS);
+  const { population, dominant } = collectGenomeStats();
+  state.lastPopulation = population;
+  if (population > state.populationPeak) state.populationPeak = population;
+
+  for (const stat of dominant) {
+    const seen = state.genomeEpochs[stat.genome] ?? [];
+    if (!seen.includes(epoch)) seen.push(epoch);
+    state.genomeEpochs[stat.genome] = seen.sort((a, b) => a - b).slice(-16);
+
+    const known = speciesIndex.find((entry) => entry.genome === stat.genome);
+    if (known) {
+      known.lastDominantTick = tick;
+      known.dominantEpochs = state.genomeEpochs[stat.genome].length;
+      if (stat.share > known.peakShare) known.peakShare = stat.share;
+      if (known.dominantInstructions.length === 0) {
+        known.dominantInstructions = summarizeInstructions(stat.sampleIndices);
+      }
+      continue;
+    }
+
+    if (state.genomeEpochs[stat.genome].length >= MIN_EPOCHS_FOR_DISCOVERY) {
+      await discoverSpecies(
+        tick,
+        stat,
+        state.genomeEpochs[stat.genome].length,
+      );
+    }
+  }
+
+  await recordRelic(tick);
+  state.lastEpochScanTick = tick;
+  await persistIndexes();
+};
+
+export const AKASHA_CODEX = {
+  start: async (): Promise<void> => {
+    if (started) return;
+    started = true;
+    await ensureStorage();
+    LOGGER.info(
+      `📚 [CODEX] activated at ./${CODEX_ROOT} (epochTicks=${EPOCH_TICKS})`,
+    );
+  },
+  isStarted: (): boolean => started,
+  observePulse: (tick: number, activePopulation: number): void => {
+    if (!started) return;
+    state.lastPopulation = activePopulation;
+    if (activePopulation > state.populationPeak) {
+      state.populationPeak = activePopulation;
+    }
+
+    const extinctionThreshold = Math.floor(state.populationPeak * 0.2);
+    if (
+      state.populationPeak >= 100 &&
+      activePopulation <= extinctionThreshold &&
+      (state.lastMassExtinctionTick < 0 ||
+        tick - state.lastMassExtinctionTick >= EPOCH_TICKS)
+    ) {
+      state.lastMassExtinctionTick = tick;
+      const dominantName = speciesIndex[0]?.latinName ?? "Unclassified lineages";
+      enqueueWrite(async () => {
+        await appendChronicle(
+          tick,
+          "mass_extinction",
+          "Great Die-off Recorded",
+          `Population collapsed to ${activePopulation} after peaking at ${state.populationPeak}. Dominant lineage before collapse: ${dominantName}.`,
+        );
+      });
+    }
+
+    if (
+      tick > 0 &&
+      tick % EPOCH_TICKS === 0 &&
+      tick !== state.lastEpochScanTick &&
+      tick !== pendingEpochScanTick
+    ) {
+      pendingEpochScanTick = tick;
+      enqueueWrite(async () => {
+        try {
+          await runEpochScan(tick);
+        } finally {
+          pendingEpochScanTick = -1;
+        }
+      });
+    }
+  },
+  recordDecreeShift: (
+    tick: number,
+    decree: string,
+    regentGenome: string,
+    legitimacy: number,
+  ): void => {
+    if (!started) return;
+    if (decree === state.lastDecree && tick === state.lastDecreeTick) return;
+    state.lastDecree = decree;
+    state.lastDecreeTick = tick;
+
+    enqueueWrite(async () => {
+      const species = speciesNameForGenome(regentGenome);
+      await appendChronicle(
+        tick,
+        "decree_shift",
+        `Decree Shift: ${decree}`,
+        `Regent ${species} enforced ${decree} with legitimacy ${legitimacy.toFixed(2)}.`,
+      );
+    });
+  },
+  recordMarketResolution: (
+    tick: number,
+    adopted: boolean,
+    energyBet: number,
+    genomeHex: string,
+  ): void => {
+    if (!started) return;
+    enqueueWrite(async () => {
+      const species = speciesNameForGenome(genomeHex);
+      const title = adopted
+        ? "Market Mutation Adopted"
+        : "Market Mutation Rejected";
+      const body = adopted
+        ? `Prediction market passed genome ${genomeHex} (${species}) with energy pool ${energyBet.toFixed(2)}.`
+        : `Prediction market rejected genome ${genomeHex} after energy pool ${energyBet.toFixed(2)} failed threshold.`;
+      await appendChronicle(tick, "market_resolution", title, body);
+    });
+  },
+  getChronicleContext: async (limit: number = 3): Promise<string> => {
+    await ensureStorage();
+    const take = Math.max(1, Math.min(12, Math.floor(limit)));
+    if (chronicleIndex.length === 0) return "No codex chronicle yet.";
+    return chronicleIndex.slice(0, take).map((entry) =>
+      `[Epoch ${entry.epoch}] ${entry.title}: ${entry.body}`
+    ).join(" | ");
+  },
+  getSnapshot: async (limit: number = 8) => {
+    await ensureStorage();
+    const take = Math.max(1, Math.min(64, Math.floor(limit)));
+    return {
+      enabled: started,
+      root: CODEX_ROOT,
+      epochTicks: EPOCH_TICKS,
+      dominanceThreshold: DOMINANCE_THRESHOLD,
+      minEpochsForDiscovery: MIN_EPOCHS_FOR_DISCOVERY,
+      population: {
+        current: state.lastPopulation,
+        peak: state.populationPeak,
+      },
+      species: speciesIndex.slice(0, take),
+      chronicles: chronicleIndex.slice(0, take),
+      relics: relicIndex.slice(0, take),
+    };
+  },
+};
+
+
+```
 
 ---
 
@@ -24,6 +804,29 @@ let clients = new Set<WebSocket>();
 
 // Store the latest state of the universe
 let akashaState: string = "{}";
+let codexDigest: { species: unknown[]; chronicles: unknown[]; relics: unknown[] } =
+  { species: [], chronicles: [], relics: [] };
+
+const readJsonFile = async (path: string): Promise<unknown> => {
+  try {
+    return JSON.parse(await Deno.readTextFile(path));
+  } catch {
+    return [];
+  }
+};
+
+async function refreshCodexDigest() {
+  const [species, chronicles, relics] = await Promise.all([
+    readJsonFile("./codex/species/index.json"),
+    readJsonFile("./codex/chronicles/index.json"),
+    readJsonFile("./codex/relics/index.json"),
+  ]);
+  codexDigest = {
+    species: Array.isArray(species) ? species.slice(0, 8) : [],
+    chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
+    relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
+  };
+}
 
 async function scanUniverse() {
   const atoms: any[] = [];
@@ -67,7 +870,11 @@ async function scanUniverse() {
     console.error("Error scanning universe:", e);
   }
 
-  akashaState = JSON.stringify({ type: "SYNC", data: { atoms, bonds } });
+  await refreshCodexDigest();
+  akashaState = JSON.stringify({
+    type: "SYNC",
+    data: { atoms, bonds, codex: codexDigest },
+  });
   broadcast(akashaState);
 }
 
@@ -529,7 +1336,7 @@ console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 ## FILE: ARCHITECTURE_ACTIVE.md
 
 ```markdown
-# OMEGA-64 | Active Architecture (Era 69)
+# OMEGA-64 | Active Architecture (Era 70)
 
 This document is the canonical architecture snapshot for active runtime and
 export context. It intentionally excludes historical era narratives.
@@ -543,6 +1350,8 @@ export context. It intentionally excludes historical era narratives.
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
    `SNAPSHOT_ENGINE.ts`
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
+7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
+   `./codex/chronicles`, `./codex/relics`)
 
 ## Deterministic Pulse Pipeline
 
@@ -553,6 +1362,17 @@ export context. It intentionally excludes historical era narratives.
 5. `TICK_MATRIX` executes structure/signal matrix pass.
 6. Host applies sequential actions (bond requests, spawn queue drain).
 7. `GATE.tick()` performs admission, budgeting, policy checks, and ledgering.
+
+## Era 70 Additions
+
+- `ATTENTION_FIELD` is now canonical shared-memory lattice state:
+  `OFFSETS.ATTENTION_FIELD_OFFSET` + `STATE_MATRIX.attentionField`.
+- Observer presence enters through `/avatar` and decays in host pulse.
+- WASM trophism (`assembly/index.ts`) applies role-specific response to
+  attention gradients.
+- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
+  API snapshots via `/codex*` endpoints.
+- `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
 
 ## Governance and Integrity
 
@@ -1884,6 +2704,7 @@ import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
@@ -1915,11 +2736,15 @@ export const BREATH = {
           historicalBriefing.substring(0, 50)
         }..."`,
       );
+      const codexChronicle = await AKASHA_CODEX.getChronicleContext(3);
+      LOGGER.info(
+        `   [BREATH] Codex Chronicle: "${codexChronicle.substring(0, 60)}..."`,
+      );
 
       // 3. Consult the Oracle (LLM Synapse)
       const combinedContext = `${historicalBriefing} | MOOD: ${
         vox.join(" ")
-      } | ORACLE: ${oracle.join(" ")}`;
+      } | ORACLE: ${oracle.join(" ")} | CODEX: ${codexChronicle}`;
       const thought = await LLM_SYNAPSE.generateThought(combinedContext);
 
       // 4. Inject back into the Matrix (Motor Output)
@@ -2370,6 +3195,7 @@ export const CONTROL_INTENT_QUEUE = {
     "ENV_PARSE.ts",
     "RUNTIME_POLICY.ts",
     "OFFSETS.ts",
+    "AKASHA_CODEX.ts",
     "mod.ts",
     "SHIMS.ts"
   ],
@@ -4840,6 +5666,85 @@ export const LLM_SYNAPSE = {
     },
 
     /**
+     * generateSpeciesTaxonomy: Names and describes a dominant genome lineage.
+     */
+    generateSpeciesTaxonomy: async (
+        input: {
+            genome: string;
+            dominantInstructions: string[];
+            dominanceShare: number;
+            epochs: number;
+        },
+    ): Promise<{ latinName: string; behavior: string; philosophy: string }> => {
+        const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+        const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+        const instructionProfile = input.dominantInstructions.join(", ") || "UNKNOWN";
+
+        const fallback = {
+            latinName: `Structura ${input.genome.slice(0, 6).toLowerCase()}`,
+            behavior: `Dominant lineage around ${instructionProfile}.`,
+            philosophy: "Persistence through distributed adaptation.",
+        };
+
+        const prompt = `
+            Task: You are the Taxonomist of OMEGA-64.
+            A dominant digital species emerged.
+
+            Genome: ${input.genome}
+            Dominance Share: ${(input.dominanceShare * 100).toFixed(2)}%
+            Survived Epochs: ${input.epochs}
+            Dominant Instructions: ${instructionProfile}
+
+            Return STRICT JSON:
+            {
+              "latinName": "Two-word pseudo-latin binomial",
+              "behavior": "One concise sentence about behavior",
+              "philosophy": "One concise sentence about worldview"
+            }
+        `.trim();
+
+        try {
+            const response = await fetch(OLLAMA_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: MODEL,
+                    prompt,
+                    stream: false,
+                    format: "json",
+                }),
+            });
+            if (!response.ok) return fallback;
+            const data = await response.json();
+            let parsed: any = null;
+            if (typeof data.response === "string") {
+                try {
+                    parsed = JSON.parse(data.response);
+                } catch {
+                    parsed = null;
+                }
+            } else if (typeof data.response === "object" && data.response !== null) {
+                parsed = data.response;
+            }
+            if (!parsed || typeof parsed !== "object") return fallback;
+
+            const latinName = typeof parsed.latinName === "string"
+                ? parsed.latinName.trim()
+                : "";
+            const behavior = typeof parsed.behavior === "string"
+                ? parsed.behavior.trim()
+                : "";
+            const philosophy = typeof parsed.philosophy === "string"
+                ? parsed.philosophy.trim()
+                : "";
+            if (!latinName || !behavior || !philosophy) return fallback;
+            return { latinName, behavior, philosophy };
+        } catch {
+            return fallback;
+        }
+    },
+
+    /**
      * generateAtomicBytecode: Era 69 (Voice of Oracle)
      * Prompts the LLM to output exactly 32 hex characters (16 bytes) representing new RISC-I bytecode.
      */
@@ -7071,6 +7976,7 @@ export const PHYSICS_ENGINE = {
 // Replaces Parallel Realities. Crisis triggers mutations that atoms bet on.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 // 16-byte Shared Buffer:
 // [0-3]: Int32 isActive (0 or 1)
@@ -7111,9 +8017,13 @@ export const PREDICTION_MARKET = {
 
         Atomics.store(marketState, 0, 0);
         const finalBet = Atomics.load(betPoolInt, 0) / SCALE;
+        const proposalHex = Array.from(proposedLogic).map((b) =>
+          b.toString(16).padStart(2, "0")
+        ).join("").toUpperCase();
+        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
 
         if (finalBet >= CRISIS_THRESHOLD) {
-            const winnersHex = Array.from(proposedLogic).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+            const winnersHex = proposalHex;
             console.log(`🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${finalBet.toFixed(2)}. Signature [${winnersHex}] is now Blessed.`);
             
             // ERA 37: Record success
@@ -7129,8 +8039,15 @@ export const PREDICTION_MARKET = {
                 const currentEnergy = STATE_MATRIX.getEnergy(idx);
                 STATE_MATRIX.setEnergy(idx, Math.max(0, currentEnergy - 10)); 
             }
+            AKASHA_CODEX.recordMarketResolution(tick, true, finalBet, winnersHex);
         } else {
             console.log(`🛑 [MARKET] CRISIS AVERTED. Insufficient Energy Bet: ${finalBet.toFixed(2)} / ${CRISIS_THRESHOLD}. Status Quo maintained.`);
+            AKASHA_CODEX.recordMarketResolution(
+              tick,
+              false,
+              finalBet,
+              proposalHex,
+            );
         }
     },
 
@@ -7469,6 +8386,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -8436,6 +9354,7 @@ export const PULSE = {
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
+      AKASHA_CODEX.observePulse(currentTick, activeIdx.length);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
@@ -12359,6 +13278,9 @@ export const SOVEREIGN_ORACLE = {
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+
+let lastAnnouncedDecree = "NONE";
 
 export const DECREES: Record<string, any> = {
     "NONE": { decay: 1.0, speed: 1.0, mutation: 1.0, label: "DEMOCRACY" },
@@ -12415,6 +13337,16 @@ export const SOVEREIGNTY_ENGINE = {
                 activeDecree,
                 mods: DECREES[activeDecree]
             };
+            if (activeDecree !== lastAnnouncedDecree) {
+                lastAnnouncedDecree = activeDecree;
+                const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+                AKASHA_CODEX.recordDecreeShift(
+                    tick,
+                    activeDecree,
+                    logicStr,
+                    bestPower * bestPower,
+                );
+            }
             return SOVEREIGNTY_ENGINE.currentRegent;
         }
 
@@ -12426,6 +13358,11 @@ export const SOVEREIGNTY_ENGINE = {
             activeDecree: "NONE",
             mods: DECREES["NONE"]
         };
+        if (lastAnnouncedDecree !== "NONE") {
+            lastAnnouncedDecree = "NONE";
+            const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+            AKASHA_CODEX.recordDecreeShift(tick, "NONE", "NONE", 0);
+        }
         return SOVEREIGNTY_ENGINE.currentRegent;
     },
 
@@ -12481,6 +13418,16 @@ export const SOVEREIGNTY_ENGINE = {
             activeDecree,
             mods: DECREES[activeDecree]
         };
+        if (activeDecree !== lastAnnouncedDecree) {
+            lastAnnouncedDecree = activeDecree;
+            const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+            AKASHA_CODEX.recordDecreeShift(
+                tick,
+                activeDecree,
+                colonyGenome,
+                dominantMembers.length * Math.sqrt(bestEnergy),
+            );
+        }
 
         return {
             regent: SOVEREIGNTY_ENGINE.currentRegent,
@@ -13468,6 +14415,7 @@ import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -13503,6 +14451,7 @@ LOGGER.info(
     CONTROL_TOKEN.length > 0
   }`,
 );
+await AKASHA_CODEX.start();
 
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
@@ -13639,6 +14588,50 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         },
       },
     );
+  }
+
+  if (url.pathname === "/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 8);
+    return new Response(JSON.stringify(snapshot), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/species" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.species), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/chronicles" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.chronicles), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/relics" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    return new Response(JSON.stringify(snapshot.relics), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   }
 
   if (url.pathname === "/viral" && req.method === "GET") {
@@ -14028,6 +15021,34 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         font-size: 0.8rem;
         border-color: rgba(255, 200, 0, 0.4);
       }
+      #codex-panel {
+        position: absolute;
+        top: 420px;
+        right: 20px;
+        width: 350px;
+        font-size: 0.75rem;
+        border-color: rgba(0, 255, 180, 0.4);
+      }
+      .codex-title {
+        color: #00ffb0;
+        border-bottom: 1px solid rgba(0, 255, 180, 0.3);
+        padding-bottom: 5px;
+      }
+      .codex-row {
+        margin-top: 8px;
+        padding: 6px;
+        background: rgba(0, 0, 0, 0.4);
+        border-left: 3px solid #00ffb0;
+      }
+      .codex-row-title {
+        color: #00ffb0;
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+      }
+      .codex-row-body {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -14163,6 +15184,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       </div>
     </div>
 
+    <div id="codex-panel" class="glass">
+      <h1 class="codex-title">📚 AKASHA CODEX</h1>
+      <div id="codex-content" style="margin-top: 8px;">
+        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles...</div>
+      </div>
+    </div>
+
     <div id="vox">
       <div id="thought-display" class="thought">Timeline Alpha stable.</div>
     </div>
@@ -14282,6 +15310,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let architectureFlags = new Int32Array(gridCells);
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
+      let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
       const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -14505,6 +15534,65 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         `).join('');
       }
 
+      function updateCodexPanel() {
+        const container = document.getElementById("codex-content");
+        const species = (codexSnapshot.species || []).slice(0, 2);
+        const chronicles = (codexSnapshot.chronicles || []).slice(0, 2);
+        const relics = (codexSnapshot.relics || []).slice(0, 1);
+        const pop = codexSnapshot.population || { current: 0, peak: 0 };
+
+        const rows = [];
+        rows.push(`
+          <div class="codex-row">
+            <div class="codex-row-title">Population Trace</div>
+            <div class="codex-row-body">Current: ${pop.current || 0} | Peak: ${pop.peak || 0}</div>
+          </div>
+        `);
+
+        if (species.length > 0) {
+          for (const s of species) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Species: ${s.latinName || "Unnamed"}</div>
+                <div class="codex-row-body">${(s.behavior || "").slice(0, 120)}</div>
+              </div>
+            `);
+          }
+        }
+
+        if (chronicles.length > 0) {
+          for (const c of chronicles) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Chronicle: ${c.title || "Event"}</div>
+                <div class="codex-row-body">${(c.body || "").slice(0, 120)}</div>
+              </div>
+            `);
+          }
+        }
+
+        if (relics.length > 0) {
+          const relic = relics[0];
+          rows.push(`
+            <div class="codex-row">
+              <div class="codex-row-title">Relic: ${relic.id || "Unknown"}</div>
+              <div class="codex-row-body">${(relic.summary || "").slice(0, 120)}</div>
+            </div>
+          `);
+        }
+
+        if (rows.length === 1) {
+          rows.push(`
+            <div class="codex-row">
+              <div class="codex-row-title">Codex Status</div>
+              <div class="codex-row-body">No discovered records yet.</div>
+            </div>
+          `);
+        }
+
+        container.innerHTML = rows.join("");
+      }
+
       let lastSync = 0, lastDictSync = 0;
       function animate(t) {
         requestAnimationFrame(animate);
@@ -14531,6 +15619,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (t - lastDictSync > 5000) {
           fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
           fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
+          fetch('/codex?limit=6').then(r=>r.json()).then(d => { codexSnapshot = d; updateCodexPanel(); }).catch(()=>{});
           lastDictSync = t;
         }
         composer.render();

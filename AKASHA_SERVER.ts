@@ -11,6 +11,29 @@ let clients = new Set<WebSocket>();
 
 // Store the latest state of the universe
 let akashaState: string = "{}";
+let codexDigest: { species: unknown[]; chronicles: unknown[]; relics: unknown[] } =
+  { species: [], chronicles: [], relics: [] };
+
+const readJsonFile = async (path: string): Promise<unknown> => {
+  try {
+    return JSON.parse(await Deno.readTextFile(path));
+  } catch {
+    return [];
+  }
+};
+
+async function refreshCodexDigest() {
+  const [species, chronicles, relics] = await Promise.all([
+    readJsonFile("./codex/species/index.json"),
+    readJsonFile("./codex/chronicles/index.json"),
+    readJsonFile("./codex/relics/index.json"),
+  ]);
+  codexDigest = {
+    species: Array.isArray(species) ? species.slice(0, 8) : [],
+    chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
+    relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
+  };
+}
 
 async function scanUniverse() {
   const atoms: any[] = [];
@@ -54,7 +77,11 @@ async function scanUniverse() {
     console.error("Error scanning universe:", e);
   }
 
-  akashaState = JSON.stringify({ type: "SYNC", data: { atoms, bonds } });
+  await refreshCodexDigest();
+  akashaState = JSON.stringify({
+    type: "SYNC",
+    data: { atoms, bonds, codex: codexDigest },
+  });
   broadcast(akashaState);
 }
 

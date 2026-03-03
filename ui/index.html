@@ -149,6 +149,34 @@
         font-size: 0.8rem;
         border-color: rgba(255, 200, 0, 0.4);
       }
+      #codex-panel {
+        position: absolute;
+        top: 420px;
+        right: 20px;
+        width: 350px;
+        font-size: 0.75rem;
+        border-color: rgba(0, 255, 180, 0.4);
+      }
+      .codex-title {
+        color: #00ffb0;
+        border-bottom: 1px solid rgba(0, 255, 180, 0.3);
+        padding-bottom: 5px;
+      }
+      .codex-row {
+        margin-top: 8px;
+        padding: 6px;
+        background: rgba(0, 0, 0, 0.4);
+        border-left: 3px solid #00ffb0;
+      }
+      .codex-row-title {
+        color: #00ffb0;
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+      }
+      .codex-row-body {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -284,6 +312,13 @@
       </div>
     </div>
 
+    <div id="codex-panel" class="glass">
+      <h1 class="codex-title">📚 AKASHA CODEX</h1>
+      <div id="codex-content" style="margin-top: 8px;">
+        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles...</div>
+      </div>
+    </div>
+
     <div id="vox">
       <div id="thought-display" class="thought">Timeline Alpha stable.</div>
     </div>
@@ -403,6 +438,7 @@
       let architectureFlags = new Int32Array(gridCells);
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
+      let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
       const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -626,6 +662,65 @@
         `).join('');
       }
 
+      function updateCodexPanel() {
+        const container = document.getElementById("codex-content");
+        const species = (codexSnapshot.species || []).slice(0, 2);
+        const chronicles = (codexSnapshot.chronicles || []).slice(0, 2);
+        const relics = (codexSnapshot.relics || []).slice(0, 1);
+        const pop = codexSnapshot.population || { current: 0, peak: 0 };
+
+        const rows = [];
+        rows.push(`
+          <div class="codex-row">
+            <div class="codex-row-title">Population Trace</div>
+            <div class="codex-row-body">Current: ${pop.current || 0} | Peak: ${pop.peak || 0}</div>
+          </div>
+        `);
+
+        if (species.length > 0) {
+          for (const s of species) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Species: ${s.latinName || "Unnamed"}</div>
+                <div class="codex-row-body">${(s.behavior || "").slice(0, 120)}</div>
+              </div>
+            `);
+          }
+        }
+
+        if (chronicles.length > 0) {
+          for (const c of chronicles) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Chronicle: ${c.title || "Event"}</div>
+                <div class="codex-row-body">${(c.body || "").slice(0, 120)}</div>
+              </div>
+            `);
+          }
+        }
+
+        if (relics.length > 0) {
+          const relic = relics[0];
+          rows.push(`
+            <div class="codex-row">
+              <div class="codex-row-title">Relic: ${relic.id || "Unknown"}</div>
+              <div class="codex-row-body">${(relic.summary || "").slice(0, 120)}</div>
+            </div>
+          `);
+        }
+
+        if (rows.length === 1) {
+          rows.push(`
+            <div class="codex-row">
+              <div class="codex-row-title">Codex Status</div>
+              <div class="codex-row-body">No discovered records yet.</div>
+            </div>
+          `);
+        }
+
+        container.innerHTML = rows.join("");
+      }
+
       let lastSync = 0, lastDictSync = 0;
       function animate(t) {
         requestAnimationFrame(animate);
@@ -652,6 +747,7 @@
         if (t - lastDictSync > 5000) {
           fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
           fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
+          fetch('/codex?limit=6').then(r=>r.json()).then(d => { codexSnapshot = d; updateCodexPanel(); }).catch(()=>{});
           lastDictSync = t;
         }
         composer.render();

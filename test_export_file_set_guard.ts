@@ -31,6 +31,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "ENV_PARSE.ts",
   "RUNTIME_POLICY.ts",
   "GATE.ts",
+  "AKASHA_CODEX.ts",
   "GATE_VALIDATOR.ts",
   "GATE_MERGER.ts",
   "GATE_BUDGET.ts",

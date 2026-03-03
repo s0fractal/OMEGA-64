@@ -59,3 +59,4 @@ node_modules/
 worker_test.js
 mandala_raw.svg
 render_mandala.html
+codex/
