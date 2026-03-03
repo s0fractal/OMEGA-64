@@ -4,6 +4,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -317,7 +318,7 @@ const waitForWorkerInit = (
       if (data.type === "READY") {
         cleanup();
         if (timeoutWindows > 0) {
-          console.warn(
+          LOGGER.warn(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
         }
@@ -366,7 +367,7 @@ const postAndWait = async <T = any>(
     if (res.timeoutWindows > 0) {
       stats.timeouts += res.timeoutWindows;
       stats.retryWaits += res.retriesUsed;
-      console.warn(
+      LOGGER.warn(
         `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
       );
     }
@@ -454,17 +455,17 @@ export const PULSE = {
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
     if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
     }
     if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
-      console.log(
+      LOGGER.info(
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
     if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
@@ -472,13 +473,13 @@ export const PULSE = {
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
     ) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
       );
     }
 
     await startWorkers(runtimeWorkerCount);
-    console.log(
+    LOGGER.info(
       `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
     );
 
@@ -506,12 +507,15 @@ export const PULSE = {
 
     const { tickCounter, syncState, SYNC } = STATE_MATRIX;
     const originalTick = Atomics.load(tickCounter, 0);
-    const baseLog = console.log.bind(console);
+    const baseLevel = LOGGER.getLevel();
     startupSelfTestInProgress = true;
     startupSelfTestLastBreachTick = -1;
 
-    if (STARTUP_SELFTEST_QUIET) {
-      console.log = () => {};
+    if (
+      STARTUP_SELFTEST_QUIET &&
+      (baseLevel === "debug" || baseLevel === "info")
+    ) {
+      LOGGER.setLevel("warn");
     }
 
     try {
@@ -531,7 +535,7 @@ export const PULSE = {
         return;
       }
 
-      console.warn(
+      LOGGER.warn(
         `   [PULSE] Startup self-test breach at tick=${startupSelfTestLastBreachTick} workers=${runtimeWorkerCount}.`,
       );
       if (!STARTUP_SELFTEST_FALLBACK_ENABLED || runtimeWorkerCount <= 1) {
@@ -544,7 +548,7 @@ export const PULSE = {
       PULSE.stopWorkers();
       runtimeWorkerCount = 1;
       await startWorkers(runtimeWorkerCount);
-      console.warn(
+      LOGGER.warn(
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
@@ -561,9 +565,7 @@ export const PULSE = {
 
       startupSelfTestDone = true;
     } finally {
-      if (STARTUP_SELFTEST_QUIET) {
-        console.log = baseLog;
-      }
+      LOGGER.setLevel(baseLevel);
       STATE_MATRIX.clear();
       Atomics.store(tickCounter, 0, originalTick);
       Atomics.store(syncState, 0, SYNC.IDLE);
@@ -664,7 +666,7 @@ export const PULSE = {
       });
 
       if (coherence > 1000) {
-        console.log(
+        LOGGER.debug(
           `🧠 [PULSE] High Coherence detected: ${coherence}. Consulting Oracle...`,
         );
       }
@@ -793,7 +795,7 @@ export const PULSE = {
         }
         Atomics.store(spawnHeadView, 1, cursor);
         if (spawned > 0) {
-          console.log(
+          LOGGER.debug(
             `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
           );
         }
@@ -823,7 +825,7 @@ export const PULSE = {
         Atomics.store(coherenceView, 0, coherence);
 
         if (currentTick % 20 === 0) {
-          console.log(
+          LOGGER.debug(
             `💎 [RESONANCE] System Coherence: ${coherence}/255 (Avg Res: ${
               (avgRes / 100).toFixed(1)
             })`,

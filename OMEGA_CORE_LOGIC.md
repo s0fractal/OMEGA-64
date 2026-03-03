@@ -1,7 +1,7 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T17:02:34.051Z*
-*Exported Files: 50*
+*Generated: 2026-03-03T17:07:22.182Z*
+*Exported Files: 51*
 
 ---
 
@@ -879,6 +879,7 @@ import {
     as PROPOSAL_ENVELOPE_INDEX,
   TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
 } from "./SHIMS.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -1158,13 +1159,13 @@ export const GATE = {
 
     for (const p of validProposals) {
       if ((p as any).resonance !== undefined) {
-        console.log(
+        LOGGER.debug(
           `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
             (p as any).resonance
           }`,
         );
       } else {
-        console.log(
+        LOGGER.debug(
           `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
         );
       }
@@ -1200,7 +1201,7 @@ export const GATE = {
         const discountFactor = Math.min(0.95, atomResonance / 500);
         physicalCost = physicalCost * (1 - discountFactor);
         discountLabel = `(PoR Discount: ${(discountFactor * 100).toFixed(1)}%)`;
-        console.log(
+        LOGGER.debug(
           `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
             Math.abs(p.delta[0]?.value || 0)
           }, Res: ${atomResonance.toFixed(1)}, Discount: ${
@@ -1549,7 +1550,7 @@ export const GATE = {
 
       // If score exceeds threshold, promote to Canon!
       if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
-        console.log(
+        LOGGER.info(
           `🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${
             (avgResonance / 100).toFixed(1)
           } > Baseline: ${(baselineAvg / 100).toFixed(1)})`,
@@ -1609,7 +1610,7 @@ export const GATE = {
       // Apply Audit Decisions
       if (malignancy >= 80) {
         stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
-        console.log(
+        LOGGER.warn(
           `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,
         );
       } else if (malignancy >= 40) {
@@ -1620,7 +1621,7 @@ export const GATE = {
   },
 
   auditMatrix: (stateMatrix: any) => {
-    console.log("⚖️ [GATE] Starting Autonomous Systemic Audit...");
+    LOGGER.debug("⚖️ [GATE] Starting Autonomous Systemic Audit...");
 
     // 1. Evaluate Symbiogenesis (Reward pro-resonant mutations)
     GATE.evaluateSymbiosis(stateMatrix);
@@ -1643,9 +1644,9 @@ export const GATE = {
     }
 
     if (ghostCount > 0) {
-      console.log(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
+      LOGGER.info(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
     }
-    console.log(
+    LOGGER.debug(
       `⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`,
     );
   },
@@ -3143,6 +3144,83 @@ if (import.meta.main) {
     const thought = await LLM_SYNAPSE.generateThought(testVox);
     console.log("TEST RESULT:", thought);
 }
+
+```
+
+---
+
+## FILE: LOGGER.ts
+
+```typescript
+export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+const LEVEL_WEIGHT: Record<LogLevel, number> = {
+  debug: 10,
+  info: 20,
+  warn: 30,
+  error: 40,
+  silent: 50,
+};
+
+const readEnv = (key: string): string | undefined => {
+  try {
+    const deno = (globalThis as {
+      Deno?: { env?: { get?: (k: string) => string | undefined } };
+    }).Deno;
+    return deno?.env?.get?.(key);
+  } catch {
+    return undefined;
+  }
+};
+
+const normalizeLevel = (raw: string | undefined): LogLevel => {
+  const value = raw?.trim().toLowerCase();
+  if (value === "debug") return "debug";
+  if (value === "info") return "info";
+  if (value === "warn" || value === "warning") return "warn";
+  if (value === "error") return "error";
+  if (value === "silent" || value === "off" || value === "none") {
+    return "silent";
+  }
+  return "warn";
+};
+
+let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+
+const shouldLog = (level: LogLevel): boolean => {
+  if (currentLevel === "silent") return false;
+  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
+};
+
+const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
+  const sink =
+    (console as Record<string, (...xs: unknown[]) => void>)[method] ??
+      console.log;
+  sink(...args);
+};
+
+export const LOGGER = {
+  getLevel: (): LogLevel => currentLevel,
+  setLevel: (level: LogLevel): void => {
+    currentLevel = level;
+  },
+  refreshLevelFromEnv: (): LogLevel => {
+    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+    return currentLevel;
+  },
+  debug: (...args: unknown[]) => {
+    if (shouldLog("debug")) emit("debug", args);
+  },
+  info: (...args: unknown[]) => {
+    if (shouldLog("info")) emit("info", args);
+  },
+  warn: (...args: unknown[]) => {
+    if (shouldLog("warn")) emit("warn", args);
+  },
+  error: (...args: unknown[]) => {
+    if (shouldLog("error")) emit("error", args);
+  },
+};
 
 ```
 
@@ -5097,6 +5175,7 @@ export class PRNG {
 ```typescript
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
@@ -5153,7 +5232,7 @@ self.onmessage = async (e) => {
       const instantiated = await WebAssembly.instantiate(wasmBytes, {
         env: {
           memory: wasmMemory,
-          abort: (msg: any) => console.error("   [WASM ABORT]:", msg),
+          abort: (msg: any) => LOGGER.error("   [WASM ABORT]:", msg),
           trace_atom: (
             idx: number,
             op: number,
@@ -5162,7 +5241,7 @@ self.onmessage = async (e) => {
             target: number,
           ) => {
             if (idx <= 10) {
-              console.log(
+              LOGGER.debug(
                 `   [WASM TRACE] Atom ${idx} | OP: 0x${
                   op.toString(16)
                 } | Pos: (${gx},${gy}) | Target: ${target}`,
@@ -5181,11 +5260,11 @@ self.onmessage = async (e) => {
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
-      console.log("   [WORKER] WASM Instantiated successfully.");
+      LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
     } catch (err) {
-      console.error("   [WORKER] WASM LOAD ERROR:", err);
+      LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
@@ -5217,7 +5296,7 @@ self.onmessage = async (e) => {
         execute_atom_fn(i);
       }
     } catch (err) {
-      console.error("   [WORKER EXECUTION ERROR]", err);
+      LOGGER.error("   [WORKER EXECUTION ERROR]", err);
     }
 
     await maybeDelay();
@@ -5303,6 +5382,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -5616,7 +5696,7 @@ const waitForWorkerInit = (
       if (data.type === "READY") {
         cleanup();
         if (timeoutWindows > 0) {
-          console.warn(
+          LOGGER.warn(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
         }
@@ -5665,7 +5745,7 @@ const postAndWait = async <T = any>(
     if (res.timeoutWindows > 0) {
       stats.timeouts += res.timeoutWindows;
       stats.retryWaits += res.retriesUsed;
-      console.warn(
+      LOGGER.warn(
         `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
       );
     }
@@ -5753,17 +5833,17 @@ export const PULSE = {
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
     if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
     }
     if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
-      console.log(
+      LOGGER.info(
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
     if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
@@ -5771,13 +5851,13 @@ export const PULSE = {
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
     ) {
-      console.log(
+      LOGGER.info(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
       );
     }
 
     await startWorkers(runtimeWorkerCount);
-    console.log(
+    LOGGER.info(
       `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
     );
 
@@ -5805,12 +5885,15 @@ export const PULSE = {
 
     const { tickCounter, syncState, SYNC } = STATE_MATRIX;
     const originalTick = Atomics.load(tickCounter, 0);
-    const baseLog = console.log.bind(console);
+    const baseLevel = LOGGER.getLevel();
     startupSelfTestInProgress = true;
     startupSelfTestLastBreachTick = -1;
 
-    if (STARTUP_SELFTEST_QUIET) {
-      console.log = () => {};
+    if (
+      STARTUP_SELFTEST_QUIET &&
+      (baseLevel === "debug" || baseLevel === "info")
+    ) {
+      LOGGER.setLevel("warn");
     }
 
     try {
@@ -5830,7 +5913,7 @@ export const PULSE = {
         return;
       }
 
-      console.warn(
+      LOGGER.warn(
         `   [PULSE] Startup self-test breach at tick=${startupSelfTestLastBreachTick} workers=${runtimeWorkerCount}.`,
       );
       if (!STARTUP_SELFTEST_FALLBACK_ENABLED || runtimeWorkerCount <= 1) {
@@ -5843,7 +5926,7 @@ export const PULSE = {
       PULSE.stopWorkers();
       runtimeWorkerCount = 1;
       await startWorkers(runtimeWorkerCount);
-      console.warn(
+      LOGGER.warn(
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
@@ -5860,9 +5943,7 @@ export const PULSE = {
 
       startupSelfTestDone = true;
     } finally {
-      if (STARTUP_SELFTEST_QUIET) {
-        console.log = baseLog;
-      }
+      LOGGER.setLevel(baseLevel);
       STATE_MATRIX.clear();
       Atomics.store(tickCounter, 0, originalTick);
       Atomics.store(syncState, 0, SYNC.IDLE);
@@ -5963,7 +6044,7 @@ export const PULSE = {
       });
 
       if (coherence > 1000) {
-        console.log(
+        LOGGER.debug(
           `🧠 [PULSE] High Coherence detected: ${coherence}. Consulting Oracle...`,
         );
       }
@@ -6092,7 +6173,7 @@ export const PULSE = {
         }
         Atomics.store(spawnHeadView, 1, cursor);
         if (spawned > 0) {
-          console.log(
+          LOGGER.debug(
             `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
           );
         }
@@ -6122,7 +6203,7 @@ export const PULSE = {
         Atomics.store(coherenceView, 0, coherence);
 
         if (currentTick % 20 === 0) {
-          console.log(
+          LOGGER.debug(
             `💎 [RESONANCE] System Coherence: ${coherence}/255 (Avg Res: ${
               (avgRes / 100).toFixed(1)
             })`,

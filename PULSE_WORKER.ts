@@ -1,5 +1,6 @@
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
+import { LOGGER } from "./LOGGER.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
@@ -56,7 +57,7 @@ self.onmessage = async (e) => {
       const instantiated = await WebAssembly.instantiate(wasmBytes, {
         env: {
           memory: wasmMemory,
-          abort: (msg: any) => console.error("   [WASM ABORT]:", msg),
+          abort: (msg: any) => LOGGER.error("   [WASM ABORT]:", msg),
           trace_atom: (
             idx: number,
             op: number,
@@ -65,7 +66,7 @@ self.onmessage = async (e) => {
             target: number,
           ) => {
             if (idx <= 10) {
-              console.log(
+              LOGGER.debug(
                 `   [WASM TRACE] Atom ${idx} | OP: 0x${
                   op.toString(16)
                 } | Pos: (${gx},${gy}) | Target: ${target}`,
@@ -84,11 +85,11 @@ self.onmessage = async (e) => {
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
-      console.log("   [WORKER] WASM Instantiated successfully.");
+      LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
     } catch (err) {
-      console.error("   [WORKER] WASM LOAD ERROR:", err);
+      LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
@@ -120,7 +121,7 @@ self.onmessage = async (e) => {
         execute_atom_fn(i);
       }
     } catch (err) {
-      console.error("   [WORKER EXECUTION ERROR]", err);
+      LOGGER.error("   [WORKER EXECUTION ERROR]", err);
     }
 
     await maybeDelay();
