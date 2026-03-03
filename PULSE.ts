@@ -236,36 +236,6 @@ export const PULSE = {
                     }
                 }
             }
-            // 2d. Deterministic reduce/apply of structure intents.
-            {
-                const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS);
-                const buildOwners = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS);
-                const buildValues = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS);
-                const chargeIntents = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS);
-
-                for (let cellIdx = 0; cellIdx < GRID_CELLS; cellIdx++) {
-                    const ownerRaw = Atomics.load(buildOwners, cellIdx);
-                    if (ownerRaw !== 0) {
-                        const owner = ownerRaw & 0x7fffffff;
-                        if (owner !== 0) {
-                            Atomics.store(structureGrid, cellIdx, Atomics.load(buildValues, cellIdx));
-                        }
-                        Atomics.store(buildOwners, cellIdx, 0);
-                        Atomics.store(buildValues, cellIdx, 0);
-                    }
-
-                    const intentCharge = Atomics.load(chargeIntents, cellIdx);
-                    if (intentCharge > 0) {
-                        const charge = intentCharge > 255 ? 255 : intentCharge;
-                        const current = Atomics.load(structureGrid, cellIdx);
-                        const currentCharge = (current >>> 16) & 0xFF;
-                        if (charge > currentCharge) {
-                            Atomics.store(structureGrid, cellIdx, (current & ~0x00ff0000) | (charge << 16));
-                        }
-                        Atomics.store(chargeIntents, cellIdx, 0);
-                    }
-                }
-            }
 
             // 3. Matrix Engine (WASM)
             const matrixPulseId = nextPulseId();

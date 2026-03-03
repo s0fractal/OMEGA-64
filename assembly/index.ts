@@ -916,7 +916,37 @@ export function tick_structure_grid(): void {
     for (let y = 0; y < GRID_H; y++) {
         for (let x = 0; x < GRID_W; x++) {
             const i = y * GRID_W + x;
-            const cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
+            const cellPtr = STRUCTURE_GRID_OFF + (i << 2);
+            const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (i << 2) as usize;
+            const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (i << 2) as usize;
+            const chargeIntentPtr = STRUCTURE_CHARGE_INTENT_OFF + (i << 2) as usize;
+
+            let cellVal = atomic.load<i32>(cellPtr);
+            const ownerRaw = atomic.load<i32>(ownerPtr);
+            const owner = ownerRaw & STRUCTURE_INTENT_OWNER_MASK;
+            if (owner != 0) {
+                cellVal = atomic.load<i32>(valuePtr);
+            }
+            const intentChargeRaw = atomic.load<i32>(chargeIntentPtr);
+            if (intentChargeRaw > 0) {
+                let intentCharge = intentChargeRaw;
+                if (intentCharge > 255) intentCharge = 255;
+                const baseCharge = (cellVal >> 16) & 0xFF;
+                if (intentCharge > baseCharge) {
+                    cellVal = (cellVal & ~0x00FF0000) | (intentCharge << 16);
+                }
+            }
+            if (ownerRaw != 0 || intentChargeRaw != 0) {
+                atomic.store<i32>(cellPtr, cellVal);
+                if (ownerRaw != 0) {
+                    atomic.store<i32>(ownerPtr, 0);
+                    atomic.store<i32>(valuePtr, 0);
+                }
+                if (intentChargeRaw != 0) {
+                    atomic.store<i32>(chargeIntentPtr, 0);
+                }
+            }
+
             const type = cellVal & 0xFF;
             const currentCharge = (cellVal >> 16) & 0xFF;
             
@@ -928,8 +958,7 @@ export function tick_structure_grid(): void {
                     let ny = y + dir8Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
-                        let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
-                        let nCharge = (nVal >> 16) & 0xFF;
+                        let nCharge = readStructureCharge(ni);
                         if (nCharge > maxNCharge) maxNCharge = nCharge;
                     }
                 }
@@ -965,8 +994,7 @@ export function tick_structure_grid(): void {
                     let ny = y + dir4Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
-                        let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
-                        let nCharge = (nVal >> 16) & 0xFF;
+                        let nCharge = readStructureCharge(ni);
                         if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
                         if (nCharge > 50) chargedCount++;
                     }
@@ -995,8 +1023,7 @@ export function tick_structure_grid(): void {
 
                 if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                     let ni = ny * GRID_W + nx;
-                    let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
-                    let nCharge = (nVal >> 16) & 0xFF;
+                    let nCharge = readStructureCharge(ni);
                     let flow = nCharge - 5;
                     if (flow > nextCharge) nextCharge = flow;
                 }
@@ -1009,8 +1036,7 @@ export function tick_structure_grid(): void {
                     let ny = y + dir4Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
-                        let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
-                        let nCharge = (nVal >> 16) & 0xFF;
+                        let nCharge = readStructureCharge(ni);
                         if (nCharge > 20) {
                             stabilized = true;
                             break;
