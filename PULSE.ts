@@ -7,6 +7,7 @@ import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -22,46 +23,24 @@ const parseStrictDeterminism = (): boolean => {
   const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
   return raw === "1" || raw === "true" || raw === "TRUE";
 };
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
 const parseWorkerTimeoutMs = (): number =>
-  parseBoundedInt(
+  parseEnvBoundedInt(
     Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS"),
     30_000,
     10,
     120_000,
   );
 const parseWorkerTimeoutRetryCount = (): number =>
-  parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
+  parseEnvBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
 const parseWorkerTimeoutRetryMs = (): number =>
-  parseBoundedInt(
+  parseEnvBoundedInt(
     Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"),
     5_000,
     10,
     120_000,
   );
 const parseWorkerInitFallbackEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
 type WasmBootPolicy = "fail-fast" | "safe-noop";
 const parseWasmBootPolicy = (): WasmBootPolicy => {
   const raw = (Deno.env.get("OMEGA_WASM_BOOT_POLICY") ?? "").trim()
@@ -72,19 +51,19 @@ const parseWasmBootPolicy = (): WasmBootPolicy => {
   return "fail-fast";
 };
 const parseWasmBootPrecheckEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
 const parseForceWasmPreflightFail = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
+  parseEnvBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
 const parseStartupSelfTestEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
 const parseStartupSelfTestTicks = (): number =>
-  parseBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
+  parseEnvBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
 const parseStartupSelfTestFallbackEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
 const parseStartupSelfTestQuiet = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
 const parseStartupSelfTestForceBreach = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();

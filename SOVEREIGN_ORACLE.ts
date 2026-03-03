@@ -6,6 +6,7 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type OraclePendingMutation =
   | {
@@ -39,19 +40,7 @@ type OracleDrainStats = {
   remaining: number;
 };
 
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const ORACLE_PENDING_MAX = parseBoundedInt(
+const ORACLE_PENDING_MAX = parseEnvBoundedInt(
   Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
   256,
   32,

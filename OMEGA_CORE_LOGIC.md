@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T20:49:56.847Z*
-*Exported Files: 57*
-*Manifest SHA256: 5f1ec6678ec0281e82a94eae42c3feddfecd3bc9e248c74fc558d2441641cb1e*
-*Export Set SHA256: 53d899b3eaa2e4f02f575cf5f61a5a6fe7a89c202ca386d0a7519d93c864aff5*
-*Git Commit: b58b75dc1e26*
+*Generated: 2026-03-03T20:59:05.175Z*
+*Exported Files: 58*
+*Manifest SHA256: 424f1788b6504e8a906f05bb593291dd30fc083638fa371a598f0bc46ff1a8f1*
+*Export Set SHA256: c129f96a705ac100b7086971901db402b2b7a170c3b5f377e04504f4e891d515*
+*Git Commit: e9b173e97bf3*
 
 ---
 
@@ -1994,6 +1994,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -2054,25 +2055,13 @@ type ApplyStats = {
   remaining: number;
 };
 
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const MAX_PENDING = parseBoundedInt(
+const MAX_PENDING = parseEnvBoundedInt(
   Deno.env.get("OMEGA_CONTROL_INTENT_MAX"),
   512,
   8,
   100_000,
 );
-const APPLY_BUDGET_PER_TICK = parseBoundedInt(
+const APPLY_BUDGET_PER_TICK = parseEnvBoundedInt(
   Deno.env.get("OMEGA_CONTROL_INTENT_BUDGET"),
   8,
   1,
@@ -2348,6 +2337,7 @@ export const CONTROL_INTENT_QUEUE = {
     "OBSERVER_UI.ts",
     "RECOVERY.ts",
     "PRNG.ts",
+    "ENV_PARSE.ts",
     "OFFSETS.ts",
     "mod.ts",
     "SHIMS.ts"
@@ -2453,6 +2443,40 @@ export const ECOLOGY_ENGINE = {
             }
         }
     }
+};
+
+```
+
+---
+
+## FILE: ENV_PARSE.ts
+
+```typescript
+export const parseEnvBool = (
+  raw: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+
+export const parseEnvBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
 };
 
 ```
@@ -5916,6 +5940,7 @@ internal high-speed mutation loops.
 
 ```typescript
 import { LOGGER } from "./LOGGER.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -5929,41 +5954,17 @@ type MutationEvent = {
   count?: number;
 };
 
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const TELEMETRY_ENABLED = parseBool(
+const TELEMETRY_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY"),
   true,
 );
-const FLUSH_INTERVAL_TICKS = parseBoundedInt(
+const FLUSH_INTERVAL_TICKS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS"),
   25,
   1,
   10_000,
 );
-const TOP_KINDS = parseBoundedInt(
+const TOP_KINDS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY_TOP_KINDS"),
   6,
   1,
@@ -6272,6 +6273,7 @@ import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 export interface AtomPacket {
   id: string;
@@ -6285,34 +6287,12 @@ export interface AtomPacket {
 const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
 const migrationQueue: number[] = [];
 let isProcessingMigration = false;
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-const FEDERATION_ENABLED = parseBool(
+const FEDERATION_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_FEDERATION_ENABLE"),
   false,
 );
 const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
-const REQUEST_TIMEOUT_MS = parseBoundedInt(
+const REQUEST_TIMEOUT_MS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_FEDERATION_TIMEOUT_MS"),
   2000,
   50,
@@ -6452,24 +6432,14 @@ export const P2P_FEDERATION = {
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "./LOGGER.ts";
+import { parseEnvBool } from "./ENV_PARSE.ts";
 
 const PORT = 8081;
 const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const MUTATE_ENABLED = parseBool(
+const MUTATE_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
     Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
   false,
@@ -7299,6 +7269,7 @@ import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -7314,46 +7285,24 @@ const parseStrictDeterminism = (): boolean => {
   const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
   return raw === "1" || raw === "true" || raw === "TRUE";
 };
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
 const parseWorkerTimeoutMs = (): number =>
-  parseBoundedInt(
+  parseEnvBoundedInt(
     Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS"),
     30_000,
     10,
     120_000,
   );
 const parseWorkerTimeoutRetryCount = (): number =>
-  parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
+  parseEnvBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
 const parseWorkerTimeoutRetryMs = (): number =>
-  parseBoundedInt(
+  parseEnvBoundedInt(
     Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"),
     5_000,
     10,
     120_000,
   );
 const parseWorkerInitFallbackEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
 type WasmBootPolicy = "fail-fast" | "safe-noop";
 const parseWasmBootPolicy = (): WasmBootPolicy => {
   const raw = (Deno.env.get("OMEGA_WASM_BOOT_POLICY") ?? "").trim()
@@ -7364,19 +7313,19 @@ const parseWasmBootPolicy = (): WasmBootPolicy => {
   return "fail-fast";
 };
 const parseWasmBootPrecheckEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
 const parseForceWasmPreflightFail = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
+  parseEnvBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
 const parseStartupSelfTestEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
 const parseStartupSelfTestTicks = (): number =>
-  parseBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
+  parseEnvBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
 const parseStartupSelfTestFallbackEnabled = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
 const parseStartupSelfTestQuiet = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
 const parseStartupSelfTestForceBreach = (): boolean =>
-  parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
+  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
@@ -11430,6 +11379,7 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type OraclePendingMutation =
   | {
@@ -11463,19 +11413,7 @@ type OracleDrainStats = {
   remaining: number;
 };
 
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const ORACLE_PENDING_MAX = parseBoundedInt(
+const ORACLE_PENDING_MAX = parseEnvBoundedInt(
   Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
   256,
   32,
@@ -12914,23 +12852,13 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { parseEnvBool } from "./ENV_PARSE.ts";
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
 const HOST = (Deno.env.get("OMEGA_SYSTEM_HOST") ?? "127.0.0.1").trim() ||
   "127.0.0.1";
 const UI_PATH = "./ui/index.html";
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const CONTROL_ENABLE = parseBool(
+const CONTROL_ENABLE = parseEnvBool(
   Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
   false,
 );

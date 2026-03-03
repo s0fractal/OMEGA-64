@@ -38,9 +38,15 @@ const main = async () => {
       reason: "P2P synapse must support system token fallback",
     });
   }
-  if (!source.includes("parseBool(") || !source.includes("false")) {
+  if (!source.includes("parseEnvBool(") || !source.includes("false")) {
     violations.push({
-      reason: "P2P mutate enable must default to closed posture",
+      reason:
+        "P2P mutate enable must use canonical env bool parser with default-closed posture",
+    });
+  }
+  if (!source.includes('from "./ENV_PARSE.ts"')) {
+    violations.push({
+      reason: "P2P synapse must source env parsing from ENV_PARSE.ts",
     });
   }
   if (source.includes("STATE_MATRIX")) {

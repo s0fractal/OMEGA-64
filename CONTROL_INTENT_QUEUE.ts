@@ -5,6 +5,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -65,25 +66,13 @@ type ApplyStats = {
   remaining: number;
 };
 
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const MAX_PENDING = parseBoundedInt(
+const MAX_PENDING = parseEnvBoundedInt(
   Deno.env.get("OMEGA_CONTROL_INTENT_MAX"),
   512,
   8,
   100_000,
 );
-const APPLY_BUDGET_PER_TICK = parseBoundedInt(
+const APPLY_BUDGET_PER_TICK = parseEnvBoundedInt(
   Deno.env.get("OMEGA_CONTROL_INTENT_BUDGET"),
   8,
   1,

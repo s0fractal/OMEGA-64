@@ -28,6 +28,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "PULSE_WORKER.ts",
   "STATE_MATRIX.ts",
   "OFFSETS.ts",
+  "ENV_PARSE.ts",
   "GATE.ts",
   "STATE_SNAPSHOT.ts",
   "SHIMS.ts",

@@ -1,23 +1,13 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "./LOGGER.ts";
+import { parseEnvBool } from "./ENV_PARSE.ts";
 
 const PORT = 8081;
 const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const MUTATE_ENABLED = parseBool(
+const MUTATE_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
     Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
   false,

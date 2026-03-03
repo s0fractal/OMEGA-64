@@ -6,6 +6,7 @@ import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 export interface AtomPacket {
   id: string;
@@ -19,34 +20,12 @@ export interface AtomPacket {
 const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
 const migrationQueue: number[] = [];
 let isProcessingMigration = false;
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-const FEDERATION_ENABLED = parseBool(
+const FEDERATION_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_FEDERATION_ENABLE"),
   false,
 );
 const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
-const REQUEST_TIMEOUT_MS = parseBoundedInt(
+const REQUEST_TIMEOUT_MS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_FEDERATION_TIMEOUT_MS"),
   2000,
   50,

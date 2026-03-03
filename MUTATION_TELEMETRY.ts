@@ -1,4 +1,5 @@
 import { LOGGER } from "./LOGGER.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -12,41 +13,17 @@ type MutationEvent = {
   count?: number;
 };
 
-const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-
-const parseBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-const TELEMETRY_ENABLED = parseBool(
+const TELEMETRY_ENABLED = parseEnvBool(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY"),
   true,
 );
-const FLUSH_INTERVAL_TICKS = parseBoundedInt(
+const FLUSH_INTERVAL_TICKS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS"),
   25,
   1,
   10_000,
 );
-const TOP_KINDS = parseBoundedInt(
+const TOP_KINDS = parseEnvBoundedInt(
   Deno.env.get("OMEGA_MUTATION_TELEMETRY_TOP_KINDS"),
   6,
   1,

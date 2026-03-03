@@ -34,6 +34,7 @@
     "OBSERVER_UI.ts",
     "RECOVERY.ts",
     "PRNG.ts",
+    "ENV_PARSE.ts",
     "OFFSETS.ts",
     "mod.ts",
     "SHIMS.ts"
