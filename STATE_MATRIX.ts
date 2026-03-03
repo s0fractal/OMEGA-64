@@ -4,8 +4,18 @@ import * as OFFSETS from "./OFFSETS.ts";
 export const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 export const SCALE = OFFSETS.SCALE;
 
+if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+    throw new Error(
+        `[STATE_MATRIX] WASM memory too small: pages=${OFFSETS.WASM_MEMORY_PAGES}, required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+    );
+}
+
 // Base Buffers for UI/WASM compatibility
-export const wasmMemory = new WebAssembly.Memory({ initial: 1024, maximum: 1024, shared: true });
+export const wasmMemory = new WebAssembly.Memory({
+    initial: OFFSETS.WASM_MEMORY_PAGES,
+    maximum: OFFSETS.WASM_MEMORY_PAGES,
+    shared: true,
+});
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 // Expose underlying buffers for UI export

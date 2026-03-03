@@ -138,3 +138,8 @@ health indicator loop:
 
 - `deno task ui:health` (default O‑stream mode)
 - `MODE=io INPUT=input.json DRAIN=1 deno task ui:health`
+
+## Operator note (WASM build)
+
+- `deno task wasm:build`
+- `deno task vector10:verify`
