@@ -144,6 +144,7 @@ export const PULSE = {
         try {
             // 0. Sovereign Oracle Peak Detection & Coherence Polling
             const currentTick = Atomics.load(tickCounter, 0);
+            const activeIdx = STATE_MATRIX.getActiveIndices();
             
             // Poll Coherence from Worker 0 (WASM primary)
             const coherencePulseId = nextPulseId();
@@ -171,15 +172,13 @@ export const PULSE = {
             SOVEREIGN_ORACLE.broadcastWhisper(currentTick, telemetry, coherence);
             // Trigger Oracle on either Matrix Resonance spike or High Coherence
             if (telemetry.matrixResonance > 5000 || coherence > 500) { 
-                const active = STATE_MATRIX.getActiveIndices();
-                const regent = SOVEREIGNTY_ENGINE.electRegent(active);
+                const regent = SOVEREIGNTY_ENGINE.electRegent(activeIdx);
                 if (regent && regent.idx !== -1) {
                     SOVEREIGN_ORACLE.consultOracle(regent.idx, telemetry);
                 }
             }
 
             // 1. Resolve Sequential Logic
-            const activeIdx = STATE_MATRIX.getActiveIndices();
             for (const i of activeIdx) {
                 const bondReq = STATE_MATRIX.getBondRequest(i);
                 if (bondReq) {
@@ -253,6 +252,7 @@ export const PULSE = {
                             
                             // Seed atom with standard biological script and genome
                             STATE_MATRIX.seedAtom(freeIdx, childId, cx * 10 + 5, cy * 10 + 5, Math.max(childEnergy, 500) / STATE_MATRIX.SCALE, 0, genome);
+                            activeIdx.push(freeIdx);
                             spawned++;
                         }
                         spawnDataView.setUint32(slotOff, 0, true);
@@ -273,13 +273,12 @@ export const PULSE = {
 
             // --- RESONANCE PROTOCOL: Global Coherence Calculation ---
             {
-                const activeIndices = STATE_MATRIX.getActiveIndices();
                 let totalResonance = 0;
-                for (const idx of activeIndices) {
+                for (const idx of activeIdx) {
                     totalResonance += STATE_MATRIX.getResonance(idx);
                 }
                 // Average Resonance normalized to 0-255 (Absolute Coherence)
-                const avgRes = activeIndices.length > 0 ? (totalResonance / activeIndices.length) : 0;
+                const avgRes = activeIdx.length > 0 ? (totalResonance / activeIdx.length) : 0;
                 const coherence = Math.min(255, Math.floor(avgRes / 100));
                 
                 // Write to Unified Lattice
