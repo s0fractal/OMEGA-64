@@ -37,6 +37,9 @@
     "SHIMS.ts"
   ],
   "required_additional_files": [
+    "assembly/index.ts",
+    "build_wasm.ts",
+    "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
     "worker_determinism_capture.ts",
     "worker_resilience_capture.ts",

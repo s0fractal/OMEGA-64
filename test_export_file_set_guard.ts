@@ -19,6 +19,9 @@ const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
 ];
 
 const REQUIRED_RUNTIME_SURFACE = [
+  "assembly/index.ts",
+  "build_wasm.ts",
+  "wasm_layout_guard.ts",
   "SYSTEM_START.ts",
   "PULSE.ts",
   "PULSE_WORKER.ts",
