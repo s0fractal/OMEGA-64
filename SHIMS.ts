@@ -391,17 +391,159 @@ export const CHECKPOINT_CHECKPOINT = {
   },
 };
 
+const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
+
+const stripLedgerChainFields = (entry: Record<string, unknown>) => {
+  const body = { ...entry };
+  delete body.chain_version;
+  delete body.prev_event_hash;
+  delete body.event_hash;
+  return body;
+};
+
+const ledgerEventHash = async (
+  body: Record<string, unknown>,
+  prevEventHash: string | null,
+): Promise<string> =>
+  await sha256Hex(stableStringify({
+    chain_version: LEDGER_CHAIN_VERSION,
+    prev_event_hash: prevEventHash,
+    body,
+  }));
+
+type LedgerChainReportInternal = {
+  ok: boolean;
+  checkedEvents: number;
+  chainAnchoredEvents: number;
+  legacyEvents: number;
+  failures: string[];
+  tailEventHash: string | null;
+};
+
+const verifyLedgerChainDetailedInternal = async (
+  path: string,
+): Promise<LedgerChainReportInternal> => {
+  const lines = await readJsonlLines(path);
+  const failures: string[] = [];
+  let chainAnchoredEvents = 0;
+  let legacyEvents = 0;
+  let prevAnchoredHash: string | null = null;
+  let tailEventHash: string | null = null;
+
+  for (let i = 0; i < lines.length; i++) {
+    const lineNo = i + 1;
+    let row: Record<string, unknown>;
+    try {
+      row = JSON.parse(lines[i]) as Record<string, unknown>;
+    } catch {
+      failures.push(`LEDGER_CHAIN_JSON_PARSE_FAIL_AT_LINE_${lineNo}`);
+      continue;
+    }
+
+    const hasChainVersion = row.chain_version !== undefined;
+    const hasPrev = row.prev_event_hash !== undefined;
+    const hasHash = row.event_hash !== undefined;
+    const hasAnyChain = hasChainVersion || hasPrev || hasHash;
+    const hasAllChain = hasChainVersion && hasPrev && hasHash;
+
+    if (!hasAnyChain) {
+      legacyEvents++;
+      continue;
+    }
+    if (!hasAllChain) {
+      failures.push(`LEDGER_CHAIN_PARTIAL_FIELDS_AT_LINE_${lineNo}`);
+      continue;
+    }
+
+    chainAnchoredEvents++;
+    if (row.chain_version !== LEDGER_CHAIN_VERSION) {
+      failures.push(`LEDGER_CHAIN_VERSION_UNSUPPORTED_AT_LINE_${lineNo}`);
+    }
+
+    const body = stripLedgerChainFields(row);
+    const expectedHash = await ledgerEventHash(body, prevAnchoredHash);
+
+    const recordedPrev = row.prev_event_hash === null
+      ? null
+      : normalizeHex64(row.prev_event_hash);
+    if (
+      row.prev_event_hash !== null &&
+      typeof row.prev_event_hash !== "string"
+    ) {
+      failures.push(`LEDGER_CHAIN_PREV_HASH_INVALID_AT_LINE_${lineNo}`);
+    }
+    if (recordedPrev !== prevAnchoredHash) {
+      failures.push(`LEDGER_CHAIN_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
+    }
+
+    const recordedHash = normalizeHex64(row.event_hash);
+    if (!recordedHash) {
+      failures.push(`LEDGER_CHAIN_EVENT_HASH_INVALID_AT_LINE_${lineNo}`);
+      prevAnchoredHash = expectedHash;
+      tailEventHash = expectedHash;
+      continue;
+    }
+    if (recordedHash !== expectedHash) {
+      failures.push(`LEDGER_CHAIN_HASH_MISMATCH_AT_LINE_${lineNo}`);
+    }
+
+    prevAnchoredHash = recordedHash;
+    tailEventHash = recordedHash;
+  }
+
+  return {
+    ok: failures.length === 0,
+    checkedEvents: lines.length,
+    chainAnchoredEvents,
+    legacyEvents,
+    failures,
+    tailEventHash,
+  };
+};
+
 export const LEDGER__08_00_LEDGER = {
   STORAGE_PATH: "OMEGA_LEDGER.jsonl",
+  CHAIN_VERSION: LEDGER_CHAIN_VERSION,
   append: async (entry: any): Promise<void> => {
     if (entry === undefined) return;
-    await appendJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH, entry);
+    const chain = await verifyLedgerChainDetailedInternal(
+      LEDGER__08_00_LEDGER.STORAGE_PATH,
+    );
+    if (!chain.ok) {
+      throw new Error(`LEDGER_CHAIN_INVALID:${chain.failures.join(",")}`);
+    }
+
+    const rawEntry = entry && typeof entry === "object"
+      ? (entry as Record<string, unknown>)
+      : { value: entry };
+    const body = stripLedgerChainFields(rawEntry);
+    const prevEventHash = chain.tailEventHash;
+    const eventHash = await ledgerEventHash(body, prevEventHash);
+    await appendJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH, {
+      ...body,
+      chain_version: LEDGER_CHAIN_VERSION,
+      prev_event_hash: prevEventHash,
+      event_hash: eventHash,
+    });
   },
   readAllRaw: async function* (): AsyncGenerator<any> {
     yield* readJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
   },
   readAll: async function* (): AsyncGenerator<any> {
     yield* readJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
+  },
+  verifyChainDetailed: async (path?: string) => {
+    const report = await verifyLedgerChainDetailedInternal(
+      path ?? LEDGER__08_00_LEDGER.STORAGE_PATH,
+    );
+    return {
+      ok: report.ok,
+      checkedEvents: report.checkedEvents,
+      chainAnchoredEvents: report.chainAnchoredEvents,
+      legacyEvents: report.legacyEvents,
+      failures: report.failures,
+      tailEventHash: report.tailEventHash,
+    };
   },
 };
 
