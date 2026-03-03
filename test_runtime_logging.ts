@@ -12,6 +12,7 @@ const RUNTIME_HOT_PATH_FILES = [
   "SNAPSHOT_ENGINE.ts",
   "BREATH.ts",
   "RIBOSOME.ts",
+  "REFLECTION_ENGINE.ts",
   "SYSTEM_START.ts",
   "RIBOSOME_TICK.ts",
 ] as const;

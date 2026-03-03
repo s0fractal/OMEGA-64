@@ -50,6 +50,7 @@
     "test:structure-intent-determinism": "deno run -A test_structure_intent_determinism.ts",
     "test:runtime-monoculture": "deno run -A test_runtime_monoculture.ts",
     "test:runtime-logging": "deno run -A test_runtime_logging.ts",
+    "test:runtime-state-matrix-api": "deno run -A test_runtime_state_matrix_api_guard.ts",
     "test:log-level-policy": "deno run -A test_log_level_policy.ts",
     "test:export-manifest": "deno run -A test_export_manifest_guard.ts",
     "test:export-file-set": "deno run -A test_export_file_set_guard.ts",
@@ -65,7 +66,7 @@
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
     "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && deno task test:worker-resilience-trend && deno task test:worker-soak-trend",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
-    "verify:coherence": "deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:log-level-policy && deno task test:export-manifest && deno task test:export-file-set && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain",
+    "verify:coherence": "deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:log-level-policy && deno task test:export-manifest && deno task test:export-file-set && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain",
     "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:worker-init-fallback && deno task test:worker-init-total-fail && deno task test:worker-init-safe-noop && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {
