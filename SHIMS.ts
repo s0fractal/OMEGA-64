@@ -290,8 +290,76 @@ const proposalIsCanonBound = (proposal: unknown): boolean => {
     target.startsWith("CANON:") || target.startsWith("/CANON");
 };
 
+const extractBridgeInvariantReport = (
+  state: unknown,
+  explicit?: BridgeInvariantReportLike,
+): BridgeInvariantReportLike | undefined => {
+  if (explicit) return explicit;
+  if (!state || typeof state !== "object") return undefined;
+  const s = state as Record<string, unknown>;
+  const direct = s.bridge_invariant_report;
+  if (direct && typeof direct === "object") {
+    return direct as BridgeInvariantReportLike;
+  }
+  const runtime = s.runtime;
+  if (runtime && typeof runtime === "object") {
+    const fromRuntime = (runtime as Record<string, unknown>)
+      .bridge_invariant_report;
+    if (fromRuntime && typeof fromRuntime === "object") {
+      return fromRuntime as BridgeInvariantReportLike;
+    }
+  }
+  const replayAudit = s.replay_audit;
+  if (replayAudit && typeof replayAudit === "object") {
+    const invariantReport = (replayAudit as Record<string, unknown>)
+      .invariantReport;
+    if (invariantReport && typeof invariantReport === "object") {
+      return invariantReport as BridgeInvariantReportLike;
+    }
+  }
+  return undefined;
+};
+
+const bridgeVerifyDetailed = (
+  state: unknown,
+  proposals: unknown,
+  explicitReport?: BridgeInvariantReportLike,
+): {
+  ok: boolean;
+  mode: "GREEN" | "AMBER" | "RED";
+  reason: string;
+  canon_bound_proposals: string[];
+  blocked_canon_proposals: string[];
+} => {
+  const list = Array.isArray(proposals) ? proposals : [];
+  const canonBound = list
+    .filter((p) => proposalIsCanonBound(p))
+    .map((p, idx) => {
+      const id =
+        typeof (p as { proposal_id?: unknown }).proposal_id === "string"
+          ? ((p as { proposal_id: string }).proposal_id)
+          : `canon_${idx}`;
+      return id;
+    });
+  const report = extractBridgeInvariantReport(state, explicitReport);
+  const resolution = resolveBridgeMode(report);
+  const blocked = resolution.mode === "GREEN" ? [] : [...canonBound];
+  return {
+    ok: blocked.length === 0,
+    mode: resolution.mode,
+    reason: resolution.reason,
+    canon_bound_proposals: canonBound,
+    blocked_canon_proposals: blocked,
+  };
+};
+
 export const CANON_CAUSAL_BRIDGE = {
-  verify: (_state: any, _proposals: any) => true,
+  verify: (
+    state: unknown,
+    proposals: unknown,
+    report?: BridgeInvariantReportLike,
+  ): boolean => bridgeVerifyDetailed(state, proposals, report).ok,
+  verifyDetailed: bridgeVerifyDetailed,
   resolveMode: (report?: BridgeInvariantReportLike) =>
     resolveBridgeMode(report),
   isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
@@ -788,16 +856,69 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
 const CRY_DATA = {
   policy: "STABLE",
-  policyVersion: "v1.0",
+  policyVersion: "crystallization/v1",
+  window: 512,
+  minSoftPasses: 5,
+  defaultRequiredWindows: 3,
+  projectionDriftMaxP95: 1024,
+  projectionDriftTopLevels: 8,
+  gateAdmissionOutOfPhasePressureMaxMean: 1.0,
+  gateAdmissionMinCoherenceCoverage: 0.0,
+  gateAdmissionTopAgents: 8,
+  verifyLedgerChain: true,
 };
 export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
   () => CRY_DATA,
   CRY_DATA,
 );
 
+const canonicalCrystallizationPolicyPayload = (): string =>
+  stableStringify({
+    policyVersion: CRY_DATA.policyVersion,
+    window: CRY_DATA.window,
+    minSoftPasses: CRY_DATA.minSoftPasses,
+    defaultRequiredWindows: CRY_DATA.defaultRequiredWindows,
+    projectionDriftMaxP95: CRY_DATA.projectionDriftMaxP95,
+    projectionDriftTopLevels: CRY_DATA.projectionDriftTopLevels,
+    gateAdmissionOutOfPhasePressureMaxMean:
+      CRY_DATA.gateAdmissionOutOfPhasePressureMaxMean,
+    gateAdmissionMinCoherenceCoverage:
+      CRY_DATA.gateAdmissionMinCoherenceCoverage,
+    gateAdmissionTopAgents: CRY_DATA.gateAdmissionTopAgents,
+    verifyLedgerChain: CRY_DATA.verifyLedgerChain,
+  });
+
 export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
-  verify: () => true,
-  hash: () => "0xPOLICY_HASH_RESONANCE",
+  canonicalPayload: canonicalCrystallizationPolicyPayload,
+  hash: async (): Promise<string> =>
+    await sha256Hex(canonicalCrystallizationPolicyPayload()),
+  verify: async (
+    input?:
+      | string
+      | { policy_hash?: string; policy_version?: string }
+      | { policyHash?: string; policyVersion?: string },
+  ): Promise<boolean> => {
+    const expectedHash = await CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY
+      .hash();
+    if (typeof input === "undefined") return true;
+    if (typeof input === "string") return input === expectedHash;
+    const maybeVersion = "policy_version" in input
+      ? input.policy_version
+      : input.policyVersion;
+    const maybeHash = "policy_hash" in input
+      ? input.policy_hash
+      : input.policyHash;
+    if (
+      typeof maybeVersion === "string" &&
+      maybeVersion !== CRY_DATA.policyVersion
+    ) {
+      return false;
+    }
+    if (typeof maybeHash === "string") {
+      return maybeHash === expectedHash;
+    }
+    return true;
+  },
 };
 
 const defaultEnvelopeIndexPath = (): string =>

@@ -193,6 +193,8 @@ health indicator loop:
   signature build/verify gate)
 - `deno task test:invariant-packet` (bridge invariant packet seal/hash/verify
   gate with tamper detection)
+- `deno task test:bridge-policy` (canon-bridge membrane verify + crystallization
+  policy hash/version verification gate)
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)

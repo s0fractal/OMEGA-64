@@ -48,13 +48,14 @@
     "test:runtime-monoculture": "deno run -A test_runtime_monoculture.ts",
     "test:topological-signature": "deno run -A test_topological_signature_runtime.ts",
     "test:invariant-packet": "deno run -A test_invariant_packet_runtime.ts",
+    "test:bridge-policy": "deno run -A test_bridge_policy_runtime.ts",
     "test:active": "deno task verify:coherence:deep",
     "ci:verify:worker1": "OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep",
     "ci:verify:worker4": "OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep",
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
     "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && deno task test:worker-resilience-trend && deno task test:worker-soak-trend",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
-    "verify:coherence": "deno task test:runtime-monoculture && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum && deno task test:topological-signature && deno task test:invariant-packet",
+    "verify:coherence": "deno task test:runtime-monoculture && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy",
     "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {
