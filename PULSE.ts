@@ -19,14 +19,60 @@ const parseStrictDeterminism = (): boolean => {
     const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
     return raw === "1" || raw === "true" || raw === "TRUE";
 };
+const parseBoundedInt = (raw: string | undefined, fallback: number, min: number, max: number): number => {
+    if (!raw) return fallback;
+    const n = Number.parseInt(raw, 10);
+    if (!Number.isFinite(n)) return fallback;
+    return Math.max(min, Math.min(max, n));
+};
+const parseWorkerTimeoutMs = (): number =>
+    parseBoundedInt(Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS"), 30_000, 10, 120_000);
+const parseWorkerTimeoutRetryCount = (): number =>
+    parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
+const parseWorkerTimeoutRetryMs = (): number =>
+    parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"), 5_000, 10, 120_000);
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
-const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
+const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
+const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
+const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
+
+type WorkerFaultStat = {
+    workerIndex: number;
+    requests: number;
+    completed: number;
+    timeouts: number;
+    retryWaits: number;
+    failures: number;
+    consecutiveTimeouts: number;
+    lastRequestType: string;
+    lastPulseId: number;
+    lastError: string;
+};
+const makeWorkerFaultStat = (workerIndex: number): WorkerFaultStat => ({
+    workerIndex,
+    requests: 0,
+    completed: 0,
+    timeouts: 0,
+    retryWaits: 0,
+    failures: 0,
+    consecutiveTimeouts: 0,
+    lastRequestType: "NONE",
+    lastPulseId: -1,
+    lastError: "",
+});
+const workerFaultStats: WorkerFaultStat[] = [];
+const getWorkerFaultStat = (workerIndex: number): WorkerFaultStat => {
+    if (!workerFaultStats[workerIndex]) {
+        workerFaultStats[workerIndex] = makeWorkerFaultStat(workerIndex);
+    }
+    return workerFaultStats[workerIndex];
+};
 
 const idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
 const xsView = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
@@ -70,40 +116,109 @@ const findNextFreeSlot = (startIdx: number): number => {
     return -1;
 };
 
+type WorkerWaitResult<T> = {
+    data: T;
+    timeoutWindows: number;
+    retriesUsed: number;
+};
+class WorkerTimeoutError extends Error {
+    timeoutWindows: number;
+    expectedType: string;
+    expectedPulseId?: number;
+
+    constructor(expectedType: string, expectedPulseId: number | undefined, timeoutWindows: number) {
+        super(
+            `[PULSE] Worker timeout waiting for ${expectedType} (pulseId=${expectedPulseId ?? "n/a"}, windows=${timeoutWindows})`,
+        );
+        this.name = "WorkerTimeoutError";
+        this.timeoutWindows = timeoutWindows;
+        this.expectedType = expectedType;
+        this.expectedPulseId = expectedPulseId;
+    }
+}
+
 const waitForWorkerMessage = <T = any>(
     worker: Worker,
     expectedType: string,
     expectedPulseId?: number,
     timeoutMs: number = WORKER_RESPONSE_TIMEOUT_MS,
-): Promise<T> => {
+): Promise<WorkerWaitResult<T>> => {
     return new Promise((resolve, reject) => {
-        const timeout = setTimeout(() => {
+        let timeoutId: ReturnType<typeof setTimeout> | null = null;
+        let remainingRetries = WORKER_TIMEOUT_RETRY_COUNT;
+        let timeoutWindows = 0;
+
+        const cleanup = () => {
+            if (timeoutId !== null) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+            }
             worker.removeEventListener("message", listener);
-            reject(new Error(`[PULSE] Worker timeout waiting for ${expectedType}`));
-        }, timeoutMs);
+        };
+
+        const armTimeout = (ms: number) => {
+            timeoutId = setTimeout(() => {
+                timeoutWindows++;
+                if (remainingRetries > 0) {
+                    remainingRetries--;
+                    armTimeout(WORKER_TIMEOUT_RETRY_MS);
+                    return;
+                }
+                cleanup();
+                reject(new WorkerTimeoutError(expectedType, expectedPulseId, timeoutWindows));
+            }, ms);
+        };
 
         const listener = (e: MessageEvent) => {
             const data = e.data;
             if (!data || data.type !== expectedType) return;
             if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) return;
-            clearTimeout(timeout);
-            worker.removeEventListener("message", listener);
-            resolve(data as T);
+            const retriesUsed = timeoutWindows > 0 ? Math.min(timeoutWindows, WORKER_TIMEOUT_RETRY_COUNT) : 0;
+            cleanup();
+            resolve({ data: data as T, timeoutWindows, retriesUsed });
         };
         worker.addEventListener("message", listener);
+        armTimeout(timeoutMs);
     });
 };
 
 const postAndWait = async <T = any>(
+    workerIndex: number,
     worker: Worker,
     message: Record<string, unknown>,
     expectedType: string,
     timeoutMs?: number,
 ): Promise<T> => {
+    const stats = getWorkerFaultStat(workerIndex);
     const pulseId = typeof message.pulseId === "number" ? message.pulseId : undefined;
+    stats.requests++;
+    stats.lastRequestType = expectedType;
+    stats.lastPulseId = pulseId ?? -1;
     const pending = waitForWorkerMessage<T>(worker, expectedType, pulseId, timeoutMs);
     worker.postMessage(message);
-    return await pending;
+    try {
+        const res = await pending;
+        if (res.timeoutWindows > 0) {
+            stats.timeouts += res.timeoutWindows;
+            stats.retryWaits += res.retriesUsed;
+            console.warn(
+                `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
+            );
+        }
+        stats.completed++;
+        stats.consecutiveTimeouts = 0;
+        stats.lastError = "";
+        return res.data;
+    } catch (err) {
+        if (err instanceof WorkerTimeoutError) {
+            stats.timeouts += err.timeoutWindows;
+            stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
+        }
+        stats.failures++;
+        stats.consecutiveTimeouts++;
+        stats.lastError = err instanceof Error ? err.message : String(err);
+        throw err;
+    }
 };
 
 const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DONE" | "DELTA_DONE"): Promise<void> => {
@@ -111,6 +226,7 @@ const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DO
     if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
         const pulseId = nextPulseId();
         workerPromises.push(postAndWait(
+            0,
             workers[0],
             { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId },
             doneType,
@@ -123,6 +239,7 @@ const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DO
 
             const pulseId = nextPulseId();
             workerPromises.push(postAndWait(
+                i,
                 workers[i],
                 { type, startIdx, endIdx, pulseId },
                 doneType,
@@ -142,10 +259,17 @@ export const PULSE = {
         if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
             console.log("   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.");
         }
+        if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
+            console.log(
+                `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
+            );
+        }
         
+        workerFaultStats.length = 0;
         for (let i = 0; i < WORKER_COUNT; i++) {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
             workers.push(worker);
+            workerFaultStats.push(makeWorkerFaultStat(i));
             
             const p = waitForWorkerMessage(worker, "READY");
             worker.postMessage({ 
@@ -153,10 +277,35 @@ export const PULSE = {
                 wasmMemory: STATE_MATRIX.wasmMemory,
                 buffer: STATE_MATRIX.buffer 
             });
-            workerPromises.push(p);
+            workerPromises.push(p.then(() => undefined));
         }
         await Promise.all(workerPromises);
         console.log(`   [PULSE] ${WORKER_COUNT} Parallel Workers READY with WASM VMs.`);
+    },
+    stopWorkers: () => {
+        for (const worker of workers) {
+            worker.terminate();
+        }
+        workers.length = 0;
+        workerPromises = [];
+        workerFaultStats.length = 0;
+    },
+    getWorkerFaultStats: (): WorkerFaultStat[] => workerFaultStats.map((stat) => ({ ...stat })),
+    setWorkerDebugDelay: async (delayMs: number): Promise<void> => {
+        if (workers.length === 0) return;
+        const boundedDelay = Math.max(0, Math.min(2000, Math.floor(delayMs)));
+        const updates: Promise<any>[] = [];
+        for (let i = 0; i < workers.length; i++) {
+            const pulseId = nextPulseId();
+            updates.push(postAndWait(
+                i,
+                workers[i],
+                { type: "SET_DEBUG_DELAY", delayMs: boundedDelay, pulseId },
+                "DEBUG_DELAY_SET",
+                Math.max(1_000, WORKER_RESPONSE_TIMEOUT_MS),
+            ));
+        }
+        await Promise.all(updates);
     },
 
     tick: async () => {
@@ -173,6 +322,7 @@ export const PULSE = {
             // Poll Coherence from Worker 0 (WASM primary)
             const coherencePulseId = nextPulseId();
             const coherenceRes = await postAndWait<{ coherence: number }>(
+                0,
                 workers[0],
                 { type: "POLL_COHERENCE", pulseId: coherencePulseId },
                 "COHERENCE_VAL",
@@ -219,7 +369,7 @@ export const PULSE = {
             // 2. Parallel Physics & WASM Kernel
             // 2a. Rebuild Spatial Lattice (WASM)
             const hashPulseId = nextPulseId();
-            await postAndWait(workers[0], { type: "BUILD_SPATIAL_HASH", pulseId: hashPulseId }, "HASH_DONE");
+            await postAndWait(0, workers[0], { type: "BUILD_SPATIAL_HASH", pulseId: hashPulseId }, "HASH_DONE");
 
             // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
             {
@@ -239,7 +389,7 @@ export const PULSE = {
 
             // 3. Matrix Engine (WASM)
             const matrixPulseId = nextPulseId();
-            await postAndWait(workers[0], { type: "TICK_MATRIX", pulseId: matrixPulseId }, "MATRIX_DONE");
+            await postAndWait(0, workers[0], { type: "TICK_MATRIX", pulseId: matrixPulseId }, "MATRIX_DONE");
 
             // --- TRANSITION TO HOST_LOCK ---
             // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.

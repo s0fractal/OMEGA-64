@@ -14,6 +14,11 @@ let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
+let debugDelayMs = 0;
+const maybeDelay = async () => {
+    if (debugDelayMs <= 0) return;
+    await new Promise((resolve) => setTimeout(resolve, debugDelayMs));
+};
 
 self.onmessage = async (e) => {
     const { type, pulseId } = e.data;
@@ -46,6 +51,7 @@ self.onmessage = async (e) => {
             get_neural_coherence_fn = wasmInstance.exports.get_neural_coherence as any;
             set_neural_coherence_fn = wasmInstance.exports.set_neural_coherence as any;
             console.log("   [WORKER] WASM Instantiated successfully.");
+            await maybeDelay();
             self.postMessage({ type: "READY" });
         } catch (err) {
             console.error("   [WORKER] WASM LOAD ERROR:", err);
@@ -79,6 +85,7 @@ self.onmessage = async (e) => {
             console.error("   [WORKER EXECUTION ERROR]", err);
         }
 
+        await maybeDelay();
         self.postMessage({ type: "DONE", pulseId });
     }
 
@@ -87,23 +94,27 @@ self.onmessage = async (e) => {
         if (reduce_atom_deltas_fn) {
             reduce_atom_deltas_fn(startIdx, endIdx);
         }
+        await maybeDelay();
         self.postMessage({ type: "DELTA_DONE", pulseId });
     }
 
     if (type === "TICK_MATRIX") {
         if (tick_structure_grid_fn) tick_structure_grid_fn();
         else if (tick_matrix_fn) tick_matrix_fn();
+        await maybeDelay();
         self.postMessage({ type: "MATRIX_DONE", pulseId });
     }
 
     if (type === "BUILD_SPATIAL_HASH") {
         if (build_spatial_hash_fn) build_spatial_hash_fn();
+        await maybeDelay();
         self.postMessage({ type: "HASH_DONE", pulseId });
     }
 
     if (type === "POLL_COHERENCE") {
         if (get_neural_coherence_fn) {
             const coherence = get_neural_coherence_fn();
+            await maybeDelay();
             self.postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
         }
     }
@@ -112,5 +123,12 @@ self.onmessage = async (e) => {
         if (set_neural_coherence_fn) {
             set_neural_coherence_fn(e.data.coherence);
         }
+    }
+
+    if (type === "SET_DEBUG_DELAY") {
+        const delayRaw = Number(e.data.delayMs);
+        debugDelayMs = Number.isFinite(delayRaw) ? Math.max(0, Math.min(2000, Math.floor(delayRaw))) : 0;
+        await maybeDelay();
+        self.postMessage({ type: "DEBUG_DELAY_SET", pulseId });
     }
 };

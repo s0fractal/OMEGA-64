@@ -150,6 +150,7 @@ health indicator loop:
 - `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
 - `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for 1-worker vs 4-workers)
+- `deno task test:worker-timeout-retry` (fault-counter + timeout-retry resilience gate; no duplicate worker posts)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` with strict/non-strict drift metrics)
 - `deno task test:structure-intent-determinism` (conflict-heavy structure write parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix pass)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
