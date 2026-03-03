@@ -1,3 +1,5 @@
+import { loadResilienceTrendThresholds } from "./worker_gate_thresholds.ts";
+
 const AUDIT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const BASELINE_JSON_PATH = "WORKER_RESILIENCE_TREND_BASELINE.json";
 const REPORT_JSON_PATH = "WORKER_RESILIENCE_TREND.json";
@@ -47,58 +49,22 @@ type Check = {
   ok: boolean;
 };
 
-const envNum = (key: string, fallback: number): number => {
-  const raw = Deno.env.get(key);
-  if (!raw || raw.trim().length === 0) return fallback;
-  const parsed = Number.parseFloat(raw);
-  if (!Number.isFinite(parsed)) return fallback;
-  return parsed;
-};
-
 const ceil = (value: number): number => Math.ceil(value);
 
-const retriesRatioMax = envNum("OMEGA_RESILIENCE_TREND_RETRIES_RATIO_MAX", 2.2);
-const retriesDeltaMax = envNum("OMEGA_RESILIENCE_TREND_RETRIES_DELTA_MAX", 16);
-const durationRatioMax = envNum(
-  "OMEGA_RESILIENCE_TREND_DURATION_RATIO_MAX",
-  3.0,
-);
-const durationDeltaMaxMs = envNum(
-  "OMEGA_RESILIENCE_TREND_DURATION_DELTA_MAX_MS",
-  4_000,
-);
-const totalRetriesRatioMax = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_RATIO_MAX",
-  2.0,
-);
-const totalRetriesDeltaMax = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_DELTA_MAX",
-  40,
-);
-const totalScenarioDurationRatioMax = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_RATIO_MAX",
-  3.0,
-);
-const totalScenarioDurationDeltaMaxMs = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_DELTA_MAX_MS",
-  8_000,
-);
-const driftAuditDurationRatioMax = envNum(
-  "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_RATIO_MAX",
-  3.0,
-);
-const driftAuditDurationDeltaMaxMs = envNum(
-  "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_DELTA_MAX_MS",
-  5_000,
-);
-const totalAuditDurationRatioMax = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_RATIO_MAX",
-  3.0,
-);
-const totalAuditDurationDeltaMaxMs = envNum(
-  "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_DELTA_MAX_MS",
-  12_000,
-);
+const {
+  retriesRatioMax,
+  retriesDeltaMax,
+  durationRatioMax,
+  durationDeltaMaxMs,
+  totalRetriesRatioMax,
+  totalRetriesDeltaMax,
+  totalScenarioDurationRatioMax,
+  totalScenarioDurationDeltaMaxMs,
+  driftAuditDurationRatioMax,
+  driftAuditDurationDeltaMaxMs,
+  totalAuditDurationRatioMax,
+  totalAuditDurationDeltaMaxMs,
+} = loadResilienceTrendThresholds();
 
 const ensurePositive = (value: number, fallback: number): number =>
   Number.isFinite(value) && value > 0 ? value : fallback;

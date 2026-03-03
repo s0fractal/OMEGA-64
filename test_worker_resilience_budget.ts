@@ -1,3 +1,8 @@
+import {
+  loadResilienceBudgetThresholds,
+  type ResilienceScenario,
+} from "./worker_gate_thresholds.ts";
+
 const AUDIT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const REPORT_JSON_PATH = "WORKER_RESILIENCE_BUDGET.json";
 const REPORT_MD_PATH = "WORKER_RESILIENCE_BUDGET.md";
@@ -43,67 +48,17 @@ type BudgetCheck = {
   ok: boolean;
 };
 
-const envNum = (key: string, fallback: number): number => {
-  const raw = Deno.env.get(key);
-  if (raw == null || raw.trim().length === 0) return fallback;
-  const parsed = Number.parseInt(raw, 10);
-  if (!Number.isFinite(parsed)) return fallback;
-  return parsed;
-};
-
 const isFiniteNumber = (value: unknown): value is number =>
   typeof value === "number" && Number.isFinite(value);
 
-const scenarioBudget = {
-  "worker-timeout-retry": envNum(
-    "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_SINGLE",
-    12,
-  ),
-  "worker-timeout-retry-multi": envNum(
-    "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_MULTI",
-    24,
-  ),
-  "worker-jitter-resilience": envNum(
-    "OMEGA_RESILIENCE_RETRIES_MAX_JITTER",
-    120,
-  ),
-  "spawn-jitter-resilience": envNum(
-    "OMEGA_RESILIENCE_RETRIES_MAX_SPAWN_JITTER",
-    260,
-  ),
-} as const;
-
-const totalRetriesMax = envNum("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 360);
-const scenarioDurationBudgetMs = {
-  "worker-timeout-retry": envNum(
-    "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_SINGLE_MS",
-    15_000,
-  ),
-  "worker-timeout-retry-multi": envNum(
-    "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_MULTI_MS",
-    20_000,
-  ),
-  "worker-jitter-resilience": envNum(
-    "OMEGA_RESILIENCE_DURATION_MAX_JITTER_MS",
-    25_000,
-  ),
-  "spawn-jitter-resilience": envNum(
-    "OMEGA_RESILIENCE_DURATION_MAX_SPAWN_JITTER_MS",
-    35_000,
-  ),
-} as const;
-const scenarioDurationTotalMaxMs = envNum(
-  "OMEGA_RESILIENCE_DURATION_MAX_SCENARIOS_MS",
-  75_000,
-);
-const driftAuditDurationMaxMs = envNum(
-  "OMEGA_RESILIENCE_DURATION_MAX_DRIFT_AUDIT_MS",
-  30_000,
-);
-const auditDurationTotalMaxMs = envNum(
-  "OMEGA_RESILIENCE_DURATION_MAX_AUDIT_TOTAL_MS",
-  105_000,
-);
+const {
+  scenarioRetriesMax: scenarioBudget,
+  totalRetriesMax,
+  scenarioDurationMaxMs: scenarioDurationBudgetMs,
+  scenarioDurationTotalMaxMs,
+  driftAuditDurationMaxMs,
+  auditDurationTotalMaxMs,
+} = loadResilienceBudgetThresholds();
 
 const toChecks = (audit: AuditReport): BudgetCheck[] => {
   const byScenario = new Map(audit.scenarios.map((s) => [s.scenario, s]));
@@ -206,7 +161,7 @@ const toChecks = (audit: AuditReport): BudgetCheck[] => {
       ok: capture.totalRetries <= maxRetries,
     });
     const maxDurationMs = scenarioDurationBudgetMs[
-      scenario as keyof typeof scenarioDurationBudgetMs
+      scenario as ResilienceScenario
     ];
     checks.push({
       name: `scenario.${scenario}.durationMs <= ${maxDurationMs}`,

@@ -1,3 +1,5 @@
+import { loadSoakTrendThresholds } from "./worker_gate_thresholds.ts";
+
 const SOAK_JSON_PATH = "WORKER_SOAK_STABILITY.json";
 const BASELINE_JSON_PATH = "WORKER_SOAK_STABILITY_BASELINE.json";
 const REPORT_JSON_PATH = "WORKER_SOAK_TREND.json";
@@ -70,14 +72,6 @@ type Check = {
   ok: boolean;
 };
 
-const envNum = (key: string, fallback: number): number => {
-  const raw = Deno.env.get(key);
-  if (!raw || raw.trim().length === 0) return fallback;
-  const parsed = Number.parseFloat(raw);
-  if (!Number.isFinite(parsed)) return fallback;
-  return parsed;
-};
-
 const limitByRatioAndDelta = (
   baseline: number,
   ratioMax: number,
@@ -87,63 +81,35 @@ const limitByRatioAndDelta = (
 const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
 
-const durationRatioMax = envNum("OMEGA_SOAK_TREND_DURATION_RATIO_MAX", 1.6);
-const durationDeltaMaxMs = envNum(
-  "OMEGA_SOAK_TREND_DURATION_DELTA_MAX_MS",
-  18_000,
-);
-const p95TickRatioMax = envNum("OMEGA_SOAK_TREND_P95_TICK_RATIO_MAX", 1.1);
-const p95TickDeltaMaxMs = envNum("OMEGA_SOAK_TREND_P95_TICK_DELTA_MAX_MS", 6);
-const maxTickRatioMax = envNum("OMEGA_SOAK_TREND_MAX_TICK_RATIO_MAX", 1.35);
-const maxTickDeltaMaxMs = envNum("OMEGA_SOAK_TREND_MAX_TICK_DELTA_MAX_MS", 20);
-const peakActiveRatioMax = envNum(
-  "OMEGA_SOAK_TREND_PEAK_ACTIVE_RATIO_MAX",
-  1.3,
-);
-const peakActiveDeltaMax = envNum("OMEGA_SOAK_TREND_PEAK_ACTIVE_DELTA_MAX", 24);
-const backlogRatioMax = envNum("OMEGA_SOAK_TREND_BACKLOG_RATIO_MAX", 4);
-const backlogDeltaMax = envNum("OMEGA_SOAK_TREND_BACKLOG_DELTA_MAX", 8);
-const rssSlopeRatioMax = envNum("OMEGA_SOAK_TREND_RSS_SLOPE_RATIO_MAX", 4);
-const rssSlopeDeltaMax = envNum(
-  "OMEGA_SOAK_TREND_RSS_SLOPE_DELTA_MAX",
-  4_000_000,
-);
-const heapSlopeRatioMax = envNum("OMEGA_SOAK_TREND_HEAP_SLOPE_RATIO_MAX", 6);
-const heapSlopeDeltaMax = envNum(
-  "OMEGA_SOAK_TREND_HEAP_SLOPE_DELTA_MAX",
-  2_500_000,
-);
-const backlogSlopeRatioMax = envNum(
-  "OMEGA_SOAK_TREND_BACKLOG_SLOPE_RATIO_MAX",
-  4,
-);
-const backlogSlopeDeltaMax = envNum(
-  "OMEGA_SOAK_TREND_BACKLOG_SLOPE_DELTA_MAX",
-  2,
-);
-const retryRateSlopeRatioMax = envNum(
-  "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_RATIO_MAX",
-  4,
-);
-const retryRateSlopeDeltaMax = envNum(
-  "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_DELTA_MAX",
-  0.02,
-);
-const avgTickSlopeAbsRatioMax = envNum(
-  "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_RATIO_MAX",
-  4,
-);
-const avgTickSlopeAbsDeltaMax = envNum(
-  "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_DELTA_MAX",
-  1.2,
-);
-const retriesRatioMax = envNum("OMEGA_SOAK_TREND_RETRIES_RATIO_MAX", 1.4);
-const retriesDeltaMax = envNum("OMEGA_SOAK_TREND_RETRIES_DELTA_MAX", 500);
-const timeoutsRatioMax = envNum("OMEGA_SOAK_TREND_TIMEOUTS_RATIO_MAX", 1.4);
-const timeoutsDeltaMax = envNum("OMEGA_SOAK_TREND_TIMEOUTS_DELTA_MAX", 500);
-const requestsRatioMin = envNum("OMEGA_SOAK_TREND_REQUESTS_RATIO_MIN", 0.95);
-const requestsRatioMax = envNum("OMEGA_SOAK_TREND_REQUESTS_RATIO_MAX", 1.2);
-const requestsDeltaMax = envNum("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500);
+const {
+  durationRatioMax,
+  durationDeltaMaxMs,
+  p95TickRatioMax,
+  p95TickDeltaMaxMs,
+  maxTickRatioMax,
+  maxTickDeltaMaxMs,
+  peakActiveRatioMax,
+  peakActiveDeltaMax,
+  backlogRatioMax,
+  backlogDeltaMax,
+  rssSlopeRatioMax,
+  rssSlopeDeltaMax,
+  heapSlopeRatioMax,
+  heapSlopeDeltaMax,
+  backlogSlopeRatioMax,
+  backlogSlopeDeltaMax,
+  retryRateSlopeRatioMax,
+  retryRateSlopeDeltaMax,
+  avgTickSlopeAbsRatioMax,
+  avgTickSlopeAbsDeltaMax,
+  retriesRatioMax,
+  retriesDeltaMax,
+  timeoutsRatioMax,
+  timeoutsDeltaMax,
+  requestsRatioMin,
+  requestsRatioMax,
+  requestsDeltaMax,
+} = loadSoakTrendThresholds();
 
 const baselineFromReport = (report: SoakReport): SoakTrendBaseline => ({
   generatedAt: new Date().toISOString(),

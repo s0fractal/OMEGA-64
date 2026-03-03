@@ -1,77 +1,27 @@
 import * as OFFSETS from "./OFFSETS.ts";
+import { loadSoakStabilityConfig } from "./worker_gate_thresholds.ts";
 
-const timeoutMs = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS") ?? "10",
-  10,
-);
-const retryCount = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT") ?? "3",
-  10,
-);
-const retryMs = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS") ?? "70",
-  10,
-);
-const jitterMinMs = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_JITTER_MIN_MS") ?? "12",
-  10,
-);
-const jitterMaxMs = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_JITTER_MAX_MS") ?? "30",
-  10,
-);
-const ticks = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_STABILITY_TICKS") ?? "320",
-  10,
-);
-const sampleEvery = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_STABILITY_SAMPLE_EVERY") ?? "20",
-  10,
-);
-const seed = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_STABILITY_SEED") ?? "424242",
-  10,
-);
-const replicators = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_STABILITY_REPLICATORS") ?? "8",
-  10,
-);
-const architects = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_STABILITY_ARCHITECTS") ?? "4",
-  10,
-);
-
-const backlogMax = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_BACKLOG_MAX") ?? "64",
-  10,
-);
-const activeMax = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_ACTIVE_MAX") ?? "5000",
-  10,
-);
-const rssSlopeMaxBytes = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_RSS_SLOPE_MAX_BYTES") ?? "6000000",
-  10,
-);
-const heapSlopeMaxBytes = Number.parseInt(
-  Deno.env.get("OMEGA_SOAK_HEAP_SLOPE_MAX_BYTES") ?? "3000000",
-  10,
-);
-const backlogSlopeMax = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_BACKLOG_SLOPE_MAX") ?? "4",
-);
-const retryRateSlopeMax = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_RETRY_RATE_SLOPE_MAX") ?? "0.04",
-);
-const avgTickMsSlopeMax = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_SLOPE_MAX") ?? "2.5",
-);
-const avgTickMsP95Max = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_P95_MAX") ?? "160",
-);
-const avgTickMsSpikeMax = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_SPIKE_MAX") ?? "220",
-);
+const {
+  timeoutMs,
+  retryCount,
+  retryMs,
+  jitterMinMs,
+  jitterMaxMs,
+  ticks,
+  sampleEvery,
+  seed,
+  replicators,
+  architects,
+  backlogMax,
+  activeMax,
+  rssSlopeMaxBytes,
+  heapSlopeMaxBytes,
+  backlogSlopeMax,
+  retryRateSlopeMax,
+  avgTickMsSlopeMax,
+  avgTickMsP95Max,
+  avgTickMsSpikeMax,
+} = loadSoakStabilityConfig();
 
 const REPORT_JSON_PATH = "WORKER_SOAK_STABILITY.json";
 const REPORT_MD_PATH = "WORKER_SOAK_STABILITY.md";
