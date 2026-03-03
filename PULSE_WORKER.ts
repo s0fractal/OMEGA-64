@@ -20,6 +20,27 @@ let debugDelayMs = 0;
 let debugJitterMinMs = 0;
 let debugJitterMaxMs = 0;
 let debugJitterSeed = 0x9E3779B9;
+const FORCE_INIT_FAIL_MODE =
+  (Deno.env.get("OMEGA_FORCE_WORKER_INIT_FAIL") ?? "").trim().toLowerCase();
+const shouldForceInitFail = (workerIndex: number): boolean => {
+  if (
+    FORCE_INIT_FAIL_MODE === "1" || FORCE_INIT_FAIL_MODE === "true" ||
+    FORCE_INIT_FAIL_MODE === "all"
+  ) {
+    return true;
+  }
+  if (FORCE_INIT_FAIL_MODE === "nonzero") {
+    return workerIndex > 0;
+  }
+  if (FORCE_INIT_FAIL_MODE.startsWith("index:")) {
+    const idx = Number.parseInt(
+      FORCE_INIT_FAIL_MODE.slice("index:".length),
+      10,
+    );
+    return Number.isFinite(idx) && idx === workerIndex;
+  }
+  return false;
+};
 const nextJitterUnit = (): number => {
   debugJitterSeed = (Math.imul(debugJitterSeed, 1664525) + 1013904223) >>> 0;
   return debugJitterSeed / 0x1_0000_0000;
@@ -48,6 +69,13 @@ self.onmessage = async (e) => {
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
+    }
+    if (shouldForceInitFail(idx)) {
+      self.postMessage({
+        type: "INIT_FAILED",
+        error: `FORCED_INIT_FAIL(worker=${idx})`,
+      });
+      return;
     }
     try {
       const wasmRes = await fetch(

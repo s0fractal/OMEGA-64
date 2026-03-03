@@ -58,6 +58,8 @@ const parseWorkerTimeoutRetryMs = (): number =>
     10,
     120_000,
   );
+const parseWorkerInitFallbackEnabled = (): boolean =>
+  parseBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
 const parseStartupSelfTestEnabled = (): boolean =>
   parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
 const parseStartupSelfTestTicks = (): number =>
@@ -73,6 +75,7 @@ const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
 const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
 const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
+const WORKER_INIT_FALLBACK_ENABLED = parseWorkerInitFallbackEnabled();
 const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
 const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
 const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
@@ -86,10 +89,14 @@ let startupSelfTestDone = false;
 let startupSelfTestInProgress = false;
 let startupSelfTestFallbackActivated = false;
 let startupSelfTestLastBreachTick = -1;
+let initFallbackActivated = false;
+let initFallbackReason = "";
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
   startupSelfTestLastBreachTick = -1;
+  initFallbackActivated = false;
+  initFallbackReason = "";
 };
 
 const workers: Worker[] = [];
@@ -441,6 +448,48 @@ const startWorkers = async (count: number): Promise<void> => {
   }
   await Promise.all(workerPromises);
 };
+const terminateWorkersInternal = (resetStartupSelfTestState: boolean): void => {
+  for (const worker of workers) {
+    worker.terminate();
+  }
+  workers.length = 0;
+  workerPromises = [];
+  workerFaultStats.length = 0;
+  if (resetStartupSelfTestState && !startupSelfTestInProgress) {
+    resetStartupSelfTestStateForColdStart();
+  }
+};
+const startWorkersWithInitFallback = async (count: number): Promise<void> => {
+  try {
+    await startWorkers(count);
+  } catch (err) {
+    terminateWorkersInternal(false);
+    const primaryErr = err instanceof Error ? err.message : String(err);
+
+    if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
+      throw err;
+    }
+
+    runtimeWorkerCount = 1;
+    initFallbackActivated = true;
+    initFallbackReason = primaryErr;
+    LOGGER.warn(
+      `   [PULSE] Worker init failed; fallback to single worker. reason=${primaryErr}`,
+    );
+
+    try {
+      await startWorkers(runtimeWorkerCount);
+    } catch (fallbackErr) {
+      terminateWorkersInternal(false);
+      const fallbackMsg = fallbackErr instanceof Error
+        ? fallbackErr.message
+        : String(fallbackErr);
+      throw new Error(
+        `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`,
+      );
+    }
+  }
+};
 const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
   return STATE_MATRIX.getActiveIndices().length !== 0;
@@ -469,6 +518,11 @@ export const PULSE = {
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
+    if (Deno.env.get("OMEGA_WORKER_INIT_FALLBACK") !== undefined) {
+      LOGGER.info(
+        `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
+      );
+    }
     if (
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
@@ -478,10 +532,16 @@ export const PULSE = {
       );
     }
 
-    await startWorkers(runtimeWorkerCount);
-    LOGGER.info(
-      `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
-    );
+    await startWorkersWithInitFallback(runtimeWorkerCount);
+    if (initFallbackActivated) {
+      LOGGER.warn(
+        `   [PULSE] ${runtimeWorkerCount} Worker READY after init fallback.`,
+      );
+    } else {
+      LOGGER.info(
+        `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
+      );
+    }
 
     if (
       !startupSelfTestDone && !startupSelfTestInProgress &&
@@ -574,15 +634,7 @@ export const PULSE = {
     }
   },
   stopWorkers: () => {
-    for (const worker of workers) {
-      worker.terminate();
-    }
-    workers.length = 0;
-    workerPromises = [];
-    workerFaultStats.length = 0;
-    if (!startupSelfTestInProgress) {
-      resetStartupSelfTestStateForColdStart();
-    }
+    terminateWorkersInternal(true);
   },
   getRuntimeWorkerCount: (): number => runtimeWorkerCount,
   getStartupSelfTestStatus: () => ({
@@ -593,6 +645,9 @@ export const PULSE = {
     fallbackEnabled: STARTUP_SELFTEST_FALLBACK_ENABLED,
     fallbackActivated: startupSelfTestFallbackActivated,
     lastBreachTick: startupSelfTestLastBreachTick,
+    initFallbackEnabled: WORKER_INIT_FALLBACK_ENABLED,
+    initFallbackActivated,
+    initFallbackReason,
   }),
   getWorkerFaultStats: (): WorkerFaultStat[] =>
     workerFaultStats.map((stat) => ({ ...stat })),

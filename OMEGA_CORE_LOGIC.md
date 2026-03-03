@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T17:44:17.010Z*
+*Generated: 2026-03-03T17:50:48.776Z*
 *Exported Files: 51*
 
 ---
@@ -5195,6 +5195,27 @@ let debugDelayMs = 0;
 let debugJitterMinMs = 0;
 let debugJitterMaxMs = 0;
 let debugJitterSeed = 0x9E3779B9;
+const FORCE_INIT_FAIL_MODE =
+  (Deno.env.get("OMEGA_FORCE_WORKER_INIT_FAIL") ?? "").trim().toLowerCase();
+const shouldForceInitFail = (workerIndex: number): boolean => {
+  if (
+    FORCE_INIT_FAIL_MODE === "1" || FORCE_INIT_FAIL_MODE === "true" ||
+    FORCE_INIT_FAIL_MODE === "all"
+  ) {
+    return true;
+  }
+  if (FORCE_INIT_FAIL_MODE === "nonzero") {
+    return workerIndex > 0;
+  }
+  if (FORCE_INIT_FAIL_MODE.startsWith("index:")) {
+    const idx = Number.parseInt(
+      FORCE_INIT_FAIL_MODE.slice("index:".length),
+      10,
+    );
+    return Number.isFinite(idx) && idx === workerIndex;
+  }
+  return false;
+};
 const nextJitterUnit = (): number => {
   debugJitterSeed = (Math.imul(debugJitterSeed, 1664525) + 1013904223) >>> 0;
   return debugJitterSeed / 0x1_0000_0000;
@@ -5223,6 +5244,13 @@ self.onmessage = async (e) => {
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
+    }
+    if (shouldForceInitFail(idx)) {
+      self.postMessage({
+        type: "INIT_FAILED",
+        error: `FORCED_INIT_FAIL(worker=${idx})`,
+      });
+      return;
     }
     try {
       const wasmRes = await fetch(
@@ -5436,6 +5464,8 @@ const parseWorkerTimeoutRetryMs = (): number =>
     10,
     120_000,
   );
+const parseWorkerInitFallbackEnabled = (): boolean =>
+  parseBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
 const parseStartupSelfTestEnabled = (): boolean =>
   parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
 const parseStartupSelfTestTicks = (): number =>
@@ -5451,6 +5481,7 @@ const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
 const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
 const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
+const WORKER_INIT_FALLBACK_ENABLED = parseWorkerInitFallbackEnabled();
 const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
 const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
 const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
@@ -5464,10 +5495,14 @@ let startupSelfTestDone = false;
 let startupSelfTestInProgress = false;
 let startupSelfTestFallbackActivated = false;
 let startupSelfTestLastBreachTick = -1;
+let initFallbackActivated = false;
+let initFallbackReason = "";
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
   startupSelfTestLastBreachTick = -1;
+  initFallbackActivated = false;
+  initFallbackReason = "";
 };
 
 const workers: Worker[] = [];
@@ -5819,6 +5854,48 @@ const startWorkers = async (count: number): Promise<void> => {
   }
   await Promise.all(workerPromises);
 };
+const terminateWorkersInternal = (resetStartupSelfTestState: boolean): void => {
+  for (const worker of workers) {
+    worker.terminate();
+  }
+  workers.length = 0;
+  workerPromises = [];
+  workerFaultStats.length = 0;
+  if (resetStartupSelfTestState && !startupSelfTestInProgress) {
+    resetStartupSelfTestStateForColdStart();
+  }
+};
+const startWorkersWithInitFallback = async (count: number): Promise<void> => {
+  try {
+    await startWorkers(count);
+  } catch (err) {
+    terminateWorkersInternal(false);
+    const primaryErr = err instanceof Error ? err.message : String(err);
+
+    if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
+      throw err;
+    }
+
+    runtimeWorkerCount = 1;
+    initFallbackActivated = true;
+    initFallbackReason = primaryErr;
+    LOGGER.warn(
+      `   [PULSE] Worker init failed; fallback to single worker. reason=${primaryErr}`,
+    );
+
+    try {
+      await startWorkers(runtimeWorkerCount);
+    } catch (fallbackErr) {
+      terminateWorkersInternal(false);
+      const fallbackMsg = fallbackErr instanceof Error
+        ? fallbackErr.message
+        : String(fallbackErr);
+      throw new Error(
+        `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`,
+      );
+    }
+  }
+};
 const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
   return STATE_MATRIX.getActiveIndices().length !== 0;
@@ -5847,6 +5924,11 @@ export const PULSE = {
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
+    if (Deno.env.get("OMEGA_WORKER_INIT_FALLBACK") !== undefined) {
+      LOGGER.info(
+        `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
+      );
+    }
     if (
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
@@ -5856,10 +5938,16 @@ export const PULSE = {
       );
     }
 
-    await startWorkers(runtimeWorkerCount);
-    LOGGER.info(
-      `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
-    );
+    await startWorkersWithInitFallback(runtimeWorkerCount);
+    if (initFallbackActivated) {
+      LOGGER.warn(
+        `   [PULSE] ${runtimeWorkerCount} Worker READY after init fallback.`,
+      );
+    } else {
+      LOGGER.info(
+        `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
+      );
+    }
 
     if (
       !startupSelfTestDone && !startupSelfTestInProgress &&
@@ -5952,15 +6040,7 @@ export const PULSE = {
     }
   },
   stopWorkers: () => {
-    for (const worker of workers) {
-      worker.terminate();
-    }
-    workers.length = 0;
-    workerPromises = [];
-    workerFaultStats.length = 0;
-    if (!startupSelfTestInProgress) {
-      resetStartupSelfTestStateForColdStart();
-    }
+    terminateWorkersInternal(true);
   },
   getRuntimeWorkerCount: (): number => runtimeWorkerCount,
   getStartupSelfTestStatus: () => ({
@@ -5971,6 +6051,9 @@ export const PULSE = {
     fallbackEnabled: STARTUP_SELFTEST_FALLBACK_ENABLED,
     fallbackActivated: startupSelfTestFallbackActivated,
     lastBreachTick: startupSelfTestLastBreachTick,
+    initFallbackEnabled: WORKER_INIT_FALLBACK_ENABLED,
+    initFallbackActivated,
+    initFallbackReason,
   }),
   getWorkerFaultStats: (): WorkerFaultStat[] =>
     workerFaultStats.map((stat) => ({ ...stat })),
@@ -6395,6 +6478,8 @@ health indicator loop:
   resilience gate; all workers must recover without failures)
 - `deno task test:worker-jitter-resilience` (4-worker jitter/chaos gate:
   randomized per-message delays, zero drift, zero worker failures)
+- `deno task test:worker-init-fallback` (forced worker init failure gate:
+  startup must degrade to single-worker mode when init fallback is enabled)
 - `deno task test:worker-resilience-audit` (writes
   `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift
   summary)
@@ -6451,7 +6536,7 @@ health indicator loop:
   with `test:runtime-monoculture` and includes `test:ledger-chain` +
   `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
-  structure-intent determinism gate)
+  structure-intent determinism gate + worker-init fallback gate)
 - GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml`
   (scheduled long-run 4-worker sentinel + resilience
   audit/budget/trend/soak-trend artifacts)
