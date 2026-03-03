@@ -25,9 +25,10 @@
     "test:crystalline": "deno run -A test_crystalline_lattice.ts",
     "test:neural": "deno run -A test_neural_synthesis.ts",
     "test:structure-js": "deno run -A test_structure_engine.ts",
+    "test:structure-parity": "deno run -A test_structure_parity.ts",
     "test:worker-coherence": "deno run -A test_wasm_worker_coherence.ts",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm",
-    "verify:coherence": "deno task vector10:verify && deno task test:structure-js && deno task test:crystalline && deno task test:neural && deno task test:quantum"
+    "verify:coherence": "deno task vector10:verify && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum"
   },
   "lint": {
     "exclude": ["I.ts", "UI/", "SINGULARITY/"],

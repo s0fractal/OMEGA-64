@@ -147,5 +147,6 @@ health indicator loop:
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
 - `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
 - `deno task test:structure-js` (JS reference lattice engine)
+- `deno task test:structure-parity` (JS/WASM structure-grid parity)
 - `deno task test:crystalline` / `deno task test:neural` / `deno task test:quantum` (Vector 8/9/7 direct probes)
 - `deno task verify:coherence` (extended end-to-end verification chain)
