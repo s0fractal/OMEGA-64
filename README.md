@@ -145,33 +145,69 @@ health indicator loop:
 - `deno task wasm:build`
 - `deno task vector10:verify`
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
-- `deno task test:tensegrity` (Vector 2 bond rigidity regression gate, now included in `vector10:verify`)
-- `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
-- `deno task test:worker-coherence:long` (1000-tick empty-matrix parallel coherence burn-in)
-- `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
+- `deno task test:tensegrity` (Vector 2 bond rigidity regression gate, now
+  included in `vector10:verify`)
+- `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts`
+  (parallel stress)
+- `deno task test:worker-coherence:long` (1000-tick empty-matrix parallel
+  coherence burn-in)
+- `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs
+  4-workers)
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
-- `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for 1-worker vs 4-workers)
-- `deno task test:spawn-jitter-resilience` (spawn-pressure chaos gate: jittered worker responses + world invariants + zero worker failures)
-- `deno task test:worker-timeout-retry` (fault-counter + timeout-retry resilience gate; no duplicate worker posts)
-- `deno task test:worker-timeout-retry:multi` (parallel 4-worker timeout-retry resilience gate; all workers must recover without failures)
-- `deno task test:worker-jitter-resilience` (4-worker jitter/chaos gate: randomized per-message delays, zero drift, zero worker failures)
-- `deno task test:worker-resilience-audit` (writes `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift summary)
-- `deno task test:worker-resilience-budget` (runs audit + enforces retry/drift/duration budgets; writes `WORKER_RESILIENCE_BUDGET.json/.md`)
-- `deno task test:worker-resilience-trend` (runs budget gate + compares against `WORKER_RESILIENCE_TREND_BASELINE.json`; writes `WORKER_RESILIENCE_TREND.json/.md`)
-- `deno task test:worker-soak-stability` (320-tick spawn+jitter soak; enforces slope/cap gates for RSS, heap, backlog, retry-rate, tick-latency; writes `WORKER_SOAK_STABILITY.json/.md`)
-- `deno task test:startup-selftest-fallback` (cold-start self-test breach simulation + auto-fallback to 1 worker)
-- `deno task test:startup-selftest-nominal` (cold-start self-test nominal branch + lifecycle reset across `stop/init`)
-- `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` and `WORKER_DRIFT_AUDIT.json` with strict/non-strict drift metrics)
-- `deno task test:structure-intent-determinism` (conflict-heavy structure write parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix pass)
-- `deno task test:runtime-monoculture` (toolchain guard: blocks `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow `run:` commands)
-- delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
-- `deno task verify:coherence:deep` (also verifies intent buffers stay deterministic without host pre-clear)
-- `deno task ci:verify:matrix` (local mirror of CI worker matrix gate: 1-worker + 4-worker deep verification)
-- `deno task ci:soak:worker4` (local mirror of nightly 4-worker long burn-in + resilience trend gate + soak stability gate)
-- `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute phase on worker-0 for deterministic replay)
+- `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for
+  1-worker vs 4-workers)
+- `deno task test:spawn-jitter-resilience` (spawn-pressure chaos gate: jittered
+  worker responses + world invariants + zero worker failures)
+- `deno task test:worker-timeout-retry` (fault-counter + timeout-retry
+  resilience gate; no duplicate worker posts)
+- `deno task test:worker-timeout-retry:multi` (parallel 4-worker timeout-retry
+  resilience gate; all workers must recover without failures)
+- `deno task test:worker-jitter-resilience` (4-worker jitter/chaos gate:
+  randomized per-message delays, zero drift, zero worker failures)
+- `deno task test:worker-resilience-audit` (writes
+  `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift
+  summary)
+- `deno task test:worker-resilience-budget` (runs audit + enforces
+  retry/drift/duration budgets; writes `WORKER_RESILIENCE_BUDGET.json/.md`)
+- `deno task test:worker-resilience-trend` (runs budget gate + compares against
+  `WORKER_RESILIENCE_TREND_BASELINE.json`; writes
+  `WORKER_RESILIENCE_TREND.json/.md`)
+- `deno task test:worker-soak-stability` (320-tick spawn+jitter soak; enforces
+  slope/cap gates for RSS, heap, backlog, retry-rate, p95 tick-latency + spike
+  cap; writes `WORKER_SOAK_STABILITY.json/.md`)
+- `deno task test:worker-soak-trend` (runs soak stability gate + compares
+  against `WORKER_SOAK_STABILITY_BASELINE.json`; writes
+  `WORKER_SOAK_TREND.json/.md`)
+- `deno task test:startup-selftest-fallback` (cold-start self-test breach
+  simulation + auto-fallback to 1 worker)
+- `deno task test:startup-selftest-nominal` (cold-start self-test nominal
+  branch + lifecycle reset across `stop/init`)
+- `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` and
+  `WORKER_DRIFT_AUDIT.json` with strict/non-strict drift metrics)
+- `deno task test:structure-intent-determinism` (conflict-heavy structure write
+  parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix
+  pass)
+- `deno task test:runtime-monoculture` (toolchain guard: blocks
+  `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
+  `run:` commands)
+- delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker
+  phase (`REDUCE_DELTAS`), not host JS
+- `deno task verify:coherence:deep` (also verifies intent buffers stay
+  deterministic without host pre-clear)
+- `deno task ci:verify:matrix` (local mirror of CI worker matrix gate:
+  1-worker + 4-worker deep verification)
+- `deno task ci:soak:worker4` (local mirror of nightly 4-worker long burn-in +
+  resilience trend gate + soak trend gate)
+- `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute
+  phase on worker-0 for deterministic replay)
 - `deno task test:structure-js` (JS reference lattice engine)
 - `deno task test:structure-parity` (JS/WASM structure-grid parity)
-- `deno task test:crystalline` / `deno task test:neural` / `deno task test:quantum` (Vector 8/9/7 direct probes)
-- `deno task verify:coherence` (extended end-to-end verification chain; starts with `test:runtime-monoculture`)
-- `deno task verify:coherence:deep` (includes drift audit + fuzz + structure-intent determinism gate)
-- GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml` (scheduled long-run 4-worker sentinel + resilience audit/budget/trend/stability artifacts)
+- `deno task test:crystalline` / `deno task test:neural` /
+  `deno task test:quantum` (Vector 8/9/7 direct probes)
+- `deno task verify:coherence` (extended end-to-end verification chain; starts
+  with `test:runtime-monoculture`)
+- `deno task verify:coherence:deep` (includes drift audit + fuzz +
+  structure-intent determinism gate)
+- GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml`
+  (scheduled long-run 4-worker sentinel + resilience
+  audit/budget/trend/soak-trend artifacts)

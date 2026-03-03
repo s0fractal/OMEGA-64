@@ -35,7 +35,7 @@ jobs:
         run: deno task test:worker-coherence:long
 
       - name: Run resilience audit suite
-        run: deno task test:worker-resilience-trend && deno task test:worker-soak-stability
+        run: deno task test:worker-resilience-trend && deno task test:worker-soak-trend
 
       - name: Upload audits
         if: always()
@@ -52,4 +52,6 @@ jobs:
             WORKER_RESILIENCE_TREND.md
             WORKER_SOAK_STABILITY.json
             WORKER_SOAK_STABILITY.md
+            WORKER_SOAK_TREND.json
+            WORKER_SOAK_TREND.md
           if-no-files-found: ignore

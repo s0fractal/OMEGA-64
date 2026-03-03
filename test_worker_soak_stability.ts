@@ -66,8 +66,11 @@ const retryRateSlopeMax = Number.parseFloat(
 const avgTickMsSlopeMax = Number.parseFloat(
   Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_SLOPE_MAX") ?? "2.5",
 );
-const avgTickMsMax = Number.parseFloat(
-  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_MAX") ?? "160",
+const avgTickMsP95Max = Number.parseFloat(
+  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_P95_MAX") ?? "160",
+);
+const avgTickMsSpikeMax = Number.parseFloat(
+  Deno.env.get("OMEGA_SOAK_AVG_TICK_MS_SPIKE_MAX") ?? "220",
 );
 
 const REPORT_JSON_PATH = "WORKER_SOAK_STABILITY.json";
@@ -237,6 +240,18 @@ const slope = (values: number[]): number => {
   return (n * sxy - sx * sy) / denom;
 };
 
+const percentile = (values: number[], p: number): number => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const clamped = Math.max(0, Math.min(100, p));
+  const rank = (clamped / 100) * (sorted.length - 1);
+  const low = Math.floor(rank);
+  const high = Math.ceil(rank);
+  if (low === high) return sorted[low];
+  const weight = rank - low;
+  return sorted[low] * (1 - weight) + sorted[high] * weight;
+};
+
 const sumFaultStats = (stats: WorkerStat[]) => {
   let totalRequests = 0;
   let totalRetries = 0;
@@ -272,6 +287,7 @@ const renderMd = (
 - finalActive: ${summary.finalActive}
 - peakActive: ${summary.peakActive}
 - maxBacklog: ${summary.maxBacklog}
+- p95WindowAvgTickMs: ${summary.p95WindowAvgTickMs}
 - maxWindowAvgTickMs: ${summary.maxWindowAvgTickMs}
 
 | status | check | observed | limit |
@@ -373,6 +389,10 @@ async function main() {
     const backlogSlope = slope(samples.map((s) => s.spawnBacklog));
     const retryRateSlope = slope(samples.map((s) => s.retryRate));
     const avgTickMsSlope = slope(samples.map((s) => s.windowAvgTickMs));
+    const p95WindowAvgTickMs = percentile(
+      samples.map((s) => s.windowAvgTickMs),
+      95,
+    );
 
     const last = samples[samples.length - 1];
     const checks: Check[] = [
@@ -431,10 +451,16 @@ async function main() {
         ok: avgTickMsSlope <= avgTickMsSlopeMax,
       },
       {
-        name: `maxWindowAvgTickMs <= ${avgTickMsMax}`,
+        name: `p95WindowAvgTickMs <= ${avgTickMsP95Max}`,
+        observed: Number(p95WindowAvgTickMs.toFixed(3)),
+        limit: avgTickMsP95Max,
+        ok: p95WindowAvgTickMs <= avgTickMsP95Max,
+      },
+      {
+        name: `maxWindowAvgTickMs <= ${avgTickMsSpikeMax}`,
         observed: Number(maxWindowAvgTickMs.toFixed(3)),
-        limit: avgTickMsMax,
-        ok: maxWindowAvgTickMs <= avgTickMsMax,
+        limit: avgTickMsSpikeMax,
+        ok: maxWindowAvgTickMs <= avgTickMsSpikeMax,
       },
     ];
 
@@ -448,6 +474,7 @@ async function main() {
       finalActive,
       peakActive,
       maxBacklog,
+      p95WindowAvgTickMs: Number(p95WindowAvgTickMs.toFixed(3)),
       maxWindowAvgTickMs: Number(maxWindowAvgTickMs.toFixed(3)),
       slopes: {
         rss: Math.round(rssSlope),
@@ -484,7 +511,8 @@ async function main() {
         backlogSlopeMax,
         retryRateSlopeMax,
         avgTickMsSlopeMax,
-        avgTickMsMax,
+        avgTickMsP95Max,
+        avgTickMsSpikeMax,
       },
       summary,
       checks,

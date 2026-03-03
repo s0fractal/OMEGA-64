@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-03-03T15:32:54.469Z",
+  "source": "manual-baseline-worker4-local-v2",
+  "summary": {
+    "ticks": 320,
+    "sampleEvery": 20,
+    "samples": 16,
+    "totalDurationMs": 44130,
+    "peakActive": 94,
+    "maxBacklog": 0,
+    "p95WindowAvgTickMs": 145.341,
+    "maxWindowAvgTickMs": 165.106,
+    "slopes": {
+      "rss": 353581,
+      "heapUsed": 232563,
+      "backlog": 0,
+      "retryRate": 0.00134912,
+      "avgTickMsAbs": 0.60033235
+    },
+    "totals": {
+      "requests": 3528,
+      "retries": 3524,
+      "timeouts": 3524,
+      "failures": 0
+    }
+  }
+}
