@@ -4,10 +4,10 @@
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./IMMUNE.ts";
-import { parse as parseYaml } from "@std/yaml";
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { decodeHex } from "@std/encoding/hex";
+import { decodeHex } from "jsr:@std/encoding@^1.0.0/hex";
 import { LOGGER } from "./LOGGER.ts";
 
 export interface Atom {
