@@ -147,6 +147,7 @@ health indicator loop:
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
 - `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
 - `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
+- `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` with strict/non-strict drift metrics)
 - `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute phase on worker-0 for deterministic replay)
 - `deno task test:structure-js` (JS reference lattice engine)
 - `deno task test:structure-parity` (JS/WASM structure-grid parity)
