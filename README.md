@@ -152,6 +152,7 @@ health indicator loop:
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
 - `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for 1-worker vs 4-workers)
 - `deno task test:worker-timeout-retry` (fault-counter + timeout-retry resilience gate; no duplicate worker posts)
+- `deno task test:worker-timeout-retry:multi` (parallel 4-worker timeout-retry resilience gate; all workers must recover without failures)
 - `deno task test:startup-selftest-fallback` (cold-start self-test breach simulation + auto-fallback to 1 worker)
 - `deno task test:startup-selftest-nominal` (cold-start self-test nominal branch + lifecycle reset across `stop/init`)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` with strict/non-strict drift metrics)

@@ -28,12 +28,13 @@ Acceptance:
 - Completed: extend coherence test to long run (`>=1000` ticks) via `deno task test:worker-coherence:long`.
 - Completed: add stress seeds with mixed VM opcodes, spawn pressure, and structure writes via `test_spawn_determinism.ts` (`deno task test:spawn-determinism`).
 - Completed: worker-level fault counters + safe timeout retry-windows (no duplicate posts) in `PULSE.ts`, validated by `test_worker_timeout_retry.ts`.
+- Completed: parallel timeout-retry hardening gate (`test_worker_timeout_retry_multi.ts`) for `OMEGA_PULSE_WORKERS=4` with per-worker recovery assertions.
 
 Acceptance:
 
 - `OMEGA_PULSE_WORKERS=4 deno run -A test_wasm_worker_coherence.ts` is green for at least 1000 ticks.
 - `deno task test:spawn-determinism` remains green (strict 1-worker vs 4-worker hash parity under spawn pressure).
-- `deno task test:worker-timeout-retry` remains green (retry counters increment, zero failed worker requests).
+- `deno task test:worker-timeout-retry` and `deno task test:worker-timeout-retry:multi` remain green (retry counters increment, zero failed worker requests across serial and parallel modes).
 
 ## Phase 3: Safety gates
 
