@@ -40,7 +40,9 @@ Acceptance:
 - Completed: startup self-test at worker init:
   - run dry ticks on empty matrix;
   - if nonzero atoms appear, auto-fallback to `1` worker for current process.
-- Validation gate: `deno task test:startup-selftest-fallback`.
+- Validation gates:
+  - `deno task test:startup-selftest-fallback` (breach -> fallback);
+  - `deno task test:startup-selftest-nominal` (clean start, no fallback, stop/init lifecycle reset).
 - Completed CI matrix gate:
   - GitHub Actions workflow at `.github/workflows/coherence-worker-matrix.yml`;
   - `OMEGA_PULSE_WORKERS=4` required;

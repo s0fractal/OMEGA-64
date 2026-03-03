@@ -33,6 +33,7 @@
     "test:spawn-determinism": "deno run -A test_spawn_determinism.ts",
     "test:worker-timeout-retry": "deno run -A test_worker_timeout_retry.ts",
     "test:startup-selftest-fallback": "deno run -A test_startup_selftest_fallback.ts",
+    "test:startup-selftest-nominal": "deno run -A test_startup_selftest_nominal.ts",
     "test:worker-determinism-fuzz": "deno run -A test_worker_determinism_fuzz.ts",
     "test:worker-drift-audit": "deno run -A test_worker_drift_audit.ts",
     "test:structure-intent-determinism": "deno run -A test_structure_intent_determinism.ts",
@@ -41,7 +42,7 @@
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
     "verify:coherence": "deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum",
-    "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:worker-timeout-retry && deno task test:startup-selftest-fallback"
+    "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:worker-timeout-retry && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {
     "exclude": ["I.ts", "UI/", "SINGULARITY/"],

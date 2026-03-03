@@ -66,6 +66,11 @@ let startupSelfTestDone = false;
 let startupSelfTestInProgress = false;
 let startupSelfTestFallbackActivated = false;
 let startupSelfTestLastBreachTick = -1;
+const resetStartupSelfTestStateForColdStart = (): void => {
+    startupSelfTestDone = false;
+    startupSelfTestFallbackActivated = false;
+    startupSelfTestLastBreachTick = -1;
+};
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
@@ -303,6 +308,7 @@ export const PULSE = {
     currentPulseId: Date.now(),
     initWorkers: async (requestedWorkerCount?: number) => {
         if (workers.length > 0) return;
+        resetStartupSelfTestStateForColdStart();
         runtimeWorkerCount = requestedWorkerCount === undefined
             ? WORKER_COUNT
             : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
@@ -410,6 +416,9 @@ export const PULSE = {
         workers.length = 0;
         workerPromises = [];
         workerFaultStats.length = 0;
+        if (!startupSelfTestInProgress) {
+            resetStartupSelfTestStateForColdStart();
+        }
     },
     getRuntimeWorkerCount: (): number => runtimeWorkerCount,
     getStartupSelfTestStatus: () => ({
