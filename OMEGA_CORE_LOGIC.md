@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T18:32:07.378Z*
+*Generated: 2026-03-03T18:35:25.184Z*
 *Exported Files: 51*
 
 ---
@@ -6995,11 +6995,10 @@ if (import.meta.main) {
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./IMMUNE.ts";
-import { walk } from "jsr:@std/fs";
-import { parse as parseYaml } from "jsr:@std/yaml";
+import { parse as parseYaml } from "@std/yaml";
 import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { decodeHex } from "jsr:@std/encoding/hex";
+import { decodeHex } from "@std/encoding/hex";
 import { LOGGER } from "./LOGGER.ts";
 
 export interface Atom {
@@ -7077,7 +7076,6 @@ export const RIBOSOME = {
     for (const dir of scanDirs) {
       LOGGER.info(`   [RIBOSOME] scanning dir: ${dir}`);
       try {
-        // @ts-ignore
         for await (const entry of Deno.readDir(dir)) {
           if (
             entry.isFile && entry.name.startsWith("0x") &&
@@ -7086,7 +7084,6 @@ export const RIBOSOME = {
             const fullPath = dir === root
               ? entry.name
               : `SINGULARITY/V/${entry.name}`;
-            // @ts-ignore
             const content = await Deno.readTextFile(fullPath);
             const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
             if (!frontmatterMatch) continue;
@@ -7145,7 +7142,6 @@ export const RIBOSOME = {
 
     for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
       try {
-        // @ts-ignore
         const content = await Deno.readTextFile(fullPath);
         const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         if (alphaMatch) {
@@ -7175,7 +7171,7 @@ export const RIBOSOME = {
   },
 
   // Inject Dependencies into a Pure Atom (Adapted for Flatland)
-  inject: async (id: string, lattice: Map<string, Atom>) => {
+  inject: (id: string, lattice: Map<string, Atom>) => {
     const target = lattice.get(id);
     if (!target) return null;
 
@@ -9258,7 +9254,6 @@ export const SNAP = {
       if (!fullPath) continue;
 
       try {
-        // @ts-ignore
         const content = await Deno.readTextFile(fullPath);
         const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         if (!fmMatch) continue;
@@ -9286,9 +9281,7 @@ export const SNAP = {
 
         // --- ATOMIC WRITE STRATEGY ---
         const tmpPath = `${fullPath}.tmp`;
-        // @ts-ignore
         await Deno.writeTextFile(tmpPath, updated);
-        // @ts-ignore
         await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
 
         saved++;

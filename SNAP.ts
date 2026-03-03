@@ -22,7 +22,6 @@ export const SNAP = {
       if (!fullPath) continue;
 
       try {
-        // @ts-ignore
         const content = await Deno.readTextFile(fullPath);
         const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         if (!fmMatch) continue;
@@ -50,9 +49,7 @@ export const SNAP = {
 
         // --- ATOMIC WRITE STRATEGY ---
         const tmpPath = `${fullPath}.tmp`;
-        // @ts-ignore
         await Deno.writeTextFile(tmpPath, updated);
-        // @ts-ignore
         await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
 
         saved++;
