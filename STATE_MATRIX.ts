@@ -18,10 +18,16 @@ export const phaseBuffer = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MA
 export const logicBuffer = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8).buffer;
 export const bondBuffer = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4).buffer;
 export const stiffnessBuffer = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
+export const bondDistBuffer = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
+export const dampingBuffer = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
 export const roleBuffer = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
+export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024).buffer;
+export const hiveBalanceBuffer = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
 export const memoryGridBuffer = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8).buffer;
 export const signalGridBuffer = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80).buffer;
 export const structureGridBuffer = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
+export const coherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
+export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -34,10 +40,16 @@ const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
 const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
 const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
+const bondDistances = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
+const hiveMemory = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024);
+const hiveBalance = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1);
 const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, 140 * 80 * 32);
 const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80);
 const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80);
 const memoryGrid = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8);
+const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+const neuralCoherence = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1);
 
 const instructions = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
 const contexts = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16); // 16 * 4 = 64 bytes
@@ -66,12 +78,33 @@ export const RISC = {
     OP_SIGNAL: 0x81,
     OP_BIND: 0x82,
     OP_SHARE: 0x83,
+    OP_COLLECTIVE: 0xA6,
+    OP_ROLE: 0xA7,
+    OP_BUILD: 0xA8,
+    OP_SENSE: 0xA9,
+    OP_TENSEGRITY: 0xA5,
 
     PROP_ENERGY: 0,
     PROP_RESONANCE: 1,
     PROP_X: 2,
     PROP_Y: 3,
     PROP_PHASE: 4,
+    PROP_GRID_CHARGE: 7,
+    PROP_QUORUM: 8,
+    PROP_NEURAL_COHERENCE: 9,
+    PROP_MEMORY: 10,
+};
+
+const GUARDIAN_COHERENCE_THRESHOLD = 200;
+
+export const STRUCTURE = {
+    VOID: 0,
+    WIRE: 1,      // Passive conductor
+    NODE: 2,      // Logical aggregator
+    DIODE: 3,     // One-way (Phase bit defines direction)
+    SOURCE: 4,    // Constant charge
+    SINK: 5,      // Energy drain
+    CAPACITOR: 6  // Slow decay
 };
 
 export const STATE_MATRIX = {
@@ -88,6 +121,8 @@ export const STATE_MATRIX = {
     structureGrid,
     signalGrid,
     memoryGrid,
+    coherence,
+    neuralCoherence,
     instructions,
     contexts,
     RISC,
@@ -98,9 +133,19 @@ export const STATE_MATRIX = {
     structureGridBuffer,
     roleRegistryBuffer: roleBuffer,
     bondStiffnessBuffer: stiffnessBuffer,
+    bondDistancesBuffer: bondDistBuffer,
+    dampingBuffer: dampingBuffer,
     immuneBuffer: signalGridBuffer, // Alias for immunity overlay
     currentReadBuffer: signalGridBuffer, // Alias for signal overlay
     synapticStackBuffer: signalGridBuffer, // Alias for synaptic overlay
+    hiveMemoryBuffer,
+    
+    // Roles
+    ROLE_NEUTRAL: 0,
+    ROLE_PRODUCER: 1,
+    ROLE_GUARDIAN: 2,
+    ROLE_ARCHITECT: 3,
+    ROLE_PARASITE: 4,
     
     getId: (i: number) => Atomics.load(ids, i),
     getX: (i: number) => Atomics.load(xs, i),
@@ -113,6 +158,14 @@ export const STATE_MATRIX = {
     getBonds: (i: number) => bonds.subarray(i * 4, i * 4 + 4),
     getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
     getBondStiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
+    getBondDistance: (i: number, slot: number) => Atomics.load(bondDistances, i * 4 + slot),
+    getDamping: (i: number) => Atomics.load(damping, i),
+    getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
+    setHiveMemory: (addr: number, val: number) => { Atomics.store(hiveMemory, addr & 1023, val); },
+
+    getHiveBalance: () => Atomics.load(hiveBalance, 0),
+    setHiveBalance: (val: number) => { Atomics.store(hiveBalance, 0, val); },
+    addHiveBalance: (val: number) => Atomics.add(hiveBalance, 0, val),
     
     getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
     getReg: (i: number, reg: number) => Atomics.load(contexts, i * 16 + reg),
@@ -128,6 +181,8 @@ export const STATE_MATRIX = {
     setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
     setBondTarget: (i: number, slot: number, target: number) => Atomics.store(bonds, i * 4 + slot, target),
     setBondStiffness: (i: number, slot: number, val: number) => { bondStiffness[i * 4 + slot] = val; },
+    setBondDistance: (i: number, slot: number, val: number) => Atomics.store(bondDistances, i * 4 + slot, val),
+    setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
 
     setInstructions: (i: number, val: Uint8Array) => instructions.set(val, i * 64),
     setReg: (i: number, reg: number, val: number) => Atomics.store(contexts, i * 16 + reg, val),
@@ -141,7 +196,8 @@ export const STATE_MATRIX = {
     clearBondRequest: (i: number) => Atomics.store(new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 1), 0, 0),
 
     clear: () => {
-        new Uint8Array(sharedBuffer).fill(0); 
+        // Preserve low-memory wasm runtime segments; wipe only the lattice region.
+        new Uint8Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET).fill(0);
     },
     getActiveIndices: () => {
         const active: number[] = [];
@@ -188,6 +244,41 @@ export const STATE_MATRIX = {
         Atomics.store(new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET + i * 64 + 32, 1), 0, 0);
     },
 
+    seedGuardian: (i: number, id: bigint, x: number, y: number, energy: number = 10, resonance: number = 100) => {
+        const genome = new Uint8Array(8);
+        const script = STATE_MATRIX.getGuardianScript();
+        STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
+        STATE_MATRIX.setRole(i, STATE_MATRIX.ROLE_GUARDIAN);
+    },
+
+    getGuardianScript: () => {
+        const script = new Uint8Array(64);
+        let pc = 0;
+
+        // 1. R0 = neural coherence
+        script[pc++] = RISC.OP_GET; script[pc++] = 0; script[pc++] = RISC.PROP_NEURAL_COHERENCE;
+        // 2. R1 = threshold
+        script[pc++] = RISC.OP_SET; script[pc++] = 1; script[pc++] = GUARDIAN_COHERENCE_THRESHOLD;
+        // 3. R1 = threshold - coherence
+        script[pc++] = RISC.OP_SUB; script[pc++] = 1; script[pc++] = 0;
+        // 4. If R1 != 0, route to repair branch.
+        script[pc++] = RISC.OP_JNZ; script[pc++] = 1; script[pc++] = 18;
+
+        // --- STABLE FIELD ---
+        script[pc++] = RISC.OP_ROLE; script[pc++] = 0; script[pc++] = 2; // mode=SET, ROLE_GUARDIAN
+        script[pc++] = RISC.OP_SIGNAL;
+        script[pc++] = RISC.OP_JMP; script[pc++] = 0;
+
+        // --- REPAIR BRANCH ---
+        // The coherence broadcast is capped upstream, so R1!=0 means "below threshold".
+        script[pc++] = RISC.OP_ROLE; script[pc++] = 0; script[pc++] = 3; // mode=SET, ROLE_ARCHITECT
+        script[pc++] = RISC.OP_BUILD; script[pc++] = 1; script[pc++] = 1; // WIRE, state=1
+        script[pc++] = RISC.OP_SIGNAL;
+        script[pc++] = RISC.OP_JMP; script[pc++] = 0;
+
+        return script;
+    },
+
     getMatrixResonance: () => {
         let total = 0;
         for (let i = 0; i < 140 * 80; i++) {
@@ -229,5 +320,28 @@ export const STATE_MATRIX = {
             }
         }
         return count;
+    },
+
+    // --- ERA 69: Crystalline Neural Network Helpers ---
+    getGridType: (i: number) => Atomics.load(structureGrid, i) & 0xFF,
+    getGridDensity: (i: number) => (Atomics.load(structureGrid, i) >> 8) & 0xFF,
+    getGridCharge: (i: number) => (Atomics.load(structureGrid, i) >> 16) & 0xFF,
+    getGridState: (i: number) => (Atomics.load(structureGrid, i) >> 24) & 0xFF,
+
+    setGridType: (i: number, val: number) => {
+        Atomics.and(structureGrid, i, ~0x000000FF);
+        Atomics.or(structureGrid, i, val & 0xFF);
+    },
+    setGridDensity: (i: number, val: number) => {
+        Atomics.and(structureGrid, i, ~0x0000FF00);
+        Atomics.or(structureGrid, i, (val & 0xFF) << 8);
+    },
+    setGridCharge: (i: number, val: number) => {
+        Atomics.and(structureGrid, i, ~0x00FF0000);
+        Atomics.or(structureGrid, i, (val & 0xFF) << 16);
+    },
+    setGridState: (i: number, val: number) => {
+        Atomics.and(structureGrid, i, ~0xFF000000);
+        Atomics.or(structureGrid, i, (val & 0xFF) << 24);
     }
 };

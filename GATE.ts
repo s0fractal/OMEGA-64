@@ -724,7 +724,9 @@ export const GATE = {
          
          // 🛡️ Era 35/62: Whitelist Bypass
          if (GATE.trustedSignatures.has(logicStr)) {
-            stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
+            if (typeof stateMatrix.setQuarantine === "function") {
+              stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
+            }
             continue;
          }
 
@@ -753,9 +755,8 @@ export const GATE = {
             stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
             console.log(`⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`);
          } else if (malignancy >= 40) {
-            stateMatrix.setRole(idx, 1); // FLAGGED (IMMUNE WATCH)
-         } else {
-            stateMatrix.setRole(idx, 0); // CLEAN (CITIZEN)
+            const parasiteRole = stateMatrix.ROLE_PARASITE ?? 4;
+            stateMatrix.setRole(idx, parasiteRole); // FLAGGED (IMMUNE WATCH)
          }
       }
    },
@@ -787,4 +788,3 @@ export const GATE = {
        console.log(`⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`);
    }
 };
-

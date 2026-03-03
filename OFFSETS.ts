@@ -4,8 +4,8 @@
 export const MAX_ATOMS = 100000;
 export const SCALE = 1000;
 
-// Shifted by 1MB to avoid WASM data segment collisions
-export const SAFETY_BUFFER = 1000000;
+// Shifted by 8MB to avoid WASM runtime heap overlap with lattice regions.
+export const SAFETY_BUFFER = 8000000;
 
 // Synchronization & Coordination (In the safety buffer)
 export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
@@ -33,5 +33,12 @@ export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 34200000;
 export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 35200000;
 export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 36200000; 
 export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 37200000; 
+export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 38200000;
+export const DAMPING_OFFSET = SAFETY_BUFFER + 39200000;
+export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 40200000;
+export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 40201024;
+export const QUORUM_OFFSET = SAFETY_BUFFER + 40300000;
+export const COHERENCE_OFFSET = SAFETY_BUFFER + 40300100;
+export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 40300104;
 
 export const MAX_ASCENSIONS_PER_TICK = 64;

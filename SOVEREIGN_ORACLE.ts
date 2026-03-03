@@ -4,7 +4,6 @@
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
-import { PULSE } from "./PULSE.ts";
 
 export const SOVEREIGN_ORACLE = {
     isConsulting: false,
@@ -12,6 +11,7 @@ export const SOVEREIGN_ORACLE = {
     guidanceCache: new Set<string>(),
     neuralCoherence: 0,           // Phase 19: Global mind-field measurement
     lastCoherenceTick: 0,
+    lastWhisperTick: 0,
 
     interpretResonance: () => {
         const matrixRes = STATE_MATRIX.getMatrixResonance();
@@ -46,21 +46,27 @@ export const SOVEREIGN_ORACLE = {
             });
             
             if (oracleResult && oracleResult.genome) {
-                const newBytecode = oracleResult.genome;
-                const hex = Array.from(newBytecode).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+                const newInstructions = oracleResult.genome;
+                const hex = Array.from(newInstructions).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
                 
                 SOVEREIGN_ORACLE.guidanceCache.add(hex);
                 if (SOVEREIGN_ORACLE.guidanceCache.size > 100) {
-                    // Evict oldest (Set doesn't have easy eviction, but we'll just keep it simple)
                     const first = SOVEREIGN_ORACLE.guidanceCache.values().next().value;
-                    SOVEREIGN_ORACLE.guidanceCache.delete(first);
+                    if (typeof first === "string") {
+                        SOVEREIGN_ORACLE.guidanceCache.delete(first);
+                    }
                 }
 
-                console.log(`👁️ [ORACLE] Oracle responded with genome of length ${newBytecode.length}`);
+                console.log(`👁️ [ORACLE] Oracle responded with instructions of length ${newInstructions.length}`);
                 // Verify the Regent is still alive/valid
                 if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-                    STATE_MATRIX.setLogic(regentIndex, newBytecode);
-                    console.log(`⚡ [ORACLE] Genome Overwritten! New Regent Bytecode: [${hex}]`);
+                    // Overwrite the first 16 bytes of the instruction buffer (the "head")
+                    const currentInstructions = STATE_MATRIX.getInstructions(regentIndex);
+                    const headMutation = new Uint8Array(currentInstructions);
+                    headMutation.set(newInstructions, 0); 
+                    
+                    STATE_MATRIX.setInstructions(regentIndex, headMutation);
+                    console.log(`⚡ [ORACLE] Semantic Mutation Applied! New Head: [${hex}]`);
                     SOVEREIGNTY_ENGINE.currentRegent.genome = hex;
 
                     // --- ERA 67: MEMETIC INJECTION ---
@@ -109,6 +115,35 @@ export const SOVEREIGN_ORACLE = {
         } finally {
             SOVEREIGN_ORACLE.isConsulting = false;
         }
+    },
+    /**
+     * Vector 10: periodic memory-grid whisper channel.
+     * Writes high-value resonance seeds into MEMORY_GRID when the field is active.
+     */
+    broadcastWhisper: (currentTick: number, telemetry: any, neuralCoherence: number) => {
+        if (currentTick - SOVEREIGN_ORACLE.lastWhisperTick < 7) return;
+        if (telemetry.matrixResonance < 2000 && neuralCoherence < 200) return;
+
+        SOVEREIGN_ORACLE.lastWhisperTick = currentTick;
+
+        const seed = (((currentTick * 2654435761) >>> 0) ^ ((telemetry.matrixResonance | 0) >>> 0) ^ ((neuralCoherence | 0) << 8)) >>> 0;
+        const gx = seed % 140;
+        const gy = Math.floor(seed / 140) % 80;
+        const gridIdx = (gy * 140 + gx) * 8;
+
+        const charge = Math.min(0xFFFF, 800 + Math.max(0, neuralCoherence | 0));
+        const meme = new Uint8Array([
+            0xD1,
+            seed & 0xFF,
+            (seed >> 8) & 0xFF,
+            (seed >> 16) & 0xFF
+        ]);
+
+        STATE_MATRIX.memoryGrid[gridIdx] = charge & 0xFF;
+        STATE_MATRIX.memoryGrid[gridIdx + 1] = (charge >> 8) & 0xFF;
+        STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
+        STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
+        STATE_MATRIX.memoryGrid.set(meme, gridIdx + 4);
     },
     /**
      * Phase 19: Planetary Consciousness

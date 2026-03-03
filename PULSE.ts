@@ -1,16 +1,44 @@
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 import { STATE_MATRIX, MAX_ATOMS, sharedBuffer } from "./STATE_MATRIX.ts";
 import * as OFFSETS from "./OFFSETS.ts";
-import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
-import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 
-const WORKER_COUNT = 4; // We can keep 4, but for the test we'll ensure index 1 is handled clearly.
+const WORKER_COUNT = 4;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
+
+const nextPulseId = (): number => Date.now() + Math.floor(Math.random() * 1_000_000);
+
+const waitForWorkerMessage = <T = any>(
+    worker: Worker,
+    expectedType: string,
+    expectedPulseId?: number
+): Promise<T> => {
+    return new Promise((resolve) => {
+        const listener = (e: MessageEvent) => {
+            const data = e.data;
+            if (!data || data.type !== expectedType) return;
+            if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) return;
+            worker.removeEventListener("message", listener);
+            resolve(data as T);
+        };
+        worker.addEventListener("message", listener);
+    });
+};
+
+const postAndWait = async <T = any>(
+    worker: Worker,
+    message: Record<string, unknown>,
+    expectedType: string
+): Promise<T> => {
+    const pulseId = typeof message.pulseId === "number" ? message.pulseId : undefined;
+    const pending = waitForWorkerMessage<T>(worker, expectedType, pulseId);
+    worker.postMessage(message);
+    return await pending;
+};
 
 export const PULSE = {
     currentPulseId: Date.now(),
@@ -21,11 +49,7 @@ export const PULSE = {
             const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
             workers.push(worker);
             
-            const p = new Promise((resolve) => {
-                worker.onmessage = (e) => {
-                    if (e.data.type === "READY") resolve(true);
-                };
-            });
+            const p = waitForWorkerMessage(worker, "READY");
             worker.postMessage({ 
                 type: "INIT", 
                 wasmMemory: STATE_MATRIX.wasmMemory,
@@ -39,19 +63,36 @@ export const PULSE = {
 
     tick: async () => {
         const { syncState, tickCounter, SYNC } = STATE_MATRIX;
-        PULSE.currentPulseId = Date.now();
+        // 0. Sovereign Oracle Peak Detection & Coherence Polling
+        const currentTick = Atomics.load(tickCounter, 0);
+        
+        // Poll Coherence from Worker 0 (WASM primary)
+        const coherencePulseId = nextPulseId();
+        const coherenceRes = await postAndWait<{ coherence: number }>(
+            workers[0],
+            { type: "POLL_COHERENCE", pulseId: coherencePulseId },
+            "COHERENCE_VAL",
+        );
+        const coherence = coherenceRes.coherence ?? 0;
+        SOVEREIGN_ORACLE.neuralCoherence = coherence;
+        
+        // Broadcast a threshold-clamped coherence channel for guardian scripts.
+        const guardianChannel = Math.max(0, Math.min(200, coherence));
+        workers[0].postMessage({
+            type: "SET_COHERENCE",
+            coherence: guardianChannel,
+            pulseId: nextPulseId(),
+        });
 
-        // 1. Enter WASM_TICKING State
-        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+        if (coherence > 1000) {
+            console.log(`🧠 [PULSE] High Coherence detected: ${coherence}. Consulting Oracle...`);
+        }
 
-        const active = STATE_MATRIX.getActiveIndices();
-
-        // Reset Ascension Counter
-        Atomics.store(new Int32Array(sharedBuffer, OFFSETS.ASCENSION_STATS_OFFSET, 1), 0, 0);
-
-        // 0. Sovereign Oracle
         const telemetry = SOVEREIGN_ORACLE.interpretResonance();
-        if (telemetry.matrixResonance > 5000) { 
+        SOVEREIGN_ORACLE.broadcastWhisper(currentTick, telemetry, coherence);
+        // Trigger Oracle on either Matrix Resonance spike or High Coherence
+        if (telemetry.matrixResonance > 5000 || coherence > 500) { 
+            const active = STATE_MATRIX.getActiveIndices();
             const regent = SOVEREIGNTY_ENGINE.electRegent(active);
             if (regent && regent.idx !== -1) {
                 SOVEREIGN_ORACLE.consultOracle(regent.idx, telemetry);
@@ -59,7 +100,8 @@ export const PULSE = {
         }
 
         // 1. Resolve Sequential Logic
-        for (const i of active) {
+        const activeIdx = STATE_MATRIX.getActiveIndices();
+        for (const i of activeIdx) {
             const bondReq = STATE_MATRIX.getBondRequest(i);
             if (bondReq) {
                 const targetIdx = bondReq[1];
@@ -74,6 +116,14 @@ export const PULSE = {
         }
 
         // 2. Parallel Physics & WASM Kernel
+        // 2a. Rebuild Spatial Lattice (WASM)
+        const hashPulseId = nextPulseId();
+        await postAndWait(workers[0], { type: "BUILD_SPATIAL_HASH", pulseId: hashPulseId }, "HASH_DONE");
+
+        // 2b. Execute Physics (WASM)
+        // Transition to WASM_TICKING (1) to unblock workers
+        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+
         workerPromises = [];
         const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
         
@@ -81,24 +131,19 @@ export const PULSE = {
             const startIdx = i * chunkSize;
             const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
             
-            const p = new Promise((resolve) => {
-                workers[i].onmessage = (e) => {
-                    if (e.data.type === "DONE") resolve(true);
-                };
-            });
-            workers[i].postMessage({ type: "PULSE", startIdx, endIdx, pulseId: Date.now() });
+            const pulseId = nextPulseId();
+            const p = postAndWait(
+                workers[i],
+                { type: "PULSE", startIdx, endIdx, pulseId },
+                "DONE",
+            );
             workerPromises.push(p);
         }
         await Promise.all(workerPromises);
 
-        // 3. Matrix Engine
-        const matrixDone = new Promise<void>((resolve) => {
-            workers[0].onmessage = (e) => {
-                if (e.data.type === "MATRIX_DONE") resolve();
-            };
-        });
-        workers[0].postMessage({ type: "TICK_MATRIX", pulseId: Date.now() });
-        await matrixDone;
+        // 3. Matrix Engine (WASM)
+        const matrixPulseId = nextPulseId();
+        await postAndWait(workers[0], { type: "TICK_MATRIX", pulseId: matrixPulseId }, "MATRIX_DONE");
 
         // --- TRANSITION TO HOST_LOCK ---
         // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
@@ -143,13 +188,32 @@ export const PULSE = {
             if (spawned > 0) console.log(`🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`);
         }
 
-        // 5. Rebuild Spatial Lattice
-        SPATIAL_HASH.build(STATE_MATRIX.getActiveIndices());
+        // 5. Sequential Maintenance (Sequential JS)
+        // (WASM handled spatial and structure grid propagation during the parallel/matrix phases)
 
-        // 6. Autonomous Systemic Audit (Every 5 ticks)
-        const currentTick = Atomics.load(tickCounter, 0);
+        // 7. Autonomous Systemic Audit (Every 5 ticks)
         if (currentTick % 5 === 0) {
             GATE.auditMatrix(STATE_MATRIX);
+        }
+
+        // --- RESONANCE PROTOCOL: Global Coherence Calculation ---
+        {
+            const activeIndices = STATE_MATRIX.getActiveIndices();
+            let totalResonance = 0;
+            for (const idx of activeIndices) {
+                totalResonance += STATE_MATRIX.getResonance(idx);
+            }
+            // Average Resonance normalized to 0-255 (Absolute Coherence)
+            const avgRes = activeIndices.length > 0 ? (totalResonance / activeIndices.length) : 0;
+            const coherence = Math.min(255, Math.floor(avgRes / 100));
+            
+            // Write to Unified Lattice
+            const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+            Atomics.store(coherenceView, 0, coherence);
+            
+            if (currentTick % 20 === 0) {
+                console.log(`💎 [RESONANCE] System Coherence: ${coherence}/255 (Avg Res: ${(avgRes/100).toFixed(1)})`);
+            }
         }
 
         // Increment Global Tick Counter
