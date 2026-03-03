@@ -1,4 +1,5 @@
 import * as OFFSETS from "./OFFSETS.ts";
+import { assertWasmLayout } from "./wasm_layout_guard.ts";
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
     console.error(
@@ -8,6 +9,7 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
 }
 
 await Deno.mkdir("build", { recursive: true });
+await assertWasmLayout();
 
 const args = [
     "run",

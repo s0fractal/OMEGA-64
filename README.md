@@ -141,5 +141,6 @@ health indicator loop:
 
 ## Operator note (WASM build)
 
+- `deno task wasm:layout`
 - `deno task wasm:build`
 - `deno task vector10:verify`
