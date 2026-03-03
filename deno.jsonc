@@ -2,7 +2,7 @@
   "compilerOptions": { "lib": ["deno.window"], "strict": true },
   "tasks": {
     "lint": "deno lint",
-    "audit:determinism": "deno run -A e/CRYSTALLIZE.ts DETERMINISM_AUDIT.md --run", 
+    "audit:determinism": "deno run -A e/CRYSTALLIZE.ts DETERMINISM_AUDIT.md --run",
     "audit:root": "deno run -A e/AUDIT_ROOT_CANON.ts",
     "export:sigma": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity",
     "sigma:verify": "deno run -A e/legacy/sigma_quine.ts --input I.sigma.md --verify",
@@ -41,12 +41,13 @@
     "test:worker-determinism-fuzz": "deno run -A test_worker_determinism_fuzz.ts",
     "test:worker-drift-audit": "deno run -A test_worker_drift_audit.ts",
     "test:structure-intent-determinism": "deno run -A test_structure_intent_determinism.ts",
+    "test:runtime-monoculture": "deno run -A test_runtime_monoculture.ts",
     "ci:verify:worker1": "OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep",
     "ci:verify:worker4": "OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep",
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
     "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && deno task test:worker-resilience-audit",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
-    "verify:coherence": "deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum",
+    "verify:coherence": "deno task test:runtime-monoculture && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum",
     "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {

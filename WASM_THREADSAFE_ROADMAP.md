@@ -57,9 +57,13 @@ Acceptance:
   - executes long 4-worker coherence burn-in + unified resilience audit artifact upload.
 - Completed regression alignment:
   - include `test_tensegrity.ts` in `vector10:verify` (`deno task test:tensegrity`).
+- Completed toolchain coherence guard:
+  - `test_runtime_monoculture.ts` blocks `node/npm/npx/yarn/pnpm/ts-node` invocations in `deno.jsonc` tasks and workflow `run:` commands;
+  - wired into `verify:coherence` preflight as `deno task test:runtime-monoculture`.
 
 Acceptance:
 
 - No spontaneous atoms in either mode.
 - No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts` (enforced by verify chain).
 - Long-run 4-worker soak remains green (`test:worker-coherence:long` + `test:worker-resilience-audit`).
+- Verify chain preserves Deno-only execution surface (`deno task test:runtime-monoculture` stays green).

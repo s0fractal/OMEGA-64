@@ -160,6 +160,7 @@ health indicator loop:
 - `deno task test:startup-selftest-nominal` (cold-start self-test nominal branch + lifecycle reset across `stop/init`)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` and `WORKER_DRIFT_AUDIT.json` with strict/non-strict drift metrics)
 - `deno task test:structure-intent-determinism` (conflict-heavy structure write parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix pass)
+- `deno task test:runtime-monoculture` (toolchain guard: blocks `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow `run:` commands)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay deterministic without host pre-clear)
 - `deno task ci:verify:matrix` (local mirror of CI worker matrix gate: 1-worker + 4-worker deep verification)
@@ -168,6 +169,6 @@ health indicator loop:
 - `deno task test:structure-js` (JS reference lattice engine)
 - `deno task test:structure-parity` (JS/WASM structure-grid parity)
 - `deno task test:crystalline` / `deno task test:neural` / `deno task test:quantum` (Vector 8/9/7 direct probes)
-- `deno task verify:coherence` (extended end-to-end verification chain)
+- `deno task verify:coherence` (extended end-to-end verification chain; starts with `test:runtime-monoculture`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz + structure-intent determinism gate)
 - GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml` (scheduled long-run 4-worker sentinel + unified resilience audit artifacts)
