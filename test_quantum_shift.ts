@@ -65,6 +65,14 @@ async function runTest() {
          console.log("✅ SUCCESS: Physics (Chemotaxis/Movement) verified in WASM kernel.");
     }
 
+    const withinBounds = (x: number, y: number) => x >= 0 && x <= 1399 && y >= 0 && y <= 799;
+    if (!withinBounds(finalParentPos[0], finalParentPos[1]) || !withinBounds(finalChildPos[0], finalChildPos[1])) {
+        console.error("❌ FAILED: Position escaped world bounds (0..1399, 0..799).");
+        success = false;
+    } else {
+        console.log("✅ SUCCESS: World-bound clamp verified.");
+    }
+
     if (success) {
         console.log("\n✅ VECTOR 7 VERIFIED: Absolute WASM Coherence Achieved.");
         Deno.exit(0);

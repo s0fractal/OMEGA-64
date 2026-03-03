@@ -176,6 +176,25 @@ const ROLE_PRODUCER: u8 = 1;
 const ROLE_GUARDIAN: u8 = 2;
 const ROLE_ARCHITECT: u8 = 3;
 const ROLE_PARASITE: u8 = 4;
+const WORLD_MAX_X: i32 = 1399;
+const WORLD_MAX_Y: i32 = 799;
+
+@inline function clampWorldX(x: i32): i32 {
+    if (x < 0) return 0;
+    if (x > WORLD_MAX_X) return WORLD_MAX_X;
+    return x;
+}
+
+@inline function clampWorldY(y: i32): i32 {
+    if (y < 0) return 0;
+    if (y > WORLD_MAX_Y) return WORLD_MAX_Y;
+    return y;
+}
+
+@inline function storeClampedPos(idx: i32, x: i32, y: i32): void {
+    store<i16>(XS_OFFSET + (idx << 1) as usize, clampWorldX(x) as i16);
+    store<i16>(YS_OFFSET + (idx << 1) as usize, clampWorldY(y) as i16);
+}
 
 @inline function dir4X(n: i32): i32 {
     if (n == 0) return -1;
@@ -326,8 +345,7 @@ const ROLE_PARASITE: u8 = 4;
     }
 
     // Final position integration (velocity)
-    store<i16>(XS_OFFSET + (idx << 1) as usize, (x + (Math.round(tx) as i32)) as i16);
-    store<i16>(YS_OFFSET + (idx << 1) as usize, (y + (Math.round(ty) as i32)) as i16);
+    storeClampedPos(idx, x + (Math.round(tx) as i32), y + (Math.round(ty) as i32));
 }
 
 @inline function applyBondSprings(idx: i32, x: i32, y: i32): void {
@@ -376,8 +394,7 @@ const ROLE_PARASITE: u8 = 4;
 
     let curX = getX(idx) as i32;
     let curY = getY(idx) as i32;
-    store<i16>(XS_OFFSET + (idx << 1) as usize, (curX + (Math.round(fx) as i32)) as i16);
-    store<i16>(YS_OFFSET + (idx << 1) as usize, (curY + (Math.round(fy) as i32)) as i16);
+    storeClampedPos(idx, curX + (Math.round(fx) as i32), curY + (Math.round(fy) as i32));
 }
 
 export function execute_atom(atomIndex: i32): void {
@@ -404,8 +421,7 @@ export function execute_atom(atomIndex: i32): void {
         // Behavior velocity is added on top of force integration
         let nextX = midX + (vx * 2 * (dampingFactor as i32));
         let nextY = midY + (vy * 2 * (dampingFactor as i32));
-        store<i16>(XS_OFFSET + (atomIndex << 1) as usize, nextX as i16);
-        store<i16>(YS_OFFSET + (atomIndex << 1) as usize, nextY as i16);
+        storeClampedPos(atomIndex, nextX, nextY);
     }
 
     let pc = getPC(atomIndex);
