@@ -237,10 +237,64 @@ export const AGENT_SIGNATURE = {
     await sha256Hex(typeof data === "string" ? data : stableStringify(data)),
 };
 
+type BridgeInvariantReportLike = {
+  index_chain_checked?: boolean;
+  index_chain_ok?: boolean;
+  index_chain_failures?: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_failures?: string[];
+};
+
+const resolveBridgeMode = (
+  report?: BridgeInvariantReportLike,
+): { mode: "GREEN" | "AMBER" | "RED"; reason: string } => {
+  if (!report) {
+    return { mode: "AMBER", reason: "INVARIANT_REPORT_MISSING" };
+  }
+
+  const indexChecked = report.index_chain_checked === true;
+  const indexOk = report.index_chain_ok !== false;
+  const gateChecked = report.gate_admission_index_chain_checked === true;
+  const gateOk = report.gate_admission_index_chain_ok !== false;
+
+  if (!indexOk) {
+    const failure = report.index_chain_failures?.[0] ?? "INDEX_CHAIN_FAILED";
+    return { mode: "RED", reason: failure };
+  }
+  if (!gateOk) {
+    const failure = report.gate_admission_index_chain_failures?.[0] ??
+      "GATE_ADMISSION_INDEX_CHAIN_FAILED";
+    return { mode: "RED", reason: failure };
+  }
+
+  if (!indexChecked || !gateChecked) {
+    const missingChecks: string[] = [];
+    if (!indexChecked) missingChecks.push("INDEX_CHAIN_UNCHECKED");
+    if (!gateChecked) {
+      missingChecks.push("GATE_ADMISSION_INDEX_CHAIN_UNCHECKED");
+    }
+    return { mode: "AMBER", reason: missingChecks.join("+") };
+  }
+
+  return { mode: "GREEN", reason: "INVARIANT_INDEX_CHAIN_VERIFIED" };
+};
+
+const proposalIsCanonBound = (proposal: unknown): boolean => {
+  const p = proposal as { target_path?: string; canon_bound?: boolean };
+  if (p?.canon_bound === true) return true;
+  const target = typeof p?.target_path === "string"
+    ? p.target_path.trim().toUpperCase()
+    : "";
+  return target === "CANON" || target.startsWith("CANON/") ||
+    target.startsWith("CANON:") || target.startsWith("/CANON");
+};
+
 export const CANON_CAUSAL_BRIDGE = {
   verify: (_state: any, _proposals: any) => true,
-  resolveMode: (_report: any) => ({ mode: "GREEN" as const, reason: "Shim" }),
-  isCanonBound: (_p: any) => false,
+  resolveMode: (report?: BridgeInvariantReportLike) =>
+    resolveBridgeMode(report),
+  isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
 };
 
 const LOAD_DATA = {
