@@ -45,6 +45,9 @@ internal high-speed mutation loops.
   default.
 - `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
   env/token gates when enabled.
+- `P2P_FEDERATION.ts`: migration queue is disabled by default
+  (`OMEGA_FEDERATION_ENABLE=false`) and forwards `x-omega-control-token` when
+  set to interoperate with guarded `/federate`.
 - `SYSTEM_START.ts`: binds loopback by default (`OMEGA_SYSTEM_HOST`) and all
   mutating POST routes require explicit control enable/token
   (`OMEGA_SYSTEM_CONTROL_ENABLE`, `OMEGA_SYSTEM_CONTROL_TOKEN`).

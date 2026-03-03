@@ -11,6 +11,7 @@ const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 const REQUIRED_DOC = "MUTATION_LANES.md";
 const AKASHA_PATH = "AKASHA_SERVER.ts";
 const P2P_PATH = "P2P_SYNAPSE.ts";
+const FEDERATION_PATH = "P2P_FEDERATION.ts";
 const SYSTEM_PATH = "SYSTEM_START.ts";
 const SYSTEM_CONTROLLED_POST_PATHS = [
   "/crisis",
@@ -50,6 +51,7 @@ const main = async () => {
 
   const akasha = await Deno.readTextFile(AKASHA_PATH);
   const p2p = await Deno.readTextFile(P2P_PATH);
+  const federation = await Deno.readTextFile(FEDERATION_PATH);
   const system = await Deno.readTextFile(SYSTEM_PATH);
 
   // External ingress must not bind wide-open by default.
@@ -116,6 +118,27 @@ const main = async () => {
     "targetPath.startsWith(ROOT_PREFIX)",
     P2P_PATH,
     "P2P writes must be confined to root prefix",
+    violations,
+  );
+  requireSnippet(
+    federation,
+    "OMEGA_FEDERATION_ENABLE",
+    FEDERATION_PATH,
+    "Federation migration must be opt-in via env gate",
+    violations,
+  );
+  requireSnippet(
+    federation,
+    "if (!FEDERATION_ENABLED) return;",
+    FEDERATION_PATH,
+    "Federation runtime paths must short-circuit when disabled",
+    violations,
+  );
+  requireSnippet(
+    federation,
+    "x-omega-control-token",
+    FEDERATION_PATH,
+    "Federation must forward control token for /federate",
     violations,
   );
   requireSnippet(
