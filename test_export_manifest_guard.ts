@@ -6,6 +6,8 @@ type ExportManifest = {
 };
 
 const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const REQUIRED_CONTEXT_FILES = ["ARCHITECTURE_ACTIVE.md"];
+const FORBIDDEN_CONTEXT_FILES = ["ARCHITECTURE.md", "GEMINI.md"];
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /^test_.*\.ts$/u,
@@ -106,6 +108,21 @@ const main = async () => {
   assertUnique(core, "core_entry_files");
   assertUnique(required, "required_additional_files");
   assertUnique(context, "context_files");
+
+  for (const requiredContext of REQUIRED_CONTEXT_FILES) {
+    if (!context.includes(requiredContext)) {
+      throw new Error(
+        `[manifest] context_files missing required active doc: ${requiredContext}`,
+      );
+    }
+  }
+  for (const forbiddenContext of FORBIDDEN_CONTEXT_FILES) {
+    if (context.includes(forbiddenContext)) {
+      throw new Error(
+        `[manifest] context_files includes legacy doc: ${forbiddenContext}`,
+      );
+    }
+  }
 
   const coreSet = new Set(core);
   const overlap = required.filter((x) => coreSet.has(x));

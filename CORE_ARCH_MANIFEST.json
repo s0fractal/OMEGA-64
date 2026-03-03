@@ -46,9 +46,8 @@
   ],
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
-    "ARCHITECTURE.md",
+    "ARCHITECTURE_ACTIVE.md",
     "README.md",
-    "GEMINI.md",
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
     "AKASHA_SERVER.ts",

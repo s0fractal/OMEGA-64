@@ -212,6 +212,9 @@ health indicator loop:
   `run:` commands)
 - `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
   canonical export file set, no test/legacy leakage, all listed files exist)
+- Canonical active architecture doc for export/model context:
+  `ARCHITECTURE_ACTIVE.md` (legacy `ARCHITECTURE.md` / `GEMINI.md` are not
+  included in `OMEGA_CORE_LOGIC.md` export context)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker
   phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay

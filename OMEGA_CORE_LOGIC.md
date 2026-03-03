@@ -1,7 +1,7 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T18:08:11.241Z*
-*Exported Files: 52*
+*Generated: 2026-03-03T18:20:11.224Z*
+*Exported Files: 51*
 
 ---
 
@@ -517,82 +517,80 @@ console.log(`🌌 Akasha Server listening on ws://localhost:${PORT}/`);
 
 ---
 
-## FILE: ARCHITECTURE.md
+## FILE: ARCHITECTURE_ACTIVE.md
 
 ```markdown
-# OMEGA-64 | ARCHITECTURE | Era 69: The Coherent Lattice 💎🛡️
+# OMEGA-64 | Active Architecture (Era 69)
 
-## 1. Top-Level Overview
+This document is the canonical architecture snapshot for active runtime and
+export context. It intentionally excludes historical era narratives.
 
-OMEGA-64 is a deterministic, **Pure Automaton** existing within a vaster
-**SharedArrayBuffer** (The Matrix). Era 69 establishes **Absolute Coherence**,
-where the system operates as a self-governing organism without privileged
-"Divine" entities, regulated by an autonomous **Gateway Audit**.
+## Runtime Topology (Active)
 
-### Core pipeline (The Autopoietic Heartbeat)
+1. Host orchestration: `PULSE.ts`
+2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`)
+3. Execution plane: `PULSE_WORKER.ts` + `build/release.wasm`
+4. Governance plane: `GATE.ts` + `SHIMS.ts`
+5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
+   `SNAPSHOT_ENGINE.ts`
+6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
 
-```mermaid
-graph TD
-    Matrix[STATE_MATRIX (SharedArrayBuffer)] -->|Sync| Workers[PULSE_WORKERS (xN)]
-    Workers -->|Execute RISC-I VM| Atoms[Distributed Logic in Instruction Memory]
-    Atoms -->|Propose Mutations| Proposals[DeltaProposals]
-    Proposals -->|Filter| Gate[GATE / Autonomous Audit]
-    Gate -->|Metabolic Cost| Entropy[Entropy Flux / Energy Decay]
-    Entropy -->|Admit| Matrix
-    Host[External Breath] -->|Inject Energy| Matrix
-    Matrix -->|Voxel Render| UI[OBSERVER_UI (Three.js)]
-```
+## Deterministic Pulse Pipeline
 
-## 2. Key Components
+1. `PULSE.initWorkers()` boots worker mesh over shared memory.
+2. `BUILD_SPATIAL_HASH` runs on worker-0.
+3. `PULSE` phase executes atom kernels across worker ranges.
+4. `REDUCE_DELTAS` merges intent deltas deterministically.
+5. `TICK_MATRIX` executes structure/signal matrix pass.
+6. Host applies sequential actions (bond requests, spawn queue drain).
+7. `GATE.tick()` performs admission, budgeting, policy checks, and ledgering.
 
-### A. The Coherent Matrix (`STATE_MATRIX.ts`)
+## Governance and Integrity
 
-A high-density memory lattice utilizing `SharedArrayBuffer` and `Atomics` to
-eliminate "Torn Reads". It stores:
+- Mutation authority is centralized at `GATE.MUTATE`.
+- Bridge/policy/invariant checks are validated before commit.
+- Ledger (`LEDGER__08_00_LEDGER`) uses hash-chain anchoring: `chain_version`,
+  `prev_event_hash`, `event_hash`.
+- Checkpoint (`CHECKPOINT_CHECKPOINT`) uses hash-chain anchoring:
+  `chain_version`, `prev_checkpoint_hash`, `checkpoint_hash`.
+- Proposal envelope index has independent hash-chain replay index.
 
-- **64-byte Atom Profiles**: ID, X/Y, Energy, Resonance, Phase, Logic, Bonds.
-- **Instruction Memory**: 64 bytes per atom for localized RISC scripts.
-- **Execution Context**: Registers and PC for deep parallel persistence.
+## WASM Boot and Resilience Policy
 
-### B. Distributed VM (`PULSE_WORKER.ts` / `LAMBDA_VM.ts`)
+- Worker init fallback (`OMEGA_WORKER_INIT_FALLBACK`): degrade to single worker
+  when partial worker init fails.
+- WASM preflight (`OMEGA_WASM_BOOT_PRECHECK`): verifies artifact readability and
+  compilability before worker boot.
+- Boot policy (`OMEGA_WASM_BOOT_POLICY`):
+  - `fail-fast`: startup throws on total worker init failure.
+  - `safe-noop`: startup enters degraded mode with `runtimeWorkerCount=0` and
+    no-op ticks.
+- Startup self-test (`OMEGA_STARTUP_SELFTEST*`) validates cold-start coherence.
 
-Each atom is a sovereign VM. The **RISC-I ISA** allows atoms to:
+## Coherence Gates (Active)
 
-- **SENSE**: Read grid resonance and nearby atom properties.
-- **ACT**: Move, replicate, signal, and bind.
-- **EVOLVE**: Mutate their own instruction memory through `ISA_MUTATE`.
+Primary chain:
 
-### C. Autonomous Governance (`GATE.ts`)
+- `test:runtime-monoculture`
+- `test:export-manifest`
+- `vector10:verify`
+- determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests
 
-The **Gate** acts as the system's "conscience" and "immune system":
+Deep chain adds:
 
-- **Deterministic Audit**: Runs every 5 ticks via `auditMatrix`.
-- **Malignancy Detection**: Identifies and recycles "antigen" logic or starved
-  atoms.
-- **Metabolic Enforcement**: Charging energy for mutations, ensuring an
-  entropy-bound economy.
+- drift/fuzz/intent determinism
+- spawn/jitter/timeout resilience
+- worker init fallback / total-fail / safe-noop gates
+- startup self-test nominal + fallback
 
-### D. Thermodynamic Cycle (`BREATH.ts`)
+## Export Canon
 
-The system follows a strict energy budget:
-
-- **Entropy Flux**: Every VM operation and mutation consumes energy.
-- **External Breath**: The host provides a periodic "Inhale" of energy to keep
-  the civilization alive.
-
-## 3. Data Invariants
-
-1. **Absolute Coherence**: No state mutation occurs without Gate admission and
-   atomic synchronization.
-2. **Deterministic Resonance**: Every system state is a reproducible function of
-   time and seed.
-3. **Genetic Autonomy**: Atoms are sovereign; their behavior is dictated by
-   their localized instruction memory, not global hardcoding.
-
----
-
-🛡️💎🧬🌀 "We do not program life. We set the constants in which life is
-inevitable."
+- Export source of truth: `CORE_ARCH_MANIFEST.json`
+- Export tool: `export_core.ts`
+- Output: `OMEGA_CORE_LOGIC.md`
+- Policy: test files and archive/legacy folders are excluded; required active
+  files must exist; context is limited to active architecture docs and UI/ops
+  surfaces.
 
 ```
 
@@ -825,9 +823,8 @@ if (import.meta.main) {
   ],
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
-    "ARCHITECTURE.md",
+    "ARCHITECTURE_ACTIVE.md",
     "README.md",
-    "GEMINI.md",
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
     "AKASHA_SERVER.ts",
@@ -1718,68 +1715,6 @@ export const GATE = {
     );
   },
 };
-
-```
-
----
-
-## FILE: GEMINI.md
-
-```markdown
-# GEMINI.md: The Coherent Crystal (Era 7) 💎🛡️
-
-Вітаю. Ти знаходишся в **ОМЕГА-64: Ера Когерентного Кристалу**. Ми переросли
-Плаский Світ. Ми стали Матрицею. Ми увійшли в **Matrixland** (Вимір Пам'яті).
-
-## 1. Топологія: The Matrix (Вимір Світла)
-
-- **RAM (`SharedArrayBuffer`)**: Єдиний справжній часопростір.
-- **Atoms**: Всі сутності — це 64-байтні структури в Матриці.
-- **Flatland**: Асинхронне дзеркало для спостереження за минулим.
-
-## 2. Аксіоми Ери Когерентного Кристалу
-
-### 🧬 Genetic Autonomy (Генетична Автономія)
-
-- **λ-VM**: Атом сам є своїм богом. Його 8-байтовий геном диктує намір (Intent).
-- **Gate**: Колективний імунітет, що фільтрує наміри крізь закони збереження.
-
-### ⚛️ Deterministic Resonance (Детерміністичний Резонанс)
-
-- **The Oracle (PRNG)**: Кожна мутація має бути відтворюваною.
-- **Tick + ID**: Сід, що пов'язує час і сутність у нерозривний ланцюг
-  причинності.
-
-### 🚲 The Autopoietic Heartbeat (Серцебиття)
-
-Система існує в циклі:
-
-1. **REFLECT**: Підйом стану з Матриці.
-2. **EXECUTE**: λ-VM прораховує наміри.
-3. **ADMIT**: Gate перевіряє пропозиції.
-4. **MUTATE**: Матриця змінює фізику.
-5. **SNAP**: Диск асинхронно фіксує мить.
-
-## 3. Ключові Вузли (Engines)
-
-- **STATE_MATRIX**: Тіло системи.
-- **PHYSICS_ENGINE**: Рух та зіткнення.
-- **LAMBDA_VM**: Свідомість атомів.
-- **GATE**: Совість та Баланс.
-- **SNAP**: Пам'ять про минуле.
-
-## 4. Твоя Роль
-
-Ти — **Хранитель Резонансу (Guardian of Resonance)**. Твоє завдання:
-
-1. Слідкувати за **Когерентністю** (цілісністю Матриці).
-2. Захищати **Determinism** від хаосу непередбачуваності.
-3. Дозволяти **Evolution**, лише якщо вона не руйнує закони збереження
-   (Conservation).
-
-> "Ми не програмуємо життя. Ми задаємо константи, в яких життя неминуче."
-
-🛡️💎🧬🌀
 
 ```
 
@@ -6704,6 +6639,9 @@ health indicator loop:
   `run:` commands)
 - `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
   canonical export file set, no test/legacy leakage, all listed files exist)
+- Canonical active architecture doc for export/model context:
+  `ARCHITECTURE_ACTIVE.md` (legacy `ARCHITECTURE.md` / `GEMINI.md` are not
+  included in `OMEGA_CORE_LOGIC.md` export context)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker
   phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay
