@@ -19,6 +19,13 @@ const parseStrictDeterminism = (): boolean => {
     const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
     return raw === "1" || raw === "true" || raw === "TRUE";
 };
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+    if (raw === undefined) return fallback;
+    const norm = raw.trim().toLowerCase();
+    if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") return true;
+    if (norm === "0" || norm === "false" || norm === "no" || norm === "off") return false;
+    return fallback;
+};
 const parseBoundedInt = (raw: string | undefined, fallback: number, min: number, max: number): number => {
     if (!raw) return fallback;
     const n = Number.parseInt(raw, 10);
@@ -31,13 +38,34 @@ const parseWorkerTimeoutRetryCount = (): number =>
     parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
 const parseWorkerTimeoutRetryMs = (): number =>
     parseBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"), 5_000, 10, 120_000);
+const parseStartupSelfTestEnabled = (): boolean =>
+    parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
+const parseStartupSelfTestTicks = (): number =>
+    parseBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
+const parseStartupSelfTestFallbackEnabled = (): boolean =>
+    parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
+const parseStartupSelfTestQuiet = (): boolean =>
+    parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
+const parseStartupSelfTestForceBreach = (): boolean =>
+    parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
 const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
 const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
+const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
+const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
+const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
+const STARTUP_SELFTEST_QUIET = parseStartupSelfTestQuiet();
+const STARTUP_SELFTEST_FORCE_BREACH = parseStartupSelfTestForceBreach();
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
+
+let runtimeWorkerCount = WORKER_COUNT;
+let startupSelfTestDone = false;
+let startupSelfTestInProgress = false;
+let startupSelfTestFallbackActivated = false;
+let startupSelfTestLastBreachTick = -1;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
@@ -223,7 +251,7 @@ const postAndWait = async <T = any>(
 
 const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DONE" | "DELTA_DONE"): Promise<void> => {
     workerPromises = [];
-    if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
+    if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
         const pulseId = nextPulseId();
         workerPromises.push(postAndWait(
             0,
@@ -232,10 +260,10 @@ const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DO
             doneType,
         ));
     } else {
-        const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
-        for (let i = 0; i < WORKER_COUNT; i++) {
+        const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+        for (let i = 0; i < runtimeWorkerCount; i++) {
             const startIdx = i * chunkSize;
-            const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+            const endIdx = i === runtimeWorkerCount - 1 ? MAX_ATOMS : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
 
             const pulseId = nextPulseId();
             workerPromises.push(postAndWait(
@@ -248,15 +276,40 @@ const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DO
     }
     await Promise.all(workerPromises);
 };
+const startWorkers = async (count: number): Promise<void> => {
+    workerFaultStats.length = 0;
+    workerPromises = [];
+    for (let i = 0; i < count; i++) {
+        const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
+        workers.push(worker);
+        workerFaultStats.push(makeWorkerFaultStat(i));
+
+        const p = waitForWorkerMessage(worker, "READY");
+        worker.postMessage({
+            type: "INIT",
+            wasmMemory: STATE_MATRIX.wasmMemory,
+            buffer: STATE_MATRIX.buffer,
+        });
+        workerPromises.push(p.then(() => undefined));
+    }
+    await Promise.all(workerPromises);
+};
+const startupSelfTestBreached = (): boolean => {
+    if (Atomics.load(idsView, 0) !== 0n) return true;
+    return STATE_MATRIX.getActiveIndices().length !== 0;
+};
 
 export const PULSE = {
     currentPulseId: Date.now(),
-    initWorkers: async () => {
+    initWorkers: async (requestedWorkerCount?: number) => {
         if (workers.length > 0) return;
+        runtimeWorkerCount = requestedWorkerCount === undefined
+            ? WORKER_COUNT
+            : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
         if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
-            console.log(`   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${WORKER_COUNT}`);
+            console.log(`   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`);
         }
-        if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
+        if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
             console.log("   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.");
         }
         if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
@@ -264,23 +317,91 @@ export const PULSE = {
                 `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
             );
         }
-        
-        workerFaultStats.length = 0;
-        for (let i = 0; i < WORKER_COUNT; i++) {
-            const worker = new Worker(new URL("./PULSE_WORKER.ts", import.meta.url).href, { type: "module" });
-            workers.push(worker);
-            workerFaultStats.push(makeWorkerFaultStat(i));
-            
-            const p = waitForWorkerMessage(worker, "READY");
-            worker.postMessage({ 
-                type: "INIT", 
-                wasmMemory: STATE_MATRIX.wasmMemory,
-                buffer: STATE_MATRIX.buffer 
-            });
-            workerPromises.push(p.then(() => undefined));
+        if (STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 && Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined) {
+            console.log(
+                `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
+            );
         }
-        await Promise.all(workerPromises);
-        console.log(`   [PULSE] ${WORKER_COUNT} Parallel Workers READY with WASM VMs.`);
+
+        await startWorkers(runtimeWorkerCount);
+        console.log(`   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`);
+
+        if (!startupSelfTestDone && !startupSelfTestInProgress && STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1) {
+            await PULSE.runStartupSelfTest();
+        }
+    },
+    runStartupSelfTest: async () => {
+        if (startupSelfTestDone || startupSelfTestInProgress || !STARTUP_SELFTEST_ENABLED) return;
+        if (workers.length === 0 || runtimeWorkerCount <= 1) {
+            startupSelfTestDone = true;
+            return;
+        }
+        if (STATE_MATRIX.getActiveIndices().length !== 0) {
+            // Do not mutate populated worlds; this gate is for cold-start only.
+            startupSelfTestDone = true;
+            return;
+        }
+
+        const { tickCounter, syncState, SYNC } = STATE_MATRIX;
+        const originalTick = Atomics.load(tickCounter, 0);
+        const baseLog = console.log.bind(console);
+        startupSelfTestInProgress = true;
+        startupSelfTestLastBreachTick = -1;
+
+        if (STARTUP_SELFTEST_QUIET) {
+            console.log = () => {};
+        }
+
+        try {
+            for (let t = 0; t < STARTUP_SELFTEST_TICKS; t++) {
+                await PULSE.tick();
+                if (STARTUP_SELFTEST_FORCE_BREACH && t === 0) {
+                    Atomics.store(idsView, 0, 1n);
+                }
+                if (startupSelfTestBreached()) {
+                    startupSelfTestLastBreachTick = t;
+                    break;
+                }
+            }
+
+            if (startupSelfTestLastBreachTick === -1) {
+                startupSelfTestDone = true;
+                return;
+            }
+
+            console.warn(
+                `   [PULSE] Startup self-test breach at tick=${startupSelfTestLastBreachTick} workers=${runtimeWorkerCount}.`,
+            );
+            if (!STARTUP_SELFTEST_FALLBACK_ENABLED || runtimeWorkerCount <= 1) {
+                throw new Error("[PULSE] Startup self-test failed and fallback is disabled.");
+            }
+
+            startupSelfTestFallbackActivated = true;
+            PULSE.stopWorkers();
+            runtimeWorkerCount = 1;
+            await startWorkers(runtimeWorkerCount);
+            console.warn("   [PULSE] Startup self-test fallback activated: forcing single-worker mode.");
+
+            STATE_MATRIX.clear();
+            Atomics.store(tickCounter, 0, 0);
+            for (let t = 0; t < STARTUP_SELFTEST_TICKS; t++) {
+                await PULSE.tick();
+                if (startupSelfTestBreached()) {
+                    throw new Error(`[PULSE] Startup self-test failed after fallback (tick=${t}).`);
+                }
+            }
+
+            startupSelfTestDone = true;
+        } finally {
+            if (STARTUP_SELFTEST_QUIET) {
+                console.log = baseLog;
+            }
+            STATE_MATRIX.clear();
+            Atomics.store(tickCounter, 0, originalTick);
+            Atomics.store(syncState, 0, SYNC.IDLE);
+            Atomics.notify(syncState, 0);
+            startupSelfTestInProgress = false;
+        }
     },
     stopWorkers: () => {
         for (const worker of workers) {
@@ -290,6 +411,16 @@ export const PULSE = {
         workerPromises = [];
         workerFaultStats.length = 0;
     },
+    getRuntimeWorkerCount: (): number => runtimeWorkerCount,
+    getStartupSelfTestStatus: () => ({
+        enabled: STARTUP_SELFTEST_ENABLED,
+        ticks: STARTUP_SELFTEST_TICKS,
+        done: startupSelfTestDone,
+        inProgress: startupSelfTestInProgress,
+        fallbackEnabled: STARTUP_SELFTEST_FALLBACK_ENABLED,
+        fallbackActivated: startupSelfTestFallbackActivated,
+        lastBreachTick: startupSelfTestLastBreachTick,
+    }),
     getWorkerFaultStats: (): WorkerFaultStat[] => workerFaultStats.map((stat) => ({ ...stat })),
     setWorkerDebugDelay: async (delayMs: number): Promise<void> => {
         if (workers.length === 0) return;

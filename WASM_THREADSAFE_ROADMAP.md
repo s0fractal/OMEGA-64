@@ -37,9 +37,10 @@ Acceptance:
 
 ## Phase 3: Safety gates
 
-- Add a startup self-test:
+- Completed: startup self-test at worker init:
   - run dry ticks on empty matrix;
   - if nonzero atoms appear, auto-fallback to `1` worker for current process.
+- Validation gate: `deno task test:startup-selftest-fallback`.
 - Add CI matrix:
   - `OMEGA_PULSE_WORKERS=4` required;
   - `OMEGA_PULSE_WORKERS=1` fallback gate.
