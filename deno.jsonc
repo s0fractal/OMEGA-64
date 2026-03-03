@@ -10,6 +10,7 @@
     "canon:mod": "deno run -A e/GENERATE_MOD_TS.ts",
     "glider:breathe": "deno run -A e/RIBOSOME_ZERO.ts",
     "core:export": "deno run -A export_core.ts",
+    "core:refresh": "deno task core:export",
     "core:pulse": "deno run -A PULSE.ts",
     "core:breath": "deno run -A BREATH.ts",
     "core:ui": "deno run -A OBSERVER_UI.ts",

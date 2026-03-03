@@ -212,6 +212,8 @@ health indicator loop:
   `run:` commands)
 - `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
   canonical export file set, no test/legacy leakage, all listed files exist)
+- `deno task core:refresh` (non-blocking snapshot refresh for
+  `OMEGA_CORE_LOGIC.md`; optional convenience command, no commit gate)
 - Canonical active architecture doc for export/model context:
   `ARCHITECTURE_ACTIVE.md` (legacy `ARCHITECTURE.md` / `GEMINI.md` are not
   included in `OMEGA_CORE_LOGIC.md` export context)
