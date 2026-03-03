@@ -50,6 +50,7 @@
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
     "ARCHITECTURE_ACTIVE.md",
+    "MUTATION_LANES.md",
     "README.md",
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
