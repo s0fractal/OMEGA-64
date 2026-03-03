@@ -6,10 +6,14 @@ const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: (idx: number) => void;
 let tick_matrix_fn: (() => void) | null = null;
+let tick_structure_grid_fn: (() => void) | null = null;
+let build_spatial_hash_fn: (() => void) | null = null;
 let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null = null;
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
+let syncStateView: Int32Array | null = null;
+let idsView: BigUint64Array | null = null;
 
 self.onmessage = async (e) => {
     const { type, pulseId } = e.data;
@@ -17,6 +21,8 @@ self.onmessage = async (e) => {
     if (type === "INIT") {
         const { buffer, wasmMemory } = e.data;
         sharedBuffer = buffer;
+        syncStateView = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
+        idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
         try {
             const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url).href);
             const wasmBytes = await wasmRes.arrayBuffer();
@@ -34,6 +40,8 @@ self.onmessage = async (e) => {
             wasmInstance = instantiated.instance;
             execute_atom_fn = wasmInstance.exports.execute_atom as any;
             tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
+            tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
+            build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
             reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
             get_neural_coherence_fn = wasmInstance.exports.get_neural_coherence as any;
             set_neural_coherence_fn = wasmInstance.exports.set_neural_coherence as any;
@@ -47,34 +55,21 @@ self.onmessage = async (e) => {
 
     if (type === "PULSE") {
         const { startIdx, endIdx } = e.data;
-        if (!wasmInstance || !execute_atom_fn || !sharedBuffer) return;
+        if (!wasmInstance || !execute_atom_fn || !syncStateView || !idsView) return;
 
-        const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
-        
         // Wait for WASM_TICKING state (1)
         // If Host is locking (2) or Idle (0), we don't start yet.
-        while (Atomics.load(syncState, 0) !== 1) {
-            Atomics.wait(syncState, 0, 0, 1); // Wait if 0, expect 1
-            if (Atomics.load(syncState, 0) === 2) {
+        while (Atomics.load(syncStateView, 0) !== 1) {
+            Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
+            if (Atomics.load(syncStateView, 0) === 2) {
                 // If it's 2, we must wait for it to become 0 then 1
-                Atomics.wait(syncState, 0, 2, 5); 
+                Atomics.wait(syncStateView, 0, 2, 5); 
             }
         }
 
-        const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-        const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-        const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
-        const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
-        const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
-        const stiffs = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS);
-        const bondDists = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
-        const dampings = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
-        const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
-        const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80);
-
         try {
             for (let i = startIdx; i < endIdx; i++) {
-                const currentId = Atomics.load(ids, i);
+                const currentId = Atomics.load(idsView, i);
                 if (currentId === 0n) continue;
 
                 // Absolute WASM Coherence: The Kernel now handles Physics AND VM
@@ -96,15 +91,13 @@ self.onmessage = async (e) => {
     }
 
     if (type === "TICK_MATRIX") {
-        const tick_structure_grid = wasmInstance?.exports.tick_structure_grid as any;
-        if (tick_structure_grid) tick_structure_grid();
+        if (tick_structure_grid_fn) tick_structure_grid_fn();
         else if (tick_matrix_fn) tick_matrix_fn();
         self.postMessage({ type: "MATRIX_DONE", pulseId });
     }
 
     if (type === "BUILD_SPATIAL_HASH") {
-        const build_spatial_hash = wasmInstance?.exports.build_spatial_hash as any;
-        if (build_spatial_hash) build_spatial_hash();
+        if (build_spatial_hash_fn) build_spatial_hash_fn();
         self.postMessage({ type: "HASH_DONE", pulseId });
     }
 
