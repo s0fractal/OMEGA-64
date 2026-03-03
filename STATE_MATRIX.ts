@@ -51,6 +51,7 @@ const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
 const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
 const bondDistances = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+const bondRequests = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
 const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
 const hiveMemory = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024);
 const hiveBalance = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1);
@@ -170,6 +171,10 @@ export const STATE_MATRIX = {
     getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
     getBondStiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
     getBondDistance: (i: number, slot: number) => Atomics.load(bondDistances, i * 4 + slot),
+    hasBondRequest: (i: number) => Atomics.load(bondRequests, i * 3) !== 0,
+    getBondRequestInitiator: (i: number) => Atomics.load(bondRequests, i * 3),
+    getBondRequestTarget: (i: number) => Atomics.load(bondRequests, i * 3 + 1),
+    getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
     getDamping: (i: number) => Atomics.load(damping, i),
     getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
     setHiveMemory: (addr: number, val: number) => { Atomics.store(hiveMemory, addr & 1023, val); },
@@ -200,11 +205,11 @@ export const STATE_MATRIX = {
     setPC: (i: number, val: number) => Atomics.store(contextByteView, i * 64 + 32, val),
 
     getBondRequest: (i: number) => {
-        const req = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 3);
-        const initiator = Atomics.load(req, 0);
-        return initiator !== 0 ? req : null;
+        const base = i * 3;
+        const initiator = Atomics.load(bondRequests, base);
+        return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
     },
-    clearBondRequest: (i: number) => Atomics.store(new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 1), 0, 0),
+    clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
 
     clear: () => {
         // Preserve low-memory wasm runtime segments; wipe only the lattice region.

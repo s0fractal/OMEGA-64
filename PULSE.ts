@@ -28,6 +28,7 @@ const SPAWN_SLOT_BYTES = 16;
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
 
+const idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
 const xsView = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
 const ysView = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
 const energiesView = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
@@ -45,6 +46,12 @@ const spawnDataView = new DataView(
 const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number => Date.now() + Math.floor(Math.random() * 1_000_000);
+const findNextFreeSlot = (startIdx: number): number => {
+    for (let i = startIdx; i < MAX_ATOMS; i++) {
+        if (Atomics.load(idsView, i) === 0n) return i;
+    }
+    return -1;
+};
 
 const waitForWorkerMessage = <T = any>(
     worker: Worker,
@@ -180,9 +187,8 @@ export const PULSE = {
 
             // 1. Resolve Sequential Logic
             for (const i of activeIdx) {
-                const bondReq = STATE_MATRIX.getBondRequest(i);
-                if (bondReq) {
-                    const targetIdx = bondReq[1];
+                if (STATE_MATRIX.hasBondRequest(i)) {
+                    const targetIdx = STATE_MATRIX.getBondRequestTarget(i);
                     if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
                         STATE_MATRIX.setBondTarget(i, 0, targetIdx);
                         STATE_MATRIX.setBondStiffness(i, 0, 0.1);
@@ -231,6 +237,10 @@ export const PULSE = {
 
                 let spawned = 0;
                 let cursor = readHead;
+                let freeSearchCursor = 0;
+                let freeSlotsExhausted = false;
+                const genome = new Uint8Array(8);
+                const genomeWords = new Uint32Array(genome.buffer);
 
                 while (cursor !== writeCursor && spawned < 64) {
                     const slotOff = cursor * SPAWN_SLOT_BYTES;
@@ -242,13 +252,20 @@ export const PULSE = {
                         const cy = spawnDataView.getInt16(slotOff + 10, true);
                         const childEnergy = spawnDataView.getInt32(slotOff + 12, true);
 
-                        const freeIdx = STATE_MATRIX.findFreeSlot();
+                        let freeIdx = -1;
+                        if (!freeSlotsExhausted) {
+                            freeIdx = findNextFreeSlot(freeSearchCursor);
+                            if (freeIdx >= 0) {
+                                freeSearchCursor = freeIdx + 1;
+                            } else {
+                                freeSlotsExhausted = true;
+                            }
+                        }
 
                         if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
                             const childId = BigInt(Date.now()) ^ BigInt(freeIdx);
-                            const genome = new Uint8Array(8);
-                            new Uint32Array(genome.buffer)[0] = genomeLo;
-                            new Uint32Array(genome.buffer)[1] = genomeHi;
+                            genomeWords[0] = genomeLo;
+                            genomeWords[1] = genomeHi;
                             
                             // Seed atom with standard biological script and genome
                             STATE_MATRIX.seedAtom(freeIdx, childId, cx * 10 + 5, cy * 10 + 5, Math.max(childEnergy, 500) / STATE_MATRIX.SCALE, 0, genome);
