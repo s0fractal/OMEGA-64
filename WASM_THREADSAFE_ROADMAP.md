@@ -45,8 +45,10 @@ Acceptance:
   - GitHub Actions workflow at `.github/workflows/coherence-worker-matrix.yml`;
   - `OMEGA_PULSE_WORKERS=4` required;
   - `OMEGA_PULSE_WORKERS=1` fallback gate.
+- Completed regression alignment:
+  - include `test_tensegrity.ts` in `vector10:verify` (`deno task test:tensegrity`).
 
 Acceptance:
 
 - No spontaneous atoms in either mode.
-- No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts`.
+- No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts` (enforced by verify chain).

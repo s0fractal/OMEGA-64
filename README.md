@@ -145,6 +145,7 @@ health indicator loop:
 - `deno task wasm:build`
 - `deno task vector10:verify`
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
+- `deno task test:tensegrity` (Vector 2 bond rigidity regression gate, now included in `vector10:verify`)
 - `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
 - `deno task test:worker-coherence:long` (1000-tick empty-matrix parallel coherence burn-in)
 - `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
