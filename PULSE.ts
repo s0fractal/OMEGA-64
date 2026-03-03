@@ -46,6 +46,23 @@ const spawnDataView = new DataView(
 const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number => Date.now() + Math.floor(Math.random() * 1_000_000);
+const CHILD_ID_SALT = 0x9E3779B97F4A7C15n;
+const deriveChildId = (
+    tick: number,
+    freeIdx: number,
+    genomeLo: number,
+    genomeHi: number,
+    cx: number,
+    cy: number,
+): bigint => {
+    const tickPart = BigInt(tick >>> 0) << 32n;
+    const idxPart = BigInt((freeIdx + 1) >>> 0);
+    const genomePart = (BigInt(genomeLo >>> 0) << 32n) | BigInt(genomeHi >>> 0);
+    const posBits = (((cx & 0xFFFF) << 16) | (cy & 0xFFFF)) >>> 0;
+    let id = tickPart ^ genomePart ^ (BigInt(posBits) << 8n) ^ idxPart ^ CHILD_ID_SALT;
+    if (id === 0n) id = idxPart;
+    return id === 0n ? 1n : id;
+};
 const findNextFreeSlot = (startIdx: number): number => {
     for (let i = startIdx; i < MAX_ATOMS; i++) {
         if (Atomics.load(idsView, i) === 0n) return i;
@@ -263,7 +280,7 @@ export const PULSE = {
                         }
 
                         if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
-                            const childId = BigInt(Date.now()) ^ BigInt(freeIdx);
+                            const childId = deriveChildId(currentTick, freeIdx, genomeLo, genomeHi, cx, cy);
                             genomeWords[0] = genomeLo;
                             genomeWords[1] = genomeHi;
                             

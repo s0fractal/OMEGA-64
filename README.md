@@ -146,8 +146,10 @@ health indicator loop:
 - `deno task vector10:verify`
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
 - `OMEGA_PULSE_WORKERS=4 OMEGA_WORKER_COHERENCE_TICKS=200 deno run -A test_wasm_worker_coherence.ts` (parallel stress)
+- `deno task test:worker-coherence:long` (1000-tick empty-matrix parallel coherence burn-in)
 - `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
+- `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for 1-worker vs 4-workers)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` with strict/non-strict drift metrics)
 - `deno task test:structure-intent-determinism` (conflict-heavy structure write parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix pass)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS

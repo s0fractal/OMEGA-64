@@ -25,13 +25,14 @@ Acceptance:
 
 ## Phase 2: Parallel hardening (next)
 
-- Extend coherence test to long run (`>=1000` ticks).
-- Add stress seeds with mixed VM opcodes, spawn pressure, and structure writes.
-- Track worker-level fault counters and auto-retry on timeout before failing tick.
+- Completed: extend coherence test to long run (`>=1000` ticks) via `deno task test:worker-coherence:long`.
+- Completed: add stress seeds with mixed VM opcodes, spawn pressure, and structure writes via `test_spawn_determinism.ts` (`deno task test:spawn-determinism`).
+- Next: track worker-level fault counters and auto-retry on timeout before failing tick.
 
 Acceptance:
 
 - `OMEGA_PULSE_WORKERS=4 deno run -A test_wasm_worker_coherence.ts` is green for at least 1000 ticks.
+- `deno task test:spawn-determinism` remains green (strict 1-worker vs 4-worker hash parity under spawn pressure).
 
 ## Phase 3: Safety gates
 
