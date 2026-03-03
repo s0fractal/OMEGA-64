@@ -1,4 +1,5 @@
 import { loadSoakTrendThresholds } from "./worker_gate_thresholds.ts";
+import { loadTrendBaselineWithBootstrap } from "./worker_trend_baseline.ts";
 import { limitByRatioAndDelta, minByRatio } from "./worker_trend_math.ts";
 
 const SOAK_JSON_PATH = "WORKER_SOAK_STABILITY.json";
@@ -162,25 +163,18 @@ const main = async () => {
     await Deno.readTextFile(SOAK_JSON_PATH),
   ) as SoakReport;
 
-  let baseline: SoakTrendBaseline;
-  try {
-    baseline = JSON.parse(
-      await Deno.readTextFile(BASELINE_JSON_PATH),
-    ) as SoakTrendBaseline;
-  } catch {
-    const bootstrap = Deno.env.get("OMEGA_SOAK_TREND_BOOTSTRAP") === "1";
-    if (!bootstrap) {
-      throw new Error(
-        `[SOAK-TREND] Missing ${BASELINE_JSON_PATH}. Re-run with OMEGA_SOAK_TREND_BOOTSTRAP=1 to generate baseline.`,
-      );
-    }
-    baseline = baselineFromReport(current);
-    await Deno.writeTextFile(
-      BASELINE_JSON_PATH,
-      JSON.stringify(baseline, null, 2),
-    );
-    console.log(`[SOAK-TREND] Baseline created: ${BASELINE_JSON_PATH}`);
-  }
+  const baseline = await loadTrendBaselineWithBootstrap<
+    SoakReport,
+    SoakTrendBaseline
+  >({
+    baselinePath: BASELINE_JSON_PATH,
+    bootstrapEnv: "OMEGA_SOAK_TREND_BOOTSTRAP",
+    current,
+    baselineFromCurrent: baselineFromReport,
+    missingErrorMessage: (path, envVar) =>
+      `[SOAK-TREND] Missing ${path}. Re-run with ${envVar}=1 to generate baseline.`,
+    createdLogMessage: (path) => `[SOAK-TREND] Baseline created: ${path}`,
+  });
 
   const checks: Check[] = [];
   checks.push({

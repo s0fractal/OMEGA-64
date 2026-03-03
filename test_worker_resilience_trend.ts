@@ -1,4 +1,5 @@
 import { loadResilienceTrendThresholds } from "./worker_gate_thresholds.ts";
+import { loadTrendBaselineWithBootstrap } from "./worker_trend_baseline.ts";
 import {
   ensurePositive,
   limitByRatioAndDeltaCeil,
@@ -120,26 +121,18 @@ const main = async () => {
   const audit = JSON.parse(
     await Deno.readTextFile(AUDIT_JSON_PATH),
   ) as AuditReport;
-  let baseline: TrendBaseline;
-
-  try {
-    baseline = JSON.parse(
-      await Deno.readTextFile(BASELINE_JSON_PATH),
-    ) as TrendBaseline;
-  } catch {
-    const bootstrap = Deno.env.get("OMEGA_RESILIENCE_TREND_BOOTSTRAP") === "1";
-    if (!bootstrap) {
-      throw new Error(
-        `[TREND] Missing ${BASELINE_JSON_PATH}. Re-run with OMEGA_RESILIENCE_TREND_BOOTSTRAP=1 to generate baseline.`,
-      );
-    }
-    baseline = baselineFromAudit(audit);
-    await Deno.writeTextFile(
-      BASELINE_JSON_PATH,
-      JSON.stringify(baseline, null, 2),
-    );
-    console.log(`[TREND] Baseline created: ${BASELINE_JSON_PATH}`);
-  }
+  const baseline = await loadTrendBaselineWithBootstrap<
+    AuditReport,
+    TrendBaseline
+  >({
+    baselinePath: BASELINE_JSON_PATH,
+    bootstrapEnv: "OMEGA_RESILIENCE_TREND_BOOTSTRAP",
+    current: audit,
+    baselineFromCurrent: baselineFromAudit,
+    missingErrorMessage: (path, envVar) =>
+      `[TREND] Missing ${path}. Re-run with ${envVar}=1 to generate baseline.`,
+    createdLogMessage: (path) => `[TREND] Baseline created: ${path}`,
+  });
 
   const checks: Check[] = [];
 
