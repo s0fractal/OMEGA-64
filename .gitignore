@@ -47,6 +47,8 @@ build/
 WORKER_DRIFT_AUDIT.md
 WORKER_DRIFT_AUDIT.json
 WORKER_RESILIENCE_AUDIT.json
+WORKER_RESILIENCE_BUDGET.json
+WORKER_RESILIENCE_BUDGET.md
 node_modules/
 worker_test.js
 mandala_raw.svg
