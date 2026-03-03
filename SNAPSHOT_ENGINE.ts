@@ -4,7 +4,7 @@
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { ensureDir } from "jsr:@std/fs@0.224.0/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";

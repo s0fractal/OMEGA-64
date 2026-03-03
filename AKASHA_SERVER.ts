@@ -1,4 +1,4 @@
-import { parse as parseYaml } from "jsr:@std/yaml";
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 
 const PORT = 8080;
 const ROOT = "./";
