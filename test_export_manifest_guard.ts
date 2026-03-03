@@ -147,6 +147,12 @@ const main = async () => {
   if (!/loadManifest/u.test(exporter)) {
     throw new Error("[manifest] export_core.ts must load manifest at runtime");
   }
+  if (!exporter.includes("Manifest SHA256")) {
+    throw new Error("[manifest] export_core.ts must emit manifest provenance");
+  }
+  if (!/renderCoreExport/u.test(exporter)) {
+    throw new Error("[manifest] export_core.ts must expose renderCoreExport");
+  }
 
   console.log("[manifest] CORE_ARCH_MANIFEST guard passed.");
 };
