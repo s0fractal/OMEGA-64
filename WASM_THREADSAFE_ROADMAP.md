@@ -61,7 +61,7 @@ Acceptance:
   - `test_runtime_monoculture.ts` blocks `node/npm/npx/yarn/pnpm/ts-node` invocations in `deno.jsonc` tasks and workflow `run:` commands;
   - wired into `verify:coherence` preflight as `deno task test:runtime-monoculture`.
 - Completed resilience budget gate:
-  - `test_worker_resilience_budget.ts` enforces retry/drift ceilings over unified audit output;
+  - `test_worker_resilience_budget.ts` enforces retry/drift/duration ceilings over unified audit output;
   - wired into matrix/nightly artifacts via `deno task test:worker-resilience-budget`.
 
 Acceptance:

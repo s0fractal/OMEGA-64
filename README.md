@@ -156,7 +156,7 @@ health indicator loop:
 - `deno task test:worker-timeout-retry:multi` (parallel 4-worker timeout-retry resilience gate; all workers must recover without failures)
 - `deno task test:worker-jitter-resilience` (4-worker jitter/chaos gate: randomized per-message delays, zero drift, zero worker failures)
 - `deno task test:worker-resilience-audit` (writes `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift summary)
-- `deno task test:worker-resilience-budget` (runs audit + enforces retry/drift budgets; writes `WORKER_RESILIENCE_BUDGET.json/.md`)
+- `deno task test:worker-resilience-budget` (runs audit + enforces retry/drift/duration budgets; writes `WORKER_RESILIENCE_BUDGET.json/.md`)
 - `deno task test:startup-selftest-fallback` (cold-start self-test breach simulation + auto-fallback to 1 worker)
 - `deno task test:startup-selftest-nominal` (cold-start self-test nominal branch + lifecycle reset across `stop/init`)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` and `WORKER_DRIFT_AUDIT.json` with strict/non-strict drift metrics)
