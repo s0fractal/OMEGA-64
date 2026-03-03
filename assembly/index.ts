@@ -34,6 +34,8 @@ const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
 const SPAWN_GRID_OFF: usize  = SAFETY_BUFFER + 19600000;
 const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40300104;
+const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40400000;
+const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 40600000;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -66,6 +68,8 @@ const MAX_ASCENSIONS: i32 = 64;
 @inline function setPhase(idx: i32, val: i32): void { store<i32>(PHASE_OFFSET + (idx << 2) as usize, val); }
 @inline function getX(idx: i32): i16 { return load<i16>(XS_OFFSET + (idx << 1) as usize); }
 @inline function getY(idx: i32): i16 { return load<i16>(YS_OFFSET + (idx << 1) as usize); }
+@inline function getReadX(idx: i32): i16 { return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1) as usize); }
+@inline function getReadY(idx: i32): i16 { return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1) as usize); }
 @inline function getLogicByte(idx: i32, slot: i32): u8 { return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize); }
 @inline function getBondTarget(atomIdx: i32, slot: i32): i32 { return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
 @inline function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void { store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx); }
@@ -267,8 +271,8 @@ const WORLD_MAX_Y: i32 = 799;
                     let otherIdx = getSpatialGridAtom(cx, cy, s);
                     if (otherIdx == idx || otherIdx >= MAX_ATOMS) continue;
                     
-                    let oX = getX(otherIdx) as f32;
-                    let oY = getY(otherIdx) as f32;
+                    let oX = getReadX(otherIdx) as f32;
+                    let oY = getReadY(otherIdx) as f32;
                     let dx = oX - (x as f32);
                     let dy = oY - (y as f32);
                     let d2 = dx*dx + dy*dy;
@@ -361,8 +365,8 @@ const WORLD_MAX_Y: i32 = 799;
         if (targetDist == 0) targetDist = 50;
 
         let stiffness = getBondStiffness(idx, b);
-        let pX = getX(targetIdx) as f32;
-        let pY = getY(targetIdx) as f32;
+        let pX = getReadX(targetIdx) as f32;
+        let pY = getReadY(targetIdx) as f32;
         let dx = pX - (x as f32);
         let dy = pY - (y as f32);
         let dist = Mathf.sqrt(dx*dx + dy*dy);
@@ -392,15 +396,13 @@ const WORLD_MAX_Y: i32 = 799;
         fy *= dampingFactor;
     }
 
-    let curX = getX(idx) as i32;
-    let curY = getY(idx) as i32;
-    storeClampedPos(idx, curX + (Math.round(fx) as i32), curY + (Math.round(fy) as i32));
+    storeClampedPos(idx, x + (Math.round(fx) as i32), y + (Math.round(fy) as i32));
 }
 
 export function execute_atom(atomIndex: i32): void {
     let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
-    let curX = getX(atomIndex) as i32;
-    let curY = getY(atomIndex) as i32;
+    let curX = getReadX(atomIndex) as i32;
+    let curY = getReadY(atomIndex) as i32;
     let role = getRole(atomIndex);
 
     // --- VECTOR 7: THE QUANTUM SHIFT ---

@@ -106,6 +106,8 @@ export const assertWasmLayout = async (): Promise<void> => {
         { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
         { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
         { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
+        { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
+        { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
     ];
 
     const mismatches: string[] = [];

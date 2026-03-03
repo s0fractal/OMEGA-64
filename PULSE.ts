@@ -155,6 +155,16 @@ export const PULSE = {
             const hashPulseId = nextPulseId();
             await postAndWait(workers[0], { type: "BUILD_SPATIAL_HASH", pulseId: hashPulseId }, "HASH_DONE");
 
+            // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
+            {
+                const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
+                const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+                const readXs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_XS_OFFSET, MAX_ATOMS);
+                const readYs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_YS_OFFSET, MAX_ATOMS);
+                readXs.set(xs);
+                readYs.set(ys);
+            }
+
             // 2b. Execute Physics (WASM)
             // Transition to WASM_TICKING (1) to unblock workers
             Atomics.store(syncState, 0, SYNC.WASM_TICKING);
