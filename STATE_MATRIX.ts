@@ -63,6 +63,7 @@ const neuralCoherence = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OF
 
 const instructions = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
 const contexts = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16); // 16 * 4 = 64 bytes
+const contextByteView = new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
 
 // Coordination Views (Atomic)
 const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
@@ -179,7 +180,7 @@ export const STATE_MATRIX = {
     
     getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
     getReg: (i: number, reg: number) => Atomics.load(contexts, i * 16 + reg),
-    getPC: (i: number) => Atomics.load(new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET + i * 64 + 32, 1), 0),
+    getPC: (i: number) => Atomics.load(contextByteView, i * 64 + 32),
 
     setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
     setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
@@ -196,7 +197,7 @@ export const STATE_MATRIX = {
 
     setInstructions: (i: number, val: Uint8Array) => instructions.set(val, i * 64),
     setReg: (i: number, reg: number, val: number) => Atomics.store(contexts, i * 16 + reg, val),
-    setPC: (i: number, val: number) => Atomics.store(new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET + i * 64 + 32, 1), 0, val),
+    setPC: (i: number, val: number) => Atomics.store(contextByteView, i * 64 + 32, val),
 
     getBondRequest: (i: number) => {
         const req = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET + i * 12, 3);
@@ -251,7 +252,7 @@ export const STATE_MATRIX = {
         // Reset Context
         for (let r = 0; r < 16; r++) Atomics.store(contexts, i * 16 + r, 0);
         // PC is at offset 32 (Reg index 8)
-        Atomics.store(new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET + i * 64 + 32, 1), 0, 0);
+        Atomics.store(contextByteView, i * 64 + 32, 0);
     },
 
     seedGuardian: (i: number, id: bigint, x: number, y: number, energy: number = 10, resonance: number = 100) => {
