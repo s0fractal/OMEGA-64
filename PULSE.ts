@@ -294,6 +294,7 @@ const startWorkers = async (count: number): Promise<void> => {
             type: "INIT",
             wasmMemory: STATE_MATRIX.wasmMemory,
             buffer: STATE_MATRIX.buffer,
+            workerIndex: i,
         });
         workerPromises.push(p.then(() => undefined));
     }
@@ -442,6 +443,23 @@ export const PULSE = {
                 workers[i],
                 { type: "SET_DEBUG_DELAY", delayMs: boundedDelay, pulseId },
                 "DEBUG_DELAY_SET",
+                Math.max(1_000, WORKER_RESPONSE_TIMEOUT_MS),
+            ));
+        }
+        await Promise.all(updates);
+    },
+    setWorkerDebugJitter: async (minMs: number, maxMs: number): Promise<void> => {
+        if (workers.length === 0) return;
+        const boundedMin = Math.max(0, Math.min(2000, Math.floor(minMs)));
+        const boundedMax = Math.max(0, Math.min(2000, Math.floor(maxMs)));
+        const updates: Promise<any>[] = [];
+        for (let i = 0; i < workers.length; i++) {
+            const pulseId = nextPulseId();
+            updates.push(postAndWait(
+                i,
+                workers[i],
+                { type: "SET_DEBUG_JITTER", minMs: boundedMin, maxMs: boundedMax, pulseId },
+                "DEBUG_JITTER_SET",
                 Math.max(1_000, WORKER_RESPONSE_TIMEOUT_MS),
             ));
         }

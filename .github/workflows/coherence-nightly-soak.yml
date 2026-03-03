@@ -34,6 +34,9 @@ jobs:
       - name: Run long coherence burn-in
         run: deno task test:worker-coherence:long
 
+      - name: Run jitter chaos gate
+        run: deno task test:worker-jitter-resilience
+
       - name: Run worker drift audit
         run: deno task test:worker-drift-audit
 

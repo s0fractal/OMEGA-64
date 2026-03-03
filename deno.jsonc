@@ -33,6 +33,7 @@
     "test:spawn-determinism": "deno run -A test_spawn_determinism.ts",
     "test:worker-timeout-retry": "deno run -A test_worker_timeout_retry.ts",
     "test:worker-timeout-retry:multi": "deno run -A test_worker_timeout_retry_multi.ts",
+    "test:worker-jitter-resilience": "deno run -A test_worker_jitter_resilience.ts",
     "test:startup-selftest-fallback": "deno run -A test_startup_selftest_fallback.ts",
     "test:startup-selftest-nominal": "deno run -A test_startup_selftest_nominal.ts",
     "test:worker-determinism-fuzz": "deno run -A test_worker_determinism_fuzz.ts",
@@ -41,10 +42,10 @@
     "ci:verify:worker1": "OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep",
     "ci:verify:worker4": "OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep",
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
-    "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && OMEGA_PULSE_WORKERS=4 deno task test:worker-drift-audit",
+    "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && OMEGA_PULSE_WORKERS=4 deno task test:worker-jitter-resilience && OMEGA_PULSE_WORKERS=4 deno task test:worker-drift-audit",
     "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
     "verify:coherence": "deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:crystalline && deno task test:neural && deno task test:quantum",
-    "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
+    "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {
     "exclude": ["I.ts", "UI/", "SINGULARITY/"],

@@ -15,19 +15,38 @@ let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
 let debugDelayMs = 0;
+let debugJitterMinMs = 0;
+let debugJitterMaxMs = 0;
+let debugJitterSeed = 0x9E3779B9;
+const nextJitterUnit = (): number => {
+    debugJitterSeed = (Math.imul(debugJitterSeed, 1664525) + 1013904223) >>> 0;
+    return debugJitterSeed / 0x1_0000_0000;
+};
+const sampleJitterMs = (): number => {
+    if (debugJitterMaxMs <= 0) return 0;
+    const lo = Math.max(0, Math.min(2000, debugJitterMinMs));
+    const hi = Math.max(lo, Math.min(2000, debugJitterMaxMs));
+    if (hi === lo) return lo;
+    return lo + Math.floor(nextJitterUnit() * (hi - lo + 1));
+};
 const maybeDelay = async () => {
-    if (debugDelayMs <= 0) return;
-    await new Promise((resolve) => setTimeout(resolve, debugDelayMs));
+    const totalDelay = debugDelayMs + sampleJitterMs();
+    if (totalDelay <= 0) return;
+    await new Promise((resolve) => setTimeout(resolve, totalDelay));
 };
 
 self.onmessage = async (e) => {
     const { type, pulseId } = e.data;
 
     if (type === "INIT") {
-        const { buffer, wasmMemory } = e.data;
+        const { buffer, wasmMemory, workerIndex } = e.data;
         sharedBuffer = buffer;
         syncStateView = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
         idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+        const idx = Number(workerIndex);
+        if (Number.isFinite(idx)) {
+            debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
+        }
         try {
             const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url).href);
             const wasmBytes = await wasmRes.arrayBuffer();
@@ -130,5 +149,16 @@ self.onmessage = async (e) => {
         debugDelayMs = Number.isFinite(delayRaw) ? Math.max(0, Math.min(2000, Math.floor(delayRaw))) : 0;
         await maybeDelay();
         self.postMessage({ type: "DEBUG_DELAY_SET", pulseId });
+    }
+
+    if (type === "SET_DEBUG_JITTER") {
+        const minRaw = Number(e.data.minMs);
+        const maxRaw = Number(e.data.maxMs);
+        const minMs = Number.isFinite(minRaw) ? Math.max(0, Math.min(2000, Math.floor(minRaw))) : 0;
+        const maxMs = Number.isFinite(maxRaw) ? Math.max(0, Math.min(2000, Math.floor(maxRaw))) : 0;
+        debugJitterMinMs = Math.min(minMs, maxMs);
+        debugJitterMaxMs = Math.max(minMs, maxMs);
+        await maybeDelay();
+        self.postMessage({ type: "DEBUG_JITTER_SET", minMs: debugJitterMinMs, maxMs: debugJitterMaxMs, pulseId });
     }
 };
