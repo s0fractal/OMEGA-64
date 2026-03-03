@@ -22,6 +22,9 @@ const parseStrictDeterminism = (): boolean => {
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
+const GRID_W = 140;
+const GRID_H = 80;
+const GRID_CELLS = GRID_W * GRID_H;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
@@ -170,6 +173,15 @@ export const PULSE = {
                 readEnergies.set(energies);
                 readResonances.set(resonances);
             }
+            // 2a.2 Clear structure intent buffers before parallel execute phase.
+            {
+                const buildOwners = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS);
+                const buildValues = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS);
+                const chargeIntents = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS);
+                buildOwners.fill(0);
+                buildValues.fill(0);
+                chargeIntents.fill(0);
+            }
 
             // 2b. Execute Physics (WASM)
             // Transition to WASM_TICKING (1) to unblock workers
@@ -221,6 +233,36 @@ export const PULSE = {
                         Atomics.add(resonances, idx, dr);
                         if (Atomics.load(resonances, idx) < 0) Atomics.store(resonances, idx, 0);
                         Atomics.store(resonanceDelta, idx, 0);
+                    }
+                }
+            }
+            // 2d. Deterministic reduce/apply of structure intents.
+            {
+                const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS);
+                const buildOwners = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS);
+                const buildValues = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS);
+                const chargeIntents = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS);
+
+                for (let cellIdx = 0; cellIdx < GRID_CELLS; cellIdx++) {
+                    const ownerRaw = Atomics.load(buildOwners, cellIdx);
+                    if (ownerRaw !== 0) {
+                        const owner = ownerRaw & 0x7fffffff;
+                        if (owner !== 0) {
+                            Atomics.store(structureGrid, cellIdx, Atomics.load(buildValues, cellIdx));
+                        }
+                        Atomics.store(buildOwners, cellIdx, 0);
+                        Atomics.store(buildValues, cellIdx, 0);
+                    }
+
+                    const intentCharge = Atomics.load(chargeIntents, cellIdx);
+                    if (intentCharge > 0) {
+                        const charge = intentCharge > 255 ? 255 : intentCharge;
+                        const current = Atomics.load(structureGrid, cellIdx);
+                        const currentCharge = (current >>> 16) & 0xFF;
+                        if (charge > currentCharge) {
+                            Atomics.store(structureGrid, cellIdx, (current & ~0x00ff0000) | (charge << 16));
+                        }
+                        Atomics.store(chargeIntents, cellIdx, 0);
                     }
                 }
             }

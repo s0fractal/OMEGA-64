@@ -112,6 +112,9 @@ export const assertWasmLayout = async (): Promise<void> => {
         { asm: "PHYSICS_READ_RESONANCE_OFF", value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET },
         { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
         { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
+        { asm: "STRUCTURE_BUILD_OWNER_OFF", value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET },
+        { asm: "STRUCTURE_BUILD_VALUE_OFF", value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET },
+        { asm: "STRUCTURE_CHARGE_INTENT_OFF", value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET },
     ];
 
     const mismatches: string[] = [];

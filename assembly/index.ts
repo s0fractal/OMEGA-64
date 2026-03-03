@@ -40,6 +40,9 @@ const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 40800000;
 const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 41200000;
 const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 41600000;
 const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
+const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
+const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
+const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -81,6 +84,48 @@ const MAX_ASCENSIONS: i32 = 64;
 }
 @inline function addResonanceDelta(idx: i32, delta: i32): void {
     if (delta != 0) atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2) as usize, delta);
+}
+const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
+const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
+@inline function publishBuildIntent(cellIdx: i32, ownerAtomIdx: i32, buildValue: i32): void {
+    const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
+    const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
+    const ownerToken = ownerAtomIdx + 1;
+
+    while (true) {
+        const snapshot = atomic.load<i32>(ownerPtr);
+        if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
+
+        const observed = atomic.cmpxchg<i32>(ownerPtr, snapshot, snapshot | STRUCTURE_INTENT_LOCK_BIT);
+        if (observed != snapshot) continue;
+
+        let winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
+        if (ownerToken >= winningOwner) {
+            atomic.store<i32>(valuePtr, buildValue);
+            winningOwner = ownerToken;
+        }
+        atomic.store<i32>(ownerPtr, winningOwner);
+        return;
+    }
+}
+@inline function publishChargeIntent(cellIdx: i32, requestedCharge: i32): void {
+    const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
+    let charge = requestedCharge;
+    if (charge < 0) charge = 0;
+    if (charge > 255) charge = 255;
+
+    while (true) {
+        const current = atomic.load<i32>(ptr);
+        if (charge <= current) return;
+        const observed = atomic.cmpxchg<i32>(ptr, current, charge);
+        if (observed == current) return;
+    }
+}
+@inline function readStructureCharge(cellIdx: i32): i32 {
+    const cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+    const baseCharge = (cellVal >> 16) & 0xFF;
+    const intentCharge = atomic.load<i32>(STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize);
+    return intentCharge > baseCharge ? intentCharge : baseCharge;
 }
 @inline function getLogicByte(idx: i32, slot: i32): u8 { return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize); }
 @inline function getBondTarget(atomIdx: i32, slot: i32): i32 { return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
@@ -474,8 +519,7 @@ export function execute_atom(atomIndex: i32): void {
                     let gx = rx / 10;
                     let gy = ry / 10;
                     if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                        let cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + ((gy * 140 + gx) << 2));
-                        val = (cellVal >> 16) & 0xFF;
+                        val = readStructureCharge(gy * 140 + gx);
                     }
                 }
                 else if (prop == PROP_QUORUM) {
@@ -575,11 +619,8 @@ export function execute_atom(atomIndex: i32): void {
                     let cellIdx = gy * 140 + gx;
                     let currentResonance = resonance;
                     let bonus = (currentResonance / 10) > 55 ? 55 : (currentResonance / 10);
-                    
-                    let cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
                     let nextCharge = 200 + bonus;
-                    if (nextCharge > 255) nextCharge = 255;
-                    atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), (cellVal & ~0x00FF0000) | (nextCharge << 16));
+                    publishChargeIntent(cellIdx, nextCharge);
                 }
                 fireSignal(atomIndex); // Also fire biological signal to neighbors
                 pc += 1;
@@ -593,14 +634,12 @@ export function execute_atom(atomIndex: i32): void {
                 let gridIdx = (gy * 140 + gx) as usize;
 
                 if (mode == 0) { // READ CHARGE
-                    let cell = load<i32>(STRUCTURE_GRID_OFF + (gridIdx << 2));
-                    let charge = (cell >> 16) & 0xFF;
+                    let charge = readStructureCharge(gridIdx as i32);
                     setReg(atomIndex, reg as i32, charge);
                     trace_atom(atomIndex, 0xA4, gx, gy, charge);
                 } else if (mode == 1) { // WRITE CHARGE
                     let charge = getReg(atomIndex, reg as i32) & 0xFF;
-                    let current = load<i32>(STRUCTURE_GRID_OFF + (gridIdx << 2));
-                    store<i32>(STRUCTURE_GRID_OFF + (gridIdx << 2), (current & ~0x00FF0000) | (charge << 16));
+                    publishChargeIntent(gridIdx as i32, charge);
                     energy -= 10; 
                 }
                 pc += 3;
@@ -715,7 +754,7 @@ export function execute_atom(atomIndex: i32): void {
                         if (tx >= 0 && tx < 140 && ty >= 0 && ty < 80) {
                             let cellIdx = ty * 140 + tx;
                             let newVal = ((state as i32) << 24) | ((type as i32) & 0xFF);
-                            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2), newVal);
+                            publishBuildIntent(cellIdx, atomIndex, newVal);
                         }
                     }
                 }
