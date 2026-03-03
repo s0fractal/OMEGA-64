@@ -1,53 +1,27 @@
-import { 
-  REJECTION, 
-  type StateSnapshot, 
-  type DeltaProposal, 
-  type GateConfig, 
-  type GateDecision, 
-  type LedgerEvent, 
-  type BridgeModeEvent 
+import {
+  type BridgeModeEvent,
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  type LedgerEvent,
+  REJECTION,
+  type StateSnapshot,
 } from "./STATE_SNAPSHOT.ts";
-
-/**
- * Mocking legacy @omega imports that are not used in the core logic or are redundant.
- * In a full production system, these would be properly resolved via a registry.
- */
-const LEDGER = { 
-  STORAGE_PATH: "./OMEGA_LEDGER.jsonl", 
-  append: async (e: any) => { 
-    if (e) console.log(`[LEDGER] ${JSON.stringify(e).slice(0, 100)}...`); 
-  } 
-};
-const LOAD = { calculate: (p: { weight: number, entropy: number, phase: number }, _lp: number) => Math.abs(p.weight) * 0.1 };
-const CHECKPOINT = { save: async (_s: any, r: string) => console.log(`[CHECKPOINT] ${r}`) };
-const TOPOLOGICAL_SIGNATURE = { 
-  validateHash: (_h: string) => true, 
-  build: async (_p: any) => ({
-    projection_2d_hash: "0x",
-    thread_1d_hash: "0x",
-    projection_version: "v1",
-    artifact_hash: "0x",
-    tick: 0,
-    causal_refs: []
-  }), 
-  snapshotToOrganismState: (_s: any) => ({}) 
-};
-const CANON_CAUSAL_BRIDGE = { resolveMode: (_r: any) => ({ mode: "GREEN" as const, reason: "Autonomous" }), isCanonBound: (_p: any) => false };
-const AGENT_SIGNATURE = { 
-  toCanonicalObject: (p: any) => p, 
-  proposalEnvelopeHash: async (_p: any) => "0x", 
-  verifyProposal: async (_p: any, _k: any) => ({ ok: true, reason: undefined as string | undefined }) 
-};
-const PROPOSAL_ENVELOPE_INDEX = { 
-  pathForLedger: (p: string) => p + ".index", 
-  getRecentEnvelopeHashes: async (_s: number, _e: number, _p: string) => new Set<string>(), 
-  appendFromLedgerEvent: async (_e: any, _p: string) => {} 
-};
-const INVARIANT_PACKET = { hash: async (_p: any) => "0x", fromInvariantReport: async (_r: any, _c: any) => ({}) };
-const I16_CLAMP = (n: number) => Math.max(-32768, Math.min(32767, n));
-const I16_LIMITS = () => ({ max: 32767, min: -32768, span: 65536 });
-const CRYSTALLIZATION_CONFIG = { policyVersion: "v1" };
-const CRYSTALLIZATION_POLICY = { hash: async () => "0x" };
+import {
+  AGENT_SIGNATURE,
+  CANON_CAUSAL_BRIDGE,
+  CHECKPOINT_CHECKPOINT as CHECKPOINT,
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
+  I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP,
+  I16_LIMITS_I16_LIMITS as I16_LIMITS,
+  INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET,
+  LEDGER__08_00_LEDGER as LEDGER,
+  LOAD_LOAD as LOAD,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX,
+  TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
+} from "./SHIMS.ts";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -160,9 +134,10 @@ export const GATE = {
     const signatureKeys = config.agent_signature_keys;
     const reliabilityMode = config.reliability_mode ?? "STATIC";
     const reliabilityFloor = clamp01(config.reliability_floor ?? 0);
-    const maxTotalCost = Number.isFinite(config.max_total_cost_per_tick ?? Infinity)
-      ? Math.max(0, config.max_total_cost_per_tick ?? Infinity)
-      : Infinity;
+    const maxTotalCost =
+      Number.isFinite(config.max_total_cost_per_tick ?? Infinity)
+        ? Math.max(0, config.max_total_cost_per_tick ?? Infinity)
+        : Infinity;
     const envelopeIndexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(
       LEDGER.STORAGE_PATH,
     );
@@ -326,11 +301,17 @@ export const GATE = {
 
     for (const p of validProposals) {
       if ((p as any).resonance !== undefined) {
-          console.log(`   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${(p as any).resonance}`);
+        console.log(
+          `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
+            (p as any).resonance
+          }`,
+        );
       } else {
-          console.log(`   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`);
+        console.log(
+          `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
+        );
       }
-      
+
       // Calculate Physical Cost using LOAD model
       let physicalCost = 0;
       const agentPhase = p.agent_phase_u16 ?? 0;
@@ -351,18 +332,24 @@ export const GATE = {
         // cost = |delta| + Load
         physicalCost += Math.abs(d.value) + load;
       }
-      
+
       // --- PROOF OF RESONANCE (PoR): Zero-Friction Routing ---
-      // Atoms that have proven high topological utility (Resonance) 
+      // Atoms that have proven high topological utility (Resonance)
       // experience less friction (cost) when modifying the state.
       const atomResonance = (p as any).resonance || 0;
       let discountLabel = "";
       if (atomResonance > 0) {
         // The higher the resonance, the greater the discount (cap at 95%)
-        const discountFactor = Math.min(0.95, atomResonance / 500); 
+        const discountFactor = Math.min(0.95, atomResonance / 500);
         physicalCost = physicalCost * (1 - discountFactor);
         discountLabel = `(PoR Discount: ${(discountFactor * 100).toFixed(1)}%)`;
-        console.log(`      ⚖️ [PoR] Route subsidized for Atom. Base: ${Math.abs(p.delta[0]?.value || 0)}, Res: ${atomResonance.toFixed(1)}, Discount: ${(discountFactor * 100).toFixed(1)}%`);
+        console.log(
+          `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
+            Math.abs(p.delta[0]?.value || 0)
+          }, Res: ${atomResonance.toFixed(1)}, Discount: ${
+            (discountFactor * 100).toFixed(1)
+          }%`,
+        );
       }
 
       const finalCost = Math.round(physicalCost);
@@ -642,149 +629,167 @@ export const GATE = {
     };
   },
 
-   /**
-    * ERA 35: Immune Learning (Ally Registry)
-    * Whitelist for "Good Viruses" that have proven their worth.
-    */
-   trustedSignatures: new Set<string>(),
+  /**
+   * ERA 35: Immune Learning (Ally Registry)
+   * Whitelist for "Good Viruses" that have proven their worth.
+   */
+  trustedSignatures: new Set<string>(),
 
-   /**
-    * ERA 62: Immune Memory (Symbiogenesis)
-    * Tracks average resonance of novel plasmids to determine if they become Canon.
-    * Key: 8-byte logic hex, Value: accumulated symbiosis score.
-    */
-   immuneMemory: new Map<string, number>(),
+  /**
+   * ERA 62: Immune Memory (Symbiogenesis)
+   * Tracks average resonance of novel plasmids to determine if they become Canon.
+   * Key: 8-byte logic hex, Value: accumulated symbiosis score.
+   */
+  immuneMemory: new Map<string, number>(),
 
-   evaluateSymbiosis: (stateMatrix: any) => {
-      // --- ERA 62: Evaluate Pro-Resonant Viral Logic ---
-      const active = stateMatrix.getActiveIndices();
-      const variantStats = new Map<string, { count: number, totalResonance: number }>();
-      let baseResonanceSum = 0;
-      let baseCount = 0;
+  evaluateSymbiosis: (stateMatrix: any) => {
+    // --- ERA 62: Evaluate Pro-Resonant Viral Logic ---
+    const active = stateMatrix.getActiveIndices();
+    const variantStats = new Map<
+      string,
+      { count: number; totalResonance: number }
+    >();
+    let baseResonanceSum = 0;
+    let baseCount = 0;
 
-      for (const idx of active) {
-         const logic = stateMatrix.getLogic(idx) as Uint8Array;
-         let logicStr = "";
-         for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
-         
-         const resonance = stateMatrix.getResonance(idx);
-         
-         if (GATE.trustedSignatures.has(logicStr)) {
-             // Treat established allies and original canon as baseline
-             baseCount++;
-             baseResonanceSum += resonance;
-         } else {
-             // Track novel variants
-             const stats = variantStats.get(logicStr) || { count: 0, totalResonance: 0 };
-             stats.count++;
-             stats.totalResonance += resonance;
-             variantStats.set(logicStr, stats);
-         }
+    for (const idx of active) {
+      const logic = stateMatrix.getLogic(idx) as Uint8Array;
+      let logicStr = "";
+      for (let n = 0; n < 8; n++) {
+        logicStr += logic[n].toString(16).padStart(2, "0");
       }
 
-      const baselineAvg = baseCount > 0 ? baseResonanceSum / baseCount : 15000; // 150 default
+      const resonance = stateMatrix.getResonance(idx);
 
-      // Reward variants that outperform the baseline or spread widely while healthy
-      for (const [logicStr, stats] of variantStats.entries()) {
-         const avgResonance = stats.totalResonance / stats.count;
-         let score = GATE.immuneMemory.get(logicStr) || 0;
-         
-         if (avgResonance > baselineAvg && stats.count >= 3) {
-             score += 10; // Reward successful propagation
-         } else if (avgResonance < baselineAvg * 0.5) {
-             score -= 5; // Penalize toxic variants
-         }
-         
-         GATE.immuneMemory.set(logicStr, Math.max(0, score));
-
-         // If score exceeds threshold, promote to Canon!
-         if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
-             console.log(`🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${(avgResonance/100).toFixed(1)} > Baseline: ${(baselineAvg/100).toFixed(1)})`);
-             GATE.trustedSignatures.add(logicStr);
-         }
+      if (GATE.trustedSignatures.has(logicStr)) {
+        // Treat established allies and original canon as baseline
+        baseCount++;
+        baseResonanceSum += resonance;
+      } else {
+        // Track novel variants
+        const stats = variantStats.get(logicStr) ||
+          { count: 0, totalResonance: 0 };
+        stats.count++;
+        stats.totalResonance += resonance;
+        variantStats.set(logicStr, stats);
       }
-   },
+    }
 
-   /**
-    * ERA 26: Collective Immunity
-    * Proactively scans logic signatures for malignant patterns.
-    * ERA 62: Integrated with evaluateSymbiosis.
-    */
-   detectAntigens: (stateMatrix: any) => {
-      // Run the Era 62 symbiosis evaluator first
-      GATE.evaluateSymbiosis(stateMatrix);
+    const baselineAvg = baseCount > 0 ? baseResonanceSum / baseCount : 15000; // 150 default
 
-      const active = stateMatrix.getActiveIndices();
-      const viralGrid = stateMatrix.viralGrid; 
+    // Reward variants that outperform the baseline or spread widely while healthy
+    for (const [logicStr, stats] of variantStats.entries()) {
+      const avgResonance = stats.totalResonance / stats.count;
+      let score = GATE.immuneMemory.get(logicStr) || 0;
 
-      for (const idx of active) {
-         const logic = stateMatrix.getLogic(idx) as Uint8Array;
-         let logicStr = "";
-         for (let n = 0; n < 8; n++) logicStr += logic[n].toString(16).padStart(2, '0');
-         
-         // 🛡️ Era 35/62: Whitelist Bypass
-         if (GATE.trustedSignatures.has(logicStr)) {
-            if (typeof stateMatrix.setQuarantine === "function") {
-              stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
-            }
-            continue;
-         }
-
-         let malignancy = 0;
-
-         // --- ERA 49: Viral Load Detection (DEPRECATED in Pure Automaton Era) ---
-         // Viral detection is now handled via metabolic cost and resonance audits.
-         
-         // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
-
-         // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
-         let feedCount = 0;
-         for (let i = 0; i < 8; i++) {
-            if (logic[i] === 0x20) feedCount++;
-         }
-         if (feedCount > 4) malignancy += 50;
-
-         // Pattern 2: Chaos Injection (High entropy logic without bonds)
-         const bonds = stateMatrix.getBonds(idx);
-         let hasBonds = false;
-         for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
-         if (!hasBonds && feedCount > 2) malignancy += 30;
-
-         // Apply Audit Decisions
-         if (malignancy >= 80) {
-            stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
-            console.log(`⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`);
-         } else if (malignancy >= 40) {
-            const parasiteRole = stateMatrix.ROLE_PARASITE ?? 4;
-            stateMatrix.setRole(idx, parasiteRole); // FLAGGED (IMMUNE WATCH)
-         }
+      if (avgResonance > baselineAvg && stats.count >= 3) {
+        score += 10; // Reward successful propagation
+      } else if (avgResonance < baselineAvg * 0.5) {
+        score -= 5; // Penalize toxic variants
       }
-   },
 
-   auditMatrix: (stateMatrix: any) => {
-       console.log("⚖️ [GATE] Starting Autonomous Systemic Audit...");
-       
-       // 1. Evaluate Symbiogenesis (Reward pro-resonant mutations)
-       GATE.evaluateSymbiosis(stateMatrix);
-       
-       // 2. Detect Antigens (Identify and quarantine parasitic logic)
-       GATE.detectAntigens(stateMatrix);
-       
-       // 3. Population Health Check
-       const active = stateMatrix.getActiveIndices();
-       let ghostCount = 0;
-       for (const idx of active) {
-           const energy = stateMatrix.getEnergy(idx);
-           const resonance = stateMatrix.getResonance(idx);
-           
-           // If an atom has negative energy or extreme corruption, recycle it
-           if (energy <= 0 || isNaN(energy) || isNaN(resonance)) {
-               stateMatrix.setId(idx, 0n);
-               ghostCount++;
-           }
-       }
-       
-       if (ghostCount > 0) console.log(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
-       console.log(`⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`);
-   }
+      GATE.immuneMemory.set(logicStr, Math.max(0, score));
+
+      // If score exceeds threshold, promote to Canon!
+      if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
+        console.log(
+          `🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${
+            (avgResonance / 100).toFixed(1)
+          } > Baseline: ${(baselineAvg / 100).toFixed(1)})`,
+        );
+        GATE.trustedSignatures.add(logicStr);
+      }
+    }
+  },
+
+  /**
+   * ERA 26: Collective Immunity
+   * Proactively scans logic signatures for malignant patterns.
+   * ERA 62: Integrated with evaluateSymbiosis.
+   */
+  detectAntigens: (stateMatrix: any) => {
+    // Run the Era 62 symbiosis evaluator first
+    GATE.evaluateSymbiosis(stateMatrix);
+
+    const active = stateMatrix.getActiveIndices();
+    const viralGrid = stateMatrix.viralGrid;
+
+    for (const idx of active) {
+      const logic = stateMatrix.getLogic(idx) as Uint8Array;
+      let logicStr = "";
+      for (let n = 0; n < 8; n++) {
+        logicStr += logic[n].toString(16).padStart(2, "0");
+      }
+
+      // 🛡️ Era 35/62: Whitelist Bypass
+      if (GATE.trustedSignatures.has(logicStr)) {
+        if (typeof stateMatrix.setQuarantine === "function") {
+          stateMatrix.setQuarantine(idx, 0); // Always CLEAN if trusted
+        }
+        continue;
+      }
+
+      let malignancy = 0;
+
+      // --- ERA 49: Viral Load Detection (DEPRECATED in Pure Automaton Era) ---
+      // Viral detection is now handled via metabolic cost and resonance audits.
+
+      // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+
+      // Pattern 1: Metabolic Theft (Excessive FEED OP-codes in sequence)
+      let feedCount = 0;
+      for (let i = 0; i < 8; i++) {
+        if (logic[i] === 0x20) feedCount++;
+      }
+      if (feedCount > 4) malignancy += 50;
+
+      // Pattern 2: Chaos Injection (High entropy logic without bonds)
+      const bonds = stateMatrix.getBonds(idx);
+      let hasBonds = false;
+      for (let j = 0; j < 4; j++) if (bonds[j] !== 0) hasBonds = true;
+      if (!hasBonds && feedCount > 2) malignancy += 30;
+
+      // Apply Audit Decisions
+      if (malignancy >= 80) {
+        stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
+        console.log(
+          `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,
+        );
+      } else if (malignancy >= 40) {
+        const parasiteRole = stateMatrix.ROLE_PARASITE ?? 4;
+        stateMatrix.setRole(idx, parasiteRole); // FLAGGED (IMMUNE WATCH)
+      }
+    }
+  },
+
+  auditMatrix: (stateMatrix: any) => {
+    console.log("⚖️ [GATE] Starting Autonomous Systemic Audit...");
+
+    // 1. Evaluate Symbiogenesis (Reward pro-resonant mutations)
+    GATE.evaluateSymbiosis(stateMatrix);
+
+    // 2. Detect Antigens (Identify and quarantine parasitic logic)
+    GATE.detectAntigens(stateMatrix);
+
+    // 3. Population Health Check
+    const active = stateMatrix.getActiveIndices();
+    let ghostCount = 0;
+    for (const idx of active) {
+      const energy = stateMatrix.getEnergy(idx);
+      const resonance = stateMatrix.getResonance(idx);
+
+      // If an atom has negative energy or extreme corruption, recycle it
+      if (energy <= 0 || isNaN(energy) || isNaN(resonance)) {
+        stateMatrix.setId(idx, 0n);
+        ghostCount++;
+      }
+    }
+
+    if (ghostCount > 0) {
+      console.log(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
+    }
+    console.log(
+      `⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`,
+    );
+  },
 };
