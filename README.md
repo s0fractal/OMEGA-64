@@ -151,6 +151,7 @@ health indicator loop:
 - `deno task test:worker-determinism` (snapshot hash parity for 1-worker vs 4-workers)
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
 - `deno task test:spawn-determinism` (spawn-heavy strict determinism gate for 1-worker vs 4-workers)
+- `deno task test:spawn-jitter-resilience` (spawn-pressure chaos gate: jittered worker responses + world invariants + zero worker failures)
 - `deno task test:worker-timeout-retry` (fault-counter + timeout-retry resilience gate; no duplicate worker posts)
 - `deno task test:worker-timeout-retry:multi` (parallel 4-worker timeout-retry resilience gate; all workers must recover without failures)
 - `deno task test:worker-jitter-resilience` (4-worker jitter/chaos gate: randomized per-message delays, zero drift, zero worker failures)
@@ -161,7 +162,7 @@ health indicator loop:
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay deterministic without host pre-clear)
 - `deno task ci:verify:matrix` (local mirror of CI worker matrix gate: 1-worker + 4-worker deep verification)
-- `deno task ci:soak:worker4` (local mirror of nightly 4-worker long burn-in + jitter chaos + drift audit)
+- `deno task ci:soak:worker4` (local mirror of nightly 4-worker long burn-in + jitter chaos + spawn-pressure jitter + drift audit)
 - `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute phase on worker-0 for deterministic replay)
 - `deno task test:structure-js` (JS reference lattice engine)
 - `deno task test:structure-parity` (JS/WASM structure-grid parity)

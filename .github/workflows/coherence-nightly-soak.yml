@@ -37,6 +37,9 @@ jobs:
       - name: Run jitter chaos gate
         run: deno task test:worker-jitter-resilience
 
+      - name: Run spawn-pressure jitter gate
+        run: deno task test:spawn-jitter-resilience
+
       - name: Run worker drift audit
         run: deno task test:worker-drift-audit
 

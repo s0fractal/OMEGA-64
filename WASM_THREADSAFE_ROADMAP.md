@@ -30,12 +30,13 @@ Acceptance:
 - Completed: worker-level fault counters + safe timeout retry-windows (no duplicate posts) in `PULSE.ts`, validated by `test_worker_timeout_retry.ts`.
 - Completed: parallel timeout-retry hardening gate (`test_worker_timeout_retry_multi.ts`) for `OMEGA_PULSE_WORKERS=4` with per-worker recovery assertions.
 - Completed: chaos jitter gate (`test_worker_jitter_resilience.ts`) with per-worker randomized response delays and zero-drift assertions on empty matrix.
+- Completed: spawn-pressure chaos gate (`test_spawn_jitter_resilience.ts`) combining jittered worker responses with active replication load and world-bound invariants.
 
 Acceptance:
 
 - `OMEGA_PULSE_WORKERS=4 deno run -A test_wasm_worker_coherence.ts` is green for at least 1000 ticks.
 - `deno task test:spawn-determinism` remains green (strict 1-worker vs 4-worker hash parity under spawn pressure).
-- `deno task test:worker-timeout-retry`, `deno task test:worker-timeout-retry:multi`, and `deno task test:worker-jitter-resilience` remain green (retry counters increment, zero failed requests, zero empty-matrix drift).
+- `deno task test:worker-timeout-retry`, `deno task test:worker-timeout-retry:multi`, `deno task test:worker-jitter-resilience`, and `deno task test:spawn-jitter-resilience` remain green (retry counters increment, zero failed requests, zero drift/invariant breach under empty and spawn-pressure modes).
 
 ## Phase 3: Safety gates
 
@@ -51,7 +52,7 @@ Acceptance:
   - `OMEGA_PULSE_WORKERS=1` fallback gate.
 - Completed nightly soak sentinel:
   - GitHub Actions workflow at `.github/workflows/coherence-nightly-soak.yml`;
-  - executes long 4-worker coherence burn-in + jitter chaos gate + drift audit artifact upload.
+  - executes long 4-worker coherence burn-in + jitter chaos gate + spawn-pressure jitter gate + drift audit artifact upload.
 - Completed regression alignment:
   - include `test_tensegrity.ts` in `vector10:verify` (`deno task test:tensegrity`).
 
@@ -59,4 +60,4 @@ Acceptance:
 
 - No spontaneous atoms in either mode.
 - No regression in `test_resonance_protocol.ts`, `test_swarm.ts`, `test_tensegrity.ts` (enforced by verify chain).
-- Long-run 4-worker soak remains green (`test:worker-coherence:long` + `test:worker-jitter-resilience` + `test:worker-drift-audit`).
+- Long-run 4-worker soak remains green (`test:worker-coherence:long` + `test:worker-jitter-resilience` + `test:spawn-jitter-resilience` + `test:worker-drift-audit`).
