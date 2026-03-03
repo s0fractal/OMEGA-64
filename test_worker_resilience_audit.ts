@@ -1,31 +1,14 @@
-const CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
+import type { ResilienceScenario } from "./worker_gate_thresholds.ts";
+import {
+  parseResilienceCaptureFromMergedOutput,
+  RESILIENCE_SCENARIO_SCRIPT_PAIRS,
+  type ResilienceCapturePayload,
+} from "./worker_resilience_capture.ts";
+
 const REPORT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const DRIFT_JSON_PATH = "WORKER_DRIFT_AUDIT.json";
 
-type WorkerStat = {
-  workerIndex: number;
-  requests: number;
-  completed: number;
-  timeouts: number;
-  retryWaits: number;
-  failures: number;
-  consecutiveTimeouts: number;
-  lastRequestType: string;
-  lastPulseId: number;
-  lastError: string;
-};
-
-type ScenarioCapture = {
-  scenario: string;
-  workerCount: number;
-  timeoutMs: number;
-  retryCount: number;
-  retryMs: number;
-  totalRetries: number;
-  totalFailures: number;
-  stats: WorkerStat[];
-  [key: string]: unknown;
-};
+type ScenarioCapture = ResilienceCapturePayload;
 
 type TimedScenarioCapture = ScenarioCapture & {
   durationMs: number;
@@ -56,6 +39,7 @@ type DriftAuditJson = {
 const decode = (bytes: Uint8Array): string => new TextDecoder().decode(bytes);
 
 const runScenarioCapture = async (
+  scenario: ResilienceScenario,
   script: string,
 ): Promise<TimedScenarioCapture> => {
   const startedAt = performance.now();
@@ -74,17 +58,13 @@ const runScenarioCapture = async (
     throw new Error(`[AUDIT] Scenario failed: ${script}\n${merged}`);
   }
 
-  const markerLine = merged
-    .split("\n")
-    .map((s) => s.trim())
-    .find((s) => s.startsWith(CAPTURE_MARKER));
-  if (!markerLine) {
-    throw new Error(`[AUDIT] Capture marker missing for ${script}.`);
+  const payload = parseResilienceCaptureFromMergedOutput(merged, script);
+  if (payload.scenario !== scenario) {
+    throw new Error(
+      `[AUDIT] Scenario mismatch for ${script}: expected=${scenario}, got=${payload.scenario}`,
+    );
   }
 
-  const payload = JSON.parse(
-    markerLine.slice(CAPTURE_MARKER.length),
-  ) as ScenarioCapture;
   return {
     ...payload,
     durationMs: Math.round(performance.now() - startedAt),
@@ -119,17 +99,11 @@ const runDriftAudit = async (): Promise<
 
 async function main() {
   const auditStartedAt = performance.now();
-  const scenarioScripts = [
-    "test_worker_timeout_retry.ts",
-    "test_worker_timeout_retry_multi.ts",
-    "test_worker_jitter_resilience.ts",
-    "test_spawn_jitter_resilience.ts",
-  ];
 
   const captures: TimedScenarioCapture[] = [];
-  for (const script of scenarioScripts) {
+  for (const { scenario, script } of RESILIENCE_SCENARIO_SCRIPT_PAIRS) {
     console.log(`AUDIT [worker-resilience] capture ${script}...`);
-    captures.push(await runScenarioCapture(script));
+    captures.push(await runScenarioCapture(scenario, script));
   }
 
   console.log(
