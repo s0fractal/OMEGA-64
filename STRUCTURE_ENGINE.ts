@@ -2,36 +2,55 @@ import { STATE_MATRIX, STRUCTURE } from "./STATE_MATRIX.ts";
 
 const GRID_W = 140;
 const GRID_H = 80;
+const DIR4 = [[-1, 0], [1, 0], [0, -1], [0, 1]] as const;
+const DIR8 = [
+    [-1, 0], [1, 0], [0, -1], [0, 1],
+    [-1, -1], [1, -1], [-1, 1], [1, 1],
+] as const;
 
 export const STRUCTURE_ENGINE = {
     tick: () => {
-        // We use a temporary charge buffer to avoid order-of-operation bias during single-pass
-        // Or we use a simple diffusion rule that is stable
-        
-        const nextCharges = new Uint8Array(GRID_W * GRID_H);
-
-        // 1. Calculate Next State
         for (let y = 0; y < GRID_H; y++) {
             for (let x = 0; x < GRID_W; x++) {
                 const i = y * GRID_W + x;
                 const type = STATE_MATRIX.getGridType(i);
-                if (type === STRUCTURE.VOID) continue;
-
                 const currentCharge = STATE_MATRIX.getGridCharge(i);
-                let nextCharge = Math.max(0, currentCharge - 10); // Default decay
+
+                // Vector 10 autopoiesis parity with WASM: charged VOID can recrystallize.
+                if (type === STRUCTURE.VOID) {
+                    let maxNeighborCharge = currentCharge;
+                    for (const [dx, dy] of DIR8) {
+                        const nx = x + dx;
+                        const ny = y + dy;
+                        if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
+                        const ni = ny * GRID_W + nx;
+                        const nCharge = STATE_MATRIX.getGridCharge(ni);
+                        if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
+                    }
+
+                    if (maxNeighborCharge > 100) {
+                        const seedCharge = Math.max(64, Math.min(255, maxNeighborCharge - 20));
+                        STATE_MATRIX.setGridType(i, STRUCTURE.WIRE);
+                        STATE_MATRIX.setGridDensity(i, 0);
+                        STATE_MATRIX.setGridCharge(i, seedCharge);
+                        STATE_MATRIX.setGridState(i, 0);
+                    } else if (currentCharge > 0) {
+                        STATE_MATRIX.setGridCharge(i, Math.max(0, currentCharge - 8));
+                    }
+                    continue;
+                }
+
+                let nextCharge = Math.max(0, currentCharge - 10);
 
                 if (type === STRUCTURE.SOURCE) {
                     nextCharge = 255;
                 } else if (type === STRUCTURE.WIRE || type === STRUCTURE.NODE || type === STRUCTURE.CAPACITOR) {
-                    // Check neighbors
-                    const neighbors = [
-                        [x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]
-                    ];
-                    
                     let maxNeighborCharge = 0;
                     let chargedNeighborCount = 0;
 
-                    for (const [nx, ny] of neighbors) {
+                    for (const [dx, dy] of DIR4) {
+                        const nx = x + dx;
+                        const ny = y + dy;
                         if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
                         const ni = ny * GRID_W + nx;
                         const nCharge = STATE_MATRIX.getGridCharge(ni);
@@ -42,18 +61,17 @@ export const STRUCTURE_ENGINE = {
                     if (type === STRUCTURE.WIRE) {
                         nextCharge = Math.max(nextCharge, maxNeighborCharge - 5);
                     } else if (type === STRUCTURE.NODE) {
-                        // Logic Node: OR by default for now, but can be configured via State
                         const state = STATE_MATRIX.getGridState(i);
-                        if (state === 1) { // AND Gate
+                        if (state === 1) {
                             nextCharge = (chargedNeighborCount >= 2) ? 255 : nextCharge;
-                        } else { // OR Gate
+                        } else {
                             nextCharge = (chargedNeighborCount >= 1) ? 255 : nextCharge;
                         }
                     } else if (type === STRUCTURE.CAPACITOR) {
-                        nextCharge = Math.max(nextCharge, maxNeighborCharge - 2); // Slower decay
+                        nextCharge = Math.max(nextCharge, maxNeighborCharge - 2);
                     }
                 } else if (type === STRUCTURE.DIODE) {
-                    const direction = STATE_MATRIX.getGridState(i); // 0: L, 1: R, 2: U, 3: D
+                    const direction = STATE_MATRIX.getGridState(i);
                     let ni = -1;
                     if (direction === 0 && x > 0) ni = y * GRID_W + (x - 1);
                     if (direction === 1 && x < GRID_W - 1) ni = y * GRID_W + (x + 1);
@@ -66,13 +84,30 @@ export const STRUCTURE_ENGINE = {
                     }
                 }
 
-                nextCharges[i] = nextCharge;
-            }
-        }
+                if (type !== STRUCTURE.SOURCE && nextCharge === 0) {
+                    let stabilized = false;
+                    for (const [dx, dy] of DIR4) {
+                        const nx = x + dx;
+                        const ny = y + dy;
+                        if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
+                        const ni = ny * GRID_W + nx;
+                        if (STATE_MATRIX.getGridCharge(ni) > 20) {
+                            stabilized = true;
+                            break;
+                        }
+                    }
 
-        // 2. Commit Charges
-        for (let i = 0; i < GRID_W * GRID_H; i++) {
-            STATE_MATRIX.setGridCharge(i, nextCharges[i]);
+                    if (!stabilized) {
+                        STATE_MATRIX.setGridType(i, STRUCTURE.VOID);
+                        STATE_MATRIX.setGridDensity(i, 0);
+                        STATE_MATRIX.setGridCharge(i, 0);
+                        STATE_MATRIX.setGridState(i, 0);
+                        continue;
+                    }
+                }
+
+                STATE_MATRIX.setGridCharge(i, nextCharge);
+            }
         }
     }
 };
