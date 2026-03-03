@@ -204,7 +204,7 @@ const collectDependencyClosure = async (
   return { files: uniqueSorted(visited), missing: uniqueSorted(missing) };
 };
 
-const buildExportFileList = async (): Promise<
+export const buildExportFileList = async (): Promise<
   { files: string[]; era: string }
 > => {
   const manifest = await loadManifest();
