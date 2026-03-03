@@ -33,6 +33,9 @@ internal high-speed mutation loops.
   direct writes).
 - Oracle writes are serialized via pending queue and drained in `HOST_LOCK`
   (`SOVEREIGN_ORACLE.drainPendingMutations()` from `PULSE.ts`).
+- Oracle guidance defaults to stigmergic plasmid injection into `memoryGrid`
+  (`OMEGA_ORACLE_MUTATION_MODE=stigmergic`); direct head rewrite mode remains
+  available via explicit policy switch (`OMEGA_ORACLE_MUTATION_MODE=direct`).
 - Controls:
   - `OMEGA_MUTATION_TELEMETRY` (`true` by default)
   - `OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS` (default `25`)

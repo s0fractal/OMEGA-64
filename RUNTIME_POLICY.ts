@@ -36,6 +36,7 @@ const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
 const rawControlIntentMax = readEnv("OMEGA_CONTROL_INTENT_MAX");
 const rawControlIntentBudget = readEnv("OMEGA_CONTROL_INTENT_BUDGET");
 const rawOraclePendingMax = readEnv("OMEGA_ORACLE_PENDING_MAX");
+const rawOracleMutationMode = readEnv("OMEGA_ORACLE_MUTATION_MODE");
 const rawPulseWorkers = readEnv("OMEGA_PULSE_WORKERS");
 const rawStrictDeterminism = readEnv("OMEGA_STRICT_DETERMINISM");
 const rawWorkerResponseTimeoutMs = readEnv("OMEGA_WORKER_RESPONSE_TIMEOUT_MS");
@@ -99,6 +100,11 @@ const controlIntentApplyBudget = parseEnvBoundedInt(
 );
 
 const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
+const oracleMutationMode = (() => {
+  const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
+  if (value === "direct" || value === "head") return "direct" as const;
+  return "stigmergic" as const;
+})();
 
 const pulseWorkerCount = parseEnvBoundedInt(rawPulseWorkers, 4, 1, 32);
 const pulseStrictDeterminism = parseEnvBool(rawStrictDeterminism, false);
@@ -203,6 +209,7 @@ const policyFingerprintSource = JSON.stringify({
   },
   oracle: {
     pendingMax: oraclePendingMax,
+    mutationMode: oracleMutationMode,
   },
   akasha: {
     host: akashaHost,
@@ -263,6 +270,11 @@ export const RUNTIME_POLICY = {
   },
   oracle: {
     pendingMax: oraclePendingMax,
+    mutationMode: oracleMutationMode,
+    source: {
+      pendingMax: rawOraclePendingMax !== undefined,
+      mutationMode: rawOracleMutationMode !== undefined,
+    },
   },
   pulse: {
     workerCount: pulseWorkerCount,

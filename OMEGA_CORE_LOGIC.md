@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T23:07:13.712Z*
+*Generated: 2026-03-03T23:11:35.930Z*
 *Exported Files: 63*
 *Manifest SHA256: 4ed6c06a3ec045697d1d558d624fc29f3baf6f06712a85fd2d7e729d641fb48e*
 *Export Set SHA256: ef0de89e746947572a8b92d802ddf60cd64756401866c7597ac7732643926001*
-*Git Commit: fcb21c92bb42*
+*Git Commit: 0823f988c4a7*
 
 ---
 
@@ -6089,6 +6089,9 @@ internal high-speed mutation loops.
   direct writes).
 - Oracle writes are serialized via pending queue and drained in `HOST_LOCK`
   (`SOVEREIGN_ORACLE.drainPendingMutations()` from `PULSE.ts`).
+- Oracle guidance defaults to stigmergic plasmid injection into `memoryGrid`
+  (`OMEGA_ORACLE_MUTATION_MODE=stigmergic`); direct head rewrite mode remains
+  available via explicit policy switch (`OMEGA_ORACLE_MUTATION_MODE=direct`).
 - Controls:
   - `OMEGA_MUTATION_TELEMETRY` (`true` by default)
   - `OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS` (default `25`)
@@ -9240,6 +9243,7 @@ const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
 const rawControlIntentMax = readEnv("OMEGA_CONTROL_INTENT_MAX");
 const rawControlIntentBudget = readEnv("OMEGA_CONTROL_INTENT_BUDGET");
 const rawOraclePendingMax = readEnv("OMEGA_ORACLE_PENDING_MAX");
+const rawOracleMutationMode = readEnv("OMEGA_ORACLE_MUTATION_MODE");
 const rawPulseWorkers = readEnv("OMEGA_PULSE_WORKERS");
 const rawStrictDeterminism = readEnv("OMEGA_STRICT_DETERMINISM");
 const rawWorkerResponseTimeoutMs = readEnv("OMEGA_WORKER_RESPONSE_TIMEOUT_MS");
@@ -9303,6 +9307,11 @@ const controlIntentApplyBudget = parseEnvBoundedInt(
 );
 
 const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
+const oracleMutationMode = (() => {
+  const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
+  if (value === "direct" || value === "head") return "direct" as const;
+  return "stigmergic" as const;
+})();
 
 const pulseWorkerCount = parseEnvBoundedInt(rawPulseWorkers, 4, 1, 32);
 const pulseStrictDeterminism = parseEnvBool(rawStrictDeterminism, false);
@@ -9407,6 +9416,7 @@ const policyFingerprintSource = JSON.stringify({
   },
   oracle: {
     pendingMax: oraclePendingMax,
+    mutationMode: oracleMutationMode,
   },
   akasha: {
     host: akashaHost,
@@ -9467,6 +9477,11 @@ export const RUNTIME_POLICY = {
   },
   oracle: {
     pendingMax: oraclePendingMax,
+    mutationMode: oracleMutationMode,
+    source: {
+      pendingMax: rawOraclePendingMax !== undefined,
+      mutationMode: rawOracleMutationMode !== undefined,
+    },
   },
   pulse: {
     workerCount: pulseWorkerCount,
@@ -11833,6 +11848,13 @@ type OraclePendingMutation =
     gridIdx: number;
     charge: number;
     memeBytes: Uint8Array;
+  }
+  | {
+    kind: "oracle_plasmid_injection";
+    gridIdx: number;
+    charge: number;
+    plasmidBytes: Uint8Array;
+    source: "oracle_guidance" | "oracle_cache_fallback";
   };
 
 type OracleDrainStats = {
@@ -11843,6 +11865,33 @@ type OracleDrainStats = {
 };
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
+const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
+const GRID_W = 140;
+const GRID_H = 80;
+const GRID_CELL_BYTES = 8;
+
+const toGridIndexNearRegent = (regentIndex: number): number | null => {
+  if (STATE_MATRIX.getId(regentIndex) === 0n) return null;
+  const gx = Math.max(
+    0,
+    Math.min(
+      GRID_W - 1,
+      Math.floor(
+        STATE_MATRIX.getX(regentIndex) / 10,
+      ),
+    ),
+  );
+  const gy = Math.max(
+    0,
+    Math.min(
+      GRID_H - 1,
+      Math.floor(
+        STATE_MATRIX.getY(regentIndex) / 10,
+      ),
+    ),
+  );
+  return (gy * GRID_W + gx) * GRID_CELL_BYTES;
+};
 
 export const SOVEREIGN_ORACLE = {
   isConsulting: false,
@@ -11982,6 +12031,58 @@ export const SOVEREIGN_ORACLE = {
           applied++;
           break;
         }
+        case "oracle_plasmid_injection": {
+          if (
+            mutation.gridIdx < 0 ||
+            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+          ) {
+            skipped++;
+            break;
+          }
+          const seedCharge = Math.max(128, Math.min(0xFFFF, mutation.charge));
+          const plasmid = mutation.plasmidBytes.length >= 8
+            ? mutation.plasmidBytes
+            : new Uint8Array(8);
+          const head = plasmid.subarray(0, 4);
+          const tail = plasmid.subarray(4, 8);
+          const writeCell = (
+            gridIdx: number,
+            charge: number,
+            payload: Uint8Array,
+          ) => {
+            STATE_MATRIX.memoryGrid[gridIdx] = charge & 0xFF;
+            STATE_MATRIX.memoryGrid[gridIdx + 1] = (charge >> 8) & 0xFF;
+            STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
+            STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
+            STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
+          };
+
+          let seededCells = 0;
+          writeCell(mutation.gridIdx, seedCharge, head);
+          seededCells++;
+
+          const cell = Math.floor(mutation.gridIdx / GRID_CELL_BYTES);
+          const col = cell % GRID_W;
+          if (col < GRID_W - 1) {
+            const nextGridIdx = mutation.gridIdx + GRID_CELL_BYTES;
+            if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+              writeCell(
+                nextGridIdx,
+                Math.max(64, seedCharge - 128),
+                tail,
+              );
+              seededCells++;
+            }
+          }
+
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_plasmid_injection",
+            count: seededCells,
+          });
+          applied += seededCells;
+          break;
+        }
       }
     }
 
@@ -12036,15 +12137,33 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
-        SOVEREIGN_ORACLE.queueMutation({
-          kind: "oracle_head_mutation",
-          regentIndex,
-          headBytes: new Uint8Array(newInstructions),
-          genomeHex: hex,
-        });
-        LOGGER.info(
-          `⚡ [ORACLE] Semantic Mutation queued for HOST_LOCK apply. Head: [${hex}]`,
-        );
+        if (ORACLE_MUTATION_MODE === "direct") {
+          SOVEREIGN_ORACLE.queueMutation({
+            kind: "oracle_head_mutation",
+            regentIndex,
+            headBytes: new Uint8Array(newInstructions),
+            genomeHex: hex,
+          });
+          LOGGER.info(
+            `⚡ [ORACLE] Direct semantic mutation queued for HOST_LOCK apply. Head: [${hex}]`,
+          );
+        } else {
+          const gridIdx = toGridIndexNearRegent(regentIndex);
+          if (gridIdx !== null) {
+            SOVEREIGN_ORACLE.queueMutation({
+              kind: "oracle_plasmid_injection",
+              gridIdx,
+              charge: 1000,
+              plasmidBytes: new Uint8Array(newInstructions.slice(0, 8)),
+              source: "oracle_guidance",
+            });
+            LOGGER.info(
+              `🧬 [ORACLE] Stigmergic plasmid queued for HOST_LOCK apply (mode=${ORACLE_MUTATION_MODE}). Head: [${
+                hex.slice(0, 16)
+              }]`,
+            );
+          }
+        }
 
         // --- ERA 67: MEMETIC INJECTION ---
         if (oracleResult.meme) {
@@ -12080,15 +12199,31 @@ export const SOVEREIGN_ORACLE = {
         }
 
         if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-          SOVEREIGN_ORACLE.queueMutation({
-            kind: "oracle_cache_fallback",
-            regentIndex,
-            logicBytes: bytes,
-            cachedHex,
-          });
-          LOGGER.warn(
-            `♻️ [ORACLE] LLM Offline. Cache mutation queued for HOST_LOCK: [${cachedHex}]`,
-          );
+          if (ORACLE_MUTATION_MODE === "direct") {
+            SOVEREIGN_ORACLE.queueMutation({
+              kind: "oracle_cache_fallback",
+              regentIndex,
+              logicBytes: bytes,
+              cachedHex,
+            });
+            LOGGER.warn(
+              `♻️ [ORACLE] LLM Offline. Direct cache mutation queued for HOST_LOCK: [${cachedHex}]`,
+            );
+          } else {
+            const gridIdx = toGridIndexNearRegent(regentIndex);
+            if (gridIdx !== null) {
+              SOVEREIGN_ORACLE.queueMutation({
+                kind: "oracle_plasmid_injection",
+                gridIdx,
+                charge: 900,
+                plasmidBytes: bytes,
+                source: "oracle_cache_fallback",
+              });
+              LOGGER.warn(
+                `♻️ [ORACLE] LLM Offline. Stigmergic cache plasmid queued for HOST_LOCK: [${cachedHex}]`,
+              );
+            }
+          }
         }
       }
     } finally {
