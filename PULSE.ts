@@ -159,10 +159,16 @@ export const PULSE = {
             {
                 const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
                 const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+                const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+                const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
                 const readXs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_XS_OFFSET, MAX_ATOMS);
                 const readYs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_YS_OFFSET, MAX_ATOMS);
+                const readEnergies = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS);
+                const readResonances = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS);
                 readXs.set(xs);
                 readYs.set(ys);
+                readEnergies.set(energies);
+                readResonances.set(resonances);
             }
 
             // 2b. Execute Physics (WASM)
@@ -194,6 +200,30 @@ export const PULSE = {
                 }
             }
             await Promise.all(workerPromises);
+
+            // 2c. Deterministic reduce of cross-atom intents collected during worker phase.
+            {
+                const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+                const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+                const energyDelta = new Int32Array(sharedBuffer, OFFSETS.ENERGY_DELTA_OFFSET, MAX_ATOMS);
+                const resonanceDelta = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_DELTA_OFFSET, MAX_ATOMS);
+
+                for (const idx of activeIdx) {
+                    const de = Atomics.load(energyDelta, idx);
+                    if (de !== 0) {
+                        Atomics.add(energies, idx, de);
+                        if (Atomics.load(energies, idx) < 0) Atomics.store(energies, idx, 0);
+                        Atomics.store(energyDelta, idx, 0);
+                    }
+
+                    const dr = Atomics.load(resonanceDelta, idx);
+                    if (dr !== 0) {
+                        Atomics.add(resonances, idx, dr);
+                        if (Atomics.load(resonances, idx) < 0) Atomics.store(resonances, idx, 0);
+                        Atomics.store(resonanceDelta, idx, 0);
+                    }
+                }
+            }
 
             // 3. Matrix Engine (WASM)
             const matrixPulseId = nextPulseId();

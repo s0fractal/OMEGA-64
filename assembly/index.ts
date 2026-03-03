@@ -36,6 +36,10 @@ const SPAWN_GRID_OFF: usize  = SAFETY_BUFFER + 19600000;
 const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40300104;
 const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40400000;
 const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 40600000;
+const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 40800000;
+const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 41200000;
+const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 41600000;
+const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -70,6 +74,14 @@ const MAX_ASCENSIONS: i32 = 64;
 @inline function getY(idx: i32): i16 { return load<i16>(YS_OFFSET + (idx << 1) as usize); }
 @inline function getReadX(idx: i32): i16 { return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1) as usize); }
 @inline function getReadY(idx: i32): i16 { return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1) as usize); }
+@inline function getReadEnergy(idx: i32): i32 { return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2) as usize); }
+@inline function getReadResonance(idx: i32): i32 { return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2) as usize); }
+@inline function addEnergyDelta(idx: i32, delta: i32): void {
+    if (delta != 0) atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2) as usize, delta);
+}
+@inline function addResonanceDelta(idx: i32, delta: i32): void {
+    if (delta != 0) atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2) as usize, delta);
+}
 @inline function getLogicByte(idx: i32, slot: i32): u8 { return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize); }
 @inline function getBondTarget(atomIdx: i32, slot: i32): i32 { return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize); }
 @inline function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void { store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx); }
@@ -97,7 +109,7 @@ const MAX_ASCENSIONS: i32 = 64;
         if (target > 0 && target < MAX_ATOMS) {
             let st = getBondStiffness(atomIndex, b);
             let signalStrength = (150.0 * st) as i32; // Increased to ensure cascade
-            setResonance(target, getResonance(target) + signalStrength);
+            addResonanceDelta(target, signalStrength);
         }
     }
 }
@@ -255,7 +267,7 @@ const WORLD_MAX_Y: i32 = 799;
     const detectionRadiusSq: f32 = 225.0; // 15^2
     const flow: i32 = (0.2 * 1000.0) as i32; // Using 1000.0 for literal scale
     const burn: i32 = (1.0 * 1000.0) as i32;
-    let energy = getEnergy(idx);
+    let energy = getReadEnergy(idx);
 
     const gx = x / 10;
     const gy = y / 10;
@@ -289,16 +301,16 @@ const WORLD_MAX_Y: i32 = 799;
                         let otherRole = getRole(otherIdx);
                         if (role == ROLE_PRODUCER && otherRole == ROLE_NEUTRAL) {
                             if (energy > 100 * 1000) {
-                                atomic.sub<i32>(ENERGY_OFFSET + (idx << 2) as usize, flow);
-                                atomic.add<i32>(ENERGY_OFFSET + (otherIdx << 2) as usize, flow);
+                                addEnergyDelta(idx, -flow);
+                                addEnergyDelta(otherIdx, flow);
                                 energy -= flow;
                             }
                         }
                         if (role == ROLE_GUARDIAN && otherRole == ROLE_PARASITE) {
-                            let oEnergy = getEnergy(otherIdx);
+                            let oEnergy = getReadEnergy(otherIdx);
                             if (oEnergy > 0) {
-                                atomic.sub<i32>(ENERGY_OFFSET + (otherIdx << 2) as usize, Mathf.min(oEnergy as f32, burn as f32) as i32);
-                                atomic.add<i32>(RESONANCE_OFFSET + (idx << 2) as usize, 5);
+                                addEnergyDelta(otherIdx, -Mathf.min(oEnergy as f32, burn as f32) as i32);
+                                addResonanceDelta(idx, 5);
                             }
                         }
                     }
@@ -307,8 +319,8 @@ const WORLD_MAX_Y: i32 = 799;
                     let d = Mathf.sqrt(d2);
 
                     // --- PHASE 14: CHEMOTAXIS ---
-                    let oEnergy = getEnergy(otherIdx);
-                    let oRes = getResonance(otherIdx);
+                    let oEnergy = getReadEnergy(otherIdx);
+                    let oRes = getReadResonance(otherIdx);
 
                     let multiplier: f32 = 1.0;
                     if (role == ROLE_GUARDIAN && oRes > 50) multiplier = 3.0;
@@ -427,8 +439,8 @@ export function execute_atom(atomIndex: i32): void {
     }
 
     let pc = getPC(atomIndex);
-    let energy = getEnergy(atomIndex);
-    let resonance = getResonance(atomIndex);
+    let energy = getReadEnergy(atomIndex);
+    let resonance = getReadResonance(atomIndex);
     const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
     
     // Safety: 16 instructions per tick max to prevent infinite loops
@@ -561,7 +573,7 @@ export function execute_atom(atomIndex: i32): void {
                 let gy = ry / 10;
                 if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
                     let cellIdx = gy * 140 + gx;
-                    let currentResonance = getResonance(atomIndex);
+                    let currentResonance = resonance;
                     let bonus = (currentResonance / 10) > 55 ? 55 : (currentResonance / 10);
                     
                     let cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
@@ -626,7 +638,6 @@ export function execute_atom(atomIndex: i32): void {
                     if (energy >= val) {
                         addHiveBalance(val);
                         energy -= val;
-                        setEnergy(atomIndex, energy);
                     }
                 } else if (mode == 4) { // BANK_WITHDRAW reg
                     let reg = p2 as i32;
@@ -635,7 +646,6 @@ export function execute_atom(atomIndex: i32): void {
                     if (amount > 0) {
                         addHiveBalance(-amount);
                         energy += amount;
-                        setEnergy(atomIndex, energy);
                     }
                     setReg(atomIndex, reg & 7, amount);
                 } else if (mode == 5) { // PHASE_LOCK
@@ -682,9 +692,7 @@ export function execute_atom(atomIndex: i32): void {
                     let amount = (energy * (percentage as i32)) / 100;
                     if (energy >= amount) {
                         energy -= amount;
-                        setEnergy(atomIndex, energy);
-                        // Atomically add to target
-                        atomic.add<i32>(ENERGY_OFFSET + (targetIdx << 2) as usize, amount);
+                        addEnergyDelta(targetIdx, amount);
                     }
                 }
                 pc += 3;
@@ -696,7 +704,6 @@ export function execute_atom(atomIndex: i32): void {
                     let state = load<u8>(instr_base + (pc + 2) as usize);
                     if (energy >= 500) {
                         energy -= 500;
-                        setEnergy(atomIndex, energy);
                         let rx = getX(atomIndex) as i32;
                         let ry = getY(atomIndex) as i32;
                         
