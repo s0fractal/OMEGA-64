@@ -150,6 +150,7 @@ health indicator loop:
 - `deno task test:worker-determinism-fuzz` (seeded multi-case determinism sweep)
 - `deno task test:worker-drift-audit` (writes `WORKER_DRIFT_AUDIT.md` with strict/non-strict drift metrics)
 - `deno task test:structure-intent-determinism` (conflict-heavy structure write parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix pass)
+- delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay deterministic without host pre-clear)
 - `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute phase on worker-0 for deterministic replay)
 - `deno task test:structure-js` (JS reference lattice engine)

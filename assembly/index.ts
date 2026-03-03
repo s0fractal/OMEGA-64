@@ -1057,6 +1057,34 @@ export function tick_matrix(): void {
     tick_structure_grid();
 }
 
+export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
+    let start = startIdx;
+    let end = endIdx;
+    if (start < 0) start = 0;
+    if (end > MAX_ATOMS) end = MAX_ATOMS;
+    if (start >= end) return;
+
+    for (let idx = start; idx < end; idx++) {
+        const deltaOff = (idx << 2) as usize;
+
+        const de = atomic.load<i32>(ENERGY_DELTA_OFF + deltaOff);
+        if (de != 0) {
+            atomic.store<i32>(ENERGY_DELTA_OFF + deltaOff, 0);
+            let nextEnergy = atomic.load<i32>(ENERGY_OFFSET + deltaOff) + de;
+            if (nextEnergy < 0) nextEnergy = 0;
+            atomic.store<i32>(ENERGY_OFFSET + deltaOff, nextEnergy);
+        }
+
+        const dr = atomic.load<i32>(RESONANCE_DELTA_OFF + deltaOff);
+        if (dr != 0) {
+            atomic.store<i32>(RESONANCE_DELTA_OFF + deltaOff, 0);
+            let nextRes = atomic.load<i32>(RESONANCE_OFFSET + deltaOff) + dr;
+            if (nextRes < 0) nextRes = 0;
+            atomic.store<i32>(RESONANCE_OFFSET + deltaOff, nextRes);
+        }
+    }
+}
+
 // --- Phase 19: Planetary Consciousness Exports ---
 
 // SOVEREIGN_ORACLE calls this every N ticks to measure global mind-field strength

@@ -6,6 +6,7 @@ const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: (idx: number) => void;
 let tick_matrix_fn: (() => void) | null = null;
+let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null = null;
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
@@ -33,6 +34,7 @@ self.onmessage = async (e) => {
             wasmInstance = instantiated.instance;
             execute_atom_fn = wasmInstance.exports.execute_atom as any;
             tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
+            reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
             get_neural_coherence_fn = wasmInstance.exports.get_neural_coherence as any;
             set_neural_coherence_fn = wasmInstance.exports.set_neural_coherence as any;
             console.log("   [WORKER] WASM Instantiated successfully.");
@@ -83,6 +85,14 @@ self.onmessage = async (e) => {
         }
 
         self.postMessage({ type: "DONE", pulseId });
+    }
+
+    if (type === "REDUCE_DELTAS") {
+        const { startIdx, endIdx } = e.data;
+        if (reduce_atom_deltas_fn) {
+            reduce_atom_deltas_fn(startIdx, endIdx);
+        }
+        self.postMessage({ type: "DELTA_DONE", pulseId });
     }
 
     if (type === "TICK_MATRIX") {

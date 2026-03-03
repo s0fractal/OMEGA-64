@@ -200,29 +200,30 @@ export const PULSE = {
             }
             await Promise.all(workerPromises);
 
-            // 2c. Deterministic reduce of cross-atom intents collected during worker phase.
-            {
-                const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-                const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-                const energyDelta = new Int32Array(sharedBuffer, OFFSETS.ENERGY_DELTA_OFFSET, MAX_ATOMS);
-                const resonanceDelta = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_DELTA_OFFSET, MAX_ATOMS);
+            // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
+            workerPromises = [];
+            if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
+                const pulseId = nextPulseId();
+                workerPromises.push(postAndWait(
+                    workers[0],
+                    { type: "REDUCE_DELTAS", startIdx: 0, endIdx: MAX_ATOMS, pulseId },
+                    "DELTA_DONE",
+                ));
+            } else {
+                const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
+                for (let i = 0; i < WORKER_COUNT; i++) {
+                    const startIdx = i * chunkSize;
+                    const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
 
-                for (const idx of activeIdx) {
-                    const de = Atomics.load(energyDelta, idx);
-                    if (de !== 0) {
-                        Atomics.add(energies, idx, de);
-                        if (Atomics.load(energies, idx) < 0) Atomics.store(energies, idx, 0);
-                        Atomics.store(energyDelta, idx, 0);
-                    }
-
-                    const dr = Atomics.load(resonanceDelta, idx);
-                    if (dr !== 0) {
-                        Atomics.add(resonances, idx, dr);
-                        if (Atomics.load(resonances, idx) < 0) Atomics.store(resonances, idx, 0);
-                        Atomics.store(resonanceDelta, idx, 0);
-                    }
+                    const pulseId = nextPulseId();
+                    workerPromises.push(postAndWait(
+                        workers[i],
+                        { type: "REDUCE_DELTAS", startIdx, endIdx, pulseId },
+                        "DELTA_DONE",
+                    ));
                 }
             }
+            await Promise.all(workerPromises);
 
             // 3. Matrix Engine (WASM)
             const matrixPulseId = nextPulseId();
