@@ -5,6 +5,7 @@ import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -850,6 +851,8 @@ export const PULSE = {
       }
 
       // 1. Resolve Sequential Logic
+      let clearedBondRequests = 0;
+      let resolvedBondPairs = 0;
       for (const i of activeIdx) {
         if (STATE_MATRIX.hasBondRequest(i)) {
           const targetIdx = STATE_MATRIX.getBondRequestTarget(i);
@@ -858,9 +861,25 @@ export const PULSE = {
             STATE_MATRIX.setBondStiffness(i, 0, 0.1);
             STATE_MATRIX.setBondTarget(targetIdx, 1, i);
             STATE_MATRIX.setBondStiffness(targetIdx, 1, 0.1);
+            resolvedBondPairs++;
           }
           STATE_MATRIX.clearBondRequest(i);
+          clearedBondRequests++;
         }
+      }
+      if (resolvedBondPairs > 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "bond_pair_resolution",
+          count: resolvedBondPairs,
+        });
+      }
+      if (clearedBondRequests > 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "bond_request_clear",
+          count: clearedBondRequests,
+        });
       }
 
       // 2. Parallel Physics & WASM Kernel
@@ -966,6 +985,11 @@ export const PULSE = {
           LOGGER.debug(
             `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
           );
+          MUTATION_TELEMETRY.record({
+            lane: "internal_host",
+            kind: "spawn_seed_atom",
+            count: spawned,
+          });
         }
       }
 
@@ -974,6 +998,11 @@ export const PULSE = {
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "canonical_gate",
+          kind: "audit_matrix_cycle",
+          count: 1,
+        });
         GATE.auditMatrix(STATE_MATRIX);
       }
 
@@ -1000,6 +1029,8 @@ export const PULSE = {
           );
         }
       }
+
+      MUTATION_TELEMETRY.flushIfDue(currentTick);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);

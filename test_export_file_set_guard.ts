@@ -32,6 +32,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "SHIMS.ts",
   "SOVEREIGNTY_ENGINE.ts",
   "SOVEREIGN_ORACLE.ts",
+  "MUTATION_TELEMETRY.ts",
   "SNAPSHOT_ENGINE.ts",
   "LOGGER.ts",
 ] as const;

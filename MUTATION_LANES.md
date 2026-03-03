@@ -28,6 +28,12 @@ internal high-speed mutation loops.
 - Optimized for speed and experimentation inside the runtime.
 - Allowed to bypass per-action governance checks, but should remain observable
   through telemetry and periodic audits.
+- Runtime observer: `MUTATION_TELEMETRY.ts` (aggregated counters for host/oracle
+  direct writes).
+- Controls:
+  - `OMEGA_MUTATION_TELEMETRY` (`true` by default)
+  - `OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS` (default `25`)
+  - `OMEGA_MUTATION_TELEMETRY_TOP_KINDS` (default `6`)
 
 ## Current Runtime Posture
 
@@ -36,3 +42,5 @@ internal high-speed mutation loops.
 - `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
   env/token gates when enabled.
 - Canonical crystallization remains in `GATE`.
+- Internal fast-lane mutations are aggregated and emitted by
+  `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.

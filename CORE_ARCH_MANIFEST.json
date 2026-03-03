@@ -16,6 +16,7 @@
     "ECOLOGY_ENGINE.ts",
     "SOVEREIGNTY_ENGINE.ts",
     "SOVEREIGN_ORACLE.ts",
+    "MUTATION_TELEMETRY.ts",
     "LLM_SYNAPSE.ts",
     "SEMANTIC_MEMBRANE.ts",
     "SNAP.ts",
