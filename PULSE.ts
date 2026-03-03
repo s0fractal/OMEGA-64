@@ -5,7 +5,10 @@ import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 
-const WORKER_COUNT = 4;
+// Multi-instance AssemblyScript + shared memory can corrupt lattice state
+// because each instance owns an independent stack global over the same buffer.
+// Keep a single WASM worker until thread-safe stack partitioning is implemented.
+const WORKER_COUNT = 1;
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
 
 const workers: Worker[] = [];

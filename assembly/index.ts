@@ -177,6 +177,30 @@ const ROLE_GUARDIAN: u8 = 2;
 const ROLE_ARCHITECT: u8 = 3;
 const ROLE_PARASITE: u8 = 4;
 
+@inline function dir4X(n: i32): i32 {
+    if (n == 0) return -1;
+    if (n == 1) return 1;
+    return 0;
+}
+
+@inline function dir4Y(n: i32): i32 {
+    if (n == 2) return -1;
+    if (n == 3) return 1;
+    return 0;
+}
+
+@inline function dir8X(n: i32): i32 {
+    if (n == 0 || n == 4 || n == 6) return -1;
+    if (n == 1 || n == 5 || n == 7) return 1;
+    return 0;
+}
+
+@inline function dir8Y(n: i32): i32 {
+    if (n == 2 || n == 4 || n == 5) return -1;
+    if (n == 3 || n == 6 || n == 7) return 1;
+    return 0;
+}
+
 @inline function getGenomeVelocityX(idx: i32): i32 {
     let vx: i32 = 0;
     for (let b = 0; b < 2; b++) {
@@ -277,11 +301,18 @@ const ROLE_PARASITE: u8 = 4;
 
     if (role == ROLE_ARCHITECT) {
         // Simple 4-way density check
-        let offsets_x = [0, 0, -2, 2];
-        let offsets_y = [-2, 2, 0, 0];
         for (let i = 0; i < 4; i++) {
-            let ox = offsets_x[i];
-            let oy = offsets_y[i];
+            let ox: i32 = 0;
+            let oy: i32 = 0;
+            if (i == 0) {
+                oy = -2;
+            } else if (i == 1) {
+                oy = 2;
+            } else if (i == 2) {
+                ox = -2;
+            } else {
+                ox = 2;
+            }
             let cx = gx + ox;
             let cy = gy + oy;
             if (cx >= 0 && cx < 140 && cy >= 0 && cy < 80) {
@@ -676,11 +707,9 @@ export function execute_atom(atomIndex: i32): void {
                 let gy = ry / 10;
                 let found: i32 = 0;
                 
-                const dx = [-1, 1, 0, 0, -1, 1, -1, 1];
-                const dy = [0, 0, -1, 1, -1, -1, 1, 1];
                 for (let n = 0; n < 8; n++) {
-                    let nx = gx + dx[n];
-                    let ny = gy + dy[n];
+                    let nx = gx + dir8X(n);
+                    let ny = gy + dir8Y(n);
                     if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
                         let ni = ny * 140 + nx;
                         let cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
@@ -816,11 +845,9 @@ export function tick_structure_grid(): void {
             // --- AUTOPOIESIS: Spontaneous Crystallization ---
             if (type == STR_VOID) {
                 let maxNCharge: i32 = currentCharge;
-                const dx = [-1, 1, 0, 0, -1, 1, -1, 1];
-                const dy = [0, 0, -1, 1, -1, -1, 1, 1];
                 for (let n = 0; n < 8; n++) {
-                    let nx = x + dx[n];
-                    let ny = y + dy[n];
+                    let nx = x + dir8X(n);
+                    let ny = y + dir8Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
                         let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
@@ -855,12 +882,9 @@ export function tick_structure_grid(): void {
                 let maxNeighborCharge: i32 = 0;
                 let chargedCount: i32 = 0;
 
-                const dx = [-1, 1, 0, 0];
-                const dy = [0, 0, -1, 1];
-
                 for (let n = 0; n < 4; n++) {
-                    let nx = x + dx[n];
-                    let ny = y + dy[n];
+                    let nx = x + dir4X(n);
+                    let ny = y + dir4Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
                         let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
@@ -902,11 +926,9 @@ export function tick_structure_grid(): void {
 
             if (type != STR_SOURCE && nextCharge == 0) {
                 let stabilized = false;
-                const dx = [-1, 1, 0, 0];
-                const dy = [0, 0, -1, 1];
                 for (let n = 0; n < 4; n++) {
-                    let nx = x + dx[n];
-                    let ny = y + dy[n];
+                    let nx = x + dir4X(n);
+                    let ny = y + dir4Y(n);
                     if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
                         let ni = ny * GRID_W + nx;
                         let nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
