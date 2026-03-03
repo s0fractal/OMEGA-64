@@ -1,4 +1,5 @@
 import { loadSoakTrendThresholds } from "./worker_gate_thresholds.ts";
+import { limitByRatioAndDelta, minByRatio } from "./worker_trend_math.ts";
 
 const SOAK_JSON_PATH = "WORKER_SOAK_STABILITY.json";
 const BASELINE_JSON_PATH = "WORKER_SOAK_STABILITY_BASELINE.json";
@@ -71,15 +72,6 @@ type Check = {
   limit: number | boolean;
   ok: boolean;
 };
-
-const limitByRatioAndDelta = (
-  baseline: number,
-  ratioMax: number,
-  deltaMax: number,
-): number => (baseline * ratioMax) + deltaMax;
-
-const minByRatio = (baseline: number, ratioMin: number): number =>
-  baseline * ratioMin;
 
 const {
   durationRatioMax,

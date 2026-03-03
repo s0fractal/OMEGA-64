@@ -1,4 +1,8 @@
 import { loadResilienceTrendThresholds } from "./worker_gate_thresholds.ts";
+import {
+  ensurePositive,
+  limitByRatioAndDeltaCeil,
+} from "./worker_trend_math.ts";
 
 const AUDIT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const BASELINE_JSON_PATH = "WORKER_RESILIENCE_TREND_BASELINE.json";
@@ -49,8 +53,6 @@ type Check = {
   ok: boolean;
 };
 
-const ceil = (value: number): number => Math.ceil(value);
-
 const {
   retriesRatioMax,
   retriesDeltaMax,
@@ -65,9 +67,6 @@ const {
   totalAuditDurationRatioMax,
   totalAuditDurationDeltaMaxMs,
 } = loadResilienceTrendThresholds();
-
-const ensurePositive = (value: number, fallback: number): number =>
-  Number.isFinite(value) && value > 0 ? value : fallback;
 
 const baselineFromAudit = (audit: AuditReport): TrendBaseline => ({
   generatedAt: new Date().toISOString(),
@@ -93,12 +92,6 @@ const baselineFromAudit = (audit: AuditReport): TrendBaseline => ({
     durationMs: ensurePositive(s.durationMs ?? 0, 1),
   })),
 });
-
-const limitByRatioAndDelta = (
-  baseline: number,
-  ratioMax: number,
-  deltaMax: number,
-): number => ceil((baseline * ratioMax) + deltaMax);
 
 const renderMd = (
   generatedAt: string,
@@ -182,7 +175,7 @@ const main = async () => {
     1,
   );
 
-  const totalRetriesLimit = limitByRatioAndDelta(
+  const totalRetriesLimit = limitByRatioAndDeltaCeil(
     baseline.summary.totalRetries,
     totalRetriesRatioMax,
     totalRetriesDeltaMax,
@@ -194,7 +187,7 @@ const main = async () => {
     ok: audit.summary.totalRetries <= totalRetriesLimit,
   });
 
-  const totalScenarioDurationLimit = limitByRatioAndDelta(
+  const totalScenarioDurationLimit = limitByRatioAndDeltaCeil(
     baseline.summary.totalScenarioDurationMs,
     totalScenarioDurationRatioMax,
     totalScenarioDurationDeltaMaxMs,
@@ -206,7 +199,7 @@ const main = async () => {
     ok: currentTotalScenarioDuration <= totalScenarioDurationLimit,
   });
 
-  const driftAuditDurationLimit = limitByRatioAndDelta(
+  const driftAuditDurationLimit = limitByRatioAndDeltaCeil(
     baseline.summary.driftAuditDurationMs,
     driftAuditDurationRatioMax,
     driftAuditDurationDeltaMaxMs,
@@ -218,7 +211,7 @@ const main = async () => {
     ok: currentDriftAuditDuration <= driftAuditDurationLimit,
   });
 
-  const totalAuditDurationLimit = limitByRatioAndDelta(
+  const totalAuditDurationLimit = limitByRatioAndDeltaCeil(
     baseline.summary.totalAuditDurationMs,
     totalAuditDurationRatioMax,
     totalAuditDurationDeltaMaxMs,
@@ -252,7 +245,7 @@ const main = async () => {
       ok: current.totalFailures === 0,
     });
 
-    const retriesLimit = limitByRatioAndDelta(
+    const retriesLimit = limitByRatioAndDeltaCeil(
       b.totalRetries,
       retriesRatioMax,
       retriesDeltaMax,
@@ -265,7 +258,7 @@ const main = async () => {
     });
 
     const currentDuration = ensurePositive(current.durationMs ?? 0, 1);
-    const durationLimit = limitByRatioAndDelta(
+    const durationLimit = limitByRatioAndDeltaCeil(
       b.durationMs,
       durationRatioMax,
       durationDeltaMaxMs,
