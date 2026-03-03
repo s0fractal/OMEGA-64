@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T17:50:48.776Z*
+*Generated: 2026-03-03T18:01:10.820Z*
 *Exported Files: 51*
 
 ---
@@ -5466,6 +5466,19 @@ const parseWorkerTimeoutRetryMs = (): number =>
   );
 const parseWorkerInitFallbackEnabled = (): boolean =>
   parseBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
+type WasmBootPolicy = "fail-fast" | "safe-noop";
+const parseWasmBootPolicy = (): WasmBootPolicy => {
+  const raw = (Deno.env.get("OMEGA_WASM_BOOT_POLICY") ?? "").trim()
+    .toLowerCase();
+  if (raw === "safe-noop" || raw === "safe_noop" || raw === "noop") {
+    return "safe-noop";
+  }
+  return "fail-fast";
+};
+const parseWasmBootPrecheckEnabled = (): boolean =>
+  parseBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
+const parseForceWasmPreflightFail = (): boolean =>
+  parseBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
 const parseStartupSelfTestEnabled = (): boolean =>
   parseBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
 const parseStartupSelfTestTicks = (): number =>
@@ -5482,6 +5495,9 @@ const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
 const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
 const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
 const WORKER_INIT_FALLBACK_ENABLED = parseWorkerInitFallbackEnabled();
+const WASM_BOOT_POLICY = parseWasmBootPolicy();
+const WASM_BOOT_PRECHECK_ENABLED = parseWasmBootPrecheckEnabled();
+const FORCE_WASM_PREFLIGHT_FAIL = parseForceWasmPreflightFail();
 const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
 const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
 const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
@@ -5489,6 +5505,7 @@ const STARTUP_SELFTEST_QUIET = parseStartupSelfTestQuiet();
 const STARTUP_SELFTEST_FORCE_BREACH = parseStartupSelfTestForceBreach();
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
+const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
 
 let runtimeWorkerCount = WORKER_COUNT;
 let startupSelfTestDone = false;
@@ -5497,12 +5514,20 @@ let startupSelfTestFallbackActivated = false;
 let startupSelfTestLastBreachTick = -1;
 let initFallbackActivated = false;
 let initFallbackReason = "";
+let wasmBootDegraded = false;
+let wasmBootReason = "";
+let wasmBootArtifactBytes = 0;
+let wasmBootPrecheckCompleted = false;
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
   startupSelfTestLastBreachTick = -1;
   initFallbackActivated = false;
   initFallbackReason = "";
+  wasmBootDegraded = false;
+  wasmBootReason = "";
+  wasmBootArtifactBytes = 0;
+  wasmBootPrecheckCompleted = false;
 };
 
 const workers: Worker[] = [];
@@ -5610,6 +5635,40 @@ const findNextFreeSlot = (startIdx: number): number => {
     if (Atomics.load(idsView, i) === 0n) return i;
   }
   return -1;
+};
+
+type WasmPreflightReport = {
+  ok: boolean;
+  bytes: number;
+  reason: string;
+};
+const wasmPreflight = async (): Promise<WasmPreflightReport> => {
+  if (FORCE_WASM_PREFLIGHT_FAIL) {
+    return {
+      ok: false,
+      bytes: 0,
+      reason: "FORCED_WASM_PREFLIGHT_FAIL",
+    };
+  }
+  try {
+    const bytes = await Deno.readFile(WASM_RELEASE_URL);
+    if (bytes.byteLength <= 0) {
+      return { ok: false, bytes: 0, reason: "EMPTY_WASM_ARTIFACT" };
+    }
+    await WebAssembly.compile(bytes);
+    return { ok: true, bytes: bytes.byteLength, reason: "" };
+  } catch (err) {
+    const reason = err instanceof Error
+      ? `${err.name}: ${err.message}`
+      : String(err);
+    return { ok: false, bytes: 0, reason };
+  }
+};
+const enterWasmSafeNoopMode = (reason: string): void => {
+  wasmBootDegraded = true;
+  wasmBootReason = reason;
+  runtimeWorkerCount = 0;
+  terminateWorkersInternal(false);
 };
 
 type WorkerWaitResult<T> = {
@@ -5873,7 +5932,14 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     const primaryErr = err instanceof Error ? err.message : String(err);
 
     if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
-      throw err;
+      runtimeWorkerCount = 0;
+      const failMsg = `[PULSE] Worker init failed: ${primaryErr}`;
+      if (WASM_BOOT_POLICY === "safe-noop") {
+        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        enterWasmSafeNoopMode(failMsg);
+        return;
+      }
+      throw new Error(failMsg);
     }
 
     runtimeWorkerCount = 1;
@@ -5890,9 +5956,15 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
       const fallbackMsg = fallbackErr instanceof Error
         ? fallbackErr.message
         : String(fallbackErr);
-      throw new Error(
-        `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`,
-      );
+      runtimeWorkerCount = 0;
+      const failMsg =
+        `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`;
+      if (WASM_BOOT_POLICY === "safe-noop") {
+        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        enterWasmSafeNoopMode(failMsg);
+        return;
+      }
+      throw new Error(failMsg);
     }
   }
 };
@@ -5929,6 +6001,14 @@ export const PULSE = {
         `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
       );
     }
+    if (Deno.env.get("OMEGA_WASM_BOOT_POLICY") !== undefined) {
+      LOGGER.info(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
+    }
+    if (Deno.env.get("OMEGA_WASM_BOOT_PRECHECK") !== undefined) {
+      LOGGER.info(
+        `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
+      );
+    }
     if (
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
@@ -5938,7 +6018,24 @@ export const PULSE = {
       );
     }
 
+    if (WASM_BOOT_PRECHECK_ENABLED) {
+      const preflight = await wasmPreflight();
+      wasmBootPrecheckCompleted = true;
+      wasmBootArtifactBytes = preflight.bytes;
+      if (!preflight.ok) {
+        const failMsg = `[PULSE] WASM preflight failed: ${preflight.reason}`;
+        if (WASM_BOOT_POLICY === "safe-noop") {
+          LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+          enterWasmSafeNoopMode(failMsg);
+          return;
+        }
+        throw new Error(failMsg);
+      }
+    }
+
     await startWorkersWithInitFallback(runtimeWorkerCount);
+    if (wasmBootDegraded) return;
+
     if (initFallbackActivated) {
       LOGGER.warn(
         `   [PULSE] ${runtimeWorkerCount} Worker READY after init fallback.`,
@@ -6054,6 +6151,12 @@ export const PULSE = {
     initFallbackEnabled: WORKER_INIT_FALLBACK_ENABLED,
     initFallbackActivated,
     initFallbackReason,
+    wasmBootPolicy: WASM_BOOT_POLICY,
+    wasmBootPrecheckEnabled: WASM_BOOT_PRECHECK_ENABLED,
+    wasmBootPrecheckCompleted,
+    wasmBootArtifactBytes,
+    wasmBootDegraded,
+    wasmBootReason,
   }),
   getWorkerFaultStats: (): WorkerFaultStat[] =>
     workerFaultStats.map((stat) => ({ ...stat })),
@@ -6099,6 +6202,16 @@ export const PULSE = {
   tick: async () => {
     if (workers.length === 0) {
       await PULSE.initWorkers();
+    }
+    if (wasmBootDegraded) {
+      return;
+    }
+    if (workers.length === 0) {
+      throw new Error(
+        `[PULSE] No workers ready for tick. reason=${
+          wasmBootReason || "WORKERS_UNAVAILABLE"
+        }`,
+      );
     }
 
     const { syncState, tickCounter, SYNC } = STATE_MATRIX;
@@ -6480,6 +6593,10 @@ health indicator loop:
   randomized per-message delays, zero drift, zero worker failures)
 - `deno task test:worker-init-fallback` (forced worker init failure gate:
   startup must degrade to single-worker mode when init fallback is enabled)
+- `deno task test:worker-init-total-fail` (forced all-worker init failure under
+  `fail-fast` policy must hard-fail with no workers alive)
+- `deno task test:worker-init-safe-noop` (forced all-worker init failure under
+  `safe-noop` policy must enter degraded no-op runtime mode)
 - `deno task test:worker-resilience-audit` (writes
   `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift
   summary)
@@ -6536,7 +6653,8 @@ health indicator loop:
   with `test:runtime-monoculture` and includes `test:ledger-chain` +
   `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
-  structure-intent determinism gate + worker-init fallback gate)
+  structure-intent determinism gate + worker-init fallback/total-fail/safe-noop
+  gates)
 - GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml`
   (scheduled long-run 4-worker sentinel + resilience
   audit/budget/trend/soak-trend artifacts)

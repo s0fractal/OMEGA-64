@@ -168,6 +168,10 @@ health indicator loop:
   randomized per-message delays, zero drift, zero worker failures)
 - `deno task test:worker-init-fallback` (forced worker init failure gate:
   startup must degrade to single-worker mode when init fallback is enabled)
+- `deno task test:worker-init-total-fail` (forced all-worker init failure under
+  `fail-fast` policy must hard-fail with no workers alive)
+- `deno task test:worker-init-safe-noop` (forced all-worker init failure under
+  `safe-noop` policy must enter degraded no-op runtime mode)
 - `deno task test:worker-resilience-audit` (writes
   `WORKER_RESILIENCE_AUDIT.json` with unified fault/jitter/spawn metrics + drift
   summary)
@@ -224,7 +228,8 @@ health indicator loop:
   with `test:runtime-monoculture` and includes `test:ledger-chain` +
   `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
-  structure-intent determinism gate + worker-init fallback gate)
+  structure-intent determinism gate + worker-init fallback/total-fail/safe-noop
+  gates)
 - GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml`
   (scheduled long-run 4-worker sentinel + resilience
   audit/budget/trend/soak-trend artifacts)
