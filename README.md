@@ -143,6 +143,8 @@ health indicator loop:
 
 - `deno task wasm:layout`
 - `deno task wasm:build`
+- Active test gate: `deno task test:active`
+- Test plane policy: see `TEST_PLANES.md`
 - `deno task vector10:verify`
 - `OMEGA_PULSE_WORKERS=1 deno task vector10:verify` (single-worker fallback)
 - `deno task test:tensegrity` (Vector 2 bond rigidity regression gate, now

@@ -46,6 +46,7 @@
     "test:worker-drift-audit": "deno run -A test_worker_drift_audit.ts",
     "test:structure-intent-determinism": "deno run -A test_structure_intent_determinism.ts",
     "test:runtime-monoculture": "deno run -A test_runtime_monoculture.ts",
+    "test:active": "deno task verify:coherence:deep",
     "ci:verify:worker1": "OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep",
     "ci:verify:worker4": "OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep",
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
