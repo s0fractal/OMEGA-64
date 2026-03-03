@@ -15,7 +15,12 @@ const parseWorkerCount = (): number => {
     if (!Number.isFinite(n) || n < 1) return 4;
     return Math.min(32, n);
 };
+const parseStrictDeterminism = (): boolean => {
+    const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
+    return raw === "1" || raw === "true" || raw === "TRUE";
+};
 const WORKER_COUNT = parseWorkerCount();
+const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
 
 const workers: Worker[] = [];
@@ -65,6 +70,9 @@ export const PULSE = {
         if (workers.length > 0) return;
         if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
             console.log(`   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${WORKER_COUNT}`);
+        }
+        if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
+            console.log("   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.");
         }
         
         for (let i = 0; i < WORKER_COUNT; i++) {
@@ -153,19 +161,27 @@ export const PULSE = {
             Atomics.notify(syncState, 0);
 
             workerPromises = [];
-            const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
-            
-            for (let i = 0; i < WORKER_COUNT; i++) {
-                const startIdx = i * chunkSize;
-                const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-                
+            if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
                 const pulseId = nextPulseId();
-                const p = postAndWait(
-                    workers[i],
-                    { type: "PULSE", startIdx, endIdx, pulseId },
+                workerPromises.push(postAndWait(
+                    workers[0],
+                    { type: "PULSE", startIdx: 0, endIdx: MAX_ATOMS, pulseId },
                     "DONE",
-                );
-                workerPromises.push(p);
+                ));
+            } else {
+                const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
+                for (let i = 0; i < WORKER_COUNT; i++) {
+                    const startIdx = i * chunkSize;
+                    const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+                    const pulseId = nextPulseId();
+                    const p = postAndWait(
+                        workers[i],
+                        { type: "PULSE", startIdx, endIdx, pulseId },
+                        "DONE",
+                    );
+                    workerPromises.push(p);
+                }
             }
             await Promise.all(workerPromises);
 
