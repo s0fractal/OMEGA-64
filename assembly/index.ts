@@ -121,8 +121,22 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
         if (observed == current) return;
     }
 }
+@inline function readStructureCell(cellIdx: i32): i32 {
+    const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
+    const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
+    const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
+
+    while (true) {
+        const ownerRaw = atomic.load<i32>(ownerPtr);
+        if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
+        if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
+            return atomic.load<i32>(valuePtr);
+        }
+        return atomic.load<i32>(gridPtr);
+    }
+}
 @inline function readStructureCharge(cellIdx: i32): i32 {
-    const cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2));
+    const cellVal = readStructureCell(cellIdx);
     const baseCharge = (cellVal >> 16) & 0xFF;
     const intentCharge = atomic.load<i32>(STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize);
     return intentCharge > baseCharge ? intentCharge : baseCharge;
@@ -396,7 +410,7 @@ const WORLD_MAX_Y: i32 = 799;
             let cx = gx + ox;
             let cy = gy + oy;
             if (cx >= 0 && cx < 140 && cy >= 0 && cy < 80) {
-                let cell = load<i32>(STRUCTURE_GRID_OFF + ((cy * 140 + cx) << 2));
+                let cell = readStructureCell(cy * 140 + cx);
                 let density = (cell >> 8) & 0xFF;
                 let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
                 tx += ((ox as f32) / (2.0 as f32)) * force;
@@ -776,7 +790,7 @@ export function execute_atom(atomIndex: i32): void {
                     let ny = gy + dir8Y(n);
                     if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
                         let ni = ny * 140 + nx;
-                        let cellVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+                        let cellVal = readStructureCell(ni);
                         if ((cellVal & 0xFF) == (targetType as i32)) {
                             found = 1;
                             break;
