@@ -22,9 +22,27 @@ const parseStrictDeterminism = (): boolean => {
 const WORKER_COUNT = parseWorkerCount();
 const STRICT_DETERMINISM = parseStrictDeterminism();
 const WORKER_RESPONSE_TIMEOUT_MS = 30_000;
+const SPAWN_RING_CAPACITY = 1024;
+const SPAWN_SLOT_BYTES = 16;
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
+
+const xsView = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
+const ysView = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+const energiesView = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+const resonancesView = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+const readXsView = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_XS_OFFSET, MAX_ATOMS);
+const readYsView = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_YS_OFFSET, MAX_ATOMS);
+const readEnergiesView = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS);
+const readResonancesView = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS);
+const spawnHeadView = new Int32Array(sharedBuffer, OFFSETS.SPAWN_REQUESTS_OFFSET, 2);
+const spawnDataView = new DataView(
+    sharedBuffer,
+    OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+    SPAWN_RING_CAPACITY * SPAWN_SLOT_BYTES,
+);
+const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number => Date.now() + Math.floor(Math.random() * 1_000_000);
 
@@ -62,6 +80,32 @@ const postAndWait = async <T = any>(
     const pending = waitForWorkerMessage<T>(worker, expectedType, pulseId, timeoutMs);
     worker.postMessage(message);
     return await pending;
+};
+
+const dispatchRangePhase = async (type: "PULSE" | "REDUCE_DELTAS", doneType: "DONE" | "DELTA_DONE"): Promise<void> => {
+    workerPromises = [];
+    if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
+        const pulseId = nextPulseId();
+        workerPromises.push(postAndWait(
+            workers[0],
+            { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId },
+            doneType,
+        ));
+    } else {
+        const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
+        for (let i = 0; i < WORKER_COUNT; i++) {
+            const startIdx = i * chunkSize;
+            const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+            const pulseId = nextPulseId();
+            workerPromises.push(postAndWait(
+                workers[i],
+                { type, startIdx, endIdx, pulseId },
+                doneType,
+            ));
+        }
+    }
+    await Promise.all(workerPromises);
 };
 
 export const PULSE = {
@@ -157,73 +201,19 @@ export const PULSE = {
 
             // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
             {
-                const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-                const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
-                const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-                const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-                const readXs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_XS_OFFSET, MAX_ATOMS);
-                const readYs = new Int16Array(sharedBuffer, OFFSETS.PHYSICS_READ_YS_OFFSET, MAX_ATOMS);
-                const readEnergies = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS);
-                const readResonances = new Int32Array(sharedBuffer, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS);
-                readXs.set(xs);
-                readYs.set(ys);
-                readEnergies.set(energies);
-                readResonances.set(resonances);
+                readXsView.set(xsView);
+                readYsView.set(ysView);
+                readEnergiesView.set(energiesView);
+                readResonancesView.set(resonancesView);
             }
             // 2b. Execute Physics (WASM)
             // Transition to WASM_TICKING (1) to unblock workers
             Atomics.store(syncState, 0, SYNC.WASM_TICKING);
             Atomics.notify(syncState, 0);
-
-            workerPromises = [];
-            if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
-                const pulseId = nextPulseId();
-                workerPromises.push(postAndWait(
-                    workers[0],
-                    { type: "PULSE", startIdx: 0, endIdx: MAX_ATOMS, pulseId },
-                    "DONE",
-                ));
-            } else {
-                const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
-                for (let i = 0; i < WORKER_COUNT; i++) {
-                    const startIdx = i * chunkSize;
-                    const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-
-                    const pulseId = nextPulseId();
-                    const p = postAndWait(
-                        workers[i],
-                        { type: "PULSE", startIdx, endIdx, pulseId },
-                        "DONE",
-                    );
-                    workerPromises.push(p);
-                }
-            }
-            await Promise.all(workerPromises);
+            await dispatchRangePhase("PULSE", "DONE");
 
             // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
-            workerPromises = [];
-            if (STRICT_DETERMINISM && WORKER_COUNT > 1) {
-                const pulseId = nextPulseId();
-                workerPromises.push(postAndWait(
-                    workers[0],
-                    { type: "REDUCE_DELTAS", startIdx: 0, endIdx: MAX_ATOMS, pulseId },
-                    "DELTA_DONE",
-                ));
-            } else {
-                const chunkSize = Math.ceil(MAX_ATOMS / WORKER_COUNT);
-                for (let i = 0; i < WORKER_COUNT; i++) {
-                    const startIdx = i * chunkSize;
-                    const endIdx = Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-
-                    const pulseId = nextPulseId();
-                    workerPromises.push(postAndWait(
-                        workers[i],
-                        { type: "REDUCE_DELTAS", startIdx, endIdx, pulseId },
-                        "DELTA_DONE",
-                    ));
-                }
-            }
-            await Promise.all(workerPromises);
+            await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
 
             // 3. Matrix Engine (WASM)
             const matrixPulseId = nextPulseId();
@@ -236,22 +226,22 @@ export const PULSE = {
 
             // 4. Drain Spawn Queue
             {
-                const headView  = new Int32Array(sharedBuffer, OFFSETS.SPAWN_REQUESTS_OFFSET, 2);
-                const readHead  = Atomics.load(headView, 1);
-                const writeHead = Atomics.load(headView, 0);
+                const readHead = Atomics.load(spawnHeadView, 1);
+                const writeHead = Atomics.load(spawnHeadView, 0);
+                const writeCursor = writeHead % SPAWN_RING_CAPACITY;
 
                 let spawned = 0;
                 let cursor = readHead;
 
-                while (cursor !== writeHead % 1024 && spawned < 64) {
-                    const slotOff = OFFSETS.SPAWN_REQUESTS_OFFSET + 8 + cursor * 16;
-                    const genomeLo = new Uint32Array(sharedBuffer, slotOff, 1)[0];
+                while (cursor !== writeCursor && spawned < 64) {
+                    const slotOff = cursor * SPAWN_SLOT_BYTES;
+                    const genomeLo = spawnDataView.getUint32(slotOff, true);
 
                     if (genomeLo !== 0) {
-                        const genomeHi = new Uint32Array(sharedBuffer, slotOff + 4, 1)[0];
-                        const cx = new Int16Array(sharedBuffer, slotOff + 8, 1)[0];
-                        const cy = new Int16Array(sharedBuffer, slotOff + 10, 1)[0];
-                        const childEnergy = new Int32Array(sharedBuffer, slotOff + 12, 1)[0];
+                        const genomeHi = spawnDataView.getUint32(slotOff + 4, true);
+                        const cx = spawnDataView.getInt16(slotOff + 8, true);
+                        const cy = spawnDataView.getInt16(slotOff + 10, true);
+                        const childEnergy = spawnDataView.getInt32(slotOff + 12, true);
 
                         const freeIdx = STATE_MATRIX.findFreeSlot();
 
@@ -265,11 +255,11 @@ export const PULSE = {
                             STATE_MATRIX.seedAtom(freeIdx, childId, cx * 10 + 5, cy * 10 + 5, Math.max(childEnergy, 500) / STATE_MATRIX.SCALE, 0, genome);
                             spawned++;
                         }
-                        new Uint32Array(sharedBuffer, slotOff, 1)[0] = 0;
+                        spawnDataView.setUint32(slotOff, 0, true);
                     }
-                    cursor = (cursor + 1) % 1024;
+                    cursor = (cursor + 1) % SPAWN_RING_CAPACITY;
                 }
-                Atomics.store(headView, 1, cursor);
+                Atomics.store(spawnHeadView, 1, cursor);
                 if (spawned > 0) console.log(`🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`);
             }
 
@@ -293,7 +283,6 @@ export const PULSE = {
                 const coherence = Math.min(255, Math.floor(avgRes / 100));
                 
                 // Write to Unified Lattice
-                const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
                 Atomics.store(coherenceView, 0, coherence);
                 
                 if (currentTick % 20 === 0) {
