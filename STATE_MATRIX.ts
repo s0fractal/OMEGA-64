@@ -55,6 +55,8 @@ export const signalGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80).buffer;
 export const structureGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
+export const attentionFieldBuffer =
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80).buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
@@ -123,6 +125,11 @@ const memoryGrid = new Uint8Array(
   sharedBuffer,
   OFFSETS.MEMORY_GRID_OFFSET,
   140 * 80 * 8,
+);
+const attentionField = new Float32Array(
+  sharedBuffer,
+  OFFSETS.ATTENTION_FIELD_OFFSET,
+  140 * 80,
 );
 const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 const neuralCoherence = new Int32Array(
@@ -235,6 +242,7 @@ export const STATE_MATRIX = {
   structureGrid,
   signalGrid,
   memoryGrid,
+  attentionField,
   coherence,
   neuralCoherence,
   instructions,
@@ -245,6 +253,7 @@ export const STATE_MATRIX = {
   memoryGridBuffer,
   signalGridBuffer,
   structureGridBuffer,
+  attentionFieldBuffer,
   roleRegistryBuffer: roleBuffer,
   bondStiffnessBuffer: stiffnessBuffer,
   bondDistancesBuffer: bondDistBuffer,

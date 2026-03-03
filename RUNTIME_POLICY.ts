@@ -25,6 +25,7 @@ const rawPort = readEnv("PORT");
 const rawSystemHost = readEnv("OMEGA_SYSTEM_HOST");
 const rawSystemControlEnable = readEnv("OMEGA_SYSTEM_CONTROL_ENABLE");
 const rawSystemControlToken = readEnv("OMEGA_SYSTEM_CONTROL_TOKEN");
+const rawSystemAvatarIngressEnable = readEnv("OMEGA_AVATAR_INGRESS_ENABLE");
 const rawP2PHost = readEnv("OMEGA_P2P_HOST");
 const rawP2PMutateEnable = readEnv("OMEGA_P2P_MUTATE_ENABLE");
 const rawP2PMutateToken = readEnv("OMEGA_P2P_MUTATE_TOKEN");
@@ -59,6 +60,10 @@ const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
 const systemControlEnabled = parseEnvBool(rawSystemControlEnable, false);
 const systemControlToken = normalizeToken(rawSystemControlToken);
+const systemAvatarIngressEnabled = parseEnvBool(
+  rawSystemAvatarIngressEnable,
+  true,
+);
 
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
 const p2pMutateEnabled = parseEnvBool(
@@ -172,6 +177,7 @@ const policyFingerprintSource = JSON.stringify({
     port: systemPort,
     controlEnabled: systemControlEnabled,
     controlTokenSet: systemControlToken.length > 0,
+    avatarIngressEnabled: systemAvatarIngressEnabled,
   },
   p2p: {
     host: p2pHost,
@@ -227,11 +233,13 @@ export const RUNTIME_POLICY = {
     port: systemPort,
     controlEnabled: systemControlEnabled,
     controlToken: systemControlToken,
+    avatarIngressEnabled: systemAvatarIngressEnabled,
     source: {
       host: hasEnvValue(rawSystemHost),
       port: hasEnvValue(rawPort),
       controlEnabled: rawSystemControlEnable !== undefined,
       controlToken: rawSystemControlToken !== undefined,
+      avatarIngressEnabled: rawSystemAvatarIngressEnable !== undefined,
     },
   },
   p2p: {

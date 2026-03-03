@@ -403,6 +403,21 @@
       let architectureFlags = new Int32Array(gridCells);
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
+      const raycaster = new THREE.Raycaster();
+      const pointerNdc = new THREE.Vector2();
+      const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+      const pointerHit = new THREE.Vector3();
+      let avatarX = 700;
+      let avatarY = 400;
+      let avatarDirty = false;
+      let avatarDisabled = false;
+      let lastAvatarSync = 0;
+      const AVATAR_SYNC_MS = 100;
+      let omegaControlToken = localStorage.getItem("omega-control-token") || "";
+      window.setOmegaControlToken = (token) => {
+        omegaControlToken = String(token || "").trim();
+        localStorage.setItem("omega-control-token", omegaControlToken);
+      };
 
       // Command Input
       document.getElementById("command-input").addEventListener("keydown", async (e) => {
@@ -413,6 +428,36 @@
           fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
         }
       });
+
+      renderer.domElement.addEventListener("pointermove", (event) => {
+        if (avatarDisabled) return;
+        const rect = renderer.domElement.getBoundingClientRect();
+        pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointerNdc, camera);
+        if (!raycaster.ray.intersectPlane(interactionPlane, pointerHit)) return;
+        avatarX = Math.max(0, Math.min(1399, Math.round(pointerHit.x + 700)));
+        avatarY = Math.max(0, Math.min(799, Math.round(pointerHit.y + 400)));
+        avatarDirty = true;
+      });
+
+      async function syncAvatarPresence() {
+        if (avatarDisabled) return;
+        const headers = { "Content-Type": "application/json" };
+        if (omegaControlToken.length > 0) {
+          headers["x-omega-control-token"] = omegaControlToken;
+        }
+        try {
+          const res = await fetch("/avatar", {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ x: avatarX, y: avatarY }),
+          });
+          if (!res.ok && (res.status === 401 || res.status === 403)) {
+            avatarDisabled = true;
+          }
+        } catch (_) {}
+      }
 
       // Synchronizers
       async function syncBuffer(url, target) {
@@ -557,6 +602,12 @@
               const intensity = Math.min(1.0, nutrient / 2000);
               gridColArr[i*3+1] = intensity * 0.8; gridSizArr[i] = 8 + intensity * 15;
             }
+            if (attract > 0.01) {
+              const a = Math.min(1.0, attract / 400);
+              gridColArr[i*3] = Math.max(gridColArr[i*3], 1.0 * a);
+              gridColArr[i*3+2] = Math.max(gridColArr[i*3+2], 0.9 * a);
+              gridSizArr[i] += 2 + a * 10;
+            }
           }
           gridGeo.attributes.color.needsUpdate = true;
           gridGeo.attributes.size.needsUpdate = true;
@@ -579,6 +630,11 @@
       function animate(t) {
         requestAnimationFrame(animate);
         controls.update();
+        if (avatarDirty && !avatarDisabled && t - lastAvatarSync > AVATAR_SYNC_MS) {
+          avatarDirty = false;
+          lastAvatarSync = t;
+          syncAvatarPresence();
+        }
         if (t - lastSync > 250) {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();

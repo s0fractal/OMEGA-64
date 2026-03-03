@@ -43,6 +43,7 @@ const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
 const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
 const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
 const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
+const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -162,6 +163,10 @@ const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
 @inline function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 { 
     let cellIdx = gy * 140 + gx; 
     return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize); 
+}
+@inline function getAttentionCell(gx: i32, gy: i32): f32 {
+    if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
+    return load<f32>(ATTENTION_FIELD_OFF + ((gy * 140 + gx) << 2) as usize);
 }
 
 @inline function fireSignal(atomIndex: i32): void {
@@ -394,6 +399,28 @@ const WORLD_MAX_Y: i32 = 799;
             }
         }
     }
+
+    // Observer presence field (Era 70): role-dependent response to attention gradients.
+    let gradX = getAttentionCell(gx + 1, gy) - getAttentionCell(gx - 1, gy);
+    let gradY = getAttentionCell(gx, gy + 1) - getAttentionCell(gx, gy - 1);
+    if (gradX > 200.0) gradX = 200.0;
+    if (gradX < -200.0) gradX = -200.0;
+    if (gradY > 200.0) gradY = 200.0;
+    if (gradY < -200.0) gradY = -200.0;
+
+    let attentionDrive: f32 = 0.0;
+    if (role == ROLE_PARASITE) {
+        attentionDrive = -0.04;
+    } else if (role == ROLE_ARCHITECT) {
+        const localAttention = getAttentionCell(gx, gy);
+        attentionDrive = localAttention > 80.0 ? -0.03 : 0.02;
+    } else if (role == ROLE_GUARDIAN) {
+        attentionDrive = 0.02;
+    } else {
+        attentionDrive = 0.05; // Producers and neutral explorers gravitate to attention.
+    }
+    tx += gradX * attentionDrive;
+    ty += gradY * attentionDrive;
 
     if (role == ROLE_ARCHITECT) {
         // Simple 4-way density check
@@ -949,8 +976,14 @@ export function tick_structure_grid(): void {
                 }
             }
 
-            const type = cellVal & 0xFF;
-            const currentCharge = (cellVal >> 16) & 0xFF;
+            let type = cellVal & 0xFF;
+            let currentCharge = (cellVal >> 16) & 0xFF;
+            if (type < STR_VOID || type > STR_CAPACITOR) {
+                if (currentCharge < 64) currentCharge = 64;
+                cellVal = (cellVal & ~0x00FFFF00) | (currentCharge << 16) | STR_WIRE;
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), cellVal);
+                type = STR_WIRE;
+            }
             
             // --- AUTOPOIESIS: Spontaneous Crystallization ---
             if (type == STR_VOID) {

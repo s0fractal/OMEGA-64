@@ -1,6 +1,7 @@
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PRNG } from "./PRNG.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
 const GRID_W = 140;
 const GRID_H = 80;
@@ -8,13 +9,13 @@ const GRID_H = 80;
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
 
-const attentionBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Float32
-const ATTENTION_PHEROMONES = new Float32Array(attentionBuffer);
+const ATTENTION_PHEROMONES = STATE_MATRIX.attentionField;
 
 export const PHYSICS_ENGINE = {
     envBuffer,
     NUTRIENTS,
-    attentionBuffer,
+    attentionBuffer: STATE_MATRIX.buffer,
+    attentionOffset: OFFSETS.ATTENTION_FIELD_OFFSET,
     ATTENTION_PHEROMONES,
     // Spatial Memory
     pheromones: {

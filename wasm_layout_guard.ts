@@ -115,6 +115,7 @@ export const assertWasmLayout = async (): Promise<void> => {
         { asm: "STRUCTURE_BUILD_OWNER_OFF", value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET },
         { asm: "STRUCTURE_BUILD_VALUE_OFF", value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET },
         { asm: "STRUCTURE_CHARGE_INTENT_OFF", value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET },
+        { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
     ];
 
     const mismatches: string[] = [];

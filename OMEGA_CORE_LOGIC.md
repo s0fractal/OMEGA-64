@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T23:11:35.930Z*
+*Generated: 2026-03-03T23:30:03.954Z*
 *Exported Files: 63*
 *Manifest SHA256: 4ed6c06a3ec045697d1d558d624fc29f3baf6f06712a85fd2d7e729d641fb48e*
 *Export Set SHA256: ef0de89e746947572a8b92d802ddf60cd64756401866c7597ac7732643926001*
-*Git Commit: 0823f988c4a7*
+*Git Commit: f0f778ab07c0*
 
 ---
 
@@ -653,6 +653,7 @@ const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
 const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
 const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
 const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
+const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -772,6 +773,10 @@ const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
 @inline function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 { 
     let cellIdx = gy * 140 + gx; 
     return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize); 
+}
+@inline function getAttentionCell(gx: i32, gy: i32): f32 {
+    if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
+    return load<f32>(ATTENTION_FIELD_OFF + ((gy * 140 + gx) << 2) as usize);
 }
 
 @inline function fireSignal(atomIndex: i32): void {
@@ -1004,6 +1009,28 @@ const WORLD_MAX_Y: i32 = 799;
             }
         }
     }
+
+    // Observer presence field (Era 70): role-dependent response to attention gradients.
+    let gradX = getAttentionCell(gx + 1, gy) - getAttentionCell(gx - 1, gy);
+    let gradY = getAttentionCell(gx, gy + 1) - getAttentionCell(gx, gy - 1);
+    if (gradX > 200.0) gradX = 200.0;
+    if (gradX < -200.0) gradX = -200.0;
+    if (gradY > 200.0) gradY = 200.0;
+    if (gradY < -200.0) gradY = -200.0;
+
+    let attentionDrive: f32 = 0.0;
+    if (role == ROLE_PARASITE) {
+        attentionDrive = -0.04;
+    } else if (role == ROLE_ARCHITECT) {
+        const localAttention = getAttentionCell(gx, gy);
+        attentionDrive = localAttention > 80.0 ? -0.03 : 0.02;
+    } else if (role == ROLE_GUARDIAN) {
+        attentionDrive = 0.02;
+    } else {
+        attentionDrive = 0.05; // Producers and neutral explorers gravitate to attention.
+    }
+    tx += gradX * attentionDrive;
+    ty += gradY * attentionDrive;
 
     if (role == ROLE_ARCHITECT) {
         // Simple 4-way density check
@@ -1559,8 +1586,14 @@ export function tick_structure_grid(): void {
                 }
             }
 
-            const type = cellVal & 0xFF;
-            const currentCharge = (cellVal >> 16) & 0xFF;
+            let type = cellVal & 0xFF;
+            let currentCharge = (cellVal >> 16) & 0xFF;
+            if (type < STR_VOID || type > STR_CAPACITOR) {
+                if (currentCharge < 64) currentCharge = 64;
+                cellVal = (cellVal & ~0x00FFFF00) | (currentCharge << 16) | STR_WIRE;
+                atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), cellVal);
+                type = STR_WIRE;
+            }
             
             // --- AUTOPOIESIS: Spontaneous Crystallization ---
             if (type == STR_VOID) {
@@ -6423,10 +6456,11 @@ export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 42000000;
 export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 42400000;
 export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 42444800;
 export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 42489600;
+export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 42534400;
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = STRUCTURE_CHARGE_INTENT_OFFSET + 140 * 80 * 4;
+export const LATTICE_MEMORY_END = ATTENTION_FIELD_OFFSET + 140 * 80 * 4;
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES);
 export const WASM_MEMORY_PAGES = 1024;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
@@ -6699,6 +6733,7 @@ Deno.serve({ hostname: HOST, port: PORT }, handler);
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PRNG } from "./PRNG.ts";
 import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
 const GRID_W = 140;
 const GRID_H = 80;
@@ -6706,13 +6741,13 @@ const GRID_H = 80;
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
 
-const attentionBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Float32
-const ATTENTION_PHEROMONES = new Float32Array(attentionBuffer);
+const ATTENTION_PHEROMONES = STATE_MATRIX.attentionField;
 
 export const PHYSICS_ENGINE = {
     envBuffer,
     NUTRIENTS,
-    attentionBuffer,
+    attentionBuffer: STATE_MATRIX.buffer,
+    attentionOffset: OFFSETS.ATTENTION_FIELD_OFFSET,
     ATTENTION_PHEROMONES,
     // Spatial Memory
     pheromones: {
@@ -7433,6 +7468,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -8362,6 +8398,9 @@ export const PULSE = {
         );
       }
 
+      // Decay host pheromone fields (including observer attention).
+      PHYSICS_ENGINE.decayPheromones();
+
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {
         MUTATION_TELEMETRY.record({
@@ -9232,6 +9271,7 @@ const rawPort = readEnv("PORT");
 const rawSystemHost = readEnv("OMEGA_SYSTEM_HOST");
 const rawSystemControlEnable = readEnv("OMEGA_SYSTEM_CONTROL_ENABLE");
 const rawSystemControlToken = readEnv("OMEGA_SYSTEM_CONTROL_TOKEN");
+const rawSystemAvatarIngressEnable = readEnv("OMEGA_AVATAR_INGRESS_ENABLE");
 const rawP2PHost = readEnv("OMEGA_P2P_HOST");
 const rawP2PMutateEnable = readEnv("OMEGA_P2P_MUTATE_ENABLE");
 const rawP2PMutateToken = readEnv("OMEGA_P2P_MUTATE_TOKEN");
@@ -9266,6 +9306,10 @@ const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
 const systemControlEnabled = parseEnvBool(rawSystemControlEnable, false);
 const systemControlToken = normalizeToken(rawSystemControlToken);
+const systemAvatarIngressEnabled = parseEnvBool(
+  rawSystemAvatarIngressEnable,
+  true,
+);
 
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
 const p2pMutateEnabled = parseEnvBool(
@@ -9379,6 +9423,7 @@ const policyFingerprintSource = JSON.stringify({
     port: systemPort,
     controlEnabled: systemControlEnabled,
     controlTokenSet: systemControlToken.length > 0,
+    avatarIngressEnabled: systemAvatarIngressEnabled,
   },
   p2p: {
     host: p2pHost,
@@ -9434,11 +9479,13 @@ export const RUNTIME_POLICY = {
     port: systemPort,
     controlEnabled: systemControlEnabled,
     controlToken: systemControlToken,
+    avatarIngressEnabled: systemAvatarIngressEnabled,
     source: {
       host: hasEnvValue(rawSystemHost),
       port: hasEnvValue(rawPort),
       controlEnabled: rawSystemControlEnable !== undefined,
       controlToken: rawSystemControlToken !== undefined,
+      avatarIngressEnabled: rawSystemAvatarIngressEnable !== undefined,
     },
   },
   p2p: {
@@ -12622,6 +12669,8 @@ export const signalGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80).buffer;
 export const structureGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
+export const attentionFieldBuffer =
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80).buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
@@ -12690,6 +12739,11 @@ const memoryGrid = new Uint8Array(
   sharedBuffer,
   OFFSETS.MEMORY_GRID_OFFSET,
   140 * 80 * 8,
+);
+const attentionField = new Float32Array(
+  sharedBuffer,
+  OFFSETS.ATTENTION_FIELD_OFFSET,
+  140 * 80,
 );
 const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 const neuralCoherence = new Int32Array(
@@ -12802,6 +12856,7 @@ export const STATE_MATRIX = {
   structureGrid,
   signalGrid,
   memoryGrid,
+  attentionField,
   coherence,
   neuralCoherence,
   instructions,
@@ -12812,6 +12867,7 @@ export const STATE_MATRIX = {
   memoryGridBuffer,
   signalGridBuffer,
   structureGridBuffer,
+  attentionFieldBuffer,
   roleRegistryBuffer: roleBuffer,
   bondStiffnessBuffer: stiffnessBuffer,
   bondDistancesBuffer: bondDistBuffer,
@@ -13418,8 +13474,14 @@ const HOST = RUNTIME_POLICY.system.host;
 const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
 const requireControlAuth = (req: Request): Response | null => {
+  const path = new URL(req.url).pathname;
+  const isAvatarIngress = path === "/avatar";
   if (!CONTROL_ENABLE) {
+    if (isAvatarIngress && AVATAR_INGRESS_ENABLE) {
+      return null;
+    }
     return new Response("Control plane disabled", { status: 403 });
   }
   if (CONTROL_TOKEN.length === 0) {
@@ -13435,7 +13497,9 @@ const requireControlAuth = (req: Request): Response | null => {
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
-  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${
+    AVATAR_INGRESS_ENABLE
+  } tokenRequired=${
     CONTROL_TOKEN.length > 0
   }`,
 );
@@ -13456,7 +13520,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/grid") {
     const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
-    const attention = new Float32Array(PHYSICS_ENGINE.attentionBuffer);
+    const attention = PHYSICS_ENGINE.ATTENTION_PHEROMONES;
 
     const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
     const outEnv = new Int32Array(buffer, 0, env.length);
@@ -14218,6 +14282,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let architectureFlags = new Int32Array(gridCells);
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
+      const raycaster = new THREE.Raycaster();
+      const pointerNdc = new THREE.Vector2();
+      const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+      const pointerHit = new THREE.Vector3();
+      let avatarX = 700;
+      let avatarY = 400;
+      let avatarDirty = false;
+      let avatarDisabled = false;
+      let lastAvatarSync = 0;
+      const AVATAR_SYNC_MS = 100;
+      let omegaControlToken = localStorage.getItem("omega-control-token") || "";
+      window.setOmegaControlToken = (token) => {
+        omegaControlToken = String(token || "").trim();
+        localStorage.setItem("omega-control-token", omegaControlToken);
+      };
 
       // Command Input
       document.getElementById("command-input").addEventListener("keydown", async (e) => {
@@ -14228,6 +14307,36 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
         }
       });
+
+      renderer.domElement.addEventListener("pointermove", (event) => {
+        if (avatarDisabled) return;
+        const rect = renderer.domElement.getBoundingClientRect();
+        pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointerNdc, camera);
+        if (!raycaster.ray.intersectPlane(interactionPlane, pointerHit)) return;
+        avatarX = Math.max(0, Math.min(1399, Math.round(pointerHit.x + 700)));
+        avatarY = Math.max(0, Math.min(799, Math.round(pointerHit.y + 400)));
+        avatarDirty = true;
+      });
+
+      async function syncAvatarPresence() {
+        if (avatarDisabled) return;
+        const headers = { "Content-Type": "application/json" };
+        if (omegaControlToken.length > 0) {
+          headers["x-omega-control-token"] = omegaControlToken;
+        }
+        try {
+          const res = await fetch("/avatar", {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ x: avatarX, y: avatarY }),
+          });
+          if (!res.ok && (res.status === 401 || res.status === 403)) {
+            avatarDisabled = true;
+          }
+        } catch (_) {}
+      }
 
       // Synchronizers
       async function syncBuffer(url, target) {
@@ -14372,6 +14481,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               const intensity = Math.min(1.0, nutrient / 2000);
               gridColArr[i*3+1] = intensity * 0.8; gridSizArr[i] = 8 + intensity * 15;
             }
+            if (attract > 0.01) {
+              const a = Math.min(1.0, attract / 400);
+              gridColArr[i*3] = Math.max(gridColArr[i*3], 1.0 * a);
+              gridColArr[i*3+2] = Math.max(gridColArr[i*3+2], 0.9 * a);
+              gridSizArr[i] += 2 + a * 10;
+            }
           }
           gridGeo.attributes.color.needsUpdate = true;
           gridGeo.attributes.size.needsUpdate = true;
@@ -14394,6 +14509,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function animate(t) {
         requestAnimationFrame(animate);
         controls.update();
+        if (avatarDirty && !avatarDisabled && t - lastAvatarSync > AVATAR_SYNC_MS) {
+          avatarDirty = false;
+          lastAvatarSync = t;
+          syncAvatarPresence();
+        }
         if (t - lastSync > 250) {
           sync("ALPHA", geo, pos, col, siz);
           syncGrid();
@@ -14546,6 +14666,7 @@ export const assertWasmLayout = async (): Promise<void> => {
         { asm: "STRUCTURE_BUILD_OWNER_OFF", value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET },
         { asm: "STRUCTURE_BUILD_VALUE_OFF", value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET },
         { asm: "STRUCTURE_CHARGE_INTENT_OFF", value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET },
+        { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
     ];
 
     const mismatches: string[] = [];

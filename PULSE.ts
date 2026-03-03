@@ -8,6 +8,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -936,6 +937,9 @@ export const PULSE = {
           `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
+
+      // Decay host pheromone fields (including observer attention).
+      PHYSICS_ENGINE.decayPheromones();
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {

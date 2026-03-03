@@ -19,8 +19,14 @@ const HOST = RUNTIME_POLICY.system.host;
 const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
 const requireControlAuth = (req: Request): Response | null => {
+  const path = new URL(req.url).pathname;
+  const isAvatarIngress = path === "/avatar";
   if (!CONTROL_ENABLE) {
+    if (isAvatarIngress && AVATAR_INGRESS_ENABLE) {
+      return null;
+    }
     return new Response("Control plane disabled", { status: 403 });
   }
   if (CONTROL_TOKEN.length === 0) {
@@ -36,7 +42,9 @@ const requireControlAuth = (req: Request): Response | null => {
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
-  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${
+    AVATAR_INGRESS_ENABLE
+  } tokenRequired=${
     CONTROL_TOKEN.length > 0
   }`,
 );
@@ -57,7 +65,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/grid") {
     const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
-    const attention = new Float32Array(PHYSICS_ENGINE.attentionBuffer);
+    const attention = PHYSICS_ENGINE.ATTENTION_PHEROMONES;
 
     const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
     const outEnv = new Int32Array(buffer, 0, env.length);
