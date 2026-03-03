@@ -65,6 +65,7 @@ const neuralCoherence = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OF
 const instructions = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
 const contexts = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16); // 16 * 4 = 64 bytes
 const contextByteView = new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
+const latticeClearView = new Uint8Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET);
 
 // Coordination Views (Atomic)
 const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
@@ -106,6 +107,14 @@ export const RISC = {
     PROP_NEURAL_COHERENCE: 9,
     PROP_MEMORY: 10,
 };
+const DEFAULT_BOOT_SCRIPT = (() => {
+    const boot = new Uint8Array(64);
+    // Default biological script: GET Energy into R0.
+    boot[0] = RISC.OP_GET;
+    boot[1] = 0;
+    boot[2] = RISC.PROP_ENERGY;
+    return boot;
+})();
 
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
@@ -213,7 +222,7 @@ export const STATE_MATRIX = {
 
     clear: () => {
         // Preserve low-memory wasm runtime segments; wipe only the lattice region.
-        new Uint8Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET).fill(0);
+        latticeClearView.fill(0);
     },
     getActiveIndices: () => {
         const active: number[] = [];
@@ -247,11 +256,7 @@ export const STATE_MATRIX = {
         
         if (logicVal) logic.set(logicVal, i * 8);
 
-        const boot = script || new Uint8Array(64);
-        if (!script) {
-            // Default Biological Script: GET Energy into R0
-            boot[0] = RISC.OP_GET; boot[1] = 0; boot[2] = RISC.PROP_ENERGY;
-        }
+        const boot = script || DEFAULT_BOOT_SCRIPT;
         instructions.set(boot, i * 64);
         
         // Reset Context

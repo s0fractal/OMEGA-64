@@ -292,7 +292,7 @@ export const PULSE = {
             {
                 let totalResonance = 0;
                 for (const idx of activeIdx) {
-                    totalResonance += STATE_MATRIX.getResonance(idx);
+                    totalResonance += resonancesView[idx];
                 }
                 // Average Resonance normalized to 0-255 (Absolute Coherence)
                 const avgRes = activeIdx.length > 0 ? (totalResonance / activeIdx.length) : 0;
