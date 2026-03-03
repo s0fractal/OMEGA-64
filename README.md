@@ -189,6 +189,10 @@ health indicator loop:
 - `deno task test:structure-intent-determinism` (conflict-heavy structure write
   parity + same-tick `OP_SENSE` visibility; intent apply runs inside WASM matrix
   pass)
+- `deno task test:topological-signature` (deterministic topological projection
+  signature build/verify gate)
+- `deno task test:invariant-packet` (bridge invariant packet seal/hash/verify
+  gate with tamper detection)
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)
