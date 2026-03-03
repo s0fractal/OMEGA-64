@@ -814,6 +814,7 @@ export const PULSE = {
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
+      PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
       // Poll Coherence from Worker 0 (WASM primary)

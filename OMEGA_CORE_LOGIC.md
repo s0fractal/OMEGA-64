@@ -1,20 +1,20 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T19:00:53.383Z*
-*Exported Files: 54*
-*Manifest SHA256: d7e449eb267a7e4f7fb06628ce3d6619fae70e57a5a985adf2b0e68234d5ce93*
-*Export Set SHA256: 3b7eb20bf88b1c59b21f7ccee6c30c3d294fe2058f2f7628745f7002753202ba*
-*Git Commit: 7344ceb2ba61*
+*Generated: 2026-03-03T20:46:25.516Z*
+*Exported Files: 57*
+*Manifest SHA256: 5f1ec6678ec0281e82a94eae42c3feddfecd3bc9e248c74fc558d2441641cb1e*
+*Export Set SHA256: 53d899b3eaa2e4f02f575cf5f61a5a6fe7a89c202ca386d0a7519d93c864aff5*
+*Git Commit: 57a28febd280*
 
 ---
 
 ## FILE: AKASHA_SERVER.ts
 
 ```typescript
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
-import { parse as parseYaml } from "jsr:@std/yaml";
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 
 const PORT = 8080;
+const HOST = Deno.env.get("OMEGA_AKASHA_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 
 let clients = new Set<WebSocket>();
@@ -23,54 +23,57 @@ let clients = new Set<WebSocket>();
 let akashaState: string = "{}";
 
 async function scanUniverse() {
-    const atoms: any[] = [];
-    const bonds: Array<{source: string, target: string}> = [];
-    
-    try {
-        for await (const entry of Deno.readDir(ROOT)) {
-            if (entry.isFile && entry.name.endsWith(".md") && entry.name.startsWith("0x")) {
-                const content = await Deno.readTextFile(`${ROOT}/${entry.name}`);
-                const metaMatch = content.match(/^---\n([\s\S]+?)\n---/);
-                if (metaMatch) {
-                    try {
-                        const alpha = parseYaml(metaMatch[1]) as any;
-                        const eigenvalue = alpha.eigenvalue || entry.name.split('.')[0];
-                        atoms.push({
-                            id: eigenvalue,
-                            symbol: alpha.symbol || entry.name.split('.')[1],
-                            x: Number(alpha.x) || Math.random() * 800,
-                            y: Number(alpha.y) || Math.random() * 800,
-                            energy: Number(alpha.energy) || 0,
-                            resonance: Number(alpha.resonance) || 0,
-                            logic: alpha.logic || "00000000",
-                            thought: alpha.thought || "DRIFTING"
-                        });
+  const atoms: any[] = [];
+  const bonds: Array<{ source: string; target: string }> = [];
 
-                        if (alpha.bonds && Array.isArray(alpha.bonds)) {
-                            for (const b of alpha.bonds) {
-                                bonds.push({ source: eigenvalue, target: b });
-                            }
-                        }
-                    } catch(e) {
-                         // silently ignore parsing errors for individual files
-                    }
-                }
+  try {
+    for await (const entry of Deno.readDir(ROOT)) {
+      if (
+        entry.isFile && entry.name.endsWith(".md") &&
+        entry.name.startsWith("0x")
+      ) {
+        const content = await Deno.readTextFile(`${ROOT}/${entry.name}`);
+        const metaMatch = content.match(/^---\n([\s\S]+?)\n---/);
+        if (metaMatch) {
+          try {
+            const alpha = parseYaml(metaMatch[1]) as any;
+            const eigenvalue = alpha.eigenvalue || entry.name.split(".")[0];
+            atoms.push({
+              id: eigenvalue,
+              symbol: alpha.symbol || entry.name.split(".")[1],
+              x: Number(alpha.x) || Math.random() * 800,
+              y: Number(alpha.y) || Math.random() * 800,
+              energy: Number(alpha.energy) || 0,
+              resonance: Number(alpha.resonance) || 0,
+              logic: alpha.logic || "00000000",
+              thought: alpha.thought || "DRIFTING",
+            });
+
+            if (alpha.bonds && Array.isArray(alpha.bonds)) {
+              for (const b of alpha.bonds) {
+                bonds.push({ source: eigenvalue, target: b });
+              }
             }
+          } catch (e) {
+            // silently ignore parsing errors for individual files
+          }
         }
-    } catch(e) {
-        console.error("Error scanning universe:", e);
+      }
     }
+  } catch (e) {
+    console.error("Error scanning universe:", e);
+  }
 
-    akashaState = JSON.stringify({ type: "SYNC", data: { atoms, bonds } });
-    broadcast(akashaState);
+  akashaState = JSON.stringify({ type: "SYNC", data: { atoms, bonds } });
+  broadcast(akashaState);
 }
 
 function broadcast(message: string) {
-    for (const client of clients) {
-        if (client.readyState === WebSocket.OPEN) {
-            client.send(message);
-        }
+  for (const client of clients) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
     }
+  }
 }
 
 // Initial scan
@@ -79,24 +82,25 @@ await scanUniverse();
 // Periodic full state push (every 1 second)
 setInterval(scanUniverse, 1000);
 
-// Also try to watch for file changes to push instantly, but Deno.watchFs can be chatty, 
+// Also try to watch for file changes to push instantly, but Deno.watchFs can be chatty,
 // so we'll rely primarily on the 1s interval for UI smoothness, but trigger scan on watch too.
 async function watchUniverse() {
-    const watcher = Deno.watchFs(ROOT);
-    let debounceTimer: number | null = null;
-    for await (const event of watcher) {
-        if (event.paths.some(p => p.endsWith(".md"))) {
-             if (debounceTimer) clearTimeout(debounceTimer);
-             debounceTimer = setTimeout(scanUniverse, 100);
-        }
+  const watcher = Deno.watchFs(ROOT);
+  let debounceTimer: number | null = null;
+  for await (const event of watcher) {
+    if (event.paths.some((p) => p.endsWith(".md"))) {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(scanUniverse, 100);
     }
+  }
 }
 watchUniverse(); // background
 
-
 const reqHandler = async (req: Request) => {
   if (req.headers.get("upgrade") != "websocket") {
-    return new Response("Akasha Node - WebSocket endpoint only.", { status: 200 });
+    return new Response("Akasha Node - WebSocket endpoint only.", {
+      status: 200,
+    });
   }
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.onopen = () => {
@@ -105,20 +109,19 @@ const reqHandler = async (req: Request) => {
     socket.send(akashaState); // send latest state immediately
   };
   socket.onmessage = (e) => {
-    console.log("   [📩 INTERFACE] Message from Observer:", e.data);
-    // Future: Handle user intents from the UI here
+    // Visualization channel is read-only; ignore client payloads.
   };
   socket.onclose = () => {
     console.log("   [👁️ AKASHA] Observer Disconnected.");
     clients.delete(socket);
   };
   socket.onerror = (e) => console.error("   [⚠️ AKASHA] WebSocket Error:", e);
-  
+
   return response;
 };
 
-serve(reqHandler, { port: PORT });
-console.log(`🌌 Akasha Server listening on ws://localhost:${PORT}/`);
+Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
+console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 
 ```
 
@@ -691,12 +694,13 @@ const MAX_ASCENSIONS: i32 = 64;
 }
 const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
 const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
+const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
 @inline function publishBuildIntent(cellIdx: i32, ownerAtomIdx: i32, buildValue: i32): void {
     const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
     const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
     const ownerToken = ownerAtomIdx + 1;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const snapshot = atomic.load<i32>(ownerPtr);
         if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
         const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
@@ -716,7 +720,7 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     if (charge < 0) charge = 0;
     if (charge > 255) charge = 255;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const current = atomic.load<i32>(ptr);
         if (charge <= current) return;
         const observed = atomic.cmpxchg<i32>(ptr, current, charge);
@@ -728,7 +732,7 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
     const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
 
-    while (true) {
+    for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
         const ownerRaw = atomic.load<i32>(ownerPtr);
         if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
         if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
@@ -736,6 +740,9 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
         }
         return atomic.load<i32>(gridPtr);
     }
+
+    // Stale lock fallback: preserve forward progress under adversarial contention.
+    return atomic.load<i32>(gridPtr);
 }
 @inline function readStructureCharge(cellIdx: i32): i32 {
     const cellVal = readStructureCell(cellIdx);
@@ -1977,6 +1984,331 @@ console.log(
 
 ---
 
+## FILE: CONTROL_INTENT_QUEUE.ts
+
+```typescript
+import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
+import { PRNG } from "./PRNG.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+
+type CrisisIntent = {
+  kind: "crisis";
+  logicBytes: Uint8Array;
+};
+
+type FederateIntent = {
+  kind: "federate";
+  packet: {
+    id: string;
+    logicBytes: Uint8Array;
+    energy: number;
+    resonance: number;
+    sourceNode: string;
+    pulseId: number;
+  };
+  seedPulseId: number;
+};
+
+type MutateIntent = {
+  kind: "mutate";
+  x: number;
+  y: number;
+  deltaEnergy: number;
+  radius: number;
+};
+
+type AvatarIntent = {
+  kind: "avatar";
+  x: number;
+  y: number;
+};
+
+type SnapshotImportIntent = {
+  kind: "snapshot_import";
+  timestamp: string;
+};
+
+type ControlIntent =
+  | CrisisIntent
+  | FederateIntent
+  | MutateIntent
+  | AvatarIntent
+  | SnapshotImportIntent;
+
+type QueueDecision = {
+  ok: boolean;
+  status: number;
+  reason: string;
+  size: number;
+  max: number;
+};
+
+type ApplyStats = {
+  drained: number;
+  applied: number;
+  failed: number;
+  remaining: number;
+};
+
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+
+const MAX_PENDING = parseBoundedInt(
+  Deno.env.get("OMEGA_CONTROL_INTENT_MAX"),
+  512,
+  8,
+  100_000,
+);
+const APPLY_BUDGET_PER_TICK = parseBoundedInt(
+  Deno.env.get("OMEGA_CONTROL_INTENT_BUDGET"),
+  8,
+  1,
+  4096,
+);
+
+const queue: ControlIntent[] = [];
+
+const decision = (
+  ok: boolean,
+  status: number,
+  reason: string,
+): QueueDecision => ({
+  ok,
+  status,
+  reason,
+  size: queue.length,
+  max: MAX_PENDING,
+});
+
+const enqueueInternal = (intent: ControlIntent): QueueDecision => {
+  if (queue.length >= MAX_PENDING) {
+    MUTATION_TELEMETRY.record({
+      lane: "external_ingress",
+      kind: "control_intent_reject_full",
+      count: 1,
+    });
+    return decision(false, 503, "CONTROL_INTENT_QUEUE_FULL");
+  }
+  queue.push(intent);
+  MUTATION_TELEMETRY.record({
+    lane: "external_ingress",
+    kind: "control_intent_enqueued",
+    count: 1,
+  });
+  return decision(true, 202, "QUEUED");
+};
+
+const parseHex8 = (value: unknown): Uint8Array | null => {
+  if (typeof value !== "string") return null;
+  const hex = value.trim();
+  if (!/^[0-9a-fA-F]{16}$/u.test(hex)) return null;
+  const out = new Uint8Array(8);
+  for (let i = 0; i < 8; i++) {
+    out[i] = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+  }
+  return out;
+};
+
+const parseFiniteNumber = (value: unknown): number | null => {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null;
+  return value;
+};
+
+const applyFederateIntent = (intent: FederateIntent): boolean => {
+  const idx = STATE_MATRIX.findFreeSlot();
+  if (idx < 0) {
+    LOGGER.warn(
+      `🛸 [FEDERATION] Queue apply skipped for ${intent.packet.id}: matrix full.`,
+    );
+    return false;
+  }
+
+  const prng = new PRNG(PRNG.seedFrom(intent.seedPulseId, intent.packet.id));
+  const { value: vId, next: n1 } = prng.next();
+  const { value: vX, next: n2 } = n1.next();
+  const { value: vY } = n2.next();
+
+  STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
+  STATE_MATRIX.setEnergy(idx, intent.packet.energy);
+  STATE_MATRIX.setResonance(idx, intent.packet.resonance);
+  STATE_MATRIX.setLogic(idx, intent.packet.logicBytes);
+  STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
+  STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
+
+  LOGGER.info(
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id}`,
+  );
+  return true;
+};
+
+const applyMutateIntent = (intent: MutateIntent): boolean => {
+  const r2 = intent.radius * intent.radius;
+  let affected = 0;
+  for (let i = 0; i < MAX_ATOMS; i++) {
+    if (STATE_MATRIX.getId(i) === 0n) continue;
+    const dx = STATE_MATRIX.getX(i) - intent.x;
+    const dy = STATE_MATRIX.getY(i) - intent.y;
+    if (dx * dx + dy * dy >= r2) continue;
+    const current = STATE_MATRIX.getEnergy(i);
+    STATE_MATRIX.setEnergy(i, Math.max(0, current + intent.deltaEnergy));
+    affected++;
+  }
+  MUTATION_TELEMETRY.record({
+    lane: "external_ingress",
+    kind: "control_mutate_apply_targets",
+    count: affected,
+  });
+  return true;
+};
+
+const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
+  switch (intent.kind) {
+    case "crisis":
+      PREDICTION_MARKET.startCrisis(intent.logicBytes);
+      return true;
+    case "federate":
+      return applyFederateIntent(intent);
+    case "mutate":
+      return applyMutateIntent(intent);
+    case "avatar":
+      AVATAR_ENGINE.dropPheromone(intent.x, intent.y);
+      return true;
+    case "snapshot_import": {
+      const result = await SNAPSHOT_ENGINE.importSnapshot(intent.timestamp);
+      return result.success === true;
+    }
+  }
+};
+
+export const CONTROL_INTENT_QUEUE = {
+  config: {
+    maxPending: MAX_PENDING,
+    applyBudgetPerTick: APPLY_BUDGET_PER_TICK,
+  },
+  size: (): number => queue.length,
+  enqueueCrisis: (logicHex: unknown): QueueDecision => {
+    const explicit = parseHex8(logicHex);
+    const logicBytes = explicit ?? crypto.getRandomValues(new Uint8Array(8));
+    return enqueueInternal({ kind: "crisis", logicBytes });
+  },
+  enqueueFederate: (packet: unknown, seedPulseId: number): QueueDecision => {
+    if (!packet || typeof packet !== "object") {
+      return decision(false, 400, "INVALID_FEDERATE_PACKET");
+    }
+    const p = packet as Record<string, unknown>;
+    const id = typeof p.id === "string" ? p.id.trim() : "";
+    const sourceNode = typeof p.sourceNode === "string"
+      ? p.sourceNode
+      : "unknown";
+    const logicBytes = parseHex8(p.logic);
+    const energy = parseFiniteNumber(p.energy);
+    const resonance = parseFiniteNumber(p.resonance);
+    const pulseId = Number.isInteger(p.pulseId)
+      ? Number(p.pulseId)
+      : Math.max(0, Math.floor(seedPulseId));
+
+    if (!id || !logicBytes || energy === null || resonance === null) {
+      return decision(false, 400, "INVALID_FEDERATE_PACKET");
+    }
+    return enqueueInternal({
+      kind: "federate",
+      packet: {
+        id,
+        logicBytes,
+        energy,
+        resonance,
+        sourceNode,
+        pulseId,
+      },
+      seedPulseId: Math.max(0, Math.floor(seedPulseId)),
+    });
+  },
+  enqueueMutate: (
+    x: unknown,
+    y: unknown,
+    deltaEnergy: unknown,
+    radius: unknown,
+  ): QueueDecision => {
+    const px = parseFiniteNumber(x);
+    const py = parseFiniteNumber(y);
+    const pDelta = parseFiniteNumber(deltaEnergy);
+    const pRadius = parseFiniteNumber(radius);
+    if (px === null || py === null || pDelta === null || pRadius === null) {
+      return decision(false, 400, "INVALID_MUTATE_PAYLOAD");
+    }
+    if (pRadius <= 0) return decision(false, 400, "INVALID_MUTATE_RADIUS");
+    return enqueueInternal({
+      kind: "mutate",
+      x: px,
+      y: py,
+      deltaEnergy: pDelta,
+      radius: pRadius,
+    });
+  },
+  enqueueAvatar: (x: unknown, y: unknown): QueueDecision => {
+    const px = parseFiniteNumber(x);
+    const py = parseFiniteNumber(y);
+    if (px === null || py === null) {
+      return decision(false, 400, "INVALID_AVATAR_PAYLOAD");
+    }
+    return enqueueInternal({ kind: "avatar", x: px, y: py });
+  },
+  enqueueSnapshotImport: (timestamp: unknown): QueueDecision => {
+    if (typeof timestamp !== "string" || timestamp.trim().length === 0) {
+      return decision(false, 400, "INVALID_SNAPSHOT_TIMESTAMP");
+    }
+    return enqueueInternal({
+      kind: "snapshot_import",
+      timestamp: timestamp.trim(),
+    });
+  },
+  applyHostLockBudget: async (): Promise<ApplyStats> => {
+    let drained = 0;
+    let applied = 0;
+    let failed = 0;
+    while (drained < APPLY_BUDGET_PER_TICK && queue.length > 0) {
+      const intent = queue.shift()!;
+      drained++;
+      const ok = await applyIntent(intent);
+      MUTATION_TELEMETRY.record({
+        lane: "external_ingress",
+        kind: ok ? "control_intent_applied" : "control_intent_apply_failed",
+        count: 1,
+      });
+      if (ok) applied++;
+      else failed++;
+    }
+    if (failed > 0) {
+      LOGGER.warn(
+        `[CONTROL] host-lock apply failures=${failed} drained=${drained} remaining=${queue.length}`,
+      );
+    }
+    return {
+      drained,
+      applied,
+      failed,
+      remaining: queue.length,
+    };
+  },
+};
+
+```
+
+---
+
 ## FILE: CORE_ARCH_MANIFEST.json
 
 ```json
@@ -1984,6 +2316,7 @@ console.log(
   "era": "69",
   "core_entry_files": [
     "SYSTEM_START.ts",
+    "CONTROL_INTENT_QUEUE.ts",
     "PULSE.ts",
     "PULSE_WORKER.ts",
     "STATE_MATRIX.ts",
@@ -1998,6 +2331,7 @@ console.log(
     "ECOLOGY_ENGINE.ts",
     "SOVEREIGNTY_ENGINE.ts",
     "SOVEREIGN_ORACLE.ts",
+    "MUTATION_TELEMETRY.ts",
     "LLM_SYNAPSE.ts",
     "SEMANTIC_MEMBRANE.ts",
     "SNAP.ts",
@@ -2032,6 +2366,7 @@ console.log(
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
     "ARCHITECTURE_ACTIVE.md",
+    "MUTATION_LANES.md",
     "README.md",
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
@@ -5509,90 +5844,299 @@ export { REJECTION as STATE_SNAPSHOT_REJECTION } from "./STATE_SNAPSHOT.ts";
 
 ---
 
+## FILE: MUTATION_LANES.md
+
+```markdown
+# OMEGA-64 | Mutation Lanes (Era 69)
+
+## Purpose
+
+Define a stable contract between external ingress, canonical governance, and
+internal high-speed mutation loops.
+
+## Lanes
+
+### 1) External Ingress Lane (Untrusted)
+
+- Surfaces: `AKASHA_SERVER.ts`, `P2P_SYNAPSE.ts`, `SYSTEM_START.ts`,
+  UI/WebSocket clients.
+- Default posture: read-only visualization.
+- Any external mutation endpoint must be disabled by default, local-bind only,
+  and protected by explicit operator intent (env gate/token).
+- External ingress must not mutate `STATE_MATRIX` directly.
+
+### 2) Canonical Governance Lane (Authoritative)
+
+- Surface: `GATE.mutate(...)`.
+- Must emit canonical ledger/checkpoint artifacts and respect bridge policy.
+- This lane is the source of truth for auditable state transitions.
+
+### 3) Internal Fast Lane (Sandbox / Throughput)
+
+- Surfaces: pulse kernel orchestration, oracle/synapse-assisted adaptation,
+  local sandbox dynamics.
+- Optimized for speed and experimentation inside the runtime.
+- Allowed to bypass per-action governance checks, but should remain observable
+  through telemetry and periodic audits.
+- Runtime observer: `MUTATION_TELEMETRY.ts` (aggregated counters for host/oracle
+  direct writes).
+- Oracle writes are serialized via pending queue and drained in `HOST_LOCK`
+  (`SOVEREIGN_ORACLE.drainPendingMutations()` from `PULSE.ts`).
+- Controls:
+  - `OMEGA_MUTATION_TELEMETRY` (`true` by default)
+  - `OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS` (default `25`)
+  - `OMEGA_MUTATION_TELEMETRY_TOP_KINDS` (default `6`)
+  - `OMEGA_ORACLE_PENDING_MAX` (default `256`)
+
+## Current Runtime Posture
+
+- `AKASHA_SERVER.ts`: visualization-only websocket channel, local bind by
+  default.
+- `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
+  env/token gates when enabled.
+- `P2P_FEDERATION.ts`: migration queue is disabled by default
+  (`OMEGA_FEDERATION_ENABLE=false`) and forwards `x-omega-control-token` when
+  set to interoperate with guarded `/federate`.
+- `SYSTEM_START.ts`: binds loopback by default (`OMEGA_SYSTEM_HOST`) and all
+  mutating POST routes require explicit control enable/token
+  (`OMEGA_SYSTEM_CONTROL_ENABLE`, `OMEGA_SYSTEM_CONTROL_TOKEN`); mutating
+  requests are enqueued into `CONTROL_INTENT_QUEUE.ts`.
+- Canonical crystallization remains in `GATE`.
+- Internal fast-lane mutations are aggregated and emitted by
+  `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.
+- External control intents are drained and applied only during `HOST_LOCK`
+  (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
+
+```
+
+---
+
+## FILE: MUTATION_TELEMETRY.ts
+
+```typescript
+import { LOGGER } from "./LOGGER.ts";
+
+type MutationLane =
+  | "internal_oracle"
+  | "internal_host"
+  | "canonical_gate"
+  | "external_ingress";
+
+type MutationEvent = {
+  lane: MutationLane;
+  kind: string;
+  count?: number;
+};
+
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+
+const TELEMETRY_ENABLED = parseBool(
+  Deno.env.get("OMEGA_MUTATION_TELEMETRY"),
+  true,
+);
+const FLUSH_INTERVAL_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS"),
+  25,
+  1,
+  10_000,
+);
+const TOP_KINDS = parseBoundedInt(
+  Deno.env.get("OMEGA_MUTATION_TELEMETRY_TOP_KINDS"),
+  6,
+  1,
+  32,
+);
+
+const laneCounts = new Map<MutationLane, number>();
+const kindCounts = new Map<string, number>();
+let totalMutations = 0;
+let lastFlushTick = -1;
+let lastFlushedTotal = 0;
+
+const bump = <K>(target: Map<K, number>, key: K, count: number): void => {
+  const prev = target.get(key) ?? 0;
+  target.set(key, prev + count);
+};
+
+const normalizeCount = (value: number | undefined): number => {
+  const n = value ?? 1;
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, Math.floor(n));
+};
+
+const summarizeTopKinds = (): string =>
+  JSON.stringify(
+    Array.from(kindCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, TOP_KINDS)
+      .map(([kind, count]) => ({ kind, count })),
+  );
+
+const summarizeLanes = (): string =>
+  JSON.stringify(
+    Object.fromEntries(
+      Array.from(laneCounts.entries()).sort((a, b) => b[1] - a[1]),
+    ),
+  );
+
+export const MUTATION_TELEMETRY = {
+  isEnabled: (): boolean => TELEMETRY_ENABLED,
+  record: (event: MutationEvent): void => {
+    if (!TELEMETRY_ENABLED) return;
+    const count = normalizeCount(event.count);
+    if (count <= 0) return;
+    if (event.kind.trim().length === 0) return;
+    bump(laneCounts, event.lane, count);
+    bump(kindCounts, event.kind, count);
+    totalMutations += count;
+  },
+  flushIfDue: (tick: number): void => {
+    if (!TELEMETRY_ENABLED) return;
+    if (!Number.isFinite(tick) || tick < 0) return;
+    if (tick - lastFlushTick < FLUSH_INTERVAL_TICKS) return;
+    lastFlushTick = tick;
+
+    if (totalMutations === lastFlushedTotal) return;
+    lastFlushedTotal = totalMutations;
+
+    LOGGER.debug(
+      `[MUTATION_TELEMETRY] tick=${tick} total=${totalMutations} lanes=${summarizeLanes()} topKinds=${summarizeTopKinds()}`,
+    );
+  },
+  snapshot: () => ({
+    enabled: TELEMETRY_ENABLED,
+    total: totalMutations,
+    lanes: Object.fromEntries(laneCounts.entries()),
+    topKinds: Array.from(kindCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, TOP_KINDS),
+  }),
+};
+
+```
+
+---
+
 ## FILE: OBSERVER_LAB.ts
 
 ```typescript
 // OMEGA-64 | OBSERVER_LAB.ts | The Sanctuary Observer
 // Monitors SANCTUARY/ for mutated artifacts and attempts execution.
 
-import { encodeHex } from "jsr:@std/encoding/hex";
+import { encodeHex } from "jsr:@std/encoding@^1.0.5/hex";
 
 const ROOT = Deno.cwd();
 const SANCTUARY = `${ROOT}/SANCTUARY`;
 const LAB_LOG = `${ROOT}/LAB_FEEDBACK.log`;
 
 async function logLab(msg: string) {
-    const ts = new Date().toISOString();
-    await Deno.writeTextFile(LAB_LOG, `[${ts}] ${msg}\n`, { append: true });
+  const ts = new Date().toISOString();
+  await Deno.writeTextFile(LAB_LOG, `[${ts}] ${msg}\n`, { append: true });
 }
 
 async function runLabCycle() {
-    console.log("🔬 [LAB] Commencing Observation Cycle...");
-    
-    try {
-        for await (const entry of Deno.readDir(SANCTUARY)) {
-            if (!entry.isFile) continue;
-            
-            const filePath = `${SANCTUARY}/${entry.name}`;
-            console.log(`🔬 [LAB] Testing Artifact: ${entry.name}`);
-            
-            let result = "";
-            let success = false;
-            
-            if (entry.name.endsWith(".py")) {
-                const cmd = new Deno.Command("python3", {
-                    args: [filePath],
-                    stdout: "piped",
-                    stderr: "piped"
-                });
-                const { code, stdout, stderr } = await cmd.output();
-                success = code === 0;
-                result = new TextDecoder().decode(success ? stdout : stderr);
-            } else if (entry.name.endsWith(".js") || entry.name.endsWith(".ts")) {
-                const cmd = new Deno.Command("deno", {
-                    args: ["run", "--allow-none", filePath],
-                    stdout: "piped",
-                    stderr: "piped"
-                });
-                const { code, stdout, stderr } = await cmd.output();
-                success = code === 0;
-                result = new TextDecoder().decode(success ? stdout : stderr);
-            } else {
-                continue; // Skip unknown formats
-            }
-            
-            const outcome = success ? "SUCCESS" : "FAILURE";
-            console.log(`🔬 [LAB] Outcome: ${outcome}`);
-            await logLab(`${entry.name} -> ${outcome}: ${result.substring(0, 100).replace(/\n/g, " ")}[...]`);
-            
-            // Inject Feedback as a new Atom
-            await injectFeedback(entry.name, outcome, result);
-        }
-    } catch (e) {
-        console.error("🔬 [LAB] Observation cycle failed:", e);
+  console.log("🔬 [LAB] Commencing Observation Cycle...");
+
+  try {
+    for await (const entry of Deno.readDir(SANCTUARY)) {
+      if (!entry.isFile) continue;
+
+      const filePath = `${SANCTUARY}/${entry.name}`;
+      console.log(`🔬 [LAB] Testing Artifact: ${entry.name}`);
+
+      let result = "";
+      let success = false;
+
+      if (entry.name.endsWith(".py")) {
+        const cmd = new Deno.Command("python3", {
+          args: [filePath],
+          stdout: "piped",
+          stderr: "piped",
+        });
+        const { code, stdout, stderr } = await cmd.output();
+        success = code === 0;
+        result = new TextDecoder().decode(success ? stdout : stderr);
+      } else if (entry.name.endsWith(".js") || entry.name.endsWith(".ts")) {
+        const cmd = new Deno.Command("deno", {
+          args: ["run", "--allow-none", filePath],
+          stdout: "piped",
+          stderr: "piped",
+        });
+        const { code, stdout, stderr } = await cmd.output();
+        success = code === 0;
+        result = new TextDecoder().decode(success ? stdout : stderr);
+      } else {
+        continue; // Skip unknown formats
+      }
+
+      const outcome = success ? "SUCCESS" : "FAILURE";
+      console.log(`🔬 [LAB] Outcome: ${outcome}`);
+      await logLab(
+        `${entry.name} -> ${outcome}: ${
+          result.substring(0, 100).replace(/\n/g, " ")
+        }[...]`,
+      );
+
+      // Inject Feedback as a new Atom
+      await injectFeedback(entry.name, outcome, result);
     }
+  } catch (e) {
+    console.error("🔬 [LAB] Observation cycle failed:", e);
+  }
 }
 
-async function injectFeedback(filename: string, outcome: string, output: string) {
-    const encoder = new TextEncoder();
-    const hashBuffer = await crypto.subtle.digest("SHA-256", encoder.encode(`${filename}_feedback_${Date.now()}`));
-    const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
-    const atomId = `0x${atomHex}`;
-    
-    const feedbackLogic = outcome === "SUCCESS" ? "8888AAAA" : "FFFF0000";
-    
-    const content = `---\neigenvalue: '${atomId}'\nsymbol: 'LAB_FEEDBACK'\nenergy: 50\nresonance: 10\nlogic: '${feedbackLogic}'\nthought: 'FEEDBACK_FOR_${filename}'\ndesc: 'Execution feedback from The Sanctuary. Outcome: ${outcome}'\nbonds: []\n---\n\n<div class="lab-feedback">\n  ### Mutational Feedback for ${filename}\n  **Result**: ${outcome}\n  **Output Snippet**:\n  \`\`\`\n  ${output.substring(0, 200)}\n  \`\`\`\n</div>\n`;
-    
-    await Deno.writeTextFile(`${ROOT}/${atomId}.FEEDBACK.md`, content);
-    console.log(`🔬 [LAB] Feedback Atom Generated: ${atomId}`);
+async function injectFeedback(
+  filename: string,
+  outcome: string,
+  output: string,
+) {
+  const encoder = new TextEncoder();
+  const hashBuffer = await crypto.subtle.digest(
+    "SHA-256",
+    encoder.encode(`${filename}_feedback_${Date.now()}`),
+  );
+  const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
+  const atomId = `0x${atomHex}`;
+
+  const feedbackLogic = outcome === "SUCCESS" ? "8888AAAA" : "FFFF0000";
+
+  const content =
+    `---\neigenvalue: '${atomId}'\nsymbol: 'LAB_FEEDBACK'\nenergy: 50\nresonance: 10\nlogic: '${feedbackLogic}'\nthought: 'FEEDBACK_FOR_${filename}'\ndesc: 'Execution feedback from The Sanctuary. Outcome: ${outcome}'\nbonds: []\n---\n\n<div class="lab-feedback">\n  ### Mutational Feedback for ${filename}\n  **Result**: ${outcome}\n  **Output Snippet**:\n  \`\`\`\n  ${
+      output.substring(0, 200)
+    }\n  \`\`\`\n</div>\n`;
+
+  await Deno.writeTextFile(`${ROOT}/${atomId}.FEEDBACK.md`, content);
+  console.log(`🔬 [LAB] Feedback Atom Generated: ${atomId}`);
 }
 
 // Continuous monitoring loop
 if (import.meta.main) {
-    while (true) {
-        await runLabCycle();
-        await new Promise(r => setTimeout(r, 60000)); // Every 60 seconds
-    }
+  while (true) {
+    await runLabCycle();
+    await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
+  }
 }
 
 ```
@@ -5725,109 +6269,178 @@ export const MAX_ASCENSIONS_PER_TICK = 64;
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { PRNG } from "./PRNG.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 
 export interface AtomPacket {
-    id: string;
-    logic: string;
-    energy: number;
-    resonance: number;
-    sourceNode: string;
-    pulseId: number;
+  id: string;
+  logic: string;
+  energy: number;
+  resonance: number;
+  sourceNode: string;
+  pulseId: number;
 }
 
 const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
 const migrationQueue: number[] = [];
 let isProcessingMigration = false;
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+const FEDERATION_ENABLED = parseBool(
+  Deno.env.get("OMEGA_FEDERATION_ENABLE"),
+  false,
+);
+const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const REQUEST_TIMEOUT_MS = parseBoundedInt(
+  Deno.env.get("OMEGA_FEDERATION_TIMEOUT_MS"),
+  2000,
+  50,
+  120_000,
+);
 
 export const P2P_FEDERATION = {
-    peers: new Set<string>(CURRENT_PORT === 8000 ? ["http://localhost:8001"] : ["http://localhost:8000"]), 
-    nodeId: `OMEGA-${CURRENT_PORT}`,
+  peers: new Set<string>(
+    CURRENT_PORT === 8000
+      ? ["http://localhost:8001"]
+      : ["http://localhost:8000"],
+  ),
+  nodeId: `OMEGA-${CURRENT_PORT}`,
+  enabled: FEDERATION_ENABLED,
 
-    serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
-        const id = IDX_TO_ID.get(idx);
-        if (!id) return null;
+  serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
+    const id = IDX_TO_ID.get(idx);
+    if (!id) return null;
 
-        const logicBytes = STATE_MATRIX.getLogic(idx);
-        let logicStr = "";
-        for (let i = 0; i < 8; i++) {
-            logicStr += logicBytes[i].toString(16).padStart(2, '0');
-        }
-
-        return {
-            id,
-            logic: logicStr,
-            energy: STATE_MATRIX.getEnergy(idx),
-            resonance: STATE_MATRIX.getResonance(idx),
-            sourceNode: P2P_FEDERATION.nodeId,
-            pulseId
-        };
-    },
-
-    migrate: (idx: number, pulseId: number) => {
-        if (migrationQueue.length > 100) return; 
-        migrationQueue.push(idx);
-        P2P_FEDERATION.processQueue(pulseId);
-    },
-
-    processQueue: async (pulseId: number) => {
-        if (isProcessingMigration || migrationQueue.length === 0) return;
-        isProcessingMigration = true;
-
-        const idx = migrationQueue.shift()!;
-        const atomIdAtStart = STATE_MATRIX.getId(idx);
-        const packet = P2P_FEDERATION.serialize(idx, pulseId);
-        
-        if (packet && atomIdAtStart !== 0n) {
-            const prng = new PRNG(PRNG.seedFrom(pulseId, packet.id));
-            const { value: pSelector } = prng.next();
-            const peerList = Array.from(P2P_FEDERATION.peers);
-            const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
-
-            try {
-                const res = await fetch(`${targetPeer}/federate`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(packet),
-                    signal: AbortSignal.timeout(2000) 
-                });
-
-                if (res.ok) {
-                    // Only clear if the atom hasn't changed locally during transit
-                    if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-                        STATE_MATRIX.setId(idx, 0n); // Clear physically
-                        console.log(`🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`);
-                    } else {
-                        console.warn(`🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`);
-                    }
-                }
-            } catch (e: any) {
-                console.error(`🛸 [FEDERATION] Migration failed for ${packet.id}: ${e.message}`);
-            }
-        }
-
-        isProcessingMigration = false;
-        if (migrationQueue.length > 0) {
-            setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
-        }
-    },
-
-    checkWanderlust: (idx: number, pulseId: number): boolean => {
-        const id = STATE_MATRIX.getId(idx);
-        if (id === 0n) return false;
-        
-        const energy = STATE_MATRIX.getEnergy(idx);
-        const resonance = STATE_MATRIX.getResonance(idx);
-        
-        // Atoms only migrate if they have high potential but are in a low resonance environment
-        if (resonance < 5 && energy > 150) {
-            const prng = new PRNG(PRNG.seedFrom(pulseId, id.toString()));
-            const { value: v1 } = prng.next();
-            return v1 < 0.005;
-        }
-        return false;
+    const logicBytes = STATE_MATRIX.getLogic(idx);
+    let logicStr = "";
+    for (let i = 0; i < 8; i++) {
+      logicStr += logicBytes[i].toString(16).padStart(2, "0");
     }
-};
 
+    return {
+      id,
+      logic: logicStr,
+      energy: STATE_MATRIX.getEnergy(idx),
+      resonance: STATE_MATRIX.getResonance(idx),
+      sourceNode: P2P_FEDERATION.nodeId,
+      pulseId,
+    };
+  },
+
+  migrate: (idx: number, pulseId: number) => {
+    if (!FEDERATION_ENABLED) return;
+    if (migrationQueue.length > 100) return;
+    migrationQueue.push(idx);
+    P2P_FEDERATION.processQueue(pulseId);
+  },
+
+  processQueue: async (pulseId: number) => {
+    if (!FEDERATION_ENABLED) return;
+    if (isProcessingMigration || migrationQueue.length === 0) return;
+    isProcessingMigration = true;
+
+    const idx = migrationQueue.shift()!;
+    const atomIdAtStart = STATE_MATRIX.getId(idx);
+    const packet = P2P_FEDERATION.serialize(idx, pulseId);
+
+    if (packet && atomIdAtStart !== 0n) {
+      const prng = new PRNG(PRNG.seedFrom(pulseId, packet.id));
+      const { value: pSelector } = prng.next();
+      const peerList = Array.from(P2P_FEDERATION.peers);
+      if (peerList.length === 0) {
+        isProcessingMigration = false;
+        return;
+      }
+      const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (CONTROL_TOKEN.length > 0) {
+        headers["x-omega-control-token"] = CONTROL_TOKEN;
+      }
+
+      try {
+        const res = await fetch(`${targetPeer}/federate`, {
+          method: "POST",
+          headers,
+          body: JSON.stringify(packet),
+          signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+        });
+
+        if (res.ok) {
+          // Only clear if the atom hasn't changed locally during transit
+          if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
+            STATE_MATRIX.setId(idx, 0n); // Clear physically
+            MUTATION_TELEMETRY.record({
+              lane: "external_ingress",
+              kind: "federation_migration_clear",
+              count: 1,
+            });
+            LOGGER.info(
+              `🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`,
+            );
+          } else {
+            LOGGER.warn(
+              `🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`,
+            );
+          }
+        } else {
+          LOGGER.warn(
+            `🛸 [FEDERATION] Migration rejected for ${packet.id}: status=${res.status}`,
+          );
+        }
+      } catch (e: any) {
+        LOGGER.error(
+          `🛸 [FEDERATION] Migration failed for ${packet.id}: ${
+            e?.message ?? String(e)
+          }`,
+        );
+      }
+    }
+
+    isProcessingMigration = false;
+    if (migrationQueue.length > 0) {
+      setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
+    }
+  },
+
+  checkWanderlust: (idx: number, pulseId: number): boolean => {
+    if (!FEDERATION_ENABLED) return false;
+    const id = STATE_MATRIX.getId(idx);
+    if (id === 0n) return false;
+
+    const energy = STATE_MATRIX.getEnergy(idx);
+    const resonance = STATE_MATRIX.getResonance(idx);
+
+    // Atoms only migrate if they have high potential but are in a low resonance environment
+    if (resonance < 5 && energy > 150) {
+      const prng = new PRNG(PRNG.seedFrom(pulseId, id.toString()));
+      const { value: v1 } = prng.next();
+      return v1 < 0.005;
+    }
+    return false;
+  },
+};
 
 ```
 
@@ -5836,49 +6449,97 @@ export const P2P_FEDERATION = {
 ## FILE: P2P_SYNAPSE.ts
 
 ```typescript
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+import { join, normalize } from "jsr:@std/path@^1.1.4";
 
 const PORT = 8081;
+const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
+const ROOT_DIR = await Deno.realPath(ROOT);
+const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
+const MUTATE_ENABLED =
+  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
+    "1" ||
+  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
+    "true";
+const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ?? "").trim();
+const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 
-console.log(`🛸 P2P Synapse Membrane open on port ${PORT}... Listening for Alien Atoms.`);
+const issueAlienId = (): string =>
+  `0x${crypto.randomUUID().replace(/-/g, "").slice(0, 16).toUpperCase()}`;
+
+console.log(
+  `🛸 P2P Synapse Membrane open on ${HOST}:${PORT} (mutate=${
+    MUTATE_ENABLED ? "on" : "off"
+  })`,
+);
 
 async function handler(req: Request): Promise<Response> {
   if (req.method === "POST" && new URL(req.url).pathname === "/mutate") {
+    if (!MUTATE_ENABLED) {
+      return new Response("MUTATION_DISABLED", { status: 403 });
+    }
+    if (MUTATE_TOKEN) {
+      const token = req.headers.get("x-omega-mutate-token")?.trim() ?? "";
+      if (token !== MUTATE_TOKEN) {
+        return new Response("MUTATION_UNAUTHORIZED", { status: 401 });
+      }
+    }
+
     try {
       const alienData = await req.json();
-      const alienId = alienData.eigenvalue || `0xALIEN${Date.now()}`;
-      const filename = `${ROOT}/${alienId}.ALIEN.md`;
-      
+      const rawId = typeof alienData.eigenvalue === "string"
+        ? alienData.eigenvalue.trim().toUpperCase()
+        : "";
+      const alienId = ALIEN_ID_RE.test(rawId) ? rawId : issueAlienId();
+      const filename = `${alienId}.ALIEN.md`;
+      const targetPath = normalize(join(ROOT_DIR, filename));
+      if (!targetPath.startsWith(ROOT_PREFIX)) {
+        return new Response("MUTATION_REJECTED_PATH", { status: 400 });
+      }
+
       const content = `---
 eigenvalue: '${alienId}'
-symbol: '${alienData.symbol || 'ALIEN'}'
+symbol: '${alienData.symbol || "ALIEN"}'
 energy: ${alienData.energy || 100}
 resonance: ${alienData.resonance || 0}
-logic: '${alienData.logic || '00000000'}'
-thought: '${alienData.thought || 'UNKNOWN'}'
-desc: '${alienData.desc || 'Migrated from an external dimension.'}'
+logic: '${alienData.logic || "00000000"}'
+thought: '${alienData.thought || "UNKNOWN"}'
+desc: '${alienData.desc || "Migrated from an external dimension."}'
 ---
 
 <div class="alien-payload">
   System intrusion detected from external origin. This atom represents an alien logic state materialized via P2P Synapse.
 </div>
 `;
-      await Deno.writeTextFile(filename, content);
-      console.log(`   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${filename} (Logic: ${alienData.logic})`);
-      return new Response(JSON.stringify({ status: "MUTATION_ACCEPTED", target: filename }), { 
+      await Deno.writeTextFile(targetPath, content);
+      console.log(
+        `   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${targetPath} (Logic: ${alienData.logic})`,
+      );
+      return new Response(
+        JSON.stringify({ status: "MUTATION_ACCEPTED", target: filename }),
+        {
           status: 200,
-          headers: { "Content-Type": "application/json" }
-      });
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     } catch (e) {
       console.error("   [P2P] ⚠️ Failed to parse alien logic.", e);
       return new Response("MUTATION_REJECTED", { status: 400 });
     }
   }
-  return new Response("OMEGA-64 P2P Membrane Active.", { status: 200 });
+  return new Response(
+    JSON.stringify({
+      status: "OMEGA-64 P2P Membrane Active",
+      mutate_enabled: MUTATE_ENABLED,
+    }),
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    },
+  );
 }
 
-serve(handler, { port: PORT });
+Deno.serve({ hostname: HOST, port: PORT }, handler);
 
 ```
 
@@ -6621,6 +7282,8 @@ import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 
 // Multi-instance AssemblyScript + shared memory can corrupt lattice state
 // because each instance owns an independent stack global over the same buffer.
@@ -7428,6 +8091,7 @@ export const PULSE = {
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
+      PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
       // Poll Coherence from Worker 0 (WASM primary)
@@ -7466,6 +8130,8 @@ export const PULSE = {
       }
 
       // 1. Resolve Sequential Logic
+      let clearedBondRequests = 0;
+      let resolvedBondPairs = 0;
       for (const i of activeIdx) {
         if (STATE_MATRIX.hasBondRequest(i)) {
           const targetIdx = STATE_MATRIX.getBondRequestTarget(i);
@@ -7474,9 +8140,25 @@ export const PULSE = {
             STATE_MATRIX.setBondStiffness(i, 0, 0.1);
             STATE_MATRIX.setBondTarget(targetIdx, 1, i);
             STATE_MATRIX.setBondStiffness(targetIdx, 1, 0.1);
+            resolvedBondPairs++;
           }
           STATE_MATRIX.clearBondRequest(i);
+          clearedBondRequests++;
         }
+      }
+      if (resolvedBondPairs > 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "bond_pair_resolution",
+          count: resolvedBondPairs,
+        });
+      }
+      if (clearedBondRequests > 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "bond_request_clear",
+          count: clearedBondRequests,
+        });
       }
 
       // 2. Parallel Physics & WASM Kernel
@@ -7582,14 +8264,36 @@ export const PULSE = {
           LOGGER.debug(
             `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
           );
+          MUTATION_TELEMETRY.record({
+            lane: "internal_host",
+            kind: "spawn_seed_atom",
+            count: spawned,
+          });
         }
       }
 
       // 5. Sequential Maintenance (Sequential JS)
       // (WASM handled spatial and structure grid propagation during the parallel/matrix phases)
+      const oracleDrain = SOVEREIGN_ORACLE.drainPendingMutations();
+      if (oracleDrain.applied > 0 || oracleDrain.dropped > 0) {
+        LOGGER.debug(
+          `👁️ [ORACLE] Host-lock drain applied=${oracleDrain.applied} skipped=${oracleDrain.skipped} dropped=${oracleDrain.dropped}`,
+        );
+      }
+      const controlDrain = await CONTROL_INTENT_QUEUE.applyHostLockBudget();
+      if (controlDrain.drained > 0 || controlDrain.failed > 0) {
+        LOGGER.debug(
+          `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
+        );
+      }
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {
+        MUTATION_TELEMETRY.record({
+          lane: "canonical_gate",
+          kind: "audit_matrix_cycle",
+          count: 1,
+        });
         GATE.auditMatrix(STATE_MATRIX);
       }
 
@@ -7616,6 +8320,8 @@ export const PULSE = {
           );
         }
       }
+
+      MUTATION_TELEMETRY.flushIfDue(currentTick);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
@@ -7847,6 +8553,8 @@ health indicator loop:
   `run:` commands)
 - `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
   canonical export file set, no test/legacy leakage, all listed files exist)
+- `deno task core:refresh` (non-blocking snapshot refresh for
+  `OMEGA_CORE_LOGIC.md`; optional convenience command, no commit gate)
 - Canonical active architecture doc for export/model context:
   `ARCHITECTURE_ACTIVE.md` (legacy `ARCHITECTURE.md` / `GEMINI.md` are not
   included in `OMEGA_CORE_LOGIC.md` export context)
@@ -8225,10 +8933,10 @@ if (import.meta.main) {
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./IMMUNE.ts";
-import { parse as parseYaml } from "@std/yaml";
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { decodeHex } from "@std/encoding/hex";
+import { decodeHex } from "jsr:@std/encoding@^1.0.0/hex";
 import { LOGGER } from "./LOGGER.ts";
 
 export interface Atom {
@@ -10541,7 +11249,7 @@ export const SNAP = {
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { ensureDir } from "jsr:@std/fs@0.224.0/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
@@ -10705,175 +11413,379 @@ export const SNAPSHOT_ENGINE = {
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+
+type OraclePendingMutation =
+  | {
+    kind: "oracle_head_mutation";
+    regentIndex: number;
+    headBytes: Uint8Array;
+    genomeHex: string;
+  }
+  | {
+    kind: "oracle_memetic_injection";
+    regentIndex: number;
+    memeBytes: Uint8Array;
+  }
+  | {
+    kind: "oracle_cache_fallback";
+    regentIndex: number;
+    logicBytes: Uint8Array;
+    cachedHex: string;
+  }
+  | {
+    kind: "oracle_whisper_broadcast";
+    gridIdx: number;
+    charge: number;
+    memeBytes: Uint8Array;
+  };
+
+type OracleDrainStats = {
+  applied: number;
+  skipped: number;
+  dropped: number;
+  remaining: number;
+};
+
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+
+const ORACLE_PENDING_MAX = parseBoundedInt(
+  Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
+  256,
+  32,
+  8192,
+);
 
 export const SOVEREIGN_ORACLE = {
-    isConsulting: false,
-    lastConsultTick: 0,
-    guidanceCache: new Set<string>(),
-    neuralCoherence: 0,           // Phase 19: Global mind-field measurement
-    lastCoherenceTick: 0,
-    lastWhisperTick: 0,
+  isConsulting: false,
+  lastConsultTick: 0,
+  guidanceCache: new Set<string>(),
+  neuralCoherence: 0, // Phase 19: Global mind-field measurement
+  lastCoherenceTick: 0,
+  lastWhisperTick: 0,
+  pendingMutations: [] as OraclePendingMutation[],
+  droppedMutations: 0,
+  maxPendingMutations: ORACLE_PENDING_MAX,
 
-    interpretResonance: () => {
-        const matrixRes = STATE_MATRIX.getMatrixResonance();
-        const clusterSync = STATE_MATRIX.getClusterSync();
-        
-        // Return a condensed telemetry object for the LLM
-        return {
-            matrixResonance: matrixRes,
-            clusterSync: clusterSync,
-            nutrients: 1000, // Placeholder or fetch from ECOLOGY if available
-            population: STATE_MATRIX.getActiveIndices().length,
-            viralLoad: 0 // Placeholder
-        };
-    },
+  interpretResonance: () => {
+    const matrixRes = STATE_MATRIX.getMatrixResonance();
+    const clusterSync = STATE_MATRIX.getClusterSync();
 
-    /**
-     * Consults the LLM to dictate new bytecode for the reigning Regent.
-     * Operates asynchronously to avoid blocking the PULSE lifecycle.
-     */
-    consultOracle: async (regentIndex: number, telemetry: any) => {
-        if (SOVEREIGN_ORACLE.isConsulting) return; // Prevent concurrent overlaps
-        SOVEREIGN_ORACLE.isConsulting = true;
-        
-        try {
-            console.log(`👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`);
-            
-            const memSummary = STATE_MATRIX.getMemorySummary();
-            const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({ 
-                ...telemetry, 
-                energy: STATE_MATRIX.getEnergy(regentIndex),
-                stigmergicSummary: memSummary 
-            });
-            
-            if (oracleResult && oracleResult.genome) {
-                const newInstructions = oracleResult.genome;
-                const hex = Array.from(newInstructions).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
-                
-                SOVEREIGN_ORACLE.guidanceCache.add(hex);
-                if (SOVEREIGN_ORACLE.guidanceCache.size > 100) {
-                    const first = SOVEREIGN_ORACLE.guidanceCache.values().next().value;
-                    if (typeof first === "string") {
-                        SOVEREIGN_ORACLE.guidanceCache.delete(first);
-                    }
-                }
-
-                console.log(`👁️ [ORACLE] Oracle responded with instructions of length ${newInstructions.length}`);
-                // Verify the Regent is still alive/valid
-                if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-                    // Overwrite the first 16 bytes of the instruction buffer (the "head")
-                    const currentInstructions = STATE_MATRIX.getInstructions(regentIndex);
-                    const headMutation = new Uint8Array(currentInstructions);
-                    headMutation.set(newInstructions, 0); 
-                    
-                    STATE_MATRIX.setInstructions(regentIndex, headMutation);
-                    console.log(`⚡ [ORACLE] Semantic Mutation Applied! New Head: [${hex}]`);
-                    SOVEREIGNTY_ENGINE.currentRegent.genome = hex;
-
-                    // --- ERA 67: MEMETIC INJECTION ---
-                    if (oracleResult.meme) {
-                        const memeHex = Array.from(oracleResult.meme).map(b => b.toString(16).padStart(2, '0')).join('');
-                        console.log(`🌀 [ORACLE] Memetic Injection! Seeding Grid with: [${memeHex.toUpperCase()}]`);
-                        
-                        // Seed the 3x3 area around the Regent
-                        const rx = Math.floor(STATE_MATRIX.getX(regentIndex) / 10);
-                        const ry = Math.floor(STATE_MATRIX.getY(regentIndex) / 10);
-                        
-                        for (let dx = -1; dx <= 1; dx++) {
-                            for (let dy = -1; dy <= 1; dy++) {
-                                const gx = rx + dx;
-                                const gy = ry + dy;
-                                if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                                    const gridIdx = (gy * 140 + gx) * 8;
-                                    // Set energy (1000) + meme (4 bytes)
-                                    STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx); // 1000 in little endian
-                                    STATE_MATRIX.memoryGrid.set(oracleResult.meme, gridIdx + 4);
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    console.log(`👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`);
-                }
-            } else {
-                console.log(`👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`);
-            }
-        } catch (err) {
-            console.error(`👁️ [ORACLE] Connection severed:`, err);
-            
-            // --- ERA 68: CACHE FALLBACK ---
-            if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
-                const cacheArray = Array.from(SOVEREIGN_ORACLE.guidanceCache);
-                const cachedHex = cacheArray[Math.floor(Math.random() * cacheArray.length)];
-                const bytes = new Uint8Array(8);
-                for (let i = 0; i < 8; i++) bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
-                
-                if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-                    STATE_MATRIX.setLogic(regentIndex, bytes);
-                    console.log(`♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${cachedHex}]`);
-                }
-            }
-        } finally {
-            SOVEREIGN_ORACLE.isConsulting = false;
-        }
-    },
-    /**
-     * Vector 10: periodic memory-grid whisper channel.
-     * Writes high-value resonance seeds into MEMORY_GRID when the field is active.
-     */
-    broadcastWhisper: (currentTick: number, telemetry: any, neuralCoherence: number) => {
-        if (currentTick - SOVEREIGN_ORACLE.lastWhisperTick < 7) return;
-        if (telemetry.matrixResonance < 2000 && neuralCoherence < 200) return;
-
-        SOVEREIGN_ORACLE.lastWhisperTick = currentTick;
-
-        const seed = (((currentTick * 2654435761) >>> 0) ^ ((telemetry.matrixResonance | 0) >>> 0) ^ ((neuralCoherence | 0) << 8)) >>> 0;
-        const gx = seed % 140;
-        const gy = Math.floor(seed / 140) % 80;
-        const gridIdx = (gy * 140 + gx) * 8;
-
-        const charge = Math.min(0xFFFF, 800 + Math.max(0, neuralCoherence | 0));
-        const meme = new Uint8Array([
-            0xD1,
-            seed & 0xFF,
-            (seed >> 8) & 0xFF,
-            (seed >> 16) & 0xFF
-        ]);
-
-        STATE_MATRIX.memoryGrid[gridIdx] = charge & 0xFF;
-        STATE_MATRIX.memoryGrid[gridIdx + 1] = (charge >> 8) & 0xFF;
-        STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
-        STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
-        STATE_MATRIX.memoryGrid.set(meme, gridIdx + 4);
-    },
-    /**
-     * Phase 19: Planetary Consciousness
-     * Poll WASM for global neural coherence and broadcast it back
-     * to the shared memory register so ISA_SENSE atoms can tune in.
-     */
-    pollNeuralCoherence: (workerExports: any, currentTick: number) => {
-        if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
-        SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
-
-        try {
-            const coherence: number = workerExports.get_neural_coherence();
-            SOVEREIGN_ORACLE.neuralCoherence = coherence;
-
-            if (coherence > 0) {
-                // Write back to shared memory so ISA_SENSE atoms can read it
-                workerExports.set_neural_coherence(coherence);
-
-                if (coherence >= 100) {
-                    console.log(`🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`);
-                }
-                if (coherence >= 1000) {
-                    console.log(`⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`);
-                }
-            }
-        } catch (_) {
-            // WASM export not yet available — skip
-        }
+    // Return a condensed telemetry object for the LLM
+    return {
+      matrixResonance: matrixRes,
+      clusterSync: clusterSync,
+      nutrients: 1000, // Placeholder or fetch from ECOLOGY if available
+      population: STATE_MATRIX.getActiveIndices().length,
+      viralLoad: 0, // Placeholder
+    };
+  },
+  queueMutation: (mutation: OraclePendingMutation): void => {
+    if (
+      SOVEREIGN_ORACLE.pendingMutations.length >=
+        SOVEREIGN_ORACLE.maxPendingMutations
+    ) {
+      SOVEREIGN_ORACLE.pendingMutations.shift();
+      SOVEREIGN_ORACLE.droppedMutations++;
+      MUTATION_TELEMETRY.record({
+        lane: "internal_oracle",
+        kind: "oracle_pending_drop",
+        count: 1,
+      });
     }
+    SOVEREIGN_ORACLE.pendingMutations.push(mutation);
+  },
+  drainPendingMutations: (): OracleDrainStats => {
+    let applied = 0;
+    let skipped = 0;
+    const droppedBefore = SOVEREIGN_ORACLE.droppedMutations;
+
+    while (SOVEREIGN_ORACLE.pendingMutations.length > 0) {
+      const mutation = SOVEREIGN_ORACLE.pendingMutations.shift()!;
+
+      switch (mutation.kind) {
+        case "oracle_head_mutation": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          const currentInstructions = STATE_MATRIX.getInstructions(
+            mutation.regentIndex,
+          );
+          const headMutation = new Uint8Array(currentInstructions);
+          headMutation.set(mutation.headBytes, 0);
+          STATE_MATRIX.setInstructions(mutation.regentIndex, headMutation);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_head_mutation",
+            count: 1,
+          });
+          SOVEREIGNTY_ENGINE.currentRegent.genome = mutation.genomeHex;
+          applied++;
+          break;
+        }
+        case "oracle_memetic_injection": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          const rx = Math.floor(STATE_MATRIX.getX(mutation.regentIndex) / 10);
+          const ry = Math.floor(STATE_MATRIX.getY(mutation.regentIndex) / 10);
+          let seededCells = 0;
+
+          for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              const gx = rx + dx;
+              const gy = ry + dy;
+              if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+                const gridIdx = (gy * 140 + gx) * 8;
+                STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
+                STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
+                seededCells++;
+              }
+            }
+          }
+          if (seededCells > 0) {
+            MUTATION_TELEMETRY.record({
+              lane: "internal_oracle",
+              kind: "oracle_memetic_injection",
+              count: seededCells,
+            });
+            applied += seededCells;
+          }
+          break;
+        }
+        case "oracle_cache_fallback": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          STATE_MATRIX.setLogic(mutation.regentIndex, mutation.logicBytes);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_cache_fallback",
+            count: 1,
+          });
+          LOGGER.warn(
+            `♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${mutation.cachedHex}]`,
+          );
+          applied++;
+          break;
+        }
+        case "oracle_whisper_broadcast": {
+          if (
+            mutation.gridIdx < 0 ||
+            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+          ) {
+            skipped++;
+            break;
+          }
+          STATE_MATRIX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 1] =
+            (mutation.charge >> 8) & 0xFF;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 2] = 0;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 3] = 0;
+          STATE_MATRIX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_whisper_broadcast",
+            count: 1,
+          });
+          applied++;
+          break;
+        }
+      }
+    }
+
+    return {
+      applied,
+      skipped,
+      dropped: SOVEREIGN_ORACLE.droppedMutations - droppedBefore,
+      remaining: SOVEREIGN_ORACLE.pendingMutations.length,
+    };
+  },
+
+  /**
+   * Consults the LLM to dictate new bytecode for the reigning Regent.
+   * Operates asynchronously to avoid blocking the PULSE lifecycle.
+   */
+  consultOracle: async (regentIndex: number, telemetry: any) => {
+    if (SOVEREIGN_ORACLE.isConsulting) return; // Prevent concurrent overlaps
+    SOVEREIGN_ORACLE.isConsulting = true;
+
+    try {
+      LOGGER.info(
+        `👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`,
+      );
+
+      const memSummary = STATE_MATRIX.getMemorySummary();
+      const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({
+        ...telemetry,
+        energy: STATE_MATRIX.getEnergy(regentIndex),
+        stigmergicSummary: memSummary,
+      });
+
+      if (oracleResult && oracleResult.genome) {
+        const newInstructions = oracleResult.genome;
+        const hex = Array.from(newInstructions).map((b) =>
+          b.toString(16).padStart(2, "0")
+        ).join("").toUpperCase();
+
+        SOVEREIGN_ORACLE.guidanceCache.add(hex);
+        if (SOVEREIGN_ORACLE.guidanceCache.size > 100) {
+          const first = SOVEREIGN_ORACLE.guidanceCache.values().next().value;
+          if (typeof first === "string") {
+            SOVEREIGN_ORACLE.guidanceCache.delete(first);
+          }
+        }
+
+        LOGGER.info(
+          `👁️ [ORACLE] Oracle responded with instructions of length ${newInstructions.length}`,
+        );
+        if (STATE_MATRIX.getId(regentIndex) === 0n) {
+          LOGGER.debug(
+            `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
+          );
+          return;
+        }
+        SOVEREIGN_ORACLE.queueMutation({
+          kind: "oracle_head_mutation",
+          regentIndex,
+          headBytes: new Uint8Array(newInstructions),
+          genomeHex: hex,
+        });
+        LOGGER.info(
+          `⚡ [ORACLE] Semantic Mutation queued for HOST_LOCK apply. Head: [${hex}]`,
+        );
+
+        // --- ERA 67: MEMETIC INJECTION ---
+        if (oracleResult.meme) {
+          const memeBytes = new Uint8Array(oracleResult.meme);
+          const memeHex = Array.from(memeBytes).map((b) =>
+            b.toString(16).padStart(2, "0")
+          ).join("").toUpperCase();
+          SOVEREIGN_ORACLE.queueMutation({
+            kind: "oracle_memetic_injection",
+            regentIndex,
+            memeBytes,
+          });
+          LOGGER.info(
+            `🌀 [ORACLE] Memetic Injection queued for HOST_LOCK apply: [${memeHex}]`,
+          );
+        }
+      } else {
+        LOGGER.debug(
+          `👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`,
+        );
+      }
+    } catch (err) {
+      LOGGER.error(`👁️ [ORACLE] Connection severed:`, err);
+
+      // --- ERA 68: CACHE FALLBACK ---
+      if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
+        const cacheArray = Array.from(SOVEREIGN_ORACLE.guidanceCache);
+        const cachedHex =
+          cacheArray[Math.floor(Math.random() * cacheArray.length)];
+        const bytes = new Uint8Array(8);
+        for (let i = 0; i < 8; i++) {
+          bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
+        }
+
+        if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+          SOVEREIGN_ORACLE.queueMutation({
+            kind: "oracle_cache_fallback",
+            regentIndex,
+            logicBytes: bytes,
+            cachedHex,
+          });
+          LOGGER.warn(
+            `♻️ [ORACLE] LLM Offline. Cache mutation queued for HOST_LOCK: [${cachedHex}]`,
+          );
+        }
+      }
+    } finally {
+      SOVEREIGN_ORACLE.isConsulting = false;
+    }
+  },
+  /**
+   * Vector 10: periodic memory-grid whisper channel.
+   * Writes high-value resonance seeds into MEMORY_GRID when the field is active.
+   */
+  broadcastWhisper: (
+    currentTick: number,
+    telemetry: any,
+    neuralCoherence: number,
+  ) => {
+    if (currentTick - SOVEREIGN_ORACLE.lastWhisperTick < 7) return;
+    if (telemetry.matrixResonance < 2000 && neuralCoherence < 200) return;
+
+    SOVEREIGN_ORACLE.lastWhisperTick = currentTick;
+
+    const seed = (((currentTick * 2654435761) >>> 0) ^
+      ((telemetry.matrixResonance | 0) >>> 0) ^
+      ((neuralCoherence | 0) << 8)) >>> 0;
+    const gx = seed % 140;
+    const gy = Math.floor(seed / 140) % 80;
+    const gridIdx = (gy * 140 + gx) * 8;
+
+    const charge = Math.min(0xFFFF, 800 + Math.max(0, neuralCoherence | 0));
+    const meme = new Uint8Array([
+      0xD1,
+      seed & 0xFF,
+      (seed >> 8) & 0xFF,
+      (seed >> 16) & 0xFF,
+    ]);
+
+    SOVEREIGN_ORACLE.queueMutation({
+      kind: "oracle_whisper_broadcast",
+      gridIdx,
+      charge,
+      memeBytes: meme,
+    });
+  },
+  /**
+   * Phase 19: Planetary Consciousness
+   * Poll WASM for global neural coherence and broadcast it back
+   * to the shared memory register so ISA_SENSE atoms can tune in.
+   */
+  pollNeuralCoherence: (workerExports: any, currentTick: number) => {
+    if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
+    SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
+
+    try {
+      const coherence: number = workerExports.get_neural_coherence();
+      SOVEREIGN_ORACLE.neuralCoherence = coherence;
+
+      if (coherence > 0) {
+        // Write back to shared memory so ISA_SENSE atoms can read it
+        workerExports.set_neural_coherence(coherence);
+
+        if (coherence >= 100) {
+          LOGGER.info(
+            `🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`,
+          );
+        }
+        if (coherence >= 1000) {
+          LOGGER.info(
+            `⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`,
+          );
+        }
+      }
+    } catch (_) {
+      // WASM export not yet available — skip
+    }
+  },
 };
 
 ```
@@ -11980,24 +12892,57 @@ import { PULSE } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
-
-import { AVATAR_ENGINE } from "./AVATAR_ENGINE.ts";
-import { PRNG } from "./PRNG.ts";
+import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
+const HOST = (Deno.env.get("OMEGA_SYSTEM_HOST") ?? "127.0.0.1").trim() ||
+  "127.0.0.1";
 const UI_PATH = "./ui/index.html";
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+const CONTROL_ENABLE = parseBool(
+  Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
+  false,
+);
+const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const requireControlAuth = (req: Request): Response | null => {
+  if (!CONTROL_ENABLE) {
+    return new Response("Control plane disabled", { status: 403 });
+  }
+  if (CONTROL_TOKEN.length === 0) {
+    return null;
+  }
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+LOGGER.info(
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
+    CONTROL_TOKEN.length > 0
+  }`,
+);
 
 // 1. Initialize Observer UI Server
-Deno.serve({ port: UI_PORT }, async (req) => {
+Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const url = new URL(req.url);
 
   if (url.pathname === "/state") {
@@ -12031,60 +12976,50 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/crisis" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
-      const { logicHex } = await req.json();
-      const logicBytes = new Uint8Array(8);
-      if (logicHex && logicHex.length === 16) {
-        for (let i = 0; i < 8; i++) {
-          logicBytes[i] = parseInt(logicHex.substr(i * 2, 2), 16);
-        }
-      } else {
-        // Generate a random crisis mutation if none provided
-        crypto.getRandomValues(logicBytes);
-      }
-
-      PREDICTION_MARKET.startCrisis(logicBytes);
-      return new Response("Crisis Initiated", { status: 200 });
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueCrisis(body?.logicHex);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Crisis Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_CRISIS_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const packet = await req.json();
       LOGGER.info(
         `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
       );
-
-      const idx = STATE_MATRIX.findFreeSlot();
-      if (idx !== -1) {
-        const prng = new PRNG(PRNG.seedFrom(PULSE.currentPulseId, packet.id));
-        const { value: vId, next: n1 } = prng.next();
-        const { value: vX, next: n2 } = n1.next();
-        const { value: vY } = n2.next();
-
-        // Deterministic ID based on seed
-        STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
-        STATE_MATRIX.setEnergy(idx, packet.energy);
-        STATE_MATRIX.setResonance(idx, packet.resonance);
-
-        const logicBytes = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-          logicBytes[i] = parseInt(packet.logic.substr(i * 2, 2), 16);
-        }
-        STATE_MATRIX.setLogic(idx, logicBytes);
-
-        // Position in a deterministic cluster around the center
-        STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
-        STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
-
-        return new Response("OK", { status: 200 });
-      } else {
-        return new Response("Matrix Full", { status: 507 });
-      }
+      const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
+        packet,
+        PULSE.currentPulseId,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Federation Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_FEDERATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
@@ -12252,6 +13187,8 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/snapshot/export" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     const result = await SNAPSHOT_ENGINE.exportSnapshot();
     return new Response(JSON.stringify(result), {
       headers: { "Content-Type": "application/json" },
@@ -12259,11 +13196,26 @@ Deno.serve({ port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/snapshot/import" && req.method === "POST") {
-    const body = await req.json();
-    const result = await SNAPSHOT_ENGINE.importSnapshot(body.timestamp);
-    return new Response(JSON.stringify(result), {
-      headers: { "Content-Type": "application/json" },
-    });
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueSnapshotImport(
+        body?.timestamp,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_SNAPSHOT_IMPORT_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
   }
 
   // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
@@ -12282,36 +13234,50 @@ Deno.serve({ port: UI_PORT }, async (req) => {
 
   // 4. Spatial Mutation (POST)
   if (url.pathname === "/mutate" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const { x, y, deltaEnergy, radius } = await req.json();
-      LOGGER.info(
-        `⚡ [GOD_MODE] Mutation at (${x}, ${y}) | Delta: ${deltaEnergy} | Radius: ${radius}`,
+      const queued = CONTROL_INTENT_QUEUE.enqueueMutate(
+        x,
+        y,
+        deltaEnergy,
+        radius,
       );
-
-      const r2 = radius * radius;
-      for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
-        if (STATE_MATRIX.getId(i) === 0n) continue;
-        const dx = STATE_MATRIX.getX(i) - x;
-        const dy = STATE_MATRIX.getY(i) - y;
-        if (dx * dx + dy * dy < r2) {
-          const current = STATE_MATRIX.getEnergy(i);
-          STATE_MATRIX.setEnergy(i, Math.max(0, current + deltaEnergy));
-        }
-      }
-      return new Response("OK", { status: 200 });
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Mutation Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_MUTATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
   // 5. Avatar Cursor Sync (POST)
   if (url.pathname === "/avatar" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
     try {
       const { x, y } = await req.json();
-      AVATAR_ENGINE.dropPheromone(x, y);
-      return new Response("OK", { status: 200 });
+      const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(x, y);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (e) {
-      return new Response("Avatar Sync Failed", { status: 400 });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_AVATAR_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
     }
   }
 
