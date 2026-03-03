@@ -44,7 +44,8 @@ internal high-speed mutation loops.
 - `AKASHA_SERVER.ts`: visualization-only websocket channel, local bind by
   default.
 - `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
-  env/token gates when enabled.
+  env/token gates when enabled; accepts canonical `x-omega-control-token`
+  (legacy `x-omega-mutate-token` remains compatible).
 - `P2P_FEDERATION.ts`: migration queue is disabled by default
   (`OMEGA_FEDERATION_ENABLE=false`) and forwards `x-omega-control-token` when
   set to interoperate with guarded `/federate`.

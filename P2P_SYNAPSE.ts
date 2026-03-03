@@ -1,22 +1,35 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
+import { LOGGER } from "./LOGGER.ts";
 
 const PORT = 8081;
 const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const MUTATE_ENABLED =
-  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
-    "1" ||
-  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
-    "true";
-const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ?? "").trim();
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+const MUTATE_ENABLED = parseBool(
+  Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
+    Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
+  false,
+);
+const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ??
+  Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
 const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 
 const issueAlienId = (): string =>
   `0x${crypto.randomUUID().replace(/-/g, "").slice(0, 16).toUpperCase()}`;
 
-console.log(
+LOGGER.info(
   `🛸 P2P Synapse Membrane open on ${HOST}:${PORT} (mutate=${
     MUTATE_ENABLED ? "on" : "off"
   })`,
@@ -28,7 +41,8 @@ async function handler(req: Request): Promise<Response> {
       return new Response("MUTATION_DISABLED", { status: 403 });
     }
     if (MUTATE_TOKEN) {
-      const token = req.headers.get("x-omega-mutate-token")?.trim() ?? "";
+      const token = req.headers.get("x-omega-control-token")?.trim() ||
+        req.headers.get("x-omega-mutate-token")?.trim() || "";
       if (token !== MUTATE_TOKEN) {
         return new Response("MUTATION_UNAUTHORIZED", { status: 401 });
       }
@@ -61,7 +75,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 </div>
 `;
       await Deno.writeTextFile(targetPath, content);
-      console.log(
+      LOGGER.info(
         `   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${targetPath} (Logic: ${alienData.logic})`,
       );
       return new Response(
@@ -72,7 +86,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
         },
       );
     } catch (e) {
-      console.error("   [P2P] ⚠️ Failed to parse alien logic.", e);
+      LOGGER.error(`   [P2P] ⚠️ Failed to parse alien logic. ${String(e)}`);
       return new Response("MUTATION_REJECTED", { status: 400 });
     }
   }

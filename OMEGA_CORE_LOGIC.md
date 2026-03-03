@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T20:46:25.516Z*
+*Generated: 2026-03-03T20:49:56.847Z*
 *Exported Files: 57*
 *Manifest SHA256: 5f1ec6678ec0281e82a94eae42c3feddfecd3bc9e248c74fc558d2441641cb1e*
 *Export Set SHA256: 53d899b3eaa2e4f02f575cf5f61a5a6fe7a89c202ca386d0a7519d93c864aff5*
-*Git Commit: 57a28febd280*
+*Git Commit: b58b75dc1e26*
 
 ---
 
@@ -5893,7 +5893,8 @@ internal high-speed mutation loops.
 - `AKASHA_SERVER.ts`: visualization-only websocket channel, local bind by
   default.
 - `P2P_SYNAPSE.ts`: `/mutate` endpoint is disabled by default and guarded by
-  env/token gates when enabled.
+  env/token gates when enabled; accepts canonical `x-omega-control-token`
+  (legacy `x-omega-mutate-token` remains compatible).
 - `P2P_FEDERATION.ts`: migration queue is disabled by default
   (`OMEGA_FEDERATION_ENABLE=false`) and forwards `x-omega-control-token` when
   set to interoperate with guarded `/federate`.
@@ -6450,24 +6451,37 @@ export const P2P_FEDERATION = {
 
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
+import { LOGGER } from "./LOGGER.ts";
 
 const PORT = 8081;
 const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const MUTATE_ENABLED =
-  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
-    "1" ||
-  (Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ?? "").trim().toLowerCase() ===
-    "true";
-const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ?? "").trim();
+const parseBool = (raw: string | undefined, fallback: boolean): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+const MUTATE_ENABLED = parseBool(
+  Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
+    Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
+  false,
+);
+const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ??
+  Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
 const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 
 const issueAlienId = (): string =>
   `0x${crypto.randomUUID().replace(/-/g, "").slice(0, 16).toUpperCase()}`;
 
-console.log(
+LOGGER.info(
   `🛸 P2P Synapse Membrane open on ${HOST}:${PORT} (mutate=${
     MUTATE_ENABLED ? "on" : "off"
   })`,
@@ -6479,7 +6493,8 @@ async function handler(req: Request): Promise<Response> {
       return new Response("MUTATION_DISABLED", { status: 403 });
     }
     if (MUTATE_TOKEN) {
-      const token = req.headers.get("x-omega-mutate-token")?.trim() ?? "";
+      const token = req.headers.get("x-omega-control-token")?.trim() ||
+        req.headers.get("x-omega-mutate-token")?.trim() || "";
       if (token !== MUTATE_TOKEN) {
         return new Response("MUTATION_UNAUTHORIZED", { status: 401 });
       }
@@ -6512,7 +6527,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 </div>
 `;
       await Deno.writeTextFile(targetPath, content);
-      console.log(
+      LOGGER.info(
         `   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${targetPath} (Logic: ${alienData.logic})`,
       );
       return new Response(
@@ -6523,7 +6538,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
         },
       );
     } catch (e) {
-      console.error("   [P2P] ⚠️ Failed to parse alien logic.", e);
+      LOGGER.error(`   [P2P] ⚠️ Failed to parse alien logic. ${String(e)}`);
       return new Response("MUTATION_REJECTED", { status: 400 });
     }
   }
