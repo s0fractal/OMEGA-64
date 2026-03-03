@@ -995,6 +995,12 @@ export const PULSE = {
 
       // 5. Sequential Maintenance (Sequential JS)
       // (WASM handled spatial and structure grid propagation during the parallel/matrix phases)
+      const oracleDrain = SOVEREIGN_ORACLE.drainPendingMutations();
+      if (oracleDrain.applied > 0 || oracleDrain.dropped > 0) {
+        LOGGER.debug(
+          `👁️ [ORACLE] Host-lock drain applied=${oracleDrain.applied} skipped=${oracleDrain.skipped} dropped=${oracleDrain.dropped}`,
+        );
+      }
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {

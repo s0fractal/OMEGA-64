@@ -30,10 +30,13 @@ internal high-speed mutation loops.
   through telemetry and periodic audits.
 - Runtime observer: `MUTATION_TELEMETRY.ts` (aggregated counters for host/oracle
   direct writes).
+- Oracle writes are serialized via pending queue and drained in `HOST_LOCK`
+  (`SOVEREIGN_ORACLE.drainPendingMutations()` from `PULSE.ts`).
 - Controls:
   - `OMEGA_MUTATION_TELEMETRY` (`true` by default)
   - `OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS` (default `25`)
   - `OMEGA_MUTATION_TELEMETRY_TOP_KINDS` (default `6`)
+  - `OMEGA_ORACLE_PENDING_MAX` (default `256`)
 
 ## Current Runtime Posture
 

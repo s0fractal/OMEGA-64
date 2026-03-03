@@ -7,6 +7,57 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 
+type OraclePendingMutation =
+  | {
+    kind: "oracle_head_mutation";
+    regentIndex: number;
+    headBytes: Uint8Array;
+    genomeHex: string;
+  }
+  | {
+    kind: "oracle_memetic_injection";
+    regentIndex: number;
+    memeBytes: Uint8Array;
+  }
+  | {
+    kind: "oracle_cache_fallback";
+    regentIndex: number;
+    logicBytes: Uint8Array;
+    cachedHex: string;
+  }
+  | {
+    kind: "oracle_whisper_broadcast";
+    gridIdx: number;
+    charge: number;
+    memeBytes: Uint8Array;
+  };
+
+type OracleDrainStats = {
+  applied: number;
+  skipped: number;
+  dropped: number;
+  remaining: number;
+};
+
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+
+const ORACLE_PENDING_MAX = parseBoundedInt(
+  Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
+  256,
+  32,
+  8192,
+);
+
 export const SOVEREIGN_ORACLE = {
   isConsulting: false,
   lastConsultTick: 0,
@@ -14,6 +65,9 @@ export const SOVEREIGN_ORACLE = {
   neuralCoherence: 0, // Phase 19: Global mind-field measurement
   lastCoherenceTick: 0,
   lastWhisperTick: 0,
+  pendingMutations: [] as OraclePendingMutation[],
+  droppedMutations: 0,
+  maxPendingMutations: ORACLE_PENDING_MAX,
 
   interpretResonance: () => {
     const matrixRes = STATE_MATRIX.getMatrixResonance();
@@ -26,6 +80,130 @@ export const SOVEREIGN_ORACLE = {
       nutrients: 1000, // Placeholder or fetch from ECOLOGY if available
       population: STATE_MATRIX.getActiveIndices().length,
       viralLoad: 0, // Placeholder
+    };
+  },
+  queueMutation: (mutation: OraclePendingMutation): void => {
+    if (
+      SOVEREIGN_ORACLE.pendingMutations.length >=
+        SOVEREIGN_ORACLE.maxPendingMutations
+    ) {
+      SOVEREIGN_ORACLE.pendingMutations.shift();
+      SOVEREIGN_ORACLE.droppedMutations++;
+      MUTATION_TELEMETRY.record({
+        lane: "internal_oracle",
+        kind: "oracle_pending_drop",
+        count: 1,
+      });
+    }
+    SOVEREIGN_ORACLE.pendingMutations.push(mutation);
+  },
+  drainPendingMutations: (): OracleDrainStats => {
+    let applied = 0;
+    let skipped = 0;
+    const droppedBefore = SOVEREIGN_ORACLE.droppedMutations;
+
+    while (SOVEREIGN_ORACLE.pendingMutations.length > 0) {
+      const mutation = SOVEREIGN_ORACLE.pendingMutations.shift()!;
+
+      switch (mutation.kind) {
+        case "oracle_head_mutation": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          const currentInstructions = STATE_MATRIX.getInstructions(
+            mutation.regentIndex,
+          );
+          const headMutation = new Uint8Array(currentInstructions);
+          headMutation.set(mutation.headBytes, 0);
+          STATE_MATRIX.setInstructions(mutation.regentIndex, headMutation);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_head_mutation",
+            count: 1,
+          });
+          SOVEREIGNTY_ENGINE.currentRegent.genome = mutation.genomeHex;
+          applied++;
+          break;
+        }
+        case "oracle_memetic_injection": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          const rx = Math.floor(STATE_MATRIX.getX(mutation.regentIndex) / 10);
+          const ry = Math.floor(STATE_MATRIX.getY(mutation.regentIndex) / 10);
+          let seededCells = 0;
+
+          for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              const gx = rx + dx;
+              const gy = ry + dy;
+              if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+                const gridIdx = (gy * 140 + gx) * 8;
+                STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
+                STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
+                seededCells++;
+              }
+            }
+          }
+          if (seededCells > 0) {
+            MUTATION_TELEMETRY.record({
+              lane: "internal_oracle",
+              kind: "oracle_memetic_injection",
+              count: seededCells,
+            });
+            applied += seededCells;
+          }
+          break;
+        }
+        case "oracle_cache_fallback": {
+          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+            skipped++;
+            break;
+          }
+          STATE_MATRIX.setLogic(mutation.regentIndex, mutation.logicBytes);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_cache_fallback",
+            count: 1,
+          });
+          LOGGER.warn(
+            `♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${mutation.cachedHex}]`,
+          );
+          applied++;
+          break;
+        }
+        case "oracle_whisper_broadcast": {
+          if (
+            mutation.gridIdx < 0 ||
+            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+          ) {
+            skipped++;
+            break;
+          }
+          STATE_MATRIX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 1] =
+            (mutation.charge >> 8) & 0xFF;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 2] = 0;
+          STATE_MATRIX.memoryGrid[mutation.gridIdx + 3] = 0;
+          STATE_MATRIX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
+          MUTATION_TELEMETRY.record({
+            lane: "internal_oracle",
+            kind: "oracle_whisper_broadcast",
+            count: 1,
+          });
+          applied++;
+          break;
+        }
+      }
+    }
+
+    return {
+      applied,
+      skipped,
+      dropped: SOVEREIGN_ORACLE.droppedMutations - droppedBefore,
+      remaining: SOVEREIGN_ORACLE.pendingMutations.length,
     };
   },
 
@@ -66,65 +244,35 @@ export const SOVEREIGN_ORACLE = {
         LOGGER.info(
           `👁️ [ORACLE] Oracle responded with instructions of length ${newInstructions.length}`,
         );
-        // Verify the Regent is still alive/valid
-        if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-          // Overwrite the first 16 bytes of the instruction buffer (the "head")
-          const currentInstructions = STATE_MATRIX.getInstructions(regentIndex);
-          const headMutation = new Uint8Array(currentInstructions);
-          headMutation.set(newInstructions, 0);
-
-          STATE_MATRIX.setInstructions(regentIndex, headMutation);
-          MUTATION_TELEMETRY.record({
-            lane: "internal_oracle",
-            kind: "oracle_head_mutation",
-            count: 1,
-          });
-          LOGGER.info(
-            `⚡ [ORACLE] Semantic Mutation Applied! New Head: [${hex}]`,
-          );
-          SOVEREIGNTY_ENGINE.currentRegent.genome = hex;
-
-          // --- ERA 67: MEMETIC INJECTION ---
-          if (oracleResult.meme) {
-            const memeHex = Array.from(oracleResult.meme).map((b) =>
-              b.toString(16).padStart(2, "0")
-            ).join("");
-            LOGGER.info(
-              `🌀 [ORACLE] Memetic Injection! Seeding Grid with: [${memeHex.toUpperCase()}]`,
-            );
-
-            // Seed the 3x3 area around the Regent
-            const rx = Math.floor(STATE_MATRIX.getX(regentIndex) / 10);
-            const ry = Math.floor(STATE_MATRIX.getY(regentIndex) / 10);
-            let seededCells = 0;
-
-            for (let dx = -1; dx <= 1; dx++) {
-              for (let dy = -1; dy <= 1; dy++) {
-                const gx = rx + dx;
-                const gy = ry + dy;
-                if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                  const gridIdx = (gy * 140 + gx) * 8;
-                  // Set energy (1000) + meme (4 bytes)
-                  STATE_MATRIX.memoryGrid.set(
-                    [0xE8, 0x03, 0x00, 0x00],
-                    gridIdx,
-                  ); // 1000 in little endian
-                  STATE_MATRIX.memoryGrid.set(oracleResult.meme, gridIdx + 4);
-                  seededCells++;
-                }
-              }
-            }
-            if (seededCells > 0) {
-              MUTATION_TELEMETRY.record({
-                lane: "internal_oracle",
-                kind: "oracle_memetic_injection",
-                count: seededCells,
-              });
-            }
-          }
-        } else {
+        if (STATE_MATRIX.getId(regentIndex) === 0n) {
           LOGGER.debug(
             `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
+          );
+          return;
+        }
+        SOVEREIGN_ORACLE.queueMutation({
+          kind: "oracle_head_mutation",
+          regentIndex,
+          headBytes: new Uint8Array(newInstructions),
+          genomeHex: hex,
+        });
+        LOGGER.info(
+          `⚡ [ORACLE] Semantic Mutation queued for HOST_LOCK apply. Head: [${hex}]`,
+        );
+
+        // --- ERA 67: MEMETIC INJECTION ---
+        if (oracleResult.meme) {
+          const memeBytes = new Uint8Array(oracleResult.meme);
+          const memeHex = Array.from(memeBytes).map((b) =>
+            b.toString(16).padStart(2, "0")
+          ).join("").toUpperCase();
+          SOVEREIGN_ORACLE.queueMutation({
+            kind: "oracle_memetic_injection",
+            regentIndex,
+            memeBytes,
+          });
+          LOGGER.info(
+            `🌀 [ORACLE] Memetic Injection queued for HOST_LOCK apply: [${memeHex}]`,
           );
         }
       } else {
@@ -146,14 +294,14 @@ export const SOVEREIGN_ORACLE = {
         }
 
         if (STATE_MATRIX.getId(regentIndex) !== 0n) {
-          STATE_MATRIX.setLogic(regentIndex, bytes);
-          MUTATION_TELEMETRY.record({
-            lane: "internal_oracle",
+          SOVEREIGN_ORACLE.queueMutation({
             kind: "oracle_cache_fallback",
-            count: 1,
+            regentIndex,
+            logicBytes: bytes,
+            cachedHex,
           });
           LOGGER.warn(
-            `♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${cachedHex}]`,
+            `♻️ [ORACLE] LLM Offline. Cache mutation queued for HOST_LOCK: [${cachedHex}]`,
           );
         }
       }
@@ -190,15 +338,11 @@ export const SOVEREIGN_ORACLE = {
       (seed >> 16) & 0xFF,
     ]);
 
-    STATE_MATRIX.memoryGrid[gridIdx] = charge & 0xFF;
-    STATE_MATRIX.memoryGrid[gridIdx + 1] = (charge >> 8) & 0xFF;
-    STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
-    STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
-    STATE_MATRIX.memoryGrid.set(meme, gridIdx + 4);
-    MUTATION_TELEMETRY.record({
-      lane: "internal_oracle",
+    SOVEREIGN_ORACLE.queueMutation({
       kind: "oracle_whisper_broadcast",
-      count: 1,
+      gridIdx,
+      charge,
+      memeBytes: meme,
     });
   },
   /**
