@@ -1,6 +1,7 @@
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 
 const PORT = 8080;
+const HOST = Deno.env.get("OMEGA_AKASHA_HOST")?.trim() || "127.0.0.1";
 const ROOT = "./";
 
 let clients = new Set<WebSocket>();
@@ -95,8 +96,7 @@ const reqHandler = async (req: Request) => {
     socket.send(akashaState); // send latest state immediately
   };
   socket.onmessage = (e) => {
-    console.log("   [📩 INTERFACE] Message from Observer:", e.data);
-    // Future: Handle user intents from the UI here
+    // Visualization channel is read-only; ignore client payloads.
   };
   socket.onclose = () => {
     console.log("   [👁️ AKASHA] Observer Disconnected.");
@@ -107,5 +107,5 @@ const reqHandler = async (req: Request) => {
   return response;
 };
 
-Deno.serve({ port: PORT }, reqHandler);
-console.log(`🌌 Akasha Server listening on ws://localhost:${PORT}/`);
+Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
+console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
