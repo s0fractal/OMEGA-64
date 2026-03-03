@@ -41,7 +41,8 @@ Acceptance:
   - run dry ticks on empty matrix;
   - if nonzero atoms appear, auto-fallback to `1` worker for current process.
 - Validation gate: `deno task test:startup-selftest-fallback`.
-- Add CI matrix:
+- Completed CI matrix gate:
+  - GitHub Actions workflow at `.github/workflows/coherence-worker-matrix.yml`;
   - `OMEGA_PULSE_WORKERS=4` required;
   - `OMEGA_PULSE_WORKERS=1` fallback gate.
 
