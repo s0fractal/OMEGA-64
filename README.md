@@ -159,9 +159,11 @@ health indicator loop:
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay deterministic without host pre-clear)
 - `deno task ci:verify:matrix` (local mirror of CI worker matrix gate: 1-worker + 4-worker deep verification)
+- `deno task ci:soak:worker4` (local mirror of nightly 4-worker long burn-in + drift audit)
 - `OMEGA_STRICT_DETERMINISM=1 deno task vector10:verify` (serialize execute phase on worker-0 for deterministic replay)
 - `deno task test:structure-js` (JS reference lattice engine)
 - `deno task test:structure-parity` (JS/WASM structure-grid parity)
 - `deno task test:crystalline` / `deno task test:neural` / `deno task test:quantum` (Vector 8/9/7 direct probes)
 - `deno task verify:coherence` (extended end-to-end verification chain)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz + structure-intent determinism gate)
+- GitHub Actions nightly soak: `.github/workflows/coherence-nightly-soak.yml` (scheduled long-run 4-worker sentinel)

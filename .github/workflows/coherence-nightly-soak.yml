@@ -1,0 +1,46 @@
+name: coherence-nightly-soak
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: coherence-nightly-soak-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  soak:
+    name: worker4-soak
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      OMEGA_PULSE_WORKERS: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Verify WASM layout
+        run: deno task wasm:layout
+
+      - name: Run long coherence burn-in
+        run: deno task test:worker-coherence:long
+
+      - name: Run worker drift audit
+        run: deno task test:worker-drift-audit
+
+      - name: Upload drift audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-worker4-drift-audit
+          path: WORKER_DRIFT_AUDIT.md
+          if-no-files-found: ignore
