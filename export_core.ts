@@ -4,64 +4,7 @@
 
 import { dirname, extname, join, normalize } from "@std/path/mod.ts";
 
-const CORE_ENTRY_FILES = [
-  "SYSTEM_START.ts",
-  "PULSE.ts",
-  "PULSE_WORKER.ts",
-  "STATE_MATRIX.ts",
-  "GATE.ts",
-  "STATE_SNAPSHOT.ts",
-  "RIBOSOME.ts",
-  "RIBOSOME_TICK.ts",
-  "IMMUNE.ts",
-  "LAMBDA_VM.ts",
-  "SPATIAL_HASH.ts",
-  "PHYSICS_ENGINE.ts",
-  "ECOLOGY_ENGINE.ts",
-  "SOVEREIGNTY_ENGINE.ts",
-  "SOVEREIGN_ORACLE.ts",
-  "LLM_SYNAPSE.ts",
-  "SEMANTIC_MEMBRANE.ts",
-  "SNAP.ts",
-  "SNAPSHOT_ENGINE.ts",
-  "BREATH.ts",
-  "MATRIX_ENGINE.ts",
-  "STRUCTURE_ENGINE.ts",
-  "PREDICTION_MARKET.ts",
-  "P2P_FEDERATION.ts",
-  "P2P_SYNAPSE.ts",
-  "AVATAR_ENGINE.ts",
-  "REFLECTION_ENGINE.ts",
-  "AUDIT_ENGINE.ts",
-  "OBSERVER_UI.ts",
-  "RECOVERY.ts",
-  "PRNG.ts",
-  "OFFSETS.ts",
-  "mod.ts",
-  "SHIMS.ts",
-];
-
-const REQUIRED_ARCH_FILES = [
-  ...CORE_ENTRY_FILES,
-  "worker_gate_thresholds.ts",
-  "worker_determinism_capture.ts",
-  "worker_resilience_capture.ts",
-  "worker_seeded_swarm.ts",
-  "worker_trend_math.ts",
-  "worker_trend_baseline.ts",
-];
-
-const CONTEXT_FILES = [
-  "ARCHITECTURE.md",
-  "README.md",
-  "GEMINI.md",
-  "WASM_MIGRATION_RFC.md",
-  "WASM_THREADSAFE_ROADMAP.md",
-  "AKASHA_SERVER.ts",
-  "AKASHA_UI.html",
-  "OBSERVER_LAB.ts",
-  "ui/index.html",
-];
+const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /^test_.*\.ts$/u,
@@ -99,6 +42,93 @@ const isExcluded = (path: string): boolean =>
 
 const uniqueSorted = (items: Iterable<string>): string[] =>
   Array.from(new Set(items)).sort((a, b) => a.localeCompare(b));
+
+type ExportManifest = {
+  era: string;
+  core_entry_files: string[];
+  required_additional_files: string[];
+  context_files: string[];
+};
+
+type LoadedManifest = {
+  era: string;
+  coreEntryFiles: string[];
+  requiredArchFiles: string[];
+  contextFiles: string[];
+};
+
+const hasTestLikeName = (path: string): boolean =>
+  /^test_.*\.ts$/u.test(path) || /^tests\//u.test(path);
+
+const parseManifestStringArray = (
+  value: unknown,
+  fieldName: string,
+): string[] => {
+  if (!Array.isArray(value)) {
+    throw new Error(`${MANIFEST_PATH}:${fieldName} must be an array`);
+  }
+  const out: string[] = [];
+  for (const item of value) {
+    if (typeof item !== "string") {
+      throw new Error(
+        `${MANIFEST_PATH}:${fieldName} must contain only strings`,
+      );
+    }
+    const normalized = normalize(item.trim());
+    if (
+      !normalized || normalized.startsWith("/") || normalized.includes("..")
+    ) {
+      throw new Error(
+        `${MANIFEST_PATH}:${fieldName} has invalid path "${item}"`,
+      );
+    }
+    if (isExcluded(normalized)) {
+      throw new Error(
+        `${MANIFEST_PATH}:${fieldName} includes excluded path "${normalized}"`,
+      );
+    }
+    if (hasTestLikeName(normalized)) {
+      throw new Error(
+        `${MANIFEST_PATH}:${fieldName} includes test path "${normalized}"`,
+      );
+    }
+    out.push(normalized);
+  }
+  return uniqueSorted(out);
+};
+
+const loadManifest = async (): Promise<LoadedManifest> => {
+  const raw = await Deno.readTextFile(MANIFEST_PATH);
+  const parsed = JSON.parse(raw) as ExportManifest;
+
+  const era = typeof parsed?.era === "string" ? parsed.era.trim() : "";
+  if (!era) {
+    throw new Error(`${MANIFEST_PATH}: era must be a non-empty string`);
+  }
+
+  const coreEntryFiles = parseManifestStringArray(
+    parsed?.core_entry_files,
+    "core_entry_files",
+  );
+  const requiredAdditional = parseManifestStringArray(
+    parsed?.required_additional_files,
+    "required_additional_files",
+  );
+  const contextFiles = parseManifestStringArray(
+    parsed?.context_files,
+    "context_files",
+  );
+
+  if (coreEntryFiles.length === 0) {
+    throw new Error(`${MANIFEST_PATH}: core_entry_files cannot be empty`);
+  }
+
+  const requiredArchFiles = uniqueSorted([
+    ...coreEntryFiles,
+    ...requiredAdditional,
+  ]);
+  return { era, coreEntryFiles, requiredArchFiles, contextFiles };
+};
 
 const parseLocalImportSpecifiers = (source: string): string[] => {
   const specs = new Set<string>();
@@ -174,9 +204,12 @@ const collectDependencyClosure = async (
   return { files: uniqueSorted(visited), missing: uniqueSorted(missing) };
 };
 
-const buildExportFileList = async (): Promise<string[]> => {
+const buildExportFileList = async (): Promise<
+  { files: string[]; era: string }
+> => {
+  const manifest = await loadManifest();
   const { files: closureFiles, missing: closureMissing } =
-    await collectDependencyClosure(CORE_ENTRY_FILES);
+    await collectDependencyClosure(manifest.coreEntryFiles);
 
   if (closureMissing.length > 0) {
     throw new Error(
@@ -186,14 +219,45 @@ const buildExportFileList = async (): Promise<string[]> => {
     );
   }
 
+  const missingRequiredPaths: string[] = [];
+  for (const file of manifest.requiredArchFiles) {
+    if (!(await fileExists(file))) {
+      missingRequiredPaths.push(file);
+    }
+  }
+  if (missingRequiredPaths.length > 0) {
+    throw new Error(
+      `Required architecture files missing on disk:\n${
+        missingRequiredPaths.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+
+  const missingContextPaths: string[] = [];
+  for (const file of manifest.contextFiles) {
+    if (!(await fileExists(file))) {
+      missingContextPaths.push(file);
+    }
+  }
+  if (missingContextPaths.length > 0) {
+    throw new Error(
+      `Context files missing on disk:\n${
+        missingContextPaths.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+
   const combined = new Set<string>(closureFiles);
-  for (const file of [...REQUIRED_ARCH_FILES, ...CONTEXT_FILES]) {
-    if (isExcluded(file)) continue;
-    if (await fileExists(file)) combined.add(file);
+  for (
+    const file of [...manifest.requiredArchFiles, ...manifest.contextFiles]
+  ) {
+    combined.add(file);
   }
 
   const files = uniqueSorted(combined).filter((f) => !isExcluded(f));
-  const missingRequired = REQUIRED_ARCH_FILES.filter((f) => !files.includes(f));
+  const missingRequired = manifest.requiredArchFiles.filter((f) =>
+    !files.includes(f)
+  );
   if (missingRequired.length > 0) {
     throw new Error(
       `Required architecture files missing from export:\n${
@@ -211,13 +275,13 @@ const buildExportFileList = async (): Promise<string[]> => {
     );
   }
 
-  return files;
+  return { files, era: manifest.era };
 };
 
 async function exportCore() {
-  const files = await buildExportFileList();
+  const { files, era } = await buildExportFileList();
 
-  let output = "# OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)\n\n";
+  let output = `# OMEGA-64 | CORE LOGIC (ERA ${era}: THE COHERENT LATTICE)\n\n`;
   output += `*Generated: ${new Date().toISOString()}*\n`;
   output += `*Exported Files: ${files.length}*\n\n---\n\n`;
 

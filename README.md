@@ -210,6 +210,8 @@ health indicator loop:
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)
+- `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
+  canonical export file set, no test/legacy leakage, all listed files exist)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker
   phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay
@@ -225,8 +227,8 @@ health indicator loop:
 - `deno task test:crystalline` / `deno task test:neural` /
   `deno task test:quantum` (Vector 8/9/7 direct probes)
 - `deno task verify:coherence` (extended end-to-end verification chain; starts
-  with `test:runtime-monoculture` and includes `test:ledger-chain` +
-  `test:checkpoint-chain`)
+  with `test:runtime-monoculture`, includes `test:export-manifest`, and includes
+  `test:ledger-chain` + `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
   structure-intent determinism gate + worker-init fallback/total-fail/safe-noop
   gates)

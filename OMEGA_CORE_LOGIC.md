@@ -1,7 +1,7 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T18:01:10.820Z*
-*Exported Files: 51*
+*Generated: 2026-03-03T18:08:11.241Z*
+*Exported Files: 52*
 
 ---
 
@@ -768,6 +768,73 @@ export const BREATH = {
 
 if (import.meta.main) {
     BREATH.inhale();
+}
+
+```
+
+---
+
+## FILE: CORE_ARCH_MANIFEST.json
+
+```json
+{
+  "era": "69",
+  "core_entry_files": [
+    "SYSTEM_START.ts",
+    "PULSE.ts",
+    "PULSE_WORKER.ts",
+    "STATE_MATRIX.ts",
+    "GATE.ts",
+    "STATE_SNAPSHOT.ts",
+    "RIBOSOME.ts",
+    "RIBOSOME_TICK.ts",
+    "IMMUNE.ts",
+    "LAMBDA_VM.ts",
+    "SPATIAL_HASH.ts",
+    "PHYSICS_ENGINE.ts",
+    "ECOLOGY_ENGINE.ts",
+    "SOVEREIGNTY_ENGINE.ts",
+    "SOVEREIGN_ORACLE.ts",
+    "LLM_SYNAPSE.ts",
+    "SEMANTIC_MEMBRANE.ts",
+    "SNAP.ts",
+    "SNAPSHOT_ENGINE.ts",
+    "BREATH.ts",
+    "MATRIX_ENGINE.ts",
+    "STRUCTURE_ENGINE.ts",
+    "PREDICTION_MARKET.ts",
+    "P2P_FEDERATION.ts",
+    "P2P_SYNAPSE.ts",
+    "AVATAR_ENGINE.ts",
+    "REFLECTION_ENGINE.ts",
+    "AUDIT_ENGINE.ts",
+    "OBSERVER_UI.ts",
+    "RECOVERY.ts",
+    "PRNG.ts",
+    "OFFSETS.ts",
+    "mod.ts",
+    "SHIMS.ts"
+  ],
+  "required_additional_files": [
+    "worker_gate_thresholds.ts",
+    "worker_determinism_capture.ts",
+    "worker_resilience_capture.ts",
+    "worker_seeded_swarm.ts",
+    "worker_trend_math.ts",
+    "worker_trend_baseline.ts"
+  ],
+  "context_files": [
+    "CORE_ARCH_MANIFEST.json",
+    "ARCHITECTURE.md",
+    "README.md",
+    "GEMINI.md",
+    "WASM_MIGRATION_RFC.md",
+    "WASM_THREADSAFE_ROADMAP.md",
+    "AKASHA_SERVER.ts",
+    "AKASHA_UI.html",
+    "OBSERVER_LAB.ts",
+    "ui/index.html"
+  ]
 }
 
 ```
@@ -6635,6 +6702,8 @@ health indicator loop:
 - `deno task test:runtime-monoculture` (toolchain guard: blocks
   `node/npm/npx/yarn/pnpm/ts-node` usage inside `deno.jsonc` tasks and workflow
   `run:` commands)
+- `deno task test:export-manifest` (validates `CORE_ARCH_MANIFEST.json`:
+  canonical export file set, no test/legacy leakage, all listed files exist)
 - delta-reduction (`ENERGY_DELTA` / `RESONANCE_DELTA`) now runs in WASM worker
   phase (`REDUCE_DELTAS`), not host JS
 - `deno task verify:coherence:deep` (also verifies intent buffers stay
@@ -6650,8 +6719,8 @@ health indicator loop:
 - `deno task test:crystalline` / `deno task test:neural` /
   `deno task test:quantum` (Vector 8/9/7 direct probes)
 - `deno task verify:coherence` (extended end-to-end verification chain; starts
-  with `test:runtime-monoculture` and includes `test:ledger-chain` +
-  `test:checkpoint-chain`)
+  with `test:runtime-monoculture`, includes `test:export-manifest`, and includes
+  `test:ledger-chain` + `test:checkpoint-chain`)
 - `deno task verify:coherence:deep` (includes drift audit + fuzz +
   structure-intent determinism gate + worker-init fallback/total-fail/safe-noop
   gates)
