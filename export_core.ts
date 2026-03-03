@@ -2,7 +2,7 @@
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
 
-import { dirname, extname, join, normalize } from "@std/path/mod.ts";
+import { dirname, extname, join, normalize } from "jsr:@std/path";
 
 const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 
