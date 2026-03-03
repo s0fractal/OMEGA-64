@@ -1,5 +1,4 @@
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
@@ -7,6 +6,8 @@ const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: (idx: number) => void;
 let tick_matrix_fn: (() => void) | null = null;
+let get_neural_coherence_fn: (() => number) | null = null;
+let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 
 self.onmessage = async (e) => {
@@ -32,6 +33,9 @@ self.onmessage = async (e) => {
             wasmInstance = instantiated.instance;
             execute_atom_fn = wasmInstance.exports.execute_atom as any;
             tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
+            get_neural_coherence_fn = wasmInstance.exports.get_neural_coherence as any;
+            set_neural_coherence_fn = wasmInstance.exports.set_neural_coherence as any;
+            console.log("   [WORKER] WASM Instantiated successfully.");
             self.postMessage({ type: "READY" });
         } catch (err) {
             console.error("   [WORKER] WASM LOAD ERROR:", err);
@@ -60,35 +64,18 @@ self.onmessage = async (e) => {
         const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
         const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
         const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
-        const stiffs = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
+        const stiffs = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS);
+        const bondDists = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+        const dampings = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
+        const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+        const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80);
 
         try {
             for (let i = startIdx; i < endIdx; i++) {
                 const currentId = Atomics.load(ids, i);
                 if (currentId === 0n) continue;
 
-                let x = Atomics.load(xs, i);
-                let y = Atomics.load(ys, i);
-
-                // --- NEURAL VERIFICATION ISOLATION ---
-                if (currentId <= 10n) {
-                    execute_atom_fn(i);
-                    continue;
-                }
-
-                const logicBytes = logic.subarray(i * 8, i * 8 + 8);
-                const logicStr = Array.from(logicBytes).map(b => b.toString(16).padStart(2, '0')).join('');
-                
-                const { velX, velY } = PHYSICS_ENGINE.getGenomeVelocity(logicStr);
-                const bondTargetView = bonds.subarray(i * 4, i * 4 + 4);
-                const { fx, fy } = PHYSICS_ENGINE.applyBondSprings(i, x, y, bondTargetView, xs, ys, stiffs);
-                
-                x += Math.round(velX * 2 + fx);
-                y += Math.round(velY * 2 + fy);
-
-                Atomics.store(xs, i, x);
-                Atomics.store(ys, i, y);
-
+                // Absolute WASM Coherence: The Kernel now handles Physics AND VM
                 execute_atom_fn(i);
             }
         } catch (err) {
@@ -99,7 +86,28 @@ self.onmessage = async (e) => {
     }
 
     if (type === "TICK_MATRIX") {
-        if (tick_matrix_fn) tick_matrix_fn();
+        const tick_structure_grid = wasmInstance?.exports.tick_structure_grid as any;
+        if (tick_structure_grid) tick_structure_grid();
+        else if (tick_matrix_fn) tick_matrix_fn();
         self.postMessage({ type: "MATRIX_DONE", pulseId });
+    }
+
+    if (type === "BUILD_SPATIAL_HASH") {
+        const build_spatial_hash = wasmInstance?.exports.build_spatial_hash as any;
+        if (build_spatial_hash) build_spatial_hash();
+        self.postMessage({ type: "HASH_DONE", pulseId });
+    }
+
+    if (type === "POLL_COHERENCE") {
+        if (get_neural_coherence_fn) {
+            const coherence = get_neural_coherence_fn();
+            self.postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
+        }
+    }
+
+    if (type === "SET_COHERENCE") {
+        if (set_neural_coherence_fn) {
+            set_neural_coherence_fn(e.data.coherence);
+        }
     }
 };

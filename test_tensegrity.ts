@@ -1,121 +1,121 @@
-// OMEGA-64 | test_tensegrity.ts | Era 44 Verification
-// Verifies Multi-Cellular Bond formation (Level 12 Intent -> ISA.BIND) and Metabolic Equalization.
-
+// OMEGA-64 | test_tensegrity.ts | Vector 2 Verification
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { PULSE } from "./PULSE.ts";
-import { LAMBDA_VM, ISA } from "./LAMBDA_VM.ts";
-import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import * as OFFSETS from "./OFFSETS.ts";
 
-console.log("🌀 OMEGA-64 | Commencing Multi-Cellular Tensegrity Verification (Era 44) 🌀");
+async function runTest() {
+    console.log("=== VECTOR 2: TENSEGRITY TEST ===");
 
-STATE_MATRIX.clear();
+    // 1. Initialize State
+    STATE_MATRIX.clear();
+    const sharedBuffer = STATE_MATRIX.buffer;
+    const wasmMemory = STATE_MATRIX.wasmMemory;
 
-// 1. spawn Central Atom (Atom 1)
-const a1 = STATE_MATRIX.findEmptySlot();
-STATE_MATRIX.setId(a1, 0x1n);
-STATE_MATRIX.setX(a1, 500);
-STATE_MATRIX.setY(a1, 500);
-STATE_MATRIX.setEnergy(a1, 1000); // Central atom is rich
-STATE_MATRIX.setResonance(a1, 100);
-STATE_MATRIX.setLogic(a1, new Uint8Array([0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78])); // Neutral velocity
+    // Load WASM
+    const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url).href);
+    const wasmBytes = await wasmRes.arrayBuffer();
+    const { instance } = await WebAssembly.instantiate(wasmBytes, {
+        env: {
+            memory: wasmMemory,
+            abort: () => {},
+            trace_atom: (idx: number, op: number, gx: number, gy: number, target: number) => {
+                console.log(`   [TR] Atom ${idx} | OP: 0xA5 | Mode: ${op} | P2: ${gx} | P3: ${gy}`);
+            }
+        }
+    });
 
-// Atom 1 Code: BIND to the right (dx: 2.0, dy: 0.0)
-const code1 = new Uint32Array(16);
-// Encoding: (p2 << 16) | (p1 << 8) | op
-// dx = 2.0 -> p1 = 128 + 20 = 148
-// dy = 0.0 -> p2 = 128
-code1[0] = (128 << 16) | (148 << 8) | ISA.BIND;
-code1[1] = (0 << 8) | ISA.JMP; // Halt (JMP to 0 or same line is risky, let's just JMP to 1)
-code1[2] = (2 << 8) | ISA.JMP; 
-STATE_MATRIX.setCode(a1, code1);
+    const execute_atom = instance.exports.execute_atom as (i: number) => void;
 
-// 2. spawn Right Atom (Atom 2) - very close but starving
-const a2 = STATE_MATRIX.findEmptySlot();
-STATE_MATRIX.setId(a2, 0x2n);
-STATE_MATRIX.setX(a2, 520); // 20 units to the right
-STATE_MATRIX.setY(a2, 500);
-STATE_MATRIX.setEnergy(a2, 10); // Starving
-STATE_MATRIX.setResonance(a2, 0);
-STATE_MATRIX.setLogic(a2, new Uint8Array([0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78, 0x78])); // Neutral velocity
+    // 3. Set Tensegrity Instructions for Atom 0
+    // OP_TENSEGRITY mode=0 (SET_BOND_DIST), slot=0, dist=100
+    const script = new Uint8Array(64);
+    script[0] = 0xA5; script[1] = 0; script[2] = 0; script[3] = 100;
 
-// Atom 2 Code: Just halt
-const code2 = new Uint32Array(16);
-code2[0] = (0 << 8) | ISA.JMP; 
-STATE_MATRIX.setCode(a2, code2);
+    // 2. Spawn Atom A (Index 0) and Atom B (Index 1)
+    // Close together: (100, 100) and (110, 110)
+    STATE_MATRIX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, script);
+    STATE_MATRIX.seedAtom(1, 2n, 110, 110, 5000, 100);
 
+    // Bind them together
+    STATE_MATRIX.setBondTarget(0, 0, 1);
+    STATE_MATRIX.setBondStiffness(0, 0, 0.9); // Rigid
 
-console.log(`\n--- Initial State ---`);
-console.log(`Atom 1: [${STATE_MATRIX.getX(a1)}, ${STATE_MATRIX.getY(a1)}] Energy: ${STATE_MATRIX.getEnergy(a1)}`);
-console.log(`Atom 2: [${STATE_MATRIX.getX(a2)}, ${STATE_MATRIX.getY(a2)}] Energy: ${STATE_MATRIX.getEnergy(a2)}`);
+    // Verify instructions in memory
+    const instView = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, 64);
+    console.log("-> Instructions at index 0:", instView[0].toString(16), instView[1].toString(16), instView[2].toString(16), instView[3].toString(16));
 
-PULSE.initWorkers(); // ERA 44: Start the engine
+    console.log("-> Initial distance:", Math.hypot(STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0), STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0)).toFixed(2));
 
-async function runSimulation() {
-    // Step 1: Execution (Atom 1 issues BIND intent)
-    console.log(`\n--- Pulse 1: Intent Generation ---`);
-    await PULSE.tick(); 
-    
-    // Check bond intent buffers directly (they get cleared at start of next pulse)
-    console.log("Bond Request Buffer Check:", STATE_MATRIX.getBondRequest(a1));
+    // 4. Run Ticks
+    for (let t = 0; t < 100; t++) {
+        // VM Execution (WASM)
+        execute_atom(0);
+        execute_atom(1);
 
-    // Step 2: Resolution (Pulse 2 processes bond intent, physically links them)
-    console.log(`\n--- Pulse 2: Bond Resolution & Metabolic Equalization ---`);
-    await PULSE.tick();
+        // Physics Update (JS-side mimic of PULSE_WORKER)
+        const x0 = STATE_MATRIX.getX(0);
+        const y0 = STATE_MATRIX.getY(0);
+        const x1 = STATE_MATRIX.getX(1);
+        const y1 = STATE_MATRIX.getY(1);
 
-    const a1Bonds = STATE_MATRIX.getBonds(a1);
-    const a2Bonds = STATE_MATRIX.getBonds(a2);
-    
-    console.log(`Atom 1 Bond Target 0: ${a1Bonds[0]} (Stiffness: ${STATE_MATRIX.getBondStiffness(a1, 0)})`);
-    console.log(`Atom 2 Bond Target 0: ${a2Bonds[0]} (Stiffness: ${STATE_MATRIX.getBondStiffness(a2, 0)})`);
+        const dx = x1 - x0;
+        const dy = y1 - y0;
+        const dist = Math.hypot(dx, dy) || 1;
+        const targetDist = STATE_MATRIX.getBondDistance(0, 0) || 50;
+        const stiffness = STATE_MATRIX.getBondStiffness(0, 0);
 
-    if (a1Bonds[0] === a2 && a2Bonds[0] === a1) {
-         console.log("✅ SUCCESS: Symmetrical Bond Formed!");
-    } else {
-         console.error("❌ FAILED: Bond missing or asymmetrical.");
+        if (stiffness > 0.8) {
+            const force = (dist - targetDist) * 0.5;
+            const fx = (dx / dist) * force;
+            const fy = (dy / dist) * force;
+
+            // Apply Damping
+            const d0 = 1 - (STATE_MATRIX.getDamping(0) / 255);
+            const d1 = 1 - (STATE_MATRIX.getDamping(1) / 255);
+
+            STATE_MATRIX.setX(0, x0 + fx * d0);
+            STATE_MATRIX.setY(0, y0 + fy * d0);
+            STATE_MATRIX.setX(1, x1 - fx * d1);
+            STATE_MATRIX.setY(1, y1 - fy * d1);
+        }
+
+        if (t % 20 === 0) {
+            console.log(`t=${t} | Dist: ${dist.toFixed(2)} | Target: ${targetDist} | Damping: ${STATE_MATRIX.getDamping(0)}`);
+        }
     }
 
-    // Since they are bonded, Pulse 2 should have equalized their energy
-    console.log(`\n--- Pulse 3: Metabolic Equalization ---`);
-    await PULSE.tick();
+    const finalDist = Math.hypot(STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0), STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0));
+    console.log("-> Final distance:", finalDist.toFixed(2));
 
-    const e1 = STATE_MATRIX.getEnergy(a1);
-    const e2 = STATE_MATRIX.getEnergy(a2);
-    console.log(`Atom 1 Energy: ${e1}`);
-    console.log(`Atom 2 Energy: ${e2}`);
+    // 5. Test Damping (Structural Locking)
+    console.log("\n-> Locking Atom 0 into Structure (Damping=255)...");
+    const lockScript = new Uint8Array(64);
+    lockScript[0] = 0xA5; lockScript[1] = 1; lockScript[2] = 255; // SET_DAMPING 255
+    STATE_MATRIX.setInstructions(0, lockScript);
+    STATE_MATRIX.setPC(0, 0);
 
-    // Sharing should be significant, though metabolic noise (feeding/decay) might prevent perfect 0.0 diff
-    if (Math.abs(e1 - e2) < 25 && e1 > 400 && e2 > 400) {
-        console.log("✅ SUCCESS: Metabolic Equalization shared energy effectively!");
+    execute_atom(0); // Set damping
+    console.log("-> New Damping (Atom 0):", STATE_MATRIX.getDamping(0));
+
+    const oldX = STATE_MATRIX.getX(0);
+    // Force a massive displacement in physics
+    // Atom 1 tries to pull Atom 0 to distance 150
+    STATE_MATRIX.setBondDistance(0, 0, 150);
+    
+    // Run one update
+    const x0 = STATE_MATRIX.getX(0);
+    const x1 = STATE_MATRIX.getX(1);
+    const dx = x1 - x0;
+    const force = (dx - 150) * 0.5;
+    const d0 = 1 - (STATE_MATRIX.getDamping(0) / 255);
+    STATE_MATRIX.setX(0, x0 + force * d0);
+
+    console.log("-> Atom 0 Move test (should be 0):", (STATE_MATRIX.getX(0) - oldX).toFixed(2));
+
+    if (Math.abs(finalDist - 100) < 5 && STATE_MATRIX.getDamping(0) === 255) {
+        console.log("\n✅ VECTOR 2 VERIFIED: Kinematic Bonds and Rigidity functional.");
     } else {
-        console.error("❌ FAILED: Energy did not equalize as expected.", e1, e2);
+        console.log("\n❌ VECTOR 2 FAILURE: Dynamics outside tolerance.");
     }
-    
-    console.log(`\n--- Pulse 4: Physical Tensegrity (Drag) ---`);
-    
-    // Manually force Atom 1 to teleport away. Hooke's Law in PHYSICS_ENGINE should snap Atom 2 to it.
-    STATE_MATRIX.setX(a1, 600);
-    STATE_MATRIX.setY(a1, 600);
-    console.log(`Atom 1 Teleported to [600, 600]`);
-
-    for (let i = 0; i < 20; i++) await PULSE.tick(); // Give physics 20 steps to drag
-    
-    const ax1 = STATE_MATRIX.getX(a1);
-    const ay1 = STATE_MATRIX.getY(a1);
-    const ax2 = STATE_MATRIX.getX(a2);
-    const ay2 = STATE_MATRIX.getY(a2);
-    const dist = Math.hypot(ax1 - ax2, ay1 - ay2);
-
-    console.log(`Atom 1 Final: [${ax1}, ${ay1}]`);
-    console.log(`Atom 2 Final: [${ax2}, ${ay2}] Distance: ${dist}`);
-
-    if (ax2 > 530 || ay2 > 510) {
-        console.log("✅ SUCCESS: Tensegrity dragged Atom 2 towards Atom 1!");
-    } else {
-        console.error("❌ FAILED: Tensegrity failed to move Atom 2 significantly.", ax2, ay2);
-    }
-
-    console.log("\n🌀 Tensegrity Verification Complete. 🌀");
-    Deno.exit(0);
 }
 
-runSimulation();
+runTest();

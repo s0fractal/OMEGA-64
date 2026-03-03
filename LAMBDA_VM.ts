@@ -81,6 +81,13 @@ export const ISA = {
     SHARE: 0xA0, EAT: 0xA1,
     // The Golden Angle (ERA 63)
     PHI: 0xA2,
+    // Crystalline Neural Network (ERA 69)
+    PLUG: 0xA4,
+    // THE LIVING QUINE / TENSEGRITY (ERA 68)
+    TENSEGRITY: 0xA5,
+    // COLLECTIVE INTELLIGENCE (ERA 69)
+    COLLECTIVE: 0xA6,
+    ROLE: 0xA7,
     // Ascension / Crystallization (ERA 64)
     ASCEND: 0xFF
 };
@@ -915,12 +922,97 @@ export const LAMBDA_VM = {
                 break;
             }
 
+            case ISA.PLUG: { // ERA 69: Crystalline Neural Network
+                const mode = p1; // 0: Read Charge, 1: Write Charge, 2: Set Type, 3: Set State
+                const regIdx = p2 % 8;
+                const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                const idx = gy * 140 + gx;
+
+                if (mode === 0) { // READ CHARGE
+                    const charge = (Atomics.load(state.structureGrid, idx) >> 16) & 0xFF;
+                    if (!dryRun) regs[regIdx] = charge;
+                    res.energyDelta -= 1;
+                } else if (mode === 1) { // WRITE CHARGE
+                    const charge = regs[regIdx];
+                    if (!dryRun) {
+                        Atomics.and(state.structureGrid, idx, ~0x00FF0000);
+                        Atomics.or(state.structureGrid, idx, (charge << 16));
+                    }
+                    res.energyDelta -= (charge / 25.5); // Max 10 energy for 255 charge
+                } else if (mode === 2) { // SET TYPE
+                    const type = regs[regIdx] % 8;
+                    if (!dryRun) {
+                        Atomics.and(state.structureGrid, idx, ~0x000000FF);
+                        Atomics.or(state.structureGrid, idx, type);
+                    }
+                    res.energyDelta -= 5;
+                    res.resonanceDelta += 1;
+                } else if (mode === 3) { // SET STATE
+                    const sVal = regs[regIdx];
+                    if (!dryRun) {
+                        Atomics.and(state.structureGrid, idx, ~0xFF000000);
+                        Atomics.or(state.structureGrid, idx, (sVal << 24));
+                    }
+                    res.energyDelta -= 2;
+                }
+                break;
+            }
+
             case ISA.ASCEND: {
                 // --- ERA 64: The Convergence ---
                 // Requires minimum 5000 energy and 500 resonance to ascend.
                 if (!dryRun && state.energy >= 5000 && state.resonance >= 500) {
                     res.ascendRequest = true;
                 }
+                break;
+            }
+
+            case ISA.TENSEGRITY: {
+                // mode p1: 0=SetBondDist, 1=SetDamping
+                const mode = p1;
+                if (!dryRun) {
+                    if (mode === 0) {
+                        res.intent.push({ level: 21, value: { type: "setBondDist", slot: p2 % 4, dist: p3 } });
+                    } else if (mode === 1) {
+                        res.intent.push({ level: 21, value: { type: "setDamping", val: p2 } });
+                    }
+                }
+                res.energyDelta -= 2;
+                break;
+            }
+
+            case ISA.COLLECTIVE: {
+                // mode p1: 0=HiveStore, 1=HiveLoad, 2=PheromoneEmit
+                const mode = p1;
+                if (!dryRun) {
+                    if (mode === 0 && state.hiveMemory) {
+                        Atomics.store(state.hiveMemory, p2 & 1023, p3);
+                        res.energyDelta -= 1;
+                    } else if (mode === 1 && state.hiveMemory) {
+                        regs[p3 % 8] = Atomics.load(state.hiveMemory, p2 & 1023);
+                        res.energyDelta -= 0.5;
+                    } else if (mode === 2) {
+                        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
+                        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+                        const idx = gy * 140 + gx;
+                        // intensity p2, type p3
+                        Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);
+                        res.energyDelta -= 5;
+                    }
+                }
+                break;
+            }
+
+            case ISA.ROLE: {
+                if (!dryRun) {
+                    const mode = p1;
+                    const val = p2;
+                    if (mode === 0) {
+                        res.modifiedRole = val;
+                    }
+                }
+                res.energyDelta -= 10;
                 break;
             }
         }
