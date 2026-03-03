@@ -6,7 +6,7 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
-import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type OraclePendingMutation =
   | {
@@ -40,12 +40,7 @@ type OracleDrainStats = {
   remaining: number;
 };
 
-const ORACLE_PENDING_MAX = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
-  256,
-  32,
-  8192,
-);
+const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 
 export const SOVEREIGN_ORACLE = {
   isConsulting: false,

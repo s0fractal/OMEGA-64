@@ -58,3 +58,5 @@ internal high-speed mutation loops.
   `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.
 - External control intents are drained and applied only during `HOST_LOCK`
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
+- Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
+  and consumed by runtime modules (policy monoculture).

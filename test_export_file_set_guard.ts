@@ -29,6 +29,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "STATE_MATRIX.ts",
   "OFFSETS.ts",
   "ENV_PARSE.ts",
+  "RUNTIME_POLICY.ts",
   "GATE.ts",
   "STATE_SNAPSHOT.ts",
   "SHIMS.ts",

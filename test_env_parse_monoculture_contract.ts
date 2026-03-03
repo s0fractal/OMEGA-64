@@ -1,7 +1,6 @@
 type FileExpectation = {
   file: string;
-  requiresBool: boolean;
-  requiresBoundedInt: boolean;
+  requiresPolicyAccess: string;
 };
 
 type Violation = {
@@ -10,24 +9,25 @@ type Violation = {
 };
 
 const TARGETS: FileExpectation[] = [
-  { file: "PULSE.ts", requiresBool: true, requiresBoundedInt: true },
-  { file: "SYSTEM_START.ts", requiresBool: true, requiresBoundedInt: false },
-  { file: "P2P_FEDERATION.ts", requiresBool: true, requiresBoundedInt: true },
-  { file: "P2P_SYNAPSE.ts", requiresBool: true, requiresBoundedInt: false },
+  { file: "PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
+  { file: "SYSTEM_START.ts", requiresPolicyAccess: "RUNTIME_POLICY.system" },
+  {
+    file: "P2P_FEDERATION.ts",
+    requiresPolicyAccess: "RUNTIME_POLICY.federation",
+  },
+  { file: "P2P_SYNAPSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.p2p" },
+  { file: "AKASHA_SERVER.ts", requiresPolicyAccess: "RUNTIME_POLICY.akasha" },
   {
     file: "MUTATION_TELEMETRY.ts",
-    requiresBool: true,
-    requiresBoundedInt: true,
+    requiresPolicyAccess: "RUNTIME_POLICY.telemetry",
   },
   {
     file: "CONTROL_INTENT_QUEUE.ts",
-    requiresBool: false,
-    requiresBoundedInt: true,
+    requiresPolicyAccess: "RUNTIME_POLICY.controlIntent",
   },
   {
     file: "SOVEREIGN_ORACLE.ts",
-    requiresBool: false,
-    requiresBoundedInt: true,
+    requiresPolicyAccess: "RUNTIME_POLICY.oracle",
   },
 ];
 
@@ -36,10 +36,22 @@ const main = async () => {
 
   for (const target of TARGETS) {
     const source = await Deno.readTextFile(target.file);
-    if (!source.includes('from "./ENV_PARSE.ts"')) {
+    if (!source.includes('from "./RUNTIME_POLICY.ts"')) {
       violations.push({
         file: target.file,
-        reason: "must import env parser helpers from ENV_PARSE.ts",
+        reason: "must import runtime policy from RUNTIME_POLICY.ts",
+      });
+    }
+    if (!source.includes(target.requiresPolicyAccess)) {
+      violations.push({
+        file: target.file,
+        reason: `expected policy access: ${target.requiresPolicyAccess}`,
+      });
+    }
+    if (source.includes('from "./ENV_PARSE.ts"')) {
+      violations.push({
+        file: target.file,
+        reason: "env parser helpers should be consumed through RUNTIME_POLICY",
       });
     }
     if (/\bconst\s+parseBool\b/u.test(source)) {
@@ -54,18 +66,38 @@ const main = async () => {
         reason: "inline parseBoundedInt helper must not be reintroduced",
       });
     }
-    if (target.requiresBool && !source.includes("parseEnvBool(")) {
+    if (source.includes("Deno.env.get(")) {
       violations.push({
         file: target.file,
-        reason: "expected parseEnvBool usage",
+        reason: "runtime module must not read env directly",
       });
     }
-    if (target.requiresBoundedInt && !source.includes("parseEnvBoundedInt(")) {
-      violations.push({
-        file: target.file,
-        reason: "expected parseEnvBoundedInt usage",
-      });
-    }
+  }
+
+  const runtimePolicy = await Deno.readTextFile("RUNTIME_POLICY.ts");
+  if (!runtimePolicy.includes('from "./ENV_PARSE.ts"')) {
+    violations.push({
+      file: "RUNTIME_POLICY.ts",
+      reason: "must import canonical parser helpers from ENV_PARSE.ts",
+    });
+  }
+  if (!runtimePolicy.includes("logFingerprintOnce")) {
+    violations.push({
+      file: "RUNTIME_POLICY.ts",
+      reason: "must expose logFingerprintOnce API",
+    });
+  }
+  if (!runtimePolicy.includes("fingerprint")) {
+    violations.push({
+      file: "RUNTIME_POLICY.ts",
+      reason: "must expose runtime policy fingerprint",
+    });
+  }
+  if (!runtimePolicy.includes("Deno.env.get(")) {
+    violations.push({
+      file: "RUNTIME_POLICY.ts",
+      reason: "must be the central env-read location",
+    });
   }
 
   if (violations.length > 0) {

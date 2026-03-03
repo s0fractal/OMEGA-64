@@ -1,19 +1,14 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const PORT = 8081;
-const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
+const PORT = RUNTIME_POLICY.p2p.port;
+const HOST = RUNTIME_POLICY.p2p.host;
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const MUTATE_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
-    Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
-  false,
-);
-const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ??
-  Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const MUTATE_ENABLED = RUNTIME_POLICY.p2p.mutateEnabled;
+const MUTATE_TOKEN = RUNTIME_POLICY.p2p.mutateToken;
 const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 
 const issueAlienId = (): string =>
@@ -24,6 +19,7 @@ LOGGER.info(
     MUTATE_ENABLED ? "on" : "off"
   })`,
 );
+RUNTIME_POLICY.logFingerprintOnce("p2p-synapse");
 
 async function handler(req: Request): Promise<Response> {
   if (req.method === "POST" && new URL(req.url).pathname === "/mutate") {

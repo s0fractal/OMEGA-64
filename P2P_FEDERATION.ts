@@ -6,7 +6,7 @@ import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 export interface AtomPacket {
   id: string;
@@ -17,20 +17,12 @@ export interface AtomPacket {
   pulseId: number;
 }
 
-const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
+const CURRENT_PORT = RUNTIME_POLICY.system.port;
 const migrationQueue: number[] = [];
 let isProcessingMigration = false;
-const FEDERATION_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_FEDERATION_ENABLE"),
-  false,
-);
-const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
-const REQUEST_TIMEOUT_MS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_FEDERATION_TIMEOUT_MS"),
-  2000,
-  50,
-  120_000,
-);
+const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
+const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
 
 export const P2P_FEDERATION = {
   peers: new Set<string>(

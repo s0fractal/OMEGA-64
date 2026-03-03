@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T20:59:05.175Z*
-*Exported Files: 58*
-*Manifest SHA256: 424f1788b6504e8a906f05bb593291dd30fc083638fa371a598f0bc46ff1a8f1*
-*Export Set SHA256: c129f96a705ac100b7086971901db402b2b7a170c3b5f377e04504f4e891d515*
-*Git Commit: e9b173e97bf3*
+*Generated: 2026-03-03T21:07:52.547Z*
+*Exported Files: 59*
+*Manifest SHA256: f2a33d0b7327e96ca1fa3ef9a1c192934dfb474574e422500e61e61348bf61f4*
+*Export Set SHA256: bdabdc0c4c02c6aaafb8afe84a1696b09493731122588d1c336e0f01057c50df*
+*Git Commit: 8ce481dce83b*
 
 ---
 
@@ -12,10 +12,13 @@
 
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const PORT = 8080;
-const HOST = Deno.env.get("OMEGA_AKASHA_HOST")?.trim() || "127.0.0.1";
+const PORT = RUNTIME_POLICY.akasha.port;
+const HOST = RUNTIME_POLICY.akasha.host;
 const ROOT = "./";
+
+RUNTIME_POLICY.logFingerprintOnce("akasha-server");
 
 let clients = new Set<WebSocket>();
 
@@ -1994,7 +1997,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -2055,18 +2058,8 @@ type ApplyStats = {
   remaining: number;
 };
 
-const MAX_PENDING = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_CONTROL_INTENT_MAX"),
-  512,
-  8,
-  100_000,
-);
-const APPLY_BUDGET_PER_TICK = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_CONTROL_INTENT_BUDGET"),
-  8,
-  1,
-  4096,
-);
+const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
+const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
 
 const queue: ControlIntent[] = [];
 
@@ -2338,6 +2331,7 @@ export const CONTROL_INTENT_QUEUE = {
     "RECOVERY.ts",
     "PRNG.ts",
     "ENV_PARSE.ts",
+    "RUNTIME_POLICY.ts",
     "OFFSETS.ts",
     "mod.ts",
     "SHIMS.ts"
@@ -5931,6 +5925,8 @@ internal high-speed mutation loops.
   `MUTATION_TELEMETRY.flushIfDue(...)` from `PULSE.ts`.
 - External control intents are drained and applied only during `HOST_LOCK`
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
+- Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
+  and consumed by runtime modules (policy monoculture).
 
 ```
 
@@ -5940,7 +5936,7 @@ internal high-speed mutation loops.
 
 ```typescript
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -5954,22 +5950,9 @@ type MutationEvent = {
   count?: number;
 };
 
-const TELEMETRY_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY"),
-  true,
-);
-const FLUSH_INTERVAL_TICKS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS"),
-  25,
-  1,
-  10_000,
-);
-const TOP_KINDS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY_TOP_KINDS"),
-  6,
-  1,
-  32,
-);
+const TELEMETRY_ENABLED = RUNTIME_POLICY.telemetry.enabled;
+const FLUSH_INTERVAL_TICKS = RUNTIME_POLICY.telemetry.flushIntervalTicks;
+const TOP_KINDS = RUNTIME_POLICY.telemetry.topKinds;
 
 const laneCounts = new Map<MutationLane, number>();
 const kindCounts = new Map<string, number>();
@@ -6273,7 +6256,7 @@ import { IDX_TO_ID } from "./RIBOSOME.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 export interface AtomPacket {
   id: string;
@@ -6284,20 +6267,12 @@ export interface AtomPacket {
   pulseId: number;
 }
 
-const CURRENT_PORT = Number(Deno.env.get("PORT")) || 8000;
+const CURRENT_PORT = RUNTIME_POLICY.system.port;
 const migrationQueue: number[] = [];
 let isProcessingMigration = false;
-const FEDERATION_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_FEDERATION_ENABLE"),
-  false,
-);
-const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
-const REQUEST_TIMEOUT_MS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_FEDERATION_TIMEOUT_MS"),
-  2000,
-  50,
-  120_000,
-);
+const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
+const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
 
 export const P2P_FEDERATION = {
   peers: new Set<string>(
@@ -6432,20 +6407,15 @@ export const P2P_FEDERATION = {
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const PORT = 8081;
-const HOST = Deno.env.get("OMEGA_P2P_HOST")?.trim() || "127.0.0.1";
+const PORT = RUNTIME_POLICY.p2p.port;
+const HOST = RUNTIME_POLICY.p2p.host;
 const ROOT = "./";
 const ROOT_DIR = await Deno.realPath(ROOT);
 const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const MUTATE_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_P2P_MUTATE_ENABLE") ??
-    Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
-  false,
-);
-const MUTATE_TOKEN = (Deno.env.get("OMEGA_P2P_MUTATE_TOKEN") ??
-  Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const MUTATE_ENABLED = RUNTIME_POLICY.p2p.mutateEnabled;
+const MUTATE_TOKEN = RUNTIME_POLICY.p2p.mutateToken;
 const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 
 const issueAlienId = (): string =>
@@ -6456,6 +6426,7 @@ LOGGER.info(
     MUTATE_ENABLED ? "on" : "off"
   })`,
 );
+RUNTIME_POLICY.logFingerprintOnce("p2p-synapse");
 
 async function handler(req: Request): Promise<Response> {
   if (req.method === "POST" && new URL(req.url).pathname === "/mutate") {
@@ -7269,77 +7240,25 @@ import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-// Multi-instance AssemblyScript + shared memory can corrupt lattice state
-// because each instance owns an independent stack global over the same buffer.
-// Keep env override for diagnostics and rollout tuning.
-const parseWorkerCount = (): number => {
-  const raw = Deno.env.get("OMEGA_PULSE_WORKERS");
-  if (!raw) return 4;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n) || n < 1) return 4;
-  return Math.min(32, n);
-};
-const parseStrictDeterminism = (): boolean => {
-  const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
-  return raw === "1" || raw === "true" || raw === "TRUE";
-};
-const parseWorkerTimeoutMs = (): number =>
-  parseEnvBoundedInt(
-    Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS"),
-    30_000,
-    10,
-    120_000,
-  );
-const parseWorkerTimeoutRetryCount = (): number =>
-  parseEnvBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
-const parseWorkerTimeoutRetryMs = (): number =>
-  parseEnvBoundedInt(
-    Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"),
-    5_000,
-    10,
-    120_000,
-  );
-const parseWorkerInitFallbackEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
-type WasmBootPolicy = "fail-fast" | "safe-noop";
-const parseWasmBootPolicy = (): WasmBootPolicy => {
-  const raw = (Deno.env.get("OMEGA_WASM_BOOT_POLICY") ?? "").trim()
-    .toLowerCase();
-  if (raw === "safe-noop" || raw === "safe_noop" || raw === "noop") {
-    return "safe-noop";
-  }
-  return "fail-fast";
-};
-const parseWasmBootPrecheckEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
-const parseForceWasmPreflightFail = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
-const parseStartupSelfTestEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
-const parseStartupSelfTestTicks = (): number =>
-  parseEnvBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
-const parseStartupSelfTestFallbackEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
-const parseStartupSelfTestQuiet = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
-const parseStartupSelfTestForceBreach = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
-const WORKER_COUNT = parseWorkerCount();
-const STRICT_DETERMINISM = parseStrictDeterminism();
-const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
-const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
-const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
-const WORKER_INIT_FALLBACK_ENABLED = parseWorkerInitFallbackEnabled();
-const WASM_BOOT_POLICY = parseWasmBootPolicy();
-const WASM_BOOT_PRECHECK_ENABLED = parseWasmBootPrecheckEnabled();
-const FORCE_WASM_PREFLIGHT_FAIL = parseForceWasmPreflightFail();
-const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
-const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
-const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
-const STARTUP_SELFTEST_QUIET = parseStartupSelfTestQuiet();
-const STARTUP_SELFTEST_FORCE_BREACH = parseStartupSelfTestForceBreach();
+const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
+const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
+const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
+const WORKER_TIMEOUT_RETRY_COUNT = RUNTIME_POLICY.pulse.workerTimeoutRetryCount;
+const WORKER_TIMEOUT_RETRY_MS = RUNTIME_POLICY.pulse.workerTimeoutRetryMs;
+const WORKER_INIT_FALLBACK_ENABLED =
+  RUNTIME_POLICY.pulse.workerInitFallbackEnabled;
+const WASM_BOOT_POLICY = RUNTIME_POLICY.pulse.wasmBootPolicy;
+const WASM_BOOT_PRECHECK_ENABLED = RUNTIME_POLICY.pulse.wasmBootPrecheckEnabled;
+const FORCE_WASM_PREFLIGHT_FAIL = RUNTIME_POLICY.pulse.forceWasmPreflightFail;
+const STARTUP_SELFTEST_ENABLED = RUNTIME_POLICY.pulse.startupSelfTestEnabled;
+const STARTUP_SELFTEST_TICKS = RUNTIME_POLICY.pulse.startupSelfTestTicks;
+const STARTUP_SELFTEST_FALLBACK_ENABLED =
+  RUNTIME_POLICY.pulse.startupSelfTestFallbackEnabled;
+const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
+const STARTUP_SELFTEST_FORCE_BREACH =
+  RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -7818,7 +7737,7 @@ export const PULSE = {
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
-    if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
+    if (RUNTIME_POLICY.pulse.source.workerCount) {
       LOGGER.info(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
@@ -7828,27 +7747,27 @@ export const PULSE = {
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
-    if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
+    if (RUNTIME_POLICY.pulse.source.workerResponseTimeoutMs) {
       LOGGER.info(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
-    if (Deno.env.get("OMEGA_WORKER_INIT_FALLBACK") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.workerInitFallback) {
       LOGGER.info(
         `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
       );
     }
-    if (Deno.env.get("OMEGA_WASM_BOOT_POLICY") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.wasmBootPolicy) {
       LOGGER.info(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
     }
-    if (Deno.env.get("OMEGA_WASM_BOOT_PRECHECK") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.wasmBootPrecheck) {
       LOGGER.info(
         `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
       );
     }
     if (
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
-      Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
+      RUNTIME_POLICY.pulse.source.startupSelfTest
     ) {
       LOGGER.info(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
@@ -9086,6 +9005,327 @@ if (import.meta.main) {
   const lattice = await RIBOSOME.lift();
   LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
 }
+
+```
+
+---
+
+## FILE: RUNTIME_POLICY.ts
+
+```typescript
+import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { LOGGER } from "./LOGGER.ts";
+
+export type WasmBootPolicy = "fail-fast" | "safe-noop";
+
+const readEnv = (key: string): string | undefined => Deno.env.get(key);
+const hasEnvValue = (raw: string | undefined): boolean =>
+  raw !== undefined && raw.trim().length > 0;
+const normalizeHost = (raw: string | undefined, fallback: string): string => {
+  const value = (raw ?? fallback).trim();
+  return value.length > 0 ? value : fallback;
+};
+const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
+const parsePort = (raw: string | undefined, fallback: number): number =>
+  parseEnvBoundedInt(raw, fallback, 1, 65_535);
+const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "safe-noop" || value === "safe_noop" || value === "noop") {
+    return "safe-noop";
+  }
+  return "fail-fast";
+};
+
+const rawPort = readEnv("PORT");
+const rawSystemHost = readEnv("OMEGA_SYSTEM_HOST");
+const rawSystemControlEnable = readEnv("OMEGA_SYSTEM_CONTROL_ENABLE");
+const rawSystemControlToken = readEnv("OMEGA_SYSTEM_CONTROL_TOKEN");
+const rawP2PHost = readEnv("OMEGA_P2P_HOST");
+const rawP2PMutateEnable = readEnv("OMEGA_P2P_MUTATE_ENABLE");
+const rawP2PMutateToken = readEnv("OMEGA_P2P_MUTATE_TOKEN");
+const rawFederationEnable = readEnv("OMEGA_FEDERATION_ENABLE");
+const rawFederationTimeoutMs = readEnv("OMEGA_FEDERATION_TIMEOUT_MS");
+const rawTelemetryEnabled = readEnv("OMEGA_MUTATION_TELEMETRY");
+const rawTelemetryFlushTicks = readEnv("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS");
+const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
+const rawControlIntentMax = readEnv("OMEGA_CONTROL_INTENT_MAX");
+const rawControlIntentBudget = readEnv("OMEGA_CONTROL_INTENT_BUDGET");
+const rawOraclePendingMax = readEnv("OMEGA_ORACLE_PENDING_MAX");
+const rawPulseWorkers = readEnv("OMEGA_PULSE_WORKERS");
+const rawStrictDeterminism = readEnv("OMEGA_STRICT_DETERMINISM");
+const rawWorkerResponseTimeoutMs = readEnv("OMEGA_WORKER_RESPONSE_TIMEOUT_MS");
+const rawWorkerTimeoutRetryCount = readEnv("OMEGA_WORKER_TIMEOUT_RETRY_COUNT");
+const rawWorkerTimeoutRetryMs = readEnv("OMEGA_WORKER_TIMEOUT_RETRY_MS");
+const rawWorkerInitFallback = readEnv("OMEGA_WORKER_INIT_FALLBACK");
+const rawWasmBootPolicy = readEnv("OMEGA_WASM_BOOT_POLICY");
+const rawWasmBootPrecheck = readEnv("OMEGA_WASM_BOOT_PRECHECK");
+const rawForceWasmPreflightFail = readEnv("OMEGA_FORCE_WASM_PREFLIGHT_FAIL");
+const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
+const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
+const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
+const rawStartupSelfTestQuiet = readEnv("OMEGA_STARTUP_SELFTEST_QUIET");
+const rawStartupSelfTestForceBreach = readEnv(
+  "OMEGA_STARTUP_SELFTEST_FORCE_BREACH",
+);
+const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
+
+const systemPort = parsePort(rawPort, 8000);
+const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
+const systemControlEnabled = parseEnvBool(rawSystemControlEnable, false);
+const systemControlToken = normalizeToken(rawSystemControlToken);
+
+const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
+const p2pMutateEnabled = parseEnvBool(
+  rawP2PMutateEnable ?? rawSystemControlEnable,
+  false,
+);
+const p2pMutateToken = normalizeToken(
+  rawP2PMutateToken ?? rawSystemControlToken,
+);
+
+const federationEnabled = parseEnvBool(rawFederationEnable, false);
+const federationTimeoutMs = parseEnvBoundedInt(
+  rawFederationTimeoutMs,
+  2000,
+  50,
+  120_000,
+);
+
+const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
+const telemetryFlushIntervalTicks = parseEnvBoundedInt(
+  rawTelemetryFlushTicks,
+  25,
+  1,
+  10_000,
+);
+const telemetryTopKinds = parseEnvBoundedInt(rawTelemetryTopKinds, 6, 1, 32);
+
+const controlIntentMaxPending = parseEnvBoundedInt(
+  rawControlIntentMax,
+  512,
+  8,
+  100_000,
+);
+const controlIntentApplyBudget = parseEnvBoundedInt(
+  rawControlIntentBudget,
+  8,
+  1,
+  4096,
+);
+
+const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
+
+const pulseWorkerCount = parseEnvBoundedInt(rawPulseWorkers, 4, 1, 32);
+const pulseStrictDeterminism = parseEnvBool(rawStrictDeterminism, false);
+const pulseWorkerResponseTimeoutMs = parseEnvBoundedInt(
+  rawWorkerResponseTimeoutMs,
+  30_000,
+  10,
+  120_000,
+);
+const pulseWorkerTimeoutRetryCount = parseEnvBoundedInt(
+  rawWorkerTimeoutRetryCount,
+  1,
+  0,
+  4,
+);
+const pulseWorkerTimeoutRetryMs = parseEnvBoundedInt(
+  rawWorkerTimeoutRetryMs,
+  5_000,
+  10,
+  120_000,
+);
+const pulseWorkerInitFallbackEnabled = parseEnvBool(
+  rawWorkerInitFallback,
+  true,
+);
+const pulseWasmBootPolicy = parseWasmBootPolicy(rawWasmBootPolicy);
+const pulseWasmBootPrecheckEnabled = parseEnvBool(rawWasmBootPrecheck, true);
+const pulseForceWasmPreflightFail = parseEnvBool(
+  rawForceWasmPreflightFail,
+  false,
+);
+const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
+const pulseStartupSelfTestTicks = parseEnvBoundedInt(
+  rawStartupSelfTestTicks,
+  3,
+  1,
+  32,
+);
+const pulseStartupSelfTestFallbackEnabled = parseEnvBool(
+  rawStartupSelfTestFallback,
+  true,
+);
+const pulseStartupSelfTestQuiet = parseEnvBool(rawStartupSelfTestQuiet, true);
+const pulseStartupSelfTestForceBreach = parseEnvBool(
+  rawStartupSelfTestForceBreach,
+  false,
+);
+
+const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
+const akashaPort = 8080;
+const p2pPort = 8081;
+
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash.toString(16).padStart(8, "0");
+};
+
+const policyFingerprintSource = JSON.stringify({
+  system: {
+    host: systemHost,
+    port: systemPort,
+    controlEnabled: systemControlEnabled,
+    controlTokenSet: systemControlToken.length > 0,
+  },
+  p2p: {
+    host: p2pHost,
+    port: p2pPort,
+    mutateEnabled: p2pMutateEnabled,
+    mutateTokenSet: p2pMutateToken.length > 0,
+  },
+  federation: {
+    enabled: federationEnabled,
+    timeoutMs: federationTimeoutMs,
+  },
+  pulse: {
+    workerCount: pulseWorkerCount,
+    strictDeterminism: pulseStrictDeterminism,
+    workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
+    workerTimeoutRetryCount: pulseWorkerTimeoutRetryCount,
+    workerTimeoutRetryMs: pulseWorkerTimeoutRetryMs,
+    workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
+    wasmBootPolicy: pulseWasmBootPolicy,
+    wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
+    startupSelfTestEnabled: pulseStartupSelfTestEnabled,
+    startupSelfTestTicks: pulseStartupSelfTestTicks,
+    startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
+    startupSelfTestQuiet: pulseStartupSelfTestQuiet,
+    startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+  },
+  telemetry: {
+    enabled: telemetryEnabled,
+    flushIntervalTicks: telemetryFlushIntervalTicks,
+    topKinds: telemetryTopKinds,
+  },
+  controlIntent: {
+    maxPending: controlIntentMaxPending,
+    applyBudgetPerTick: controlIntentApplyBudget,
+  },
+  oracle: {
+    pendingMax: oraclePendingMax,
+  },
+  akasha: {
+    host: akashaHost,
+    port: akashaPort,
+  },
+});
+
+const POLICY_FINGERPRINT = fnv1a32(policyFingerprintSource);
+
+let policyFingerprintLogged = false;
+
+export const RUNTIME_POLICY = {
+  system: {
+    host: systemHost,
+    port: systemPort,
+    controlEnabled: systemControlEnabled,
+    controlToken: systemControlToken,
+    source: {
+      host: hasEnvValue(rawSystemHost),
+      port: hasEnvValue(rawPort),
+      controlEnabled: rawSystemControlEnable !== undefined,
+      controlToken: rawSystemControlToken !== undefined,
+    },
+  },
+  p2p: {
+    host: p2pHost,
+    port: p2pPort,
+    mutateEnabled: p2pMutateEnabled,
+    mutateToken: p2pMutateToken,
+    source: {
+      host: hasEnvValue(rawP2PHost),
+      mutateEnabled: rawP2PMutateEnable !== undefined,
+      mutateToken: rawP2PMutateToken !== undefined,
+      fallbackControlEnabled: rawP2PMutateEnable === undefined &&
+        rawSystemControlEnable !== undefined,
+      fallbackControlToken: rawP2PMutateToken === undefined &&
+        rawSystemControlToken !== undefined,
+    },
+  },
+  federation: {
+    enabled: federationEnabled,
+    timeoutMs: federationTimeoutMs,
+    controlToken: systemControlToken,
+    source: {
+      enabled: rawFederationEnable !== undefined,
+      timeoutMs: rawFederationTimeoutMs !== undefined,
+      controlToken: rawSystemControlToken !== undefined,
+    },
+  },
+  telemetry: {
+    enabled: telemetryEnabled,
+    flushIntervalTicks: telemetryFlushIntervalTicks,
+    topKinds: telemetryTopKinds,
+  },
+  controlIntent: {
+    maxPending: controlIntentMaxPending,
+    applyBudgetPerTick: controlIntentApplyBudget,
+  },
+  oracle: {
+    pendingMax: oraclePendingMax,
+  },
+  pulse: {
+    workerCount: pulseWorkerCount,
+    strictDeterminism: pulseStrictDeterminism,
+    workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
+    workerTimeoutRetryCount: pulseWorkerTimeoutRetryCount,
+    workerTimeoutRetryMs: pulseWorkerTimeoutRetryMs,
+    workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
+    wasmBootPolicy: pulseWasmBootPolicy,
+    wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
+    forceWasmPreflightFail: pulseForceWasmPreflightFail,
+    startupSelfTestEnabled: pulseStartupSelfTestEnabled,
+    startupSelfTestTicks: pulseStartupSelfTestTicks,
+    startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
+    startupSelfTestQuiet: pulseStartupSelfTestQuiet,
+    startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    source: {
+      workerCount: hasEnvValue(rawPulseWorkers),
+      strictDeterminism: rawStrictDeterminism !== undefined,
+      workerResponseTimeoutMs: hasEnvValue(rawWorkerResponseTimeoutMs),
+      workerTimeoutRetryCount: rawWorkerTimeoutRetryCount !== undefined,
+      workerTimeoutRetryMs: rawWorkerTimeoutRetryMs !== undefined,
+      workerInitFallback: rawWorkerInitFallback !== undefined,
+      wasmBootPolicy: rawWasmBootPolicy !== undefined,
+      wasmBootPrecheck: rawWasmBootPrecheck !== undefined,
+      forceWasmPreflightFail: rawForceWasmPreflightFail !== undefined,
+      startupSelfTest: rawStartupSelfTest !== undefined,
+      startupSelfTestTicks: rawStartupSelfTestTicks !== undefined,
+      startupSelfTestFallback: rawStartupSelfTestFallback !== undefined,
+      startupSelfTestQuiet: rawStartupSelfTestQuiet !== undefined,
+      startupSelfTestForceBreach: rawStartupSelfTestForceBreach !== undefined,
+    },
+  },
+  akasha: {
+    host: akashaHost,
+    port: akashaPort,
+  },
+  fingerprint: POLICY_FINGERPRINT,
+  logFingerprintOnce: (context: string = "runtime"): string => {
+    if (!policyFingerprintLogged) {
+      policyFingerprintLogged = true;
+      LOGGER.info(
+        `[POLICY] context=${context} fingerprint=${POLICY_FINGERPRINT} controlEnabled=${systemControlEnabled} workerCount=${pulseWorkerCount} mutateEnabled=${p2pMutateEnabled}`,
+      );
+    }
+    return POLICY_FINGERPRINT;
+  },
+} as const;
 
 ```
 
@@ -11379,7 +11619,7 @@ import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
-import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type OraclePendingMutation =
   | {
@@ -11413,12 +11653,7 @@ type OracleDrainStats = {
   remaining: number;
 };
 
-const ORACLE_PENDING_MAX = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_ORACLE_PENDING_MAX"),
-  256,
-  32,
-  8192,
-);
+const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 
 export const SOVEREIGN_ORACLE = {
   isConsulting: false,
@@ -12852,17 +13087,13 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
-const HOST = (Deno.env.get("OMEGA_SYSTEM_HOST") ?? "127.0.0.1").trim() ||
-  "127.0.0.1";
+const UI_PORT = RUNTIME_POLICY.system.port;
+const HOST = RUNTIME_POLICY.system.host;
 const UI_PATH = "./ui/index.html";
-const CONTROL_ENABLE = parseEnvBool(
-  Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
-  false,
-);
-const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const requireControlAuth = (req: Request): Response | null => {
   if (!CONTROL_ENABLE) {
     return new Response("Control plane disabled", { status: 403 });
@@ -12878,6 +13109,7 @@ const requireControlAuth = (req: Request): Response | null => {
 };
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
   `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
     CONTROL_TOKEN.length > 0

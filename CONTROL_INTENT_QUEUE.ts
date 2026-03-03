@@ -5,7 +5,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -66,18 +66,8 @@ type ApplyStats = {
   remaining: number;
 };
 
-const MAX_PENDING = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_CONTROL_INTENT_MAX"),
-  512,
-  8,
-  100_000,
-);
-const APPLY_BUDGET_PER_TICK = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_CONTROL_INTENT_BUDGET"),
-  8,
-  1,
-  4096,
-);
+const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
+const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
 
 const queue: ControlIntent[] = [];
 

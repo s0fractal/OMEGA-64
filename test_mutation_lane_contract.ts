@@ -13,6 +13,7 @@ const AKASHA_PATH = "AKASHA_SERVER.ts";
 const P2P_PATH = "P2P_SYNAPSE.ts";
 const FEDERATION_PATH = "P2P_FEDERATION.ts";
 const SYSTEM_PATH = "SYSTEM_START.ts";
+const RUNTIME_POLICY_PATH = "RUNTIME_POLICY.ts";
 const SYSTEM_CONTROLLED_POST_PATHS = [
   "/crisis",
   "/federate",
@@ -64,13 +65,56 @@ const main = async () => {
   const p2p = await Deno.readTextFile(P2P_PATH);
   const federation = await Deno.readTextFile(FEDERATION_PATH);
   const system = await Deno.readTextFile(SYSTEM_PATH);
+  const runtimePolicy = await Deno.readTextFile(RUNTIME_POLICY_PATH);
 
   // External ingress must not bind wide-open by default.
   requireSnippet(
-    akasha,
+    runtimePolicy,
     `"127.0.0.1"`,
+    RUNTIME_POLICY_PATH,
+    "Runtime policy must preserve loopback defaults",
+    violations,
+  );
+  requireSnippet(
+    runtimePolicy,
+    "OMEGA_AKASHA_HOST",
+    RUNTIME_POLICY_PATH,
+    "Runtime policy must track Akasha host env gate",
+    violations,
+  );
+  requireSnippet(
+    runtimePolicy,
+    "OMEGA_P2P_HOST",
+    RUNTIME_POLICY_PATH,
+    "Runtime policy must track P2P host env gate",
+    violations,
+  );
+  requireSnippet(
+    runtimePolicy,
+    "OMEGA_SYSTEM_HOST",
+    RUNTIME_POLICY_PATH,
+    "Runtime policy must track system host env gate",
+    violations,
+  );
+  requireSnippet(
+    akasha,
+    "RUNTIME_POLICY.akasha.host",
     AKASHA_PATH,
-    "Akasha host default must be loopback",
+    "Akasha host must come from runtime policy",
+    violations,
+  );
+  requireSnippet(
+    p2p,
+    "RUNTIME_POLICY.p2p.host",
+    P2P_PATH,
+    "P2P host must come from runtime policy",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "RUNTIME_POLICY.system.host",
+    SYSTEM_PATH,
+    "System host must come from runtime policy",
     violations,
   );
   requireSnippet(
@@ -82,23 +126,9 @@ const main = async () => {
   );
   requireSnippet(
     p2p,
-    `"127.0.0.1"`,
-    P2P_PATH,
-    "P2P host default must be loopback",
-    violations,
-  );
-  requireSnippet(
-    p2p,
     "Deno.serve({ hostname: HOST, port: PORT }",
     P2P_PATH,
     "P2P must bind explicit hostname",
-    violations,
-  );
-  requireSnippet(
-    system,
-    `"127.0.0.1"`,
-    SYSTEM_PATH,
-    "System host default must be loopback",
     violations,
   );
   requireSnippet(
@@ -132,9 +162,9 @@ const main = async () => {
     violations,
   );
   requireSnippet(
-    federation,
+    runtimePolicy,
     "OMEGA_FEDERATION_ENABLE",
-    FEDERATION_PATH,
+    RUNTIME_POLICY_PATH,
     "Federation migration must be opt-in via env gate",
     violations,
   );

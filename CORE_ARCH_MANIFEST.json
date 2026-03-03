@@ -35,6 +35,7 @@
     "RECOVERY.ts",
     "PRNG.ts",
     "ENV_PARSE.ts",
+    "RUNTIME_POLICY.ts",
     "OFFSETS.ts",
     "mod.ts",
     "SHIMS.ts"

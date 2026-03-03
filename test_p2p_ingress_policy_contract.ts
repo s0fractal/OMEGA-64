@@ -3,10 +3,12 @@ type Violation = {
 };
 
 const P2P_PATH = "P2P_SYNAPSE.ts";
+const POLICY_PATH = "RUNTIME_POLICY.ts";
 
 const main = async () => {
   const violations: Violation[] = [];
   const source = await Deno.readTextFile(P2P_PATH);
+  const policy = await Deno.readTextFile(POLICY_PATH);
 
   if (!source.includes("x-omega-control-token")) {
     violations.push({
@@ -18,35 +20,39 @@ const main = async () => {
       reason: "P2P synapse must keep legacy x-omega-mutate-token compatibility",
     });
   }
-  if (!source.includes("OMEGA_P2P_MUTATE_ENABLE")) {
+  if (!policy.includes("OMEGA_P2P_MUTATE_ENABLE")) {
     violations.push({
       reason: "P2P synapse must expose dedicated enable env gate",
     });
   }
-  if (!source.includes("OMEGA_SYSTEM_CONTROL_ENABLE")) {
+  if (!policy.includes("OMEGA_SYSTEM_CONTROL_ENABLE")) {
     violations.push({
       reason: "P2P synapse must support system control gate fallback",
     });
   }
-  if (!source.includes("OMEGA_P2P_MUTATE_TOKEN")) {
+  if (!policy.includes("OMEGA_P2P_MUTATE_TOKEN")) {
     violations.push({
       reason: "P2P synapse must expose dedicated token env gate",
     });
   }
-  if (!source.includes("OMEGA_SYSTEM_CONTROL_TOKEN")) {
+  if (!policy.includes("OMEGA_SYSTEM_CONTROL_TOKEN")) {
     violations.push({
       reason: "P2P synapse must support system token fallback",
     });
   }
-  if (!source.includes("parseEnvBool(") || !source.includes("false")) {
+  if (!source.includes("RUNTIME_POLICY.p2p.mutateEnabled")) {
     violations.push({
-      reason:
-        "P2P mutate enable must use canonical env bool parser with default-closed posture",
+      reason: "P2P mutate enable must come from runtime policy",
     });
   }
-  if (!source.includes('from "./ENV_PARSE.ts"')) {
+  if (!source.includes("RUNTIME_POLICY.p2p.mutateToken")) {
     violations.push({
-      reason: "P2P synapse must source env parsing from ENV_PARSE.ts",
+      reason: "P2P mutate token must come from runtime policy",
+    });
+  }
+  if (!source.includes('from "./RUNTIME_POLICY.ts"')) {
+    violations.push({
+      reason: "P2P synapse must source ingress policy from RUNTIME_POLICY.ts",
     });
   }
   if (source.includes("STATE_MATRIX")) {

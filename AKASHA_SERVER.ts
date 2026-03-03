@@ -1,8 +1,11 @@
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const PORT = 8080;
-const HOST = Deno.env.get("OMEGA_AKASHA_HOST")?.trim() || "127.0.0.1";
+const PORT = RUNTIME_POLICY.akasha.port;
+const HOST = RUNTIME_POLICY.akasha.host;
 const ROOT = "./";
+
+RUNTIME_POLICY.logFingerprintOnce("akasha-server");
 
 let clients = new Set<WebSocket>();
 

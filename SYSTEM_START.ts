@@ -12,17 +12,13 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-const UI_PORT = Number(Deno.env.get("PORT")) || 8000;
-const HOST = (Deno.env.get("OMEGA_SYSTEM_HOST") ?? "127.0.0.1").trim() ||
-  "127.0.0.1";
+const UI_PORT = RUNTIME_POLICY.system.port;
+const HOST = RUNTIME_POLICY.system.host;
 const UI_PATH = "./ui/index.html";
-const CONTROL_ENABLE = parseEnvBool(
-  Deno.env.get("OMEGA_SYSTEM_CONTROL_ENABLE"),
-  false,
-);
-const CONTROL_TOKEN = (Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ?? "").trim();
+const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const requireControlAuth = (req: Request): Response | null => {
   if (!CONTROL_ENABLE) {
     return new Response("Control plane disabled", { status: 403 });
@@ -38,6 +34,7 @@ const requireControlAuth = (req: Request): Response | null => {
 };
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
   `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} tokenRequired=${
     CONTROL_TOKEN.length > 0

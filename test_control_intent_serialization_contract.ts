@@ -6,6 +6,7 @@ type Violation = {
 const QUEUE_PATH = "CONTROL_INTENT_QUEUE.ts";
 const SYSTEM_PATH = "SYSTEM_START.ts";
 const PULSE_PATH = "PULSE.ts";
+const POLICY_PATH = "RUNTIME_POLICY.ts";
 
 const between = (source: string, start: string, end: string): string => {
   const startIdx = source.indexOf(start);
@@ -33,19 +34,34 @@ const main = async () => {
   const queue = await Deno.readTextFile(QUEUE_PATH);
   const system = await Deno.readTextFile(SYSTEM_PATH);
   const pulse = await Deno.readTextFile(PULSE_PATH);
+  const policy = await Deno.readTextFile(POLICY_PATH);
 
   requireSnippet(
-    queue,
+    policy,
     "OMEGA_CONTROL_INTENT_MAX",
-    QUEUE_PATH,
+    POLICY_PATH,
     "Queue must expose bounded max size control",
     violations,
   );
   requireSnippet(
-    queue,
+    policy,
     "OMEGA_CONTROL_INTENT_BUDGET",
-    QUEUE_PATH,
+    POLICY_PATH,
     "Queue must expose per-tick host-lock budget control",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "RUNTIME_POLICY.controlIntent.maxPending",
+    QUEUE_PATH,
+    "Queue must source max pending from runtime policy",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "RUNTIME_POLICY.controlIntent.applyBudgetPerTick",
+    QUEUE_PATH,
+    "Queue must source host-lock budget from runtime policy",
     violations,
   );
   requireSnippet(

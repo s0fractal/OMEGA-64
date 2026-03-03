@@ -1,5 +1,5 @@
 import { LOGGER } from "./LOGGER.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -13,22 +13,9 @@ type MutationEvent = {
   count?: number;
 };
 
-const TELEMETRY_ENABLED = parseEnvBool(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY"),
-  true,
-);
-const FLUSH_INTERVAL_TICKS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS"),
-  25,
-  1,
-  10_000,
-);
-const TOP_KINDS = parseEnvBoundedInt(
-  Deno.env.get("OMEGA_MUTATION_TELEMETRY_TOP_KINDS"),
-  6,
-  1,
-  32,
-);
+const TELEMETRY_ENABLED = RUNTIME_POLICY.telemetry.enabled;
+const FLUSH_INTERVAL_TICKS = RUNTIME_POLICY.telemetry.flushIntervalTicks;
+const TOP_KINDS = RUNTIME_POLICY.telemetry.topKinds;
 
 const laneCounts = new Map<MutationLane, number>();
 const kindCounts = new Map<string, number>();

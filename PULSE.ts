@@ -7,77 +7,25 @@ import { GATE } from "./GATE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
-import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
-// Multi-instance AssemblyScript + shared memory can corrupt lattice state
-// because each instance owns an independent stack global over the same buffer.
-// Keep env override for diagnostics and rollout tuning.
-const parseWorkerCount = (): number => {
-  const raw = Deno.env.get("OMEGA_PULSE_WORKERS");
-  if (!raw) return 4;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n) || n < 1) return 4;
-  return Math.min(32, n);
-};
-const parseStrictDeterminism = (): boolean => {
-  const raw = Deno.env.get("OMEGA_STRICT_DETERMINISM");
-  return raw === "1" || raw === "true" || raw === "TRUE";
-};
-const parseWorkerTimeoutMs = (): number =>
-  parseEnvBoundedInt(
-    Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS"),
-    30_000,
-    10,
-    120_000,
-  );
-const parseWorkerTimeoutRetryCount = (): number =>
-  parseEnvBoundedInt(Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT"), 1, 0, 4);
-const parseWorkerTimeoutRetryMs = (): number =>
-  parseEnvBoundedInt(
-    Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_MS"),
-    5_000,
-    10,
-    120_000,
-  );
-const parseWorkerInitFallbackEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_WORKER_INIT_FALLBACK"), true);
-type WasmBootPolicy = "fail-fast" | "safe-noop";
-const parseWasmBootPolicy = (): WasmBootPolicy => {
-  const raw = (Deno.env.get("OMEGA_WASM_BOOT_POLICY") ?? "").trim()
-    .toLowerCase();
-  if (raw === "safe-noop" || raw === "safe_noop" || raw === "noop") {
-    return "safe-noop";
-  }
-  return "fail-fast";
-};
-const parseWasmBootPrecheckEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_WASM_BOOT_PRECHECK"), true);
-const parseForceWasmPreflightFail = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_FORCE_WASM_PREFLIGHT_FAIL"), false);
-const parseStartupSelfTestEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST"), true);
-const parseStartupSelfTestTicks = (): number =>
-  parseEnvBoundedInt(Deno.env.get("OMEGA_STARTUP_SELFTEST_TICKS"), 3, 1, 32);
-const parseStartupSelfTestFallbackEnabled = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FALLBACK"), true);
-const parseStartupSelfTestQuiet = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_QUIET"), true);
-const parseStartupSelfTestForceBreach = (): boolean =>
-  parseEnvBool(Deno.env.get("OMEGA_STARTUP_SELFTEST_FORCE_BREACH"), false);
-const WORKER_COUNT = parseWorkerCount();
-const STRICT_DETERMINISM = parseStrictDeterminism();
-const WORKER_RESPONSE_TIMEOUT_MS = parseWorkerTimeoutMs();
-const WORKER_TIMEOUT_RETRY_COUNT = parseWorkerTimeoutRetryCount();
-const WORKER_TIMEOUT_RETRY_MS = parseWorkerTimeoutRetryMs();
-const WORKER_INIT_FALLBACK_ENABLED = parseWorkerInitFallbackEnabled();
-const WASM_BOOT_POLICY = parseWasmBootPolicy();
-const WASM_BOOT_PRECHECK_ENABLED = parseWasmBootPrecheckEnabled();
-const FORCE_WASM_PREFLIGHT_FAIL = parseForceWasmPreflightFail();
-const STARTUP_SELFTEST_ENABLED = parseStartupSelfTestEnabled();
-const STARTUP_SELFTEST_TICKS = parseStartupSelfTestTicks();
-const STARTUP_SELFTEST_FALLBACK_ENABLED = parseStartupSelfTestFallbackEnabled();
-const STARTUP_SELFTEST_QUIET = parseStartupSelfTestQuiet();
-const STARTUP_SELFTEST_FORCE_BREACH = parseStartupSelfTestForceBreach();
+const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
+const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
+const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
+const WORKER_TIMEOUT_RETRY_COUNT = RUNTIME_POLICY.pulse.workerTimeoutRetryCount;
+const WORKER_TIMEOUT_RETRY_MS = RUNTIME_POLICY.pulse.workerTimeoutRetryMs;
+const WORKER_INIT_FALLBACK_ENABLED =
+  RUNTIME_POLICY.pulse.workerInitFallbackEnabled;
+const WASM_BOOT_POLICY = RUNTIME_POLICY.pulse.wasmBootPolicy;
+const WASM_BOOT_PRECHECK_ENABLED = RUNTIME_POLICY.pulse.wasmBootPrecheckEnabled;
+const FORCE_WASM_PREFLIGHT_FAIL = RUNTIME_POLICY.pulse.forceWasmPreflightFail;
+const STARTUP_SELFTEST_ENABLED = RUNTIME_POLICY.pulse.startupSelfTestEnabled;
+const STARTUP_SELFTEST_TICKS = RUNTIME_POLICY.pulse.startupSelfTestTicks;
+const STARTUP_SELFTEST_FALLBACK_ENABLED =
+  RUNTIME_POLICY.pulse.startupSelfTestFallbackEnabled;
+const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
+const STARTUP_SELFTEST_FORCE_BREACH =
+  RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -556,7 +504,7 @@ export const PULSE = {
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
-    if (Deno.env.get("OMEGA_PULSE_WORKERS")) {
+    if (RUNTIME_POLICY.pulse.source.workerCount) {
       LOGGER.info(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
@@ -566,27 +514,27 @@ export const PULSE = {
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
-    if (Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS")) {
+    if (RUNTIME_POLICY.pulse.source.workerResponseTimeoutMs) {
       LOGGER.info(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
-    if (Deno.env.get("OMEGA_WORKER_INIT_FALLBACK") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.workerInitFallback) {
       LOGGER.info(
         `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
       );
     }
-    if (Deno.env.get("OMEGA_WASM_BOOT_POLICY") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.wasmBootPolicy) {
       LOGGER.info(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
     }
-    if (Deno.env.get("OMEGA_WASM_BOOT_PRECHECK") !== undefined) {
+    if (RUNTIME_POLICY.pulse.source.wasmBootPrecheck) {
       LOGGER.info(
         `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
       );
     }
     if (
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
-      Deno.env.get("OMEGA_STARTUP_SELFTEST") !== undefined
+      RUNTIME_POLICY.pulse.source.startupSelfTest
     ) {
       LOGGER.info(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,

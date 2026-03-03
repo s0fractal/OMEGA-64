@@ -11,6 +11,7 @@ const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 const TELEMETRY_PATH = "MUTATION_TELEMETRY.ts";
 const PULSE_PATH = "PULSE.ts";
 const ORACLE_PATH = "SOVEREIGN_ORACLE.ts";
+const POLICY_PATH = "RUNTIME_POLICY.ts";
 
 const requireSnippet = (
   source: string,
@@ -40,11 +41,19 @@ const main = async () => {
   }
 
   const telemetrySource = await Deno.readTextFile(TELEMETRY_PATH);
+  const policySource = await Deno.readTextFile(POLICY_PATH);
+  requireSnippet(
+    policySource,
+    "OMEGA_MUTATION_TELEMETRY",
+    POLICY_PATH,
+    "Telemetry module must expose env-gated switch",
+    violations,
+  );
   requireSnippet(
     telemetrySource,
-    "OMEGA_MUTATION_TELEMETRY",
+    "RUNTIME_POLICY.telemetry.enabled",
     TELEMETRY_PATH,
-    "Telemetry module must expose env-gated switch",
+    "Telemetry module must source enabled switch from runtime policy",
     violations,
   );
   requireSnippet(
