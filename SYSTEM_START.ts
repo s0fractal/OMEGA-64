@@ -64,6 +64,19 @@ type DaemonIngressPlan = {
   admission: DaemonInvariantAdmission;
 };
 
+type DaemonAdmissionSnapshot = {
+  tick: number;
+  status: "accepted" | "rejected";
+  requestedAction: string;
+  appliedAction: string;
+  degraded: boolean;
+  severity: "LOW" | "MID" | "HIGH" | "BLOCKED";
+  score: number;
+  reason: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+};
+
 type RuntimeMetrics = {
   tick: number;
   population: number;
@@ -170,6 +183,13 @@ let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
 let daemonAuditSeq = 0;
 const daemonAuditPending: DaemonAuditPending[] = [];
+let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
+
+const setLatestDaemonAdmission = (
+  snapshot: DaemonAdmissionSnapshot,
+): void => {
+  latestDaemonAdmission = snapshot;
+};
 
 const logicToHex = (logic: Uint8Array): string =>
   Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
@@ -373,6 +393,7 @@ const buildTelemetry = async () => {
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
       invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
+      last_admission: latestDaemonAdmission,
     },
   };
 };
@@ -711,6 +732,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const body = await req.json();
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
+        setLatestDaemonAdmission({
+          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+          status: "rejected",
+          requestedAction: "UNKNOWN",
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "INVALID_INJECT_PAYLOAD",
+          sharedCenter: "parse",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_inject_invalid_payload",
@@ -731,6 +764,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const safeMode = isDaemonSafeMode(baseline);
 
       if (envelope.action_type === "OBSERVE") {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: "OBSERVE",
+          appliedAction: "OBSERVE",
+          degraded: false,
+          severity: "LOW",
+          score: 0,
+          reason: "OBSERVE_NOOP",
+          sharedCenter: "tick.exists",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_observe_noop",
@@ -756,6 +801,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       if (safeMode.blocked) {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: safeMode.reason,
+          sharedCenter: "safe-mode",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_safe_mode_block",
@@ -782,6 +839,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const budget = consumeDaemonBudget();
       if (!budget.ok) {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          sharedCenter: "budget-window",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_rate_limit_block",
@@ -809,6 +878,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (envelope.action_type === "INJECT_PLASMID") {
         if (!envelope.payload.hex_code) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_missing_hex",
@@ -825,6 +906,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
 
         if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_plasmid_charge",
@@ -842,6 +935,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
         if (!plasmidPolicy.ok) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: plasmidPolicy.reason,
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_plasmid_rule",
@@ -902,6 +1007,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (
           applied.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
         ) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: applied.action_type,
+            degraded: ingressPlan.degraded,
+            severity: "BLOCKED",
+            score: ingressPlan.admission.score,
+            reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+            sharedCenter: ingressPlan.admission.context.sharedCenter,
+            dominantInvariantVector:
+              ingressPlan.admission.context.dominantInvariantVector,
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_pheromone_intensity",
@@ -952,6 +1070,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           admission: ingressPlan.admission,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
+        });
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: ingressPlan.requested.action_type,
+          appliedAction: "DROP_PHEROMONE",
+          degraded: ingressPlan.degraded,
+          severity: ingressPlan.admission.severity,
+          score: ingressPlan.admission.score,
+          reason: ingressPlan.degradeReason ??
+            ingressPlan.admission.reasons.join("|"),
+          sharedCenter: ingressPlan.admission.context.sharedCenter,
+          dominantInvariantVector:
+            ingressPlan.admission.context.dominantInvariantVector,
         });
         return new Response(
           JSON.stringify({
@@ -1023,6 +1155,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         degraded: ingressPlan.degraded,
         degrade_reason: ingressPlan.degradeReason,
       });
+      setLatestDaemonAdmission({
+        tick: baseline.tick,
+        status: "accepted",
+        requestedAction: ingressPlan.requested.action_type,
+        appliedAction: "INJECT_PLASMID",
+        degraded: ingressPlan.degraded,
+        severity: ingressPlan.admission.severity,
+        score: ingressPlan.admission.score,
+        reason: ingressPlan.degradeReason ??
+          ingressPlan.admission.reasons.join("|"),
+        sharedCenter: ingressPlan.admission.context.sharedCenter,
+        dominantInvariantVector:
+          ingressPlan.admission.context.dominantInvariantVector,
+      });
       return new Response(
         JSON.stringify({
           ...queued,
@@ -1037,6 +1183,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         },
       );
     } catch (err) {
+      setLatestDaemonAdmission({
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        status: "rejected",
+        requestedAction: "UNKNOWN",
+        appliedAction: "BLOCKED",
+        degraded: false,
+        severity: "BLOCKED",
+        score: 0,
+        reason: "INVALID_INJECT_PAYLOAD",
+        sharedCenter: "exception",
+        dominantInvariantVector: "none",
+      });
       MUTATION_TELEMETRY.record({
         lane: "external_daemon",
         kind: "daemon_inject_exception",

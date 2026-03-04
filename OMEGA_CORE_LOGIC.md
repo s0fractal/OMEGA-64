@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T13:05:08.230Z*
+*Generated: 2026-03-04T13:10:31.557Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 5e0509daf802159008daec21359d337e73de51c2f0d7fbfbdb59eda9c8bb7726*
-*Git Commit: 4bd9a8e94311*
+*Export Content SHA256: d4bf1e9f39486889a972094b54ef444e8d1dc0f39459588d42f1eefc2e01faaa*
+*Git Commit: a037e08a0287*
 
 ---
 
@@ -2556,14 +2556,14 @@ export context. It intentionally excludes historical era narratives.
    only via `/api/webrtc/inject` and forwarded into the existing
    `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human
-   narrative bridge: `/codex/narrative`, `/api/codex/narrative`,
-   `/codex/invariants`, `/api/codex/invariants`. Observer human channel in
-   `ui/index.html` fuses `/api/telemetry` and codex narrative/invariant
-   surfaces into plain-language state summaries plus drift deltas over a
-   rolling ~90s window, with `LOW/MID/HIGH` drift severity badge, component
-   score breakdown, compact risk summary + drift trend sparkline, and scene
-   halo tint.
+   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human narrative
+   bridge: `/codex/narrative`, `/api/codex/narrative`, `/codex/invariants`,
+   `/api/codex/invariants`. Observer human channel in `ui/index.html` fuses
+   `/api/telemetry` and codex narrative/invariant surfaces into plain-language
+   state summaries plus drift deltas over a rolling ~90s window, with
+   `LOW/MID/HIGH` drift severity badge, daemon admission summary
+   (`daemon_governance.last_admission`), component score breakdown, compact risk
+   summary + drift trend sparkline, and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -16746,6 +16746,19 @@ type DaemonIngressPlan = {
   admission: DaemonInvariantAdmission;
 };
 
+type DaemonAdmissionSnapshot = {
+  tick: number;
+  status: "accepted" | "rejected";
+  requestedAction: string;
+  appliedAction: string;
+  degraded: boolean;
+  severity: "LOW" | "MID" | "HIGH" | "BLOCKED";
+  score: number;
+  reason: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+};
+
 type RuntimeMetrics = {
   tick: number;
   population: number;
@@ -16852,6 +16865,13 @@ let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
 let daemonAuditSeq = 0;
 const daemonAuditPending: DaemonAuditPending[] = [];
+let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
+
+const setLatestDaemonAdmission = (
+  snapshot: DaemonAdmissionSnapshot,
+): void => {
+  latestDaemonAdmission = snapshot;
+};
 
 const logicToHex = (logic: Uint8Array): string =>
   Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
@@ -17055,6 +17075,7 @@ const buildTelemetry = async () => {
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
       invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
+      last_admission: latestDaemonAdmission,
     },
   };
 };
@@ -17393,6 +17414,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const body = await req.json();
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
+        setLatestDaemonAdmission({
+          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+          status: "rejected",
+          requestedAction: "UNKNOWN",
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "INVALID_INJECT_PAYLOAD",
+          sharedCenter: "parse",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_inject_invalid_payload",
@@ -17413,6 +17446,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const safeMode = isDaemonSafeMode(baseline);
 
       if (envelope.action_type === "OBSERVE") {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: "OBSERVE",
+          appliedAction: "OBSERVE",
+          degraded: false,
+          severity: "LOW",
+          score: 0,
+          reason: "OBSERVE_NOOP",
+          sharedCenter: "tick.exists",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_observe_noop",
@@ -17438,6 +17483,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       if (safeMode.blocked) {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: safeMode.reason,
+          sharedCenter: "safe-mode",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_safe_mode_block",
@@ -17464,6 +17521,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const budget = consumeDaemonBudget();
       if (!budget.ok) {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          sharedCenter: "budget-window",
+          dominantInvariantVector: "none",
+        });
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_rate_limit_block",
@@ -17491,6 +17560,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (envelope.action_type === "INJECT_PLASMID") {
         if (!envelope.payload.hex_code) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_missing_hex",
@@ -17507,6 +17588,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
 
         if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_plasmid_charge",
@@ -17524,6 +17617,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
         if (!plasmidPolicy.ok) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: plasmidPolicy.reason,
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_plasmid_rule",
@@ -17584,6 +17689,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (
           applied.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
         ) {
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: applied.action_type,
+            degraded: ingressPlan.degraded,
+            severity: "BLOCKED",
+            score: ingressPlan.admission.score,
+            reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+            sharedCenter: ingressPlan.admission.context.sharedCenter,
+            dominantInvariantVector:
+              ingressPlan.admission.context.dominantInvariantVector,
+          });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
             kind: "daemon_policy_block_pheromone_intensity",
@@ -17634,6 +17752,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           admission: ingressPlan.admission,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
+        });
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: ingressPlan.requested.action_type,
+          appliedAction: "DROP_PHEROMONE",
+          degraded: ingressPlan.degraded,
+          severity: ingressPlan.admission.severity,
+          score: ingressPlan.admission.score,
+          reason: ingressPlan.degradeReason ??
+            ingressPlan.admission.reasons.join("|"),
+          sharedCenter: ingressPlan.admission.context.sharedCenter,
+          dominantInvariantVector:
+            ingressPlan.admission.context.dominantInvariantVector,
         });
         return new Response(
           JSON.stringify({
@@ -17705,6 +17837,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         degraded: ingressPlan.degraded,
         degrade_reason: ingressPlan.degradeReason,
       });
+      setLatestDaemonAdmission({
+        tick: baseline.tick,
+        status: "accepted",
+        requestedAction: ingressPlan.requested.action_type,
+        appliedAction: "INJECT_PLASMID",
+        degraded: ingressPlan.degraded,
+        severity: ingressPlan.admission.severity,
+        score: ingressPlan.admission.score,
+        reason: ingressPlan.degradeReason ??
+          ingressPlan.admission.reasons.join("|"),
+        sharedCenter: ingressPlan.admission.context.sharedCenter,
+        dominantInvariantVector:
+          ingressPlan.admission.context.dominantInvariantVector,
+      });
       return new Response(
         JSON.stringify({
           ...queued,
@@ -17719,6 +17865,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         },
       );
     } catch (err) {
+      setLatestDaemonAdmission({
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        status: "rejected",
+        requestedAction: "UNKNOWN",
+        appliedAction: "BLOCKED",
+        degraded: false,
+        severity: "BLOCKED",
+        score: 0,
+        reason: "INVALID_INJECT_PAYLOAD",
+        sharedCenter: "exception",
+        dominantInvariantVector: "none",
+      });
       MUTATION_TELEMETRY.record({
         lane: "external_daemon",
         kind: "daemon_inject_exception",
@@ -18642,6 +18800,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         <div id="human-explanation" class="codex-row-body">
           Awaiting telemetry and codex narrative...
         </div>
+        <div
+          id="human-daemon-admission"
+          class="codex-row-body codex-row-subtle"
+        >
+          daemon admission: awaiting signal...
+        </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
         </button>
@@ -18652,7 +18816,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           Drift baseline is forming...
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
-          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+          | center:stable
         </div>
         <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
           risk: baseline variance only
@@ -18868,6 +19033,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         avgEnergy: 0,
         dominantGenomes: [],
         voxPopuli: [],
+        daemon_governance: {
+          last_admission: null,
+        },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
@@ -20021,7 +20189,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         rows.push(`
           <div class="codex-row">
             <div class="codex-row-title">Shared Center</div>
-            <div class="codex-row-body">${escapeHtml(sharedCenter)}</div>
+            <div class="codex-row-body">${
+          escapeHtml(sharedCenter)
+        }</div>
             ${
           dominantInvariant.length > 0
             ? `<div class="codex-row-body codex-row-subtle">Dominant invariant: ${
@@ -20080,7 +20250,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             rows.push(`
               <div class="codex-row">
                 <div class="codex-row-title">Invariant: ${
-              escapeHtml((inv.signature || "").slice(0, 10).toUpperCase())
+              escapeHtml(
+                (inv.signature || "").slice(0, 10).toUpperCase(),
+              )
             }</div>
                 <div class="codex-row-body codex-row-subtle">Center ${
               escapeHtml(String(inv.center || "tick.exists"))
@@ -20161,7 +20333,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       function inferSharedCenterLabel() {
-        const narrativeCenter = String(codexNarrative?.sharedCenter || "")
+        const narrativeCenter = String(
+          codexNarrative?.sharedCenter || "",
+        )
           .trim();
         if (narrativeCenter.length > 0) return narrativeCenter;
         const narrativeInvariant = Array.isArray(
@@ -20170,14 +20344,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           ? codexNarrative.invariantHighlights[0]
           : null;
         if (narrativeInvariant && narrativeInvariant.center) {
-          return String(narrativeInvariant.center).trim() || "tick.exists";
+          return String(narrativeInvariant.center).trim() ||
+            "tick.exists";
         }
-        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+        const archiveInvariant =
+          Array.isArray(codexSnapshot?.invariants) &&
             codexSnapshot.invariants.length > 0
-          ? codexSnapshot.invariants[0]
-          : null;
+            ? codexSnapshot.invariants[0]
+            : null;
         if (archiveInvariant && archiveInvariant.center) {
-          return String(archiveInvariant.center).trim() || "tick.exists";
+          return String(archiveInvariant.center).trim() ||
+            "tick.exists";
         }
         return "tick.exists";
       }
@@ -20195,10 +20372,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         ) {
           return narrativeInvariant.dominantVector.trim();
         }
-        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+        const archiveInvariant =
+          Array.isArray(codexSnapshot?.invariants) &&
             codexSnapshot.invariants.length > 0
-          ? codexSnapshot.invariants[0]
-          : null;
+            ? codexSnapshot.invariants[0]
+            : null;
         if (
           archiveInvariant &&
           typeof archiveInvariant.dominantVector === "string" &&
@@ -20207,6 +20385,35 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           return archiveInvariant.dominantVector.trim();
         }
         return "";
+      }
+
+      function currentDaemonAdmission() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return null;
+        const admission = governance.last_admission;
+        if (!admission || typeof admission !== "object") return null;
+        return admission;
+      }
+
+      function buildDaemonAdmissionSummary() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return "daemon admission: no action observed yet";
+        }
+        const severity = String(admission.severity || "UNKNOWN")
+          .toUpperCase();
+        const status = String(admission.status || "accepted")
+          .toLowerCase();
+        const requested = String(
+          admission.requestedAction || "UNKNOWN",
+        );
+        const applied = String(admission.appliedAction || "UNKNOWN");
+        const reason = String(admission.reason || "n/a").slice(0, 120);
+        const score = Number(admission.score || 0);
+        const degraded = Boolean(admission.degraded);
+        const badge = degraded ? "degraded" : status;
+        const bridge = `${requested} -> ${applied}`;
+        return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
       function buildHumanExplanation() {
@@ -20245,6 +20452,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (dominantInvariant.length > 0) {
           text += ` Dominant invariant vector: ${dominantInvariant}.`;
         }
+        text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
         }
@@ -20383,7 +20591,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           reference.dominantGenome.length > 0 &&
           latest.dominantGenome !== reference.dominantGenome;
         const moodShifted = latest.mood !== reference.mood;
-        const centerShifted = latest.sharedCenter !== reference.sharedCenter;
+        const centerShifted =
+          latest.sharedCenter !== reference.sharedCenter;
         const absPop = Math.abs(deltaPopulation);
         const absEnergy = Math.abs(deltaEnergy);
         const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
@@ -20564,7 +20773,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         node.textContent = buildHumanExplanation();
       }
 
+      function renderHumanAdmission() {
+        const node = document.getElementById("human-daemon-admission");
+        if (!node) return;
+        node.textContent = buildDaemonAdmissionSummary();
+      }
+
       function renderHumanChannel(extraStamp = "") {
+        renderHumanAdmission();
         renderHumanExplanation();
         renderHumanDrift();
         updateHumanChannelStamp(extraStamp);

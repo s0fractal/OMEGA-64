@@ -147,6 +147,24 @@ const main = async () => {
     "UI human channel must expose dominant invariant vector cue",
     violations,
   );
+  requireSnippet(
+    ui,
+    'id="human-daemon-admission"',
+    "UI must render daemon admission status surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildDaemonAdmissionSummary",
+    "UI human channel must summarize daemon admission severity and reason",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "daemon_governance",
+    "UI human channel must consume daemon governance telemetry context",
+    violations,
+  );
 
   if (violations.length > 0) {
     throw new Error(

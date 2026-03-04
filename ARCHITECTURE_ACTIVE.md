@@ -19,14 +19,14 @@ export context. It intentionally excludes historical era narratives.
    only via `/api/webrtc/inject` and forwarded into the existing
    `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human
-   narrative bridge: `/codex/narrative`, `/api/codex/narrative`,
-   `/codex/invariants`, `/api/codex/invariants`. Observer human channel in
-   `ui/index.html` fuses `/api/telemetry` and codex narrative/invariant
-   surfaces into plain-language state summaries plus drift deltas over a
-   rolling ~90s window, with `LOW/MID/HIGH` drift severity badge, component
-   score breakdown, compact risk summary + drift trend sparkline, and scene
-   halo tint.
+   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human narrative
+   bridge: `/codex/narrative`, `/api/codex/narrative`, `/codex/invariants`,
+   `/api/codex/invariants`. Observer human channel in `ui/index.html` fuses
+   `/api/telemetry` and codex narrative/invariant surfaces into plain-language
+   state summaries plus drift deltas over a rolling ~90s window, with
+   `LOW/MID/HIGH` drift severity badge, daemon admission summary
+   (`daemon_governance.last_admission`), component score breakdown, compact risk
+   summary + drift trend sparkline, and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 

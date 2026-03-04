@@ -90,6 +90,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "setLatestDaemonAdmission",
+    SYSTEM_START_PATH,
+    "Daemon ingress must track latest admission state for telemetry observers",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "last_admission",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish latest admission summary",
+    violations,
+  );
+  requireSnippet(
+    system,
     "flushDaemonAuditEffects(",
     SYSTEM_START_PATH,
     "Daemon loop must flush deferred effect audits",

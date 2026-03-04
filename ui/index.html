@@ -487,6 +487,12 @@
         <div id="human-explanation" class="codex-row-body">
           Awaiting telemetry and codex narrative...
         </div>
+        <div
+          id="human-daemon-admission"
+          class="codex-row-body codex-row-subtle"
+        >
+          daemon admission: awaiting signal...
+        </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
         </button>
@@ -497,7 +503,8 @@
           Drift baseline is forming...
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
-          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+          | center:stable
         </div>
         <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
           risk: baseline variance only
@@ -713,6 +720,9 @@
         avgEnergy: 0,
         dominantGenomes: [],
         voxPopuli: [],
+        daemon_governance: {
+          last_admission: null,
+        },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
@@ -1866,7 +1876,9 @@
         rows.push(`
           <div class="codex-row">
             <div class="codex-row-title">Shared Center</div>
-            <div class="codex-row-body">${escapeHtml(sharedCenter)}</div>
+            <div class="codex-row-body">${
+          escapeHtml(sharedCenter)
+        }</div>
             ${
           dominantInvariant.length > 0
             ? `<div class="codex-row-body codex-row-subtle">Dominant invariant: ${
@@ -1925,7 +1937,9 @@
             rows.push(`
               <div class="codex-row">
                 <div class="codex-row-title">Invariant: ${
-              escapeHtml((inv.signature || "").slice(0, 10).toUpperCase())
+              escapeHtml(
+                (inv.signature || "").slice(0, 10).toUpperCase(),
+              )
             }</div>
                 <div class="codex-row-body codex-row-subtle">Center ${
               escapeHtml(String(inv.center || "tick.exists"))
@@ -2006,7 +2020,9 @@
       }
 
       function inferSharedCenterLabel() {
-        const narrativeCenter = String(codexNarrative?.sharedCenter || "")
+        const narrativeCenter = String(
+          codexNarrative?.sharedCenter || "",
+        )
           .trim();
         if (narrativeCenter.length > 0) return narrativeCenter;
         const narrativeInvariant = Array.isArray(
@@ -2015,14 +2031,17 @@
           ? codexNarrative.invariantHighlights[0]
           : null;
         if (narrativeInvariant && narrativeInvariant.center) {
-          return String(narrativeInvariant.center).trim() || "tick.exists";
+          return String(narrativeInvariant.center).trim() ||
+            "tick.exists";
         }
-        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+        const archiveInvariant =
+          Array.isArray(codexSnapshot?.invariants) &&
             codexSnapshot.invariants.length > 0
-          ? codexSnapshot.invariants[0]
-          : null;
+            ? codexSnapshot.invariants[0]
+            : null;
         if (archiveInvariant && archiveInvariant.center) {
-          return String(archiveInvariant.center).trim() || "tick.exists";
+          return String(archiveInvariant.center).trim() ||
+            "tick.exists";
         }
         return "tick.exists";
       }
@@ -2040,10 +2059,11 @@
         ) {
           return narrativeInvariant.dominantVector.trim();
         }
-        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+        const archiveInvariant =
+          Array.isArray(codexSnapshot?.invariants) &&
             codexSnapshot.invariants.length > 0
-          ? codexSnapshot.invariants[0]
-          : null;
+            ? codexSnapshot.invariants[0]
+            : null;
         if (
           archiveInvariant &&
           typeof archiveInvariant.dominantVector === "string" &&
@@ -2052,6 +2072,35 @@
           return archiveInvariant.dominantVector.trim();
         }
         return "";
+      }
+
+      function currentDaemonAdmission() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return null;
+        const admission = governance.last_admission;
+        if (!admission || typeof admission !== "object") return null;
+        return admission;
+      }
+
+      function buildDaemonAdmissionSummary() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return "daemon admission: no action observed yet";
+        }
+        const severity = String(admission.severity || "UNKNOWN")
+          .toUpperCase();
+        const status = String(admission.status || "accepted")
+          .toLowerCase();
+        const requested = String(
+          admission.requestedAction || "UNKNOWN",
+        );
+        const applied = String(admission.appliedAction || "UNKNOWN");
+        const reason = String(admission.reason || "n/a").slice(0, 120);
+        const score = Number(admission.score || 0);
+        const degraded = Boolean(admission.degraded);
+        const badge = degraded ? "degraded" : status;
+        const bridge = `${requested} -> ${applied}`;
+        return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
       function buildHumanExplanation() {
@@ -2090,6 +2139,7 @@
         if (dominantInvariant.length > 0) {
           text += ` Dominant invariant vector: ${dominantInvariant}.`;
         }
+        text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
         }
@@ -2228,7 +2278,8 @@
           reference.dominantGenome.length > 0 &&
           latest.dominantGenome !== reference.dominantGenome;
         const moodShifted = latest.mood !== reference.mood;
-        const centerShifted = latest.sharedCenter !== reference.sharedCenter;
+        const centerShifted =
+          latest.sharedCenter !== reference.sharedCenter;
         const absPop = Math.abs(deltaPopulation);
         const absEnergy = Math.abs(deltaEnergy);
         const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
@@ -2409,7 +2460,14 @@
         node.textContent = buildHumanExplanation();
       }
 
+      function renderHumanAdmission() {
+        const node = document.getElementById("human-daemon-admission");
+        if (!node) return;
+        node.textContent = buildDaemonAdmissionSummary();
+      }
+
       function renderHumanChannel(extraStamp = "") {
+        renderHumanAdmission();
         renderHumanExplanation();
         renderHumanDrift();
         updateHumanChannelStamp(extraStamp);
