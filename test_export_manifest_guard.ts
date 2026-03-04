@@ -180,7 +180,25 @@ const main = async () => {
     }
   }
 
+  const runtimeRootSet = new Set(runtimeRoots);
   const coreSet = new Set(core);
+  const missingRootInCore = runtimeRoots.filter((x) => !coreSet.has(x));
+  if (missingRootInCore.length > 0) {
+    throw new Error(
+      `[manifest] core_entry_files missing runtime roots:\n${
+        missingRootInCore.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
+  const extraCoreEntries = core.filter((x) => !runtimeRootSet.has(x));
+  if (extraCoreEntries.length > 0) {
+    throw new Error(
+      `[manifest] core_entry_files must not include non-runtime roots:\n${
+        extraCoreEntries.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
+
   const overlap = required.filter((x) => coreSet.has(x));
   if (overlap.length > 0) {
     throw new Error(
@@ -189,7 +207,6 @@ const main = async () => {
       }`,
     );
   }
-  const runtimeRootSet = new Set(runtimeRoots);
   const runtimeSupportSet = new Set(runtimeSupport);
   const overlapSupportExperimental = experimental.filter((x) =>
     runtimeSupportSet.has(x)

@@ -151,7 +151,24 @@ const loadManifest = async (): Promise<LoadedManifest> => {
   if (runtimeRootFiles.length === 0) {
     throw new Error(`${MANIFEST_PATH}: runtime_root_files cannot be empty`);
   }
+  const coreEntrySet = new Set(coreEntryFiles);
   const runtimeRootSet = new Set(runtimeRootFiles);
+  const missingRootInCore = runtimeRootFiles.filter((f) => !coreEntrySet.has(f));
+  if (missingRootInCore.length > 0) {
+    throw new Error(
+      `${MANIFEST_PATH}: core_entry_files must include all runtime_root_files:\n${
+        missingRootInCore.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const extraCoreEntries = coreEntryFiles.filter((f) => !runtimeRootSet.has(f));
+  if (extraCoreEntries.length > 0) {
+    throw new Error(
+      `${MANIFEST_PATH}: core_entry_files may only contain runtime_root_files:\n${
+        extraCoreEntries.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
   const runtimeSupportSet = new Set(runtimeSupportFiles);
   const overlapSupportExperimental = experimentalFiles.filter((f) =>
     runtimeSupportSet.has(f)
@@ -186,6 +203,8 @@ const loadManifest = async (): Promise<LoadedManifest> => {
 
   const requiredArchFiles = uniqueSorted([
     ...coreEntryFiles,
+    ...runtimeSupportFiles,
+    ...experimentalFiles,
     ...requiredAdditional,
   ]);
   return {

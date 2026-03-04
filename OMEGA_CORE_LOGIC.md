@@ -1,15 +1,15 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:30:06.704Z*
+*Generated: 2026-03-04T10:32:47.477Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
 *Non-Runtime Code Files: 21*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 5*
-*Manifest SHA256: 94f3fbb79201d31b62936d5ae7361f6f680059f981172ab707ce03a8de64daf0*
+*Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: 8cf5c252bba4*
+*Git Commit: 78cca111fc24*
 
 ---
 
@@ -3662,51 +3662,13 @@ export const CONTROL_INTENT_QUEUE = {
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
-    "CONTROL_INTENT_QUEUE.ts",
     "PULSE.ts",
     "PULSE_WORKER.ts",
-    "STATE_MATRIX.ts",
-    "GATE.ts",
-    "GATE_VALIDATOR.ts",
-    "GATE_MERGER.ts",
-    "GATE_BUDGET.ts",
-    "GATE_LEDGER.ts",
-    "STATE_SNAPSHOT.ts",
-    "RIBOSOME.ts",
-    "RIBOSOME_TICK.ts",
-    "IMMUNE.ts",
-    "LAMBDA_VM.ts",
-    "SPATIAL_HASH.ts",
-    "PHYSICS_ENGINE.ts",
-    "ECOLOGY_ENGINE.ts",
-    "SOVEREIGNTY_ENGINE.ts",
-    "SOVEREIGN_ORACLE.ts",
-    "MUTATION_TELEMETRY.ts",
-    "LLM_SYNAPSE.ts",
-    "SEMANTIC_MEMBRANE.ts",
-    "SNAP.ts",
-    "SNAPSHOT_ENGINE.ts",
-    "BREATH.ts",
-    "MATRIX_ENGINE.ts",
-    "STRUCTURE_ENGINE.ts",
-    "PREDICTION_MARKET.ts",
-    "P2P_FEDERATION.ts",
-    "P2P_SYNAPSE.ts",
-    "AVATAR_ENGINE.ts",
-    "REFLECTION_ENGINE.ts",
-    "AUDIT_ENGINE.ts",
-    "OBSERVER_UI.ts",
-    "RECOVERY.ts",
-    "PRNG.ts",
-    "ENV_PARSE.ts",
-    "RUNTIME_POLICY.ts",
-    "OFFSETS.ts",
-    "AKASHA_CODEX.ts",
-    "mod.ts",
-    "SHIMS.ts"
+    "AKASHA_SERVER.ts",
+    "OMEGA_DAEMON.ts",
+    "assembly/index.ts"
   ],
   "required_additional_files": [
-    "assembly/index.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
