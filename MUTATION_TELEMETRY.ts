@@ -5,7 +5,8 @@ type MutationLane =
   | "internal_oracle"
   | "internal_host"
   | "canonical_gate"
-  | "external_ingress";
+  | "external_ingress"
+  | "external_daemon";
 
 type MutationEvent = {
   lane: MutationLane;

@@ -38,6 +38,7 @@ type AvatarIntent = {
   x: number;
   y: number;
   intensity: number;
+  source: "external_ingress" | "external_daemon";
 };
 
 type PlasmidIntent = {
@@ -46,6 +47,7 @@ type PlasmidIntent = {
   y: number;
   charge: number;
   plasmidBytes: Uint8Array;
+  source: "external_ingress" | "external_daemon";
 };
 
 type SnapshotImportIntent = {
@@ -86,6 +88,17 @@ const WORLD_H = GRID_H * 10;
 
 const queue: ControlIntent[] = [];
 
+const telemetryForIntent = (
+  intent: ControlIntent,
+): { lane: "external_ingress" | "external_daemon"; kind: string } => {
+  if (intent.kind === "avatar" || intent.kind === "plasmid") {
+    if (intent.source === "external_daemon") {
+      return { lane: "external_daemon", kind: "daemon_intent_enqueued" };
+    }
+  }
+  return { lane: "external_ingress", kind: "control_intent_enqueued" };
+};
+
 const decision = (
   ok: boolean,
   status: number,
@@ -99,18 +112,21 @@ const decision = (
 });
 
 const enqueueInternal = (intent: ControlIntent): QueueDecision => {
+  const telemetry = telemetryForIntent(intent);
   if (queue.length >= MAX_PENDING) {
     MUTATION_TELEMETRY.record({
-      lane: "external_ingress",
-      kind: "control_intent_reject_full",
+      lane: telemetry.lane,
+      kind: telemetry.lane === "external_daemon"
+        ? "daemon_intent_reject_full"
+        : "control_intent_reject_full",
       count: 1,
     });
     return decision(false, 503, "CONTROL_INTENT_QUEUE_FULL");
   }
   queue.push(intent);
   MUTATION_TELEMETRY.record({
-    lane: "external_ingress",
-    kind: "control_intent_enqueued",
+    lane: telemetry.lane,
+    kind: telemetry.kind,
     count: 1,
   });
   return decision(true, 202, "QUEUED");
@@ -134,6 +150,10 @@ const parseFiniteNumber = (value: unknown): number | null => {
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
+
+const telemetryLaneForSource = (
+  source: "external_ingress" | "external_daemon",
+): "external_ingress" | "external_daemon" => source;
 
 const toGridCell = (
   x: number,
@@ -225,8 +245,10 @@ const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
   }
 
   MUTATION_TELEMETRY.record({
-    lane: "external_ingress",
-    kind: "control_plasmid_apply_cells",
+    lane: telemetryLaneForSource(intent.source),
+    kind: intent.source === "external_daemon"
+      ? "daemon_plasmid_apply_cells"
+      : "control_plasmid_apply_cells",
     count: seededCells,
   });
   return true;
@@ -243,6 +265,13 @@ const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
       return applyMutateIntent(intent);
     case "avatar":
       AVATAR_ENGINE.dropPheromone(intent.x, intent.y, intent.intensity);
+      MUTATION_TELEMETRY.record({
+        lane: telemetryLaneForSource(intent.source),
+        kind: intent.source === "external_daemon"
+          ? "daemon_avatar_apply"
+          : "control_avatar_apply",
+        count: 1,
+      });
       return true;
     case "plasmid":
       return applyPlasmidIntent(intent);
@@ -328,6 +357,7 @@ export const CONTROL_INTENT_QUEUE = {
     x: unknown,
     y: unknown,
     intensity: unknown = 100,
+    source: "external_ingress" | "external_daemon" = "external_ingress",
   ): QueueDecision => {
     const px = parseFiniteNumber(x);
     const py = parseFiniteNumber(y);
@@ -339,6 +369,7 @@ export const CONTROL_INTENT_QUEUE = {
       x: px,
       y: py,
       intensity: toBoundedIntensity(intensity, 100),
+      source,
     });
   },
   enqueuePlasmid: (
@@ -346,6 +377,7 @@ export const CONTROL_INTENT_QUEUE = {
     y: unknown,
     hexCode: unknown,
     charge: unknown = 1000,
+    source: "external_ingress" | "external_daemon" = "external_ingress",
   ): QueueDecision => {
     const px = parseFiniteNumber(x);
     const py = parseFiniteNumber(y);
@@ -360,6 +392,7 @@ export const CONTROL_INTENT_QUEUE = {
       y: py,
       charge: seedCharge,
       plasmidBytes,
+      source,
     });
   },
   enqueueSnapshotImport: (timestamp: unknown): QueueDecision => {
@@ -379,8 +412,11 @@ export const CONTROL_INTENT_QUEUE = {
       const intent = queue.shift()!;
       drained++;
       const ok = await applyIntent(intent);
+      const lane = intent.kind === "avatar" || intent.kind === "plasmid"
+        ? telemetryLaneForSource(intent.source)
+        : "external_ingress";
       MUTATION_TELEMETRY.record({
-        lane: "external_ingress",
+        lane,
         kind: ok ? "control_intent_applied" : "control_intent_apply_failed",
         count: 1,
       });

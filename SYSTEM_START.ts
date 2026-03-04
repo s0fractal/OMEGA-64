@@ -14,6 +14,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -40,6 +41,29 @@ type DaemonInjectEnvelope = {
     intensity: number;
     hex_code?: string;
   };
+};
+
+type RuntimeMetrics = {
+  tick: number;
+  population: number;
+  avgEnergy: number;
+  neuralCoherence: number;
+};
+
+type DaemonAuditPending = {
+  auditId: string;
+  action: Exclude<DaemonAction, "OBSERVE">;
+  requestedAction: DaemonAction;
+  targetX: number;
+  targetY: number;
+  intensity: number;
+  hexCode?: string;
+  queued: boolean;
+  queueReason: string;
+  queuedStatus: number;
+  tickApplied: number;
+  evaluateAtTick: number;
+  baseline: RuntimeMetrics;
 };
 
 const requireControlAuth = (req: Request): Response | null => {
@@ -82,6 +106,45 @@ const asFiniteNumber = (value: unknown, fallback: number): number => {
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
+const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
+const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
+const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY =
+  DAEMON_POLICY.maxPheromoneIntensity;
+const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_POLICY.maxPlasmidCharge;
+const DAEMON_SAFE_MIN_POPULATION = DAEMON_POLICY.safeMinPopulation;
+const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_POLICY.safeMinAvgEnergy;
+const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
+const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
+
+const ALLOWED_DAEMON_OPCODES = new Set<number>([
+  0x00,
+  0x01,
+  0x02,
+  0x03,
+  0x04,
+  0x05,
+  0x10,
+  0x11,
+  0x12,
+  0x80,
+  0x81,
+  0x83,
+  0xA4,
+  0xA5,
+  0xA6,
+  0xA7,
+  0xA8,
+  0xA9,
+  0xAA,
+  0xAB,
+]);
+
+let daemonWindowStartMs = Date.now();
+let daemonActionsInWindow = 0;
+let daemonAuditSeq = 0;
+const daemonAuditPending: DaemonAuditPending[] = [];
+
 const logicToHex = (logic: Uint8Array): string =>
   Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
     .toUpperCase();
@@ -98,14 +161,161 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
     .map(([hex]) => hex);
 };
 
-const buildTelemetry = async () => {
+const collectRuntimeMetrics = (): RuntimeMetrics => {
   const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
   const active = STATE_MATRIX.getActiveIndices();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
-  const avgEnergy = active.length > 0
-    ? Number((totalEnergy / active.length).toFixed(3))
-    : 0;
+  const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
+  const rawCoherence = (STATE_MATRIX.getNeuralCoherence?.() ??
+    STATE_MATRIX.getClusterSync?.() ??
+    0) as number;
+  return {
+    tick,
+    population: active.length,
+    avgEnergy: Number(avgEnergy.toFixed(3)),
+    neuralCoherence: Number(rawCoherence.toFixed(3)),
+  };
+};
+
+const isDaemonSafeMode = (
+  metrics: RuntimeMetrics,
+): { blocked: boolean; reason: string } => {
+  if (metrics.population < DAEMON_SAFE_MIN_POPULATION) {
+    return {
+      blocked: true,
+      reason:
+        `SAFE_MODE_POPULATION_${metrics.population}_LT_${DAEMON_SAFE_MIN_POPULATION}`,
+    };
+  }
+  if (metrics.avgEnergy < DAEMON_SAFE_MIN_AVG_ENERGY) {
+    return {
+      blocked: true,
+      reason:
+        `SAFE_MODE_AVG_ENERGY_${metrics.avgEnergy}_LT_${DAEMON_SAFE_MIN_AVG_ENERGY}`,
+    };
+  }
+  return { blocked: false, reason: "SAFE_MODE_OFF" };
+};
+
+const consumeDaemonBudget = (): {
+  ok: boolean;
+  remaining: number;
+  resetInMs: number;
+} => {
+  const now = Date.now();
+  if (now - daemonWindowStartMs >= DAEMON_POLICY_WINDOW_MS) {
+    daemonWindowStartMs = now;
+    daemonActionsInWindow = 0;
+  }
+  if (daemonActionsInWindow >= DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW) {
+    const elapsed = now - daemonWindowStartMs;
+    return {
+      ok: false,
+      remaining: 0,
+      resetInMs: Math.max(0, DAEMON_POLICY_WINDOW_MS - elapsed),
+    };
+  }
+  daemonActionsInWindow++;
+  return {
+    ok: true,
+    remaining: Math.max(
+      0,
+      DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW - daemonActionsInWindow,
+    ),
+    resetInMs: Math.max(
+      0,
+      DAEMON_POLICY_WINDOW_MS - (now - daemonWindowStartMs),
+    ),
+  };
+};
+
+const parseHex8Strict = (value: string): Uint8Array | null => {
+  const normalized = value.trim().replace(/^0x/i, "");
+  if (!/^[0-9a-fA-F]{16}$/u.test(normalized)) return null;
+  const bytes = new Uint8Array(8);
+  for (let i = 0; i < 8; i++) {
+    bytes[i] = Number.parseInt(normalized.slice(i * 2, i * 2 + 2), 16);
+  }
+  return bytes;
+};
+
+const evaluatePlasmidPolicy = (
+  hexCode: string,
+): { ok: boolean; reason: string } => {
+  const bytes = parseHex8Strict(hexCode);
+  if (!bytes) return { ok: false, reason: "INVALID_HEX_CODE" };
+  if (bytes.every((b) => b === 0)) {
+    return { ok: false, reason: "PLASMID_ZERO_VECTOR_BLOCKED" };
+  }
+  const opcode = bytes[0];
+  if (!ALLOWED_DAEMON_OPCODES.has(opcode)) {
+    return {
+      ok: false,
+      reason: `PLASMID_OPCODE_BLOCKED_0x${
+        opcode.toString(16).toUpperCase().padStart(2, "0")
+      }`,
+    };
+  }
+  return { ok: true, reason: "PLASMID_POLICY_OK" };
+};
+
+const appendDaemonAudit = async (
+  event: Record<string, unknown>,
+): Promise<void> => {
+  try {
+    await Deno.writeTextFile(
+      DAEMON_AUDIT_PATH,
+      `${JSON.stringify(event)}\n`,
+      { append: true, create: true },
+    );
+  } catch (err) {
+    LOGGER.warn(`[DAEMON_AUDIT] append failed: ${String(err)}`);
+  }
+};
+
+const queueDaemonAudit = (entry: DaemonAuditPending): void => {
+  daemonAuditPending.push(entry);
+};
+
+const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
+  if (daemonAuditPending.length === 0) return;
+  const remaining: DaemonAuditPending[] = [];
+  for (const pending of daemonAuditPending) {
+    if (currentTick < pending.evaluateAtTick) {
+      remaining.push(pending);
+      continue;
+    }
+    const metrics = collectRuntimeMetrics();
+    await appendDaemonAudit({
+      event_type: "DAEMON_EFFECT_EVAL",
+      audit_id: pending.auditId,
+      evaluated_at_tick: currentTick,
+      action: pending.action,
+      target_x: pending.targetX,
+      target_y: pending.targetY,
+      baseline: pending.baseline,
+      outcome: metrics,
+      delta: {
+        population: metrics.population - pending.baseline.population,
+        avgEnergy: Number(
+          (metrics.avgEnergy - pending.baseline.avgEnergy).toFixed(3),
+        ),
+        neuralCoherence: Number(
+          (metrics.neuralCoherence - pending.baseline.neuralCoherence).toFixed(
+            3,
+          ),
+        ),
+      },
+    });
+  }
+  daemonAuditPending.length = 0;
+  daemonAuditPending.push(...remaining);
+};
+
+const buildTelemetry = async () => {
+  const metrics = collectRuntimeMetrics();
+  const active = STATE_MATRIX.getActiveIndices();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -117,11 +327,25 @@ const buildTelemetry = async () => {
   } catch {
     voxPopuli = [];
   }
+  const safeMode = isDaemonSafeMode(metrics);
+  const resetInMs = Math.max(
+    0,
+    DAEMON_POLICY_WINDOW_MS - (Date.now() - daemonWindowStartMs),
+  );
   return {
-    tick,
-    avgEnergy,
+    tick: metrics.tick,
+    avgEnergy: metrics.avgEnergy,
     dominantGenomes: dominantGenomes(active, 3),
     voxPopuli,
+    daemon_governance: {
+      safe_mode: safeMode.blocked,
+      safe_mode_reason: safeMode.reason,
+      actions_used_in_window: daemonActionsInWindow,
+      actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+      window_reset_in_ms: resetInMs,
+      max_pheromone_intensity: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+      max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+    },
   };
 };
 
@@ -248,6 +472,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const body = await req.json();
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_inject_invalid_payload",
+          count: 1,
+        });
         return new Response(
           JSON.stringify({
             ok: false,
@@ -259,19 +488,137 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
+      const baseline = collectRuntimeMetrics();
+      const safeMode = isDaemonSafeMode(baseline);
+
       if (envelope.action_type === "OBSERVE") {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_observe_noop",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_OBSERVE",
+          tick: baseline.tick,
+          metrics: baseline,
+          safe_mode: safeMode.blocked,
+          safe_mode_reason: safeMode.reason,
+        });
         return new Response(
-          JSON.stringify({ ok: true, status: 200, reason: "OBSERVE_NOOP" }),
+          JSON.stringify({
+            ok: true,
+            status: 200,
+            reason: "OBSERVE_NOOP",
+            safe_mode: safeMode.blocked,
+            safe_mode_reason: safeMode.reason,
+          }),
           { status: 200, headers: JSON_HEADERS },
         );
       }
 
+      if (safeMode.blocked) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_safe_mode_block",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_REJECT",
+          reason: safeMode.reason,
+          tick: baseline.tick,
+          action: envelope.action_type,
+          payload: envelope.payload,
+          metrics: baseline,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: safeMode.reason,
+            safe_mode: true,
+            status: 429,
+          }),
+          { status: 429, headers: JSON_HEADERS },
+        );
+      }
+
+      const budget = consumeDaemonBudget();
+      if (!budget.ok) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_rate_limit_block",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_REJECT",
+          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          tick: baseline.tick,
+          action: envelope.action_type,
+          payload: envelope.payload,
+          metrics: baseline,
+          budget,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+            status: 429,
+            retry_after_ms: budget.resetInMs,
+          }),
+          { status: 429, headers: JSON_HEADERS },
+        );
+      }
+
       if (envelope.action_type === "DROP_PHEROMONE") {
+        if (
+          envelope.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
+        ) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_pheromone_intensity",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+              max: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
         const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
           envelope.payload.target_x,
           envelope.payload.target_y,
           envelope.payload.intensity,
+          "external_daemon",
         );
+        const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
+        if (queued.ok) {
+          queueDaemonAudit({
+            auditId,
+            action: "DROP_PHEROMONE",
+            requestedAction: envelope.action_type,
+            targetX: envelope.payload.target_x,
+            targetY: envelope.payload.target_y,
+            intensity: envelope.payload.intensity,
+            queued: queued.ok,
+            queueReason: queued.reason,
+            queuedStatus: queued.status,
+            tickApplied: baseline.tick,
+            evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
+            baseline,
+          });
+        }
+        await appendDaemonAudit({
+          event_type: "DAEMON_ACCEPT",
+          audit_id: auditId,
+          tick: baseline.tick,
+          action: "DROP_PHEROMONE",
+          payload: envelope.payload,
+          queue: queued,
+          metrics: baseline,
+          budget,
+        });
         return new Response(JSON.stringify(queued), {
           status: queued.status,
           headers: JSON_HEADERS,
@@ -279,6 +626,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       if (!envelope.payload.hex_code) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_block_missing_hex",
+          count: 1,
+        });
         return new Response(
           JSON.stringify({
             ok: false,
@@ -289,21 +641,88 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
+      if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_block_plasmid_charge",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            max: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
+      if (!plasmidPolicy.ok) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_block_plasmid_rule",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: plasmidPolicy.reason,
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
       const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
         envelope.payload.target_x,
         envelope.payload.target_y,
         envelope.payload.hex_code,
         envelope.payload.intensity,
+        "external_daemon",
       );
+      const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
+      if (queued.ok) {
+        queueDaemonAudit({
+          auditId,
+          action: "INJECT_PLASMID",
+          requestedAction: envelope.action_type,
+          targetX: envelope.payload.target_x,
+          targetY: envelope.payload.target_y,
+          intensity: envelope.payload.intensity,
+          hexCode: envelope.payload.hex_code,
+          queued: queued.ok,
+          queueReason: queued.reason,
+          queuedStatus: queued.status,
+          tickApplied: baseline.tick,
+          evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
+          baseline,
+        });
+      }
+      await appendDaemonAudit({
+        event_type: "DAEMON_ACCEPT",
+        audit_id: auditId,
+        tick: baseline.tick,
+        action: "INJECT_PLASMID",
+        payload: envelope.payload,
+        queue: queued,
+        metrics: baseline,
+        budget,
+      });
       return new Response(JSON.stringify(queued), {
         status: queued.status,
         headers: JSON_HEADERS,
       });
-    } catch {
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_inject_exception",
+        count: 1,
+      });
       return new Response(
         JSON.stringify({
           ok: false,
           reason: "INVALID_INJECT_PAYLOAD",
+          details: String(err),
         }),
         { status: 400, headers: JSON_HEADERS },
       );
@@ -683,6 +1102,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
+    await flushDaemonAuditEffects(Atomics.load(STATE_MATRIX.tickCounter, 0));
     await new Promise((r) => setTimeout(r, 16));
   }
 })();

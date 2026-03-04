@@ -55,6 +55,18 @@ const rawStartupSelfTestForceBreach = readEnv(
   "OMEGA_STARTUP_SELFTEST_FORCE_BREACH",
 );
 const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
+const rawDaemonPolicyWindowMs = readEnv("OMEGA_DAEMON_POLICY_WINDOW_MS");
+const rawDaemonMaxActionsPerWindow = readEnv(
+  "OMEGA_DAEMON_MAX_ACTIONS_PER_WINDOW",
+);
+const rawDaemonMaxPheromoneIntensity = readEnv(
+  "OMEGA_DAEMON_MAX_PHEROMONE_INTENSITY",
+);
+const rawDaemonMaxPlasmidCharge = readEnv("OMEGA_DAEMON_MAX_PLASMID_CHARGE");
+const rawDaemonSafeMinPopulation = readEnv("OMEGA_DAEMON_SAFE_MIN_POPULATION");
+const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
+const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
+const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
@@ -161,6 +173,51 @@ const pulseStartupSelfTestForceBreach = parseEnvBool(
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
 const akashaPort = 8080;
 const p2pPort = 8081;
+const daemonPolicyWindowMs = parseEnvBoundedInt(
+  rawDaemonPolicyWindowMs,
+  60_000,
+  5_000,
+  3_600_000,
+);
+const daemonMaxActionsPerWindow = parseEnvBoundedInt(
+  rawDaemonMaxActionsPerWindow,
+  8,
+  1,
+  10_000,
+);
+const daemonMaxPheromoneIntensity = parseEnvBoundedInt(
+  rawDaemonMaxPheromoneIntensity,
+  300,
+  1,
+  5_000,
+);
+const daemonMaxPlasmidCharge = parseEnvBoundedInt(
+  rawDaemonMaxPlasmidCharge,
+  1200,
+  1,
+  65_535,
+);
+const daemonSafeMinPopulation = parseEnvBoundedInt(
+  rawDaemonSafeMinPopulation,
+  16,
+  0,
+  100_000,
+);
+const daemonSafeMinAvgEnergy = parseEnvBoundedInt(
+  rawDaemonSafeMinAvgEnergy,
+  5,
+  0,
+  100_000,
+);
+const daemonAuditEffectTicks = parseEnvBoundedInt(
+  rawDaemonAuditEffectTicks,
+  32,
+  1,
+  50_000,
+);
+const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
+  ? (rawDaemonAuditPath ?? "").trim()
+  : "./DAEMON_AUDIT.jsonl";
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -220,6 +277,16 @@ const policyFingerprintSource = JSON.stringify({
   akasha: {
     host: akashaHost,
     port: akashaPort,
+  },
+  daemon: {
+    policyWindowMs: daemonPolicyWindowMs,
+    maxActionsPerWindow: daemonMaxActionsPerWindow,
+    maxPheromoneIntensity: daemonMaxPheromoneIntensity,
+    maxPlasmidCharge: daemonMaxPlasmidCharge,
+    safeMinPopulation: daemonSafeMinPopulation,
+    safeMinAvgEnergy: daemonSafeMinAvgEnergy,
+    auditEffectTicks: daemonAuditEffectTicks,
+    auditPath: daemonAuditPath,
   },
 });
 
@@ -319,6 +386,26 @@ export const RUNTIME_POLICY = {
   akasha: {
     host: akashaHost,
     port: akashaPort,
+  },
+  daemon: {
+    policyWindowMs: daemonPolicyWindowMs,
+    maxActionsPerWindow: daemonMaxActionsPerWindow,
+    maxPheromoneIntensity: daemonMaxPheromoneIntensity,
+    maxPlasmidCharge: daemonMaxPlasmidCharge,
+    safeMinPopulation: daemonSafeMinPopulation,
+    safeMinAvgEnergy: daemonSafeMinAvgEnergy,
+    auditEffectTicks: daemonAuditEffectTicks,
+    auditPath: daemonAuditPath,
+    source: {
+      policyWindowMs: rawDaemonPolicyWindowMs !== undefined,
+      maxActionsPerWindow: rawDaemonMaxActionsPerWindow !== undefined,
+      maxPheromoneIntensity: rawDaemonMaxPheromoneIntensity !== undefined,
+      maxPlasmidCharge: rawDaemonMaxPlasmidCharge !== undefined,
+      safeMinPopulation: rawDaemonSafeMinPopulation !== undefined,
+      safeMinAvgEnergy: rawDaemonSafeMinAvgEnergy !== undefined,
+      auditEffectTicks: rawDaemonAuditEffectTicks !== undefined,
+      auditPath: rawDaemonAuditPath !== undefined,
+    },
   },
   fingerprint: POLICY_FINGERPRINT,
   logFingerprintOnce: (context: string = "runtime"): string => {
