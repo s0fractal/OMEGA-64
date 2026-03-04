@@ -41,6 +41,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "Top Degrade Reasons",
+    "UI codex panel must render top degrade reasons from daemon admission history",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "codex-mood",
     "UI codex panel must render narrative mood badge",
     violations,
@@ -49,6 +55,12 @@ const main = async () => {
     ui,
     "inferSharedCenterLabel",
     "UI codex panel must infer shared center across narrative/snapshot invariants",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildTopDegradeReasonsSummary",
+    "UI codex panel must aggregate top degrade reasons from daemon admission history",
     violations,
   );
   requireSnippet(

@@ -27,7 +27,8 @@ export context. It intentionally excludes historical era narratives.
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
-   compact risk summary + drift trend sparkline, and scene halo tint driven by
+   compact risk summary + drift trend sparkline, top degrade-reason aggregate,
+   and scene halo tint driven by
    `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T13:17:37.467Z*
+*Generated: 2026-03-04T14:18:57.914Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 1919c47eeedabc972a52b51b1467ef57b3cf5bcaf9e20d12179fec24864219c6*
-*Git Commit: 7e50b8655af4*
+*Export Content SHA256: de214c44614e595a262b5d29bb74e45d0ea81a35b2dd370ba0678ddd0a9313e2*
+*Git Commit: a289df209c87*
 
 ---
 
@@ -2564,7 +2564,8 @@ export context. It intentionally excludes historical era narratives.
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
-   compact risk summary + drift trend sparkline, and scene halo tint driven by
+   compact risk summary + drift trend sparkline, top degrade-reason aggregate,
+   and scene halo tint driven by
    `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
@@ -20202,6 +20203,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         const sharedCenter = inferSharedCenterLabel();
         const dominantInvariant = inferDominantInvariantVector();
+        const topDegradeReasons = buildTopDegradeReasonsSummary();
         rows.push(`
           <div class="codex-row">
             <div class="codex-row-title">Shared Center</div>
@@ -20215,6 +20217,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             }</div>`
             : ""
         }
+          </div>
+        `);
+        rows.push(`
+          <div class="codex-row">
+            <div class="codex-row-title">Top Degrade Reasons</div>
+            <div class="codex-row-body codex-row-subtle">${
+          escapeHtml(topDegradeReasons)
+        }</div>
           </div>
         `);
 
@@ -20490,6 +20500,27 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           return `${severity}${status}:${requested}>${applied}`;
         });
         return `daemon history: ${compact.join(" | ")}`;
+      }
+
+      function buildTopDegradeReasonsSummary() {
+        const history = currentDaemonAdmissionHistory();
+        if (history.length === 0) return "none";
+        const counts = new Map();
+        for (const entry of history) {
+          const reason = String(entry.reason || "").trim();
+          if (reason.length === 0) continue;
+          const degraded = Boolean(entry.degraded);
+          const blocked = String(entry.status || "")
+            .toLowerCase() === "rejected";
+          if (!degraded && !blocked) continue;
+          counts.set(reason, (counts.get(reason) || 0) + 1);
+        }
+        if (counts.size === 0) return "none";
+        const top = Array.from(counts.entries())
+          .sort((a, b) => Number(b[1]) - Number(a[1]))
+          .slice(0, 3)
+          .map(([reason, n]) => `${reason}×${n}`);
+        return top.join(" | ");
       }
 
       function buildHumanExplanation() {
