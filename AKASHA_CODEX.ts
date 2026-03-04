@@ -61,6 +61,28 @@ type RelicEntry = {
   createdAt: string;
 };
 
+type CodexNarrative = {
+  tick: number;
+  epoch: number;
+  mood: "ASCENDANT" | "STABLE" | "FRAGILE";
+  title: string;
+  summary: string;
+  speciesHighlights: Array<{
+    latinName: string;
+    genome: string;
+    dominantEpochs: number;
+    peakShare: number;
+  }>;
+  recentChronicles: Array<{
+    tick: number;
+    epoch: number;
+    type: string;
+    title: string;
+  }>;
+  relicStatus: string;
+  promptBridge: string;
+};
+
 type CodexState = {
   version: number;
   epochTicks: number;
@@ -202,6 +224,26 @@ const summarizeInstructions = (sampleIndices: number[]): string[] => {
 const speciesNameForGenome = (genome: string): string => {
   const hit = speciesIndex.find((entry) => entry.genome === genome);
   return hit ? hit.latinName : `Genome ${genome.slice(0, 8)}`;
+};
+
+const inferNarrativeMood = (): "ASCENDANT" | "STABLE" | "FRAGILE" => {
+  if (state.populationPeak >= 100) {
+    const collapse = Math.floor(state.populationPeak * 0.2);
+    if (state.lastPopulation <= collapse) return "FRAGILE";
+  }
+  if (
+    chronicleIndex[0]?.type === "species_discovery" ||
+    chronicleIndex[0]?.type === "market_resolution"
+  ) {
+    return "ASCENDANT";
+  }
+  return "STABLE";
+};
+
+const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
+  if (mood === "FRAGILE") return "Lattice in Recovery Arc";
+  if (mood === "ASCENDANT") return "Lattice in Expansion Arc";
+  return "Lattice in Coherence Arc";
 };
 
 const ensureStorage = async (): Promise<void> => {
@@ -768,5 +810,46 @@ export const AKASHA_CODEX = {
       relics: relicIndex.slice(0, take),
     };
   },
-};
+  getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
+    await ensureStorage();
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const epoch = Math.floor(tick / EPOCH_TICKS);
+    const take = Math.max(1, Math.min(12, Math.floor(limit)));
+    const mood = inferNarrativeMood();
+    const title = narrativeTitleForMood(mood);
+    const speciesHighlights = speciesIndex.slice(0, 3).map((entry) => ({
+      latinName: entry.latinName,
+      genome: entry.genome,
+      dominantEpochs: entry.dominantEpochs,
+      peakShare: Number(entry.peakShare.toFixed(4)),
+    }));
+    const recentChronicles = chronicleIndex.slice(0, take).map((entry) => ({
+      tick: entry.tick,
+      epoch: entry.epoch,
+      type: entry.type,
+      title: entry.title,
+    }));
+    const leadSpecies = speciesHighlights[0]?.latinName ??
+      "Unclassified lineage";
+    const relicStatus = relicIndex.length === 0
+      ? "No relics cataloged yet."
+      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${relicIndex[0].size} blocks.`;
+    const summary =
+      `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
+      `Dominant lineage: ${leadSpecies}.`;
+    const promptBridge =
+      `Use plain language. Explain ${title.toLowerCase()} and how ${leadSpecies} shaped recent epochs.`;
 
+    return {
+      tick,
+      epoch,
+      mood,
+      title,
+      summary,
+      speciesHighlights,
+      recentChronicles,
+      relicStatus,
+      promptBridge,
+    };
+  },
+};

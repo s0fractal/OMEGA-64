@@ -14,6 +14,7 @@ export context. It intentionally excludes historical era narratives.
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`)
+   Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -77,6 +78,7 @@ Primary chain:
 - `test:runtime-monoculture`
 - `test:runtime-support-boundary`
 - `test:runtime-experimental-boundary`
+- `test:codex-narrative-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests

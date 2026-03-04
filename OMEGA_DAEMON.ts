@@ -8,6 +8,22 @@ type Telemetry = {
   voxPopuli: string[];
 };
 
+type CodexNarrative = {
+  tick: number;
+  epoch: number;
+  mood: string;
+  title: string;
+  summary: string;
+  relicStatus: string;
+  promptBridge: string;
+  recentChronicles: Array<{
+    tick: number;
+    epoch: number;
+    type: string;
+    title: string;
+  }>;
+};
+
 type ActionType = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
 type DaemonDecision = {
@@ -93,6 +109,7 @@ const logError = (text: string): void => {
 const API_BASE = (Deno.env.get("OMEGA_DAEMON_API_BASE") ??
   "http://localhost:8080").replace(/\/+$/u, "");
 const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
+const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
@@ -190,6 +207,71 @@ const fetchTelemetry = async (): Promise<Telemetry> => {
   return normalizeTelemetry(await response.json());
 };
 
+const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
+  const source = raw && typeof raw === "object"
+    ? raw as Record<string, unknown>
+    : {};
+  const recentChronicles = Array.isArray(source.recentChronicles)
+    ? source.recentChronicles
+      .filter((entry): entry is Record<string, unknown> =>
+        !!entry && typeof entry === "object"
+      )
+      .map((entry) => ({
+        tick: Math.max(0, Math.floor(asFiniteNumber(entry.tick, 0))),
+        epoch: Math.max(0, Math.floor(asFiniteNumber(entry.epoch, 0))),
+        type: typeof entry.type === "string" ? entry.type : "unknown",
+        title: typeof entry.title === "string" ? entry.title : "untitled",
+      }))
+      .slice(0, 6)
+    : [];
+  return {
+    tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
+    epoch: Math.max(0, Math.floor(asFiniteNumber(source.epoch, 0))),
+    mood: typeof source.mood === "string" ? source.mood : "STABLE",
+    title: typeof source.title === "string" && source.title.trim().length > 0
+      ? source.title.trim()
+      : "Lattice Status",
+    summary: typeof source.summary === "string" && source.summary.trim().length > 0
+      ? source.summary.trim()
+      : "Codex narrative unavailable.",
+    relicStatus: typeof source.relicStatus === "string"
+      ? source.relicStatus
+      : "Relic status unavailable.",
+    promptBridge: typeof source.promptBridge === "string"
+      ? source.promptBridge
+      : "Use plain language for observer-facing updates.",
+    recentChronicles,
+  };
+};
+
+const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
+  try {
+    const response = await withTimeout(
+      CODEX_NARRATIVE_URL,
+      { method: "GET", headers: { Accept: "application/json" } },
+      HTTP_TIMEOUT_MS,
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Codex narrative request failed: ${response.status} ${response.statusText}`,
+      );
+    }
+    return normalizeCodexNarrative(await response.json());
+  } catch (err) {
+    logWarn(`Codex narrative fallback: ${String(err)}`);
+    return {
+      tick: 0,
+      epoch: 0,
+      mood: "STABLE",
+      title: "Codex Unavailable",
+      summary: "Codex narrative endpoint unavailable; operating on telemetry only.",
+      relicStatus: "Relic status unavailable.",
+      promptBridge: "Use plain language for observer-facing updates.",
+      recentChronicles: [],
+    };
+  }
+};
+
 const normalizeAction = (value: unknown): ActionType => {
   if (typeof value !== "string") return "OBSERVE";
   const upper = value.trim().toUpperCase();
@@ -244,6 +326,7 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
 
 const askOpenAI = async (
   telemetry: Telemetry,
+  codexNarrative: CodexNarrative,
   memory: string[],
 ): Promise<DaemonDecision> => {
   if (!OPENAI_API_KEY) {
@@ -276,6 +359,7 @@ const askOpenAI = async (
         role: "user",
         content: JSON.stringify({
           telemetry,
+          codex_narrative: codexNarrative,
           previous_thoughts: memory,
           output_contract: {
             internal_monologue: "string",
@@ -358,8 +442,11 @@ const appendThought = (memory: string[], thought: string): string[] =>
 
 const runHeartbeat = async (): Promise<void> => {
   const memory = await loadMemory();
-  const telemetry = await fetchTelemetry();
-  const decision = await askOpenAI(telemetry, memory);
+  const [telemetry, codexNarrative] = await Promise.all([
+    fetchTelemetry(),
+    fetchCodexNarrative(),
+  ]);
+  const decision = await askOpenAI(telemetry, codexNarrative, memory);
 
   logThought(decision.internal_monologue);
   await saveMemory(appendThought(memory, decision.internal_monologue));

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:43:02.772Z*
+*Generated: 2026-03-04T10:47:51.764Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: 87d58f718cb5*
+*Git Commit: b1444f24718f*
 
 ---
 
@@ -188,6 +188,28 @@ type RelicEntry = {
   createdAt: string;
 };
 
+type CodexNarrative = {
+  tick: number;
+  epoch: number;
+  mood: "ASCENDANT" | "STABLE" | "FRAGILE";
+  title: string;
+  summary: string;
+  speciesHighlights: Array<{
+    latinName: string;
+    genome: string;
+    dominantEpochs: number;
+    peakShare: number;
+  }>;
+  recentChronicles: Array<{
+    tick: number;
+    epoch: number;
+    type: string;
+    title: string;
+  }>;
+  relicStatus: string;
+  promptBridge: string;
+};
+
 type CodexState = {
   version: number;
   epochTicks: number;
@@ -329,6 +351,26 @@ const summarizeInstructions = (sampleIndices: number[]): string[] => {
 const speciesNameForGenome = (genome: string): string => {
   const hit = speciesIndex.find((entry) => entry.genome === genome);
   return hit ? hit.latinName : `Genome ${genome.slice(0, 8)}`;
+};
+
+const inferNarrativeMood = (): "ASCENDANT" | "STABLE" | "FRAGILE" => {
+  if (state.populationPeak >= 100) {
+    const collapse = Math.floor(state.populationPeak * 0.2);
+    if (state.lastPopulation <= collapse) return "FRAGILE";
+  }
+  if (
+    chronicleIndex[0]?.type === "species_discovery" ||
+    chronicleIndex[0]?.type === "market_resolution"
+  ) {
+    return "ASCENDANT";
+  }
+  return "STABLE";
+};
+
+const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
+  if (mood === "FRAGILE") return "Lattice in Recovery Arc";
+  if (mood === "ASCENDANT") return "Lattice in Expansion Arc";
+  return "Lattice in Coherence Arc";
 };
 
 const ensureStorage = async (): Promise<void> => {
@@ -895,8 +937,49 @@ export const AKASHA_CODEX = {
       relics: relicIndex.slice(0, take),
     };
   },
-};
+  getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
+    await ensureStorage();
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const epoch = Math.floor(tick / EPOCH_TICKS);
+    const take = Math.max(1, Math.min(12, Math.floor(limit)));
+    const mood = inferNarrativeMood();
+    const title = narrativeTitleForMood(mood);
+    const speciesHighlights = speciesIndex.slice(0, 3).map((entry) => ({
+      latinName: entry.latinName,
+      genome: entry.genome,
+      dominantEpochs: entry.dominantEpochs,
+      peakShare: Number(entry.peakShare.toFixed(4)),
+    }));
+    const recentChronicles = chronicleIndex.slice(0, take).map((entry) => ({
+      tick: entry.tick,
+      epoch: entry.epoch,
+      type: entry.type,
+      title: entry.title,
+    }));
+    const leadSpecies = speciesHighlights[0]?.latinName ??
+      "Unclassified lineage";
+    const relicStatus = relicIndex.length === 0
+      ? "No relics cataloged yet."
+      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${relicIndex[0].size} blocks.`;
+    const summary =
+      `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
+      `Dominant lineage: ${leadSpecies}.`;
+    const promptBridge =
+      `Use plain language. Explain ${title.toLowerCase()} and how ${leadSpecies} shaped recent epochs.`;
 
+    return {
+      tick,
+      epoch,
+      mood,
+      title,
+      summary,
+      speciesHighlights,
+      recentChronicles,
+      relicStatus,
+      promptBridge,
+    };
+  },
+};
 
 ```
 
@@ -1013,6 +1096,38 @@ const proxyInject = async (incoming: Request): Promise<Response> => {
     return json({
       ok: false,
       reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyCodex = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_CODEX_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_CODEX_UNREACHABLE",
       details: String(err),
       system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
     }, 503);
@@ -1136,6 +1251,14 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetry(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/codex") {
+    return proxyCodex(req, "/api/codex", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/codex/narrative") {
+    return proxyCodex(req, "/api/codex/narrative", url.search);
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -1145,7 +1268,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/inject`,
+      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject`,
       {
         status: 200,
       },
@@ -1591,6 +1714,7 @@ export context. It intentionally excludes historical era narratives.
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`)
+   Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -1654,6 +1778,7 @@ Primary chain:
 - `test:runtime-monoculture`
 - `test:runtime-support-boundary`
 - `test:runtime-experimental-boundary`
+- `test:codex-narrative-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests
@@ -7864,6 +7989,22 @@ type Telemetry = {
   voxPopuli: string[];
 };
 
+type CodexNarrative = {
+  tick: number;
+  epoch: number;
+  mood: string;
+  title: string;
+  summary: string;
+  relicStatus: string;
+  promptBridge: string;
+  recentChronicles: Array<{
+    tick: number;
+    epoch: number;
+    type: string;
+    title: string;
+  }>;
+};
+
 type ActionType = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
 type DaemonDecision = {
@@ -7949,6 +8090,7 @@ const logError = (text: string): void => {
 const API_BASE = (Deno.env.get("OMEGA_DAEMON_API_BASE") ??
   "http://localhost:8080").replace(/\/+$/u, "");
 const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
+const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
@@ -8046,6 +8188,71 @@ const fetchTelemetry = async (): Promise<Telemetry> => {
   return normalizeTelemetry(await response.json());
 };
 
+const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
+  const source = raw && typeof raw === "object"
+    ? raw as Record<string, unknown>
+    : {};
+  const recentChronicles = Array.isArray(source.recentChronicles)
+    ? source.recentChronicles
+      .filter((entry): entry is Record<string, unknown> =>
+        !!entry && typeof entry === "object"
+      )
+      .map((entry) => ({
+        tick: Math.max(0, Math.floor(asFiniteNumber(entry.tick, 0))),
+        epoch: Math.max(0, Math.floor(asFiniteNumber(entry.epoch, 0))),
+        type: typeof entry.type === "string" ? entry.type : "unknown",
+        title: typeof entry.title === "string" ? entry.title : "untitled",
+      }))
+      .slice(0, 6)
+    : [];
+  return {
+    tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
+    epoch: Math.max(0, Math.floor(asFiniteNumber(source.epoch, 0))),
+    mood: typeof source.mood === "string" ? source.mood : "STABLE",
+    title: typeof source.title === "string" && source.title.trim().length > 0
+      ? source.title.trim()
+      : "Lattice Status",
+    summary: typeof source.summary === "string" && source.summary.trim().length > 0
+      ? source.summary.trim()
+      : "Codex narrative unavailable.",
+    relicStatus: typeof source.relicStatus === "string"
+      ? source.relicStatus
+      : "Relic status unavailable.",
+    promptBridge: typeof source.promptBridge === "string"
+      ? source.promptBridge
+      : "Use plain language for observer-facing updates.",
+    recentChronicles,
+  };
+};
+
+const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
+  try {
+    const response = await withTimeout(
+      CODEX_NARRATIVE_URL,
+      { method: "GET", headers: { Accept: "application/json" } },
+      HTTP_TIMEOUT_MS,
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Codex narrative request failed: ${response.status} ${response.statusText}`,
+      );
+    }
+    return normalizeCodexNarrative(await response.json());
+  } catch (err) {
+    logWarn(`Codex narrative fallback: ${String(err)}`);
+    return {
+      tick: 0,
+      epoch: 0,
+      mood: "STABLE",
+      title: "Codex Unavailable",
+      summary: "Codex narrative endpoint unavailable; operating on telemetry only.",
+      relicStatus: "Relic status unavailable.",
+      promptBridge: "Use plain language for observer-facing updates.",
+      recentChronicles: [],
+    };
+  }
+};
+
 const normalizeAction = (value: unknown): ActionType => {
   if (typeof value !== "string") return "OBSERVE";
   const upper = value.trim().toUpperCase();
@@ -8100,6 +8307,7 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
 
 const askOpenAI = async (
   telemetry: Telemetry,
+  codexNarrative: CodexNarrative,
   memory: string[],
 ): Promise<DaemonDecision> => {
   if (!OPENAI_API_KEY) {
@@ -8132,6 +8340,7 @@ const askOpenAI = async (
         role: "user",
         content: JSON.stringify({
           telemetry,
+          codex_narrative: codexNarrative,
           previous_thoughts: memory,
           output_contract: {
             internal_monologue: "string",
@@ -8214,8 +8423,11 @@ const appendThought = (memory: string[], thought: string): string[] =>
 
 const runHeartbeat = async (): Promise<void> => {
   const memory = await loadMemory();
-  const telemetry = await fetchTelemetry();
-  const decision = await askOpenAI(telemetry, memory);
+  const [telemetry, codexNarrative] = await Promise.all([
+    fetchTelemetry(),
+    fetchCodexNarrative(),
+  ]);
+  const decision = await askOpenAI(telemetry, codexNarrative, memory);
 
   logThought(decision.internal_monologue);
   await saveMemory(appendThought(memory, decision.internal_monologue));
@@ -15863,6 +16075,26 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     });
   }
 
+  if (url.pathname === "/api/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
+    return new Response(JSON.stringify(snapshot), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
+      headers: JSON_HEADERS,
+    });
+  }
+
   if (url.pathname === "/api/inject" && req.method === "POST") {
     const denied = requireDaemonAuth(req);
     if (denied) return denied;
@@ -16275,6 +16507,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       Number.isFinite(limit) ? limit : 16,
     );
     return new Response(JSON.stringify(snapshot.relics), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",

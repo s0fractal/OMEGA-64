@@ -465,6 +465,26 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     });
   }
 
+  if (url.pathname === "/api/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
+    return new Response(JSON.stringify(snapshot), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
+      headers: JSON_HEADERS,
+    });
+  }
+
   if (url.pathname === "/api/inject" && req.method === "POST") {
     const denied = requireDaemonAuth(req);
     if (denied) return denied;
@@ -877,6 +897,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       Number.isFinite(limit) ? limit : 16,
     );
     return new Response(JSON.stringify(snapshot.relics), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",

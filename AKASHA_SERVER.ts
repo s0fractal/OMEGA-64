@@ -112,6 +112,38 @@ const proxyInject = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyCodex = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_CODEX_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_CODEX_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const readJsonFile = async (path: string): Promise<unknown> => {
   try {
     return JSON.parse(await Deno.readTextFile(path));
@@ -229,6 +261,14 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetry(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/codex") {
+    return proxyCodex(req, "/api/codex", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/codex/narrative") {
+    return proxyCodex(req, "/api/codex/narrative", url.search);
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -238,7 +278,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/inject`,
+      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject`,
       {
         status: 200,
       },
