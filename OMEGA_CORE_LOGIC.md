@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:47:51.764Z*
+*Generated: 2026-03-04T10:53:07.162Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: b1444f24718f*
+*Git Commit: a7c8d3d608b9*
 
 ---
 
@@ -1779,6 +1779,7 @@ Primary chain:
 - `test:runtime-support-boundary`
 - `test:runtime-experimental-boundary`
 - `test:codex-narrative-contract`
+- `test:ui-codex-narrative-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests
@@ -16943,6 +16944,32 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         font-size: 0.7rem;
         color: rgba(255, 255, 255, 0.85);
       }
+      .codex-row-subtle {
+        margin-top: 4px;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .codex-mood {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        vertical-align: middle;
+      }
+      .codex-mood-ascendant {
+        color: #00ffb0;
+        border-color: rgba(0, 255, 176, 0.45);
+      }
+      .codex-mood-stable {
+        color: #9fe8ff;
+        border-color: rgba(159, 232, 255, 0.45);
+      }
+      .codex-mood-fragile {
+        color: #ffb27a;
+        border-color: rgba(255, 178, 122, 0.45);
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -17081,7 +17108,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     <div id="codex-panel" class="glass">
       <h1 class="codex-title">📚 AKASHA CODEX</h1>
       <div id="codex-content" style="margin-top: 8px;">
-        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles...</div>
+        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles and narrative...</div>
       </div>
     </div>
 
@@ -17205,6 +17232,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
       let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
+      let codexNarrative = { mood: "STABLE", title: "", summary: "", relicStatus: "", recentChronicles: [] };
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
       const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -17434,8 +17462,31 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const chronicles = (codexSnapshot.chronicles || []).slice(0, 2);
         const relics = (codexSnapshot.relics || []).slice(0, 1);
         const pop = codexSnapshot.population || { current: 0, peak: 0 };
+        const narrative = codexNarrative || {};
+        const mood = String(narrative.mood || "STABLE").toUpperCase();
+        const moodClass = `codex-mood-${mood.toLowerCase()}`;
+        const recentNarrativeChronicles = (narrative.recentChronicles || []).slice(0, 2);
+
+        const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => {
+          if (ch === "&") return "&amp;";
+          if (ch === "<") return "&lt;";
+          if (ch === ">") return "&gt;";
+          if (ch === "\"") return "&quot;";
+          return "&#39;";
+        });
 
         const rows = [];
+        if (narrative.title || narrative.summary) {
+          rows.push(`
+            <div class="codex-row">
+              <div class="codex-row-title">Narrative <span class="codex-mood ${moodClass}">${escapeHtml(mood)}</span></div>
+              <div class="codex-row-body">${escapeHtml((narrative.title || "").slice(0, 120))}</div>
+              <div class="codex-row-body codex-row-subtle">${escapeHtml((narrative.summary || "").slice(0, 180))}</div>
+              ${narrative.relicStatus ? `<div class="codex-row-body codex-row-subtle">${escapeHtml((narrative.relicStatus || "").slice(0, 150))}</div>` : ""}
+            </div>
+          `);
+        }
+
         rows.push(`
           <div class="codex-row">
             <div class="codex-row-title">Population Trace</div>
@@ -17447,19 +17498,28 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           for (const s of species) {
             rows.push(`
               <div class="codex-row">
-                <div class="codex-row-title">Species: ${s.latinName || "Unnamed"}</div>
-                <div class="codex-row-body">${(s.behavior || "").slice(0, 120)}</div>
+                <div class="codex-row-title">Species: ${escapeHtml(s.latinName || "Unnamed")}</div>
+                <div class="codex-row-body">${escapeHtml((s.behavior || "").slice(0, 120))}</div>
               </div>
             `);
           }
         }
 
-        if (chronicles.length > 0) {
+        if (recentNarrativeChronicles.length > 0) {
+          for (const c of recentNarrativeChronicles) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Narrative Chronicle: ${escapeHtml(c.title || "Event")}</div>
+                <div class="codex-row-body codex-row-subtle">Epoch ${Number(c.epoch) || 0} | ${escapeHtml(c.type || "unknown")}</div>
+              </div>
+            `);
+          }
+        } else if (chronicles.length > 0) {
           for (const c of chronicles) {
             rows.push(`
               <div class="codex-row">
-                <div class="codex-row-title">Chronicle: ${c.title || "Event"}</div>
-                <div class="codex-row-body">${(c.body || "").slice(0, 120)}</div>
+                <div class="codex-row-title">Chronicle: ${escapeHtml(c.title || "Event")}</div>
+                <div class="codex-row-body">${escapeHtml((c.body || "").slice(0, 120))}</div>
               </div>
             `);
           }
@@ -17469,8 +17529,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           const relic = relics[0];
           rows.push(`
             <div class="codex-row">
-              <div class="codex-row-title">Relic: ${relic.id || "Unknown"}</div>
-              <div class="codex-row-body">${(relic.summary || "").slice(0, 120)}</div>
+              <div class="codex-row-title">Relic: ${escapeHtml(relic.id || "Unknown")}</div>
+              <div class="codex-row-body">${escapeHtml((relic.summary || "").slice(0, 120))}</div>
             </div>
           `);
         }
@@ -17514,6 +17574,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
           fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
           fetch('/codex?limit=6').then(r=>r.json()).then(d => { codexSnapshot = d; updateCodexPanel(); }).catch(()=>{});
+          fetch('/codex/narrative?limit=4').then(r=>r.json()).then(d => { codexNarrative = d; updateCodexPanel(); }).catch(()=>{});
           lastDictSync = t;
         }
         composer.render();

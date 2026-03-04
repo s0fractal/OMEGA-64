@@ -79,6 +79,7 @@ Primary chain:
 - `test:runtime-support-boundary`
 - `test:runtime-experimental-boundary`
 - `test:codex-narrative-contract`
+- `test:ui-codex-narrative-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests
