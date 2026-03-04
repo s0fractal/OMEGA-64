@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T12:22:11.088Z*
+*Generated: 2026-03-04T12:28:10.569Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 09b78735c20fab423ef627908ea72be105c92a5cbf3a14d72bab086d671b9e7c*
-*Git Commit: 6fe29c066b87*
+*Export Content SHA256: 9670327e52403d1e516c206e5f3eac25db769b4b517b925d166df69acfc056bc*
+*Git Commit: 4c04535296f1*
 
 ---
 
@@ -2258,6 +2258,9 @@ export context. It intentionally excludes historical era narratives.
 - `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
   API snapshots via `/codex*` endpoints.
 - `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
+- `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
+  `daemon_invariants.json`, and feeds invariant frames into the LLM decision
+  loop before any external action proposal.
 
 ## Governance and Integrity
 
@@ -8530,6 +8533,23 @@ type DaemonDecision = {
   };
 };
 
+type InvariantSignal = {
+  key: string;
+  vector: string;
+  weight: number;
+  evidence: string[];
+};
+
+type InvariantFrame = {
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  invariants: InvariantSignal[];
+  summary: string;
+  created_at: string;
+};
+
 type OpenAIChoice = {
   message?: {
     content?: string;
@@ -8593,6 +8613,12 @@ const logWarn = (text: string): void => {
   );
 };
 
+const logInvariant = (text: string): void => {
+  console.log(
+    `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.yellow}[MYCELIUM:INVARIANT]${ANSI.reset} ${text}`,
+  );
+};
+
 const logError = (text: string): void => {
   console.error(
     `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.red}[MYCELIUM:ERROR]${ANSI.reset} ${text}`,
@@ -8628,6 +8654,14 @@ const MEMORY_LIMIT = parseBoundedInt(
 );
 const MEMORY_PATH = Deno.env.get("OMEGA_DAEMON_MEMORY_PATH") ??
   "./daemon_memory.json";
+const INVARIANT_MEMORY_LIMIT = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_INVARIANT_LIMIT"),
+  32,
+  1,
+  256,
+);
+const INVARIANT_PATH = Deno.env.get("OMEGA_DAEMON_INVARIANT_PATH") ??
+  "./daemon_invariants.json";
 
 const withTimeout = async (
   input: string,
@@ -8666,6 +8700,70 @@ const saveMemory = async (thoughts: string[]): Promise<void> => {
     MEMORY_PATH,
     `${JSON.stringify(compact, null, 2)}\n`,
   );
+};
+
+const loadInvariantHistory = async (): Promise<InvariantFrame[]> => {
+  try {
+    const raw = await Deno.readTextFile(INVARIANT_PATH);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((entry): entry is InvariantFrame =>
+        !!entry &&
+        typeof entry === "object" &&
+        Array.isArray((entry as Record<string, unknown>).invariants) &&
+        typeof (entry as Record<string, unknown>).signature === "string"
+      )
+      .slice(-INVARIANT_MEMORY_LIMIT);
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) return [];
+    logWarn(`Invariant memory read fallback: ${String(err)}`);
+    return [];
+  }
+};
+
+const saveInvariantHistory = async (
+  frames: InvariantFrame[],
+): Promise<void> => {
+  const compact = frames.slice(-INVARIANT_MEMORY_LIMIT);
+  await Deno.writeTextFile(
+    INVARIANT_PATH,
+    `${JSON.stringify(compact, null, 2)}\n`,
+  );
+};
+
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash.toString(16).padStart(8, "0");
+};
+
+const tokenize = (value: string): string[] =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]+/gu, " ")
+    .split(/\s+/u)
+    .map((token) => token.trim())
+    .filter((token) => token.length >= 4);
+
+const tokenSet = (parts: string[]): Set<string> => {
+  const out = new Set<string>();
+  for (const part of parts) {
+    for (const token of tokenize(part)) out.add(token);
+  }
+  return out;
+};
+
+const setIntersection = (a: Set<string>, b: Set<string>): string[] => {
+  const out: string[] = [];
+  for (const token of a) {
+    if (b.has(token)) out.push(token);
+  }
+  out.sort((x, y) => x.localeCompare(y));
+  return out;
 };
 
 const normalizeTelemetry = (raw: unknown): Telemetry => {
@@ -8724,9 +8822,10 @@ const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
     title: typeof source.title === "string" && source.title.trim().length > 0
       ? source.title.trim()
       : "Lattice Status",
-    summary: typeof source.summary === "string" && source.summary.trim().length > 0
-      ? source.summary.trim()
-      : "Codex narrative unavailable.",
+    summary:
+      typeof source.summary === "string" && source.summary.trim().length > 0
+        ? source.summary.trim()
+        : "Codex narrative unavailable.",
     relicStatus: typeof source.relicStatus === "string"
       ? source.relicStatus
       : "Relic status unavailable.",
@@ -8757,13 +8856,108 @@ const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
       epoch: 0,
       mood: "STABLE",
       title: "Codex Unavailable",
-      summary: "Codex narrative endpoint unavailable; operating on telemetry only.",
+      summary:
+        "Codex narrative endpoint unavailable; operating on telemetry only.",
       relicStatus: "Relic status unavailable.",
       promptBridge: "Use plain language for observer-facing updates.",
       recentChronicles: [],
     };
   }
 };
+
+const energyBand = (avgEnergy: number): string => {
+  if (avgEnergy < 8) return "SCARCITY";
+  if (avgEnergy < 20) return "TENSION";
+  if (avgEnergy < 45) return "BALANCED";
+  return "SURPLUS";
+};
+
+const moodBand = (mood: string): string => {
+  const normalized = mood.trim().toUpperCase();
+  if (normalized === "FRAGILE") return "FRAGILE";
+  if (normalized === "ASCENDANT") return "ASCENDANT";
+  return "STABLE";
+};
+
+const dominantAnchor = (dominantGenomes: string[]): string =>
+  dominantGenomes.length > 0
+    ? dominantGenomes[0].replace(/^0x/iu, "").slice(0, 8).toUpperCase()
+    : "NONE";
+
+const buildInvariantFrame = (
+  telemetry: Telemetry,
+  codexNarrative: CodexNarrative,
+  memory: string[],
+): InvariantFrame => {
+  const mood = moodBand(codexNarrative.mood);
+  const energy = energyBand(telemetry.avgEnergy);
+  const lineage = dominantAnchor(telemetry.dominantGenomes);
+  const memoryTokens = tokenSet(memory.slice(-4));
+  const narrativeTokens = tokenSet([
+    codexNarrative.title,
+    codexNarrative.summary,
+    codexNarrative.relicStatus,
+    ...telemetry.voxPopuli.slice(0, 4),
+  ]);
+  const sharedTokens = setIntersection(memoryTokens, narrativeTokens).slice(
+    0,
+    6,
+  );
+  const invariantSignals: InvariantSignal[] = [
+    {
+      key: "energy_mood_coupling",
+      vector: `${energy}:${mood}`,
+      weight: energy === "SCARCITY" || mood === "FRAGILE" ? 0.94 : 0.62,
+      evidence: [
+        `avgEnergy=${telemetry.avgEnergy.toFixed(2)}`,
+        `mood=${mood}`,
+      ],
+    },
+    {
+      key: "lineage_anchor",
+      vector: lineage,
+      weight: lineage === "NONE" ? 0.25 : 0.71,
+      evidence: telemetry.dominantGenomes.slice(0, 2),
+    },
+    {
+      key: "semantic_intersection",
+      vector: sharedTokens.length > 0 ? sharedTokens.join("|") : "none",
+      weight: sharedTokens.length > 0
+        ? clamp(0.36 + sharedTokens.length * 0.08, 0, 0.92)
+        : 0.12,
+      evidence: sharedTokens.length > 0 ? sharedTokens : ["no-overlap"],
+    },
+  ];
+
+  const signatureSeed = JSON.stringify({
+    tick: telemetry.tick,
+    epoch: codexNarrative.epoch,
+    mood,
+    energy,
+    lineage,
+    sharedTokens,
+  });
+  const signature = fnv1a32(signatureSeed);
+  const summary =
+    `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | overlap=${
+      sharedTokens.length > 0 ? sharedTokens.join(",") : "none"
+    }`;
+
+  return {
+    tick: telemetry.tick,
+    epoch: codexNarrative.epoch,
+    center: "tick.exists",
+    signature,
+    invariants: invariantSignals,
+    summary,
+    created_at: timestamp(),
+  };
+};
+
+const appendInvariantFrame = (
+  history: InvariantFrame[],
+  frame: InvariantFrame,
+): InvariantFrame[] => [...history, frame].slice(-INVARIANT_MEMORY_LIMIT);
 
 const normalizeAction = (value: unknown): ActionType => {
   if (typeof value !== "string") return "OBSERVE";
@@ -8821,6 +9015,8 @@ const askOpenAI = async (
   telemetry: Telemetry,
   codexNarrative: CodexNarrative,
   memory: string[],
+  invariantFrame: InvariantFrame,
+  invariantHistory: InvariantFrame[],
 ): Promise<DaemonDecision> => {
   if (!OPENAI_API_KEY) {
     return {
@@ -8832,7 +9028,9 @@ const askOpenAI = async (
   }
 
   const systemPrompt = [
-    "You are the Mycelial Observer of an ALife matrix.",
+    "You are the Mycelial Observer and Invariant Compressor of an ALife matrix.",
+    "Prioritize invariant-preserving actions over novelty.",
+    "If invariant confidence is weak, choose OBSERVE.",
     "Return strict JSON only.",
     "Decide whether to OBSERVE, DROP_PHEROMONE, or INJECT_PLASMID.",
     "If INJECT_PLASMID, hex_code must be exactly 16 hex chars.",
@@ -8853,6 +9051,8 @@ const askOpenAI = async (
         content: JSON.stringify({
           telemetry,
           codex_narrative: codexNarrative,
+          invariant_frame: invariantFrame,
+          recent_invariant_history: invariantHistory.slice(-6),
           previous_thoughts: memory,
           output_contract: {
             internal_monologue: "string",
@@ -8934,12 +9134,28 @@ const appendThought = (memory: string[], thought: string): string[] =>
   [...memory, thought].slice(-MEMORY_LIMIT);
 
 const runHeartbeat = async (): Promise<void> => {
-  const memory = await loadMemory();
+  const [memory, invariantHistory] = await Promise.all([
+    loadMemory(),
+    loadInvariantHistory(),
+  ]);
   const [telemetry, codexNarrative] = await Promise.all([
     fetchTelemetry(),
     fetchCodexNarrative(),
   ]);
-  const decision = await askOpenAI(telemetry, codexNarrative, memory);
+  const invariantFrame = buildInvariantFrame(telemetry, codexNarrative, memory);
+  const nextInvariantHistory = appendInvariantFrame(
+    invariantHistory,
+    invariantFrame,
+  );
+  await saveInvariantHistory(nextInvariantHistory);
+  logInvariant(`${invariantFrame.summary} | sig=${invariantFrame.signature}`);
+  const decision = await askOpenAI(
+    telemetry,
+    codexNarrative,
+    memory,
+    invariantFrame,
+    nextInvariantHistory,
+  );
 
   logThought(decision.internal_monologue);
   await saveMemory(appendThought(memory, decision.internal_monologue));
@@ -8957,7 +9173,7 @@ const runHeartbeat = async (): Promise<void> => {
 
 const startDaemon = (): void => {
   logAction(
-    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE}`,
+    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH}`,
   );
 
   const heartbeat = async (): Promise<void> => {

@@ -57,6 +57,9 @@ export context. It intentionally excludes historical era narratives.
 - `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
   API snapshots via `/codex*` endpoints.
 - `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
+- `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
+  `daemon_invariants.json`, and feeds invariant frames into the LLM decision
+  loop before any external action proposal.
 
 ## Governance and Integrity
 
