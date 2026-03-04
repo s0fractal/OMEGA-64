@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:56:50.262Z*
+*Generated: 2026-03-04T11:01:02.623Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: e517cdd34a83*
+*Git Commit: ba6ef79e3bd3*
 
 ---
 
@@ -1716,7 +1716,8 @@ export context. It intentionally excludes historical era narratives.
    `./codex/chronicles`, `./codex/relics`)
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
-   `/codex/narrative` into plain-language state summaries.
+   `/codex/narrative` into plain-language state summaries plus drift deltas
+   over a rolling ~90s window.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -17152,6 +17153,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           Awaiting telemetry and codex narrative...
         </div>
         <button id="human-explain-btn" class="human-btn">Explain Current State</button>
+        <div id="human-drift-explanation" class="codex-row-body codex-row-subtle">
+          Drift baseline is forming...
+        </div>
+        <button id="human-drift-btn" class="human-btn">Explain Drift (90s)</button>
         <div id="human-channel-stamp">Updated: --</div>
       </div>
     </div>
@@ -17278,6 +17283,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
       let codexNarrative = { mood: "STABLE", title: "", summary: "", relicStatus: "", recentChronicles: [] };
       let telemetrySnapshot = { tick: 0, avgEnergy: 0, dominantGenomes: [], voxPopuli: [] };
+      const DRIFT_LOOKBACK_MS = 90 * 1000;
+      const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
+      let driftHistory = [];
+      let dictSyncInFlight = false;
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
       const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -17600,6 +17609,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `${hh}:${mm}:${ss}`;
       }
 
+      const dominantGenomeHex = () => {
+        if (!Array.isArray(telemetrySnapshot?.dominantGenomes)) return "";
+        const first = telemetrySnapshot.dominantGenomes[0];
+        return typeof first === "string" ? first : "";
+      };
+
       function inferDominantSpeciesLabel() {
         const dominant = Array.isArray(telemetrySnapshot.dominantGenomes)
           ? telemetrySnapshot.dominantGenomes[0]
@@ -17641,39 +17656,152 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return text.trim();
       }
 
-      function updateHumanChannelStamp() {
+      function updateHumanChannelStamp(extra = "") {
         const stamp = document.getElementById("human-channel-stamp");
         if (!stamp) return;
-        stamp.textContent = `Updated: ${nowClock()}`;
+        const suffix = extra && extra.length > 0 ? ` | ${extra}` : "";
+        stamp.textContent = `Updated: ${nowClock()}${suffix}`;
+      }
+
+      function pushDriftPoint() {
+        const point = {
+          ts: Date.now(),
+          tick: Number(telemetrySnapshot?.tick || 0),
+          avgEnergy: Number(telemetrySnapshot?.avgEnergy || 0),
+          population: Number(codexSnapshot?.population?.current || 0),
+          dominantGenome: dominantGenomeHex(),
+          mood: String(codexNarrative?.mood || "STABLE").toUpperCase(),
+        };
+        driftHistory.push(point);
+        const cutoff = Date.now() - DRIFT_HISTORY_RETENTION_MS;
+        driftHistory = driftHistory.filter((entry) => entry.ts >= cutoff);
+      }
+
+      function findDriftReference() {
+        if (driftHistory.length < 2) return null;
+        const latest = driftHistory[driftHistory.length - 1];
+        const targetTs = latest.ts - DRIFT_LOOKBACK_MS;
+        let reference = null;
+        for (const entry of driftHistory) {
+          if (entry.ts <= targetTs) reference = entry;
+          else break;
+        }
+        if (!reference) reference = driftHistory[0];
+        if (!reference || reference === latest) return null;
+        return reference;
+      }
+
+      function buildDriftExplanation() {
+        if (driftHistory.length < 2) {
+          return "Collecting drift baseline. Re-run after ~90 seconds for directionality.";
+        }
+        const latest = driftHistory[driftHistory.length - 1];
+        const reference = findDriftReference();
+        if (!reference) {
+          return "Drift reference unavailable. Continue observing to accumulate temporal contrast.";
+        }
+
+        const elapsedSec = Math.max(1, Math.round((latest.ts - reference.ts) / 1000));
+        const deltaTick = latest.tick - reference.tick;
+        const deltaEnergy = latest.avgEnergy - reference.avgEnergy;
+        const deltaPopulation = latest.population - reference.population;
+        const dominantShifted = (
+          latest.dominantGenome.length > 0 &&
+          reference.dominantGenome.length > 0 &&
+          latest.dominantGenome !== reference.dominantGenome
+        );
+        const moodShifted = latest.mood !== reference.mood;
+
+        const populationPhrase = deltaPopulation > 12
+          ? `population expanded by ${deltaPopulation}`
+          : deltaPopulation < -12
+          ? `population contracted by ${Math.abs(deltaPopulation)}`
+          : "population remained near-steady";
+        const energyPhrase = deltaEnergy > 1.25
+          ? `average energy increased (+${deltaEnergy.toFixed(1)})`
+          : deltaEnergy < -1.25
+          ? `average energy decreased (${deltaEnergy.toFixed(1)})`
+          : "average energy remained broadly stable";
+        const dominantPhrase = dominantShifted
+          ? `dominant genome rotated (${reference.dominantGenome.slice(0, 8)} → ${latest.dominantGenome.slice(0, 8)})`
+          : "dominant genome remained stable";
+        const moodPhrase = moodShifted
+          ? `codex mood shifted (${reference.mood} → ${latest.mood})`
+          : `codex mood held at ${latest.mood}`;
+
+        return `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`;
+      }
+
+      function renderHumanDrift() {
+        const node = document.getElementById("human-drift-explanation");
+        if (!node) return;
+        node.textContent = buildDriftExplanation();
       }
 
       function renderHumanExplanation() {
         const node = document.getElementById("human-explanation");
         if (!node) return;
         node.textContent = buildHumanExplanation();
-        updateHumanChannelStamp();
       }
 
-      async function refreshHumanChannel(forceFetch = false) {
-        if (forceFetch) {
-          await Promise.all([
-            fetch("/api/telemetry")
-              .then((r) => r.ok ? r.json() : null)
-              .then((d) => { if (d) telemetrySnapshot = d; })
-              .catch(() => {}),
-            fetch("/codex/narrative?limit=4")
-              .then((r) => r.ok ? r.json() : null)
-              .then((d) => { if (d) codexNarrative = d; })
-              .catch(() => {}),
-          ]);
-        }
+      function renderHumanChannel(extraStamp = "") {
         renderHumanExplanation();
+        renderHumanDrift();
+        updateHumanChannelStamp(extraStamp);
+      }
+
+      const fetchJson = async (path) => {
+        try {
+          const res = await fetch(path);
+          if (!res.ok) return null;
+          return await res.json();
+        } catch (_) {
+          return null;
+        }
+      };
+
+      async function refreshObserverDictionaries(force = false) {
+        if (dictSyncInFlight && !force) return;
+        dictSyncInFlight = true;
+        try {
+          const [
+            thoughts,
+            lineage,
+            codex,
+            narrative,
+            telemetry,
+          ] = await Promise.all([
+            fetchJson('/thoughts'),
+            fetchJson('/lineage'),
+            fetchJson('/codex?limit=6'),
+            fetchJson('/codex/narrative?limit=4'),
+            fetchJson('/api/telemetry'),
+          ]);
+
+          if (thoughts && typeof thoughts === "object") thoughtArchive = thoughts;
+          if (lineage && typeof lineage === "object") lineageArchive = lineage;
+          if (codex && typeof codex === "object") codexSnapshot = codex;
+          if (narrative && typeof narrative === "object") codexNarrative = narrative;
+          if (telemetry && typeof telemetry === "object") telemetrySnapshot = telemetry;
+
+          updateCodexPanel();
+          pushDriftPoint();
+          renderHumanChannel(`Drift ~${Math.round(DRIFT_LOOKBACK_MS / 1000)}s`);
+        } finally {
+          dictSyncInFlight = false;
+        }
       }
 
       const humanExplainBtn = document.getElementById("human-explain-btn");
       if (humanExplainBtn) {
         humanExplainBtn.addEventListener("click", () => {
-          void refreshHumanChannel(true);
+          void refreshObserverDictionaries(true);
+        });
+      }
+      const humanDriftBtn = document.getElementById("human-drift-btn");
+      if (humanDriftBtn) {
+        humanDriftBtn.addEventListener("click", () => {
+          void refreshObserverDictionaries(true);
         });
       }
 
@@ -17701,19 +17829,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           lastSync = t;
         }
         if (t - lastDictSync > 5000) {
-          fetch('/thoughts').then(r=>r.json()).then(d => { thoughtArchive = d; }).catch(()=>{});
-          fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
-          fetch('/codex?limit=6').then(r=>r.json()).then(d => { codexSnapshot = d; updateCodexPanel(); }).catch(()=>{});
-          fetch('/codex/narrative?limit=4').then(r=>r.json()).then(d => { codexNarrative = d; updateCodexPanel(); }).catch(()=>{});
-          fetch('/api/telemetry').then(r=>r.json()).then(d => { telemetrySnapshot = d; renderHumanExplanation(); }).catch(()=>{});
-          renderHumanExplanation();
+          void refreshObserverDictionaries(false);
           lastDictSync = t;
         }
         composer.render();
       }
 
       window.saveGenesis = () => fetch("/snapshot/export", { method: "POST" });
-      void refreshHumanChannel(true);
+      void refreshObserverDictionaries(true);
       animate(0);
     </script>
   </body>

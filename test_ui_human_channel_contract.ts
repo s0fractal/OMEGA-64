@@ -29,19 +29,43 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-drift-btn"',
+    "UI must render drift trigger button",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    'id="human-drift-explanation"',
+    "UI must render drift explanation surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildHumanExplanation",
     "UI must synthesize human-readable explanation",
     violations,
   );
   requireSnippet(
     ui,
-    "fetch('/api/telemetry')",
+    "buildDriftExplanation",
+    "UI must synthesize human-readable drift explanation",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "DRIFT_LOOKBACK_MS",
+    "UI must define drift lookback window constant",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "fetchJson('/api/telemetry')",
     "UI human channel must consume runtime telemetry endpoint",
     violations,
   );
   requireSnippet(
     ui,
-    "fetch('/codex/narrative?limit=4')",
+    "fetchJson('/codex/narrative?limit=4')",
     "UI human channel must consume codex narrative endpoint",
     violations,
   );
