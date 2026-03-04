@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:17:42.907Z*
+*Generated: 2026-03-04T10:30:06.704Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 94f3fbb79201d31b62936d5ae7361f6f680059f981172ab707ce03a8de64daf0*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: 9357a8e9c148*
+*Git Commit: 8cf5c252bba4*
 
 ---
 
@@ -1575,7 +1575,7 @@ console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 ## FILE: ARCHITECTURE_ACTIVE.md
 
 ```markdown
-# OMEGA-64 | Active Architecture (Era 70)
+# OMEGA-64 | Active Architecture (Era 69)
 
 This document is the canonical architecture snapshot for active runtime and
 export context. It intentionally excludes historical era narratives.
@@ -1592,6 +1592,18 @@ export context. It intentionally excludes historical era narratives.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`)
 
+## Runtime Classification Contract (Manifest)
+
+- Source of truth: `CORE_ARCH_MANIFEST.json`.
+- `runtime_root_files`: executable entry roots that define active runtime
+  closure.
+  Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
+  `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`.
+- `runtime_support_files`: operational/support code intentionally exported but
+  outside active runtime closure.
+- `experimental_files`: explicitly exported experimental surfaces that must not
+  be imported by active runtime roots.
+
 ## Deterministic Pulse Pipeline
 
 1. `PULSE.initWorkers()` boots worker mesh over shared memory.
@@ -1602,7 +1614,7 @@ export context. It intentionally excludes historical era narratives.
 6. Host applies sequential actions (bond requests, spawn queue drain).
 7. `GATE.tick()` performs admission, budgeting, policy checks, and ledgering.
 
-## Era 70 Additions
+## Post-69 Enabled Additions
 
 - `ATTENTION_FIELD` is now canonical shared-memory lattice state:
   `OFFSETS.ATTENTION_FIELD_OFFSET` + `STATE_MATRIX.attentionField`.
