@@ -46,6 +46,8 @@ const uniqueSorted = (items: Iterable<string>): string[] =>
 type ExportManifest = {
   era: string;
   runtime_root_files?: string[];
+  runtime_support_files?: string[];
+  experimental_files?: string[];
   core_entry_files: string[];
   required_additional_files: string[];
   context_files: string[];
@@ -54,6 +56,8 @@ type ExportManifest = {
 type LoadedManifest = {
   era: string;
   runtimeRootFiles: string[];
+  runtimeSupportFiles: string[];
+  experimentalFiles: string[];
   coreEntryFiles: string[];
   requiredArchFiles: string[];
   contextFiles: string[];
@@ -124,6 +128,14 @@ const loadManifest = async (): Promise<LoadedManifest> => {
       parsed.runtime_root_files,
       "runtime_root_files",
     );
+  const runtimeSupportFiles = parseManifestStringArray(
+    parsed?.runtime_support_files,
+    "runtime_support_files",
+  );
+  const experimentalFiles = parseManifestStringArray(
+    parsed?.experimental_files,
+    "experimental_files",
+  );
   const requiredAdditional = parseManifestStringArray(
     parsed?.required_additional_files,
     "required_additional_files",
@@ -139,6 +151,38 @@ const loadManifest = async (): Promise<LoadedManifest> => {
   if (runtimeRootFiles.length === 0) {
     throw new Error(`${MANIFEST_PATH}: runtime_root_files cannot be empty`);
   }
+  const runtimeRootSet = new Set(runtimeRootFiles);
+  const runtimeSupportSet = new Set(runtimeSupportFiles);
+  const overlapSupportExperimental = experimentalFiles.filter((f) =>
+    runtimeSupportSet.has(f)
+  );
+  if (overlapSupportExperimental.length > 0) {
+    throw new Error(
+      `${MANIFEST_PATH}: runtime_support_files overlaps experimental_files:\n${
+        overlapSupportExperimental.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const supportInRoots = runtimeSupportFiles.filter((f) =>
+    runtimeRootSet.has(f)
+  );
+  if (supportInRoots.length > 0) {
+    throw new Error(
+      `${MANIFEST_PATH}: runtime_support_files overlaps runtime_root_files:\n${
+        supportInRoots.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const experimentalInRoots = experimentalFiles.filter((f) =>
+    runtimeRootSet.has(f)
+  );
+  if (experimentalInRoots.length > 0) {
+    throw new Error(
+      `${MANIFEST_PATH}: experimental_files overlaps runtime_root_files:\n${
+        experimentalInRoots.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
 
   const requiredArchFiles = uniqueSorted([
     ...coreEntryFiles,
@@ -147,6 +191,8 @@ const loadManifest = async (): Promise<LoadedManifest> => {
   return {
     era,
     runtimeRootFiles,
+    runtimeSupportFiles,
+    experimentalFiles,
     coreEntryFiles,
     requiredArchFiles,
     contextFiles,
@@ -259,6 +305,8 @@ export const buildExportFileList = async (): Promise<
     runtimeRoots: string[];
     runtimeClosureFiles: string[];
     nonRuntimeCodeFiles: string[];
+    runtimeSupportCodeFiles: string[];
+    experimentalCodeFiles: string[];
   }
 > => {
   const manifest = await loadManifest();
@@ -324,6 +372,20 @@ export const buildExportFileList = async (): Promise<
   const nonRuntimeCodeFiles = files.filter((f) =>
     [".ts", ".tsx"].includes(extname(f)) && !runtimeClosureSet.has(f)
   );
+  const nonRuntimeCodeSet = new Set(nonRuntimeCodeFiles);
+  const runtimeSupportCodeFiles = manifest.runtimeSupportFiles.filter((f) =>
+    nonRuntimeCodeSet.has(f)
+  );
+  const experimentalCodeFiles = manifest.experimentalFiles.filter((f) =>
+    nonRuntimeCodeSet.has(f)
+  );
+  const classifiedSet = new Set([
+    ...runtimeSupportCodeFiles,
+    ...experimentalCodeFiles,
+  ]);
+  const unclassifiedNonRuntimeCodeFiles = nonRuntimeCodeFiles.filter((f) =>
+    !classifiedSet.has(f)
+  );
   const missingRequired = manifest.requiredArchFiles.filter((f) =>
     !files.includes(f)
   );
@@ -343,6 +405,53 @@ export const buildExportFileList = async (): Promise<
       }`,
     );
   }
+  const missingSupportFromExport = manifest.runtimeSupportFiles.filter((f) =>
+    !files.includes(f)
+  );
+  if (missingSupportFromExport.length > 0) {
+    throw new Error(
+      `runtime_support_files missing from export set:\n${
+        missingSupportFromExport.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const missingExperimentalFromExport = manifest.experimentalFiles.filter((f) =>
+    !files.includes(f)
+  );
+  if (missingExperimentalFromExport.length > 0) {
+    throw new Error(
+      `experimental_files missing from export set:\n${
+        missingExperimentalFromExport.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const staleSupportFiles = manifest.runtimeSupportFiles.filter((f) =>
+    runtimeClosureSet.has(f)
+  );
+  if (staleSupportFiles.length > 0) {
+    throw new Error(
+      `runtime_support_files leaked into active runtime closure:\n${
+        staleSupportFiles.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  const staleExperimentalFiles = manifest.experimentalFiles.filter((f) =>
+    runtimeClosureSet.has(f)
+  );
+  if (staleExperimentalFiles.length > 0) {
+    throw new Error(
+      `experimental_files leaked into active runtime closure:\n${
+        staleExperimentalFiles.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  if (unclassifiedNonRuntimeCodeFiles.length > 0) {
+    throw new Error(
+      `Unclassified non-runtime code files detected. Add them to runtime_support_files or experimental_files:\n${
+        unclassifiedNonRuntimeCodeFiles.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
 
   return {
     files,
@@ -350,6 +459,8 @@ export const buildExportFileList = async (): Promise<
     runtimeRoots: manifest.runtimeRootFiles,
     runtimeClosureFiles,
     nonRuntimeCodeFiles: uniqueSorted(nonRuntimeCodeFiles),
+    runtimeSupportCodeFiles: uniqueSorted(runtimeSupportCodeFiles),
+    experimentalCodeFiles: uniqueSorted(experimentalCodeFiles),
   };
 };
 
@@ -375,6 +486,8 @@ export const renderCoreExport = async (): Promise<
     runtimeRoots: string[];
     runtimeClosureFiles: string[];
     nonRuntimeCodeFiles: string[];
+    runtimeSupportCodeFiles: string[];
+    experimentalCodeFiles: string[];
   }
 > => {
   const {
@@ -383,6 +496,8 @@ export const renderCoreExport = async (): Promise<
     runtimeRoots,
     runtimeClosureFiles,
     nonRuntimeCodeFiles,
+    runtimeSupportCodeFiles,
+    experimentalCodeFiles,
   } = await buildExportFileList();
   const provenance = await buildExportProvenance(era, files);
 
@@ -392,6 +507,8 @@ export const renderCoreExport = async (): Promise<
   output += `*Runtime Roots: ${runtimeRoots.length}*\n`;
   output += `*Runtime Closure Files: ${runtimeClosureFiles.length}*\n`;
   output += `*Non-Runtime Code Files: ${nonRuntimeCodeFiles.length}*\n`;
+  output += `*Runtime-Support Code Files: ${runtimeSupportCodeFiles.length}*\n`;
+  output += `*Experimental Code Files: ${experimentalCodeFiles.length}*\n`;
   output += `*Manifest SHA256: ${provenance.manifestSha256}*\n`;
   output += `*Export Set SHA256: ${provenance.exportSetSha256}*\n`;
   output += `*Git Commit: ${provenance.gitCommit}*\n\n---\n\n`;
@@ -408,11 +525,31 @@ export const renderCoreExport = async (): Promise<
   }
   output += `\n---\n\n`;
 
-  output += `## NON-RUNTIME CODE FILES (MANIFEST/CONTEXT)\n\n`;
+  output += `## NON-RUNTIME CODE FILES (ALL)\n\n`;
   if (nonRuntimeCodeFiles.length === 0) {
     output += `- none\n`;
   } else {
     for (const file of nonRuntimeCodeFiles) {
+      output += `- ${file}\n`;
+    }
+  }
+  output += `\n---\n\n`;
+
+  output += `## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT\n\n`;
+  if (runtimeSupportCodeFiles.length === 0) {
+    output += `- none\n`;
+  } else {
+    for (const file of runtimeSupportCodeFiles) {
+      output += `- ${file}\n`;
+    }
+  }
+  output += `\n---\n\n`;
+
+  output += `## NON-RUNTIME CODE FILES | EXPERIMENTAL\n\n`;
+  if (experimentalCodeFiles.length === 0) {
+    output += `- none\n`;
+  } else {
+    for (const file of experimentalCodeFiles) {
       output += `- ${file}\n`;
     }
   }
@@ -432,6 +569,8 @@ export const renderCoreExport = async (): Promise<
     runtimeRoots,
     runtimeClosureFiles,
     nonRuntimeCodeFiles,
+    runtimeSupportCodeFiles,
+    experimentalCodeFiles,
   };
 };
 

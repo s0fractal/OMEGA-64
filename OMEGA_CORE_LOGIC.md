@@ -1,13 +1,15 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:10:53.173Z*
+*Generated: 2026-03-04T10:17:42.907Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
 *Non-Runtime Code Files: 21*
-*Manifest SHA256: d916ba3d080111cefb46dd4e1063bca05289d08572464368146864e0c9feec3a*
+*Runtime-Support Code Files: 16*
+*Experimental Code Files: 5*
+*Manifest SHA256: 94f3fbb79201d31b62936d5ae7361f6f680059f981172ab707ce03a8de64daf0*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: c71ce99babf9*
+*Git Commit: 9357a8e9c148*
 
 ---
 
@@ -63,7 +65,7 @@
 
 ---
 
-## NON-RUNTIME CODE FILES (MANIFEST/CONTEXT)
+## NON-RUNTIME CODE FILES (ALL)
 
 - build_wasm.ts
 - ECOLOGY_ENGINE.ts
@@ -86,6 +88,37 @@
 - worker_seeded_swarm.ts
 - worker_trend_baseline.ts
 - worker_trend_math.ts
+
+---
+
+## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT
+
+- build_wasm.ts
+- HOLOGRAM_MODULE.ts
+- mod.ts
+- OBSERVER_LAB.ts
+- OBSERVER_UI.ts
+- P2P_SYNAPSE.ts
+- RECOVERY.ts
+- SNAP.ts
+- STRUCTURE_ENGINE.ts
+- wasm_layout_guard.ts
+- worker_determinism_capture.ts
+- worker_gate_thresholds.ts
+- worker_resilience_capture.ts
+- worker_seeded_swarm.ts
+- worker_trend_baseline.ts
+- worker_trend_math.ts
+
+---
+
+## NON-RUNTIME CODE FILES | EXPERIMENTAL
+
+- ECOLOGY_ENGINE.ts
+- LAMBDA_VM.ts
+- MATRIX_ENGINE.ts
+- REFLECTION_ENGINE.ts
+- RIBOSOME_TICK.ts
 
 ---
 
@@ -3589,6 +3622,31 @@ export const CONTROL_INTENT_QUEUE = {
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "assembly/index.ts"
+  ],
+  "runtime_support_files": [
+    "build_wasm.ts",
+    "HOLOGRAM_MODULE.ts",
+    "mod.ts",
+    "OBSERVER_LAB.ts",
+    "OBSERVER_UI.ts",
+    "P2P_SYNAPSE.ts",
+    "RECOVERY.ts",
+    "SNAP.ts",
+    "STRUCTURE_ENGINE.ts",
+    "wasm_layout_guard.ts",
+    "worker_determinism_capture.ts",
+    "worker_gate_thresholds.ts",
+    "worker_resilience_capture.ts",
+    "worker_seeded_swarm.ts",
+    "worker_trend_baseline.ts",
+    "worker_trend_math.ts"
+  ],
+  "experimental_files": [
+    "ECOLOGY_ENGINE.ts",
+    "LAMBDA_VM.ts",
+    "MATRIX_ENGINE.ts",
+    "REFLECTION_ENGINE.ts",
+    "RIBOSOME_TICK.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",

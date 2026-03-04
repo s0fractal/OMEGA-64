@@ -35,6 +35,8 @@ const main = async () => {
     runtimeRoots,
     runtimeClosureFiles,
     nonRuntimeCodeFiles,
+    runtimeSupportCodeFiles,
+    experimentalCodeFiles,
   } = await buildExportFileList();
 
   const exportSet = new Set(files);
@@ -99,9 +101,21 @@ const main = async () => {
       }`,
     );
   }
+  const classified = new Set([
+    ...runtimeSupportCodeFiles,
+    ...experimentalCodeFiles,
+  ]);
+  const unclassified = nonRuntimeCodeFiles.filter((f) => !classified.has(f));
+  if (unclassified.length > 0) {
+    throw new Error(
+      `[export-runtime-topology] non-runtime code files must be classified:\n${
+        unclassified.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
 
   console.log(
-    `[export-runtime-topology] runtime topology guard passed. roots=${runtimeRoots.length} closure=${runtimeClosureFiles.length} nonRuntimeCode=${nonRuntimeCodeFiles.length}`,
+    `[export-runtime-topology] runtime topology guard passed. roots=${runtimeRoots.length} closure=${runtimeClosureFiles.length} nonRuntimeCode=${nonRuntimeCodeFiles.length} support=${runtimeSupportCodeFiles.length} experimental=${experimentalCodeFiles.length}`,
   );
 };
 

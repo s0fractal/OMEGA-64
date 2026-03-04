@@ -25,6 +25,8 @@ const main = async () => {
     runtimeRoots,
     runtimeClosureFiles,
     nonRuntimeCodeFiles,
+    runtimeSupportCodeFiles,
+    experimentalCodeFiles,
   } = await renderCoreExport();
   expect(
     files.length > 0,
@@ -54,6 +56,12 @@ const main = async () => {
   const nonRuntimeCodeLine = header.find((line) =>
     line.startsWith("*Non-Runtime Code Files: ")
   );
+  const runtimeSupportLine = header.find((line) =>
+    line.startsWith("*Runtime-Support Code Files: ")
+  );
+  const experimentalLine = header.find((line) =>
+    line.startsWith("*Experimental Code Files: ")
+  );
 
   expect(
     typeof manifestLine === "string",
@@ -79,6 +87,14 @@ const main = async () => {
     typeof nonRuntimeCodeLine === "string",
     "[export-provenance] missing Non-Runtime Code Files header",
   );
+  expect(
+    typeof runtimeSupportLine === "string",
+    "[export-provenance] missing Runtime-Support Code Files header",
+  );
+  expect(
+    typeof experimentalLine === "string",
+    "[export-provenance] missing Experimental Code Files header",
+  );
 
   const manifestHash = parseHeaderValue(manifestLine!, "*Manifest SHA256: ");
   const exportSetHash = parseHeaderValue(
@@ -94,6 +110,12 @@ const main = async () => {
   );
   const nonRuntimeCodeCount = Number(
     parseHeaderValue(nonRuntimeCodeLine!, "*Non-Runtime Code Files: "),
+  );
+  const runtimeSupportCount = Number(
+    parseHeaderValue(runtimeSupportLine!, "*Runtime-Support Code Files: "),
+  );
+  const experimentalCount = Number(
+    parseHeaderValue(experimentalLine!, "*Experimental Code Files: "),
   );
 
   expect(
@@ -120,6 +142,14 @@ const main = async () => {
     Number.isInteger(nonRuntimeCodeCount) && nonRuntimeCodeCount >= 0,
     `[export-provenance] invalid non-runtime code count: ${nonRuntimeCodeCount}`,
   );
+  expect(
+    Number.isInteger(runtimeSupportCount) && runtimeSupportCount >= 0,
+    `[export-provenance] invalid runtime-support count: ${runtimeSupportCount}`,
+  );
+  expect(
+    Number.isInteger(experimentalCount) && experimentalCount >= 0,
+    `[export-provenance] invalid experimental count: ${experimentalCount}`,
+  );
 
   expect(
     manifestHash === provenance.manifestSha256,
@@ -144,6 +174,14 @@ const main = async () => {
   expect(
     nonRuntimeCodeCount === nonRuntimeCodeFiles.length,
     "[export-provenance] non-runtime code count mismatch between header and payload",
+  );
+  expect(
+    runtimeSupportCount === runtimeSupportCodeFiles.length,
+    "[export-provenance] runtime-support count mismatch between header and payload",
+  );
+  expect(
+    experimentalCount === experimentalCodeFiles.length,
+    "[export-provenance] experimental count mismatch between header and payload",
   );
 
   console.log(

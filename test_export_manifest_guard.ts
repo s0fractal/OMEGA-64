@@ -1,6 +1,8 @@
 type ExportManifest = {
   era: string;
   runtime_root_files?: string[];
+  runtime_support_files?: string[];
+  experimental_files?: string[];
   core_entry_files: string[];
   required_additional_files: string[];
   context_files: string[];
@@ -13,6 +15,13 @@ const REQUIRED_RUNTIME_ROOT_FILES = [
   "PULSE.ts",
   "AKASHA_SERVER.ts",
   "OMEGA_DAEMON.ts",
+];
+const REQUIRED_RUNTIME_SUPPORT_FILES = [
+  "build_wasm.ts",
+  "wasm_layout_guard.ts",
+];
+const REQUIRED_EXPERIMENTAL_FILES = [
+  "LAMBDA_VM.ts",
 ];
 const FORBIDDEN_CONTEXT_FILES = ["ARCHITECTURE.md", "GEMINI.md"];
 
@@ -106,6 +115,14 @@ const main = async () => {
     parsed.runtime_root_files,
     "runtime_root_files",
   );
+  const runtimeSupport = ensureStringArray(
+    parsed.runtime_support_files,
+    "runtime_support_files",
+  );
+  const experimental = ensureStringArray(
+    parsed.experimental_files,
+    "experimental_files",
+  );
   const required = ensureStringArray(
     parsed.required_additional_files,
     "required_additional_files",
@@ -120,6 +137,8 @@ const main = async () => {
   }
 
   assertUnique(runtimeRoots, "runtime_root_files");
+  assertUnique(runtimeSupport, "runtime_support_files");
+  assertUnique(experimental, "experimental_files");
   assertUnique(core, "core_entry_files");
   assertUnique(required, "required_additional_files");
   assertUnique(context, "context_files");
@@ -128,6 +147,20 @@ const main = async () => {
     if (!runtimeRoots.includes(root)) {
       throw new Error(
         `[manifest] runtime_root_files missing required runtime root: ${root}`,
+      );
+    }
+  }
+  for (const supportFile of REQUIRED_RUNTIME_SUPPORT_FILES) {
+    if (!runtimeSupport.includes(supportFile)) {
+      throw new Error(
+        `[manifest] runtime_support_files missing required support file: ${supportFile}`,
+      );
+    }
+  }
+  for (const experimentalFile of REQUIRED_EXPERIMENTAL_FILES) {
+    if (!experimental.includes(experimentalFile)) {
+      throw new Error(
+        `[manifest] experimental_files missing required file: ${experimentalFile}`,
       );
     }
   }
@@ -156,8 +189,40 @@ const main = async () => {
       }`,
     );
   }
+  const runtimeRootSet = new Set(runtimeRoots);
+  const runtimeSupportSet = new Set(runtimeSupport);
+  const overlapSupportExperimental = experimental.filter((x) =>
+    runtimeSupportSet.has(x)
+  );
+  if (overlapSupportExperimental.length > 0) {
+    throw new Error(
+      `[manifest] runtime_support_files overlaps experimental_files:\n${
+        overlapSupportExperimental.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
+  const supportInRoots = runtimeSupport.filter((x) => runtimeRootSet.has(x));
+  if (supportInRoots.length > 0) {
+    throw new Error(
+      `[manifest] runtime_support_files overlaps runtime_root_files:\n${
+        supportInRoots.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
+  const experimentalInRoots = experimental.filter((x) =>
+    runtimeRootSet.has(x)
+  );
+  if (experimentalInRoots.length > 0) {
+    throw new Error(
+      `[manifest] experimental_files overlaps runtime_root_files:\n${
+        experimentalInRoots.map((x) => `- ${x}`).join("\n")
+      }`,
+    );
+  }
 
   await assertFilesExist(runtimeRoots, "runtime_root_files");
+  await assertFilesExist(runtimeSupport, "runtime_support_files");
+  await assertFilesExist(experimental, "experimental_files");
   await assertFilesExist(core, "core_entry_files");
   await assertFilesExist(required, "required_additional_files");
   await assertFilesExist(context, "context_files");
@@ -180,6 +245,16 @@ const main = async () => {
   if (!exporter.includes("Runtime Closure Files")) {
     throw new Error(
       "[manifest] export_core.ts must emit runtime closure provenance",
+    );
+  }
+  if (!exporter.includes("Runtime-Support Code Files")) {
+    throw new Error(
+      "[manifest] export_core.ts must emit runtime-support classification provenance",
+    );
+  }
+  if (!exporter.includes("Experimental Code Files")) {
+    throw new Error(
+      "[manifest] export_core.ts must emit experimental classification provenance",
     );
   }
 

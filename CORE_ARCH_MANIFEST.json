@@ -8,6 +8,31 @@
     "OMEGA_DAEMON.ts",
     "assembly/index.ts"
   ],
+  "runtime_support_files": [
+    "build_wasm.ts",
+    "HOLOGRAM_MODULE.ts",
+    "mod.ts",
+    "OBSERVER_LAB.ts",
+    "OBSERVER_UI.ts",
+    "P2P_SYNAPSE.ts",
+    "RECOVERY.ts",
+    "SNAP.ts",
+    "STRUCTURE_ENGINE.ts",
+    "wasm_layout_guard.ts",
+    "worker_determinism_capture.ts",
+    "worker_gate_thresholds.ts",
+    "worker_resilience_capture.ts",
+    "worker_seeded_swarm.ts",
+    "worker_trend_baseline.ts",
+    "worker_trend_math.ts"
+  ],
+  "experimental_files": [
+    "ECOLOGY_ENGINE.ts",
+    "LAMBDA_VM.ts",
+    "MATRIX_ENGINE.ts",
+    "REFLECTION_ENGINE.ts",
+    "RIBOSOME_TICK.ts"
+  ],
   "core_entry_files": [
     "SYSTEM_START.ts",
     "CONTROL_INTENT_QUEUE.ts",
