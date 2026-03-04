@@ -8,6 +8,12 @@ const SYSTEM_HOST = RUNTIME_POLICY.system.host;
 const SYSTEM_PORT = RUNTIME_POLICY.system.port;
 const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const MESH_MAX_PHEROMONE_INTENSITY = RUNTIME_POLICY.daemon
+  .maxPheromoneIntensity;
+const MESH_MAX_PLASMID_CHARGE = RUNTIME_POLICY.daemon.maxPlasmidCharge;
+const MESH_HEX_RE = /^[0-9a-fA-F]{16}$/u;
+const MESH_WORLD_MAX_X = 1399;
+const MESH_WORLD_MAX_Y = 799;
 const ROOT = "./";
 const REST_JSON_HEADERS = {
   "Content-Type": "application/json",
@@ -45,6 +51,112 @@ const buildForwardHeaders = (
 
 const json = (payload: unknown, status = 200): Response =>
   new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const toFiniteNumber = (value: unknown): number | null => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return null;
+};
+
+type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
+type MeshForwardEnvelope = {
+  action_type: MeshForwardAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+type ParsedMeshInject = {
+  envelope: MeshForwardEnvelope;
+  signalType: "mesh_pheromone" | "mesh_plasmid";
+  eventId: string;
+  sourcePeer: string;
+};
+
+const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const root = raw as Record<string, unknown>;
+  const payloadRaw = root.payload;
+  if (
+    !payloadRaw || typeof payloadRaw !== "object" || Array.isArray(payloadRaw)
+  ) {
+    return null;
+  }
+  const payload = payloadRaw as Record<string, unknown>;
+
+  const sourceType = typeof root.type === "string"
+    ? root.type.trim().toLowerCase()
+    : "";
+  const explicitAction = typeof root.action_type === "string"
+    ? root.action_type.trim().toUpperCase()
+    : "";
+
+  const action: MeshForwardAction = explicitAction === "INJECT_PLASMID" ||
+      sourceType === "mesh_plasmid"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const signalType = action === "INJECT_PLASMID"
+    ? "mesh_plasmid"
+    : "mesh_pheromone";
+
+  const x = toFiniteNumber(payload.target_x);
+  const y = toFiniteNumber(payload.target_y);
+  if (x === null || y === null) return null;
+
+  const intensityRaw = toFiniteNumber(payload.intensity);
+  const fallbackIntensity = action === "INJECT_PLASMID" ? 1000 : 120;
+  const maxIntensity = action === "INJECT_PLASMID"
+    ? MESH_MAX_PLASMID_CHARGE
+    : MESH_MAX_PHEROMONE_INTENSITY;
+  const intensity = clamp(
+    Math.round(intensityRaw === null ? fallbackIntensity : intensityRaw),
+    1,
+    maxIntensity,
+  );
+
+  const target_x = clamp(Math.round(x), 0, MESH_WORLD_MAX_X);
+  const target_y = clamp(Math.round(y), 0, MESH_WORLD_MAX_Y);
+
+  let hex_code: string | undefined = undefined;
+  if (action === "INJECT_PLASMID") {
+    const rawHex = typeof payload.hex_code === "string"
+      ? payload.hex_code.trim()
+      : "";
+    if (!MESH_HEX_RE.test(rawHex)) return null;
+    hex_code = rawHex.toUpperCase();
+  }
+
+  const eventIdRaw = typeof root.event_id === "string" ? root.event_id : "";
+  const sourcePeerRaw = typeof root.source_peer === "string"
+    ? root.source_peer
+    : "";
+  const eventId = eventIdRaw.trim().slice(0, 96);
+  const sourcePeer = sourcePeerRaw.trim().slice(0, 96);
+
+  return {
+    envelope: {
+      action_type: action,
+      payload: {
+        target_x,
+        target_y,
+        intensity,
+        ...(hex_code ? { hex_code } : {}),
+      },
+    },
+    signalType,
+    eventId,
+    sourcePeer,
+  };
+};
 
 const proxyTelemetry = async (incoming: Request): Promise<Response> => {
   try {
@@ -109,6 +221,64 @@ const proxyInject = async (incoming: Request): Promise<Response> => {
       reason: "SYSTEM_INJECT_UNREACHABLE",
       details: String(err),
       system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
+  let parsedBody: unknown = null;
+  try {
+    parsedBody = await incoming.json();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+
+  const parsed = parseMeshInjectBody(parsedBody);
+  if (!parsed) {
+    return json({
+      ok: false,
+      reason: "INVALID_WEBRTC_INJECT_PAYLOAD",
+      expected:
+        "payload {target_x,target_y,intensity,hex_code?} + type mesh_pheromone|mesh_plasmid",
+    }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: JSON.stringify(parsed.envelope),
+    });
+    const raw = await response.text();
+    let systemResponse: unknown = null;
+    try {
+      systemResponse = JSON.parse(raw);
+    } catch {
+      systemResponse = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json({
+      ok: response.ok,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
+      forwarded: parsed.envelope,
+      system: systemResponse,
+    }, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
     }, 503);
   }
 };
@@ -274,6 +444,10 @@ const reqHandler = async (req: Request) => {
     return json(AKASHA_SIGNALING.status());
   }
 
+  if (req.method === "POST" && url.pathname === "/api/webrtc/inject") {
+    return proxyWebRtcInject(req);
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -283,7 +457,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

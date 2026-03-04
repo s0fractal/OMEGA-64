@@ -89,6 +89,42 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "postWebRtcInject",
+    "UI must forward mesh packets through gated WebRTC inject endpoint",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    '"/api/webrtc/inject"',
+    "UI mesh ingress must use dedicated Akasha inject route",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "mesh_pheromone",
+    "UI must support mesh pheromone packet type",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "mesh_plasmid",
+    "UI must support mesh plasmid packet type",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "ingestMeshFrame",
+    "UI must validate and ingest inbound mesh packets",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "omegaRtcMesh",
+    "UI must expose explicit mesh emit API for operators",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "updatePeerMeshHud",
     "UI must surface mesh signaling status in HUD",
     violations,

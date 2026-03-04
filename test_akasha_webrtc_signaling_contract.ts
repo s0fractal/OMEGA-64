@@ -36,6 +36,34 @@ const main = async () => {
   );
   requireSnippet(
     server,
+    '"/api/webrtc/inject"',
+    AKASHA_SERVER_PATH,
+    "akasha server must expose dedicated webrtc ingress endpoint",
+    violations,
+  );
+  requireSnippet(
+    server,
+    "proxyWebRtcInject",
+    AKASHA_SERVER_PATH,
+    "akasha server must route webrtc ingress through explicit proxy",
+    violations,
+  );
+  requireSnippet(
+    server,
+    "maxPheromoneIntensity",
+    AKASHA_SERVER_PATH,
+    "webrtc ingress must clamp pheromone intensity to daemon policy",
+    violations,
+  );
+  requireSnippet(
+    server,
+    "maxPlasmidCharge",
+    AKASHA_SERVER_PATH,
+    "webrtc ingress must clamp plasmid charge to daemon policy",
+    violations,
+  );
+  requireSnippet(
+    server,
     "url.pathname === AKASHA_SIGNALING.path",
     AKASHA_SERVER_PATH,
     "akasha server must route websocket upgrades to signaling path",

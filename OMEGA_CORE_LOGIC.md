@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:55:21.795Z*
+*Generated: 2026-03-04T12:22:11.088Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 2c044c924ba24ba860cec2532bd93fa8caefa22a7be41727675b6f4a897659b8*
-*Git Commit: 97e6cafaae97*
+*Export Content SHA256: 09b78735c20fab423ef627908ea72be105c92a5cbf3a14d72bab086d671b9e7c*
+*Git Commit: 6fe29c066b87*
 
 ---
 
@@ -1000,6 +1000,12 @@ const SYSTEM_HOST = RUNTIME_POLICY.system.host;
 const SYSTEM_PORT = RUNTIME_POLICY.system.port;
 const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const MESH_MAX_PHEROMONE_INTENSITY = RUNTIME_POLICY.daemon
+  .maxPheromoneIntensity;
+const MESH_MAX_PLASMID_CHARGE = RUNTIME_POLICY.daemon.maxPlasmidCharge;
+const MESH_HEX_RE = /^[0-9a-fA-F]{16}$/u;
+const MESH_WORLD_MAX_X = 1399;
+const MESH_WORLD_MAX_Y = 799;
 const ROOT = "./";
 const REST_JSON_HEADERS = {
   "Content-Type": "application/json",
@@ -1037,6 +1043,112 @@ const buildForwardHeaders = (
 
 const json = (payload: unknown, status = 200): Response =>
   new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const toFiniteNumber = (value: unknown): number | null => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return null;
+};
+
+type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
+type MeshForwardEnvelope = {
+  action_type: MeshForwardAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+type ParsedMeshInject = {
+  envelope: MeshForwardEnvelope;
+  signalType: "mesh_pheromone" | "mesh_plasmid";
+  eventId: string;
+  sourcePeer: string;
+};
+
+const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const root = raw as Record<string, unknown>;
+  const payloadRaw = root.payload;
+  if (
+    !payloadRaw || typeof payloadRaw !== "object" || Array.isArray(payloadRaw)
+  ) {
+    return null;
+  }
+  const payload = payloadRaw as Record<string, unknown>;
+
+  const sourceType = typeof root.type === "string"
+    ? root.type.trim().toLowerCase()
+    : "";
+  const explicitAction = typeof root.action_type === "string"
+    ? root.action_type.trim().toUpperCase()
+    : "";
+
+  const action: MeshForwardAction = explicitAction === "INJECT_PLASMID" ||
+      sourceType === "mesh_plasmid"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const signalType = action === "INJECT_PLASMID"
+    ? "mesh_plasmid"
+    : "mesh_pheromone";
+
+  const x = toFiniteNumber(payload.target_x);
+  const y = toFiniteNumber(payload.target_y);
+  if (x === null || y === null) return null;
+
+  const intensityRaw = toFiniteNumber(payload.intensity);
+  const fallbackIntensity = action === "INJECT_PLASMID" ? 1000 : 120;
+  const maxIntensity = action === "INJECT_PLASMID"
+    ? MESH_MAX_PLASMID_CHARGE
+    : MESH_MAX_PHEROMONE_INTENSITY;
+  const intensity = clamp(
+    Math.round(intensityRaw === null ? fallbackIntensity : intensityRaw),
+    1,
+    maxIntensity,
+  );
+
+  const target_x = clamp(Math.round(x), 0, MESH_WORLD_MAX_X);
+  const target_y = clamp(Math.round(y), 0, MESH_WORLD_MAX_Y);
+
+  let hex_code: string | undefined = undefined;
+  if (action === "INJECT_PLASMID") {
+    const rawHex = typeof payload.hex_code === "string"
+      ? payload.hex_code.trim()
+      : "";
+    if (!MESH_HEX_RE.test(rawHex)) return null;
+    hex_code = rawHex.toUpperCase();
+  }
+
+  const eventIdRaw = typeof root.event_id === "string" ? root.event_id : "";
+  const sourcePeerRaw = typeof root.source_peer === "string"
+    ? root.source_peer
+    : "";
+  const eventId = eventIdRaw.trim().slice(0, 96);
+  const sourcePeer = sourcePeerRaw.trim().slice(0, 96);
+
+  return {
+    envelope: {
+      action_type: action,
+      payload: {
+        target_x,
+        target_y,
+        intensity,
+        ...(hex_code ? { hex_code } : {}),
+      },
+    },
+    signalType,
+    eventId,
+    sourcePeer,
+  };
+};
 
 const proxyTelemetry = async (incoming: Request): Promise<Response> => {
   try {
@@ -1101,6 +1213,64 @@ const proxyInject = async (incoming: Request): Promise<Response> => {
       reason: "SYSTEM_INJECT_UNREACHABLE",
       details: String(err),
       system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
+  let parsedBody: unknown = null;
+  try {
+    parsedBody = await incoming.json();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+
+  const parsed = parseMeshInjectBody(parsedBody);
+  if (!parsed) {
+    return json({
+      ok: false,
+      reason: "INVALID_WEBRTC_INJECT_PAYLOAD",
+      expected:
+        "payload {target_x,target_y,intensity,hex_code?} + type mesh_pheromone|mesh_plasmid",
+    }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: JSON.stringify(parsed.envelope),
+    });
+    const raw = await response.text();
+    let systemResponse: unknown = null;
+    try {
+      systemResponse = JSON.parse(raw);
+    } catch {
+      systemResponse = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json({
+      ok: response.ok,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
+      forwarded: parsed.envelope,
+      system: systemResponse,
+    }, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
     }, 503);
   }
 };
@@ -1266,6 +1436,10 @@ const reqHandler = async (req: Request) => {
     return json(AKASHA_SIGNALING.status());
   }
 
+  if (req.method === "POST" && url.pathname === "/api/webrtc/inject") {
+    return proxyWebRtcInject(req);
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -1275,7 +1449,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -2042,7 +2216,9 @@ export context. It intentionally excludes historical era narratives.
    membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
    `/api/webrtc`. Observer UI can form RTC mesh rooms (`rtcRoom`) and exchange
    lightweight telemetry frames over `RTCDataChannel` without routing payloads
-   through mutation gate paths.
+   through mutation gate paths. Mesh `plasmid/pheromone` packets are ingested
+   only via `/api/webrtc/inject` and forwarded into the existing
+   `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
    `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
@@ -17386,22 +17562,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         background: rgba(0, 0, 0, 0.4);
         border-left: 3px solid #ffcc00;
       }
-      .species-genome { 
-        font-family: monospace; 
-        font-size: 0.75rem; 
-        color: #ffcc00; 
+      .species-genome {
+        font-family: monospace;
+        font-size: 0.75rem;
+        color: #ffcc00;
       }
-      .species-thought { 
-        font-style: italic; 
-        font-size: 0.8rem; 
-        color: #fff; 
-        margin-top: 4px; 
+      .species-thought {
+        font-style: italic;
+        font-size: 0.8rem;
+        color: #fff;
+        margin-top: 4px;
       }
-      .species-stats { 
-        font-size: 0.65rem; 
-        color: rgba(255, 255, 255, 0.6); 
-        margin-top: 4px; 
-        text-transform: uppercase; 
+      .species-stats {
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 4px;
+        text-transform: uppercase;
       }
       .lineage-breadcrumb {
         font-size: 0.6rem;
@@ -17443,7 +17619,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         opacity: 0;
         transition: opacity 400ms ease, background 400ms ease;
         mix-blend-mode: screen;
-        background: radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%);
+        background: radial-gradient(
+          circle at 50% 55%,
+          rgba(159, 232, 255, 0.14),
+          rgba(0, 0, 0, 0) 62%
+        );
       }
 
       #legend {
@@ -17466,8 +17646,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         color: rgba(0, 240, 255, 0.8);
         font-weight: bold;
       }
-      .legend-item { display: flex; align-items: center; margin-bottom: 5px; }
-      .color-box { width: 10px; height: 10px; margin-right: 8px; border-radius: 2px; }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      .color-box {
+        width: 10px;
+        height: 10px;
+        margin-right: 8px;
+        border-radius: 2px;
+      }
     </style>
   </head>
   <body>
@@ -17485,24 +17674,48 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
     <div id="legend">
       <div class="legend-title">Ecosystem Roles</div>
-      <div class="legend-item"><div class="color-box" style="background: #ffffff"></div> Generalist</div>
-      <div class="legend-item"><div class="color-box" style="background: #00ff88"></div> Producer (Energy)</div>
-      <div class="legend-item"><div class="color-box" style="background: #4488ff"></div> Constructor (Build)</div>
-      <div class="legend-item"><div class="color-box" style="background: #ff4444"></div> Siphon (Structure)</div>
+      <div class="legend-item">
+        <div class="color-box" style="background: #ffffff"></div> Generalist
+      </div>
+      <div class="legend-item">
+        <div class="color-box" style="background: #00ff88"></div> Producer
+        (Energy)
+      </div>
+      <div class="legend-item">
+        <div class="color-box" style="background: #4488ff"></div> Constructor
+        (Build)
+      </div>
+      <div class="legend-item">
+        <div class="color-box" style="background: #ff4444"></div> Siphon
+        (Structure)
+      </div>
     </div>
 
     <div id="chronos-console" class="glass">
-      <h1 style="color: #00ff64; border-bottom: 1px solid rgba(0,255,100,0.3); padding-bottom: 5px;">⏳ CHRONOS CONSOLE</h1>
-      <button class="snapshot-btn snapshot-save-btn" onclick="saveGenesis()">[ FREEZE TIME (SAVE) ]</button>
-      <div id="snapshots-list" style="margin-top: 10px; max-height: 150px; overflow-y: auto;">
-        <div style="opacity: 0.5; font-style: italic;">Fetching epochs...</div>
+      <h1
+        style="color: #00ff64; border-bottom: 1px solid rgba(0, 255, 100, 0.3); padding-bottom: 5px"
+      >
+        ⏳ CHRONOS CONSOLE
+      </h1>
+      <button class="snapshot-btn snapshot-save-btn" onclick="saveGenesis()">
+        [ FREEZE TIME (SAVE) ]
+      </button>
+      <div
+        id="snapshots-list"
+        style="margin-top: 10px; max-height: 150px; overflow-y: auto"
+      >
+        <div style="opacity: 0.5; font-style: italic">Fetching epochs...</div>
       </div>
     </div>
 
     <div id="governance-hud" class="glass">
-      <h1 style="color: #ff00ff; border-bottom: 1px solid rgba(255,0,255,0.3); padding-bottom: 5px;">👑 GLOBAL GOVERNANCE</h1>
-      <div id="gov-content" style="margin-top: 10px;">
-         <div style="opacity: 0.5; font-style: italic;">Awaiting Regent...</div>
+      <h1
+        style="color: #ff00ff; border-bottom: 1px solid rgba(255, 0, 255, 0.3); padding-bottom: 5px"
+      >
+        👑 GLOBAL GOVERNANCE
+      </h1>
+      <div id="gov-content" style="margin-top: 10px">
+        <div style="opacity: 0.5; font-style: italic">Awaiting Regent...</div>
       </div>
     </div>
 
@@ -17519,28 +17732,46 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     </div>
 
     <div id="leaderboard" class="glass">
-      <h1 style="color: #ffcc00; border-bottom: 1px solid rgba(255,200,0,0.3); padding-bottom: 5px;">🧬 DOMINANT GENOMES</h1>
+      <h1
+        style="color: #ffcc00; border-bottom: 1px solid rgba(255, 200, 0, 0.3); padding-bottom: 5px"
+      >
+        🧬 DOMINANT GENOMES
+      </h1>
       <div id="leaderboard-content">
         <!-- Populated via JS -->
-        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting population data...</div>
+        <div style="opacity: 0.5; margin-top: 10px; font-style: italic">
+          Awaiting population data...
+        </div>
       </div>
     </div>
 
     <div id="codex-panel" class="glass">
       <h1 class="codex-title">📚 AKASHA CODEX</h1>
-      <div id="codex-content" style="margin-top: 8px;">
-        <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles and narrative...</div>
+      <div id="codex-content" style="margin-top: 8px">
+        <div style="opacity: 0.5; margin-top: 10px; font-style: italic">
+          Awaiting chronicles and narrative...
+        </div>
       </div>
       <div id="human-channel" class="codex-row">
         <div class="human-channel-header">
           <div class="codex-row-title">🗣 Human Channel</div>
-          <div id="human-drift-severity" class="drift-severity drift-severity-baseline">BASELINE</div>
+          <div
+            id="human-drift-severity"
+            class="drift-severity drift-severity-baseline"
+          >
+            BASELINE
+          </div>
         </div>
         <div id="human-explanation" class="codex-row-body">
           Awaiting telemetry and codex narrative...
         </div>
-        <button id="human-explain-btn" class="human-btn">Explain Current State</button>
-        <div id="human-drift-explanation" class="codex-row-body codex-row-subtle">
+        <button id="human-explain-btn" class="human-btn">
+          Explain Current State
+        </button>
+        <div
+          id="human-drift-explanation"
+          class="codex-row-body codex-row-subtle"
+        >
           Drift baseline is forming...
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
@@ -17552,7 +17783,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         <div id="human-drift-sparkline" class="codex-row-body codex-row-subtle">
           trend:........ (steady)
         </div>
-        <button id="human-drift-btn" class="human-btn">Explain Drift (90s)</button>
+        <button id="human-drift-btn" class="human-btn">
+          Explain Drift (90s)
+        </button>
         <div id="human-channel-stamp">Updated: --</div>
       </div>
     </div>
@@ -17592,16 +17825,31 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const width = window.innerWidth, height = window.innerHeight;
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 20000);
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        width / height,
+        0.1,
+        20000,
+      );
       camera.position.set(0, 0, 1000);
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
       renderer.setSize(width, height);
       document.body.appendChild(renderer.domElement);
 
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
-      composer.addPass(new UnrealBloomPass(new THREE.Vector2(width, height), 0.6, 0.4, 0.85));
+      composer.addPass(
+        new UnrealBloomPass(
+          new THREE.Vector2(width, height),
+          0.6,
+          0.4,
+          0.85,
+        ),
+      );
 
       const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -17613,9 +17861,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
       geo.setAttribute("size", new THREE.BufferAttribute(siz, 1));
-      const particles = new THREE.Points(geo, new THREE.PointsMaterial({
-          size: 4, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending
-      }));
+      const particles = new THREE.Points(
+        geo,
+        new THREE.PointsMaterial({
+          size: 4,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.8,
+          blending: THREE.AdditiveBlending,
+        }),
+      );
       scene.add(particles);
 
       // Bonds
@@ -17623,11 +17878,23 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const bondGeo = new THREE.BufferGeometry();
       const bondPos = new Float32Array(MAX_VIS_BONDS * 2 * 3);
       const bondCol = new Float32Array(MAX_VIS_BONDS * 2 * 3);
-      bondGeo.setAttribute("position", new THREE.BufferAttribute(bondPos, 3));
-      bondGeo.setAttribute("color", new THREE.BufferAttribute(bondCol, 3));
-      const bondLines = new THREE.LineSegments(bondGeo, new THREE.LineBasicMaterial({
-          vertexColors: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending
-      }));
+      bondGeo.setAttribute(
+        "position",
+        new THREE.BufferAttribute(bondPos, 3),
+      );
+      bondGeo.setAttribute(
+        "color",
+        new THREE.BufferAttribute(bondCol, 3),
+      );
+      const bondLines = new THREE.LineSegments(
+        bondGeo,
+        new THREE.LineBasicMaterial({
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.4,
+          blending: THREE.AdditiveBlending,
+        }),
+      );
       scene.add(bondLines);
 
       // Grid
@@ -17646,22 +17913,49 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           gridPosArr[i * 3 + 2] = -50;
         }
       }
-      gridGeo.setAttribute("position", new THREE.BufferAttribute(gridPosArr, 3));
-      gridGeo.setAttribute("color", new THREE.BufferAttribute(gridColArr, 3));
-      gridGeo.setAttribute("size", new THREE.BufferAttribute(gridSizArr, 1));
-      const gridParticles = new THREE.Points(gridGeo, new THREE.PointsMaterial({
-          size: 20, vertexColors: true, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending
-      }));
+      gridGeo.setAttribute(
+        "position",
+        new THREE.BufferAttribute(gridPosArr, 3),
+      );
+      gridGeo.setAttribute(
+        "color",
+        new THREE.BufferAttribute(gridColArr, 3),
+      );
+      gridGeo.setAttribute(
+        "size",
+        new THREE.BufferAttribute(gridSizArr, 1),
+      );
+      const gridParticles = new THREE.Points(
+        gridGeo,
+        new THREE.PointsMaterial({
+          size: 20,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.6,
+          blending: THREE.AdditiveBlending,
+        }),
+      );
       scene.add(gridParticles);
 
       // Structures
       const structGeo = new THREE.BoxGeometry(18, 18, 18);
-      const structMat = new THREE.MeshPhongMaterial({ color: 0x88aaff, transparent: true, opacity: 0.5, shininess: 100 });
-      const structMesh = new THREE.InstancedMesh(structGeo, structMat, GRID_W * GRID_H);
+      const structMat = new THREE.MeshPhongMaterial({
+        color: 0x88aaff,
+        transparent: true,
+        opacity: 0.5,
+        shininess: 100,
+      });
+      const structMesh = new THREE.InstancedMesh(
+        structGeo,
+        structMat,
+        GRID_W * GRID_H,
+      );
       structMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
       scene.add(structMesh);
 
-      scene.add(new THREE.DirectionalLight(0xffffff, 1).set(500, 500, 500));
+      scene.add(
+        new THREE.DirectionalLight(0xffffff, 1).set(500, 500, 500),
+      );
       scene.add(new THREE.AmbientLight(0x444444));
 
       // Global Flags
@@ -17676,9 +17970,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let architectureFlags = new Int32Array(gridCells);
       let memoryFlags = new Uint8Array(gridCells * 8);
       let roleFlags = new Uint8Array(MAX_ATOMS);
-      let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
-      let codexNarrative = { mood: "STABLE", title: "", summary: "", relicStatus: "", recentChronicles: [] };
-      let telemetrySnapshot = { tick: 0, avgEnergy: 0, dominantGenomes: [], voxPopuli: [] };
+      let codexSnapshot = {
+        species: [],
+        chronicles: [],
+        relics: [],
+        population: { current: 0, peak: 0 },
+      };
+      let codexNarrative = {
+        mood: "STABLE",
+        title: "",
+        summary: "",
+        relicStatus: "",
+        recentChronicles: [],
+      };
+      let telemetrySnapshot = {
+        tick: 0,
+        avgEnergy: 0,
+        dominantGenomes: [],
+        voxPopuli: [],
+      };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
       const DRIFT_SPARKLINE_POINTS = 18;
@@ -17687,12 +17997,23 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const RTC_SIGNAL_RETRY_MIN_MS = 1200;
       const RTC_SIGNAL_RETRY_MAX_MS = 10000;
       const RTC_TELEMETRY_BROADCAST_MS = 3000;
-      const RTC_ICE_SERVERS = [{ urls: "stun:stun.l.google.com:19302" }];
+      const RTC_ICE_SERVERS = [{
+        urls: "stun:stun.l.google.com:19302",
+      }];
+      const RTC_MESH_EVENT_RETENTION_MS = 2 * 60 * 1000;
+      const RTC_MESH_DEFAULT_PHEROMONE_INTENSITY = 120;
+      const RTC_MESH_DEFAULT_PLASMID_CHARGE = 900;
+      const RTC_MESH_MAX_X = 1399;
+      const RTC_MESH_MAX_Y = 799;
+      const RTC_MESH_HEX_RE = /^[0-9a-fA-F]{16}$/;
       let driftHistory = [];
       let dictSyncInFlight = false;
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
-      const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+      const interactionPlane = new THREE.Plane(
+        new THREE.Vector3(0, 0, 1),
+        0,
+      );
       const pointerHit = new THREE.Vector3();
       let avatarX = 700;
       let avatarY = 400;
@@ -17700,14 +18021,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let avatarDisabled = false;
       let lastAvatarSync = 0;
       const AVATAR_SYNC_MS = 100;
-      let omegaControlToken = localStorage.getItem("omega-control-token") || "";
+      let omegaControlToken =
+        localStorage.getItem("omega-control-token") || "";
       window.setOmegaControlToken = (token) => {
         omegaControlToken = String(token || "").trim();
         localStorage.setItem("omega-control-token", omegaControlToken);
       };
 
       const query = new URLSearchParams(window.location.search);
-      const queryRtcSignal = String(query.get("rtcSignal") || query.get("rtc") || "").trim();
+      const queryRtcSignal = String(
+        query.get("rtcSignal") || query.get("rtc") || "",
+      ).trim();
       if (queryRtcSignal.length > 0) {
         localStorage.setItem("omega-rtc-signal-url", queryRtcSignal);
       }
@@ -17724,10 +18048,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       };
       const deriveRtcSignalUrl = () => {
-        const stored = String(localStorage.getItem("omega-rtc-signal-url") || "").trim();
-        const candidate = queryRtcSignal.length > 0 ? queryRtcSignal : stored;
-        if (candidate.length > 0) return normalizeRtcSignalUrl(candidate);
-        const wsProto = window.location.protocol === "https:" ? "wss:" : "ws:";
+        const stored = String(
+          localStorage.getItem("omega-rtc-signal-url") || "",
+        ).trim();
+        const candidate = queryRtcSignal.length > 0
+          ? queryRtcSignal
+          : stored;
+        if (candidate.length > 0) {
+          return normalizeRtcSignalUrl(candidate);
+        }
+        const wsProto = window.location.protocol === "https:"
+          ? "wss:"
+          : "ws:";
         if (window.location.port === "8080") {
           return `${wsProto}//${window.location.host}${RTC_SIGNAL_PATH}`;
         }
@@ -17735,13 +18067,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `${wsProto}//${host}:8080${RTC_SIGNAL_PATH}`;
       };
       const RTC_SIGNAL_URL = deriveRtcSignalUrl();
-      const rtcRoomFromQuery = String(query.get("rtcRoom") || "").trim();
-      const RTC_SIGNAL_ROOM = rtcRoomFromQuery.length > 0 ? rtcRoomFromQuery : "omega-default";
+      const rtcRoomFromQuery = String(query.get("rtcRoom") || "")
+        .trim();
+      const RTC_SIGNAL_ROOM = rtcRoomFromQuery.length > 0
+        ? rtcRoomFromQuery
+        : "omega-default";
       const getPersistentPeerId = () => {
         const key = "omega-rtc-peer-id";
         const existing = String(localStorage.getItem(key) || "").trim();
-        if (existing.length >= 6 && existing.length <= 64) return existing;
-        const generated = `peer-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}`;
+        if (existing.length >= 6 && existing.length <= 64) {
+          return existing;
+        }
+        const generated = `peer-${
+          crypto.randomUUID().replace(/-/g, "").slice(0, 10)
+        }`;
         localStorage.setItem(key, generated);
         return generated;
       };
@@ -17756,25 +18095,69 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const rtcDataChannels = new Map();
       const rtcPendingCandidates = new Map();
       const rtcRemoteTelemetry = new Map();
+      const rtcSeenMeshEvents = new Map();
+      let rtcMeshIngressAccepted = 0;
+      let rtcMeshIngressRejected = 0;
+      let rtcMeshEgress = 0;
+
+      const clamp = (value, min, max) =>
+        Math.max(min, Math.min(max, value));
+      const toFiniteNumber = (value) => {
+        if (typeof value === "number" && Number.isFinite(value)) {
+          return value;
+        }
+        if (typeof value === "string" && value.trim().length > 0) {
+          const parsed = Number(value);
+          if (Number.isFinite(parsed)) return parsed;
+        }
+        return null;
+      };
+      const normalizeMeshEventId = (value, fallbackPrefix = "mesh") => {
+        const raw = String(value || "").trim();
+        if (raw.length > 0) return raw.slice(0, 128);
+        return `${fallbackPrefix}-${Date.now().toString(36)}-${
+          crypto.randomUUID().replace(/-/g, "").slice(0, 8)
+        }`;
+      };
+      const pruneMeshSeenEvents = (nowMs = Date.now()) => {
+        const cutoff = nowMs - RTC_MESH_EVENT_RETENTION_MS;
+        for (const [eventId, ts] of rtcSeenMeshEvents.entries()) {
+          if (Number(ts || 0) < cutoff) {
+            rtcSeenMeshEvents.delete(eventId);
+          }
+        }
+      };
+      const markMeshEventSeen = (eventId, nowMs = Date.now()) => {
+        pruneMeshSeenEvents(nowMs);
+        if (rtcSeenMeshEvents.has(eventId)) return false;
+        rtcSeenMeshEvents.set(eventId, nowMs);
+        return true;
+      };
 
       function updatePeerMeshHud(extra = "") {
         const node = document.getElementById("peers");
         if (!node) return;
-        const openChannels = Array.from(rtcDataChannels.values()).filter((ch) =>
-          ch && ch.readyState === "open"
-        ).length;
+        const openChannels =
+          Array.from(rtcDataChannels.values()).filter((ch) =>
+            ch && ch.readyState === "open"
+          ).length;
         const signal = rtcSignalConnected ? "UP" : "DOWN";
         const remoteTelemetryCount = rtcRemoteTelemetry.size;
         let telemetryTick = "";
         if (remoteTelemetryCount > 0) {
-          const sorted = Array.from(rtcRemoteTelemetry.values()).sort((a, b) =>
-            Number(b.ts || 0) - Number(a.ts || 0)
-          );
-          telemetryTick = ` | MESH_TICK:${Number(sorted[0]?.tick || 0)}`;
+          const sorted = Array.from(rtcRemoteTelemetry.values()).sort((
+            a,
+            b,
+          ) => Number(b.ts || 0) - Number(a.ts || 0));
+          telemetryTick = ` | MESH_TICK:${
+            Number(sorted[0]?.tick || 0)
+          }`;
         }
         const suffix = extra.length > 0 ? ` | ${extra}` : "";
+        const meshStats =
+          ` | IO:${rtcMeshEgress}/${rtcMeshIngressAccepted}/${rtcMeshIngressRejected}`;
         node.textContent =
-          `PEERS: ${openChannels} | SIGNAL:${signal} | ROOM:${RTC_SIGNAL_ROOM}${telemetryTick}${suffix}`;
+          `PEERS: ${openChannels} | SIGNAL:${signal} | ROOM:${RTC_SIGNAL_ROOM}${telemetryTick}${meshStats}${suffix}`;
       }
 
       function closeRtcPeer(remotePeerId) {
@@ -17816,8 +18199,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             keep.push(candidate);
           }
         }
-        if (keep.length > 0) rtcPendingCandidates.set(remotePeerId, keep);
-        else rtcPendingCandidates.delete(remotePeerId);
+        if (keep.length > 0) {
+          rtcPendingCandidates.set(remotePeerId, keep);
+        } else rtcPendingCandidates.delete(remotePeerId);
       }
 
       function shouldInitiateOffer(remotePeerId) {
@@ -17825,7 +18209,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       function sendRtcSignalFrame(toPeerId, signalType, payload) {
-        if (!rtcSignalSocket || rtcSignalSocket.readyState !== WebSocket.OPEN || !rtcSignalJoined) {
+        if (
+          !rtcSignalSocket ||
+          rtcSignalSocket.readyState !== WebSocket.OPEN ||
+          !rtcSignalJoined
+        ) {
           return false;
         }
         try {
@@ -17841,6 +18229,200 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         } catch (_) {
           return false;
         }
+      }
+
+      async function postWebRtcInject(
+        actionType,
+        payload,
+        eventId,
+        sourcePeer,
+      ) {
+        const headers = { "Content-Type": "application/json" };
+        if (omegaControlToken.length > 0) {
+          headers["x-omega-control-token"] = omegaControlToken;
+        }
+        try {
+          const response = await fetch("/api/webrtc/inject", {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+              type: actionType === "INJECT_PLASMID"
+                ? "mesh_plasmid"
+                : "mesh_pheromone",
+              event_id: eventId,
+              source_peer: sourcePeer,
+              action_type: actionType,
+              payload,
+            }),
+          });
+          if (response.ok) {
+            rtcMeshIngressAccepted++;
+          } else {
+            rtcMeshIngressRejected++;
+          }
+        } catch (_) {
+          rtcMeshIngressRejected++;
+        }
+        updatePeerMeshHud();
+      }
+
+      function broadcastRtcFrame(frame) {
+        const serialized = JSON.stringify(frame);
+        let sent = 0;
+        for (const channel of rtcDataChannels.values()) {
+          if (!channel || channel.readyState !== "open") continue;
+          try {
+            channel.send(serialized);
+            sent++;
+          } catch (_) {}
+        }
+        if (sent > 0) {
+          rtcMeshEgress += sent;
+          updatePeerMeshHud();
+        }
+        return sent;
+      }
+
+      function emitMeshPheromone(
+        x,
+        y,
+        intensity = RTC_MESH_DEFAULT_PHEROMONE_INTENSITY,
+      ) {
+        const px = toFiniteNumber(x);
+        const py = toFiniteNumber(y);
+        const pi = toFiniteNumber(intensity);
+        if (px === null || py === null) return null;
+        const eventId = normalizeMeshEventId("");
+        markMeshEventSeen(eventId);
+        const frame = {
+          type: "mesh_pheromone",
+          event_id: eventId,
+          source_peer: RTC_SELF_PEER_ID,
+          ts: Date.now(),
+          payload: {
+            target_x: clamp(Math.round(px), 0, RTC_MESH_MAX_X),
+            target_y: clamp(Math.round(py), 0, RTC_MESH_MAX_Y),
+            intensity: clamp(
+              Math.round(
+                pi === null ? RTC_MESH_DEFAULT_PHEROMONE_INTENSITY : pi,
+              ),
+              1,
+              2000,
+            ),
+          },
+        };
+        broadcastRtcFrame(frame);
+        return eventId;
+      }
+
+      function emitMeshPlasmid(
+        x,
+        y,
+        hexCode,
+        intensity = RTC_MESH_DEFAULT_PLASMID_CHARGE,
+      ) {
+        const px = toFiniteNumber(x);
+        const py = toFiniteNumber(y);
+        const pi = toFiniteNumber(intensity);
+        const hex = String(hexCode || "").trim();
+        if (px === null || py === null || !RTC_MESH_HEX_RE.test(hex)) {
+          return null;
+        }
+        const eventId = normalizeMeshEventId("");
+        markMeshEventSeen(eventId);
+        const frame = {
+          type: "mesh_plasmid",
+          event_id: eventId,
+          source_peer: RTC_SELF_PEER_ID,
+          ts: Date.now(),
+          payload: {
+            target_x: clamp(Math.round(px), 0, RTC_MESH_MAX_X),
+            target_y: clamp(Math.round(py), 0, RTC_MESH_MAX_Y),
+            intensity: clamp(
+              Math.round(
+                pi === null ? RTC_MESH_DEFAULT_PLASMID_CHARGE : pi,
+              ),
+              1,
+              5000,
+            ),
+            hex_code: hex.toUpperCase(),
+          },
+        };
+        broadcastRtcFrame(frame);
+        return eventId;
+      }
+
+      async function ingestMeshFrame(remotePeerId, frame) {
+        const type = String(frame?.type || "").toLowerCase();
+        if (type !== "mesh_pheromone" && type !== "mesh_plasmid") {
+          return;
+        }
+        const payload =
+          frame?.payload && typeof frame.payload === "object"
+            ? frame.payload
+            : null;
+        if (!payload) {
+          rtcMeshIngressRejected++;
+          updatePeerMeshHud();
+          return;
+        }
+        const px = toFiniteNumber(payload.target_x);
+        const py = toFiniteNumber(payload.target_y);
+        const pi = toFiniteNumber(payload.intensity);
+        if (px === null || py === null) {
+          rtcMeshIngressRejected++;
+          updatePeerMeshHud();
+          return;
+        }
+        const eventId = normalizeMeshEventId(
+          frame?.event_id,
+          `${remotePeerId}-${type}`,
+        );
+        if (!markMeshEventSeen(eventId, Date.now())) return;
+
+        if (type === "mesh_plasmid") {
+          const hex = String(payload.hex_code || "").trim();
+          if (!RTC_MESH_HEX_RE.test(hex)) {
+            rtcMeshIngressRejected++;
+            updatePeerMeshHud();
+            return;
+          }
+          await postWebRtcInject(
+            "INJECT_PLASMID",
+            {
+              target_x: clamp(Math.round(px), 0, RTC_MESH_MAX_X),
+              target_y: clamp(Math.round(py), 0, RTC_MESH_MAX_Y),
+              intensity: clamp(
+                Math.round(
+                  pi === null ? RTC_MESH_DEFAULT_PLASMID_CHARGE : pi,
+                ),
+                1,
+                5000,
+              ),
+              hex_code: hex.toUpperCase(),
+            },
+            eventId,
+            remotePeerId,
+          );
+          return;
+        }
+
+        await postWebRtcInject(
+          "DROP_PHEROMONE",
+          {
+            target_x: clamp(Math.round(px), 0, RTC_MESH_MAX_X),
+            target_y: clamp(Math.round(py), 0, RTC_MESH_MAX_Y),
+            intensity: clamp(
+              Math.round(
+                pi === null ? RTC_MESH_DEFAULT_PHEROMONE_INTENSITY : pi,
+              ),
+              1,
+              2000,
+            ),
+          },
+          eventId,
+          remotePeerId,
+        );
       }
 
       function attachRtcDataChannel(remotePeerId, channel) {
@@ -17869,6 +18451,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 ts: Number(parsed.ts || Date.now()),
               });
               updatePeerMeshHud();
+              return;
+            }
+            if (
+              parsed.type === "mesh_pheromone" ||
+              parsed.type === "mesh_plasmid"
+            ) {
+              void ingestMeshFrame(remotePeerId, parsed);
             }
           } catch (_) {}
         };
@@ -17877,7 +18466,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function ensureRtcPeerConnection(remotePeerId, initiator) {
         const existing = rtcPeerConnections.get(remotePeerId);
         if (existing) return existing;
-        const pc = new RTCPeerConnection({ iceServers: RTC_ICE_SERVERS });
+        const pc = new RTCPeerConnection({
+          iceServers: RTC_ICE_SERVERS,
+        });
         rtcPeerConnections.set(remotePeerId, pc);
 
         pc.onicecandidate = (event) => {
@@ -17892,18 +18483,26 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           sendRtcSignalFrame(remotePeerId, "candidate", payload);
         };
         pc.onconnectionstatechange = () => {
-          if (["failed", "closed", "disconnected"].includes(pc.connectionState)) {
+          if (
+            ["failed", "closed", "disconnected"].includes(
+              pc.connectionState,
+            )
+          ) {
             closeRtcPeer(remotePeerId);
           } else {
             updatePeerMeshHud();
           }
         };
         pc.ondatachannel = (event) => {
-          if (event.channel) attachRtcDataChannel(remotePeerId, event.channel);
+          if (event.channel) {
+            attachRtcDataChannel(remotePeerId, event.channel);
+          }
         };
 
         if (initiator) {
-          const channel = pc.createDataChannel("omega-mesh", { ordered: true });
+          const channel = pc.createDataChannel("omega-mesh", {
+            ordered: true,
+          });
           attachRtcDataChannel(remotePeerId, channel);
         }
         return pc;
@@ -17921,7 +18520,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         } catch (_) {}
       }
 
-      async function handleRtcSignalFrame(fromPeerId, signalType, payload) {
+      async function handleRtcSignalFrame(
+        fromPeerId,
+        signalType,
+        payload,
+      ) {
         if (!fromPeerId || fromPeerId === RTC_SELF_PEER_ID) return;
         const signal = String(signalType || "").toLowerCase();
         if (signal === "offer") {
@@ -17930,7 +18533,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             if (pc.signalingState !== "stable") {
               await pc.setLocalDescription({ type: "rollback" });
             }
-            await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await pc.setRemoteDescription(
+              new RTCSessionDescription(payload),
+            );
             await drainRtcCandidates(fromPeerId);
             const answer = await pc.createAnswer();
             await pc.setLocalDescription(answer);
@@ -17944,7 +18549,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (signal === "answer") {
           const pc = ensureRtcPeerConnection(fromPeerId, true);
           try {
-            await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await pc.setRemoteDescription(
+              new RTCSessionDescription(payload),
+            );
             await drainRtcCandidates(fromPeerId);
           } catch (_) {}
           return;
@@ -17976,14 +18583,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       function connectRtcSignaling() {
-        if (!("RTCPeerConnection" in window) || !("WebSocket" in window)) {
+        if (
+          !("RTCPeerConnection" in window) || !("WebSocket" in window)
+        ) {
           updatePeerMeshHud("RTC_UNAVAILABLE");
           return;
         }
-        if (rtcSignalSocket && (
-          rtcSignalSocket.readyState === WebSocket.OPEN ||
-          rtcSignalSocket.readyState === WebSocket.CONNECTING
-        )) return;
+        if (
+          rtcSignalSocket && (
+            rtcSignalSocket.readyState === WebSocket.OPEN ||
+            rtcSignalSocket.readyState === WebSocket.CONNECTING
+          )
+        ) return;
 
         try {
           rtcSignalSocket = new WebSocket(RTC_SIGNAL_URL);
@@ -18023,7 +18634,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             const type = String(message.type || "").toLowerCase();
             if (type === "joined") {
               rtcSignalJoined = true;
-              const peers = Array.isArray(message.peers) ? message.peers : [];
+              const peers = Array.isArray(message.peers)
+                ? message.peers
+                : [];
               for (const peerId of peers) {
                 const remote = String(peerId || "").trim();
                 if (!remote || remote === RTC_SELF_PEER_ID) continue;
@@ -18047,8 +18660,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             }
             if (type === "signal") {
               const from = String(message.from || "").trim();
-              const signalType = String(message.signalType || "").trim();
-              handleRtcSignalFrame(from, signalType, message.payload ?? null);
+              const signalType = String(message.signalType || "")
+                .trim();
+              handleRtcSignalFrame(
+                from,
+                signalType,
+                message.payload ?? null,
+              );
               return;
             }
             if (type === "error") {
@@ -18061,7 +18679,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       function broadcastRtcTelemetry(nowMs) {
         if (!rtcSignalJoined) return;
-        if (nowMs - rtcLastTelemetryBroadcastMs < RTC_TELEMETRY_BROADCAST_MS) return;
+        if (
+          nowMs - rtcLastTelemetryBroadcastMs <
+            RTC_TELEMETRY_BROADCAST_MS
+        ) return;
         rtcLastTelemetryBroadcastMs = nowMs;
         const packet = JSON.stringify({
           type: "telemetry",
@@ -18079,25 +18700,110 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       }
 
+      window.omegaRtcMesh = {
+        dropPheromone: (
+          x,
+          y,
+          intensity = RTC_MESH_DEFAULT_PHEROMONE_INTENSITY,
+        ) => emitMeshPheromone(x, y, intensity),
+        injectPlasmid: (
+          x,
+          y,
+          hexCode,
+          intensity = RTC_MESH_DEFAULT_PLASMID_CHARGE,
+        ) => emitMeshPlasmid(x, y, hexCode, intensity),
+      };
+
       // Command Input
-      document.getElementById("command-input").addEventListener("keydown", async (e) => {
-        if (e.key === "Enter" && e.target.value) {
-          const text = e.target.value; e.target.value = "";
-          const endpoint = text.startsWith("fork ") ? "/fork" : "/inject";
-          const body = text.startsWith("fork ") ? { name: text.split(" ")[1] } : { text, energy: 200 };
-          fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-        }
-      });
+      document.getElementById("command-input").addEventListener(
+        "keydown",
+        async (e) => {
+          if (e.key === "Enter" && e.target.value) {
+            const text = e.target.value;
+            e.target.value = "";
+            const words = String(text).trim().split(/\s+/);
+            const command = words[0]?.toLowerCase() || "";
+            const mode = words[1]?.toLowerCase() || "";
+            if (
+              command === "mesh" && mode === "pheromone" &&
+              words.length >= 4
+            ) {
+              const x = toFiniteNumber(words[2]);
+              const y = toFiniteNumber(words[3]);
+              const intensity = words.length >= 5
+                ? toFiniteNumber(words[4])
+                : RTC_MESH_DEFAULT_PHEROMONE_INTENSITY;
+              if (x !== null && y !== null) {
+                emitMeshPheromone(
+                  x,
+                  y,
+                  intensity === null
+                    ? RTC_MESH_DEFAULT_PHEROMONE_INTENSITY
+                    : intensity,
+                );
+                updatePeerMeshHud("MESH_PHEROMONE_EMIT");
+                return;
+              }
+            }
+            if (
+              command === "mesh" && mode === "plasmid" &&
+              words.length >= 5
+            ) {
+              const x = toFiniteNumber(words[2]);
+              const y = toFiniteNumber(words[3]);
+              const hex = words[4];
+              const intensity = words.length >= 6
+                ? toFiniteNumber(words[5])
+                : RTC_MESH_DEFAULT_PLASMID_CHARGE;
+              if (x !== null && y !== null) {
+                const emitted = emitMeshPlasmid(
+                  x,
+                  y,
+                  hex,
+                  intensity === null
+                    ? RTC_MESH_DEFAULT_PLASMID_CHARGE
+                    : intensity,
+                );
+                updatePeerMeshHud(
+                  emitted ? "MESH_PLASMID_EMIT" : "MESH_PLASMID_REJECT",
+                );
+                return;
+              }
+            }
+            const endpoint = text.startsWith("fork ")
+              ? "/fork"
+              : "/inject";
+            const body = text.startsWith("fork ")
+              ? { name: text.split(" ")[1] }
+              : { text, energy: 200 };
+            fetch(endpoint, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            });
+          }
+        },
+      );
 
       renderer.domElement.addEventListener("pointermove", (event) => {
         if (avatarDisabled) return;
         const rect = renderer.domElement.getBoundingClientRect();
-        pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 -
+          1;
+        pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 +
+          1;
         raycaster.setFromCamera(pointerNdc, camera);
-        if (!raycaster.ray.intersectPlane(interactionPlane, pointerHit)) return;
-        avatarX = Math.max(0, Math.min(1399, Math.round(pointerHit.x + 700)));
-        avatarY = Math.max(0, Math.min(799, Math.round(pointerHit.y + 400)));
+        if (
+          !raycaster.ray.intersectPlane(interactionPlane, pointerHit)
+        ) return;
+        avatarX = Math.max(
+          0,
+          Math.min(1399, Math.round(pointerHit.x + 700)),
+        );
+        avatarY = Math.max(
+          0,
+          Math.min(799, Math.round(pointerHit.y + 400)),
+        );
         avatarDirty = true;
       });
 
@@ -18126,10 +18832,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           if (!res.ok) return;
           const buffer = await res.arrayBuffer();
           target.set(new (target.constructor)(buffer));
-        } catch(e) {}
+        } catch (e) {}
       }
 
-      async function sync(id, geometry, targetPos, targetCol, targetSiz) {
+      async function sync(
+        id,
+        geometry,
+        targetPos,
+        targetCol,
+        targetSiz,
+      ) {
         try {
           const res = await fetch(`/state?id=${id}`);
           const buffer = await res.arrayBuffer();
@@ -18160,8 +18872,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             activeAtoms++;
 
             let logicHex = "";
-            for(let b=0; b<8; b++) logicHex += view.getUint8(OFFSETS.LOGIC + i * 8 + b).toString(16).padStart(2, '0').toUpperCase();
-            if (!speciesCount[logicHex]) speciesCount[logicHex] = { count: 0, energy: 0 };
+            for (let b = 0; b < 8; b++) {
+              logicHex += view.getUint8(OFFSETS.LOGIC + i * 8 + b)
+                .toString(16).padStart(2, "0").toUpperCase();
+            }
+            if (!speciesCount[logicHex]) {
+              speciesCount[logicHex] = { count: 0, energy: 0 };
+            }
             speciesCount[logicHex].count++;
             speciesCount[logicHex].energy += e;
 
@@ -18173,51 +18890,93 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             const signal = signalFlags[i];
             const qLevel = immunityFlags[i];
             let isLocked = false;
-            for(let b=0; b<4; b++) if(stiffnessFlags[i*4+b] > 0.8) isLocked = true;
+            for (let b = 0; b < 4; b++) {
+              if (stiffnessFlags[i * 4 + b] > 0.8) isLocked = true;
+            }
 
             // ERA 33: Trophic Coloring
             if (role === 1) { // Producer (Green)
-              targetCol[i * 3] = 0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 0.5;
+              targetCol[i * 3] = 0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 0.5;
             } else if (role === 2) { // Constructor (Blue)
-              targetCol[i * 3] = 0.2; targetCol[i * 3 + 1] = 0.5; targetCol[i * 3 + 2] = 1.0;
+              targetCol[i * 3] = 0.2;
+              targetCol[i * 3 + 1] = 0.5;
+              targetCol[i * 3 + 2] = 1.0;
             } else if (role === 3) { // Siphon (Red)
-              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 0.2; targetCol[i * 3 + 2] = 0.2;
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 0.2;
+              targetCol[i * 3 + 2] = 0.2;
             } else if (qLevel === 1) { // Flagged
-              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 0.4; targetCol[i * 3 + 2] = 0;
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 0.4;
+              targetCol[i * 3 + 2] = 0;
             } else if (isLocked) { // Locked/Crystal
-              targetCol[i * 3] = 1.0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 1.0;
+              targetCol[i * 3] = 1.0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
             } else if (signal > 0) { // Signaling
-              targetCol[i * 3] = 0; targetCol[i * 3 + 1] = 1.0; targetCol[i * 3 + 2] = 1.0;
+              targetCol[i * 3] = 0;
+              targetCol[i * 3 + 1] = 1.0;
+              targetCol[i * 3 + 2] = 1.0;
             } else { // Default
-              targetCol[i * 3] = 0.5; targetCol[i * 3 + 1] = 0.7; targetCol[i * 3 + 2] = 1.0;
+              targetCol[i * 3] = 0.5;
+              targetCol[i * 3 + 1] = 0.7;
+              targetCol[i * 3 + 2] = 1.0;
             }
 
             targetSiz[i] = 2 + e / 20;
             if (r > 800) targetSiz[i] *= 2;
           }
 
-          document.getElementById("atom-count").innerText = `ATOMS: ${activeAtoms}`;
-          document.getElementById("resonance").innerText = `RESONANCE: ${(totalResonance/activeAtoms || 0).toFixed(1)}`;
+          document.getElementById("atom-count").innerText =
+            `ATOMS: ${activeAtoms}`;
+          document.getElementById("resonance").innerText =
+            `RESONANCE: ${
+              (totalResonance / activeAtoms || 0).toFixed(1)
+            }`;
 
           prevailingSpecies = Object.keys(speciesCount)
-            .map(hex => ({ hex, count: speciesCount[hex].count, avgEnergy: speciesCount[hex].energy / speciesCount[hex].count }))
-            .sort((a,b) => b.count - a.count).slice(0, 5);
+            .map((hex) => ({
+              hex,
+              count: speciesCount[hex].count,
+              avgEnergy: speciesCount[hex].energy /
+                speciesCount[hex].count,
+            }))
+            .sort((a, b) => b.count - a.count).slice(0, 5);
 
           // Update Bonds
           let bondVIdx = 0;
           for (let i = 0; i < MAX_ATOMS; i++) {
-            if (view.getBigUint64(OFFSETS.ID + i * 8, true) === 0n) continue;
+            if (view.getBigUint64(OFFSETS.ID + i * 8, true) === 0n) {
+              continue;
+            }
             for (let b = 0; b < 4; b++) {
               const bIdx = bondIndices[i * 4 + b];
               const stiff = stiffnessFlags[i * 4 + b];
-              if (bIdx > 0 && bIdx < MAX_ATOMS && (stiff > 0.1 || signalFlags[i] > 0)) {
-                bondPos[bondVIdx * 3] = targetPos[i * 3]; bondPos[bondVIdx * 3 + 1] = targetPos[i * 3 + 1]; bondPos[bondVIdx * 3 + 2] = targetPos[i * 3 + 2];
-                bondPos[(bondVIdx + 1) * 3] = targetPos[bIdx * 3]; bondPos[(bondVIdx + 1) * 3 + 1] = targetPos[bIdx * 3 + 1]; bondPos[(bondVIdx + 1) * 3 + 2] = targetPos[bIdx * 3 + 2];
-                
-                const r = 1.0, g = 0.4 + stiff * 0.6, bVal = stiff * 0.2;
-                bondCol[bondVIdx * 3] = bondCol[(bondVIdx+1)*3] = r;
-                bondCol[bondVIdx * 3 + 1] = bondCol[(bondVIdx+1)*3+1] = g;
-                bondCol[bondVIdx * 3 + 2] = bondCol[(bondVIdx+1)*3+2] = bVal;
+              if (
+                bIdx > 0 && bIdx < MAX_ATOMS &&
+                (stiff > 0.1 || signalFlags[i] > 0)
+              ) {
+                bondPos[bondVIdx * 3] = targetPos[i * 3];
+                bondPos[bondVIdx * 3 + 1] = targetPos[i * 3 + 1];
+                bondPos[bondVIdx * 3 + 2] = targetPos[i * 3 + 2];
+                bondPos[(bondVIdx + 1) * 3] = targetPos[bIdx * 3];
+                bondPos[(bondVIdx + 1) * 3 + 1] =
+                  targetPos[bIdx * 3 + 1];
+                bondPos[(bondVIdx + 1) * 3 + 2] =
+                  targetPos[bIdx * 3 + 2];
+
+                const r = 1.0,
+                  g = 0.4 + stiff * 0.6,
+                  bVal = stiff * 0.2;
+                bondCol[bondVIdx * 3] = bondCol[(bondVIdx + 1) * 3] = r;
+                bondCol[bondVIdx * 3 + 1] =
+                  bondCol[(bondVIdx + 1) * 3 + 1] =
+                    g;
+                bondCol[bondVIdx * 3 + 2] =
+                  bondCol[(bondVIdx + 1) * 3 + 2] =
+                    bVal;
                 bondVIdx += 2;
               }
             }
@@ -18229,24 +18988,37 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           geometry.attributes.position.needsUpdate = true;
           geometry.attributes.color.needsUpdate = true;
           geometry.attributes.size.needsUpdate = true;
-        } catch(e) {}
+        } catch (e) {}
       }
 
       async function updateArchitecture() {
-          const dummy = new THREE.Object3D();
-          for (let i = 0; i < gridCells; i++) {
-              const cell = architectureFlags[i];
-              const density = (cell >> 8) & 0xFF;
-              if (density > 0) {
-                  const gx = i % GRID_W, gy = Math.floor(i / GRID_W);
-                  dummy.position.set((gx * 20 + 10) - 700, (gy * 20 + 10) - 400, -20);
-                  const s = density / 255; dummy.scale.set(s, s, s);
-                  structMesh.setColorAt(i, new THREE.Color(memoryFlags[i * 8] !== 0 ? 0x00ff88 : 0x88aaff));
-              } else dummy.scale.set(0, 0, 0);
-              dummy.updateMatrix(); structMesh.setMatrixAt(i, dummy.matrix);
-          }
-          structMesh.instanceMatrix.needsUpdate = true;
-          if (structMesh.instanceColor) structMesh.instanceColor.needsUpdate = true;
+        const dummy = new THREE.Object3D();
+        for (let i = 0; i < gridCells; i++) {
+          const cell = architectureFlags[i];
+          const density = (cell >> 8) & 0xFF;
+          if (density > 0) {
+            const gx = i % GRID_W, gy = Math.floor(i / GRID_W);
+            dummy.position.set(
+              (gx * 20 + 10) - 700,
+              (gy * 20 + 10) - 400,
+              -20,
+            );
+            const s = density / 255;
+            dummy.scale.set(s, s, s);
+            structMesh.setColorAt(
+              i,
+              new THREE.Color(
+                memoryFlags[i * 8] !== 0 ? 0x00ff88 : 0x88aaff,
+              ),
+            );
+          } else dummy.scale.set(0, 0, 0);
+          dummy.updateMatrix();
+          structMesh.setMatrixAt(i, dummy.matrix);
+        }
+        structMesh.instanceMatrix.needsUpdate = true;
+        if (structMesh.instanceColor) {
+          structMesh.instanceColor.needsUpdate = true;
+        }
       }
 
       async function syncGrid() {
@@ -18257,33 +19029,54 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           for (let i = 0; i < gridCells; i++) {
             const nutrient = view.getInt32(i * 4, true);
             const attract = view.getFloat32(11200 + i * 4, true);
-            gridSizArr[i] = 0; gridColArr[i*3] = gridColArr[i*3+1] = gridColArr[i*3+2] = 0;
+            gridSizArr[i] = 0;
+            gridColArr[i * 3] =
+              gridColArr[i * 3 + 1] =
+              gridColArr[i * 3 + 2] =
+                0;
             if (nutrient > 0) {
               const intensity = Math.min(1.0, nutrient / 2000);
-              gridColArr[i*3+1] = intensity * 0.8; gridSizArr[i] = 8 + intensity * 15;
+              gridColArr[i * 3 + 1] = intensity * 0.8;
+              gridSizArr[i] = 8 + intensity * 15;
             }
             if (attract > 0.01) {
               const a = Math.min(1.0, attract / 400);
-              gridColArr[i*3] = Math.max(gridColArr[i*3], 1.0 * a);
-              gridColArr[i*3+2] = Math.max(gridColArr[i*3+2], 0.9 * a);
+              gridColArr[i * 3] = Math.max(gridColArr[i * 3], 1.0 * a);
+              gridColArr[i * 3 + 2] = Math.max(
+                gridColArr[i * 3 + 2],
+                0.9 * a,
+              );
               gridSizArr[i] += 2 + a * 10;
             }
           }
           gridGeo.attributes.color.needsUpdate = true;
           gridGeo.attributes.size.needsUpdate = true;
-        } catch(e) {}
+        } catch (e) {}
       }
 
       function updateLeaderboard() {
-        const container = document.getElementById('leaderboard-content');
-        if (prevailingSpecies.length === 0) { container.innerHTML = '...'; return; }
+        const container = document.getElementById(
+          "leaderboard-content",
+        );
+        if (prevailingSpecies.length === 0) {
+          container.innerHTML = "...";
+          return;
+        }
         container.innerHTML = prevailingSpecies.map((sp, i) => `
           <div class="species-row">
             <div class="species-genome">[${sp.hex}]</div>
-            ${thoughtArchive[sp.hex] ? `<div class="species-thought">"${thoughtArchive[sp.hex]}"</div>` : ''}
-            <div class="species-stats" style="color: ${i===0?'#00f0ff':'#fff'}">POP: ${sp.count} | ENG: ${sp.avgEnergy.toFixed(0)}</div>
+            ${
+          thoughtArchive[sp.hex]
+            ? `<div class="species-thought">"${
+              thoughtArchive[sp.hex]
+            }"</div>`
+            : ""
+        }
+            <div class="species-stats" style="color: ${
+          i === 0 ? "#00f0ff" : "#fff"
+        }">POP: ${sp.count} | ENG: ${sp.avgEnergy.toFixed(0)}</div>
           </div>
-        `).join('');
+        `).join("");
       }
 
       function updateCodexPanel() {
@@ -18295,24 +19088,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const narrative = codexNarrative || {};
         const mood = String(narrative.mood || "STABLE").toUpperCase();
         const moodClass = `codex-mood-${mood.toLowerCase()}`;
-        const recentNarrativeChronicles = (narrative.recentChronicles || []).slice(0, 2);
+        const recentNarrativeChronicles =
+          (narrative.recentChronicles || []).slice(0, 2);
 
-        const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => {
-          if (ch === "&") return "&amp;";
-          if (ch === "<") return "&lt;";
-          if (ch === ">") return "&gt;";
-          if (ch === "\"") return "&quot;";
-          return "&#39;";
-        });
+        const escapeHtml = (value) =>
+          String(value ?? "").replace(/[&<>"']/g, (ch) => {
+            if (ch === "&") return "&amp;";
+            if (ch === "<") return "&lt;";
+            if (ch === ">") return "&gt;";
+            if (ch === '"') return "&quot;";
+            return "&#39;";
+          });
 
         const rows = [];
         if (narrative.title || narrative.summary) {
           rows.push(`
             <div class="codex-row">
-              <div class="codex-row-title">Narrative <span class="codex-mood ${moodClass}">${escapeHtml(mood)}</span></div>
-              <div class="codex-row-body">${escapeHtml((narrative.title || "").slice(0, 120))}</div>
-              <div class="codex-row-body codex-row-subtle">${escapeHtml((narrative.summary || "").slice(0, 180))}</div>
-              ${narrative.relicStatus ? `<div class="codex-row-body codex-row-subtle">${escapeHtml((narrative.relicStatus || "").slice(0, 150))}</div>` : ""}
+              <div class="codex-row-title">Narrative <span class="codex-mood ${moodClass}">${
+            escapeHtml(mood)
+          }</span></div>
+              <div class="codex-row-body">${
+            escapeHtml((narrative.title || "").slice(0, 120))
+          }</div>
+              <div class="codex-row-body codex-row-subtle">${
+            escapeHtml((narrative.summary || "").slice(0, 180))
+          }</div>
+              ${
+            narrative.relicStatus
+              ? `<div class="codex-row-body codex-row-subtle">${
+                escapeHtml((narrative.relicStatus || "").slice(0, 150))
+              }</div>`
+              : ""
+          }
             </div>
           `);
         }
@@ -18320,7 +19127,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         rows.push(`
           <div class="codex-row">
             <div class="codex-row-title">Population Trace</div>
-            <div class="codex-row-body">Current: ${pop.current || 0} | Peak: ${pop.peak || 0}</div>
+            <div class="codex-row-body">Current: ${
+          pop.current || 0
+        } | Peak: ${pop.peak || 0}</div>
           </div>
         `);
 
@@ -18328,8 +19137,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           for (const s of species) {
             rows.push(`
               <div class="codex-row">
-                <div class="codex-row-title">Species: ${escapeHtml(s.latinName || "Unnamed")}</div>
-                <div class="codex-row-body">${escapeHtml((s.behavior || "").slice(0, 120))}</div>
+                <div class="codex-row-title">Species: ${
+              escapeHtml(s.latinName || "Unnamed")
+            }</div>
+                <div class="codex-row-body">${
+              escapeHtml((s.behavior || "").slice(0, 120))
+            }</div>
               </div>
             `);
           }
@@ -18339,8 +19152,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           for (const c of recentNarrativeChronicles) {
             rows.push(`
               <div class="codex-row">
-                <div class="codex-row-title">Narrative Chronicle: ${escapeHtml(c.title || "Event")}</div>
-                <div class="codex-row-body codex-row-subtle">Epoch ${Number(c.epoch) || 0} | ${escapeHtml(c.type || "unknown")}</div>
+                <div class="codex-row-title">Narrative Chronicle: ${
+              escapeHtml(c.title || "Event")
+            }</div>
+                <div class="codex-row-body codex-row-subtle">Epoch ${
+              Number(c.epoch) || 0
+            } | ${escapeHtml(c.type || "unknown")}</div>
               </div>
             `);
           }
@@ -18348,8 +19165,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           for (const c of chronicles) {
             rows.push(`
               <div class="codex-row">
-                <div class="codex-row-title">Chronicle: ${escapeHtml(c.title || "Event")}</div>
-                <div class="codex-row-body">${escapeHtml((c.body || "").slice(0, 120))}</div>
+                <div class="codex-row-title">Chronicle: ${
+              escapeHtml(c.title || "Event")
+            }</div>
+                <div class="codex-row-body">${
+              escapeHtml((c.body || "").slice(0, 120))
+            }</div>
               </div>
             `);
           }
@@ -18359,8 +19180,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           const relic = relics[0];
           rows.push(`
             <div class="codex-row">
-              <div class="codex-row-title">Relic: ${escapeHtml(relic.id || "Unknown")}</div>
-              <div class="codex-row-body">${escapeHtml((relic.summary || "").slice(0, 120))}</div>
+              <div class="codex-row-title">Relic: ${
+            escapeHtml(relic.id || "Unknown")
+          }</div>
+              <div class="codex-row-body">${
+            escapeHtml((relic.summary || "").slice(0, 120))
+          }</div>
             </div>
           `);
         }
@@ -18379,30 +19204,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       function nowClock() {
         const d = new Date();
-        const hh = String(d.getHours()).padStart(2, '0');
-        const mm = String(d.getMinutes()).padStart(2, '0');
-        const ss = String(d.getSeconds()).padStart(2, '0');
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mm = String(d.getMinutes()).padStart(2, "0");
+        const ss = String(d.getSeconds()).padStart(2, "0");
         return `${hh}:${mm}:${ss}`;
       }
 
       const dominantGenomeHex = () => {
-        if (!Array.isArray(telemetrySnapshot?.dominantGenomes)) return "";
+        if (!Array.isArray(telemetrySnapshot?.dominantGenomes)) {
+          return "";
+        }
         const first = telemetrySnapshot.dominantGenomes[0];
         return typeof first === "string" ? first : "";
       };
 
       function inferDominantSpeciesLabel() {
-        const dominant = Array.isArray(telemetrySnapshot.dominantGenomes)
-          ? telemetrySnapshot.dominantGenomes[0]
-          : null;
-        if (!dominant || typeof dominant !== "string") return "Unclassified lineage";
-        const found = (codexSnapshot.species || []).find((entry) => entry.genome === dominant);
+        const dominant =
+          Array.isArray(telemetrySnapshot.dominantGenomes)
+            ? telemetrySnapshot.dominantGenomes[0]
+            : null;
+        if (!dominant || typeof dominant !== "string") {
+          return "Unclassified lineage";
+        }
+        const found = (codexSnapshot.species || []).find((entry) =>
+          entry.genome === dominant
+        );
         if (found && found.latinName) return found.latinName;
         return `Genome ${dominant.slice(0, 8)}`;
       }
 
       function buildHumanExplanation() {
-        const mood = String(codexNarrative?.mood || "STABLE").toLowerCase();
+        const mood = String(codexNarrative?.mood || "STABLE")
+          .toLowerCase();
         const moodPhrase = mood === "ascendant"
           ? "the lattice is expanding"
           : mood === "fragile"
@@ -18411,15 +19244,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const tick = Number(telemetrySnapshot?.tick || 0);
         const avgEnergy = Number(telemetrySnapshot?.avgEnergy || 0);
         const dominantSpecies = inferDominantSpeciesLabel();
-        const narrativeTitle = String(codexNarrative?.title || "Codex arc");
-        const narrativeSummary = String(codexNarrative?.summary || "Codex narrative is still forming.");
-        const relicStatus = String(codexNarrative?.relicStatus || "Relic status unavailable.");
-        const vox = Array.isArray(telemetrySnapshot?.voxPopuli) && telemetrySnapshot.voxPopuli.length > 0
+        const narrativeTitle = String(
+          codexNarrative?.title || "Codex arc",
+        );
+        const narrativeSummary = String(
+          codexNarrative?.summary ||
+            "Codex narrative is still forming.",
+        );
+        const relicStatus = String(
+          codexNarrative?.relicStatus || "Relic status unavailable.",
+        );
+        const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
+            telemetrySnapshot.voxPopuli.length > 0
           ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
           : "";
 
-        let text =
-          `At tick ${tick}, ${moodPhrase}. ` +
+        let text = `At tick ${tick}, ${moodPhrase}. ` +
           `Dominant lineage: ${dominantSpecies}. ` +
           `Average energy is ${avgEnergy.toFixed(1)}. ` +
           `${narrativeTitle}: ${narrativeSummary}`;
@@ -18450,7 +19290,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         };
         driftHistory.push(point);
         const cutoff = Date.now() - DRIFT_HISTORY_RETENTION_MS;
-        driftHistory = driftHistory.filter((entry) => entry.ts >= cutoff);
+        driftHistory = driftHistory.filter((entry) =>
+          entry.ts >= cutoff
+        );
       }
 
       function findDriftReference() {
@@ -18470,7 +19312,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function analyzeDrift() {
         if (driftHistory.length < 2) {
           return {
-            text: "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
+            text:
+              "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
@@ -18481,7 +19324,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const reference = findDriftReference();
         if (!reference) {
           return {
-            text: "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
+            text:
+              "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
@@ -18489,7 +19333,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           };
         }
 
-        const elapsedSec = Math.max(1, Math.round((latest.ts - reference.ts) / 1000));
+        const elapsedSec = Math.max(
+          1,
+          Math.round((latest.ts - reference.ts) / 1000),
+        );
         const deltaTick = latest.tick - reference.tick;
         const dynamics = computeDriftDynamics(reference, latest);
         const deltaEnergy = dynamics.deltaEnergy;
@@ -18508,14 +19355,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           ? `average energy decreased (${deltaEnergy.toFixed(1)})`
           : "average energy remained broadly stable";
         const dominantPhrase = dominantShifted
-          ? `dominant genome rotated (${reference.dominantGenome.slice(0, 8)} → ${latest.dominantGenome.slice(0, 8)})`
+          ? `dominant genome rotated (${
+            reference.dominantGenome.slice(0, 8)
+          } → ${latest.dominantGenome.slice(0, 8)})`
           : "dominant genome remained stable";
         const moodPhrase = moodShifted
           ? `codex mood shifted (${reference.mood} → ${latest.mood})`
           : `codex mood held at ${latest.mood}`;
 
         const score = dynamics.score;
-        const severity = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
+        const severity = score >= 4
+          ? "HIGH"
+          : score >= 2
+          ? "MID"
+          : "LOW";
 
         const popImpact = dynamics.popImpact;
         const energyImpact = dynamics.energyImpact;
@@ -18536,20 +19389,24 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       function computeDriftDynamics(reference, latest) {
         const deltaEnergy = latest.avgEnergy - reference.avgEnergy;
-        const deltaPopulation = latest.population - reference.population;
-        const dominantShifted = (
-          latest.dominantGenome.length > 0 &&
+        const deltaPopulation = latest.population -
+          reference.population;
+        const dominantShifted = latest.dominantGenome.length > 0 &&
           reference.dominantGenome.length > 0 &&
-          latest.dominantGenome !== reference.dominantGenome
-        );
+          latest.dominantGenome !== reference.dominantGenome;
         const moodShifted = latest.mood !== reference.mood;
         const absPop = Math.abs(deltaPopulation);
         const absEnergy = Math.abs(deltaEnergy);
         const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
-        const energyImpact = absEnergy >= 3 ? 2 : absEnergy >= 1.25 ? 1 : 0;
+        const energyImpact = absEnergy >= 3
+          ? 2
+          : absEnergy >= 1.25
+          ? 1
+          : 0;
         const genomeImpact = dominantShifted ? 1 : 0;
         const moodImpact = moodShifted ? 1 : 0;
-        const score = popImpact + energyImpact + genomeImpact + moodImpact;
+        const score = popImpact + energyImpact + genomeImpact +
+          moodImpact;
 
         return {
           deltaEnergy,
@@ -18568,15 +19425,23 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (driftHistory.length < 2) return "trend: collecting";
         const latest = driftHistory[driftHistory.length - 1];
         const windowStart = latest.ts - DRIFT_LOOKBACK_MS;
-        let window = driftHistory.filter((entry) => entry.ts >= windowStart);
+        let window = driftHistory.filter((entry) =>
+          entry.ts >= windowStart
+        );
         if (window.length < 2) window = driftHistory.slice(-2);
         if (window.length < 2) return "trend: collecting";
 
-        const step = Math.max(1, Math.floor((window.length - 1) / DRIFT_SPARKLINE_POINTS));
+        const step = Math.max(
+          1,
+          Math.floor((window.length - 1) / DRIFT_SPARKLINE_POINTS),
+        );
         const scores = [];
         for (let i = 1; i < window.length; i += step) {
           const previousIndex = Math.max(0, i - step);
-          const dynamics = computeDriftDynamics(window[previousIndex], window[i]);
+          const dynamics = computeDriftDynamics(
+            window[previousIndex],
+            window[i],
+          );
           scores.push(dynamics.score);
         }
         if (scores.length === 0) return "trend: collecting";
@@ -18584,14 +19449,23 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const maxScore = 6;
         const glyphSpan = DRIFT_SPARKLINE_GLYPHS.length - 1;
         const bars = scores.map((rawScore) => {
-          const bounded = Math.max(0, Math.min(maxScore, Number(rawScore) || 0));
-          const glyphIndex = Math.round((bounded / maxScore) * glyphSpan);
+          const bounded = Math.max(
+            0,
+            Math.min(maxScore, Number(rawScore) || 0),
+          );
+          const glyphIndex = Math.round(
+            (bounded / maxScore) * glyphSpan,
+          );
           return DRIFT_SPARKLINE_GLYPHS[glyphIndex];
         }).join("");
 
         const first = scores[0];
         const last = scores[scores.length - 1];
-        const slope = last > first ? "rising" : last < first ? "cooling" : "steady";
+        const slope = last > first
+          ? "rising"
+          : last < first
+          ? "cooling"
+          : "steady";
         return `trend:${bars} (${slope})`;
       }
 
@@ -18600,12 +19474,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           return "risk: baseline variance only";
         }
         const tags = [];
-        if (Number(dynamics.popImpact || 0) >= 2) tags.push("population shock");
-        else if (Number(dynamics.popImpact || 0) === 1) tags.push("population drift");
-        if (Number(dynamics.energyImpact || 0) >= 2) tags.push("energy turbulence");
-        else if (Number(dynamics.energyImpact || 0) === 1) tags.push("energy drift");
-        if (Number(dynamics.genomeImpact || 0) > 0) tags.push("lineage rotation");
-        if (Number(dynamics.moodImpact || 0) > 0) tags.push("narrative phase shift");
+        if (Number(dynamics.popImpact || 0) >= 2) {
+          tags.push("population shock");
+        } else if (Number(dynamics.popImpact || 0) === 1) {
+          tags.push("population drift");
+        }
+        if (Number(dynamics.energyImpact || 0) >= 2) {
+          tags.push("energy turbulence");
+        } else if (Number(dynamics.energyImpact || 0) === 1) {
+          tags.push("energy drift");
+        }
+        if (Number(dynamics.genomeImpact || 0) > 0) {
+          tags.push("lineage rotation");
+        }
+        if (Number(dynamics.moodImpact || 0) > 0) {
+          tags.push("narrative phase shift");
+        }
         if (tags.length === 0) return "risk: baseline variance only";
         return `risk: ${tags.join(" + ")}`;
       }
@@ -18616,10 +19500,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const normalized = String(severity || "BASELINE").toUpperCase();
         badge.textContent = normalized;
         badge.className = "drift-severity";
-        if (normalized === "LOW") badge.classList.add("drift-severity-low");
-        else if (normalized === "MID") badge.classList.add("drift-severity-mid");
-        else if (normalized === "HIGH") badge.classList.add("drift-severity-high");
-        else badge.classList.add("drift-severity-baseline");
+        if (normalized === "LOW") {
+          badge.classList.add("drift-severity-low");
+        } else if (normalized === "MID") {
+          badge.classList.add("drift-severity-mid");
+        } else if (normalized === "HIGH") {
+          badge.classList.add("drift-severity-high");
+        } else badge.classList.add("drift-severity-baseline");
       }
 
       function applyDriftHalo(severity) {
@@ -18628,21 +19515,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const normalized = String(severity || "BASELINE").toUpperCase();
         if (normalized === "HIGH") {
           halo.style.opacity = "0.9";
-          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 110, 110, 0.28), rgba(0, 0, 0, 0) 62%)";
+          halo.style.background =
+            "radial-gradient(circle at 50% 55%, rgba(255, 110, 110, 0.28), rgba(0, 0, 0, 0) 62%)";
           return;
         }
         if (normalized === "MID") {
           halo.style.opacity = "0.75";
-          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 185, 90, 0.24), rgba(0, 0, 0, 0) 62%)";
+          halo.style.background =
+            "radial-gradient(circle at 50% 55%, rgba(255, 185, 90, 0.24), rgba(0, 0, 0, 0) 62%)";
           return;
         }
         if (normalized === "LOW") {
           halo.style.opacity = "0.58";
-          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(120, 255, 220, 0.2), rgba(0, 0, 0, 0) 62%)";
+          halo.style.background =
+            "radial-gradient(circle at 50% 55%, rgba(120, 255, 220, 0.2), rgba(0, 0, 0, 0) 62%)";
           return;
         }
         halo.style.opacity = "0.42";
-        halo.style.background = "radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%)";
+        halo.style.background =
+          "radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%)";
       }
 
       function buildDriftExplanation() {
@@ -18652,14 +19543,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function renderHumanDrift() {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
-        const breakdownNode = document.getElementById("human-drift-breakdown");
+        const breakdownNode = document.getElementById(
+          "human-drift-breakdown",
+        );
         const riskNode = document.getElementById("human-drift-risk");
-        const sparklineNode = document.getElementById("human-drift-sparkline");
+        const sparklineNode = document.getElementById(
+          "human-drift-sparkline",
+        );
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
-        if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
+        if (breakdownNode) {
+          breakdownNode.textContent = analysis.breakdown;
+        }
         if (riskNode) riskNode.textContent = analysis.riskSummary;
-        if (sparklineNode) sparklineNode.textContent = buildDriftSparkline();
+        if (sparklineNode) {
+          sparklineNode.textContent = buildDriftSparkline();
+        }
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);
       }
@@ -18697,28 +19596,40 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             narrative,
             telemetry,
           ] = await Promise.all([
-            fetchJson('/thoughts'),
-            fetchJson('/lineage'),
-            fetchJson('/codex?limit=6'),
-            fetchJson('/codex/narrative?limit=4'),
-            fetchJson('/api/telemetry'),
+            fetchJson("/thoughts"),
+            fetchJson("/lineage"),
+            fetchJson("/codex?limit=6"),
+            fetchJson("/codex/narrative?limit=4"),
+            fetchJson("/api/telemetry"),
           ]);
 
-          if (thoughts && typeof thoughts === "object") thoughtArchive = thoughts;
-          if (lineage && typeof lineage === "object") lineageArchive = lineage;
+          if (thoughts && typeof thoughts === "object") {
+            thoughtArchive = thoughts;
+          }
+          if (lineage && typeof lineage === "object") {
+            lineageArchive = lineage;
+          }
           if (codex && typeof codex === "object") codexSnapshot = codex;
-          if (narrative && typeof narrative === "object") codexNarrative = narrative;
-          if (telemetry && typeof telemetry === "object") telemetrySnapshot = telemetry;
+          if (narrative && typeof narrative === "object") {
+            codexNarrative = narrative;
+          }
+          if (telemetry && typeof telemetry === "object") {
+            telemetrySnapshot = telemetry;
+          }
 
           updateCodexPanel();
           pushDriftPoint();
-          renderHumanChannel(`Drift ~${Math.round(DRIFT_LOOKBACK_MS / 1000)}s`);
+          renderHumanChannel(
+            `Drift ~${Math.round(DRIFT_LOOKBACK_MS / 1000)}s`,
+          );
         } finally {
           dictSyncInFlight = false;
         }
       }
 
-      const humanExplainBtn = document.getElementById("human-explain-btn");
+      const humanExplainBtn = document.getElementById(
+        "human-explain-btn",
+      );
       if (humanExplainBtn) {
         humanExplainBtn.addEventListener("click", () => {
           void refreshObserverDictionaries(true);
@@ -18735,7 +19646,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function animate(t) {
         requestAnimationFrame(animate);
         controls.update();
-        if (avatarDirty && !avatarDisabled && t - lastAvatarSync > AVATAR_SYNC_MS) {
+        if (
+          avatarDirty && !avatarDisabled &&
+          t - lastAvatarSync > AVATAR_SYNC_MS
+        ) {
           avatarDirty = false;
           lastAvatarSync = t;
           syncAvatarPresence();
@@ -18762,7 +19676,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         composer.render();
       }
 
-      window.saveGenesis = () => fetch("/snapshot/export", { method: "POST" });
+      window.saveGenesis = () =>
+        fetch("/snapshot/export", { method: "POST" });
       connectRtcSignaling();
       updatePeerMeshHud();
       void refreshObserverDictionaries(true);

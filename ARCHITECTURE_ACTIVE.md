@@ -15,7 +15,9 @@ export context. It intentionally excludes historical era narratives.
    membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
    `/api/webrtc`. Observer UI can form RTC mesh rooms (`rtcRoom`) and exchange
    lightweight telemetry frames over `RTCDataChannel` without routing payloads
-   through mutation gate paths.
+   through mutation gate paths. Mesh `plasmid/pheromone` packets are ingested
+   only via `/api/webrtc/inject` and forwarded into the existing
+   `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
    `/codex/narrative` and `/api/codex/narrative`. Observer human channel in

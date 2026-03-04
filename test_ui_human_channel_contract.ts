@@ -119,13 +119,13 @@ const main = async () => {
   );
   requireSnippet(
     ui,
-    "fetchJson('/api/telemetry')",
+    'fetchJson("/api/telemetry")',
     "UI human channel must consume runtime telemetry endpoint",
     violations,
   );
   requireSnippet(
     ui,
-    "fetchJson('/codex/narrative?limit=4')",
+    'fetchJson("/codex/narrative?limit=4")',
     "UI human channel must consume codex narrative endpoint",
     violations,
   );
