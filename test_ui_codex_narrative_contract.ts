@@ -35,8 +35,26 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "Shared Center",
+    "UI codex panel must render shared center row from invariant archive",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "codex-mood",
     "UI codex panel must render narrative mood badge",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "inferSharedCenterLabel",
+    "UI codex panel must infer shared center across narrative/snapshot invariants",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "/codex/invariants?limit=6",
+    "UI codex panel must poll codex invariants endpoint",
     violations,
   );
   requireSnippet(

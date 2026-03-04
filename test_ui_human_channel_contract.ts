@@ -135,6 +135,18 @@ const main = async () => {
     "UI human channel must map dominant genome to species label",
     violations,
   );
+  requireSnippet(
+    ui,
+    "inferSharedCenterLabel",
+    "UI human channel must map codex invariant archive to shared center label",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "inferDominantInvariantVector",
+    "UI human channel must expose dominant invariant vector cue",
+    violations,
+  );
 
   if (violations.length > 0) {
     throw new Error(

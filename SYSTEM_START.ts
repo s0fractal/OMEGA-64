@@ -485,6 +485,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     });
   }
 
+  if (url.pathname === "/api/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "12", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 12,
+    );
+    return new Response(JSON.stringify(invariants), {
+      headers: JSON_HEADERS,
+    });
+  }
+
   if (url.pathname === "/api/inject" && req.method === "POST") {
     const denied = requireDaemonAuth(req);
     if (denied) return denied;
@@ -910,6 +920,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       Number.isFinite(limit) ? limit : 5,
     );
     return new Response(JSON.stringify(narrative), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(invariants), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",

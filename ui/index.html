@@ -497,7 +497,7 @@
           Drift baseline is forming...
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
-          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable
         </div>
         <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
           risk: baseline variance only
@@ -696,12 +696,15 @@
         species: [],
         chronicles: [],
         relics: [],
+        invariants: [],
         population: { current: 0, peak: 0 },
       };
       let codexNarrative = {
         mood: "STABLE",
         title: "",
         summary: "",
+        sharedCenter: "tick.exists",
+        invariantHighlights: [],
         relicStatus: "",
         recentChronicles: [],
       };
@@ -1806,12 +1809,15 @@
         const species = (codexSnapshot.species || []).slice(0, 2);
         const chronicles = (codexSnapshot.chronicles || []).slice(0, 2);
         const relics = (codexSnapshot.relics || []).slice(0, 1);
+        const invariants = (codexSnapshot.invariants || []).slice(0, 2);
         const pop = codexSnapshot.population || { current: 0, peak: 0 };
         const narrative = codexNarrative || {};
         const mood = String(narrative.mood || "STABLE").toUpperCase();
         const moodClass = `codex-mood-${mood.toLowerCase()}`;
         const recentNarrativeChronicles =
           (narrative.recentChronicles || []).slice(0, 2);
+        const narrativeInvariants =
+          (narrative.invariantHighlights || []).slice(0, 2);
 
         const escapeHtml = (value) =>
           String(value ?? "").replace(/[&<>"']/g, (ch) => {
@@ -1855,6 +1861,22 @@
           </div>
         `);
 
+        const sharedCenter = inferSharedCenterLabel();
+        const dominantInvariant = inferDominantInvariantVector();
+        rows.push(`
+          <div class="codex-row">
+            <div class="codex-row-title">Shared Center</div>
+            <div class="codex-row-body">${escapeHtml(sharedCenter)}</div>
+            ${
+          dominantInvariant.length > 0
+            ? `<div class="codex-row-body codex-row-subtle">Dominant invariant: ${
+              escapeHtml(dominantInvariant.slice(0, 100))
+            }</div>`
+            : ""
+        }
+          </div>
+        `);
+
         if (species.length > 0) {
           for (const s of species) {
             rows.push(`
@@ -1892,6 +1914,34 @@
             }</div>
                 <div class="codex-row-body">${
               escapeHtml((c.body || "").slice(0, 120))
+            }</div>
+              </div>
+            `);
+          }
+        }
+
+        if (narrativeInvariants.length > 0) {
+          for (const inv of narrativeInvariants) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Invariant: ${
+              escapeHtml((inv.signature || "").slice(0, 10).toUpperCase())
+            }</div>
+                <div class="codex-row-body codex-row-subtle">Center ${
+              escapeHtml(String(inv.center || "tick.exists"))
+            } | Vector ${
+              escapeHtml(String(inv.dominantVector || "none"))
+            }</div>
+              </div>
+            `);
+          }
+        } else if (invariants.length > 0) {
+          for (const inv of invariants) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Invariant Archive</div>
+                <div class="codex-row-body">${
+              escapeHtml(String(inv.summary || "invariant frame"))
             }</div>
               </div>
             `);
@@ -1955,6 +2005,55 @@
         return `Genome ${dominant.slice(0, 8)}`;
       }
 
+      function inferSharedCenterLabel() {
+        const narrativeCenter = String(codexNarrative?.sharedCenter || "")
+          .trim();
+        if (narrativeCenter.length > 0) return narrativeCenter;
+        const narrativeInvariant = Array.isArray(
+            codexNarrative?.invariantHighlights,
+          ) && codexNarrative.invariantHighlights.length > 0
+          ? codexNarrative.invariantHighlights[0]
+          : null;
+        if (narrativeInvariant && narrativeInvariant.center) {
+          return String(narrativeInvariant.center).trim() || "tick.exists";
+        }
+        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+            codexSnapshot.invariants.length > 0
+          ? codexSnapshot.invariants[0]
+          : null;
+        if (archiveInvariant && archiveInvariant.center) {
+          return String(archiveInvariant.center).trim() || "tick.exists";
+        }
+        return "tick.exists";
+      }
+
+      function inferDominantInvariantVector() {
+        const narrativeInvariant = Array.isArray(
+            codexNarrative?.invariantHighlights,
+          ) && codexNarrative.invariantHighlights.length > 0
+          ? codexNarrative.invariantHighlights[0]
+          : null;
+        if (
+          narrativeInvariant &&
+          typeof narrativeInvariant.dominantVector === "string" &&
+          narrativeInvariant.dominantVector.trim().length > 0
+        ) {
+          return narrativeInvariant.dominantVector.trim();
+        }
+        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+            codexSnapshot.invariants.length > 0
+          ? codexSnapshot.invariants[0]
+          : null;
+        if (
+          archiveInvariant &&
+          typeof archiveInvariant.dominantVector === "string" &&
+          archiveInvariant.dominantVector.trim().length > 0
+        ) {
+          return archiveInvariant.dominantVector.trim();
+        }
+        return "";
+      }
+
       function buildHumanExplanation() {
         const mood = String(codexNarrative?.mood || "STABLE")
           .toLowerCase();
@@ -1966,6 +2065,8 @@
         const tick = Number(telemetrySnapshot?.tick || 0);
         const avgEnergy = Number(telemetrySnapshot?.avgEnergy || 0);
         const dominantSpecies = inferDominantSpeciesLabel();
+        const sharedCenter = inferSharedCenterLabel();
+        const dominantInvariant = inferDominantInvariantVector();
         const narrativeTitle = String(
           codexNarrative?.title || "Codex arc",
         );
@@ -1983,8 +2084,12 @@
 
         let text = `At tick ${tick}, ${moodPhrase}. ` +
           `Dominant lineage: ${dominantSpecies}. ` +
+          `Shared center: ${sharedCenter}. ` +
           `Average energy is ${avgEnergy.toFixed(1)}. ` +
           `${narrativeTitle}: ${narrativeSummary}`;
+        if (dominantInvariant.length > 0) {
+          text += ` Dominant invariant vector: ${dominantInvariant}.`;
+        }
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
         }
@@ -2008,6 +2113,7 @@
           avgEnergy: Number(telemetrySnapshot?.avgEnergy || 0),
           population: Number(codexSnapshot?.population?.current || 0),
           dominantGenome: dominantGenomeHex(),
+          sharedCenter: inferSharedCenterLabel(),
           mood: String(codexNarrative?.mood || "STABLE").toUpperCase(),
         };
         driftHistory.push(point);
@@ -2038,7 +2144,7 @@
               "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
             severity: "BASELINE",
             breakdown:
-              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable",
             riskSummary: "risk: baseline variance only",
           };
         }
@@ -2050,7 +2156,7 @@
               "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
             severity: "BASELINE",
             breakdown:
-              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable",
             riskSummary: "risk: baseline variance only",
           };
         }
@@ -2065,6 +2171,7 @@
         const deltaPopulation = dynamics.deltaPopulation;
         const dominantShifted = dynamics.dominantShifted;
         const moodShifted = dynamics.moodShifted;
+        const centerShifted = dynamics.centerShifted;
 
         const populationPhrase = deltaPopulation > 12
           ? `population expanded by ${deltaPopulation}`
@@ -2084,6 +2191,9 @@
         const moodPhrase = moodShifted
           ? `codex mood shifted (${reference.mood} → ${latest.mood})`
           : `codex mood held at ${latest.mood}`;
+        const centerPhrase = centerShifted
+          ? `shared center shifted (${reference.sharedCenter} → ${latest.sharedCenter})`
+          : `shared center held at ${latest.sharedCenter}`;
 
         const score = dynamics.score;
         const severity = score >= 4
@@ -2096,13 +2206,14 @@
         const energyImpact = dynamics.energyImpact;
         const genomeImpact = dynamics.genomeImpact;
         const moodImpact = dynamics.moodImpact;
+        const centerImpact = dynamics.centerImpact;
         const breakdown =
-          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact} | center:${centerImpact}`;
         const riskSummary = buildDriftRiskSummary(dynamics);
 
         return {
           text:
-            `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
+            `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}; ${centerPhrase}.`,
           severity,
           breakdown,
           riskSummary,
@@ -2117,6 +2228,7 @@
           reference.dominantGenome.length > 0 &&
           latest.dominantGenome !== reference.dominantGenome;
         const moodShifted = latest.mood !== reference.mood;
+        const centerShifted = latest.sharedCenter !== reference.sharedCenter;
         const absPop = Math.abs(deltaPopulation);
         const absEnergy = Math.abs(deltaEnergy);
         const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
@@ -2127,18 +2239,21 @@
           : 0;
         const genomeImpact = dominantShifted ? 1 : 0;
         const moodImpact = moodShifted ? 1 : 0;
+        const centerImpact = centerShifted ? 1 : 0;
         const score = popImpact + energyImpact + genomeImpact +
-          moodImpact;
+          moodImpact + centerImpact;
 
         return {
           deltaEnergy,
           deltaPopulation,
           dominantShifted,
           moodShifted,
+          centerShifted,
           popImpact,
           energyImpact,
           genomeImpact,
           moodImpact,
+          centerImpact,
           score,
         };
       }
@@ -2168,7 +2283,7 @@
         }
         if (scores.length === 0) return "trend: collecting";
 
-        const maxScore = 6;
+        const maxScore = 7;
         const glyphSpan = DRIFT_SPARKLINE_GLYPHS.length - 1;
         const bars = scores.map((rawScore) => {
           const bounded = Math.max(
@@ -2211,6 +2326,9 @@
         }
         if (Number(dynamics.moodImpact || 0) > 0) {
           tags.push("narrative phase shift");
+        }
+        if (Number(dynamics.centerImpact || 0) > 0) {
+          tags.push("center displacement");
         }
         if (tags.length === 0) return "risk: baseline variance only";
         return `risk: ${tags.join(" + ")}`;
@@ -2317,12 +2435,14 @@
             codex,
             narrative,
             telemetry,
+            invariants,
           ] = await Promise.all([
             fetchJson("/thoughts"),
             fetchJson("/lineage"),
             fetchJson("/codex?limit=6"),
             fetchJson("/codex/narrative?limit=4"),
             fetchJson("/api/telemetry"),
+            fetchJson("/codex/invariants?limit=6"),
           ]);
 
           if (thoughts && typeof thoughts === "object") {
@@ -2334,6 +2454,12 @@
           if (codex && typeof codex === "object") codexSnapshot = codex;
           if (narrative && typeof narrative === "object") {
             codexNarrative = narrative;
+          }
+          if (Array.isArray(invariants)) {
+            codexSnapshot = {
+              ...codexSnapshot,
+              invariants,
+            };
           }
           if (telemetry && typeof telemetry === "object") {
             telemetrySnapshot = telemetry;

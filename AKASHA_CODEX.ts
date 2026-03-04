@@ -9,11 +9,14 @@ const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
 const CHRONICLES_DIR = `${CODEX_ROOT}/chronicles`;
 const RELICS_DIR = `${CODEX_ROOT}/relics`;
+const INVARIANTS_DIR = `${CODEX_ROOT}/invariants`;
 
 const STATE_FILE = `${CODEX_ROOT}/state.json`;
 const SPECIES_INDEX_FILE = `${SPECIES_DIR}/index.json`;
 const CHRONICLES_INDEX_FILE = `${CHRONICLES_DIR}/index.json`;
 const RELICS_INDEX_FILE = `${RELICS_DIR}/index.json`;
+const INVARIANTS_INDEX_FILE = `${INVARIANTS_DIR}/index.json`;
+const DAEMON_INVARIANT_PATH = "./daemon_invariants.json";
 
 const EPOCH_TICKS = 10_000;
 const DOMINANCE_THRESHOLD = 0.05;
@@ -22,6 +25,9 @@ const RELIC_MIN_BLOCKS = 48;
 const MAX_CHRONICLES = 512;
 const MAX_RELICS = 256;
 const MAX_RELIC_SIGNATURES = 512;
+const MAX_INVARIANTS = 512;
+const MAX_INVARIANT_SIGNATURES = 2048;
+const INVARIANT_SYNC_INTERVAL_MS = 15_000;
 
 type SpeciesEntry = {
   id: string;
@@ -61,17 +67,57 @@ type RelicEntry = {
   createdAt: string;
 };
 
+type InvariantSignal = {
+  key: string;
+  vector: string;
+  weight: number;
+  evidence: string[];
+};
+
+type InvariantEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  dominantVector: string;
+  signals: InvariantSignal[];
+  source: string;
+  filePath: string;
+  createdAt: string;
+};
+
+type DaemonInvariantFrame = {
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  invariants: InvariantSignal[];
+  created_at: string;
+};
+
 type CodexNarrative = {
   tick: number;
   epoch: number;
   mood: "ASCENDANT" | "STABLE" | "FRAGILE";
   title: string;
   summary: string;
+  sharedCenter: string;
   speciesHighlights: Array<{
     latinName: string;
     genome: string;
     dominantEpochs: number;
     peakShare: number;
+  }>;
+  invariantHighlights: Array<{
+    tick: number;
+    epoch: number;
+    center: string;
+    signature: string;
+    dominantVector: string;
+    summary: string;
   }>;
   recentChronicles: Array<{
     tick: number;
@@ -94,6 +140,7 @@ type CodexState = {
   lastDecreeTick: number;
   genomeEpochs: Record<string, number[]>;
   relicSignatures: string[];
+  invariantSignatures: string[];
 };
 
 type GenomeStats = {
@@ -149,6 +196,7 @@ const fallbackState = (): CodexState => ({
   lastDecreeTick: -1,
   genomeEpochs: {},
   relicSignatures: [],
+  invariantSignatures: [],
 });
 
 let started = false;
@@ -159,6 +207,8 @@ let state: CodexState = fallbackState();
 let speciesIndex: SpeciesEntry[] = [];
 let chronicleIndex: ChronicleEntry[] = [];
 let relicIndex: RelicEntry[] = [];
+let invariantIndex: InvariantEntry[] = [];
+let lastInvariantSyncAt = 0;
 
 const nowIso = (): string => new Date().toISOString();
 
@@ -166,7 +216,20 @@ const toHex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("")
     .toUpperCase();
 
-const asArray = <T>(value: unknown): T[] => Array.isArray(value) ? value as T[] : [];
+const asArray = <T>(value: unknown): T[] =>
+  Array.isArray(value) ? value as T[] : [];
+const asObject = (value: unknown): Record<string, unknown> | null =>
+  value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : null;
+const asFiniteNumber = (value: unknown, fallback = 0): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
 
 const readJsonFile = async <T>(path: string, fallback: T): Promise<T> => {
   try {
@@ -246,12 +309,186 @@ const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
   return "Lattice in Coherence Arc";
 };
 
+const parseInvariantSignal = (value: unknown): InvariantSignal | null => {
+  const node = asObject(value);
+  if (!node) return null;
+  const key = typeof node.key === "string" ? node.key.trim() : "";
+  const vector = typeof node.vector === "string" ? node.vector.trim() : "";
+  if (key.length === 0 || vector.length === 0) return null;
+  const evidence = asArray<unknown>(node.evidence)
+    .filter((entry): entry is string => typeof entry === "string")
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length > 0)
+    .slice(0, 8);
+  return {
+    key,
+    vector,
+    weight: Math.max(0, Math.min(1, asFiniteNumber(node.weight, 0))),
+    evidence,
+  };
+};
+
+const parseDaemonInvariantFrame = (
+  value: unknown,
+): DaemonInvariantFrame | null => {
+  const node = asObject(value);
+  if (!node) return null;
+  const signatureRaw = typeof node.signature === "string"
+    ? node.signature.trim().toLowerCase()
+    : "";
+  if (!/^[0-9a-f]{6,64}$/u.test(signatureRaw)) return null;
+  const tick = Math.max(0, Math.floor(asFiniteNumber(node.tick, 0)));
+  const inferredEpoch = Math.floor(tick / EPOCH_TICKS);
+  const epoch = Math.max(
+    0,
+    Math.floor(asFiniteNumber(node.epoch, inferredEpoch)),
+  );
+  const center =
+    typeof node.center === "string" && node.center.trim().length > 0
+      ? node.center.trim()
+      : "tick.exists";
+  const summary =
+    typeof node.summary === "string" && node.summary.trim().length > 0
+      ? node.summary.trim()
+      : `center=${center} | signature=${signatureRaw.slice(0, 8)}`;
+
+  const parsedSignals = asArray<unknown>(node.invariants)
+    .map((entry) => parseInvariantSignal(entry))
+    .filter((entry): entry is InvariantSignal => entry !== null)
+    .slice(0, 8);
+  const signals = parsedSignals.length > 0 ? parsedSignals : [{
+    key: "center_anchor",
+    vector: center,
+    weight: 0.5,
+    evidence: [summary.slice(0, 96)],
+  }];
+
+  const createdAt = typeof node.created_at === "string" &&
+      node.created_at.trim().length > 0
+    ? node.created_at.trim()
+    : nowIso();
+
+  return {
+    tick,
+    epoch,
+    center,
+    signature: signatureRaw,
+    summary,
+    invariants: signals,
+    created_at: createdAt,
+  };
+};
+
+const dominantInvariantVector = (signals: InvariantSignal[]): string => {
+  if (signals.length === 0) return "none";
+  const sorted = [...signals].sort((a, b) => b.weight - a.weight);
+  return sorted[0]?.vector ?? "none";
+};
+
+const recordInvariantFrame = async (
+  frame: DaemonInvariantFrame,
+): Promise<boolean> => {
+  if (state.invariantSignatures.includes(frame.signature)) return false;
+  const id = stableId("invariant", frame.tick, frame.signature);
+  const dominantVector = dominantInvariantVector(frame.invariants);
+  const filePath = `${INVARIANTS_DIR}/${id}.md`;
+  const entry: InvariantEntry = {
+    id,
+    tick: frame.tick,
+    epoch: frame.epoch,
+    center: frame.center,
+    signature: frame.signature,
+    summary: frame.summary,
+    dominantVector,
+    signals: frame.invariants,
+    source: DAEMON_INVARIANT_PATH,
+    filePath,
+    createdAt: frame.created_at,
+  };
+
+  invariantIndex.unshift(entry);
+  if (invariantIndex.length > MAX_INVARIANTS) {
+    invariantIndex.length = MAX_INVARIANTS;
+  }
+
+  state.invariantSignatures.push(frame.signature);
+  if (state.invariantSignatures.length > MAX_INVARIANT_SIGNATURES) {
+    state.invariantSignatures = state.invariantSignatures.slice(
+      -MAX_INVARIANT_SIGNATURES,
+    );
+  }
+
+  const signalRows = entry.signals.map((signal) => {
+    const evidence = signal.evidence.length > 0
+      ? ` | evidence: ${signal.evidence.join("; ")}`
+      : "";
+    return `- ${signal.key}: ${signal.vector} (w=${
+      signal.weight.toFixed(2)
+    })${evidence}`;
+  }).join("\n");
+
+  await Deno.writeTextFile(
+    filePath,
+    [
+      `# Invariant ${entry.id}`,
+      "",
+      `- Tick: ${entry.tick}`,
+      `- Epoch: ${entry.epoch}`,
+      `- Center: ${entry.center}`,
+      `- Signature: ${entry.signature}`,
+      `- Dominant Vector: ${entry.dominantVector}`,
+      `- Source: ${entry.source}`,
+      `- Recorded: ${entry.createdAt}`,
+      "",
+      "## Summary",
+      entry.summary,
+      "",
+      "## Signals",
+      signalRows || "- none",
+      "",
+    ].join("\n"),
+  );
+
+  return true;
+};
+
+const syncDaemonInvariants = async (force = false): Promise<void> => {
+  await ensureStorage();
+  const now = Date.now();
+  if (!force && now - lastInvariantSyncAt < INVARIANT_SYNC_INTERVAL_MS) return;
+  lastInvariantSyncAt = now;
+
+  const daemonFrames = asArray<unknown>(
+    await readJsonFile<unknown[]>(DAEMON_INVARIANT_PATH, []),
+  )
+    .map((entry) => parseDaemonInvariantFrame(entry))
+    .filter((entry): entry is DaemonInvariantFrame => entry !== null);
+  if (daemonFrames.length === 0) return;
+
+  let inserted = 0;
+  for (const frame of daemonFrames) {
+    if (await recordInvariantFrame(frame)) inserted++;
+  }
+
+  if (inserted > 0) {
+    invariantIndex.sort((a, b) => b.tick - a.tick);
+    if (invariantIndex.length > MAX_INVARIANTS) {
+      invariantIndex.length = MAX_INVARIANTS;
+    }
+    await persistIndexes();
+    LOGGER.info(
+      `📚 [CODEX] synced ${inserted} invariant frame(s) from daemon memory`,
+    );
+  }
+};
+
 const ensureStorage = async (): Promise<void> => {
   if (!loadPromise) {
     loadPromise = (async () => {
       await Deno.mkdir(SPECIES_DIR, { recursive: true });
       await Deno.mkdir(CHRONICLES_DIR, { recursive: true });
       await Deno.mkdir(RELICS_DIR, { recursive: true });
+      await Deno.mkdir(INVARIANTS_DIR, { recursive: true });
 
       state = await readJsonFile<CodexState>(STATE_FILE, fallbackState());
       if (typeof state.version !== "number") {
@@ -262,6 +499,10 @@ const ensureStorage = async (): Promise<void> => {
       state.relicSignatures = asArray<string>(state.relicSignatures).slice(
         -MAX_RELIC_SIGNATURES,
       );
+      state.invariantSignatures = asArray<string>(state.invariantSignatures)
+        .map((sig) => sig.trim().toLowerCase())
+        .filter((sig) => /^[0-9a-f]{6,64}$/u.test(sig))
+        .slice(-MAX_INVARIANT_SIGNATURES);
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -272,6 +513,31 @@ const ensureStorage = async (): Promise<void> => {
       relicIndex = asArray<RelicEntry>(
         await readJsonFile<RelicEntry[]>(RELICS_INDEX_FILE, []),
       ).sort((a, b) => b.tick - a.tick);
+      invariantIndex = asArray<InvariantEntry>(
+        await readJsonFile<InvariantEntry[]>(INVARIANTS_INDEX_FILE, []),
+      )
+        .filter((entry) => typeof entry.signature === "string")
+        .map((entry) => ({
+          ...entry,
+          tick: Math.max(0, Math.floor(asFiniteNumber(entry.tick, 0))),
+          epoch: Math.max(0, Math.floor(asFiniteNumber(entry.epoch, 0))),
+          center:
+            typeof entry.center === "string" && entry.center.trim().length > 0
+              ? entry.center.trim()
+              : "tick.exists",
+          summary: typeof entry.summary === "string" ? entry.summary : "",
+          dominantVector: typeof entry.dominantVector === "string"
+            ? entry.dominantVector
+            : "none",
+          signature: entry.signature.trim().toLowerCase(),
+          signals: asArray<InvariantSignal>(entry.signals).slice(0, 8),
+        }))
+        .sort((a, b) => b.tick - a.tick);
+      if (state.invariantSignatures.length === 0 && invariantIndex.length > 0) {
+        state.invariantSignatures = invariantIndex
+          .map((entry) => entry.signature)
+          .slice(0, MAX_INVARIANT_SIGNATURES);
+      }
     })();
   }
   await loadPromise;
@@ -286,6 +552,7 @@ const persistIndexes = async (): Promise<void> => {
     writeJsonFile(SPECIES_INDEX_FILE, speciesIndex),
     writeJsonFile(CHRONICLES_INDEX_FILE, chronicleIndex),
     writeJsonFile(RELICS_INDEX_FILE, relicIndex),
+    writeJsonFile(INVARIANTS_INDEX_FILE, invariantIndex),
     persistState(),
   ]);
 };
@@ -334,12 +601,18 @@ const appendChronicle = async (
   await persistIndexes();
 };
 
-const collectGenomeStats = (): { population: number; dominant: GenomeStats[] } => {
+const collectGenomeStats = (): {
+  population: number;
+  dominant: GenomeStats[];
+} => {
   const active = STATE_MATRIX.getActiveIndices();
   const population = active.length;
   if (population === 0) return { population, dominant: [] };
 
-  const statsMap = new Map<string, { count: number; sampleIndices: number[] }>();
+  const statsMap = new Map<
+    string,
+    { count: number; sampleIndices: number[] }
+  >();
   for (const idx of active) {
     const genome = toHex(STATE_MATRIX.getLogic(idx));
     const slot = statsMap.get(genome) ?? { count: 0, sampleIndices: [] };
@@ -456,7 +729,9 @@ const discoverSpecies = async (
       `- First Recorded Tick: ${entry.firstRecordedTick}`,
       `- Dominant Epochs: ${entry.dominantEpochs}`,
       `- Peak Share: ${(entry.peakShare * 100).toFixed(2)}%`,
-      `- Dominant Instructions: ${entry.dominantInstructions.join(", ") || "n/a"}`,
+      `- Dominant Instructions: ${
+        entry.dominantInstructions.join(", ") || "n/a"
+      }`,
       `- Created At: ${entry.createdAt}`,
       "",
       "## Behavioral Profile",
@@ -472,7 +747,9 @@ const discoverSpecies = async (
     tick,
     "species_discovery",
     `New Species Recorded: ${entry.latinName}`,
-    `Genome ${entry.genome} crossed ${(stat.share * 100).toFixed(2)}% population share and persisted across ${epochs} macro-epochs.`,
+    `Genome ${entry.genome} crossed ${
+      (stat.share * 100).toFixed(2)
+    }% population share and persisted across ${epochs} macro-epochs.`,
   );
 };
 
@@ -698,6 +975,7 @@ export const AKASHA_CODEX = {
     if (started) return;
     started = true;
     await ensureStorage();
+    await syncDaemonInvariants(true);
     LOGGER.info(
       `📚 [CODEX] activated at ./${CODEX_ROOT} (epochTicks=${EPOCH_TICKS})`,
     );
@@ -718,7 +996,8 @@ export const AKASHA_CODEX = {
         tick - state.lastMassExtinctionTick >= EPOCH_TICKS)
     ) {
       state.lastMassExtinctionTick = tick;
-      const dominantName = speciesIndex[0]?.latinName ?? "Unclassified lineages";
+      const dominantName = speciesIndex[0]?.latinName ??
+        "Unclassified lineages";
       enqueueWrite(async () => {
         await appendChronicle(
           tick,
@@ -762,7 +1041,9 @@ export const AKASHA_CODEX = {
         tick,
         "decree_shift",
         `Decree Shift: ${decree}`,
-        `Regent ${species} enforced ${decree} with legitimacy ${legitimacy.toFixed(2)}.`,
+        `Regent ${species} enforced ${decree} with legitimacy ${
+          legitimacy.toFixed(2)
+        }.`,
       );
     });
   },
@@ -779,8 +1060,12 @@ export const AKASHA_CODEX = {
         ? "Market Mutation Adopted"
         : "Market Mutation Rejected";
       const body = adopted
-        ? `Prediction market passed genome ${genomeHex} (${species}) with energy pool ${energyBet.toFixed(2)}.`
-        : `Prediction market rejected genome ${genomeHex} after energy pool ${energyBet.toFixed(2)} failed threshold.`;
+        ? `Prediction market passed genome ${genomeHex} (${species}) with energy pool ${
+          energyBet.toFixed(2)
+        }.`
+        : `Prediction market rejected genome ${genomeHex} after energy pool ${
+          energyBet.toFixed(2)
+        } failed threshold.`;
       await appendChronicle(tick, "market_resolution", title, body);
     });
   },
@@ -794,6 +1079,7 @@ export const AKASHA_CODEX = {
   },
   getSnapshot: async (limit: number = 8) => {
     await ensureStorage();
+    await syncDaemonInvariants();
     const take = Math.max(1, Math.min(64, Math.floor(limit)));
     return {
       enabled: started,
@@ -808,10 +1094,18 @@ export const AKASHA_CODEX = {
       species: speciesIndex.slice(0, take),
       chronicles: chronicleIndex.slice(0, take),
       relics: relicIndex.slice(0, take),
+      invariants: invariantIndex.slice(0, take),
     };
+  },
+  getInvariants: async (limit: number = 16) => {
+    await ensureStorage();
+    await syncDaemonInvariants();
+    const take = Math.max(1, Math.min(128, Math.floor(limit)));
+    return invariantIndex.slice(0, take);
   },
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();
+    await syncDaemonInvariants();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     const epoch = Math.floor(tick / EPOCH_TICKS);
     const take = Math.max(1, Math.min(12, Math.floor(limit)));
@@ -829,14 +1123,25 @@ export const AKASHA_CODEX = {
       type: entry.type,
       title: entry.title,
     }));
+    const invariantHighlights = invariantIndex.slice(0, 3).map((entry) => ({
+      tick: entry.tick,
+      epoch: entry.epoch,
+      center: entry.center,
+      signature: entry.signature,
+      dominantVector: entry.dominantVector,
+      summary: entry.summary,
+    }));
+    const sharedCenter = invariantHighlights[0]?.center ?? "tick.exists";
     const leadSpecies = speciesHighlights[0]?.latinName ??
       "Unclassified lineage";
     const relicStatus = relicIndex.length === 0
       ? "No relics cataloged yet."
-      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${relicIndex[0].size} blocks.`;
+      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${
+        relicIndex[0].size
+      } blocks.`;
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
-      `Dominant lineage: ${leadSpecies}.`;
+      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}.`;
     const promptBridge =
       `Use plain language. Explain ${title.toLowerCase()} and how ${leadSpecies} shaped recent epochs.`;
 
@@ -846,7 +1151,9 @@ export const AKASHA_CODEX = {
       mood,
       title,
       summary,
+      sharedCenter,
       speciesHighlights,
+      invariantHighlights,
       recentChronicles,
       relicStatus,
       promptBridge,

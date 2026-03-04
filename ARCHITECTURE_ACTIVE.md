@@ -19,12 +19,14 @@ export context. It intentionally excludes historical era narratives.
    only via `/api/webrtc/inject` and forwarded into the existing
    `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
-   `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
-   `ui/index.html` fuses `/api/telemetry` and `/codex/narrative` into
-   plain-language state summaries plus drift deltas over a rolling ~90s window,
-   with `LOW/MID/HIGH` drift severity badge, component score breakdown, compact
-   risk summary + drift trend sparkline, and scene halo tint.
+   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human
+   narrative bridge: `/codex/narrative`, `/api/codex/narrative`,
+   `/codex/invariants`, `/api/codex/invariants`. Observer human channel in
+   `ui/index.html` fuses `/api/telemetry` and codex narrative/invariant
+   surfaces into plain-language state summaries plus drift deltas over a
+   rolling ~90s window, with `LOW/MID/HIGH` drift severity badge, component
+   score breakdown, compact risk summary + drift trend sparkline, and scene
+   halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -54,8 +56,8 @@ export context. It intentionally excludes historical era narratives.
 - Observer presence enters through `/avatar` and decays in host pulse.
 - WASM trophism (`assembly/index.ts`) applies role-specific response to
   attention gradients.
-- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
-  API snapshots via `/codex*` endpoints.
+- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic + invariant
+  archive scans and serves API snapshots via `/codex*` endpoints.
 - `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
 - `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
   `daemon_invariants.json`, and feeds invariant frames into the LLM decision

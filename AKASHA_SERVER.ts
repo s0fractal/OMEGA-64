@@ -30,7 +30,8 @@ let codexDigest: {
   species: unknown[];
   chronicles: unknown[];
   relics: unknown[];
-} = { species: [], chronicles: [], relics: [] };
+  invariants: unknown[];
+} = { species: [], chronicles: [], relics: [], invariants: [] };
 
 const buildForwardHeaders = (
   incoming: Headers,
@@ -324,15 +325,17 @@ const readJsonFile = async (path: string): Promise<unknown> => {
 };
 
 async function refreshCodexDigest() {
-  const [species, chronicles, relics] = await Promise.all([
+  const [species, chronicles, relics, invariants] = await Promise.all([
     readJsonFile("./codex/species/index.json"),
     readJsonFile("./codex/chronicles/index.json"),
     readJsonFile("./codex/relics/index.json"),
+    readJsonFile("./codex/invariants/index.json"),
   ]);
   codexDigest = {
     species: Array.isArray(species) ? species.slice(0, 8) : [],
     chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
     relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
+    invariants: Array.isArray(invariants) ? invariants.slice(0, 8) : [],
   };
 }
 
@@ -440,6 +443,10 @@ const reqHandler = async (req: Request) => {
     return proxyCodex(req, "/api/codex/narrative", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/codex/invariants") {
+    return proxyCodex(req, "/api/codex/invariants", url.search);
+  }
+
   if (req.method === "GET" && url.pathname === "/api/webrtc") {
     return json(AKASHA_SIGNALING.status());
   }
@@ -457,7 +464,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

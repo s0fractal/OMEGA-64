@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T12:28:10.569Z*
+*Generated: 2026-03-04T12:50:19.909Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 9670327e52403d1e516c206e5f3eac25db769b4b517b925d166df69acfc056bc*
-*Git Commit: 4c04535296f1*
+*Export Content SHA256: 565b38295c4f283f331fee9bb08aba1e00cf06f68f3e25d6b41a4f5c99c86f45*
+*Git Commit: 9f227651fd85*
 
 ---
 
@@ -138,11 +138,14 @@ const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
 const CHRONICLES_DIR = `${CODEX_ROOT}/chronicles`;
 const RELICS_DIR = `${CODEX_ROOT}/relics`;
+const INVARIANTS_DIR = `${CODEX_ROOT}/invariants`;
 
 const STATE_FILE = `${CODEX_ROOT}/state.json`;
 const SPECIES_INDEX_FILE = `${SPECIES_DIR}/index.json`;
 const CHRONICLES_INDEX_FILE = `${CHRONICLES_DIR}/index.json`;
 const RELICS_INDEX_FILE = `${RELICS_DIR}/index.json`;
+const INVARIANTS_INDEX_FILE = `${INVARIANTS_DIR}/index.json`;
+const DAEMON_INVARIANT_PATH = "./daemon_invariants.json";
 
 const EPOCH_TICKS = 10_000;
 const DOMINANCE_THRESHOLD = 0.05;
@@ -151,6 +154,9 @@ const RELIC_MIN_BLOCKS = 48;
 const MAX_CHRONICLES = 512;
 const MAX_RELICS = 256;
 const MAX_RELIC_SIGNATURES = 512;
+const MAX_INVARIANTS = 512;
+const MAX_INVARIANT_SIGNATURES = 2048;
+const INVARIANT_SYNC_INTERVAL_MS = 15_000;
 
 type SpeciesEntry = {
   id: string;
@@ -190,17 +196,57 @@ type RelicEntry = {
   createdAt: string;
 };
 
+type InvariantSignal = {
+  key: string;
+  vector: string;
+  weight: number;
+  evidence: string[];
+};
+
+type InvariantEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  dominantVector: string;
+  signals: InvariantSignal[];
+  source: string;
+  filePath: string;
+  createdAt: string;
+};
+
+type DaemonInvariantFrame = {
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  invariants: InvariantSignal[];
+  created_at: string;
+};
+
 type CodexNarrative = {
   tick: number;
   epoch: number;
   mood: "ASCENDANT" | "STABLE" | "FRAGILE";
   title: string;
   summary: string;
+  sharedCenter: string;
   speciesHighlights: Array<{
     latinName: string;
     genome: string;
     dominantEpochs: number;
     peakShare: number;
+  }>;
+  invariantHighlights: Array<{
+    tick: number;
+    epoch: number;
+    center: string;
+    signature: string;
+    dominantVector: string;
+    summary: string;
   }>;
   recentChronicles: Array<{
     tick: number;
@@ -223,6 +269,7 @@ type CodexState = {
   lastDecreeTick: number;
   genomeEpochs: Record<string, number[]>;
   relicSignatures: string[];
+  invariantSignatures: string[];
 };
 
 type GenomeStats = {
@@ -278,6 +325,7 @@ const fallbackState = (): CodexState => ({
   lastDecreeTick: -1,
   genomeEpochs: {},
   relicSignatures: [],
+  invariantSignatures: [],
 });
 
 let started = false;
@@ -288,6 +336,8 @@ let state: CodexState = fallbackState();
 let speciesIndex: SpeciesEntry[] = [];
 let chronicleIndex: ChronicleEntry[] = [];
 let relicIndex: RelicEntry[] = [];
+let invariantIndex: InvariantEntry[] = [];
+let lastInvariantSyncAt = 0;
 
 const nowIso = (): string => new Date().toISOString();
 
@@ -295,7 +345,20 @@ const toHex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("")
     .toUpperCase();
 
-const asArray = <T>(value: unknown): T[] => Array.isArray(value) ? value as T[] : [];
+const asArray = <T>(value: unknown): T[] =>
+  Array.isArray(value) ? value as T[] : [];
+const asObject = (value: unknown): Record<string, unknown> | null =>
+  value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : null;
+const asFiniteNumber = (value: unknown, fallback = 0): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
 
 const readJsonFile = async <T>(path: string, fallback: T): Promise<T> => {
   try {
@@ -375,12 +438,186 @@ const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
   return "Lattice in Coherence Arc";
 };
 
+const parseInvariantSignal = (value: unknown): InvariantSignal | null => {
+  const node = asObject(value);
+  if (!node) return null;
+  const key = typeof node.key === "string" ? node.key.trim() : "";
+  const vector = typeof node.vector === "string" ? node.vector.trim() : "";
+  if (key.length === 0 || vector.length === 0) return null;
+  const evidence = asArray<unknown>(node.evidence)
+    .filter((entry): entry is string => typeof entry === "string")
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length > 0)
+    .slice(0, 8);
+  return {
+    key,
+    vector,
+    weight: Math.max(0, Math.min(1, asFiniteNumber(node.weight, 0))),
+    evidence,
+  };
+};
+
+const parseDaemonInvariantFrame = (
+  value: unknown,
+): DaemonInvariantFrame | null => {
+  const node = asObject(value);
+  if (!node) return null;
+  const signatureRaw = typeof node.signature === "string"
+    ? node.signature.trim().toLowerCase()
+    : "";
+  if (!/^[0-9a-f]{6,64}$/u.test(signatureRaw)) return null;
+  const tick = Math.max(0, Math.floor(asFiniteNumber(node.tick, 0)));
+  const inferredEpoch = Math.floor(tick / EPOCH_TICKS);
+  const epoch = Math.max(
+    0,
+    Math.floor(asFiniteNumber(node.epoch, inferredEpoch)),
+  );
+  const center =
+    typeof node.center === "string" && node.center.trim().length > 0
+      ? node.center.trim()
+      : "tick.exists";
+  const summary =
+    typeof node.summary === "string" && node.summary.trim().length > 0
+      ? node.summary.trim()
+      : `center=${center} | signature=${signatureRaw.slice(0, 8)}`;
+
+  const parsedSignals = asArray<unknown>(node.invariants)
+    .map((entry) => parseInvariantSignal(entry))
+    .filter((entry): entry is InvariantSignal => entry !== null)
+    .slice(0, 8);
+  const signals = parsedSignals.length > 0 ? parsedSignals : [{
+    key: "center_anchor",
+    vector: center,
+    weight: 0.5,
+    evidence: [summary.slice(0, 96)],
+  }];
+
+  const createdAt = typeof node.created_at === "string" &&
+      node.created_at.trim().length > 0
+    ? node.created_at.trim()
+    : nowIso();
+
+  return {
+    tick,
+    epoch,
+    center,
+    signature: signatureRaw,
+    summary,
+    invariants: signals,
+    created_at: createdAt,
+  };
+};
+
+const dominantInvariantVector = (signals: InvariantSignal[]): string => {
+  if (signals.length === 0) return "none";
+  const sorted = [...signals].sort((a, b) => b.weight - a.weight);
+  return sorted[0]?.vector ?? "none";
+};
+
+const recordInvariantFrame = async (
+  frame: DaemonInvariantFrame,
+): Promise<boolean> => {
+  if (state.invariantSignatures.includes(frame.signature)) return false;
+  const id = stableId("invariant", frame.tick, frame.signature);
+  const dominantVector = dominantInvariantVector(frame.invariants);
+  const filePath = `${INVARIANTS_DIR}/${id}.md`;
+  const entry: InvariantEntry = {
+    id,
+    tick: frame.tick,
+    epoch: frame.epoch,
+    center: frame.center,
+    signature: frame.signature,
+    summary: frame.summary,
+    dominantVector,
+    signals: frame.invariants,
+    source: DAEMON_INVARIANT_PATH,
+    filePath,
+    createdAt: frame.created_at,
+  };
+
+  invariantIndex.unshift(entry);
+  if (invariantIndex.length > MAX_INVARIANTS) {
+    invariantIndex.length = MAX_INVARIANTS;
+  }
+
+  state.invariantSignatures.push(frame.signature);
+  if (state.invariantSignatures.length > MAX_INVARIANT_SIGNATURES) {
+    state.invariantSignatures = state.invariantSignatures.slice(
+      -MAX_INVARIANT_SIGNATURES,
+    );
+  }
+
+  const signalRows = entry.signals.map((signal) => {
+    const evidence = signal.evidence.length > 0
+      ? ` | evidence: ${signal.evidence.join("; ")}`
+      : "";
+    return `- ${signal.key}: ${signal.vector} (w=${
+      signal.weight.toFixed(2)
+    })${evidence}`;
+  }).join("\n");
+
+  await Deno.writeTextFile(
+    filePath,
+    [
+      `# Invariant ${entry.id}`,
+      "",
+      `- Tick: ${entry.tick}`,
+      `- Epoch: ${entry.epoch}`,
+      `- Center: ${entry.center}`,
+      `- Signature: ${entry.signature}`,
+      `- Dominant Vector: ${entry.dominantVector}`,
+      `- Source: ${entry.source}`,
+      `- Recorded: ${entry.createdAt}`,
+      "",
+      "## Summary",
+      entry.summary,
+      "",
+      "## Signals",
+      signalRows || "- none",
+      "",
+    ].join("\n"),
+  );
+
+  return true;
+};
+
+const syncDaemonInvariants = async (force = false): Promise<void> => {
+  await ensureStorage();
+  const now = Date.now();
+  if (!force && now - lastInvariantSyncAt < INVARIANT_SYNC_INTERVAL_MS) return;
+  lastInvariantSyncAt = now;
+
+  const daemonFrames = asArray<unknown>(
+    await readJsonFile<unknown[]>(DAEMON_INVARIANT_PATH, []),
+  )
+    .map((entry) => parseDaemonInvariantFrame(entry))
+    .filter((entry): entry is DaemonInvariantFrame => entry !== null);
+  if (daemonFrames.length === 0) return;
+
+  let inserted = 0;
+  for (const frame of daemonFrames) {
+    if (await recordInvariantFrame(frame)) inserted++;
+  }
+
+  if (inserted > 0) {
+    invariantIndex.sort((a, b) => b.tick - a.tick);
+    if (invariantIndex.length > MAX_INVARIANTS) {
+      invariantIndex.length = MAX_INVARIANTS;
+    }
+    await persistIndexes();
+    LOGGER.info(
+      `📚 [CODEX] synced ${inserted} invariant frame(s) from daemon memory`,
+    );
+  }
+};
+
 const ensureStorage = async (): Promise<void> => {
   if (!loadPromise) {
     loadPromise = (async () => {
       await Deno.mkdir(SPECIES_DIR, { recursive: true });
       await Deno.mkdir(CHRONICLES_DIR, { recursive: true });
       await Deno.mkdir(RELICS_DIR, { recursive: true });
+      await Deno.mkdir(INVARIANTS_DIR, { recursive: true });
 
       state = await readJsonFile<CodexState>(STATE_FILE, fallbackState());
       if (typeof state.version !== "number") {
@@ -391,6 +628,10 @@ const ensureStorage = async (): Promise<void> => {
       state.relicSignatures = asArray<string>(state.relicSignatures).slice(
         -MAX_RELIC_SIGNATURES,
       );
+      state.invariantSignatures = asArray<string>(state.invariantSignatures)
+        .map((sig) => sig.trim().toLowerCase())
+        .filter((sig) => /^[0-9a-f]{6,64}$/u.test(sig))
+        .slice(-MAX_INVARIANT_SIGNATURES);
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -401,6 +642,31 @@ const ensureStorage = async (): Promise<void> => {
       relicIndex = asArray<RelicEntry>(
         await readJsonFile<RelicEntry[]>(RELICS_INDEX_FILE, []),
       ).sort((a, b) => b.tick - a.tick);
+      invariantIndex = asArray<InvariantEntry>(
+        await readJsonFile<InvariantEntry[]>(INVARIANTS_INDEX_FILE, []),
+      )
+        .filter((entry) => typeof entry.signature === "string")
+        .map((entry) => ({
+          ...entry,
+          tick: Math.max(0, Math.floor(asFiniteNumber(entry.tick, 0))),
+          epoch: Math.max(0, Math.floor(asFiniteNumber(entry.epoch, 0))),
+          center:
+            typeof entry.center === "string" && entry.center.trim().length > 0
+              ? entry.center.trim()
+              : "tick.exists",
+          summary: typeof entry.summary === "string" ? entry.summary : "",
+          dominantVector: typeof entry.dominantVector === "string"
+            ? entry.dominantVector
+            : "none",
+          signature: entry.signature.trim().toLowerCase(),
+          signals: asArray<InvariantSignal>(entry.signals).slice(0, 8),
+        }))
+        .sort((a, b) => b.tick - a.tick);
+      if (state.invariantSignatures.length === 0 && invariantIndex.length > 0) {
+        state.invariantSignatures = invariantIndex
+          .map((entry) => entry.signature)
+          .slice(0, MAX_INVARIANT_SIGNATURES);
+      }
     })();
   }
   await loadPromise;
@@ -415,6 +681,7 @@ const persistIndexes = async (): Promise<void> => {
     writeJsonFile(SPECIES_INDEX_FILE, speciesIndex),
     writeJsonFile(CHRONICLES_INDEX_FILE, chronicleIndex),
     writeJsonFile(RELICS_INDEX_FILE, relicIndex),
+    writeJsonFile(INVARIANTS_INDEX_FILE, invariantIndex),
     persistState(),
   ]);
 };
@@ -463,12 +730,18 @@ const appendChronicle = async (
   await persistIndexes();
 };
 
-const collectGenomeStats = (): { population: number; dominant: GenomeStats[] } => {
+const collectGenomeStats = (): {
+  population: number;
+  dominant: GenomeStats[];
+} => {
   const active = STATE_MATRIX.getActiveIndices();
   const population = active.length;
   if (population === 0) return { population, dominant: [] };
 
-  const statsMap = new Map<string, { count: number; sampleIndices: number[] }>();
+  const statsMap = new Map<
+    string,
+    { count: number; sampleIndices: number[] }
+  >();
   for (const idx of active) {
     const genome = toHex(STATE_MATRIX.getLogic(idx));
     const slot = statsMap.get(genome) ?? { count: 0, sampleIndices: [] };
@@ -585,7 +858,9 @@ const discoverSpecies = async (
       `- First Recorded Tick: ${entry.firstRecordedTick}`,
       `- Dominant Epochs: ${entry.dominantEpochs}`,
       `- Peak Share: ${(entry.peakShare * 100).toFixed(2)}%`,
-      `- Dominant Instructions: ${entry.dominantInstructions.join(", ") || "n/a"}`,
+      `- Dominant Instructions: ${
+        entry.dominantInstructions.join(", ") || "n/a"
+      }`,
       `- Created At: ${entry.createdAt}`,
       "",
       "## Behavioral Profile",
@@ -601,7 +876,9 @@ const discoverSpecies = async (
     tick,
     "species_discovery",
     `New Species Recorded: ${entry.latinName}`,
-    `Genome ${entry.genome} crossed ${(stat.share * 100).toFixed(2)}% population share and persisted across ${epochs} macro-epochs.`,
+    `Genome ${entry.genome} crossed ${
+      (stat.share * 100).toFixed(2)
+    }% population share and persisted across ${epochs} macro-epochs.`,
   );
 };
 
@@ -827,6 +1104,7 @@ export const AKASHA_CODEX = {
     if (started) return;
     started = true;
     await ensureStorage();
+    await syncDaemonInvariants(true);
     LOGGER.info(
       `📚 [CODEX] activated at ./${CODEX_ROOT} (epochTicks=${EPOCH_TICKS})`,
     );
@@ -847,7 +1125,8 @@ export const AKASHA_CODEX = {
         tick - state.lastMassExtinctionTick >= EPOCH_TICKS)
     ) {
       state.lastMassExtinctionTick = tick;
-      const dominantName = speciesIndex[0]?.latinName ?? "Unclassified lineages";
+      const dominantName = speciesIndex[0]?.latinName ??
+        "Unclassified lineages";
       enqueueWrite(async () => {
         await appendChronicle(
           tick,
@@ -891,7 +1170,9 @@ export const AKASHA_CODEX = {
         tick,
         "decree_shift",
         `Decree Shift: ${decree}`,
-        `Regent ${species} enforced ${decree} with legitimacy ${legitimacy.toFixed(2)}.`,
+        `Regent ${species} enforced ${decree} with legitimacy ${
+          legitimacy.toFixed(2)
+        }.`,
       );
     });
   },
@@ -908,8 +1189,12 @@ export const AKASHA_CODEX = {
         ? "Market Mutation Adopted"
         : "Market Mutation Rejected";
       const body = adopted
-        ? `Prediction market passed genome ${genomeHex} (${species}) with energy pool ${energyBet.toFixed(2)}.`
-        : `Prediction market rejected genome ${genomeHex} after energy pool ${energyBet.toFixed(2)} failed threshold.`;
+        ? `Prediction market passed genome ${genomeHex} (${species}) with energy pool ${
+          energyBet.toFixed(2)
+        }.`
+        : `Prediction market rejected genome ${genomeHex} after energy pool ${
+          energyBet.toFixed(2)
+        } failed threshold.`;
       await appendChronicle(tick, "market_resolution", title, body);
     });
   },
@@ -923,6 +1208,7 @@ export const AKASHA_CODEX = {
   },
   getSnapshot: async (limit: number = 8) => {
     await ensureStorage();
+    await syncDaemonInvariants();
     const take = Math.max(1, Math.min(64, Math.floor(limit)));
     return {
       enabled: started,
@@ -937,10 +1223,18 @@ export const AKASHA_CODEX = {
       species: speciesIndex.slice(0, take),
       chronicles: chronicleIndex.slice(0, take),
       relics: relicIndex.slice(0, take),
+      invariants: invariantIndex.slice(0, take),
     };
+  },
+  getInvariants: async (limit: number = 16) => {
+    await ensureStorage();
+    await syncDaemonInvariants();
+    const take = Math.max(1, Math.min(128, Math.floor(limit)));
+    return invariantIndex.slice(0, take);
   },
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();
+    await syncDaemonInvariants();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     const epoch = Math.floor(tick / EPOCH_TICKS);
     const take = Math.max(1, Math.min(12, Math.floor(limit)));
@@ -958,14 +1252,25 @@ export const AKASHA_CODEX = {
       type: entry.type,
       title: entry.title,
     }));
+    const invariantHighlights = invariantIndex.slice(0, 3).map((entry) => ({
+      tick: entry.tick,
+      epoch: entry.epoch,
+      center: entry.center,
+      signature: entry.signature,
+      dominantVector: entry.dominantVector,
+      summary: entry.summary,
+    }));
+    const sharedCenter = invariantHighlights[0]?.center ?? "tick.exists";
     const leadSpecies = speciesHighlights[0]?.latinName ??
       "Unclassified lineage";
     const relicStatus = relicIndex.length === 0
       ? "No relics cataloged yet."
-      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${relicIndex[0].size} blocks.`;
+      : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${
+        relicIndex[0].size
+      } blocks.`;
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
-      `Dominant lineage: ${leadSpecies}.`;
+      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}.`;
     const promptBridge =
       `Use plain language. Explain ${title.toLowerCase()} and how ${leadSpecies} shaped recent epochs.`;
 
@@ -975,7 +1280,9 @@ export const AKASHA_CODEX = {
       mood,
       title,
       summary,
+      sharedCenter,
       speciesHighlights,
+      invariantHighlights,
       recentChronicles,
       relicStatus,
       promptBridge,
@@ -1022,7 +1329,8 @@ let codexDigest: {
   species: unknown[];
   chronicles: unknown[];
   relics: unknown[];
-} = { species: [], chronicles: [], relics: [] };
+  invariants: unknown[];
+} = { species: [], chronicles: [], relics: [], invariants: [] };
 
 const buildForwardHeaders = (
   incoming: Headers,
@@ -1316,15 +1624,17 @@ const readJsonFile = async (path: string): Promise<unknown> => {
 };
 
 async function refreshCodexDigest() {
-  const [species, chronicles, relics] = await Promise.all([
+  const [species, chronicles, relics, invariants] = await Promise.all([
     readJsonFile("./codex/species/index.json"),
     readJsonFile("./codex/chronicles/index.json"),
     readJsonFile("./codex/relics/index.json"),
+    readJsonFile("./codex/invariants/index.json"),
   ]);
   codexDigest = {
     species: Array.isArray(species) ? species.slice(0, 8) : [],
     chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
     relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
+    invariants: Array.isArray(invariants) ? invariants.slice(0, 8) : [],
   };
 }
 
@@ -1432,6 +1742,10 @@ const reqHandler = async (req: Request) => {
     return proxyCodex(req, "/api/codex/narrative", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/codex/invariants") {
+    return proxyCodex(req, "/api/codex/invariants", url.search);
+  }
+
   if (req.method === "GET" && url.pathname === "/api/webrtc") {
     return json(AKASHA_SIGNALING.status());
   }
@@ -1449,7 +1763,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -2220,12 +2534,14 @@ export context. It intentionally excludes historical era narratives.
    only via `/api/webrtc/inject` and forwarded into the existing
    `/api/inject -> CONTROL_INTENT_QUEUE` governance path.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
-   `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
-   `ui/index.html` fuses `/api/telemetry` and `/codex/narrative` into
-   plain-language state summaries plus drift deltas over a rolling ~90s window,
-   with `LOW/MID/HIGH` drift severity badge, component score breakdown, compact
-   risk summary + drift trend sparkline, and scene halo tint.
+   `./codex/chronicles`, `./codex/relics`, `./codex/invariants`) Human
+   narrative bridge: `/codex/narrative`, `/api/codex/narrative`,
+   `/codex/invariants`, `/api/codex/invariants`. Observer human channel in
+   `ui/index.html` fuses `/api/telemetry` and codex narrative/invariant
+   surfaces into plain-language state summaries plus drift deltas over a
+   rolling ~90s window, with `LOW/MID/HIGH` drift severity badge, component
+   score breakdown, compact risk summary + drift trend sparkline, and scene
+   halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -2255,8 +2571,8 @@ export context. It intentionally excludes historical era narratives.
 - Observer presence enters through `/avatar` and decays in host pulse.
 - WASM trophism (`assembly/index.ts`) applies role-specific response to
   attention gradients.
-- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic scans and serves
-  API snapshots via `/codex*` endpoints.
+- `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic + invariant
+  archive scans and serves API snapshots via `/codex*` endpoints.
 - `BREATH` now injects the latest Codex chronicle context into Oracle prompts.
 - `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
   `daemon_invariants.json`, and feeds invariant frames into the LLM decision
@@ -16823,6 +17139,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     });
   }
 
+  if (url.pathname === "/api/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "12", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 12,
+    );
+    return new Response(JSON.stringify(invariants), {
+      headers: JSON_HEADERS,
+    });
+  }
+
   if (url.pathname === "/api/inject" && req.method === "POST") {
     const denied = requireDaemonAuth(req);
     if (denied) return denied;
@@ -17248,6 +17574,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       Number.isFinite(limit) ? limit : 5,
     );
     return new Response(JSON.stringify(narrative), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(invariants), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -17991,7 +18330,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           Drift baseline is forming...
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
-          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable
         </div>
         <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
           risk: baseline variance only
@@ -18190,12 +18529,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         species: [],
         chronicles: [],
         relics: [],
+        invariants: [],
         population: { current: 0, peak: 0 },
       };
       let codexNarrative = {
         mood: "STABLE",
         title: "",
         summary: "",
+        sharedCenter: "tick.exists",
+        invariantHighlights: [],
         relicStatus: "",
         recentChronicles: [],
       };
@@ -19300,12 +19642,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const species = (codexSnapshot.species || []).slice(0, 2);
         const chronicles = (codexSnapshot.chronicles || []).slice(0, 2);
         const relics = (codexSnapshot.relics || []).slice(0, 1);
+        const invariants = (codexSnapshot.invariants || []).slice(0, 2);
         const pop = codexSnapshot.population || { current: 0, peak: 0 };
         const narrative = codexNarrative || {};
         const mood = String(narrative.mood || "STABLE").toUpperCase();
         const moodClass = `codex-mood-${mood.toLowerCase()}`;
         const recentNarrativeChronicles =
           (narrative.recentChronicles || []).slice(0, 2);
+        const narrativeInvariants =
+          (narrative.invariantHighlights || []).slice(0, 2);
 
         const escapeHtml = (value) =>
           String(value ?? "").replace(/[&<>"']/g, (ch) => {
@@ -19349,6 +19694,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           </div>
         `);
 
+        const sharedCenter = inferSharedCenterLabel();
+        const dominantInvariant = inferDominantInvariantVector();
+        rows.push(`
+          <div class="codex-row">
+            <div class="codex-row-title">Shared Center</div>
+            <div class="codex-row-body">${escapeHtml(sharedCenter)}</div>
+            ${
+          dominantInvariant.length > 0
+            ? `<div class="codex-row-body codex-row-subtle">Dominant invariant: ${
+              escapeHtml(dominantInvariant.slice(0, 100))
+            }</div>`
+            : ""
+        }
+          </div>
+        `);
+
         if (species.length > 0) {
           for (const s of species) {
             rows.push(`
@@ -19386,6 +19747,34 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             }</div>
                 <div class="codex-row-body">${
               escapeHtml((c.body || "").slice(0, 120))
+            }</div>
+              </div>
+            `);
+          }
+        }
+
+        if (narrativeInvariants.length > 0) {
+          for (const inv of narrativeInvariants) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Invariant: ${
+              escapeHtml((inv.signature || "").slice(0, 10).toUpperCase())
+            }</div>
+                <div class="codex-row-body codex-row-subtle">Center ${
+              escapeHtml(String(inv.center || "tick.exists"))
+            } | Vector ${
+              escapeHtml(String(inv.dominantVector || "none"))
+            }</div>
+              </div>
+            `);
+          }
+        } else if (invariants.length > 0) {
+          for (const inv of invariants) {
+            rows.push(`
+              <div class="codex-row">
+                <div class="codex-row-title">Invariant Archive</div>
+                <div class="codex-row-body">${
+              escapeHtml(String(inv.summary || "invariant frame"))
             }</div>
               </div>
             `);
@@ -19449,6 +19838,55 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `Genome ${dominant.slice(0, 8)}`;
       }
 
+      function inferSharedCenterLabel() {
+        const narrativeCenter = String(codexNarrative?.sharedCenter || "")
+          .trim();
+        if (narrativeCenter.length > 0) return narrativeCenter;
+        const narrativeInvariant = Array.isArray(
+            codexNarrative?.invariantHighlights,
+          ) && codexNarrative.invariantHighlights.length > 0
+          ? codexNarrative.invariantHighlights[0]
+          : null;
+        if (narrativeInvariant && narrativeInvariant.center) {
+          return String(narrativeInvariant.center).trim() || "tick.exists";
+        }
+        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+            codexSnapshot.invariants.length > 0
+          ? codexSnapshot.invariants[0]
+          : null;
+        if (archiveInvariant && archiveInvariant.center) {
+          return String(archiveInvariant.center).trim() || "tick.exists";
+        }
+        return "tick.exists";
+      }
+
+      function inferDominantInvariantVector() {
+        const narrativeInvariant = Array.isArray(
+            codexNarrative?.invariantHighlights,
+          ) && codexNarrative.invariantHighlights.length > 0
+          ? codexNarrative.invariantHighlights[0]
+          : null;
+        if (
+          narrativeInvariant &&
+          typeof narrativeInvariant.dominantVector === "string" &&
+          narrativeInvariant.dominantVector.trim().length > 0
+        ) {
+          return narrativeInvariant.dominantVector.trim();
+        }
+        const archiveInvariant = Array.isArray(codexSnapshot?.invariants) &&
+            codexSnapshot.invariants.length > 0
+          ? codexSnapshot.invariants[0]
+          : null;
+        if (
+          archiveInvariant &&
+          typeof archiveInvariant.dominantVector === "string" &&
+          archiveInvariant.dominantVector.trim().length > 0
+        ) {
+          return archiveInvariant.dominantVector.trim();
+        }
+        return "";
+      }
+
       function buildHumanExplanation() {
         const mood = String(codexNarrative?.mood || "STABLE")
           .toLowerCase();
@@ -19460,6 +19898,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const tick = Number(telemetrySnapshot?.tick || 0);
         const avgEnergy = Number(telemetrySnapshot?.avgEnergy || 0);
         const dominantSpecies = inferDominantSpeciesLabel();
+        const sharedCenter = inferSharedCenterLabel();
+        const dominantInvariant = inferDominantInvariantVector();
         const narrativeTitle = String(
           codexNarrative?.title || "Codex arc",
         );
@@ -19477,8 +19917,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         let text = `At tick ${tick}, ${moodPhrase}. ` +
           `Dominant lineage: ${dominantSpecies}. ` +
+          `Shared center: ${sharedCenter}. ` +
           `Average energy is ${avgEnergy.toFixed(1)}. ` +
           `${narrativeTitle}: ${narrativeSummary}`;
+        if (dominantInvariant.length > 0) {
+          text += ` Dominant invariant vector: ${dominantInvariant}.`;
+        }
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
         }
@@ -19502,6 +19946,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           avgEnergy: Number(telemetrySnapshot?.avgEnergy || 0),
           population: Number(codexSnapshot?.population?.current || 0),
           dominantGenome: dominantGenomeHex(),
+          sharedCenter: inferSharedCenterLabel(),
           mood: String(codexNarrative?.mood || "STABLE").toUpperCase(),
         };
         driftHistory.push(point);
@@ -19532,7 +19977,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
             severity: "BASELINE",
             breakdown:
-              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable",
             riskSummary: "risk: baseline variance only",
           };
         }
@@ -19544,7 +19989,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
             severity: "BASELINE",
             breakdown:
-              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable | center:stable",
             riskSummary: "risk: baseline variance only",
           };
         }
@@ -19559,6 +20004,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const deltaPopulation = dynamics.deltaPopulation;
         const dominantShifted = dynamics.dominantShifted;
         const moodShifted = dynamics.moodShifted;
+        const centerShifted = dynamics.centerShifted;
 
         const populationPhrase = deltaPopulation > 12
           ? `population expanded by ${deltaPopulation}`
@@ -19578,6 +20024,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const moodPhrase = moodShifted
           ? `codex mood shifted (${reference.mood} → ${latest.mood})`
           : `codex mood held at ${latest.mood}`;
+        const centerPhrase = centerShifted
+          ? `shared center shifted (${reference.sharedCenter} → ${latest.sharedCenter})`
+          : `shared center held at ${latest.sharedCenter}`;
 
         const score = dynamics.score;
         const severity = score >= 4
@@ -19590,13 +20039,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const energyImpact = dynamics.energyImpact;
         const genomeImpact = dynamics.genomeImpact;
         const moodImpact = dynamics.moodImpact;
+        const centerImpact = dynamics.centerImpact;
         const breakdown =
-          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact} | center:${centerImpact}`;
         const riskSummary = buildDriftRiskSummary(dynamics);
 
         return {
           text:
-            `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
+            `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}; ${centerPhrase}.`,
           severity,
           breakdown,
           riskSummary,
@@ -19611,6 +20061,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           reference.dominantGenome.length > 0 &&
           latest.dominantGenome !== reference.dominantGenome;
         const moodShifted = latest.mood !== reference.mood;
+        const centerShifted = latest.sharedCenter !== reference.sharedCenter;
         const absPop = Math.abs(deltaPopulation);
         const absEnergy = Math.abs(deltaEnergy);
         const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
@@ -19621,18 +20072,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           : 0;
         const genomeImpact = dominantShifted ? 1 : 0;
         const moodImpact = moodShifted ? 1 : 0;
+        const centerImpact = centerShifted ? 1 : 0;
         const score = popImpact + energyImpact + genomeImpact +
-          moodImpact;
+          moodImpact + centerImpact;
 
         return {
           deltaEnergy,
           deltaPopulation,
           dominantShifted,
           moodShifted,
+          centerShifted,
           popImpact,
           energyImpact,
           genomeImpact,
           moodImpact,
+          centerImpact,
           score,
         };
       }
@@ -19662,7 +20116,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
         if (scores.length === 0) return "trend: collecting";
 
-        const maxScore = 6;
+        const maxScore = 7;
         const glyphSpan = DRIFT_SPARKLINE_GLYPHS.length - 1;
         const bars = scores.map((rawScore) => {
           const bounded = Math.max(
@@ -19705,6 +20159,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
         if (Number(dynamics.moodImpact || 0) > 0) {
           tags.push("narrative phase shift");
+        }
+        if (Number(dynamics.centerImpact || 0) > 0) {
+          tags.push("center displacement");
         }
         if (tags.length === 0) return "risk: baseline variance only";
         return `risk: ${tags.join(" + ")}`;
@@ -19811,12 +20268,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             codex,
             narrative,
             telemetry,
+            invariants,
           ] = await Promise.all([
             fetchJson("/thoughts"),
             fetchJson("/lineage"),
             fetchJson("/codex?limit=6"),
             fetchJson("/codex/narrative?limit=4"),
             fetchJson("/api/telemetry"),
+            fetchJson("/codex/invariants?limit=6"),
           ]);
 
           if (thoughts && typeof thoughts === "object") {
@@ -19828,6 +20287,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           if (codex && typeof codex === "object") codexSnapshot = codex;
           if (narrative && typeof narrative === "object") {
             codexNarrative = narrative;
+          }
+          if (Array.isArray(invariants)) {
+            codexSnapshot = {
+              ...codexSnapshot,
+              invariants,
+            };
           }
           if (telemetry && typeof telemetry === "object") {
             telemetrySnapshot = telemetry;

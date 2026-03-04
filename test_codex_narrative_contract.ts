@@ -37,6 +37,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    codex,
+    "getInvariants",
+    CODEX_PATH,
+    "Codex module must expose invariant archive API",
+    violations,
+  );
+  requireSnippet(
     system,
     '"/codex/narrative"',
     SYSTEM_START_PATH,
@@ -57,6 +64,20 @@ const main = async () => {
     "System server must source narrative from AKASHA_CODEX",
     violations,
   );
+  requireSnippet(
+    system,
+    '"/api/codex/invariants"',
+    SYSTEM_START_PATH,
+    "System server must expose API-prefixed codex invariants endpoint",
+    violations,
+  );
+  requireSnippet(
+    system,
+    '"/codex/invariants"',
+    SYSTEM_START_PATH,
+    "System server must expose direct codex invariants endpoint",
+    violations,
+  );
 
   requireSnippet(
     akasha,
@@ -70,6 +91,13 @@ const main = async () => {
     '"/api/codex"',
     AKASHA_SERVER_PATH,
     "Akasha proxy must expose codex snapshot endpoint",
+    violations,
+  );
+  requireSnippet(
+    akasha,
+    '"/api/codex/invariants"',
+    AKASHA_SERVER_PATH,
+    "Akasha proxy must expose codex invariants endpoint",
     violations,
   );
 
