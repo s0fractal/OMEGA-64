@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-03T23:47:52.817Z*
+*Generated: 2026-03-04T00:03:37.144Z*
 *Exported Files: 64*
 *Manifest SHA256: 76a7b4ec9b972f74c82ab40ebb666d3b433ad613725f2e374c31f9ee0bda7caf*
 *Export Set SHA256: fecd5db84f21dc6be4f22e58f14e4d478e256d2d8ac9e41139cee73e55811ff6*
-*Git Commit: 5a53bd75b361*
+*Git Commit: b0def18abe9d*
 
 ---
 
@@ -1438,6 +1438,7 @@ const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRES
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
 const SAFETY_BUFFER: usize = 8000000;
+const TICK_COUNTER_OFF: usize = SAFETY_BUFFER - 8;
 const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
 const XS_OFFSET: usize = SAFETY_BUFFER + 800000;
 const YS_OFFSET: usize = SAFETY_BUFFER + 1000000;
@@ -1474,6 +1475,7 @@ const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
 const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
 const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
 const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
+const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42579200;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -1630,6 +1632,12 @@ const OP_COLLECTIVE: u8 = 0xA6;
 const OP_ROLE: u8 = 0xA7;
 const OP_BUILD: u8 = 0xA8;
 const OP_SENSE: u8 = 0xA9;
+const OP_SPORE_DRIVE: u8 = 0xAA;
+const OP_ENTANGLE: u8 = 0xAB;
+const SPORE_DRIVE_COST: i32 = 500;
+const ENTANGLE_LOW_ENERGY: i32 = 500;
+const ENTANGLE_MAX_DRAW: i32 = 400;
+const ENTANGLE_SPIN_LIMIT: i32 = 16;
 
 // Role constants moved to Vector 7 section
 
@@ -1643,6 +1651,18 @@ const PROP_GRID_CHARGE: u8 = 7;
 const PROP_QUORUM: u8 = 8;
 const PROP_NEURAL_COHERENCE: u8 = 9;
 const PROP_MEMORY: u8 = 10;
+
+@inline function lcgNext(seed: u32): u32 {
+    return seed * 1664525 + 1013904223;
+}
+
+@inline function genomePoolSlot(atomIdx: i32): i32 {
+    let hash: u32 = 2166136261;
+    for (let i = 0; i < 8; i++) {
+        hash = (hash ^ (getLogicByte(atomIdx, i) as u32)) * 16777619;
+    }
+    return (hash & 255) as i32;
+}
 
 @inline function getReg(atomIdx: i32, reg: i32): i32 {
     return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize);
@@ -2258,6 +2278,64 @@ export function execute_atom(atomIndex: i32): void {
                 }
                 setReg(atomIndex, reg as i32, found);
                 pc += 3;
+                break;
+            }
+            case OP_SPORE_DRIVE: {
+                if (energy >= SPORE_DRIVE_COST) {
+                    energy -= SPORE_DRIVE_COST;
+
+                    const idPtr = IDS_OFFSET + (atomIndex << 3) as usize;
+                    const idLo = load<u32>(idPtr);
+                    const idHi = load<u32>(idPtr + 4);
+                    const tick = atomic.load<i32>(TICK_COUNTER_OFF as usize) as u32;
+                    const phaseBits = getPhase(atomIndex) as u32;
+                    const genomeHead = ((getLogicByte(atomIndex, 0) as u32) << 8) |
+                        (getLogicByte(atomIndex, 1) as u32);
+
+                    let seed = idLo ^ (idHi << 1) ^ (tick * 2246822519) ^
+                        (phaseBits * 3266489917) ^ genomeHead;
+                    seed = lcgNext(seed);
+                    const targetX = (seed % 1400) as i32;
+                    seed = lcgNext(seed ^ (genomeHead << 16));
+                    const targetY = (seed % 800) as i32;
+
+                    const gx = targetX / 10;
+                    const gy = targetY / 10;
+                    const cellIdx = gy * 140 + gx;
+                    const cellType = readStructureCell(cellIdx) & 0xFF;
+                    if (cellType == STR_VOID) {
+                        storeClampedPos(atomIndex, targetX, targetY);
+                    }
+                }
+                pc += 1;
+                break;
+            }
+            case OP_ENTANGLE: {
+                const slot = genomePoolSlot(atomIndex);
+                const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
+                if (energy > ENTANGLE_LOW_ENERGY) {
+                    const deposit = energy / 10;
+                    if (deposit > 0) {
+                        energy -= deposit;
+                        atomic.add<i32>(poolPtr, deposit);
+                    }
+                } else {
+                    let draw = ENTANGLE_LOW_ENERGY - energy;
+                    if (draw > ENTANGLE_MAX_DRAW) draw = ENTANGLE_MAX_DRAW;
+                    if (draw < 1) draw = 1;
+
+                    for (let spin = 0; spin < ENTANGLE_SPIN_LIMIT; spin++) {
+                        const snapshot = atomic.load<i32>(poolPtr);
+                        if (snapshot <= 0) break;
+                        const take = snapshot < draw ? snapshot : draw;
+                        const observed = atomic.cmpxchg<i32>(poolPtr, snapshot, snapshot - take);
+                        if (observed == snapshot) {
+                            energy += take;
+                            break;
+                        }
+                    }
+                }
+                pc += 1;
                 break;
             }
             default: {
@@ -7341,10 +7419,10 @@ export const MEIOSIS_OFFSET = SAFETY_BUFFER + 20800000;
 export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 22000000;
 export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 23200000;
 export const ROLES_OFFSET = SAFETY_BUFFER + 33200000;
-export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 34200000; 
+export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 34200000;
 export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 35200000;
-export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 36200000; 
-export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 37200000; 
+export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 36200000;
+export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 37200000;
 export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 38200000;
 export const DAMPING_OFFSET = SAFETY_BUFFER + 39200000;
 export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 40200000;
@@ -7362,11 +7440,14 @@ export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 42400000;
 export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 42444800;
 export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 42489600;
 export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 42534400;
+export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 42579200;
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = ATTENTION_FIELD_OFFSET + 140 * 80 * 4;
-export const MIN_WASM_MEMORY_PAGES = Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES);
+export const LATTICE_MEMORY_END = HIVE_ENERGY_POOL_OFFSET + 256 * 4;
+export const MIN_WASM_MEMORY_PAGES = Math.ceil(
+  LATTICE_MEMORY_END / WASM_PAGE_BYTES,
+);
 export const WASM_MEMORY_PAGES = 1024;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
 
@@ -13610,6 +13691,8 @@ export const hiveMemoryBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024).buffer;
 export const hiveBalanceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
+export const hiveEnergyPoolBuffer =
+  new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
 export const memoryGridBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8).buffer;
 export const signalGridBuffer =
@@ -13617,7 +13700,8 @@ export const signalGridBuffer =
 export const structureGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
 export const attentionFieldBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80).buffer;
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80)
+    .buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
@@ -13666,6 +13750,11 @@ const hiveBalance = new Int32Array(
   sharedBuffer,
   OFFSETS.HIVE_BALANCE_OFFSET,
   1,
+);
+const hiveEnergyPool = new Int32Array(
+  sharedBuffer,
+  OFFSETS.HIVE_ENERGY_POOL_OFFSET,
+  256,
 );
 const spatialGrid = new Int32Array(
   sharedBuffer,
@@ -13756,6 +13845,8 @@ export const RISC = {
   OP_ROLE: 0xA7,
   OP_BUILD: 0xA8,
   OP_SENSE: 0xA9,
+  OP_SPORE_DRIVE: 0xAA,
+  OP_ENTANGLE: 0xAB,
   OP_TENSEGRITY: 0xA5,
 
   PROP_ENERGY: 0,
@@ -13804,6 +13895,7 @@ export const STATE_MATRIX = {
   signalGrid,
   memoryGrid,
   attentionField,
+  hiveEnergyPool,
   coherence,
   neuralCoherence,
   instructions,
@@ -13825,6 +13917,7 @@ export const STATE_MATRIX = {
   viralGrid: signalGrid, // Legacy alias for sensory/immune overlays
   viralGridBuffer: signalGridBuffer, // Legacy alias for UI endpoints
   hiveMemoryBuffer,
+  hiveEnergyPoolBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -13861,6 +13954,12 @@ export const STATE_MATRIX = {
     Atomics.store(hiveBalance, 0, val);
   },
   addHiveBalance: (val: number) => Atomics.add(hiveBalance, 0, val),
+  getHiveEnergyPoolSlot: (slot: number) =>
+    Atomics.load(hiveEnergyPool, slot & 255),
+  setHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.store(hiveEnergyPool, slot & 255, val),
+  addHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.add(hiveEnergyPool, slot & 255, val),
 
   getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
   getCode: (i: number) => codeWords.subarray(i * 16, i * 16 + 16),
@@ -15645,137 +15744,161 @@ const ASM_SOURCE_PATH = "./assembly/index.ts";
 const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
 
 const parseLiteral = (token: string): number | null => {
-    if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
-    if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
-    return null;
+  if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
+  if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
+  return null;
 };
 
 const normalizeExpr = (expr: string): string =>
-    expr
-        .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
-        .replace(/[()]/g, "")
-        .trim();
+  expr
+    .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
+    .replace(/[()]/g, "")
+    .trim();
 
 const evalExpr = (
-    name: string,
-    expressions: ReadonlyMap<string, string>,
-    memo: Map<string, number>,
-    stack: Set<string>,
+  name: string,
+  expressions: ReadonlyMap<string, string>,
+  memo: Map<string, number>,
+  stack: Set<string>,
 ): number => {
-    const cached = memo.get(name);
-    if (cached !== undefined) return cached;
+  const cached = memo.get(name);
+  if (cached !== undefined) return cached;
 
-    const raw = expressions.get(name);
-    if (!raw) throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
-    if (stack.has(name)) throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
+  const raw = expressions.get(name);
+  if (!raw) {
+    throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
+  }
+  if (stack.has(name)) {
+    throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
+  }
 
-    stack.add(name);
-    const expr = normalizeExpr(raw);
-    const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
+  stack.add(name);
+  const expr = normalizeExpr(raw);
+  const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
 
-    let sign = 1;
-    let total = 0;
-    for (const part of parts) {
-        if (part === "+") {
-            sign = 1;
-            continue;
-        }
-        if (part === "-") {
-            sign = -1;
-            continue;
-        }
-
-        const literal = parseLiteral(part);
-        if (literal !== null) {
-            total += sign * literal;
-            continue;
-        }
-
-        if (!/^[A-Z0-9_]+$/.test(part)) {
-            throw new Error(`[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`);
-        }
-
-        const ref = evalExpr(part, expressions, memo, stack);
-        total += sign * ref;
+  let sign = 1;
+  let total = 0;
+  for (const part of parts) {
+    if (part === "+") {
+      sign = 1;
+      continue;
+    }
+    if (part === "-") {
+      sign = -1;
+      continue;
     }
 
-    stack.delete(name);
-    memo.set(name, total);
-    return total;
+    const literal = parseLiteral(part);
+    if (literal !== null) {
+      total += sign * literal;
+      continue;
+    }
+
+    if (!/^[A-Z0-9_]+$/.test(part)) {
+      throw new Error(
+        `[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`,
+      );
+    }
+
+    const ref = evalExpr(part, expressions, memo, stack);
+    total += sign * ref;
+  }
+
+  stack.delete(name);
+  memo.set(name, total);
+  return total;
 };
 
 const readAssemblyConsts = async (): Promise<Map<string, string>> => {
-    const src = await Deno.readTextFile(ASM_SOURCE_PATH);
-    const out = new Map<string, string>();
-    for (const match of src.matchAll(CONST_DEF_RE)) {
-        const [, name, expr] = match;
-        out.set(name, expr.trim());
-    }
-    return out;
+  const src = await Deno.readTextFile(ASM_SOURCE_PATH);
+  const out = new Map<string, string>();
+  for (const match of src.matchAll(CONST_DEF_RE)) {
+    const [, name, expr] = match;
+    out.set(name, expr.trim());
+  }
+  return out;
 };
 
 export const assertWasmLayout = async (): Promise<void> => {
-    const asmExpressions = await readAssemblyConsts();
-    const memo = new Map<string, number>();
+  const asmExpressions = await readAssemblyConsts();
+  const memo = new Map<string, number>();
 
-    const expected: Array<{ asm: string; value: number }> = [
-        { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
-        { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
-        { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
-        { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
-        { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
-        { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
-        { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
-        { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
-        { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
-        { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
-        { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
-        { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
-        { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
-        { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
-        { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
-        { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
-        { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
-        { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
-        { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
-        { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
-        { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
-        { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
-        { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
-        { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
-        { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
-        { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
-        { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
-        { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
-        { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
-        { asm: "PHYSICS_READ_ENERGY_OFF", value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET },
-        { asm: "PHYSICS_READ_RESONANCE_OFF", value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET },
-        { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
-        { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
-        { asm: "STRUCTURE_BUILD_OWNER_OFF", value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET },
-        { asm: "STRUCTURE_BUILD_VALUE_OFF", value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET },
-        { asm: "STRUCTURE_CHARGE_INTENT_OFF", value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET },
-        { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
-    ];
+  const expected: Array<{ asm: string; value: number }> = [
+    { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
+    { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
+    { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
+    { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
+    { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
+    { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
+    { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
+    { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
+    { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
+    { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
+    { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
+    { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
+    { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
+    { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
+    { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
+    { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
+    { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
+    { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
+    { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
+    { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
+    { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
+    { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
+    { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
+    { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
+    { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
+    { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
+    { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
+    { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
+    { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
+    {
+      asm: "PHYSICS_READ_ENERGY_OFF",
+      value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    },
+    {
+      asm: "PHYSICS_READ_RESONANCE_OFF",
+      value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    },
+    { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
+    { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
+    {
+      asm: "STRUCTURE_BUILD_OWNER_OFF",
+      value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    },
+    {
+      asm: "STRUCTURE_BUILD_VALUE_OFF",
+      value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    },
+    {
+      asm: "STRUCTURE_CHARGE_INTENT_OFF",
+      value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    },
+    { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
+    { asm: "HIVE_ENERGY_POOL_OFF", value: OFFSETS.HIVE_ENERGY_POOL_OFFSET },
+  ];
 
-    const mismatches: string[] = [];
-    for (const item of expected) {
-        const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
-        if (actual !== item.value) {
-            mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
-        }
+  const mismatches: string[] = [];
+  for (const item of expected) {
+    const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
+    if (actual !== item.value) {
+      mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
     }
+  }
 
-    if (mismatches.length > 0) {
-        throw new Error(
-            `[wasm:layout] Constant drift detected:\n${mismatches.map((m) => `- ${m}`).join("\n")}`,
-        );
-    }
+  if (mismatches.length > 0) {
+    throw new Error(
+      `[wasm:layout] Constant drift detected:\n${
+        mismatches.map((m) => `- ${m}`).join("\n")
+      }`,
+    );
+  }
 };
 
 if (import.meta.main) {
-    await assertWasmLayout();
-    console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
+  await assertWasmLayout();
+  console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
 
 ```

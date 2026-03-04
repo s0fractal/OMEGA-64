@@ -8,6 +8,7 @@ const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRES
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
 const SAFETY_BUFFER: usize = 8000000;
+const TICK_COUNTER_OFF: usize = SAFETY_BUFFER - 8;
 const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
 const XS_OFFSET: usize = SAFETY_BUFFER + 800000;
 const YS_OFFSET: usize = SAFETY_BUFFER + 1000000;
@@ -44,6 +45,7 @@ const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
 const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
 const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
 const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
+const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42579200;
 const SPAWN_HEAD_OFF: usize  = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize  = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32         = 1024;
@@ -200,6 +202,12 @@ const OP_COLLECTIVE: u8 = 0xA6;
 const OP_ROLE: u8 = 0xA7;
 const OP_BUILD: u8 = 0xA8;
 const OP_SENSE: u8 = 0xA9;
+const OP_SPORE_DRIVE: u8 = 0xAA;
+const OP_ENTANGLE: u8 = 0xAB;
+const SPORE_DRIVE_COST: i32 = 500;
+const ENTANGLE_LOW_ENERGY: i32 = 500;
+const ENTANGLE_MAX_DRAW: i32 = 400;
+const ENTANGLE_SPIN_LIMIT: i32 = 16;
 
 // Role constants moved to Vector 7 section
 
@@ -213,6 +221,18 @@ const PROP_GRID_CHARGE: u8 = 7;
 const PROP_QUORUM: u8 = 8;
 const PROP_NEURAL_COHERENCE: u8 = 9;
 const PROP_MEMORY: u8 = 10;
+
+@inline function lcgNext(seed: u32): u32 {
+    return seed * 1664525 + 1013904223;
+}
+
+@inline function genomePoolSlot(atomIdx: i32): i32 {
+    let hash: u32 = 2166136261;
+    for (let i = 0; i < 8; i++) {
+        hash = (hash ^ (getLogicByte(atomIdx, i) as u32)) * 16777619;
+    }
+    return (hash & 255) as i32;
+}
 
 @inline function getReg(atomIdx: i32, reg: i32): i32 {
     return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize);
@@ -828,6 +848,64 @@ export function execute_atom(atomIndex: i32): void {
                 }
                 setReg(atomIndex, reg as i32, found);
                 pc += 3;
+                break;
+            }
+            case OP_SPORE_DRIVE: {
+                if (energy >= SPORE_DRIVE_COST) {
+                    energy -= SPORE_DRIVE_COST;
+
+                    const idPtr = IDS_OFFSET + (atomIndex << 3) as usize;
+                    const idLo = load<u32>(idPtr);
+                    const idHi = load<u32>(idPtr + 4);
+                    const tick = atomic.load<i32>(TICK_COUNTER_OFF as usize) as u32;
+                    const phaseBits = getPhase(atomIndex) as u32;
+                    const genomeHead = ((getLogicByte(atomIndex, 0) as u32) << 8) |
+                        (getLogicByte(atomIndex, 1) as u32);
+
+                    let seed = idLo ^ (idHi << 1) ^ (tick * 2246822519) ^
+                        (phaseBits * 3266489917) ^ genomeHead;
+                    seed = lcgNext(seed);
+                    const targetX = (seed % 1400) as i32;
+                    seed = lcgNext(seed ^ (genomeHead << 16));
+                    const targetY = (seed % 800) as i32;
+
+                    const gx = targetX / 10;
+                    const gy = targetY / 10;
+                    const cellIdx = gy * 140 + gx;
+                    const cellType = readStructureCell(cellIdx) & 0xFF;
+                    if (cellType == STR_VOID) {
+                        storeClampedPos(atomIndex, targetX, targetY);
+                    }
+                }
+                pc += 1;
+                break;
+            }
+            case OP_ENTANGLE: {
+                const slot = genomePoolSlot(atomIndex);
+                const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
+                if (energy > ENTANGLE_LOW_ENERGY) {
+                    const deposit = energy / 10;
+                    if (deposit > 0) {
+                        energy -= deposit;
+                        atomic.add<i32>(poolPtr, deposit);
+                    }
+                } else {
+                    let draw = ENTANGLE_LOW_ENERGY - energy;
+                    if (draw > ENTANGLE_MAX_DRAW) draw = ENTANGLE_MAX_DRAW;
+                    if (draw < 1) draw = 1;
+
+                    for (let spin = 0; spin < ENTANGLE_SPIN_LIMIT; spin++) {
+                        const snapshot = atomic.load<i32>(poolPtr);
+                        if (snapshot <= 0) break;
+                        const take = snapshot < draw ? snapshot : draw;
+                        const observed = atomic.cmpxchg<i32>(poolPtr, snapshot, snapshot - take);
+                        if (observed == snapshot) {
+                            energy += take;
+                            break;
+                        }
+                    }
+                }
+                pc += 1;
                 break;
             }
             default: {

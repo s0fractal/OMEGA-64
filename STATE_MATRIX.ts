@@ -49,6 +49,8 @@ export const hiveMemoryBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024).buffer;
 export const hiveBalanceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
+export const hiveEnergyPoolBuffer =
+  new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
 export const memoryGridBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8).buffer;
 export const signalGridBuffer =
@@ -56,7 +58,8 @@ export const signalGridBuffer =
 export const structureGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
 export const attentionFieldBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80).buffer;
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80)
+    .buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
@@ -105,6 +108,11 @@ const hiveBalance = new Int32Array(
   sharedBuffer,
   OFFSETS.HIVE_BALANCE_OFFSET,
   1,
+);
+const hiveEnergyPool = new Int32Array(
+  sharedBuffer,
+  OFFSETS.HIVE_ENERGY_POOL_OFFSET,
+  256,
 );
 const spatialGrid = new Int32Array(
   sharedBuffer,
@@ -195,6 +203,8 @@ export const RISC = {
   OP_ROLE: 0xA7,
   OP_BUILD: 0xA8,
   OP_SENSE: 0xA9,
+  OP_SPORE_DRIVE: 0xAA,
+  OP_ENTANGLE: 0xAB,
   OP_TENSEGRITY: 0xA5,
 
   PROP_ENERGY: 0,
@@ -243,6 +253,7 @@ export const STATE_MATRIX = {
   signalGrid,
   memoryGrid,
   attentionField,
+  hiveEnergyPool,
   coherence,
   neuralCoherence,
   instructions,
@@ -264,6 +275,7 @@ export const STATE_MATRIX = {
   viralGrid: signalGrid, // Legacy alias for sensory/immune overlays
   viralGridBuffer: signalGridBuffer, // Legacy alias for UI endpoints
   hiveMemoryBuffer,
+  hiveEnergyPoolBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -300,6 +312,12 @@ export const STATE_MATRIX = {
     Atomics.store(hiveBalance, 0, val);
   },
   addHiveBalance: (val: number) => Atomics.add(hiveBalance, 0, val),
+  getHiveEnergyPoolSlot: (slot: number) =>
+    Atomics.load(hiveEnergyPool, slot & 255),
+  setHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.store(hiveEnergyPool, slot & 255, val),
+  addHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.add(hiveEnergyPool, slot & 255, val),
 
   getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
   getCode: (i: number) => codeWords.subarray(i * 16, i * 16 + 16),
