@@ -76,6 +76,34 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS",
+    SYSTEM_START_PATH,
+    "Daemon ingress must codify Codex lineage longevity guard threshold",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "DAEMON_CODEX_LINEAGE_PEAK_SHARE",
+    SYSTEM_START_PATH,
+    "Daemon ingress must codify Codex lineage dominance guard threshold",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "codexLineageGuardScore",
+    SYSTEM_START_PATH,
+    "Daemon ingress must derive Codex lineage guard score in narrative context",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "CODEX_LINEAGE_GUARD_PLASMID",
+    SYSTEM_START_PATH,
+    "Daemon ingress must include Codex lineage pressure in plasmid admission reasons",
+    violations,
+  );
+  requireSnippet(
+    system,
     "DAEMON_DEGRADED",
     SYSTEM_START_PATH,
     "Daemon ingress must audit degraded invariant admissions",

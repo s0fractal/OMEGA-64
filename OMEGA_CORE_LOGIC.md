@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T15:37:12.147Z*
+*Generated: 2026-03-04T15:50:23.147Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: e6537c7dc766a17b39545390bceb3cbf06faeed88de77feeae69c2ac1d248907*
-*Git Commit: 7991ddbbdcb5*
+*Export Content SHA256: b942a22e090236b928792985ea371e4fe009d3583dfb022d0e91ee1e99c6e663*
+*Git Commit: 81955fabe720*
 
 ---
 
@@ -2676,6 +2676,9 @@ export context. It intentionally excludes historical era narratives.
   action plans are scored against codex narrative context (`sharedCenter`,
   dominant invariant vector, safety floors). `MID/HIGH` drift is degraded
   (intensity clamp or plasmid->pheromone conversion) instead of hard blocking.
+  Codex species memory now feeds a lineage guard score (dominant epochs +
+  historical peak share + active-lineage match) to increase drift pressure on
+  aggressive external plasmid ingress during stable lineage windows.
   Degradation rationale is written to daemon audit log and codex chronicles
   (`daemon_admission`) for operator visibility in narrative surfaces.
 - Bridge/policy/invariant checks are validated before commit.
@@ -17478,6 +17481,9 @@ type DaemonNarrativeContext = {
   mood: string;
   sharedCenter: string;
   dominantInvariantVector: string;
+  codexLineageLabel: string;
+  codexLineageGuardScore: number;
+  codexLineageGuardReasons: string[];
 };
 
 type DaemonInvariantAdmission = {
@@ -17608,6 +17614,9 @@ const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
+const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
+const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
+const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -18014,6 +18023,7 @@ const parsePressureRingIngressEnvelope = (
 
 const normalizeDaemonNarrativeContext = (
   narrative: Awaited<ReturnType<typeof AKASHA_CODEX.getNarrative>>,
+  dominantGenome: string,
 ): DaemonNarrativeContext => {
   const mood = typeof narrative?.mood === "string"
     ? narrative.mood.trim().toUpperCase()
@@ -18027,7 +18037,60 @@ const normalizeDaemonNarrativeContext = (
       narrative.invariantHighlights[0].dominantVector.trim().length > 0
       ? narrative.invariantHighlights[0].dominantVector.trim()
       : "none";
-  return { mood, sharedCenter, dominantInvariantVector };
+  const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
+  const highlights = Array.isArray(narrative?.speciesHighlights)
+    ? narrative.speciesHighlights.filter((entry) =>
+      entry && typeof entry === "object"
+    )
+    : [];
+  const matchedSpecies =
+    highlights.find((entry) =>
+      typeof entry.genome === "string" &&
+      entry.genome.toUpperCase() === normalizedDominantGenome
+    ) ?? highlights[0];
+  let codexLineageLabel = "none";
+  let codexLineageGuardScore = 0;
+  const codexLineageGuardReasons: string[] = [];
+  if (matchedSpecies && typeof matchedSpecies === "object") {
+    const dominantEpochs = asFiniteNumber(matchedSpecies.dominantEpochs, 0);
+    const peakShare = asFiniteNumber(matchedSpecies.peakShare, 0);
+    codexLineageLabel =
+      typeof matchedSpecies.latinName === "string" &&
+        matchedSpecies.latinName.trim().length > 0
+        ? matchedSpecies.latinName.trim()
+        : typeof matchedSpecies.genome === "string"
+        ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
+        : "unknown-lineage";
+    if (dominantEpochs >= DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
+    }
+    if (peakShare >= DAEMON_CODEX_LINEAGE_PEAK_SHARE) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_DOMINANCE");
+    }
+    if (
+      normalizedDominantGenome.length > 0 &&
+      typeof matchedSpecies.genome === "string" &&
+      matchedSpecies.genome.toUpperCase() === normalizedDominantGenome
+    ) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_ACTIVE_LINEAGE_MATCH");
+    }
+  }
+  codexLineageGuardScore = clamp(
+    Math.round(codexLineageGuardScore),
+    0,
+    DAEMON_CODEX_LINEAGE_GUARD_MAX,
+  );
+  return {
+    mood,
+    sharedCenter,
+    dominantInvariantVector,
+    codexLineageLabel,
+    codexLineageGuardScore,
+    codexLineageGuardReasons,
+  };
 };
 
 const evaluateInvariantAdmission = (
@@ -18061,6 +18124,24 @@ const evaluateInvariantAdmission = (
   } else if (normalizedVector.includes("TENSION")) {
     score += 1;
     reasons.push("INVARIANT_TENSION_VECTOR");
+  }
+
+  if (context.codexLineageGuardScore > 0) {
+    if (envelope.action_type === "INJECT_PLASMID") {
+      const codexGuardAdd = Math.min(2, context.codexLineageGuardScore);
+      score += codexGuardAdd;
+      reasons.push(
+        ...context.codexLineageGuardReasons.slice(0, codexGuardAdd),
+      );
+      reasons.push("CODEX_LINEAGE_GUARD_PLASMID");
+    } else if (envelope.action_type === "DROP_PHEROMONE") {
+      const pheromoneRatio = envelope.payload.intensity /
+        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
+      if (pheromoneRatio >= 0.9) {
+        score += 1;
+        reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
+      }
+    }
   }
 
   if (envelope.action_type === "INJECT_PLASMID") {
@@ -18636,8 +18717,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       }
 
+      const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
+        .at(0) ?? "";
       const narrativeContext = normalizeDaemonNarrativeContext(
         await AKASHA_CODEX.getNarrative(3),
+        dominantGenome,
       );
       const ingressPlan = planInvariantIngress(
         envelope,

@@ -87,6 +87,9 @@ export context. It intentionally excludes historical era narratives.
   action plans are scored against codex narrative context (`sharedCenter`,
   dominant invariant vector, safety floors). `MID/HIGH` drift is degraded
   (intensity clamp or plasmid->pheromone conversion) instead of hard blocking.
+  Codex species memory now feeds a lineage guard score (dominant epochs +
+  historical peak share + active-lineage match) to increase drift pressure on
+  aggressive external plasmid ingress during stable lineage windows.
   Degradation rationale is written to daemon audit log and codex chronicles
   (`daemon_admission`) for operator visibility in narrative surfaces.
 - Bridge/policy/invariant checks are validated before commit.

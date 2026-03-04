@@ -47,6 +47,9 @@ type DaemonNarrativeContext = {
   mood: string;
   sharedCenter: string;
   dominantInvariantVector: string;
+  codexLineageLabel: string;
+  codexLineageGuardScore: number;
+  codexLineageGuardReasons: string[];
 };
 
 type DaemonInvariantAdmission = {
@@ -177,6 +180,9 @@ const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
+const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
+const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
+const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -583,6 +589,7 @@ const parsePressureRingIngressEnvelope = (
 
 const normalizeDaemonNarrativeContext = (
   narrative: Awaited<ReturnType<typeof AKASHA_CODEX.getNarrative>>,
+  dominantGenome: string,
 ): DaemonNarrativeContext => {
   const mood = typeof narrative?.mood === "string"
     ? narrative.mood.trim().toUpperCase()
@@ -596,7 +603,60 @@ const normalizeDaemonNarrativeContext = (
       narrative.invariantHighlights[0].dominantVector.trim().length > 0
       ? narrative.invariantHighlights[0].dominantVector.trim()
       : "none";
-  return { mood, sharedCenter, dominantInvariantVector };
+  const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
+  const highlights = Array.isArray(narrative?.speciesHighlights)
+    ? narrative.speciesHighlights.filter((entry) =>
+      entry && typeof entry === "object"
+    )
+    : [];
+  const matchedSpecies =
+    highlights.find((entry) =>
+      typeof entry.genome === "string" &&
+      entry.genome.toUpperCase() === normalizedDominantGenome
+    ) ?? highlights[0];
+  let codexLineageLabel = "none";
+  let codexLineageGuardScore = 0;
+  const codexLineageGuardReasons: string[] = [];
+  if (matchedSpecies && typeof matchedSpecies === "object") {
+    const dominantEpochs = asFiniteNumber(matchedSpecies.dominantEpochs, 0);
+    const peakShare = asFiniteNumber(matchedSpecies.peakShare, 0);
+    codexLineageLabel =
+      typeof matchedSpecies.latinName === "string" &&
+        matchedSpecies.latinName.trim().length > 0
+        ? matchedSpecies.latinName.trim()
+        : typeof matchedSpecies.genome === "string"
+        ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
+        : "unknown-lineage";
+    if (dominantEpochs >= DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
+    }
+    if (peakShare >= DAEMON_CODEX_LINEAGE_PEAK_SHARE) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_DOMINANCE");
+    }
+    if (
+      normalizedDominantGenome.length > 0 &&
+      typeof matchedSpecies.genome === "string" &&
+      matchedSpecies.genome.toUpperCase() === normalizedDominantGenome
+    ) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_ACTIVE_LINEAGE_MATCH");
+    }
+  }
+  codexLineageGuardScore = clamp(
+    Math.round(codexLineageGuardScore),
+    0,
+    DAEMON_CODEX_LINEAGE_GUARD_MAX,
+  );
+  return {
+    mood,
+    sharedCenter,
+    dominantInvariantVector,
+    codexLineageLabel,
+    codexLineageGuardScore,
+    codexLineageGuardReasons,
+  };
 };
 
 const evaluateInvariantAdmission = (
@@ -630,6 +690,24 @@ const evaluateInvariantAdmission = (
   } else if (normalizedVector.includes("TENSION")) {
     score += 1;
     reasons.push("INVARIANT_TENSION_VECTOR");
+  }
+
+  if (context.codexLineageGuardScore > 0) {
+    if (envelope.action_type === "INJECT_PLASMID") {
+      const codexGuardAdd = Math.min(2, context.codexLineageGuardScore);
+      score += codexGuardAdd;
+      reasons.push(
+        ...context.codexLineageGuardReasons.slice(0, codexGuardAdd),
+      );
+      reasons.push("CODEX_LINEAGE_GUARD_PLASMID");
+    } else if (envelope.action_type === "DROP_PHEROMONE") {
+      const pheromoneRatio = envelope.payload.intensity /
+        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
+      if (pheromoneRatio >= 0.9) {
+        score += 1;
+        reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
+      }
+    }
   }
 
   if (envelope.action_type === "INJECT_PLASMID") {
@@ -1205,8 +1283,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       }
 
+      const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
+        .at(0) ?? "";
       const narrativeContext = normalizeDaemonNarrativeContext(
         await AKASHA_CODEX.getNarrative(3),
+        dominantGenome,
       );
       const ingressPlan = planInvariantIngress(
         envelope,
