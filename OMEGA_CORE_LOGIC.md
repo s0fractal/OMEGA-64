@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:23:14.074Z*
+*Generated: 2026-03-04T11:27:06.863Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: b81fb1819b5c*
+*Git Commit: c0f6eeb57176*
 
 ---
 
@@ -1718,7 +1718,8 @@ export context. It intentionally excludes historical era narratives.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
    over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
-   component score breakdown, and scene halo tint.
+   component score breakdown, a compact drift trend sparkline, and scene halo
+   tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -17036,6 +17037,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         opacity: 0.78;
         font-family: "Courier New", monospace;
       }
+      #human-drift-sparkline {
+        margin-top: 3px;
+        font-size: 0.62rem;
+        opacity: 0.74;
+        font-family: "Courier New", monospace;
+        letter-spacing: 0.7px;
+        white-space: pre;
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -17202,6 +17211,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
           score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
         </div>
+        <div id="human-drift-sparkline" class="codex-row-body codex-row-subtle">
+          trend:........ (steady)
+        </div>
         <button id="human-drift-btn" class="human-btn">Explain Drift (90s)</button>
         <div id="human-channel-stamp">Updated: --</div>
       </div>
@@ -17331,6 +17343,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let telemetrySnapshot = { tick: 0, avgEnergy: 0, dominantGenomes: [], voxPopuli: [] };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
+      const DRIFT_SPARKLINE_POINTS = 18;
+      const DRIFT_SPARKLINE_GLYPHS = ".:-=+*#%@";
       let driftHistory = [];
       let dictSyncInFlight = false;
       const raycaster = new THREE.Raycaster();
@@ -17759,14 +17773,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         const elapsedSec = Math.max(1, Math.round((latest.ts - reference.ts) / 1000));
         const deltaTick = latest.tick - reference.tick;
-        const deltaEnergy = latest.avgEnergy - reference.avgEnergy;
-        const deltaPopulation = latest.population - reference.population;
-        const dominantShifted = (
-          latest.dominantGenome.length > 0 &&
-          reference.dominantGenome.length > 0 &&
-          latest.dominantGenome !== reference.dominantGenome
-        );
-        const moodShifted = latest.mood !== reference.mood;
+        const dynamics = computeDriftDynamics(reference, latest);
+        const deltaEnergy = dynamics.deltaEnergy;
+        const deltaPopulation = dynamics.deltaPopulation;
+        const dominantShifted = dynamics.dominantShifted;
+        const moodShifted = dynamics.moodShifted;
 
         const populationPhrase = deltaPopulation > 12
           ? `population expanded by ${deltaPopulation}`
@@ -17785,21 +17796,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           ? `codex mood shifted (${reference.mood} → ${latest.mood})`
           : `codex mood held at ${latest.mood}`;
 
-        let score = 0;
-        const absPop = Math.abs(deltaPopulation);
-        const absEnergy = Math.abs(deltaEnergy);
-        if (absPop >= 40) score += 2;
-        else if (absPop >= 15) score += 1;
-        if (absEnergy >= 3) score += 2;
-        else if (absEnergy >= 1.25) score += 1;
-        if (dominantShifted) score += 1;
-        if (moodShifted) score += 1;
+        const score = dynamics.score;
         const severity = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
 
-        const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
-        const energyImpact = absEnergy >= 3 ? 2 : absEnergy >= 1.25 ? 1 : 0;
-        const genomeImpact = dominantShifted ? 1 : 0;
-        const moodImpact = moodShifted ? 1 : 0;
+        const popImpact = dynamics.popImpact;
+        const energyImpact = dynamics.energyImpact;
+        const genomeImpact = dynamics.genomeImpact;
+        const moodImpact = dynamics.moodImpact;
         const breakdown =
           `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
 
@@ -17809,6 +17812,67 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           severity,
           breakdown,
         };
+      }
+
+      function computeDriftDynamics(reference, latest) {
+        const deltaEnergy = latest.avgEnergy - reference.avgEnergy;
+        const deltaPopulation = latest.population - reference.population;
+        const dominantShifted = (
+          latest.dominantGenome.length > 0 &&
+          reference.dominantGenome.length > 0 &&
+          latest.dominantGenome !== reference.dominantGenome
+        );
+        const moodShifted = latest.mood !== reference.mood;
+        const absPop = Math.abs(deltaPopulation);
+        const absEnergy = Math.abs(deltaEnergy);
+        const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
+        const energyImpact = absEnergy >= 3 ? 2 : absEnergy >= 1.25 ? 1 : 0;
+        const genomeImpact = dominantShifted ? 1 : 0;
+        const moodImpact = moodShifted ? 1 : 0;
+        const score = popImpact + energyImpact + genomeImpact + moodImpact;
+
+        return {
+          deltaEnergy,
+          deltaPopulation,
+          dominantShifted,
+          moodShifted,
+          popImpact,
+          energyImpact,
+          genomeImpact,
+          moodImpact,
+          score,
+        };
+      }
+
+      function buildDriftSparkline() {
+        if (driftHistory.length < 2) return "trend: collecting";
+        const latest = driftHistory[driftHistory.length - 1];
+        const windowStart = latest.ts - DRIFT_LOOKBACK_MS;
+        let window = driftHistory.filter((entry) => entry.ts >= windowStart);
+        if (window.length < 2) window = driftHistory.slice(-2);
+        if (window.length < 2) return "trend: collecting";
+
+        const step = Math.max(1, Math.floor((window.length - 1) / DRIFT_SPARKLINE_POINTS));
+        const scores = [];
+        for (let i = 1; i < window.length; i += step) {
+          const previousIndex = Math.max(0, i - step);
+          const dynamics = computeDriftDynamics(window[previousIndex], window[i]);
+          scores.push(dynamics.score);
+        }
+        if (scores.length === 0) return "trend: collecting";
+
+        const maxScore = 6;
+        const glyphSpan = DRIFT_SPARKLINE_GLYPHS.length - 1;
+        const bars = scores.map((rawScore) => {
+          const bounded = Math.max(0, Math.min(maxScore, Number(rawScore) || 0));
+          const glyphIndex = Math.round((bounded / maxScore) * glyphSpan);
+          return DRIFT_SPARKLINE_GLYPHS[glyphIndex];
+        }).join("");
+
+        const first = scores[0];
+        const last = scores[scores.length - 1];
+        const slope = last > first ? "rising" : last < first ? "cooling" : "steady";
+        return `trend:${bars} (${slope})`;
       }
 
       function applyDriftSeverityBadge(severity) {
@@ -17854,9 +17918,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
         const breakdownNode = document.getElementById("human-drift-breakdown");
+        const sparklineNode = document.getElementById("human-drift-sparkline");
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
         if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
+        if (sparklineNode) sparklineNode.textContent = buildDriftSparkline();
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);
       }

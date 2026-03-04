@@ -47,6 +47,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-drift-sparkline"',
+    "UI must render drift sparkline surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     'id="human-drift-severity"',
     "UI must render drift severity badge surface",
     violations,
@@ -73,6 +79,12 @@ const main = async () => {
     ui,
     "score=",
     "UI drift mode must expose component score breakdown",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildDriftSparkline",
+    "UI drift mode must expose drift trend sparkline synthesis",
     violations,
   );
   requireSnippet(
