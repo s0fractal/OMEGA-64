@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T15:11:05.494Z*
+*Generated: 2026-03-04T15:15:30.310Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 343227719d2404a7ad7b21468930e511e625fecc59adfeb833c5f706ef29fed7*
-*Git Commit: caf97a62520c*
+*Export Content SHA256: eb9f012104d53cf8b91cf84bb14979c18f7ebd6159649cdaa1904f93179a43f0*
+*Git Commit: e142146f69b4*
 
 ---
 
@@ -19780,6 +19780,24 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         >
           daemon history: awaiting signal...
         </div>
+        <div
+          id="human-phase-ring-summary"
+          class="codex-row-body codex-row-subtle"
+        >
+          phase ring: awaiting telemetry...
+        </div>
+        <div
+          id="human-phase-ring-vector"
+          class="codex-row-body codex-row-subtle"
+        >
+          vector: θ=0.0000rad | quadrant=I | state=baseline
+        </div>
+        <div
+          id="human-phase-ring-update"
+          class="codex-row-body codex-row-subtle"
+        >
+          update: no daemon phase updates yet
+        </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
         </button>
@@ -20007,9 +20025,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         avgEnergy: 0,
         dominantGenomes: [],
         voxPopuli: [],
+        pulse_pressure: {
+          novelty_signed: 0,
+          symbiosis_signed: 0,
+          novelty: 0,
+          fear: 0,
+          symbiosis: 0,
+          ego: 0,
+          ring: {
+            enabled: false,
+            theta: 0,
+            scale: 0,
+            fear_curiosity_balance: 0,
+            ego_love_balance: 0,
+          },
+        },
         daemon_governance: {
           last_admission: null,
           last_admission_history: [],
+          last_pressure_ring_update: null,
         },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
@@ -21371,6 +21405,88 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return "";
       }
 
+      function currentPulsePressure() {
+        const pressure = telemetrySnapshot?.pulse_pressure;
+        if (!pressure || typeof pressure !== "object") return null;
+        return pressure;
+      }
+
+      function currentPressureRing() {
+        const pressure = currentPulsePressure();
+        const ring = pressure?.ring;
+        if (!ring || typeof ring !== "object") return null;
+        return ring;
+      }
+
+      function currentPressureRingUpdate() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return null;
+        const update = governance.last_pressure_ring_update;
+        if (!update || typeof update !== "object") return null;
+        return update;
+      }
+
+      function normalizePhaseTheta(value) {
+        const theta = Number(value);
+        if (!Number.isFinite(theta)) return 0;
+        const tau = Math.PI * 2;
+        const wrapped = theta % tau;
+        return wrapped >= 0 ? wrapped : wrapped + tau;
+      }
+
+      function phaseRingQuadrant(theta) {
+        const t = normalizePhaseTheta(theta);
+        if (t < Math.PI * 0.5) return "I";
+        if (t < Math.PI) return "II";
+        if (t < Math.PI * 1.5) return "III";
+        return "IV";
+      }
+
+      function buildPhaseRingSummary() {
+        const pressure = currentPulsePressure();
+        const ring = currentPressureRing();
+        if (!pressure || !ring) {
+          return "phase ring: awaiting telemetry...";
+        }
+        const enabled = ring.enabled ? "on" : "off";
+        const novelty = Number(pressure.novelty || 0);
+        const fear = Number(pressure.fear || 0);
+        const symbiosis = Number(pressure.symbiosis || 0);
+        const ego = Number(pressure.ego || 0);
+        const scale = Number(ring.scale || 0);
+        return `phase ring: ${enabled} | N:${novelty} F:${fear} S:${symbiosis} E:${ego} | scale=${scale}`;
+      }
+
+      function buildPhaseRingVector() {
+        const ring = currentPressureRing();
+        if (!ring) {
+          return "vector: phase ring unavailable";
+        }
+        const theta = normalizePhaseTheta(ring.theta);
+        const q = phaseRingQuadrant(theta);
+        const fc = Number(ring.fear_curiosity_balance || 0);
+        const el = Number(ring.ego_love_balance || 0);
+        const state = ring.enabled
+          ? `fc=${fc.toFixed(3)} | el=${el.toFixed(3)}`
+          : "ring disabled";
+        return `vector: θ=${theta.toFixed(4)}rad | quadrant=${q} | ${state}`;
+      }
+
+      function buildPhaseRingUpdateSummary() {
+        const update = currentPressureRingUpdate();
+        if (!update) {
+          return "update: no daemon phase updates yet";
+        }
+        const mode = String(update.mode || "set").toUpperCase();
+        const source = String(update.source || "daemon_phase_scheduler")
+          .slice(0, 42);
+        const theta = Number(update.theta || 0);
+        const delta = Number(update.delta_theta || 0);
+        const scale = Number(update.scale || 0);
+        const tick = Number(update.tick || 0);
+        return `update: ${mode} @tick ${tick} | θ=${theta.toFixed(4)} Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
+      }
+
       function currentDaemonAdmission() {
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return null;
@@ -21504,6 +21620,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const relicStatus = String(
           codexNarrative?.relicStatus || "Relic status unavailable.",
         );
+        const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
           ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
@@ -21517,6 +21634,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (dominantInvariant.length > 0) {
           text += ` Dominant invariant vector: ${dominantInvariant}.`;
         }
+        text += ` Pressure ring ${phaseVector}.`;
         text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
@@ -21851,8 +21969,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       }
 
+      function renderHumanPhaseRing() {
+        const summaryNode = document.getElementById(
+          "human-phase-ring-summary",
+        );
+        if (summaryNode) summaryNode.textContent = buildPhaseRingSummary();
+        const vectorNode = document.getElementById("human-phase-ring-vector");
+        if (vectorNode) vectorNode.textContent = buildPhaseRingVector();
+        const updateNode = document.getElementById("human-phase-ring-update");
+        if (updateNode) {
+          updateNode.textContent = buildPhaseRingUpdateSummary();
+        }
+      }
+
       function renderHumanChannel(extraStamp = "") {
         renderHumanAdmission();
+        renderHumanPhaseRing();
         renderHumanExplanation();
         renderHumanDrift();
         updateHumanChannelStamp(extraStamp);

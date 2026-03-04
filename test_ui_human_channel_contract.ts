@@ -161,6 +161,24 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-phase-ring-summary"',
+    "UI must render phase ring summary surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    'id="human-phase-ring-vector"',
+    "UI must render phase ring vector surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    'id="human-phase-ring-update"',
+    "UI must render phase ring update surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildDaemonAdmissionSummary",
     "UI human channel must summarize daemon admission severity and reason",
     violations,
@@ -199,6 +217,48 @@ const main = async () => {
     ui,
     "last_admission_history",
     "UI must consume daemon admission history from telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "currentPulsePressure",
+    "UI must derive pulse pressure envelope from telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildPhaseRingSummary",
+    "UI must synthesize human-readable phase ring summary",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildPhaseRingVector",
+    "UI must synthesize human-readable phase ring vector",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildPhaseRingUpdateSummary",
+    "UI must synthesize human-readable daemon phase-ring update summary",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "renderHumanPhaseRing",
+    "UI must render phase ring surfaces during human channel refresh",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "pulse_pressure",
+    "UI must consume pulse pressure telemetry context",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "last_pressure_ring_update",
+    "UI must consume daemon last pressure-ring update context",
     violations,
   );
 
