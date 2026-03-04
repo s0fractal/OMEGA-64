@@ -64,6 +64,7 @@
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
     "AKASHA_SERVER.ts",
+    "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html"

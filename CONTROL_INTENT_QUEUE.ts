@@ -37,6 +37,15 @@ type AvatarIntent = {
   kind: "avatar";
   x: number;
   y: number;
+  intensity: number;
+};
+
+type PlasmidIntent = {
+  kind: "plasmid";
+  x: number;
+  y: number;
+  charge: number;
+  plasmidBytes: Uint8Array;
 };
 
 type SnapshotImportIntent = {
@@ -49,6 +58,7 @@ type ControlIntent =
   | FederateIntent
   | MutateIntent
   | AvatarIntent
+  | PlasmidIntent
   | SnapshotImportIntent;
 
 type QueueDecision = {
@@ -68,6 +78,11 @@ type ApplyStats = {
 
 const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
+const GRID_W = 140;
+const GRID_H = 80;
+const GRID_CELL_BYTES = 8;
+const WORLD_W = GRID_W * 10;
+const WORLD_H = GRID_H * 10;
 
 const queue: ControlIntent[] = [];
 
@@ -103,7 +118,7 @@ const enqueueInternal = (intent: ControlIntent): QueueDecision => {
 
 const parseHex8 = (value: unknown): Uint8Array | null => {
   if (typeof value !== "string") return null;
-  const hex = value.trim();
+  const hex = value.trim().replace(/^0x/i, "");
   if (!/^[0-9a-fA-F]{16}$/u.test(hex)) return null;
   const out = new Uint8Array(8);
   for (let i = 0; i < 8; i++) {
@@ -115,6 +130,33 @@ const parseHex8 = (value: unknown): Uint8Array | null => {
 const parseFiniteNumber = (value: unknown): number | null => {
   if (typeof value !== "number" || !Number.isFinite(value)) return null;
   return value;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const toGridCell = (
+  x: number,
+  y: number,
+): { gx: number; gy: number; cell: number } => {
+  const wx = clamp(Math.round(x), 0, WORLD_W - 1);
+  const wy = clamp(Math.round(y), 0, WORLD_H - 1);
+  const gx = clamp(Math.floor(wx / 10), 0, GRID_W - 1);
+  const gy = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
+  return { gx, gy, cell: gy * GRID_W + gx };
+};
+
+const writeMemoryCell = (
+  gridIdx: number,
+  charge: number,
+  payload: Uint8Array,
+): void => {
+  const q = clamp(Math.round(charge), 0, 0xFFFF);
+  STATE_MATRIX.memoryGrid[gridIdx] = q & 0xFF;
+  STATE_MATRIX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
+  STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
+  STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
+  STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
@@ -164,6 +206,32 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
   return true;
 };
 
+const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
+  const { gx, cell } = toGridCell(intent.x, intent.y);
+  const gridIdx = cell * GRID_CELL_BYTES;
+  writeMemoryCell(gridIdx, intent.charge, intent.plasmidBytes.subarray(0, 4));
+  let seededCells = 1;
+
+  if (gx < GRID_W - 1) {
+    const nextGridIdx = gridIdx + GRID_CELL_BYTES;
+    if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+      writeMemoryCell(
+        nextGridIdx,
+        intent.charge - 128,
+        intent.plasmidBytes.subarray(4, 8),
+      );
+      seededCells++;
+    }
+  }
+
+  MUTATION_TELEMETRY.record({
+    lane: "external_ingress",
+    kind: "control_plasmid_apply_cells",
+    count: seededCells,
+  });
+  return true;
+};
+
 const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
   switch (intent.kind) {
     case "crisis":
@@ -174,13 +242,21 @@ const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
     case "mutate":
       return applyMutateIntent(intent);
     case "avatar":
-      AVATAR_ENGINE.dropPheromone(intent.x, intent.y);
+      AVATAR_ENGINE.dropPheromone(intent.x, intent.y, intent.intensity);
       return true;
+    case "plasmid":
+      return applyPlasmidIntent(intent);
     case "snapshot_import": {
       const result = await SNAPSHOT_ENGINE.importSnapshot(intent.timestamp);
       return result.success === true;
     }
   }
+};
+
+const toBoundedIntensity = (value: unknown, fallback: number): number => {
+  const parsed = parseFiniteNumber(value);
+  if (parsed === null) return fallback;
+  return clamp(parsed, 1, 2000);
 };
 
 export const CONTROL_INTENT_QUEUE = {
@@ -248,13 +324,43 @@ export const CONTROL_INTENT_QUEUE = {
       radius: pRadius,
     });
   },
-  enqueueAvatar: (x: unknown, y: unknown): QueueDecision => {
+  enqueueAvatar: (
+    x: unknown,
+    y: unknown,
+    intensity: unknown = 100,
+  ): QueueDecision => {
     const px = parseFiniteNumber(x);
     const py = parseFiniteNumber(y);
     if (px === null || py === null) {
       return decision(false, 400, "INVALID_AVATAR_PAYLOAD");
     }
-    return enqueueInternal({ kind: "avatar", x: px, y: py });
+    return enqueueInternal({
+      kind: "avatar",
+      x: px,
+      y: py,
+      intensity: toBoundedIntensity(intensity, 100),
+    });
+  },
+  enqueuePlasmid: (
+    x: unknown,
+    y: unknown,
+    hexCode: unknown,
+    charge: unknown = 1000,
+  ): QueueDecision => {
+    const px = parseFiniteNumber(x);
+    const py = parseFiniteNumber(y);
+    const plasmidBytes = parseHex8(hexCode);
+    if (px === null || py === null || !plasmidBytes) {
+      return decision(false, 400, "INVALID_PLASMID_PAYLOAD");
+    }
+    const seedCharge = toBoundedIntensity(charge, 1000);
+    return enqueueInternal({
+      kind: "plasmid",
+      x: px,
+      y: py,
+      charge: seedCharge,
+      plasmidBytes,
+    });
   },
   enqueueSnapshotImport: (timestamp: unknown): QueueDecision => {
     if (typeof timestamp !== "string" || timestamp.trim().length === 0) {

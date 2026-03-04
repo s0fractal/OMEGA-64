@@ -1,10 +1,10 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T00:03:37.144Z*
-*Exported Files: 64*
-*Manifest SHA256: 76a7b4ec9b972f74c82ab40ebb666d3b433ad613725f2e374c31f9ee0bda7caf*
-*Export Set SHA256: fecd5db84f21dc6be4f22e58f14e4d478e256d2d8ac9e41139cee73e55811ff6*
-*Git Commit: b0def18abe9d*
+*Generated: 2026-03-04T00:38:26.860Z*
+*Exported Files: 65*
+*Manifest SHA256: e9699246b9a3cc2e378488d5fa2df6e3edf000dc185bffe86caa37dd40b98686*
+*Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
+*Git Commit: 3d3a61a69877*
 
 ---
 
@@ -796,7 +796,15 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
+const SYSTEM_HOST = RUNTIME_POLICY.system.host;
+const SYSTEM_PORT = RUNTIME_POLICY.system.port;
+const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const ROOT = "./";
+const REST_JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
 
 RUNTIME_POLICY.logFingerprintOnce("akasha-server");
 
@@ -804,8 +812,98 @@ let clients = new Set<WebSocket>();
 
 // Store the latest state of the universe
 let akashaState: string = "{}";
-let codexDigest: { species: unknown[]; chronicles: unknown[]; relics: unknown[] } =
-  { species: [], chronicles: [], relics: [] };
+let codexDigest: {
+  species: unknown[];
+  chronicles: unknown[];
+  relics: unknown[];
+} = { species: [], chronicles: [], relics: [] };
+
+const buildForwardHeaders = (
+  incoming: Headers,
+  includeJsonContentType: boolean,
+): Headers => {
+  const headers = new Headers();
+  headers.set("Accept", "application/json");
+  if (includeJsonContentType) headers.set("Content-Type", "application/json");
+  if (CONTROL_TOKEN.length > 0) {
+    headers.set("x-omega-control-token", CONTROL_TOKEN);
+  }
+  const incomingToken = (incoming.get("x-omega-control-token") ?? "").trim();
+  if (incomingToken.length > 0) {
+    headers.set("x-omega-control-token", incomingToken);
+  }
+  return headers;
+};
+
+const json = (payload: unknown, status = 200): Response =>
+  new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
+
+const proxyTelemetry = async (incoming: Request): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/telemetry`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyInject = async (incoming: Request): Promise<Response> => {
+  let bodyText = "";
+  try {
+    bodyText = await incoming.text();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+  if (bodyText.trim().length === 0) {
+    return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: bodyText,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
 
 const readJsonFile = async (path: string): Promise<unknown> => {
   try {
@@ -907,10 +1005,37 @@ async function watchUniverse() {
 watchUniverse(); // background
 
 const reqHandler = async (req: Request) => {
-  if (req.headers.get("upgrade") != "websocket") {
-    return new Response("Akasha Node - WebSocket endpoint only.", {
-      status: 200,
+  const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
     });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry") {
+    return proxyTelemetry(req);
+  }
+
+  if (
+    req.method === "POST" &&
+    (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
+  ) {
+    return proxyInject(req);
+  }
+
+  if (req.headers.get("upgrade") != "websocket") {
+    return new Response(
+      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/inject`,
+      {
+        status: 200,
+      },
+    );
   }
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.onopen = () => {
@@ -2741,30 +2866,32 @@ export const AUDIT_ENGINE = {
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 
 export const AVATAR_ENGINE = {
-    /**
-     * Deposits ATTENTION pheromones into the physics grid at cursor locations.
-     * Atoms will naturally react to this scent based on their genetic logic.
-     */
-    dropPheromone: (x: number, y: number) => {
-        const idx = PHYSICS_ENGINE.getGridIdx(x, y);
-        
-        // Spill a highly concentrated dose of attention at the cursor
-        // Capped to prevent float overflow or infinite pooling
-        const current = PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx];
-        if (current < 1000) {
-            PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx] += 100.0;
-        }
+  /**
+   * Deposits ATTENTION pheromones into the physics grid at cursor locations.
+   * Atoms will naturally react to this scent based on their genetic logic.
+   */
+  dropPheromone: (x: number, y: number, intensity: number = 100) => {
+    const idx = PHYSICS_ENGINE.getGridIdx(x, y);
+    const coreDelta = Math.max(1, Math.min(1000, intensity));
+    const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
 
-        // Also spill slightly into immediate neighbors to create a gradient
-        const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
-        for (const [ox, oy] of checkPoints) {
-            const sIdx = PHYSICS_ENGINE.getGridIdx(x + ox, y + oy);
-            const sCurrent = PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx];
-            if (sCurrent < 1000) {
-                PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx] += 25.0;
-            }
-        }
+    // Spill a highly concentrated dose of attention at the cursor
+    // Capped to prevent float overflow or infinite pooling
+    const current = PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx];
+    if (current < 1000) {
+      PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx] += coreDelta;
     }
+
+    // Also spill slightly into immediate neighbors to create a gradient
+    const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
+    for (const [ox, oy] of checkPoints) {
+      const sIdx = PHYSICS_ENGINE.getGridIdx(x + ox, y + oy);
+      const sCurrent = PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx];
+      if (sCurrent < 1000) {
+        PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx] += haloDelta;
+      }
+    }
+  },
 };
 
 ```
@@ -2965,6 +3092,15 @@ type AvatarIntent = {
   kind: "avatar";
   x: number;
   y: number;
+  intensity: number;
+};
+
+type PlasmidIntent = {
+  kind: "plasmid";
+  x: number;
+  y: number;
+  charge: number;
+  plasmidBytes: Uint8Array;
 };
 
 type SnapshotImportIntent = {
@@ -2977,6 +3113,7 @@ type ControlIntent =
   | FederateIntent
   | MutateIntent
   | AvatarIntent
+  | PlasmidIntent
   | SnapshotImportIntent;
 
 type QueueDecision = {
@@ -2996,6 +3133,11 @@ type ApplyStats = {
 
 const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
+const GRID_W = 140;
+const GRID_H = 80;
+const GRID_CELL_BYTES = 8;
+const WORLD_W = GRID_W * 10;
+const WORLD_H = GRID_H * 10;
 
 const queue: ControlIntent[] = [];
 
@@ -3031,7 +3173,7 @@ const enqueueInternal = (intent: ControlIntent): QueueDecision => {
 
 const parseHex8 = (value: unknown): Uint8Array | null => {
   if (typeof value !== "string") return null;
-  const hex = value.trim();
+  const hex = value.trim().replace(/^0x/i, "");
   if (!/^[0-9a-fA-F]{16}$/u.test(hex)) return null;
   const out = new Uint8Array(8);
   for (let i = 0; i < 8; i++) {
@@ -3043,6 +3185,33 @@ const parseHex8 = (value: unknown): Uint8Array | null => {
 const parseFiniteNumber = (value: unknown): number | null => {
   if (typeof value !== "number" || !Number.isFinite(value)) return null;
   return value;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const toGridCell = (
+  x: number,
+  y: number,
+): { gx: number; gy: number; cell: number } => {
+  const wx = clamp(Math.round(x), 0, WORLD_W - 1);
+  const wy = clamp(Math.round(y), 0, WORLD_H - 1);
+  const gx = clamp(Math.floor(wx / 10), 0, GRID_W - 1);
+  const gy = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
+  return { gx, gy, cell: gy * GRID_W + gx };
+};
+
+const writeMemoryCell = (
+  gridIdx: number,
+  charge: number,
+  payload: Uint8Array,
+): void => {
+  const q = clamp(Math.round(charge), 0, 0xFFFF);
+  STATE_MATRIX.memoryGrid[gridIdx] = q & 0xFF;
+  STATE_MATRIX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
+  STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
+  STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
+  STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
@@ -3092,6 +3261,32 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
   return true;
 };
 
+const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
+  const { gx, cell } = toGridCell(intent.x, intent.y);
+  const gridIdx = cell * GRID_CELL_BYTES;
+  writeMemoryCell(gridIdx, intent.charge, intent.plasmidBytes.subarray(0, 4));
+  let seededCells = 1;
+
+  if (gx < GRID_W - 1) {
+    const nextGridIdx = gridIdx + GRID_CELL_BYTES;
+    if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+      writeMemoryCell(
+        nextGridIdx,
+        intent.charge - 128,
+        intent.plasmidBytes.subarray(4, 8),
+      );
+      seededCells++;
+    }
+  }
+
+  MUTATION_TELEMETRY.record({
+    lane: "external_ingress",
+    kind: "control_plasmid_apply_cells",
+    count: seededCells,
+  });
+  return true;
+};
+
 const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
   switch (intent.kind) {
     case "crisis":
@@ -3102,13 +3297,21 @@ const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
     case "mutate":
       return applyMutateIntent(intent);
     case "avatar":
-      AVATAR_ENGINE.dropPheromone(intent.x, intent.y);
+      AVATAR_ENGINE.dropPheromone(intent.x, intent.y, intent.intensity);
       return true;
+    case "plasmid":
+      return applyPlasmidIntent(intent);
     case "snapshot_import": {
       const result = await SNAPSHOT_ENGINE.importSnapshot(intent.timestamp);
       return result.success === true;
     }
   }
+};
+
+const toBoundedIntensity = (value: unknown, fallback: number): number => {
+  const parsed = parseFiniteNumber(value);
+  if (parsed === null) return fallback;
+  return clamp(parsed, 1, 2000);
 };
 
 export const CONTROL_INTENT_QUEUE = {
@@ -3176,13 +3379,43 @@ export const CONTROL_INTENT_QUEUE = {
       radius: pRadius,
     });
   },
-  enqueueAvatar: (x: unknown, y: unknown): QueueDecision => {
+  enqueueAvatar: (
+    x: unknown,
+    y: unknown,
+    intensity: unknown = 100,
+  ): QueueDecision => {
     const px = parseFiniteNumber(x);
     const py = parseFiniteNumber(y);
     if (px === null || py === null) {
       return decision(false, 400, "INVALID_AVATAR_PAYLOAD");
     }
-    return enqueueInternal({ kind: "avatar", x: px, y: py });
+    return enqueueInternal({
+      kind: "avatar",
+      x: px,
+      y: py,
+      intensity: toBoundedIntensity(intensity, 100),
+    });
+  },
+  enqueuePlasmid: (
+    x: unknown,
+    y: unknown,
+    hexCode: unknown,
+    charge: unknown = 1000,
+  ): QueueDecision => {
+    const px = parseFiniteNumber(x);
+    const py = parseFiniteNumber(y);
+    const plasmidBytes = parseHex8(hexCode);
+    if (px === null || py === null || !plasmidBytes) {
+      return decision(false, 400, "INVALID_PLASMID_PAYLOAD");
+    }
+    const seedCharge = toBoundedIntensity(charge, 1000);
+    return enqueueInternal({
+      kind: "plasmid",
+      x: px,
+      y: py,
+      charge: seedCharge,
+      plasmidBytes,
+    });
   },
   enqueueSnapshotImport: (timestamp: unknown): QueueDecision => {
     if (typeof timestamp !== "string" || timestamp.trim().length === 0) {
@@ -3296,6 +3529,7 @@ export const CONTROL_INTENT_QUEUE = {
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
     "AKASHA_SERVER.ts",
+    "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html"
@@ -7452,6 +7686,422 @@ export const WASM_MEMORY_PAGES = 1024;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
+
+```
+
+---
+
+## FILE: OMEGA_DAEMON.ts
+
+```typescript
+// OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
+// Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
+
+type Telemetry = {
+  tick: number;
+  avgEnergy: number;
+  dominantGenomes: string[];
+  voxPopuli: string[];
+};
+
+type ActionType = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+type DaemonDecision = {
+  internal_monologue: string;
+  action_type: ActionType;
+  payload: {
+    target_x: number;
+    target_y: number;
+    hex_code?: string;
+    intensity: number;
+  };
+};
+
+type OpenAIChoice = {
+  message?: {
+    content?: string;
+  };
+};
+
+type OpenAIResponse = {
+  choices?: OpenAIChoice[];
+};
+
+const ANSI = {
+  reset: "\x1b[0m",
+  dim: "\x1b[2m",
+  cyan: "\x1b[36m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m",
+} as const;
+
+const parseBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (raw === undefined) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+
+const asFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const timestamp = (): string => new Date().toISOString();
+
+const logThought = (text: string): void => {
+  console.log(
+    `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.cyan}[MYCELIUM:THOUGHT]${ANSI.reset} ${text}`,
+  );
+};
+
+const logAction = (text: string): void => {
+  console.log(
+    `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.green}[MYCELIUM:ACTION]${ANSI.reset} ${text}`,
+  );
+};
+
+const logWarn = (text: string): void => {
+  console.warn(
+    `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.yellow}[MYCELIUM:WARN]${ANSI.reset} ${text}`,
+  );
+};
+
+const logError = (text: string): void => {
+  console.error(
+    `${ANSI.dim}${timestamp()}${ANSI.reset} ${ANSI.red}[MYCELIUM:ERROR]${ANSI.reset} ${text}`,
+  );
+};
+
+const API_BASE = (Deno.env.get("OMEGA_DAEMON_API_BASE") ??
+  "http://localhost:8080").replace(/\/+$/u, "");
+const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
+const INJECT_URL = `${API_BASE}/api/inject`;
+const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
+  "https://api.openai.com/v1/chat/completions";
+const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
+const OPENAI_API_KEY = (Deno.env.get("OPENAI_API_KEY") ?? "").trim();
+const HEARTBEAT_INTERVAL_MS = parseBoundedInt(
+  Deno.env.get("HEARTBEAT_INTERVAL_MS"),
+  60_000,
+  5_000,
+  3_600_000,
+);
+const HTTP_TIMEOUT_MS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HTTP_TIMEOUT_MS"),
+  15_000,
+  2_000,
+  120_000,
+);
+const MEMORY_LIMIT = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_MEMORY_LIMIT"),
+  10,
+  1,
+  64,
+);
+const MEMORY_PATH = Deno.env.get("OMEGA_DAEMON_MEMORY_PATH") ??
+  "./daemon_memory.json";
+
+const withTimeout = async (
+  input: string,
+  init: RequestInit,
+  timeoutMs: number,
+): Promise<Response> => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort("timeout"), timeoutMs);
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+};
+
+const loadMemory = async (): Promise<string[]> => {
+  try {
+    const raw = await Deno.readTextFile(MEMORY_PATH);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((entry): entry is string => typeof entry === "string")
+      .map((entry) => entry.trim())
+      .filter((entry) => entry.length > 0)
+      .slice(-MEMORY_LIMIT);
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) return [];
+    logWarn(`Memory read fallback: ${String(err)}`);
+    return [];
+  }
+};
+
+const saveMemory = async (thoughts: string[]): Promise<void> => {
+  const compact = thoughts.slice(-MEMORY_LIMIT);
+  await Deno.writeTextFile(
+    MEMORY_PATH,
+    `${JSON.stringify(compact, null, 2)}\n`,
+  );
+};
+
+const normalizeTelemetry = (raw: unknown): Telemetry => {
+  const source = raw && typeof raw === "object"
+    ? raw as Record<string, unknown>
+    : {};
+  const dominantGenomes = Array.isArray(source.dominantGenomes)
+    ? source.dominantGenomes.filter((v): v is string => typeof v === "string")
+    : [];
+  const voxPopuli = Array.isArray(source.voxPopuli)
+    ? source.voxPopuli.filter((v): v is string => typeof v === "string")
+    : [];
+  return {
+    tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
+    avgEnergy: asFiniteNumber(source.avgEnergy, 0),
+    dominantGenomes: dominantGenomes.slice(0, 3),
+    voxPopuli: voxPopuli.slice(0, 8),
+  };
+};
+
+const fetchTelemetry = async (): Promise<Telemetry> => {
+  const response = await withTimeout(
+    TELEMETRY_URL,
+    { method: "GET", headers: { Accept: "application/json" } },
+    HTTP_TIMEOUT_MS,
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Telemetry request failed: ${response.status} ${response.statusText}`,
+    );
+  }
+  return normalizeTelemetry(await response.json());
+};
+
+const normalizeAction = (value: unknown): ActionType => {
+  if (typeof value !== "string") return "OBSERVE";
+  const upper = value.trim().toUpperCase();
+  if (upper === "DROP_PHEROMONE") return "DROP_PHEROMONE";
+  if (upper === "INJECT_PLASMID") return "INJECT_PLASMID";
+  return "OBSERVE";
+};
+
+const isHex16 = (value: string): boolean => /^[0-9A-Fa-f]{16}$/u.test(value);
+
+const normalizeDecision = (raw: unknown): DaemonDecision => {
+  const source = raw && typeof raw === "object"
+    ? raw as Record<string, unknown>
+    : {};
+  const payloadSource = source.payload && typeof source.payload === "object"
+    ? source.payload as Record<string, unknown>
+    : {};
+
+  let actionType = normalizeAction(source.action_type);
+  const internalMonologue = typeof source.internal_monologue === "string" &&
+      source.internal_monologue.trim().length > 0
+    ? source.internal_monologue.trim()
+    : "The lattice is quiet; observing drift and conserving intent.";
+
+  const hexCode = typeof payloadSource.hex_code === "string"
+    ? payloadSource.hex_code.trim().replace(/^0x/u, "").toUpperCase()
+    : undefined;
+
+  if (actionType === "INJECT_PLASMID" && (!hexCode || !isHex16(hexCode))) {
+    actionType = "OBSERVE";
+  }
+
+  return {
+    internal_monologue: internalMonologue,
+    action_type: actionType,
+    payload: {
+      target_x: clamp(
+        Math.round(asFiniteNumber(payloadSource.target_x, 700)),
+        0,
+        1399,
+      ),
+      target_y: clamp(
+        Math.round(asFiniteNumber(payloadSource.target_y, 400)),
+        0,
+        799,
+      ),
+      intensity: clamp(asFiniteNumber(payloadSource.intensity, 100), 1, 2000),
+      hex_code: hexCode,
+    },
+  };
+};
+
+const askOpenAI = async (
+  telemetry: Telemetry,
+  memory: string[],
+): Promise<DaemonDecision> => {
+  if (!OPENAI_API_KEY) {
+    return {
+      internal_monologue:
+        "OpenAI key is not configured; continuing in observation-only mode.",
+      action_type: "OBSERVE",
+      payload: { target_x: 700, target_y: 400, intensity: 100 },
+    };
+  }
+
+  const systemPrompt = [
+    "You are the Mycelial Observer of an ALife matrix.",
+    "Return strict JSON only.",
+    "Decide whether to OBSERVE, DROP_PHEROMONE, or INJECT_PLASMID.",
+    "If INJECT_PLASMID, hex_code must be exactly 16 hex chars.",
+    "Do not output markdown.",
+  ].join(" ");
+
+  const requestBody = {
+    model: OPENAI_MODEL,
+    temperature: 0.35,
+    response_format: { type: "json_object" },
+    messages: [
+      {
+        role: "system",
+        content: systemPrompt,
+      },
+      {
+        role: "user",
+        content: JSON.stringify({
+          telemetry,
+          previous_thoughts: memory,
+          output_contract: {
+            internal_monologue: "string",
+            action_type: ["DROP_PHEROMONE", "INJECT_PLASMID", "OBSERVE"],
+            payload: {
+              target_x: "number",
+              target_y: "number",
+              hex_code: "string|null",
+              intensity: "number",
+            },
+          },
+        }),
+      },
+    ],
+  };
+
+  const response = await withTimeout(
+    OPENAI_URL,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify(requestBody),
+    },
+    Math.max(HTTP_TIMEOUT_MS, 20_000),
+  );
+
+  if (!response.ok) {
+    const raw = await response.text();
+    throw new Error(
+      `OpenAI request failed: ${response.status} ${response.statusText} ${
+        raw.slice(0, 240)
+      }`,
+    );
+  }
+
+  const parsed = await response.json() as OpenAIResponse;
+  const content = parsed.choices?.[0]?.message?.content;
+  if (!content || typeof content !== "string") {
+    throw new Error("OpenAI response missing message.content");
+  }
+
+  return normalizeDecision(JSON.parse(content));
+};
+
+const postInjection = async (decision: DaemonDecision): Promise<void> => {
+  if (decision.action_type === "OBSERVE") return;
+
+  const payload = {
+    action_type: decision.action_type,
+    payload: decision.payload,
+  };
+  const response = await withTimeout(
+    INJECT_URL,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    },
+    HTTP_TIMEOUT_MS,
+  );
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Inject request failed: ${response.status} ${response.statusText} ${
+        text.slice(0, 240)
+      }`,
+    );
+  }
+};
+
+const appendThought = (memory: string[], thought: string): string[] =>
+  [...memory, thought].slice(-MEMORY_LIMIT);
+
+const runHeartbeat = async (): Promise<void> => {
+  const memory = await loadMemory();
+  const telemetry = await fetchTelemetry();
+  const decision = await askOpenAI(telemetry, memory);
+
+  logThought(decision.internal_monologue);
+  await saveMemory(appendThought(memory, decision.internal_monologue));
+
+  if (decision.action_type === "OBSERVE") {
+    logAction("OBSERVE (no injection)");
+    return;
+  }
+
+  await postInjection(decision);
+  logAction(
+    `${decision.action_type} @ (${decision.payload.target_x}, ${decision.payload.target_y}) intensity=${decision.payload.intensity}`,
+  );
+};
+
+const startDaemon = (): void => {
+  logAction(
+    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE}`,
+  );
+
+  const heartbeat = async (): Promise<void> => {
+    const start = Date.now();
+    try {
+      await runHeartbeat();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      logWarn(message);
+    } finally {
+      const elapsed = Date.now() - start;
+      const delay = Math.max(1_000, HEARTBEAT_INTERVAL_MS - elapsed);
+      setTimeout(() => void heartbeat(), delay);
+    }
+  };
+
+  void heartbeat();
+};
+
+if (import.meta.main) {
+  try {
+    startDaemon();
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    logError(message);
+    Deno.exit(1);
+  }
+}
 
 ```
 
@@ -14522,6 +15172,27 @@ const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
+const GRID_W = 140;
+const GRID_H = 80;
+const WORLD_W = GRID_W * 10;
+const WORLD_H = GRID_H * 10;
+const JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
+
+type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+type DaemonInjectEnvelope = {
+  action_type: DaemonAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -14541,12 +15212,130 @@ const requireControlAuth = (req: Request): Response | null => {
   return null;
 };
 
+const requireDaemonAuth = (req: Request): Response | null => {
+  if (!CONTROL_ENABLE || CONTROL_TOKEN.length === 0) return null;
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
+
+const asFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const logicToHex = (logic: Uint8Array): string =>
+  Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
+    .toUpperCase();
+
+const dominantGenomes = (active: number[], limit = 3): string[] => {
+  const counts = new Map<string, number>();
+  for (const idx of active) {
+    const hex = logicToHex(STATE_MATRIX.getLogic(idx));
+    counts.set(hex, (counts.get(hex) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([hex]) => hex);
+};
+
+const buildTelemetry = async () => {
+  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+  const active = STATE_MATRIX.getActiveIndices();
+  let totalEnergy = 0;
+  for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
+  const avgEnergy = active.length > 0
+    ? Number((totalEnergy / active.length).toFixed(3))
+    : 0;
+  let voxPopuli: string[] = [];
+  try {
+    const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+    if (Array.isArray(vox)) {
+      voxPopuli = vox
+        .filter((entry): entry is string => typeof entry === "string")
+        .slice(0, 8);
+    }
+  } catch {
+    voxPopuli = [];
+  }
+  return {
+    tick,
+    avgEnergy,
+    dominantGenomes: dominantGenomes(active, 3),
+    voxPopuli,
+  };
+};
+
+const parseDaemonInjectEnvelope = (
+  body: unknown,
+): DaemonInjectEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+
+  const actionRaw = typeof root.action_type === "string"
+    ? root.action_type
+    : typeof root.type === "string"
+    ? root.type
+    : typeof payloadSource.hex_code === "string"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const action = actionRaw.trim().toUpperCase();
+  if (
+    action !== "DROP_PHEROMONE" && action !== "INJECT_PLASMID" &&
+    action !== "OBSERVE"
+  ) {
+    return null;
+  }
+
+  const x = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_x ?? payloadSource.x, 700)),
+    0,
+    WORLD_W - 1,
+  );
+  const y = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_y ?? payloadSource.y, 400)),
+    0,
+    WORLD_H - 1,
+  );
+  const intensity = clamp(
+    asFiniteNumber(payloadSource.intensity ?? payloadSource.charge, 100),
+    1,
+    2000,
+  );
+  const hexCode = typeof payloadSource.hex_code === "string"
+    ? payloadSource.hex_code
+    : typeof payloadSource.plasmid_hex === "string"
+    ? payloadSource.plasmid_hex
+    : undefined;
+
+  return {
+    action_type: action as DaemonAction,
+    payload: {
+      target_x: x,
+      target_y: y,
+      intensity,
+      hex_code: hexCode,
+    },
+  };
+};
+
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
-  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${
-    AVATAR_INGRESS_ENABLE
-  } tokenRequired=${
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${AVATAR_INGRESS_ENABLE} tokenRequired=${
     CONTROL_TOKEN.length > 0
   }`,
 );
@@ -14555,6 +15344,17 @@ await AKASHA_CODEX.start();
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
+    });
+  }
 
   if (url.pathname === "/state") {
     const buffer = STATE_MATRIX.buffer;
@@ -14584,6 +15384,81 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(buffer, {
       headers: { "Content-Type": "application/octet-stream" },
     });
+  }
+
+  if (url.pathname === "/api/telemetry" && req.method === "GET") {
+    return new Response(JSON.stringify(await buildTelemetry()), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/inject" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseDaemonInjectEnvelope(body);
+      if (!envelope) {
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_INJECT_PAYLOAD",
+            expected:
+              "Provide action_type and payload {target_x,target_y,intensity,hex_code?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.action_type === "OBSERVE") {
+        return new Response(
+          JSON.stringify({ ok: true, status: 200, reason: "OBSERVE_NOOP" }),
+          { status: 200, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.action_type === "DROP_PHEROMONE") {
+        const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
+          envelope.payload.target_x,
+          envelope.payload.target_y,
+          envelope.payload.intensity,
+        );
+        return new Response(JSON.stringify(queued), {
+          status: queued.status,
+          headers: JSON_HEADERS,
+        });
+      }
+
+      if (!envelope.payload.hex_code) {
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            expected: "hex_code must be 16 hex chars",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
+        envelope.payload.target_x,
+        envelope.payload.target_y,
+        envelope.payload.hex_code,
+        envelope.payload.intensity,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: JSON_HEADERS,
+      });
+    } catch {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_INJECT_PAYLOAD",
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
   }
 
   if (url.pathname === "/crisis" && req.method === "POST") {
@@ -14691,7 +15566,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 8);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
     return new Response(JSON.stringify(snapshot), {
       headers: {
         "Content-Type": "application/json",
@@ -14702,7 +15579,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/species" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.species), {
       headers: {
         "Content-Type": "application/json",
@@ -14713,7 +15592,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/chronicles" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.chronicles), {
       headers: {
         "Content-Type": "application/json",
@@ -14724,7 +15605,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/relics" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.relics), {
       headers: {
         "Content-Type": "application/json",
@@ -15744,161 +16627,138 @@ const ASM_SOURCE_PATH = "./assembly/index.ts";
 const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
 
 const parseLiteral = (token: string): number | null => {
-  if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
-  if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
-  return null;
+    if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
+    if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
+    return null;
 };
 
 const normalizeExpr = (expr: string): string =>
-  expr
-    .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
-    .replace(/[()]/g, "")
-    .trim();
+    expr
+        .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
+        .replace(/[()]/g, "")
+        .trim();
 
 const evalExpr = (
-  name: string,
-  expressions: ReadonlyMap<string, string>,
-  memo: Map<string, number>,
-  stack: Set<string>,
+    name: string,
+    expressions: ReadonlyMap<string, string>,
+    memo: Map<string, number>,
+    stack: Set<string>,
 ): number => {
-  const cached = memo.get(name);
-  if (cached !== undefined) return cached;
+    const cached = memo.get(name);
+    if (cached !== undefined) return cached;
 
-  const raw = expressions.get(name);
-  if (!raw) {
-    throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
-  }
-  if (stack.has(name)) {
-    throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
-  }
+    const raw = expressions.get(name);
+    if (!raw) throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
+    if (stack.has(name)) throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
 
-  stack.add(name);
-  const expr = normalizeExpr(raw);
-  const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
+    stack.add(name);
+    const expr = normalizeExpr(raw);
+    const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
 
-  let sign = 1;
-  let total = 0;
-  for (const part of parts) {
-    if (part === "+") {
-      sign = 1;
-      continue;
-    }
-    if (part === "-") {
-      sign = -1;
-      continue;
-    }
+    let sign = 1;
+    let total = 0;
+    for (const part of parts) {
+        if (part === "+") {
+            sign = 1;
+            continue;
+        }
+        if (part === "-") {
+            sign = -1;
+            continue;
+        }
 
-    const literal = parseLiteral(part);
-    if (literal !== null) {
-      total += sign * literal;
-      continue;
-    }
+        const literal = parseLiteral(part);
+        if (literal !== null) {
+            total += sign * literal;
+            continue;
+        }
 
-    if (!/^[A-Z0-9_]+$/.test(part)) {
-      throw new Error(
-        `[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`,
-      );
+        if (!/^[A-Z0-9_]+$/.test(part)) {
+            throw new Error(`[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`);
+        }
+
+        const ref = evalExpr(part, expressions, memo, stack);
+        total += sign * ref;
     }
 
-    const ref = evalExpr(part, expressions, memo, stack);
-    total += sign * ref;
-  }
-
-  stack.delete(name);
-  memo.set(name, total);
-  return total;
+    stack.delete(name);
+    memo.set(name, total);
+    return total;
 };
 
 const readAssemblyConsts = async (): Promise<Map<string, string>> => {
-  const src = await Deno.readTextFile(ASM_SOURCE_PATH);
-  const out = new Map<string, string>();
-  for (const match of src.matchAll(CONST_DEF_RE)) {
-    const [, name, expr] = match;
-    out.set(name, expr.trim());
-  }
-  return out;
+    const src = await Deno.readTextFile(ASM_SOURCE_PATH);
+    const out = new Map<string, string>();
+    for (const match of src.matchAll(CONST_DEF_RE)) {
+        const [, name, expr] = match;
+        out.set(name, expr.trim());
+    }
+    return out;
 };
 
 export const assertWasmLayout = async (): Promise<void> => {
-  const asmExpressions = await readAssemblyConsts();
-  const memo = new Map<string, number>();
+    const asmExpressions = await readAssemblyConsts();
+    const memo = new Map<string, number>();
 
-  const expected: Array<{ asm: string; value: number }> = [
-    { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
-    { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
-    { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
-    { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
-    { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
-    { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
-    { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
-    { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
-    { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
-    { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
-    { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
-    { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
-    { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
-    { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
-    { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
-    { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
-    { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
-    { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
-    { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
-    { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
-    { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
-    { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
-    { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
-    { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
-    { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
-    { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
-    { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
-    { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
-    { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
-    {
-      asm: "PHYSICS_READ_ENERGY_OFF",
-      value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-    },
-    {
-      asm: "PHYSICS_READ_RESONANCE_OFF",
-      value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-    },
-    { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
-    { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
-    {
-      asm: "STRUCTURE_BUILD_OWNER_OFF",
-      value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    },
-    {
-      asm: "STRUCTURE_BUILD_VALUE_OFF",
-      value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    },
-    {
-      asm: "STRUCTURE_CHARGE_INTENT_OFF",
-      value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    },
-    { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
-    { asm: "HIVE_ENERGY_POOL_OFF", value: OFFSETS.HIVE_ENERGY_POOL_OFFSET },
-  ];
+    const expected: Array<{ asm: string; value: number }> = [
+        { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
+        { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
+        { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
+        { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
+        { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
+        { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
+        { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
+        { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
+        { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
+        { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
+        { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
+        { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
+        { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
+        { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
+        { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
+        { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
+        { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
+        { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
+        { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
+        { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
+        { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
+        { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
+        { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
+        { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
+        { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
+        { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
+        { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
+        { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
+        { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
+        { asm: "PHYSICS_READ_ENERGY_OFF", value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET },
+        { asm: "PHYSICS_READ_RESONANCE_OFF", value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET },
+        { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
+        { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
+        { asm: "STRUCTURE_BUILD_OWNER_OFF", value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET },
+        { asm: "STRUCTURE_BUILD_VALUE_OFF", value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET },
+        { asm: "STRUCTURE_CHARGE_INTENT_OFF", value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET },
+        { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
+        { asm: "HIVE_ENERGY_POOL_OFF", value: OFFSETS.HIVE_ENERGY_POOL_OFFSET },
+    ];
 
-  const mismatches: string[] = [];
-  for (const item of expected) {
-    const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
-    if (actual !== item.value) {
-      mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
+    const mismatches: string[] = [];
+    for (const item of expected) {
+        const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
+        if (actual !== item.value) {
+            mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
+        }
     }
-  }
 
-  if (mismatches.length > 0) {
-    throw new Error(
-      `[wasm:layout] Constant drift detected:\n${
-        mismatches.map((m) => `- ${m}`).join("\n")
-      }`,
-    );
-  }
+    if (mismatches.length > 0) {
+        throw new Error(
+            `[wasm:layout] Constant drift detected:\n${mismatches.map((m) => `- ${m}`).join("\n")}`,
+        );
+    }
 };
 
 if (import.meta.main) {
-  await assertWasmLayout();
-  console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
+    await assertWasmLayout();
+    console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
 
 ```

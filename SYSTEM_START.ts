@@ -21,6 +21,27 @@ const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
+const GRID_W = 140;
+const GRID_H = 80;
+const WORLD_W = GRID_W * 10;
+const WORLD_H = GRID_H * 10;
+const JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
+
+type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+type DaemonInjectEnvelope = {
+  action_type: DaemonAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -40,12 +61,130 @@ const requireControlAuth = (req: Request): Response | null => {
   return null;
 };
 
+const requireDaemonAuth = (req: Request): Response | null => {
+  if (!CONTROL_ENABLE || CONTROL_TOKEN.length === 0) return null;
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
+
+const asFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const logicToHex = (logic: Uint8Array): string =>
+  Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
+    .toUpperCase();
+
+const dominantGenomes = (active: number[], limit = 3): string[] => {
+  const counts = new Map<string, number>();
+  for (const idx of active) {
+    const hex = logicToHex(STATE_MATRIX.getLogic(idx));
+    counts.set(hex, (counts.get(hex) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([hex]) => hex);
+};
+
+const buildTelemetry = async () => {
+  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+  const active = STATE_MATRIX.getActiveIndices();
+  let totalEnergy = 0;
+  for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
+  const avgEnergy = active.length > 0
+    ? Number((totalEnergy / active.length).toFixed(3))
+    : 0;
+  let voxPopuli: string[] = [];
+  try {
+    const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+    if (Array.isArray(vox)) {
+      voxPopuli = vox
+        .filter((entry): entry is string => typeof entry === "string")
+        .slice(0, 8);
+    }
+  } catch {
+    voxPopuli = [];
+  }
+  return {
+    tick,
+    avgEnergy,
+    dominantGenomes: dominantGenomes(active, 3),
+    voxPopuli,
+  };
+};
+
+const parseDaemonInjectEnvelope = (
+  body: unknown,
+): DaemonInjectEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+
+  const actionRaw = typeof root.action_type === "string"
+    ? root.action_type
+    : typeof root.type === "string"
+    ? root.type
+    : typeof payloadSource.hex_code === "string"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const action = actionRaw.trim().toUpperCase();
+  if (
+    action !== "DROP_PHEROMONE" && action !== "INJECT_PLASMID" &&
+    action !== "OBSERVE"
+  ) {
+    return null;
+  }
+
+  const x = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_x ?? payloadSource.x, 700)),
+    0,
+    WORLD_W - 1,
+  );
+  const y = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_y ?? payloadSource.y, 400)),
+    0,
+    WORLD_H - 1,
+  );
+  const intensity = clamp(
+    asFiniteNumber(payloadSource.intensity ?? payloadSource.charge, 100),
+    1,
+    2000,
+  );
+  const hexCode = typeof payloadSource.hex_code === "string"
+    ? payloadSource.hex_code
+    : typeof payloadSource.plasmid_hex === "string"
+    ? payloadSource.plasmid_hex
+    : undefined;
+
+  return {
+    action_type: action as DaemonAction,
+    payload: {
+      target_x: x,
+      target_y: y,
+      intensity,
+      hex_code: hexCode,
+    },
+  };
+};
+
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 RUNTIME_POLICY.logFingerprintOnce("system-start");
 LOGGER.info(
-  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${
-    AVATAR_INGRESS_ENABLE
-  } tokenRequired=${
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${AVATAR_INGRESS_ENABLE} tokenRequired=${
     CONTROL_TOKEN.length > 0
   }`,
 );
@@ -54,6 +193,17 @@ await AKASHA_CODEX.start();
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
+    });
+  }
 
   if (url.pathname === "/state") {
     const buffer = STATE_MATRIX.buffer;
@@ -83,6 +233,81 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(buffer, {
       headers: { "Content-Type": "application/octet-stream" },
     });
+  }
+
+  if (url.pathname === "/api/telemetry" && req.method === "GET") {
+    return new Response(JSON.stringify(await buildTelemetry()), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/inject" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseDaemonInjectEnvelope(body);
+      if (!envelope) {
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_INJECT_PAYLOAD",
+            expected:
+              "Provide action_type and payload {target_x,target_y,intensity,hex_code?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.action_type === "OBSERVE") {
+        return new Response(
+          JSON.stringify({ ok: true, status: 200, reason: "OBSERVE_NOOP" }),
+          { status: 200, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.action_type === "DROP_PHEROMONE") {
+        const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
+          envelope.payload.target_x,
+          envelope.payload.target_y,
+          envelope.payload.intensity,
+        );
+        return new Response(JSON.stringify(queued), {
+          status: queued.status,
+          headers: JSON_HEADERS,
+        });
+      }
+
+      if (!envelope.payload.hex_code) {
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            expected: "hex_code must be 16 hex chars",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
+        envelope.payload.target_x,
+        envelope.payload.target_y,
+        envelope.payload.hex_code,
+        envelope.payload.intensity,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: JSON_HEADERS,
+      });
+    } catch {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_INJECT_PAYLOAD",
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
   }
 
   if (url.pathname === "/crisis" && req.method === "POST") {
@@ -190,7 +415,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 8);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
     return new Response(JSON.stringify(snapshot), {
       headers: {
         "Content-Type": "application/json",
@@ -201,7 +428,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/species" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.species), {
       headers: {
         "Content-Type": "application/json",
@@ -212,7 +441,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/chronicles" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.chronicles), {
       headers: {
         "Content-Type": "application/json",
@@ -223,7 +454,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/codex/relics" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(Number.isFinite(limit) ? limit : 16);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
     return new Response(JSON.stringify(snapshot.relics), {
       headers: {
         "Content-Type": "application/json",

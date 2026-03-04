@@ -3,7 +3,15 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
+const SYSTEM_HOST = RUNTIME_POLICY.system.host;
+const SYSTEM_PORT = RUNTIME_POLICY.system.port;
+const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const ROOT = "./";
+const REST_JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
 
 RUNTIME_POLICY.logFingerprintOnce("akasha-server");
 
@@ -11,8 +19,98 @@ let clients = new Set<WebSocket>();
 
 // Store the latest state of the universe
 let akashaState: string = "{}";
-let codexDigest: { species: unknown[]; chronicles: unknown[]; relics: unknown[] } =
-  { species: [], chronicles: [], relics: [] };
+let codexDigest: {
+  species: unknown[];
+  chronicles: unknown[];
+  relics: unknown[];
+} = { species: [], chronicles: [], relics: [] };
+
+const buildForwardHeaders = (
+  incoming: Headers,
+  includeJsonContentType: boolean,
+): Headers => {
+  const headers = new Headers();
+  headers.set("Accept", "application/json");
+  if (includeJsonContentType) headers.set("Content-Type", "application/json");
+  if (CONTROL_TOKEN.length > 0) {
+    headers.set("x-omega-control-token", CONTROL_TOKEN);
+  }
+  const incomingToken = (incoming.get("x-omega-control-token") ?? "").trim();
+  if (incomingToken.length > 0) {
+    headers.set("x-omega-control-token", incomingToken);
+  }
+  return headers;
+};
+
+const json = (payload: unknown, status = 200): Response =>
+  new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
+
+const proxyTelemetry = async (incoming: Request): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/telemetry`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyInject = async (incoming: Request): Promise<Response> => {
+  let bodyText = "";
+  try {
+    bodyText = await incoming.text();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+  if (bodyText.trim().length === 0) {
+    return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: bodyText,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
 
 const readJsonFile = async (path: string): Promise<unknown> => {
   try {
@@ -114,10 +212,37 @@ async function watchUniverse() {
 watchUniverse(); // background
 
 const reqHandler = async (req: Request) => {
-  if (req.headers.get("upgrade") != "websocket") {
-    return new Response("Akasha Node - WebSocket endpoint only.", {
-      status: 200,
+  const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
     });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry") {
+    return proxyTelemetry(req);
+  }
+
+  if (
+    req.method === "POST" &&
+    (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
+  ) {
+    return proxyInject(req);
+  }
+
+  if (req.headers.get("upgrade") != "websocket") {
+    return new Response(
+      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/inject`,
+      {
+        status: 200,
+      },
+    );
   }
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.onopen = () => {
