@@ -313,6 +313,16 @@
         opacity: 0.5;
         text-align: right;
       }
+      #drift-halo {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 40;
+        opacity: 0;
+        transition: opacity 400ms ease, background 400ms ease;
+        mix-blend-mode: screen;
+        background: radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%);
+      }
 
       #legend {
         position: fixed;
@@ -339,6 +349,7 @@
     </style>
   </head>
   <body>
+    <div id="drift-halo"></div>
     <div id="ui" class="glass">
       <h1>ALEPH: MULTIVERSE</h1>
       <div class="stats">
@@ -1019,6 +1030,29 @@
         else badge.classList.add("drift-severity-baseline");
       }
 
+      function applyDriftHalo(severity) {
+        const halo = document.getElementById("drift-halo");
+        if (!halo) return;
+        const normalized = String(severity || "BASELINE").toUpperCase();
+        if (normalized === "HIGH") {
+          halo.style.opacity = "0.9";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 110, 110, 0.28), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        if (normalized === "MID") {
+          halo.style.opacity = "0.75";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 185, 90, 0.24), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        if (normalized === "LOW") {
+          halo.style.opacity = "0.58";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(120, 255, 220, 0.2), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        halo.style.opacity = "0.42";
+        halo.style.background = "radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%)";
+      }
+
       function buildDriftExplanation() {
         return analyzeDrift().text;
       }
@@ -1029,6 +1063,7 @@
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
         applyDriftSeverityBadge(analysis.severity);
+        applyDriftHalo(analysis.severity);
       }
 
       function renderHumanExplanation() {

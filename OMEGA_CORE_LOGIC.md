@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:03:31.554Z*
+*Generated: 2026-03-04T11:20:39.294Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: b83365532ffb*
+*Git Commit: 7ff98e4e1eed*
 
 ---
 
@@ -1717,7 +1717,8 @@ export context. It intentionally excludes historical era narratives.
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge.
+   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge and
+   scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -17084,6 +17085,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         opacity: 0.5;
         text-align: right;
       }
+      #drift-halo {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 40;
+        opacity: 0;
+        transition: opacity 400ms ease, background 400ms ease;
+        mix-blend-mode: screen;
+        background: radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%);
+      }
 
       #legend {
         position: fixed;
@@ -17110,6 +17121,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     </style>
   </head>
   <body>
+    <div id="drift-halo"></div>
     <div id="ui" class="glass">
       <h1>ALEPH: MULTIVERSE</h1>
       <div class="stats">
@@ -17790,6 +17802,29 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         else badge.classList.add("drift-severity-baseline");
       }
 
+      function applyDriftHalo(severity) {
+        const halo = document.getElementById("drift-halo");
+        if (!halo) return;
+        const normalized = String(severity || "BASELINE").toUpperCase();
+        if (normalized === "HIGH") {
+          halo.style.opacity = "0.9";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 110, 110, 0.28), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        if (normalized === "MID") {
+          halo.style.opacity = "0.75";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(255, 185, 90, 0.24), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        if (normalized === "LOW") {
+          halo.style.opacity = "0.58";
+          halo.style.background = "radial-gradient(circle at 50% 55%, rgba(120, 255, 220, 0.2), rgba(0, 0, 0, 0) 62%)";
+          return;
+        }
+        halo.style.opacity = "0.42";
+        halo.style.background = "radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%)";
+      }
+
       function buildDriftExplanation() {
         return analyzeDrift().text;
       }
@@ -17800,6 +17835,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
         applyDriftSeverityBadge(analysis.severity);
+        applyDriftHalo(analysis.severity);
       }
 
       function renderHumanExplanation() {

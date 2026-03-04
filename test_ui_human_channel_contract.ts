@@ -47,6 +47,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="drift-halo"',
+    "UI must render scene halo overlay surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildHumanExplanation",
     "UI must synthesize human-readable explanation",
     violations,
@@ -61,6 +67,12 @@ const main = async () => {
     ui,
     "applyDriftSeverityBadge",
     "UI must map drift analysis to LOW/MID/HIGH badge states",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "applyDriftHalo",
+    "UI must map drift severity to atmospheric halo state",
     violations,
   );
   requireSnippet(

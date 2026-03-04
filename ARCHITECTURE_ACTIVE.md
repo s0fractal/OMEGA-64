@@ -17,7 +17,8 @@ export context. It intentionally excludes historical era narratives.
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge.
+   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge and
+   scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
