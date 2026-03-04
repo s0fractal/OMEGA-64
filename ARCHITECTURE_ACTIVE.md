@@ -75,6 +75,7 @@ export context. It intentionally excludes historical era narratives.
 Primary chain:
 
 - `test:runtime-monoculture`
+- `test:runtime-support-boundary`
 - `test:runtime-experimental-boundary`
 - `test:export-manifest`
 - `vector10:verify`
