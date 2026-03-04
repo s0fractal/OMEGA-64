@@ -176,6 +176,7 @@ const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
 const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
+const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -207,6 +208,7 @@ const daemonAuditPending: DaemonAuditPending[] = [];
 let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
+let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -215,6 +217,16 @@ const setLatestDaemonAdmission = (
   daemonAdmissionHistory = [snapshot, ...daemonAdmissionHistory].slice(
     0,
     DAEMON_ADMISSION_HISTORY_LIMIT,
+  );
+};
+
+const setLatestPressureRingUpdate = (
+  snapshot: PressureRingUpdateSnapshot,
+): void => {
+  latestPressureRingUpdate = snapshot;
+  pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
+    0,
+    DAEMON_PRESSURE_RING_HISTORY_LIMIT,
   );
 };
 
@@ -445,6 +457,7 @@ const buildTelemetry = async () => {
       last_admission: latestDaemonAdmission,
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
+      last_pressure_ring_history: pressureRingHistory,
     },
   };
 };
@@ -833,6 +846,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           },
         },
         latest_update: latestPressureRingUpdate,
+        history: pressureRingHistory,
       }),
       {
         headers: JSON_HEADERS,
@@ -872,7 +886,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         source: envelope.reason ?? "daemon_phase_scheduler",
       });
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-      latestPressureRingUpdate = {
+      const snapshot: PressureRingUpdateSnapshot = {
         tick,
         mode: envelope.mode,
         source: envelope.reason ?? "daemon_phase_scheduler",
@@ -881,6 +895,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         scale: pressure.ring.scale,
         enabled: pressure.ring.enabled,
       };
+      setLatestPressureRingUpdate(snapshot);
       MUTATION_TELEMETRY.record({
         lane: "external_daemon",
         kind: "daemon_pressure_ring_update",
@@ -890,16 +905,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         event_type: "DAEMON_PRESSURE_RING",
         tick,
         mode: envelope.mode,
-        source: latestPressureRingUpdate.source,
-        delta_theta: latestPressureRingUpdate.delta_theta,
-        theta: latestPressureRingUpdate.theta,
-        scale: latestPressureRingUpdate.scale,
-        enabled: latestPressureRingUpdate.enabled,
+        source: snapshot.source,
+        delta_theta: snapshot.delta_theta,
+        theta: snapshot.theta,
+        scale: snapshot.scale,
+        enabled: snapshot.enabled,
       });
       return new Response(
         JSON.stringify({
           ok: true,
-          updated: latestPressureRingUpdate,
+          updated: snapshot,
         }),
         {
           status: 200,

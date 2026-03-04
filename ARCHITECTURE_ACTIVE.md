@@ -28,7 +28,9 @@ export context. It intentionally excludes historical era narratives.
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
    compact risk summary + drift trend sparkline, top degrade-reason aggregate,
-   and scene halo tint driven by
+   phase-ring quadrant badge/trend from canonical pressure-ring history
+   (`daemon_governance.last_pressure_ring_history`) with local fallback, and
+   scene halo tint driven by
    `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
@@ -72,7 +74,8 @@ export context. It intentionally excludes historical era narratives.
   bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
 - Runtime exposes `/api/pressure-ring` for authorized daemon control of phase
   updates (`set`/`step`) with bounded theta delta clamps and audit trail
-  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry).
+  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry),
+  and preserves bounded canonical update history for observers.
 - `OMEGA_DAEMON` can run a phase-season scheduler
   (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
   telemetry/invariant context while respecting cooldown and safe-mode gates.

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T15:19:54.605Z*
+*Generated: 2026-03-04T15:36:42.257Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 6f30fbfedb63a18627e45399b1271d7a10a54464d987f92dfafba8f17d0a9757*
-*Git Commit: 199d814b2e3b*
+*Export Content SHA256: e6537c7dc766a17b39545390bceb3cbf06faeed88de77feeae69c2ac1d248907*
+*Git Commit: 61a9f43c34e5*
 
 ---
 
@@ -2617,7 +2617,9 @@ export context. It intentionally excludes historical era narratives.
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
    compact risk summary + drift trend sparkline, top degrade-reason aggregate,
-   and scene halo tint driven by
+   phase-ring quadrant badge/trend from canonical pressure-ring history
+   (`daemon_governance.last_pressure_ring_history`) with local fallback, and
+   scene halo tint driven by
    `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
@@ -2661,7 +2663,8 @@ export context. It intentionally excludes historical era narratives.
   bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
 - Runtime exposes `/api/pressure-ring` for authorized daemon control of phase
   updates (`set`/`step`) with bounded theta delta clamps and audit trail
-  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry).
+  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry),
+  and preserves bounded canonical update history for observers.
 - `OMEGA_DAEMON` can run a phase-season scheduler
   (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
   telemetry/invariant context while respecting cooldown and safe-mode gates.
@@ -8942,6 +8945,7 @@ type Telemetry = {
     last_admission?: unknown;
     last_admission_history?: unknown[];
     last_pressure_ring_update?: unknown;
+    last_pressure_ring_history?: unknown[];
   };
 };
 
@@ -9378,6 +9382,11 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
           ? daemonRaw.last_admission_history
           : [],
         last_pressure_ring_update: daemonRaw.last_pressure_ring_update,
+        last_pressure_ring_history: Array.isArray(
+            daemonRaw.last_pressure_ring_history,
+          )
+          ? daemonRaw.last_pressure_ring_history
+          : [],
       }
       : undefined,
   };
@@ -17598,6 +17607,7 @@ const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
 const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
+const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -17629,6 +17639,7 @@ const daemonAuditPending: DaemonAuditPending[] = [];
 let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
+let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -17637,6 +17648,16 @@ const setLatestDaemonAdmission = (
   daemonAdmissionHistory = [snapshot, ...daemonAdmissionHistory].slice(
     0,
     DAEMON_ADMISSION_HISTORY_LIMIT,
+  );
+};
+
+const setLatestPressureRingUpdate = (
+  snapshot: PressureRingUpdateSnapshot,
+): void => {
+  latestPressureRingUpdate = snapshot;
+  pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
+    0,
+    DAEMON_PRESSURE_RING_HISTORY_LIMIT,
   );
 };
 
@@ -17867,6 +17888,7 @@ const buildTelemetry = async () => {
       last_admission: latestDaemonAdmission,
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
+      last_pressure_ring_history: pressureRingHistory,
     },
   };
 };
@@ -18255,6 +18277,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           },
         },
         latest_update: latestPressureRingUpdate,
+        history: pressureRingHistory,
       }),
       {
         headers: JSON_HEADERS,
@@ -18294,7 +18317,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         source: envelope.reason ?? "daemon_phase_scheduler",
       });
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-      latestPressureRingUpdate = {
+      const snapshot: PressureRingUpdateSnapshot = {
         tick,
         mode: envelope.mode,
         source: envelope.reason ?? "daemon_phase_scheduler",
@@ -18303,6 +18326,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         scale: pressure.ring.scale,
         enabled: pressure.ring.enabled,
       };
+      setLatestPressureRingUpdate(snapshot);
       MUTATION_TELEMETRY.record({
         lane: "external_daemon",
         kind: "daemon_pressure_ring_update",
@@ -18312,16 +18336,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         event_type: "DAEMON_PRESSURE_RING",
         tick,
         mode: envelope.mode,
-        source: latestPressureRingUpdate.source,
-        delta_theta: latestPressureRingUpdate.delta_theta,
-        theta: latestPressureRingUpdate.theta,
-        scale: latestPressureRingUpdate.scale,
-        enabled: latestPressureRingUpdate.enabled,
+        source: snapshot.source,
+        delta_theta: snapshot.delta_theta,
+        theta: snapshot.theta,
+        scale: snapshot.scale,
+        enabled: snapshot.enabled,
       });
       return new Response(
         JSON.stringify({
           ok: true,
-          updated: latestPressureRingUpdate,
+          updated: snapshot,
         }),
         {
           status: 200,
@@ -20091,6 +20115,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_admission: null,
           last_admission_history: [],
           last_pressure_ring_update: null,
+          last_pressure_ring_history: [],
         },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
@@ -21472,8 +21497,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return null;
         const update = governance.last_pressure_ring_update;
-        if (!update || typeof update !== "object") return null;
+        if (!update || typeof update !== "object") {
+          const history = currentPressureRingHistory();
+          if (history.length === 0) return null;
+          return history[0];
+        }
         return update;
+      }
+
+      function currentPressureRingHistory() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return [];
+        const history = governance.last_pressure_ring_history;
+        if (!Array.isArray(history)) return [];
+        return history.filter((entry) => entry && typeof entry === "object")
+          .slice(0, PHASE_RING_HISTORY_LIMIT);
       }
 
       function normalizePhaseTheta(value) {
@@ -21538,11 +21576,39 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
       }
 
+      function canonicalPhaseRingHistory() {
+        const history = currentPressureRingHistory();
+        if (history.length === 0) return [];
+        const parsed = history.map((entry, index) => {
+          const theta = Number(entry.theta);
+          if (!Number.isFinite(theta)) return null;
+          return {
+            index,
+            tick: Number(entry.tick || 0),
+            theta: normalizePhaseTheta(theta),
+            delta: Number(entry.delta_theta || 0),
+            scale: Number(entry.scale || 0),
+            enabled: Boolean(entry.enabled),
+          };
+        }).filter((entry) => entry && Number.isFinite(entry.theta))
+          .map((entry) => entry);
+        if (parsed.length < 2) return [];
+        parsed.sort((a, b) => {
+          const tickDelta = Number(a.tick || 0) - Number(b.tick || 0);
+          if (tickDelta !== 0) return tickDelta;
+          return Number(b.index || 0) - Number(a.index || 0);
+        });
+        return parsed.slice(-PHASE_RING_HISTORY_LIMIT);
+      }
+
       function buildPhaseRingTrend() {
-        if (phaseRingHistory.length < 2) {
+        const canonical = canonicalPhaseRingHistory();
+        const trendSource = canonical.length >= 2 ? "server" : "local";
+        const history = canonical.length >= 2 ? canonical : phaseRingHistory;
+        if (history.length < 2) {
           return "trend: collecting θ history...";
         }
-        const recent = phaseRingHistory.slice(-6);
+        const recent = history.slice(-6);
         const deltas = [];
         for (let i = 1; i < recent.length; i++) {
           deltas.push(
@@ -21563,7 +21629,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           : avgDelta > 0
           ? "clockwise"
           : "counterclockwise";
-        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction}`;
+        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction} | ${trendSource}`;
       }
 
       function buildPhaseRingSummary() {

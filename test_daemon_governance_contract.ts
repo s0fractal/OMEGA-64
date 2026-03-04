@@ -118,6 +118,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "DAEMON_PRESSURE_RING_HISTORY_LIMIT",
+    SYSTEM_START_PATH,
+    "Daemon governance surface must bound pressure-ring history memory",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "last_pressure_ring_history",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish recent pressure-ring history",
+    violations,
+  );
+  requireSnippet(
+    system,
     "flushDaemonAuditEffects(",
     SYSTEM_START_PATH,
     "Daemon loop must flush deferred effect audits",

@@ -810,6 +810,7 @@
           last_admission: null,
           last_admission_history: [],
           last_pressure_ring_update: null,
+          last_pressure_ring_history: [],
         },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
@@ -2191,8 +2192,21 @@
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return null;
         const update = governance.last_pressure_ring_update;
-        if (!update || typeof update !== "object") return null;
+        if (!update || typeof update !== "object") {
+          const history = currentPressureRingHistory();
+          if (history.length === 0) return null;
+          return history[0];
+        }
         return update;
+      }
+
+      function currentPressureRingHistory() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return [];
+        const history = governance.last_pressure_ring_history;
+        if (!Array.isArray(history)) return [];
+        return history.filter((entry) => entry && typeof entry === "object")
+          .slice(0, PHASE_RING_HISTORY_LIMIT);
       }
 
       function normalizePhaseTheta(value) {
@@ -2257,11 +2271,39 @@
         }
       }
 
+      function canonicalPhaseRingHistory() {
+        const history = currentPressureRingHistory();
+        if (history.length === 0) return [];
+        const parsed = history.map((entry, index) => {
+          const theta = Number(entry.theta);
+          if (!Number.isFinite(theta)) return null;
+          return {
+            index,
+            tick: Number(entry.tick || 0),
+            theta: normalizePhaseTheta(theta),
+            delta: Number(entry.delta_theta || 0),
+            scale: Number(entry.scale || 0),
+            enabled: Boolean(entry.enabled),
+          };
+        }).filter((entry) => entry && Number.isFinite(entry.theta))
+          .map((entry) => entry);
+        if (parsed.length < 2) return [];
+        parsed.sort((a, b) => {
+          const tickDelta = Number(a.tick || 0) - Number(b.tick || 0);
+          if (tickDelta !== 0) return tickDelta;
+          return Number(b.index || 0) - Number(a.index || 0);
+        });
+        return parsed.slice(-PHASE_RING_HISTORY_LIMIT);
+      }
+
       function buildPhaseRingTrend() {
-        if (phaseRingHistory.length < 2) {
+        const canonical = canonicalPhaseRingHistory();
+        const trendSource = canonical.length >= 2 ? "server" : "local";
+        const history = canonical.length >= 2 ? canonical : phaseRingHistory;
+        if (history.length < 2) {
           return "trend: collecting θ history...";
         }
-        const recent = phaseRingHistory.slice(-6);
+        const recent = history.slice(-6);
         const deltas = [];
         for (let i = 1; i < recent.length; i++) {
           deltas.push(
@@ -2282,7 +2324,7 @@
           : avgDelta > 0
           ? "clockwise"
           : "counterclockwise";
-        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction}`;
+        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction} | ${trendSource}`;
       }
 
       function buildPhaseRingSummary() {

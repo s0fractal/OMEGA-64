@@ -79,6 +79,27 @@ const main = async () => {
     "System start telemetry must include latest pressure-ring update snapshot",
     violations,
   );
+  requireSnippet(
+    system,
+    "DAEMON_PRESSURE_RING_HISTORY_LIMIT",
+    SYSTEM_START_PATH,
+    "System start must bound pressure-ring history memory",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "last_pressure_ring_history",
+    SYSTEM_START_PATH,
+    "System telemetry must publish recent pressure-ring update history",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "setLatestPressureRingUpdate",
+    SYSTEM_START_PATH,
+    "System start must track latest and historical pressure-ring updates together",
+    violations,
+  );
 
   requireSnippet(
     daemon,

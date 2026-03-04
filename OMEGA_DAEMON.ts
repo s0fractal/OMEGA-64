@@ -36,6 +36,7 @@ type Telemetry = {
     last_admission?: unknown;
     last_admission_history?: unknown[];
     last_pressure_ring_update?: unknown;
+    last_pressure_ring_history?: unknown[];
   };
 };
 
@@ -472,6 +473,11 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
           ? daemonRaw.last_admission_history
           : [],
         last_pressure_ring_update: daemonRaw.last_pressure_ring_update,
+        last_pressure_ring_history: Array.isArray(
+            daemonRaw.last_pressure_ring_history,
+          )
+          ? daemonRaw.last_pressure_ring_history
+          : [],
       }
       : undefined,
   };

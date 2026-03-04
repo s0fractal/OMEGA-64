@@ -239,6 +239,18 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "currentPressureRingHistory",
+    "UI must derive pressure-ring history envelope from telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "canonicalPhaseRingHistory",
+    "UI must normalize server-side pressure-ring history for trend synthesis",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildPhaseRingSummary",
     "UI must synthesize human-readable phase ring summary",
     violations,
@@ -283,6 +295,12 @@ const main = async () => {
     ui,
     "last_pressure_ring_update",
     "UI must consume daemon last pressure-ring update context",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "last_pressure_ring_history",
+    "UI must consume daemon pressure-ring history context",
     violations,
   );
   requireSnippet(
