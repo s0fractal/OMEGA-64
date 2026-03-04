@@ -9,6 +9,14 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
     `[STATE_MATRIX] WASM memory too small: pages=${OFFSETS.WASM_MEMORY_PAGES}, required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
   );
 }
+const layoutValidation = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);
+if (!layoutValidation.ok) {
+  throw new Error(
+    `[STATE_MATRIX] Invalid OFFSETS memory layout:\n${
+      layoutValidation.errors.map((entry) => `- ${entry}`).join("\n")
+    }`,
+  );
+}
 
 // Base Buffers for UI/WASM compatibility
 export const wasmMemory = new WebAssembly.Memory({
