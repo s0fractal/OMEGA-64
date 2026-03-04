@@ -28,14 +28,93 @@ const STARTUP_SELFTEST_FALLBACK_ENABLED =
 const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
 const STARTUP_SELFTEST_FORCE_BREACH =
   RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
-const PRESSURE_RING = RUNTIME_POLICY.pulse.pressureRing;
-const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressureSigned;
-const FEAR_PRESSURE = RUNTIME_POLICY.pulse.fearPressure;
-const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
-const EGO_PRESSURE = RUNTIME_POLICY.pulse.egoPressure;
+const PRESSURE_RING_BASELINE = RUNTIME_POLICY.pulse.pressureRing;
+const PRESSURE_RING_TAU = Math.PI * 2;
+const PRESSURE_RING_SCALE_MAX = 2048;
+const PRESSURE_TERM_ABS_MAX = 2048;
+const BASE_NOVELTY_SIGNED = RUNTIME_POLICY.pulse.noveltyPressureSigned;
+const BASE_SYMBIOSIS_SIGNED = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
+const BASE_NOVELTY = RUNTIME_POLICY.pulse.noveltyPressure;
+const BASE_FEAR = RUNTIME_POLICY.pulse.fearPressure;
+const BASE_SYMBIOSIS = RUNTIME_POLICY.pulse.symbiosisPressure;
+const BASE_EGO = RUNTIME_POLICY.pulse.egoPressure;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
+
+type EvolutionPressureState = {
+  noveltySigned: number;
+  symbiosisSigned: number;
+  novelty: number;
+  fear: number;
+  symbiosis: number;
+  ego: number;
+  ring: {
+    enabled: boolean;
+    theta: number;
+    scale: number;
+    fearCuriosityBalance: number;
+    egoLoveBalance: number;
+  };
+};
+
+const clampPressureTerm = (value: number): number =>
+  Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
+const clampRingScale = (value: number): number =>
+  Math.max(0, Math.min(PRESSURE_RING_SCALE_MAX, value | 0));
+const normalizeTheta = (theta: number): number => {
+  if (!Number.isFinite(theta)) return 0;
+  const wrapped = theta % PRESSURE_RING_TAU;
+  return wrapped >= 0 ? wrapped : wrapped + PRESSURE_RING_TAU;
+};
+const pressureComponentFromUnit = (component: number, scale: number): number =>
+  Math.max(
+    0,
+    Math.min(PRESSURE_TERM_ABS_MAX, Math.round(Math.max(0, component) * scale)),
+  );
+const deriveRingPressure = (theta: number, scale: number) => {
+  const normalizedTheta = normalizeTheta(theta);
+  const boundedScale = clampRingScale(scale);
+  const fearCuriosityBalance = Math.cos(normalizedTheta);
+  const egoLoveBalance = Math.sin(normalizedTheta);
+  const novelty = pressureComponentFromUnit(fearCuriosityBalance, boundedScale);
+  const fear = pressureComponentFromUnit(-fearCuriosityBalance, boundedScale);
+  const symbiosis = pressureComponentFromUnit(egoLoveBalance, boundedScale);
+  const ego = pressureComponentFromUnit(-egoLoveBalance, boundedScale);
+  return {
+    novelty,
+    fear,
+    noveltySigned: novelty - fear,
+    symbiosis,
+    ego,
+    symbiosisSigned: symbiosis - ego,
+    ring: {
+      enabled: true,
+      theta: normalizedTheta,
+      scale: boundedScale,
+      fearCuriosityBalance,
+      egoLoveBalance,
+    },
+  };
+};
+const BASE_EVOLUTION_PRESSURE_STATE: EvolutionPressureState = {
+  noveltySigned: clampPressureTerm(BASE_NOVELTY_SIGNED),
+  symbiosisSigned: clampPressureTerm(BASE_SYMBIOSIS_SIGNED),
+  novelty: clampPressureTerm(BASE_NOVELTY),
+  fear: clampPressureTerm(BASE_FEAR),
+  symbiosis: clampPressureTerm(BASE_SYMBIOSIS),
+  ego: clampPressureTerm(BASE_EGO),
+  ring: {
+    enabled: PRESSURE_RING_BASELINE.enabled,
+    theta: normalizeTheta(PRESSURE_RING_BASELINE.theta),
+    scale: clampRingScale(PRESSURE_RING_BASELINE.scale),
+    fearCuriosityBalance: PRESSURE_RING_BASELINE.fearCuriosityBalance,
+    egoLoveBalance: PRESSURE_RING_BASELINE.egoLoveBalance,
+  },
+};
+let evolutionPressureState: EvolutionPressureState = {
+  ...BASE_EVOLUTION_PRESSURE_STATE,
+};
 
 let runtimeWorkerCount = WORKER_COUNT;
 let startupSelfTestDone = false;
@@ -58,6 +137,67 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+};
+const resetEvolutionPressureStateForColdStart = (): void => {
+  evolutionPressureState = {
+    ...BASE_EVOLUTION_PRESSURE_STATE,
+    ring: { ...BASE_EVOLUTION_PRESSURE_STATE.ring },
+  };
+};
+const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
+  noveltySigned: evolutionPressureState.noveltySigned,
+  symbiosisSigned: evolutionPressureState.symbiosisSigned,
+  novelty: evolutionPressureState.novelty,
+  fear: evolutionPressureState.fear,
+  symbiosis: evolutionPressureState.symbiosis,
+  ego: evolutionPressureState.ego,
+  ring: { ...evolutionPressureState.ring },
+});
+const applyEvolutionPressureRing = (
+  next: {
+    mode: "set" | "step";
+    theta?: number;
+    deltaTheta?: number;
+    scale?: number;
+    enabled?: boolean;
+  },
+): EvolutionPressureState => {
+  const prev = snapshotEvolutionPressureState();
+  const ringEnabled = next.enabled ?? prev.ring.enabled;
+
+  if (!ringEnabled) {
+    evolutionPressureState = {
+      ...BASE_EVOLUTION_PRESSURE_STATE,
+      ring: {
+        ...prev.ring,
+        enabled: false,
+      },
+    };
+    return snapshotEvolutionPressureState();
+  }
+
+  const baseTheta = prev.ring.theta;
+  const requestedTheta = next.mode === "step"
+    ? baseTheta + (next.deltaTheta ?? 0)
+    : (next.theta ?? baseTheta);
+  const requestedScale = next.scale ?? prev.ring.scale;
+  const derived = deriveRingPressure(requestedTheta, requestedScale);
+  evolutionPressureState = {
+    noveltySigned: clampPressureTerm(derived.noveltySigned),
+    symbiosisSigned: clampPressureTerm(derived.symbiosisSigned),
+    novelty: clampPressureTerm(derived.novelty),
+    fear: clampPressureTerm(derived.fear),
+    symbiosis: clampPressureTerm(derived.symbiosis),
+    ego: clampPressureTerm(derived.ego),
+    ring: {
+      enabled: true,
+      theta: derived.ring.theta,
+      scale: derived.ring.scale,
+      fearCuriosityBalance: derived.ring.fearCuriosityBalance,
+      egoLoveBalance: derived.ring.egoLoveBalance,
+    },
+  };
+  return snapshotEvolutionPressureState();
 };
 
 const workers: Worker[] = [];
@@ -188,8 +328,11 @@ const applyEvolutionPressureTerms = (
   noveltyDeltaRaw: number;
   symbiosisDeltaRaw: number;
 } => {
+  const pressureState = snapshotEvolutionPressureState();
+  const noveltySigned = pressureState.noveltySigned;
+  const symbiosisSigned = pressureState.symbiosisSigned;
   if (
-    (NOVELTY_PRESSURE === 0 && SYMBIOSIS_PRESSURE === 0) ||
+    (noveltySigned === 0 && symbiosisSigned === 0) ||
     activeIdx.length === 0
   ) {
     return { adjusted: 0, noveltyDeltaRaw: 0, symbiosisDeltaRaw: 0 };
@@ -210,14 +353,14 @@ const applyEvolutionPressureTerms = (
     const sameGenomeCount = genomeCounts.get(key) ?? 1;
 
     let noveltyTerm = 0;
-    if (NOVELTY_PRESSURE !== 0) {
+    if (noveltySigned !== 0) {
       noveltyTerm = Math.trunc(
-        (NOVELTY_PRESSURE * (population - (sameGenomeCount * 2))) / population,
+        (noveltySigned * (population - (sameGenomeCount * 2))) / population,
       );
     }
 
     let symbiosisTerm = 0;
-    if (SYMBIOSIS_PRESSURE !== 0) {
+    if (symbiosisSigned !== 0) {
       const base = idx * 4;
       let crossGenomeBonds = 0;
       for (let slot = 0; slot < 4; slot++) {
@@ -226,9 +369,10 @@ const applyEvolutionPressureTerms = (
         if (Atomics.load(idsView, target) === 0n) continue;
         if (genomeKey16(target) !== key) crossGenomeBonds++;
       }
+      const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
       symbiosisTerm = crossGenomeBonds > 0
-        ? SYMBIOSIS_PRESSURE * crossGenomeBonds
-        : -SYMBIOSIS_PRESSURE;
+        ? symbiosisSigned * crossGenomeBonds
+        : bondPolarity * -symbiosisSigned;
     }
 
     const delta = noveltyTerm + symbiosisTerm;
@@ -252,7 +396,7 @@ const applyEvolutionPressureTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE}`,
+        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
   }
@@ -601,6 +745,8 @@ export const PULSE = {
   initWorkers: async (requestedWorkerCount?: number) => {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
+    resetEvolutionPressureStateForColdStart();
+    const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
@@ -637,15 +783,15 @@ export const PULSE = {
       RUNTIME_POLICY.pulse.source.symbiosisPressure ||
       RUNTIME_POLICY.pulse.source.matrixTheta ||
       RUNTIME_POLICY.pulse.source.pressureRingScale ||
-      NOVELTY_PRESSURE > 0 ||
-      SYMBIOSIS_PRESSURE > 0 ||
-      FEAR_PRESSURE > 0 ||
-      EGO_PRESSURE > 0
+      pressureState.noveltySigned !== 0 ||
+      pressureState.symbiosisSigned !== 0 ||
+      pressureState.fear > 0 ||
+      pressureState.ego > 0
     ) {
       LOGGER.info(
-        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE} ring=${PRESSURE_RING.enabled} theta=${
-          PRESSURE_RING.theta.toFixed(4)
-        } scale=${PRESSURE_RING.scale}.`,
+        `   [PULSE] Evolution pressure terms novelty=${pressureState.noveltySigned} symbiosis=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego} ring=${pressureState.ring.enabled} theta=${
+          pressureState.ring.theta.toFixed(4)
+        } scale=${pressureState.ring.scale}.`,
       );
     }
     if (
@@ -836,6 +982,43 @@ export const PULSE = {
       ));
     }
     await Promise.all(updates);
+  },
+  getEvolutionPressureState: (): EvolutionPressureState =>
+    snapshotEvolutionPressureState(),
+  updateEvolutionPressureRing: (
+    update: {
+      mode: "set" | "step";
+      theta?: number;
+      deltaTheta?: number;
+      scale?: number;
+      enabled?: boolean;
+      source?: string;
+    },
+  ): EvolutionPressureState => {
+    const nextScale = update.scale === undefined
+      ? undefined
+      : clampRingScale(Math.round(update.scale));
+    const boundedDelta = update.deltaTheta === undefined
+      ? undefined
+      : Math.max(-Math.PI, Math.min(Math.PI, update.deltaTheta));
+    const boundedTheta = update.theta === undefined
+      ? undefined
+      : normalizeTheta(update.theta);
+    const applied = applyEvolutionPressureRing({
+      mode: update.mode,
+      theta: boundedTheta,
+      deltaTheta: boundedDelta,
+      scale: nextScale,
+      enabled: update.enabled,
+    });
+    LOGGER.info(
+      `   [PULSE] Evolution pressure ring update source=${
+        update.source ?? "runtime"
+      } mode=${update.mode} novelty=${applied.noveltySigned} symbiosis=${applied.symbiosisSigned} fear=${applied.fear} ego=${applied.ego} enabled=${applied.ring.enabled} theta=${
+        applied.ring.theta.toFixed(4)
+      } scale=${applied.ring.scale}.`,
+    );
+    return applied;
   },
 
   tick: async () => {

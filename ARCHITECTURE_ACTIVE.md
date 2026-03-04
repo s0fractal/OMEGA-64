@@ -70,6 +70,12 @@ export context. It intentionally excludes historical era narratives.
   phase-ring mode (`OMEGA_MATRIX_THETA`, `OMEGA_PRESSURE_RING_SCALE`) that
   projects fear/curiosity + ego/love axes on the unit circle. Host applies
   bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
+- Runtime exposes `/api/pressure-ring` for authorized daemon control of phase
+  updates (`set`/`step`) with bounded theta delta clamps and audit trail
+  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry).
+- `OMEGA_DAEMON` can run a phase-season scheduler
+  (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
+  telemetry/invariant context while respecting cooldown and safe-mode gates.
 
 ## Governance and Integrity
 

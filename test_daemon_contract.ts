@@ -62,6 +62,13 @@ const main = async () => {
   );
   requireSnippet(
     daemon,
+    "/api/pressure-ring",
+    DAEMON_PATH,
+    "daemon must call pressure-ring endpoint for seasonal theta scheduling",
+    violations,
+  );
+  requireSnippet(
+    daemon,
     "daemon_memory.json",
     DAEMON_PATH,
     "daemon must persist local continuity memory file",
@@ -83,6 +90,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    akasha,
+    "/api/pressure-ring",
+    AKASHA_SERVER_PATH,
+    "akasha server must expose pressure-ring endpoint",
+    violations,
+  );
+  requireSnippet(
     systemStart,
     "DROP_PHEROMONE",
     SYSTEM_START_PATH,
@@ -94,6 +108,13 @@ const main = async () => {
     "INJECT_PLASMID",
     SYSTEM_START_PATH,
     "system runtime must support plasmid injections",
+    violations,
+  );
+  requireSnippet(
+    systemStart,
+    "/api/pressure-ring",
+    SYSTEM_START_PATH,
+    "system runtime must expose pressure-ring control endpoint",
     violations,
   );
 

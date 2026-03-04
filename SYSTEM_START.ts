@@ -100,6 +100,25 @@ type DaemonAuditPending = {
   baseline: RuntimeMetrics;
 };
 
+type PressureRingIngressEnvelope = {
+  mode: "set" | "step";
+  theta?: number;
+  delta_theta?: number;
+  scale?: number;
+  enabled?: boolean;
+  reason?: string;
+};
+
+type PressureRingUpdateSnapshot = {
+  tick: number;
+  mode: "set" | "step";
+  source: string;
+  delta_theta: number;
+  theta: number;
+  scale: number;
+  enabled: boolean;
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -156,6 +175,7 @@ const DAEMON_INVARIANT_MID_RATIO = 0.6;
 const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
 const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
+const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -186,6 +206,7 @@ let daemonAuditSeq = 0;
 const daemonAuditPending: DaemonAuditPending[] = [];
 let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
+let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -368,6 +389,7 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
 const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
+  const pressure = PULSE.getEvolutionPressureState();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -390,26 +412,24 @@ const buildTelemetry = async () => {
     dominantGenomes: dominantGenomes(active, 3),
     voxPopuli,
     pulse_pressure: {
-      novelty_signed: RUNTIME_POLICY.pulse.noveltyPressureSigned,
-      symbiosis_signed: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
-      novelty: RUNTIME_POLICY.pulse.noveltyPressure,
-      fear: RUNTIME_POLICY.pulse.fearPressure,
-      symbiosis: RUNTIME_POLICY.pulse.symbiosisPressure,
-      ego: RUNTIME_POLICY.pulse.egoPressure,
+      novelty_signed: pressure.noveltySigned,
+      symbiosis_signed: pressure.symbiosisSigned,
+      novelty: pressure.novelty,
+      fear: pressure.fear,
+      symbiosis: pressure.symbiosis,
+      ego: pressure.ego,
       ring: {
-        enabled: RUNTIME_POLICY.pulse.pressureRing.enabled,
-        theta: Number(RUNTIME_POLICY.pulse.pressureRing.theta.toFixed(6)),
-        scale: RUNTIME_POLICY.pulse.pressureRing.scale,
+        enabled: pressure.ring.enabled,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
         fear_curiosity_balance: Number(
-          RUNTIME_POLICY.pulse.pressureRing.fearCuriosityBalance.toFixed(6),
+          pressure.ring.fearCuriosityBalance.toFixed(6),
         ),
         ego_love_balance: Number(
-          RUNTIME_POLICY.pulse.pressureRing.egoLoveBalance.toFixed(6),
+          pressure.ring.egoLoveBalance.toFixed(6),
         ),
-        novelty_axis_from_ring:
-          RUNTIME_POLICY.pulse.pressureRing.noveltyAxisFromRing,
-        symbiosis_axis_from_ring:
-          RUNTIME_POLICY.pulse.pressureRing.symbiosisAxisFromRing,
+        novelty_axis_from_ring: pressure.ring.enabled,
+        symbiosis_axis_from_ring: pressure.ring.enabled,
       },
     },
     daemon_governance: {
@@ -424,6 +444,7 @@ const buildTelemetry = async () => {
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
       last_admission: latestDaemonAdmission,
       last_admission_history: daemonAdmissionHistory,
+      last_pressure_ring_update: latestPressureRingUpdate,
     },
   };
 };
@@ -482,6 +503,69 @@ const parseDaemonInjectEnvelope = (
       hex_code: hexCode,
     },
   };
+};
+
+const asOptionalBoolean = (value: unknown): boolean | undefined => {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    const norm = value.trim().toLowerCase();
+    if (["1", "true", "yes", "on"].includes(norm)) return true;
+    if (["0", "false", "no", "off"].includes(norm)) return false;
+  }
+  return undefined;
+};
+
+const parsePressureRingIngressEnvelope = (
+  body: unknown,
+): PressureRingIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+
+  const modeRaw = typeof root.mode === "string"
+    ? root.mode
+    : typeof payloadSource.mode === "string"
+    ? payloadSource.mode
+    : "step";
+  const mode = modeRaw.trim().toLowerCase();
+  if (mode !== "set" && mode !== "step") return null;
+
+  const thetaValue = asFiniteNumber(
+    payloadSource.theta ?? payloadSource.target_theta,
+    Number.NaN,
+  );
+  const deltaValue = asFiniteNumber(
+    payloadSource.delta_theta ?? payloadSource.delta,
+    Number.NaN,
+  );
+  if (mode === "set" && !Number.isFinite(thetaValue)) return null;
+  if (mode === "step" && !Number.isFinite(deltaValue)) return null;
+
+  const scaleRaw = asFiniteNumber(payloadSource.scale, Number.NaN);
+  const enabled = asOptionalBoolean(payloadSource.enabled);
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_phase_scheduler";
+
+  const envelope: PressureRingIngressEnvelope = {
+    mode: mode as "set" | "step",
+    reason: reason.length > 0 ? reason : "daemon_phase_scheduler",
+  };
+  if (Number.isFinite(thetaValue)) envelope.theta = thetaValue;
+  if (Number.isFinite(deltaValue)) {
+    envelope.delta_theta = clamp(
+      deltaValue,
+      -DAEMON_PRESSURE_RING_MAX_STEP,
+      DAEMON_PRESSURE_RING_MAX_STEP,
+    );
+  }
+  if (Number.isFinite(scaleRaw)) {
+    envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
+  }
+  if (enabled !== undefined) envelope.enabled = enabled;
+  return envelope;
 };
 
 const normalizeDaemonNarrativeContext = (
@@ -723,6 +807,120 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(await buildTelemetry()), {
       headers: JSON_HEADERS,
     });
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
+    const pressure = PULSE.getEvolutionPressureState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        pressure_ring: {
+          novelty_signed: pressure.noveltySigned,
+          symbiosis_signed: pressure.symbiosisSigned,
+          novelty: pressure.novelty,
+          fear: pressure.fear,
+          symbiosis: pressure.symbiosis,
+          ego: pressure.ego,
+          ring: {
+            enabled: pressure.ring.enabled,
+            theta: Number(pressure.ring.theta.toFixed(6)),
+            scale: pressure.ring.scale,
+            fear_curiosity_balance: Number(
+              pressure.ring.fearCuriosityBalance.toFixed(6),
+            ),
+            ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
+          },
+        },
+        latest_update: latestPressureRingUpdate,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parsePressureRingIngressEnvelope(body);
+      if (!envelope) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PRESSURE_RING_PAYLOAD",
+            expected:
+              "Provide {mode:set|step, theta|delta_theta, scale?, enabled?, reason?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const pressure = PULSE.updateEvolutionPressureRing({
+        mode: envelope.mode,
+        theta: envelope.theta,
+        deltaTheta: envelope.delta_theta,
+        scale: envelope.scale,
+        enabled: envelope.enabled,
+        source: envelope.reason ?? "daemon_phase_scheduler",
+      });
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      latestPressureRingUpdate = {
+        tick,
+        mode: envelope.mode,
+        source: envelope.reason ?? "daemon_phase_scheduler",
+        delta_theta: envelope.mode === "step" ? (envelope.delta_theta ?? 0) : 0,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
+        enabled: pressure.ring.enabled,
+      };
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_PRESSURE_RING",
+        tick,
+        mode: envelope.mode,
+        source: latestPressureRingUpdate.source,
+        delta_theta: latestPressureRingUpdate.delta_theta,
+        theta: latestPressureRingUpdate.theta,
+        scale: latestPressureRingUpdate.scale,
+        enabled: latestPressureRingUpdate.enabled,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: latestPressureRingUpdate,
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "PRESSURE_RING_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
   }
 
   if (url.pathname === "/api/codex" && req.method === "GET") {

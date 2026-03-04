@@ -6,6 +6,37 @@ type Telemetry = {
   avgEnergy: number;
   dominantGenomes: string[];
   voxPopuli: string[];
+  pulse_pressure?: {
+    novelty_signed: number;
+    symbiosis_signed: number;
+    novelty: number;
+    fear: number;
+    symbiosis: number;
+    ego: number;
+    ring: {
+      enabled: boolean;
+      theta: number;
+      scale: number;
+      fear_curiosity_balance: number;
+      ego_love_balance: number;
+      novelty_axis_from_ring: boolean;
+      symbiosis_axis_from_ring: boolean;
+    };
+  };
+  daemon_governance?: {
+    safe_mode: boolean;
+    safe_mode_reason: string;
+    actions_used_in_window: number;
+    actions_max_in_window: number;
+    window_reset_in_ms: number;
+    max_pheromone_intensity: number;
+    max_plasmid_charge: number;
+    invariant_drift_mid_score: number;
+    invariant_drift_high_score: number;
+    last_admission?: unknown;
+    last_admission_history?: unknown[];
+    last_pressure_ring_update?: unknown;
+  };
 };
 
 type CodexNarrative = {
@@ -84,6 +115,31 @@ const parseBoundedInt = (
   if (!Number.isFinite(parsed)) return fallback;
   return Math.max(min, Math.min(max, parsed));
 };
+const parseBoundedFloat = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (raw === undefined) return fallback;
+  const parsed = Number.parseFloat(raw);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+const parseEnvBool = (
+  raw: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
 
 const asFiniteNumber = (value: unknown, fallback: number): number => {
   if (typeof value === "number" && Number.isFinite(value)) return value;
@@ -134,6 +190,7 @@ const API_BASE = (Deno.env.get("OMEGA_DAEMON_API_BASE") ??
 const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
 const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
+const PRESSURE_RING_URL = `${API_BASE}/api/pressure-ring`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
@@ -166,6 +223,42 @@ const INVARIANT_MEMORY_LIMIT = parseBoundedInt(
 );
 const INVARIANT_PATH = Deno.env.get("OMEGA_DAEMON_INVARIANT_PATH") ??
   "./daemon_invariants.json";
+const PHASE_SEASONS_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_ENABLE"),
+  true,
+);
+const PHASE_SEASONS_STEP_RAD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_STEP_RAD"),
+  0.0625,
+  0.0001,
+  1.0,
+);
+const PHASE_SEASONS_MAX_STEP_RAD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_MAX_STEP_RAD"),
+  0.25,
+  0.01,
+  1.0,
+);
+const PHASE_SEASONS_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_COOLDOWN_TICKS"),
+  8,
+  1,
+  10_000,
+);
+const PHASE_SEASONS_LOW_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_LOW_ENERGY"),
+  10,
+  0,
+  10_000,
+);
+const PHASE_SEASONS_HIGH_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_HIGH_ENERGY"),
+  24,
+  0,
+  10_000,
+);
+
+let lastPhaseSeasonTick = -1;
 
 const withTimeout = async (
   input: string,
@@ -280,11 +373,107 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const voxPopuli = Array.isArray(source.voxPopuli)
     ? source.voxPopuli.filter((v): v is string => typeof v === "string")
     : [];
+  const pulseRaw =
+    source.pulse_pressure && typeof source.pulse_pressure === "object"
+      ? source.pulse_pressure as Record<string, unknown>
+      : null;
+  const ringRaw = pulseRaw?.ring && typeof pulseRaw.ring === "object"
+    ? pulseRaw.ring as Record<string, unknown>
+    : null;
+  const daemonRaw = source.daemon_governance &&
+      typeof source.daemon_governance === "object"
+    ? source.daemon_governance as Record<string, unknown>
+    : null;
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
     dominantGenomes: dominantGenomes.slice(0, 3),
     voxPopuli: voxPopuli.slice(0, 8),
+    pulse_pressure: pulseRaw && ringRaw
+      ? {
+        novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),
+        symbiosis_signed: asFiniteNumber(pulseRaw.symbiosis_signed, 0),
+        novelty: asFiniteNumber(pulseRaw.novelty, 0),
+        fear: asFiniteNumber(pulseRaw.fear, 0),
+        symbiosis: asFiniteNumber(pulseRaw.symbiosis, 0),
+        ego: asFiniteNumber(pulseRaw.ego, 0),
+        ring: {
+          enabled: parseEnvBool(
+            typeof ringRaw.enabled === "string" ||
+              typeof ringRaw.enabled === "boolean"
+              ? String(ringRaw.enabled)
+              : undefined,
+            false,
+          ),
+          theta: asFiniteNumber(ringRaw.theta, 0),
+          scale: Math.max(0, Math.round(asFiniteNumber(ringRaw.scale, 0))),
+          fear_curiosity_balance: asFiniteNumber(
+            ringRaw.fear_curiosity_balance,
+            0,
+          ),
+          ego_love_balance: asFiniteNumber(ringRaw.ego_love_balance, 0),
+          novelty_axis_from_ring: parseEnvBool(
+            typeof ringRaw.novelty_axis_from_ring === "string" ||
+              typeof ringRaw.novelty_axis_from_ring === "boolean"
+              ? String(ringRaw.novelty_axis_from_ring)
+              : undefined,
+            false,
+          ),
+          symbiosis_axis_from_ring: parseEnvBool(
+            typeof ringRaw.symbiosis_axis_from_ring === "string" ||
+              typeof ringRaw.symbiosis_axis_from_ring === "boolean"
+              ? String(ringRaw.symbiosis_axis_from_ring)
+              : undefined,
+            false,
+          ),
+        },
+      }
+      : undefined,
+    daemon_governance: daemonRaw
+      ? {
+        safe_mode: parseEnvBool(
+          typeof daemonRaw.safe_mode === "string" ||
+            typeof daemonRaw.safe_mode === "boolean"
+            ? String(daemonRaw.safe_mode)
+            : undefined,
+          false,
+        ),
+        safe_mode_reason: typeof daemonRaw.safe_mode_reason === "string"
+          ? daemonRaw.safe_mode_reason
+          : "SAFE_MODE_UNKNOWN",
+        actions_used_in_window: Math.max(
+          0,
+          Math.floor(asFiniteNumber(daemonRaw.actions_used_in_window, 0)),
+        ),
+        actions_max_in_window: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.actions_max_in_window, 1)),
+        ),
+        window_reset_in_ms: Math.max(
+          0,
+          Math.floor(asFiniteNumber(daemonRaw.window_reset_in_ms, 0)),
+        ),
+        max_pheromone_intensity: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.max_pheromone_intensity, 1)),
+        ),
+        max_plasmid_charge: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.max_plasmid_charge, 1)),
+        ),
+        invariant_drift_mid_score: Math.floor(
+          asFiniteNumber(daemonRaw.invariant_drift_mid_score, 0),
+        ),
+        invariant_drift_high_score: Math.floor(
+          asFiniteNumber(daemonRaw.invariant_drift_high_score, 0),
+        ),
+        last_admission: daemonRaw.last_admission,
+        last_admission_history: Array.isArray(daemonRaw.last_admission_history)
+          ? daemonRaw.last_admission_history
+          : [],
+        last_pressure_ring_update: daemonRaw.last_pressure_ring_update,
+      }
+      : undefined,
   };
 };
 
@@ -604,6 +793,88 @@ const askOpenAI = async (
   return normalizeDecision(JSON.parse(content));
 };
 
+const postPressureRingUpdate = async (
+  payload: {
+    mode: "set" | "step";
+    theta?: number;
+    delta_theta?: number;
+    scale?: number;
+    enabled?: boolean;
+    reason?: string;
+  },
+): Promise<void> => {
+  const response = await withTimeout(
+    PRESSURE_RING_URL,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    },
+    HTTP_TIMEOUT_MS,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Pressure-ring update failed: ${response.status} ${response.statusText} ${
+        text.slice(0, 240)
+      }`,
+    );
+  }
+};
+
+const phaseSeasonDelta = (
+  telemetry: Telemetry,
+  frame: InvariantFrame,
+): number => {
+  if (telemetry.avgEnergy <= PHASE_SEASONS_LOW_ENERGY) {
+    return -PHASE_SEASONS_STEP_RAD;
+  }
+  if (telemetry.avgEnergy >= PHASE_SEASONS_HIGH_ENERGY) {
+    return PHASE_SEASONS_STEP_RAD;
+  }
+  const coupling = frame.invariants.find((signal) =>
+    signal.key === "energy_mood_coupling"
+  );
+  if (coupling?.vector.includes("FRAGILE")) {
+    return -(PHASE_SEASONS_STEP_RAD * 0.5);
+  }
+  return PHASE_SEASONS_STEP_RAD * 0.5;
+};
+
+const maybeAdvancePhaseRing = async (
+  telemetry: Telemetry,
+  frame: InvariantFrame,
+): Promise<void> => {
+  if (!PHASE_SEASONS_ENABLE) return;
+  if (telemetry.daemon_governance?.safe_mode) return;
+  if (telemetry.tick - lastPhaseSeasonTick < PHASE_SEASONS_COOLDOWN_TICKS) {
+    return;
+  }
+  const ring = telemetry.pulse_pressure?.ring;
+  if (!ring) return;
+
+  const delta = clamp(
+    phaseSeasonDelta(telemetry, frame),
+    -PHASE_SEASONS_MAX_STEP_RAD,
+    PHASE_SEASONS_MAX_STEP_RAD,
+  );
+  if (Math.abs(delta) < 1e-9) return;
+  await postPressureRingUpdate({
+    mode: "step",
+    delta_theta: delta,
+    reason: "daemon_phase_scheduler",
+  });
+  lastPhaseSeasonTick = telemetry.tick;
+  logAction(
+    `[PHASE_RING] step=${delta.toFixed(5)} tick=${telemetry.tick} theta≈${
+      ring.theta.toFixed(5)
+    } scale=${ring.scale}`,
+  );
+};
+
 const postInjection = async (decision: DaemonDecision): Promise<void> => {
   if (decision.action_type === "OBSERVE") return;
 
@@ -653,6 +924,11 @@ const runHeartbeat = async (): Promise<void> => {
   );
   await saveInvariantHistory(nextInvariantHistory);
   logInvariant(`${invariantFrame.summary} | sig=${invariantFrame.signature}`);
+  try {
+    await maybeAdvancePhaseRing(telemetry, invariantFrame);
+  } catch (err) {
+    logWarn(`Phase-ring scheduler fallback: ${String(err)}`);
+  }
   const decision = await askOpenAI(
     telemetry,
     codexNarrative,
@@ -677,7 +953,9 @@ const runHeartbeat = async (): Promise<void> => {
 
 const startDaemon = (): void => {
   logAction(
-    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH}`,
+    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
+      PHASE_SEASONS_STEP_RAD.toFixed(4)
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS}`,
   );
 
   const heartbeat = async (): Promise<void> => {

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T14:55:11.031Z*
+*Generated: 2026-03-04T15:10:33.272Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 2321b9f2a30ceddfd75cea0601dcd0c6e8748acf9ca63536eb50ec0cd1864ad1*
-*Git Commit: 2bb9d9c12564*
+*Export Content SHA256: 343227719d2404a7ad7b21468930e511e625fecc59adfeb833c5f706ef29fed7*
+*Git Commit: 52d8c73bc501*
 
 ---
 
@@ -1547,6 +1547,51 @@ const proxyInject = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyPressureRing = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/pressure-ring`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_PRESSURE_RING_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_PRESSURE_RING_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
   let parsedBody: unknown = null;
   try {
@@ -1756,6 +1801,13 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetry(req);
   }
 
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/pressure-ring"
+  ) {
+    return proxyPressureRing(req);
+  }
+
   if (req.method === "GET" && url.pathname === "/api/codex") {
     return proxyCodex(req, "/api/codex", url.search);
   }
@@ -1785,7 +1837,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -2607,6 +2659,12 @@ export context. It intentionally excludes historical era narratives.
   phase-ring mode (`OMEGA_MATRIX_THETA`, `OMEGA_PRESSURE_RING_SCALE`) that
   projects fear/curiosity + ego/love axes on the unit circle. Host applies
   bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
+- Runtime exposes `/api/pressure-ring` for authorized daemon control of phase
+  updates (`set`/`step`) with bounded theta delta clamps and audit trail
+  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry).
+- `OMEGA_DAEMON` can run a phase-season scheduler
+  (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
+  telemetry/invariant context while respecting cooldown and safe-mode gates.
 
 ## Governance and Integrity
 
@@ -8854,6 +8912,37 @@ type Telemetry = {
   avgEnergy: number;
   dominantGenomes: string[];
   voxPopuli: string[];
+  pulse_pressure?: {
+    novelty_signed: number;
+    symbiosis_signed: number;
+    novelty: number;
+    fear: number;
+    symbiosis: number;
+    ego: number;
+    ring: {
+      enabled: boolean;
+      theta: number;
+      scale: number;
+      fear_curiosity_balance: number;
+      ego_love_balance: number;
+      novelty_axis_from_ring: boolean;
+      symbiosis_axis_from_ring: boolean;
+    };
+  };
+  daemon_governance?: {
+    safe_mode: boolean;
+    safe_mode_reason: string;
+    actions_used_in_window: number;
+    actions_max_in_window: number;
+    window_reset_in_ms: number;
+    max_pheromone_intensity: number;
+    max_plasmid_charge: number;
+    invariant_drift_mid_score: number;
+    invariant_drift_high_score: number;
+    last_admission?: unknown;
+    last_admission_history?: unknown[];
+    last_pressure_ring_update?: unknown;
+  };
 };
 
 type CodexNarrative = {
@@ -8932,6 +9021,31 @@ const parseBoundedInt = (
   if (!Number.isFinite(parsed)) return fallback;
   return Math.max(min, Math.min(max, parsed));
 };
+const parseBoundedFloat = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (raw === undefined) return fallback;
+  const parsed = Number.parseFloat(raw);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+const parseEnvBool = (
+  raw: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
 
 const asFiniteNumber = (value: unknown, fallback: number): number => {
   if (typeof value === "number" && Number.isFinite(value)) return value;
@@ -8982,6 +9096,7 @@ const API_BASE = (Deno.env.get("OMEGA_DAEMON_API_BASE") ??
 const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
 const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
+const PRESSURE_RING_URL = `${API_BASE}/api/pressure-ring`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
@@ -9014,6 +9129,42 @@ const INVARIANT_MEMORY_LIMIT = parseBoundedInt(
 );
 const INVARIANT_PATH = Deno.env.get("OMEGA_DAEMON_INVARIANT_PATH") ??
   "./daemon_invariants.json";
+const PHASE_SEASONS_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_ENABLE"),
+  true,
+);
+const PHASE_SEASONS_STEP_RAD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_STEP_RAD"),
+  0.0625,
+  0.0001,
+  1.0,
+);
+const PHASE_SEASONS_MAX_STEP_RAD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_MAX_STEP_RAD"),
+  0.25,
+  0.01,
+  1.0,
+);
+const PHASE_SEASONS_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_COOLDOWN_TICKS"),
+  8,
+  1,
+  10_000,
+);
+const PHASE_SEASONS_LOW_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_LOW_ENERGY"),
+  10,
+  0,
+  10_000,
+);
+const PHASE_SEASONS_HIGH_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_HIGH_ENERGY"),
+  24,
+  0,
+  10_000,
+);
+
+let lastPhaseSeasonTick = -1;
 
 const withTimeout = async (
   input: string,
@@ -9128,11 +9279,107 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const voxPopuli = Array.isArray(source.voxPopuli)
     ? source.voxPopuli.filter((v): v is string => typeof v === "string")
     : [];
+  const pulseRaw =
+    source.pulse_pressure && typeof source.pulse_pressure === "object"
+      ? source.pulse_pressure as Record<string, unknown>
+      : null;
+  const ringRaw = pulseRaw?.ring && typeof pulseRaw.ring === "object"
+    ? pulseRaw.ring as Record<string, unknown>
+    : null;
+  const daemonRaw = source.daemon_governance &&
+      typeof source.daemon_governance === "object"
+    ? source.daemon_governance as Record<string, unknown>
+    : null;
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
     dominantGenomes: dominantGenomes.slice(0, 3),
     voxPopuli: voxPopuli.slice(0, 8),
+    pulse_pressure: pulseRaw && ringRaw
+      ? {
+        novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),
+        symbiosis_signed: asFiniteNumber(pulseRaw.symbiosis_signed, 0),
+        novelty: asFiniteNumber(pulseRaw.novelty, 0),
+        fear: asFiniteNumber(pulseRaw.fear, 0),
+        symbiosis: asFiniteNumber(pulseRaw.symbiosis, 0),
+        ego: asFiniteNumber(pulseRaw.ego, 0),
+        ring: {
+          enabled: parseEnvBool(
+            typeof ringRaw.enabled === "string" ||
+              typeof ringRaw.enabled === "boolean"
+              ? String(ringRaw.enabled)
+              : undefined,
+            false,
+          ),
+          theta: asFiniteNumber(ringRaw.theta, 0),
+          scale: Math.max(0, Math.round(asFiniteNumber(ringRaw.scale, 0))),
+          fear_curiosity_balance: asFiniteNumber(
+            ringRaw.fear_curiosity_balance,
+            0,
+          ),
+          ego_love_balance: asFiniteNumber(ringRaw.ego_love_balance, 0),
+          novelty_axis_from_ring: parseEnvBool(
+            typeof ringRaw.novelty_axis_from_ring === "string" ||
+              typeof ringRaw.novelty_axis_from_ring === "boolean"
+              ? String(ringRaw.novelty_axis_from_ring)
+              : undefined,
+            false,
+          ),
+          symbiosis_axis_from_ring: parseEnvBool(
+            typeof ringRaw.symbiosis_axis_from_ring === "string" ||
+              typeof ringRaw.symbiosis_axis_from_ring === "boolean"
+              ? String(ringRaw.symbiosis_axis_from_ring)
+              : undefined,
+            false,
+          ),
+        },
+      }
+      : undefined,
+    daemon_governance: daemonRaw
+      ? {
+        safe_mode: parseEnvBool(
+          typeof daemonRaw.safe_mode === "string" ||
+            typeof daemonRaw.safe_mode === "boolean"
+            ? String(daemonRaw.safe_mode)
+            : undefined,
+          false,
+        ),
+        safe_mode_reason: typeof daemonRaw.safe_mode_reason === "string"
+          ? daemonRaw.safe_mode_reason
+          : "SAFE_MODE_UNKNOWN",
+        actions_used_in_window: Math.max(
+          0,
+          Math.floor(asFiniteNumber(daemonRaw.actions_used_in_window, 0)),
+        ),
+        actions_max_in_window: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.actions_max_in_window, 1)),
+        ),
+        window_reset_in_ms: Math.max(
+          0,
+          Math.floor(asFiniteNumber(daemonRaw.window_reset_in_ms, 0)),
+        ),
+        max_pheromone_intensity: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.max_pheromone_intensity, 1)),
+        ),
+        max_plasmid_charge: Math.max(
+          1,
+          Math.floor(asFiniteNumber(daemonRaw.max_plasmid_charge, 1)),
+        ),
+        invariant_drift_mid_score: Math.floor(
+          asFiniteNumber(daemonRaw.invariant_drift_mid_score, 0),
+        ),
+        invariant_drift_high_score: Math.floor(
+          asFiniteNumber(daemonRaw.invariant_drift_high_score, 0),
+        ),
+        last_admission: daemonRaw.last_admission,
+        last_admission_history: Array.isArray(daemonRaw.last_admission_history)
+          ? daemonRaw.last_admission_history
+          : [],
+        last_pressure_ring_update: daemonRaw.last_pressure_ring_update,
+      }
+      : undefined,
   };
 };
 
@@ -9452,6 +9699,88 @@ const askOpenAI = async (
   return normalizeDecision(JSON.parse(content));
 };
 
+const postPressureRingUpdate = async (
+  payload: {
+    mode: "set" | "step";
+    theta?: number;
+    delta_theta?: number;
+    scale?: number;
+    enabled?: boolean;
+    reason?: string;
+  },
+): Promise<void> => {
+  const response = await withTimeout(
+    PRESSURE_RING_URL,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    },
+    HTTP_TIMEOUT_MS,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Pressure-ring update failed: ${response.status} ${response.statusText} ${
+        text.slice(0, 240)
+      }`,
+    );
+  }
+};
+
+const phaseSeasonDelta = (
+  telemetry: Telemetry,
+  frame: InvariantFrame,
+): number => {
+  if (telemetry.avgEnergy <= PHASE_SEASONS_LOW_ENERGY) {
+    return -PHASE_SEASONS_STEP_RAD;
+  }
+  if (telemetry.avgEnergy >= PHASE_SEASONS_HIGH_ENERGY) {
+    return PHASE_SEASONS_STEP_RAD;
+  }
+  const coupling = frame.invariants.find((signal) =>
+    signal.key === "energy_mood_coupling"
+  );
+  if (coupling?.vector.includes("FRAGILE")) {
+    return -(PHASE_SEASONS_STEP_RAD * 0.5);
+  }
+  return PHASE_SEASONS_STEP_RAD * 0.5;
+};
+
+const maybeAdvancePhaseRing = async (
+  telemetry: Telemetry,
+  frame: InvariantFrame,
+): Promise<void> => {
+  if (!PHASE_SEASONS_ENABLE) return;
+  if (telemetry.daemon_governance?.safe_mode) return;
+  if (telemetry.tick - lastPhaseSeasonTick < PHASE_SEASONS_COOLDOWN_TICKS) {
+    return;
+  }
+  const ring = telemetry.pulse_pressure?.ring;
+  if (!ring) return;
+
+  const delta = clamp(
+    phaseSeasonDelta(telemetry, frame),
+    -PHASE_SEASONS_MAX_STEP_RAD,
+    PHASE_SEASONS_MAX_STEP_RAD,
+  );
+  if (Math.abs(delta) < 1e-9) return;
+  await postPressureRingUpdate({
+    mode: "step",
+    delta_theta: delta,
+    reason: "daemon_phase_scheduler",
+  });
+  lastPhaseSeasonTick = telemetry.tick;
+  logAction(
+    `[PHASE_RING] step=${delta.toFixed(5)} tick=${telemetry.tick} theta≈${
+      ring.theta.toFixed(5)
+    } scale=${ring.scale}`,
+  );
+};
+
 const postInjection = async (decision: DaemonDecision): Promise<void> => {
   if (decision.action_type === "OBSERVE") return;
 
@@ -9501,6 +9830,11 @@ const runHeartbeat = async (): Promise<void> => {
   );
   await saveInvariantHistory(nextInvariantHistory);
   logInvariant(`${invariantFrame.summary} | sig=${invariantFrame.signature}`);
+  try {
+    await maybeAdvancePhaseRing(telemetry, invariantFrame);
+  } catch (err) {
+    logWarn(`Phase-ring scheduler fallback: ${String(err)}`);
+  }
   const decision = await askOpenAI(
     telemetry,
     codexNarrative,
@@ -9525,7 +9859,9 @@ const runHeartbeat = async (): Promise<void> => {
 
 const startDaemon = (): void => {
   logAction(
-    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH}`,
+    `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
+      PHASE_SEASONS_STEP_RAD.toFixed(4)
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS}`,
   );
 
   const heartbeat = async (): Promise<void> => {
@@ -10588,14 +10924,93 @@ const STARTUP_SELFTEST_FALLBACK_ENABLED =
 const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
 const STARTUP_SELFTEST_FORCE_BREACH =
   RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
-const PRESSURE_RING = RUNTIME_POLICY.pulse.pressureRing;
-const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressureSigned;
-const FEAR_PRESSURE = RUNTIME_POLICY.pulse.fearPressure;
-const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
-const EGO_PRESSURE = RUNTIME_POLICY.pulse.egoPressure;
+const PRESSURE_RING_BASELINE = RUNTIME_POLICY.pulse.pressureRing;
+const PRESSURE_RING_TAU = Math.PI * 2;
+const PRESSURE_RING_SCALE_MAX = 2048;
+const PRESSURE_TERM_ABS_MAX = 2048;
+const BASE_NOVELTY_SIGNED = RUNTIME_POLICY.pulse.noveltyPressureSigned;
+const BASE_SYMBIOSIS_SIGNED = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
+const BASE_NOVELTY = RUNTIME_POLICY.pulse.noveltyPressure;
+const BASE_FEAR = RUNTIME_POLICY.pulse.fearPressure;
+const BASE_SYMBIOSIS = RUNTIME_POLICY.pulse.symbiosisPressure;
+const BASE_EGO = RUNTIME_POLICY.pulse.egoPressure;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
+
+type EvolutionPressureState = {
+  noveltySigned: number;
+  symbiosisSigned: number;
+  novelty: number;
+  fear: number;
+  symbiosis: number;
+  ego: number;
+  ring: {
+    enabled: boolean;
+    theta: number;
+    scale: number;
+    fearCuriosityBalance: number;
+    egoLoveBalance: number;
+  };
+};
+
+const clampPressureTerm = (value: number): number =>
+  Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
+const clampRingScale = (value: number): number =>
+  Math.max(0, Math.min(PRESSURE_RING_SCALE_MAX, value | 0));
+const normalizeTheta = (theta: number): number => {
+  if (!Number.isFinite(theta)) return 0;
+  const wrapped = theta % PRESSURE_RING_TAU;
+  return wrapped >= 0 ? wrapped : wrapped + PRESSURE_RING_TAU;
+};
+const pressureComponentFromUnit = (component: number, scale: number): number =>
+  Math.max(
+    0,
+    Math.min(PRESSURE_TERM_ABS_MAX, Math.round(Math.max(0, component) * scale)),
+  );
+const deriveRingPressure = (theta: number, scale: number) => {
+  const normalizedTheta = normalizeTheta(theta);
+  const boundedScale = clampRingScale(scale);
+  const fearCuriosityBalance = Math.cos(normalizedTheta);
+  const egoLoveBalance = Math.sin(normalizedTheta);
+  const novelty = pressureComponentFromUnit(fearCuriosityBalance, boundedScale);
+  const fear = pressureComponentFromUnit(-fearCuriosityBalance, boundedScale);
+  const symbiosis = pressureComponentFromUnit(egoLoveBalance, boundedScale);
+  const ego = pressureComponentFromUnit(-egoLoveBalance, boundedScale);
+  return {
+    novelty,
+    fear,
+    noveltySigned: novelty - fear,
+    symbiosis,
+    ego,
+    symbiosisSigned: symbiosis - ego,
+    ring: {
+      enabled: true,
+      theta: normalizedTheta,
+      scale: boundedScale,
+      fearCuriosityBalance,
+      egoLoveBalance,
+    },
+  };
+};
+const BASE_EVOLUTION_PRESSURE_STATE: EvolutionPressureState = {
+  noveltySigned: clampPressureTerm(BASE_NOVELTY_SIGNED),
+  symbiosisSigned: clampPressureTerm(BASE_SYMBIOSIS_SIGNED),
+  novelty: clampPressureTerm(BASE_NOVELTY),
+  fear: clampPressureTerm(BASE_FEAR),
+  symbiosis: clampPressureTerm(BASE_SYMBIOSIS),
+  ego: clampPressureTerm(BASE_EGO),
+  ring: {
+    enabled: PRESSURE_RING_BASELINE.enabled,
+    theta: normalizeTheta(PRESSURE_RING_BASELINE.theta),
+    scale: clampRingScale(PRESSURE_RING_BASELINE.scale),
+    fearCuriosityBalance: PRESSURE_RING_BASELINE.fearCuriosityBalance,
+    egoLoveBalance: PRESSURE_RING_BASELINE.egoLoveBalance,
+  },
+};
+let evolutionPressureState: EvolutionPressureState = {
+  ...BASE_EVOLUTION_PRESSURE_STATE,
+};
 
 let runtimeWorkerCount = WORKER_COUNT;
 let startupSelfTestDone = false;
@@ -10618,6 +11033,67 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+};
+const resetEvolutionPressureStateForColdStart = (): void => {
+  evolutionPressureState = {
+    ...BASE_EVOLUTION_PRESSURE_STATE,
+    ring: { ...BASE_EVOLUTION_PRESSURE_STATE.ring },
+  };
+};
+const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
+  noveltySigned: evolutionPressureState.noveltySigned,
+  symbiosisSigned: evolutionPressureState.symbiosisSigned,
+  novelty: evolutionPressureState.novelty,
+  fear: evolutionPressureState.fear,
+  symbiosis: evolutionPressureState.symbiosis,
+  ego: evolutionPressureState.ego,
+  ring: { ...evolutionPressureState.ring },
+});
+const applyEvolutionPressureRing = (
+  next: {
+    mode: "set" | "step";
+    theta?: number;
+    deltaTheta?: number;
+    scale?: number;
+    enabled?: boolean;
+  },
+): EvolutionPressureState => {
+  const prev = snapshotEvolutionPressureState();
+  const ringEnabled = next.enabled ?? prev.ring.enabled;
+
+  if (!ringEnabled) {
+    evolutionPressureState = {
+      ...BASE_EVOLUTION_PRESSURE_STATE,
+      ring: {
+        ...prev.ring,
+        enabled: false,
+      },
+    };
+    return snapshotEvolutionPressureState();
+  }
+
+  const baseTheta = prev.ring.theta;
+  const requestedTheta = next.mode === "step"
+    ? baseTheta + (next.deltaTheta ?? 0)
+    : (next.theta ?? baseTheta);
+  const requestedScale = next.scale ?? prev.ring.scale;
+  const derived = deriveRingPressure(requestedTheta, requestedScale);
+  evolutionPressureState = {
+    noveltySigned: clampPressureTerm(derived.noveltySigned),
+    symbiosisSigned: clampPressureTerm(derived.symbiosisSigned),
+    novelty: clampPressureTerm(derived.novelty),
+    fear: clampPressureTerm(derived.fear),
+    symbiosis: clampPressureTerm(derived.symbiosis),
+    ego: clampPressureTerm(derived.ego),
+    ring: {
+      enabled: true,
+      theta: derived.ring.theta,
+      scale: derived.ring.scale,
+      fearCuriosityBalance: derived.ring.fearCuriosityBalance,
+      egoLoveBalance: derived.ring.egoLoveBalance,
+    },
+  };
+  return snapshotEvolutionPressureState();
 };
 
 const workers: Worker[] = [];
@@ -10748,8 +11224,11 @@ const applyEvolutionPressureTerms = (
   noveltyDeltaRaw: number;
   symbiosisDeltaRaw: number;
 } => {
+  const pressureState = snapshotEvolutionPressureState();
+  const noveltySigned = pressureState.noveltySigned;
+  const symbiosisSigned = pressureState.symbiosisSigned;
   if (
-    (NOVELTY_PRESSURE === 0 && SYMBIOSIS_PRESSURE === 0) ||
+    (noveltySigned === 0 && symbiosisSigned === 0) ||
     activeIdx.length === 0
   ) {
     return { adjusted: 0, noveltyDeltaRaw: 0, symbiosisDeltaRaw: 0 };
@@ -10770,14 +11249,14 @@ const applyEvolutionPressureTerms = (
     const sameGenomeCount = genomeCounts.get(key) ?? 1;
 
     let noveltyTerm = 0;
-    if (NOVELTY_PRESSURE !== 0) {
+    if (noveltySigned !== 0) {
       noveltyTerm = Math.trunc(
-        (NOVELTY_PRESSURE * (population - (sameGenomeCount * 2))) / population,
+        (noveltySigned * (population - (sameGenomeCount * 2))) / population,
       );
     }
 
     let symbiosisTerm = 0;
-    if (SYMBIOSIS_PRESSURE !== 0) {
+    if (symbiosisSigned !== 0) {
       const base = idx * 4;
       let crossGenomeBonds = 0;
       for (let slot = 0; slot < 4; slot++) {
@@ -10786,9 +11265,10 @@ const applyEvolutionPressureTerms = (
         if (Atomics.load(idsView, target) === 0n) continue;
         if (genomeKey16(target) !== key) crossGenomeBonds++;
       }
+      const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
       symbiosisTerm = crossGenomeBonds > 0
-        ? SYMBIOSIS_PRESSURE * crossGenomeBonds
-        : -SYMBIOSIS_PRESSURE;
+        ? symbiosisSigned * crossGenomeBonds
+        : bondPolarity * -symbiosisSigned;
     }
 
     const delta = noveltyTerm + symbiosisTerm;
@@ -10812,7 +11292,7 @@ const applyEvolutionPressureTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE}`,
+        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
   }
@@ -11161,6 +11641,8 @@ export const PULSE = {
   initWorkers: async (requestedWorkerCount?: number) => {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
+    resetEvolutionPressureStateForColdStart();
+    const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
@@ -11197,15 +11679,15 @@ export const PULSE = {
       RUNTIME_POLICY.pulse.source.symbiosisPressure ||
       RUNTIME_POLICY.pulse.source.matrixTheta ||
       RUNTIME_POLICY.pulse.source.pressureRingScale ||
-      NOVELTY_PRESSURE > 0 ||
-      SYMBIOSIS_PRESSURE > 0 ||
-      FEAR_PRESSURE > 0 ||
-      EGO_PRESSURE > 0
+      pressureState.noveltySigned !== 0 ||
+      pressureState.symbiosisSigned !== 0 ||
+      pressureState.fear > 0 ||
+      pressureState.ego > 0
     ) {
       LOGGER.info(
-        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE} ring=${PRESSURE_RING.enabled} theta=${
-          PRESSURE_RING.theta.toFixed(4)
-        } scale=${PRESSURE_RING.scale}.`,
+        `   [PULSE] Evolution pressure terms novelty=${pressureState.noveltySigned} symbiosis=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego} ring=${pressureState.ring.enabled} theta=${
+          pressureState.ring.theta.toFixed(4)
+        } scale=${pressureState.ring.scale}.`,
       );
     }
     if (
@@ -11396,6 +11878,43 @@ export const PULSE = {
       ));
     }
     await Promise.all(updates);
+  },
+  getEvolutionPressureState: (): EvolutionPressureState =>
+    snapshotEvolutionPressureState(),
+  updateEvolutionPressureRing: (
+    update: {
+      mode: "set" | "step";
+      theta?: number;
+      deltaTheta?: number;
+      scale?: number;
+      enabled?: boolean;
+      source?: string;
+    },
+  ): EvolutionPressureState => {
+    const nextScale = update.scale === undefined
+      ? undefined
+      : clampRingScale(Math.round(update.scale));
+    const boundedDelta = update.deltaTheta === undefined
+      ? undefined
+      : Math.max(-Math.PI, Math.min(Math.PI, update.deltaTheta));
+    const boundedTheta = update.theta === undefined
+      ? undefined
+      : normalizeTheta(update.theta);
+    const applied = applyEvolutionPressureRing({
+      mode: update.mode,
+      theta: boundedTheta,
+      deltaTheta: boundedDelta,
+      scale: nextScale,
+      enabled: update.enabled,
+    });
+    LOGGER.info(
+      `   [PULSE] Evolution pressure ring update source=${
+        update.source ?? "runtime"
+      } mode=${update.mode} novelty=${applied.noveltySigned} symbiosis=${applied.symbiosisSigned} fear=${applied.fear} ego=${applied.ego} enabled=${applied.ring.enabled} theta=${
+        applied.ring.theta.toFixed(4)
+      } scale=${applied.ring.scale}.`,
+    );
+    return applied;
   },
 
   tick: async () => {
@@ -17003,6 +17522,25 @@ type DaemonAuditPending = {
   baseline: RuntimeMetrics;
 };
 
+type PressureRingIngressEnvelope = {
+  mode: "set" | "step";
+  theta?: number;
+  delta_theta?: number;
+  scale?: number;
+  enabled?: boolean;
+  reason?: string;
+};
+
+type PressureRingUpdateSnapshot = {
+  tick: number;
+  mode: "set" | "step";
+  source: string;
+  delta_theta: number;
+  theta: number;
+  scale: number;
+  enabled: boolean;
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -17059,6 +17597,7 @@ const DAEMON_INVARIANT_MID_RATIO = 0.6;
 const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
 const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
+const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -17089,6 +17628,7 @@ let daemonAuditSeq = 0;
 const daemonAuditPending: DaemonAuditPending[] = [];
 let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
+let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -17271,6 +17811,7 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
 const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
+  const pressure = PULSE.getEvolutionPressureState();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -17293,26 +17834,24 @@ const buildTelemetry = async () => {
     dominantGenomes: dominantGenomes(active, 3),
     voxPopuli,
     pulse_pressure: {
-      novelty_signed: RUNTIME_POLICY.pulse.noveltyPressureSigned,
-      symbiosis_signed: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
-      novelty: RUNTIME_POLICY.pulse.noveltyPressure,
-      fear: RUNTIME_POLICY.pulse.fearPressure,
-      symbiosis: RUNTIME_POLICY.pulse.symbiosisPressure,
-      ego: RUNTIME_POLICY.pulse.egoPressure,
+      novelty_signed: pressure.noveltySigned,
+      symbiosis_signed: pressure.symbiosisSigned,
+      novelty: pressure.novelty,
+      fear: pressure.fear,
+      symbiosis: pressure.symbiosis,
+      ego: pressure.ego,
       ring: {
-        enabled: RUNTIME_POLICY.pulse.pressureRing.enabled,
-        theta: Number(RUNTIME_POLICY.pulse.pressureRing.theta.toFixed(6)),
-        scale: RUNTIME_POLICY.pulse.pressureRing.scale,
+        enabled: pressure.ring.enabled,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
         fear_curiosity_balance: Number(
-          RUNTIME_POLICY.pulse.pressureRing.fearCuriosityBalance.toFixed(6),
+          pressure.ring.fearCuriosityBalance.toFixed(6),
         ),
         ego_love_balance: Number(
-          RUNTIME_POLICY.pulse.pressureRing.egoLoveBalance.toFixed(6),
+          pressure.ring.egoLoveBalance.toFixed(6),
         ),
-        novelty_axis_from_ring:
-          RUNTIME_POLICY.pulse.pressureRing.noveltyAxisFromRing,
-        symbiosis_axis_from_ring:
-          RUNTIME_POLICY.pulse.pressureRing.symbiosisAxisFromRing,
+        novelty_axis_from_ring: pressure.ring.enabled,
+        symbiosis_axis_from_ring: pressure.ring.enabled,
       },
     },
     daemon_governance: {
@@ -17327,6 +17866,7 @@ const buildTelemetry = async () => {
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
       last_admission: latestDaemonAdmission,
       last_admission_history: daemonAdmissionHistory,
+      last_pressure_ring_update: latestPressureRingUpdate,
     },
   };
 };
@@ -17385,6 +17925,69 @@ const parseDaemonInjectEnvelope = (
       hex_code: hexCode,
     },
   };
+};
+
+const asOptionalBoolean = (value: unknown): boolean | undefined => {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    const norm = value.trim().toLowerCase();
+    if (["1", "true", "yes", "on"].includes(norm)) return true;
+    if (["0", "false", "no", "off"].includes(norm)) return false;
+  }
+  return undefined;
+};
+
+const parsePressureRingIngressEnvelope = (
+  body: unknown,
+): PressureRingIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+
+  const modeRaw = typeof root.mode === "string"
+    ? root.mode
+    : typeof payloadSource.mode === "string"
+    ? payloadSource.mode
+    : "step";
+  const mode = modeRaw.trim().toLowerCase();
+  if (mode !== "set" && mode !== "step") return null;
+
+  const thetaValue = asFiniteNumber(
+    payloadSource.theta ?? payloadSource.target_theta,
+    Number.NaN,
+  );
+  const deltaValue = asFiniteNumber(
+    payloadSource.delta_theta ?? payloadSource.delta,
+    Number.NaN,
+  );
+  if (mode === "set" && !Number.isFinite(thetaValue)) return null;
+  if (mode === "step" && !Number.isFinite(deltaValue)) return null;
+
+  const scaleRaw = asFiniteNumber(payloadSource.scale, Number.NaN);
+  const enabled = asOptionalBoolean(payloadSource.enabled);
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_phase_scheduler";
+
+  const envelope: PressureRingIngressEnvelope = {
+    mode: mode as "set" | "step",
+    reason: reason.length > 0 ? reason : "daemon_phase_scheduler",
+  };
+  if (Number.isFinite(thetaValue)) envelope.theta = thetaValue;
+  if (Number.isFinite(deltaValue)) {
+    envelope.delta_theta = clamp(
+      deltaValue,
+      -DAEMON_PRESSURE_RING_MAX_STEP,
+      DAEMON_PRESSURE_RING_MAX_STEP,
+    );
+  }
+  if (Number.isFinite(scaleRaw)) {
+    envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
+  }
+  if (enabled !== undefined) envelope.enabled = enabled;
+  return envelope;
 };
 
 const normalizeDaemonNarrativeContext = (
@@ -17626,6 +18229,120 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(await buildTelemetry()), {
       headers: JSON_HEADERS,
     });
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
+    const pressure = PULSE.getEvolutionPressureState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        pressure_ring: {
+          novelty_signed: pressure.noveltySigned,
+          symbiosis_signed: pressure.symbiosisSigned,
+          novelty: pressure.novelty,
+          fear: pressure.fear,
+          symbiosis: pressure.symbiosis,
+          ego: pressure.ego,
+          ring: {
+            enabled: pressure.ring.enabled,
+            theta: Number(pressure.ring.theta.toFixed(6)),
+            scale: pressure.ring.scale,
+            fear_curiosity_balance: Number(
+              pressure.ring.fearCuriosityBalance.toFixed(6),
+            ),
+            ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
+          },
+        },
+        latest_update: latestPressureRingUpdate,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parsePressureRingIngressEnvelope(body);
+      if (!envelope) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PRESSURE_RING_PAYLOAD",
+            expected:
+              "Provide {mode:set|step, theta|delta_theta, scale?, enabled?, reason?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const pressure = PULSE.updateEvolutionPressureRing({
+        mode: envelope.mode,
+        theta: envelope.theta,
+        deltaTheta: envelope.delta_theta,
+        scale: envelope.scale,
+        enabled: envelope.enabled,
+        source: envelope.reason ?? "daemon_phase_scheduler",
+      });
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      latestPressureRingUpdate = {
+        tick,
+        mode: envelope.mode,
+        source: envelope.reason ?? "daemon_phase_scheduler",
+        delta_theta: envelope.mode === "step" ? (envelope.delta_theta ?? 0) : 0,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
+        enabled: pressure.ring.enabled,
+      };
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_PRESSURE_RING",
+        tick,
+        mode: envelope.mode,
+        source: latestPressureRingUpdate.source,
+        delta_theta: latestPressureRingUpdate.delta_theta,
+        theta: latestPressureRingUpdate.theta,
+        scale: latestPressureRingUpdate.scale,
+        enabled: latestPressureRingUpdate.enabled,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: latestPressureRingUpdate,
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "PRESSURE_RING_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
   }
 
   if (url.pathname === "/api/codex" && req.method === "GET") {

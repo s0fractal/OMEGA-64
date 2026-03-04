@@ -106,16 +106,30 @@ const main = async () => {
   );
   requireSnippet(
     pulse,
-    "NOVELTY_PRESSURE",
+    "evolutionPressureState",
     PULSE_PATH,
     "Pulse must source novelty pressure coefficient from runtime policy",
     violations,
   );
   requireSnippet(
     pulse,
-    "SYMBIOSIS_PRESSURE",
+    "noveltySigned",
     PULSE_PATH,
     "Pulse must source symbiosis pressure coefficient from runtime policy",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "updateEvolutionPressureRing",
+    PULSE_PATH,
+    "Pulse must expose runtime pressure-ring update API",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "getEvolutionPressureState",
+    PULSE_PATH,
+    "Pulse must expose runtime pressure-ring snapshot API",
     violations,
   );
   requireSnippet(
