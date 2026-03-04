@@ -2,6 +2,7 @@ import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
+const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);
 const hasEnvValue = (raw: string | undefined): boolean =>
@@ -20,6 +21,24 @@ const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   }
   return "fail-fast";
 };
+const parseEnvBoundedFloat = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!hasEnvValue(raw)) return fallback;
+  const n = Number.parseFloat((raw ?? "").trim());
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+const normalizeTheta = (theta: number): number => {
+  if (!Number.isFinite(theta)) return 0;
+  const wrapped = theta % TAU;
+  return wrapped >= 0 ? wrapped : wrapped + TAU;
+};
+const pressureComponentFromUnit = (component: number, scale: number): number =>
+  Math.max(0, Math.min(2048, Math.round(Math.max(0, component) * scale)));
 
 const rawPort = readEnv("PORT");
 const rawSystemHost = readEnv("OMEGA_SYSTEM_HOST");
@@ -49,6 +68,8 @@ const rawWasmBootPrecheck = readEnv("OMEGA_WASM_BOOT_PRECHECK");
 const rawForceWasmPreflightFail = readEnv("OMEGA_FORCE_WASM_PREFLIGHT_FAIL");
 const rawNoveltyPressure = readEnv("OMEGA_NOVELTY_PRESSURE");
 const rawSymbiosisPressure = readEnv("OMEGA_SYMBIOSIS_PRESSURE");
+const rawMatrixTheta = readEnv("OMEGA_MATRIX_THETA");
+const rawPressureRingScale = readEnv("OMEGA_PRESSURE_RING_SCALE");
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -155,13 +176,50 @@ const pulseForceWasmPreflightFail = parseEnvBool(
   rawForceWasmPreflightFail,
   false,
 );
-const pulseNoveltyPressure = parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
-const pulseSymbiosisPressure = parseEnvBoundedInt(
-  rawSymbiosisPressure,
+const pulsePressureRingEnabled = hasEnvValue(rawMatrixTheta) ||
+  hasEnvValue(rawPressureRingScale);
+const pulsePressureRingScale = pulsePressureRingEnabled
+  ? parseEnvBoundedInt(rawPressureRingScale, 256, 0, 2048)
+  : 0;
+const pulseMatrixThetaRaw = parseEnvBoundedFloat(
+  rawMatrixTheta,
   0,
-  0,
-  2048,
+  -10_000_000,
+  10_000_000,
 );
+const pulseMatrixTheta = normalizeTheta(pulseMatrixThetaRaw);
+const pulseFearCuriosityBalance = Math.cos(pulseMatrixTheta);
+const pulseEgoLoveBalance = Math.sin(pulseMatrixTheta);
+const pulseRingNoveltyPressure = pressureComponentFromUnit(
+  pulseFearCuriosityBalance,
+  pulsePressureRingScale,
+);
+const pulseRingFearPressure = pressureComponentFromUnit(
+  -pulseFearCuriosityBalance,
+  pulsePressureRingScale,
+);
+const pulseRingSymbiosisPressure = pressureComponentFromUnit(
+  pulseEgoLoveBalance,
+  pulsePressureRingScale,
+);
+const pulseRingEgoPressure = pressureComponentFromUnit(
+  -pulseEgoLoveBalance,
+  pulsePressureRingScale,
+);
+const pulseNoveltyAxisFromRing = pulsePressureRingEnabled &&
+  !hasEnvValue(rawNoveltyPressure);
+const pulseSymbiosisAxisFromRing = pulsePressureRingEnabled &&
+  !hasEnvValue(rawSymbiosisPressure);
+const pulseNoveltyPressure = pulseNoveltyAxisFromRing
+  ? pulseRingNoveltyPressure
+  : parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
+const pulseFearPressure = pulseNoveltyAxisFromRing ? pulseRingFearPressure : 0;
+const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
+  ? pulseRingSymbiosisPressure
+  : parseEnvBoundedInt(rawSymbiosisPressure, 0, 0, 2048);
+const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
+const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
+const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -264,8 +322,17 @@ const policyFingerprintSource = JSON.stringify({
     workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
+    pressureRingEnabled: pulsePressureRingEnabled,
+    pressureRingScale: pulsePressureRingScale,
+    matrixTheta: pulseMatrixTheta,
     noveltyPressure: pulseNoveltyPressure,
+    fearPressure: pulseFearPressure,
+    noveltyPressureSigned: pulseNoveltyPressureSigned,
     symbiosisPressure: pulseSymbiosisPressure,
+    egoPressure: pulseEgoPressure,
+    symbiosisPressureSigned: pulseSymbiosisPressureSigned,
+    fearCuriosityBalance: pulseFearCuriosityBalance,
+    egoLoveBalance: pulseEgoLoveBalance,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -372,8 +439,22 @@ export const RUNTIME_POLICY = {
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
     forceWasmPreflightFail: pulseForceWasmPreflightFail,
+    pressureRing: {
+      enabled: pulsePressureRingEnabled,
+      scale: pulsePressureRingScale,
+      theta: pulseMatrixTheta,
+      thetaRaw: pulseMatrixThetaRaw,
+      fearCuriosityBalance: pulseFearCuriosityBalance,
+      egoLoveBalance: pulseEgoLoveBalance,
+      noveltyAxisFromRing: pulseNoveltyAxisFromRing,
+      symbiosisAxisFromRing: pulseSymbiosisAxisFromRing,
+    },
     noveltyPressure: pulseNoveltyPressure,
+    fearPressure: pulseFearPressure,
+    noveltyPressureSigned: pulseNoveltyPressureSigned,
     symbiosisPressure: pulseSymbiosisPressure,
+    egoPressure: pulseEgoPressure,
+    symbiosisPressureSigned: pulseSymbiosisPressureSigned,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -389,6 +470,8 @@ export const RUNTIME_POLICY = {
       wasmBootPolicy: rawWasmBootPolicy !== undefined,
       wasmBootPrecheck: rawWasmBootPrecheck !== undefined,
       forceWasmPreflightFail: rawForceWasmPreflightFail !== undefined,
+      matrixTheta: hasEnvValue(rawMatrixTheta),
+      pressureRingScale: hasEnvValue(rawPressureRingScale),
       noveltyPressure: rawNoveltyPressure !== undefined,
       symbiosisPressure: rawSymbiosisPressure !== undefined,
       startupSelfTest: rawStartupSelfTest !== undefined,

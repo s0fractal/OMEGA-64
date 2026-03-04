@@ -41,6 +41,42 @@ const main = async () => {
   );
   requireSnippet(
     policy,
+    "OMEGA_MATRIX_THETA",
+    POLICY_PATH,
+    "Runtime policy must expose matrix theta env hook",
+    violations,
+  );
+  requireSnippet(
+    policy,
+    "OMEGA_PRESSURE_RING_SCALE",
+    POLICY_PATH,
+    "Runtime policy must expose pressure-ring scale env hook",
+    violations,
+  );
+  requireSnippet(
+    policy,
+    "pressureRing: {",
+    POLICY_PATH,
+    "Runtime policy pulse section must export pressure-ring topology",
+    violations,
+  );
+  requireSnippet(
+    policy,
+    "noveltyPressureSigned: pulseNoveltyPressureSigned",
+    POLICY_PATH,
+    "Runtime policy pulse section must export signed novelty pressure",
+    violations,
+  );
+  requireSnippet(
+    policy,
+    "symbiosisPressureSigned: pulseSymbiosisPressureSigned",
+    POLICY_PATH,
+    "Runtime policy pulse section must export signed symbiosis pressure",
+    violations,
+  );
+
+  requireSnippet(
+    policy,
     "noveltyPressure: pulseNoveltyPressure",
     POLICY_PATH,
     "Runtime policy pulse section must export novelty pressure value",
@@ -59,6 +95,13 @@ const main = async () => {
     "applyEvolutionPressureTerms",
     PULSE_PATH,
     "Pulse host-lock phase must define deterministic evolution pressure pass",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "RUNTIME_POLICY.pulse.pressureRing",
+    PULSE_PATH,
+    "Pulse must surface pressure-ring topology from runtime policy",
     violations,
   );
   requireSnippet(

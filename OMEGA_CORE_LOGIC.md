@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T14:40:15.868Z*
+*Generated: 2026-03-04T14:53:47.183Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: bc9ad53cf0a6fef92e9b9f8cd49ad45255ca46da421cb12525be9491a1d78008*
-*Git Commit: d67df9505d92*
+*Export Content SHA256: 2321b9f2a30ceddfd75cea0601dcd0c6e8748acf9ca63536eb50ec0cd1864ad1*
+*Git Commit: 246cf4158b44*
 
 ---
 
@@ -2602,10 +2602,11 @@ export context. It intentionally excludes historical era narratives.
 - `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
   `daemon_invariants.json`, and feeds invariant frames into the LLM decision
   loop before any external action proposal.
-- Host pulse now supports deterministic evolution pressure terms
-  (`OMEGA_NOVELTY_PRESSURE`, `OMEGA_SYMBIOSIS_PRESSURE`) that apply bounded
-  energy deltas during `HOST_LOCK` as rarity/symbiosis incentives without
-  modifying WASM ISA.
+- Host pulse now supports deterministic evolution pressure terms: direct
+  coefficients (`OMEGA_NOVELTY_PRESSURE`, `OMEGA_SYMBIOSIS_PRESSURE`) and a
+  phase-ring mode (`OMEGA_MATRIX_THETA`, `OMEGA_PRESSURE_RING_SCALE`) that
+  projects fear/curiosity + ego/love axes on the unit circle. Host applies
+  bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
 
 ## Governance and Integrity
 
@@ -10587,8 +10588,11 @@ const STARTUP_SELFTEST_FALLBACK_ENABLED =
 const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
 const STARTUP_SELFTEST_FORCE_BREACH =
   RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
-const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressure;
-const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressure;
+const PRESSURE_RING = RUNTIME_POLICY.pulse.pressureRing;
+const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressureSigned;
+const FEAR_PRESSURE = RUNTIME_POLICY.pulse.fearPressure;
+const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
+const EGO_PRESSURE = RUNTIME_POLICY.pulse.egoPressure;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -10745,7 +10749,8 @@ const applyEvolutionPressureTerms = (
   symbiosisDeltaRaw: number;
 } => {
   if (
-    (NOVELTY_PRESSURE <= 0 && SYMBIOSIS_PRESSURE <= 0) || activeIdx.length === 0
+    (NOVELTY_PRESSURE === 0 && SYMBIOSIS_PRESSURE === 0) ||
+    activeIdx.length === 0
   ) {
     return { adjusted: 0, noveltyDeltaRaw: 0, symbiosisDeltaRaw: 0 };
   }
@@ -10765,14 +10770,14 @@ const applyEvolutionPressureTerms = (
     const sameGenomeCount = genomeCounts.get(key) ?? 1;
 
     let noveltyTerm = 0;
-    if (NOVELTY_PRESSURE > 0) {
+    if (NOVELTY_PRESSURE !== 0) {
       noveltyTerm = Math.trunc(
         (NOVELTY_PRESSURE * (population - (sameGenomeCount * 2))) / population,
       );
     }
 
     let symbiosisTerm = 0;
-    if (SYMBIOSIS_PRESSURE > 0) {
+    if (SYMBIOSIS_PRESSURE !== 0) {
       const base = idx * 4;
       let crossGenomeBonds = 0;
       for (let slot = 0; slot < 4; slot++) {
@@ -10807,7 +10812,7 @@ const applyEvolutionPressureTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE}`,
+        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE}`,
       );
     }
   }
@@ -11190,11 +11195,17 @@ export const PULSE = {
     if (
       RUNTIME_POLICY.pulse.source.noveltyPressure ||
       RUNTIME_POLICY.pulse.source.symbiosisPressure ||
+      RUNTIME_POLICY.pulse.source.matrixTheta ||
+      RUNTIME_POLICY.pulse.source.pressureRingScale ||
       NOVELTY_PRESSURE > 0 ||
-      SYMBIOSIS_PRESSURE > 0
+      SYMBIOSIS_PRESSURE > 0 ||
+      FEAR_PRESSURE > 0 ||
+      EGO_PRESSURE > 0
     ) {
       LOGGER.info(
-        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE}.`,
+        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE} ring=${PRESSURE_RING.enabled} theta=${
+          PRESSURE_RING.theta.toFixed(4)
+        } scale=${PRESSURE_RING.scale}.`,
       );
     }
     if (
@@ -12454,6 +12465,7 @@ import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
+const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);
 const hasEnvValue = (raw: string | undefined): boolean =>
@@ -12472,6 +12484,24 @@ const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   }
   return "fail-fast";
 };
+const parseEnvBoundedFloat = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!hasEnvValue(raw)) return fallback;
+  const n = Number.parseFloat((raw ?? "").trim());
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+const normalizeTheta = (theta: number): number => {
+  if (!Number.isFinite(theta)) return 0;
+  const wrapped = theta % TAU;
+  return wrapped >= 0 ? wrapped : wrapped + TAU;
+};
+const pressureComponentFromUnit = (component: number, scale: number): number =>
+  Math.max(0, Math.min(2048, Math.round(Math.max(0, component) * scale)));
 
 const rawPort = readEnv("PORT");
 const rawSystemHost = readEnv("OMEGA_SYSTEM_HOST");
@@ -12501,6 +12531,8 @@ const rawWasmBootPrecheck = readEnv("OMEGA_WASM_BOOT_PRECHECK");
 const rawForceWasmPreflightFail = readEnv("OMEGA_FORCE_WASM_PREFLIGHT_FAIL");
 const rawNoveltyPressure = readEnv("OMEGA_NOVELTY_PRESSURE");
 const rawSymbiosisPressure = readEnv("OMEGA_SYMBIOSIS_PRESSURE");
+const rawMatrixTheta = readEnv("OMEGA_MATRIX_THETA");
+const rawPressureRingScale = readEnv("OMEGA_PRESSURE_RING_SCALE");
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -12607,13 +12639,50 @@ const pulseForceWasmPreflightFail = parseEnvBool(
   rawForceWasmPreflightFail,
   false,
 );
-const pulseNoveltyPressure = parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
-const pulseSymbiosisPressure = parseEnvBoundedInt(
-  rawSymbiosisPressure,
+const pulsePressureRingEnabled = hasEnvValue(rawMatrixTheta) ||
+  hasEnvValue(rawPressureRingScale);
+const pulsePressureRingScale = pulsePressureRingEnabled
+  ? parseEnvBoundedInt(rawPressureRingScale, 256, 0, 2048)
+  : 0;
+const pulseMatrixThetaRaw = parseEnvBoundedFloat(
+  rawMatrixTheta,
   0,
-  0,
-  2048,
+  -10_000_000,
+  10_000_000,
 );
+const pulseMatrixTheta = normalizeTheta(pulseMatrixThetaRaw);
+const pulseFearCuriosityBalance = Math.cos(pulseMatrixTheta);
+const pulseEgoLoveBalance = Math.sin(pulseMatrixTheta);
+const pulseRingNoveltyPressure = pressureComponentFromUnit(
+  pulseFearCuriosityBalance,
+  pulsePressureRingScale,
+);
+const pulseRingFearPressure = pressureComponentFromUnit(
+  -pulseFearCuriosityBalance,
+  pulsePressureRingScale,
+);
+const pulseRingSymbiosisPressure = pressureComponentFromUnit(
+  pulseEgoLoveBalance,
+  pulsePressureRingScale,
+);
+const pulseRingEgoPressure = pressureComponentFromUnit(
+  -pulseEgoLoveBalance,
+  pulsePressureRingScale,
+);
+const pulseNoveltyAxisFromRing = pulsePressureRingEnabled &&
+  !hasEnvValue(rawNoveltyPressure);
+const pulseSymbiosisAxisFromRing = pulsePressureRingEnabled &&
+  !hasEnvValue(rawSymbiosisPressure);
+const pulseNoveltyPressure = pulseNoveltyAxisFromRing
+  ? pulseRingNoveltyPressure
+  : parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
+const pulseFearPressure = pulseNoveltyAxisFromRing ? pulseRingFearPressure : 0;
+const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
+  ? pulseRingSymbiosisPressure
+  : parseEnvBoundedInt(rawSymbiosisPressure, 0, 0, 2048);
+const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
+const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
+const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -12716,8 +12785,17 @@ const policyFingerprintSource = JSON.stringify({
     workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
+    pressureRingEnabled: pulsePressureRingEnabled,
+    pressureRingScale: pulsePressureRingScale,
+    matrixTheta: pulseMatrixTheta,
     noveltyPressure: pulseNoveltyPressure,
+    fearPressure: pulseFearPressure,
+    noveltyPressureSigned: pulseNoveltyPressureSigned,
     symbiosisPressure: pulseSymbiosisPressure,
+    egoPressure: pulseEgoPressure,
+    symbiosisPressureSigned: pulseSymbiosisPressureSigned,
+    fearCuriosityBalance: pulseFearCuriosityBalance,
+    egoLoveBalance: pulseEgoLoveBalance,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -12824,8 +12902,22 @@ export const RUNTIME_POLICY = {
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
     forceWasmPreflightFail: pulseForceWasmPreflightFail,
+    pressureRing: {
+      enabled: pulsePressureRingEnabled,
+      scale: pulsePressureRingScale,
+      theta: pulseMatrixTheta,
+      thetaRaw: pulseMatrixThetaRaw,
+      fearCuriosityBalance: pulseFearCuriosityBalance,
+      egoLoveBalance: pulseEgoLoveBalance,
+      noveltyAxisFromRing: pulseNoveltyAxisFromRing,
+      symbiosisAxisFromRing: pulseSymbiosisAxisFromRing,
+    },
     noveltyPressure: pulseNoveltyPressure,
+    fearPressure: pulseFearPressure,
+    noveltyPressureSigned: pulseNoveltyPressureSigned,
     symbiosisPressure: pulseSymbiosisPressure,
+    egoPressure: pulseEgoPressure,
+    symbiosisPressureSigned: pulseSymbiosisPressureSigned,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -12841,6 +12933,8 @@ export const RUNTIME_POLICY = {
       wasmBootPolicy: rawWasmBootPolicy !== undefined,
       wasmBootPrecheck: rawWasmBootPrecheck !== undefined,
       forceWasmPreflightFail: rawForceWasmPreflightFail !== undefined,
+      matrixTheta: hasEnvValue(rawMatrixTheta),
+      pressureRingScale: hasEnvValue(rawPressureRingScale),
       noveltyPressure: rawNoveltyPressure !== undefined,
       symbiosisPressure: rawSymbiosisPressure !== undefined,
       startupSelfTest: rawStartupSelfTest !== undefined,
@@ -17198,6 +17292,29 @@ const buildTelemetry = async () => {
     avgEnergy: metrics.avgEnergy,
     dominantGenomes: dominantGenomes(active, 3),
     voxPopuli,
+    pulse_pressure: {
+      novelty_signed: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+      symbiosis_signed: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+      novelty: RUNTIME_POLICY.pulse.noveltyPressure,
+      fear: RUNTIME_POLICY.pulse.fearPressure,
+      symbiosis: RUNTIME_POLICY.pulse.symbiosisPressure,
+      ego: RUNTIME_POLICY.pulse.egoPressure,
+      ring: {
+        enabled: RUNTIME_POLICY.pulse.pressureRing.enabled,
+        theta: Number(RUNTIME_POLICY.pulse.pressureRing.theta.toFixed(6)),
+        scale: RUNTIME_POLICY.pulse.pressureRing.scale,
+        fear_curiosity_balance: Number(
+          RUNTIME_POLICY.pulse.pressureRing.fearCuriosityBalance.toFixed(6),
+        ),
+        ego_love_balance: Number(
+          RUNTIME_POLICY.pulse.pressureRing.egoLoveBalance.toFixed(6),
+        ),
+        novelty_axis_from_ring:
+          RUNTIME_POLICY.pulse.pressureRing.noveltyAxisFromRing,
+        symbiosis_axis_from_ring:
+          RUNTIME_POLICY.pulse.pressureRing.symbiosisAxisFromRing,
+      },
+    },
     daemon_governance: {
       safe_mode: safeMode.blocked,
       safe_mode_reason: safeMode.reason,

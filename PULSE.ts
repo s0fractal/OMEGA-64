@@ -28,8 +28,11 @@ const STARTUP_SELFTEST_FALLBACK_ENABLED =
 const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
 const STARTUP_SELFTEST_FORCE_BREACH =
   RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
-const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressure;
-const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressure;
+const PRESSURE_RING = RUNTIME_POLICY.pulse.pressureRing;
+const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressureSigned;
+const FEAR_PRESSURE = RUNTIME_POLICY.pulse.fearPressure;
+const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressureSigned;
+const EGO_PRESSURE = RUNTIME_POLICY.pulse.egoPressure;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -186,7 +189,8 @@ const applyEvolutionPressureTerms = (
   symbiosisDeltaRaw: number;
 } => {
   if (
-    (NOVELTY_PRESSURE <= 0 && SYMBIOSIS_PRESSURE <= 0) || activeIdx.length === 0
+    (NOVELTY_PRESSURE === 0 && SYMBIOSIS_PRESSURE === 0) ||
+    activeIdx.length === 0
   ) {
     return { adjusted: 0, noveltyDeltaRaw: 0, symbiosisDeltaRaw: 0 };
   }
@@ -206,14 +210,14 @@ const applyEvolutionPressureTerms = (
     const sameGenomeCount = genomeCounts.get(key) ?? 1;
 
     let noveltyTerm = 0;
-    if (NOVELTY_PRESSURE > 0) {
+    if (NOVELTY_PRESSURE !== 0) {
       noveltyTerm = Math.trunc(
         (NOVELTY_PRESSURE * (population - (sameGenomeCount * 2))) / population,
       );
     }
 
     let symbiosisTerm = 0;
-    if (SYMBIOSIS_PRESSURE > 0) {
+    if (SYMBIOSIS_PRESSURE !== 0) {
       const base = idx * 4;
       let crossGenomeBonds = 0;
       for (let slot = 0; slot < 4; slot++) {
@@ -248,7 +252,7 @@ const applyEvolutionPressureTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE}`,
+        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE}`,
       );
     }
   }
@@ -631,11 +635,17 @@ export const PULSE = {
     if (
       RUNTIME_POLICY.pulse.source.noveltyPressure ||
       RUNTIME_POLICY.pulse.source.symbiosisPressure ||
+      RUNTIME_POLICY.pulse.source.matrixTheta ||
+      RUNTIME_POLICY.pulse.source.pressureRingScale ||
       NOVELTY_PRESSURE > 0 ||
-      SYMBIOSIS_PRESSURE > 0
+      SYMBIOSIS_PRESSURE > 0 ||
+      FEAR_PRESSURE > 0 ||
+      EGO_PRESSURE > 0
     ) {
       LOGGER.info(
-        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE}.`,
+        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE} fear=${FEAR_PRESSURE} ego=${EGO_PRESSURE} ring=${PRESSURE_RING.enabled} theta=${
+          PRESSURE_RING.theta.toFixed(4)
+        } scale=${PRESSURE_RING.scale}.`,
       );
     }
     if (

@@ -65,10 +65,11 @@ export context. It intentionally excludes historical era narratives.
 - `OMEGA_DAEMON` runs an invariant-compressor pass each heartbeat, persists
   `daemon_invariants.json`, and feeds invariant frames into the LLM decision
   loop before any external action proposal.
-- Host pulse now supports deterministic evolution pressure terms
-  (`OMEGA_NOVELTY_PRESSURE`, `OMEGA_SYMBIOSIS_PRESSURE`) that apply bounded
-  energy deltas during `HOST_LOCK` as rarity/symbiosis incentives without
-  modifying WASM ISA.
+- Host pulse now supports deterministic evolution pressure terms: direct
+  coefficients (`OMEGA_NOVELTY_PRESSURE`, `OMEGA_SYMBIOSIS_PRESSURE`) and a
+  phase-ring mode (`OMEGA_MATRIX_THETA`, `OMEGA_PRESSURE_RING_SCALE`) that
+  projects fear/curiosity + ego/love axes on the unit circle. Host applies
+  bounded signed energy deltas during `HOST_LOCK` without modifying WASM ISA.
 
 ## Governance and Integrity
 

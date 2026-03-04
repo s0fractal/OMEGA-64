@@ -389,6 +389,29 @@ const buildTelemetry = async () => {
     avgEnergy: metrics.avgEnergy,
     dominantGenomes: dominantGenomes(active, 3),
     voxPopuli,
+    pulse_pressure: {
+      novelty_signed: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+      symbiosis_signed: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+      novelty: RUNTIME_POLICY.pulse.noveltyPressure,
+      fear: RUNTIME_POLICY.pulse.fearPressure,
+      symbiosis: RUNTIME_POLICY.pulse.symbiosisPressure,
+      ego: RUNTIME_POLICY.pulse.egoPressure,
+      ring: {
+        enabled: RUNTIME_POLICY.pulse.pressureRing.enabled,
+        theta: Number(RUNTIME_POLICY.pulse.pressureRing.theta.toFixed(6)),
+        scale: RUNTIME_POLICY.pulse.pressureRing.scale,
+        fear_curiosity_balance: Number(
+          RUNTIME_POLICY.pulse.pressureRing.fearCuriosityBalance.toFixed(6),
+        ),
+        ego_love_balance: Number(
+          RUNTIME_POLICY.pulse.pressureRing.egoLoveBalance.toFixed(6),
+        ),
+        novelty_axis_from_ring:
+          RUNTIME_POLICY.pulse.pressureRing.noveltyAxisFromRing,
+        symbiosis_axis_from_ring:
+          RUNTIME_POLICY.pulse.pressureRing.symbiosisAxisFromRing,
+      },
+    },
     daemon_governance: {
       safe_mode: safeMode.blocked,
       safe_mode_reason: safeMode.reason,
