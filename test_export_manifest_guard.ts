@@ -226,9 +226,7 @@ const main = async () => {
       }`,
     );
   }
-  const experimentalInRoots = experimental.filter((x) =>
-    runtimeRootSet.has(x)
-  );
+  const experimentalInRoots = experimental.filter((x) => runtimeRootSet.has(x));
   if (experimentalInRoots.length > 0) {
     throw new Error(
       `[manifest] experimental_files overlaps runtime_root_files:\n${
@@ -255,6 +253,11 @@ const main = async () => {
   }
   if (!exporter.includes("Manifest SHA256")) {
     throw new Error("[manifest] export_core.ts must emit manifest provenance");
+  }
+  if (!exporter.includes("Export Content SHA256")) {
+    throw new Error(
+      "[manifest] export_core.ts must emit export-content provenance",
+    );
   }
   if (!/renderCoreExport/u.test(exporter)) {
     throw new Error("[manifest] export_core.ts must expose renderCoreExport");

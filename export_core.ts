@@ -66,7 +66,13 @@ type LoadedManifest = {
 type ExportProvenance = {
   manifestSha256: string;
   exportSetSha256: string;
+  exportContentSha256: string;
   gitCommit: string;
+};
+
+type ExportFileContent = {
+  file: string;
+  content: string;
 };
 
 const hasTestLikeName = (path: string): boolean =>
@@ -153,7 +159,9 @@ const loadManifest = async (): Promise<LoadedManifest> => {
   }
   const coreEntrySet = new Set(coreEntryFiles);
   const runtimeRootSet = new Set(runtimeRootFiles);
-  const missingRootInCore = runtimeRootFiles.filter((f) => !coreEntrySet.has(f));
+  const missingRootInCore = runtimeRootFiles.filter((f) =>
+    !coreEntrySet.has(f)
+  );
   if (missingRootInCore.length > 0) {
     throw new Error(
       `${MANIFEST_PATH}: core_entry_files must include all runtime_root_files:\n${
@@ -486,14 +494,21 @@ export const buildExportFileList = async (): Promise<
 const buildExportProvenance = async (
   era: string,
   files: string[],
+  fileContents: ExportFileContent[],
 ): Promise<ExportProvenance> => {
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
-  const [manifestSha256, exportSetSha256, gitCommit] = await Promise.all([
-    sha256Hex(manifestRaw),
-    sha256Hex(`${era}\n${files.join("\n")}`),
-    readGitCommit(),
-  ]);
-  return { manifestSha256, exportSetSha256, gitCommit };
+  const contentSignatureInput = `${era}\n${
+    fileContents.map(({ file, content }) => `>>> ${file}\n${content}\n<<<`)
+      .join("\n")
+  }`;
+  const [manifestSha256, exportSetSha256, exportContentSha256, gitCommit] =
+    await Promise.all([
+      sha256Hex(manifestRaw),
+      sha256Hex(`${era}\n${files.join("\n")}`),
+      sha256Hex(contentSignatureInput),
+      readGitCommit(),
+    ]);
+  return { manifestSha256, exportSetSha256, exportContentSha256, gitCommit };
 };
 
 export const renderCoreExport = async (): Promise<
@@ -518,7 +533,12 @@ export const renderCoreExport = async (): Promise<
     runtimeSupportCodeFiles,
     experimentalCodeFiles,
   } = await buildExportFileList();
-  const provenance = await buildExportProvenance(era, files);
+  const fileContents: ExportFileContent[] = [];
+  for (const file of files) {
+    const content = await Deno.readTextFile(file);
+    fileContents.push({ file, content });
+  }
+  const provenance = await buildExportProvenance(era, files, fileContents);
 
   let output = `# OMEGA-64 | CORE LOGIC (ERA ${era}: THE COHERENT LATTICE)\n\n`;
   output += `*Generated: ${new Date().toISOString()}*\n`;
@@ -530,6 +550,7 @@ export const renderCoreExport = async (): Promise<
   output += `*Experimental Code Files: ${experimentalCodeFiles.length}*\n`;
   output += `*Manifest SHA256: ${provenance.manifestSha256}*\n`;
   output += `*Export Set SHA256: ${provenance.exportSetSha256}*\n`;
+  output += `*Export Content SHA256: ${provenance.exportContentSha256}*\n`;
   output += `*Git Commit: ${provenance.gitCommit}*\n\n---\n\n`;
 
   output += `## ACTIVE RUNTIME ROOTS\n\n`;
@@ -574,8 +595,7 @@ export const renderCoreExport = async (): Promise<
   }
   output += `\n---\n\n`;
 
-  for (const file of files) {
-    const content = await Deno.readTextFile(file);
+  for (const { file, content } of fileContents) {
     output += `## FILE: ${file}\n\n`;
     output += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
   }
