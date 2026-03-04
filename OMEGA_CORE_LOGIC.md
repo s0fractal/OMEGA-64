@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:01:02.623Z*
+*Generated: 2026-03-04T11:03:31.554Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: ba6ef79e3bd3*
+*Git Commit: b83365532ffb*
 
 ---
 
@@ -1717,7 +1717,7 @@ export context. It intentionally excludes historical era narratives.
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window.
+   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -16984,6 +16984,30 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         justify-content: space-between;
         gap: 8px;
       }
+      .drift-severity {
+        display: inline-block;
+        padding: 1px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+      }
+      .drift-severity-low {
+        color: #7fffd4;
+        border-color: rgba(127, 255, 212, 0.45);
+      }
+      .drift-severity-mid {
+        color: #ffd27a;
+        border-color: rgba(255, 210, 122, 0.45);
+      }
+      .drift-severity-high {
+        color: #ff8a8a;
+        border-color: rgba(255, 138, 138, 0.55);
+      }
+      .drift-severity-baseline {
+        color: #9fe8ff;
+        border-color: rgba(159, 232, 255, 0.45);
+      }
       .human-btn {
         margin-top: 6px;
         width: 100%;
@@ -17148,6 +17172,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       <div id="human-channel" class="codex-row">
         <div class="human-channel-header">
           <div class="codex-row-title">🗣 Human Channel</div>
+          <div id="human-drift-severity" class="drift-severity drift-severity-baseline">BASELINE</div>
         </div>
         <div id="human-explanation" class="codex-row-body">
           Awaiting telemetry and codex narrative...
@@ -17691,14 +17716,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return reference;
       }
 
-      function buildDriftExplanation() {
+      function analyzeDrift() {
         if (driftHistory.length < 2) {
-          return "Collecting drift baseline. Re-run after ~90 seconds for directionality.";
+          return {
+            text: "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
+            severity: "BASELINE",
+          };
         }
         const latest = driftHistory[driftHistory.length - 1];
         const reference = findDriftReference();
         if (!reference) {
-          return "Drift reference unavailable. Continue observing to accumulate temporal contrast.";
+          return {
+            text: "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
+            severity: "BASELINE",
+          };
         }
 
         const elapsedSec = Math.max(1, Math.round((latest.ts - reference.ts) / 1000));
@@ -17729,13 +17760,46 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           ? `codex mood shifted (${reference.mood} → ${latest.mood})`
           : `codex mood held at ${latest.mood}`;
 
-        return `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`;
+        let score = 0;
+        const absPop = Math.abs(deltaPopulation);
+        const absEnergy = Math.abs(deltaEnergy);
+        if (absPop >= 40) score += 2;
+        else if (absPop >= 15) score += 1;
+        if (absEnergy >= 3) score += 2;
+        else if (absEnergy >= 1.25) score += 1;
+        if (dominantShifted) score += 1;
+        if (moodShifted) score += 1;
+        const severity = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
+
+        return {
+          text:
+            `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
+          severity,
+        };
+      }
+
+      function applyDriftSeverityBadge(severity) {
+        const badge = document.getElementById("human-drift-severity");
+        if (!badge) return;
+        const normalized = String(severity || "BASELINE").toUpperCase();
+        badge.textContent = normalized;
+        badge.className = "drift-severity";
+        if (normalized === "LOW") badge.classList.add("drift-severity-low");
+        else if (normalized === "MID") badge.classList.add("drift-severity-mid");
+        else if (normalized === "HIGH") badge.classList.add("drift-severity-high");
+        else badge.classList.add("drift-severity-baseline");
+      }
+
+      function buildDriftExplanation() {
+        return analyzeDrift().text;
       }
 
       function renderHumanDrift() {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
-        node.textContent = buildDriftExplanation();
+        const analysis = analyzeDrift();
+        node.textContent = analysis.text;
+        applyDriftSeverityBadge(analysis.severity);
       }
 
       function renderHumanExplanation() {

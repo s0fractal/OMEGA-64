@@ -41,6 +41,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-drift-severity"',
+    "UI must render drift severity badge surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildHumanExplanation",
     "UI must synthesize human-readable explanation",
     violations,
@@ -49,6 +55,12 @@ const main = async () => {
     ui,
     "buildDriftExplanation",
     "UI must synthesize human-readable drift explanation",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "applyDriftSeverityBadge",
+    "UI must map drift analysis to LOW/MID/HIGH badge states",
     violations,
   );
   requireSnippet(
