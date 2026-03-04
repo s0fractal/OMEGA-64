@@ -43,6 +43,27 @@ type DaemonInjectEnvelope = {
   };
 };
 
+type DaemonNarrativeContext = {
+  mood: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+};
+
+type DaemonInvariantAdmission = {
+  score: number;
+  severity: "LOW" | "MID" | "HIGH";
+  reasons: string[];
+  context: DaemonNarrativeContext;
+};
+
+type DaemonIngressPlan = {
+  requested: DaemonInjectEnvelope;
+  applied: DaemonInjectEnvelope;
+  degraded: boolean;
+  degradeReason: string | null;
+  admission: DaemonInvariantAdmission;
+};
+
 type RuntimeMetrics = {
   tick: number;
   population: number;
@@ -116,6 +137,11 @@ const DAEMON_SAFE_MIN_POPULATION = DAEMON_POLICY.safeMinPopulation;
 const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_POLICY.safeMinAvgEnergy;
 const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
 const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
+const DAEMON_INVARIANT_DRIFT_MID_SCORE = 2;
+const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = 4;
+const DAEMON_INVARIANT_MID_RATIO = 0.6;
+const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
+const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -345,6 +371,8 @@ const buildTelemetry = async () => {
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+      invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
+      invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
     },
   };
 };
@@ -402,6 +430,187 @@ const parseDaemonInjectEnvelope = (
       intensity,
       hex_code: hexCode,
     },
+  };
+};
+
+const normalizeDaemonNarrativeContext = (
+  narrative: Awaited<ReturnType<typeof AKASHA_CODEX.getNarrative>>,
+): DaemonNarrativeContext => {
+  const mood = typeof narrative?.mood === "string"
+    ? narrative.mood.trim().toUpperCase()
+    : "STABLE";
+  const sharedCenter = typeof narrative?.sharedCenter === "string" &&
+      narrative.sharedCenter.trim().length > 0
+    ? narrative.sharedCenter.trim()
+    : "tick.exists";
+  const dominantInvariantVector =
+    typeof narrative?.invariantHighlights?.[0]?.dominantVector === "string" &&
+      narrative.invariantHighlights[0].dominantVector.trim().length > 0
+      ? narrative.invariantHighlights[0].dominantVector.trim()
+      : "none";
+  return { mood, sharedCenter, dominantInvariantVector };
+};
+
+const evaluateInvariantAdmission = (
+  envelope: DaemonInjectEnvelope,
+  metrics: RuntimeMetrics,
+  context: DaemonNarrativeContext,
+): DaemonInvariantAdmission => {
+  let score = 0;
+  const reasons: string[] = [];
+  if (context.mood === "FRAGILE") {
+    score += 2;
+    reasons.push("NARRATIVE_MOOD_FRAGILE");
+  }
+
+  if (metrics.population <= Math.max(DAEMON_SAFE_MIN_POPULATION * 2, 24)) {
+    score += 1;
+    reasons.push("POPULATION_NEAR_SAFE_FLOOR");
+  }
+  if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 4) {
+    score += 2;
+    reasons.push("ENERGY_NEAR_SAFE_FLOOR");
+  } else if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 12) {
+    score += 1;
+    reasons.push("ENERGY_LOW_GRADIENT");
+  }
+
+  const normalizedVector = context.dominantInvariantVector.toUpperCase();
+  if (normalizedVector.includes("SCARCITY")) {
+    score += 1;
+    reasons.push("INVARIANT_SCARCITY_VECTOR");
+  } else if (normalizedVector.includes("TENSION")) {
+    score += 1;
+    reasons.push("INVARIANT_TENSION_VECTOR");
+  }
+
+  if (envelope.action_type === "INJECT_PLASMID") {
+    const ratio = envelope.payload.intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE;
+    if (ratio >= 0.8) {
+      score += 2;
+      reasons.push("PLASMID_INTENSITY_HIGH");
+    } else if (ratio >= 0.55) {
+      score += 1;
+      reasons.push("PLASMID_INTENSITY_MID");
+    }
+    if (context.mood === "FRAGILE") {
+      score += 1;
+      reasons.push("PLASMID_IN_FRAGILE_MOOD");
+    }
+  } else if (envelope.action_type === "DROP_PHEROMONE") {
+    const ratio = envelope.payload.intensity /
+      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
+    if (ratio >= 0.85) {
+      score += 1;
+      reasons.push("PHEROMONE_INTENSITY_HIGH");
+    }
+  }
+
+  const severity = score >= DAEMON_INVARIANT_DRIFT_HIGH_SCORE
+    ? "HIGH"
+    : score >= DAEMON_INVARIANT_DRIFT_MID_SCORE
+    ? "MID"
+    : "LOW";
+  if (reasons.length === 0) reasons.push("DRIFT_LOW");
+  return { score, severity, reasons, context };
+};
+
+const planInvariantIngress = (
+  envelope: DaemonInjectEnvelope,
+  admission: DaemonInvariantAdmission,
+): DaemonIngressPlan => {
+  if (admission.severity === "LOW") {
+    return {
+      requested: envelope,
+      applied: envelope,
+      degraded: false,
+      degradeReason: null,
+      admission,
+    };
+  }
+
+  if (admission.severity === "MID") {
+    if (envelope.action_type === "INJECT_PLASMID") {
+      const capped = Math.max(
+        DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
+        Math.round(
+          DAEMON_POLICY_MAX_PLASMID_CHARGE * DAEMON_INVARIANT_MID_RATIO,
+        ),
+      );
+      return {
+        requested: envelope,
+        applied: {
+          action_type: "INJECT_PLASMID",
+          payload: {
+            ...envelope.payload,
+            intensity: clamp(envelope.payload.intensity, 1, capped),
+          },
+        },
+        degraded: true,
+        degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
+        admission,
+      };
+    }
+    const capped = Math.max(
+      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
+      Math.round(
+        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY * DAEMON_INVARIANT_MID_RATIO,
+      ),
+    );
+    return {
+      requested: envelope,
+      applied: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          ...envelope.payload,
+          intensity: clamp(envelope.payload.intensity, 1, capped),
+        },
+      },
+      degraded: true,
+      degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
+      admission,
+    };
+  }
+
+  if (envelope.action_type === "INJECT_PLASMID") {
+    const softened = clamp(
+      Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
+      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
+      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+    );
+    return {
+      requested: envelope,
+      applied: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          target_x: envelope.payload.target_x,
+          target_y: envelope.payload.target_y,
+          intensity: softened,
+        },
+      },
+      degraded: true,
+      degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+      admission,
+    };
+  }
+
+  const softened = clamp(
+    Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
+    DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
+    DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+  );
+  return {
+    requested: envelope,
+    applied: {
+      action_type: "DROP_PHEROMONE",
+      payload: {
+        ...envelope.payload,
+        intensity: softened,
+      },
+    },
+    degraded: true,
+    degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_INTENSITY",
+    admission,
   };
 };
 
@@ -598,9 +807,100 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      if (envelope.action_type === "DROP_PHEROMONE") {
+      if (envelope.action_type === "INJECT_PLASMID") {
+        if (!envelope.payload.hex_code) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_missing_hex",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "INVALID_PLASMID_PAYLOAD",
+              expected: "hex_code must be 16 hex chars",
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
+        if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_plasmid_charge",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+              max: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
+        const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
+        if (!plasmidPolicy.ok) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_plasmid_rule",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: plasmidPolicy.reason,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+      }
+
+      const narrativeContext = normalizeDaemonNarrativeContext(
+        await AKASHA_CODEX.getNarrative(3),
+      );
+      const ingressPlan = planInvariantIngress(
+        envelope,
+        evaluateInvariantAdmission(envelope, baseline, narrativeContext),
+      );
+      const applied = ingressPlan.applied;
+
+      if (ingressPlan.degraded) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: ingressPlan.admission.severity === "HIGH"
+            ? "daemon_invariant_degrade_high"
+            : "daemon_invariant_degrade_mid",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_DEGRADED",
+          tick: baseline.tick,
+          requested_action: ingressPlan.requested.action_type,
+          applied_action: ingressPlan.applied.action_type,
+          requested_payload: ingressPlan.requested.payload,
+          applied_payload: ingressPlan.applied.payload,
+          degrade_reason: ingressPlan.degradeReason,
+          admission: ingressPlan.admission,
+          metrics: baseline,
+          budget,
+        });
+        AKASHA_CODEX.recordDaemonAdmission(
+          baseline.tick,
+          ingressPlan.requested.action_type,
+          ingressPlan.applied.action_type,
+          ingressPlan.admission.severity,
+          ingressPlan.admission.score,
+          ingressPlan.degradeReason ?? "INVARIANT_DEGRADED",
+          ingressPlan.admission.context.sharedCenter,
+          ingressPlan.admission.context.dominantInvariantVector,
+        );
+      }
+
+      if (applied.action_type === "DROP_PHEROMONE") {
         if (
-          envelope.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
+          applied.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
         ) {
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
@@ -617,9 +917,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           );
         }
         const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
-          envelope.payload.target_x,
-          envelope.payload.target_y,
-          envelope.payload.intensity,
+          applied.payload.target_x,
+          applied.payload.target_y,
+          applied.payload.intensity,
           "external_daemon",
         );
         const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
@@ -627,10 +927,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           queueDaemonAudit({
             auditId,
             action: "DROP_PHEROMONE",
-            requestedAction: envelope.action_type,
-            targetX: envelope.payload.target_x,
-            targetY: envelope.payload.target_y,
-            intensity: envelope.payload.intensity,
+            requestedAction: ingressPlan.requested.action_type,
+            targetX: applied.payload.target_x,
+            targetY: applied.payload.target_y,
+            intensity: applied.payload.intensity,
             queued: queued.ok,
             queueReason: queued.reason,
             queuedStatus: queued.status,
@@ -644,18 +944,31 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           audit_id: auditId,
           tick: baseline.tick,
           action: "DROP_PHEROMONE",
-          payload: envelope.payload,
+          requested_action: ingressPlan.requested.action_type,
+          payload: applied.payload,
           queue: queued,
           metrics: baseline,
           budget,
+          admission: ingressPlan.admission,
+          degraded: ingressPlan.degraded,
+          degrade_reason: ingressPlan.degradeReason,
         });
-        return new Response(JSON.stringify(queued), {
-          status: queued.status,
-          headers: JSON_HEADERS,
-        });
+        return new Response(
+          JSON.stringify({
+            ...queued,
+            admission: ingressPlan.admission,
+            degraded: ingressPlan.degraded,
+            degrade_reason: ingressPlan.degradeReason,
+            applied_action: "DROP_PHEROMONE",
+          }),
+          {
+            status: queued.status,
+            headers: JSON_HEADERS,
+          },
+        );
       }
 
-      if (!envelope.payload.hex_code) {
+      if (!applied.payload.hex_code) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_policy_block_missing_hex",
@@ -671,43 +984,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_block_plasmid_charge",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
-            max: DAEMON_POLICY_MAX_PLASMID_CHARGE,
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
-      if (!plasmidPolicy.ok) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_block_plasmid_rule",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: plasmidPolicy.reason,
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
       const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
-        envelope.payload.target_x,
-        envelope.payload.target_y,
-        envelope.payload.hex_code,
-        envelope.payload.intensity,
+        applied.payload.target_x,
+        applied.payload.target_y,
+        applied.payload.hex_code,
+        applied.payload.intensity,
         "external_daemon",
       );
       const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
@@ -715,11 +996,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         queueDaemonAudit({
           auditId,
           action: "INJECT_PLASMID",
-          requestedAction: envelope.action_type,
-          targetX: envelope.payload.target_x,
-          targetY: envelope.payload.target_y,
-          intensity: envelope.payload.intensity,
-          hexCode: envelope.payload.hex_code,
+          requestedAction: ingressPlan.requested.action_type,
+          targetX: applied.payload.target_x,
+          targetY: applied.payload.target_y,
+          intensity: applied.payload.intensity,
+          hexCode: applied.payload.hex_code,
           queued: queued.ok,
           queueReason: queued.reason,
           queuedStatus: queued.status,
@@ -733,15 +1014,28 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         audit_id: auditId,
         tick: baseline.tick,
         action: "INJECT_PLASMID",
-        payload: envelope.payload,
+        requested_action: ingressPlan.requested.action_type,
+        payload: applied.payload,
         queue: queued,
         metrics: baseline,
         budget,
+        admission: ingressPlan.admission,
+        degraded: ingressPlan.degraded,
+        degrade_reason: ingressPlan.degradeReason,
       });
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: JSON_HEADERS,
-      });
+      return new Response(
+        JSON.stringify({
+          ...queued,
+          admission: ingressPlan.admission,
+          degraded: ingressPlan.degraded,
+          degrade_reason: ingressPlan.degradeReason,
+          applied_action: "INJECT_PLASMID",
+        }),
+        {
+          status: queued.status,
+          headers: JSON_HEADERS,
+        },
+      );
     } catch (err) {
       MUTATION_TELEMETRY.record({
         lane: "external_daemon",

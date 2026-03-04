@@ -1069,6 +1069,28 @@ export const AKASHA_CODEX = {
       await appendChronicle(tick, "market_resolution", title, body);
     });
   },
+  recordDaemonAdmission: (
+    tick: number,
+    requestedAction: string,
+    appliedAction: string,
+    severity: "LOW" | "MID" | "HIGH",
+    score: number,
+    reason: string,
+    sharedCenter: string,
+    dominantVector: string,
+  ): void => {
+    if (!started) return;
+    if (severity === "LOW") return;
+    enqueueWrite(async () => {
+      const title =
+        `Daemon Admission ${severity}: ${requestedAction} -> ${appliedAction}`;
+      const body =
+        `Ingress action was degraded due to invariant drift score ${score}. ` +
+        `Reason: ${reason}. Shared center: ${sharedCenter}. ` +
+        `Dominant invariant vector: ${dominantVector}.`;
+      await appendChronicle(tick, "daemon_admission", title, body);
+    });
+  },
   getChronicleContext: async (limit: number = 3): Promise<string> => {
     await ensureStorage();
     const take = Math.max(1, Math.min(12, Math.floor(limit)));

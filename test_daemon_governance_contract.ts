@@ -62,6 +62,34 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "evaluateInvariantAdmission",
+    SYSTEM_START_PATH,
+    "Daemon ingress must evaluate invariant drift before applying external actions",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "planInvariantIngress",
+    SYSTEM_START_PATH,
+    "Daemon ingress must degrade high-drift actions instead of hard-blocking",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "DAEMON_DEGRADED",
+    SYSTEM_START_PATH,
+    "Daemon ingress must audit degraded invariant admissions",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "AKASHA_CODEX.recordDaemonAdmission",
+    SYSTEM_START_PATH,
+    "Daemon ingress must publish degraded admission reasons into codex chronicles",
+    violations,
+  );
+  requireSnippet(
+    system,
     "flushDaemonAuditEffects(",
     SYSTEM_START_PATH,
     "Daemon loop must flush deferred effect audits",

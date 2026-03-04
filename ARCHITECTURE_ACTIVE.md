@@ -66,6 +66,12 @@ export context. It intentionally excludes historical era narratives.
 ## Governance and Integrity
 
 - Mutation authority is centralized at `GATE.MUTATE`.
+- Daemon ingress (`/api/inject`) now includes an invariant admission layer:
+  action plans are scored against codex narrative context (`sharedCenter`,
+  dominant invariant vector, safety floors). `MID/HIGH` drift is degraded
+  (intensity clamp or plasmid->pheromone conversion) instead of hard blocking.
+  Degradation rationale is written to daemon audit log and codex chronicles
+  (`daemon_admission`) for operator visibility in narrative surfaces.
 - Bridge/policy/invariant checks are validated before commit.
 - Ledger (`LEDGER__08_00_LEDGER`) uses hash-chain anchoring: `chain_version`,
   `prev_event_hash`, `event_hash`.
