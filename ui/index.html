@@ -258,6 +258,12 @@
         font-size: 0.6rem;
         opacity: 0.65;
       }
+      #human-drift-breakdown {
+        margin-top: 4px;
+        font-size: 0.62rem;
+        opacity: 0.78;
+        font-family: "Courier New", monospace;
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -420,6 +426,9 @@
         <button id="human-explain-btn" class="human-btn">Explain Current State</button>
         <div id="human-drift-explanation" class="codex-row-body codex-row-subtle">
           Drift baseline is forming...
+        </div>
+        <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
         </div>
         <button id="human-drift-btn" class="human-btn">Explain Drift (90s)</button>
         <div id="human-channel-stamp">Updated: --</div>
@@ -961,6 +970,8 @@
           return {
             text: "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
             severity: "BASELINE",
+            breakdown:
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
           };
         }
         const latest = driftHistory[driftHistory.length - 1];
@@ -969,6 +980,8 @@
           return {
             text: "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
             severity: "BASELINE",
+            breakdown:
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
           };
         }
 
@@ -1011,10 +1024,18 @@
         if (moodShifted) score += 1;
         const severity = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
 
+        const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
+        const energyImpact = absEnergy >= 3 ? 2 : absEnergy >= 1.25 ? 1 : 0;
+        const genomeImpact = dominantShifted ? 1 : 0;
+        const moodImpact = moodShifted ? 1 : 0;
+        const breakdown =
+          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+
         return {
           text:
             `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
           severity,
+          breakdown,
         };
       }
 
@@ -1060,8 +1081,10 @@
       function renderHumanDrift() {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
+        const breakdownNode = document.getElementById("human-drift-breakdown");
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
+        if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);
       }

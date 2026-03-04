@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:20:39.294Z*
+*Generated: 2026-03-04T11:23:14.074Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: 7ff98e4e1eed*
+*Git Commit: b81fb1819b5c*
 
 ---
 
@@ -1717,8 +1717,8 @@ export context. It intentionally excludes historical era narratives.
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge and
-   scene halo tint.
+   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
+   component score breakdown, and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -17030,6 +17030,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         font-size: 0.6rem;
         opacity: 0.65;
       }
+      #human-drift-breakdown {
+        margin-top: 4px;
+        font-size: 0.62rem;
+        opacity: 0.78;
+        font-family: "Courier New", monospace;
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -17192,6 +17198,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         <button id="human-explain-btn" class="human-btn">Explain Current State</button>
         <div id="human-drift-explanation" class="codex-row-body codex-row-subtle">
           Drift baseline is forming...
+        </div>
+        <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
+          score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
         </div>
         <button id="human-drift-btn" class="human-btn">Explain Drift (90s)</button>
         <div id="human-channel-stamp">Updated: --</div>
@@ -17733,6 +17742,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           return {
             text: "Collecting drift baseline. Re-run after ~90 seconds for directionality.",
             severity: "BASELINE",
+            breakdown:
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
           };
         }
         const latest = driftHistory[driftHistory.length - 1];
@@ -17741,6 +17752,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           return {
             text: "Drift reference unavailable. Continue observing to accumulate temporal contrast.",
             severity: "BASELINE",
+            breakdown:
+              "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
           };
         }
 
@@ -17783,10 +17796,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (moodShifted) score += 1;
         const severity = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
 
+        const popImpact = absPop >= 40 ? 2 : absPop >= 15 ? 1 : 0;
+        const energyImpact = absEnergy >= 3 ? 2 : absEnergy >= 1.25 ? 1 : 0;
+        const genomeImpact = dominantShifted ? 1 : 0;
+        const moodImpact = moodShifted ? 1 : 0;
+        const breakdown =
+          `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+
         return {
           text:
             `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
           severity,
+          breakdown,
         };
       }
 
@@ -17832,8 +17853,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function renderHumanDrift() {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
+        const breakdownNode = document.getElementById("human-drift-breakdown");
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
+        if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);
       }
