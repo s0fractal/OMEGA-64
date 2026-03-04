@@ -15,6 +15,8 @@ export context. It intentionally excludes historical era narratives.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`)
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
+   Observer human channel in `ui/index.html` fuses `/api/telemetry` and
+   `/codex/narrative` into plain-language state summaries.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -80,6 +82,7 @@ Primary chain:
 - `test:runtime-experimental-boundary`
 - `test:codex-narrative-contract`
 - `test:ui-codex-narrative-contract`
+- `test:ui-human-channel-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests

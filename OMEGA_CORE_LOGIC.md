@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T10:53:07.162Z*
+*Generated: 2026-03-04T10:56:50.262Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,7 +9,7 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Git Commit: a7c8d3d608b9*
+*Git Commit: e517cdd34a83*
 
 ---
 
@@ -1715,6 +1715,8 @@ export context. It intentionally excludes historical era narratives.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`)
    Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
+   Observer human channel in `ui/index.html` fuses `/api/telemetry` and
+   `/codex/narrative` into plain-language state summaries.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -1780,6 +1782,7 @@ Primary chain:
 - `test:runtime-experimental-boundary`
 - `test:codex-narrative-contract`
 - `test:ui-codex-narrative-contract`
+- `test:ui-human-channel-contract`
 - `test:export-manifest`
 - `vector10:verify`
 - determinism/parity/projection/bridge/index/ledger/checkpoint runtime tests
@@ -16970,6 +16973,37 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         color: #ffb27a;
         border-color: rgba(255, 178, 122, 0.45);
       }
+      #human-channel {
+        margin-top: 10px;
+        border-left-color: #9fe8ff;
+      }
+      .human-channel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .human-btn {
+        margin-top: 6px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(159, 232, 255, 0.5);
+        background: rgba(15, 55, 85, 0.5);
+        color: #9fe8ff;
+        font-size: 0.68rem;
+        letter-spacing: 0.6px;
+        cursor: pointer;
+      }
+      .human-btn:hover {
+        background: rgba(30, 80, 120, 0.6);
+      }
+      #human-channel-stamp {
+        margin-top: 5px;
+        font-size: 0.6rem;
+        opacity: 0.65;
+      }
       .species-row {
         margin-top: 10px;
         padding: 6px;
@@ -17110,6 +17144,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       <div id="codex-content" style="margin-top: 8px;">
         <div style="opacity: 0.5; margin-top: 10px; font-style: italic;">Awaiting chronicles and narrative...</div>
       </div>
+      <div id="human-channel" class="codex-row">
+        <div class="human-channel-header">
+          <div class="codex-row-title">🗣 Human Channel</div>
+        </div>
+        <div id="human-explanation" class="codex-row-body">
+          Awaiting telemetry and codex narrative...
+        </div>
+        <button id="human-explain-btn" class="human-btn">Explain Current State</button>
+        <div id="human-channel-stamp">Updated: --</div>
+      </div>
     </div>
 
     <div id="vox">
@@ -17233,6 +17277,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let roleFlags = new Uint8Array(MAX_ATOMS);
       let codexSnapshot = { species: [], chronicles: [], relics: [], population: { current: 0, peak: 0 } };
       let codexNarrative = { mood: "STABLE", title: "", summary: "", relicStatus: "", recentChronicles: [] };
+      let telemetrySnapshot = { tick: 0, avgEnergy: 0, dominantGenomes: [], voxPopuli: [] };
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
       const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -17547,6 +17592,91 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         container.innerHTML = rows.join("");
       }
 
+      function nowClock() {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        return `${hh}:${mm}:${ss}`;
+      }
+
+      function inferDominantSpeciesLabel() {
+        const dominant = Array.isArray(telemetrySnapshot.dominantGenomes)
+          ? telemetrySnapshot.dominantGenomes[0]
+          : null;
+        if (!dominant || typeof dominant !== "string") return "Unclassified lineage";
+        const found = (codexSnapshot.species || []).find((entry) => entry.genome === dominant);
+        if (found && found.latinName) return found.latinName;
+        return `Genome ${dominant.slice(0, 8)}`;
+      }
+
+      function buildHumanExplanation() {
+        const mood = String(codexNarrative?.mood || "STABLE").toLowerCase();
+        const moodPhrase = mood === "ascendant"
+          ? "the lattice is expanding"
+          : mood === "fragile"
+          ? "the lattice is in a fragile recovery window"
+          : "the lattice is holding a stable coherence arc";
+        const tick = Number(telemetrySnapshot?.tick || 0);
+        const avgEnergy = Number(telemetrySnapshot?.avgEnergy || 0);
+        const dominantSpecies = inferDominantSpeciesLabel();
+        const narrativeTitle = String(codexNarrative?.title || "Codex arc");
+        const narrativeSummary = String(codexNarrative?.summary || "Codex narrative is still forming.");
+        const relicStatus = String(codexNarrative?.relicStatus || "Relic status unavailable.");
+        const vox = Array.isArray(telemetrySnapshot?.voxPopuli) && telemetrySnapshot.voxPopuli.length > 0
+          ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
+          : "";
+
+        let text =
+          `At tick ${tick}, ${moodPhrase}. ` +
+          `Dominant lineage: ${dominantSpecies}. ` +
+          `Average energy is ${avgEnergy.toFixed(1)}. ` +
+          `${narrativeTitle}: ${narrativeSummary}`;
+        if (relicStatus && relicStatus.length > 0) {
+          text += ` ${relicStatus}`;
+        }
+        if (vox.length > 0) {
+          text += ` Vox signal: "${vox}".`;
+        }
+        return text.trim();
+      }
+
+      function updateHumanChannelStamp() {
+        const stamp = document.getElementById("human-channel-stamp");
+        if (!stamp) return;
+        stamp.textContent = `Updated: ${nowClock()}`;
+      }
+
+      function renderHumanExplanation() {
+        const node = document.getElementById("human-explanation");
+        if (!node) return;
+        node.textContent = buildHumanExplanation();
+        updateHumanChannelStamp();
+      }
+
+      async function refreshHumanChannel(forceFetch = false) {
+        if (forceFetch) {
+          await Promise.all([
+            fetch("/api/telemetry")
+              .then((r) => r.ok ? r.json() : null)
+              .then((d) => { if (d) telemetrySnapshot = d; })
+              .catch(() => {}),
+            fetch("/codex/narrative?limit=4")
+              .then((r) => r.ok ? r.json() : null)
+              .then((d) => { if (d) codexNarrative = d; })
+              .catch(() => {}),
+          ]);
+        }
+        renderHumanExplanation();
+      }
+
+      const humanExplainBtn = document.getElementById("human-explain-btn");
+      if (humanExplainBtn) {
+        humanExplainBtn.addEventListener("click", () => {
+          void refreshHumanChannel(true);
+        });
+      }
+
       let lastSync = 0, lastDictSync = 0;
       function animate(t) {
         requestAnimationFrame(animate);
@@ -17575,12 +17705,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           fetch('/lineage').then(r=>r.json()).then(d => { lineageArchive = d; }).catch(()=>{});
           fetch('/codex?limit=6').then(r=>r.json()).then(d => { codexSnapshot = d; updateCodexPanel(); }).catch(()=>{});
           fetch('/codex/narrative?limit=4').then(r=>r.json()).then(d => { codexNarrative = d; updateCodexPanel(); }).catch(()=>{});
+          fetch('/api/telemetry').then(r=>r.json()).then(d => { telemetrySnapshot = d; renderHumanExplanation(); }).catch(()=>{});
+          renderHumanExplanation();
           lastDictSync = t;
         }
         composer.render();
       }
 
       window.saveGenesis = () => fetch("/snapshot/export", { method: "POST" });
+      void refreshHumanChannel(true);
       animate(0);
     </script>
   </body>
