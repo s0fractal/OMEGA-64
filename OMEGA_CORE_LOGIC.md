@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:38:34.041Z*
+*Generated: 2026-03-04T11:39:46.227Z*
 *Exported Files: 65*
 *Runtime Roots: 6*
 *Runtime Closure Files: 36*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Export Content SHA256: d2cb51799110926ac8b057e5df8a057a6b390a16155dcb9df29ef4fff6d781c4*
-*Git Commit: 76192eed9949*
+*Export Content SHA256: 0cd8b6b661ae6c1eda2ef6167fb496a4484ce5bf96f816de662fec9499ef81c2*
+*Git Commit: e7940f375f1f*
 
 ---
 
@@ -1719,8 +1719,8 @@ export context. It intentionally excludes historical era narratives.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
    over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
-   component score breakdown, a compact drift trend sparkline, and scene halo
-   tint.
+   component score breakdown, compact risk summary + drift trend sparkline,
+   and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -17038,6 +17038,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         opacity: 0.78;
         font-family: "Courier New", monospace;
       }
+      #human-drift-risk {
+        margin-top: 3px;
+        font-size: 0.63rem;
+        opacity: 0.82;
+        color: #c9eeff;
+      }
       #human-drift-sparkline {
         margin-top: 3px;
         font-size: 0.62rem;
@@ -17211,6 +17217,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
           score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+        </div>
+        <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
+          risk: baseline variance only
         </div>
         <div id="human-drift-sparkline" class="codex-row-body codex-row-subtle">
           trend:........ (steady)
@@ -17759,6 +17768,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+            riskSummary: "risk: baseline variance only",
           };
         }
         const latest = driftHistory[driftHistory.length - 1];
@@ -17769,6 +17779,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+            riskSummary: "risk: baseline variance only",
           };
         }
 
@@ -17806,12 +17817,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const moodImpact = dynamics.moodImpact;
         const breakdown =
           `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+        const riskSummary = buildDriftRiskSummary(dynamics);
 
         return {
           text:
             `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
           severity,
           breakdown,
+          riskSummary,
         };
       }
 
@@ -17876,6 +17889,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `trend:${bars} (${slope})`;
       }
 
+      function buildDriftRiskSummary(dynamics) {
+        if (!dynamics || Number(dynamics.score || 0) <= 0) {
+          return "risk: baseline variance only";
+        }
+        const tags = [];
+        if (Number(dynamics.popImpact || 0) >= 2) tags.push("population shock");
+        else if (Number(dynamics.popImpact || 0) === 1) tags.push("population drift");
+        if (Number(dynamics.energyImpact || 0) >= 2) tags.push("energy turbulence");
+        else if (Number(dynamics.energyImpact || 0) === 1) tags.push("energy drift");
+        if (Number(dynamics.genomeImpact || 0) > 0) tags.push("lineage rotation");
+        if (Number(dynamics.moodImpact || 0) > 0) tags.push("narrative phase shift");
+        if (tags.length === 0) return "risk: baseline variance only";
+        return `risk: ${tags.join(" + ")}`;
+      }
+
       function applyDriftSeverityBadge(severity) {
         const badge = document.getElementById("human-drift-severity");
         if (!badge) return;
@@ -17919,10 +17947,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
         const breakdownNode = document.getElementById("human-drift-breakdown");
+        const riskNode = document.getElementById("human-drift-risk");
         const sparklineNode = document.getElementById("human-drift-sparkline");
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
         if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
+        if (riskNode) riskNode.textContent = analysis.riskSummary;
         if (sparklineNode) sparklineNode.textContent = buildDriftSparkline();
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);

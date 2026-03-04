@@ -264,6 +264,12 @@
         opacity: 0.78;
         font-family: "Courier New", monospace;
       }
+      #human-drift-risk {
+        margin-top: 3px;
+        font-size: 0.63rem;
+        opacity: 0.82;
+        color: #c9eeff;
+      }
       #human-drift-sparkline {
         margin-top: 3px;
         font-size: 0.62rem;
@@ -437,6 +443,9 @@
         </div>
         <div id="human-drift-breakdown" class="codex-row-body codex-row-subtle">
           score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable
+        </div>
+        <div id="human-drift-risk" class="codex-row-body codex-row-subtle">
+          risk: baseline variance only
         </div>
         <div id="human-drift-sparkline" class="codex-row-body codex-row-subtle">
           trend:........ (steady)
@@ -985,6 +994,7 @@
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+            riskSummary: "risk: baseline variance only",
           };
         }
         const latest = driftHistory[driftHistory.length - 1];
@@ -995,6 +1005,7 @@
             severity: "BASELINE",
             breakdown:
               "score=0 | pop:baseline | energy:baseline | genome:stable | mood:stable",
+            riskSummary: "risk: baseline variance only",
           };
         }
 
@@ -1032,12 +1043,14 @@
         const moodImpact = dynamics.moodImpact;
         const breakdown =
           `score=${score} | pop:${popImpact} | energy:${energyImpact} | genome:${genomeImpact} | mood:${moodImpact}`;
+        const riskSummary = buildDriftRiskSummary(dynamics);
 
         return {
           text:
             `Over ~${elapsedSec}s (${deltaTick} ticks), ${populationPhrase}; ${energyPhrase}; ${dominantPhrase}; ${moodPhrase}.`,
           severity,
           breakdown,
+          riskSummary,
         };
       }
 
@@ -1102,6 +1115,21 @@
         return `trend:${bars} (${slope})`;
       }
 
+      function buildDriftRiskSummary(dynamics) {
+        if (!dynamics || Number(dynamics.score || 0) <= 0) {
+          return "risk: baseline variance only";
+        }
+        const tags = [];
+        if (Number(dynamics.popImpact || 0) >= 2) tags.push("population shock");
+        else if (Number(dynamics.popImpact || 0) === 1) tags.push("population drift");
+        if (Number(dynamics.energyImpact || 0) >= 2) tags.push("energy turbulence");
+        else if (Number(dynamics.energyImpact || 0) === 1) tags.push("energy drift");
+        if (Number(dynamics.genomeImpact || 0) > 0) tags.push("lineage rotation");
+        if (Number(dynamics.moodImpact || 0) > 0) tags.push("narrative phase shift");
+        if (tags.length === 0) return "risk: baseline variance only";
+        return `risk: ${tags.join(" + ")}`;
+      }
+
       function applyDriftSeverityBadge(severity) {
         const badge = document.getElementById("human-drift-severity");
         if (!badge) return;
@@ -1145,10 +1173,12 @@
         const node = document.getElementById("human-drift-explanation");
         if (!node) return;
         const breakdownNode = document.getElementById("human-drift-breakdown");
+        const riskNode = document.getElementById("human-drift-risk");
         const sparklineNode = document.getElementById("human-drift-sparkline");
         const analysis = analyzeDrift();
         node.textContent = analysis.text;
         if (breakdownNode) breakdownNode.textContent = analysis.breakdown;
+        if (riskNode) riskNode.textContent = analysis.riskSummary;
         if (sparklineNode) sparklineNode.textContent = buildDriftSparkline();
         applyDriftSeverityBadge(analysis.severity);
         applyDriftHalo(analysis.severity);

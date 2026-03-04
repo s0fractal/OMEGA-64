@@ -18,8 +18,8 @@ export context. It intentionally excludes historical era narratives.
    Observer human channel in `ui/index.html` fuses `/api/telemetry` and
    `/codex/narrative` into plain-language state summaries plus drift deltas
    over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
-   component score breakdown, a compact drift trend sparkline, and scene halo
-   tint.
+   component score breakdown, compact risk summary + drift trend sparkline,
+   and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 

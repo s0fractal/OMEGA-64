@@ -47,6 +47,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-drift-risk"',
+    "UI must render drift risk-summary surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     'id="human-drift-sparkline"',
     "UI must render drift sparkline surface",
     violations,
@@ -85,6 +91,12 @@ const main = async () => {
     ui,
     "buildDriftSparkline",
     "UI drift mode must expose drift trend sparkline synthesis",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildDriftRiskSummary",
+    "UI drift mode must expose compact risk-summary synthesis",
     violations,
   );
   requireSnippet(
