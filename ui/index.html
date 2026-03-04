@@ -2103,6 +2103,31 @@
         return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
+      function daemonAdmissionSeverity() {
+        const admission = currentDaemonAdmission();
+        if (!admission) return "BASELINE";
+        const raw = String(admission.severity || "BASELINE")
+          .toUpperCase();
+        if (raw === "HIGH" || raw === "BLOCKED") return "HIGH";
+        if (raw === "MID") return "MID";
+        if (raw === "LOW") return "LOW";
+        return "BASELINE";
+      }
+
+      function selectHumanHaloSeverity(driftSeverity) {
+        const rank = {
+          BASELINE: 0,
+          LOW: 1,
+          MID: 2,
+          HIGH: 3,
+        };
+        const drift = String(driftSeverity || "BASELINE").toUpperCase();
+        const admission = daemonAdmissionSeverity();
+        const driftRank = rank[drift] ?? 0;
+        const admissionRank = rank[admission] ?? 0;
+        return admissionRank > driftRank ? admission : drift;
+      }
+
       function buildHumanExplanation() {
         const mood = String(codexNarrative?.mood || "STABLE")
           .toLowerCase();
@@ -2451,7 +2476,7 @@
           sparklineNode.textContent = buildDriftSparkline();
         }
         applyDriftSeverityBadge(analysis.severity);
-        applyDriftHalo(analysis.severity);
+        applyDriftHalo(selectHumanHaloSeverity(analysis.severity));
       }
 
       function renderHumanExplanation() {

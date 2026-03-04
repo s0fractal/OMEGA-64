@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T13:10:31.557Z*
+*Generated: 2026-03-04T13:12:52.407Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: d4bf1e9f39486889a972094b54ef444e8d1dc0f39459588d42f1eefc2e01faaa*
-*Git Commit: a037e08a0287*
+*Export Content SHA256: 2aa7dea42011a8bd1169af606e60f194ba7139d3287fcdd1299f2ede2fd08b4b*
+*Git Commit: 4c4e4e54f0d5*
 
 ---
 
@@ -2563,7 +2563,8 @@ export context. It intentionally excludes historical era narratives.
    state summaries plus drift deltas over a rolling ~90s window, with
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
    (`daemon_governance.last_admission`), component score breakdown, compact risk
-   summary + drift trend sparkline, and scene halo tint.
+   summary + drift trend sparkline, and scene halo tint driven by
+   `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
 
@@ -20416,6 +20417,31 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
+      function daemonAdmissionSeverity() {
+        const admission = currentDaemonAdmission();
+        if (!admission) return "BASELINE";
+        const raw = String(admission.severity || "BASELINE")
+          .toUpperCase();
+        if (raw === "HIGH" || raw === "BLOCKED") return "HIGH";
+        if (raw === "MID") return "MID";
+        if (raw === "LOW") return "LOW";
+        return "BASELINE";
+      }
+
+      function selectHumanHaloSeverity(driftSeverity) {
+        const rank = {
+          BASELINE: 0,
+          LOW: 1,
+          MID: 2,
+          HIGH: 3,
+        };
+        const drift = String(driftSeverity || "BASELINE").toUpperCase();
+        const admission = daemonAdmissionSeverity();
+        const driftRank = rank[drift] ?? 0;
+        const admissionRank = rank[admission] ?? 0;
+        return admissionRank > driftRank ? admission : drift;
+      }
+
       function buildHumanExplanation() {
         const mood = String(codexNarrative?.mood || "STABLE")
           .toLowerCase();
@@ -20764,7 +20790,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           sparklineNode.textContent = buildDriftSparkline();
         }
         applyDriftSeverityBadge(analysis.severity);
-        applyDriftHalo(analysis.severity);
+        applyDriftHalo(selectHumanHaloSeverity(analysis.severity));
       }
 
       function renderHumanExplanation() {

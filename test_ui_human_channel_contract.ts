@@ -165,6 +165,18 @@ const main = async () => {
     "UI human channel must consume daemon governance telemetry context",
     violations,
   );
+  requireSnippet(
+    ui,
+    "daemonAdmissionSeverity",
+    "UI human channel must derive admission severity for visual pressure mapping",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "selectHumanHaloSeverity",
+    "UI halo must combine drift and daemon admission severity",
+    violations,
+  );
 
   if (violations.length > 0) {
     throw new Error(
