@@ -45,6 +45,7 @@ const uniqueSorted = (items: Iterable<string>): string[] =>
 
 type ExportManifest = {
   era: string;
+  runtime_root_files?: string[];
   core_entry_files: string[];
   required_additional_files: string[];
   context_files: string[];
@@ -52,6 +53,7 @@ type ExportManifest = {
 
 type LoadedManifest = {
   era: string;
+  runtimeRootFiles: string[];
   coreEntryFiles: string[];
   requiredArchFiles: string[];
   contextFiles: string[];
@@ -116,6 +118,12 @@ const loadManifest = async (): Promise<LoadedManifest> => {
     parsed?.core_entry_files,
     "core_entry_files",
   );
+  const runtimeRootFiles = parsed?.runtime_root_files === undefined
+    ? coreEntryFiles
+    : parseManifestStringArray(
+      parsed.runtime_root_files,
+      "runtime_root_files",
+    );
   const requiredAdditional = parseManifestStringArray(
     parsed?.required_additional_files,
     "required_additional_files",
@@ -128,12 +136,21 @@ const loadManifest = async (): Promise<LoadedManifest> => {
   if (coreEntryFiles.length === 0) {
     throw new Error(`${MANIFEST_PATH}: core_entry_files cannot be empty`);
   }
+  if (runtimeRootFiles.length === 0) {
+    throw new Error(`${MANIFEST_PATH}: runtime_root_files cannot be empty`);
+  }
 
   const requiredArchFiles = uniqueSorted([
     ...coreEntryFiles,
     ...requiredAdditional,
   ]);
-  return { era, coreEntryFiles, requiredArchFiles, contextFiles };
+  return {
+    era,
+    runtimeRootFiles,
+    coreEntryFiles,
+    requiredArchFiles,
+    contextFiles,
+  };
 };
 
 const parseLocalImportSpecifiers = (source: string): string[] => {
@@ -236,16 +253,33 @@ const collectDependencyClosure = async (
 };
 
 export const buildExportFileList = async (): Promise<
-  { files: string[]; era: string }
+  {
+    files: string[];
+    era: string;
+    runtimeRoots: string[];
+    runtimeClosureFiles: string[];
+    nonRuntimeCodeFiles: string[];
+  }
 > => {
   const manifest = await loadManifest();
   const { files: closureFiles, missing: closureMissing } =
     await collectDependencyClosure(manifest.coreEntryFiles);
+  const {
+    files: runtimeClosureFiles,
+    missing: runtimeClosureMissing,
+  } = await collectDependencyClosure(manifest.runtimeRootFiles);
 
   if (closureMissing.length > 0) {
     throw new Error(
       `Missing core dependency files:\n${
         closureMissing.map((f) => `- ${f}`).join("\n")
+      }`,
+    );
+  }
+  if (runtimeClosureMissing.length > 0) {
+    throw new Error(
+      `Missing runtime-root dependency files:\n${
+        runtimeClosureMissing.map((f) => `- ${f}`).join("\n")
       }`,
     );
   }
@@ -286,6 +320,10 @@ export const buildExportFileList = async (): Promise<
   }
 
   const files = uniqueSorted(combined).filter((f) => !isExcluded(f));
+  const runtimeClosureSet = new Set(runtimeClosureFiles);
+  const nonRuntimeCodeFiles = files.filter((f) =>
+    [".ts", ".tsx"].includes(extname(f)) && !runtimeClosureSet.has(f)
+  );
   const missingRequired = manifest.requiredArchFiles.filter((f) =>
     !files.includes(f)
   );
@@ -306,7 +344,13 @@ export const buildExportFileList = async (): Promise<
     );
   }
 
-  return { files, era: manifest.era };
+  return {
+    files,
+    era: manifest.era,
+    runtimeRoots: manifest.runtimeRootFiles,
+    runtimeClosureFiles,
+    nonRuntimeCodeFiles: uniqueSorted(nonRuntimeCodeFiles),
+  };
 };
 
 const buildExportProvenance = async (
@@ -323,17 +367,56 @@ const buildExportProvenance = async (
 };
 
 export const renderCoreExport = async (): Promise<
-  { output: string; files: string[]; era: string; provenance: ExportProvenance }
+  {
+    output: string;
+    files: string[];
+    era: string;
+    provenance: ExportProvenance;
+    runtimeRoots: string[];
+    runtimeClosureFiles: string[];
+    nonRuntimeCodeFiles: string[];
+  }
 > => {
-  const { files, era } = await buildExportFileList();
+  const {
+    files,
+    era,
+    runtimeRoots,
+    runtimeClosureFiles,
+    nonRuntimeCodeFiles,
+  } = await buildExportFileList();
   const provenance = await buildExportProvenance(era, files);
 
   let output = `# OMEGA-64 | CORE LOGIC (ERA ${era}: THE COHERENT LATTICE)\n\n`;
   output += `*Generated: ${new Date().toISOString()}*\n`;
   output += `*Exported Files: ${files.length}*\n`;
+  output += `*Runtime Roots: ${runtimeRoots.length}*\n`;
+  output += `*Runtime Closure Files: ${runtimeClosureFiles.length}*\n`;
+  output += `*Non-Runtime Code Files: ${nonRuntimeCodeFiles.length}*\n`;
   output += `*Manifest SHA256: ${provenance.manifestSha256}*\n`;
   output += `*Export Set SHA256: ${provenance.exportSetSha256}*\n`;
   output += `*Git Commit: ${provenance.gitCommit}*\n\n---\n\n`;
+
+  output += `## ACTIVE RUNTIME ROOTS\n\n`;
+  for (const file of runtimeRoots) {
+    output += `- ${file}\n`;
+  }
+  output += `\n---\n\n`;
+
+  output += `## ACTIVE RUNTIME CLOSURE\n\n`;
+  for (const file of runtimeClosureFiles) {
+    output += `- ${file}\n`;
+  }
+  output += `\n---\n\n`;
+
+  output += `## NON-RUNTIME CODE FILES (MANIFEST/CONTEXT)\n\n`;
+  if (nonRuntimeCodeFiles.length === 0) {
+    output += `- none\n`;
+  } else {
+    for (const file of nonRuntimeCodeFiles) {
+      output += `- ${file}\n`;
+    }
+  }
+  output += `\n---\n\n`;
 
   for (const file of files) {
     const content = await Deno.readTextFile(file);
@@ -341,7 +424,15 @@ export const renderCoreExport = async (): Promise<
     output += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
   }
 
-  return { output, files, era, provenance };
+  return {
+    output,
+    files,
+    era,
+    provenance,
+    runtimeRoots,
+    runtimeClosureFiles,
+    nonRuntimeCodeFiles,
+  };
 };
 
 async function exportCore() {

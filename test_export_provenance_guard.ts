@@ -17,7 +17,15 @@ const expect = (cond: unknown, message: string): void => {
 };
 
 const main = async () => {
-  const { output, files, era, provenance } = await renderCoreExport();
+  const {
+    output,
+    files,
+    era,
+    provenance,
+    runtimeRoots,
+    runtimeClosureFiles,
+    nonRuntimeCodeFiles,
+  } = await renderCoreExport();
   expect(
     files.length > 0,
     "[export-provenance] export file set cannot be empty",
@@ -37,6 +45,15 @@ const main = async () => {
     line.startsWith("*Export Set SHA256: ")
   );
   const commitLine = header.find((line) => line.startsWith("*Git Commit: "));
+  const runtimeRootsLine = header.find((line) =>
+    line.startsWith("*Runtime Roots: ")
+  );
+  const runtimeClosureLine = header.find((line) =>
+    line.startsWith("*Runtime Closure Files: ")
+  );
+  const nonRuntimeCodeLine = header.find((line) =>
+    line.startsWith("*Non-Runtime Code Files: ")
+  );
 
   expect(
     typeof manifestLine === "string",
@@ -50,6 +67,18 @@ const main = async () => {
     typeof commitLine === "string",
     "[export-provenance] missing Git Commit header",
   );
+  expect(
+    typeof runtimeRootsLine === "string",
+    "[export-provenance] missing Runtime Roots header",
+  );
+  expect(
+    typeof runtimeClosureLine === "string",
+    "[export-provenance] missing Runtime Closure Files header",
+  );
+  expect(
+    typeof nonRuntimeCodeLine === "string",
+    "[export-provenance] missing Non-Runtime Code Files header",
+  );
 
   const manifestHash = parseHeaderValue(manifestLine!, "*Manifest SHA256: ");
   const exportSetHash = parseHeaderValue(
@@ -57,6 +86,15 @@ const main = async () => {
     "*Export Set SHA256: ",
   );
   const gitCommit = parseHeaderValue(commitLine!, "*Git Commit: ");
+  const runtimeRootCount = Number(
+    parseHeaderValue(runtimeRootsLine!, "*Runtime Roots: "),
+  );
+  const runtimeClosureCount = Number(
+    parseHeaderValue(runtimeClosureLine!, "*Runtime Closure Files: "),
+  );
+  const nonRuntimeCodeCount = Number(
+    parseHeaderValue(nonRuntimeCodeLine!, "*Non-Runtime Code Files: "),
+  );
 
   expect(
     SHA256_RE.test(manifestHash),
@@ -70,6 +108,18 @@ const main = async () => {
     COMMIT_RE.test(gitCommit),
     `[export-provenance] invalid git commit marker: ${gitCommit}`,
   );
+  expect(
+    Number.isInteger(runtimeRootCount) && runtimeRootCount >= 1,
+    `[export-provenance] invalid runtime root count: ${runtimeRootCount}`,
+  );
+  expect(
+    Number.isInteger(runtimeClosureCount) && runtimeClosureCount >= 1,
+    `[export-provenance] invalid runtime closure count: ${runtimeClosureCount}`,
+  );
+  expect(
+    Number.isInteger(nonRuntimeCodeCount) && nonRuntimeCodeCount >= 0,
+    `[export-provenance] invalid non-runtime code count: ${nonRuntimeCodeCount}`,
+  );
 
   expect(
     manifestHash === provenance.manifestSha256,
@@ -82,6 +132,18 @@ const main = async () => {
   expect(
     gitCommit === provenance.gitCommit,
     "[export-provenance] git commit mismatch between header and provenance",
+  );
+  expect(
+    runtimeRootCount === runtimeRoots.length,
+    "[export-provenance] runtime root count mismatch between header and payload",
+  );
+  expect(
+    runtimeClosureCount === runtimeClosureFiles.length,
+    "[export-provenance] runtime closure count mismatch between header and payload",
+  );
+  expect(
+    nonRuntimeCodeCount === nonRuntimeCodeFiles.length,
+    "[export-provenance] non-runtime code count mismatch between header and payload",
   );
 
   console.log(

@@ -1,5 +1,13 @@
 {
   "era": "69",
+  "runtime_root_files": [
+    "SYSTEM_START.ts",
+    "PULSE.ts",
+    "PULSE_WORKER.ts",
+    "AKASHA_SERVER.ts",
+    "OMEGA_DAEMON.ts",
+    "assembly/index.ts"
+  ],
   "core_entry_files": [
     "SYSTEM_START.ts",
     "CONTROL_INTENT_QUEUE.ts",

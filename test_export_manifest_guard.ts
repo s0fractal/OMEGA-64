@@ -1,5 +1,6 @@
 type ExportManifest = {
   era: string;
+  runtime_root_files?: string[];
   core_entry_files: string[];
   required_additional_files: string[];
   context_files: string[];
@@ -7,6 +8,12 @@ type ExportManifest = {
 
 const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 const REQUIRED_CONTEXT_FILES = ["ARCHITECTURE_ACTIVE.md"];
+const REQUIRED_RUNTIME_ROOT_FILES = [
+  "SYSTEM_START.ts",
+  "PULSE.ts",
+  "AKASHA_SERVER.ts",
+  "OMEGA_DAEMON.ts",
+];
 const FORBIDDEN_CONTEXT_FILES = ["ARCHITECTURE.md", "GEMINI.md"];
 
 const EXCLUDE_PATTERNS: RegExp[] = [
@@ -95,6 +102,10 @@ const main = async () => {
   }
 
   const core = ensureStringArray(parsed.core_entry_files, "core_entry_files");
+  const runtimeRoots = ensureStringArray(
+    parsed.runtime_root_files,
+    "runtime_root_files",
+  );
   const required = ensureStringArray(
     parsed.required_additional_files,
     "required_additional_files",
@@ -104,10 +115,22 @@ const main = async () => {
   if (core.length === 0) {
     throw new Error("[manifest] core_entry_files cannot be empty");
   }
+  if (runtimeRoots.length === 0) {
+    throw new Error("[manifest] runtime_root_files cannot be empty");
+  }
 
+  assertUnique(runtimeRoots, "runtime_root_files");
   assertUnique(core, "core_entry_files");
   assertUnique(required, "required_additional_files");
   assertUnique(context, "context_files");
+
+  for (const root of REQUIRED_RUNTIME_ROOT_FILES) {
+    if (!runtimeRoots.includes(root)) {
+      throw new Error(
+        `[manifest] runtime_root_files missing required runtime root: ${root}`,
+      );
+    }
+  }
 
   for (const requiredContext of REQUIRED_CONTEXT_FILES) {
     if (!context.includes(requiredContext)) {
@@ -134,6 +157,7 @@ const main = async () => {
     );
   }
 
+  await assertFilesExist(runtimeRoots, "runtime_root_files");
   await assertFilesExist(core, "core_entry_files");
   await assertFilesExist(required, "required_additional_files");
   await assertFilesExist(context, "context_files");
@@ -152,6 +176,11 @@ const main = async () => {
   }
   if (!/renderCoreExport/u.test(exporter)) {
     throw new Error("[manifest] export_core.ts must expose renderCoreExport");
+  }
+  if (!exporter.includes("Runtime Closure Files")) {
+    throw new Error(
+      "[manifest] export_core.ts must emit runtime closure provenance",
+    );
   }
 
   console.log("[manifest] CORE_ARCH_MANIFEST guard passed.");
