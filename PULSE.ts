@@ -28,6 +28,8 @@ const STARTUP_SELFTEST_FALLBACK_ENABLED =
 const STARTUP_SELFTEST_QUIET = RUNTIME_POLICY.pulse.startupSelfTestQuiet;
 const STARTUP_SELFTEST_FORCE_BREACH =
   RUNTIME_POLICY.pulse.startupSelfTestForceBreach;
+const NOVELTY_PRESSURE = RUNTIME_POLICY.pulse.noveltyPressure;
+const SYMBIOSIS_PRESSURE = RUNTIME_POLICY.pulse.symbiosisPressure;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -103,6 +105,16 @@ const resonancesView = new Int32Array(
   OFFSETS.RESONANCE_OFFSET,
   MAX_ATOMS,
 );
+const logicView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.LOGIC_OFFSET,
+  MAX_ATOMS * 8,
+);
+const bondsView = new Uint32Array(
+  sharedBuffer,
+  OFFSETS.BONDS_OFFSET,
+  MAX_ATOMS * 4,
+);
 const readXsView = new Int16Array(
   sharedBuffer,
   OFFSETS.PHYSICS_READ_XS_OFFSET,
@@ -160,6 +172,88 @@ const findNextFreeSlot = (startIdx: number): number => {
     if (Atomics.load(idsView, i) === 0n) return i;
   }
   return -1;
+};
+const genomeKey16 = (idx: number): number => {
+  const off = idx * 8;
+  return ((logicView[off] << 8) | logicView[off + 1]) >>> 0;
+};
+const applyEvolutionPressureTerms = (
+  tick: number,
+  activeIdx: number[],
+): {
+  adjusted: number;
+  noveltyDeltaRaw: number;
+  symbiosisDeltaRaw: number;
+} => {
+  if (
+    (NOVELTY_PRESSURE <= 0 && SYMBIOSIS_PRESSURE <= 0) || activeIdx.length === 0
+  ) {
+    return { adjusted: 0, noveltyDeltaRaw: 0, symbiosisDeltaRaw: 0 };
+  }
+  const population = activeIdx.length;
+  const genomeCounts = new Map<number, number>();
+  for (const idx of activeIdx) {
+    const key = genomeKey16(idx);
+    genomeCounts.set(key, (genomeCounts.get(key) ?? 0) + 1);
+  }
+
+  let adjusted = 0;
+  let noveltyDeltaRaw = 0;
+  let symbiosisDeltaRaw = 0;
+
+  for (const idx of activeIdx) {
+    const key = genomeKey16(idx);
+    const sameGenomeCount = genomeCounts.get(key) ?? 1;
+
+    let noveltyTerm = 0;
+    if (NOVELTY_PRESSURE > 0) {
+      noveltyTerm = Math.trunc(
+        (NOVELTY_PRESSURE * (population - (sameGenomeCount * 2))) / population,
+      );
+    }
+
+    let symbiosisTerm = 0;
+    if (SYMBIOSIS_PRESSURE > 0) {
+      const base = idx * 4;
+      let crossGenomeBonds = 0;
+      for (let slot = 0; slot < 4; slot++) {
+        const target = Atomics.load(bondsView, base + slot);
+        if (target <= 0 || target >= MAX_ATOMS) continue;
+        if (Atomics.load(idsView, target) === 0n) continue;
+        if (genomeKey16(target) !== key) crossGenomeBonds++;
+      }
+      symbiosisTerm = crossGenomeBonds > 0
+        ? SYMBIOSIS_PRESSURE * crossGenomeBonds
+        : -SYMBIOSIS_PRESSURE;
+    }
+
+    const delta = noveltyTerm + symbiosisTerm;
+    noveltyDeltaRaw += noveltyTerm;
+    symbiosisDeltaRaw += symbiosisTerm;
+    if (delta === 0) continue;
+
+    const current = Atomics.load(energiesView, idx);
+    const next = Math.max(0, current + delta);
+    if (next !== current) {
+      Atomics.store(energiesView, idx, next);
+      adjusted++;
+    }
+  }
+
+  if (adjusted > 0) {
+    MUTATION_TELEMETRY.record({
+      lane: "internal_host",
+      kind: "evolution_pressure_adjust",
+      count: adjusted,
+    });
+    if (tick % 20 === 0) {
+      LOGGER.debug(
+        `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${NOVELTY_PRESSURE} pS=${SYMBIOSIS_PRESSURE}`,
+      );
+    }
+  }
+
+  return { adjusted, noveltyDeltaRaw, symbiosisDeltaRaw };
 };
 
 type WasmPreflightReport = {
@@ -532,6 +626,16 @@ export const PULSE = {
     if (RUNTIME_POLICY.pulse.source.wasmBootPrecheck) {
       LOGGER.info(
         `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
+      );
+    }
+    if (
+      RUNTIME_POLICY.pulse.source.noveltyPressure ||
+      RUNTIME_POLICY.pulse.source.symbiosisPressure ||
+      NOVELTY_PRESSURE > 0 ||
+      SYMBIOSIS_PRESSURE > 0
+    ) {
+      LOGGER.info(
+        `   [PULSE] Evolution pressure terms novelty=${NOVELTY_PRESSURE} symbiosis=${SYMBIOSIS_PRESSURE}.`,
       );
     }
     if (
@@ -938,6 +1042,7 @@ export const PULSE = {
           `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
+      applyEvolutionPressureTerms(currentTick, activeIdx);
 
       // Decay host pheromone fields (including observer attention).
       PHYSICS_ENGINE.decayPheromones();

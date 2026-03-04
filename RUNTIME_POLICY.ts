@@ -47,6 +47,8 @@ const rawWorkerInitFallback = readEnv("OMEGA_WORKER_INIT_FALLBACK");
 const rawWasmBootPolicy = readEnv("OMEGA_WASM_BOOT_POLICY");
 const rawWasmBootPrecheck = readEnv("OMEGA_WASM_BOOT_PRECHECK");
 const rawForceWasmPreflightFail = readEnv("OMEGA_FORCE_WASM_PREFLIGHT_FAIL");
+const rawNoveltyPressure = readEnv("OMEGA_NOVELTY_PRESSURE");
+const rawSymbiosisPressure = readEnv("OMEGA_SYMBIOSIS_PRESSURE");
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -153,6 +155,13 @@ const pulseForceWasmPreflightFail = parseEnvBool(
   rawForceWasmPreflightFail,
   false,
 );
+const pulseNoveltyPressure = parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
+const pulseSymbiosisPressure = parseEnvBoundedInt(
+  rawSymbiosisPressure,
+  0,
+  0,
+  2048,
+);
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -255,6 +264,8 @@ const policyFingerprintSource = JSON.stringify({
     workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
+    noveltyPressure: pulseNoveltyPressure,
+    symbiosisPressure: pulseSymbiosisPressure,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -361,6 +372,8 @@ export const RUNTIME_POLICY = {
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
     forceWasmPreflightFail: pulseForceWasmPreflightFail,
+    noveltyPressure: pulseNoveltyPressure,
+    symbiosisPressure: pulseSymbiosisPressure,
     startupSelfTestEnabled: pulseStartupSelfTestEnabled,
     startupSelfTestTicks: pulseStartupSelfTestTicks,
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
@@ -376,6 +389,8 @@ export const RUNTIME_POLICY = {
       wasmBootPolicy: rawWasmBootPolicy !== undefined,
       wasmBootPrecheck: rawWasmBootPrecheck !== undefined,
       forceWasmPreflightFail: rawForceWasmPreflightFail !== undefined,
+      noveltyPressure: rawNoveltyPressure !== undefined,
+      symbiosisPressure: rawSymbiosisPressure !== undefined,
       startupSelfTest: rawStartupSelfTest !== undefined,
       startupSelfTestTicks: rawStartupSelfTestTicks !== undefined,
       startupSelfTestFallback: rawStartupSelfTestFallback !== undefined,
