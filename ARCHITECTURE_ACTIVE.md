@@ -13,7 +13,9 @@ export context. It intentionally excludes historical era narratives.
    `SNAPSHOT_ENGINE.ts`
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html` Akasha signaling
    membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
-   `/api/webrtc`.
+   `/api/webrtc`. Observer UI can form RTC mesh rooms (`rtcRoom`) and exchange
+   lightweight telemetry frames over `RTCDataChannel` without routing payloads
+   through mutation gate paths.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
    `/codex/narrative` and `/api/codex/narrative`. Observer human channel in

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:48:37.293Z*
+*Generated: 2026-03-04T11:55:21.795Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: d1330870fdad5879cbe070da32cd26d5dd3a8b38e48b568540a82e505c5aeb14*
-*Git Commit: 73fe49a32dc4*
+*Export Content SHA256: 2c044c924ba24ba860cec2532bd93fa8caefa22a7be41727675b6f4a897659b8*
+*Git Commit: 97e6cafaae97*
 
 ---
 
@@ -2040,7 +2040,9 @@ export context. It intentionally excludes historical era narratives.
    `SNAPSHOT_ENGINE.ts`
 6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html` Akasha signaling
    membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
-   `/api/webrtc`.
+   `/api/webrtc`. Observer UI can form RTC mesh rooms (`rtcRoom`) and exchange
+   lightweight telemetry frames over `RTCDataChannel` without routing payloads
+   through mutation gate paths.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
    `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
    `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
@@ -17681,6 +17683,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
       const DRIFT_SPARKLINE_POINTS = 18;
       const DRIFT_SPARKLINE_GLYPHS = ".:-=+*#%@";
+      const RTC_SIGNAL_PATH = "/rtc/signal";
+      const RTC_SIGNAL_RETRY_MIN_MS = 1200;
+      const RTC_SIGNAL_RETRY_MAX_MS = 10000;
+      const RTC_TELEMETRY_BROADCAST_MS = 3000;
+      const RTC_ICE_SERVERS = [{ urls: "stun:stun.l.google.com:19302" }];
       let driftHistory = [];
       let dictSyncInFlight = false;
       const raycaster = new THREE.Raycaster();
@@ -17698,6 +17705,379 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         omegaControlToken = String(token || "").trim();
         localStorage.setItem("omega-control-token", omegaControlToken);
       };
+
+      const query = new URLSearchParams(window.location.search);
+      const queryRtcSignal = String(query.get("rtcSignal") || query.get("rtc") || "").trim();
+      if (queryRtcSignal.length > 0) {
+        localStorage.setItem("omega-rtc-signal-url", queryRtcSignal);
+      }
+      const normalizeRtcSignalUrl = (raw) => {
+        const value = String(raw || "").trim();
+        if (value.length === 0) return "";
+        try {
+          const parsed = new URL(value, window.location.href);
+          if (parsed.protocol === "http:") parsed.protocol = "ws:";
+          if (parsed.protocol === "https:") parsed.protocol = "wss:";
+          return parsed.toString();
+        } catch (_) {
+          return value;
+        }
+      };
+      const deriveRtcSignalUrl = () => {
+        const stored = String(localStorage.getItem("omega-rtc-signal-url") || "").trim();
+        const candidate = queryRtcSignal.length > 0 ? queryRtcSignal : stored;
+        if (candidate.length > 0) return normalizeRtcSignalUrl(candidate);
+        const wsProto = window.location.protocol === "https:" ? "wss:" : "ws:";
+        if (window.location.port === "8080") {
+          return `${wsProto}//${window.location.host}${RTC_SIGNAL_PATH}`;
+        }
+        const host = window.location.hostname || "127.0.0.1";
+        return `${wsProto}//${host}:8080${RTC_SIGNAL_PATH}`;
+      };
+      const RTC_SIGNAL_URL = deriveRtcSignalUrl();
+      const rtcRoomFromQuery = String(query.get("rtcRoom") || "").trim();
+      const RTC_SIGNAL_ROOM = rtcRoomFromQuery.length > 0 ? rtcRoomFromQuery : "omega-default";
+      const getPersistentPeerId = () => {
+        const key = "omega-rtc-peer-id";
+        const existing = String(localStorage.getItem(key) || "").trim();
+        if (existing.length >= 6 && existing.length <= 64) return existing;
+        const generated = `peer-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}`;
+        localStorage.setItem(key, generated);
+        return generated;
+      };
+      const RTC_SELF_PEER_ID = getPersistentPeerId();
+      let rtcSignalSocket = null;
+      let rtcSignalJoined = false;
+      let rtcSignalConnected = false;
+      let rtcReconnectTimer = null;
+      let rtcReconnectDelayMs = RTC_SIGNAL_RETRY_MIN_MS;
+      let rtcLastTelemetryBroadcastMs = 0;
+      const rtcPeerConnections = new Map();
+      const rtcDataChannels = new Map();
+      const rtcPendingCandidates = new Map();
+      const rtcRemoteTelemetry = new Map();
+
+      function updatePeerMeshHud(extra = "") {
+        const node = document.getElementById("peers");
+        if (!node) return;
+        const openChannels = Array.from(rtcDataChannels.values()).filter((ch) =>
+          ch && ch.readyState === "open"
+        ).length;
+        const signal = rtcSignalConnected ? "UP" : "DOWN";
+        const remoteTelemetryCount = rtcRemoteTelemetry.size;
+        let telemetryTick = "";
+        if (remoteTelemetryCount > 0) {
+          const sorted = Array.from(rtcRemoteTelemetry.values()).sort((a, b) =>
+            Number(b.ts || 0) - Number(a.ts || 0)
+          );
+          telemetryTick = ` | MESH_TICK:${Number(sorted[0]?.tick || 0)}`;
+        }
+        const suffix = extra.length > 0 ? ` | ${extra}` : "";
+        node.textContent =
+          `PEERS: ${openChannels} | SIGNAL:${signal} | ROOM:${RTC_SIGNAL_ROOM}${telemetryTick}${suffix}`;
+      }
+
+      function closeRtcPeer(remotePeerId) {
+        const channel = rtcDataChannels.get(remotePeerId);
+        if (channel) {
+          try {
+            channel.close();
+          } catch (_) {}
+          rtcDataChannels.delete(remotePeerId);
+        }
+        const pc = rtcPeerConnections.get(remotePeerId);
+        if (pc) {
+          try {
+            pc.close();
+          } catch (_) {}
+          rtcPeerConnections.delete(remotePeerId);
+        }
+        rtcPendingCandidates.delete(remotePeerId);
+        rtcRemoteTelemetry.delete(remotePeerId);
+        updatePeerMeshHud();
+      }
+
+      function queueRtcCandidate(remotePeerId, candidate) {
+        const list = rtcPendingCandidates.get(remotePeerId) || [];
+        list.push(candidate);
+        rtcPendingCandidates.set(remotePeerId, list);
+      }
+
+      async function drainRtcCandidates(remotePeerId) {
+        const pc = rtcPeerConnections.get(remotePeerId);
+        if (!pc) return;
+        const queued = rtcPendingCandidates.get(remotePeerId) || [];
+        if (queued.length === 0) return;
+        const keep = [];
+        for (const candidate of queued) {
+          try {
+            await pc.addIceCandidate(candidate);
+          } catch (_) {
+            keep.push(candidate);
+          }
+        }
+        if (keep.length > 0) rtcPendingCandidates.set(remotePeerId, keep);
+        else rtcPendingCandidates.delete(remotePeerId);
+      }
+
+      function shouldInitiateOffer(remotePeerId) {
+        return RTC_SELF_PEER_ID.localeCompare(remotePeerId) < 0;
+      }
+
+      function sendRtcSignalFrame(toPeerId, signalType, payload) {
+        if (!rtcSignalSocket || rtcSignalSocket.readyState !== WebSocket.OPEN || !rtcSignalJoined) {
+          return false;
+        }
+        try {
+          rtcSignalSocket.send(JSON.stringify({
+            type: "signal",
+            room: RTC_SIGNAL_ROOM,
+            from: RTC_SELF_PEER_ID,
+            to: toPeerId,
+            signalType,
+            payload,
+          }));
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+
+      function attachRtcDataChannel(remotePeerId, channel) {
+        rtcDataChannels.set(remotePeerId, channel);
+        channel.onopen = () => {
+          updatePeerMeshHud();
+        };
+        channel.onclose = () => {
+          if (rtcDataChannels.get(remotePeerId) === channel) {
+            rtcDataChannels.delete(remotePeerId);
+          }
+          updatePeerMeshHud();
+        };
+        channel.onerror = () => {};
+        channel.onmessage = (event) => {
+          if (typeof event.data !== "string") return;
+          try {
+            const parsed = JSON.parse(event.data);
+            if (!parsed || typeof parsed !== "object") return;
+            if (parsed.type === "telemetry") {
+              rtcRemoteTelemetry.set(remotePeerId, {
+                tick: Number(parsed.tick || 0),
+                avgEnergy: Number(parsed.avgEnergy || 0),
+                mood: String(parsed.mood || "STABLE"),
+                population: Number(parsed.population || 0),
+                ts: Number(parsed.ts || Date.now()),
+              });
+              updatePeerMeshHud();
+            }
+          } catch (_) {}
+        };
+      }
+
+      function ensureRtcPeerConnection(remotePeerId, initiator) {
+        const existing = rtcPeerConnections.get(remotePeerId);
+        if (existing) return existing;
+        const pc = new RTCPeerConnection({ iceServers: RTC_ICE_SERVERS });
+        rtcPeerConnections.set(remotePeerId, pc);
+
+        pc.onicecandidate = (event) => {
+          if (!event.candidate) return;
+          const payload = event.candidate.toJSON
+            ? event.candidate.toJSON()
+            : {
+              candidate: event.candidate.candidate,
+              sdpMid: event.candidate.sdpMid,
+              sdpMLineIndex: event.candidate.sdpMLineIndex,
+            };
+          sendRtcSignalFrame(remotePeerId, "candidate", payload);
+        };
+        pc.onconnectionstatechange = () => {
+          if (["failed", "closed", "disconnected"].includes(pc.connectionState)) {
+            closeRtcPeer(remotePeerId);
+          } else {
+            updatePeerMeshHud();
+          }
+        };
+        pc.ondatachannel = (event) => {
+          if (event.channel) attachRtcDataChannel(remotePeerId, event.channel);
+        };
+
+        if (initiator) {
+          const channel = pc.createDataChannel("omega-mesh", { ordered: true });
+          attachRtcDataChannel(remotePeerId, channel);
+        }
+        return pc;
+      }
+
+      async function createRtcOffer(remotePeerId) {
+        const pc = ensureRtcPeerConnection(remotePeerId, true);
+        try {
+          const offer = await pc.createOffer();
+          await pc.setLocalDescription(offer);
+          sendRtcSignalFrame(remotePeerId, "offer", {
+            type: offer.type,
+            sdp: offer.sdp,
+          });
+        } catch (_) {}
+      }
+
+      async function handleRtcSignalFrame(fromPeerId, signalType, payload) {
+        if (!fromPeerId || fromPeerId === RTC_SELF_PEER_ID) return;
+        const signal = String(signalType || "").toLowerCase();
+        if (signal === "offer") {
+          const pc = ensureRtcPeerConnection(fromPeerId, false);
+          try {
+            if (pc.signalingState !== "stable") {
+              await pc.setLocalDescription({ type: "rollback" });
+            }
+            await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await drainRtcCandidates(fromPeerId);
+            const answer = await pc.createAnswer();
+            await pc.setLocalDescription(answer);
+            sendRtcSignalFrame(fromPeerId, "answer", {
+              type: answer.type,
+              sdp: answer.sdp,
+            });
+          } catch (_) {}
+          return;
+        }
+        if (signal === "answer") {
+          const pc = ensureRtcPeerConnection(fromPeerId, true);
+          try {
+            await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await drainRtcCandidates(fromPeerId);
+          } catch (_) {}
+          return;
+        }
+        if (signal === "candidate") {
+          const pc = rtcPeerConnections.get(fromPeerId);
+          if (!pc || !pc.remoteDescription) {
+            queueRtcCandidate(fromPeerId, payload);
+            return;
+          }
+          try {
+            await pc.addIceCandidate(payload);
+          } catch (_) {
+            queueRtcCandidate(fromPeerId, payload);
+          }
+        }
+      }
+
+      function scheduleRtcReconnect() {
+        if (rtcReconnectTimer) return;
+        rtcReconnectTimer = setTimeout(() => {
+          rtcReconnectTimer = null;
+          connectRtcSignaling();
+        }, rtcReconnectDelayMs);
+        rtcReconnectDelayMs = Math.min(
+          RTC_SIGNAL_RETRY_MAX_MS,
+          Math.round(rtcReconnectDelayMs * 1.6),
+        );
+      }
+
+      function connectRtcSignaling() {
+        if (!("RTCPeerConnection" in window) || !("WebSocket" in window)) {
+          updatePeerMeshHud("RTC_UNAVAILABLE");
+          return;
+        }
+        if (rtcSignalSocket && (
+          rtcSignalSocket.readyState === WebSocket.OPEN ||
+          rtcSignalSocket.readyState === WebSocket.CONNECTING
+        )) return;
+
+        try {
+          rtcSignalSocket = new WebSocket(RTC_SIGNAL_URL);
+        } catch (_) {
+          rtcSignalConnected = false;
+          rtcSignalJoined = false;
+          updatePeerMeshHud("SIGNAL_ERROR");
+          scheduleRtcReconnect();
+          return;
+        }
+
+        rtcSignalSocket.onopen = () => {
+          rtcSignalConnected = true;
+          rtcSignalJoined = false;
+          rtcReconnectDelayMs = RTC_SIGNAL_RETRY_MIN_MS;
+          updatePeerMeshHud();
+          try {
+            rtcSignalSocket.send(JSON.stringify({
+              type: "join",
+              room: RTC_SIGNAL_ROOM,
+              peerId: RTC_SELF_PEER_ID,
+            }));
+          } catch (_) {}
+        };
+        rtcSignalSocket.onclose = () => {
+          rtcSignalConnected = false;
+          rtcSignalJoined = false;
+          updatePeerMeshHud();
+          scheduleRtcReconnect();
+        };
+        rtcSignalSocket.onerror = () => {};
+        rtcSignalSocket.onmessage = (event) => {
+          if (typeof event.data !== "string") return;
+          try {
+            const message = JSON.parse(event.data);
+            if (!message || typeof message !== "object") return;
+            const type = String(message.type || "").toLowerCase();
+            if (type === "joined") {
+              rtcSignalJoined = true;
+              const peers = Array.isArray(message.peers) ? message.peers : [];
+              for (const peerId of peers) {
+                const remote = String(peerId || "").trim();
+                if (!remote || remote === RTC_SELF_PEER_ID) continue;
+                if (shouldInitiateOffer(remote)) createRtcOffer(remote);
+              }
+              updatePeerMeshHud();
+              return;
+            }
+            if (type === "peer-joined") {
+              const remote = String(message.peerId || "").trim();
+              if (!remote || remote === RTC_SELF_PEER_ID) return;
+              if (shouldInitiateOffer(remote)) createRtcOffer(remote);
+              updatePeerMeshHud();
+              return;
+            }
+            if (type === "peer-left") {
+              const remote = String(message.peerId || "").trim();
+              if (!remote) return;
+              closeRtcPeer(remote);
+              return;
+            }
+            if (type === "signal") {
+              const from = String(message.from || "").trim();
+              const signalType = String(message.signalType || "").trim();
+              handleRtcSignalFrame(from, signalType, message.payload ?? null);
+              return;
+            }
+            if (type === "error") {
+              const code = String(message.code || "UNKNOWN");
+              updatePeerMeshHud(`SIGNAL_${code}`);
+            }
+          } catch (_) {}
+        };
+      }
+
+      function broadcastRtcTelemetry(nowMs) {
+        if (!rtcSignalJoined) return;
+        if (nowMs - rtcLastTelemetryBroadcastMs < RTC_TELEMETRY_BROADCAST_MS) return;
+        rtcLastTelemetryBroadcastMs = nowMs;
+        const packet = JSON.stringify({
+          type: "telemetry",
+          tick: Number(telemetrySnapshot?.tick || 0),
+          avgEnergy: Number(telemetrySnapshot?.avgEnergy || 0),
+          population: Number(codexSnapshot?.population?.current || 0),
+          mood: String(codexNarrative?.mood || "STABLE"),
+          ts: Date.now(),
+        });
+        for (const channel of rtcDataChannels.values()) {
+          if (!channel || channel.readyState !== "open") continue;
+          try {
+            channel.send(packet);
+          } catch (_) {}
+        }
+      }
 
       // Command Input
       document.getElementById("command-input").addEventListener("keydown", async (e) => {
@@ -18378,10 +18758,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           void refreshObserverDictionaries(false);
           lastDictSync = t;
         }
+        broadcastRtcTelemetry(t);
         composer.render();
       }
 
       window.saveGenesis = () => fetch("/snapshot/export", { method: "POST" });
+      connectRtcSignaling();
+      updatePeerMeshHud();
       void refreshObserverDictionaries(true);
       animate(0);
     </script>
