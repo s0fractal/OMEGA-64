@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T15:50:49.551Z*
+*Generated: 2026-03-04T16:04:06.354Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: b942a22e090236b928792985ea371e4fe009d3583dfb022d0e91ee1e99c6e663*
-*Git Commit: aef1f5dc61f3*
+*Export Content SHA256: 728e53b6ee7efa514de45c61e5d3da4fef083492316913c5c0b466059990c741*
+*Git Commit: 3df8a16ea2d8*
 
 ---
 
@@ -2616,6 +2616,8 @@ export context. It intentionally excludes historical era narratives.
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
+   codex lineage-guard cue (`last_admission.codexLineageGuardScore` /
+   `codexLineageLabel`) for operator-facing admission pressure visibility,
    compact risk summary + drift trend sparkline, top degrade-reason aggregate,
    phase-ring quadrant badge/trend from canonical pressure-ring history
    (`daemon_governance.last_pressure_ring_history`) with local fallback, and
@@ -17512,6 +17514,9 @@ type DaemonAdmissionSnapshot = {
   reason: string;
   sharedCenter: string;
   dominantInvariantVector: string;
+  codexLineageLabel?: string;
+  codexLineageGuardScore?: number;
+  codexLineageGuardReasons?: string[];
 };
 
 type RuntimeMetrics = {
@@ -18777,6 +18782,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             sharedCenter: ingressPlan.admission.context.sharedCenter,
             dominantInvariantVector:
               ingressPlan.admission.context.dominantInvariantVector,
+            codexLineageLabel:
+              ingressPlan.admission.context.codexLineageLabel,
+            codexLineageGuardScore:
+              ingressPlan.admission.context.codexLineageGuardScore,
+            codexLineageGuardReasons:
+              ingressPlan.admission.context.codexLineageGuardReasons,
           });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
@@ -18842,6 +18853,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           sharedCenter: ingressPlan.admission.context.sharedCenter,
           dominantInvariantVector:
             ingressPlan.admission.context.dominantInvariantVector,
+          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+          codexLineageGuardScore:
+            ingressPlan.admission.context.codexLineageGuardScore,
+          codexLineageGuardReasons:
+            ingressPlan.admission.context.codexLineageGuardReasons,
         });
         return new Response(
           JSON.stringify({
@@ -18926,6 +18942,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         sharedCenter: ingressPlan.admission.context.sharedCenter,
         dominantInvariantVector:
           ingressPlan.admission.context.dominantInvariantVector,
+        codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+        codexLineageGuardScore:
+          ingressPlan.admission.context.codexLineageGuardScore,
+        codexLineageGuardReasons:
+          ingressPlan.admission.context.codexLineageGuardReasons,
       });
       return new Response(
         JSON.stringify({
@@ -19928,6 +19949,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           class="codex-row-body codex-row-subtle"
         >
           daemon history: awaiting signal...
+        </div>
+        <div
+          id="human-codex-lineage-guard"
+          class="codex-row-body codex-row-subtle"
+        >
+          lineage guard: awaiting admission context...
         </div>
         <div
           id="human-phase-ring-summary"
@@ -21820,6 +21847,50 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
+      function currentCodexLineageGuard() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return { score: 0, label: "none", reasons: [] };
+        }
+        const score = Math.max(
+          0,
+          Math.floor(Number(admission.codexLineageGuardScore || 0)),
+        );
+        const label = String(admission.codexLineageLabel || "none")
+          .trim()
+          .slice(0, 48) || "none";
+        const reasons = Array.isArray(admission.codexLineageGuardReasons)
+          ? admission.codexLineageGuardReasons
+            .filter((entry) => typeof entry === "string")
+            .map((entry) => String(entry).trim())
+            .filter((entry) => entry.length > 0)
+          : [];
+        if (reasons.length > 0) {
+          return { score, label, reasons: reasons.slice(0, 4) };
+        }
+        const fallbackReasons = String(admission.reason || "")
+          .split("|")
+          .map((entry) => entry.trim())
+          .filter((entry) => entry.startsWith("CODEX_"))
+          .slice(0, 4);
+        return { score, label, reasons: fallbackReasons };
+      }
+
+      function buildCodexLineageGuardSummary() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return "lineage guard: no admission context yet";
+        }
+        const guard = currentCodexLineageGuard();
+        if (guard.score <= 0 && guard.reasons.length === 0) {
+          return `lineage guard: inactive | lineage=${guard.label}`;
+        }
+        const reasons = guard.reasons.length > 0
+          ? guard.reasons.join(",")
+          : "CODEX_SIGNAL";
+        return `lineage guard: active score=${guard.score} | lineage=${guard.label} | reasons=${reasons}`;
+      }
+
       function daemonAdmissionSeverity() {
         const admission = currentDaemonAdmission();
         if (!admission) return "BASELINE";
@@ -21916,6 +21987,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
         const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
         const phaseTrend = buildPhaseRingTrend().replace(/^trend:\s*/i, "");
+        const lineageGuard = currentCodexLineageGuard();
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
           ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
@@ -21931,6 +22003,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
         text += ` Pressure ring ${phaseVector}.`;
         text += ` Phase trend ${phaseTrend}.`;
+        if (lineageGuard.score > 0 || lineageGuard.reasons.length > 0) {
+          text +=
+            ` Codex lineage guard=${lineageGuard.score} (${lineageGuard.label}).`;
+        }
         text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
@@ -22262,6 +22338,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (historyNode) {
           historyNode.textContent =
             buildDaemonAdmissionHistorySummary();
+        }
+        const lineageNode = document.getElementById(
+          "human-codex-lineage-guard",
+        );
+        if (lineageNode) {
+          lineageNode.textContent = buildCodexLineageGuardSummary();
         }
       }
 

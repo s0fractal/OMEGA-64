@@ -161,6 +161,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-codex-lineage-guard"',
+    "UI must render codex lineage guard surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     'id="human-phase-ring-summary"',
     "UI must render phase ring summary surface",
     violations,
@@ -227,8 +233,26 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "currentCodexLineageGuard",
+    "UI must derive codex lineage guard context from daemon admission telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildCodexLineageGuardSummary",
+    "UI must render codex lineage guard summary for operator visibility",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "last_admission_history",
     "UI must consume daemon admission history from telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "codexLineageGuardScore",
+    "UI must consume codex lineage guard score from daemon admission telemetry",
     violations,
   );
   requireSnippet(

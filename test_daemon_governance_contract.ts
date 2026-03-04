@@ -97,9 +97,23 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "codexLineageLabel",
+    SYSTEM_START_PATH,
+    "Daemon ingress must derive Codex lineage label in narrative context",
+    violations,
+  );
+  requireSnippet(
+    system,
     "CODEX_LINEAGE_GUARD_PLASMID",
     SYSTEM_START_PATH,
     "Daemon ingress must include Codex lineage pressure in plasmid admission reasons",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "codexLineageGuardReasons",
+    SYSTEM_START_PATH,
+    "Daemon telemetry must preserve codex lineage guard reasons in admission snapshots",
     violations,
   );
   requireSnippet(

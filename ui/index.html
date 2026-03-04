@@ -541,6 +541,12 @@
           daemon history: awaiting signal...
         </div>
         <div
+          id="human-codex-lineage-guard"
+          class="codex-row-body codex-row-subtle"
+        >
+          lineage guard: awaiting admission context...
+        </div>
+        <div
           id="human-phase-ring-summary"
           class="codex-row-body codex-row-subtle"
         >
@@ -2431,6 +2437,50 @@
         return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
       }
 
+      function currentCodexLineageGuard() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return { score: 0, label: "none", reasons: [] };
+        }
+        const score = Math.max(
+          0,
+          Math.floor(Number(admission.codexLineageGuardScore || 0)),
+        );
+        const label = String(admission.codexLineageLabel || "none")
+          .trim()
+          .slice(0, 48) || "none";
+        const reasons = Array.isArray(admission.codexLineageGuardReasons)
+          ? admission.codexLineageGuardReasons
+            .filter((entry) => typeof entry === "string")
+            .map((entry) => String(entry).trim())
+            .filter((entry) => entry.length > 0)
+          : [];
+        if (reasons.length > 0) {
+          return { score, label, reasons: reasons.slice(0, 4) };
+        }
+        const fallbackReasons = String(admission.reason || "")
+          .split("|")
+          .map((entry) => entry.trim())
+          .filter((entry) => entry.startsWith("CODEX_"))
+          .slice(0, 4);
+        return { score, label, reasons: fallbackReasons };
+      }
+
+      function buildCodexLineageGuardSummary() {
+        const admission = currentDaemonAdmission();
+        if (!admission) {
+          return "lineage guard: no admission context yet";
+        }
+        const guard = currentCodexLineageGuard();
+        if (guard.score <= 0 && guard.reasons.length === 0) {
+          return `lineage guard: inactive | lineage=${guard.label}`;
+        }
+        const reasons = guard.reasons.length > 0
+          ? guard.reasons.join(",")
+          : "CODEX_SIGNAL";
+        return `lineage guard: active score=${guard.score} | lineage=${guard.label} | reasons=${reasons}`;
+      }
+
       function daemonAdmissionSeverity() {
         const admission = currentDaemonAdmission();
         if (!admission) return "BASELINE";
@@ -2527,6 +2577,7 @@
         );
         const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
         const phaseTrend = buildPhaseRingTrend().replace(/^trend:\s*/i, "");
+        const lineageGuard = currentCodexLineageGuard();
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
           ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
@@ -2542,6 +2593,10 @@
         }
         text += ` Pressure ring ${phaseVector}.`;
         text += ` Phase trend ${phaseTrend}.`;
+        if (lineageGuard.score > 0 || lineageGuard.reasons.length > 0) {
+          text +=
+            ` Codex lineage guard=${lineageGuard.score} (${lineageGuard.label}).`;
+        }
         text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
@@ -2873,6 +2928,12 @@
         if (historyNode) {
           historyNode.textContent =
             buildDaemonAdmissionHistorySummary();
+        }
+        const lineageNode = document.getElementById(
+          "human-codex-lineage-guard",
+        );
+        if (lineageNode) {
+          lineageNode.textContent = buildCodexLineageGuardSummary();
         }
       }
 

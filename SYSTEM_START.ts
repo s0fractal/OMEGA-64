@@ -78,6 +78,9 @@ type DaemonAdmissionSnapshot = {
   reason: string;
   sharedCenter: string;
   dominantInvariantVector: string;
+  codexLineageLabel?: string;
+  codexLineageGuardScore?: number;
+  codexLineageGuardReasons?: string[];
 };
 
 type RuntimeMetrics = {
@@ -1343,6 +1346,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             sharedCenter: ingressPlan.admission.context.sharedCenter,
             dominantInvariantVector:
               ingressPlan.admission.context.dominantInvariantVector,
+            codexLineageLabel:
+              ingressPlan.admission.context.codexLineageLabel,
+            codexLineageGuardScore:
+              ingressPlan.admission.context.codexLineageGuardScore,
+            codexLineageGuardReasons:
+              ingressPlan.admission.context.codexLineageGuardReasons,
           });
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
@@ -1408,6 +1417,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           sharedCenter: ingressPlan.admission.context.sharedCenter,
           dominantInvariantVector:
             ingressPlan.admission.context.dominantInvariantVector,
+          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+          codexLineageGuardScore:
+            ingressPlan.admission.context.codexLineageGuardScore,
+          codexLineageGuardReasons:
+            ingressPlan.admission.context.codexLineageGuardReasons,
         });
         return new Response(
           JSON.stringify({
@@ -1492,6 +1506,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         sharedCenter: ingressPlan.admission.context.sharedCenter,
         dominantInvariantVector:
           ingressPlan.admission.context.dominantInvariantVector,
+        codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+        codexLineageGuardScore:
+          ingressPlan.admission.context.codexLineageGuardScore,
+        codexLineageGuardReasons:
+          ingressPlan.admission.context.codexLineageGuardReasons,
       });
       return new Response(
         JSON.stringify({

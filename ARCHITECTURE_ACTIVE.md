@@ -27,6 +27,8 @@ export context. It intentionally excludes historical era narratives.
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
    (`daemon_governance.last_admission`) + short admission history
    (`daemon_governance.last_admission_history`), component score breakdown,
+   codex lineage-guard cue (`last_admission.codexLineageGuardScore` /
+   `codexLineageLabel`) for operator-facing admission pressure visibility,
    compact risk summary + drift trend sparkline, top degrade-reason aggregate,
    phase-ring quadrant badge/trend from canonical pressure-ring history
    (`daemon_governance.last_pressure_ring_history`) with local fallback, and
