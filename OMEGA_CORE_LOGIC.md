@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T11:39:46.227Z*
-*Exported Files: 65*
+*Generated: 2026-03-04T11:48:37.293Z*
+*Exported Files: 66*
 *Runtime Roots: 6*
-*Runtime Closure Files: 36*
+*Runtime Closure Files: 37*
 *Non-Runtime Code Files: 21*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
-*Export Set SHA256: 26b2c06e21fa3d440092de8674d9e54e07c86987c93bf7d49353c43b04d85311*
-*Export Content SHA256: 0cd8b6b661ae6c1eda2ef6167fb496a4484ce5bf96f816de662fec9499ef81c2*
-*Git Commit: e7940f375f1f*
+*Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
+*Export Content SHA256: d1330870fdad5879cbe070da32cd26d5dd3a8b38e48b568540a82e505c5aeb14*
+*Git Commit: 73fe49a32dc4*
 
 ---
 
@@ -29,6 +29,7 @@
 
 - AKASHA_CODEX.ts
 - AKASHA_SERVER.ts
+- AKASHA_SIGNALING.ts
 - assembly/index.ts
 - AUDIT_ENGINE.ts
 - AVATAR_ENGINE.ts
@@ -991,6 +992,7 @@ export const AKASHA_CODEX = {
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { AKASHA_SIGNALING } from "./AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -1260,6 +1262,10 @@ const reqHandler = async (req: Request) => {
     return proxyCodex(req, "/api/codex/narrative", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/webrtc") {
+    return json(AKASHA_SIGNALING.status());
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -1269,12 +1275,19 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc`,
       {
         status: 200,
       },
     );
   }
+
+  if (url.pathname === AKASHA_SIGNALING.path) {
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    AKASHA_SIGNALING.attach(socket);
+    return response;
+  }
+
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.onopen = () => {
     console.log("   [👁️ AKASHA] New Observer Connected.");
@@ -1295,6 +1308,319 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
+
+```
+
+---
+
+## FILE: AKASHA_SIGNALING.ts
+
+```typescript
+const RTC_SIGNAL_PATH = "/rtc/signal";
+const MAX_SIGNAL_MESSAGE_BYTES = 128 * 1024;
+const PEER_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
+const ROOM_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
+const SIGNAL_TYPES = [
+  "offer",
+  "answer",
+  "candidate",
+  "plasmid",
+  "pheromone",
+  "telemetry",
+] as const;
+
+type SignalType = typeof SIGNAL_TYPES[number];
+type JsonMap = Record<string, unknown>;
+
+type SignalingSession = {
+  socket: WebSocket;
+  roomId: string | null;
+  peerId: string | null;
+};
+
+const signalTypeSet = new Set<string>(SIGNAL_TYPES);
+const sessions = new Map<WebSocket, SignalingSession>();
+const roomPeers = new Map<string, Set<string>>();
+const socketsByRoomPeer = new Map<string, WebSocket>();
+
+const roomPeerKey = (roomId: string, peerId: string): string =>
+  `${roomId}::${peerId}`;
+
+const toSignalTypeList = (): SignalType[] => [...SIGNAL_TYPES];
+
+const safeSend = (socket: WebSocket, payload: JsonMap): void => {
+  if (socket.readyState !== WebSocket.OPEN) return;
+  try {
+    socket.send(JSON.stringify(payload));
+  } catch {
+    // Ignore socket send faults; session cleanup is handled by close/error.
+  }
+};
+
+const sendError = (socket: WebSocket, code: string, detail: string): void => {
+  safeSend(socket, { type: "error", code, detail });
+};
+
+const readObject = (value: unknown): JsonMap | null => {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return null;
+  }
+  return value as JsonMap;
+};
+
+const normalizeId = (value: unknown): string =>
+  typeof value === "string" ? value.trim() : "";
+
+const ensureRoomPeerSet = (roomId: string): Set<string> => {
+  const existing = roomPeers.get(roomId);
+  if (existing) return existing;
+  const created = new Set<string>();
+  roomPeers.set(roomId, created);
+  return created;
+};
+
+const listRoomPeers = (roomId: string): string[] => {
+  const peers = roomPeers.get(roomId);
+  if (!peers) return [];
+  return Array.from(peers).sort((a, b) => a.localeCompare(b));
+};
+
+const broadcastRoom = (
+  roomId: string,
+  payload: JsonMap,
+  excludePeerId?: string,
+): void => {
+  const peers = roomPeers.get(roomId);
+  if (!peers || peers.size === 0) return;
+  for (const peerId of peers) {
+    if (excludePeerId && peerId === excludePeerId) continue;
+    const socket = socketsByRoomPeer.get(roomPeerKey(roomId, peerId));
+    if (!socket) continue;
+    safeSend(socket, payload);
+  }
+};
+
+const leaveRoom = (
+  session: SignalingSession,
+  cause: "client_leave" | "disconnect",
+): void => {
+  if (!session.roomId || !session.peerId) return;
+  const roomId = session.roomId;
+  const peerId = session.peerId;
+  const key = roomPeerKey(roomId, peerId);
+  socketsByRoomPeer.delete(key);
+  const peers = roomPeers.get(roomId);
+  if (peers) {
+    peers.delete(peerId);
+    if (peers.size === 0) roomPeers.delete(roomId);
+  }
+  session.roomId = null;
+  session.peerId = null;
+  broadcastRoom(roomId, { type: "peer-left", room: roomId, peerId, cause });
+};
+
+const joinRoom = (session: SignalingSession, message: JsonMap): void => {
+  const roomId = normalizeId(message.room);
+  const peerId = normalizeId(message.peerId);
+  if (!ROOM_ID_RE.test(roomId)) {
+    sendError(
+      session.socket,
+      "ROOM_REQUIRED",
+      "room must match [A-Za-z0-9._:-]{1,64}",
+    );
+    return;
+  }
+  if (!PEER_ID_RE.test(peerId)) {
+    sendError(
+      session.socket,
+      "PEER_ID_REQUIRED",
+      "peerId must match [A-Za-z0-9._:-]{1,64}",
+    );
+    return;
+  }
+  const key = roomPeerKey(roomId, peerId);
+  const existingSocket = socketsByRoomPeer.get(key);
+  if (existingSocket && existingSocket !== session.socket) {
+    sendError(session.socket, "PEER_ID_TAKEN", "peerId already exists in room");
+    return;
+  }
+
+  if (session.roomId && session.peerId) {
+    leaveRoom(session, "client_leave");
+  }
+
+  const peers = ensureRoomPeerSet(roomId);
+  peers.add(peerId);
+  socketsByRoomPeer.set(key, session.socket);
+  session.roomId = roomId;
+  session.peerId = peerId;
+
+  safeSend(session.socket, {
+    type: "joined",
+    room: roomId,
+    peerId,
+    peers: listRoomPeers(roomId).filter((id) => id !== peerId),
+  });
+  broadcastRoom(
+    roomId,
+    { type: "peer-joined", room: roomId, peerId },
+    peerId,
+  );
+};
+
+const relaySignal = (session: SignalingSession, message: JsonMap): void => {
+  if (!session.roomId || !session.peerId) {
+    sendError(session.socket, "NOT_JOINED", "join room before signaling");
+    return;
+  }
+
+  const roomId = normalizeId(message.room);
+  const toPeerId = normalizeId(message.to);
+  const fromPeerId = normalizeId(message.from) || session.peerId;
+  const rawSignalType = normalizeId(message.signalType).toLowerCase();
+  const payload = message.payload ?? null;
+
+  if (roomId !== session.roomId) {
+    sendError(
+      session.socket,
+      "ROOM_MISMATCH",
+      "signal room must match joined room",
+    );
+    return;
+  }
+  if (fromPeerId !== session.peerId) {
+    sendError(session.socket, "FROM_MISMATCH", "from must match joined peerId");
+    return;
+  }
+  if (!PEER_ID_RE.test(toPeerId)) {
+    sendError(session.socket, "TARGET_REQUIRED", "target peerId is invalid");
+    return;
+  }
+  if (!signalTypeSet.has(rawSignalType)) {
+    sendError(
+      session.socket,
+      "SIGNAL_TYPE_INVALID",
+      `signalType must be one of: ${toSignalTypeList().join(", ")}`,
+    );
+    return;
+  }
+
+  const targetSocket = socketsByRoomPeer.get(
+    roomPeerKey(session.roomId, toPeerId),
+  );
+  if (!targetSocket || targetSocket.readyState !== WebSocket.OPEN) {
+    sendError(session.socket, "TARGET_OFFLINE", "target peer is not connected");
+    return;
+  }
+
+  safeSend(targetSocket, {
+    type: "signal",
+    room: session.roomId,
+    from: session.peerId,
+    signalType: rawSignalType,
+    payload,
+  });
+  safeSend(session.socket, {
+    type: "signal-ack",
+    room: session.roomId,
+    to: toPeerId,
+    signalType: rawSignalType,
+  });
+};
+
+const handleMessage = (session: SignalingSession, raw: string): void => {
+  if (raw.length > MAX_SIGNAL_MESSAGE_BYTES) {
+    sendError(
+      session.socket,
+      "MESSAGE_TOO_LARGE",
+      `message exceeds ${MAX_SIGNAL_MESSAGE_BYTES} bytes`,
+    );
+    return;
+  }
+
+  let parsed: unknown = null;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    sendError(session.socket, "INVALID_JSON", "message must be valid JSON");
+    return;
+  }
+  const message = readObject(parsed);
+  if (!message) {
+    sendError(
+      session.socket,
+      "INVALID_SHAPE",
+      "message payload must be an object",
+    );
+    return;
+  }
+
+  const type = normalizeId(message.type).toLowerCase();
+  if (type === "join") {
+    joinRoom(session, message);
+    return;
+  }
+  if (type === "signal") {
+    relaySignal(session, message);
+    return;
+  }
+  if (type === "leave") {
+    leaveRoom(session, "client_leave");
+    safeSend(session.socket, { type: "left" });
+    return;
+  }
+  sendError(
+    session.socket,
+    "TYPE_UNSUPPORTED",
+    "supported types: join | signal | leave",
+  );
+};
+
+const attach = (socket: WebSocket): void => {
+  const session: SignalingSession = {
+    socket,
+    roomId: null,
+    peerId: null,
+  };
+  sessions.set(socket, session);
+
+  socket.onopen = () => {
+    safeSend(socket, {
+      type: "hello",
+      path: RTC_SIGNAL_PATH,
+      signalTypes: toSignalTypeList(),
+    });
+  };
+  socket.onmessage = (event: MessageEvent) => {
+    if (typeof event.data !== "string") {
+      sendError(socket, "INVALID_DATA_TYPE", "message data must be string");
+      return;
+    }
+    handleMessage(session, event.data);
+  };
+  socket.onclose = () => {
+    leaveRoom(session, "disconnect");
+    sessions.delete(socket);
+  };
+  socket.onerror = () => {
+    // Let close handler handle membership cleanup.
+  };
+};
+
+const status = (): JsonMap => ({
+  ok: true,
+  path: RTC_SIGNAL_PATH,
+  rooms: roomPeers.size,
+  peers: socketsByRoomPeer.size,
+  signalTypes: toSignalTypeList(),
+  maxMessageBytes: MAX_SIGNAL_MESSAGE_BYTES,
+});
+
+export const AKASHA_SIGNALING = {
+  path: RTC_SIGNAL_PATH,
+  attach,
+  status,
+} as const;
 
 ```
 
@@ -1712,22 +2038,22 @@ export context. It intentionally excludes historical era narratives.
 4. Governance plane: `GATE.ts` + `SHIMS.ts`
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
    `SNAPSHOT_ENGINE.ts`
-6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
+6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html` Akasha signaling
+   membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
+   `/api/webrtc`.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`)
-   Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
-   Observer human channel in `ui/index.html` fuses `/api/telemetry` and
-   `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
-   component score breakdown, compact risk summary + drift trend sparkline,
-   and scene halo tint.
+   `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
+   `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
+   `ui/index.html` fuses `/api/telemetry` and `/codex/narrative` into
+   plain-language state summaries plus drift deltas over a rolling ~90s window,
+   with `LOW/MID/HIGH` drift severity badge, component score breakdown, compact
+   risk summary + drift trend sparkline, and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
-  closure.
-  Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
+  closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
   `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.

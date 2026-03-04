@@ -1,5 +1,6 @@
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { AKASHA_SIGNALING } from "./AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -269,6 +270,10 @@ const reqHandler = async (req: Request) => {
     return proxyCodex(req, "/api/codex/narrative", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/webrtc") {
+    return json(AKASHA_SIGNALING.status());
+  }
+
   if (
     req.method === "POST" &&
     (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
@@ -278,12 +283,19 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoint: ws://${HOST}:${PORT}/ | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/codex, /api/codex/narrative, /api/inject, /api/webrtc`,
       {
         status: 200,
       },
     );
   }
+
+  if (url.pathname === AKASHA_SIGNALING.path) {
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    AKASHA_SIGNALING.attach(socket);
+    return response;
+  }
+
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.onopen = () => {
     console.log("   [👁️ AKASHA] New Observer Connected.");

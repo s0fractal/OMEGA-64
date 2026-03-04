@@ -11,22 +11,22 @@ export context. It intentionally excludes historical era narratives.
 4. Governance plane: `GATE.ts` + `SHIMS.ts`
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
    `SNAPSHOT_ENGINE.ts`
-6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html`
+6. Operator/observer plane: `OBSERVER_UI.ts`, `ui/index.html` Akasha signaling
+   membrane exposes WebRTC rendezvous via `ws://<akasha>/rtc/signal` +
+   `/api/webrtc`.
 7. Codex/archive plane: `AKASHA_CODEX.ts` (`./codex/species`,
-   `./codex/chronicles`, `./codex/relics`)
-   Human narrative bridge: `/codex/narrative` and `/api/codex/narrative`.
-   Observer human channel in `ui/index.html` fuses `/api/telemetry` and
-   `/codex/narrative` into plain-language state summaries plus drift deltas
-   over a rolling ~90s window, with `LOW/MID/HIGH` drift severity badge,
-   component score breakdown, compact risk summary + drift trend sparkline,
-   and scene halo tint.
+   `./codex/chronicles`, `./codex/relics`) Human narrative bridge:
+   `/codex/narrative` and `/api/codex/narrative`. Observer human channel in
+   `ui/index.html` fuses `/api/telemetry` and `/codex/narrative` into
+   plain-language state summaries plus drift deltas over a rolling ~90s window,
+   with `LOW/MID/HIGH` drift severity badge, component score breakdown, compact
+   risk summary + drift trend sparkline, and scene halo tint.
 
 ## Runtime Classification Contract (Manifest)
 
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
-  closure.
-  Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
+  closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
   `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.

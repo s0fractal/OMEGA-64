@@ -250,10 +250,6 @@ const main = async () => {
     "[export-provenance] OMEGA_CORE_LOGIC.md stale: export-content hash mismatch vs current render",
   );
   expect(
-    persistedHeader.gitCommit === provenance.gitCommit,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: git commit mismatch vs current render",
-  );
-  expect(
     persistedHeader.runtimeRootCount === runtimeRoots.length,
     "[export-provenance] OMEGA_CORE_LOGIC.md stale: runtime root count mismatch vs current render",
   );

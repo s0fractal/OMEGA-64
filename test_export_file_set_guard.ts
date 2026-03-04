@@ -19,6 +19,7 @@ const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
 ];
 
 const REQUIRED_RUNTIME_SURFACE = [
+  "AKASHA_SIGNALING.ts",
   "assembly/index.ts",
   "build_wasm.ts",
   "wasm_layout_guard.ts",
