@@ -167,6 +167,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-phase-ring-badge"',
+    "UI must render phase ring quadrant badge",
+    violations,
+  );
+  requireSnippet(
+    ui,
     'id="human-phase-ring-vector"',
     "UI must render phase ring vector surface",
     violations,
@@ -175,6 +181,12 @@ const main = async () => {
     ui,
     'id="human-phase-ring-update"',
     "UI must render phase ring update surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    'id="human-phase-ring-trend"',
+    "UI must render phase ring trend surface",
     violations,
   );
   requireSnippet(
@@ -239,8 +251,20 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    "buildPhaseRingTrend",
+    "UI must synthesize human-readable phase ring trend from local history",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildPhaseRingUpdateSummary",
     "UI must synthesize human-readable daemon phase-ring update summary",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "applyPhaseRingBadge",
+    "UI must map current phase quadrant to badge state",
     violations,
   );
   requireSnippet(
@@ -259,6 +283,12 @@ const main = async () => {
     ui,
     "last_pressure_ring_update",
     "UI must consume daemon last pressure-ring update context",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "phaseRingHistory",
+    "UI must retain short in-browser phase ring history for trend detection",
     violations,
   );
 

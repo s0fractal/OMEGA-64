@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T15:16:10.736Z*
+*Generated: 2026-03-04T15:19:30.424Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: eb9f012104d53cf8b91cf84bb14979c18f7ebd6159649cdaa1904f93179a43f0*
-*Git Commit: 071b96bdf5bb*
+*Export Content SHA256: 6f30fbfedb63a18627e45399b1271d7a10a54464d987f92dfafba8f17d0a9757*
+*Git Commit: eaa9cfc0b95f*
 
 ---
 
@@ -19494,6 +19494,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         justify-content: space-between;
         gap: 8px;
       }
+      .human-channel-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
       .drift-severity {
         display: inline-block;
         padding: 1px 8px;
@@ -19501,6 +19506,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         border: 1px solid rgba(255, 255, 255, 0.25);
         font-size: 0.62rem;
         letter-spacing: 1px;
+      }
+      .phase-ring-badge {
+        display: inline-block;
+        padding: 1px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 0.62rem;
+        letter-spacing: 0.8px;
       }
       .drift-severity-low {
         color: #7fffd4;
@@ -19517,6 +19530,26 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       .drift-severity-baseline {
         color: #9fe8ff;
         border-color: rgba(159, 232, 255, 0.45);
+      }
+      .phase-ring-badge-i {
+        color: #74ffd1;
+        border-color: rgba(116, 255, 209, 0.52);
+      }
+      .phase-ring-badge-ii {
+        color: #ffd276;
+        border-color: rgba(255, 210, 118, 0.52);
+      }
+      .phase-ring-badge-iii {
+        color: #ff9b9b;
+        border-color: rgba(255, 155, 155, 0.56);
+      }
+      .phase-ring-badge-iv {
+        color: #9fd4ff;
+        border-color: rgba(159, 212, 255, 0.52);
+      }
+      .phase-ring-badge-off {
+        color: #b6d0df;
+        border-color: rgba(182, 208, 223, 0.45);
       }
       .human-btn {
         margin-top: 6px;
@@ -19758,11 +19791,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       <div id="human-channel" class="codex-row">
         <div class="human-channel-header">
           <div class="codex-row-title">🗣 Human Channel</div>
-          <div
-            id="human-drift-severity"
-            class="drift-severity drift-severity-baseline"
-          >
-            BASELINE
+          <div class="human-channel-badges">
+            <div
+              id="human-phase-ring-badge"
+              class="phase-ring-badge phase-ring-badge-off"
+            >
+              PHASE OFF
+            </div>
+            <div
+              id="human-drift-severity"
+              class="drift-severity drift-severity-baseline"
+            >
+              BASELINE
+            </div>
           </div>
         </div>
         <div id="human-explanation" class="codex-row-body">
@@ -19797,6 +19838,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           class="codex-row-body codex-row-subtle"
         >
           update: no daemon phase updates yet
+        </div>
+        <div
+          id="human-phase-ring-trend"
+          class="codex-row-body codex-row-subtle"
+        >
+          trend: collecting θ history...
         </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
@@ -20050,6 +20097,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const DRIFT_HISTORY_RETENTION_MS = 10 * 60 * 1000;
       const DRIFT_SPARKLINE_POINTS = 18;
       const DRIFT_SPARKLINE_GLYPHS = ".:-=+*#%@";
+      const PHASE_RING_HISTORY_LIMIT = 16;
       const RTC_SIGNAL_PATH = "/rtc/signal";
       const RTC_SIGNAL_RETRY_MIN_MS = 1200;
       const RTC_SIGNAL_RETRY_MAX_MS = 10000;
@@ -20064,6 +20112,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const RTC_MESH_MAX_Y = 799;
       const RTC_MESH_HEX_RE = /^[0-9a-fA-F]{16}$/;
       let driftHistory = [];
+      let phaseRingHistory = [];
+      let lastPhaseRingSampleKey = "";
       let dictSyncInFlight = false;
       const raycaster = new THREE.Raycaster();
       const pointerNdc = new THREE.Vector2();
@@ -21442,6 +21492,80 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return "IV";
       }
 
+      function phaseRingSeason(quadrant) {
+        const q = String(quadrant || "").toUpperCase();
+        if (q === "I") return "curiosity+love";
+        if (q === "II") return "fear+love";
+        if (q === "III") return "fear+ego";
+        if (q === "IV") return "curiosity+ego";
+        return "baseline";
+      }
+
+      function signedAngularDelta(prevTheta, nextTheta) {
+        const prev = normalizePhaseTheta(prevTheta);
+        const next = normalizePhaseTheta(nextTheta);
+        let delta = next - prev;
+        if (delta > Math.PI) delta -= Math.PI * 2;
+        if (delta < -Math.PI) delta += Math.PI * 2;
+        return delta;
+      }
+
+      function pushPhaseRingPoint() {
+        const ring = currentPressureRing();
+        if (!ring) return;
+        const update = currentPressureRingUpdate();
+        const theta = normalizePhaseTheta(ring.theta);
+        const sample = {
+          ts: Date.now(),
+          tick: Number(telemetrySnapshot?.tick || 0),
+          theta,
+          enabled: Boolean(ring.enabled),
+          scale: Number(ring.scale || 0),
+          quadrant: phaseRingQuadrant(theta),
+          updateTick: Number(update?.tick || 0),
+        };
+        const key = [
+          sample.updateTick,
+          sample.theta.toFixed(6),
+          sample.scale,
+          sample.enabled ? 1 : 0,
+        ].join("|");
+        if (key === lastPhaseRingSampleKey) return;
+        lastPhaseRingSampleKey = key;
+        phaseRingHistory.push(sample);
+        if (phaseRingHistory.length > PHASE_RING_HISTORY_LIMIT) {
+          phaseRingHistory = phaseRingHistory.slice(-PHASE_RING_HISTORY_LIMIT);
+        }
+      }
+
+      function buildPhaseRingTrend() {
+        if (phaseRingHistory.length < 2) {
+          return "trend: collecting θ history...";
+        }
+        const recent = phaseRingHistory.slice(-6);
+        const deltas = [];
+        for (let i = 1; i < recent.length; i++) {
+          deltas.push(
+            signedAngularDelta(recent[i - 1].theta, recent[i].theta),
+          );
+        }
+        if (deltas.length === 0) return "trend: collecting θ history...";
+        const avgDelta = deltas.reduce((acc, value) => acc + value, 0) /
+          deltas.length;
+        const lastDelta = deltas[deltas.length - 1] || 0;
+        const glyphs = deltas.map((delta) => {
+          if (delta > 0.0005) return "+";
+          if (delta < -0.0005) return "-";
+          return ".";
+        }).join("");
+        const direction = Math.abs(avgDelta) <= 0.0005
+          ? "steady"
+          : avgDelta > 0
+          ? "clockwise"
+          : "counterclockwise";
+        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction}`;
+      }
+
       function buildPhaseRingSummary() {
         const pressure = currentPulsePressure();
         const ring = currentPressureRing();
@@ -21464,12 +21588,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
         const theta = normalizePhaseTheta(ring.theta);
         const q = phaseRingQuadrant(theta);
+        const season = phaseRingSeason(q);
         const fc = Number(ring.fear_curiosity_balance || 0);
         const el = Number(ring.ego_love_balance || 0);
         const state = ring.enabled
           ? `fc=${fc.toFixed(3)} | el=${el.toFixed(3)}`
           : "ring disabled";
-        return `vector: θ=${theta.toFixed(4)}rad | quadrant=${q} | ${state}`;
+        return `vector: θ=${theta.toFixed(4)}rad | quadrant=${q} (${season}) | ${state}`;
       }
 
       function buildPhaseRingUpdateSummary() {
@@ -21485,6 +21610,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const scale = Number(update.scale || 0);
         const tick = Number(update.tick || 0);
         return `update: ${mode} @tick ${tick} | θ=${theta.toFixed(4)} Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
+      }
+
+      function applyPhaseRingBadge() {
+        const node = document.getElementById("human-phase-ring-badge");
+        if (!node) return;
+        const ring = currentPressureRing();
+        node.className = "phase-ring-badge";
+        if (!ring || !ring.enabled) {
+          node.textContent = "PHASE OFF";
+          node.classList.add("phase-ring-badge-off");
+          return;
+        }
+        const q = phaseRingQuadrant(ring.theta);
+        const season = phaseRingSeason(q).toUpperCase();
+        node.textContent = `Q${q} ${season}`;
+        if (q === "I") node.classList.add("phase-ring-badge-i");
+        else if (q === "II") node.classList.add("phase-ring-badge-ii");
+        else if (q === "III") node.classList.add("phase-ring-badge-iii");
+        else node.classList.add("phase-ring-badge-iv");
       }
 
       function currentDaemonAdmission() {
@@ -21621,6 +21765,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           codexNarrative?.relicStatus || "Relic status unavailable.",
         );
         const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
+        const phaseTrend = buildPhaseRingTrend().replace(/^trend:\s*/i, "");
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
           ? String(telemetrySnapshot.voxPopuli[0]).slice(0, 90)
@@ -21635,6 +21780,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           text += ` Dominant invariant vector: ${dominantInvariant}.`;
         }
         text += ` Pressure ring ${phaseVector}.`;
+        text += ` Phase trend ${phaseTrend}.`;
         text += ` ${buildDaemonAdmissionSummary()}.`;
         if (relicStatus && relicStatus.length > 0) {
           text += ` ${relicStatus}`;
@@ -21970,6 +22116,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       function renderHumanPhaseRing() {
+        pushPhaseRingPoint();
+        applyPhaseRingBadge();
         const summaryNode = document.getElementById(
           "human-phase-ring-summary",
         );
@@ -21980,6 +22128,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (updateNode) {
           updateNode.textContent = buildPhaseRingUpdateSummary();
         }
+        const trendNode = document.getElementById("human-phase-ring-trend");
+        if (trendNode) trendNode.textContent = buildPhaseRingTrend();
       }
 
       function renderHumanChannel(extraStamp = "") {
