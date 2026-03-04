@@ -104,6 +104,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "DAEMON_ADMISSION_HISTORY_LIMIT",
+    SYSTEM_START_PATH,
+    "Daemon ingress must bound admission history memory",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "last_admission_history",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish recent admission history",
+    violations,
+  );
+  requireSnippet(
+    system,
     "flushDaemonAuditEffects(",
     SYSTEM_START_PATH,
     "Daemon loop must flush deferred effect audits",

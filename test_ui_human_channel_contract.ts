@@ -155,6 +155,12 @@ const main = async () => {
   );
   requireSnippet(
     ui,
+    'id="human-daemon-history"',
+    "UI must render daemon admission history surface",
+    violations,
+  );
+  requireSnippet(
+    ui,
     "buildDaemonAdmissionSummary",
     "UI human channel must summarize daemon admission severity and reason",
     violations,
@@ -175,6 +181,24 @@ const main = async () => {
     ui,
     "selectHumanHaloSeverity",
     "UI halo must combine drift and daemon admission severity",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "currentDaemonAdmissionHistory",
+    "UI must derive daemon admission history from telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "buildDaemonAdmissionHistorySummary",
+    "UI must render compact daemon admission history summary",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "last_admission_history",
+    "UI must consume daemon admission history from telemetry",
     violations,
   );
 

@@ -493,6 +493,12 @@
         >
           daemon admission: awaiting signal...
         </div>
+        <div
+          id="human-daemon-history"
+          class="codex-row-body codex-row-subtle"
+        >
+          daemon history: awaiting signal...
+        </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
         </button>
@@ -722,6 +728,7 @@
         voxPopuli: [],
         daemon_governance: {
           last_admission: null,
+          last_admission_history: [],
         },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
@@ -2082,6 +2089,16 @@
         return admission;
       }
 
+      function currentDaemonAdmissionHistory() {
+        const governance = telemetrySnapshot?.daemon_governance;
+        if (!governance || typeof governance !== "object") return [];
+        const history = governance.last_admission_history;
+        if (!Array.isArray(history)) return [];
+        return history.filter((entry) =>
+          entry && typeof entry === "object"
+        ).slice(0, 6);
+      }
+
       function buildDaemonAdmissionSummary() {
         const admission = currentDaemonAdmission();
         if (!admission) {
@@ -2126,6 +2143,31 @@
         const driftRank = rank[drift] ?? 0;
         const admissionRank = rank[admission] ?? 0;
         return admissionRank > driftRank ? admission : drift;
+      }
+
+      function buildDaemonAdmissionHistorySummary() {
+        const history = currentDaemonAdmissionHistory();
+        if (history.length === 0) {
+          return "daemon history: no recent admissions";
+        }
+        const compact = history.map((entry) => {
+          const severity = String(entry.severity || "UNK")
+            .toUpperCase()
+            .slice(0, 1);
+          const requested = String(entry.requestedAction || "UNKNOWN")
+            .toUpperCase()
+            .replace(/_/g, "")
+            .slice(0, 6);
+          const applied = String(entry.appliedAction || "UNKNOWN")
+            .toUpperCase()
+            .replace(/_/g, "")
+            .slice(0, 6);
+          const status = String(entry.status || "accepted")
+            .toLowerCase()
+            .slice(0, 1);
+          return `${severity}${status}:${requested}>${applied}`;
+        });
+        return `daemon history: ${compact.join(" | ")}`;
       }
 
       function buildHumanExplanation() {
@@ -2489,6 +2531,13 @@
         const node = document.getElementById("human-daemon-admission");
         if (!node) return;
         node.textContent = buildDaemonAdmissionSummary();
+        const historyNode = document.getElementById(
+          "human-daemon-history",
+        );
+        if (historyNode) {
+          historyNode.textContent =
+            buildDaemonAdmissionHistorySummary();
+        }
       }
 
       function renderHumanChannel(extraStamp = "") {

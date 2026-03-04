@@ -155,6 +155,7 @@ const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = 4;
 const DAEMON_INVARIANT_MID_RATIO = 0.6;
 const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
 const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
+const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -184,11 +185,16 @@ let daemonActionsInWindow = 0;
 let daemonAuditSeq = 0;
 const daemonAuditPending: DaemonAuditPending[] = [];
 let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
+let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
 ): void => {
   latestDaemonAdmission = snapshot;
+  daemonAdmissionHistory = [snapshot, ...daemonAdmissionHistory].slice(
+    0,
+    DAEMON_ADMISSION_HISTORY_LIMIT,
+  );
 };
 
 const logicToHex = (logic: Uint8Array): string =>
@@ -394,6 +400,7 @@ const buildTelemetry = async () => {
       invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
       last_admission: latestDaemonAdmission,
+      last_admission_history: daemonAdmissionHistory,
     },
   };
 };

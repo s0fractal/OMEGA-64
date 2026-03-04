@@ -25,8 +25,9 @@ export context. It intentionally excludes historical era narratives.
    `/api/telemetry` and codex narrative/invariant surfaces into plain-language
    state summaries plus drift deltas over a rolling ~90s window, with
    `LOW/MID/HIGH` drift severity badge, daemon admission summary
-   (`daemon_governance.last_admission`), component score breakdown, compact risk
-   summary + drift trend sparkline, and scene halo tint driven by
+   (`daemon_governance.last_admission`) + short admission history
+   (`daemon_governance.last_admission_history`), component score breakdown,
+   compact risk summary + drift trend sparkline, and scene halo tint driven by
    `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
