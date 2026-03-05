@@ -2229,7 +2229,9 @@
         if (!governance || typeof governance !== "object") return [];
         const history = governance.last_pressure_ring_history;
         if (!Array.isArray(history)) return [];
-        return history.filter((entry) => entry && typeof entry === "object")
+        return history.filter((entry) =>
+          entry && typeof entry === "object"
+        )
           .slice(0, PHASE_RING_HISTORY_LIMIT);
       }
 
@@ -2291,7 +2293,9 @@
         lastPhaseRingSampleKey = key;
         phaseRingHistory.push(sample);
         if (phaseRingHistory.length > PHASE_RING_HISTORY_LIMIT) {
-          phaseRingHistory = phaseRingHistory.slice(-PHASE_RING_HISTORY_LIMIT);
+          phaseRingHistory = phaseRingHistory.slice(
+            -PHASE_RING_HISTORY_LIMIT,
+          );
         }
       }
 
@@ -2323,7 +2327,9 @@
       function buildPhaseRingTrend() {
         const canonical = canonicalPhaseRingHistory();
         const trendSource = canonical.length >= 2 ? "server" : "local";
-        const history = canonical.length >= 2 ? canonical : phaseRingHistory;
+        const history = canonical.length >= 2
+          ? canonical
+          : phaseRingHistory;
         if (history.length < 2) {
           return "trend: collecting θ history...";
         }
@@ -2334,7 +2340,9 @@
             signedAngularDelta(recent[i - 1].theta, recent[i].theta),
           );
         }
-        if (deltas.length === 0) return "trend: collecting θ history...";
+        if (deltas.length === 0) {
+          return "trend: collecting θ history...";
+        }
         const avgDelta = deltas.reduce((acc, value) => acc + value, 0) /
           deltas.length;
         const lastDelta = deltas[deltas.length - 1] || 0;
@@ -2348,7 +2356,11 @@
           : avgDelta > 0
           ? "clockwise"
           : "counterclockwise";
-        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction} | ${trendSource}`;
+        return `trend: ${glyphs} | avgΔθ=${
+          avgDelta.toFixed(4)
+        }rad | lastΔθ=${
+          lastDelta.toFixed(4)
+        } | ${direction} | ${trendSource}`;
       }
 
       function buildPhaseRingSummary() {
@@ -2379,7 +2391,9 @@
         const state = ring.enabled
           ? `fc=${fc.toFixed(3)} | el=${el.toFixed(3)}`
           : "ring disabled";
-        return `vector: θ=${theta.toFixed(4)}rad | quadrant=${q} (${season}) | ${state}`;
+        return `vector: θ=${
+          theta.toFixed(4)
+        }rad | quadrant=${q} (${season}) | ${state}`;
       }
 
       function buildPhaseRingUpdateSummary() {
@@ -2394,7 +2408,9 @@
         const delta = Number(update.delta_theta || 0);
         const scale = Number(update.scale || 0);
         const tick = Number(update.tick || 0);
-        return `update: ${mode} @tick ${tick} | θ=${theta.toFixed(4)} Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
+        return `update: ${mode} @tick ${tick} | θ=${
+          theta.toFixed(4)
+        } Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
       }
 
       function applyPhaseRingBadge() {
@@ -2412,8 +2428,9 @@
         node.textContent = `Q${q} ${season}`;
         if (q === "I") node.classList.add("phase-ring-badge-i");
         else if (q === "II") node.classList.add("phase-ring-badge-ii");
-        else if (q === "III") node.classList.add("phase-ring-badge-iii");
-        else node.classList.add("phase-ring-badge-iv");
+        else if (q === "III") {
+          node.classList.add("phase-ring-badge-iii");
+        } else node.classList.add("phase-ring-badge-iv");
       }
 
       function currentSpatialHashGuard() {
@@ -2441,7 +2458,9 @@
         const maxCell = Math.max(0, Number(guard.max_cell_count || 0));
         const ratio = Math.max(0, Number(guard.overflow_ratio || 0));
         const severity = spatialHashSeverity(guard);
-        return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${ratio.toFixed(6)} | tick=${tick}`;
+        return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${
+          ratio.toFixed(6)
+        } | tick=${tick}`;
       }
 
       function spatialHashHeatProfile() {
@@ -2563,6 +2582,18 @@
           .slice(0, 40);
         const score = Math.floor(Number(admission.score || 0));
         const distance = Number(admission.behaviorDistance || -1);
+        const codexDistance = Number(admission.codexDistance || -1);
+        const codexBridge = `${
+          String(admission.localCodexLabel || "unknown-lineage").slice(
+            0,
+            20,
+          )
+        }->${
+          String(admission.peerCodexLabel || "unknown-lineage").slice(
+            0,
+            20,
+          )
+        }`;
         const reasons = Array.isArray(admission.reasons)
           ? admission.reasons
             .filter((entry) => typeof entry === "string")
@@ -2573,7 +2604,10 @@
         const distanceText = distance >= 0
           ? ` | behaviorΔ=${distance.toFixed(3)}`
           : "";
-        return `federation admission: ${severity} ${action} | score=${score}${distanceText} | source=${source} | reasons=${reasonText}`;
+        const codexText = codexDistance >= 0
+          ? ` | codexΔ=${Math.floor(codexDistance)}`
+          : "";
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
@@ -2588,12 +2622,13 @@
         const label = String(admission.codexLineageLabel || "none")
           .trim()
           .slice(0, 48) || "none";
-        const reasons = Array.isArray(admission.codexLineageGuardReasons)
-          ? admission.codexLineageGuardReasons
-            .filter((entry) => typeof entry === "string")
-            .map((entry) => String(entry).trim())
-            .filter((entry) => entry.length > 0)
-          : [];
+        const reasons =
+          Array.isArray(admission.codexLineageGuardReasons)
+            ? admission.codexLineageGuardReasons
+              .filter((entry) => typeof entry === "string")
+              .map((entry) => String(entry).trim())
+              .filter((entry) => entry.length > 0)
+            : [];
         if (reasons.length > 0) {
           return { score, label, reasons: reasons.slice(0, 4) };
         }
@@ -2714,8 +2749,14 @@
         const relicStatus = String(
           codexNarrative?.relicStatus || "Relic status unavailable.",
         );
-        const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
-        const phaseTrend = buildPhaseRingTrend().replace(/^trend:\s*/i, "");
+        const phaseVector = buildPhaseRingVector().replace(
+          /^vector:\s*/i,
+          "",
+        );
+        const phaseTrend = buildPhaseRingTrend().replace(
+          /^trend:\s*/i,
+          "",
+        );
         const lineageGuard = currentCodexLineageGuard();
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
@@ -3074,7 +3115,8 @@
           "human-federation-admission",
         );
         if (federationNode) {
-          federationNode.textContent = buildFederationAdmissionSummary();
+          federationNode.textContent =
+            buildFederationAdmissionSummary();
         }
         const historyNode = document.getElementById(
           "human-daemon-history",
@@ -3097,14 +3139,22 @@
         const summaryNode = document.getElementById(
           "human-phase-ring-summary",
         );
-        if (summaryNode) summaryNode.textContent = buildPhaseRingSummary();
-        const vectorNode = document.getElementById("human-phase-ring-vector");
+        if (summaryNode) {
+          summaryNode.textContent = buildPhaseRingSummary();
+        }
+        const vectorNode = document.getElementById(
+          "human-phase-ring-vector",
+        );
         if (vectorNode) vectorNode.textContent = buildPhaseRingVector();
-        const updateNode = document.getElementById("human-phase-ring-update");
+        const updateNode = document.getElementById(
+          "human-phase-ring-update",
+        );
         if (updateNode) {
           updateNode.textContent = buildPhaseRingUpdateSummary();
         }
-        const trendNode = document.getElementById("human-phase-ring-trend");
+        const trendNode = document.getElementById(
+          "human-phase-ring-trend",
+        );
         if (trendNode) trendNode.textContent = buildPhaseRingTrend();
       }
 

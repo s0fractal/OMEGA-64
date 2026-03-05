@@ -578,6 +578,40 @@ const buildTelemetry = async () => {
   };
 };
 
+const buildFederateLocalContext = (
+  packet: Record<string, unknown>,
+  pulseId: number,
+): {
+  behavior: { invariant: string; dominantRole: number; memberCount: number };
+  codex: {
+    genome: string;
+    label: string;
+    dominantEpochs: number;
+    peakShare: number;
+    known: boolean;
+    generatedAt: string;
+  };
+} => {
+  const localBehavior =
+    SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024)[0];
+  const behavior = localBehavior
+    ? {
+      invariant: localBehavior.behaviorSignature,
+      dominantRole: localBehavior.dominantRole,
+      memberCount: localBehavior.memberCount,
+    }
+    : { invariant: "none", dominantRole: -1, memberCount: 0 };
+  const localDominantGenome =
+    dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0];
+  const fallbackGenome = typeof packet?.logic === "string"
+    ? packet.logic
+    : "0000000000000000";
+  const codex = AKASHA_CODEX.lookupLineageProfile(
+    localDominantGenome ?? fallbackGenome,
+  );
+  return { behavior, codex };
+};
+
 const parseDaemonInjectEnvelope = (
   body: unknown,
 ): DaemonInjectEnvelope | null => {
@@ -1685,20 +1719,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
-      const localBehavior = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+      const localContext = buildFederateLocalContext(
+        packet as Record<string, unknown>,
         PULSE.currentPulseId,
-        1024,
-      )[0];
+      );
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
-        localBehavior
-          ? {
-            invariant: localBehavior.behaviorSignature,
-            dominantRole: localBehavior.dominantRole,
-            memberCount: localBehavior.memberCount,
-          }
-          : { invariant: "none", dominantRole: -1, memberCount: 0 },
+        localContext.behavior,
+        localContext.codex,
       );
       P2P_FEDERATION.observePeerRuleGenome(
         packet?.sourceNode,
@@ -1712,6 +1741,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           )
         } score=${
           String((queued.admission as Record<string, unknown>).score ?? 0)
+        } codex=${
+          String(
+            (queued.admission as Record<string, unknown>).localCodexLabel ??
+              "unknown-lineage",
+          )
+        }->${
+          String(
+            (queued.admission as Record<string, unknown>).peerCodexLabel ??
+              "unknown-lineage",
+          )
         }`
         : "";
       LOGGER.info(

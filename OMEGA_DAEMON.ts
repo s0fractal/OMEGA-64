@@ -52,6 +52,9 @@ type Telemetry = {
       localBehaviorInvariant?: string;
       peerBehaviorInvariant?: string;
       behaviorDistance?: number;
+      localCodexLabel?: string;
+      peerCodexLabel?: string;
+      codexDistance?: number;
     };
   };
   pulse_pressure?: {
@@ -625,6 +628,18 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
               federationAdmissionLatestRaw.behaviorDistance,
               -1,
             ),
+            localCodexLabel:
+              typeof federationAdmissionLatestRaw.localCodexLabel === "string"
+                ? federationAdmissionLatestRaw.localCodexLabel
+                : undefined,
+            peerCodexLabel:
+              typeof federationAdmissionLatestRaw.peerCodexLabel === "string"
+                ? federationAdmissionLatestRaw.peerCodexLabel
+                : undefined,
+            codexDistance: asFiniteNumber(
+              federationAdmissionLatestRaw.codexDistance,
+              -1,
+            ),
           }
           : undefined,
       }
@@ -928,6 +943,8 @@ const buildInvariantFrame = (
           String(federationAdmission.severity || "LOW").toUpperCase()
         }:${federationAdmission.localBehaviorInvariant ?? "none"}->${
           federationAdmission.peerBehaviorInvariant ?? "none"
+        }:${federationAdmission.localCodexLabel ?? "unknown-lineage"}->${
+          federationAdmission.peerCodexLabel ?? "unknown-lineage"
         }`
         : "none",
       weight: federationAdmission
@@ -943,6 +960,9 @@ const buildInvariantFrame = (
           `source=${federationAdmission.sourceNode ?? "unknown"}`,
           `distance=${
             Number(federationAdmission.behaviorDistance ?? -1).toFixed(3)
+          }`,
+          `codexDistance=${
+            Number(federationAdmission.codexDistance ?? -1).toFixed(0)
           }`,
         ]
         : ["admission=none"],
@@ -963,7 +983,9 @@ const buildInvariantFrame = (
     federationAdmissionVector: federationAdmission
       ? `${federationAdmission.action}:${federationAdmission.severity}:${
         federationAdmission.localBehaviorInvariant ?? "none"
-      }->${federationAdmission.peerBehaviorInvariant ?? "none"}`
+      }->${federationAdmission.peerBehaviorInvariant ?? "none"}:${
+        federationAdmission.localCodexLabel ?? "unknown-lineage"
+      }->${federationAdmission.peerCodexLabel ?? "unknown-lineage"}`
       : "none",
   });
   const signature = fnv1a32(signatureSeed);

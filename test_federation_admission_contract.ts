@@ -83,6 +83,34 @@ const main = async () => {
     "Federation admission snapshot must preserve local behavior invariant",
     violations,
   );
+  requireSnippet(
+    queue,
+    "parseCodexProfile",
+    QUEUE_PATH,
+    "Control queue must parse peer codex profile",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "codexDistance",
+    QUEUE_PATH,
+    "Control queue must score codex lineage distance",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "PEER_CODEX_PROFILE_MISSING",
+    QUEUE_PATH,
+    "Control queue must account for missing peer codex profile",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "localCodexLabel",
+    QUEUE_PATH,
+    "Federation admission snapshot must preserve local codex lineage label",
+    violations,
+  );
 
   requireSnippet(
     p2p,
@@ -96,6 +124,20 @@ const main = async () => {
     "captureBehaviorFrame",
     P2P_PATH,
     "Federation egress must source behavior profile from semantic membrane",
+    violations,
+  );
+  requireSnippet(
+    p2p,
+    "codexProfile",
+    P2P_PATH,
+    "Federation egress packets must carry codex lineage profile",
+    violations,
+  );
+  requireSnippet(
+    p2p,
+    "lookupLineageProfile",
+    P2P_PATH,
+    "Federation egress must source codex lineage profile from codex index",
     violations,
   );
 
@@ -143,6 +185,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    system,
+    "localContext.codex",
+    SYSTEM_PATH,
+    "System ingress must pass local codex lineage context into federation admission",
+    violations,
+  );
+  requireSnippet(
     daemon,
     "federation_admission",
     DAEMON_PATH,
@@ -154,6 +203,13 @@ const main = async () => {
     "federation_admission_vector",
     DAEMON_PATH,
     "Daemon invariant frame must emit federation admission vector",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "codexDistance",
+    DAEMON_PATH,
+    "Daemon invariant frame must retain codex-distance signal",
     violations,
   );
 
@@ -169,6 +225,13 @@ const main = async () => {
     "buildFederationAdmissionSummary",
     UI_PATH,
     "UI must summarize federation admission decisions",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "codexΔ",
+    UI_PATH,
+    "UI federation summary must include codex distance projection",
     violations,
   );
 

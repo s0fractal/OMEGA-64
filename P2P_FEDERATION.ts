@@ -8,6 +8,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 export interface AtomPacket {
   id: string;
@@ -18,6 +19,7 @@ export interface AtomPacket {
   pulseId: number;
   ruleGenome?: RuleGenomeProfile;
   behaviorProfile?: BehaviorProfile;
+  codexProfile?: CodexProfile;
 }
 
 export interface RuleGenomeProfile {
@@ -34,6 +36,15 @@ export interface BehaviorProfile {
   invariant: string;
   dominantRole: number;
   memberCount: number;
+  generatedAt: string;
+}
+
+export interface CodexProfile {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
   generatedAt: string;
 }
 
@@ -143,6 +154,9 @@ export const P2P_FEDERATION = {
         memberCount: 0,
         generatedAt: new Date().toISOString(),
       };
+    const codexProfile: CodexProfile = AKASHA_CODEX.lookupLineageProfile(
+      logicStr,
+    );
 
     return {
       id,
@@ -153,6 +167,7 @@ export const P2P_FEDERATION = {
       pulseId,
       ruleGenome: LOCAL_RULE_GENOME,
       behaviorProfile,
+      codexProfile,
     };
   },
 

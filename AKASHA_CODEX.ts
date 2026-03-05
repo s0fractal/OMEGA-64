@@ -163,6 +163,15 @@ type TaxonomyResult = {
   philosophy: string;
 };
 
+export type CodexLineageProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+  generatedAt: string;
+};
+
 const OPCODE_NAMES: Record<number, string> = {
   0x00: "NOP",
   0x01: "SET",
@@ -1124,6 +1133,38 @@ export const AKASHA_CODEX = {
     await syncDaemonInvariants();
     const take = Math.max(1, Math.min(128, Math.floor(limit)));
     return invariantIndex.slice(0, take);
+  },
+  lookupLineageProfile: (genomeHex: string): CodexLineageProfile => {
+    const genome = genomeHex.trim().replace(/^0x/iu, "").toUpperCase();
+    if (!/^[0-9A-F]{16}$/u.test(genome)) {
+      return {
+        genome: genome.slice(0, 16),
+        label: "unknown-lineage",
+        dominantEpochs: 0,
+        peakShare: 0,
+        known: false,
+        generatedAt: nowIso(),
+      };
+    }
+    const hit = speciesIndex.find((entry) => entry.genome === genome);
+    if (!hit) {
+      return {
+        genome,
+        label: `Genome ${genome.slice(0, 8)}`,
+        dominantEpochs: 0,
+        peakShare: 0,
+        known: false,
+        generatedAt: nowIso(),
+      };
+    }
+    return {
+      genome,
+      label: hit.latinName,
+      dominantEpochs: Math.max(0, Math.floor(hit.dominantEpochs)),
+      peakShare: Math.max(0, Math.min(1, Number(hit.peakShare ?? 0))),
+      known: true,
+      generatedAt: nowIso(),
+    };
   },
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();

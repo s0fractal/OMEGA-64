@@ -24,6 +24,8 @@ type FederateIntent = {
     admission: FederationAdmissionSnapshot;
     peerBehaviorProfile: FederationBehaviorProfile | null;
     localBehaviorContext: FederationLocalBehaviorContext | null;
+    peerCodexProfile: FederationCodexProfile | null;
+    localCodexContext: FederationLocalCodexContext | null;
   };
   seedPulseId: number;
 };
@@ -58,6 +60,23 @@ type FederationLocalBehaviorContext = {
   memberCount: number;
 };
 
+type FederationCodexProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+  generatedAt: string;
+};
+
+type FederationLocalCodexContext = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+};
+
 type FederationAdmissionSnapshot = {
   tick: number;
   atomId: string;
@@ -74,6 +93,9 @@ type FederationAdmissionSnapshot = {
   localBehaviorInvariant: string;
   peerBehaviorInvariant: string;
   behaviorDistance: number;
+  localCodexLabel: string;
+  peerCodexLabel: string;
+  codexDistance: number;
 };
 
 type FederateAdmissionResult = {
@@ -287,6 +309,44 @@ const parseLocalBehaviorContext = (
   };
 };
 
+const parseCodexProfile = (raw: unknown): FederationCodexProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const genome = typeof source.genome === "string"
+    ? source.genome.trim().replace(/^0x/iu, "").toUpperCase()
+    : "";
+  if (!/^[0-9A-F]{16}$/u.test(genome)) return null;
+  const label = typeof source.label === "string"
+    ? source.label.trim().slice(0, 96)
+    : "";
+  const peakShareRaw = Number(source.peakShare);
+  return {
+    genome,
+    label: label.length > 0 ? label : `Genome ${genome.slice(0, 8)}`,
+    dominantEpochs: toBoundedInt(Number(source.dominantEpochs), 0, 10_000, 0),
+    peakShare: Number.isFinite(peakShareRaw) ? clamp(peakShareRaw, 0, 1) : 0,
+    known: source.known === true,
+    generatedAt: typeof source.generatedAt === "string" &&
+        source.generatedAt.trim().length > 0
+      ? source.generatedAt.trim()
+      : "unknown",
+  };
+};
+
+const parseLocalCodexContext = (
+  raw: unknown,
+): FederationLocalCodexContext | null => {
+  const parsed = parseCodexProfile(raw);
+  if (!parsed) return null;
+  return {
+    genome: parsed.genome,
+    label: parsed.label,
+    dominantEpochs: parsed.dominantEpochs,
+    peakShare: parsed.peakShare,
+    known: parsed.known,
+  };
+};
+
 const parseBehaviorInvariantAxes = (
   invariant: string,
 ): { r: number; s: number; b: number } | null => {
@@ -319,6 +379,21 @@ const behaviorInvariantDistance = (
   const delta = Math.abs(left.r - right.r) + Math.abs(left.s - right.s) +
     Math.abs(left.b - right.b);
   return Number(delta.toFixed(3));
+};
+
+const codexDistance = (
+  localContext: FederationLocalCodexContext,
+  peerProfile: FederationCodexProfile,
+): number => {
+  let distance = 0;
+  if (localContext.genome !== peerProfile.genome) distance += 1;
+  if (localContext.label !== peerProfile.label) distance += 1;
+  if (localContext.known !== peerProfile.known) distance += 1;
+  const epochDelta = Math.abs(
+    localContext.dominantEpochs - peerProfile.dominantEpochs,
+  );
+  if (epochDelta >= 8) distance += 1;
+  return distance;
 };
 
 const setLatestFederationAdmission = (
@@ -390,13 +465,18 @@ const evaluateFederateAdmission = (
     ruleGenome: FederationRuleGenomeProfile | null;
     peerBehaviorProfile: FederationBehaviorProfile | null;
     localBehaviorContext: FederationLocalBehaviorContext | null;
+    peerCodexProfile: FederationCodexProfile | null;
+    localCodexContext: FederationLocalCodexContext | null;
   },
 ): FederateAdmissionResult => {
   const policy = FEDERATION_ADMISSION_POLICY;
   const localBehaviorInvariant = packet.localBehaviorContext?.invariant ??
     "none";
   const peerBehaviorInvariant = packet.peerBehaviorProfile?.invariant ?? "none";
+  const localCodexLabel = packet.localCodexContext?.label ?? "unknown-lineage";
+  const peerCodexLabel = packet.peerCodexProfile?.label ?? "unknown-lineage";
   let behaviorDistance = -1;
+  let codexDistanceScore = -1;
   if (!policy.enabled) {
     const admission: FederationAdmissionSnapshot = {
       tick: packet.pulseId,
@@ -414,6 +494,9 @@ const evaluateFederateAdmission = (
       localBehaviorInvariant,
       peerBehaviorInvariant,
       behaviorDistance,
+      localCodexLabel,
+      peerCodexLabel,
+      codexDistance: codexDistanceScore,
     };
     return {
       action: "accept",
@@ -444,6 +527,9 @@ const evaluateFederateAdmission = (
       localBehaviorInvariant,
       peerBehaviorInvariant,
       behaviorDistance,
+      localCodexLabel,
+      peerCodexLabel,
+      codexDistance: codexDistanceScore,
     };
     return {
       action: "degrade",
@@ -576,6 +662,52 @@ const evaluateFederateAdmission = (
     reasons.push("PEER_BEHAVIOR_SWARM_SCALE");
   }
 
+  if (!packet.peerCodexProfile) {
+    score += 1;
+    reasons.push("PEER_CODEX_PROFILE_MISSING");
+  } else if (packet.localCodexContext) {
+    codexDistanceScore = codexDistance(
+      packet.localCodexContext,
+      packet.peerCodexProfile,
+    );
+    if (codexDistanceScore >= 3) {
+      score += 2;
+      reasons.push("CODEX_DISTANCE_HIGH");
+    } else if (codexDistanceScore >= 2) {
+      score += 1;
+      reasons.push("CODEX_DISTANCE_MID");
+    } else if (codexDistanceScore <= 0) {
+      score = Math.max(0, score - 1);
+      reasons.push("CODEX_ALIGNMENT_BONUS");
+    }
+
+    const epochDelta = Math.abs(
+      packet.localCodexContext.dominantEpochs -
+        packet.peerCodexProfile.dominantEpochs,
+    );
+    if (epochDelta >= 12) {
+      score += 1;
+      reasons.push("CODEX_EPOCH_DELTA_HIGH");
+    }
+
+    if (
+      packet.localCodexContext.known && !packet.peerCodexProfile.known &&
+      packet.localCodexContext.dominantEpochs >= 6
+    ) {
+      score += 1;
+      reasons.push("CODEX_UNKNOWN_PEER_IN_MATURE_FIELD");
+    }
+
+    if (
+      packet.peerCodexProfile.known &&
+      packet.peerCodexProfile.peakShare >= 0.55 &&
+      packet.peerCodexProfile.genome !== packet.localCodexContext.genome
+    ) {
+      score += 1;
+      reasons.push("CODEX_PEER_PEAK_SHARE_HIGH");
+    }
+  }
+
   const severity: FederationAdmissionSeverity = score >= policy.highScore
     ? "HIGH"
     : score >= policy.midScore
@@ -656,6 +788,9 @@ const evaluateFederateAdmission = (
     localBehaviorInvariant,
     peerBehaviorInvariant,
     behaviorDistance,
+    localCodexLabel,
+    peerCodexLabel,
+    codexDistance: codexDistanceScore,
   };
   return {
     action,
@@ -755,7 +890,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
 
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant}`,
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel}`,
   );
   return true;
 };
@@ -857,6 +992,7 @@ export const CONTROL_INTENT_QUEUE = {
     packet: unknown,
     seedPulseId: number,
     localBehaviorContext: unknown = null,
+    localCodexContext: unknown = null,
   ): QueueDecision => {
     if (!packet || typeof packet !== "object") {
       return decision(false, 400, "INVALID_FEDERATE_PACKET");
@@ -871,7 +1007,9 @@ export const CONTROL_INTENT_QUEUE = {
     const resonance = parseFiniteNumber(p.resonance);
     const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
     const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
+    const peerCodexProfile = parseCodexProfile(p.codexProfile);
     const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
+    const localCodex = parseLocalCodexContext(localCodexContext);
     const pulseId = Number.isInteger(p.pulseId)
       ? Number(p.pulseId)
       : Math.max(0, Math.floor(seedPulseId));
@@ -888,6 +1026,8 @@ export const CONTROL_INTENT_QUEUE = {
       ruleGenome,
       peerBehaviorProfile,
       localBehaviorContext: localBehavior,
+      peerCodexProfile,
+      localCodexContext: localCodex,
     });
     setLatestFederationAdmission(admissionResult.admission);
     const admissionKind = admissionResult.action === "reject"
@@ -929,6 +1069,8 @@ export const CONTROL_INTENT_QUEUE = {
         admission: admissionResult.admission,
         peerBehaviorProfile,
         localBehaviorContext: localBehavior,
+        peerCodexProfile,
+        localCodexContext: localCodex,
       },
       seedPulseId: Math.max(0, Math.floor(seedPulseId)),
     });
