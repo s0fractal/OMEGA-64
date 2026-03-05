@@ -38,6 +38,10 @@ const createLcg = (seed: number): (() => number) => {
 const makeReplicatorScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
+  script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_PRODUCER;
+  script[pc++] = STATE_MATRIX.RISC.OP_SPORE_DRIVE;
   script[pc++] = STATE_MATRIX.RISC.OP_REPLICATE;
   script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
   script[pc++] = STATE_MATRIX.RISC.OP_JMP;
@@ -54,19 +58,11 @@ const makeArchitectScript = (): Uint8Array => {
   script[pc++] = STATE_MATRIX.RISC.OP_BUILD;
   script[pc++] = 1; // STRUCTURE.WIRE
   script[pc++] = 1; // state=1
+  script[pc++] = STATE_MATRIX.RISC.OP_SPORE_DRIVE;
   script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
   script[pc++] = STATE_MATRIX.RISC.OP_JMP;
   script[pc++] = 0;
   return script;
-};
-
-const randomInRange = (
-  nextU32: () => number,
-  min: number,
-  maxInclusive: number,
-): number => {
-  const width = Math.max(1, maxInclusive - min + 1);
-  return min + (nextU32() % width);
 };
 
 const buildGenome = (
@@ -90,6 +86,39 @@ const variedResource = (
   const span = Math.max(1, Math.floor(base * pctSwing));
   const delta = (nextU32() % (span * 2 + 1)) - span;
   return Math.max(1, base + delta);
+};
+
+const seedPosition = (
+  index: number,
+  count: number,
+  nextU32: () => number,
+): { x: number; y: number } => {
+  const usableW = Math.max(1, WORLD_W - MARGIN * 2);
+  const usableH = Math.max(1, WORLD_H - MARGIN * 2);
+  const aspect = usableW / usableH;
+  const cols = Math.max(1, Math.ceil(Math.sqrt(count * aspect)));
+  const rows = Math.max(1, Math.ceil(count / cols));
+  const col = index % cols;
+  const row = Math.floor(index / cols);
+  const cellW = Math.max(1, Math.floor(usableW / cols));
+  const cellH = Math.max(1, Math.floor(usableH / rows));
+
+  const baseX = MARGIN + Math.floor(cellW * col + cellW / 2);
+  const baseY = MARGIN + Math.floor(cellH * row + cellH / 2);
+
+  const jitterSpanX = Math.max(0, Math.floor(cellW * 0.35));
+  const jitterSpanY = Math.max(0, Math.floor(cellH * 0.35));
+  const jitterX = jitterSpanX > 0
+    ? (nextU32() % (jitterSpanX * 2 + 1)) - jitterSpanX
+    : 0;
+  const jitterY = jitterSpanY > 0
+    ? (nextU32() % (jitterSpanY * 2 + 1)) - jitterSpanY
+    : 0;
+
+  return {
+    x: clamp(baseX + jitterX, MARGIN, WORLD_W - MARGIN),
+    y: clamp(baseY + jitterY, MARGIN, WORLD_H - MARGIN),
+  };
 };
 
 const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
@@ -155,8 +184,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       ? "replicator"
       : "architect";
     const genome = buildGenome(nextU32, mode);
-    const x = randomInRange(nextU32, MARGIN, WORLD_W - MARGIN);
-    const y = randomInRange(nextU32, MARGIN, WORLD_H - MARGIN);
+    const pos = seedPosition(i, config.count, nextU32);
     const energy = variedResource(config.energy, nextU32, 0.18);
     const resonance = variedResource(config.resonance, nextU32, 0.22);
     const id = (
@@ -168,8 +196,8 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
     STATE_MATRIX.seedAtom(
       slot,
       id,
-      x,
-      y,
+      pos.x,
+      pos.y,
       energy,
       resonance,
       genome,
