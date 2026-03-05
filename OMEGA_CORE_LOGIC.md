@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T11:55:02.188Z*
+*Generated: 2026-03-05T12:07:09.534Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: f1c63c7e5d037c7fee15d99fb1c3601d547199e9e93ecb1476525b1147f706bd*
-*Git Commit: 3c7292cc1392*
+*Export Content SHA256: 97d5963c6db32289cdc3e8580bae60bde7302be365847be4aad8728ede2e0ab7*
+*Git Commit: 6d5770b4b782*
 
 ---
 
@@ -290,6 +290,15 @@ type TaxonomyResult = {
   latinName: string;
   behavior: string;
   philosophy: string;
+};
+
+export type CodexLineageProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+  generatedAt: string;
 };
 
 const OPCODE_NAMES: Record<number, string> = {
@@ -1253,6 +1262,38 @@ export const AKASHA_CODEX = {
     await syncDaemonInvariants();
     const take = Math.max(1, Math.min(128, Math.floor(limit)));
     return invariantIndex.slice(0, take);
+  },
+  lookupLineageProfile: (genomeHex: string): CodexLineageProfile => {
+    const genome = genomeHex.trim().replace(/^0x/iu, "").toUpperCase();
+    if (!/^[0-9A-F]{16}$/u.test(genome)) {
+      return {
+        genome: genome.slice(0, 16),
+        label: "unknown-lineage",
+        dominantEpochs: 0,
+        peakShare: 0,
+        known: false,
+        generatedAt: nowIso(),
+      };
+    }
+    const hit = speciesIndex.find((entry) => entry.genome === genome);
+    if (!hit) {
+      return {
+        genome,
+        label: `Genome ${genome.slice(0, 8)}`,
+        dominantEpochs: 0,
+        peakShare: 0,
+        known: false,
+        generatedAt: nowIso(),
+      };
+    }
+    return {
+      genome,
+      label: hit.latinName,
+      dominantEpochs: Math.max(0, Math.floor(hit.dominantEpochs)),
+      peakShare: Math.max(0, Math.min(1, Number(hit.peakShare ?? 0))),
+      known: true,
+      generatedAt: nowIso(),
+    };
   },
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();
@@ -4288,6 +4329,8 @@ type FederateIntent = {
     admission: FederationAdmissionSnapshot;
     peerBehaviorProfile: FederationBehaviorProfile | null;
     localBehaviorContext: FederationLocalBehaviorContext | null;
+    peerCodexProfile: FederationCodexProfile | null;
+    localCodexContext: FederationLocalCodexContext | null;
   };
   seedPulseId: number;
 };
@@ -4322,6 +4365,23 @@ type FederationLocalBehaviorContext = {
   memberCount: number;
 };
 
+type FederationCodexProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+  generatedAt: string;
+};
+
+type FederationLocalCodexContext = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+};
+
 type FederationAdmissionSnapshot = {
   tick: number;
   atomId: string;
@@ -4338,6 +4398,9 @@ type FederationAdmissionSnapshot = {
   localBehaviorInvariant: string;
   peerBehaviorInvariant: string;
   behaviorDistance: number;
+  localCodexLabel: string;
+  peerCodexLabel: string;
+  codexDistance: number;
 };
 
 type FederateAdmissionResult = {
@@ -4551,6 +4614,44 @@ const parseLocalBehaviorContext = (
   };
 };
 
+const parseCodexProfile = (raw: unknown): FederationCodexProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const genome = typeof source.genome === "string"
+    ? source.genome.trim().replace(/^0x/iu, "").toUpperCase()
+    : "";
+  if (!/^[0-9A-F]{16}$/u.test(genome)) return null;
+  const label = typeof source.label === "string"
+    ? source.label.trim().slice(0, 96)
+    : "";
+  const peakShareRaw = Number(source.peakShare);
+  return {
+    genome,
+    label: label.length > 0 ? label : `Genome ${genome.slice(0, 8)}`,
+    dominantEpochs: toBoundedInt(Number(source.dominantEpochs), 0, 10_000, 0),
+    peakShare: Number.isFinite(peakShareRaw) ? clamp(peakShareRaw, 0, 1) : 0,
+    known: source.known === true,
+    generatedAt: typeof source.generatedAt === "string" &&
+        source.generatedAt.trim().length > 0
+      ? source.generatedAt.trim()
+      : "unknown",
+  };
+};
+
+const parseLocalCodexContext = (
+  raw: unknown,
+): FederationLocalCodexContext | null => {
+  const parsed = parseCodexProfile(raw);
+  if (!parsed) return null;
+  return {
+    genome: parsed.genome,
+    label: parsed.label,
+    dominantEpochs: parsed.dominantEpochs,
+    peakShare: parsed.peakShare,
+    known: parsed.known,
+  };
+};
+
 const parseBehaviorInvariantAxes = (
   invariant: string,
 ): { r: number; s: number; b: number } | null => {
@@ -4583,6 +4684,21 @@ const behaviorInvariantDistance = (
   const delta = Math.abs(left.r - right.r) + Math.abs(left.s - right.s) +
     Math.abs(left.b - right.b);
   return Number(delta.toFixed(3));
+};
+
+const codexDistance = (
+  localContext: FederationLocalCodexContext,
+  peerProfile: FederationCodexProfile,
+): number => {
+  let distance = 0;
+  if (localContext.genome !== peerProfile.genome) distance += 1;
+  if (localContext.label !== peerProfile.label) distance += 1;
+  if (localContext.known !== peerProfile.known) distance += 1;
+  const epochDelta = Math.abs(
+    localContext.dominantEpochs - peerProfile.dominantEpochs,
+  );
+  if (epochDelta >= 8) distance += 1;
+  return distance;
 };
 
 const setLatestFederationAdmission = (
@@ -4654,13 +4770,18 @@ const evaluateFederateAdmission = (
     ruleGenome: FederationRuleGenomeProfile | null;
     peerBehaviorProfile: FederationBehaviorProfile | null;
     localBehaviorContext: FederationLocalBehaviorContext | null;
+    peerCodexProfile: FederationCodexProfile | null;
+    localCodexContext: FederationLocalCodexContext | null;
   },
 ): FederateAdmissionResult => {
   const policy = FEDERATION_ADMISSION_POLICY;
   const localBehaviorInvariant = packet.localBehaviorContext?.invariant ??
     "none";
   const peerBehaviorInvariant = packet.peerBehaviorProfile?.invariant ?? "none";
+  const localCodexLabel = packet.localCodexContext?.label ?? "unknown-lineage";
+  const peerCodexLabel = packet.peerCodexProfile?.label ?? "unknown-lineage";
   let behaviorDistance = -1;
+  let codexDistanceScore = -1;
   if (!policy.enabled) {
     const admission: FederationAdmissionSnapshot = {
       tick: packet.pulseId,
@@ -4678,6 +4799,9 @@ const evaluateFederateAdmission = (
       localBehaviorInvariant,
       peerBehaviorInvariant,
       behaviorDistance,
+      localCodexLabel,
+      peerCodexLabel,
+      codexDistance: codexDistanceScore,
     };
     return {
       action: "accept",
@@ -4708,6 +4832,9 @@ const evaluateFederateAdmission = (
       localBehaviorInvariant,
       peerBehaviorInvariant,
       behaviorDistance,
+      localCodexLabel,
+      peerCodexLabel,
+      codexDistance: codexDistanceScore,
     };
     return {
       action: "degrade",
@@ -4840,6 +4967,52 @@ const evaluateFederateAdmission = (
     reasons.push("PEER_BEHAVIOR_SWARM_SCALE");
   }
 
+  if (!packet.peerCodexProfile) {
+    score += 1;
+    reasons.push("PEER_CODEX_PROFILE_MISSING");
+  } else if (packet.localCodexContext) {
+    codexDistanceScore = codexDistance(
+      packet.localCodexContext,
+      packet.peerCodexProfile,
+    );
+    if (codexDistanceScore >= 3) {
+      score += 2;
+      reasons.push("CODEX_DISTANCE_HIGH");
+    } else if (codexDistanceScore >= 2) {
+      score += 1;
+      reasons.push("CODEX_DISTANCE_MID");
+    } else if (codexDistanceScore <= 0) {
+      score = Math.max(0, score - 1);
+      reasons.push("CODEX_ALIGNMENT_BONUS");
+    }
+
+    const epochDelta = Math.abs(
+      packet.localCodexContext.dominantEpochs -
+        packet.peerCodexProfile.dominantEpochs,
+    );
+    if (epochDelta >= 12) {
+      score += 1;
+      reasons.push("CODEX_EPOCH_DELTA_HIGH");
+    }
+
+    if (
+      packet.localCodexContext.known && !packet.peerCodexProfile.known &&
+      packet.localCodexContext.dominantEpochs >= 6
+    ) {
+      score += 1;
+      reasons.push("CODEX_UNKNOWN_PEER_IN_MATURE_FIELD");
+    }
+
+    if (
+      packet.peerCodexProfile.known &&
+      packet.peerCodexProfile.peakShare >= 0.55 &&
+      packet.peerCodexProfile.genome !== packet.localCodexContext.genome
+    ) {
+      score += 1;
+      reasons.push("CODEX_PEER_PEAK_SHARE_HIGH");
+    }
+  }
+
   const severity: FederationAdmissionSeverity = score >= policy.highScore
     ? "HIGH"
     : score >= policy.midScore
@@ -4920,6 +5093,9 @@ const evaluateFederateAdmission = (
     localBehaviorInvariant,
     peerBehaviorInvariant,
     behaviorDistance,
+    localCodexLabel,
+    peerCodexLabel,
+    codexDistance: codexDistanceScore,
   };
   return {
     action,
@@ -5019,7 +5195,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
 
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant}`,
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel}`,
   );
   return true;
 };
@@ -5121,6 +5297,7 @@ export const CONTROL_INTENT_QUEUE = {
     packet: unknown,
     seedPulseId: number,
     localBehaviorContext: unknown = null,
+    localCodexContext: unknown = null,
   ): QueueDecision => {
     if (!packet || typeof packet !== "object") {
       return decision(false, 400, "INVALID_FEDERATE_PACKET");
@@ -5135,7 +5312,9 @@ export const CONTROL_INTENT_QUEUE = {
     const resonance = parseFiniteNumber(p.resonance);
     const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
     const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
+    const peerCodexProfile = parseCodexProfile(p.codexProfile);
     const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
+    const localCodex = parseLocalCodexContext(localCodexContext);
     const pulseId = Number.isInteger(p.pulseId)
       ? Number(p.pulseId)
       : Math.max(0, Math.floor(seedPulseId));
@@ -5152,6 +5331,8 @@ export const CONTROL_INTENT_QUEUE = {
       ruleGenome,
       peerBehaviorProfile,
       localBehaviorContext: localBehavior,
+      peerCodexProfile,
+      localCodexContext: localCodex,
     });
     setLatestFederationAdmission(admissionResult.admission);
     const admissionKind = admissionResult.action === "reject"
@@ -5193,6 +5374,8 @@ export const CONTROL_INTENT_QUEUE = {
         admission: admissionResult.admission,
         peerBehaviorProfile,
         localBehaviorContext: localBehavior,
+        peerCodexProfile,
+        localCodexContext: localCodex,
       },
       seedPulseId: Math.max(0, Math.floor(seedPulseId)),
     });
@@ -9815,6 +9998,9 @@ type Telemetry = {
       localBehaviorInvariant?: string;
       peerBehaviorInvariant?: string;
       behaviorDistance?: number;
+      localCodexLabel?: string;
+      peerCodexLabel?: string;
+      codexDistance?: number;
     };
   };
   pulse_pressure?: {
@@ -10388,6 +10574,18 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
               federationAdmissionLatestRaw.behaviorDistance,
               -1,
             ),
+            localCodexLabel:
+              typeof federationAdmissionLatestRaw.localCodexLabel === "string"
+                ? federationAdmissionLatestRaw.localCodexLabel
+                : undefined,
+            peerCodexLabel:
+              typeof federationAdmissionLatestRaw.peerCodexLabel === "string"
+                ? federationAdmissionLatestRaw.peerCodexLabel
+                : undefined,
+            codexDistance: asFiniteNumber(
+              federationAdmissionLatestRaw.codexDistance,
+              -1,
+            ),
           }
           : undefined,
       }
@@ -10691,6 +10889,8 @@ const buildInvariantFrame = (
           String(federationAdmission.severity || "LOW").toUpperCase()
         }:${federationAdmission.localBehaviorInvariant ?? "none"}->${
           federationAdmission.peerBehaviorInvariant ?? "none"
+        }:${federationAdmission.localCodexLabel ?? "unknown-lineage"}->${
+          federationAdmission.peerCodexLabel ?? "unknown-lineage"
         }`
         : "none",
       weight: federationAdmission
@@ -10706,6 +10906,9 @@ const buildInvariantFrame = (
           `source=${federationAdmission.sourceNode ?? "unknown"}`,
           `distance=${
             Number(federationAdmission.behaviorDistance ?? -1).toFixed(3)
+          }`,
+          `codexDistance=${
+            Number(federationAdmission.codexDistance ?? -1).toFixed(0)
           }`,
         ]
         : ["admission=none"],
@@ -10726,7 +10929,9 @@ const buildInvariantFrame = (
     federationAdmissionVector: federationAdmission
       ? `${federationAdmission.action}:${federationAdmission.severity}:${
         federationAdmission.localBehaviorInvariant ?? "none"
-      }->${federationAdmission.peerBehaviorInvariant ?? "none"}`
+      }->${federationAdmission.peerBehaviorInvariant ?? "none"}:${
+        federationAdmission.localCodexLabel ?? "unknown-lineage"
+      }->${federationAdmission.peerCodexLabel ?? "unknown-lineage"}`
       : "none",
   });
   const signature = fnv1a32(signatureSeed);
@@ -11107,6 +11312,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 export interface AtomPacket {
   id: string;
@@ -11117,6 +11323,7 @@ export interface AtomPacket {
   pulseId: number;
   ruleGenome?: RuleGenomeProfile;
   behaviorProfile?: BehaviorProfile;
+  codexProfile?: CodexProfile;
 }
 
 export interface RuleGenomeProfile {
@@ -11133,6 +11340,15 @@ export interface BehaviorProfile {
   invariant: string;
   dominantRole: number;
   memberCount: number;
+  generatedAt: string;
+}
+
+export interface CodexProfile {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
   generatedAt: string;
 }
 
@@ -11242,6 +11458,9 @@ export const P2P_FEDERATION = {
         memberCount: 0,
         generatedAt: new Date().toISOString(),
       };
+    const codexProfile: CodexProfile = AKASHA_CODEX.lookupLineageProfile(
+      logicStr,
+    );
 
     return {
       id,
@@ -11252,6 +11471,7 @@ export const P2P_FEDERATION = {
       pulseId,
       ruleGenome: LOCAL_RULE_GENOME,
       behaviorProfile,
+      codexProfile,
     };
   },
 
@@ -19759,6 +19979,40 @@ const buildTelemetry = async () => {
   };
 };
 
+const buildFederateLocalContext = (
+  packet: Record<string, unknown>,
+  pulseId: number,
+): {
+  behavior: { invariant: string; dominantRole: number; memberCount: number };
+  codex: {
+    genome: string;
+    label: string;
+    dominantEpochs: number;
+    peakShare: number;
+    known: boolean;
+    generatedAt: string;
+  };
+} => {
+  const localBehavior =
+    SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024)[0];
+  const behavior = localBehavior
+    ? {
+      invariant: localBehavior.behaviorSignature,
+      dominantRole: localBehavior.dominantRole,
+      memberCount: localBehavior.memberCount,
+    }
+    : { invariant: "none", dominantRole: -1, memberCount: 0 };
+  const localDominantGenome =
+    dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0];
+  const fallbackGenome = typeof packet?.logic === "string"
+    ? packet.logic
+    : "0000000000000000";
+  const codex = AKASHA_CODEX.lookupLineageProfile(
+    localDominantGenome ?? fallbackGenome,
+  );
+  return { behavior, codex };
+};
+
 const parseDaemonInjectEnvelope = (
   body: unknown,
 ): DaemonInjectEnvelope | null => {
@@ -20866,20 +21120,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
-      const localBehavior = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+      const localContext = buildFederateLocalContext(
+        packet as Record<string, unknown>,
         PULSE.currentPulseId,
-        1024,
-      )[0];
+      );
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
-        localBehavior
-          ? {
-            invariant: localBehavior.behaviorSignature,
-            dominantRole: localBehavior.dominantRole,
-            memberCount: localBehavior.memberCount,
-          }
-          : { invariant: "none", dominantRole: -1, memberCount: 0 },
+        localContext.behavior,
+        localContext.codex,
       );
       P2P_FEDERATION.observePeerRuleGenome(
         packet?.sourceNode,
@@ -20893,6 +21142,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           )
         } score=${
           String((queued.admission as Record<string, unknown>).score ?? 0)
+        } codex=${
+          String(
+            (queued.admission as Record<string, unknown>).localCodexLabel ??
+              "unknown-lineage",
+          )
+        }->${
+          String(
+            (queued.admission as Record<string, unknown>).peerCodexLabel ??
+              "unknown-lineage",
+          )
         }`
         : "";
       LOGGER.info(
@@ -23537,7 +23796,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (!governance || typeof governance !== "object") return [];
         const history = governance.last_pressure_ring_history;
         if (!Array.isArray(history)) return [];
-        return history.filter((entry) => entry && typeof entry === "object")
+        return history.filter((entry) =>
+          entry && typeof entry === "object"
+        )
           .slice(0, PHASE_RING_HISTORY_LIMIT);
       }
 
@@ -23599,7 +23860,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         lastPhaseRingSampleKey = key;
         phaseRingHistory.push(sample);
         if (phaseRingHistory.length > PHASE_RING_HISTORY_LIMIT) {
-          phaseRingHistory = phaseRingHistory.slice(-PHASE_RING_HISTORY_LIMIT);
+          phaseRingHistory = phaseRingHistory.slice(
+            -PHASE_RING_HISTORY_LIMIT,
+          );
         }
       }
 
@@ -23631,7 +23894,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       function buildPhaseRingTrend() {
         const canonical = canonicalPhaseRingHistory();
         const trendSource = canonical.length >= 2 ? "server" : "local";
-        const history = canonical.length >= 2 ? canonical : phaseRingHistory;
+        const history = canonical.length >= 2
+          ? canonical
+          : phaseRingHistory;
         if (history.length < 2) {
           return "trend: collecting θ history...";
         }
@@ -23642,7 +23907,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             signedAngularDelta(recent[i - 1].theta, recent[i].theta),
           );
         }
-        if (deltas.length === 0) return "trend: collecting θ history...";
+        if (deltas.length === 0) {
+          return "trend: collecting θ history...";
+        }
         const avgDelta = deltas.reduce((acc, value) => acc + value, 0) /
           deltas.length;
         const lastDelta = deltas[deltas.length - 1] || 0;
@@ -23656,7 +23923,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           : avgDelta > 0
           ? "clockwise"
           : "counterclockwise";
-        return `trend: ${glyphs} | avgΔθ=${avgDelta.toFixed(4)}rad | lastΔθ=${lastDelta.toFixed(4)} | ${direction} | ${trendSource}`;
+        return `trend: ${glyphs} | avgΔθ=${
+          avgDelta.toFixed(4)
+        }rad | lastΔθ=${
+          lastDelta.toFixed(4)
+        } | ${direction} | ${trendSource}`;
       }
 
       function buildPhaseRingSummary() {
@@ -23687,7 +23958,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const state = ring.enabled
           ? `fc=${fc.toFixed(3)} | el=${el.toFixed(3)}`
           : "ring disabled";
-        return `vector: θ=${theta.toFixed(4)}rad | quadrant=${q} (${season}) | ${state}`;
+        return `vector: θ=${
+          theta.toFixed(4)
+        }rad | quadrant=${q} (${season}) | ${state}`;
       }
 
       function buildPhaseRingUpdateSummary() {
@@ -23702,7 +23975,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const delta = Number(update.delta_theta || 0);
         const scale = Number(update.scale || 0);
         const tick = Number(update.tick || 0);
-        return `update: ${mode} @tick ${tick} | θ=${theta.toFixed(4)} Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
+        return `update: ${mode} @tick ${tick} | θ=${
+          theta.toFixed(4)
+        } Δ=${delta.toFixed(4)} | scale=${scale} | ${source}`;
       }
 
       function applyPhaseRingBadge() {
@@ -23720,8 +23995,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         node.textContent = `Q${q} ${season}`;
         if (q === "I") node.classList.add("phase-ring-badge-i");
         else if (q === "II") node.classList.add("phase-ring-badge-ii");
-        else if (q === "III") node.classList.add("phase-ring-badge-iii");
-        else node.classList.add("phase-ring-badge-iv");
+        else if (q === "III") {
+          node.classList.add("phase-ring-badge-iii");
+        } else node.classList.add("phase-ring-badge-iv");
       }
 
       function currentSpatialHashGuard() {
@@ -23749,7 +24025,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const maxCell = Math.max(0, Number(guard.max_cell_count || 0));
         const ratio = Math.max(0, Number(guard.overflow_ratio || 0));
         const severity = spatialHashSeverity(guard);
-        return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${ratio.toFixed(6)} | tick=${tick}`;
+        return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${
+          ratio.toFixed(6)
+        } | tick=${tick}`;
       }
 
       function spatialHashHeatProfile() {
@@ -23871,6 +24149,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           .slice(0, 40);
         const score = Math.floor(Number(admission.score || 0));
         const distance = Number(admission.behaviorDistance || -1);
+        const codexDistance = Number(admission.codexDistance || -1);
+        const codexBridge = `${
+          String(admission.localCodexLabel || "unknown-lineage").slice(
+            0,
+            20,
+          )
+        }->${
+          String(admission.peerCodexLabel || "unknown-lineage").slice(
+            0,
+            20,
+          )
+        }`;
         const reasons = Array.isArray(admission.reasons)
           ? admission.reasons
             .filter((entry) => typeof entry === "string")
@@ -23881,7 +24171,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const distanceText = distance >= 0
           ? ` | behaviorΔ=${distance.toFixed(3)}`
           : "";
-        return `federation admission: ${severity} ${action} | score=${score}${distanceText} | source=${source} | reasons=${reasonText}`;
+        const codexText = codexDistance >= 0
+          ? ` | codexΔ=${Math.floor(codexDistance)}`
+          : "";
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
@@ -23896,12 +24189,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const label = String(admission.codexLineageLabel || "none")
           .trim()
           .slice(0, 48) || "none";
-        const reasons = Array.isArray(admission.codexLineageGuardReasons)
-          ? admission.codexLineageGuardReasons
-            .filter((entry) => typeof entry === "string")
-            .map((entry) => String(entry).trim())
-            .filter((entry) => entry.length > 0)
-          : [];
+        const reasons =
+          Array.isArray(admission.codexLineageGuardReasons)
+            ? admission.codexLineageGuardReasons
+              .filter((entry) => typeof entry === "string")
+              .map((entry) => String(entry).trim())
+              .filter((entry) => entry.length > 0)
+            : [];
         if (reasons.length > 0) {
           return { score, label, reasons: reasons.slice(0, 4) };
         }
@@ -24022,8 +24316,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const relicStatus = String(
           codexNarrative?.relicStatus || "Relic status unavailable.",
         );
-        const phaseVector = buildPhaseRingVector().replace(/^vector:\s*/i, "");
-        const phaseTrend = buildPhaseRingTrend().replace(/^trend:\s*/i, "");
+        const phaseVector = buildPhaseRingVector().replace(
+          /^vector:\s*/i,
+          "",
+        );
+        const phaseTrend = buildPhaseRingTrend().replace(
+          /^trend:\s*/i,
+          "",
+        );
         const lineageGuard = currentCodexLineageGuard();
         const vox = Array.isArray(telemetrySnapshot?.voxPopuli) &&
             telemetrySnapshot.voxPopuli.length > 0
@@ -24382,7 +24682,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           "human-federation-admission",
         );
         if (federationNode) {
-          federationNode.textContent = buildFederationAdmissionSummary();
+          federationNode.textContent =
+            buildFederationAdmissionSummary();
         }
         const historyNode = document.getElementById(
           "human-daemon-history",
@@ -24405,14 +24706,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const summaryNode = document.getElementById(
           "human-phase-ring-summary",
         );
-        if (summaryNode) summaryNode.textContent = buildPhaseRingSummary();
-        const vectorNode = document.getElementById("human-phase-ring-vector");
+        if (summaryNode) {
+          summaryNode.textContent = buildPhaseRingSummary();
+        }
+        const vectorNode = document.getElementById(
+          "human-phase-ring-vector",
+        );
         if (vectorNode) vectorNode.textContent = buildPhaseRingVector();
-        const updateNode = document.getElementById("human-phase-ring-update");
+        const updateNode = document.getElementById(
+          "human-phase-ring-update",
+        );
         if (updateNode) {
           updateNode.textContent = buildPhaseRingUpdateSummary();
         }
-        const trendNode = document.getElementById("human-phase-ring-trend");
+        const trendNode = document.getElementById(
+          "human-phase-ring-trend",
+        );
         if (trendNode) trendNode.textContent = buildPhaseRingTrend();
       }
 
