@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T11:01:25.619Z*
+*Generated: 2026-03-05T11:05:05.565Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: a0e088ceae978c0d959835dbfaa6951726b4abbd6bbf2d001c9b0abd1701aee5*
-*Git Commit: 6ea73f14a4a6*
+*Export Content SHA256: 288a49f9446d8a4958ed23c0ebfde178f997c228235893b8161c48e3a0e20189*
+*Git Commit: b45ee0e85717*
 
 ---
 
@@ -20466,6 +20466,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         >
           trend: collecting θ history...
         </div>
+        <div
+          id="human-spatial-hash"
+          class="codex-row-body codex-row-subtle"
+        >
+          spatial hash: awaiting telemetry...
+        </div>
         <button id="human-explain-btn" class="human-btn">
           Explain Current State
         </button>
@@ -20713,6 +20719,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_admission_history: [],
           last_pressure_ring_update: null,
           last_pressure_ring_history: [],
+        },
+        spatial_hash_guard: {
+          tick: -1,
+          overflow_count: 0,
+          max_cell_count: 0,
+          overflow_ratio: 0,
         },
       };
       const DRIFT_LOOKBACK_MS = 90 * 1000;
@@ -22294,6 +22306,34 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         else node.classList.add("phase-ring-badge-iv");
       }
 
+      function currentSpatialHashGuard() {
+        const guard = telemetrySnapshot?.spatial_hash_guard;
+        if (!guard || typeof guard !== "object") return null;
+        return guard;
+      }
+
+      function spatialHashSeverity(guard) {
+        if (!guard) return "baseline";
+        const overflow = Math.max(0, Number(guard.overflow_count || 0));
+        const ratio = Math.max(0, Number(guard.overflow_ratio || 0));
+        if (overflow > 0 || ratio >= 0.01) return "hot";
+        if (ratio >= 0.001) return "warm";
+        return "stable";
+      }
+
+      function buildSpatialHashSummary() {
+        const guard = currentSpatialHashGuard();
+        if (!guard) {
+          return "spatial hash: awaiting telemetry...";
+        }
+        const tick = Number(guard.tick || 0);
+        const overflow = Math.max(0, Number(guard.overflow_count || 0));
+        const maxCell = Math.max(0, Number(guard.max_cell_count || 0));
+        const ratio = Math.max(0, Number(guard.overflow_ratio || 0));
+        const severity = spatialHashSeverity(guard);
+        return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${ratio.toFixed(6)} | tick=${tick}`;
+      }
+
       function currentDaemonAdmission() {
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return null;
@@ -22489,6 +22529,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
         text += ` Pressure ring ${phaseVector}.`;
         text += ` Phase trend ${phaseTrend}.`;
+        text += ` ${buildSpatialHashSummary()}.`;
         if (lineageGuard.score > 0 || lineageGuard.reasons.length > 0) {
           text +=
             ` Codex lineage guard=${lineageGuard.score} (${lineageGuard.label}).`;
@@ -22850,9 +22891,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (trendNode) trendNode.textContent = buildPhaseRingTrend();
       }
 
+      function renderHumanSpatialHash() {
+        const node = document.getElementById("human-spatial-hash");
+        if (!node) return;
+        node.textContent = buildSpatialHashSummary();
+      }
+
       function renderHumanChannel(extraStamp = "") {
         renderHumanAdmission();
         renderHumanPhaseRing();
+        renderHumanSpatialHash();
         renderHumanExplanation();
         renderHumanDrift();
         updateHumanChannelStamp(extraStamp);
