@@ -4,7 +4,6 @@
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
@@ -32,7 +31,7 @@ export const SNAPSHOT_ENGINE = {
       : "manual";
     const shouldPrune = Boolean(options.prune);
     const retention = normalizeRetention(options.retention);
-    await ensureDir(SNAPSHOT_DIR);
+    await Deno.mkdir(SNAPSHOT_DIR, { recursive: true });
 
     const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
     const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;

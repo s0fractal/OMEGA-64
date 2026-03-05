@@ -71,6 +71,7 @@ const rawFederationDegradeEnergyRatio = readEnv(
 const rawFederationDegradeResonanceRatio = readEnv(
   "OMEGA_FEDERATION_DEGRADE_RESONANCE_RATIO",
 );
+const rawFederationOpenWorld = readEnv("OMEGA_FEDERATION_OPEN_WORLD");
 const rawTelemetryEnabled = readEnv("OMEGA_MUTATION_TELEMETRY");
 const rawTelemetryFlushTicks = readEnv("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS");
 const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
@@ -176,6 +177,7 @@ const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   0.1,
   1,
 );
+const federationOpenWorld = parseEnvBool(rawFederationOpenWorld, false);
 
 const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
 const telemetryFlushIntervalTicks = parseEnvBoundedInt(
@@ -392,6 +394,7 @@ const policyFingerprintSource = JSON.stringify({
     hybridizeEnabled: federationHybridizeEnabled,
     degradeEnergyRatio: federationDegradeEnergyRatio,
     degradeResonanceRatio: federationDegradeResonanceRatio,
+    openWorld: federationOpenWorld,
   },
   pulse: {
     workerCount: pulseWorkerCount,
@@ -499,6 +502,7 @@ export const RUNTIME_POLICY = {
       hybridizeEnabled: federationHybridizeEnabled,
       degradeEnergyRatio: federationDegradeEnergyRatio,
       degradeResonanceRatio: federationDegradeResonanceRatio,
+      openWorld: federationOpenWorld,
     },
     source: {
       enabled: rawFederationEnable !== undefined,
@@ -512,6 +516,7 @@ export const RUNTIME_POLICY = {
       hybridizeEnabled: rawFederationHybridizeEnable !== undefined,
       degradeEnergyRatio: rawFederationDegradeEnergyRatio !== undefined,
       degradeResonanceRatio: rawFederationDegradeResonanceRatio !== undefined,
+      openWorld: rawFederationOpenWorld !== undefined,
     },
   },
   telemetry: {

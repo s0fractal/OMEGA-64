@@ -2,7 +2,7 @@
 // Reliable inter-system atom migration.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";

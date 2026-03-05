@@ -4,6 +4,7 @@
 declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void;
 
 const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
@@ -70,10 +71,19 @@ const CRYSTAL_MEME: i32 = 10;       // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8;  // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
 
+@inline function clampResource(value: i64): i32 {
+    if (value < 0) return 0;
+    if (value > RESOURCE_MAX as i64) return RESOURCE_MAX;
+    return value as i32;
+}
 @inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
-@inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
+@inline function setEnergy(idx: i32, val: i32): void {
+    store<i32>(ENERGY_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+}
 @inline function getResonance(idx: i32): i32 { return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize); }
-@inline function setResonance(idx: i32, val: i32): void { store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val); }
+@inline function setResonance(idx: i32, val: i32): void {
+    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+}
 @inline function getPhase(idx: i32): i32 { return load<i32>(PHASE_OFFSET + (idx << 2) as usize); }
 @inline function setPhase(idx: i32, val: i32): void { store<i32>(PHASE_OFFSET + (idx << 2) as usize, val); }
 @inline function getX(idx: i32): i16 { return load<i16>(XS_OFFSET + (idx << 1) as usize); }
@@ -1205,17 +1215,15 @@ export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
         const de = atomic.load<i32>(ENERGY_DELTA_OFF + deltaOff);
         if (de != 0) {
             atomic.store<i32>(ENERGY_DELTA_OFF + deltaOff, 0);
-            let nextEnergy = atomic.load<i32>(ENERGY_OFFSET + deltaOff) + de;
-            if (nextEnergy < 0) nextEnergy = 0;
-            atomic.store<i32>(ENERGY_OFFSET + deltaOff, nextEnergy);
+            const nextEnergy = (atomic.load<i32>(ENERGY_OFFSET + deltaOff) as i64) + (de as i64);
+            atomic.store<i32>(ENERGY_OFFSET + deltaOff, clampResource(nextEnergy));
         }
 
         const dr = atomic.load<i32>(RESONANCE_DELTA_OFF + deltaOff);
         if (dr != 0) {
             atomic.store<i32>(RESONANCE_DELTA_OFF + deltaOff, 0);
-            let nextRes = atomic.load<i32>(RESONANCE_OFFSET + deltaOff) + dr;
-            if (nextRes < 0) nextRes = 0;
-            atomic.store<i32>(RESONANCE_OFFSET + deltaOff, nextRes);
+            const nextRes = (atomic.load<i32>(RESONANCE_OFFSET + deltaOff) as i64) + (dr as i64);
+            atomic.store<i32>(RESONANCE_OFFSET + deltaOff, clampResource(nextRes));
         }
     }
 }

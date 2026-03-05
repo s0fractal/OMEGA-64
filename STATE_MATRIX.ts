@@ -174,6 +174,21 @@ const contextByteView = new Uint8Array(
   OFFSETS.CONTEXT_OFFSET,
   MAX_ATOMS * 64,
 );
+const semanticBonuses = new Int32Array(
+  new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
+);
+const semanticBonusesBuffer = semanticBonuses.buffer;
+const RESOURCE_MAX_RAW = 2_000_000_000;
+
+const clampResourceRaw = (value: number): number => {
+  if (!Number.isFinite(value)) return 0;
+  if (value <= 0) return 0;
+  if (value >= RESOURCE_MAX_RAW) return RESOURCE_MAX_RAW;
+  return Math.trunc(value);
+};
+
+const toClampedEnergyRaw = (value: number): number =>
+  clampResourceRaw(Math.round(value * SCALE));
 const latticeClearView = new Uint8Array(
   sharedBuffer,
   OFFSETS.TICK_COUNTER_OFFSET,
@@ -266,6 +281,7 @@ export const STATE_MATRIX = {
   neuralCoherence,
   instructions,
   contexts,
+  semanticBonuses,
   RISC,
 
   // Legacy mapping for UI and external engines
@@ -277,6 +293,7 @@ export const STATE_MATRIX = {
   bondStiffnessBuffer: stiffnessBuffer,
   bondDistancesBuffer: bondDistBuffer,
   dampingBuffer: dampingBuffer,
+  semanticBonusesBuffer,
   immuneBuffer: signalGridBuffer, // Alias for immunity overlay
   currentReadBuffer: signalGridBuffer, // Alias for signal overlay
   synapticStackBuffer: signalGridBuffer, // Alias for synaptic overlay
@@ -338,8 +355,9 @@ export const STATE_MATRIX = {
   setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
   setRole: (i: number, val: number) => Atomics.store(roles, i, val),
   setEnergy: (i: number, val: number) =>
-    Atomics.store(energies, i, Math.round(val * SCALE)),
-  setResonance: (i: number, val: number) => Atomics.store(resonances, i, val),
+    Atomics.store(energies, i, toClampedEnergyRaw(val)),
+  setResonance: (i: number, val: number) =>
+    Atomics.store(resonances, i, clampResourceRaw(val)),
   setPhase: (i: number, val: number) => Atomics.store(phases, i, val),
   setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
   setBondTarget: (i: number, slot: number, target: number) =>
@@ -379,6 +397,7 @@ export const STATE_MATRIX = {
   clear: () => {
     // Preserve low-memory wasm runtime segments; wipe only the lattice region.
     latticeClearView.fill(0);
+    semanticBonuses.fill(0);
   },
   getActiveIndices: () => {
     const active: number[] = [];
@@ -386,6 +405,30 @@ export const STATE_MATRIX = {
       if (Atomics.load(ids, i) !== 0n) active.push(i);
     }
     return active;
+  },
+  getTopResonantIndices: (count: number) => {
+    const limit = Math.max(0, Math.min(MAX_ATOMS, Math.trunc(count)));
+    if (limit === 0) return [];
+
+    const top: Array<{ idx: number; resonance: number }> = [];
+    for (let i = 0; i < MAX_ATOMS; i++) {
+      if (Atomics.load(ids, i) === 0n) continue;
+      const resonance = Atomics.load(resonances, i);
+      if (top.length < limit) {
+        top.push({ idx: i, resonance });
+        continue;
+      }
+
+      let minPos = 0;
+      for (let j = 1; j < top.length; j++) {
+        if (top[j].resonance < top[minPos].resonance) minPos = j;
+      }
+      if (resonance > top[minPos].resonance) {
+        top[minPos] = { idx: i, resonance };
+      }
+    }
+    top.sort((a, b) => b.resonance - a.resonance);
+    return top.map((entry) => entry.idx);
   },
 
   findFreeSlot: (): number => {
@@ -418,6 +461,7 @@ export const STATE_MATRIX = {
     Atomics.store(resonances, i, resonance);
     Atomics.store(phases, i, 0);
     Atomics.store(roles, i, 0);
+    Atomics.store(semanticBonuses, i, 0);
 
     if (logicVal) logic.set(logicVal, i * 8);
 

@@ -2,7 +2,7 @@
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
 import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,

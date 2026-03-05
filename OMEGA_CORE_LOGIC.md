@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T12:30:40.981Z*
-*Exported Files: 66*
+*Generated: 2026-03-05T12:55:45.624Z*
+*Exported Files: 65*
 *Runtime Roots: 6*
-*Runtime Closure Files: 37*
+*Runtime Closure Files: 36*
 *Non-Runtime Code Files: 21*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
-*Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 980168bd670a42c6c94b3034800212c38999d95812beee5868fa07168cc0113c*
-*Git Commit: 17581f28b00d*
+*Export Set SHA256: 23bf45cbb6f994c814a38aa62016b5a446fa579117d6decf3fe54cbd3fff22d9*
+*Export Content SHA256: 1aa1d09477635180dc57a09eca98f4caa439614964b0c392e55cc382c9689fff*
+*Git Commit: 0063e8d3bca4*
 
 ---
 
@@ -31,6 +31,7 @@
 - AKASHA_SERVER.ts
 - AKASHA_SIGNALING.ts
 - assembly/index.ts
+- ATOM_INDEX.ts
 - AUDIT_ENGINE.ts
 - AVATAR_ENGINE.ts
 - BREATH.ts
@@ -41,7 +42,6 @@
 - GATE_MERGER.ts
 - GATE_VALIDATOR.ts
 - GATE.ts
-- IMMUNE.ts
 - LLM_SYNAPSE.ts
 - LOGGER.ts
 - MUTATION_TELEMETRY.ts
@@ -53,7 +53,6 @@
 - PRNG.ts
 - PULSE_WORKER.ts
 - PULSE.ts
-- RIBOSOME.ts
 - RUNTIME_POLICY.ts
 - SEMANTIC_MEMBRANE.ts
 - SHIMS.ts
@@ -2789,6 +2788,7 @@ Deep chain adds:
 declare function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void;
 
 const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS
 const MAX_ATOMS: i32 = 100000;
@@ -2855,10 +2855,19 @@ const CRYSTAL_MEME: i32 = 10;       // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8;  // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
 
+@inline function clampResource(value: i64): i32 {
+    if (value < 0) return 0;
+    if (value > RESOURCE_MAX as i64) return RESOURCE_MAX;
+    return value as i32;
+}
 @inline function getEnergy(idx: i32): i32 { return load<i32>(ENERGY_OFFSET + (idx << 2) as usize); }
-@inline function setEnergy(idx: i32, val: i32): void { store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val); }
+@inline function setEnergy(idx: i32, val: i32): void {
+    store<i32>(ENERGY_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+}
 @inline function getResonance(idx: i32): i32 { return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize); }
-@inline function setResonance(idx: i32, val: i32): void { store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, val); }
+@inline function setResonance(idx: i32, val: i32): void {
+    store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+}
 @inline function getPhase(idx: i32): i32 { return load<i32>(PHASE_OFFSET + (idx << 2) as usize); }
 @inline function setPhase(idx: i32, val: i32): void { store<i32>(PHASE_OFFSET + (idx << 2) as usize, val); }
 @inline function getX(idx: i32): i16 { return load<i16>(XS_OFFSET + (idx << 1) as usize); }
@@ -3990,17 +3999,15 @@ export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
         const de = atomic.load<i32>(ENERGY_DELTA_OFF + deltaOff);
         if (de != 0) {
             atomic.store<i32>(ENERGY_DELTA_OFF + deltaOff, 0);
-            let nextEnergy = atomic.load<i32>(ENERGY_OFFSET + deltaOff) + de;
-            if (nextEnergy < 0) nextEnergy = 0;
-            atomic.store<i32>(ENERGY_OFFSET + deltaOff, nextEnergy);
+            const nextEnergy = (atomic.load<i32>(ENERGY_OFFSET + deltaOff) as i64) + (de as i64);
+            atomic.store<i32>(ENERGY_OFFSET + deltaOff, clampResource(nextEnergy));
         }
 
         const dr = atomic.load<i32>(RESONANCE_DELTA_OFF + deltaOff);
         if (dr != 0) {
             atomic.store<i32>(RESONANCE_DELTA_OFF + deltaOff, 0);
-            let nextRes = atomic.load<i32>(RESONANCE_OFFSET + deltaOff) + dr;
-            if (nextRes < 0) nextRes = 0;
-            atomic.store<i32>(RESONANCE_OFFSET + deltaOff, nextRes);
+            const nextRes = (atomic.load<i32>(RESONANCE_OFFSET + deltaOff) as i64) + (dr as i64);
+            atomic.store<i32>(RESONANCE_OFFSET + deltaOff, clampResource(nextRes));
         }
     }
 }
@@ -4035,6 +4042,19 @@ export function get_neural_coherence(): i32 {
 export function set_neural_coherence(value: i32): void {
     atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 }
+
+```
+
+---
+
+## FILE: ATOM_INDEX.ts
+
+```typescript
+// OMEGA-64 | ATOM_INDEX.ts
+// Lightweight ID↔Index registry shared across runtime modules.
+
+export const ID_TO_IDX = new Map<string, number>();
+export const IDX_TO_ID = new Map<number, string>();
 
 ```
 
@@ -5203,16 +5223,21 @@ const evaluateFederateAdmission = (
   );
   let degraded = false;
   let hybridized = false;
+  const openWorld = policy.openWorld === true;
 
   if (severity === "LOW") {
     action = "accept";
     reasons.push("ADMISSION_LOW_ACCEPT");
   } else if (
-    severity === "HIGH" && strictMismatch && policy.rejectOnStrictMismatch
+    !openWorld &&
+    severity === "HIGH" &&
+    strictMismatch &&
+    policy.rejectOnStrictMismatch
   ) {
     action = "reject";
     reasons.push("HIGH_STRICT_MISMATCH_REJECT");
   } else if (
+    !openWorld &&
     severity === "HIGH" &&
     behaviorConflictScore >= 3 &&
     !policy.hybridizeEnabled
@@ -5236,7 +5261,9 @@ const evaluateFederateAdmission = (
     hybridized = true;
     degraded = true;
     reasons.push(
-      severity === "HIGH"
+      openWorld && severity === "HIGH"
+        ? "OPEN_WORLD_HYBRIDIZE"
+        : severity === "HIGH"
         ? "HIGH_HYBRIDIZE_CONTAINMENT"
         : "MID_HYBRIDIZE_BRIDGE",
     );
@@ -5249,7 +5276,9 @@ const evaluateFederateAdmission = (
     );
     degraded = true;
     reasons.push(
-      severity === "HIGH"
+      openWorld && severity === "HIGH"
+        ? "OPEN_WORLD_DEGRADE"
+        : severity === "HIGH"
         ? "HIGH_DEGRADE_CONTAINMENT"
         : "MID_DEGRADE_CONTAINMENT",
     );
@@ -6974,47 +7003,6 @@ export function injectHologram(content: string, eigenvalue: string, symbol: stri
     }
     return newContent;
 }
-
-```
-
----
-
-## FILE: IMMUNE.ts
-
-```typescript
-// IMMUNE.ts
-// The Phagocyte of OMEGA.
-// Filters Atoms based on Structure and Mass.
-
-import type { Atom } from "./RIBOSOME.ts";
-
-export const IMMUNE = {
-    // Recognition: Friend or Foe?
-    recognize: (atom: Atom): boolean => {
-        // Flatland Recognition: 0x...ID...SYMBOL.md
-        if (atom.id.startsWith("0x") && atom.id.endsWith(".md")) {
-            return true;
-        }
-
-        // Vacuum Recognition
-        if (atom.id.startsWith("v.")) {
-            return true;
-        }
-
-        return false;
-    },
-
-    // Inspection: Final Gateway
-    inspect: (lattice: Map<string, Atom>): Map<string, Atom> => {
-        const cleanLattice = new Map<string, Atom>();
-        for (const [id, atom] of lattice) {
-            if (IMMUNE.recognize(atom)) {
-                cleanLattice.set(id, atom);
-            }
-        }
-        return cleanLattice;
-    }
-};
 
 ```
 
@@ -11554,7 +11542,7 @@ if (import.meta.main) {
 // Reliable inter-system atom migration.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
@@ -12709,6 +12697,9 @@ const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
 const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
 const WORKER_TIMEOUT_RETRY_COUNT = RUNTIME_POLICY.pulse.workerTimeoutRetryCount;
 const WORKER_TIMEOUT_RETRY_MS = RUNTIME_POLICY.pulse.workerTimeoutRetryMs;
+const WORKER_RECOVERY_LOG_COOLDOWN_MS = 5_000;
+const WORKER_RECOVERY_VERBOSE =
+  (Deno.env.get("OMEGA_WORKER_RECOVERY_VERBOSE") ?? "") === "1";
 const WORKER_INIT_FALLBACK_ENABLED =
   RUNTIME_POLICY.pulse.workerInitFallbackEnabled;
 const WASM_BOOT_POLICY = RUNTIME_POLICY.pulse.wasmBootPolicy;
@@ -12921,6 +12912,23 @@ const applyEvolutionPressureRing = (
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
+const workerRecoveryLogAt = new Map<string, number>();
+
+const shouldLogWorkerRecovery = (
+  workerIndex: number,
+  phase: string,
+  timeoutWindows: number,
+): boolean => {
+  if (timeoutWindows <= 0) return false;
+  if (timeoutWindows <= 1 && !WORKER_RECOVERY_VERBOSE) return false;
+  if (timeoutWindows > 1) return true;
+  const key = `${workerIndex}:${phase}`;
+  const now = Date.now();
+  const last = workerRecoveryLogAt.get(key) ?? 0;
+  if (now - last < WORKER_RECOVERY_LOG_COOLDOWN_MS) return false;
+  workerRecoveryLogAt.set(key, now);
+  return true;
+};
 
 type WorkerFaultStat = {
   workerIndex: number;
@@ -13275,7 +13283,7 @@ const waitForWorkerInit = (
       if (!data) return;
       if (data.type === "READY") {
         cleanup();
-        if (timeoutWindows > 0) {
+        if (shouldLogWorkerRecovery(workerIndex, "READY", timeoutWindows)) {
           LOGGER.warn(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
@@ -13325,9 +13333,17 @@ const postAndWait = async <T = any>(
     if (res.timeoutWindows > 0) {
       stats.timeouts += res.timeoutWindows;
       stats.retryWaits += res.retriesUsed;
-      LOGGER.warn(
-        `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
-      );
+      if (
+        shouldLogWorkerRecovery(
+          workerIndex,
+          expectedType,
+          res.timeoutWindows,
+        )
+      ) {
+        LOGGER.warn(
+          `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
+        );
+      }
     }
     stats.completed++;
     stats.consecutiveTimeouts = 0;
@@ -14336,7 +14352,7 @@ export const ATOM = () => (x: any) => x;
 // Bridges RAM state back to Flatland source code.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
@@ -14624,209 +14640,6 @@ if (import.meta.main) {
 
 ---
 
-## FILE: RIBOSOME.ts
-
-```typescript
-/// <reference lib="deno.window" />
-// i.L32.core.RIBOSOME.ts
-// The Meta-Processor for OMEGA-64 Flatland.
-// Scans the Root, Lifts Atoms, and Builds the Living Map.
-
-import { IMMUNE } from "./IMMUNE.ts";
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { decodeHex } from "jsr:@std/encoding@^1.0.0/hex";
-import { LOGGER } from "./LOGGER.ts";
-
-export interface Atom {
-  id: string; // The Filename (Address)
-  level: number;
-  module: any; // The Exported Logic
-  symbol: string;
-  topo?: { r: number; theta: number; op: string };
-}
-
-export type Lattice = Map<string, Atom>;
-
-// Mapping for Matrix Lookups
-export const ID_TO_IDX = new Map<string, number>();
-export const IDX_TO_ID = new Map<number, string>();
-
-function idToBigInt(id: string): bigint {
-  const hex = id.split(".")[0].replace("0x", "");
-  const cleanHex = hex.replace(/[^0-9a-fA-F]/g, "0").padEnd(16, "0");
-  try {
-    return BigInt(`0x${cleanHex.substring(0, 16)}`);
-  } catch {
-    return 0n;
-  }
-}
-
-export const RIBOSOME = {
-  // Scan and Lift all Atoms in Flatland and Vacuum
-  lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
-    LOGGER.info("   [RIBOSOME] lift started on root: ", root);
-
-    // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
-    const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
-    if (snapshots.length > 0) {
-      const latest = snapshots[0];
-      LOGGER.info(
-        `   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`,
-      );
-      const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
-      if (status.success) {
-        LOGGER.info(
-          "   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊",
-        );
-        // Reconstruct a mock lattice from active indices for compatibility
-        const lattice = new Map<string, Atom>();
-        const activeIndices = STATE_MATRIX.getActiveIndices();
-        for (const idx of activeIndices) {
-          const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, "0")
-            .toUpperCase();
-          // We don't have the full AST/logic string here perfectly, but
-          // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
-          ID_TO_IDX.set(idHex, idx);
-          IDX_TO_ID.set(idx, idHex);
-          lattice.set(idHex, {
-            id: idHex,
-            level: 0,
-            module: {},
-            symbol: "HYDRATED",
-          });
-        }
-        // Return immediately, bypassing filesystem parsing
-        return lattice;
-      } else {
-        LOGGER.warn(
-          "   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.",
-        );
-        STATE_MATRIX.clear(); // Reset before fallback
-      }
-    }
-
-    const lattice = new Map<string, Atom>();
-    let idx = 0;
-
-    const scanDirs = [root, `${root}/SINGULARITY/V`];
-    for (const dir of scanDirs) {
-      LOGGER.info(`   [RIBOSOME] scanning dir: ${dir}`);
-      try {
-        for await (const entry of Deno.readDir(dir)) {
-          if (
-            entry.isFile && entry.name.startsWith("0x") &&
-            entry.name.endsWith(".md")
-          ) {
-            const fullPath = dir === root
-              ? entry.name
-              : `SINGULARITY/V/${entry.name}`;
-            const content = await Deno.readTextFile(fullPath);
-            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-            if (!frontmatterMatch) continue;
-
-            const alpha = parseYaml(frontmatterMatch[1]) as any;
-            const symbol = alpha.symbol ?? entry.name.split(".")[1] ??
-              "UNKNOWN";
-            const level = alpha.level ??
-              (alpha.vector ? parseInt(alpha.vector.split(".")[0]) : 0);
-
-            // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
-            const atomBigId = idToBigInt(entry.name);
-            STATE_MATRIX.setId(idx, atomBigId);
-            STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
-            STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
-            STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
-            STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
-            STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
-
-            // Logic (Hex to Bytes)
-            const logic = (alpha.logic || "00000000").replace(
-              /[^0-9a-fA-F]/g,
-              "",
-            ).padEnd(16, "0");
-            try {
-              STATE_MATRIX.setLogic(idx, decodeHex(logic.substring(0, 16)));
-            } catch { /* skip corrupted logic binary lift */ }
-
-            ID_TO_IDX.set(fullPath, idx);
-            IDX_TO_ID.set(idx, fullPath);
-
-            lattice.set(fullPath, {
-              id: entry.name,
-              level: level,
-              symbol: symbol,
-              module: null,
-            });
-
-            idx++;
-          }
-        }
-      } catch (err) {
-        LOGGER.error(`   [RIBOSOME] Error reading dir ${dir}:`, err);
-      }
-    }
-
-    LOGGER.info(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
-
-    // 🧬 PASS 2: BOND RESOLUTION
-    const bondKeyMap = new Map<string, string>();
-    for (const k of ID_TO_IDX.keys()) {
-      const basename = k.split("/").pop() || k;
-      const bondIdStr = basename.split(".")[0];
-      bondKeyMap.set(bondIdStr, k);
-    }
-
-    for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
-      try {
-        const content = await Deno.readTextFile(fullPath);
-        const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-        if (alphaMatch) {
-          const alpha = parseYaml(alphaMatch[1]) as any;
-          const bondIds: string[] = alpha.bonds || [];
-          const bondIndices = new Uint32Array(4);
-          for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
-            const partnerId = bondKeyMap.get(bondIds[i]);
-            if (partnerId) {
-              bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
-            }
-          }
-          STATE_MATRIX.setBonds(atomIdx, bondIndices);
-        }
-      } catch (err) { /* ignore */ }
-    }
-
-    LOGGER.info(
-      `   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`,
-    );
-
-    // 🛡️ IMMUNE SYSTEM CHECK
-    LOGGER.info("   [RIBOSOME] Running IMMUNE check");
-    const out = IMMUNE.inspect(lattice);
-    LOGGER.info("   [RIBOSOME] IMMUNE check complete");
-    return out;
-  },
-
-  // Inject Dependencies into a Pure Atom (Adapted for Flatland)
-  inject: (id: string, lattice: Map<string, Atom>) => {
-    const target = lattice.get(id);
-    if (!target) return null;
-
-    // Implementation for Flatland injection...
-    return null;
-  },
-};
-
-if (import.meta.main) {
-  const lattice = await RIBOSOME.lift();
-  LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
-}
-
-```
-
----
-
 ## FILE: RUNTIME_POLICY.ts
 
 ```typescript
@@ -14903,6 +14716,7 @@ const rawFederationDegradeEnergyRatio = readEnv(
 const rawFederationDegradeResonanceRatio = readEnv(
   "OMEGA_FEDERATION_DEGRADE_RESONANCE_RATIO",
 );
+const rawFederationOpenWorld = readEnv("OMEGA_FEDERATION_OPEN_WORLD");
 const rawTelemetryEnabled = readEnv("OMEGA_MUTATION_TELEMETRY");
 const rawTelemetryFlushTicks = readEnv("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS");
 const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
@@ -15008,6 +14822,7 @@ const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   0.1,
   1,
 );
+const federationOpenWorld = parseEnvBool(rawFederationOpenWorld, false);
 
 const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
 const telemetryFlushIntervalTicks = parseEnvBoundedInt(
@@ -15224,6 +15039,7 @@ const policyFingerprintSource = JSON.stringify({
     hybridizeEnabled: federationHybridizeEnabled,
     degradeEnergyRatio: federationDegradeEnergyRatio,
     degradeResonanceRatio: federationDegradeResonanceRatio,
+    openWorld: federationOpenWorld,
   },
   pulse: {
     workerCount: pulseWorkerCount,
@@ -15331,6 +15147,7 @@ export const RUNTIME_POLICY = {
       hybridizeEnabled: federationHybridizeEnabled,
       degradeEnergyRatio: federationDegradeEnergyRatio,
       degradeResonanceRatio: federationDegradeResonanceRatio,
+      openWorld: federationOpenWorld,
     },
     source: {
       enabled: rawFederationEnable !== undefined,
@@ -15344,6 +15161,7 @@ export const RUNTIME_POLICY = {
       hybridizeEnabled: rawFederationHybridizeEnable !== undefined,
       degradeEnergyRatio: rawFederationDegradeEnergyRatio !== undefined,
       degradeResonanceRatio: rawFederationDegradeResonanceRatio !== undefined,
+      openWorld: rawFederationOpenWorld !== undefined,
     },
   },
   telemetry: {
@@ -15946,8 +15764,9 @@ export const SEMANTIC_MEMBRANE = {
 // OMEGA-64 | Legacy Compliance Shims
 // Shared dependency surface for Gate/runtime paths.
 
-import { crypto } from "jsr:@std/crypto@^1.0.3";
 import { REJECTION } from "./STATE_SNAPSHOT.ts";
+
+const crypto = globalThis.crypto;
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -17714,7 +17533,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
 import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
@@ -17791,7 +17610,6 @@ export const SNAP = {
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
@@ -17819,7 +17637,7 @@ export const SNAPSHOT_ENGINE = {
       : "manual";
     const shouldPrune = Boolean(options.prune);
     const retention = normalizeRetention(options.retention);
-    await ensureDir(SNAPSHOT_DIR);
+    await Deno.mkdir(SNAPSHOT_DIR, { recursive: true });
 
     const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
     const akashicPath = `${SNAPSHOT_DIR}/akashic_${timestamp}.json`;
@@ -18498,7 +18316,7 @@ export const SOVEREIGN_ORACLE = {
 // Handles Regent Election, Decrees, and Legitimacy.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 let lastAnnouncedDecree = "NONE";
@@ -18956,6 +18774,21 @@ const contextByteView = new Uint8Array(
   OFFSETS.CONTEXT_OFFSET,
   MAX_ATOMS * 64,
 );
+const semanticBonuses = new Int32Array(
+  new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
+);
+const semanticBonusesBuffer = semanticBonuses.buffer;
+const RESOURCE_MAX_RAW = 2_000_000_000;
+
+const clampResourceRaw = (value: number): number => {
+  if (!Number.isFinite(value)) return 0;
+  if (value <= 0) return 0;
+  if (value >= RESOURCE_MAX_RAW) return RESOURCE_MAX_RAW;
+  return Math.trunc(value);
+};
+
+const toClampedEnergyRaw = (value: number): number =>
+  clampResourceRaw(Math.round(value * SCALE));
 const latticeClearView = new Uint8Array(
   sharedBuffer,
   OFFSETS.TICK_COUNTER_OFFSET,
@@ -19048,6 +18881,7 @@ export const STATE_MATRIX = {
   neuralCoherence,
   instructions,
   contexts,
+  semanticBonuses,
   RISC,
 
   // Legacy mapping for UI and external engines
@@ -19059,6 +18893,7 @@ export const STATE_MATRIX = {
   bondStiffnessBuffer: stiffnessBuffer,
   bondDistancesBuffer: bondDistBuffer,
   dampingBuffer: dampingBuffer,
+  semanticBonusesBuffer,
   immuneBuffer: signalGridBuffer, // Alias for immunity overlay
   currentReadBuffer: signalGridBuffer, // Alias for signal overlay
   synapticStackBuffer: signalGridBuffer, // Alias for synaptic overlay
@@ -19120,8 +18955,9 @@ export const STATE_MATRIX = {
   setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
   setRole: (i: number, val: number) => Atomics.store(roles, i, val),
   setEnergy: (i: number, val: number) =>
-    Atomics.store(energies, i, Math.round(val * SCALE)),
-  setResonance: (i: number, val: number) => Atomics.store(resonances, i, val),
+    Atomics.store(energies, i, toClampedEnergyRaw(val)),
+  setResonance: (i: number, val: number) =>
+    Atomics.store(resonances, i, clampResourceRaw(val)),
   setPhase: (i: number, val: number) => Atomics.store(phases, i, val),
   setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
   setBondTarget: (i: number, slot: number, target: number) =>
@@ -19161,6 +18997,7 @@ export const STATE_MATRIX = {
   clear: () => {
     // Preserve low-memory wasm runtime segments; wipe only the lattice region.
     latticeClearView.fill(0);
+    semanticBonuses.fill(0);
   },
   getActiveIndices: () => {
     const active: number[] = [];
@@ -19168,6 +19005,30 @@ export const STATE_MATRIX = {
       if (Atomics.load(ids, i) !== 0n) active.push(i);
     }
     return active;
+  },
+  getTopResonantIndices: (count: number) => {
+    const limit = Math.max(0, Math.min(MAX_ATOMS, Math.trunc(count)));
+    if (limit === 0) return [];
+
+    const top: Array<{ idx: number; resonance: number }> = [];
+    for (let i = 0; i < MAX_ATOMS; i++) {
+      if (Atomics.load(ids, i) === 0n) continue;
+      const resonance = Atomics.load(resonances, i);
+      if (top.length < limit) {
+        top.push({ idx: i, resonance });
+        continue;
+      }
+
+      let minPos = 0;
+      for (let j = 1; j < top.length; j++) {
+        if (top[j].resonance < top[minPos].resonance) minPos = j;
+      }
+      if (resonance > top[minPos].resonance) {
+        top[minPos] = { idx: i, resonance };
+      }
+    }
+    top.sort((a, b) => b.resonance - a.resonance);
+    return top.map((entry) => entry.idx);
   },
 
   findFreeSlot: (): number => {
@@ -19200,6 +19061,7 @@ export const STATE_MATRIX = {
     Atomics.store(resonances, i, resonance);
     Atomics.store(phases, i, 0);
     Atomics.store(roles, i, 0);
+    Atomics.store(semanticBonuses, i, 0);
 
     if (logicVal) logic.set(logicVal, i * 8);
 

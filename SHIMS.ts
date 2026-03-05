@@ -2,8 +2,9 @@
 // OMEGA-64 | Legacy Compliance Shims
 // Shared dependency surface for Gate/runtime paths.
 
-import { crypto } from "jsr:@std/crypto@^1.0.3";
 import { REJECTION } from "./STATE_SNAPSHOT.ts";
+
+const crypto = globalThis.crypto;
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();

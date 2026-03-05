@@ -2,7 +2,7 @@
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import { MATRIX_ENGINE } from "./MATRIX_ENGINE.ts";
-import { ID_TO_IDX, IDX_TO_ID } from "./RIBOSOME.ts";
+import { ID_TO_IDX, IDX_TO_ID } from "./ATOM_INDEX.ts";
 
 async function runTest() {
     console.log("👁️ Starting Phase 11: Sovereign Oracle Verification...");

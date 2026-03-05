@@ -16,6 +16,9 @@ const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
 const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
 const WORKER_TIMEOUT_RETRY_COUNT = RUNTIME_POLICY.pulse.workerTimeoutRetryCount;
 const WORKER_TIMEOUT_RETRY_MS = RUNTIME_POLICY.pulse.workerTimeoutRetryMs;
+const WORKER_RECOVERY_LOG_COOLDOWN_MS = 5_000;
+const WORKER_RECOVERY_VERBOSE =
+  (Deno.env.get("OMEGA_WORKER_RECOVERY_VERBOSE") ?? "") === "1";
 const WORKER_INIT_FALLBACK_ENABLED =
   RUNTIME_POLICY.pulse.workerInitFallbackEnabled;
 const WASM_BOOT_POLICY = RUNTIME_POLICY.pulse.wasmBootPolicy;
@@ -228,6 +231,23 @@ const applyEvolutionPressureRing = (
 
 const workers: Worker[] = [];
 let workerPromises: Promise<any>[] = [];
+const workerRecoveryLogAt = new Map<string, number>();
+
+const shouldLogWorkerRecovery = (
+  workerIndex: number,
+  phase: string,
+  timeoutWindows: number,
+): boolean => {
+  if (timeoutWindows <= 0) return false;
+  if (timeoutWindows <= 1 && !WORKER_RECOVERY_VERBOSE) return false;
+  if (timeoutWindows > 1) return true;
+  const key = `${workerIndex}:${phase}`;
+  const now = Date.now();
+  const last = workerRecoveryLogAt.get(key) ?? 0;
+  if (now - last < WORKER_RECOVERY_LOG_COOLDOWN_MS) return false;
+  workerRecoveryLogAt.set(key, now);
+  return true;
+};
 
 type WorkerFaultStat = {
   workerIndex: number;
@@ -582,7 +602,7 @@ const waitForWorkerInit = (
       if (!data) return;
       if (data.type === "READY") {
         cleanup();
-        if (timeoutWindows > 0) {
+        if (shouldLogWorkerRecovery(workerIndex, "READY", timeoutWindows)) {
           LOGGER.warn(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
@@ -632,9 +652,17 @@ const postAndWait = async <T = any>(
     if (res.timeoutWindows > 0) {
       stats.timeouts += res.timeoutWindows;
       stats.retryWaits += res.retriesUsed;
-      LOGGER.warn(
-        `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
-      );
+      if (
+        shouldLogWorkerRecovery(
+          workerIndex,
+          expectedType,
+          res.timeoutWindows,
+        )
+      ) {
+        LOGGER.warn(
+          `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
+        );
+      }
     }
     stats.completed++;
     stats.consecutiveTimeouts = 0;

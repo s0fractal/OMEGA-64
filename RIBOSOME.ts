@@ -4,10 +4,9 @@
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./IMMUNE.ts";
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+import { ID_TO_IDX, IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
-import { decodeHex } from "jsr:@std/encoding@^1.0.0/hex";
 import { LOGGER } from "./LOGGER.ts";
 
 export interface Atom {
@@ -19,10 +18,7 @@ export interface Atom {
 }
 
 export type Lattice = Map<string, Atom>;
-
-// Mapping for Matrix Lookups
-export const ID_TO_IDX = new Map<string, number>();
-export const IDX_TO_ID = new Map<number, string>();
+export { ID_TO_IDX, IDX_TO_ID };
 
 function idToBigInt(id: string): bigint {
   const hex = id.split(".")[0].replace("0x", "");
@@ -33,6 +29,86 @@ function idToBigInt(id: string): bigint {
     return 0n;
   }
 }
+
+const parseFrontmatterScalar = (raw: string): unknown => {
+  const value = raw.trim();
+  if (value.length === 0) return "";
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1);
+  }
+  if (value === "true") return true;
+  if (value === "false") return false;
+  if (value === "null") return null;
+  if (/^-?\d+(?:\.\d+)?$/u.test(value)) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return value;
+};
+
+const parseFrontmatter = (raw: string): Record<string, unknown> => {
+  const out: Record<string, unknown> = {};
+  let currentArrayKey: string | null = null;
+  for (const sourceLine of raw.split(/\r?\n/u)) {
+    const line = sourceLine.trim();
+    if (line.length === 0 || line.startsWith("#")) continue;
+
+    if (line.startsWith("- ")) {
+      if (currentArrayKey) {
+        const list = Array.isArray(out[currentArrayKey])
+          ? out[currentArrayKey] as unknown[]
+          : [];
+        list.push(parseFrontmatterScalar(line.slice(2)));
+        out[currentArrayKey] = list;
+      }
+      continue;
+    }
+
+    const match = line.match(/^([A-Za-z0-9_]+)\s*:\s*(.*)$/u);
+    if (!match) {
+      currentArrayKey = null;
+      continue;
+    }
+
+    const key = match[1];
+    const value = match[2].trim();
+    if (value.length === 0) {
+      out[key] = [];
+      currentArrayKey = key;
+      continue;
+    }
+
+    currentArrayKey = null;
+    if (value.startsWith("[") && value.endsWith("]")) {
+      const inner = value.slice(1, -1).trim();
+      out[key] = inner.length === 0
+        ? []
+        : inner.split(",").map((item) => parseFrontmatterScalar(item));
+      continue;
+    }
+    out[key] = parseFrontmatterScalar(value);
+  }
+  return out;
+};
+
+const decodeHexBytes = (hex: string): Uint8Array => {
+  const source = hex.trim();
+  if (source.length % 2 !== 0) {
+    throw new Error("hex length must be even");
+  }
+  const out = new Uint8Array(source.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const value = Number.parseInt(source.slice(i * 2, i * 2 + 2), 16);
+    if (!Number.isFinite(value)) {
+      throw new Error(`invalid hex byte at ${i}`);
+    }
+    out[i] = value;
+  }
+  return out;
+};
 
 export const RIBOSOME = {
   // Scan and Lift all Atoms in Flatland and Vacuum
@@ -97,7 +173,7 @@ export const RIBOSOME = {
             const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
             if (!frontmatterMatch) continue;
 
-            const alpha = parseYaml(frontmatterMatch[1]) as any;
+            const alpha = parseFrontmatter(frontmatterMatch[1]) as any;
             const symbol = alpha.symbol ?? entry.name.split(".")[1] ??
               "UNKNOWN";
             const level = alpha.level ??
@@ -118,7 +194,7 @@ export const RIBOSOME = {
               "",
             ).padEnd(16, "0");
             try {
-              STATE_MATRIX.setLogic(idx, decodeHex(logic.substring(0, 16)));
+              STATE_MATRIX.setLogic(idx, decodeHexBytes(logic.substring(0, 16)));
             } catch { /* skip corrupted logic binary lift */ }
 
             ID_TO_IDX.set(fullPath, idx);
@@ -154,7 +230,7 @@ export const RIBOSOME = {
         const content = await Deno.readTextFile(fullPath);
         const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         if (alphaMatch) {
-          const alpha = parseYaml(alphaMatch[1]) as any;
+          const alpha = parseFrontmatter(alphaMatch[1]) as any;
           const bondIds: string[] = alpha.bonds || [];
           const bondIndices = new Uint32Array(4);
           for (let i = 0; i < Math.min(bondIds.length, 4); i++) {

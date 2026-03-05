@@ -2,7 +2,7 @@
 // Handles Regent Election, Decrees, and Legitimacy.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { IDX_TO_ID } from "./RIBOSOME.ts";
+import { IDX_TO_ID } from "./ATOM_INDEX.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 let lastAnnouncedDecree = "NONE";

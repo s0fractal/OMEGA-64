@@ -898,16 +898,21 @@ const evaluateFederateAdmission = (
   );
   let degraded = false;
   let hybridized = false;
+  const openWorld = policy.openWorld === true;
 
   if (severity === "LOW") {
     action = "accept";
     reasons.push("ADMISSION_LOW_ACCEPT");
   } else if (
-    severity === "HIGH" && strictMismatch && policy.rejectOnStrictMismatch
+    !openWorld &&
+    severity === "HIGH" &&
+    strictMismatch &&
+    policy.rejectOnStrictMismatch
   ) {
     action = "reject";
     reasons.push("HIGH_STRICT_MISMATCH_REJECT");
   } else if (
+    !openWorld &&
     severity === "HIGH" &&
     behaviorConflictScore >= 3 &&
     !policy.hybridizeEnabled
@@ -931,7 +936,9 @@ const evaluateFederateAdmission = (
     hybridized = true;
     degraded = true;
     reasons.push(
-      severity === "HIGH"
+      openWorld && severity === "HIGH"
+        ? "OPEN_WORLD_HYBRIDIZE"
+        : severity === "HIGH"
         ? "HIGH_HYBRIDIZE_CONTAINMENT"
         : "MID_HYBRIDIZE_BRIDGE",
     );
@@ -944,7 +951,9 @@ const evaluateFederateAdmission = (
     );
     degraded = true;
     reasons.push(
-      severity === "HIGH"
+      openWorld && severity === "HIGH"
+        ? "OPEN_WORLD_DEGRADE"
+        : severity === "HIGH"
         ? "HIGH_DEGRADE_CONTAINMENT"
         : "MID_DEGRADE_CONTAINMENT",
     );
