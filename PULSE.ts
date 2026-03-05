@@ -41,6 +41,14 @@ const BASE_NOVELTY = RUNTIME_POLICY.pulse.noveltyPressure;
 const BASE_FEAR = RUNTIME_POLICY.pulse.fearPressure;
 const BASE_SYMBIOSIS = RUNTIME_POLICY.pulse.symbiosisPressure;
 const BASE_EGO = RUNTIME_POLICY.pulse.egoPressure;
+const HOMEOSTASIS_POLICY = RUNTIME_POLICY.pulse.homeostasis;
+const HOMEOSTASIS_ENABLED = HOMEOSTASIS_POLICY.enabled;
+const HOMEOSTASIS_TARGET_ENERGY = HOMEOSTASIS_POLICY.targetEnergy;
+const HOMEOSTASIS_BAND = Math.max(1, HOMEOSTASIS_POLICY.band);
+const HOMEOSTASIS_MAX_DELTA = Math.max(1, HOMEOSTASIS_POLICY.maxDelta);
+const HOMEOSTASIS_OVERFLOW_THRESHOLD =
+  HOMEOSTASIS_POLICY.overflowThreshold;
+const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -448,6 +456,69 @@ const applyEvolutionPressureTerms = (
   }
 
   return { adjusted, noveltyDeltaRaw, symbiosisDeltaRaw };
+};
+
+const applyEnergyHomeostasisTerms = (
+  tick: number,
+  activeIdx: number[],
+  spatialOverflowRatio: number,
+): { adjusted: number; netDelta: number } => {
+  if (!HOMEOSTASIS_ENABLED || activeIdx.length === 0) {
+    return { adjusted: 0, netDelta: 0 };
+  }
+  const bandStep = Math.max(1, Math.floor(HOMEOSTASIS_BAND / 2));
+  const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
+  let adjusted = 0;
+  let netDelta = 0;
+
+  for (const idx of activeIdx) {
+    const current = Atomics.load(energiesView, idx);
+    if (current <= 0) continue;
+    const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
+    const absDeviation = Math.abs(deviation);
+    if (absDeviation <= HOMEOSTASIS_BAND) continue;
+
+    const gradient = absDeviation - HOMEOSTASIS_BAND;
+    let step = Math.min(
+      HOMEOSTASIS_MAX_DELTA,
+      1 + Math.floor(gradient / bandStep),
+    );
+    let delta = deviation > 0 ? -step : step;
+
+    if (overflowActive) {
+      if (delta > 0) {
+        delta = Math.max(1, Math.floor(delta * 0.6));
+      } else {
+        delta -= 1;
+      }
+    }
+
+    if (current <= HOMEOSTASIS_STARVATION_FLOOR && delta < 0) {
+      delta = 0;
+    }
+    if (delta === 0) continue;
+
+    const next = Math.max(0, current + delta);
+    if (next !== current) {
+      Atomics.store(energiesView, idx, next);
+      adjusted++;
+      netDelta += next - current;
+    }
+  }
+
+  if (adjusted > 0) {
+    MUTATION_TELEMETRY.record({
+      lane: "internal_host",
+      kind: "energy_homeostasis_adjust",
+      count: adjusted,
+    });
+    if (tick % 20 === 0) {
+      LOGGER.debug(
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} overflow=${spatialOverflowRatio.toFixed(3)}`,
+      );
+    }
+  }
+  return { adjusted, netDelta };
 };
 
 type WasmPreflightReport = {
@@ -1317,6 +1388,11 @@ export const PULSE = {
         );
       }
       applyEvolutionPressureTerms(currentTick, activeIdx);
+      applyEnergyHomeostasisTerms(
+        currentTick,
+        activeIdx,
+        spatialHashState.overflowRatio,
+      );
 
       // Decay host pheromone fields (including observer attention).
       PHYSICS_ENGINE.decayPheromones();

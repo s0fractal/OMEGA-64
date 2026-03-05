@@ -16,6 +16,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
+import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -60,6 +61,13 @@ type DaemonInvariantAdmission = {
   context: DaemonNarrativeContext;
 };
 
+type PlasmidRiskProfile = {
+  level: "LOW" | "MID" | "HIGH";
+  score: number;
+  reasons: string[];
+  opcode: number;
+};
+
 type DaemonIngressPlan = {
   requested: DaemonInjectEnvelope;
   applied: DaemonInjectEnvelope;
@@ -89,6 +97,9 @@ type RuntimeMetrics = {
   population: number;
   avgEnergy: number;
   neuralCoherence: number;
+  spatialOverflowRatio: number;
+  spatialOverflowCount: number;
+  spatialMaxCellCount: number;
 };
 
 type DaemonAuditPending = {
@@ -189,6 +200,15 @@ const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
 const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
 const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
+const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
+  1,
+  Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
+);
+const DAEMON_DYNAMIC_OVERFLOW_SOFT = 0.18;
+const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
+const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
+const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
+const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -223,6 +243,7 @@ let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
+let telemetryStreamLastTick = -1;
 let autoSnapshotLastResult: {
   tick: number;
   timestamp: string;
@@ -272,6 +293,7 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
 const collectRuntimeMetrics = (): RuntimeMetrics => {
   const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
   const active = STATE_MATRIX.getActiveIndices();
+  const spatialHash = PULSE.getSpatialHashState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -283,6 +305,9 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     population: active.length,
     avgEnergy: Number(avgEnergy.toFixed(3)),
     neuralCoherence: Number(rawCoherence.toFixed(3)),
+    spatialOverflowRatio: spatialHash.overflowRatio,
+    spatialOverflowCount: spatialHash.overflowCount,
+    spatialMaxCellCount: spatialHash.maxCellCount,
   };
 };
 
@@ -306,7 +331,26 @@ const isDaemonSafeMode = (
   return { blocked: false, reason: "SAFE_MODE_OFF" };
 };
 
-const consumeDaemonBudget = (): {
+const resolveDaemonBudgetMax = (metrics: RuntimeMetrics): number => {
+  let maxActions = DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW;
+  if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_HARD) {
+    maxActions = Math.floor(maxActions * 0.35);
+  } else if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_SOFT) {
+    maxActions = Math.floor(maxActions * 0.6);
+  }
+  if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_HARD) {
+    maxActions = Math.floor(maxActions * 0.5);
+  } else if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_SOFT) {
+    maxActions = Math.floor(maxActions * 0.75);
+  }
+  return clamp(
+    Math.floor(maxActions),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+};
+
+const consumeDaemonBudget = (maxActionsPerWindow: number): {
   ok: boolean;
   remaining: number;
   resetInMs: number;
@@ -316,7 +360,12 @@ const consumeDaemonBudget = (): {
     daemonWindowStartMs = now;
     daemonActionsInWindow = 0;
   }
-  if (daemonActionsInWindow >= DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW) {
+  const maxActions = clamp(
+    Math.floor(maxActionsPerWindow),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+  if (daemonActionsInWindow >= maxActions) {
     const elapsed = now - daemonWindowStartMs;
     return {
       ok: false,
@@ -329,7 +378,7 @@ const consumeDaemonBudget = (): {
     ok: true,
     remaining: Math.max(
       0,
-      DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW - daemonActionsInWindow,
+      maxActions - daemonActionsInWindow,
     ),
     resetInMs: Math.max(
       0,
@@ -366,6 +415,53 @@ const evaluatePlasmidPolicy = (
     };
   }
   return { ok: true, reason: "PLASMID_POLICY_OK" };
+};
+
+const evaluatePlasmidRisk = (
+  hexCode: string,
+  intensity: number,
+): PlasmidRiskProfile => {
+  const bytes = parseHex8Strict(hexCode);
+  if (!bytes) {
+    return {
+      level: "HIGH",
+      score: 4,
+      reasons: ["PLASMID_HEX_INVALID"],
+      opcode: 0,
+    };
+  }
+  const opcode = bytes[0];
+  let score = 0;
+  const reasons: string[] = [];
+
+  if (opcode === 0x80) {
+    score += 2;
+    reasons.push("RISK_OPCODE_REPLICATE");
+  } else if (opcode === 0xA8 || opcode === 0xA5 || opcode === 0xA6) {
+    score += 1;
+    reasons.push("RISK_OPCODE_COMPLEX_STRUCT");
+  } else if (opcode === 0xAA || opcode === 0xAB) {
+    score += 2;
+    reasons.push("RISK_OPCODE_GLOBAL_TRANSFER");
+  }
+
+  const intensityRatio = clamp(intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE, 0, 1);
+  if (intensityRatio >= 0.85) {
+    score += 2;
+    reasons.push("RISK_INTENSITY_HIGH");
+  } else if (intensityRatio >= 0.55) {
+    score += 1;
+    reasons.push("RISK_INTENSITY_MID");
+  }
+
+  const level = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
+  if (reasons.length === 0) reasons.push("RISK_LOW");
+  return {
+    level,
+    score,
+    reasons,
+    opcode,
+  };
 };
 
 const appendDaemonAudit = async (
@@ -487,7 +583,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
-  const spatialHash = PULSE.getSpatialHashState();
+  const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
     4096,
@@ -542,6 +638,7 @@ const buildTelemetry = async () => {
       safe_mode_reason: safeMode.reason,
       actions_used_in_window: daemonActionsInWindow,
       actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+      actions_dynamic_max_in_window: dynamicMaxActions,
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
@@ -561,10 +658,10 @@ const buildTelemetry = async () => {
       last_result: autoSnapshotLastResult,
     },
     spatial_hash_guard: {
-      tick: spatialHash.tick,
-      overflow_count: spatialHash.overflowCount,
-      max_cell_count: spatialHash.maxCellCount,
-      overflow_ratio: spatialHash.overflowRatio,
+      tick: metrics.tick,
+      overflow_count: metrics.spatialOverflowCount,
+      max_cell_count: metrics.spatialMaxCellCount,
+      overflow_ratio: metrics.spatialOverflowRatio,
     },
     behavior_clusters: behaviorClusters.slice(0, 6),
     behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
@@ -808,6 +905,7 @@ const evaluateInvariantAdmission = (
   envelope: DaemonInjectEnvelope,
   metrics: RuntimeMetrics,
   context: DaemonNarrativeContext,
+  plasmidRisk: PlasmidRiskProfile | null = null,
 ): DaemonInvariantAdmission => {
   let score = 0;
   const reasons: string[] = [];
@@ -867,6 +965,14 @@ const evaluateInvariantAdmission = (
     if (context.mood === "FRAGILE") {
       score += 1;
       reasons.push("PLASMID_IN_FRAGILE_MOOD");
+    }
+    if (plasmidRisk) {
+      score += plasmidRisk.score;
+      reasons.push(...plasmidRisk.reasons);
+      if (plasmidRisk.level === "HIGH") {
+        score += 1;
+        reasons.push("PLASMID_RISK_HIGH");
+      }
     }
   } else if (envelope.action_type === "DROP_PHEROMONE") {
     const ratio = envelope.payload.intensity /
@@ -1043,6 +1149,74 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(await buildTelemetry()), {
       headers: JSON_HEADERS,
     });
+  }
+
+  if (url.pathname === "/api/telemetry/stream" && req.method === "GET") {
+    const limit = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("limit"), 128)),
+      1,
+      1024,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        history: TELEMETRY_STREAM.history(limit),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/histogram" && req.method === "GET") {
+    const metricRaw = (url.searchParams.get("metric") ?? "").trim();
+    if (
+      metricRaw !== "population" && metricRaw !== "avgEnergy" &&
+      metricRaw !== "neuralCoherence" && metricRaw !== "spatialOverflowRatio"
+    ) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_METRIC",
+          allowed: TELEMETRY_STREAM.metrics(),
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
+    const windowMs = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("window_ms"), 60000)),
+      1000,
+      86_400_000,
+    );
+    const buckets = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("buckets"), 12)),
+      1,
+      64,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        histogram: TELEMETRY_STREAM.histogram(metricRaw, windowMs, buckets),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/ws") {
+    if (req.headers.get("upgrade") !== "websocket") {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "WEBSOCKET_UPGRADE_REQUIRED",
+        }),
+        { status: 426, headers: JSON_HEADERS },
+      );
+    }
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    TELEMETRY_STREAM.attach(socket);
+    return response;
   }
 
   if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
@@ -1303,7 +1477,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const budget = consumeDaemonBudget();
+      const dynamicBudgetMax = resolveDaemonBudgetMax(baseline);
+      const budget = consumeDaemonBudget(dynamicBudgetMax);
       if (!budget.ok) {
         setLatestDaemonAdmission({
           tick: baseline.tick,
@@ -1337,11 +1512,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
             status: 429,
             retry_after_ms: budget.resetInMs,
+            dynamic_max_actions: dynamicBudgetMax,
           }),
           { status: 429, headers: JSON_HEADERS },
         );
       }
 
+      let plasmidRisk: PlasmidRiskProfile | null = null;
       if (envelope.action_type === "INJECT_PLASMID") {
         if (!envelope.payload.hex_code) {
           setLatestDaemonAdmission({
@@ -1426,6 +1603,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             { status: 400, headers: JSON_HEADERS },
           );
         }
+        plasmidRisk = evaluatePlasmidRisk(
+          envelope.payload.hex_code,
+          envelope.payload.intensity,
+        );
       }
 
       const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
@@ -1436,7 +1617,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       );
       const ingressPlan = planInvariantIngress(
         envelope,
-        evaluateInvariantAdmission(envelope, baseline, narrativeContext),
+        evaluateInvariantAdmission(
+          envelope,
+          baseline,
+          narrativeContext,
+          plasmidRisk,
+        ),
       );
       const applied = ingressPlan.applied;
 
@@ -1457,6 +1643,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           applied_payload: ingressPlan.applied.payload,
           degrade_reason: ingressPlan.degradeReason,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           metrics: baseline,
           budget,
         });
@@ -1542,6 +1729,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           metrics: baseline,
           budget,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
         });
@@ -1568,6 +1756,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           JSON.stringify({
             ...queued,
             admission: ingressPlan.admission,
+            plasmid_risk: plasmidRisk,
             degraded: ingressPlan.degraded,
             degrade_reason: ingressPlan.degradeReason,
             applied_action: "DROP_PHEROMONE",
@@ -1631,6 +1820,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         metrics: baseline,
         budget,
         admission: ingressPlan.admission,
+        plasmid_risk: plasmidRisk,
         degraded: ingressPlan.degraded,
         degrade_reason: ingressPlan.degradeReason,
       });
@@ -1657,6 +1847,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         JSON.stringify({
           ...queued,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
           applied_action: "INJECT_PLASMID",
@@ -2172,6 +2363,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     await flushDaemonAuditEffects(tick);
     await maybeAutoSnapshot(tick);
+    if (
+      telemetryStreamLastTick < 0 ||
+      tick - telemetryStreamLastTick >= TELEMETRY_STREAM_EMIT_INTERVAL_TICKS
+    ) {
+      const metrics = collectRuntimeMetrics();
+      const safeMode = isDaemonSafeMode(metrics);
+      TELEMETRY_STREAM.emit({
+        tick: metrics.tick,
+        population: metrics.population,
+        avgEnergy: metrics.avgEnergy,
+        neuralCoherence: metrics.neuralCoherence,
+        spatialOverflowRatio: metrics.spatialOverflowRatio,
+        daemonSafeMode: safeMode.blocked,
+      });
+      telemetryStreamLastTick = tick;
+    }
     await new Promise((r) => setTimeout(r, 16));
   }
 })();

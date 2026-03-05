@@ -187,6 +187,38 @@ const proxyTelemetry = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyTelemetryPath = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyInject = async (incoming: Request): Promise<Response> => {
   let bodyText = "";
   try {
@@ -480,6 +512,14 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetry(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/telemetry/stream") {
+    return proxyTelemetryPath(req, "/api/telemetry/stream", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry/histogram") {
+    return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
+  }
+
   if (
     (req.method === "GET" || req.method === "POST") &&
     url.pathname === "/api/pressure-ring"
@@ -516,7 +556,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

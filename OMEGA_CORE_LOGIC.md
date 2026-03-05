@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T14:08:57.228Z*
-*Exported Files: 66*
+*Generated: 2026-03-05T18:25:04.991Z*
+*Exported Files: 67*
 *Runtime Roots: 6*
-*Runtime Closure Files: 37*
+*Runtime Closure Files: 38*
 *Non-Runtime Code Files: 21*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
-*Export Set SHA256: a3b289620d45e02dc5799f3281217f804178ca87a44ae66b69e89e57cdb63220*
-*Export Content SHA256: b1c6dff604b660dfd8b0ae451e0b1a2a755bdeac638548da0817b44cf7d1dc9e*
-*Git Commit: cbd666c2a1b7*
+*Export Set SHA256: 360d3d249b3d4afaadd3bf82e4894db4796197d79af1789d06006c6c58785d24*
+*Export Content SHA256: a2bade19193061dd34551bfad6342e47304c74fc66c992cad631dbadbef0300c*
+*Git Commit: b43c5b082c96*
 
 ---
 
@@ -64,6 +64,7 @@
 - STATE_MATRIX.ts
 - STATE_SNAPSHOT.ts
 - SYSTEM_START.ts
+- TELEMETRY_STREAM.ts
 
 ---
 
@@ -1549,6 +1550,38 @@ const proxyTelemetry = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyTelemetryPath = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyInject = async (incoming: Request): Promise<Response> => {
   let bodyText = "";
   try {
@@ -1842,6 +1875,14 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetry(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/telemetry/stream") {
+    return proxyTelemetryPath(req, "/api/telemetry/stream", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry/histogram") {
+    return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
+  }
+
   if (
     (req.method === "GET" || req.method === "POST") &&
     url.pathname === "/api/pressure-ring"
@@ -1878,7 +1919,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -12974,6 +13015,14 @@ const BASE_NOVELTY = RUNTIME_POLICY.pulse.noveltyPressure;
 const BASE_FEAR = RUNTIME_POLICY.pulse.fearPressure;
 const BASE_SYMBIOSIS = RUNTIME_POLICY.pulse.symbiosisPressure;
 const BASE_EGO = RUNTIME_POLICY.pulse.egoPressure;
+const HOMEOSTASIS_POLICY = RUNTIME_POLICY.pulse.homeostasis;
+const HOMEOSTASIS_ENABLED = HOMEOSTASIS_POLICY.enabled;
+const HOMEOSTASIS_TARGET_ENERGY = HOMEOSTASIS_POLICY.targetEnergy;
+const HOMEOSTASIS_BAND = Math.max(1, HOMEOSTASIS_POLICY.band);
+const HOMEOSTASIS_MAX_DELTA = Math.max(1, HOMEOSTASIS_POLICY.maxDelta);
+const HOMEOSTASIS_OVERFLOW_THRESHOLD =
+  HOMEOSTASIS_POLICY.overflowThreshold;
+const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -13381,6 +13430,69 @@ const applyEvolutionPressureTerms = (
   }
 
   return { adjusted, noveltyDeltaRaw, symbiosisDeltaRaw };
+};
+
+const applyEnergyHomeostasisTerms = (
+  tick: number,
+  activeIdx: number[],
+  spatialOverflowRatio: number,
+): { adjusted: number; netDelta: number } => {
+  if (!HOMEOSTASIS_ENABLED || activeIdx.length === 0) {
+    return { adjusted: 0, netDelta: 0 };
+  }
+  const bandStep = Math.max(1, Math.floor(HOMEOSTASIS_BAND / 2));
+  const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
+  let adjusted = 0;
+  let netDelta = 0;
+
+  for (const idx of activeIdx) {
+    const current = Atomics.load(energiesView, idx);
+    if (current <= 0) continue;
+    const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
+    const absDeviation = Math.abs(deviation);
+    if (absDeviation <= HOMEOSTASIS_BAND) continue;
+
+    const gradient = absDeviation - HOMEOSTASIS_BAND;
+    let step = Math.min(
+      HOMEOSTASIS_MAX_DELTA,
+      1 + Math.floor(gradient / bandStep),
+    );
+    let delta = deviation > 0 ? -step : step;
+
+    if (overflowActive) {
+      if (delta > 0) {
+        delta = Math.max(1, Math.floor(delta * 0.6));
+      } else {
+        delta -= 1;
+      }
+    }
+
+    if (current <= HOMEOSTASIS_STARVATION_FLOOR && delta < 0) {
+      delta = 0;
+    }
+    if (delta === 0) continue;
+
+    const next = Math.max(0, current + delta);
+    if (next !== current) {
+      Atomics.store(energiesView, idx, next);
+      adjusted++;
+      netDelta += next - current;
+    }
+  }
+
+  if (adjusted > 0) {
+    MUTATION_TELEMETRY.record({
+      lane: "internal_host",
+      kind: "energy_homeostasis_adjust",
+      count: adjusted,
+    });
+    if (tick % 20 === 0) {
+      LOGGER.debug(
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} overflow=${spatialOverflowRatio.toFixed(3)}`,
+      );
+    }
+  }
+  return { adjusted, netDelta };
 };
 
 type WasmPreflightReport = {
@@ -14250,6 +14362,11 @@ export const PULSE = {
         );
       }
       applyEvolutionPressureTerms(currentTick, activeIdx);
+      applyEnergyHomeostasisTerms(
+        currentTick,
+        activeIdx,
+        spatialHashState.overflowRatio,
+      );
 
       // Decay host pheromone fields (including observer attention).
       PHYSICS_ENGINE.decayPheromones();
@@ -14989,6 +15106,16 @@ const rawNoveltyPressure = readEnv("OMEGA_NOVELTY_PRESSURE");
 const rawSymbiosisPressure = readEnv("OMEGA_SYMBIOSIS_PRESSURE");
 const rawMatrixTheta = readEnv("OMEGA_MATRIX_THETA");
 const rawPressureRingScale = readEnv("OMEGA_PRESSURE_RING_SCALE");
+const rawHomeostasisEnable = readEnv("OMEGA_HOMEOSTASIS_ENABLE");
+const rawHomeostasisTargetEnergy = readEnv("OMEGA_HOMEOSTASIS_TARGET_ENERGY");
+const rawHomeostasisBand = readEnv("OMEGA_HOMEOSTASIS_BAND");
+const rawHomeostasisMaxDelta = readEnv("OMEGA_HOMEOSTASIS_MAX_DELTA");
+const rawHomeostasisOverflowThreshold = readEnv(
+  "OMEGA_HOMEOSTASIS_OVERFLOW_THRESHOLD",
+);
+const rawHomeostasisStarvationFloor = readEnv(
+  "OMEGA_HOMEOSTASIS_STARVATION_FLOOR",
+);
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -15185,6 +15312,37 @@ const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
 const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
 const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
 const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
+const pulseHomeostasisEnabled = parseEnvBool(rawHomeostasisEnable, true);
+const pulseHomeostasisTargetEnergy = parseEnvBoundedInt(
+  rawHomeostasisTargetEnergy,
+  1200,
+  1,
+  1_000_000,
+);
+const pulseHomeostasisBand = parseEnvBoundedInt(
+  rawHomeostasisBand,
+  240,
+  1,
+  1_000_000,
+);
+const pulseHomeostasisMaxDelta = parseEnvBoundedInt(
+  rawHomeostasisMaxDelta,
+  12,
+  1,
+  1024,
+);
+const pulseHomeostasisOverflowThreshold = parseEnvBoundedFloat(
+  rawHomeostasisOverflowThreshold,
+  0.2,
+  0,
+  1,
+);
+const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
+  rawHomeostasisStarvationFloor,
+  200,
+  0,
+  1_000_000,
+);
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -15350,6 +15508,14 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    homeostasis: {
+      enabled: pulseHomeostasisEnabled,
+      targetEnergy: pulseHomeostasisTargetEnergy,
+      band: pulseHomeostasisBand,
+      maxDelta: pulseHomeostasisMaxDelta,
+      overflowThreshold: pulseHomeostasisOverflowThreshold,
+      starvationFloor: pulseHomeostasisStarvationFloor,
+    },
   },
   telemetry: {
     enabled: telemetryEnabled,
@@ -15504,6 +15670,14 @@ export const RUNTIME_POLICY = {
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    homeostasis: {
+      enabled: pulseHomeostasisEnabled,
+      targetEnergy: pulseHomeostasisTargetEnergy,
+      band: pulseHomeostasisBand,
+      maxDelta: pulseHomeostasisMaxDelta,
+      overflowThreshold: pulseHomeostasisOverflowThreshold,
+      starvationFloor: pulseHomeostasisStarvationFloor,
+    },
     source: {
       workerCount: hasEnvValue(rawPulseWorkers),
       strictDeterminism: rawStrictDeterminism !== undefined,
@@ -15523,6 +15697,13 @@ export const RUNTIME_POLICY = {
       startupSelfTestFallback: rawStartupSelfTestFallback !== undefined,
       startupSelfTestQuiet: rawStartupSelfTestQuiet !== undefined,
       startupSelfTestForceBreach: rawStartupSelfTestForceBreach !== undefined,
+      homeostasisEnable: rawHomeostasisEnable !== undefined,
+      homeostasisTargetEnergy: rawHomeostasisTargetEnergy !== undefined,
+      homeostasisBand: rawHomeostasisBand !== undefined,
+      homeostasisMaxDelta: rawHomeostasisMaxDelta !== undefined,
+      homeostasisOverflowThreshold:
+        rawHomeostasisOverflowThreshold !== undefined,
+      homeostasisStarvationFloor: rawHomeostasisStarvationFloor !== undefined,
     },
   },
   akasha: {
@@ -19835,6 +20016,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
+import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -19879,6 +20061,13 @@ type DaemonInvariantAdmission = {
   context: DaemonNarrativeContext;
 };
 
+type PlasmidRiskProfile = {
+  level: "LOW" | "MID" | "HIGH";
+  score: number;
+  reasons: string[];
+  opcode: number;
+};
+
 type DaemonIngressPlan = {
   requested: DaemonInjectEnvelope;
   applied: DaemonInjectEnvelope;
@@ -19908,6 +20097,9 @@ type RuntimeMetrics = {
   population: number;
   avgEnergy: number;
   neuralCoherence: number;
+  spatialOverflowRatio: number;
+  spatialOverflowCount: number;
+  spatialMaxCellCount: number;
 };
 
 type DaemonAuditPending = {
@@ -20008,6 +20200,15 @@ const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
 const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
 const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
+const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
+  1,
+  Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
+);
+const DAEMON_DYNAMIC_OVERFLOW_SOFT = 0.18;
+const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
+const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
+const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
+const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -20042,6 +20243,7 @@ let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
+let telemetryStreamLastTick = -1;
 let autoSnapshotLastResult: {
   tick: number;
   timestamp: string;
@@ -20091,6 +20293,7 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
 const collectRuntimeMetrics = (): RuntimeMetrics => {
   const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
   const active = STATE_MATRIX.getActiveIndices();
+  const spatialHash = PULSE.getSpatialHashState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -20102,6 +20305,9 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     population: active.length,
     avgEnergy: Number(avgEnergy.toFixed(3)),
     neuralCoherence: Number(rawCoherence.toFixed(3)),
+    spatialOverflowRatio: spatialHash.overflowRatio,
+    spatialOverflowCount: spatialHash.overflowCount,
+    spatialMaxCellCount: spatialHash.maxCellCount,
   };
 };
 
@@ -20125,7 +20331,26 @@ const isDaemonSafeMode = (
   return { blocked: false, reason: "SAFE_MODE_OFF" };
 };
 
-const consumeDaemonBudget = (): {
+const resolveDaemonBudgetMax = (metrics: RuntimeMetrics): number => {
+  let maxActions = DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW;
+  if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_HARD) {
+    maxActions = Math.floor(maxActions * 0.35);
+  } else if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_SOFT) {
+    maxActions = Math.floor(maxActions * 0.6);
+  }
+  if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_HARD) {
+    maxActions = Math.floor(maxActions * 0.5);
+  } else if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_SOFT) {
+    maxActions = Math.floor(maxActions * 0.75);
+  }
+  return clamp(
+    Math.floor(maxActions),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+};
+
+const consumeDaemonBudget = (maxActionsPerWindow: number): {
   ok: boolean;
   remaining: number;
   resetInMs: number;
@@ -20135,7 +20360,12 @@ const consumeDaemonBudget = (): {
     daemonWindowStartMs = now;
     daemonActionsInWindow = 0;
   }
-  if (daemonActionsInWindow >= DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW) {
+  const maxActions = clamp(
+    Math.floor(maxActionsPerWindow),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+  if (daemonActionsInWindow >= maxActions) {
     const elapsed = now - daemonWindowStartMs;
     return {
       ok: false,
@@ -20148,7 +20378,7 @@ const consumeDaemonBudget = (): {
     ok: true,
     remaining: Math.max(
       0,
-      DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW - daemonActionsInWindow,
+      maxActions - daemonActionsInWindow,
     ),
     resetInMs: Math.max(
       0,
@@ -20185,6 +20415,53 @@ const evaluatePlasmidPolicy = (
     };
   }
   return { ok: true, reason: "PLASMID_POLICY_OK" };
+};
+
+const evaluatePlasmidRisk = (
+  hexCode: string,
+  intensity: number,
+): PlasmidRiskProfile => {
+  const bytes = parseHex8Strict(hexCode);
+  if (!bytes) {
+    return {
+      level: "HIGH",
+      score: 4,
+      reasons: ["PLASMID_HEX_INVALID"],
+      opcode: 0,
+    };
+  }
+  const opcode = bytes[0];
+  let score = 0;
+  const reasons: string[] = [];
+
+  if (opcode === 0x80) {
+    score += 2;
+    reasons.push("RISK_OPCODE_REPLICATE");
+  } else if (opcode === 0xA8 || opcode === 0xA5 || opcode === 0xA6) {
+    score += 1;
+    reasons.push("RISK_OPCODE_COMPLEX_STRUCT");
+  } else if (opcode === 0xAA || opcode === 0xAB) {
+    score += 2;
+    reasons.push("RISK_OPCODE_GLOBAL_TRANSFER");
+  }
+
+  const intensityRatio = clamp(intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE, 0, 1);
+  if (intensityRatio >= 0.85) {
+    score += 2;
+    reasons.push("RISK_INTENSITY_HIGH");
+  } else if (intensityRatio >= 0.55) {
+    score += 1;
+    reasons.push("RISK_INTENSITY_MID");
+  }
+
+  const level = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
+  if (reasons.length === 0) reasons.push("RISK_LOW");
+  return {
+    level,
+    score,
+    reasons,
+    opcode,
+  };
 };
 
 const appendDaemonAudit = async (
@@ -20306,7 +20583,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
-  const spatialHash = PULSE.getSpatialHashState();
+  const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
     4096,
@@ -20361,6 +20638,7 @@ const buildTelemetry = async () => {
       safe_mode_reason: safeMode.reason,
       actions_used_in_window: daemonActionsInWindow,
       actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+      actions_dynamic_max_in_window: dynamicMaxActions,
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
@@ -20380,10 +20658,10 @@ const buildTelemetry = async () => {
       last_result: autoSnapshotLastResult,
     },
     spatial_hash_guard: {
-      tick: spatialHash.tick,
-      overflow_count: spatialHash.overflowCount,
-      max_cell_count: spatialHash.maxCellCount,
-      overflow_ratio: spatialHash.overflowRatio,
+      tick: metrics.tick,
+      overflow_count: metrics.spatialOverflowCount,
+      max_cell_count: metrics.spatialMaxCellCount,
+      overflow_ratio: metrics.spatialOverflowRatio,
     },
     behavior_clusters: behaviorClusters.slice(0, 6),
     behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
@@ -20627,6 +20905,7 @@ const evaluateInvariantAdmission = (
   envelope: DaemonInjectEnvelope,
   metrics: RuntimeMetrics,
   context: DaemonNarrativeContext,
+  plasmidRisk: PlasmidRiskProfile | null = null,
 ): DaemonInvariantAdmission => {
   let score = 0;
   const reasons: string[] = [];
@@ -20686,6 +20965,14 @@ const evaluateInvariantAdmission = (
     if (context.mood === "FRAGILE") {
       score += 1;
       reasons.push("PLASMID_IN_FRAGILE_MOOD");
+    }
+    if (plasmidRisk) {
+      score += plasmidRisk.score;
+      reasons.push(...plasmidRisk.reasons);
+      if (plasmidRisk.level === "HIGH") {
+        score += 1;
+        reasons.push("PLASMID_RISK_HIGH");
+      }
     }
   } else if (envelope.action_type === "DROP_PHEROMONE") {
     const ratio = envelope.payload.intensity /
@@ -20862,6 +21149,74 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(await buildTelemetry()), {
       headers: JSON_HEADERS,
     });
+  }
+
+  if (url.pathname === "/api/telemetry/stream" && req.method === "GET") {
+    const limit = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("limit"), 128)),
+      1,
+      1024,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        history: TELEMETRY_STREAM.history(limit),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/histogram" && req.method === "GET") {
+    const metricRaw = (url.searchParams.get("metric") ?? "").trim();
+    if (
+      metricRaw !== "population" && metricRaw !== "avgEnergy" &&
+      metricRaw !== "neuralCoherence" && metricRaw !== "spatialOverflowRatio"
+    ) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_METRIC",
+          allowed: TELEMETRY_STREAM.metrics(),
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
+    const windowMs = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("window_ms"), 60000)),
+      1000,
+      86_400_000,
+    );
+    const buckets = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("buckets"), 12)),
+      1,
+      64,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        histogram: TELEMETRY_STREAM.histogram(metricRaw, windowMs, buckets),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/ws") {
+    if (req.headers.get("upgrade") !== "websocket") {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "WEBSOCKET_UPGRADE_REQUIRED",
+        }),
+        { status: 426, headers: JSON_HEADERS },
+      );
+    }
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    TELEMETRY_STREAM.attach(socket);
+    return response;
   }
 
   if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
@@ -21122,7 +21477,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const budget = consumeDaemonBudget();
+      const dynamicBudgetMax = resolveDaemonBudgetMax(baseline);
+      const budget = consumeDaemonBudget(dynamicBudgetMax);
       if (!budget.ok) {
         setLatestDaemonAdmission({
           tick: baseline.tick,
@@ -21156,11 +21512,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
             status: 429,
             retry_after_ms: budget.resetInMs,
+            dynamic_max_actions: dynamicBudgetMax,
           }),
           { status: 429, headers: JSON_HEADERS },
         );
       }
 
+      let plasmidRisk: PlasmidRiskProfile | null = null;
       if (envelope.action_type === "INJECT_PLASMID") {
         if (!envelope.payload.hex_code) {
           setLatestDaemonAdmission({
@@ -21245,6 +21603,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             { status: 400, headers: JSON_HEADERS },
           );
         }
+        plasmidRisk = evaluatePlasmidRisk(
+          envelope.payload.hex_code,
+          envelope.payload.intensity,
+        );
       }
 
       const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
@@ -21255,7 +21617,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       );
       const ingressPlan = planInvariantIngress(
         envelope,
-        evaluateInvariantAdmission(envelope, baseline, narrativeContext),
+        evaluateInvariantAdmission(
+          envelope,
+          baseline,
+          narrativeContext,
+          plasmidRisk,
+        ),
       );
       const applied = ingressPlan.applied;
 
@@ -21276,6 +21643,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           applied_payload: ingressPlan.applied.payload,
           degrade_reason: ingressPlan.degradeReason,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           metrics: baseline,
           budget,
         });
@@ -21361,6 +21729,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           metrics: baseline,
           budget,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
         });
@@ -21387,6 +21756,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           JSON.stringify({
             ...queued,
             admission: ingressPlan.admission,
+            plasmid_risk: plasmidRisk,
             degraded: ingressPlan.degraded,
             degrade_reason: ingressPlan.degradeReason,
             applied_action: "DROP_PHEROMONE",
@@ -21450,6 +21820,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         metrics: baseline,
         budget,
         admission: ingressPlan.admission,
+        plasmid_risk: plasmidRisk,
         degraded: ingressPlan.degraded,
         degrade_reason: ingressPlan.degradeReason,
       });
@@ -21476,6 +21847,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         JSON.stringify({
           ...queued,
           admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
           degraded: ingressPlan.degraded,
           degrade_reason: ingressPlan.degradeReason,
           applied_action: "INJECT_PLASMID",
@@ -21991,6 +22363,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     await flushDaemonAuditEffects(tick);
     await maybeAutoSnapshot(tick);
+    if (
+      telemetryStreamLastTick < 0 ||
+      tick - telemetryStreamLastTick >= TELEMETRY_STREAM_EMIT_INTERVAL_TICKS
+    ) {
+      const metrics = collectRuntimeMetrics();
+      const safeMode = isDaemonSafeMode(metrics);
+      TELEMETRY_STREAM.emit({
+        tick: metrics.tick,
+        population: metrics.population,
+        avgEnergy: metrics.avgEnergy,
+        neuralCoherence: metrics.neuralCoherence,
+        spatialOverflowRatio: metrics.spatialOverflowRatio,
+        daemonSafeMode: safeMode.blocked,
+      });
+      telemetryStreamLastTick = tick;
+    }
     await new Promise((r) => setTimeout(r, 16));
   }
 })();
@@ -22001,6 +22389,215 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
+
+```
+
+---
+
+## FILE: TELEMETRY_STREAM.ts
+
+```typescript
+type TelemetrySample = {
+  ts: number;
+  tick: number;
+  population: number;
+  avgEnergy: number;
+  neuralCoherence: number;
+  spatialOverflowRatio: number;
+  daemonSafeMode: boolean;
+};
+
+type TelemetryMetricName =
+  | "population"
+  | "avgEnergy"
+  | "neuralCoherence"
+  | "spatialOverflowRatio";
+
+type TelemetryBucket = {
+  from: number;
+  to: number;
+  count: number;
+};
+
+type TelemetryHistogram = {
+  metric: TelemetryMetricName;
+  windowMs: number;
+  count: number;
+  min: number;
+  max: number;
+  buckets: TelemetryBucket[];
+};
+
+const HISTORY_LIMIT = 4096;
+const DEFAULT_WINDOW_MS = 60_000;
+const DEFAULT_BUCKETS = 12;
+
+const subscribers = new Set<WebSocket>();
+const history: TelemetrySample[] = [];
+
+const toFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const metricValue = (
+  sample: TelemetrySample,
+  metric: TelemetryMetricName,
+): number => {
+  if (metric === "population") return sample.population;
+  if (metric === "avgEnergy") return sample.avgEnergy;
+  if (metric === "neuralCoherence") return sample.neuralCoherence;
+  return sample.spatialOverflowRatio;
+};
+
+const normalizeSample = (
+  sample: Partial<TelemetrySample> & { tick: number },
+): TelemetrySample => ({
+  ts: Math.max(0, Math.floor(toFiniteNumber(sample.ts, Date.now()))),
+  tick: Math.max(0, Math.floor(toFiniteNumber(sample.tick, 0))),
+  population: Math.max(0, Math.floor(toFiniteNumber(sample.population, 0))),
+  avgEnergy: toFiniteNumber(sample.avgEnergy, 0),
+  neuralCoherence: toFiniteNumber(sample.neuralCoherence, 0),
+  spatialOverflowRatio: clamp(
+    toFiniteNumber(sample.spatialOverflowRatio, 0),
+    0,
+    1,
+  ),
+  daemonSafeMode: sample.daemonSafeMode === true,
+});
+
+const recentSamples = (windowMs: number): TelemetrySample[] => {
+  const boundedWindow = Math.max(1, Math.floor(windowMs));
+  const now = Date.now();
+  return history.filter((sample) => now - sample.ts <= boundedWindow);
+};
+
+const broadcast = (payload: unknown): void => {
+  const encoded = JSON.stringify(payload);
+  for (const socket of subscribers) {
+    if (socket.readyState !== WebSocket.OPEN) {
+      subscribers.delete(socket);
+      continue;
+    }
+    try {
+      socket.send(encoded);
+    } catch {
+      subscribers.delete(socket);
+    }
+  }
+};
+
+const buildHistogram = (
+  metric: TelemetryMetricName,
+  windowMs: number,
+  bucketCount: number,
+): TelemetryHistogram => {
+  const samples = recentSamples(windowMs);
+  if (samples.length === 0) {
+    return {
+      metric,
+      windowMs,
+      count: 0,
+      min: 0,
+      max: 0,
+      buckets: [],
+    };
+  }
+
+  const values = samples.map((sample) => metricValue(sample, metric));
+  let min = Math.min(...values);
+  let max = Math.max(...values);
+  if (!Number.isFinite(min)) min = 0;
+  if (!Number.isFinite(max)) max = 0;
+
+  const boundedBuckets = clamp(Math.floor(bucketCount), 1, 64);
+  const span = Math.max(1e-9, max - min);
+  const step = span / boundedBuckets;
+  const buckets: TelemetryBucket[] = [];
+  for (let i = 0; i < boundedBuckets; i++) {
+    const from = min + step * i;
+    const to = i === boundedBuckets - 1 ? max : min + step * (i + 1);
+    buckets.push({ from, to, count: 0 });
+  }
+
+  for (const value of values) {
+    if (!Number.isFinite(value)) continue;
+    let idx = Math.floor((value - min) / step);
+    if (idx < 0) idx = 0;
+    if (idx >= boundedBuckets) idx = boundedBuckets - 1;
+    buckets[idx].count++;
+  }
+
+  return {
+    metric,
+    windowMs,
+    count: samples.length,
+    min,
+    max,
+    buckets,
+  };
+};
+
+export const TELEMETRY_STREAM = {
+  emit: (sample: Partial<TelemetrySample> & { tick: number }): TelemetrySample => {
+    const normalized = normalizeSample(sample);
+    history.push(normalized);
+    if (history.length > HISTORY_LIMIT) {
+      history.splice(0, history.length - HISTORY_LIMIT);
+    }
+    broadcast({
+      type: "telemetry",
+      sample: normalized,
+    });
+    return normalized;
+  },
+  history: (limit = 128): TelemetrySample[] => {
+    const take = clamp(Math.floor(toFiniteNumber(limit, 128)), 1, HISTORY_LIMIT);
+    return history.slice(-take);
+  },
+  histogram: (
+    metric: TelemetryMetricName,
+    windowMs = DEFAULT_WINDOW_MS,
+    bucketCount = DEFAULT_BUCKETS,
+  ): TelemetryHistogram => {
+    const boundedWindow = clamp(
+      Math.floor(toFiniteNumber(windowMs, DEFAULT_WINDOW_MS)),
+      1_000,
+      86_400_000,
+    );
+    return buildHistogram(metric, boundedWindow, bucketCount);
+  },
+  metrics: (): TelemetryMetricName[] => [
+    "population",
+    "avgEnergy",
+    "neuralCoherence",
+    "spatialOverflowRatio",
+  ],
+  attach: (socket: WebSocket): void => {
+    subscribers.add(socket);
+    socket.onclose = () => subscribers.delete(socket);
+    socket.onerror = () => subscribers.delete(socket);
+    try {
+      socket.send(
+        JSON.stringify({
+          type: "telemetry_sync",
+          history: TELEMETRY_STREAM.history(64),
+        }),
+      );
+    } catch {
+      subscribers.delete(socket);
+    }
+  },
+};
+
+export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ```
 

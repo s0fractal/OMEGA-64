@@ -92,6 +92,16 @@ const rawNoveltyPressure = readEnv("OMEGA_NOVELTY_PRESSURE");
 const rawSymbiosisPressure = readEnv("OMEGA_SYMBIOSIS_PRESSURE");
 const rawMatrixTheta = readEnv("OMEGA_MATRIX_THETA");
 const rawPressureRingScale = readEnv("OMEGA_PRESSURE_RING_SCALE");
+const rawHomeostasisEnable = readEnv("OMEGA_HOMEOSTASIS_ENABLE");
+const rawHomeostasisTargetEnergy = readEnv("OMEGA_HOMEOSTASIS_TARGET_ENERGY");
+const rawHomeostasisBand = readEnv("OMEGA_HOMEOSTASIS_BAND");
+const rawHomeostasisMaxDelta = readEnv("OMEGA_HOMEOSTASIS_MAX_DELTA");
+const rawHomeostasisOverflowThreshold = readEnv(
+  "OMEGA_HOMEOSTASIS_OVERFLOW_THRESHOLD",
+);
+const rawHomeostasisStarvationFloor = readEnv(
+  "OMEGA_HOMEOSTASIS_STARVATION_FLOOR",
+);
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -288,6 +298,37 @@ const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
 const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
 const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
 const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
+const pulseHomeostasisEnabled = parseEnvBool(rawHomeostasisEnable, true);
+const pulseHomeostasisTargetEnergy = parseEnvBoundedInt(
+  rawHomeostasisTargetEnergy,
+  1200,
+  1,
+  1_000_000,
+);
+const pulseHomeostasisBand = parseEnvBoundedInt(
+  rawHomeostasisBand,
+  240,
+  1,
+  1_000_000,
+);
+const pulseHomeostasisMaxDelta = parseEnvBoundedInt(
+  rawHomeostasisMaxDelta,
+  12,
+  1,
+  1024,
+);
+const pulseHomeostasisOverflowThreshold = parseEnvBoundedFloat(
+  rawHomeostasisOverflowThreshold,
+  0.2,
+  0,
+  1,
+);
+const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
+  rawHomeostasisStarvationFloor,
+  200,
+  0,
+  1_000_000,
+);
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -453,6 +494,14 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    homeostasis: {
+      enabled: pulseHomeostasisEnabled,
+      targetEnergy: pulseHomeostasisTargetEnergy,
+      band: pulseHomeostasisBand,
+      maxDelta: pulseHomeostasisMaxDelta,
+      overflowThreshold: pulseHomeostasisOverflowThreshold,
+      starvationFloor: pulseHomeostasisStarvationFloor,
+    },
   },
   telemetry: {
     enabled: telemetryEnabled,
@@ -607,6 +656,14 @@ export const RUNTIME_POLICY = {
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    homeostasis: {
+      enabled: pulseHomeostasisEnabled,
+      targetEnergy: pulseHomeostasisTargetEnergy,
+      band: pulseHomeostasisBand,
+      maxDelta: pulseHomeostasisMaxDelta,
+      overflowThreshold: pulseHomeostasisOverflowThreshold,
+      starvationFloor: pulseHomeostasisStarvationFloor,
+    },
     source: {
       workerCount: hasEnvValue(rawPulseWorkers),
       strictDeterminism: rawStrictDeterminism !== undefined,
@@ -626,6 +683,13 @@ export const RUNTIME_POLICY = {
       startupSelfTestFallback: rawStartupSelfTestFallback !== undefined,
       startupSelfTestQuiet: rawStartupSelfTestQuiet !== undefined,
       startupSelfTestForceBreach: rawStartupSelfTestForceBreach !== undefined,
+      homeostasisEnable: rawHomeostasisEnable !== undefined,
+      homeostasisTargetEnergy: rawHomeostasisTargetEnergy !== undefined,
+      homeostasisBand: rawHomeostasisBand !== undefined,
+      homeostasisMaxDelta: rawHomeostasisMaxDelta !== undefined,
+      homeostasisOverflowThreshold:
+        rawHomeostasisOverflowThreshold !== undefined,
+      homeostasisStarvationFloor: rawHomeostasisStarvationFloor !== undefined,
     },
   },
   akasha: {
