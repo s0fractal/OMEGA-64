@@ -51,6 +51,24 @@ const main = async () => {
     "UI human channel refresh must include spatial-hash rendering",
     violations,
   );
+  requireSnippet(
+    ui,
+    "spatialHashHeatProfile",
+    "UI must derive spatial-hash heat profile from saturation telemetry",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "applySpatialHashHaloOverlay",
+    "UI must map spatial-hash saturation to scene halo overlay",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "applySpatialHashHaloOverlay(baseOpacity);",
+    "UI drift halo path must apply spatial-hash heat overlay",
+    violations,
+  );
 
   if (violations.length > 0) {
     throw new Error(

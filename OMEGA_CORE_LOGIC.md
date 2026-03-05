@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T11:05:21.046Z*
+*Generated: 2026-03-05T11:07:31.269Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 288a49f9446d8a4958ed23c0ebfde178f997c228235893b8161c48e3a0e20189*
-*Git Commit: 16c791a84af8*
+*Export Content SHA256: 0b48fc155014f2fe7c443ab8aa9102bb2467c22e1966a08957dfe22f8d6ba90b*
+*Git Commit: 80d9fdc5ef46*
 
 ---
 
@@ -22334,6 +22334,65 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         return `spatial hash: ${severity} | overflow=${overflow} | maxCell=${maxCell} | ratio=${ratio.toFixed(6)} | tick=${tick}`;
       }
 
+      function spatialHashHeatProfile() {
+        const guard = currentSpatialHashGuard();
+        if (!guard) {
+          return {
+            active: false,
+            level: "stable",
+            ratio: 0,
+            intensity: 0,
+          };
+        }
+        const overflow = Math.max(0, Number(guard.overflow_count || 0));
+        const ratio = Math.max(0, Number(guard.overflow_ratio || 0));
+        const level = spatialHashSeverity(guard);
+        if (level === "stable" && overflow <= 0) {
+          return {
+            active: false,
+            level,
+            ratio,
+            intensity: 0,
+          };
+        }
+        // Ratio 0.02 (2%) maps to full saturation heat.
+        const ratioIntensity = Math.min(1, ratio / 0.02);
+        const overflowBoost = overflow > 0 ? 0.2 : 0;
+        const intensity = Math.max(
+          0.05,
+          Math.min(1, ratioIntensity + overflowBoost),
+        );
+        return {
+          active: true,
+          level,
+          ratio,
+          intensity,
+        };
+      }
+
+      function applySpatialHashHaloOverlay(baseOpacity) {
+        const halo = document.getElementById("drift-halo");
+        if (!halo) return;
+        const heat = spatialHashHeatProfile();
+        if (!heat.active) return;
+        const intensity = Number(heat.intensity || 0);
+        const hot = heat.level === "hot";
+        const opacityBoost = hot ? 0.22 : 0.16;
+        const nextOpacity = Math.min(
+          0.98,
+          Math.max(0.42, baseOpacity + opacityBoost * intensity),
+        );
+        const alpha = hot
+          ? 0.18 + 0.22 * intensity
+          : 0.12 + 0.16 * intensity;
+        const tint = hot ? "255, 98, 78" : "255, 190, 96";
+        halo.style.opacity = nextOpacity.toFixed(2);
+        halo.style.background =
+          `radial-gradient(circle at 50% 55%, rgba(${tint}, ${
+            alpha.toFixed(3)
+          }), rgba(0, 0, 0, 0) 62%)`;
+      }
+
       function currentDaemonAdmission() {
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return null;
@@ -22799,27 +22858,35 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const halo = document.getElementById("drift-halo");
         if (!halo) return;
         const normalized = String(severity || "BASELINE").toUpperCase();
+        let baseOpacity = 0.42;
         if (normalized === "HIGH") {
+          baseOpacity = 0.9;
           halo.style.opacity = "0.9";
           halo.style.background =
             "radial-gradient(circle at 50% 55%, rgba(255, 110, 110, 0.28), rgba(0, 0, 0, 0) 62%)";
+          applySpatialHashHaloOverlay(baseOpacity);
           return;
         }
         if (normalized === "MID") {
+          baseOpacity = 0.75;
           halo.style.opacity = "0.75";
           halo.style.background =
             "radial-gradient(circle at 50% 55%, rgba(255, 185, 90, 0.24), rgba(0, 0, 0, 0) 62%)";
+          applySpatialHashHaloOverlay(baseOpacity);
           return;
         }
         if (normalized === "LOW") {
+          baseOpacity = 0.58;
           halo.style.opacity = "0.58";
           halo.style.background =
             "radial-gradient(circle at 50% 55%, rgba(120, 255, 220, 0.2), rgba(0, 0, 0, 0) 62%)";
+          applySpatialHashHaloOverlay(baseOpacity);
           return;
         }
         halo.style.opacity = "0.42";
         halo.style.background =
           "radial-gradient(circle at 50% 55%, rgba(159, 232, 255, 0.14), rgba(0, 0, 0, 0) 62%)";
+        applySpatialHashHaloOverlay(baseOpacity);
       }
 
       function buildDriftExplanation() {
