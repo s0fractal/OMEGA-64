@@ -50,6 +50,27 @@ const rawP2PMutateEnable = readEnv("OMEGA_P2P_MUTATE_ENABLE");
 const rawP2PMutateToken = readEnv("OMEGA_P2P_MUTATE_TOKEN");
 const rawFederationEnable = readEnv("OMEGA_FEDERATION_ENABLE");
 const rawFederationTimeoutMs = readEnv("OMEGA_FEDERATION_TIMEOUT_MS");
+const rawFederationAdmissionEnable = readEnv(
+  "OMEGA_FEDERATION_ADMISSION_ENABLE",
+);
+const rawFederationAdmissionMidScore = readEnv(
+  "OMEGA_FEDERATION_ADMISSION_MID_SCORE",
+);
+const rawFederationAdmissionHighScore = readEnv(
+  "OMEGA_FEDERATION_ADMISSION_HIGH_SCORE",
+);
+const rawFederationAdmissionRejectOnStrictMismatch = readEnv(
+  "OMEGA_FEDERATION_ADMISSION_REJECT_STRICT_MISMATCH",
+);
+const rawFederationHybridizeEnable = readEnv(
+  "OMEGA_FEDERATION_HYBRIDIZE_ENABLE",
+);
+const rawFederationDegradeEnergyRatio = readEnv(
+  "OMEGA_FEDERATION_DEGRADE_ENERGY_RATIO",
+);
+const rawFederationDegradeResonanceRatio = readEnv(
+  "OMEGA_FEDERATION_DEGRADE_RESONANCE_RATIO",
+);
 const rawTelemetryEnabled = readEnv("OMEGA_MUTATION_TELEMETRY");
 const rawTelemetryFlushTicks = readEnv("OMEGA_MUTATION_TELEMETRY_FLUSH_TICKS");
 const rawTelemetryTopKinds = readEnv("OMEGA_MUTATION_TELEMETRY_TOP_KINDS");
@@ -91,7 +112,9 @@ const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
 const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
 const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
 const rawAutoSnapshotEnable = readEnv("OMEGA_AUTO_SNAPSHOT_ENABLE");
-const rawAutoSnapshotIntervalTicks = readEnv("OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS");
+const rawAutoSnapshotIntervalTicks = readEnv(
+  "OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS",
+);
 const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
 
 const systemPort = parsePort(rawPort, 8000);
@@ -118,6 +141,40 @@ const federationTimeoutMs = parseEnvBoundedInt(
   2000,
   50,
   120_000,
+);
+const federationAdmissionEnabled = parseEnvBool(
+  rawFederationAdmissionEnable,
+  true,
+);
+const federationAdmissionMidScore = parseEnvBoundedInt(
+  rawFederationAdmissionMidScore,
+  4,
+  1,
+  64,
+);
+const federationAdmissionHighScore = Math.max(
+  federationAdmissionMidScore + 1,
+  parseEnvBoundedInt(rawFederationAdmissionHighScore, 7, 2, 128),
+);
+const federationAdmissionRejectOnStrictMismatch = parseEnvBool(
+  rawFederationAdmissionRejectOnStrictMismatch,
+  true,
+);
+const federationHybridizeEnabled = parseEnvBool(
+  rawFederationHybridizeEnable,
+  true,
+);
+const federationDegradeEnergyRatio = parseEnvBoundedFloat(
+  rawFederationDegradeEnergyRatio,
+  0.72,
+  0.1,
+  1,
+);
+const federationDegradeResonanceRatio = parseEnvBoundedFloat(
+  rawFederationDegradeResonanceRatio,
+  0.68,
+  0.1,
+  1,
 );
 
 const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
@@ -328,6 +385,13 @@ const policyFingerprintSource = JSON.stringify({
   federation: {
     enabled: federationEnabled,
     timeoutMs: federationTimeoutMs,
+    admissionEnabled: federationAdmissionEnabled,
+    admissionMidScore: federationAdmissionMidScore,
+    admissionHighScore: federationAdmissionHighScore,
+    admissionRejectOnStrictMismatch: federationAdmissionRejectOnStrictMismatch,
+    hybridizeEnabled: federationHybridizeEnabled,
+    degradeEnergyRatio: federationDegradeEnergyRatio,
+    degradeResonanceRatio: federationDegradeResonanceRatio,
   },
   pulse: {
     workerCount: pulseWorkerCount,
@@ -427,10 +491,27 @@ export const RUNTIME_POLICY = {
     enabled: federationEnabled,
     timeoutMs: federationTimeoutMs,
     controlToken: systemControlToken,
+    admission: {
+      enabled: federationAdmissionEnabled,
+      midScore: federationAdmissionMidScore,
+      highScore: federationAdmissionHighScore,
+      rejectOnStrictMismatch: federationAdmissionRejectOnStrictMismatch,
+      hybridizeEnabled: federationHybridizeEnabled,
+      degradeEnergyRatio: federationDegradeEnergyRatio,
+      degradeResonanceRatio: federationDegradeResonanceRatio,
+    },
     source: {
       enabled: rawFederationEnable !== undefined,
       timeoutMs: rawFederationTimeoutMs !== undefined,
       controlToken: rawSystemControlToken !== undefined,
+      admissionEnabled: rawFederationAdmissionEnable !== undefined,
+      admissionMidScore: rawFederationAdmissionMidScore !== undefined,
+      admissionHighScore: rawFederationAdmissionHighScore !== undefined,
+      admissionRejectOnStrictMismatch:
+        rawFederationAdmissionRejectOnStrictMismatch !== undefined,
+      hybridizeEnabled: rawFederationHybridizeEnable !== undefined,
+      degradeEnergyRatio: rawFederationDegradeEnergyRatio !== undefined,
+      degradeResonanceRatio: rawFederationDegradeResonanceRatio !== undefined,
     },
   },
   telemetry: {

@@ -491,6 +491,8 @@ const buildTelemetry = async () => {
     4096,
   );
   const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
+  const federationAdmissionState = CONTROL_INTENT_QUEUE
+    .getFederationAdmissionState();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -567,6 +569,11 @@ const buildTelemetry = async () => {
     federation_rule_genome: {
       local: P2P_FEDERATION.localRuleGenome,
       peers: peerRuleProfiles.slice(0, 8),
+    },
+    federation_admission: {
+      latest: federationAdmissionState.latest,
+      history: federationAdmissionState.history.slice(0, 8),
+      policy: federationAdmissionState.policy,
     },
   };
 };
@@ -723,13 +730,12 @@ const normalizeDaemonNarrativeContext = (
   if (matchedSpecies && typeof matchedSpecies === "object") {
     const dominantEpochs = asFiniteNumber(matchedSpecies.dominantEpochs, 0);
     const peakShare = asFiniteNumber(matchedSpecies.peakShare, 0);
-    codexLineageLabel =
-      typeof matchedSpecies.latinName === "string" &&
+    codexLineageLabel = typeof matchedSpecies.latinName === "string" &&
         matchedSpecies.latinName.trim().length > 0
-        ? matchedSpecies.latinName.trim()
-        : typeof matchedSpecies.genome === "string"
-        ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
-        : "unknown-lineage";
+      ? matchedSpecies.latinName.trim()
+      : typeof matchedSpecies.genome === "string"
+      ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
+      : "unknown-lineage";
     if (dominantEpochs >= DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS) {
       codexLineageGuardScore += 1;
       codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
@@ -1446,8 +1452,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             sharedCenter: ingressPlan.admission.context.sharedCenter,
             dominantInvariantVector:
               ingressPlan.admission.context.dominantInvariantVector,
-            codexLineageLabel:
-              ingressPlan.admission.context.codexLineageLabel,
+            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
             codexLineageGuardScore:
               ingressPlan.admission.context.codexLineageGuardScore,
             codexLineageGuardReasons:
@@ -1688,8 +1693,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         packet?.sourceNode,
         packet?.ruleGenome,
       );
+      const admissionSummary = queued.admission &&
+          typeof queued.admission === "object"
+        ? ` action=${
+          String(
+            (queued.admission as Record<string, unknown>).action ?? "accept",
+          )
+        } score=${
+          String((queued.admission as Record<string, unknown>).score ?? 0)
+        }`
+        : "";
       LOGGER.info(
-        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
+        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}${admissionSummary}`,
       );
       return new Response(JSON.stringify(queued), {
         status: queued.status,
@@ -1718,6 +1733,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         local: P2P_FEDERATION.localRuleGenome,
         peers: P2P_FEDERATION.getPeerRuleProfiles(),
       }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  if (url.pathname === "/federate/admission") {
+    return new Response(
+      JSON.stringify(CONTROL_INTENT_QUEUE.getFederationAdmissionState()),
       {
         headers: { "Content-Type": "application/json" },
       },

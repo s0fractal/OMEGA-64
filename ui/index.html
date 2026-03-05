@@ -535,6 +535,12 @@
           daemon admission: awaiting signal...
         </div>
         <div
+          id="human-federation-admission"
+          class="codex-row-body codex-row-subtle"
+        >
+          federation admission: awaiting ingress...
+        </div>
+        <div
           id="human-daemon-history"
           class="codex-row-body codex-row-subtle"
         >
@@ -2505,6 +2511,14 @@
         return admission;
       }
 
+      function currentFederationAdmission() {
+        const federation = telemetrySnapshot?.federation_admission;
+        if (!federation || typeof federation !== "object") return null;
+        const latest = federation.latest;
+        if (!latest || typeof latest !== "object") return null;
+        return latest;
+      }
+
       function currentDaemonAdmissionHistory() {
         const governance = telemetrySnapshot?.daemon_governance;
         if (!governance || typeof governance !== "object") return [];
@@ -2534,6 +2548,28 @@
         const badge = degraded ? "degraded" : status;
         const bridge = `${requested} -> ${applied}`;
         return `daemon admission: ${severity} (${badge}) | score=${score} | ${bridge} | reason=${reason}`;
+      }
+
+      function buildFederationAdmissionSummary() {
+        const admission = currentFederationAdmission();
+        if (!admission) {
+          return "federation admission: no ingress observed yet";
+        }
+        const severity = String(admission.severity || "LOW")
+          .toUpperCase();
+        const action = String(admission.action || "accept")
+          .toUpperCase();
+        const source = String(admission.sourceNode || "unknown")
+          .slice(0, 40);
+        const score = Math.floor(Number(admission.score || 0));
+        const reasons = Array.isArray(admission.reasons)
+          ? admission.reasons
+            .filter((entry) => typeof entry === "string")
+            .slice(0, 2)
+            .join(",")
+          : "";
+        const reasonText = reasons.length > 0 ? reasons : "n/a";
+        return `federation admission: ${severity} ${action} | score=${score} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
@@ -3030,6 +3066,12 @@
         const node = document.getElementById("human-daemon-admission");
         if (!node) return;
         node.textContent = buildDaemonAdmissionSummary();
+        const federationNode = document.getElementById(
+          "human-federation-admission",
+        );
+        if (federationNode) {
+          federationNode.textContent = buildFederationAdmissionSummary();
+        }
         const historyNode = document.getElementById(
           "human-daemon-history",
         );
