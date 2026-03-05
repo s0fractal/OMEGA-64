@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T12:07:09.534Z*
+*Generated: 2026-03-05T12:30:40.981Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 97d5963c6db32289cdc3e8580bae60bde7302be365847be4aad8728ede2e0ab7*
-*Git Commit: 6d5770b4b782*
+*Export Content SHA256: 980168bd670a42c6c94b3034800212c38999d95812beee5868fa07168cc0113c*
+*Git Commit: 17581f28b00d*
 
 ---
 
@@ -4382,6 +4382,23 @@ type FederationLocalCodexContext = {
   known: boolean;
 };
 
+type FederationPolicyFragmentSource =
+  | "rule_genome"
+  | "behavior"
+  | "codex";
+
+type FederationPolicyFragmentMode = "tax" | "subsidy";
+
+type FederationPolicyFragment = {
+  id: string;
+  source: FederationPolicyFragmentSource;
+  mode: FederationPolicyFragmentMode;
+  reason: string;
+  scoreDelta: number;
+  energyRatio: number;
+  resonanceRatio: number;
+};
+
 type FederationAdmissionSnapshot = {
   tick: number;
   atomId: string;
@@ -4401,6 +4418,9 @@ type FederationAdmissionSnapshot = {
   localCodexLabel: string;
   peerCodexLabel: string;
   codexDistance: number;
+  policyFragments: FederationPolicyFragment[];
+  policyEnergyRatio: number;
+  policyResonanceRatio: number;
 };
 
 type FederateAdmissionResult = {
@@ -4701,6 +4721,40 @@ const codexDistance = (
   return distance;
 };
 
+const buildPolicyFragment = (
+  source: FederationPolicyFragmentSource,
+  mode: FederationPolicyFragmentMode,
+  reason: string,
+  scoreDelta: number,
+  energyRatio: number,
+  resonanceRatio: number,
+): FederationPolicyFragment => ({
+  id: fnv1a32(
+    `${source}|${mode}|${reason}|${scoreDelta}|${energyRatio}|${resonanceRatio}`,
+  ).slice(0, 12),
+  source,
+  mode,
+  reason,
+  scoreDelta,
+  energyRatio: clamp(energyRatio, 0.25, 2),
+  resonanceRatio: clamp(resonanceRatio, 0.25, 2),
+});
+
+const collapsePolicyRatios = (
+  fragments: FederationPolicyFragment[],
+): { energyRatio: number; resonanceRatio: number } => {
+  let energyRatio = 1;
+  let resonanceRatio = 1;
+  for (const fragment of fragments) {
+    energyRatio *= fragment.energyRatio;
+    resonanceRatio *= fragment.resonanceRatio;
+  }
+  return {
+    energyRatio: clamp(energyRatio, 0.25, 2),
+    resonanceRatio: clamp(resonanceRatio, 0.25, 2),
+  };
+};
+
 const setLatestFederationAdmission = (
   snapshot: FederationAdmissionSnapshot,
 ): void => {
@@ -4782,6 +4836,29 @@ const evaluateFederateAdmission = (
   const peerCodexLabel = packet.peerCodexProfile?.label ?? "unknown-lineage";
   let behaviorDistance = -1;
   let codexDistanceScore = -1;
+  const policyFragments: FederationPolicyFragment[] = [];
+  let policyFragmentSeq = 0;
+  const pushFragment = (
+    source: FederationPolicyFragmentSource,
+    mode: FederationPolicyFragmentMode,
+    reason: string,
+    scoreDelta: number,
+    energyRatio: number,
+    resonanceRatio: number,
+  ): void => {
+    policyFragments.push({
+      ...buildPolicyFragment(
+        source,
+        mode,
+        reason,
+        scoreDelta,
+        energyRatio,
+        resonanceRatio,
+      ),
+      id: `${reason}-${policyFragmentSeq.toString(16).padStart(2, "0")}`,
+    });
+    policyFragmentSeq++;
+  };
   if (!policy.enabled) {
     const admission: FederationAdmissionSnapshot = {
       tick: packet.pulseId,
@@ -4802,6 +4879,9 @@ const evaluateFederateAdmission = (
       localCodexLabel,
       peerCodexLabel,
       codexDistance: codexDistanceScore,
+      policyFragments,
+      policyEnergyRatio: 1,
+      policyResonanceRatio: 1,
     };
     return {
       action: "accept",
@@ -4835,6 +4915,9 @@ const evaluateFederateAdmission = (
       localCodexLabel,
       peerCodexLabel,
       codexDistance: codexDistanceScore,
+      policyFragments,
+      policyEnergyRatio: policy.degradeEnergyRatio,
+      policyResonanceRatio: policy.degradeResonanceRatio,
     };
     return {
       action: "degrade",
@@ -4863,12 +4946,15 @@ const evaluateFederateAdmission = (
   if (noveltyDelta >= 768) {
     score += 3;
     reasons.push("NOVELTY_DELTA_HIGH");
+    pushFragment("rule_genome", "tax", "NOVELTY_DELTA_HIGH", 3, 0.88, 0.92);
   } else if (noveltyDelta >= 384) {
     score += 2;
     reasons.push("NOVELTY_DELTA_MID");
+    pushFragment("rule_genome", "tax", "NOVELTY_DELTA_MID", 2, 0.93, 0.96);
   } else if (noveltyDelta >= 192) {
     score += 1;
     reasons.push("NOVELTY_DELTA_LOW");
+    pushFragment("rule_genome", "tax", "NOVELTY_DELTA_LOW", 1, 0.97, 0.98);
   }
 
   const symbiosisDelta = Math.abs(
@@ -4877,12 +4963,15 @@ const evaluateFederateAdmission = (
   if (symbiosisDelta >= 768) {
     score += 3;
     reasons.push("SYMBIOSIS_DELTA_HIGH");
+    pushFragment("rule_genome", "tax", "SYMBIOSIS_DELTA_HIGH", 3, 0.9, 0.86);
   } else if (symbiosisDelta >= 384) {
     score += 2;
     reasons.push("SYMBIOSIS_DELTA_MID");
+    pushFragment("rule_genome", "tax", "SYMBIOSIS_DELTA_MID", 2, 0.94, 0.91);
   } else if (symbiosisDelta >= 192) {
     score += 1;
     reasons.push("SYMBIOSIS_DELTA_LOW");
+    pushFragment("rule_genome", "tax", "SYMBIOSIS_DELTA_LOW", 1, 0.98, 0.96);
   }
 
   const workerDelta = Math.abs(
@@ -4891,9 +4980,11 @@ const evaluateFederateAdmission = (
   if (workerDelta >= 6) {
     score += 2;
     reasons.push("WORKER_DELTA_HIGH");
+    pushFragment("rule_genome", "tax", "WORKER_DELTA_HIGH", 2, 0.92, 0.92);
   } else if (workerDelta >= 3) {
     score += 1;
     reasons.push("WORKER_DELTA_MID");
+    pushFragment("rule_genome", "tax", "WORKER_DELTA_MID", 1, 0.97, 0.97);
   }
 
   const strictMismatch = profile.strictDeterminism !==
@@ -4901,6 +4992,14 @@ const evaluateFederateAdmission = (
   if (strictMismatch) {
     score += 2;
     reasons.push("STRICT_DETERMINISM_MISMATCH");
+    pushFragment(
+      "rule_genome",
+      "tax",
+      "STRICT_DETERMINISM_MISMATCH",
+      2,
+      0.89,
+      0.89,
+    );
   }
 
   if (
@@ -4909,12 +5008,21 @@ const evaluateFederateAdmission = (
   ) {
     score += 1;
     reasons.push("RULE_SIGNATURE_DRIFT");
+    pushFragment("rule_genome", "tax", "RULE_SIGNATURE_DRIFT", 1, 0.96, 0.96);
   }
 
   if (peerBehaviorInvariant === "none") {
     score += 1;
     behaviorConflictScore += 1;
     reasons.push("PEER_BEHAVIOR_PROFILE_MISSING");
+    pushFragment(
+      "behavior",
+      "tax",
+      "PEER_BEHAVIOR_PROFILE_MISSING",
+      1,
+      0.95,
+      0.95,
+    );
   } else if (localBehaviorInvariant !== "none") {
     const delta = behaviorInvariantDistance(
       localBehaviorInvariant,
@@ -4926,21 +5034,61 @@ const evaluateFederateAdmission = (
         score += 3;
         behaviorConflictScore += 3;
         reasons.push("BEHAVIOR_INVARIANT_DELTA_HIGH");
+        pushFragment(
+          "behavior",
+          "tax",
+          "BEHAVIOR_INVARIANT_DELTA_HIGH",
+          3,
+          0.84,
+          0.86,
+        );
       } else if (delta >= 0.75) {
         score += 2;
         behaviorConflictScore += 2;
         reasons.push("BEHAVIOR_INVARIANT_DELTA_MID");
+        pushFragment(
+          "behavior",
+          "tax",
+          "BEHAVIOR_INVARIANT_DELTA_MID",
+          2,
+          0.9,
+          0.92,
+        );
       } else if (delta >= 0.35) {
         score += 1;
         behaviorConflictScore += 1;
         reasons.push("BEHAVIOR_INVARIANT_DELTA_LOW");
+        pushFragment(
+          "behavior",
+          "tax",
+          "BEHAVIOR_INVARIANT_DELTA_LOW",
+          1,
+          0.95,
+          0.96,
+        );
       } else {
         reasons.push("BEHAVIOR_INVARIANT_MATCH");
+        pushFragment(
+          "behavior",
+          "subsidy",
+          "BEHAVIOR_INVARIANT_MATCH",
+          -1,
+          1.04,
+          1.05,
+        );
       }
     } else {
       score += 1;
       behaviorConflictScore += 1;
       reasons.push("BEHAVIOR_INVARIANT_PARSE_FALLBACK");
+      pushFragment(
+        "behavior",
+        "tax",
+        "BEHAVIOR_INVARIANT_PARSE_FALLBACK",
+        1,
+        0.96,
+        0.96,
+      );
     }
   }
 
@@ -4954,6 +5102,7 @@ const evaluateFederateAdmission = (
     score += 1;
     behaviorConflictScore += 1;
     reasons.push("BEHAVIOR_ROLE_DELTA_HIGH");
+    pushFragment("behavior", "tax", "BEHAVIOR_ROLE_DELTA_HIGH", 1, 0.95, 0.94);
   }
 
   if (
@@ -4965,11 +5114,13 @@ const evaluateFederateAdmission = (
     score += 1;
     behaviorConflictScore += 1;
     reasons.push("PEER_BEHAVIOR_SWARM_SCALE");
+    pushFragment("behavior", "tax", "PEER_BEHAVIOR_SWARM_SCALE", 1, 0.94, 0.94);
   }
 
   if (!packet.peerCodexProfile) {
     score += 1;
     reasons.push("PEER_CODEX_PROFILE_MISSING");
+    pushFragment("codex", "tax", "PEER_CODEX_PROFILE_MISSING", 1, 0.95, 0.96);
   } else if (packet.localCodexContext) {
     codexDistanceScore = codexDistance(
       packet.localCodexContext,
@@ -4978,12 +5129,15 @@ const evaluateFederateAdmission = (
     if (codexDistanceScore >= 3) {
       score += 2;
       reasons.push("CODEX_DISTANCE_HIGH");
+      pushFragment("codex", "tax", "CODEX_DISTANCE_HIGH", 2, 0.87, 0.9);
     } else if (codexDistanceScore >= 2) {
       score += 1;
       reasons.push("CODEX_DISTANCE_MID");
+      pushFragment("codex", "tax", "CODEX_DISTANCE_MID", 1, 0.93, 0.95);
     } else if (codexDistanceScore <= 0) {
       score = Math.max(0, score - 1);
       reasons.push("CODEX_ALIGNMENT_BONUS");
+      pushFragment("codex", "subsidy", "CODEX_ALIGNMENT_BONUS", -1, 1.06, 1.04);
     }
 
     const epochDelta = Math.abs(
@@ -4993,6 +5147,7 @@ const evaluateFederateAdmission = (
     if (epochDelta >= 12) {
       score += 1;
       reasons.push("CODEX_EPOCH_DELTA_HIGH");
+      pushFragment("codex", "tax", "CODEX_EPOCH_DELTA_HIGH", 1, 0.95, 0.95);
     }
 
     if (
@@ -5001,6 +5156,14 @@ const evaluateFederateAdmission = (
     ) {
       score += 1;
       reasons.push("CODEX_UNKNOWN_PEER_IN_MATURE_FIELD");
+      pushFragment(
+        "codex",
+        "tax",
+        "CODEX_UNKNOWN_PEER_IN_MATURE_FIELD",
+        1,
+        0.93,
+        0.94,
+      );
     }
 
     if (
@@ -5010,6 +5173,14 @@ const evaluateFederateAdmission = (
     ) {
       score += 1;
       reasons.push("CODEX_PEER_PEAK_SHARE_HIGH");
+      pushFragment(
+        "codex",
+        "tax",
+        "CODEX_PEER_PEAK_SHARE_HIGH",
+        1,
+        0.94,
+        0.95,
+      );
     }
   }
 
@@ -5018,11 +5189,18 @@ const evaluateFederateAdmission = (
     : score >= policy.midScore
     ? "MID"
     : "LOW";
+  const policyRatios = collapsePolicyRatios(policyFragments);
 
   let action: FederationAdmissionAction = "accept";
   let logicBytes = packet.logicBytes;
-  let energy = packet.energy;
-  let resonance = packet.resonance;
+  let energy = Math.max(
+    1,
+    Math.round(packet.energy * policyRatios.energyRatio),
+  );
+  let resonance = Math.max(
+    0,
+    Math.round(packet.resonance * policyRatios.resonanceRatio),
+  );
   let degraded = false;
   let hybridized = false;
 
@@ -5046,14 +5224,14 @@ const evaluateFederateAdmission = (
     const template = buildHybridTemplate(packet.pulseId, profile);
     logicBytes = hybridizeLogicBytes(packet.logicBytes, template);
     const energyRatio = (policy.degradeEnergyRatio + 1) / 2;
-    energy = Math.max(1, Math.round(packet.energy * energyRatio));
+    energy = Math.max(1, Math.round(energy * energyRatio));
     const resonanceBias = Math.max(
       0,
       Math.min(2048, 1024 + FEDERATION_LOCAL_SYMBIOSIS_SIGNED),
     );
     resonance = Math.max(
       0,
-      Math.round((packet.resonance + resonanceBias) / 2),
+      Math.round((resonance + resonanceBias) / 2),
     );
     hybridized = true;
     degraded = true;
@@ -5064,10 +5242,10 @@ const evaluateFederateAdmission = (
     );
   } else {
     action = "degrade";
-    energy = Math.max(1, Math.round(packet.energy * policy.degradeEnergyRatio));
+    energy = Math.max(1, Math.round(energy * policy.degradeEnergyRatio));
     resonance = Math.max(
       0,
-      Math.round(packet.resonance * policy.degradeResonanceRatio),
+      Math.round(resonance * policy.degradeResonanceRatio),
     );
     degraded = true;
     reasons.push(
@@ -5096,6 +5274,9 @@ const evaluateFederateAdmission = (
     localCodexLabel,
     peerCodexLabel,
     codexDistance: codexDistanceScore,
+    policyFragments: policyFragments.slice(0, 12),
+    policyEnergyRatio: policyRatios.energyRatio,
+    policyResonanceRatio: policyRatios.resonanceRatio,
   };
   return {
     action,
@@ -5195,7 +5376,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
 
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel}`,
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel} fragments=${intent.packet.admission.policyFragments.length}`,
   );
   return true;
 };
@@ -5347,6 +5528,16 @@ export const CONTROL_INTENT_QUEUE = {
       kind: admissionKind,
       count: 1,
     });
+    if (
+      Array.isArray(admissionResult.admission.policyFragments) &&
+      admissionResult.admission.policyFragments.length > 0
+    ) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_ingress",
+        kind: "federation_policy_fragment_applied",
+        count: admissionResult.admission.policyFragments.length,
+      });
+    }
 
     if (admissionResult.action === "reject") {
       LOGGER.warn(
@@ -10001,6 +10192,14 @@ type Telemetry = {
       localCodexLabel?: string;
       peerCodexLabel?: string;
       codexDistance?: number;
+      policyEnergyRatio?: number;
+      policyResonanceRatio?: number;
+      policyFragments?: Array<{
+        id?: string;
+        source?: string;
+        mode?: string;
+        reason?: string;
+      }>;
     };
   };
   pulse_pressure?: {
@@ -10586,6 +10785,32 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
               federationAdmissionLatestRaw.codexDistance,
               -1,
             ),
+            policyEnergyRatio: asFiniteNumber(
+              federationAdmissionLatestRaw.policyEnergyRatio,
+              1,
+            ),
+            policyResonanceRatio: asFiniteNumber(
+              federationAdmissionLatestRaw.policyResonanceRatio,
+              1,
+            ),
+            policyFragments: Array.isArray(
+                federationAdmissionLatestRaw.policyFragments,
+              )
+              ? (
+                federationAdmissionLatestRaw.policyFragments as unknown[]
+              ).filter((entry): entry is Record<string, unknown> =>
+                !!entry && typeof entry === "object"
+              ).map((entry) => ({
+                id: typeof entry.id === "string" ? entry.id : undefined,
+                source: typeof entry.source === "string"
+                  ? entry.source
+                  : undefined,
+                mode: typeof entry.mode === "string" ? entry.mode : undefined,
+                reason: typeof entry.reason === "string"
+                  ? entry.reason
+                  : undefined,
+              })).slice(0, 8)
+              : [],
           }
           : undefined,
       }
@@ -10910,6 +11135,16 @@ const buildInvariantFrame = (
           `codexDistance=${
             Number(federationAdmission.codexDistance ?? -1).toFixed(0)
           }`,
+          `policyRatio=${
+            Number(federationAdmission.policyEnergyRatio ?? 1).toFixed(3)
+          }/${
+            Number(federationAdmission.policyResonanceRatio ?? 1).toFixed(3)
+          }`,
+          `fragments=${
+            Array.isArray(federationAdmission.policyFragments)
+              ? federationAdmission.policyFragments.length
+              : 0
+          }`,
         ]
         : ["admission=none"],
     },
@@ -10933,6 +11168,19 @@ const buildInvariantFrame = (
         federationAdmission.localCodexLabel ?? "unknown-lineage"
       }->${federationAdmission.peerCodexLabel ?? "unknown-lineage"}`
       : "none",
+    federationPolicyRatio: federationAdmission
+      ? `${Number(federationAdmission.policyEnergyRatio ?? 1).toFixed(3)}:${
+        Number(federationAdmission.policyResonanceRatio ?? 1).toFixed(3)
+      }`
+      : "1.000:1.000",
+    federationPolicyFragments: federationAdmission &&
+        Array.isArray(federationAdmission.policyFragments)
+      ? federationAdmission.policyFragments.map((entry) =>
+        `${entry.source ?? "unknown"}:${entry.mode ?? "none"}:${
+          entry.reason ?? "none"
+        }`
+      )
+      : [],
   });
   const signature = fnv1a32(signatureSeed);
   const summary =
@@ -21152,6 +21400,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             (queued.admission as Record<string, unknown>).peerCodexLabel ??
               "unknown-lineage",
           )
+        } fragments=${
+          Array.isArray(
+              (queued.admission as Record<string, unknown>).policyFragments,
+            )
+            ? (
+              (queued.admission as Record<string, unknown>)
+                .policyFragments as unknown[]
+            ).length
+            : 0
         }`
         : "";
       LOGGER.info(
@@ -24150,6 +24407,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const score = Math.floor(Number(admission.score || 0));
         const distance = Number(admission.behaviorDistance || -1);
         const codexDistance = Number(admission.codexDistance || -1);
+        const policyEnergyRatio = Number(
+          admission.policyEnergyRatio || 1,
+        );
+        const policyResonanceRatio = Number(
+          admission.policyResonanceRatio || 1,
+        );
+        const fragmentCount = Array.isArray(admission.policyFragments)
+          ? admission.policyFragments.length
+          : 0;
         const codexBridge = `${
           String(admission.localCodexLabel || "unknown-lineage").slice(
             0,
@@ -24174,7 +24440,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const codexText = codexDistance >= 0
           ? ` | codexΔ=${Math.floor(codexDistance)}`
           : "";
-        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | policy=${
+          policyEnergyRatio.toFixed(3)
+        }/${
+          policyResonanceRatio.toFixed(3)
+        } | fragments=${fragmentCount} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
