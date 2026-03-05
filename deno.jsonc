@@ -47,6 +47,8 @@
     "test:worker-resilience-trend": "deno task test:worker-resilience-budget && deno run -A test_worker_resilience_trend.ts",
     "test:worker-soak-stability": "deno run -A test_worker_soak_stability.ts",
     "test:worker-soak-trend": "deno task test:worker-soak-stability && deno run -A test_worker_soak_trend.ts",
+    "audit:longrun-canary": "deno run -A LONGRUN_CANARY.ts",
+    "audit:longrun-24h": "OMEGA_LONGRUN_DURATION_SEC=86400 OMEGA_LONGRUN_SAMPLE_MS=10000 deno run -A LONGRUN_CANARY.ts",
     "test:startup-selftest-fallback": "deno run -A test_startup_selftest_fallback.ts",
     "test:startup-selftest-nominal": "deno run -A test_startup_selftest_nominal.ts",
     "test:worker-determinism-fuzz": "deno run -A test_worker_determinism_fuzz.ts",
