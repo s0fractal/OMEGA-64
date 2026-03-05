@@ -8,13 +8,30 @@ import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
+const normalizeRetention = (value: number | undefined): number => {
+  if (!Number.isFinite(value)) return 8;
+  return Math.max(1, Math.min(512, Math.floor(value as number)));
+};
+
+type SnapshotExportOptions = {
+  tick?: number;
+  reason?: string;
+  prune?: boolean;
+  retention?: number;
+};
 
 export const SNAPSHOT_ENGINE = {
   /**
    * Dumps the entire 6.4MB Memory Matrix + Akashic History to disk instantly.
    */
-  exportSnapshot: async () => {
+  exportSnapshot: async (options: SnapshotExportOptions = {}) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const tick = Number.isFinite(options.tick) ? Number(options.tick) : undefined;
+    const reason = typeof options.reason === "string" && options.reason.trim().length > 0
+      ? options.reason.trim().slice(0, 96)
+      : "manual";
+    const shouldPrune = Boolean(options.prune);
+    const retention = normalizeRetention(options.retention);
     await ensureDir(SNAPSHOT_DIR);
 
     const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
@@ -46,15 +63,27 @@ export const SNAPSHOT_ENGINE = {
         JSON.stringify(akashicData, null, 2),
       );
 
+      let pruned = 0;
+      if (shouldPrune) {
+        pruned = await SNAPSHOT_ENGINE.pruneSnapshots(retention);
+      }
+
       LOGGER.info(
         `💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${
           checksum.toString(16).toUpperCase()
-        })`,
+        }) reason=${reason} tick=${tick ?? "n/a"} pruned=${pruned}`,
       );
-      return { timestamp, success: true };
+      return {
+        timestamp,
+        success: true,
+        tick,
+        reason,
+        pruned,
+        retention,
+      };
     } catch (e) {
       LOGGER.error(`❌ [SNAPSHOT] Export Failed:`, e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), tick, reason };
     }
   },
 
@@ -152,5 +181,29 @@ export const SNAPSHOT_ENGINE = {
     } catch {
       return [];
     }
+  },
+  pruneSnapshots: async (keepLatest: number = 8) => {
+    const keep = normalizeRetention(keepLatest);
+    const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+    const stale = snapshots.slice(keep);
+    if (stale.length === 0) return 0;
+
+    for (const timestamp of stale) {
+      for (const prefix of ["matrix", "akashic", "physics"]) {
+        const path = `${SNAPSHOT_DIR}/${prefix}_${timestamp}.${
+          prefix === "akashic" ? "json" : "bin"
+        }`;
+        try {
+          await Deno.remove(path);
+        } catch {
+          // Ignore partial snapshot file-set gaps.
+        }
+      }
+    }
+
+    LOGGER.info(
+      `🧹 [SNAPSHOT] Pruned stale snapshots: removed=${stale.length} keep=${keep}`,
+    );
+    return stale.length;
   },
 };

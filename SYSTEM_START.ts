@@ -166,6 +166,7 @@ const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
 const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY =
@@ -218,6 +219,17 @@ let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
+let autoSnapshotLastTick = -1;
+let autoSnapshotInFlight = false;
+let autoSnapshotLastResult: {
+  tick: number;
+  timestamp: string;
+  success: boolean;
+  reason: string;
+  pruned: number;
+  retention: number;
+  error?: string;
+} | null = null;
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -407,6 +419,68 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
   daemonAuditPending.push(...remaining);
 };
 
+const maybeAutoSnapshot = async (tick: number): Promise<void> => {
+  if (!SNAPSHOT_POLICY.enabled) return;
+  if (!Number.isFinite(tick) || tick < 0) return;
+  if (autoSnapshotInFlight) return;
+  if (
+    autoSnapshotLastTick >= 0 &&
+    tick - autoSnapshotLastTick < SNAPSHOT_POLICY.intervalTicks
+  ) {
+    return;
+  }
+
+  autoSnapshotInFlight = true;
+  const reason = "auto_tick_interval";
+  try {
+    const result = await SNAPSHOT_ENGINE.exportSnapshot({
+      tick,
+      reason,
+      prune: true,
+      retention: SNAPSHOT_POLICY.retention,
+    });
+    if (result.success) {
+      autoSnapshotLastTick = tick;
+      autoSnapshotLastResult = {
+        tick,
+        timestamp: result.timestamp,
+        success: true,
+        reason,
+        pruned: result.pruned ?? 0,
+        retention: result.retention ?? SNAPSHOT_POLICY.retention,
+      };
+      return;
+    }
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: result.error ?? "SNAPSHOT_EXPORT_FAILED",
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot failed tick=${tick} reason=${autoSnapshotLastResult.error}`,
+    );
+  } catch (err) {
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: String(err),
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot exception tick=${tick} err=${String(err)}`,
+    );
+  } finally {
+    autoSnapshotInFlight = false;
+  }
+};
+
 const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
@@ -467,6 +541,14 @@ const buildTelemetry = async () => {
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
       last_pressure_ring_history: pressureRingHistory,
+    },
+    snapshot_guard: {
+      enabled: SNAPSHOT_POLICY.enabled,
+      interval_ticks: SNAPSHOT_POLICY.intervalTicks,
+      retention: SNAPSHOT_POLICY.retention,
+      in_flight: autoSnapshotInFlight,
+      last_tick: autoSnapshotLastTick,
+      last_result: autoSnapshotLastResult,
     },
   };
 };
@@ -1953,7 +2035,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
-    await flushDaemonAuditEffects(Atomics.load(STATE_MATRIX.tickCounter, 0));
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    await flushDaemonAuditEffects(tick);
+    await maybeAutoSnapshot(tick);
     await new Promise((r) => setTimeout(r, 16));
   }
 })();

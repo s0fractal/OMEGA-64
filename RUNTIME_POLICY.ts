@@ -90,6 +90,9 @@ const rawDaemonSafeMinPopulation = readEnv("OMEGA_DAEMON_SAFE_MIN_POPULATION");
 const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
 const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
 const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
+const rawAutoSnapshotEnable = readEnv("OMEGA_AUTO_SNAPSHOT_ENABLE");
+const rawAutoSnapshotIntervalTicks = readEnv("OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS");
+const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
@@ -285,6 +288,19 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
+const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
+const autoSnapshotIntervalTicks = parseEnvBoundedInt(
+  rawAutoSnapshotIntervalTicks,
+  10_000,
+  100,
+  10_000_000,
+);
+const autoSnapshotRetention = parseEnvBoundedInt(
+  rawAutoSnapshotRetention,
+  8,
+  1,
+  512,
+);
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -365,6 +381,11 @@ const policyFingerprintSource = JSON.stringify({
     safeMinAvgEnergy: daemonSafeMinAvgEnergy,
     auditEffectTicks: daemonAuditEffectTicks,
     auditPath: daemonAuditPath,
+  },
+  snapshot: {
+    enabled: autoSnapshotEnabled,
+    intervalTicks: autoSnapshotIntervalTicks,
+    retention: autoSnapshotRetention,
   },
 });
 
@@ -503,6 +524,16 @@ export const RUNTIME_POLICY = {
       safeMinAvgEnergy: rawDaemonSafeMinAvgEnergy !== undefined,
       auditEffectTicks: rawDaemonAuditEffectTicks !== undefined,
       auditPath: rawDaemonAuditPath !== undefined,
+    },
+  },
+  snapshot: {
+    enabled: autoSnapshotEnabled,
+    intervalTicks: autoSnapshotIntervalTicks,
+    retention: autoSnapshotRetention,
+    source: {
+      enabled: rawAutoSnapshotEnable !== undefined,
+      intervalTicks: rawAutoSnapshotIntervalTicks !== undefined,
+      retention: rawAutoSnapshotRetention !== undefined,
     },
   },
   fingerprint: POLICY_FINGERPRINT,

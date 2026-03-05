@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-04T16:14:38.946Z*
+*Generated: 2026-03-05T10:54:06.049Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 34fd80b0852bde3c4595b0048423fc3259a4f5dac5b56f6162dd07a48811c04a*
-*Git Commit: 445af77fac38*
+*Export Content SHA256: e0e495d86188ba2b73e54f9a596503e60752d5a9999507899e7289b4ff5ff45d*
+*Git Commit: dcb886db636b*
 
 ---
 
@@ -13304,6 +13304,9 @@ const rawDaemonSafeMinPopulation = readEnv("OMEGA_DAEMON_SAFE_MIN_POPULATION");
 const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
 const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
 const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
+const rawAutoSnapshotEnable = readEnv("OMEGA_AUTO_SNAPSHOT_ENABLE");
+const rawAutoSnapshotIntervalTicks = readEnv("OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS");
+const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
@@ -13499,6 +13502,19 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
+const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
+const autoSnapshotIntervalTicks = parseEnvBoundedInt(
+  rawAutoSnapshotIntervalTicks,
+  10_000,
+  100,
+  10_000_000,
+);
+const autoSnapshotRetention = parseEnvBoundedInt(
+  rawAutoSnapshotRetention,
+  8,
+  1,
+  512,
+);
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -13579,6 +13595,11 @@ const policyFingerprintSource = JSON.stringify({
     safeMinAvgEnergy: daemonSafeMinAvgEnergy,
     auditEffectTicks: daemonAuditEffectTicks,
     auditPath: daemonAuditPath,
+  },
+  snapshot: {
+    enabled: autoSnapshotEnabled,
+    intervalTicks: autoSnapshotIntervalTicks,
+    retention: autoSnapshotRetention,
   },
 });
 
@@ -13717,6 +13738,16 @@ export const RUNTIME_POLICY = {
       safeMinAvgEnergy: rawDaemonSafeMinAvgEnergy !== undefined,
       auditEffectTicks: rawDaemonAuditEffectTicks !== undefined,
       auditPath: rawDaemonAuditPath !== undefined,
+    },
+  },
+  snapshot: {
+    enabled: autoSnapshotEnabled,
+    intervalTicks: autoSnapshotIntervalTicks,
+    retention: autoSnapshotRetention,
+    source: {
+      enabled: rawAutoSnapshotEnable !== undefined,
+      intervalTicks: rawAutoSnapshotIntervalTicks !== undefined,
+      retention: rawAutoSnapshotRetention !== undefined,
     },
   },
   fingerprint: POLICY_FINGERPRINT,
@@ -15861,13 +15892,30 @@ import { ensureDir } from "jsr:@std/fs@^1.0.5/ensure-dir";
 import { LOGGER } from "./LOGGER.ts";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
+const normalizeRetention = (value: number | undefined): number => {
+  if (!Number.isFinite(value)) return 8;
+  return Math.max(1, Math.min(512, Math.floor(value as number)));
+};
+
+type SnapshotExportOptions = {
+  tick?: number;
+  reason?: string;
+  prune?: boolean;
+  retention?: number;
+};
 
 export const SNAPSHOT_ENGINE = {
   /**
    * Dumps the entire 6.4MB Memory Matrix + Akashic History to disk instantly.
    */
-  exportSnapshot: async () => {
+  exportSnapshot: async (options: SnapshotExportOptions = {}) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const tick = Number.isFinite(options.tick) ? Number(options.tick) : undefined;
+    const reason = typeof options.reason === "string" && options.reason.trim().length > 0
+      ? options.reason.trim().slice(0, 96)
+      : "manual";
+    const shouldPrune = Boolean(options.prune);
+    const retention = normalizeRetention(options.retention);
     await ensureDir(SNAPSHOT_DIR);
 
     const matrixPath = `${SNAPSHOT_DIR}/matrix_${timestamp}.bin`;
@@ -15899,15 +15947,27 @@ export const SNAPSHOT_ENGINE = {
         JSON.stringify(akashicData, null, 2),
       );
 
+      let pruned = 0;
+      if (shouldPrune) {
+        pruned = await SNAPSHOT_ENGINE.pruneSnapshots(retention);
+      }
+
       LOGGER.info(
         `💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${
           checksum.toString(16).toUpperCase()
-        })`,
+        }) reason=${reason} tick=${tick ?? "n/a"} pruned=${pruned}`,
       );
-      return { timestamp, success: true };
+      return {
+        timestamp,
+        success: true,
+        tick,
+        reason,
+        pruned,
+        retention,
+      };
     } catch (e) {
       LOGGER.error(`❌ [SNAPSHOT] Export Failed:`, e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), tick, reason };
     }
   },
 
@@ -16005,6 +16065,30 @@ export const SNAPSHOT_ENGINE = {
     } catch {
       return [];
     }
+  },
+  pruneSnapshots: async (keepLatest: number = 8) => {
+    const keep = normalizeRetention(keepLatest);
+    const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+    const stale = snapshots.slice(keep);
+    if (stale.length === 0) return 0;
+
+    for (const timestamp of stale) {
+      for (const prefix of ["matrix", "akashic", "physics"]) {
+        const path = `${SNAPSHOT_DIR}/${prefix}_${timestamp}.${
+          prefix === "akashic" ? "json" : "bin"
+        }`;
+        try {
+          await Deno.remove(path);
+        } catch {
+          // Ignore partial snapshot file-set gaps.
+        }
+      }
+    }
+
+    LOGGER.info(
+      `🧹 [SNAPSHOT] Pruned stale snapshots: removed=${stale.length} keep=${keep}`,
+    );
+    return stale.length;
   },
 };
 
@@ -17828,6 +17912,7 @@ const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
 const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY =
@@ -17880,6 +17965,17 @@ let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
+let autoSnapshotLastTick = -1;
+let autoSnapshotInFlight = false;
+let autoSnapshotLastResult: {
+  tick: number;
+  timestamp: string;
+  success: boolean;
+  reason: string;
+  pruned: number;
+  retention: number;
+  error?: string;
+} | null = null;
 
 const setLatestDaemonAdmission = (
   snapshot: DaemonAdmissionSnapshot,
@@ -18069,6 +18165,68 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
   daemonAuditPending.push(...remaining);
 };
 
+const maybeAutoSnapshot = async (tick: number): Promise<void> => {
+  if (!SNAPSHOT_POLICY.enabled) return;
+  if (!Number.isFinite(tick) || tick < 0) return;
+  if (autoSnapshotInFlight) return;
+  if (
+    autoSnapshotLastTick >= 0 &&
+    tick - autoSnapshotLastTick < SNAPSHOT_POLICY.intervalTicks
+  ) {
+    return;
+  }
+
+  autoSnapshotInFlight = true;
+  const reason = "auto_tick_interval";
+  try {
+    const result = await SNAPSHOT_ENGINE.exportSnapshot({
+      tick,
+      reason,
+      prune: true,
+      retention: SNAPSHOT_POLICY.retention,
+    });
+    if (result.success) {
+      autoSnapshotLastTick = tick;
+      autoSnapshotLastResult = {
+        tick,
+        timestamp: result.timestamp,
+        success: true,
+        reason,
+        pruned: result.pruned ?? 0,
+        retention: result.retention ?? SNAPSHOT_POLICY.retention,
+      };
+      return;
+    }
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: result.error ?? "SNAPSHOT_EXPORT_FAILED",
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot failed tick=${tick} reason=${autoSnapshotLastResult.error}`,
+    );
+  } catch (err) {
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: String(err),
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot exception tick=${tick} err=${String(err)}`,
+    );
+  } finally {
+    autoSnapshotInFlight = false;
+  }
+};
+
 const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
@@ -18129,6 +18287,14 @@ const buildTelemetry = async () => {
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
       last_pressure_ring_history: pressureRingHistory,
+    },
+    snapshot_guard: {
+      enabled: SNAPSHOT_POLICY.enabled,
+      interval_ticks: SNAPSHOT_POLICY.intervalTicks,
+      retention: SNAPSHOT_POLICY.retention,
+      in_flight: autoSnapshotInFlight,
+      last_tick: autoSnapshotLastTick,
+      last_result: autoSnapshotLastResult,
     },
   };
 };
@@ -19615,7 +19781,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
-    await flushDaemonAuditEffects(Atomics.load(STATE_MATRIX.tickCounter, 0));
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    await flushDaemonAuditEffects(tick);
+    await maybeAutoSnapshot(tick);
     await new Promise((r) => setTimeout(r, 16));
   }
 })();
