@@ -1751,6 +1751,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             (queued.admission as Record<string, unknown>).peerCodexLabel ??
               "unknown-lineage",
           )
+        } fragments=${
+          Array.isArray(
+              (queued.admission as Record<string, unknown>).policyFragments,
+            )
+            ? (
+              (queued.admission as Record<string, unknown>)
+                .policyFragments as unknown[]
+            ).length
+            : 0
         }`
         : "";
       LOGGER.info(

@@ -111,6 +111,34 @@ const main = async () => {
     "Federation admission snapshot must preserve local codex lineage label",
     violations,
   );
+  requireSnippet(
+    queue,
+    "FederationPolicyFragment",
+    QUEUE_PATH,
+    "Control queue must define explicit policy-fragment type",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "collapsePolicyRatios",
+    QUEUE_PATH,
+    "Control queue must collapse policy fragments into tax/subsidy ratios",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "policyEnergyRatio",
+    QUEUE_PATH,
+    "Federation admission snapshot must export policy energy ratio",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "federation_policy_fragment_applied",
+    QUEUE_PATH,
+    "Control queue telemetry must track applied policy fragments",
+    violations,
+  );
 
   requireSnippet(
     p2p,
@@ -212,6 +240,20 @@ const main = async () => {
     "Daemon invariant frame must retain codex-distance signal",
     violations,
   );
+  requireSnippet(
+    daemon,
+    "policyRatio=",
+    DAEMON_PATH,
+    "Daemon invariant frame must include policy tax/subsidy ratio evidence",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "policyFragments",
+    DAEMON_PATH,
+    "Daemon telemetry parser must ingest policy fragment list",
+    violations,
+  );
 
   requireSnippet(
     ui,
@@ -232,6 +274,13 @@ const main = async () => {
     "codexΔ",
     UI_PATH,
     "UI federation summary must include codex distance projection",
+    violations,
+  );
+  requireSnippet(
+    ui,
+    "fragments=",
+    UI_PATH,
+    "UI federation summary must include applied policy fragment count",
     violations,
   );
 

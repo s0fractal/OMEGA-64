@@ -55,6 +55,14 @@ type Telemetry = {
       localCodexLabel?: string;
       peerCodexLabel?: string;
       codexDistance?: number;
+      policyEnergyRatio?: number;
+      policyResonanceRatio?: number;
+      policyFragments?: Array<{
+        id?: string;
+        source?: string;
+        mode?: string;
+        reason?: string;
+      }>;
     };
   };
   pulse_pressure?: {
@@ -640,6 +648,32 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
               federationAdmissionLatestRaw.codexDistance,
               -1,
             ),
+            policyEnergyRatio: asFiniteNumber(
+              federationAdmissionLatestRaw.policyEnergyRatio,
+              1,
+            ),
+            policyResonanceRatio: asFiniteNumber(
+              federationAdmissionLatestRaw.policyResonanceRatio,
+              1,
+            ),
+            policyFragments: Array.isArray(
+                federationAdmissionLatestRaw.policyFragments,
+              )
+              ? (
+                federationAdmissionLatestRaw.policyFragments as unknown[]
+              ).filter((entry): entry is Record<string, unknown> =>
+                !!entry && typeof entry === "object"
+              ).map((entry) => ({
+                id: typeof entry.id === "string" ? entry.id : undefined,
+                source: typeof entry.source === "string"
+                  ? entry.source
+                  : undefined,
+                mode: typeof entry.mode === "string" ? entry.mode : undefined,
+                reason: typeof entry.reason === "string"
+                  ? entry.reason
+                  : undefined,
+              })).slice(0, 8)
+              : [],
           }
           : undefined,
       }
@@ -964,6 +998,16 @@ const buildInvariantFrame = (
           `codexDistance=${
             Number(federationAdmission.codexDistance ?? -1).toFixed(0)
           }`,
+          `policyRatio=${
+            Number(federationAdmission.policyEnergyRatio ?? 1).toFixed(3)
+          }/${
+            Number(federationAdmission.policyResonanceRatio ?? 1).toFixed(3)
+          }`,
+          `fragments=${
+            Array.isArray(federationAdmission.policyFragments)
+              ? federationAdmission.policyFragments.length
+              : 0
+          }`,
         ]
         : ["admission=none"],
     },
@@ -987,6 +1031,19 @@ const buildInvariantFrame = (
         federationAdmission.localCodexLabel ?? "unknown-lineage"
       }->${federationAdmission.peerCodexLabel ?? "unknown-lineage"}`
       : "none",
+    federationPolicyRatio: federationAdmission
+      ? `${Number(federationAdmission.policyEnergyRatio ?? 1).toFixed(3)}:${
+        Number(federationAdmission.policyResonanceRatio ?? 1).toFixed(3)
+      }`
+      : "1.000:1.000",
+    federationPolicyFragments: federationAdmission &&
+        Array.isArray(federationAdmission.policyFragments)
+      ? federationAdmission.policyFragments.map((entry) =>
+        `${entry.source ?? "unknown"}:${entry.mode ?? "none"}:${
+          entry.reason ?? "none"
+        }`
+      )
+      : [],
   });
   const signature = fnv1a32(signatureSeed);
   const summary =

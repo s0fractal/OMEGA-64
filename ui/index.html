@@ -2583,6 +2583,15 @@
         const score = Math.floor(Number(admission.score || 0));
         const distance = Number(admission.behaviorDistance || -1);
         const codexDistance = Number(admission.codexDistance || -1);
+        const policyEnergyRatio = Number(
+          admission.policyEnergyRatio || 1,
+        );
+        const policyResonanceRatio = Number(
+          admission.policyResonanceRatio || 1,
+        );
+        const fragmentCount = Array.isArray(admission.policyFragments)
+          ? admission.policyFragments.length
+          : 0;
         const codexBridge = `${
           String(admission.localCodexLabel || "unknown-lineage").slice(
             0,
@@ -2607,7 +2616,11 @@
         const codexText = codexDistance >= 0
           ? ` | codexΔ=${Math.floor(codexDistance)}`
           : "";
-        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText}${codexText} | policy=${
+          policyEnergyRatio.toFixed(3)
+        }/${
+          policyResonanceRatio.toFixed(3)
+        } | fragments=${fragmentCount} | codex=${codexBridge} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
