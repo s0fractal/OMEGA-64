@@ -49,6 +49,8 @@ const HOMEOSTASIS_MAX_DELTA = Math.max(1, HOMEOSTASIS_POLICY.maxDelta);
 const HOMEOSTASIS_OVERFLOW_THRESHOLD =
   HOMEOSTASIS_POLICY.overflowThreshold;
 const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
+const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
+const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -470,26 +472,43 @@ const applyEnergyHomeostasisTerms = (
   const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
   let adjusted = 0;
   let netDelta = 0;
+  let taxed = 0;
+  let subsidized = 0;
 
   for (const idx of activeIdx) {
     const current = Atomics.load(energiesView, idx);
     if (current <= 0) continue;
+    let delta = 0;
+
+    if (HOMEOSTASIS_BASE_TAX > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
+      const tax = Math.min(HOMEOSTASIS_BASE_TAX, current);
+      delta -= tax;
+      taxed += tax;
+    }
+
     const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
     const absDeviation = Math.abs(deviation);
-    if (absDeviation <= HOMEOSTASIS_BAND) continue;
+    if (absDeviation > HOMEOSTASIS_BAND) {
+      const gradient = absDeviation - HOMEOSTASIS_BAND;
+      const step = Math.min(
+        HOMEOSTASIS_MAX_DELTA,
+        1 + Math.floor(gradient / bandStep),
+      );
 
-    const gradient = absDeviation - HOMEOSTASIS_BAND;
-    let step = Math.min(
-      HOMEOSTASIS_MAX_DELTA,
-      1 + Math.floor(gradient / bandStep),
-    );
-    let delta = deviation > 0 ? -step : step;
-
-    if (overflowActive) {
-      if (delta > 0) {
-        delta = Math.max(1, Math.floor(delta * 0.6));
-      } else {
-        delta -= 1;
+      if (deviation > 0) {
+        delta -= step;
+        taxed += step;
+        if (overflowActive) {
+          delta -= 1;
+          taxed += 1;
+        }
+      } else if (HOMEOSTASIS_SUBSIDY_ENABLED) {
+        let subsidy = step;
+        if (overflowActive) {
+          subsidy = Math.max(1, Math.floor(subsidy * 0.6));
+        }
+        delta += subsidy;
+        subsidized += subsidy;
       }
     }
 
@@ -514,7 +533,7 @@ const applyEnergyHomeostasisTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} overflow=${spatialOverflowRatio.toFixed(3)}`,
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${HOMEOSTASIS_BASE_TAX} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
       );
     }
   }

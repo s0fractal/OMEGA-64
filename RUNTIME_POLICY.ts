@@ -102,6 +102,10 @@ const rawHomeostasisOverflowThreshold = readEnv(
 const rawHomeostasisStarvationFloor = readEnv(
   "OMEGA_HOMEOSTASIS_STARVATION_FLOOR",
 );
+const rawHomeostasisBaseTax = readEnv("OMEGA_HOMEOSTASIS_BASE_TAX");
+const rawHomeostasisSubsidyEnable = readEnv(
+  "OMEGA_HOMEOSTASIS_SUBSIDY_ENABLE",
+);
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -329,6 +333,16 @@ const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
   0,
   1_000_000,
 );
+const pulseHomeostasisBaseTax = parseEnvBoundedInt(
+  rawHomeostasisBaseTax,
+  1,
+  0,
+  1024,
+);
+const pulseHomeostasisSubsidyEnabled = parseEnvBool(
+  rawHomeostasisSubsidyEnable,
+  false,
+);
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -501,6 +515,8 @@ const policyFingerprintSource = JSON.stringify({
       maxDelta: pulseHomeostasisMaxDelta,
       overflowThreshold: pulseHomeostasisOverflowThreshold,
       starvationFloor: pulseHomeostasisStarvationFloor,
+      baseTax: pulseHomeostasisBaseTax,
+      subsidyEnabled: pulseHomeostasisSubsidyEnabled,
     },
   },
   telemetry: {
@@ -663,6 +679,8 @@ export const RUNTIME_POLICY = {
       maxDelta: pulseHomeostasisMaxDelta,
       overflowThreshold: pulseHomeostasisOverflowThreshold,
       starvationFloor: pulseHomeostasisStarvationFloor,
+      baseTax: pulseHomeostasisBaseTax,
+      subsidyEnabled: pulseHomeostasisSubsidyEnabled,
     },
     source: {
       workerCount: hasEnvValue(rawPulseWorkers),
@@ -690,6 +708,8 @@ export const RUNTIME_POLICY = {
       homeostasisOverflowThreshold:
         rawHomeostasisOverflowThreshold !== undefined,
       homeostasisStarvationFloor: rawHomeostasisStarvationFloor !== undefined,
+      homeostasisBaseTax: rawHomeostasisBaseTax !== undefined,
+      homeostasisSubsidyEnable: rawHomeostasisSubsidyEnable !== undefined,
     },
   },
   akasha: {

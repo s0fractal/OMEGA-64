@@ -47,6 +47,7 @@ type TelemetryEnvelope = {
     safe_mode_reason?: string;
     actions_used_in_window?: number;
     actions_max_in_window?: number;
+    actions_dynamic_max_in_window?: number;
     last_admission?: {
       status?: string;
       severity?: string;
@@ -133,6 +134,7 @@ type Sample = {
   daemonAdmissionDegraded: boolean;
   daemonActionsUsedInWindow: number;
   daemonActionsMaxInWindow: number;
+  daemonActionsDynamicMaxInWindow: number;
   populationCurrent: number;
   populationPeak: number;
   codexChroniclesCount: number;
@@ -1116,6 +1118,15 @@ const main = async () => {
         toFiniteNumber(telemetry.daemon_governance?.actions_max_in_window, 1),
       ),
     );
+    const daemonActionsDynamicMaxInWindow = Math.max(
+      1,
+      Math.floor(
+        toFiniteNumber(
+          telemetry.daemon_governance?.actions_dynamic_max_in_window,
+          daemonActionsMaxInWindow,
+        ),
+      ),
+    );
 
     const populationCurrent = codexResult.ok
       ? Math.max(
@@ -1161,6 +1172,7 @@ const main = async () => {
       daemonAdmissionDegraded,
       daemonActionsUsedInWindow,
       daemonActionsMaxInWindow,
+      daemonActionsDynamicMaxInWindow,
       populationCurrent,
       populationPeak,
       codexChroniclesCount,
@@ -1168,21 +1180,25 @@ const main = async () => {
 
     const elapsedMs = performance.now() - startedAt;
     if (elapsedMs >= nextPerturbAtMs) {
-      const perturbation = await performPerturbation(config, {
-        nextU32,
-        sequence: perturbSequence,
-      });
-      perturbSequence++;
       nextPerturbAtMs += config.perturbMs;
-      if (perturbation) {
-        perturbAttempts++;
-        if (!perturbation.ok) perturbFailures++;
-        perturbationsTail.push(perturbation);
-        if (perturbationsTail.length > PERTURB_TAIL_CAPACITY) {
-          perturbationsTail.splice(
-            0,
-            perturbationsTail.length - PERTURB_TAIL_CAPACITY,
-          );
+      const budgetHeadroom = daemonActionsDynamicMaxInWindow -
+        daemonActionsUsedInWindow;
+      if (budgetHeadroom > 0) {
+        const perturbation = await performPerturbation(config, {
+          nextU32,
+          sequence: perturbSequence,
+        });
+        perturbSequence++;
+        if (perturbation) {
+          perturbAttempts++;
+          if (!perturbation.ok) perturbFailures++;
+          perturbationsTail.push(perturbation);
+          if (perturbationsTail.length > PERTURB_TAIL_CAPACITY) {
+            perturbationsTail.splice(
+              0,
+              perturbationsTail.length - PERTURB_TAIL_CAPACITY,
+            );
+          }
         }
       }
     }
@@ -1194,7 +1210,9 @@ const main = async () => {
           last.avgEnergy.toFixed(2)
         } latency=${
           last.telemetryLatencyMs.toFixed(1)
-        }ms perturb=${perturbAttempts} daemonReject=${daemonRejectCount}`,
+        }ms perturb=${perturbAttempts} daemonReject=${daemonRejectCount} budget=${
+          last.daemonActionsUsedInWindow
+        }/${last.daemonActionsDynamicMaxInWindow}`,
       );
     }
 

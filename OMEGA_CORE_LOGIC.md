@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T18:25:04.991Z*
+*Generated: 2026-03-05T22:38:23.011Z*
 *Exported Files: 67*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 360d3d249b3d4afaadd3bf82e4894db4796197d79af1789d06006c6c58785d24*
-*Export Content SHA256: a2bade19193061dd34551bfad6342e47304c74fc66c992cad631dbadbef0300c*
-*Git Commit: b43c5b082c96*
+*Export Content SHA256: 246ddba3d75964951e222906b8ec450722f714a2859e61c8e17046ff7bfa2786*
+*Git Commit: a9718e991fa8*
 
 ---
 
@@ -13023,6 +13023,8 @@ const HOMEOSTASIS_MAX_DELTA = Math.max(1, HOMEOSTASIS_POLICY.maxDelta);
 const HOMEOSTASIS_OVERFLOW_THRESHOLD =
   HOMEOSTASIS_POLICY.overflowThreshold;
 const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
+const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
+const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -13444,26 +13446,43 @@ const applyEnergyHomeostasisTerms = (
   const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
   let adjusted = 0;
   let netDelta = 0;
+  let taxed = 0;
+  let subsidized = 0;
 
   for (const idx of activeIdx) {
     const current = Atomics.load(energiesView, idx);
     if (current <= 0) continue;
+    let delta = 0;
+
+    if (HOMEOSTASIS_BASE_TAX > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
+      const tax = Math.min(HOMEOSTASIS_BASE_TAX, current);
+      delta -= tax;
+      taxed += tax;
+    }
+
     const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
     const absDeviation = Math.abs(deviation);
-    if (absDeviation <= HOMEOSTASIS_BAND) continue;
+    if (absDeviation > HOMEOSTASIS_BAND) {
+      const gradient = absDeviation - HOMEOSTASIS_BAND;
+      const step = Math.min(
+        HOMEOSTASIS_MAX_DELTA,
+        1 + Math.floor(gradient / bandStep),
+      );
 
-    const gradient = absDeviation - HOMEOSTASIS_BAND;
-    let step = Math.min(
-      HOMEOSTASIS_MAX_DELTA,
-      1 + Math.floor(gradient / bandStep),
-    );
-    let delta = deviation > 0 ? -step : step;
-
-    if (overflowActive) {
-      if (delta > 0) {
-        delta = Math.max(1, Math.floor(delta * 0.6));
-      } else {
-        delta -= 1;
+      if (deviation > 0) {
+        delta -= step;
+        taxed += step;
+        if (overflowActive) {
+          delta -= 1;
+          taxed += 1;
+        }
+      } else if (HOMEOSTASIS_SUBSIDY_ENABLED) {
+        let subsidy = step;
+        if (overflowActive) {
+          subsidy = Math.max(1, Math.floor(subsidy * 0.6));
+        }
+        delta += subsidy;
+        subsidized += subsidy;
       }
     }
 
@@ -13488,7 +13507,7 @@ const applyEnergyHomeostasisTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} overflow=${spatialOverflowRatio.toFixed(3)}`,
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${HOMEOSTASIS_BASE_TAX} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
       );
     }
   }
@@ -15116,6 +15135,10 @@ const rawHomeostasisOverflowThreshold = readEnv(
 const rawHomeostasisStarvationFloor = readEnv(
   "OMEGA_HOMEOSTASIS_STARVATION_FLOOR",
 );
+const rawHomeostasisBaseTax = readEnv("OMEGA_HOMEOSTASIS_BASE_TAX");
+const rawHomeostasisSubsidyEnable = readEnv(
+  "OMEGA_HOMEOSTASIS_SUBSIDY_ENABLE",
+);
 const rawStartupSelfTest = readEnv("OMEGA_STARTUP_SELFTEST");
 const rawStartupSelfTestTicks = readEnv("OMEGA_STARTUP_SELFTEST_TICKS");
 const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
@@ -15343,6 +15366,16 @@ const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
   0,
   1_000_000,
 );
+const pulseHomeostasisBaseTax = parseEnvBoundedInt(
+  rawHomeostasisBaseTax,
+  1,
+  0,
+  1024,
+);
+const pulseHomeostasisSubsidyEnabled = parseEnvBool(
+  rawHomeostasisSubsidyEnable,
+  false,
+);
 const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
 const pulseStartupSelfTestTicks = parseEnvBoundedInt(
   rawStartupSelfTestTicks,
@@ -15515,6 +15548,8 @@ const policyFingerprintSource = JSON.stringify({
       maxDelta: pulseHomeostasisMaxDelta,
       overflowThreshold: pulseHomeostasisOverflowThreshold,
       starvationFloor: pulseHomeostasisStarvationFloor,
+      baseTax: pulseHomeostasisBaseTax,
+      subsidyEnabled: pulseHomeostasisSubsidyEnabled,
     },
   },
   telemetry: {
@@ -15677,6 +15712,8 @@ export const RUNTIME_POLICY = {
       maxDelta: pulseHomeostasisMaxDelta,
       overflowThreshold: pulseHomeostasisOverflowThreshold,
       starvationFloor: pulseHomeostasisStarvationFloor,
+      baseTax: pulseHomeostasisBaseTax,
+      subsidyEnabled: pulseHomeostasisSubsidyEnabled,
     },
     source: {
       workerCount: hasEnvValue(rawPulseWorkers),
@@ -15704,6 +15741,8 @@ export const RUNTIME_POLICY = {
       homeostasisOverflowThreshold:
         rawHomeostasisOverflowThreshold !== undefined,
       homeostasisStarvationFloor: rawHomeostasisStarvationFloor !== undefined,
+      homeostasisBaseTax: rawHomeostasisBaseTax !== undefined,
+      homeostasisSubsidyEnable: rawHomeostasisSubsidyEnable !== undefined,
     },
   },
   akasha: {

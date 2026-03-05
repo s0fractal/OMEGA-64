@@ -69,6 +69,20 @@ const main = async () => {
   );
   requireSnippet(
     policy,
+    "OMEGA_HOMEOSTASIS_BASE_TAX",
+    POLICY_PATH,
+    "Runtime policy must expose homeostasis base tax env hook",
+    violations,
+  );
+  requireSnippet(
+    policy,
+    "OMEGA_HOMEOSTASIS_SUBSIDY_ENABLE",
+    POLICY_PATH,
+    "Runtime policy must expose homeostasis subsidy toggle env hook",
+    violations,
+  );
+  requireSnippet(
+    policy,
     "homeostasis:",
     POLICY_PATH,
     "Runtime policy pulse section must export homeostasis block",
@@ -87,6 +101,20 @@ const main = async () => {
     "HOMEOSTASIS_POLICY",
     PULSE_PATH,
     "Pulse must source homeostasis coefficients from runtime policy",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "HOMEOSTASIS_BASE_TAX",
+    PULSE_PATH,
+    "Pulse homeostasis pass must apply explicit base tax policy",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "HOMEOSTASIS_SUBSIDY_ENABLED",
+    PULSE_PATH,
+    "Pulse homeostasis pass must gate subsidy path via policy",
     violations,
   );
   requireSnippet(
