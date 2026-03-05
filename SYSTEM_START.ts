@@ -15,6 +15,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -166,6 +167,7 @@ const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
@@ -2148,6 +2150,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
   LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
+  const coldstart = COLDSTART_BOOTSTRAP.seed({
+    enabled: COLDSTART_POLICY.enabled,
+    count: COLDSTART_POLICY.count,
+    replicatorRatio: COLDSTART_POLICY.replicatorRatio,
+    seed: COLDSTART_POLICY.seed,
+    energy: COLDSTART_POLICY.energy,
+    resonance: COLDSTART_POLICY.resonance,
+  });
+  if (coldstart.skipped) {
+    LOGGER.info(`🌱 [COLDSTART] ${coldstart.reason}`);
+  } else {
+    LOGGER.info(
+      `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
+    );
+  }
   await PULSE.initWorkers();
 
   while (true) {

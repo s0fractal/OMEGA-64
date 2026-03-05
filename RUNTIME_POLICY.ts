@@ -112,6 +112,12 @@ const rawDaemonSafeMinPopulation = readEnv("OMEGA_DAEMON_SAFE_MIN_POPULATION");
 const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
 const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
 const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
+const rawColdstartEnable = readEnv("OMEGA_COLDSTART_ENABLE");
+const rawColdstartCount = readEnv("OMEGA_COLDSTART_COUNT");
+const rawColdstartReplicatorRatio = readEnv("OMEGA_COLDSTART_REPLICATOR_RATIO");
+const rawColdstartSeed = readEnv("OMEGA_COLDSTART_SEED");
+const rawColdstartEnergy = readEnv("OMEGA_COLDSTART_ENERGY");
+const rawColdstartResonance = readEnv("OMEGA_COLDSTART_RESONANCE");
 const rawAutoSnapshotEnable = readEnv("OMEGA_AUTO_SNAPSHOT_ENABLE");
 const rawAutoSnapshotIntervalTicks = readEnv(
   "OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS",
@@ -347,6 +353,32 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
+const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
+const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
+const coldstartReplicatorRatio = parseEnvBoundedFloat(
+  rawColdstartReplicatorRatio,
+  0.72,
+  0,
+  1,
+);
+const coldstartSeed = parseEnvBoundedInt(
+  rawColdstartSeed,
+  424242,
+  1,
+  2_147_483_647,
+);
+const coldstartEnergy = parseEnvBoundedInt(
+  rawColdstartEnergy,
+  3200,
+  1,
+  1_000_000,
+);
+const coldstartResonance = parseEnvBoundedInt(
+  rawColdstartResonance,
+  220,
+  0,
+  100_000,
+);
 const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
 const autoSnapshotIntervalTicks = parseEnvBoundedInt(
   rawAutoSnapshotIntervalTicks,
@@ -448,6 +480,14 @@ const policyFingerprintSource = JSON.stringify({
     safeMinAvgEnergy: daemonSafeMinAvgEnergy,
     auditEffectTicks: daemonAuditEffectTicks,
     auditPath: daemonAuditPath,
+  },
+  coldstart: {
+    enabled: coldstartEnabled,
+    count: coldstartCount,
+    replicatorRatio: coldstartReplicatorRatio,
+    seed: coldstartSeed,
+    energy: coldstartEnergy,
+    resonance: coldstartResonance,
   },
   snapshot: {
     enabled: autoSnapshotEnabled,
@@ -610,6 +650,22 @@ export const RUNTIME_POLICY = {
       safeMinAvgEnergy: rawDaemonSafeMinAvgEnergy !== undefined,
       auditEffectTicks: rawDaemonAuditEffectTicks !== undefined,
       auditPath: rawDaemonAuditPath !== undefined,
+    },
+  },
+  coldstart: {
+    enabled: coldstartEnabled,
+    count: coldstartCount,
+    replicatorRatio: coldstartReplicatorRatio,
+    seed: coldstartSeed,
+    energy: coldstartEnergy,
+    resonance: coldstartResonance,
+    source: {
+      enabled: rawColdstartEnable !== undefined,
+      count: rawColdstartCount !== undefined,
+      replicatorRatio: rawColdstartReplicatorRatio !== undefined,
+      seed: rawColdstartSeed !== undefined,
+      energy: rawColdstartEnergy !== undefined,
+      resonance: rawColdstartResonance !== undefined,
     },
   },
   snapshot: {

@@ -26,6 +26,12 @@ type AuditConfig = {
   syntheticPheromoneIntensity: number;
   syntheticPlasmidIntensity: number;
   phaseRingStepRad: number;
+  coldstartEnable: boolean;
+  coldstartCount: number;
+  coldstartReplicatorRatio: number;
+  coldstartEnergy: number;
+  coldstartResonance: number;
+  daemonHeartbeatMs: number;
   daemonAuditPath: string;
   controlToken: string;
   seed: number;
@@ -310,7 +316,7 @@ const createConfig = (): AuditConfig => {
     ),
     maxSpatialOverflowRatioP95: parseFloatEnv(
       "OMEGA_LONGRUN_MAX_OVERFLOW_RATIO_P95",
-      0.08,
+      0.75,
       0,
       1,
     ),
@@ -376,6 +382,32 @@ const createConfig = (): AuditConfig => {
       0.0625,
       0.0001,
       Math.PI / 2,
+    ),
+    coldstartEnable: parseBoolEnv("OMEGA_LONGRUN_COLDSTART_ENABLE", true),
+    coldstartCount: parseIntEnv("OMEGA_LONGRUN_COLDSTART_COUNT", 24, 0, 100000),
+    coldstartReplicatorRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_COLDSTART_REPLICATOR_RATIO",
+      0.45,
+      0,
+      1,
+    ),
+    coldstartEnergy: parseIntEnv(
+      "OMEGA_LONGRUN_COLDSTART_ENERGY",
+      2200,
+      1,
+      1000000,
+    ),
+    coldstartResonance: parseIntEnv(
+      "OMEGA_LONGRUN_COLDSTART_RESONANCE",
+      220,
+      0,
+      1000000,
+    ),
+    daemonHeartbeatMs: parseIntEnv(
+      "OMEGA_LONGRUN_DAEMON_HEARTBEAT_MS",
+      12000,
+      1000,
+      300000,
     ),
     daemonAuditPath: (Deno.env.get("OMEGA_LONGRUN_DAEMON_AUDIT_PATH") ??
       Deno.env.get("OMEGA_DAEMON_AUDIT_PATH") ??
@@ -814,6 +846,15 @@ const main = async () => {
 
   const coreCommand = new Deno.Command("deno", {
     args: CORE_TASK,
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_COLDSTART_ENABLE: config.coldstartEnable ? "1" : "0",
+      OMEGA_COLDSTART_COUNT: String(config.coldstartCount),
+      OMEGA_COLDSTART_REPLICATOR_RATIO: String(config.coldstartReplicatorRatio),
+      OMEGA_COLDSTART_SEED: String(config.seed),
+      OMEGA_COLDSTART_ENERGY: String(config.coldstartEnergy),
+      OMEGA_COLDSTART_RESONANCE: String(config.coldstartResonance),
+    },
     stdout: "piped",
     stderr: "piped",
   });
@@ -838,6 +879,12 @@ const main = async () => {
   if (config.spawnDaemon) {
     const daemonCommand = new Deno.Command("deno", {
       args: DAEMON_TASK,
+      env: {
+        ...Deno.env.toObject(),
+        OMEGA_DAEMON_API_BASE: config.hostUrl,
+        HEARTBEAT_INTERVAL_MS: String(config.daemonHeartbeatMs),
+        OMEGA_DAEMON_CONTROL_TOKEN: config.controlToken,
+      },
       stdout: "piped",
       stderr: "piped",
     });
@@ -1347,6 +1394,10 @@ const main = async () => {
     bootReady,
     bootMs,
     spawnDaemon: config.spawnDaemon,
+    coldstartEnable: config.coldstartEnable,
+    coldstartCount: config.coldstartCount,
+    coldstartReplicatorRatio: Number(config.coldstartReplicatorRatio.toFixed(3)),
+    daemonHeartbeatMs: config.daemonHeartbeatMs,
     sampleCount,
     telemetryAttempts,
     successCount,

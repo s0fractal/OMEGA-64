@@ -255,6 +255,11 @@ const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
 const OPENAI_API_KEY = (Deno.env.get("OPENAI_API_KEY") ?? "").trim();
+const CONTROL_TOKEN = (
+  Deno.env.get("OMEGA_DAEMON_CONTROL_TOKEN") ??
+    Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ??
+    ""
+).trim();
 const HEARTBEAT_INTERVAL_MS = parseBoundedInt(
   Deno.env.get("HEARTBEAT_INTERVAL_MS"),
   60_000,
@@ -1224,14 +1229,18 @@ const postPressureRingUpdate = async (
     reason?: string;
   },
 ): Promise<void> => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
   const response = await withTimeout(
     PRESSURE_RING_URL,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers,
       body: JSON.stringify(payload),
     },
     HTTP_TIMEOUT_MS,
@@ -1299,6 +1308,14 @@ const maybeAdvancePhaseRing = async (
 const postInjection = async (decision: DaemonDecision): Promise<void> => {
   if (decision.action_type === "OBSERVE") return;
 
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
+
   const payload = {
     action_type: decision.action_type,
     payload: decision.payload,
@@ -1307,10 +1324,7 @@ const postInjection = async (decision: DaemonDecision): Promise<void> => {
     INJECT_URL,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers,
       body: JSON.stringify(payload),
     },
     HTTP_TIMEOUT_MS,

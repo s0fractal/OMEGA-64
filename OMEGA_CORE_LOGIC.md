@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T13:51:03.554Z*
-*Exported Files: 65*
+*Generated: 2026-03-05T14:03:16.289Z*
+*Exported Files: 66*
 *Runtime Roots: 6*
-*Runtime Closure Files: 36*
+*Runtime Closure Files: 37*
 *Non-Runtime Code Files: 21*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
-*Export Set SHA256: 23bf45cbb6f994c814a38aa62016b5a446fa579117d6decf3fe54cbd3fff22d9*
-*Export Content SHA256: 1aa1d09477635180dc57a09eca98f4caa439614964b0c392e55cc382c9689fff*
-*Git Commit: 34f066cad426*
+*Export Set SHA256: a3b289620d45e02dc5799f3281217f804178ca87a44ae66b69e89e57cdb63220*
+*Export Content SHA256: 96849a6d70f976f3f9e61701fde988eff6cde0f2a18042b082181c6ab8a683a4*
+*Git Commit: c32604344644*
 
 ---
 
@@ -35,6 +35,7 @@
 - AUDIT_ENGINE.ts
 - AVATAR_ENGINE.ts
 - BREATH.ts
+- COLDSTART_BOOTSTRAP.ts
 - CONTROL_INTENT_QUEUE.ts
 - ENV_PARSE.ts
 - GATE_BUDGET.ts
@@ -4315,6 +4316,215 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
     `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
+
+```
+
+---
+
+## FILE: COLDSTART_BOOTSTRAP.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+
+type ColdstartConfig = {
+  enabled: boolean;
+  count: number;
+  replicatorRatio: number;
+  seed: number;
+  energy: number;
+  resonance: number;
+};
+
+type ColdstartResult = {
+  attempted: boolean;
+  skipped: boolean;
+  reason: string;
+  configuredCount: number;
+  seeded: number;
+  replicators: number;
+  architects: number;
+  seed: number;
+};
+
+const WORLD_W = 1400;
+const WORLD_H = 800;
+const MARGIN = 20;
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const createLcg = (seed: number): (() => number) => {
+  let state = seed >>> 0;
+  return () => {
+    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+    return state;
+  };
+};
+
+const makeReplicatorScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = STATE_MATRIX.RISC.OP_REPLICATE;
+  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
+  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeArchitectScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = STATE_MATRIX.RISC.OP_BUILD;
+  script[pc++] = 1; // STRUCTURE.WIRE
+  script[pc++] = 1; // state=1
+  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
+  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const randomInRange = (
+  nextU32: () => number,
+  min: number,
+  maxInclusive: number,
+): number => {
+  const width = Math.max(1, maxInclusive - min + 1);
+  return min + (nextU32() % width);
+};
+
+const buildGenome = (
+  nextU32: () => number,
+  mode: "replicator" | "architect",
+): Uint8Array => {
+  const genome = new Uint8Array(8);
+  for (let i = 0; i < 8; i++) {
+    genome[i] = nextU32() & 0xFF;
+  }
+  genome[0] = mode === "replicator" ? 0x80 : 0xA8;
+  genome[1] = mode === "replicator" ? 0x81 : 0xA7;
+  return genome;
+};
+
+const variedResource = (
+  base: number,
+  nextU32: () => number,
+  pctSwing = 0.15,
+): number => {
+  const span = Math.max(1, Math.floor(base * pctSwing));
+  const delta = (nextU32() % (span * 2 + 1)) - span;
+  return Math.max(1, base + delta);
+};
+
+const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
+  if (!config.enabled) {
+    return {
+      attempted: false,
+      skipped: true,
+      reason: "COLDSTART_DISABLED",
+      configuredCount: config.count,
+      seeded: 0,
+      replicators: 0,
+      architects: 0,
+      seed: config.seed,
+    };
+  }
+
+  if (config.count <= 0) {
+    return {
+      attempted: false,
+      skipped: true,
+      reason: "COLDSTART_COUNT_ZERO",
+      configuredCount: config.count,
+      seeded: 0,
+      replicators: 0,
+      architects: 0,
+      seed: config.seed,
+    };
+  }
+
+  const existing = STATE_MATRIX.getActiveIndices().length;
+  if (existing > 0) {
+    return {
+      attempted: false,
+      skipped: true,
+      reason: `WORLD_ALREADY_POPULATED_${existing}`,
+      configuredCount: config.count,
+      seeded: 0,
+      replicators: 0,
+      architects: 0,
+      seed: config.seed,
+    };
+  }
+
+  const nextU32 = createLcg(config.seed);
+  const replicatorTarget = clamp(
+    Math.round(config.count * config.replicatorRatio),
+    1,
+    config.count,
+  );
+  const architectTarget = Math.max(0, config.count - replicatorTarget);
+  const replicatorScript = makeReplicatorScript();
+  const architectScript = makeArchitectScript();
+
+  let seeded = 0;
+  let replicators = 0;
+  let architects = 0;
+
+  for (let i = 0; i < config.count; i++) {
+    const slot = STATE_MATRIX.findFreeSlot();
+    if (slot < 0) break;
+
+    const mode: "replicator" | "architect" = i < replicatorTarget
+      ? "replicator"
+      : "architect";
+    const genome = buildGenome(nextU32, mode);
+    const x = randomInRange(nextU32, MARGIN, WORLD_W - MARGIN);
+    const y = randomInRange(nextU32, MARGIN, WORLD_H - MARGIN);
+    const energy = variedResource(config.energy, nextU32, 0.18);
+    const resonance = variedResource(config.resonance, nextU32, 0.22);
+    const id = (
+      (BigInt(config.seed >>> 0) << 32n) ^
+      BigInt(i + 11) ^
+      0xA17EA17En
+    );
+
+    STATE_MATRIX.seedAtom(
+      slot,
+      id,
+      x,
+      y,
+      energy,
+      resonance,
+      genome,
+      mode === "replicator" ? replicatorScript : architectScript,
+    );
+    STATE_MATRIX.setRole(
+      slot,
+      mode === "replicator" ? STATE_MATRIX.ROLE_PRODUCER : STATE_MATRIX.ROLE_ARCHITECT,
+    );
+    seeded++;
+    if (mode === "replicator") replicators++;
+    else architects++;
+  }
+
+  return {
+    attempted: true,
+    skipped: false,
+    reason: seeded > 0 ? "COLDSTART_SEEDED" : "COLDSTART_NO_FREE_SLOT",
+    configuredCount: config.count,
+    seeded,
+    replicators: Math.min(replicatorTarget, replicators),
+    architects: Math.min(architectTarget, architects),
+    seed: config.seed,
+  };
+};
+
+export const COLDSTART_BOOTSTRAP = {
+  seed: coldstartSeed,
+};
 
 ```
 
@@ -10380,6 +10590,11 @@ const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
 const OPENAI_API_KEY = (Deno.env.get("OPENAI_API_KEY") ?? "").trim();
+const CONTROL_TOKEN = (
+  Deno.env.get("OMEGA_DAEMON_CONTROL_TOKEN") ??
+    Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ??
+    ""
+).trim();
 const HEARTBEAT_INTERVAL_MS = parseBoundedInt(
   Deno.env.get("HEARTBEAT_INTERVAL_MS"),
   60_000,
@@ -11349,14 +11564,18 @@ const postPressureRingUpdate = async (
     reason?: string;
   },
 ): Promise<void> => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
   const response = await withTimeout(
     PRESSURE_RING_URL,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers,
       body: JSON.stringify(payload),
     },
     HTTP_TIMEOUT_MS,
@@ -11424,6 +11643,14 @@ const maybeAdvancePhaseRing = async (
 const postInjection = async (decision: DaemonDecision): Promise<void> => {
   if (decision.action_type === "OBSERVE") return;
 
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
+
   const payload = {
     action_type: decision.action_type,
     payload: decision.payload,
@@ -11432,10 +11659,7 @@ const postInjection = async (decision: DaemonDecision): Promise<void> => {
     INJECT_URL,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers,
       body: JSON.stringify(payload),
     },
     HTTP_TIMEOUT_MS,
@@ -14757,6 +14981,12 @@ const rawDaemonSafeMinPopulation = readEnv("OMEGA_DAEMON_SAFE_MIN_POPULATION");
 const rawDaemonSafeMinAvgEnergy = readEnv("OMEGA_DAEMON_SAFE_MIN_AVG_ENERGY");
 const rawDaemonAuditEffectTicks = readEnv("OMEGA_DAEMON_AUDIT_EFFECT_TICKS");
 const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
+const rawColdstartEnable = readEnv("OMEGA_COLDSTART_ENABLE");
+const rawColdstartCount = readEnv("OMEGA_COLDSTART_COUNT");
+const rawColdstartReplicatorRatio = readEnv("OMEGA_COLDSTART_REPLICATOR_RATIO");
+const rawColdstartSeed = readEnv("OMEGA_COLDSTART_SEED");
+const rawColdstartEnergy = readEnv("OMEGA_COLDSTART_ENERGY");
+const rawColdstartResonance = readEnv("OMEGA_COLDSTART_RESONANCE");
 const rawAutoSnapshotEnable = readEnv("OMEGA_AUTO_SNAPSHOT_ENABLE");
 const rawAutoSnapshotIntervalTicks = readEnv(
   "OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS",
@@ -14992,6 +15222,32 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
+const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
+const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
+const coldstartReplicatorRatio = parseEnvBoundedFloat(
+  rawColdstartReplicatorRatio,
+  0.72,
+  0,
+  1,
+);
+const coldstartSeed = parseEnvBoundedInt(
+  rawColdstartSeed,
+  424242,
+  1,
+  2_147_483_647,
+);
+const coldstartEnergy = parseEnvBoundedInt(
+  rawColdstartEnergy,
+  3200,
+  1,
+  1_000_000,
+);
+const coldstartResonance = parseEnvBoundedInt(
+  rawColdstartResonance,
+  220,
+  0,
+  100_000,
+);
 const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
 const autoSnapshotIntervalTicks = parseEnvBoundedInt(
   rawAutoSnapshotIntervalTicks,
@@ -15093,6 +15349,14 @@ const policyFingerprintSource = JSON.stringify({
     safeMinAvgEnergy: daemonSafeMinAvgEnergy,
     auditEffectTicks: daemonAuditEffectTicks,
     auditPath: daemonAuditPath,
+  },
+  coldstart: {
+    enabled: coldstartEnabled,
+    count: coldstartCount,
+    replicatorRatio: coldstartReplicatorRatio,
+    seed: coldstartSeed,
+    energy: coldstartEnergy,
+    resonance: coldstartResonance,
   },
   snapshot: {
     enabled: autoSnapshotEnabled,
@@ -15255,6 +15519,22 @@ export const RUNTIME_POLICY = {
       safeMinAvgEnergy: rawDaemonSafeMinAvgEnergy !== undefined,
       auditEffectTicks: rawDaemonAuditEffectTicks !== undefined,
       auditPath: rawDaemonAuditPath !== undefined,
+    },
+  },
+  coldstart: {
+    enabled: coldstartEnabled,
+    count: coldstartCount,
+    replicatorRatio: coldstartReplicatorRatio,
+    seed: coldstartSeed,
+    energy: coldstartEnergy,
+    resonance: coldstartResonance,
+    source: {
+      enabled: rawColdstartEnable !== undefined,
+      count: rawColdstartCount !== undefined,
+      replicatorRatio: rawColdstartReplicatorRatio !== undefined,
+      seed: rawColdstartSeed !== undefined,
+      energy: rawColdstartEnergy !== undefined,
+      resonance: rawColdstartResonance !== undefined,
     },
   },
   snapshot: {
@@ -19526,6 +19806,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
+import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -19677,6 +19958,7 @@ const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
@@ -21659,6 +21941,21 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
   LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
+  const coldstart = COLDSTART_BOOTSTRAP.seed({
+    enabled: COLDSTART_POLICY.enabled,
+    count: COLDSTART_POLICY.count,
+    replicatorRatio: COLDSTART_POLICY.replicatorRatio,
+    seed: COLDSTART_POLICY.seed,
+    energy: COLDSTART_POLICY.energy,
+    resonance: COLDSTART_POLICY.resonance,
+  });
+  if (coldstart.skipped) {
+    LOGGER.info(`🌱 [COLDSTART] ${coldstart.reason}`);
+  } else {
+    LOGGER.info(
+      `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
+    );
+  }
   await PULSE.initWorkers();
 
   while (true) {
