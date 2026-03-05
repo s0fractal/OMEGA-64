@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T11:45:05.740Z*
+*Generated: 2026-03-05T11:55:02.188Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 36751c37315ded584cb64d6836b581bb7f257c281bdb441ed32de0926e669553*
-*Git Commit: d8232a918f1a*
+*Export Content SHA256: f1c63c7e5d037c7fee15d99fb1c3601d547199e9e93ecb1476525b1147f706bd*
+*Git Commit: 3c7292cc1392*
 
 ---
 
@@ -4286,6 +4286,8 @@ type FederateIntent = {
     sourceNode: string;
     pulseId: number;
     admission: FederationAdmissionSnapshot;
+    peerBehaviorProfile: FederationBehaviorProfile | null;
+    localBehaviorContext: FederationLocalBehaviorContext | null;
   };
   seedPulseId: number;
 };
@@ -4307,6 +4309,19 @@ type FederationRuleGenomeProfile = {
   generatedAt: string;
 };
 
+type FederationBehaviorProfile = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+  generatedAt: string;
+};
+
+type FederationLocalBehaviorContext = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+};
+
 type FederationAdmissionSnapshot = {
   tick: number;
   atomId: string;
@@ -4320,6 +4335,9 @@ type FederationAdmissionSnapshot = {
   strictMismatch: boolean;
   degraded: boolean;
   hybridized: boolean;
+  localBehaviorInvariant: string;
+  peerBehaviorInvariant: string;
+  behaviorDistance: number;
 };
 
 type FederateAdmissionResult = {
@@ -4501,6 +4519,72 @@ const parseRuleGenomeProfile = (
   };
 };
 
+const parseBehaviorProfile = (
+  raw: unknown,
+): FederationBehaviorProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const invariant = typeof source.invariant === "string"
+    ? source.invariant.trim()
+    : "";
+  if (invariant.length === 0) return null;
+  return {
+    invariant,
+    dominantRole: toBoundedInt(Number(source.dominantRole), -1, 7, -1),
+    memberCount: toBoundedInt(Number(source.memberCount), 0, 100_000, 0),
+    generatedAt: typeof source.generatedAt === "string" &&
+        source.generatedAt.trim().length > 0
+      ? source.generatedAt.trim()
+      : "unknown",
+  };
+};
+
+const parseLocalBehaviorContext = (
+  raw: unknown,
+): FederationLocalBehaviorContext | null => {
+  const parsed = parseBehaviorProfile(raw);
+  if (!parsed) return null;
+  return {
+    invariant: parsed.invariant,
+    dominantRole: parsed.dominantRole,
+    memberCount: parsed.memberCount,
+  };
+};
+
+const parseBehaviorInvariantAxes = (
+  invariant: string,
+): { r: number; s: number; b: number } | null => {
+  const match = invariant
+    .trim()
+    .match(
+      /^R([0-9]+(?:\.[0-9]+)?)\|S([0-9]+(?:\.[0-9]+)?)\|B([0-9]+(?:\.[0-9]+)?)$/i,
+    );
+  if (!match) return null;
+  const r = Number.parseFloat(match[1]);
+  const s = Number.parseFloat(match[2]);
+  const b = Number.parseFloat(match[3]);
+  if (!Number.isFinite(r) || !Number.isFinite(s) || !Number.isFinite(b)) {
+    return null;
+  }
+  return {
+    r: clamp(r, 0, 1),
+    s: clamp(s, 0, 1),
+    b: clamp(b, 0, 1),
+  };
+};
+
+const behaviorInvariantDistance = (
+  localInvariant: string,
+  peerInvariant: string,
+): number | null => {
+  const left = parseBehaviorInvariantAxes(localInvariant);
+  const right = parseBehaviorInvariantAxes(peerInvariant);
+  if (!left || !right) return null;
+  const delta = Math.abs(left.r - right.r) + Math.abs(left.s - right.s) +
+    Math.abs(left.b - right.b);
+  return Number(delta.toFixed(3));
+};
+
 const setLatestFederationAdmission = (
   snapshot: FederationAdmissionSnapshot,
 ): void => {
@@ -4568,9 +4652,15 @@ const evaluateFederateAdmission = (
     resonance: number;
     pulseId: number;
     ruleGenome: FederationRuleGenomeProfile | null;
+    peerBehaviorProfile: FederationBehaviorProfile | null;
+    localBehaviorContext: FederationLocalBehaviorContext | null;
   },
 ): FederateAdmissionResult => {
   const policy = FEDERATION_ADMISSION_POLICY;
+  const localBehaviorInvariant = packet.localBehaviorContext?.invariant ??
+    "none";
+  const peerBehaviorInvariant = packet.peerBehaviorProfile?.invariant ?? "none";
+  let behaviorDistance = -1;
   if (!policy.enabled) {
     const admission: FederationAdmissionSnapshot = {
       tick: packet.pulseId,
@@ -4585,6 +4675,9 @@ const evaluateFederateAdmission = (
       strictMismatch: false,
       degraded: false,
       hybridized: false,
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+      behaviorDistance,
     };
     return {
       action: "accept",
@@ -4612,6 +4705,9 @@ const evaluateFederateAdmission = (
       strictMismatch: false,
       degraded: true,
       hybridized: false,
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+      behaviorDistance,
     };
     return {
       action: "degrade",
@@ -4632,6 +4728,7 @@ const evaluateFederateAdmission = (
 
   let score = 0;
   const reasons: string[] = [];
+  let behaviorConflictScore = 0;
 
   const noveltyDelta = Math.abs(
     profile.noveltySigned - FEDERATION_LOCAL_NOVELTY_SIGNED,
@@ -4687,6 +4784,62 @@ const evaluateFederateAdmission = (
     reasons.push("RULE_SIGNATURE_DRIFT");
   }
 
+  if (peerBehaviorInvariant === "none") {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("PEER_BEHAVIOR_PROFILE_MISSING");
+  } else if (localBehaviorInvariant !== "none") {
+    const delta = behaviorInvariantDistance(
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+    );
+    if (delta !== null) {
+      behaviorDistance = delta;
+      if (delta >= 1.35) {
+        score += 3;
+        behaviorConflictScore += 3;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_HIGH");
+      } else if (delta >= 0.75) {
+        score += 2;
+        behaviorConflictScore += 2;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_MID");
+      } else if (delta >= 0.35) {
+        score += 1;
+        behaviorConflictScore += 1;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_LOW");
+      } else {
+        reasons.push("BEHAVIOR_INVARIANT_MATCH");
+      }
+    } else {
+      score += 1;
+      behaviorConflictScore += 1;
+      reasons.push("BEHAVIOR_INVARIANT_PARSE_FALLBACK");
+    }
+  }
+
+  const roleDelta = packet.localBehaviorContext && packet.peerBehaviorProfile
+    ? Math.abs(
+      packet.localBehaviorContext.dominantRole -
+        packet.peerBehaviorProfile.dominantRole,
+    )
+    : 0;
+  if (roleDelta >= 4) {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("BEHAVIOR_ROLE_DELTA_HIGH");
+  }
+
+  if (
+    packet.localBehaviorContext && packet.peerBehaviorProfile &&
+    packet.localBehaviorContext.memberCount > 0 &&
+    packet.peerBehaviorProfile.memberCount >
+      packet.localBehaviorContext.memberCount * 6
+  ) {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("PEER_BEHAVIOR_SWARM_SCALE");
+  }
+
   const severity: FederationAdmissionSeverity = score >= policy.highScore
     ? "HIGH"
     : score >= policy.midScore
@@ -4708,6 +4861,13 @@ const evaluateFederateAdmission = (
   ) {
     action = "reject";
     reasons.push("HIGH_STRICT_MISMATCH_REJECT");
+  } else if (
+    severity === "HIGH" &&
+    behaviorConflictScore >= 3 &&
+    !policy.hybridizeEnabled
+  ) {
+    action = "reject";
+    reasons.push("HIGH_BEHAVIOR_CONFLICT_REJECT");
   } else if (policy.hybridizeEnabled) {
     action = "hybridize";
     const template = buildHybridTemplate(packet.pulseId, profile);
@@ -4757,6 +4917,9 @@ const evaluateFederateAdmission = (
     strictMismatch,
     degraded,
     hybridized,
+    localBehaviorInvariant,
+    peerBehaviorInvariant,
+    behaviorDistance,
   };
   return {
     action,
@@ -4856,7 +5019,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
 
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score}`,
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant}`,
   );
   return true;
 };
@@ -4954,7 +5117,11 @@ export const CONTROL_INTENT_QUEUE = {
     const logicBytes = explicit ?? crypto.getRandomValues(new Uint8Array(8));
     return enqueueInternal({ kind: "crisis", logicBytes });
   },
-  enqueueFederate: (packet: unknown, seedPulseId: number): QueueDecision => {
+  enqueueFederate: (
+    packet: unknown,
+    seedPulseId: number,
+    localBehaviorContext: unknown = null,
+  ): QueueDecision => {
     if (!packet || typeof packet !== "object") {
       return decision(false, 400, "INVALID_FEDERATE_PACKET");
     }
@@ -4967,6 +5134,8 @@ export const CONTROL_INTENT_QUEUE = {
     const energy = parseFiniteNumber(p.energy);
     const resonance = parseFiniteNumber(p.resonance);
     const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
+    const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
+    const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
     const pulseId = Number.isInteger(p.pulseId)
       ? Number(p.pulseId)
       : Math.max(0, Math.floor(seedPulseId));
@@ -4981,6 +5150,8 @@ export const CONTROL_INTENT_QUEUE = {
       resonance,
       pulseId,
       ruleGenome,
+      peerBehaviorProfile,
+      localBehaviorContext: localBehavior,
     });
     setLatestFederationAdmission(admissionResult.admission);
     const admissionKind = admissionResult.action === "reject"
@@ -5020,6 +5191,8 @@ export const CONTROL_INTENT_QUEUE = {
         sourceNode,
         pulseId,
         admission: admissionResult.admission,
+        peerBehaviorProfile,
+        localBehaviorContext: localBehavior,
       },
       seedPulseId: Math.max(0, Math.floor(seedPulseId)),
     });
@@ -9633,6 +9806,17 @@ type Telemetry = {
       };
     }>;
   };
+  federation_admission?: {
+    latest?: {
+      action: string;
+      severity: string;
+      score: number;
+      sourceNode?: string;
+      localBehaviorInvariant?: string;
+      peerBehaviorInvariant?: string;
+      behaviorDistance?: number;
+    };
+  };
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -10052,9 +10236,12 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 (entry.fingerprint as Record<string, unknown>).survivalCurve,
               )
               ? (
-                (entry.fingerprint as Record<string, unknown>).survivalCurve as unknown[]
+                (entry.fingerprint as Record<string, unknown>)
+                  .survivalCurve as unknown[]
               )
-                .map((value) => Math.max(0, Math.floor(asFiniteNumber(value, 0))))
+                .map((value) =>
+                  Math.max(0, Math.floor(asFiniteNumber(value, 0)))
+                )
                 .slice(-12)
               : [],
           }
@@ -10074,6 +10261,14 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const federationPeersRaw = Array.isArray(federationRaw?.peers)
     ? federationRaw?.peers as unknown[]
     : [];
+  const federationAdmissionRaw = source.federation_admission &&
+      typeof source.federation_admission === "object"
+    ? source.federation_admission as Record<string, unknown>
+    : null;
+  const federationAdmissionLatestRaw = federationAdmissionRaw?.latest &&
+      typeof federationAdmissionRaw.latest === "object"
+    ? federationAdmissionRaw.latest as Record<string, unknown>
+    : null;
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
@@ -10098,7 +10293,9 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             ),
             pressureRingScale: Math.max(
               0,
-              Math.floor(asFiniteNumber(federationLocalRaw.pressureRingScale, 0)),
+              Math.floor(
+                asFiniteNumber(federationLocalRaw.pressureRingScale, 0),
+              ),
             ),
             workerCount: Math.max(
               1,
@@ -10106,7 +10303,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             ),
             strictDeterminism: parseEnvBool(
               typeof federationLocalRaw.strictDeterminism === "string" ||
-                  typeof federationLocalRaw.strictDeterminism === "boolean"
+                typeof federationLocalRaw.strictDeterminism === "boolean"
                 ? String(federationLocalRaw.strictDeterminism)
                 : undefined,
               false,
@@ -10130,7 +10327,9 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 signature: typeof profile.signature === "string"
                   ? profile.signature
                   : "NONE",
-                noveltySigned: Math.floor(asFiniteNumber(profile.noveltySigned, 0)),
+                noveltySigned: Math.floor(
+                  asFiniteNumber(profile.noveltySigned, 0),
+                ),
                 symbiosisSigned: Math.floor(
                   asFiniteNumber(profile.symbiosisSigned, 0),
                 ),
@@ -10144,7 +10343,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 ),
                 strictDeterminism: parseEnvBool(
                   typeof profile.strictDeterminism === "string" ||
-                      typeof profile.strictDeterminism === "boolean"
+                    typeof profile.strictDeterminism === "boolean"
                     ? String(profile.strictDeterminism)
                     : undefined,
                   false,
@@ -10156,6 +10355,41 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             };
           })
           .slice(0, 8),
+      }
+      : undefined,
+    federation_admission: federationAdmissionRaw
+      ? {
+        latest: federationAdmissionLatestRaw
+          ? {
+            action: typeof federationAdmissionLatestRaw.action === "string"
+              ? federationAdmissionLatestRaw.action
+              : "accept",
+            severity: typeof federationAdmissionLatestRaw.severity === "string"
+              ? federationAdmissionLatestRaw.severity
+              : "LOW",
+            score: Math.floor(
+              asFiniteNumber(federationAdmissionLatestRaw.score, 0),
+            ),
+            sourceNode: typeof federationAdmissionLatestRaw.sourceNode ===
+                "string"
+              ? federationAdmissionLatestRaw.sourceNode
+              : undefined,
+            localBehaviorInvariant:
+              typeof federationAdmissionLatestRaw.localBehaviorInvariant ===
+                  "string"
+                ? federationAdmissionLatestRaw.localBehaviorInvariant
+                : undefined,
+            peerBehaviorInvariant:
+              typeof federationAdmissionLatestRaw.peerBehaviorInvariant ===
+                  "string"
+                ? federationAdmissionLatestRaw.peerBehaviorInvariant
+                : undefined,
+            behaviorDistance: asFiniteNumber(
+              federationAdmissionLatestRaw.behaviorDistance,
+              -1,
+            ),
+          }
+          : undefined,
       }
       : undefined,
     pulse_pressure: pulseRaw && ringRaw
@@ -10383,6 +10617,7 @@ const buildInvariantFrame = (
   const federationPeer = federationPeers.length > 0
     ? federationPeers[0]
     : undefined;
+  const federationAdmission = telemetry.federation_admission?.latest;
   const invariantSignals: InvariantSignal[] = [
     {
       key: "energy_mood_coupling",
@@ -10419,7 +10654,9 @@ const buildInvariantFrame = (
           `role=${dominantBehaviorCluster.dominantRole}`,
           `signature=${dominantBehaviorCluster.behaviorSignature}`,
           `curve=${
-            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(",") || "none"
+            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(
+              ",",
+            ) || "none"
           }`,
         ]
         : ["behavior=none"],
@@ -10447,6 +10684,32 @@ const buildInvariantFrame = (
         ]
         : ["federation=none"],
     },
+    {
+      key: "federation_admission_vector",
+      vector: federationAdmission
+        ? `${String(federationAdmission.action || "accept").toUpperCase()}:${
+          String(federationAdmission.severity || "LOW").toUpperCase()
+        }:${federationAdmission.localBehaviorInvariant ?? "none"}->${
+          federationAdmission.peerBehaviorInvariant ?? "none"
+        }`
+        : "none",
+      weight: federationAdmission
+        ? clamp(
+          0.25 + Math.max(0, Number(federationAdmission.score || 0)) / 12,
+          0.2,
+          0.9,
+        )
+        : 0.14,
+      evidence: federationAdmission
+        ? [
+          `score=${federationAdmission.score}`,
+          `source=${federationAdmission.sourceNode ?? "unknown"}`,
+          `distance=${
+            Number(federationAdmission.behaviorDistance ?? -1).toFixed(3)
+          }`,
+        ]
+        : ["admission=none"],
+    },
   ];
 
   const signatureSeed = JSON.stringify({
@@ -10460,14 +10723,23 @@ const buildInvariantFrame = (
     federationSignature: federationPeer?.profile.signature ??
       federationLocal?.signature ??
       "none",
+    federationAdmissionVector: federationAdmission
+      ? `${federationAdmission.action}:${federationAdmission.severity}:${
+        federationAdmission.localBehaviorInvariant ?? "none"
+      }->${federationAdmission.peerBehaviorInvariant ?? "none"}`
+      : "none",
   });
   const signature = fnv1a32(signatureSeed);
   const summary =
     `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | behavior=${behaviorInvariant} | federation=${
       federationPeer?.profile.signature ?? federationLocal?.signature ?? "none"
-    } | overlap=${
-      sharedTokens.length > 0 ? sharedTokens.join(",") : "none"
-    }`;
+    } | fedAdmission=${
+      federationAdmission
+        ? `${String(federationAdmission.action || "accept").toUpperCase()}:${
+          String(federationAdmission.severity || "LOW").toUpperCase()
+        }`
+        : "none"
+    } | overlap=${sharedTokens.length > 0 ? sharedTokens.join(",") : "none"}`;
 
   return {
     tick: telemetry.tick,
@@ -10834,6 +11106,7 @@ import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 
 export interface AtomPacket {
   id: string;
@@ -10843,6 +11116,7 @@ export interface AtomPacket {
   sourceNode: string;
   pulseId: number;
   ruleGenome?: RuleGenomeProfile;
+  behaviorProfile?: BehaviorProfile;
 }
 
 export interface RuleGenomeProfile {
@@ -10852,6 +11126,13 @@ export interface RuleGenomeProfile {
   pressureRingScale: number;
   workerCount: number;
   strictDeterminism: boolean;
+  generatedAt: string;
+}
+
+export interface BehaviorProfile {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
   generatedAt: string;
 }
 
@@ -10946,6 +11227,22 @@ export const P2P_FEDERATION = {
       logicStr += logicBytes[i].toString(16).padStart(2, "0");
     }
 
+    const behaviorFrame = SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024);
+    const dominantBehavior = behaviorFrame[0];
+    const behaviorProfile: BehaviorProfile = dominantBehavior
+      ? {
+        invariant: dominantBehavior.behaviorSignature,
+        dominantRole: dominantBehavior.dominantRole,
+        memberCount: dominantBehavior.memberCount,
+        generatedAt: new Date().toISOString(),
+      }
+      : {
+        invariant: "none",
+        dominantRole: -1,
+        memberCount: 0,
+        generatedAt: new Date().toISOString(),
+      };
+
     return {
       id,
       logic: logicStr,
@@ -10954,6 +11251,7 @@ export const P2P_FEDERATION = {
       sourceNode: P2P_FEDERATION.nodeId,
       pulseId,
       ruleGenome: LOCAL_RULE_GENOME,
+      behaviorProfile,
     };
   },
 
@@ -20568,9 +20866,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
+      const localBehavior = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+        PULSE.currentPulseId,
+        1024,
+      )[0];
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
+        localBehavior
+          ? {
+            invariant: localBehavior.behaviorSignature,
+            dominantRole: localBehavior.dominantRole,
+            memberCount: localBehavior.memberCount,
+          }
+          : { invariant: "none", dominantRole: -1, memberCount: 0 },
       );
       P2P_FEDERATION.observePeerRuleGenome(
         packet?.sourceNode,
@@ -23561,6 +23870,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const source = String(admission.sourceNode || "unknown")
           .slice(0, 40);
         const score = Math.floor(Number(admission.score || 0));
+        const distance = Number(admission.behaviorDistance || -1);
         const reasons = Array.isArray(admission.reasons)
           ? admission.reasons
             .filter((entry) => typeof entry === "string")
@@ -23568,7 +23878,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             .join(",")
           : "";
         const reasonText = reasons.length > 0 ? reasons : "n/a";
-        return `federation admission: ${severity} ${action} | score=${score} | source=${source} | reasons=${reasonText}`;
+        const distanceText = distance >= 0
+          ? ` | behaviorΔ=${distance.toFixed(3)}`
+          : "";
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {
