@@ -15,6 +15,17 @@ export interface AtomPacket {
   resonance: number;
   sourceNode: string;
   pulseId: number;
+  ruleGenome?: RuleGenomeProfile;
+}
+
+export interface RuleGenomeProfile {
+  signature: string;
+  noveltySigned: number;
+  symbiosisSigned: number;
+  pressureRingScale: number;
+  workerCount: number;
+  strictDeterminism: boolean;
+  generatedAt: string;
 }
 
 const CURRENT_PORT = RUNTIME_POLICY.system.port;
@@ -23,6 +34,70 @@ let isProcessingMigration = false;
 const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
 const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
+const RULE_PROFILE_SOURCE = JSON.stringify({
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+});
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
+};
+const RULE_GENOME_SIGNATURE = fnv1a32(RULE_PROFILE_SOURCE).toUpperCase();
+const LOCAL_RULE_GENOME: RuleGenomeProfile = {
+  signature: RULE_GENOME_SIGNATURE,
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+  generatedAt: new Date().toISOString(),
+};
+const peerRuleProfiles = new Map<string, RuleGenomeProfile>();
+const normalizeRuleGenome = (raw: unknown): RuleGenomeProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const signature = typeof source.signature === "string"
+    ? source.signature.trim().toUpperCase()
+    : "";
+  if (signature.length === 0) return null;
+  const noveltySigned = typeof source.noveltySigned === "number" &&
+      Number.isFinite(source.noveltySigned)
+    ? Math.trunc(source.noveltySigned)
+    : 0;
+  const symbiosisSigned = typeof source.symbiosisSigned === "number" &&
+      Number.isFinite(source.symbiosisSigned)
+    ? Math.trunc(source.symbiosisSigned)
+    : 0;
+  const pressureRingScale = typeof source.pressureRingScale === "number" &&
+      Number.isFinite(source.pressureRingScale)
+    ? Math.max(0, Math.trunc(source.pressureRingScale))
+    : 0;
+  const workerCount = typeof source.workerCount === "number" &&
+      Number.isFinite(source.workerCount)
+    ? Math.max(1, Math.trunc(source.workerCount))
+    : 1;
+  const strictDeterminism = source.strictDeterminism === true;
+  const generatedAt = typeof source.generatedAt === "string" &&
+      source.generatedAt.trim().length > 0
+    ? source.generatedAt.trim()
+    : new Date().toISOString();
+  return {
+    signature,
+    noveltySigned,
+    symbiosisSigned,
+    pressureRingScale,
+    workerCount,
+    strictDeterminism,
+    generatedAt,
+  };
+};
 
 export const P2P_FEDERATION = {
   peers: new Set<string>(
@@ -32,6 +107,7 @@ export const P2P_FEDERATION = {
   ),
   nodeId: `OMEGA-${CURRENT_PORT}`,
   enabled: FEDERATION_ENABLED,
+  localRuleGenome: LOCAL_RULE_GENOME,
 
   serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
     const id = IDX_TO_ID.get(idx);
@@ -50,8 +126,24 @@ export const P2P_FEDERATION = {
       resonance: STATE_MATRIX.getResonance(idx),
       sourceNode: P2P_FEDERATION.nodeId,
       pulseId,
+      ruleGenome: LOCAL_RULE_GENOME,
     };
   },
+
+  observePeerRuleGenome: (sourceNode: string, rawProfile: unknown) => {
+    const profile = normalizeRuleGenome(rawProfile);
+    if (!profile) return;
+    const key = typeof sourceNode === "string" && sourceNode.trim().length > 0
+      ? sourceNode.trim()
+      : "unknown";
+    peerRuleProfiles.set(key, profile);
+  },
+
+  getPeerRuleProfiles: () =>
+    Array.from(peerRuleProfiles.entries()).map(([peer, profile]) => ({
+      peer,
+      profile,
+    })),
 
   migrate: (idx: number, pulseId: number) => {
     if (!FEDERATION_ENABLED) return;

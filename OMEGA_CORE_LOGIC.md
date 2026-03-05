@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T11:07:47.838Z*
+*Generated: 2026-03-05T11:33:03.375Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: 0b48fc155014f2fe7c443ab8aa9102bb2467c22e1966a08957dfe22f8d6ba90b*
-*Git Commit: 364bf3313b0e*
+*Export Content SHA256: 7517d9d2d348ce8c363bb248f1be8a38c72867d8d436802e750aa6c852d6eb98*
+*Git Commit: 6ee607997cf8*
 
 ---
 
@@ -9158,6 +9158,43 @@ type Telemetry = {
   avgEnergy: number;
   dominantGenomes: string[];
   voxPopuli: string[];
+  behavior_invariant?: string;
+  behavior_clusters?: Array<{
+    behaviorSignature: string;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint?: {
+      replicateRatio: number;
+      signalRatio: number;
+      buildRatio: number;
+      survivalCurve: number[];
+    };
+    lastTick?: number;
+  }>;
+  federation_rule_genome?: {
+    local?: {
+      signature: string;
+      noveltySigned: number;
+      symbiosisSigned: number;
+      pressureRingScale: number;
+      workerCount: number;
+      strictDeterminism: boolean;
+      generatedAt: string;
+    };
+    peers?: Array<{
+      peer: string;
+      profile: {
+        signature: string;
+        noveltySigned: number;
+        symbiosisSigned: number;
+        pressureRingScale: number;
+        workerCount: number;
+        strictDeterminism: boolean;
+        generatedAt: string;
+      };
+    }>;
+  };
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -9537,11 +9574,152 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       typeof source.daemon_governance === "object"
     ? source.daemon_governance as Record<string, unknown>
     : null;
+  const behaviorClusters = Array.isArray(source.behavior_clusters)
+    ? source.behavior_clusters
+      .filter((entry): entry is Record<string, unknown> =>
+        !!entry && typeof entry === "object"
+      )
+      .map((entry) => ({
+        behaviorSignature: typeof entry.behaviorSignature === "string"
+          ? entry.behaviorSignature
+          : "none",
+        memberCount: Math.max(
+          0,
+          Math.floor(asFiniteNumber(entry.memberCount, 0)),
+        ),
+        dominantRole: Math.max(
+          0,
+          Math.floor(asFiniteNumber(entry.dominantRole, 0)),
+        ),
+        genomeSamples: Array.isArray(entry.genomeSamples)
+          ? entry.genomeSamples
+            .filter((sample): sample is string => typeof sample === "string")
+            .slice(0, 6)
+          : [],
+        fingerprint: entry.fingerprint && typeof entry.fingerprint === "object"
+          ? {
+            replicateRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).replicateRatio,
+              0,
+            ),
+            signalRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).signalRatio,
+              0,
+            ),
+            buildRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).buildRatio,
+              0,
+            ),
+            survivalCurve: Array.isArray(
+                (entry.fingerprint as Record<string, unknown>).survivalCurve,
+              )
+              ? (
+                (entry.fingerprint as Record<string, unknown>).survivalCurve as unknown[]
+              )
+                .map((value) => Math.max(0, Math.floor(asFiniteNumber(value, 0))))
+                .slice(-12)
+              : [],
+          }
+          : undefined,
+        lastTick: Math.max(0, Math.floor(asFiniteNumber(entry.lastTick, 0))),
+      }))
+      .slice(0, 6)
+    : [];
+  const federationRaw = source.federation_rule_genome &&
+      typeof source.federation_rule_genome === "object"
+    ? source.federation_rule_genome as Record<string, unknown>
+    : null;
+  const federationLocalRaw = federationRaw?.local &&
+      typeof federationRaw.local === "object"
+    ? federationRaw.local as Record<string, unknown>
+    : null;
+  const federationPeersRaw = Array.isArray(federationRaw?.peers)
+    ? federationRaw?.peers as unknown[]
+    : [];
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
     dominantGenomes: dominantGenomes.slice(0, 3),
     voxPopuli: voxPopuli.slice(0, 8),
+    behavior_invariant: typeof source.behavior_invariant === "string"
+      ? source.behavior_invariant
+      : undefined,
+    behavior_clusters: behaviorClusters,
+    federation_rule_genome: federationRaw
+      ? {
+        local: federationLocalRaw
+          ? {
+            signature: typeof federationLocalRaw.signature === "string"
+              ? federationLocalRaw.signature
+              : "NONE",
+            noveltySigned: Math.floor(
+              asFiniteNumber(federationLocalRaw.noveltySigned, 0),
+            ),
+            symbiosisSigned: Math.floor(
+              asFiniteNumber(federationLocalRaw.symbiosisSigned, 0),
+            ),
+            pressureRingScale: Math.max(
+              0,
+              Math.floor(asFiniteNumber(federationLocalRaw.pressureRingScale, 0)),
+            ),
+            workerCount: Math.max(
+              1,
+              Math.floor(asFiniteNumber(federationLocalRaw.workerCount, 1)),
+            ),
+            strictDeterminism: parseEnvBool(
+              typeof federationLocalRaw.strictDeterminism === "string" ||
+                  typeof federationLocalRaw.strictDeterminism === "boolean"
+                ? String(federationLocalRaw.strictDeterminism)
+                : undefined,
+              false,
+            ),
+            generatedAt: typeof federationLocalRaw.generatedAt === "string"
+              ? federationLocalRaw.generatedAt
+              : "",
+          }
+          : undefined,
+        peers: federationPeersRaw
+          .filter((entry): entry is Record<string, unknown> =>
+            !!entry && typeof entry === "object"
+          )
+          .map((entry) => {
+            const profile = entry.profile && typeof entry.profile === "object"
+              ? entry.profile as Record<string, unknown>
+              : {};
+            return {
+              peer: typeof entry.peer === "string" ? entry.peer : "unknown",
+              profile: {
+                signature: typeof profile.signature === "string"
+                  ? profile.signature
+                  : "NONE",
+                noveltySigned: Math.floor(asFiniteNumber(profile.noveltySigned, 0)),
+                symbiosisSigned: Math.floor(
+                  asFiniteNumber(profile.symbiosisSigned, 0),
+                ),
+                pressureRingScale: Math.max(
+                  0,
+                  Math.floor(asFiniteNumber(profile.pressureRingScale, 0)),
+                ),
+                workerCount: Math.max(
+                  1,
+                  Math.floor(asFiniteNumber(profile.workerCount, 1)),
+                ),
+                strictDeterminism: parseEnvBool(
+                  typeof profile.strictDeterminism === "string" ||
+                      typeof profile.strictDeterminism === "boolean"
+                    ? String(profile.strictDeterminism)
+                    : undefined,
+                  false,
+                ),
+                generatedAt: typeof profile.generatedAt === "string"
+                  ? profile.generatedAt
+                  : "",
+              },
+            };
+          })
+          .slice(0, 8),
+      }
+      : undefined,
     pulse_pressure: pulseRaw && ringRaw
       ? {
         novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),
@@ -9754,6 +9932,19 @@ const buildInvariantFrame = (
     0,
     6,
   );
+  const behaviorInvariant = typeof telemetry.behavior_invariant === "string" &&
+      telemetry.behavior_invariant.trim().length > 0
+    ? telemetry.behavior_invariant.trim()
+    : "none";
+  const dominantBehaviorCluster = Array.isArray(telemetry.behavior_clusters) &&
+      telemetry.behavior_clusters.length > 0
+    ? telemetry.behavior_clusters[0]
+    : undefined;
+  const federationLocal = telemetry.federation_rule_genome?.local;
+  const federationPeers = telemetry.federation_rule_genome?.peers ?? [];
+  const federationPeer = federationPeers.length > 0
+    ? federationPeers[0]
+    : undefined;
   const invariantSignals: InvariantSignal[] = [
     {
       key: "energy_mood_coupling",
@@ -9778,6 +9969,46 @@ const buildInvariantFrame = (
         : 0.12,
       evidence: sharedTokens.length > 0 ? sharedTokens : ["no-overlap"],
     },
+    {
+      key: "behavior_cluster",
+      vector: behaviorInvariant,
+      weight: dominantBehaviorCluster && dominantBehaviorCluster.memberCount > 0
+        ? clamp(0.35 + dominantBehaviorCluster.memberCount / 5000, 0.2, 0.86)
+        : 0.2,
+      evidence: dominantBehaviorCluster
+        ? [
+          `members=${dominantBehaviorCluster.memberCount}`,
+          `role=${dominantBehaviorCluster.dominantRole}`,
+          `signature=${dominantBehaviorCluster.behaviorSignature}`,
+          `curve=${
+            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(",") || "none"
+          }`,
+        ]
+        : ["behavior=none"],
+    },
+    {
+      key: "federated_rule_pressure",
+      vector: federationPeer
+        ? `${federationPeer.profile.signature}:${federationPeer.peer}`
+        : federationLocal
+        ? `${federationLocal.signature}:local`
+        : "none",
+      weight: federationPeer ? 0.74 : federationLocal ? 0.42 : 0.16,
+      evidence: federationPeer
+        ? [
+          `peer=${federationPeer.peer}`,
+          `peerNovelty=${federationPeer.profile.noveltySigned}`,
+          `peerSymbiosis=${federationPeer.profile.symbiosisSigned}`,
+          `local=${federationLocal?.signature ?? "none"}`,
+        ]
+        : federationLocal
+        ? [
+          `localNovelty=${federationLocal.noveltySigned}`,
+          `localSymbiosis=${federationLocal.symbiosisSigned}`,
+          `workerCount=${federationLocal.workerCount}`,
+        ]
+        : ["federation=none"],
+    },
   ];
 
   const signatureSeed = JSON.stringify({
@@ -9787,10 +10018,16 @@ const buildInvariantFrame = (
     energy,
     lineage,
     sharedTokens,
+    behaviorInvariant,
+    federationSignature: federationPeer?.profile.signature ??
+      federationLocal?.signature ??
+      "none",
   });
   const signature = fnv1a32(signatureSeed);
   const summary =
-    `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | overlap=${
+    `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | behavior=${behaviorInvariant} | federation=${
+      federationPeer?.profile.signature ?? federationLocal?.signature ?? "none"
+    } | overlap=${
       sharedTokens.length > 0 ? sharedTokens.join(",") : "none"
     }`;
 
@@ -10167,6 +10404,17 @@ export interface AtomPacket {
   resonance: number;
   sourceNode: string;
   pulseId: number;
+  ruleGenome?: RuleGenomeProfile;
+}
+
+export interface RuleGenomeProfile {
+  signature: string;
+  noveltySigned: number;
+  symbiosisSigned: number;
+  pressureRingScale: number;
+  workerCount: number;
+  strictDeterminism: boolean;
+  generatedAt: string;
 }
 
 const CURRENT_PORT = RUNTIME_POLICY.system.port;
@@ -10175,6 +10423,70 @@ let isProcessingMigration = false;
 const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
 const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
+const RULE_PROFILE_SOURCE = JSON.stringify({
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+});
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
+};
+const RULE_GENOME_SIGNATURE = fnv1a32(RULE_PROFILE_SOURCE).toUpperCase();
+const LOCAL_RULE_GENOME: RuleGenomeProfile = {
+  signature: RULE_GENOME_SIGNATURE,
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+  generatedAt: new Date().toISOString(),
+};
+const peerRuleProfiles = new Map<string, RuleGenomeProfile>();
+const normalizeRuleGenome = (raw: unknown): RuleGenomeProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const signature = typeof source.signature === "string"
+    ? source.signature.trim().toUpperCase()
+    : "";
+  if (signature.length === 0) return null;
+  const noveltySigned = typeof source.noveltySigned === "number" &&
+      Number.isFinite(source.noveltySigned)
+    ? Math.trunc(source.noveltySigned)
+    : 0;
+  const symbiosisSigned = typeof source.symbiosisSigned === "number" &&
+      Number.isFinite(source.symbiosisSigned)
+    ? Math.trunc(source.symbiosisSigned)
+    : 0;
+  const pressureRingScale = typeof source.pressureRingScale === "number" &&
+      Number.isFinite(source.pressureRingScale)
+    ? Math.max(0, Math.trunc(source.pressureRingScale))
+    : 0;
+  const workerCount = typeof source.workerCount === "number" &&
+      Number.isFinite(source.workerCount)
+    ? Math.max(1, Math.trunc(source.workerCount))
+    : 1;
+  const strictDeterminism = source.strictDeterminism === true;
+  const generatedAt = typeof source.generatedAt === "string" &&
+      source.generatedAt.trim().length > 0
+    ? source.generatedAt.trim()
+    : new Date().toISOString();
+  return {
+    signature,
+    noveltySigned,
+    symbiosisSigned,
+    pressureRingScale,
+    workerCount,
+    strictDeterminism,
+    generatedAt,
+  };
+};
 
 export const P2P_FEDERATION = {
   peers: new Set<string>(
@@ -10184,6 +10496,7 @@ export const P2P_FEDERATION = {
   ),
   nodeId: `OMEGA-${CURRENT_PORT}`,
   enabled: FEDERATION_ENABLED,
+  localRuleGenome: LOCAL_RULE_GENOME,
 
   serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
     const id = IDX_TO_ID.get(idx);
@@ -10202,8 +10515,24 @@ export const P2P_FEDERATION = {
       resonance: STATE_MATRIX.getResonance(idx),
       sourceNode: P2P_FEDERATION.nodeId,
       pulseId,
+      ruleGenome: LOCAL_RULE_GENOME,
     };
   },
+
+  observePeerRuleGenome: (sourceNode: string, rawProfile: unknown) => {
+    const profile = normalizeRuleGenome(rawProfile);
+    if (!profile) return;
+    const key = typeof sourceNode === "string" && sourceNode.trim().length > 0
+      ? sourceNode.trim()
+      : "unknown";
+    peerRuleProfiles.set(key, profile);
+  },
+
+  getPeerRuleProfiles: () =>
+    Array.from(peerRuleProfiles.entries()).map(([peer, profile]) => ({
+      peer,
+      profile,
+    })),
 
   migrate: (idx: number, pulseId: number) => {
     if (!FEDERATION_ENABLED) return;
@@ -13864,6 +14193,37 @@ const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
 const activityHistory = new Float32Array(PROJECTION_SIZE);
 let lastNormalization = 0;
+const BEHAVIOR_FRAME_MAX_ATOMS = 4096;
+const BEHAVIOR_CURVE_LENGTH = 16;
+const BEHAVIOR_STATE_TTL_TICKS = 2048;
+const OP_REPLICATE = 0x80;
+const OP_SIGNAL = 0x81;
+const OP_BUILD = 0xA8;
+
+export type BehaviorFingerprint = {
+    replicateRatio: number;
+    signalRatio: number;
+    buildRatio: number;
+    survivalCurve: number[];
+};
+
+export type BehaviorCluster = {
+    behaviorSignature: string;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint: BehaviorFingerprint;
+    lastTick: number;
+};
+
+type BehaviorRuntime = {
+    survivalCurve: number[];
+    lastTick: number;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint: BehaviorFingerprint;
+};
 
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
@@ -13886,10 +14246,183 @@ function getHyperplanes(dim: number): Float32Array[] {
     return hyperplanes;
 }
 
+const toGenomeHex = (logic: Uint8Array): string =>
+    Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+
+const quantizeRatio = (value: number): number => {
+    if (!Number.isFinite(value)) return 0;
+    const bounded = Math.max(0, Math.min(1, value));
+    return Math.round(bounded * 100) / 100;
+};
+
+const deriveBehaviorFingerprint = (instructions: Uint8Array): Omit<BehaviorFingerprint, "survivalCurve"> => {
+    let replicate = 0;
+    let signal = 0;
+    let build = 0;
+    let activeSlots = 0;
+
+    for (let i = 0; i < 64; i += 4) {
+        const op = instructions[i];
+        if (op !== 0) activeSlots++;
+        if (op === OP_REPLICATE) replicate++;
+        if (op === OP_SIGNAL) signal++;
+        if (op === OP_BUILD) build++;
+    }
+
+    const denom = Math.max(1, activeSlots);
+    return {
+        replicateRatio: quantizeRatio(replicate / denom),
+        signalRatio: quantizeRatio(signal / denom),
+        buildRatio: quantizeRatio(build / denom),
+    };
+};
+
+const behaviorSignature = (
+    fingerprint: Omit<BehaviorFingerprint, "survivalCurve">,
+): string =>
+    `R${fingerprint.replicateRatio.toFixed(2)}|S${fingerprint.signalRatio.toFixed(2)}|B${fingerprint.buildRatio.toFixed(2)}`;
+
+const trimCurve = (curve: number[]): number[] =>
+    curve.length > BEHAVIOR_CURVE_LENGTH
+        ? curve.slice(-BEHAVIOR_CURVE_LENGTH)
+        : curve;
+
+const behaviorRuntime = new Map<string, BehaviorRuntime>();
+let behaviorFrameCache: BehaviorCluster[] = [];
+let behaviorFrameTick = -1;
+
 export const SEMANTIC_MEMBRANE = {
     projectionMatrix,
     thoughtArchive: new Map<string, string>(),
     lineage: new Map<string, string>(), // ERA 23: childGenome -> parentGenome
+    behaviorRuntime,
+
+    captureBehaviorFrame: (
+        tick: number,
+        sampleLimit: number = BEHAVIOR_FRAME_MAX_ATOMS,
+    ): BehaviorCluster[] => {
+        const safeTick = Number.isFinite(tick) ? Math.max(0, Math.floor(tick)) : 0;
+        if (safeTick === behaviorFrameTick) {
+            return behaviorFrameCache;
+        }
+
+        const active = STATE_MATRIX.getActiveIndices();
+        const localSampleLimit = Number.isFinite(sampleLimit)
+            ? Math.max(64, Math.floor(sampleLimit))
+            : BEHAVIOR_FRAME_MAX_ATOMS;
+        const stride = active.length > localSampleLimit
+            ? Math.ceil(active.length / localSampleLimit)
+            : 1;
+
+        type Aggregate = {
+            memberCount: number;
+            replicateTotal: number;
+            signalTotal: number;
+            buildTotal: number;
+            roleCounts: number[];
+            genomeSamples: string[];
+        };
+
+        const aggregates = new Map<string, Aggregate>();
+        for (let i = 0; i < active.length; i += stride) {
+            const idx = active[i];
+            const fingerprint = deriveBehaviorFingerprint(STATE_MATRIX.getInstructions(idx));
+            const signature = behaviorSignature(fingerprint);
+            let bucket = aggregates.get(signature);
+            if (!bucket) {
+                bucket = {
+                    memberCount: 0,
+                    replicateTotal: 0,
+                    signalTotal: 0,
+                    buildTotal: 0,
+                    roleCounts: [0, 0, 0, 0, 0, 0, 0, 0],
+                    genomeSamples: [],
+                };
+                aggregates.set(signature, bucket);
+            }
+
+            bucket.memberCount++;
+            bucket.replicateTotal += fingerprint.replicateRatio;
+            bucket.signalTotal += fingerprint.signalRatio;
+            bucket.buildTotal += fingerprint.buildRatio;
+            const role = Math.min(7, Math.max(0, STATE_MATRIX.getRole(idx)));
+            bucket.roleCounts[role] += 1;
+
+            const genome = toGenomeHex(STATE_MATRIX.getLogic(idx));
+            if (bucket.genomeSamples.length < 6 && !bucket.genomeSamples.includes(genome)) {
+                bucket.genomeSamples.push(genome);
+            }
+        }
+
+        const seen = new Set<string>();
+        const frame: BehaviorCluster[] = [];
+        for (const [signature, bucket] of aggregates.entries()) {
+            seen.add(signature);
+            const memberCount = Math.max(1, bucket.memberCount);
+            const dominantRole = bucket.roleCounts.indexOf(Math.max(...bucket.roleCounts));
+            const fingerprint: BehaviorFingerprint = {
+                replicateRatio: quantizeRatio(bucket.replicateTotal / memberCount),
+                signalRatio: quantizeRatio(bucket.signalTotal / memberCount),
+                buildRatio: quantizeRatio(bucket.buildTotal / memberCount),
+                survivalCurve: [],
+            };
+
+            const previous = behaviorRuntime.get(signature);
+            const survivalCurve = trimCurve([
+                ...(previous?.survivalCurve ?? []),
+                bucket.memberCount,
+            ]);
+            fingerprint.survivalCurve = survivalCurve;
+
+            behaviorRuntime.set(signature, {
+                survivalCurve,
+                lastTick: safeTick,
+                memberCount: bucket.memberCount,
+                dominantRole,
+                genomeSamples: bucket.genomeSamples.slice(0, 6),
+                fingerprint,
+            });
+
+            frame.push({
+                behaviorSignature: signature,
+                memberCount: bucket.memberCount,
+                dominantRole,
+                genomeSamples: bucket.genomeSamples.slice(0, 6),
+                fingerprint,
+                lastTick: safeTick,
+            });
+        }
+
+        for (const [signature, runtime] of behaviorRuntime.entries()) {
+            if (seen.has(signature)) continue;
+            if (safeTick - runtime.lastTick > BEHAVIOR_STATE_TTL_TICKS) {
+                behaviorRuntime.delete(signature);
+                continue;
+            }
+            runtime.survivalCurve = trimCurve([...runtime.survivalCurve, 0]);
+            runtime.lastTick = safeTick;
+            runtime.fingerprint = {
+                ...runtime.fingerprint,
+                survivalCurve: runtime.survivalCurve,
+            };
+            behaviorRuntime.set(signature, runtime);
+        }
+
+        frame.sort((a, b) => b.memberCount - a.memberCount);
+        behaviorFrameCache = frame.slice(0, 32);
+        behaviorFrameTick = safeTick;
+        return behaviorFrameCache;
+    },
+
+    getBehaviorClusters: (limit: number = 6): BehaviorCluster[] => {
+        const take = Number.isFinite(limit) ? Math.max(1, Math.floor(limit)) : 6;
+        return behaviorFrameCache.slice(0, take);
+    },
+
+    dominantBehaviorInvariant: (): string =>
+        behaviorFrameCache.length > 0
+            ? behaviorFrameCache[0].behaviorSignature
+            : "none",
 
     /**
      * Adapts projection with Homeostatic Plasticity.
@@ -18317,6 +18850,11 @@ const buildTelemetry = async () => {
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
   const spatialHash = PULSE.getSpatialHashState();
+  const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+    metrics.tick,
+    4096,
+  );
+  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -18387,6 +18925,12 @@ const buildTelemetry = async () => {
       overflow_count: spatialHash.overflowCount,
       max_cell_count: spatialHash.maxCellCount,
       overflow_ratio: spatialHash.overflowRatio,
+    },
+    behavior_clusters: behaviorClusters.slice(0, 6),
+    behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
+    federation_rule_genome: {
+      local: P2P_FEDERATION.localRuleGenome,
+      peers: peerRuleProfiles.slice(0, 8),
     },
   };
 };
@@ -19500,12 +20044,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
-      LOGGER.info(
-        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
-      );
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
+      );
+      P2P_FEDERATION.observePeerRuleGenome(
+        packet?.sourceNode,
+        packet?.ruleGenome,
+      );
+      LOGGER.info(
+        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
       );
       return new Response(JSON.stringify(queued), {
         status: queued.status,
@@ -19526,6 +20074,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
       headers: { "Content-Type": "application/json" },
     });
+  }
+
+  if (url.pathname === "/peers/profiles") {
+    return new Response(
+      JSON.stringify({
+        local: P2P_FEDERATION.localRuleGenome,
+        peers: P2P_FEDERATION.getPeerRuleProfiles(),
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   if (url.pathname === "/vox") {

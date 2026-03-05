@@ -6,6 +6,43 @@ type Telemetry = {
   avgEnergy: number;
   dominantGenomes: string[];
   voxPopuli: string[];
+  behavior_invariant?: string;
+  behavior_clusters?: Array<{
+    behaviorSignature: string;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint?: {
+      replicateRatio: number;
+      signalRatio: number;
+      buildRatio: number;
+      survivalCurve: number[];
+    };
+    lastTick?: number;
+  }>;
+  federation_rule_genome?: {
+    local?: {
+      signature: string;
+      noveltySigned: number;
+      symbiosisSigned: number;
+      pressureRingScale: number;
+      workerCount: number;
+      strictDeterminism: boolean;
+      generatedAt: string;
+    };
+    peers?: Array<{
+      peer: string;
+      profile: {
+        signature: string;
+        noveltySigned: number;
+        symbiosisSigned: number;
+        pressureRingScale: number;
+        workerCount: number;
+        strictDeterminism: boolean;
+        generatedAt: string;
+      };
+    }>;
+  };
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -385,11 +422,152 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       typeof source.daemon_governance === "object"
     ? source.daemon_governance as Record<string, unknown>
     : null;
+  const behaviorClusters = Array.isArray(source.behavior_clusters)
+    ? source.behavior_clusters
+      .filter((entry): entry is Record<string, unknown> =>
+        !!entry && typeof entry === "object"
+      )
+      .map((entry) => ({
+        behaviorSignature: typeof entry.behaviorSignature === "string"
+          ? entry.behaviorSignature
+          : "none",
+        memberCount: Math.max(
+          0,
+          Math.floor(asFiniteNumber(entry.memberCount, 0)),
+        ),
+        dominantRole: Math.max(
+          0,
+          Math.floor(asFiniteNumber(entry.dominantRole, 0)),
+        ),
+        genomeSamples: Array.isArray(entry.genomeSamples)
+          ? entry.genomeSamples
+            .filter((sample): sample is string => typeof sample === "string")
+            .slice(0, 6)
+          : [],
+        fingerprint: entry.fingerprint && typeof entry.fingerprint === "object"
+          ? {
+            replicateRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).replicateRatio,
+              0,
+            ),
+            signalRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).signalRatio,
+              0,
+            ),
+            buildRatio: asFiniteNumber(
+              (entry.fingerprint as Record<string, unknown>).buildRatio,
+              0,
+            ),
+            survivalCurve: Array.isArray(
+                (entry.fingerprint as Record<string, unknown>).survivalCurve,
+              )
+              ? (
+                (entry.fingerprint as Record<string, unknown>).survivalCurve as unknown[]
+              )
+                .map((value) => Math.max(0, Math.floor(asFiniteNumber(value, 0))))
+                .slice(-12)
+              : [],
+          }
+          : undefined,
+        lastTick: Math.max(0, Math.floor(asFiniteNumber(entry.lastTick, 0))),
+      }))
+      .slice(0, 6)
+    : [];
+  const federationRaw = source.federation_rule_genome &&
+      typeof source.federation_rule_genome === "object"
+    ? source.federation_rule_genome as Record<string, unknown>
+    : null;
+  const federationLocalRaw = federationRaw?.local &&
+      typeof federationRaw.local === "object"
+    ? federationRaw.local as Record<string, unknown>
+    : null;
+  const federationPeersRaw = Array.isArray(federationRaw?.peers)
+    ? federationRaw?.peers as unknown[]
+    : [];
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
     dominantGenomes: dominantGenomes.slice(0, 3),
     voxPopuli: voxPopuli.slice(0, 8),
+    behavior_invariant: typeof source.behavior_invariant === "string"
+      ? source.behavior_invariant
+      : undefined,
+    behavior_clusters: behaviorClusters,
+    federation_rule_genome: federationRaw
+      ? {
+        local: federationLocalRaw
+          ? {
+            signature: typeof federationLocalRaw.signature === "string"
+              ? federationLocalRaw.signature
+              : "NONE",
+            noveltySigned: Math.floor(
+              asFiniteNumber(federationLocalRaw.noveltySigned, 0),
+            ),
+            symbiosisSigned: Math.floor(
+              asFiniteNumber(federationLocalRaw.symbiosisSigned, 0),
+            ),
+            pressureRingScale: Math.max(
+              0,
+              Math.floor(asFiniteNumber(federationLocalRaw.pressureRingScale, 0)),
+            ),
+            workerCount: Math.max(
+              1,
+              Math.floor(asFiniteNumber(federationLocalRaw.workerCount, 1)),
+            ),
+            strictDeterminism: parseEnvBool(
+              typeof federationLocalRaw.strictDeterminism === "string" ||
+                  typeof federationLocalRaw.strictDeterminism === "boolean"
+                ? String(federationLocalRaw.strictDeterminism)
+                : undefined,
+              false,
+            ),
+            generatedAt: typeof federationLocalRaw.generatedAt === "string"
+              ? federationLocalRaw.generatedAt
+              : "",
+          }
+          : undefined,
+        peers: federationPeersRaw
+          .filter((entry): entry is Record<string, unknown> =>
+            !!entry && typeof entry === "object"
+          )
+          .map((entry) => {
+            const profile = entry.profile && typeof entry.profile === "object"
+              ? entry.profile as Record<string, unknown>
+              : {};
+            return {
+              peer: typeof entry.peer === "string" ? entry.peer : "unknown",
+              profile: {
+                signature: typeof profile.signature === "string"
+                  ? profile.signature
+                  : "NONE",
+                noveltySigned: Math.floor(asFiniteNumber(profile.noveltySigned, 0)),
+                symbiosisSigned: Math.floor(
+                  asFiniteNumber(profile.symbiosisSigned, 0),
+                ),
+                pressureRingScale: Math.max(
+                  0,
+                  Math.floor(asFiniteNumber(profile.pressureRingScale, 0)),
+                ),
+                workerCount: Math.max(
+                  1,
+                  Math.floor(asFiniteNumber(profile.workerCount, 1)),
+                ),
+                strictDeterminism: parseEnvBool(
+                  typeof profile.strictDeterminism === "string" ||
+                      typeof profile.strictDeterminism === "boolean"
+                    ? String(profile.strictDeterminism)
+                    : undefined,
+                  false,
+                ),
+                generatedAt: typeof profile.generatedAt === "string"
+                  ? profile.generatedAt
+                  : "",
+              },
+            };
+          })
+          .slice(0, 8),
+      }
+      : undefined,
     pulse_pressure: pulseRaw && ringRaw
       ? {
         novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),
@@ -602,6 +780,19 @@ const buildInvariantFrame = (
     0,
     6,
   );
+  const behaviorInvariant = typeof telemetry.behavior_invariant === "string" &&
+      telemetry.behavior_invariant.trim().length > 0
+    ? telemetry.behavior_invariant.trim()
+    : "none";
+  const dominantBehaviorCluster = Array.isArray(telemetry.behavior_clusters) &&
+      telemetry.behavior_clusters.length > 0
+    ? telemetry.behavior_clusters[0]
+    : undefined;
+  const federationLocal = telemetry.federation_rule_genome?.local;
+  const federationPeers = telemetry.federation_rule_genome?.peers ?? [];
+  const federationPeer = federationPeers.length > 0
+    ? federationPeers[0]
+    : undefined;
   const invariantSignals: InvariantSignal[] = [
     {
       key: "energy_mood_coupling",
@@ -626,6 +817,46 @@ const buildInvariantFrame = (
         : 0.12,
       evidence: sharedTokens.length > 0 ? sharedTokens : ["no-overlap"],
     },
+    {
+      key: "behavior_cluster",
+      vector: behaviorInvariant,
+      weight: dominantBehaviorCluster && dominantBehaviorCluster.memberCount > 0
+        ? clamp(0.35 + dominantBehaviorCluster.memberCount / 5000, 0.2, 0.86)
+        : 0.2,
+      evidence: dominantBehaviorCluster
+        ? [
+          `members=${dominantBehaviorCluster.memberCount}`,
+          `role=${dominantBehaviorCluster.dominantRole}`,
+          `signature=${dominantBehaviorCluster.behaviorSignature}`,
+          `curve=${
+            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(",") || "none"
+          }`,
+        ]
+        : ["behavior=none"],
+    },
+    {
+      key: "federated_rule_pressure",
+      vector: federationPeer
+        ? `${federationPeer.profile.signature}:${federationPeer.peer}`
+        : federationLocal
+        ? `${federationLocal.signature}:local`
+        : "none",
+      weight: federationPeer ? 0.74 : federationLocal ? 0.42 : 0.16,
+      evidence: federationPeer
+        ? [
+          `peer=${federationPeer.peer}`,
+          `peerNovelty=${federationPeer.profile.noveltySigned}`,
+          `peerSymbiosis=${federationPeer.profile.symbiosisSigned}`,
+          `local=${federationLocal?.signature ?? "none"}`,
+        ]
+        : federationLocal
+        ? [
+          `localNovelty=${federationLocal.noveltySigned}`,
+          `localSymbiosis=${federationLocal.symbiosisSigned}`,
+          `workerCount=${federationLocal.workerCount}`,
+        ]
+        : ["federation=none"],
+    },
   ];
 
   const signatureSeed = JSON.stringify({
@@ -635,10 +866,16 @@ const buildInvariantFrame = (
     energy,
     lineage,
     sharedTokens,
+    behaviorInvariant,
+    federationSignature: federationPeer?.profile.signature ??
+      federationLocal?.signature ??
+      "none",
   });
   const signature = fnv1a32(signatureSeed);
   const summary =
-    `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | overlap=${
+    `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | behavior=${behaviorInvariant} | federation=${
+      federationPeer?.profile.signature ?? federationLocal?.signature ?? "none"
+    } | overlap=${
       sharedTokens.length > 0 ? sharedTokens.join(",") : "none"
     }`;
 

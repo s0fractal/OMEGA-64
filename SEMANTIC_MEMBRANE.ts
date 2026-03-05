@@ -8,6 +8,37 @@ const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
 const activityHistory = new Float32Array(PROJECTION_SIZE);
 let lastNormalization = 0;
+const BEHAVIOR_FRAME_MAX_ATOMS = 4096;
+const BEHAVIOR_CURVE_LENGTH = 16;
+const BEHAVIOR_STATE_TTL_TICKS = 2048;
+const OP_REPLICATE = 0x80;
+const OP_SIGNAL = 0x81;
+const OP_BUILD = 0xA8;
+
+export type BehaviorFingerprint = {
+    replicateRatio: number;
+    signalRatio: number;
+    buildRatio: number;
+    survivalCurve: number[];
+};
+
+export type BehaviorCluster = {
+    behaviorSignature: string;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint: BehaviorFingerprint;
+    lastTick: number;
+};
+
+type BehaviorRuntime = {
+    survivalCurve: number[];
+    lastTick: number;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint: BehaviorFingerprint;
+};
 
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
@@ -30,10 +61,183 @@ function getHyperplanes(dim: number): Float32Array[] {
     return hyperplanes;
 }
 
+const toGenomeHex = (logic: Uint8Array): string =>
+    Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+
+const quantizeRatio = (value: number): number => {
+    if (!Number.isFinite(value)) return 0;
+    const bounded = Math.max(0, Math.min(1, value));
+    return Math.round(bounded * 100) / 100;
+};
+
+const deriveBehaviorFingerprint = (instructions: Uint8Array): Omit<BehaviorFingerprint, "survivalCurve"> => {
+    let replicate = 0;
+    let signal = 0;
+    let build = 0;
+    let activeSlots = 0;
+
+    for (let i = 0; i < 64; i += 4) {
+        const op = instructions[i];
+        if (op !== 0) activeSlots++;
+        if (op === OP_REPLICATE) replicate++;
+        if (op === OP_SIGNAL) signal++;
+        if (op === OP_BUILD) build++;
+    }
+
+    const denom = Math.max(1, activeSlots);
+    return {
+        replicateRatio: quantizeRatio(replicate / denom),
+        signalRatio: quantizeRatio(signal / denom),
+        buildRatio: quantizeRatio(build / denom),
+    };
+};
+
+const behaviorSignature = (
+    fingerprint: Omit<BehaviorFingerprint, "survivalCurve">,
+): string =>
+    `R${fingerprint.replicateRatio.toFixed(2)}|S${fingerprint.signalRatio.toFixed(2)}|B${fingerprint.buildRatio.toFixed(2)}`;
+
+const trimCurve = (curve: number[]): number[] =>
+    curve.length > BEHAVIOR_CURVE_LENGTH
+        ? curve.slice(-BEHAVIOR_CURVE_LENGTH)
+        : curve;
+
+const behaviorRuntime = new Map<string, BehaviorRuntime>();
+let behaviorFrameCache: BehaviorCluster[] = [];
+let behaviorFrameTick = -1;
+
 export const SEMANTIC_MEMBRANE = {
     projectionMatrix,
     thoughtArchive: new Map<string, string>(),
     lineage: new Map<string, string>(), // ERA 23: childGenome -> parentGenome
+    behaviorRuntime,
+
+    captureBehaviorFrame: (
+        tick: number,
+        sampleLimit: number = BEHAVIOR_FRAME_MAX_ATOMS,
+    ): BehaviorCluster[] => {
+        const safeTick = Number.isFinite(tick) ? Math.max(0, Math.floor(tick)) : 0;
+        if (safeTick === behaviorFrameTick) {
+            return behaviorFrameCache;
+        }
+
+        const active = STATE_MATRIX.getActiveIndices();
+        const localSampleLimit = Number.isFinite(sampleLimit)
+            ? Math.max(64, Math.floor(sampleLimit))
+            : BEHAVIOR_FRAME_MAX_ATOMS;
+        const stride = active.length > localSampleLimit
+            ? Math.ceil(active.length / localSampleLimit)
+            : 1;
+
+        type Aggregate = {
+            memberCount: number;
+            replicateTotal: number;
+            signalTotal: number;
+            buildTotal: number;
+            roleCounts: number[];
+            genomeSamples: string[];
+        };
+
+        const aggregates = new Map<string, Aggregate>();
+        for (let i = 0; i < active.length; i += stride) {
+            const idx = active[i];
+            const fingerprint = deriveBehaviorFingerprint(STATE_MATRIX.getInstructions(idx));
+            const signature = behaviorSignature(fingerprint);
+            let bucket = aggregates.get(signature);
+            if (!bucket) {
+                bucket = {
+                    memberCount: 0,
+                    replicateTotal: 0,
+                    signalTotal: 0,
+                    buildTotal: 0,
+                    roleCounts: [0, 0, 0, 0, 0, 0, 0, 0],
+                    genomeSamples: [],
+                };
+                aggregates.set(signature, bucket);
+            }
+
+            bucket.memberCount++;
+            bucket.replicateTotal += fingerprint.replicateRatio;
+            bucket.signalTotal += fingerprint.signalRatio;
+            bucket.buildTotal += fingerprint.buildRatio;
+            const role = Math.min(7, Math.max(0, STATE_MATRIX.getRole(idx)));
+            bucket.roleCounts[role] += 1;
+
+            const genome = toGenomeHex(STATE_MATRIX.getLogic(idx));
+            if (bucket.genomeSamples.length < 6 && !bucket.genomeSamples.includes(genome)) {
+                bucket.genomeSamples.push(genome);
+            }
+        }
+
+        const seen = new Set<string>();
+        const frame: BehaviorCluster[] = [];
+        for (const [signature, bucket] of aggregates.entries()) {
+            seen.add(signature);
+            const memberCount = Math.max(1, bucket.memberCount);
+            const dominantRole = bucket.roleCounts.indexOf(Math.max(...bucket.roleCounts));
+            const fingerprint: BehaviorFingerprint = {
+                replicateRatio: quantizeRatio(bucket.replicateTotal / memberCount),
+                signalRatio: quantizeRatio(bucket.signalTotal / memberCount),
+                buildRatio: quantizeRatio(bucket.buildTotal / memberCount),
+                survivalCurve: [],
+            };
+
+            const previous = behaviorRuntime.get(signature);
+            const survivalCurve = trimCurve([
+                ...(previous?.survivalCurve ?? []),
+                bucket.memberCount,
+            ]);
+            fingerprint.survivalCurve = survivalCurve;
+
+            behaviorRuntime.set(signature, {
+                survivalCurve,
+                lastTick: safeTick,
+                memberCount: bucket.memberCount,
+                dominantRole,
+                genomeSamples: bucket.genomeSamples.slice(0, 6),
+                fingerprint,
+            });
+
+            frame.push({
+                behaviorSignature: signature,
+                memberCount: bucket.memberCount,
+                dominantRole,
+                genomeSamples: bucket.genomeSamples.slice(0, 6),
+                fingerprint,
+                lastTick: safeTick,
+            });
+        }
+
+        for (const [signature, runtime] of behaviorRuntime.entries()) {
+            if (seen.has(signature)) continue;
+            if (safeTick - runtime.lastTick > BEHAVIOR_STATE_TTL_TICKS) {
+                behaviorRuntime.delete(signature);
+                continue;
+            }
+            runtime.survivalCurve = trimCurve([...runtime.survivalCurve, 0]);
+            runtime.lastTick = safeTick;
+            runtime.fingerprint = {
+                ...runtime.fingerprint,
+                survivalCurve: runtime.survivalCurve,
+            };
+            behaviorRuntime.set(signature, runtime);
+        }
+
+        frame.sort((a, b) => b.memberCount - a.memberCount);
+        behaviorFrameCache = frame.slice(0, 32);
+        behaviorFrameTick = safeTick;
+        return behaviorFrameCache;
+    },
+
+    getBehaviorClusters: (limit: number = 6): BehaviorCluster[] => {
+        const take = Number.isFinite(limit) ? Math.max(1, Math.floor(limit)) : 6;
+        return behaviorFrameCache.slice(0, take);
+    },
+
+    dominantBehaviorInvariant: (): string =>
+        behaviorFrameCache.length > 0
+            ? behaviorFrameCache[0].behaviorSignature
+            : "none",
 
     /**
      * Adapts projection with Homeostatic Plasticity.

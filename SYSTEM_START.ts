@@ -486,6 +486,11 @@ const buildTelemetry = async () => {
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
   const spatialHash = PULSE.getSpatialHashState();
+  const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+    metrics.tick,
+    4096,
+  );
+  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -556,6 +561,12 @@ const buildTelemetry = async () => {
       overflow_count: spatialHash.overflowCount,
       max_cell_count: spatialHash.maxCellCount,
       overflow_ratio: spatialHash.overflowRatio,
+    },
+    behavior_clusters: behaviorClusters.slice(0, 6),
+    behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
+    federation_rule_genome: {
+      local: P2P_FEDERATION.localRuleGenome,
+      peers: peerRuleProfiles.slice(0, 8),
     },
   };
 };
@@ -1669,12 +1680,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
-      LOGGER.info(
-        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
-      );
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
+      );
+      P2P_FEDERATION.observePeerRuleGenome(
+        packet?.sourceNode,
+        packet?.ruleGenome,
+      );
+      LOGGER.info(
+        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}`,
       );
       return new Response(JSON.stringify(queued), {
         status: queued.status,
@@ -1695,6 +1710,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
       headers: { "Content-Type": "application/json" },
     });
+  }
+
+  if (url.pathname === "/peers/profiles") {
+    return new Response(
+      JSON.stringify({
+        local: P2P_FEDERATION.localRuleGenome,
+        peers: P2P_FEDERATION.getPeerRuleProfiles(),
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   if (url.pathname === "/vox") {
