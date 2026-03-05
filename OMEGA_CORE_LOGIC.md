@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T10:54:58.874Z*
+*Generated: 2026-03-05T11:00:26.743Z*
 *Exported Files: 66*
 *Runtime Roots: 6*
 *Runtime Closure Files: 37*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: f0ff53601e050df5f623e258e465ee84d2e7712831bf158b2931af1343327913*
-*Export Content SHA256: e0e495d86188ba2b73e54f9a596503e60752d5a9999507899e7289b4ff5ff45d*
-*Git Commit: 78c8402bfe37*
+*Export Content SHA256: a0e088ceae978c0d959835dbfaa6951726b4abbd6bbf2d001c9b0abd1701aee5*
+*Git Commit: 756b79f2fc42*
 
 ---
 
@@ -3690,12 +3690,26 @@ const STR_DIODE: i32 = 3;
 const STR_SOURCE: i32 = 4;
 const STR_SINK: i32 = 5;
 const STR_CAPACITOR: i32 = 6;
+let spatialHashOverflowCount: i32 = 0;
+let spatialHashMaxCellCount: i32 = 0;
+
+export function get_spatial_hash_overflow_count(): i32 {
+    return spatialHashOverflowCount;
+}
+
+export function get_spatial_hash_max_cell_count(): i32 {
+    return spatialHashMaxCellCount;
+}
 
 export function build_spatial_hash(): void {
     const GRID_COLS: i32 = 140;
     const GRID_ROWS: i32 = 80;
     const TOTAL_CELLS: i32 = 11200; // 140 * 80
     const CELL_CAPACITY: i32 = 31;
+    const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
+
+    spatialHashOverflowCount = 0;
+    spatialHashMaxCellCount = 0;
     
     // 1. Clear Grid and Quorum
     for (let i = 0; i < TOTAL_CELLS; i++) {
@@ -3726,9 +3740,8 @@ export function build_spatial_hash(): void {
         let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
         // Atomic update of count
-        let count = atomic.load<i32>(offset as usize);
-        if (count < CELL_CAPACITY - 1) {
-            let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
+        let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
+        if (nextSlot <= MAX_ATOM_SLOTS) {
             store<i32>((offset + (nextSlot << 2)) as usize, idx);
             
             // Phase tracking (Era 50)
@@ -3739,6 +3752,13 @@ export function build_spatial_hash(): void {
             let role = getRole(idx);
             let safeRole = role > 7 ? 7 : role;
             atomic.add<i32>(QUORUM_OFFSET + (cellIdx << 5) + (safeRole << 2) as usize, 1);
+            if (nextSlot > spatialHashMaxCellCount) {
+                spatialHashMaxCellCount = nextSlot;
+            }
+        } else {
+            // Overflow: roll back count so the cell occupancy stays bounded.
+            atomic.sub<i32>(offset as usize, 1);
+            spatialHashOverflowCount += 1;
         }
     }
 
@@ -10906,6 +10926,8 @@ let execute_atom_fn: (idx: number) => void;
 let tick_matrix_fn: (() => void) | null = null;
 let tick_structure_grid_fn: (() => void) | null = null;
 let build_spatial_hash_fn: (() => void) | null = null;
+let get_spatial_hash_overflow_count_fn: (() => number) | null = null;
+let get_spatial_hash_max_cell_count_fn: (() => number) | null = null;
 let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
   null;
 let get_neural_coherence_fn: (() => number) | null = null;
@@ -11005,6 +11027,10 @@ self.onmessage = async (e) => {
       tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
       tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
       build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
+      get_spatial_hash_overflow_count_fn = wasmInstance.exports
+        .get_spatial_hash_overflow_count as any;
+      get_spatial_hash_max_cell_count_fn = wasmInstance.exports
+        .get_spatial_hash_max_cell_count as any;
       reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
       get_neural_coherence_fn = wasmInstance.exports
         .get_neural_coherence as any;
@@ -11071,8 +11097,14 @@ self.onmessage = async (e) => {
 
   if (type === "BUILD_SPATIAL_HASH") {
     if (build_spatial_hash_fn) build_spatial_hash_fn();
+    const overflowCount = get_spatial_hash_overflow_count_fn
+      ? get_spatial_hash_overflow_count_fn()
+      : 0;
+    const maxCellCount = get_spatial_hash_max_cell_count_fn
+      ? get_spatial_hash_max_cell_count_fn()
+      : 0;
     await maybeDelay();
-    self.postMessage({ type: "HASH_DONE", pulseId });
+    self.postMessage({ type: "HASH_DONE", pulseId, overflowCount, maxCellCount });
   }
 
   if (type === "POLL_COHERENCE") {
@@ -11185,6 +11217,12 @@ type EvolutionPressureState = {
     egoLoveBalance: number;
   };
 };
+type SpatialHashState = {
+  tick: number;
+  overflowCount: number;
+  maxCellCount: number;
+  overflowRatio: number;
+};
 
 const clampPressureTerm = (value: number): number =>
   Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
@@ -11255,6 +11293,12 @@ let wasmBootDegraded = false;
 let wasmBootReason = "";
 let wasmBootArtifactBytes = 0;
 let wasmBootPrecheckCompleted = false;
+let spatialHashState: SpatialHashState = {
+  tick: -1,
+  overflowCount: 0,
+  maxCellCount: 0,
+  overflowRatio: 0,
+};
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
@@ -11265,6 +11309,14 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+};
+const resetSpatialHashStateForColdStart = (): void => {
+  spatialHashState = {
+    tick: -1,
+    overflowCount: 0,
+    maxCellCount: 0,
+    overflowRatio: 0,
+  };
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
   evolutionPressureState = {
@@ -11280,6 +11332,12 @@ const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   symbiosis: evolutionPressureState.symbiosis,
   ego: evolutionPressureState.ego,
   ring: { ...evolutionPressureState.ring },
+});
+const snapshotSpatialHashState = (): SpatialHashState => ({
+  tick: spatialHashState.tick,
+  overflowCount: spatialHashState.overflowCount,
+  maxCellCount: spatialHashState.maxCellCount,
+  overflowRatio: spatialHashState.overflowRatio,
 });
 const applyEvolutionPressureRing = (
   next: {
@@ -11874,6 +11932,7 @@ export const PULSE = {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
+    resetSpatialHashStateForColdStart();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -12113,6 +12172,7 @@ export const PULSE = {
   },
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
+  getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
   updateEvolutionPressureRing: (
     update: {
       mode: "set" | "step";
@@ -12241,10 +12301,35 @@ export const PULSE = {
       // 2. Parallel Physics & WASM Kernel
       // 2a. Rebuild Spatial Lattice (WASM)
       const hashPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "BUILD_SPATIAL_HASH",
-        pulseId: hashPulseId,
-      }, "HASH_DONE");
+      const hashRes = await postAndWait<
+        { overflowCount?: number; maxCellCount?: number }
+      >(
+        0,
+        workers[0],
+        {
+          type: "BUILD_SPATIAL_HASH",
+          pulseId: hashPulseId,
+        },
+        "HASH_DONE",
+      );
+      const overflowCount = Number.isFinite(hashRes.overflowCount)
+        ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
+        : 0;
+      const maxCellCount = Number.isFinite(hashRes.maxCellCount)
+        ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
+        : 0;
+      const activeCount = Math.max(1, activeIdx.length);
+      spatialHashState = {
+        tick: currentTick,
+        overflowCount,
+        maxCellCount,
+        overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
+      };
+      if (overflowCount > 0 && currentTick % 20 === 0) {
+        LOGGER.warn(
+          `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
+        );
+      }
 
       // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
       {
@@ -18231,6 +18316,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
+  const spatialHash = PULSE.getSpatialHashState();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -18295,6 +18381,12 @@ const buildTelemetry = async () => {
       in_flight: autoSnapshotInFlight,
       last_tick: autoSnapshotLastTick,
       last_result: autoSnapshotLastResult,
+    },
+    spatial_hash_guard: {
+      tick: spatialHash.tick,
+      overflow_count: spatialHash.overflowCount,
+      max_cell_count: spatialHash.maxCellCount,
+      overflow_ratio: spatialHash.overflowRatio,
     },
   };
 };

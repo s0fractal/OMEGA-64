@@ -485,6 +485,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
+  const spatialHash = PULSE.getSpatialHashState();
   let voxPopuli: string[] = [];
   try {
     const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
@@ -549,6 +550,12 @@ const buildTelemetry = async () => {
       in_flight: autoSnapshotInFlight,
       last_tick: autoSnapshotLastTick,
       last_result: autoSnapshotLastResult,
+    },
+    spatial_hash_guard: {
+      tick: spatialHash.tick,
+      overflow_count: spatialHash.overflowCount,
+      max_cell_count: spatialHash.maxCellCount,
+      overflow_ratio: spatialHash.overflowRatio,
     },
   };
 };

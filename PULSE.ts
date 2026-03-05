@@ -57,6 +57,12 @@ type EvolutionPressureState = {
     egoLoveBalance: number;
   };
 };
+type SpatialHashState = {
+  tick: number;
+  overflowCount: number;
+  maxCellCount: number;
+  overflowRatio: number;
+};
 
 const clampPressureTerm = (value: number): number =>
   Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
@@ -127,6 +133,12 @@ let wasmBootDegraded = false;
 let wasmBootReason = "";
 let wasmBootArtifactBytes = 0;
 let wasmBootPrecheckCompleted = false;
+let spatialHashState: SpatialHashState = {
+  tick: -1,
+  overflowCount: 0,
+  maxCellCount: 0,
+  overflowRatio: 0,
+};
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
@@ -137,6 +149,14 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+};
+const resetSpatialHashStateForColdStart = (): void => {
+  spatialHashState = {
+    tick: -1,
+    overflowCount: 0,
+    maxCellCount: 0,
+    overflowRatio: 0,
+  };
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
   evolutionPressureState = {
@@ -152,6 +172,12 @@ const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   symbiosis: evolutionPressureState.symbiosis,
   ego: evolutionPressureState.ego,
   ring: { ...evolutionPressureState.ring },
+});
+const snapshotSpatialHashState = (): SpatialHashState => ({
+  tick: spatialHashState.tick,
+  overflowCount: spatialHashState.overflowCount,
+  maxCellCount: spatialHashState.maxCellCount,
+  overflowRatio: spatialHashState.overflowRatio,
 });
 const applyEvolutionPressureRing = (
   next: {
@@ -746,6 +772,7 @@ export const PULSE = {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
+    resetSpatialHashStateForColdStart();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -985,6 +1012,7 @@ export const PULSE = {
   },
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
+  getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
   updateEvolutionPressureRing: (
     update: {
       mode: "set" | "step";
@@ -1113,10 +1141,35 @@ export const PULSE = {
       // 2. Parallel Physics & WASM Kernel
       // 2a. Rebuild Spatial Lattice (WASM)
       const hashPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "BUILD_SPATIAL_HASH",
-        pulseId: hashPulseId,
-      }, "HASH_DONE");
+      const hashRes = await postAndWait<
+        { overflowCount?: number; maxCellCount?: number }
+      >(
+        0,
+        workers[0],
+        {
+          type: "BUILD_SPATIAL_HASH",
+          pulseId: hashPulseId,
+        },
+        "HASH_DONE",
+      );
+      const overflowCount = Number.isFinite(hashRes.overflowCount)
+        ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
+        : 0;
+      const maxCellCount = Number.isFinite(hashRes.maxCellCount)
+        ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
+        : 0;
+      const activeCount = Math.max(1, activeIdx.length);
+      spatialHashState = {
+        tick: currentTick,
+        overflowCount,
+        maxCellCount,
+        overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
+      };
+      if (overflowCount > 0 && currentTick % 20 === 0) {
+        LOGGER.warn(
+          `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
+        );
+      }
 
       // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
       {

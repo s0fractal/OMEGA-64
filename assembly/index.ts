@@ -946,12 +946,26 @@ const STR_DIODE: i32 = 3;
 const STR_SOURCE: i32 = 4;
 const STR_SINK: i32 = 5;
 const STR_CAPACITOR: i32 = 6;
+let spatialHashOverflowCount: i32 = 0;
+let spatialHashMaxCellCount: i32 = 0;
+
+export function get_spatial_hash_overflow_count(): i32 {
+    return spatialHashOverflowCount;
+}
+
+export function get_spatial_hash_max_cell_count(): i32 {
+    return spatialHashMaxCellCount;
+}
 
 export function build_spatial_hash(): void {
     const GRID_COLS: i32 = 140;
     const GRID_ROWS: i32 = 80;
     const TOTAL_CELLS: i32 = 11200; // 140 * 80
     const CELL_CAPACITY: i32 = 31;
+    const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
+
+    spatialHashOverflowCount = 0;
+    spatialHashMaxCellCount = 0;
     
     // 1. Clear Grid and Quorum
     for (let i = 0; i < TOTAL_CELLS; i++) {
@@ -982,9 +996,8 @@ export function build_spatial_hash(): void {
         let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
         // Atomic update of count
-        let count = atomic.load<i32>(offset as usize);
-        if (count < CELL_CAPACITY - 1) {
-            let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
+        let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
+        if (nextSlot <= MAX_ATOM_SLOTS) {
             store<i32>((offset + (nextSlot << 2)) as usize, idx);
             
             // Phase tracking (Era 50)
@@ -995,6 +1008,13 @@ export function build_spatial_hash(): void {
             let role = getRole(idx);
             let safeRole = role > 7 ? 7 : role;
             atomic.add<i32>(QUORUM_OFFSET + (cellIdx << 5) + (safeRole << 2) as usize, 1);
+            if (nextSlot > spatialHashMaxCellCount) {
+                spatialHashMaxCellCount = nextSlot;
+            }
+        } else {
+            // Overflow: roll back count so the cell occupancy stays bounded.
+            atomic.sub<i32>(offset as usize, 1);
+            spatialHashOverflowCount += 1;
         }
     }
 

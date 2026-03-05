@@ -9,6 +9,8 @@ let execute_atom_fn: (idx: number) => void;
 let tick_matrix_fn: (() => void) | null = null;
 let tick_structure_grid_fn: (() => void) | null = null;
 let build_spatial_hash_fn: (() => void) | null = null;
+let get_spatial_hash_overflow_count_fn: (() => number) | null = null;
+let get_spatial_hash_max_cell_count_fn: (() => number) | null = null;
 let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
   null;
 let get_neural_coherence_fn: (() => number) | null = null;
@@ -108,6 +110,10 @@ self.onmessage = async (e) => {
       tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
       tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
       build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
+      get_spatial_hash_overflow_count_fn = wasmInstance.exports
+        .get_spatial_hash_overflow_count as any;
+      get_spatial_hash_max_cell_count_fn = wasmInstance.exports
+        .get_spatial_hash_max_cell_count as any;
       reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
       get_neural_coherence_fn = wasmInstance.exports
         .get_neural_coherence as any;
@@ -174,8 +180,14 @@ self.onmessage = async (e) => {
 
   if (type === "BUILD_SPATIAL_HASH") {
     if (build_spatial_hash_fn) build_spatial_hash_fn();
+    const overflowCount = get_spatial_hash_overflow_count_fn
+      ? get_spatial_hash_overflow_count_fn()
+      : 0;
+    const maxCellCount = get_spatial_hash_max_cell_count_fn
+      ? get_spatial_hash_max_cell_count_fn()
+      : 0;
     await maybeDelay();
-    self.postMessage({ type: "HASH_DONE", pulseId });
+    self.postMessage({ type: "HASH_DONE", pulseId, overflowCount, maxCellCount });
   }
 
   if (type === "POLL_COHERENCE") {
