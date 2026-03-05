@@ -1685,9 +1685,20 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (denied) return denied;
     try {
       const packet = await req.json();
+      const localBehavior = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+        PULSE.currentPulseId,
+        1024,
+      )[0];
       const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
         packet,
         PULSE.currentPulseId,
+        localBehavior
+          ? {
+            invariant: localBehavior.behaviorSignature,
+            dominantRole: localBehavior.dominantRole,
+            memberCount: localBehavior.memberCount,
+          }
+          : { invariant: "none", dominantRole: -1, memberCount: 0 },
       );
       P2P_FEDERATION.observePeerRuleGenome(
         packet?.sourceNode,

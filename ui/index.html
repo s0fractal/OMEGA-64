@@ -2562,6 +2562,7 @@
         const source = String(admission.sourceNode || "unknown")
           .slice(0, 40);
         const score = Math.floor(Number(admission.score || 0));
+        const distance = Number(admission.behaviorDistance || -1);
         const reasons = Array.isArray(admission.reasons)
           ? admission.reasons
             .filter((entry) => typeof entry === "string")
@@ -2569,7 +2570,10 @@
             .join(",")
           : "";
         const reasonText = reasons.length > 0 ? reasons : "n/a";
-        return `federation admission: ${severity} ${action} | score=${score} | source=${source} | reasons=${reasonText}`;
+        const distanceText = distance >= 0
+          ? ` | behaviorΔ=${distance.toFixed(3)}`
+          : "";
+        return `federation admission: ${severity} ${action} | score=${score}${distanceText} | source=${source} | reasons=${reasonText}`;
       }
 
       function currentCodexLineageGuard() {

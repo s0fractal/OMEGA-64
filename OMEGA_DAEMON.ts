@@ -43,6 +43,17 @@ type Telemetry = {
       };
     }>;
   };
+  federation_admission?: {
+    latest?: {
+      action: string;
+      severity: string;
+      score: number;
+      sourceNode?: string;
+      localBehaviorInvariant?: string;
+      peerBehaviorInvariant?: string;
+      behaviorDistance?: number;
+    };
+  };
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -462,9 +473,12 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 (entry.fingerprint as Record<string, unknown>).survivalCurve,
               )
               ? (
-                (entry.fingerprint as Record<string, unknown>).survivalCurve as unknown[]
+                (entry.fingerprint as Record<string, unknown>)
+                  .survivalCurve as unknown[]
               )
-                .map((value) => Math.max(0, Math.floor(asFiniteNumber(value, 0))))
+                .map((value) =>
+                  Math.max(0, Math.floor(asFiniteNumber(value, 0)))
+                )
                 .slice(-12)
               : [],
           }
@@ -484,6 +498,14 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const federationPeersRaw = Array.isArray(federationRaw?.peers)
     ? federationRaw?.peers as unknown[]
     : [];
+  const federationAdmissionRaw = source.federation_admission &&
+      typeof source.federation_admission === "object"
+    ? source.federation_admission as Record<string, unknown>
+    : null;
+  const federationAdmissionLatestRaw = federationAdmissionRaw?.latest &&
+      typeof federationAdmissionRaw.latest === "object"
+    ? federationAdmissionRaw.latest as Record<string, unknown>
+    : null;
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
@@ -508,7 +530,9 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             ),
             pressureRingScale: Math.max(
               0,
-              Math.floor(asFiniteNumber(federationLocalRaw.pressureRingScale, 0)),
+              Math.floor(
+                asFiniteNumber(federationLocalRaw.pressureRingScale, 0),
+              ),
             ),
             workerCount: Math.max(
               1,
@@ -516,7 +540,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             ),
             strictDeterminism: parseEnvBool(
               typeof federationLocalRaw.strictDeterminism === "string" ||
-                  typeof federationLocalRaw.strictDeterminism === "boolean"
+                typeof federationLocalRaw.strictDeterminism === "boolean"
                 ? String(federationLocalRaw.strictDeterminism)
                 : undefined,
               false,
@@ -540,7 +564,9 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 signature: typeof profile.signature === "string"
                   ? profile.signature
                   : "NONE",
-                noveltySigned: Math.floor(asFiniteNumber(profile.noveltySigned, 0)),
+                noveltySigned: Math.floor(
+                  asFiniteNumber(profile.noveltySigned, 0),
+                ),
                 symbiosisSigned: Math.floor(
                   asFiniteNumber(profile.symbiosisSigned, 0),
                 ),
@@ -554,7 +580,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
                 ),
                 strictDeterminism: parseEnvBool(
                   typeof profile.strictDeterminism === "string" ||
-                      typeof profile.strictDeterminism === "boolean"
+                    typeof profile.strictDeterminism === "boolean"
                     ? String(profile.strictDeterminism)
                     : undefined,
                   false,
@@ -566,6 +592,41 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             };
           })
           .slice(0, 8),
+      }
+      : undefined,
+    federation_admission: federationAdmissionRaw
+      ? {
+        latest: federationAdmissionLatestRaw
+          ? {
+            action: typeof federationAdmissionLatestRaw.action === "string"
+              ? federationAdmissionLatestRaw.action
+              : "accept",
+            severity: typeof federationAdmissionLatestRaw.severity === "string"
+              ? federationAdmissionLatestRaw.severity
+              : "LOW",
+            score: Math.floor(
+              asFiniteNumber(federationAdmissionLatestRaw.score, 0),
+            ),
+            sourceNode: typeof federationAdmissionLatestRaw.sourceNode ===
+                "string"
+              ? federationAdmissionLatestRaw.sourceNode
+              : undefined,
+            localBehaviorInvariant:
+              typeof federationAdmissionLatestRaw.localBehaviorInvariant ===
+                  "string"
+                ? federationAdmissionLatestRaw.localBehaviorInvariant
+                : undefined,
+            peerBehaviorInvariant:
+              typeof federationAdmissionLatestRaw.peerBehaviorInvariant ===
+                  "string"
+                ? federationAdmissionLatestRaw.peerBehaviorInvariant
+                : undefined,
+            behaviorDistance: asFiniteNumber(
+              federationAdmissionLatestRaw.behaviorDistance,
+              -1,
+            ),
+          }
+          : undefined,
       }
       : undefined,
     pulse_pressure: pulseRaw && ringRaw
@@ -793,6 +854,7 @@ const buildInvariantFrame = (
   const federationPeer = federationPeers.length > 0
     ? federationPeers[0]
     : undefined;
+  const federationAdmission = telemetry.federation_admission?.latest;
   const invariantSignals: InvariantSignal[] = [
     {
       key: "energy_mood_coupling",
@@ -829,7 +891,9 @@ const buildInvariantFrame = (
           `role=${dominantBehaviorCluster.dominantRole}`,
           `signature=${dominantBehaviorCluster.behaviorSignature}`,
           `curve=${
-            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(",") || "none"
+            dominantBehaviorCluster.fingerprint?.survivalCurve?.slice(-4).join(
+              ",",
+            ) || "none"
           }`,
         ]
         : ["behavior=none"],
@@ -857,6 +921,32 @@ const buildInvariantFrame = (
         ]
         : ["federation=none"],
     },
+    {
+      key: "federation_admission_vector",
+      vector: federationAdmission
+        ? `${String(federationAdmission.action || "accept").toUpperCase()}:${
+          String(federationAdmission.severity || "LOW").toUpperCase()
+        }:${federationAdmission.localBehaviorInvariant ?? "none"}->${
+          federationAdmission.peerBehaviorInvariant ?? "none"
+        }`
+        : "none",
+      weight: federationAdmission
+        ? clamp(
+          0.25 + Math.max(0, Number(federationAdmission.score || 0)) / 12,
+          0.2,
+          0.9,
+        )
+        : 0.14,
+      evidence: federationAdmission
+        ? [
+          `score=${federationAdmission.score}`,
+          `source=${federationAdmission.sourceNode ?? "unknown"}`,
+          `distance=${
+            Number(federationAdmission.behaviorDistance ?? -1).toFixed(3)
+          }`,
+        ]
+        : ["admission=none"],
+    },
   ];
 
   const signatureSeed = JSON.stringify({
@@ -870,14 +960,23 @@ const buildInvariantFrame = (
     federationSignature: federationPeer?.profile.signature ??
       federationLocal?.signature ??
       "none",
+    federationAdmissionVector: federationAdmission
+      ? `${federationAdmission.action}:${federationAdmission.severity}:${
+        federationAdmission.localBehaviorInvariant ?? "none"
+      }->${federationAdmission.peerBehaviorInvariant ?? "none"}`
+      : "none",
   });
   const signature = fnv1a32(signatureSeed);
   const summary =
     `center=tick.exists | energy=${energy} | mood=${mood} | lineage=${lineage} | behavior=${behaviorInvariant} | federation=${
       federationPeer?.profile.signature ?? federationLocal?.signature ?? "none"
-    } | overlap=${
-      sharedTokens.length > 0 ? sharedTokens.join(",") : "none"
-    }`;
+    } | fedAdmission=${
+      federationAdmission
+        ? `${String(federationAdmission.action || "accept").toUpperCase()}:${
+          String(federationAdmission.severity || "LOW").toUpperCase()
+        }`
+        : "none"
+    } | overlap=${sharedTokens.length > 0 ? sharedTokens.join(",") : "none"}`;
 
   return {
     tick: telemetry.tick,

@@ -7,6 +7,7 @@ import { PRNG } from "./PRNG.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 
 export interface AtomPacket {
   id: string;
@@ -16,6 +17,7 @@ export interface AtomPacket {
   sourceNode: string;
   pulseId: number;
   ruleGenome?: RuleGenomeProfile;
+  behaviorProfile?: BehaviorProfile;
 }
 
 export interface RuleGenomeProfile {
@@ -25,6 +27,13 @@ export interface RuleGenomeProfile {
   pressureRingScale: number;
   workerCount: number;
   strictDeterminism: boolean;
+  generatedAt: string;
+}
+
+export interface BehaviorProfile {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
   generatedAt: string;
 }
 
@@ -119,6 +128,22 @@ export const P2P_FEDERATION = {
       logicStr += logicBytes[i].toString(16).padStart(2, "0");
     }
 
+    const behaviorFrame = SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024);
+    const dominantBehavior = behaviorFrame[0];
+    const behaviorProfile: BehaviorProfile = dominantBehavior
+      ? {
+        invariant: dominantBehavior.behaviorSignature,
+        dominantRole: dominantBehavior.dominantRole,
+        memberCount: dominantBehavior.memberCount,
+        generatedAt: new Date().toISOString(),
+      }
+      : {
+        invariant: "none",
+        dominantRole: -1,
+        memberCount: 0,
+        generatedAt: new Date().toISOString(),
+      };
+
     return {
       id,
       logic: logicStr,
@@ -127,6 +152,7 @@ export const P2P_FEDERATION = {
       sourceNode: P2P_FEDERATION.nodeId,
       pulseId,
       ruleGenome: LOCAL_RULE_GENOME,
+      behaviorProfile,
     };
   },
 

@@ -22,6 +22,8 @@ type FederateIntent = {
     sourceNode: string;
     pulseId: number;
     admission: FederationAdmissionSnapshot;
+    peerBehaviorProfile: FederationBehaviorProfile | null;
+    localBehaviorContext: FederationLocalBehaviorContext | null;
   };
   seedPulseId: number;
 };
@@ -43,6 +45,19 @@ type FederationRuleGenomeProfile = {
   generatedAt: string;
 };
 
+type FederationBehaviorProfile = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+  generatedAt: string;
+};
+
+type FederationLocalBehaviorContext = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+};
+
 type FederationAdmissionSnapshot = {
   tick: number;
   atomId: string;
@@ -56,6 +71,9 @@ type FederationAdmissionSnapshot = {
   strictMismatch: boolean;
   degraded: boolean;
   hybridized: boolean;
+  localBehaviorInvariant: string;
+  peerBehaviorInvariant: string;
+  behaviorDistance: number;
 };
 
 type FederateAdmissionResult = {
@@ -237,6 +255,72 @@ const parseRuleGenomeProfile = (
   };
 };
 
+const parseBehaviorProfile = (
+  raw: unknown,
+): FederationBehaviorProfile | null => {
+  if (!raw || typeof raw !== "object") return null;
+  const source = raw as Record<string, unknown>;
+  const invariant = typeof source.invariant === "string"
+    ? source.invariant.trim()
+    : "";
+  if (invariant.length === 0) return null;
+  return {
+    invariant,
+    dominantRole: toBoundedInt(Number(source.dominantRole), -1, 7, -1),
+    memberCount: toBoundedInt(Number(source.memberCount), 0, 100_000, 0),
+    generatedAt: typeof source.generatedAt === "string" &&
+        source.generatedAt.trim().length > 0
+      ? source.generatedAt.trim()
+      : "unknown",
+  };
+};
+
+const parseLocalBehaviorContext = (
+  raw: unknown,
+): FederationLocalBehaviorContext | null => {
+  const parsed = parseBehaviorProfile(raw);
+  if (!parsed) return null;
+  return {
+    invariant: parsed.invariant,
+    dominantRole: parsed.dominantRole,
+    memberCount: parsed.memberCount,
+  };
+};
+
+const parseBehaviorInvariantAxes = (
+  invariant: string,
+): { r: number; s: number; b: number } | null => {
+  const match = invariant
+    .trim()
+    .match(
+      /^R([0-9]+(?:\.[0-9]+)?)\|S([0-9]+(?:\.[0-9]+)?)\|B([0-9]+(?:\.[0-9]+)?)$/i,
+    );
+  if (!match) return null;
+  const r = Number.parseFloat(match[1]);
+  const s = Number.parseFloat(match[2]);
+  const b = Number.parseFloat(match[3]);
+  if (!Number.isFinite(r) || !Number.isFinite(s) || !Number.isFinite(b)) {
+    return null;
+  }
+  return {
+    r: clamp(r, 0, 1),
+    s: clamp(s, 0, 1),
+    b: clamp(b, 0, 1),
+  };
+};
+
+const behaviorInvariantDistance = (
+  localInvariant: string,
+  peerInvariant: string,
+): number | null => {
+  const left = parseBehaviorInvariantAxes(localInvariant);
+  const right = parseBehaviorInvariantAxes(peerInvariant);
+  if (!left || !right) return null;
+  const delta = Math.abs(left.r - right.r) + Math.abs(left.s - right.s) +
+    Math.abs(left.b - right.b);
+  return Number(delta.toFixed(3));
+};
+
 const setLatestFederationAdmission = (
   snapshot: FederationAdmissionSnapshot,
 ): void => {
@@ -304,9 +388,15 @@ const evaluateFederateAdmission = (
     resonance: number;
     pulseId: number;
     ruleGenome: FederationRuleGenomeProfile | null;
+    peerBehaviorProfile: FederationBehaviorProfile | null;
+    localBehaviorContext: FederationLocalBehaviorContext | null;
   },
 ): FederateAdmissionResult => {
   const policy = FEDERATION_ADMISSION_POLICY;
+  const localBehaviorInvariant = packet.localBehaviorContext?.invariant ??
+    "none";
+  const peerBehaviorInvariant = packet.peerBehaviorProfile?.invariant ?? "none";
+  let behaviorDistance = -1;
   if (!policy.enabled) {
     const admission: FederationAdmissionSnapshot = {
       tick: packet.pulseId,
@@ -321,6 +411,9 @@ const evaluateFederateAdmission = (
       strictMismatch: false,
       degraded: false,
       hybridized: false,
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+      behaviorDistance,
     };
     return {
       action: "accept",
@@ -348,6 +441,9 @@ const evaluateFederateAdmission = (
       strictMismatch: false,
       degraded: true,
       hybridized: false,
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+      behaviorDistance,
     };
     return {
       action: "degrade",
@@ -368,6 +464,7 @@ const evaluateFederateAdmission = (
 
   let score = 0;
   const reasons: string[] = [];
+  let behaviorConflictScore = 0;
 
   const noveltyDelta = Math.abs(
     profile.noveltySigned - FEDERATION_LOCAL_NOVELTY_SIGNED,
@@ -423,6 +520,62 @@ const evaluateFederateAdmission = (
     reasons.push("RULE_SIGNATURE_DRIFT");
   }
 
+  if (peerBehaviorInvariant === "none") {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("PEER_BEHAVIOR_PROFILE_MISSING");
+  } else if (localBehaviorInvariant !== "none") {
+    const delta = behaviorInvariantDistance(
+      localBehaviorInvariant,
+      peerBehaviorInvariant,
+    );
+    if (delta !== null) {
+      behaviorDistance = delta;
+      if (delta >= 1.35) {
+        score += 3;
+        behaviorConflictScore += 3;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_HIGH");
+      } else if (delta >= 0.75) {
+        score += 2;
+        behaviorConflictScore += 2;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_MID");
+      } else if (delta >= 0.35) {
+        score += 1;
+        behaviorConflictScore += 1;
+        reasons.push("BEHAVIOR_INVARIANT_DELTA_LOW");
+      } else {
+        reasons.push("BEHAVIOR_INVARIANT_MATCH");
+      }
+    } else {
+      score += 1;
+      behaviorConflictScore += 1;
+      reasons.push("BEHAVIOR_INVARIANT_PARSE_FALLBACK");
+    }
+  }
+
+  const roleDelta = packet.localBehaviorContext && packet.peerBehaviorProfile
+    ? Math.abs(
+      packet.localBehaviorContext.dominantRole -
+        packet.peerBehaviorProfile.dominantRole,
+    )
+    : 0;
+  if (roleDelta >= 4) {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("BEHAVIOR_ROLE_DELTA_HIGH");
+  }
+
+  if (
+    packet.localBehaviorContext && packet.peerBehaviorProfile &&
+    packet.localBehaviorContext.memberCount > 0 &&
+    packet.peerBehaviorProfile.memberCount >
+      packet.localBehaviorContext.memberCount * 6
+  ) {
+    score += 1;
+    behaviorConflictScore += 1;
+    reasons.push("PEER_BEHAVIOR_SWARM_SCALE");
+  }
+
   const severity: FederationAdmissionSeverity = score >= policy.highScore
     ? "HIGH"
     : score >= policy.midScore
@@ -444,6 +597,13 @@ const evaluateFederateAdmission = (
   ) {
     action = "reject";
     reasons.push("HIGH_STRICT_MISMATCH_REJECT");
+  } else if (
+    severity === "HIGH" &&
+    behaviorConflictScore >= 3 &&
+    !policy.hybridizeEnabled
+  ) {
+    action = "reject";
+    reasons.push("HIGH_BEHAVIOR_CONFLICT_REJECT");
   } else if (policy.hybridizeEnabled) {
     action = "hybridize";
     const template = buildHybridTemplate(packet.pulseId, profile);
@@ -493,6 +653,9 @@ const evaluateFederateAdmission = (
     strictMismatch,
     degraded,
     hybridized,
+    localBehaviorInvariant,
+    peerBehaviorInvariant,
+    behaviorDistance,
   };
   return {
     action,
@@ -592,7 +755,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
 
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score}`,
+    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant}`,
   );
   return true;
 };
@@ -690,7 +853,11 @@ export const CONTROL_INTENT_QUEUE = {
     const logicBytes = explicit ?? crypto.getRandomValues(new Uint8Array(8));
     return enqueueInternal({ kind: "crisis", logicBytes });
   },
-  enqueueFederate: (packet: unknown, seedPulseId: number): QueueDecision => {
+  enqueueFederate: (
+    packet: unknown,
+    seedPulseId: number,
+    localBehaviorContext: unknown = null,
+  ): QueueDecision => {
     if (!packet || typeof packet !== "object") {
       return decision(false, 400, "INVALID_FEDERATE_PACKET");
     }
@@ -703,6 +870,8 @@ export const CONTROL_INTENT_QUEUE = {
     const energy = parseFiniteNumber(p.energy);
     const resonance = parseFiniteNumber(p.resonance);
     const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
+    const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
+    const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
     const pulseId = Number.isInteger(p.pulseId)
       ? Number(p.pulseId)
       : Math.max(0, Math.floor(seedPulseId));
@@ -717,6 +886,8 @@ export const CONTROL_INTENT_QUEUE = {
       resonance,
       pulseId,
       ruleGenome,
+      peerBehaviorProfile,
+      localBehaviorContext: localBehavior,
     });
     setLatestFederationAdmission(admissionResult.admission);
     const admissionKind = admissionResult.action === "reject"
@@ -756,6 +927,8 @@ export const CONTROL_INTENT_QUEUE = {
         sourceNode,
         pulseId,
         admission: admissionResult.admission,
+        peerBehaviorProfile,
+        localBehaviorContext: localBehavior,
       },
       seedPulseId: Math.max(0, Math.floor(seedPulseId)),
     });

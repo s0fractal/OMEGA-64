@@ -1,6 +1,8 @@
 const QUEUE_PATH = "CONTROL_INTENT_QUEUE.ts";
 const POLICY_PATH = "RUNTIME_POLICY.ts";
+const P2P_PATH = "P2P_FEDERATION.ts";
 const SYSTEM_PATH = "SYSTEM_START.ts";
+const DAEMON_PATH = "OMEGA_DAEMON.ts";
 const UI_PATH = "ui/index.html";
 
 type Violation = {
@@ -23,10 +25,12 @@ const requireSnippet = (
 const main = async () => {
   const violations: Violation[] = [];
 
-  const [queue, policy, system, ui] = await Promise.all([
+  const [queue, policy, p2p, system, daemon, ui] = await Promise.all([
     Deno.readTextFile(QUEUE_PATH),
     Deno.readTextFile(POLICY_PATH),
+    Deno.readTextFile(P2P_PATH),
     Deno.readTextFile(SYSTEM_PATH),
+    Deno.readTextFile(DAEMON_PATH),
     Deno.readTextFile(UI_PATH),
   ]);
 
@@ -56,6 +60,42 @@ const main = async () => {
     "getFederationAdmissionState",
     QUEUE_PATH,
     "Control queue must expose federation admission latest/history state",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "behaviorInvariantDistance",
+    QUEUE_PATH,
+    "Control queue must score federated ingress against behavior invariants",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "PEER_BEHAVIOR_PROFILE_MISSING",
+    QUEUE_PATH,
+    "Control queue must account for missing peer behavior profile",
+    violations,
+  );
+  requireSnippet(
+    queue,
+    "localBehaviorInvariant",
+    QUEUE_PATH,
+    "Federation admission snapshot must preserve local behavior invariant",
+    violations,
+  );
+
+  requireSnippet(
+    p2p,
+    "behaviorProfile",
+    P2P_PATH,
+    "Federation egress packets must carry behavior profile metadata",
+    violations,
+  );
+  requireSnippet(
+    p2p,
+    "captureBehaviorFrame",
+    P2P_PATH,
+    "Federation egress must source behavior profile from semantic membrane",
     violations,
   );
 
@@ -93,6 +133,27 @@ const main = async () => {
     '"/federate/admission"',
     SYSTEM_PATH,
     "System API must expose federation admission endpoint",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "localBehavior",
+    SYSTEM_PATH,
+    "System ingress must pass local behavior context into federation admission",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "federation_admission",
+    DAEMON_PATH,
+    "Daemon telemetry parser must consume federation admission envelope",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "federation_admission_vector",
+    DAEMON_PATH,
+    "Daemon invariant frame must emit federation admission vector",
     violations,
   );
 
