@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:53:27.959Z*
-*Exported Files: 123*
+*Generated: 2026-03-06T12:57:24.270Z*
+*Exported Files: 124*
 *Runtime Roots: 6*
-*Runtime Closure Files: 39*
-*Non-Runtime Code Files: 32*
-*Runtime-Support Code Files: 18*
+*Runtime Closure Files: 42*
+*Non-Runtime Code Files: 30*
+*Runtime-Support Code Files: 16*
 *Experimental Code Files: 14*
-*Manifest SHA256: 203594105693f9096d3aad68cea71192def5b1686db5a0f2a771324ef2c859e1*
-*Export Set SHA256: cb973763c1291bb42033a14738117acca9512011d9af2fe0bb182216a421ea78*
-*Export Content SHA256: 5c271387793adb3d9e434460f5edba7b574e72e69eddc62850713de29793d4cb*
-*Git Commit: 218bd2692e9e*
+*Manifest SHA256: bc2c48bc737b6066c20d87339bedefed054c3c0ecb01dba1dacefb3490a19c43*
+*Export Set SHA256: 68f6265c57ad1f02be30bb5b1a2f858e40622fd0fcd62cc747cddc79307d446d*
+*Export Content SHA256: 8a24a0f2b6598972227b7aa7332f371f1b39462ca62ac2769276b71c5dfb9417*
+*Git Commit: 7f1d54c3050d*
 
 ---
 
@@ -44,6 +44,8 @@
 - GATE_MERGER.ts
 - GATE_VALIDATOR.ts
 - GATE.ts
+- GENETIC_LEDGER.ts
+- HORMONE_BUFFER.ts
 - LLM_SYNAPSE.ts
 - LOGGER.ts
 - MUTATION_TELEMETRY.ts
@@ -51,6 +53,7 @@
 - OMEGA_DAEMON.ts
 - P2P_FEDERATION.ts
 - PHYSICS_ENGINE.ts
+- PHYSIOLOGY_SNAPSHOT.ts
 - PREDICTION_MARKET.ts
 - PRNG.ts
 - PULSE_WORKER.ts
@@ -73,9 +76,7 @@
 
 - build_wasm.ts
 - ECOLOGY_ENGINE.ts
-- GENETIC_LEDGER.ts
 - HOLOGRAM_MODULE.ts
-- HORMONE_BUFFER.ts
 - LAMBDA_VM.ts
 - MATRIX_ENGINE.ts
 - mod.ts
@@ -109,9 +110,7 @@
 ## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT
 
 - build_wasm.ts
-- GENETIC_LEDGER.ts
 - HOLOGRAM_MODULE.ts
-- HORMONE_BUFFER.ts
 - mod.ts
 - OBSERVER_LAB.ts
 - OBSERVER_UI.ts
@@ -1734,6 +1733,34 @@ const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyPhysiology = async (): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/physiology`, {
+      method: "GET",
+      headers: buildForwardHeaders(new Headers(), false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_PHYSIOLOGY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_PHYSIOLOGY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
   let parsedBody: unknown = null;
   try {
@@ -1969,6 +1996,10 @@ const reqHandler = async (req: Request) => {
     return proxyHomeostasis(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/physiology") {
+    return proxyPhysiology();
+  }
+
   if (req.method === "GET" && url.pathname === "/api/codex") {
     return proxyCodex(req, "/api/codex", url.search);
   }
@@ -1998,7 +2029,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -6091,8 +6122,6 @@ export const CONTROL_INTENT_QUEUE = {
     "assembly/index.ts"
   ],
   "runtime_support_files": [
-    "GENETIC_LEDGER.ts",
-    "HORMONE_BUFFER.ts",
     "build_wasm.ts",
     "HOLOGRAM_MODULE.ts",
     "mod.ts",
@@ -7601,10 +7630,13 @@ For each global dynamic constant:
   - `mutation_friction`
 - `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
 - [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
+- `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an observer-only runtime projection of hormone / ledger state through `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
   - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+  - [test_physiology_snapshot_contract.ts](/Users/s0fractal/OMEGA/test_physiology_snapshot_contract.ts)
+  - [test_physiology_api_contract.ts](/Users/s0fractal/OMEGA/test_physiology_api_contract.ts)
 - current scope remains deliberately non-authoritative:
   - no live `SharedArrayBuffer` hormone region
   - no persisted ledger history
@@ -14949,6 +14981,212 @@ export const PHYSICS_ENGINE = {
 
 ---
 
+## FILE: PHYSIOLOGY_SNAPSHOT.ts
+
+```typescript
+import {
+  GENETIC_LEDGER_CATALOG,
+  type GeneticLedgerEntry,
+  type GeneticLedgerKey,
+} from "./GENETIC_LEDGER.ts";
+import {
+  HORMONE_BUFFER_CATALOG,
+  type HormoneId,
+  type HormoneSpec,
+} from "./HORMONE_BUFFER.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+export type PhysiologyHomeostasisInput = {
+  targetEnergyCurrent: number;
+  band: number;
+  maxDelta: number;
+  overflowThreshold: number;
+  baseTaxCurrent: number;
+};
+
+export type PhysiologyPressureInput = {
+  novelty: number;
+  fear: number;
+  symbiosis: number;
+  ego: number;
+  ring: {
+    scale: number;
+  };
+};
+
+export type PhysiologySnapshotInput = {
+  tick: number;
+  homeostasis: PhysiologyHomeostasisInput;
+  pressure: PhysiologyPressureInput;
+};
+
+export type HormoneSnapshot = HormoneSpec & {
+  currentValue: number;
+  deltaFromDefault: number;
+};
+
+export type LedgerSnapshot = GeneticLedgerEntry & {
+  currentValue: number;
+  deltaFromDefault: number;
+  currentSource: "runtime" | "policy";
+};
+
+export type PhysiologySnapshot = {
+  tick: number;
+  hormones: Record<HormoneId, HormoneSnapshot>;
+  ledger: Record<GeneticLedgerKey, LedgerSnapshot>;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const currentHormoneValue = (
+  spec: HormoneSpec,
+  input: PhysiologySnapshotInput,
+): number => {
+  switch (spec.id) {
+    case "entropy_pressure":
+      return Math.round(
+        clamp(
+          (input.homeostasis.baseTaxCurrent /
+            Math.max(1, input.homeostasis.maxDelta)) * 1024,
+          spec.min,
+          spec.max,
+        ),
+      );
+    case "time_viscosity":
+      return Math.round(
+        clamp(
+          (RUNTIME_POLICY.pulse.workerCount / 32) * 2048,
+          spec.min,
+          spec.max,
+        ),
+      );
+    case "aggression":
+      return Math.round(
+        clamp(input.pressure.fear + input.pressure.ego, spec.min, spec.max),
+      );
+    case "replication_bias":
+      return Math.round(
+        clamp(
+          input.pressure.novelty +
+            Math.round(RUNTIME_POLICY.coldstart.replicatorRatio * 256),
+          spec.min,
+          spec.max,
+        ),
+      );
+    case "repair_drive":
+      return Math.round(
+        clamp(
+          input.pressure.symbiosis +
+            Math.round(
+              (1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) *
+                1024,
+            ),
+          spec.min,
+          spec.max,
+        ),
+      );
+    case "mutation_friction":
+      return Math.round(
+        clamp(
+          (RUNTIME_POLICY.daemon.maxPlasmidCharge /
+            Math.max(1, input.pressure.ring.scale)) * 256,
+          spec.min,
+          spec.max,
+        ),
+      );
+  }
+};
+
+const currentLedgerValue = (
+  entry: GeneticLedgerEntry,
+  input: PhysiologySnapshotInput,
+): { currentValue: number; currentSource: "runtime" | "policy" } => {
+  switch (entry.key) {
+    case "pulse.homeostasis.targetEnergy":
+      return {
+        currentValue: clamp(
+          input.homeostasis.targetEnergyCurrent,
+          entry.min,
+          entry.max,
+        ),
+        currentSource: "runtime",
+      };
+    case "pulse.homeostasis.band":
+      return {
+        currentValue: clamp(input.homeostasis.band, entry.min, entry.max),
+        currentSource: "runtime",
+      };
+    case "pulse.homeostasis.maxDelta":
+      return {
+        currentValue: clamp(input.homeostasis.maxDelta, entry.min, entry.max),
+        currentSource: "runtime",
+      };
+    case "pulse.homeostasis.overflowThreshold":
+      return {
+        currentValue: clamp(
+          input.homeostasis.overflowThreshold,
+          entry.min,
+          entry.max,
+        ),
+        currentSource: "runtime",
+      };
+    case "pulse.homeostasis.baseTax":
+      return {
+        currentValue: clamp(input.homeostasis.baseTaxCurrent, entry.min, entry.max),
+        currentSource: "runtime",
+      };
+    case "pulse.pressureRing.scale":
+      return {
+        currentValue: clamp(input.pressure.ring.scale, entry.min, entry.max),
+        currentSource: "runtime",
+      };
+    default:
+      return {
+        currentValue: entry.defaultValue,
+        currentSource: "policy",
+      };
+  }
+};
+
+export const capturePhysiologySnapshot = (
+  input: PhysiologySnapshotInput,
+): PhysiologySnapshot => {
+  const hormones = Object.fromEntries(
+    HORMONE_BUFFER_CATALOG.map((spec) => {
+      const currentValue = currentHormoneValue(spec, input);
+      return [spec.id, {
+        ...spec,
+        currentValue,
+        deltaFromDefault: currentValue - spec.defaultValue,
+      }];
+    }),
+  ) as Record<HormoneId, HormoneSnapshot>;
+
+  const ledger = Object.fromEntries(
+    GENETIC_LEDGER_CATALOG.map((entry) => {
+      const live = currentLedgerValue(entry, input);
+      return [entry.key, {
+        ...entry,
+        currentValue: live.currentValue,
+        currentSource: live.currentSource,
+        deltaFromDefault: live.currentValue - entry.defaultValue,
+      }];
+    }),
+  ) as Record<GeneticLedgerKey, LedgerSnapshot>;
+
+  return {
+    tick: Math.max(0, Math.floor(input.tick)),
+    hormones,
+    ledger,
+  };
+};
+
+```
+
+---
+
 ## FILE: PREDICTION_MARKET.ts
 
 ```typescript
@@ -17582,6 +17820,7 @@ Latest completed planning work:
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 - Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
+- Added an observer-only physiology projection path: `PHYSIOLOGY_SNAPSHOT.ts` plus `/api/physiology` now expose Stage 7 state to runtime observers without granting write ownership to the hormone / ledger layer.
 
 ## Current diagnosis
 
@@ -23181,6 +23420,7 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
+import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   evaluateInvariantAdmission,
@@ -24237,6 +24477,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       {
         headers: JSON_HEADERS,
       },
+    );
+  }
+
+  if (url.pathname === "/api/physiology" && req.method === "GET") {
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const homeostasis = PULSE.getHomeostasisState();
+    const pressure = PULSE.getEvolutionPressureState();
+    const physiology = capturePhysiologySnapshot({
+      tick,
+      homeostasis: {
+        targetEnergyCurrent: homeostasis.targetEnergyCurrent,
+        band: homeostasis.band,
+        maxDelta: homeostasis.maxDelta,
+        overflowThreshold: homeostasis.overflowThreshold,
+        baseTaxCurrent: homeostasis.baseTaxCurrent,
+      },
+      pressure: {
+        novelty: pressure.novelty,
+        fear: pressure.fear,
+        symbiosis: pressure.symbiosis,
+        ego: pressure.ego,
+        ring: {
+          scale: pressure.ring.scale,
+        },
+      },
+    });
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        physiology,
+      }),
+      { headers: JSON_HEADERS },
     );
   }
 

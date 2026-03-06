@@ -404,10 +404,13 @@ For each global dynamic constant:
   - `mutation_friction`
 - `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
 - [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
+- `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an observer-only runtime projection of hormone / ledger state through `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
   - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+  - [test_physiology_snapshot_contract.ts](/Users/s0fractal/OMEGA/test_physiology_snapshot_contract.ts)
+  - [test_physiology_api_contract.ts](/Users/s0fractal/OMEGA/test_physiology_api_contract.ts)
 - current scope remains deliberately non-authoritative:
   - no live `SharedArrayBuffer` hormone region
   - no persisted ledger history

@@ -17,6 +17,7 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
+import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   evaluateInvariantAdmission,
@@ -1073,6 +1074,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       {
         headers: JSON_HEADERS,
       },
+    );
+  }
+
+  if (url.pathname === "/api/physiology" && req.method === "GET") {
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const homeostasis = PULSE.getHomeostasisState();
+    const pressure = PULSE.getEvolutionPressureState();
+    const physiology = capturePhysiologySnapshot({
+      tick,
+      homeostasis: {
+        targetEnergyCurrent: homeostasis.targetEnergyCurrent,
+        band: homeostasis.band,
+        maxDelta: homeostasis.maxDelta,
+        overflowThreshold: homeostasis.overflowThreshold,
+        baseTaxCurrent: homeostasis.baseTaxCurrent,
+      },
+      pressure: {
+        novelty: pressure.novelty,
+        fear: pressure.fear,
+        symbiosis: pressure.symbiosis,
+        ego: pressure.ego,
+        ring: {
+          scale: pressure.ring.scale,
+        },
+      },
+    });
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        physiology,
+      }),
+      { headers: JSON_HEADERS },
     );
   }
 

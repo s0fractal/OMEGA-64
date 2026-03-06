@@ -348,6 +348,34 @@ const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyPhysiology = async (): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/physiology`, {
+      method: "GET",
+      headers: buildForwardHeaders(new Headers(), false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_PHYSIOLOGY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_PHYSIOLOGY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
   let parsedBody: unknown = null;
   try {
@@ -583,6 +611,10 @@ const reqHandler = async (req: Request) => {
     return proxyHomeostasis(req);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/physiology") {
+    return proxyPhysiology();
+  }
+
   if (req.method === "GET" && url.pathname === "/api/codex") {
     return proxyCodex(req, "/api/codex", url.search);
   }
@@ -612,7 +644,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

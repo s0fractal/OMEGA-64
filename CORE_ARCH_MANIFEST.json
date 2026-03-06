@@ -9,8 +9,6 @@
     "assembly/index.ts"
   ],
   "runtime_support_files": [
-    "GENETIC_LEDGER.ts",
-    "HORMONE_BUFFER.ts",
     "build_wasm.ts",
     "HOLOGRAM_MODULE.ts",
     "mod.ts",

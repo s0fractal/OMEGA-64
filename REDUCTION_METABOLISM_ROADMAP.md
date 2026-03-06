@@ -52,6 +52,7 @@ Latest completed planning work:
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 - Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
+- Added an observer-only physiology projection path: `PHYSIOLOGY_SNAPSHOT.ts` plus `/api/physiology` now expose Stage 7 state to runtime observers without granting write ownership to the hormone / ledger layer.
 
 ## Current diagnosis
 
