@@ -607,6 +607,10 @@ Current slit in progress:
 - `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now turns that verdict into a canonical
   `promote` / `hold` / `demote` action artifact so the Stage 8 slit can be
   reasoned about symmetrically before any default-mode switch is attempted
+- `runtime_bridge/architect_plasmid_hybrid.ts` now introduces the second
+  bounded hybrid slit: architect plasmid emission can be observed through
+  `legacy`, `shadow`, and `hybrid` reduction modes without yet adding a second
+  promotion stack around it
 
 ### Exit gate
 

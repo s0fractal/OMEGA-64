@@ -89,6 +89,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    system,
+    "architect_plasmid_hybrid",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose architect plasmid hybrid observer state",
+    violations,
+  );
+  requireSnippet(
     akasha,
     "proxyPhysiology",
     AKASHA_SERVER_PATH,

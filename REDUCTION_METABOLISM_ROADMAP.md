@@ -169,6 +169,11 @@ Latest completed planning work:
   an explicit `promote`, `hold`, or `demote` action for canary/daemon audit
   reports, keeping rollout semantics symmetric without auto-mutating runtime
   mode.
+- Started a second Stage 8 slit:
+  `runtime_bridge/architect_plasmid_hybrid.ts` now routes architect plasmid emission
+  through a bounded reduction-side contract with `legacy`, `shadow`,
+  and `hybrid` modes; observer telemetry exposes `architect_plasmid_hybrid`
+  while rollout remains shadow-first.
 
 ## Current diagnosis
 

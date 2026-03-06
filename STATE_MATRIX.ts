@@ -553,6 +553,23 @@ export const STATE_MATRIX = {
     return script;
   },
 
+  getArchitectScript: () => {
+    const script = new Uint8Array(64);
+    let pc = 0;
+
+    script[pc++] = RISC.OP_ROLE;
+    script[pc++] = 0;
+    script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 1;
+    script[pc++] = 1;
+    script[pc++] = RISC.OP_SIGNAL;
+    script[pc++] = RISC.OP_JMP;
+    script[pc++] = 0;
+
+    return script;
+  },
+
   getMatrixResonance: () => {
     let total = 0;
     for (let i = 0; i < 140 * 80; i++) {

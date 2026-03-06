@@ -70,6 +70,7 @@
     "HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts",
     "PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts",
     "PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts",
+    "runtime_bridge/architect_plasmid_hybrid.ts",
     "runtime_bridge/guardian_signal_hybrid.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",

@@ -17,6 +17,10 @@ import {
   type GuardianSignalExecutionMode,
 } from "./runtime_bridge/guardian_signal_hybrid.ts";
 import {
+  evaluateArchitectPlasmidExecution,
+  type ArchitectPlasmidExecutionMode,
+} from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import {
   applyBaseTaxLedgerRuntimeUpdate,
   type BaseTaxLedgerApplyResult,
   type BaseTaxLedgerRollbackResult,
@@ -123,6 +127,8 @@ const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
 const GUARDIAN_SIGNAL_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.guardianSignalExecutionMode;
+const ARCHITECT_PLASMID_EXECUTION_MODE =
+  RUNTIME_POLICY.pulse.architectPlasmidExecutionMode;
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
@@ -190,6 +196,21 @@ type GuardianSignalHybridState = {
   lastTick: number;
   lastStatus: "legacy" | "stable" | "repair" | "fallback";
   lastBranch: "stable" | "repair" | "unknown";
+  lastFallbackReason: string;
+};
+type ArchitectPlasmidHybridState = {
+  mode: ArchitectPlasmidExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedArchitectPlasmids: number;
+  suppressedArchitectPlasmids: number;
+  shadowSuppressedArchitectPlasmids: number;
+  lastTick: number;
+  lastStatus: "legacy" | "emit" | "suppress" | "fallback";
+  lastBranch: "emit" | "suppress" | "unknown";
   lastFallbackReason: string;
 };
 
@@ -280,8 +301,31 @@ const createGuardianSignalHybridState = (
 const snapshotGuardianSignalHybridState = (): GuardianSignalHybridState => ({
   ...guardianSignalHybridState,
 });
+const createArchitectPlasmidHybridState = (
+  mode: ArchitectPlasmidExecutionMode,
+): ArchitectPlasmidHybridState => ({
+  mode,
+  hybridRuns: 0,
+  shadowRuns: 0,
+  fallbackRuns: 0,
+  emitBranchCount: 0,
+  suppressBranchCount: 0,
+  allowedArchitectPlasmids: 0,
+  suppressedArchitectPlasmids: 0,
+  shadowSuppressedArchitectPlasmids: 0,
+  lastTick: -1,
+  lastStatus: "legacy",
+  lastBranch: "unknown",
+  lastFallbackReason: "",
+});
+const snapshotArchitectPlasmidHybridState = (): ArchitectPlasmidHybridState => ({
+  ...architectPlasmidHybridState,
+});
 let guardianSignalHybridState = createGuardianSignalHybridState(
   GUARDIAN_SIGNAL_EXECUTION_MODE,
+);
+let architectPlasmidHybridState = createArchitectPlasmidHybridState(
+  ARCHITECT_PLASMID_EXECUTION_MODE,
 );
 
 let runtimeWorkerCount = WORKER_COUNT;
@@ -1051,6 +1095,75 @@ const parasiteShouldEmitPlasmid = (
   energy: number,
 ): boolean =>
   resonance >= 72 && energy >= 96 && (((phase + tick + idx) & 0x0F) === 0);
+const architectPlasmidAllowedByExecutionMode = (
+  tick: number,
+  idx: number,
+  legacyAllowed: boolean,
+): boolean => {
+  if (!legacyAllowed) return false;
+
+  architectPlasmidHybridState.lastTick = tick;
+  architectPlasmidHybridState.mode = ARCHITECT_PLASMID_EXECUTION_MODE;
+  architectPlasmidHybridState.lastFallbackReason = "";
+
+  if (ARCHITECT_PLASMID_EXECUTION_MODE === "legacy-execute") {
+    architectPlasmidHybridState.lastStatus = "legacy";
+    architectPlasmidHybridState.lastBranch = "unknown";
+    return true;
+  }
+
+  const execution = evaluateArchitectPlasmidExecution({
+    mode: ARCHITECT_PLASMID_EXECUTION_MODE,
+    script: STATE_MATRIX.getInstructions(idx),
+    neuralCoherence: Atomics.load(coherenceView, 0),
+    legacyAllowed,
+  });
+
+  if (ARCHITECT_PLASMID_EXECUTION_MODE === "shadow-reduce") {
+    architectPlasmidHybridState.shadowRuns++;
+  } else {
+    architectPlasmidHybridState.hybridRuns++;
+  }
+
+  if (execution.status === "fallback") {
+    architectPlasmidHybridState.fallbackRuns++;
+    architectPlasmidHybridState.lastStatus = "fallback";
+    architectPlasmidHybridState.lastBranch = execution.branch;
+    architectPlasmidHybridState.lastFallbackReason =
+      execution.fallbackReason ?? "architect_plasmid_bridge_fallback";
+    return true;
+  }
+
+  architectPlasmidHybridState.lastBranch = execution.branch;
+  if (execution.branch === "emit") {
+    architectPlasmidHybridState.emitBranchCount++;
+    architectPlasmidHybridState.allowedArchitectPlasmids++;
+    architectPlasmidHybridState.lastStatus = "emit";
+  } else if (execution.branch === "suppress") {
+    architectPlasmidHybridState.suppressBranchCount++;
+    architectPlasmidHybridState.lastStatus = "suppress";
+  } else {
+    architectPlasmidHybridState.lastStatus = "fallback";
+    architectPlasmidHybridState.fallbackRuns++;
+    architectPlasmidHybridState.lastFallbackReason =
+      "architect_plasmid_unknown";
+    return true;
+  }
+
+  if (ARCHITECT_PLASMID_EXECUTION_MODE === "shadow-reduce") {
+    if (execution.shadowSuppressed) {
+      architectPlasmidHybridState.shadowSuppressedArchitectPlasmids++;
+    }
+    return true;
+  }
+
+  if (execution.hybridSuppressed) {
+    architectPlasmidHybridState.suppressedArchitectPlasmids++;
+    return false;
+  }
+
+  return true;
+};
 const emitInternalGlyphsFromActiveAtoms = (
   tick: number,
   activeIdx: number[],
@@ -1124,7 +1237,11 @@ const emitInternalGlyphsFromActiveAtoms = (
       let plasmidCharge = 0;
       if (
         role === STATE_MATRIX.ROLE_ARCHITECT &&
-        architectShouldEmitPlasmid(tick, idx, phase, resonance, energy)
+        architectPlasmidAllowedByExecutionMode(
+          tick,
+          idx,
+          architectShouldEmitPlasmid(tick, idx, phase, resonance, energy),
+        )
       ) {
         plasmidCharge = Math.max(
           48,
@@ -1926,6 +2043,8 @@ export const PULSE = {
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
   getGuardianSignalHybridState: (): GuardianSignalHybridState =>
     snapshotGuardianSignalHybridState(),
+  getArchitectPlasmidHybridState: (): ArchitectPlasmidHybridState =>
+    snapshotArchitectPlasmidHybridState(),
   getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
     snapshotGeneticLedgerRuntimeState(),
   hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {

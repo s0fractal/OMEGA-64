@@ -132,6 +132,9 @@ const rawStartupSelfTestForceBreach = readEnv(
 const rawGuardianSignalExecutionMode = readEnv(
   "OMEGA_GUARDIAN_SIGNAL_EXECUTION_MODE",
 );
+const rawArchitectPlasmidExecutionMode = readEnv(
+  "OMEGA_ARCHITECT_PLASMID_EXECUTION_MODE",
+);
 const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
 const rawDaemonPolicyWindowMs = readEnv("OMEGA_DAEMON_POLICY_WINDOW_MS");
 const rawDaemonMaxActionsPerWindow = readEnv(
@@ -381,6 +384,9 @@ const pulseStartupSelfTestForceBreach = parseEnvBool(
 const pulseGuardianSignalExecutionMode = parseGuardianSignalExecutionMode(
   rawGuardianSignalExecutionMode,
 );
+const pulseArchitectPlasmidExecutionMode = parseGuardianSignalExecutionMode(
+  rawArchitectPlasmidExecutionMode,
+);
 
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
 const akashaPort = 8080;
@@ -531,6 +537,7 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
+    architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -696,6 +703,7 @@ export const RUNTIME_POLICY = {
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
+    architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -726,6 +734,8 @@ export const RUNTIME_POLICY = {
       startupSelfTestQuiet: rawStartupSelfTestQuiet !== undefined,
       startupSelfTestForceBreach: rawStartupSelfTestForceBreach !== undefined,
       guardianSignalExecutionMode: rawGuardianSignalExecutionMode !== undefined,
+      architectPlasmidExecutionMode:
+        rawArchitectPlasmidExecutionMode !== undefined,
       homeostasisEnable: rawHomeostasisEnable !== undefined,
       homeostasisTargetEnergy: rawHomeostasisTargetEnergy !== undefined,
       homeostasisBand: rawHomeostasisBand !== undefined,

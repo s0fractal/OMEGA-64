@@ -135,6 +135,21 @@ type RuntimeMetrics = {
     lastBranch: "stable" | "repair" | "unknown";
     lastFallbackReason: string;
   };
+  architectPlasmidHybrid: {
+    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    hybridRuns: number;
+    shadowRuns: number;
+    fallbackRuns: number;
+    emitBranchCount: number;
+    suppressBranchCount: number;
+    allowedArchitectPlasmids: number;
+    suppressedArchitectPlasmids: number;
+    shadowSuppressedArchitectPlasmids: number;
+    lastTick: number;
+    lastStatus: "legacy" | "emit" | "suppress" | "fallback";
+    lastBranch: "emit" | "suppress" | "unknown";
+    lastFallbackReason: string;
+  };
   guardianSignalPromotion: {
     status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
     ready: boolean;
@@ -534,6 +549,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   const active = STATE_MATRIX.getActiveIndices();
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
+  const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -549,6 +565,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
     guardianSignalHybrid,
+    architectPlasmidHybrid,
     guardianSignalPromotion: evaluateGuardianSignalPromotion(
       guardianSignalHybrid,
     ),
@@ -827,6 +844,7 @@ const buildTelemetry = async () => {
       },
     },
     guardian_signal_hybrid: metrics.guardianSignalHybrid,
+    architect_plasmid_hybrid: metrics.architectPlasmidHybrid,
     guardian_signal_promotion: metrics.guardianSignalPromotion,
     glyph_transport: metrics.glyphTransport,
     daemon_governance: {
@@ -1860,11 +1878,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       },
     });
     const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
+    const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
     return new Response(
       JSON.stringify({
         ok: true,
         physiology,
         guardian_signal_hybrid: guardianSignalHybrid,
+        architect_plasmid_hybrid: architectPlasmidHybrid,
         guardian_signal_promotion: evaluateGuardianSignalPromotion(
           guardianSignalHybrid,
         ),
