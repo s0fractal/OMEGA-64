@@ -15,7 +15,15 @@ export const GLYPH_KIND = {
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
 
-type GlyphSnapshot = {
+export type GlyphRoleCounters = {
+  neutral: number;
+  producer: number;
+  guardian: number;
+  architect: number;
+  parasite: number;
+};
+
+export type GlyphSnapshot = {
   activeCells: number;
   pheromoneCells: number;
   plasmidCells: number;
@@ -27,14 +35,6 @@ type GlyphSnapshot = {
   internalAtomPlasmidSeeds: number;
   atomRolePheromone: GlyphRoleCounters;
   atomRolePlasmid: GlyphRoleCounters;
-};
-
-type GlyphRoleCounters = {
-  neutral: number;
-  producer: number;
-  guardian: number;
-  architect: number;
-  parasite: number;
 };
 
 const scratchHeader = new Int32Array(GRID_CELLS);

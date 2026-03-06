@@ -33,6 +33,7 @@ Status snapshot as of 2026-03-06:
 | Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                                                                            |
 | Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                        |
 | Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
+| Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, and forwards that evidence through the daemon-facing codex narrative contract                                                                 |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
@@ -413,6 +414,20 @@ Codex should answer:
 - what changed
 - why the change was admissible
 - whether the drift was semantic or ecological
+
+### Current stage assessment
+
+- `AKASHA_CODEX.observePulse(...)` now receives runtime glyph transport
+  snapshots from `PULSE.ts`, not just population counts.
+- Codex now classifies the transport field into a `glyph_transport_regime`
+  evidence signal and records regime changes as chronicles instead of leaving
+  transport trapped in raw telemetry.
+- Codex narrative/snapshot outputs now retain live glyph status, dominant role,
+  and source mode, so daemon-side reasoning can see transport ecology without
+  scraping raw runtime telemetry.
+- This is still a bridge, not a full Codex upgrade: transport evidence is now
+  historical and narrative, but it does not yet feed back into mutation
+  admission or rollback policy.
 
 ### Exit gate
 

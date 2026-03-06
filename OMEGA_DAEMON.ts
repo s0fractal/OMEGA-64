@@ -129,6 +129,10 @@ type CodexNarrative = {
   title: string;
   summary: string;
   relicStatus: string;
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
   promptBridge: string;
   recentChronicles: Array<{
     tick: number;
@@ -1029,6 +1033,18 @@ const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
     relicStatus: typeof source.relicStatus === "string"
       ? source.relicStatus
       : "Relic status unavailable.",
+    glyphStatus: typeof source.glyphStatus === "string"
+      ? source.glyphStatus
+      : "Glyph transport status unavailable.",
+    glyphRegime: typeof source.glyphRegime === "string"
+      ? source.glyphRegime
+      : "dormant",
+    glyphDominantRole: typeof source.glyphDominantRole === "string"
+      ? source.glyphDominantRole
+      : "none",
+    glyphSourceMode: typeof source.glyphSourceMode === "string"
+      ? source.glyphSourceMode
+      : "none",
     promptBridge: typeof source.promptBridge === "string"
       ? source.promptBridge
       : "Use plain language for observer-facing updates.",
@@ -1059,6 +1075,10 @@ const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
       summary:
         "Codex narrative endpoint unavailable; operating on telemetry only.",
       relicStatus: "Relic status unavailable.",
+      glyphStatus: "Glyph transport status unavailable.",
+      glyphRegime: "dormant",
+      glyphDominantRole: "none",
+      glyphSourceMode: "none",
       promptBridge: "Use plain language for observer-facing updates.",
       recentChronicles: [],
     };
@@ -1097,6 +1117,7 @@ const buildInvariantFrame = (
     codexNarrative.title,
     codexNarrative.summary,
     codexNarrative.relicStatus,
+    codexNarrative.glyphStatus,
     ...telemetry.voxPopuli.slice(0, 4),
   ]);
   const sharedTokens = setIntersection(memoryTokens, narrativeTokens).slice(

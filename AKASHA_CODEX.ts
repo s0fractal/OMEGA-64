@@ -2,6 +2,7 @@
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import type { GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
@@ -28,6 +29,7 @@ const MAX_RELIC_SIGNATURES = 512;
 const MAX_INVARIANTS = 512;
 const MAX_INVARIANT_SIGNATURES = 2048;
 const INVARIANT_SYNC_INTERVAL_MS = 15_000;
+const GLYPH_TRANSPORT_RECORD_INTERVAL = 256;
 
 type SpeciesEntry = {
   id: string;
@@ -126,6 +128,10 @@ type CodexNarrative = {
     title: string;
   }>;
   relicStatus: string;
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
   promptBridge: string;
 };
 
@@ -141,6 +147,12 @@ type CodexState = {
   genomeEpochs: Record<string, number[]>;
   relicSignatures: string[];
   invariantSignatures: string[];
+  lastGlyphTransportSignature: string;
+  lastGlyphTransportTick: number;
+  lastGlyphTransportRegime: string;
+  lastGlyphTransportSummary: string;
+  lastGlyphTransportDominantRole: string;
+  lastGlyphTransportSourceMode: string;
 };
 
 type GenomeStats = {
@@ -206,6 +218,12 @@ const fallbackState = (): CodexState => ({
   genomeEpochs: {},
   relicSignatures: [],
   invariantSignatures: [],
+  lastGlyphTransportSignature: "dormant|none|none|low",
+  lastGlyphTransportTick: -1,
+  lastGlyphTransportRegime: "dormant",
+  lastGlyphTransportSummary: "Glyph transport remains dormant.",
+  lastGlyphTransportDominantRole: "none",
+  lastGlyphTransportSourceMode: "none",
 });
 
 let started = false;
@@ -316,6 +334,109 @@ const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
   if (mood === "FRAGILE") return "Lattice in Recovery Arc";
   if (mood === "ASCENDANT") return "Lattice in Expansion Arc";
   return "Lattice in Coherence Arc";
+};
+
+type GlyphTransportEvidence = {
+  active: boolean;
+  regime: string;
+  dominantRole: string;
+  sourceMode: string;
+  amplitudeBand: string;
+  signature: string;
+  title: string;
+  body: string;
+  summary: string;
+};
+
+const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
+  const counters = {
+    neutral: snapshot.atomRolePheromone.neutral + snapshot.atomRolePlasmid.neutral,
+    producer: snapshot.atomRolePheromone.producer + snapshot.atomRolePlasmid.producer,
+    guardian: snapshot.atomRolePheromone.guardian + snapshot.atomRolePlasmid.guardian,
+    architect: snapshot.atomRolePheromone.architect + snapshot.atomRolePlasmid.architect,
+    parasite: snapshot.atomRolePheromone.parasite + snapshot.atomRolePlasmid.parasite,
+  };
+  const entries = Object.entries(counters).sort((a, b) => b[1] - a[1]);
+  return entries[0]?.[1] && entries[0][1] > 0 ? entries[0][0] : "none";
+};
+
+const glyphAmplitudeBand = (snapshot: GlyphSnapshot): string => {
+  if (snapshot.totalAmplitude >= 4096 || snapshot.maxAmplitude >= 512) {
+    return "surged";
+  }
+  if (snapshot.totalAmplitude >= 1024 || snapshot.maxAmplitude >= 256) {
+    return "charged";
+  }
+  if (snapshot.totalAmplitude > 0) return "warm";
+  return "low";
+};
+
+const glyphSourceMode = (snapshot: GlyphSnapshot): string => {
+  const atomSeeds = snapshot.internalAtomPheromoneSeeds +
+    snapshot.internalAtomPlasmidSeeds;
+  const substrateSeeds = snapshot.internalSignalSeeds + snapshot.internalMemorySeeds;
+  if (atomSeeds > 0 && substrateSeeds > 0) return "hybrid";
+  if (atomSeeds > 0) return "actor_secretion";
+  if (substrateSeeds > 0) return "substrate_leak";
+  return "none";
+};
+
+const glyphRegime = (snapshot: GlyphSnapshot): string => {
+  if (snapshot.activeCells <= 0 || snapshot.totalAmplitude <= 0) return "dormant";
+  const pheromoneBias = snapshot.pheromoneCells + snapshot.internalAtomPheromoneSeeds;
+  const plasmidBias = snapshot.plasmidCells + snapshot.internalAtomPlasmidSeeds;
+  if (pheromoneBias >= plasmidBias * 2 && pheromoneBias > 0) {
+    return "pheromone_canopy";
+  }
+  if (plasmidBias >= pheromoneBias * 2 && plasmidBias > 0) {
+    return "plasmid_surge";
+  }
+  if (snapshot.internalAtomPheromoneSeeds > 0 || snapshot.internalAtomPlasmidSeeds > 0) {
+    return "agent_flux";
+  }
+  return "hybrid_field";
+};
+
+const titleCase = (value: string): string =>
+  value.split("_").map((part) =>
+    part.length > 0 ? `${part[0].toUpperCase()}${part.slice(1)}` : part
+  ).join(" ");
+
+const buildGlyphTransportEvidence = (
+  tick: number,
+  snapshot: GlyphSnapshot,
+): GlyphTransportEvidence => {
+  const regime = glyphRegime(snapshot);
+  const dominantRole = dominantGlyphRole(snapshot);
+  const sourceMode = glyphSourceMode(snapshot);
+  const amplitudeBand = glyphAmplitudeBand(snapshot);
+  const signature = `${regime}|${dominantRole}|${sourceMode}|${amplitudeBand}`;
+  const active = snapshot.activeCells > 0 ||
+    snapshot.internalSignalSeeds > 0 ||
+    snapshot.internalMemorySeeds > 0 ||
+    snapshot.internalAtomPheromoneSeeds > 0 ||
+    snapshot.internalAtomPlasmidSeeds > 0;
+  const title = `Glyph Transport Regime: ${titleCase(regime)}`;
+  const body =
+    `Tick ${tick} registered ${titleCase(regime)} with dominant role ${titleCase(dominantRole)} ` +
+    `via ${titleCase(sourceMode)}. Active cells=${snapshot.activeCells}, ` +
+    `pheromone=${snapshot.pheromoneCells}, plasmid=${snapshot.plasmidCells}, ` +
+    `totalAmplitude=${snapshot.totalAmplitude}, maxAmplitude=${snapshot.maxAmplitude}, ` +
+    `atomPheromone=${snapshot.internalAtomPheromoneSeeds}, atomPlasmid=${snapshot.internalAtomPlasmidSeeds}.`;
+  const summary =
+    `Glyph regime ${titleCase(regime)} | dominant role ${titleCase(dominantRole)} | ` +
+    `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand}.`;
+  return {
+    active,
+    regime,
+    dominantRole,
+    sourceMode,
+    amplitudeBand,
+    signature,
+    title,
+    body,
+    summary,
+  };
 };
 
 const parseInvariantSignal = (value: unknown): InvariantSignal | null => {
@@ -512,6 +633,35 @@ const ensureStorage = async (): Promise<void> => {
         .map((sig) => sig.trim().toLowerCase())
         .filter((sig) => /^[0-9a-f]{6,64}$/u.test(sig))
         .slice(-MAX_INVARIANT_SIGNATURES);
+      state.lastGlyphTransportSignature =
+        typeof state.lastGlyphTransportSignature === "string" &&
+          state.lastGlyphTransportSignature.trim().length > 0
+          ? state.lastGlyphTransportSignature
+          : fallbackState().lastGlyphTransportSignature;
+      state.lastGlyphTransportTick = Math.max(
+        -1,
+        Math.floor(asFiniteNumber(state.lastGlyphTransportTick, -1)),
+      );
+      state.lastGlyphTransportRegime =
+        typeof state.lastGlyphTransportRegime === "string" &&
+          state.lastGlyphTransportRegime.trim().length > 0
+          ? state.lastGlyphTransportRegime
+          : fallbackState().lastGlyphTransportRegime;
+      state.lastGlyphTransportSummary =
+        typeof state.lastGlyphTransportSummary === "string" &&
+          state.lastGlyphTransportSummary.trim().length > 0
+          ? state.lastGlyphTransportSummary
+          : fallbackState().lastGlyphTransportSummary;
+      state.lastGlyphTransportDominantRole =
+        typeof state.lastGlyphTransportDominantRole === "string" &&
+          state.lastGlyphTransportDominantRole.trim().length > 0
+          ? state.lastGlyphTransportDominantRole
+          : fallbackState().lastGlyphTransportDominantRole;
+      state.lastGlyphTransportSourceMode =
+        typeof state.lastGlyphTransportSourceMode === "string" &&
+          state.lastGlyphTransportSourceMode.trim().length > 0
+          ? state.lastGlyphTransportSourceMode
+          : fallbackState().lastGlyphTransportSourceMode;
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -990,11 +1140,40 @@ export const AKASHA_CODEX = {
     );
   },
   isStarted: (): boolean => started,
-  observePulse: (tick: number, activePopulation: number): void => {
+  observePulse: (
+    tick: number,
+    activePopulation: number,
+    glyphTransport?: GlyphSnapshot,
+  ): void => {
     if (!started) return;
     state.lastPopulation = activePopulation;
     if (activePopulation > state.populationPeak) {
       state.populationPeak = activePopulation;
+    }
+
+    if (glyphTransport) {
+      const glyphEvidence = buildGlyphTransportEvidence(tick, glyphTransport);
+      state.lastGlyphTransportRegime = glyphEvidence.regime;
+      state.lastGlyphTransportSummary = glyphEvidence.summary;
+      state.lastGlyphTransportDominantRole = glyphEvidence.dominantRole;
+      state.lastGlyphTransportSourceMode = glyphEvidence.sourceMode;
+
+      const recordDue = glyphEvidence.signature !== state.lastGlyphTransportSignature &&
+        glyphEvidence.active &&
+        (state.lastGlyphTransportTick < 0 ||
+          tick - state.lastGlyphTransportTick >= GLYPH_TRANSPORT_RECORD_INTERVAL);
+      if (recordDue) {
+        state.lastGlyphTransportSignature = glyphEvidence.signature;
+        state.lastGlyphTransportTick = tick;
+        enqueueWrite(async () => {
+          await appendChronicle(
+            tick,
+            "glyph_transport_regime",
+            glyphEvidence.title,
+            glyphEvidence.body,
+          );
+        });
+      }
     }
 
     const extinctionThreshold = Math.floor(state.populationPeak * 0.2);
@@ -1122,6 +1301,14 @@ export const AKASHA_CODEX = {
         current: state.lastPopulation,
         peak: state.populationPeak,
       },
+      glyphTransport: {
+        regime: state.lastGlyphTransportRegime,
+        summary: state.lastGlyphTransportSummary,
+        dominantRole: state.lastGlyphTransportDominantRole,
+        sourceMode: state.lastGlyphTransportSourceMode,
+        lastRecordedTick: state.lastGlyphTransportTick,
+        signature: state.lastGlyphTransportSignature,
+      },
       species: speciesIndex.slice(0, take),
       chronicles: chronicleIndex.slice(0, take),
       relics: relicIndex.slice(0, take),
@@ -1202,11 +1389,12 @@ export const AKASHA_CODEX = {
       : `Relics cataloged: ${relicIndex.length}. Latest relic size: ${
         relicIndex[0].size
       } blocks.`;
+    const glyphStatus = state.lastGlyphTransportSummary;
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
-      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}.`;
+      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}. ${glyphStatus}`;
     const promptBridge =
-      `Use plain language. Explain ${title.toLowerCase()} and how ${leadSpecies} shaped recent epochs.`;
+      `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, and how the glyph transport regime affected the field.`;
 
     return {
       tick,
@@ -1219,6 +1407,10 @@ export const AKASHA_CODEX = {
       invariantHighlights,
       recentChronicles,
       relicStatus,
+      glyphStatus,
+      glyphRegime: state.lastGlyphTransportRegime,
+      glyphDominantRole: state.lastGlyphTransportDominantRole,
+      glyphSourceMode: state.lastGlyphTransportSourceMode,
       promptBridge,
     };
   },

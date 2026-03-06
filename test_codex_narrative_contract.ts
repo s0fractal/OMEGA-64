@@ -38,6 +38,20 @@ const main = async () => {
   );
   requireSnippet(
     codex,
+    "glyphStatus",
+    CODEX_PATH,
+    "Codex narrative must surface glyph transport status once Stage 6 bridge begins",
+    violations,
+  );
+  requireSnippet(
+    codex,
+    "glyph_transport_regime",
+    CODEX_PATH,
+    "Codex must record glyph transport regime as a narrative chronicle type",
+    violations,
+  );
+  requireSnippet(
+    codex,
     "getInvariants",
     CODEX_PATH,
     "Codex module must expose invariant archive API",
@@ -113,6 +127,13 @@ const main = async () => {
     "codex_narrative",
     DAEMON_PATH,
     "Daemon prompt must include codex narrative bridge",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "glyphStatus",
+    DAEMON_PATH,
+    "Daemon must normalize glyph transport status from codex narrative",
     violations,
   );
 

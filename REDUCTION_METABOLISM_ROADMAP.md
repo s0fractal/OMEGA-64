@@ -37,7 +37,7 @@ Status snapshot as of 2026-03-06:
 | Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure                                                                                                                                                                                                                                             |
 | Stage 4: shadow verification    | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts                                                                                                                                                                   |
 | Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
-| Stage 6                         | not started | Codex evidence upgrade still depends on later ownership moves                                                                                                                                                                                                                                                              |
+| Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, and passes glyph evidence through the daemon-facing codex narrative contract                                                                                                                       |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
 | Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                                                    |
 
@@ -126,6 +126,10 @@ Latest completed planning work:
   guardians bias toward pheromone emission, architects bias toward plasmid
   emission, producers can do both under tighter gates, parasites leak plasmids,
   and observer telemetry now exposes per-role emission counters.
+- Started Stage 6 evidence bridging: `AKASHA_CODEX.ts` now records
+  `glyph_transport_regime` chronicles from runtime transport snapshots, keeps a
+  live glyph regime summary in codex state, and exposes that bridge through the
+  daemon-facing narrative contract.
 
 ## Current diagnosis
 

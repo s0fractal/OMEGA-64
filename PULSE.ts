@@ -2352,7 +2352,7 @@ export const PULSE = {
         );
       }
       emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx);
-      GLYPH_BUFFER.tick(currentTick);
+      const glyphTransport = GLYPH_BUFFER.tick(currentTick);
       applyEvolutionPressureTerms(currentTick, activeIdx);
       applyEnergyHomeostasisTerms(
         currentTick,
@@ -2398,7 +2398,7 @@ export const PULSE = {
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
-      AKASHA_CODEX.observePulse(currentTick, activeIdx.length);
+      AKASHA_CODEX.observePulse(currentTick, activeIdx.length, glyphTransport);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
