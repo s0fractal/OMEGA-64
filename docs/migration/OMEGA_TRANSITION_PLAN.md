@@ -33,9 +33,9 @@ Status snapshot as of 2026-03-06:
 | ------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                                              |
 | Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                                                  |
-| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt08/*` baseline artifacts                                                                                                                                                                                                    |
-| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ` coverage for symbolic ingress control flow                                                                                                                                                      |
-| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                 |
+| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt09/*` baseline artifacts                                                                                                                                                                                                    |
+| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ` and first bounded `COLLECTIVE` coverage for symbolic/transport semantics                                                                                                                      |
+| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                     |
 | Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
 | Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
@@ -194,6 +194,9 @@ Current support files already suggest the trace direction:
 - Stage 2 now also supports standalone subprocess captures, so a causal motif
   that currently lives in a strict deterministic test harness can still become
   a first-class golden trace without inventing a fake REST ingress path
+- Stage 2 now covers two standalone causal motifs outside the REST server:
+  same-tick structure-intent visibility (`gt08`) and bounded collective hive /
+  pheromone transport (`gt09`)
 - `verification/reduction_harness.ts` now covers the bridge-safe opcode subset
 - `verification/admission_shadow_harness.ts` now covers daemon
   mutation/admission semantics, including explicit policy-block baselines,
@@ -307,7 +310,7 @@ Only low-width behavior first:
 
 ### Current stage assessment
 
-- `verification/reduction_cases.ts` now provides ten bounded bridge cases
+- `verification/reduction_cases.ts` now provides twelve bounded bridge cases
 - `verification/reduction_harness.ts` runs parity between legacy shadow
   execution and glyph-reduction shadow execution
 - `verification/reduction_diffs/*.json` now persists structured diff artifacts
@@ -321,6 +324,8 @@ Only low-width behavior first:
   - plasmid zero-branch repair path
   - structure-intent same-tick visible branch
   - structure-intent typed miss branch
+  - collective hive store/load branch
+  - collective local pheromone emission branch
   - homeostasis-band anchor match
   - homeostasis-band anchor mismatch
 - `verification/reduction_harness.ts` now tracks final prop-state parity, so
@@ -330,6 +335,10 @@ Only low-width behavior first:
   overlay for `OP_BUILD` + `OP_SENSE`, so structural visibility can be verified
   against `gt08_structure_intent_visibility` without pretending it already rides
   through a membrane/API trace
+- `verification/reduction_harness.ts` now also models bounded `OP_COLLECTIVE`
+  mode 0/1/2 semantics, so hive store/load and local pheromone emission can be
+  verified against `gt09_collective_transport` before any broader collective
+  runtime hybridization
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so
     `gt05 target_energy=300` cannot yet be encoded directly

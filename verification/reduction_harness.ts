@@ -29,6 +29,8 @@ type ShadowState = {
   regs: number[];
   role: number;
   props: HarnessProps;
+  hiveMemory: HarnessProps;
+  signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
@@ -43,6 +45,8 @@ type LegacyShadowResult = {
   regs: number[];
   role: number;
   props: HarnessProps;
+  hiveMemory: HarnessProps;
+  signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
@@ -58,6 +62,8 @@ type ReductionShadowResult = {
   regs: number[];
   role: number;
   props: HarnessProps;
+  hiveMemory: HarnessProps;
+  signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
@@ -105,6 +111,8 @@ export type ReductionHarnessArtifact = {
     registers_match: boolean;
     role_match: boolean;
     props_match: boolean;
+    hive_memory_match: boolean;
+    signal_grid_match: boolean;
     structure_grid_match: boolean;
     structure_intent_owner_match: boolean;
     structure_intent_value_match: boolean;
@@ -144,6 +152,8 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+  hiveMemory: {},
+  signalGrid: {},
   structureGrid: {},
   structureIntentOwner: {},
   structureIntentValue: {},
@@ -193,6 +203,8 @@ const snapshotLegacy = (
   regs: [...state.regs],
   role: state.role,
   props: { ...state.props },
+  hiveMemory: { ...state.hiveMemory },
+  signalGrid: { ...state.signalGrid },
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
@@ -215,6 +227,8 @@ const snapshotReduction = (
   regs: [...state.regs],
   role: state.role,
   props: { ...state.props },
+  hiveMemory: { ...state.hiveMemory },
+  signalGrid: { ...state.signalGrid },
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
@@ -334,6 +348,26 @@ const applyShadowOpcode = (
     case RISC.OP_SIGNAL: {
       state.effects.signalCount += 1;
       state.pc += 1;
+      return;
+    }
+    case RISC.OP_COLLECTIVE: {
+      const mode = args[0] ?? 0;
+      const p2 = args[1] ?? 0;
+      const p3 = args[2] ?? 0;
+      if (mode === 0) {
+        state.hiveMemory[p2 & 1023] = p3 & 0xFF;
+      } else if (mode === 1) {
+        state.regs[p3 & 7] = state.hiveMemory[p2 & 1023] ?? 0;
+      } else if (mode === 2) {
+        const rx = state.props[RISC.PROP_X] ?? 0;
+        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
+        }
+      }
+      state.pc += 4;
       return;
     }
     case RISC.OP_ROLE: {
@@ -479,6 +513,12 @@ const compareResults = (
   if (!equalHarnessProps(legacy.props, reduction.props)) {
     reasons.push("props mismatch");
   }
+  if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
+    reasons.push("hiveMemory mismatch");
+  }
+  if (!equalHarnessProps(legacy.signalGrid, reduction.signalGrid)) {
+    reasons.push("signalGrid mismatch");
+  }
   if (!equalHarnessProps(legacy.structureGrid, reduction.structureGrid)) {
     reasons.push("structureGrid mismatch");
   }
@@ -564,6 +604,26 @@ const compareResults = (
       }
     }
   }
+  if (expected.finalHiveMemory) {
+    for (const [key, value] of Object.entries(expected.finalHiveMemory)) {
+      const addr = Number(key);
+      if ((legacy.hiveMemory[addr] ?? 0) !== value) {
+        reasons.push(
+          `expected hiveMemory[${addr}]=${value} got=${legacy.hiveMemory[addr] ?? 0}`,
+        );
+      }
+    }
+  }
+  if (expected.finalSignalGrid) {
+    for (const [key, value] of Object.entries(expected.finalSignalGrid)) {
+      const cell = Number(key);
+      if ((legacy.signalGrid[cell] ?? 0) !== value) {
+        reasons.push(
+          `expected signalGrid[${cell}]=${value} got=${legacy.signalGrid[cell] ?? 0}`,
+        );
+      }
+    }
+  }
   if (
     typeof expected.branchTaken === "boolean" &&
     legacy.effects.branchTaken !== expected.branchTaken
@@ -593,6 +653,8 @@ const buildReductionHarnessArtifact = async (
     regs: result.legacy.regs,
     role: result.legacy.role,
     props: result.legacy.props,
+    hiveMemory: result.legacy.hiveMemory,
+    signalGrid: result.legacy.signalGrid,
     structureGrid: result.legacy.structureGrid,
     structureIntentOwner: result.legacy.structureIntentOwner,
     structureIntentValue: result.legacy.structureIntentValue,
@@ -604,6 +666,8 @@ const buildReductionHarnessArtifact = async (
     regs: result.reduction.regs,
     role: result.reduction.role,
     props: result.reduction.props,
+    hiveMemory: result.reduction.hiveMemory,
+    signalGrid: result.reduction.signalGrid,
     structureGrid: result.reduction.structureGrid,
     structureIntentOwner: result.reduction.structureIntentOwner,
     structureIntentValue: result.reduction.structureIntentValue,
@@ -617,6 +681,14 @@ const buildReductionHarnessArtifact = async (
     registers_match: equalNumberArray(result.legacy.regs, result.reduction.regs),
     role_match: result.legacy.role === result.reduction.role,
     props_match: equalHarnessProps(result.legacy.props, result.reduction.props),
+    hive_memory_match: equalHarnessProps(
+      result.legacy.hiveMemory,
+      result.reduction.hiveMemory,
+    ),
+    signal_grid_match: equalHarnessProps(
+      result.legacy.signalGrid,
+      result.reduction.signalGrid,
+    ),
     structure_grid_match: equalHarnessProps(
       result.legacy.structureGrid,
       result.reduction.structureGrid,

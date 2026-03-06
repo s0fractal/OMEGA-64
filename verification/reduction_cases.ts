@@ -8,6 +8,8 @@ export type ReductionCaseExpectation = {
   finalRole?: number;
   registers?: number[];
   finalProps?: Partial<Record<number, number>>;
+  finalHiveMemory?: Partial<Record<number, number>>;
+  finalSignalGrid?: Partial<Record<number, number>>;
   branchTaken?: boolean;
 };
 
@@ -121,6 +123,43 @@ const makeSenseIntentScript = (buildType: number, targetType: number): Uint8Arra
   script[pc++] = RISC.OP_SENSE;
   script[pc++] = 1;
   script[pc++] = targetType & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectiveHiveScript = (
+  addr: number,
+  value: number,
+  reg: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 0;
+  script[pc++] = addr & 0xFF;
+  script[pc++] = value & 0xFF;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 1;
+  script[pc++] = addr & 0xFF;
+  script[pc++] = reg & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePheromoneScript = (
+  intensity: number,
+  type: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 2;
+  script[pc++] = intensity & 0xFF;
+  script[pc++] = type & 0xFF;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
@@ -319,6 +358,48 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       buildCount: 1,
       finalRole: STATE_MATRIX.ROLE_ARCHITECT,
       registers: [0, 0, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc11_gt09_collective_hive_store_load",
+    baselineTraceId: "gt09_collective_transport",
+    description:
+      "A bounded COLLECTIVE bridge should preserve hive store/load semantics through mode 0 and mode 1 without reaching outside the local shadow state.",
+    script: makeCollectiveHiveScript(1, 88, 0),
+    maxSteps: 4,
+    initialProps: {},
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [88, 0, 0, 0, 0, 0, 0, 0],
+      finalHiveMemory: {
+        1: 88,
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc12_gt09_collective_pheromone_emit",
+    baselineTraceId: "gt09_collective_transport",
+    description:
+      "The same bounded COLLECTIVE bridge should preserve pheromone emission through mode 2 at the atom's local grid cell.",
+    script: makeCollectivePheromoneScript(200, 5),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_X]: 105,
+      [RISC.PROP_Y]: 105,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalSignalGrid: {
+        1410: 0xC805,
+      },
       branchTaken: false,
     },
   },

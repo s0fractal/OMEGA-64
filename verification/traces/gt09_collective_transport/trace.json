@@ -1,0 +1,59 @@
+{
+  "trace_id": "gt09_collective_transport",
+  "scenario": "standalone collective hive and pheromone semantics",
+  "tick_start": 0,
+  "tick_end": 3,
+  "runtime_mode": "standalone-collective-transport-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "hiveValue": 88,
+    "loadedReg0": 88,
+    "pheromoneWord": 51205,
+    "snapshotDigest": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "6af42d774c6d6c5b01f8b7c7302759efff270cfa14eddfa1a62d5cedaadb396a",
+  "invariant_digest": "1f96d59146a8a67c73559c96144dcad1f97491d61af352fa7861db64cad92cbc",
+  "extra_artifacts": {
+    "collective_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6",
+      "snapshot": {
+        "hiveValue": 88,
+        "hiveBalance": 1000,
+        "pheromoneWord": 51205,
+        "pheromoneCellIdx": 1410,
+        "pheromoneX": 105,
+        "pheromoneY": 105,
+        "atoms": [
+          {
+            "idx": 0,
+            "energy": 0,
+            "pc": 4,
+            "role": 0,
+            "reg0": 0
+          },
+          {
+            "idx": 1,
+            "energy": 0,
+            "pc": 4,
+            "role": 0,
+            "reg0": 88
+          },
+          {
+            "idx": 2,
+            "energy": 0,
+            "pc": 4,
+            "role": 0,
+            "reg0": 0
+          }
+        ]
+      }
+    }
+  }
+}

@@ -208,6 +208,31 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_lock_progress.ts",
     ],
   },
+  {
+    id: "gt09_collective_transport",
+    scenario: "standalone collective hive and pheromone semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive store-load and mode 2 pheromone emit through direct WASM execution",
+    duration: "3 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "hiveValue",
+      "loadedReg0",
+      "pheromoneWord",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      hiveValue: "strict",
+      loadedReg0: "strict",
+      pheromoneWord: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/collective_transport_capture.ts",
+      "test_swarm.ts",
+      "test_neural_synthesis.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

@@ -8,10 +8,14 @@ import {
 const SYSTEM_START_PATH = "/Users/s0fractal/OMEGA/SYSTEM_START.ts";
 const STRUCTURE_INTENT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/test_structure_intent_determinism.ts";
+const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
   "standalone-structure-intent-capture";
+const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
+  "standalone-collective-transport-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -102,6 +106,31 @@ type StructureIntentCapturePayload = {
   snapshot: StructureIntentSnapshot;
 };
 
+type CollectiveTransportAtomState = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+  reg0: number;
+};
+
+type CollectiveTransportSnapshot = {
+  hiveValue: number;
+  hiveBalance: number;
+  pheromoneWord: number;
+  pheromoneCellIdx: number;
+  pheromoneX: number;
+  pheromoneY: number;
+  atoms: CollectiveTransportAtomState[];
+};
+
+type CollectiveTransportCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: CollectiveTransportSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -112,6 +141,8 @@ export type GoldenTraceCaptureResult = {
 
 const decoder = new TextDecoder();
 const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
+const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
+  "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -450,6 +481,67 @@ const notesForStructureIntentCapture = async (
     `- sense_visibility_4w=${
       fourWorker.snapshot.atoms.every((atom) => atom.senseReg === 1)
     }`,
+  ].join("\n");
+};
+
+const runCollectiveTransportCaptureSubprocess = async (): Promise<
+  CollectiveTransportCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", COLLECTIVE_TRANSPORT_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] collective-transport subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(COLLECTIVE_TRANSPORT_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] collective-transport capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(COLLECTIVE_TRANSPORT_CAPTURE_MARKER.length),
+  ) as CollectiveTransportCapturePayload;
+};
+
+const notesForCollectiveTransportCapture = async (
+  trace: GoldenTraceScenario,
+  payload: CollectiveTransportCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Collective capture`,
+    ``,
+    `- hive_value=${payload.snapshot.hiveValue}`,
+    `- loaded_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
+    `- pheromone_word=0x${payload.snapshot.pheromoneWord.toString(16)}`,
   ].join("\n");
 };
 
@@ -857,6 +949,61 @@ const runStructureIntentTrace = async (
   };
 };
 
+const runCollectiveTransportTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runCollectiveTransportCaptureSubprocess();
+  const loadedReg0 = payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1;
+  const codexSnapshot = {
+    control_specimen: "collective_transport",
+    runtime_mode: TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    hive_value: payload.snapshot.hiveValue,
+    loaded_reg0: loadedReg0,
+    pheromone_word: payload.snapshot.pheromoneWord,
+  };
+  const invariants = {
+    collective_transport_hash: payload.hash,
+    hive_value: payload.snapshot.hiveValue,
+    loaded_reg0: loadedReg0,
+    pheromone_word: payload.snapshot.pheromoneWord,
+    pheromone_cell_idx: payload.snapshot.pheromoneCellIdx,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 3,
+    runtime_mode: TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      hiveValue: payload.snapshot.hiveValue,
+      loadedReg0: loadedReg0,
+      pheromoneWord: payload.snapshot.pheromoneWord,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      collective_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForCollectiveTransportCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -867,6 +1014,8 @@ export const captureGoldenTrace = async (
   }
   const result = trace.id === "gt08_structure_intent_visibility"
     ? await runStructureIntentTrace(trace)
+    : trace.id === "gt09_collective_transport"
+    ? await runCollectiveTransportTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);
