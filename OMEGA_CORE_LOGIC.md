@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-05T22:38:23.011Z*
+*Generated: 2026-03-06T10:46:52.810Z*
 *Exported Files: 67*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 5*
 *Manifest SHA256: 1331b03f1aef25c88dfad00684606354ee7b3cc0ddf8eb5d4f1ed6c9836eecc2*
 *Export Set SHA256: 360d3d249b3d4afaadd3bf82e4894db4796197d79af1789d06006c6c58785d24*
-*Export Content SHA256: 246ddba3d75964951e222906b8ec450722f714a2859e61c8e17046ff7bfa2786*
-*Git Commit: a9718e991fa8*
+*Export Content SHA256: 4f14f8693dd3ef8bc18c861d5c46e755cd4767c09a96a7ece9f23e22f79bbf86*
+*Git Commit: 51daa32e60fe*
 
 ---
 
@@ -1666,6 +1666,51 @@ const proxyPressureRing = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/homeostasis`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_HOMEOSTASIS_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_HOMEOSTASIS_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
   let parsedBody: unknown = null;
   try {
@@ -1890,6 +1935,13 @@ const reqHandler = async (req: Request) => {
     return proxyPressureRing(req);
   }
 
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/homeostasis"
+  ) {
+    return proxyHomeostasis(req);
+  }
+
   if (req.method === "GET" && url.pathname === "/api/codex") {
     return proxyCodex(req, "/api/codex", url.search);
   }
@@ -1919,7 +1971,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -10500,6 +10552,29 @@ type Telemetry = {
     last_admission_history?: unknown[];
     last_pressure_ring_update?: unknown;
     last_pressure_ring_history?: unknown[];
+    last_homeostasis_update?: unknown;
+    last_homeostasis_history?: unknown[];
+    homeostasis?: {
+      enabled: boolean;
+      target_energy: number;
+      target_energy_default?: number;
+      target_energy_current?: number;
+      band: number;
+      max_delta: number;
+      overflow_threshold: number;
+      starvation_floor: number;
+      subsidy_enabled: boolean;
+      base_tax_default: number;
+      base_tax_current: number;
+      last_update_tick: number;
+      last_update_source: string;
+      last_update_reason: string;
+    };
+  };
+  spatial_hash_guard?: {
+    overflow_ratio: number;
+    overflow_count: number;
+    max_cell_count: number;
   };
 };
 
@@ -10655,6 +10730,7 @@ const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
 const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
 const PRESSURE_RING_URL = `${API_BASE}/api/pressure-ring`;
+const HOMEOSTASIS_URL = `${API_BASE}/api/homeostasis`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
@@ -10726,8 +10802,102 @@ const PHASE_SEASONS_HIGH_ENERGY = parseBoundedFloat(
   0,
   10_000,
 );
+const HOMEOSTASIS_CONTROL_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_ENABLE"),
+  true,
+);
+const HOMEOSTASIS_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_COOLDOWN_TICKS"),
+  24,
+  1,
+  50_000,
+);
+const HOMEOSTASIS_TARGET_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_ENERGY"),
+  420,
+  1,
+  100_000,
+);
+const HOMEOSTASIS_BAND = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_BAND"),
+  120,
+  1,
+  50_000,
+);
+const HOMEOSTASIS_GAIN_UP = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_GAIN_UP"),
+  0.0125,
+  0.0001,
+  1.0,
+);
+const HOMEOSTASIS_GAIN_DOWN = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_GAIN_DOWN"),
+  0.008,
+  0.0001,
+  1.0,
+);
+const HOMEOSTASIS_MAX_STEP = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MAX_STEP"),
+  2,
+  1,
+  32,
+);
+const HOMEOSTASIS_MIN_TAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MIN_TAX"),
+  0,
+  0,
+  256,
+);
+const HOMEOSTASIS_MAX_TAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MAX_TAX"),
+  16,
+  1,
+  512,
+);
+const HOMEOSTASIS_OVERFLOW_SOFT = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_OVERFLOW_SOFT"),
+  0.22,
+  0,
+  1,
+);
+const HOMEOSTASIS_OVERFLOW_HARD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_OVERFLOW_HARD"),
+  0.35,
+  0,
+  1,
+);
+const HOMEOSTASIS_TARGET_CONTROL_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_CONTROL_ENABLE"),
+  true,
+);
+const HOMEOSTASIS_TARGET_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_COOLDOWN_TICKS"),
+  96,
+  4,
+  100_000,
+);
+const HOMEOSTASIS_TARGET_STEP = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_STEP"),
+  20,
+  1,
+  2000,
+);
+const HOMEOSTASIS_TARGET_MIN = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_MIN"),
+  120,
+  1,
+  100_000,
+);
+const HOMEOSTASIS_TARGET_MAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_MAX"),
+  2000,
+  10,
+  1_000_000,
+);
 
 let lastPhaseSeasonTick = -1;
+let lastHomeostasisControlTick = -1;
+let lastHomeostasisTargetControlTick = -1;
 
 const withTimeout = async (
   input: string,
@@ -10852,6 +11022,14 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const daemonRaw = source.daemon_governance &&
       typeof source.daemon_governance === "object"
     ? source.daemon_governance as Record<string, unknown>
+    : null;
+  const daemonHomeostasisRaw = daemonRaw?.homeostasis &&
+      typeof daemonRaw.homeostasis === "object"
+    ? daemonRaw.homeostasis as Record<string, unknown>
+    : null;
+  const spatialRaw = source.spatial_hash_guard &&
+      typeof source.spatial_hash_guard === "object"
+    ? source.spatial_hash_guard as Record<string, unknown>
     : null;
   const behaviorClusters = Array.isArray(source.behavior_clusters)
     ? source.behavior_clusters
@@ -11175,6 +11353,88 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
           )
           ? daemonRaw.last_pressure_ring_history
           : [],
+        last_homeostasis_update: daemonRaw.last_homeostasis_update,
+        last_homeostasis_history: Array.isArray(
+            daemonRaw.last_homeostasis_history,
+          )
+          ? daemonRaw.last_homeostasis_history
+          : [],
+        homeostasis: daemonHomeostasisRaw
+          ? {
+            enabled: parseEnvBool(
+              typeof daemonHomeostasisRaw.enabled === "string" ||
+                  typeof daemonHomeostasisRaw.enabled === "boolean"
+                ? String(daemonHomeostasisRaw.enabled)
+                : undefined,
+              true,
+            ),
+            target_energy: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy,
+              HOMEOSTASIS_TARGET_ENERGY,
+            ),
+            target_energy_default: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy_default,
+              HOMEOSTASIS_TARGET_ENERGY,
+            ),
+            target_energy_current: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy_current,
+              asFiniteNumber(
+                daemonHomeostasisRaw.target_energy,
+                HOMEOSTASIS_TARGET_ENERGY,
+              ),
+            ),
+            band: asFiniteNumber(daemonHomeostasisRaw.band, HOMEOSTASIS_BAND),
+            max_delta: asFiniteNumber(daemonHomeostasisRaw.max_delta, 0),
+            overflow_threshold: asFiniteNumber(
+              daemonHomeostasisRaw.overflow_threshold,
+              0,
+            ),
+            starvation_floor: asFiniteNumber(
+              daemonHomeostasisRaw.starvation_floor,
+              0,
+            ),
+            subsidy_enabled: parseEnvBool(
+              typeof daemonHomeostasisRaw.subsidy_enabled === "string" ||
+                  typeof daemonHomeostasisRaw.subsidy_enabled === "boolean"
+                ? String(daemonHomeostasisRaw.subsidy_enabled)
+                : undefined,
+              false,
+            ),
+            base_tax_default: Math.max(
+              0,
+              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_default, 0)),
+            ),
+            base_tax_current: Math.max(
+              0,
+              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_current, 0)),
+            ),
+            last_update_tick: Math.max(
+              0,
+              Math.floor(asFiniteNumber(daemonHomeostasisRaw.last_update_tick, 0)),
+            ),
+            last_update_source:
+              typeof daemonHomeostasisRaw.last_update_source === "string"
+                ? daemonHomeostasisRaw.last_update_source
+                : "unknown",
+            last_update_reason:
+              typeof daemonHomeostasisRaw.last_update_reason === "string"
+                ? daemonHomeostasisRaw.last_update_reason
+                : "unknown",
+          }
+          : undefined,
+      }
+      : undefined,
+    spatial_hash_guard: spatialRaw
+      ? {
+        overflow_ratio: asFiniteNumber(spatialRaw.overflow_ratio, 0),
+        overflow_count: Math.max(
+          0,
+          Math.floor(asFiniteNumber(spatialRaw.overflow_count, 0)),
+        ),
+        max_cell_count: Math.max(
+          0,
+          Math.floor(asFiniteNumber(spatialRaw.max_cell_count, 0)),
+        ),
       }
       : undefined,
   };
@@ -11659,6 +11919,39 @@ const postPressureRingUpdate = async (
   }
 };
 
+const postHomeostasisUpdate = async (
+  payload: {
+    base_tax?: number;
+    target_energy?: number;
+    reason?: string;
+  },
+): Promise<void> => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
+  const response = await withTimeout(
+    HOMEOSTASIS_URL,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    },
+    HTTP_TIMEOUT_MS,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Homeostasis update failed: ${response.status} ${response.statusText} ${
+        text.slice(0, 240)
+      }`,
+    );
+  }
+};
+
 const phaseSeasonDelta = (
   telemetry: Telemetry,
   frame: InvariantFrame,
@@ -11706,6 +11999,101 @@ const maybeAdvancePhaseRing = async (
     `[PHASE_RING] step=${delta.toFixed(5)} tick=${telemetry.tick} theta≈${
       ring.theta.toFixed(5)
     } scale=${ring.scale}`,
+  );
+};
+
+const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
+  if (!HOMEOSTASIS_CONTROL_ENABLE) return;
+  if (telemetry.daemon_governance?.safe_mode) return;
+  const taxCooldownReady =
+    telemetry.tick - lastHomeostasisControlTick >= HOMEOSTASIS_COOLDOWN_TICKS;
+  const targetCooldownReady = !HOMEOSTASIS_TARGET_CONTROL_ENABLE ||
+    telemetry.tick - lastHomeostasisTargetControlTick >=
+      HOMEOSTASIS_TARGET_COOLDOWN_TICKS;
+  if (!taxCooldownReady && !targetCooldownReady) return;
+
+  const live = telemetry.daemon_governance?.homeostasis;
+  if (!live?.enabled) return;
+
+  const currentTax = clamp(
+    Math.round(
+      asFiniteNumber(live.base_tax_current, live.base_tax_default ?? 0),
+    ),
+    HOMEOSTASIS_MIN_TAX,
+    HOMEOSTASIS_MAX_TAX,
+  );
+  const currentTarget = clamp(
+    Math.round(
+      asFiniteNumber(
+        live.target_energy_current,
+        asFiniteNumber(live.target_energy, HOMEOSTASIS_TARGET_ENERGY),
+      ),
+    ),
+    HOMEOSTASIS_TARGET_MIN,
+    HOMEOSTASIS_TARGET_MAX,
+  );
+  const band = Math.max(1, asFiniteNumber(live.band, HOMEOSTASIS_BAND));
+  const overflow = clamp(
+    asFiniteNumber(telemetry.spatial_hash_guard?.overflow_ratio, 0),
+    0,
+    1,
+  );
+
+  const high = currentTarget + band;
+  const low = Math.max(0, currentTarget - band);
+  let nextTax = currentTax;
+  let nextTarget = currentTarget;
+  let taxChanged = false;
+  let targetChanged = false;
+
+  if (taxCooldownReady && telemetry.avgEnergy > high) {
+    const overshoot = telemetry.avgEnergy - high;
+    let step = Math.max(1, Math.round(overshoot * HOMEOSTASIS_GAIN_UP));
+    if (overflow >= HOMEOSTASIS_OVERFLOW_HARD) {
+      step += 1;
+    } else if (overflow >= HOMEOSTASIS_OVERFLOW_SOFT) {
+      step = Math.max(step, 1);
+    }
+    nextTax = currentTax + Math.min(HOMEOSTASIS_MAX_STEP, step);
+  } else if (taxCooldownReady && telemetry.avgEnergy < low) {
+    const undershoot = low - telemetry.avgEnergy;
+    const step = Math.max(1, Math.round(undershoot * HOMEOSTASIS_GAIN_DOWN));
+    nextTax = currentTax - Math.min(HOMEOSTASIS_MAX_STEP, step);
+  }
+  nextTax = clamp(nextTax, HOMEOSTASIS_MIN_TAX, HOMEOSTASIS_MAX_TAX);
+  taxChanged = nextTax !== currentTax;
+
+  if (HOMEOSTASIS_TARGET_CONTROL_ENABLE && targetCooldownReady) {
+    if (overflow >= HOMEOSTASIS_OVERFLOW_HARD && telemetry.avgEnergy > high) {
+      nextTarget = currentTarget - HOMEOSTASIS_TARGET_STEP;
+    } else if (
+      overflow <= HOMEOSTASIS_OVERFLOW_SOFT * 0.6 &&
+      telemetry.avgEnergy < low
+    ) {
+      nextTarget = currentTarget + HOMEOSTASIS_TARGET_STEP;
+    }
+  }
+  nextTarget = clamp(nextTarget, HOMEOSTASIS_TARGET_MIN, HOMEOSTASIS_TARGET_MAX);
+  targetChanged = nextTarget !== currentTarget;
+  if (!taxChanged && !targetChanged) return;
+
+  const reasonParts: string[] = [];
+  if (taxChanged) reasonParts.push("daemon_homeostasis_feedback");
+  if (targetChanged) reasonParts.push("daemon_homeostasis_target_feedback");
+
+  await postHomeostasisUpdate({
+    ...(taxChanged ? { base_tax: nextTax } : {}),
+    ...(targetChanged ? { target_energy: nextTarget } : {}),
+    reason: reasonParts.join("+"),
+  });
+  if (taxChanged) lastHomeostasisControlTick = telemetry.tick;
+  if (targetChanged) lastHomeostasisTargetControlTick = telemetry.tick;
+  logAction(
+    `[HOMEOSTASIS] baseTax=${currentTax}->${nextTax} target=${currentTarget}->${nextTarget} avgEnergy=${
+      telemetry.avgEnergy.toFixed(2)
+    } band=${band.toFixed(2)} overflow=${
+      overflow.toFixed(3)
+    }`,
   );
 };
 
@@ -11768,6 +12156,11 @@ const runHeartbeat = async (): Promise<void> => {
   } catch (err) {
     logWarn(`Phase-ring scheduler fallback: ${String(err)}`);
   }
+  try {
+    await maybeControlHomeostasis(telemetry);
+  } catch (err) {
+    logWarn(`Homeostasis scheduler fallback: ${String(err)}`);
+  }
   const decision = await askOpenAI(
     telemetry,
     codexNarrative,
@@ -11794,7 +12187,7 @@ const startDaemon = (): void => {
   logAction(
     `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
       PHASE_SEASONS_STEP_RAD.toFixed(4)
-    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS}`,
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] targetCtl=${HOMEOSTASIS_TARGET_CONTROL_ENABLE} targetRange=[${HOMEOSTASIS_TARGET_MIN},${HOMEOSTASIS_TARGET_MAX}] targetStep=${HOMEOSTASIS_TARGET_STEP} target=${HOMEOSTASIS_TARGET_ENERGY.toFixed(2)} band=${HOMEOSTASIS_BAND.toFixed(2)}`,
   );
 
   const heartbeat = async (): Promise<void> => {
@@ -13025,6 +13418,10 @@ const HOMEOSTASIS_OVERFLOW_THRESHOLD =
 const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
+const HOMEOSTASIS_BASE_TAX_MIN = 0;
+const HOMEOSTASIS_BASE_TAX_MAX = 1024;
+const HOMEOSTASIS_TARGET_ENERGY_MIN = 1;
+const HOMEOSTASIS_TARGET_ENERGY_MAX = 1_000_000;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -13050,11 +13447,37 @@ type SpatialHashState = {
   maxCellCount: number;
   overflowRatio: number;
 };
+type HomeostasisState = {
+  enabled: boolean;
+  targetEnergy: number;
+  targetEnergyDefault: number;
+  targetEnergyCurrent: number;
+  band: number;
+  maxDelta: number;
+  overflowThreshold: number;
+  starvationFloor: number;
+  subsidyEnabled: boolean;
+  baseTaxDefault: number;
+  baseTaxCurrent: number;
+  lastUpdateTick: number;
+  lastUpdateSource: string;
+  lastUpdateReason: string;
+};
 
 const clampPressureTerm = (value: number): number =>
   Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
 const clampRingScale = (value: number): number =>
   Math.max(0, Math.min(PRESSURE_RING_SCALE_MAX, value | 0));
+const clampHomeostasisBaseTax = (value: number): number =>
+  Math.max(
+    HOMEOSTASIS_BASE_TAX_MIN,
+    Math.min(HOMEOSTASIS_BASE_TAX_MAX, Math.round(value)),
+  );
+const clampHomeostasisTargetEnergy = (value: number): number =>
+  Math.max(
+    HOMEOSTASIS_TARGET_ENERGY_MIN,
+    Math.min(HOMEOSTASIS_TARGET_ENERGY_MAX, Math.round(value)),
+  );
 const normalizeTheta = (theta: number): number => {
   if (!Number.isFinite(theta)) return 0;
   const wrapped = theta % PRESSURE_RING_TAU;
@@ -13126,6 +13549,13 @@ let spatialHashState: SpatialHashState = {
   maxCellCount: 0,
   overflowRatio: 0,
 };
+let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+  HOMEOSTASIS_TARGET_ENERGY,
+);
+let homeostasisLastUpdateTick = -1;
+let homeostasisLastUpdateSource = "runtime_policy";
+let homeostasisLastUpdateReason = "bootstrap";
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
@@ -13145,12 +13575,37 @@ const resetSpatialHashStateForColdStart = (): void => {
     overflowRatio: 0,
   };
 };
+const resetHomeostasisStateForColdStart = (): void => {
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+  homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+    HOMEOSTASIS_TARGET_ENERGY,
+  );
+  homeostasisLastUpdateTick = -1;
+  homeostasisLastUpdateSource = "runtime_policy";
+  homeostasisLastUpdateReason = "coldstart_reset";
+};
 const resetEvolutionPressureStateForColdStart = (): void => {
   evolutionPressureState = {
     ...BASE_EVOLUTION_PRESSURE_STATE,
     ring: { ...BASE_EVOLUTION_PRESSURE_STATE.ring },
   };
 };
+const snapshotHomeostasisState = (): HomeostasisState => ({
+  enabled: HOMEOSTASIS_ENABLED,
+  targetEnergy: clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime),
+  targetEnergyDefault: HOMEOSTASIS_TARGET_ENERGY,
+  targetEnergyCurrent: clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime),
+  band: HOMEOSTASIS_BAND,
+  maxDelta: HOMEOSTASIS_MAX_DELTA,
+  overflowThreshold: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+  starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+  subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+  baseTaxDefault: HOMEOSTASIS_BASE_TAX,
+  baseTaxCurrent: clampHomeostasisBaseTax(homeostasisBaseTaxRuntime),
+  lastUpdateTick: homeostasisLastUpdateTick,
+  lastUpdateSource: homeostasisLastUpdateSource,
+  lastUpdateReason: homeostasisLastUpdateReason,
+});
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
   symbiosisSigned: evolutionPressureState.symbiosisSigned,
@@ -13444,6 +13899,8 @@ const applyEnergyHomeostasisTerms = (
   }
   const bandStep = Math.max(1, Math.floor(HOMEOSTASIS_BAND / 2));
   const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
+  const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+  const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
   let adjusted = 0;
   let netDelta = 0;
   let taxed = 0;
@@ -13454,13 +13911,13 @@ const applyEnergyHomeostasisTerms = (
     if (current <= 0) continue;
     let delta = 0;
 
-    if (HOMEOSTASIS_BASE_TAX > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
-      const tax = Math.min(HOMEOSTASIS_BASE_TAX, current);
+    if (baseTax > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
+      const tax = Math.min(baseTax, current);
       delta -= tax;
       taxed += tax;
     }
 
-    const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
+    const deviation = current - targetEnergy;
     const absDeviation = Math.abs(deviation);
     if (absDeviation > HOMEOSTASIS_BAND) {
       const gradient = absDeviation - HOMEOSTASIS_BAND;
@@ -13507,7 +13964,7 @@ const applyEnergyHomeostasisTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${HOMEOSTASIS_BASE_TAX} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${targetEnergy} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
       );
     }
   }
@@ -13865,6 +14322,7 @@ export const PULSE = {
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
     resetSpatialHashStateForColdStart();
+    resetHomeostasisStateForColdStart();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -14105,6 +14563,52 @@ export const PULSE = {
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
+  getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
+  updateHomeostasisPolicy: (
+    update: {
+      baseTax?: number;
+      targetEnergy?: number;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): HomeostasisState => {
+    const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    const prevTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
+    if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
+      homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(update.baseTax);
+    }
+    if (
+      update.targetEnergy !== undefined &&
+      Number.isFinite(update.targetEnergy)
+    ) {
+      homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+        update.targetEnergy,
+      );
+    }
+    const nextTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    const nextTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
+    const source = (update.source ?? "runtime").trim();
+    const reason = (update.reason ?? "manual_update").trim();
+    homeostasisLastUpdateSource = source.length > 0 ? source : "runtime";
+    homeostasisLastUpdateReason = reason.length > 0 ? reason : "manual_update";
+    homeostasisLastUpdateTick = update.tick !== undefined
+      ? Math.max(0, Math.floor(update.tick))
+      : Atomics.load(STATE_MATRIX.tickCounter, 0);
+
+    if (nextTax !== prevTax || nextTarget !== prevTarget) {
+      LOGGER.info(
+        `   [PULSE] Homeostasis policy update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} baseTax=${prevTax}->${nextTax} target=${prevTarget}->${nextTarget} reason=${homeostasisLastUpdateReason}`,
+      );
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "homeostasis_policy_update",
+        count: 1,
+      });
+    }
+
+    return snapshotHomeostasisState();
+  },
   updateEvolutionPressureRing: (
     update: {
       mode: "set" | "step";
@@ -15368,7 +15872,7 @@ const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
 );
 const pulseHomeostasisBaseTax = parseEnvBoundedInt(
   rawHomeostasisBaseTax,
-  1,
+  2,
   0,
   1024,
 );
@@ -20176,6 +20680,22 @@ type PressureRingUpdateSnapshot = {
   enabled: boolean;
 };
 
+type HomeostasisIngressEnvelope = {
+  base_tax?: number;
+  target_energy?: number;
+  reason?: string;
+};
+
+type HomeostasisUpdateSnapshot = {
+  tick: number;
+  source: string;
+  reason: string;
+  base_tax_before: number;
+  base_tax_after: number;
+  target_energy_before: number;
+  target_energy_after: number;
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -20236,6 +20756,11 @@ const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
+const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
+const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
 const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
 const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
 const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
@@ -20280,6 +20805,8 @@ let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
+let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
+let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
 let telemetryStreamLastTick = -1;
@@ -20310,6 +20837,16 @@ const setLatestPressureRingUpdate = (
   pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
     0,
     DAEMON_PRESSURE_RING_HISTORY_LIMIT,
+  );
+};
+
+const setLatestHomeostasisUpdate = (
+  snapshot: HomeostasisUpdateSnapshot,
+): void => {
+  latestHomeostasisUpdate = snapshot;
+  homeostasisHistory = [snapshot, ...homeostasisHistory].slice(
+    0,
+    DAEMON_HOMEOSTASIS_HISTORY_LIMIT,
   );
 };
 
@@ -20622,6 +21159,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
+  const homeostasis = PULSE.getHomeostasisState();
   const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
@@ -20687,6 +21225,24 @@ const buildTelemetry = async () => {
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
       last_pressure_ring_history: pressureRingHistory,
+      last_homeostasis_update: latestHomeostasisUpdate,
+      last_homeostasis_history: homeostasisHistory,
+      homeostasis: {
+        enabled: homeostasis.enabled,
+        target_energy: homeostasis.targetEnergy,
+        target_energy_default: homeostasis.targetEnergyDefault,
+        target_energy_current: homeostasis.targetEnergyCurrent,
+        band: homeostasis.band,
+        max_delta: homeostasis.maxDelta,
+        overflow_threshold: homeostasis.overflowThreshold,
+        starvation_floor: homeostasis.starvationFloor,
+        subsidy_enabled: homeostasis.subsidyEnabled,
+        base_tax_default: homeostasis.baseTaxDefault,
+        base_tax_current: homeostasis.baseTaxCurrent,
+        last_update_tick: homeostasis.lastUpdateTick,
+        last_update_source: homeostasis.lastUpdateSource,
+        last_update_reason: homeostasis.lastUpdateReason,
+      },
     },
     snapshot_guard: {
       enabled: SNAPSHOT_POLICY.enabled,
@@ -20866,6 +21422,46 @@ const parsePressureRingIngressEnvelope = (
     envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
   }
   if (enabled !== undefined) envelope.enabled = enabled;
+  return envelope;
+};
+
+const parseHomeostasisIngressEnvelope = (
+  body: unknown,
+): HomeostasisIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const baseTax = asFiniteNumber(
+    payloadSource.base_tax ?? payloadSource.baseTax,
+    Number.NaN,
+  );
+  const targetEnergy = asFiniteNumber(
+    payloadSource.target_energy ?? payloadSource.targetEnergy,
+    Number.NaN,
+  );
+  if (!Number.isFinite(baseTax) && !Number.isFinite(targetEnergy)) return null;
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_homeostasis_controller";
+  const envelope: HomeostasisIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
+  };
+  if (Number.isFinite(baseTax)) {
+    envelope.base_tax = clamp(
+      Math.round(baseTax),
+      DAEMON_HOMEOSTASIS_BASE_TAX_MIN,
+      DAEMON_HOMEOSTASIS_BASE_TAX_MAX,
+    );
+  }
+  if (Number.isFinite(targetEnergy)) {
+    envelope.target_energy = clamp(
+      Math.round(targetEnergy),
+      DAEMON_HOMEOSTASIS_TARGET_MIN,
+      DAEMON_HOMEOSTASIS_TARGET_MAX,
+    );
+  }
   return envelope;
 };
 
@@ -21367,6 +21963,141 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         JSON.stringify({
           ok: false,
           reason: "PRESSURE_RING_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "GET") {
+    const homeostasis = PULSE.getHomeostasisState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        homeostasis: {
+          enabled: homeostasis.enabled,
+          target_energy: homeostasis.targetEnergy,
+          target_energy_default: homeostasis.targetEnergyDefault,
+          target_energy_current: homeostasis.targetEnergyCurrent,
+          band: homeostasis.band,
+          max_delta: homeostasis.maxDelta,
+          overflow_threshold: homeostasis.overflowThreshold,
+          starvation_floor: homeostasis.starvationFloor,
+          subsidy_enabled: homeostasis.subsidyEnabled,
+          base_tax_default: homeostasis.baseTaxDefault,
+          base_tax_current: homeostasis.baseTaxCurrent,
+          last_update_tick: homeostasis.lastUpdateTick,
+          last_update_source: homeostasis.lastUpdateSource,
+          last_update_reason: homeostasis.lastUpdateReason,
+        },
+        latest_update: latestHomeostasisUpdate,
+        history: homeostasisHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseHomeostasisIngressEnvelope(body);
+      if (
+        !envelope ||
+        (envelope.base_tax === undefined && envelope.target_energy === undefined)
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_HOMEOSTASIS_PAYLOAD",
+            expected:
+              "Provide {base_tax?:number, target_energy?:number, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const before = PULSE.getHomeostasisState();
+      const updated = PULSE.updateHomeostasisPolicy({
+        baseTax: envelope.base_tax,
+        targetEnergy: envelope.target_energy,
+        source: "daemon_homeostasis_controller",
+        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        tick,
+      });
+      const snapshot: HomeostasisUpdateSnapshot = {
+        tick,
+        source: "daemon_homeostasis_controller",
+        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        base_tax_before: before.baseTaxCurrent,
+        base_tax_after: updated.baseTaxCurrent,
+        target_energy_before: before.targetEnergy,
+        target_energy_after: updated.targetEnergy,
+      };
+      setLatestHomeostasisUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_HOMEOSTASIS",
+        tick,
+        source: snapshot.source,
+        reason: snapshot.reason,
+        base_tax_before: snapshot.base_tax_before,
+        base_tax_after: snapshot.base_tax_after,
+        target_energy_before: snapshot.target_energy_before,
+        target_energy_after: snapshot.target_energy_after,
+      });
+
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          homeostasis: {
+            enabled: updated.enabled,
+            target_energy: updated.targetEnergy,
+            target_energy_default: updated.targetEnergyDefault,
+            target_energy_current: updated.targetEnergyCurrent,
+            band: updated.band,
+            max_delta: updated.maxDelta,
+            overflow_threshold: updated.overflowThreshold,
+            starvation_floor: updated.starvationFloor,
+            subsidy_enabled: updated.subsidyEnabled,
+            base_tax_default: updated.baseTaxDefault,
+            base_tax_current: updated.baseTaxCurrent,
+            last_update_tick: updated.lastUpdateTick,
+            last_update_source: updated.lastUpdateSource,
+            last_update_reason: updated.lastUpdateReason,
+          },
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "HOMEOSTASIS_UPDATE_EXCEPTION",
           details: String(err),
         }),
         { status: 500, headers: JSON_HEADERS },
