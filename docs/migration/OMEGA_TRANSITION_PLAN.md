@@ -25,14 +25,14 @@ This matters because the current system already has:
 
 Status snapshot as of 2026-03-06:
 
-| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                  |
-| ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                   |
-| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                       |
-| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts                                                                                                                                         |
-| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                 |
-| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                             |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, and `pulse.pressureRing.scale` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
+| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                  |
+| ------------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                   |
+| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                       |
+| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts                                                                                                                                                                         |
+| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                                                 |
+| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                             |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, and `daemon.maxPheromoneIntensity` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
 
@@ -200,6 +200,10 @@ Current support files already suggest the trace direction:
 - `pressureRing.scale` now has one canonical mutation lane:
   `PULSE.updateEvolutionPressureRing(...)` no longer accepts it, so phase
   controls and ledger-owned amplitude no longer compete for the same causal slot
+- `daemon.maxPheromoneIntensity` now has one canonical mutation lane:
+  `/api/daemon-policy` routes through a dedicated ledger runtime/persistence
+  pair, so daemon ingress economics no longer depend on a frozen in-memory
+  constant or an ad-hoc policy poke
 
 ## Stage 3: Introduce `GlyphIR64`
 
@@ -452,6 +456,15 @@ For each global dynamic constant:
 - `HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts` now persists and replays
   `targetEnergy` ledger events, so rollback tokens survive restart and hydration
   happens during `PULSE.initWorkers()`.
+- `PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts` and
+  `PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts` now own the third live ledger
+  mutation path for `pulse.pressureRing.scale`, including rollback-token,
+  replay, and compaction semantics.
+- `DAEMON_PHEROMONE_LEDGER_RUNTIME.ts` and
+  `DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts` now own the fourth live ledger
+  mutation path for `daemon.maxPheromoneIntensity`, including rollback-token,
+  replay, and compaction semantics through `SYSTEM_START.ts`,
+  `AKASHA_SERVER.ts`, and `DAEMON_INGRESS_POLICY.ts`.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
@@ -461,14 +474,20 @@ For each global dynamic constant:
   - [test_physiology_snapshot_contract.ts](/Users/s0fractal/OMEGA/test_physiology_snapshot_contract.ts)
   - [test_physiology_api_contract.ts](/Users/s0fractal/OMEGA/test_physiology_api_contract.ts)
   - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
+  - [test_daemon_pheromone_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_runtime_contract.ts)
+  - [test_daemon_pheromone_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_persistence_contract.ts)
+  - [test_daemon_pheromone_ledger_compaction_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_compaction_contract.ts)
+  - [test_daemon_pheromone_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_path_contract.ts)
 - current scope remains deliberately narrow:
   - no live `SharedArrayBuffer` hormone region
-  - only `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, and
-    `pulse.pressureRing.scale` are ledger-owned in live runtime
-  - only those three knobs currently have durable replay history
+  - only `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`,
+    `pulse.pressureRing.scale`, and `daemon.maxPheromoneIntensity` are
+    ledger-owned in live runtime
+  - only those four knobs currently have durable replay history
   - all other hormone / ledger knobs remain observational or scaffold-only
-- next gate is deciding which daemon-governed knob should become the fourth
-  ledger-owned path without diluting rollback discipline.
+- next gate is deciding whether to widen daemon-governed ledger ownership beyond
+  `maxPheromoneIntensity` or to shift effort into Stage 5 internal glyph
+  transport.
 
 ## Stage 8: First hybrid production path
 

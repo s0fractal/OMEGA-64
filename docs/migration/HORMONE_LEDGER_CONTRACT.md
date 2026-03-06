@@ -22,19 +22,22 @@ The Stage 7 code-backed surface now exists in:
 - [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts)
 
 `HORMONE_BUFFER.ts` remains observational. `GENETIC_LEDGER.ts` is now partially
-live through three runtime controllers:
+live through four runtime controllers:
 
 - `pulse.homeostasis.baseTax` in `GENETIC_LEDGER_RUNTIME.ts`
 - `pulse.homeostasis.targetEnergy` in
   [HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts)
 - `pulse.pressureRing.scale` in
   [PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts)
+- `daemon.maxPheromoneIntensity` in
+  [DAEMON_PHEROMONE_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/DAEMON_PHEROMONE_LEDGER_RUNTIME.ts)
 
-Durable replay now lives in three persistence lanes:
+Durable replay now lives in four persistence lanes:
 
 - [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts)
 - [HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts)
 - [PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts)
+- [DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts)
 
 Both persistence lanes now include snapshot compaction, so hydration runs
 through `snapshot + tail log` instead of replaying an unbounded event stream.
@@ -54,6 +57,10 @@ Executable guards:
 - [test_pressure_ring_scale_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_pressure_ring_scale_ledger_persistence_contract.ts)
 - [test_pressure_ring_scale_ledger_compaction_contract.ts](/Users/s0fractal/OMEGA/test_pressure_ring_scale_ledger_compaction_contract.ts)
 - [test_pressure_ring_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_pressure_ring_ledger_path_contract.ts)
+- [test_daemon_pheromone_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_runtime_contract.ts)
+- [test_daemon_pheromone_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_persistence_contract.ts)
+- [test_daemon_pheromone_ledger_compaction_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_compaction_contract.ts)
+- [test_daemon_pheromone_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_daemon_pheromone_ledger_path_contract.ts)
 - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
 - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 
@@ -150,6 +157,10 @@ At this point:
   `.omega/ledger/target_energy_ledger.jsonl`
 - there is now a compacted snapshot for long-lived target-energy history at
   `.omega/ledger/target_energy_ledger.snapshot.json`
+- there is now a durable event log for `daemon.maxPheromoneIntensity` at
+  `.omega/ledger/daemon_pheromone_ledger.jsonl`
+- there is now a compacted snapshot for long-lived daemon pheromone history at
+  `.omega/ledger/daemon_pheromone_ledger.snapshot.json`
 - there is still no general persistence layer for the rest of the ledger surface
 - there is no runtime write path through `HORMONE_BUFFER`
 - there is one established live ledger-owned write path:
@@ -173,6 +184,15 @@ At this point:
   - exposed via `PULSE.applyGeneticLedgerUpdate(...)`
   - reverted via rollback token through `PULSE.rollbackGeneticLedgerUpdate(...)`
   - no longer writable through ad-hoc `PULSE.updateEvolutionPressureRing(...)`
+- there is now a fourth live ledger-owned write path:
+  - `daemon.maxPheromoneIntensity`
+  - routed through `DAEMON_PHEROMONE_LEDGER_RUNTIME.ts`
+  - persisted and replayed through `DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts`
+  - exposed via `POST /api/daemon-policy`
+  - reverted via rollback token through `POST /api/daemon-policy`
+  - synchronized into live daemon ingress limits via
+    `syncDaemonIngressMaxPheromoneIntensity(...)`
+  - no longer governed only by a frozen `DAEMON_INGRESS_POLICY_LIMITS` value
 
 That is intentional. The contract is moving from zero runtime ownership to one
 bounded ownership move, not to an open-ended configuration plane.
@@ -186,7 +206,8 @@ As of 2026-03-06 this layer is:
 - contract-tested
 - observer-visible through `/api/physiology`
 - partially authoritative over live runtime causality for ledger-owned
-  `baseTax`, `targetEnergy`, and `pressureRing.scale`
+  `baseTax`, `targetEnergy`, `pressureRing.scale`, and
+  `daemon.maxPheromoneIntensity`
 - durable enough that `baseTax` rollback tokens survive restart through replay
 - compact enough that `baseTax` hydration can reload from snapshot + bounded
   tail
@@ -198,7 +219,14 @@ As of 2026-03-06 this layer is:
   through replay
 - compact enough that `pressureRing.scale` hydration can reload from snapshot +
   bounded tail
+- durable enough that `daemon.maxPheromoneIntensity` rollback tokens survive
+  restart through replay
+- compact enough that `daemon.maxPheromoneIntensity` hydration can reload from
+  snapshot + bounded tail
 - observer-visible through `/api/homeostasis` and `/api/physiology` with
   `ledger_base_tax_persistence` and `ledger_target_energy_persistence`
 - observer-visible through `/api/pressure-ring` and `/api/physiology` with
   `ledger_scale_persistence` / `ledger_pressure_ring_scale_persistence`
+- observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
+  `/api/physiology` with `ledger_max_pheromone_intensity` and
+  `ledger_max_pheromone_intensity_persistence`

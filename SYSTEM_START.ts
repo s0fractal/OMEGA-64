@@ -28,7 +28,30 @@ import {
   normalizeDaemonNarrativeContext,
   planInvariantIngress,
   type PlasmidRiskProfile,
+  snapshotDaemonIngressPolicyLimits,
+  syncDaemonIngressMaxPheromoneIntensity,
 } from "./DAEMON_INGRESS_POLICY.ts";
+import {
+  applyDaemonPheromoneLedgerRuntimeUpdate,
+  createDaemonPheromoneLedgerRuntime,
+  type DaemonPheromoneLedgerApplyResult,
+  type DaemonPheromoneLedgerRollbackResult,
+  type DaemonPheromoneLedgerRuntimeSnapshot,
+  type DaemonPheromoneLedgerRuntimeState,
+  rollbackDaemonPheromoneLedgerRuntimeUpdate,
+  snapshotDaemonPheromoneLedgerRuntime,
+} from "./DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
+import {
+  appendDaemonPheromoneLedgerRecordAndMaybeCompact,
+  DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
+  DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
+  DAEMON_PHEROMONE_LEDGER_LOG_PATH,
+  DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
+  type DaemonPheromoneLedgerPersistenceSummary,
+  hydrateDaemonPheromoneLedgerRuntime,
+  recordFromDaemonPheromoneApplyMutation,
+  recordFromDaemonPheromoneRollbackMutation,
+} from "./DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -162,6 +185,30 @@ type HomeostasisUpdateSnapshot = {
   target_energy_after: number;
 };
 
+type DaemonPolicyIngressEnvelope = {
+  max_pheromone_intensity?: number;
+  rollback_token?: string;
+  reason?: string;
+};
+
+type DaemonPolicyUpdateSnapshot = {
+  tick: number;
+  source: string;
+  reason: string;
+  mode: "apply" | "rollback";
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  pheromone_rollback_token: string | null;
+  max_pheromone_intensity_before: number;
+  max_pheromone_intensity_after: number;
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -207,8 +254,6 @@ const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
-const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY = DAEMON_INGRESS_POLICY_LIMITS
-  .maxPheromoneIntensity;
 const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_INGRESS_POLICY_LIMITS
   .maxPlasmidCharge;
 const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
@@ -230,10 +275,13 @@ const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
+const DAEMON_POLICY_HISTORY_LIMIT = 24;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
 const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
 const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
+const DAEMON_MAX_PHEROMONE_INTENSITY_MIN = 1;
+const DAEMON_MAX_PHEROMONE_INTENSITY_MAX = 4096;
 const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
   1,
   Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
@@ -243,6 +291,9 @@ const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
 const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
 const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
 const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
+
+const currentDaemonMaxPheromoneIntensity = (): number =>
+  DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
 
 let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
@@ -254,6 +305,34 @@ let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
 let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
+let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
+let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
+let daemonPheromoneLedgerRuntime: DaemonPheromoneLedgerRuntimeState =
+  createDaemonPheromoneLedgerRuntime(currentDaemonMaxPheromoneIntensity());
+let daemonPheromoneLedgerPersistence: DaemonPheromoneLedgerPersistenceSummary =
+  {
+    path: DAEMON_PHEROMONE_LEDGER_LOG_PATH,
+    snapshotPath: DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
+    exists: false,
+    snapshotExists: false,
+    recordCount: 0,
+    applyCount: 0,
+    rollbackCount: 0,
+    tailRecordCount: 0,
+    tailApplyCount: 0,
+    tailRollbackCount: 0,
+    snapshotRecordCount: 0,
+    snapshotApplyCount: 0,
+    snapshotRollbackCount: 0,
+    compactionEnabled: true,
+    compactionThreshold: DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
+    compactionKeepTail: DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
+    lastCompactedAt: null,
+    lastCompactedTick: -1,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
 let telemetryStreamLastTick = -1;
@@ -294,6 +373,16 @@ const setLatestHomeostasisUpdate = (
   homeostasisHistory = [snapshot, ...homeostasisHistory].slice(
     0,
     DAEMON_HOMEOSTASIS_HISTORY_LIMIT,
+  );
+};
+
+const setLatestDaemonPolicyUpdate = (
+  snapshot: DaemonPolicyUpdateSnapshot,
+): void => {
+  latestDaemonPolicyUpdate = snapshot;
+  daemonPolicyHistory = [snapshot, ...daemonPolicyHistory].slice(
+    0,
+    DAEMON_POLICY_HISTORY_LIMIT,
   );
 };
 
@@ -590,12 +679,19 @@ const buildTelemetry = async () => {
       actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
       actions_dynamic_max_in_window: dynamicMaxActions,
       window_reset_in_ms: resetInMs,
-      max_pheromone_intensity: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+      max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
       max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+      ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+        daemonPheromoneLedgerRuntime,
+      ),
+      ledger_max_pheromone_intensity_persistence:
+        daemonPheromoneLedgerPersistence,
       invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
       last_admission: latestDaemonAdmission,
       last_admission_history: daemonAdmissionHistory,
+      last_policy_update: latestDaemonPolicyUpdate,
+      last_policy_history: daemonPolicyHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
       last_pressure_ring_history: pressureRingHistory,
       last_homeostasis_update: latestHomeostasisUpdate,
@@ -886,6 +982,46 @@ const parseHomeostasisIngressEnvelope = (
   return envelope;
 };
 
+const parseDaemonPolicyIngressEnvelope = (
+  body: unknown,
+): DaemonPolicyIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const maxPheromoneIntensity = asFiniteNumber(
+    payloadSource.max_pheromone_intensity ??
+      payloadSource.maxPheromoneIntensity,
+    Number.NaN,
+  );
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+  if (!Number.isFinite(maxPheromoneIntensity) && rollbackToken.length === 0) {
+    return null;
+  }
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_policy_controller";
+  const envelope: DaemonPolicyIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_policy_controller",
+  };
+  if (Number.isFinite(maxPheromoneIntensity)) {
+    envelope.max_pheromone_intensity = clamp(
+      Math.round(maxPheromoneIntensity),
+      DAEMON_MAX_PHEROMONE_INTENSITY_MIN,
+      DAEMON_MAX_PHEROMONE_INTENSITY_MAX,
+    );
+  }
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
+  }
+  return envelope;
+};
+
 const inferHomeostasisRollbackKey = (
   rollbackToken: string,
 ): "pulse.homeostasis.baseTax" | "pulse.homeostasis.targetEnergy" | null => {
@@ -896,6 +1032,67 @@ const inferHomeostasisRollbackKey = (
     return "pulse.homeostasis.targetEnergy";
   }
   return null;
+};
+
+const applyDaemonPheromonePolicyLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): DaemonPheromoneLedgerApplyResult => {
+  const result = applyDaemonPheromoneLedgerRuntimeUpdate(
+    daemonPheromoneLedgerRuntime,
+    update,
+  );
+  daemonPheromoneLedgerRuntime = result.state;
+  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
+  return result;
+};
+
+const rollbackDaemonPheromonePolicyLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): DaemonPheromoneLedgerRollbackResult => {
+  const result = rollbackDaemonPheromoneLedgerRuntimeUpdate(
+    daemonPheromoneLedgerRuntime,
+    rollback,
+  );
+  daemonPheromoneLedgerRuntime = result.state;
+  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
+  return result;
+};
+
+const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydrateDaemonPheromoneLedgerRuntime(
+    currentDaemonMaxPheromoneIntensity(),
+    daemonPheromoneLedgerRuntime.historyLimit,
+  );
+  daemonPheromoneLedgerRuntime = hydrated.state;
+  daemonPheromoneLedgerPersistence = hydrated.persistence;
+  syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
+};
+
+const serializeDaemonPolicyState = () => {
+  const liveLimits = snapshotDaemonIngressPolicyLimits();
+  return {
+    max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
+    max_pheromone_intensity_default: daemonPheromoneLedgerRuntime.defaultValue,
+    max_pheromone_intensity_current: daemonPheromoneLedgerRuntime.currentValue,
+    max_plasmid_charge: liveLimits.maxPlasmidCharge,
+    safe_min_population: liveLimits.safeMinPopulation,
+    safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
+    ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+      daemonPheromoneLedgerRuntime,
+    ),
+    ledger_max_pheromone_intensity_persistence:
+      daemonPheromoneLedgerPersistence,
+  };
 };
 
 const collapseHomeostasisLedgerStatus = (
@@ -1739,6 +1936,236 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     }
   }
 
+  if (url.pathname === "/api/daemon-policy" && req.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        daemon_policy: serializeDaemonPolicyState(),
+        latest_update: latestDaemonPolicyUpdate,
+        history: daemonPolicyHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/daemon-policy" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseDaemonPolicyIngressEnvelope(body);
+      if (
+        !envelope ||
+        (
+          envelope.max_pheromone_intensity === undefined &&
+          envelope.rollback_token === undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_DAEMON_POLICY_PAYLOAD",
+            expected:
+              "Provide {max_pheromone_intensity?:number, rollback_token?:string, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.rollback_token !== undefined &&
+        envelope.max_pheromone_intensity !== undefined
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const source = "daemon_policy_controller";
+      const reason = envelope.reason ?? "daemon_policy_controller";
+      const before = currentDaemonMaxPheromoneIntensity();
+
+      if (envelope.rollback_token !== undefined) {
+        const rollback = rollbackDaemonPheromonePolicyLedgerUpdate({
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason,
+          tick,
+        });
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              daemon_policy: serializeDaemonPolicyState(),
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        if (rollback.mutation) {
+          const persisted =
+            await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
+              recordFromDaemonPheromoneRollbackMutation(rollback.mutation),
+              {
+                initialValue: daemonPheromoneLedgerRuntime.defaultValue,
+                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+              },
+            );
+          daemonPheromoneLedgerPersistence = {
+            ...persisted,
+            hydrated: daemonPheromoneLedgerPersistence.hydrated,
+            lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              daemonPheromoneLedgerPersistence.lastHydrationError,
+          };
+        }
+
+        const snapshot: DaemonPolicyUpdateSnapshot = {
+          tick,
+          source,
+          reason,
+          mode: "rollback",
+          ledger_status: rollback.status,
+          pheromone_rollback_token: envelope.rollback_token,
+          max_pheromone_intensity_before: before,
+          max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+        };
+        setLatestDaemonPolicyUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_POLICY_ROLLBACK",
+          tick,
+          source: snapshot.source,
+          reason: snapshot.reason,
+          mode: snapshot.mode,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.pheromone_rollback_token,
+          max_pheromone_intensity_before:
+            snapshot.max_pheromone_intensity_before,
+          max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            daemon_policy: serializeDaemonPolicyState(),
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const result = applyDaemonPheromonePolicyLedgerUpdate({
+        value: envelope.max_pheromone_intensity!,
+        source,
+        reason,
+        tick,
+      });
+      if (result.mutation) {
+        const persisted =
+          await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
+            recordFromDaemonPheromoneApplyMutation(result.mutation),
+            {
+              initialValue: daemonPheromoneLedgerRuntime.defaultValue,
+              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+            },
+          );
+        daemonPheromoneLedgerPersistence = {
+          ...persisted,
+          hydrated: daemonPheromoneLedgerPersistence.hydrated,
+          lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+          lastHydrationError:
+            daemonPheromoneLedgerPersistence.lastHydrationError,
+        };
+      }
+
+      const snapshot: DaemonPolicyUpdateSnapshot = {
+        tick,
+        source,
+        reason,
+        mode: "apply",
+        ledger_status: result.status,
+        pheromone_rollback_token: result.mutation?.rollbackToken ?? null,
+        max_pheromone_intensity_before: before,
+        max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+      };
+      setLatestDaemonPolicyUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_policy_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_POLICY",
+        tick,
+        source: snapshot.source,
+        reason: snapshot.reason,
+        mode: snapshot.mode,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.pheromone_rollback_token,
+        max_pheromone_intensity_before: snapshot.max_pheromone_intensity_before,
+        max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          daemon_policy: serializeDaemonPolicyState(),
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_policy_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "DAEMON_POLICY_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
   if (url.pathname === "/api/codex" && req.method === "GET") {
     const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
     const snapshot = await AKASHA_CODEX.getSnapshot(
@@ -2065,7 +2492,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (applied.action_type === "DROP_PHEROMONE") {
         if (
-          applied.payload.intensity > DAEMON_POLICY_MAX_PHEROMONE_INTENSITY
+          applied.payload.intensity > currentDaemonMaxPheromoneIntensity()
         ) {
           setLatestDaemonAdmission({
             tick: baseline.tick,
@@ -2094,7 +2521,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             JSON.stringify({
               ok: false,
               reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
-              max: DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
+              max: currentDaemonMaxPheromoneIntensity(),
             }),
             { status: 400, headers: JSON_HEADERS },
           );
@@ -2760,6 +3187,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
     );
   }
+  await syncDaemonPheromonePolicyLedgerHydration();
   await PULSE.initWorkers();
 
   while (true) {

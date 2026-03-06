@@ -50,7 +50,7 @@ export type DaemonIngressMetrics = {
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
 
-export const DAEMON_INGRESS_POLICY_LIMITS = Object.freeze({
+export const DAEMON_INGRESS_POLICY_LIMITS = {
   maxPheromoneIntensity: DAEMON_POLICY.maxPheromoneIntensity,
   maxPlasmidCharge: DAEMON_POLICY.maxPlasmidCharge,
   safeMinPopulation: DAEMON_POLICY.safeMinPopulation,
@@ -63,7 +63,23 @@ export const DAEMON_INGRESS_POLICY_LIMITS = Object.freeze({
   codexLineageLongevityEpochs: 6,
   codexLineagePeakShare: 0.35,
   codexLineageGuardMax: 3,
+} as const satisfies Record<string, number>;
+
+export const snapshotDaemonIngressPolicyLimits = () => ({
+  ...DAEMON_INGRESS_POLICY_LIMITS,
 });
+
+export const syncDaemonIngressMaxPheromoneIntensity = (
+  value: number,
+): number => {
+  const bounded = clamp(Math.round(value), 1, 4096);
+  (DAEMON_INGRESS_POLICY_LIMITS as { maxPheromoneIntensity: number })
+    .maxPheromoneIntensity = bounded;
+  return bounded;
+};
+
+export const resetDaemonIngressMaxPheromoneIntensity = (): number =>
+  syncDaemonIngressMaxPheromoneIntensity(DAEMON_POLICY.maxPheromoneIntensity);
 
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
@@ -198,17 +214,18 @@ export const normalizeDaemonNarrativeContext = (
   const invariantHighlights = Array.isArray(root.invariantHighlights)
     ? root.invariantHighlights
     : [];
-  const dominantInvariantVector =
-    typeof invariantHighlights[0] === "object" &&
-        invariantHighlights[0] !== null &&
-        typeof (invariantHighlights[0] as Record<string, unknown>)
+  const dominantInvariantVector = typeof invariantHighlights[0] === "object" &&
+      invariantHighlights[0] !== null &&
+      typeof (invariantHighlights[0] as Record<string, unknown>)
           .dominantVector === "string" &&
-        ((invariantHighlights[0] as Record<string, unknown>).dominantVector as string)
+      ((invariantHighlights[0] as Record<string, unknown>)
+          .dominantVector as string)
           .trim()
           .length > 0
-      ? ((invariantHighlights[0] as Record<string, unknown>).dominantVector as string)
-        .trim()
-      : "none";
+    ? ((invariantHighlights[0] as Record<string, unknown>)
+      .dominantVector as string)
+      .trim()
+    : "none";
 
   const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
   const highlights = Array.isArray(root.speciesHighlights)

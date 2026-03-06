@@ -348,6 +348,51 @@ const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
   }
 };
 
+const proxyDaemonPolicy = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/daemon-policy`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_DAEMON_POLICY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_DAEMON_POLICY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
 const proxyPhysiology = async (): Promise<Response> => {
   try {
     const response = await fetch(`${SYSTEM_API_BASE}/api/physiology`, {
@@ -611,6 +656,13 @@ const reqHandler = async (req: Request) => {
     return proxyHomeostasis(req);
   }
 
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/daemon-policy"
+  ) {
+    return proxyDaemonPolicy(req);
+  }
+
   if (req.method === "GET" && url.pathname === "/api/physiology") {
     return proxyPhysiology();
   }
@@ -644,7 +696,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/daemon-policy, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

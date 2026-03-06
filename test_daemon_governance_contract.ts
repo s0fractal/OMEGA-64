@@ -174,6 +174,27 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "last_policy_update",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish latest daemon-policy update",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "last_policy_history",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish recent daemon-policy history",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "/api/daemon-policy",
+    SYSTEM_START_PATH,
+    "Daemon governance surface must expose daemon-policy endpoint",
+    violations,
+  );
+  requireSnippet(
+    system,
     "flushDaemonAuditEffects(",
     SYSTEM_START_PATH,
     "Daemon loop must flush deferred effect audits",
