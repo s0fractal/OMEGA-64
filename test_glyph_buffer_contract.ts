@@ -92,8 +92,29 @@ const main = () => {
     );
   }
 
+  GLYPH_BUFFER.clear();
+  GLYPH_BUFFER.beginInternalAtomEmissionTick();
+  GLYPH_BUFFER.emitAtomPheromone(200, 200, 96);
+  GLYPH_BUFFER.emitAtomPlasmid(
+    220,
+    220,
+    144,
+    new Uint8Array([9, 8, 7, 6, 5, 4, 3, 2]),
+  );
+  const atomTick = GLYPH_BUFFER.tick(11);
+  if (atomTick.internalAtomPheromoneSeeds <= 0) {
+    throw new Error(
+      "[glyph-buffer] atom pheromone emission counter did not advance",
+    );
+  }
+  if (atomTick.internalAtomPlasmidSeeds <= 0) {
+    throw new Error(
+      "[glyph-buffer] atom plasmid emission counter did not advance",
+    );
+  }
+
   console.log(
-    `[glyph-buffer] contract guard passed. active=${internalTick.activeCells} pheromone=${internalTick.pheromoneCells} plasmid=${internalTick.plasmidCells} signalSeeds=${internalTick.internalSignalSeeds} memorySeeds=${internalTick.internalMemorySeeds}`,
+    `[glyph-buffer] contract guard passed. active=${atomTick.activeCells} pheromone=${atomTick.pheromoneCells} plasmid=${atomTick.plasmidCells} signalSeeds=${internalTick.internalSignalSeeds} memorySeeds=${internalTick.internalMemorySeeds} atomPheromone=${atomTick.internalAtomPheromoneSeeds} atomPlasmid=${atomTick.internalAtomPlasmidSeeds}`,
   );
 };
 

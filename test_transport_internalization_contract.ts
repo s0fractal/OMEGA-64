@@ -116,6 +116,20 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    glyphBuffer,
+    "emitAtomPheromone",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must support atom-driven pheromone emission",
+    violations,
+  );
+  requireSnippet(
+    glyphBuffer,
+    "emitAtomPlasmid",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must support atom-driven plasmid emission",
+    violations,
+  );
+  requireSnippet(
     avatar,
     "GLYPH_BUFFER.depositPheromone",
     AVATAR_ENGINE_PATH,
@@ -134,6 +148,13 @@ const main = async () => {
     "GLYPH_BUFFER.tick(currentTick)",
     PULSE_PATH,
     "Host lock must advance internal glyph transport",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx)",
+    PULSE_PATH,
+    "Host lock must allow active atoms to seed glyph transport internally",
     violations,
   );
   requireSnippet(

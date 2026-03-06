@@ -36,7 +36,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2: golden traces          | complete    | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/`                                                                                                                                                                                       |
 | Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure                                                                                                                                                                                                                                             |
 | Stage 4: shadow verification    | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts                                                                                                                                                                   |
-| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, and internal emission now leaks from `signalGrid` and `memoryGrid` into glyph transport                                                  |
+| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets directly           |
 | Stage 6                         | not started | Codex evidence upgrade still depends on later ownership moves                                                                                                                                                                                                                                                              |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
 | Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                                                    |
@@ -119,6 +119,9 @@ Latest completed planning work:
 - Extended Stage 5 transport with the first two internal emission sources:
   `signalGrid` now leaks into pheromone glyph packets and `memoryGrid` now
   leaks into plasmid glyph packets, so transport is no longer membrane-only.
+- Added the first agent-driven Stage 5 producer: a bounded subset of active
+  atoms now emits pheromone/plasmid glyph packets directly during host lock,
+  so internal transport no longer depends only on ingress or substrate leakage.
 
 ## Current diagnosis
 

@@ -808,6 +808,8 @@ const resonancesView = new Int32Array(
   OFFSETS.RESONANCE_OFFSET,
   MAX_ATOMS,
 );
+const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
 const logicView = new Uint8Array(
   sharedBuffer,
   OFFSETS.LOGIC_OFFSET,
@@ -879,6 +881,85 @@ const findNextFreeSlot = (startIdx: number): number => {
 const genomeKey16 = (idx: number): number => {
   const off = idx * 8;
   return ((logicView[off] << 8) | logicView[off + 1]) >>> 0;
+};
+const INTERNAL_GLYPH_ATOM_SCAN_TARGET = 128;
+const INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET = 96;
+const INTERNAL_GLYPH_ATOM_PLASMID_BUDGET = 24;
+const INTERNAL_GLYPH_PHEROMONE_RESONANCE_FLOOR = 180;
+const INTERNAL_GLYPH_PLASMID_RESONANCE_FLOOR = 96;
+const INTERNAL_GLYPH_PLASMID_ENERGY_FLOOR = 128;
+const hasGenomeResidue = (idx: number): boolean => {
+  const off = idx * 8;
+  for (let i = 0; i < 8; i++) {
+    if (logicView[off + i] !== 0) return true;
+  }
+  return false;
+};
+const emitInternalGlyphsFromActiveAtoms = (
+  tick: number,
+  activeIdx: number[],
+): { atomPheromoneSeeds: number; atomPlasmidSeeds: number } => {
+  GLYPH_BUFFER.beginInternalAtomEmissionTick();
+  if (activeIdx.length === 0) {
+    return { atomPheromoneSeeds: 0, atomPlasmidSeeds: 0 };
+  }
+
+  const scanBudget = Math.min(activeIdx.length, INTERNAL_GLYPH_ATOM_SCAN_TARGET);
+  const stride = Math.max(1, Math.floor(activeIdx.length / Math.max(1, scanBudget)));
+  const startOffset = tick % stride;
+  let atomPheromoneSeeds = 0;
+  let atomPlasmidSeeds = 0;
+
+  for (
+    let cursor = startOffset;
+    cursor < activeIdx.length &&
+      (atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET ||
+        atomPlasmidSeeds < INTERNAL_GLYPH_ATOM_PLASMID_BUDGET);
+    cursor += stride
+  ) {
+    const idx = activeIdx[cursor];
+    const x = xsView[idx];
+    const y = ysView[idx];
+    const resonance = Atomics.load(resonancesView, idx);
+    const energy = Atomics.load(energiesView, idx);
+    const phase = Atomics.load(phasesView, idx);
+    const role = rolesView[idx];
+
+    if (
+      atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET &&
+      resonance >= INTERNAL_GLYPH_PHEROMONE_RESONANCE_FLOOR &&
+      (((phase + tick + idx) & 0x03) === 0 ||
+        role === STATE_MATRIX.ROLE_GUARDIAN)
+    ) {
+      const intensity = Math.max(
+        24,
+        Math.min(320, Math.trunc(resonance / 6)),
+      );
+      GLYPH_BUFFER.emitAtomPheromone(x, y, intensity);
+      atomPheromoneSeeds++;
+    }
+
+    if (
+      atomPlasmidSeeds < INTERNAL_GLYPH_ATOM_PLASMID_BUDGET &&
+      (role === STATE_MATRIX.ROLE_ARCHITECT ||
+        role === STATE_MATRIX.ROLE_PRODUCER) &&
+      energy >= INTERNAL_GLYPH_PLASMID_ENERGY_FLOOR &&
+      resonance >= INTERNAL_GLYPH_PLASMID_RESONANCE_FLOOR &&
+      (((phase + tick + idx) & 0x0F) === 0) &&
+      hasGenomeResidue(idx)
+    ) {
+      const off = idx * 8;
+      const payload = logicView.slice(off, off + 8);
+      const charge = Math.max(
+        32,
+        Math.min(320, Math.trunc((energy + resonance) / 12)),
+      );
+      GLYPH_BUFFER.emitAtomPlasmid(x, y, charge, payload);
+      atomPlasmidSeeds++;
+    }
+  }
+
+  return { atomPheromoneSeeds, atomPlasmidSeeds };
 };
 const applyEvolutionPressureTerms = (
   tick: number,
@@ -2189,6 +2270,7 @@ export const PULSE = {
           `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
+      emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx);
       GLYPH_BUFFER.tick(currentTick);
       applyEvolutionPressureTerms(currentTick, activeIdx);
       applyEnergyHomeostasisTerms(

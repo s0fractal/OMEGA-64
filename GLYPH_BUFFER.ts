@@ -23,12 +23,16 @@ type GlyphSnapshot = {
   totalAmplitude: number;
   internalSignalSeeds: number;
   internalMemorySeeds: number;
+  internalAtomPheromoneSeeds: number;
+  internalAtomPlasmidSeeds: number;
 };
 
 const scratchHeader = new Int32Array(GRID_CELLS);
 const scratchPayload = new Uint8Array(GRID_CELLS * 8);
 let lastInternalSignalSeeds = 0;
 let lastInternalMemorySeeds = 0;
+let lastInternalAtomPheromoneSeeds = 0;
+let lastInternalAtomPlasmidSeeds = 0;
 
 const SIGNAL_SEED_THRESHOLD = 256;
 const SIGNAL_SEED_MAX = 512;
@@ -172,6 +176,13 @@ export const GLYPH_BUFFER = {
     STATE_MATRIX.glyphPayload.fill(0);
     lastInternalSignalSeeds = 0;
     lastInternalMemorySeeds = 0;
+    lastInternalAtomPheromoneSeeds = 0;
+    lastInternalAtomPlasmidSeeds = 0;
+  },
+
+  beginInternalAtomEmissionTick: () => {
+    lastInternalAtomPheromoneSeeds = 0;
+    lastInternalAtomPlasmidSeeds = 0;
   },
 
   depositPheromone: (x: number, y: number, intensity: number) => {
@@ -202,6 +213,21 @@ export const GLYPH_BUFFER = {
       clamp(Math.round(charge), 1, 4096),
       payload,
     );
+  },
+
+  emitAtomPheromone: (x: number, y: number, intensity: number) => {
+    lastInternalAtomPheromoneSeeds++;
+    GLYPH_BUFFER.depositPheromone(x, y, intensity);
+  },
+
+  emitAtomPlasmid: (
+    x: number,
+    y: number,
+    charge: number,
+    payload: Uint8Array,
+  ) => {
+    lastInternalAtomPlasmidSeeds++;
+    GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
   },
 
   tick: (tick: number): GlyphSnapshot => {
@@ -267,6 +293,8 @@ export const GLYPH_BUFFER = {
       totalAmplitude,
       internalSignalSeeds: lastInternalSignalSeeds,
       internalMemorySeeds: lastInternalMemorySeeds,
+      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
+      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
     };
   },
 
@@ -297,6 +325,8 @@ export const GLYPH_BUFFER = {
       totalAmplitude,
       internalSignalSeeds: lastInternalSignalSeeds,
       internalMemorySeeds: lastInternalMemorySeeds,
+      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
+      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
     };
   },
 };

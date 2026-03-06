@@ -123,6 +123,8 @@ type RuntimeMetrics = {
     totalAmplitude: number;
     internalSignalSeeds: number;
     internalMemorySeeds: number;
+    internalAtomPheromoneSeeds: number;
+    internalAtomPlasmidSeeds: number;
   };
 };
 
