@@ -51,6 +51,8 @@ const HOMEOSTASIS_OVERFLOW_THRESHOLD =
 const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
+const HOMEOSTASIS_BASE_TAX_MIN = 0;
+const HOMEOSTASIS_BASE_TAX_MAX = 1024;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -76,11 +78,30 @@ type SpatialHashState = {
   maxCellCount: number;
   overflowRatio: number;
 };
+type HomeostasisState = {
+  enabled: boolean;
+  targetEnergy: number;
+  band: number;
+  maxDelta: number;
+  overflowThreshold: number;
+  starvationFloor: number;
+  subsidyEnabled: boolean;
+  baseTaxDefault: number;
+  baseTaxCurrent: number;
+  lastUpdateTick: number;
+  lastUpdateSource: string;
+  lastUpdateReason: string;
+};
 
 const clampPressureTerm = (value: number): number =>
   Math.max(-PRESSURE_TERM_ABS_MAX, Math.min(PRESSURE_TERM_ABS_MAX, value | 0));
 const clampRingScale = (value: number): number =>
   Math.max(0, Math.min(PRESSURE_RING_SCALE_MAX, value | 0));
+const clampHomeostasisBaseTax = (value: number): number =>
+  Math.max(
+    HOMEOSTASIS_BASE_TAX_MIN,
+    Math.min(HOMEOSTASIS_BASE_TAX_MAX, Math.round(value)),
+  );
 const normalizeTheta = (theta: number): number => {
   if (!Number.isFinite(theta)) return 0;
   const wrapped = theta % PRESSURE_RING_TAU;
@@ -152,6 +173,10 @@ let spatialHashState: SpatialHashState = {
   maxCellCount: 0,
   overflowRatio: 0,
 };
+let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisLastUpdateTick = -1;
+let homeostasisLastUpdateSource = "runtime_policy";
+let homeostasisLastUpdateReason = "bootstrap";
 const resetStartupSelfTestStateForColdStart = (): void => {
   startupSelfTestDone = false;
   startupSelfTestFallbackActivated = false;
@@ -171,12 +196,32 @@ const resetSpatialHashStateForColdStart = (): void => {
     overflowRatio: 0,
   };
 };
+const resetHomeostasisStateForColdStart = (): void => {
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+  homeostasisLastUpdateTick = -1;
+  homeostasisLastUpdateSource = "runtime_policy";
+  homeostasisLastUpdateReason = "coldstart_reset";
+};
 const resetEvolutionPressureStateForColdStart = (): void => {
   evolutionPressureState = {
     ...BASE_EVOLUTION_PRESSURE_STATE,
     ring: { ...BASE_EVOLUTION_PRESSURE_STATE.ring },
   };
 };
+const snapshotHomeostasisState = (): HomeostasisState => ({
+  enabled: HOMEOSTASIS_ENABLED,
+  targetEnergy: HOMEOSTASIS_TARGET_ENERGY,
+  band: HOMEOSTASIS_BAND,
+  maxDelta: HOMEOSTASIS_MAX_DELTA,
+  overflowThreshold: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+  starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+  subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+  baseTaxDefault: HOMEOSTASIS_BASE_TAX,
+  baseTaxCurrent: clampHomeostasisBaseTax(homeostasisBaseTaxRuntime),
+  lastUpdateTick: homeostasisLastUpdateTick,
+  lastUpdateSource: homeostasisLastUpdateSource,
+  lastUpdateReason: homeostasisLastUpdateReason,
+});
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
   symbiosisSigned: evolutionPressureState.symbiosisSigned,
@@ -470,6 +515,7 @@ const applyEnergyHomeostasisTerms = (
   }
   const bandStep = Math.max(1, Math.floor(HOMEOSTASIS_BAND / 2));
   const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
+  const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
   let adjusted = 0;
   let netDelta = 0;
   let taxed = 0;
@@ -480,8 +526,8 @@ const applyEnergyHomeostasisTerms = (
     if (current <= 0) continue;
     let delta = 0;
 
-    if (HOMEOSTASIS_BASE_TAX > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
-      const tax = Math.min(HOMEOSTASIS_BASE_TAX, current);
+    if (baseTax > 0 && current > HOMEOSTASIS_STARVATION_FLOOR) {
+      const tax = Math.min(baseTax, current);
       delta -= tax;
       taxed += tax;
     }
@@ -533,7 +579,7 @@ const applyEnergyHomeostasisTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${HOMEOSTASIS_BASE_TAX} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
       );
     }
   }
@@ -891,6 +937,7 @@ export const PULSE = {
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
     resetSpatialHashStateForColdStart();
+    resetHomeostasisStateForColdStart();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -1131,6 +1178,41 @@ export const PULSE = {
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
+  getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
+  updateHomeostasisPolicy: (
+    update: {
+      baseTax?: number;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): HomeostasisState => {
+    const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
+      homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(update.baseTax);
+    }
+    const nextTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    const source = (update.source ?? "runtime").trim();
+    const reason = (update.reason ?? "manual_update").trim();
+    homeostasisLastUpdateSource = source.length > 0 ? source : "runtime";
+    homeostasisLastUpdateReason = reason.length > 0 ? reason : "manual_update";
+    homeostasisLastUpdateTick = update.tick !== undefined
+      ? Math.max(0, Math.floor(update.tick))
+      : Atomics.load(STATE_MATRIX.tickCounter, 0);
+
+    if (nextTax !== prevTax) {
+      LOGGER.info(
+        `   [PULSE] Homeostasis base tax update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} ${prevTax} -> ${nextTax} reason=${homeostasisLastUpdateReason}`,
+      );
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "homeostasis_policy_update",
+        count: 1,
+      });
+    }
+
+    return snapshotHomeostasisState();
+  },
   updateEvolutionPressureRing: (
     update: {
       mode: "set" | "step";

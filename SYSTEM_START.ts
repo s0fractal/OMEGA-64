@@ -137,6 +137,19 @@ type PressureRingUpdateSnapshot = {
   enabled: boolean;
 };
 
+type HomeostasisIngressEnvelope = {
+  base_tax?: number;
+  reason?: string;
+};
+
+type HomeostasisUpdateSnapshot = {
+  tick: number;
+  source: string;
+  reason: string;
+  base_tax_before: number;
+  base_tax_after: number;
+};
+
 const requireControlAuth = (req: Request): Response | null => {
   const path = new URL(req.url).pathname;
   const isAvatarIngress = path === "/avatar";
@@ -197,6 +210,9 @@ const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
 const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
 const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
 const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
@@ -241,6 +257,8 @@ let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
 let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
 let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
 let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
+let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
+let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
 let telemetryStreamLastTick = -1;
@@ -271,6 +289,16 @@ const setLatestPressureRingUpdate = (
   pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
     0,
     DAEMON_PRESSURE_RING_HISTORY_LIMIT,
+  );
+};
+
+const setLatestHomeostasisUpdate = (
+  snapshot: HomeostasisUpdateSnapshot,
+): void => {
+  latestHomeostasisUpdate = snapshot;
+  homeostasisHistory = [snapshot, ...homeostasisHistory].slice(
+    0,
+    DAEMON_HOMEOSTASIS_HISTORY_LIMIT,
   );
 };
 
@@ -583,6 +611,7 @@ const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
+  const homeostasis = PULSE.getHomeostasisState();
   const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
@@ -648,6 +677,22 @@ const buildTelemetry = async () => {
       last_admission_history: daemonAdmissionHistory,
       last_pressure_ring_update: latestPressureRingUpdate,
       last_pressure_ring_history: pressureRingHistory,
+      last_homeostasis_update: latestHomeostasisUpdate,
+      last_homeostasis_history: homeostasisHistory,
+      homeostasis: {
+        enabled: homeostasis.enabled,
+        target_energy: homeostasis.targetEnergy,
+        band: homeostasis.band,
+        max_delta: homeostasis.maxDelta,
+        overflow_threshold: homeostasis.overflowThreshold,
+        starvation_floor: homeostasis.starvationFloor,
+        subsidy_enabled: homeostasis.subsidyEnabled,
+        base_tax_default: homeostasis.baseTaxDefault,
+        base_tax_current: homeostasis.baseTaxCurrent,
+        last_update_tick: homeostasis.lastUpdateTick,
+        last_update_source: homeostasis.lastUpdateSource,
+        last_update_reason: homeostasis.lastUpdateReason,
+      },
     },
     snapshot_guard: {
       enabled: SNAPSHOT_POLICY.enabled,
@@ -828,6 +873,32 @@ const parsePressureRingIngressEnvelope = (
   }
   if (enabled !== undefined) envelope.enabled = enabled;
   return envelope;
+};
+
+const parseHomeostasisIngressEnvelope = (
+  body: unknown,
+): HomeostasisIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const baseTax = asFiniteNumber(
+    payloadSource.base_tax ?? payloadSource.baseTax,
+    Number.NaN,
+  );
+  if (!Number.isFinite(baseTax)) return null;
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_homeostasis_controller";
+  return {
+    base_tax: clamp(
+      Math.round(baseTax),
+      DAEMON_HOMEOSTASIS_BASE_TAX_MIN,
+      DAEMON_HOMEOSTASIS_BASE_TAX_MAX,
+    ),
+    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
+  };
 };
 
 const normalizeDaemonNarrativeContext = (
@@ -1328,6 +1399,128 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         JSON.stringify({
           ok: false,
           reason: "PRESSURE_RING_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "GET") {
+    const homeostasis = PULSE.getHomeostasisState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        homeostasis: {
+          enabled: homeostasis.enabled,
+          target_energy: homeostasis.targetEnergy,
+          band: homeostasis.band,
+          max_delta: homeostasis.maxDelta,
+          overflow_threshold: homeostasis.overflowThreshold,
+          starvation_floor: homeostasis.starvationFloor,
+          subsidy_enabled: homeostasis.subsidyEnabled,
+          base_tax_default: homeostasis.baseTaxDefault,
+          base_tax_current: homeostasis.baseTaxCurrent,
+          last_update_tick: homeostasis.lastUpdateTick,
+          last_update_source: homeostasis.lastUpdateSource,
+          last_update_reason: homeostasis.lastUpdateReason,
+        },
+        latest_update: latestHomeostasisUpdate,
+        history: homeostasisHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseHomeostasisIngressEnvelope(body);
+      if (!envelope || envelope.base_tax === undefined) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_HOMEOSTASIS_PAYLOAD",
+            expected: "Provide {base_tax:number, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const before = PULSE.getHomeostasisState();
+      const updated = PULSE.updateHomeostasisPolicy({
+        baseTax: envelope.base_tax,
+        source: "daemon_homeostasis_controller",
+        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        tick,
+      });
+      const snapshot: HomeostasisUpdateSnapshot = {
+        tick,
+        source: "daemon_homeostasis_controller",
+        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        base_tax_before: before.baseTaxCurrent,
+        base_tax_after: updated.baseTaxCurrent,
+      };
+      setLatestHomeostasisUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_HOMEOSTASIS",
+        tick,
+        source: snapshot.source,
+        reason: snapshot.reason,
+        base_tax_before: snapshot.base_tax_before,
+        base_tax_after: snapshot.base_tax_after,
+      });
+
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          homeostasis: {
+            enabled: updated.enabled,
+            target_energy: updated.targetEnergy,
+            band: updated.band,
+            max_delta: updated.maxDelta,
+            overflow_threshold: updated.overflowThreshold,
+            starvation_floor: updated.starvationFloor,
+            subsidy_enabled: updated.subsidyEnabled,
+            base_tax_default: updated.baseTaxDefault,
+            base_tax_current: updated.baseTaxCurrent,
+            last_update_tick: updated.lastUpdateTick,
+            last_update_source: updated.lastUpdateSource,
+            last_update_reason: updated.lastUpdateReason,
+          },
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "HOMEOSTASIS_UPDATE_EXCEPTION",
           details: String(err),
         }),
         { status: 500, headers: JSON_HEADERS },

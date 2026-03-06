@@ -96,6 +96,27 @@ type Telemetry = {
     last_admission_history?: unknown[];
     last_pressure_ring_update?: unknown;
     last_pressure_ring_history?: unknown[];
+    last_homeostasis_update?: unknown;
+    last_homeostasis_history?: unknown[];
+    homeostasis?: {
+      enabled: boolean;
+      target_energy: number;
+      band: number;
+      max_delta: number;
+      overflow_threshold: number;
+      starvation_floor: number;
+      subsidy_enabled: boolean;
+      base_tax_default: number;
+      base_tax_current: number;
+      last_update_tick: number;
+      last_update_source: string;
+      last_update_reason: string;
+    };
+  };
+  spatial_hash_guard?: {
+    overflow_ratio: number;
+    overflow_count: number;
+    max_cell_count: number;
   };
 };
 
@@ -251,6 +272,7 @@ const TELEMETRY_URL = `${API_BASE}/api/telemetry`;
 const CODEX_NARRATIVE_URL = `${API_BASE}/api/codex/narrative`;
 const INJECT_URL = `${API_BASE}/api/inject`;
 const PRESSURE_RING_URL = `${API_BASE}/api/pressure-ring`;
+const HOMEOSTASIS_URL = `${API_BASE}/api/homeostasis`;
 const OPENAI_URL = Deno.env.get("OPENAI_API_URL") ??
   "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = Deno.env.get("OMEGA_DAEMON_MODEL") ?? "gpt-4o";
@@ -322,8 +344,73 @@ const PHASE_SEASONS_HIGH_ENERGY = parseBoundedFloat(
   0,
   10_000,
 );
+const HOMEOSTASIS_CONTROL_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_ENABLE"),
+  true,
+);
+const HOMEOSTASIS_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_COOLDOWN_TICKS"),
+  24,
+  1,
+  50_000,
+);
+const HOMEOSTASIS_TARGET_ENERGY = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_ENERGY"),
+  420,
+  1,
+  100_000,
+);
+const HOMEOSTASIS_BAND = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_BAND"),
+  120,
+  1,
+  50_000,
+);
+const HOMEOSTASIS_GAIN_UP = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_GAIN_UP"),
+  0.0125,
+  0.0001,
+  1.0,
+);
+const HOMEOSTASIS_GAIN_DOWN = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_GAIN_DOWN"),
+  0.008,
+  0.0001,
+  1.0,
+);
+const HOMEOSTASIS_MAX_STEP = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MAX_STEP"),
+  2,
+  1,
+  32,
+);
+const HOMEOSTASIS_MIN_TAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MIN_TAX"),
+  0,
+  0,
+  256,
+);
+const HOMEOSTASIS_MAX_TAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_MAX_TAX"),
+  16,
+  1,
+  512,
+);
+const HOMEOSTASIS_OVERFLOW_SOFT = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_OVERFLOW_SOFT"),
+  0.22,
+  0,
+  1,
+);
+const HOMEOSTASIS_OVERFLOW_HARD = parseBoundedFloat(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_OVERFLOW_HARD"),
+  0.35,
+  0,
+  1,
+);
 
 let lastPhaseSeasonTick = -1;
+let lastHomeostasisControlTick = -1;
 
 const withTimeout = async (
   input: string,
@@ -448,6 +535,14 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
   const daemonRaw = source.daemon_governance &&
       typeof source.daemon_governance === "object"
     ? source.daemon_governance as Record<string, unknown>
+    : null;
+  const daemonHomeostasisRaw = daemonRaw?.homeostasis &&
+      typeof daemonRaw.homeostasis === "object"
+    ? daemonRaw.homeostasis as Record<string, unknown>
+    : null;
+  const spatialRaw = source.spatial_hash_guard &&
+      typeof source.spatial_hash_guard === "object"
+    ? source.spatial_hash_guard as Record<string, unknown>
     : null;
   const behaviorClusters = Array.isArray(source.behavior_clusters)
     ? source.behavior_clusters
@@ -771,6 +866,77 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
           )
           ? daemonRaw.last_pressure_ring_history
           : [],
+        last_homeostasis_update: daemonRaw.last_homeostasis_update,
+        last_homeostasis_history: Array.isArray(
+            daemonRaw.last_homeostasis_history,
+          )
+          ? daemonRaw.last_homeostasis_history
+          : [],
+        homeostasis: daemonHomeostasisRaw
+          ? {
+            enabled: parseEnvBool(
+              typeof daemonHomeostasisRaw.enabled === "string" ||
+                  typeof daemonHomeostasisRaw.enabled === "boolean"
+                ? String(daemonHomeostasisRaw.enabled)
+                : undefined,
+              true,
+            ),
+            target_energy: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy,
+              HOMEOSTASIS_TARGET_ENERGY,
+            ),
+            band: asFiniteNumber(daemonHomeostasisRaw.band, HOMEOSTASIS_BAND),
+            max_delta: asFiniteNumber(daemonHomeostasisRaw.max_delta, 0),
+            overflow_threshold: asFiniteNumber(
+              daemonHomeostasisRaw.overflow_threshold,
+              0,
+            ),
+            starvation_floor: asFiniteNumber(
+              daemonHomeostasisRaw.starvation_floor,
+              0,
+            ),
+            subsidy_enabled: parseEnvBool(
+              typeof daemonHomeostasisRaw.subsidy_enabled === "string" ||
+                  typeof daemonHomeostasisRaw.subsidy_enabled === "boolean"
+                ? String(daemonHomeostasisRaw.subsidy_enabled)
+                : undefined,
+              false,
+            ),
+            base_tax_default: Math.max(
+              0,
+              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_default, 0)),
+            ),
+            base_tax_current: Math.max(
+              0,
+              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_current, 0)),
+            ),
+            last_update_tick: Math.max(
+              0,
+              Math.floor(asFiniteNumber(daemonHomeostasisRaw.last_update_tick, 0)),
+            ),
+            last_update_source:
+              typeof daemonHomeostasisRaw.last_update_source === "string"
+                ? daemonHomeostasisRaw.last_update_source
+                : "unknown",
+            last_update_reason:
+              typeof daemonHomeostasisRaw.last_update_reason === "string"
+                ? daemonHomeostasisRaw.last_update_reason
+                : "unknown",
+          }
+          : undefined,
+      }
+      : undefined,
+    spatial_hash_guard: spatialRaw
+      ? {
+        overflow_ratio: asFiniteNumber(spatialRaw.overflow_ratio, 0),
+        overflow_count: Math.max(
+          0,
+          Math.floor(asFiniteNumber(spatialRaw.overflow_count, 0)),
+        ),
+        max_cell_count: Math.max(
+          0,
+          Math.floor(asFiniteNumber(spatialRaw.max_cell_count, 0)),
+        ),
       }
       : undefined,
   };
@@ -1255,6 +1421,38 @@ const postPressureRingUpdate = async (
   }
 };
 
+const postHomeostasisUpdate = async (
+  payload: {
+    base_tax: number;
+    reason?: string;
+  },
+): Promise<void> => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (CONTROL_TOKEN.length > 0) {
+    headers["x-omega-control-token"] = CONTROL_TOKEN;
+  }
+  const response = await withTimeout(
+    HOMEOSTASIS_URL,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    },
+    HTTP_TIMEOUT_MS,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Homeostasis update failed: ${response.status} ${response.statusText} ${
+        text.slice(0, 240)
+      }`,
+    );
+  }
+};
+
 const phaseSeasonDelta = (
   telemetry: Telemetry,
   frame: InvariantFrame,
@@ -1302,6 +1500,70 @@ const maybeAdvancePhaseRing = async (
     `[PHASE_RING] step=${delta.toFixed(5)} tick=${telemetry.tick} theta≈${
       ring.theta.toFixed(5)
     } scale=${ring.scale}`,
+  );
+};
+
+const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
+  if (!HOMEOSTASIS_CONTROL_ENABLE) return;
+  if (telemetry.daemon_governance?.safe_mode) return;
+  if (
+    telemetry.tick - lastHomeostasisControlTick < HOMEOSTASIS_COOLDOWN_TICKS
+  ) {
+    return;
+  }
+  const live = telemetry.daemon_governance?.homeostasis;
+  if (!live?.enabled) return;
+
+  const currentTax = clamp(
+    Math.round(
+      asFiniteNumber(live.base_tax_current, live.base_tax_default ?? 0),
+    ),
+    HOMEOSTASIS_MIN_TAX,
+    HOMEOSTASIS_MAX_TAX,
+  );
+  const target = HOMEOSTASIS_TARGET_ENERGY;
+  const band = Math.max(1, HOMEOSTASIS_BAND);
+  const overflow = clamp(
+    asFiniteNumber(telemetry.spatial_hash_guard?.overflow_ratio, 0),
+    0,
+    1,
+  );
+
+  const high = target + band;
+  const low = Math.max(0, target - band);
+  let nextTax = currentTax;
+
+  if (telemetry.avgEnergy > high) {
+    const overshoot = telemetry.avgEnergy - high;
+    let step = Math.max(1, Math.round(overshoot * HOMEOSTASIS_GAIN_UP));
+    if (overflow >= HOMEOSTASIS_OVERFLOW_HARD) {
+      step += 1;
+    } else if (overflow >= HOMEOSTASIS_OVERFLOW_SOFT) {
+      step = Math.max(step, 1);
+    }
+    nextTax = currentTax + Math.min(HOMEOSTASIS_MAX_STEP, step);
+  } else if (telemetry.avgEnergy < low) {
+    const undershoot = low - telemetry.avgEnergy;
+    const step = Math.max(1, Math.round(undershoot * HOMEOSTASIS_GAIN_DOWN));
+    nextTax = currentTax - Math.min(HOMEOSTASIS_MAX_STEP, step);
+  } else {
+    return;
+  }
+
+  nextTax = clamp(nextTax, HOMEOSTASIS_MIN_TAX, HOMEOSTASIS_MAX_TAX);
+  if (nextTax === currentTax) return;
+
+  await postHomeostasisUpdate({
+    base_tax: nextTax,
+    reason: "daemon_homeostasis_feedback",
+  });
+  lastHomeostasisControlTick = telemetry.tick;
+  logAction(
+    `[HOMEOSTASIS] baseTax=${currentTax}->${nextTax} avgEnergy=${
+      telemetry.avgEnergy.toFixed(2)
+    } target=${target.toFixed(2)} band=${band.toFixed(2)} overflow=${
+      overflow.toFixed(3)
+    }`,
   );
 };
 
@@ -1364,6 +1626,11 @@ const runHeartbeat = async (): Promise<void> => {
   } catch (err) {
     logWarn(`Phase-ring scheduler fallback: ${String(err)}`);
   }
+  try {
+    await maybeControlHomeostasis(telemetry);
+  } catch (err) {
+    logWarn(`Homeostasis scheduler fallback: ${String(err)}`);
+  }
   const decision = await askOpenAI(
     telemetry,
     codexNarrative,
@@ -1390,7 +1657,7 @@ const startDaemon = (): void => {
   logAction(
     `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
       PHASE_SEASONS_STEP_RAD.toFixed(4)
-    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS}`,
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] target=${HOMEOSTASIS_TARGET_ENERGY.toFixed(2)} band=${HOMEOSTASIS_BAND.toFixed(2)}`,
   );
 
   const heartbeat = async (): Promise<void> => {
