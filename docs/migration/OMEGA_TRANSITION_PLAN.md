@@ -31,7 +31,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` is now ledger-owned, rollback-tokenized, and replayable through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) + [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts), while the rest of the layer remains bounded and observational |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` is now ledger-owned, rollback-tokenized, replayable, and compacted through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) + [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts), while the rest of the layer remains bounded and observational |
 
 Current rule:
 
@@ -180,6 +180,7 @@ Current support files already suggest the trace direction:
 - `verification/reduction_harness.ts` now covers the bridge-safe opcode subset
 - `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics, including explicit policy-block baselines, without pretending they already belong to the reduction bridge
 - next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
+- Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so persistence/compaction state is visible alongside the first live ledger-owned knob
 
 ## Stage 3: Introduce `GlyphIR64`
 

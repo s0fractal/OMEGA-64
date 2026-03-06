@@ -24,6 +24,8 @@ The Stage 7 code-backed surface now exists in:
 live through the base-tax runtime controller in `GENETIC_LEDGER_RUNTIME.ts`.
 Durable replay now lives in
 [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts).
+That persistence layer now includes snapshot compaction, so hydration runs
+through `snapshot + tail log` instead of replaying an unbounded event stream.
 
 Executable guards:
 
@@ -31,6 +33,7 @@ Executable guards:
 - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
 - [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
 - [test_genetic_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_persistence_contract.ts)
+- [test_genetic_ledger_compaction_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_compaction_contract.ts)
 - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
 - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 
@@ -116,6 +119,8 @@ At this point:
 - there is no live `SharedArrayBuffer` hormone region yet
 - there is now a durable event log for `pulse.homeostasis.baseTax` at
   `.omega/ledger/base_tax_ledger.jsonl`
+- there is now a compacted snapshot for long-lived base-tax history at
+  `.omega/ledger/base_tax_ledger.snapshot.json`
 - there is still no general persistence layer for the rest of the ledger surface
 - there is no runtime write path through `HORMONE_BUFFER`
 - there is exactly one live ledger-owned write path:
@@ -138,3 +143,6 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/physiology`
 - partially authoritative over live runtime causality only for ledger-owned `baseTax`
 - durable enough that `baseTax` rollback tokens survive restart through replay
+- compact enough that `baseTax` hydration can reload from snapshot + bounded tail
+- observer-visible through `/api/homeostasis` and `/api/physiology` with
+  `ledger_base_tax_persistence`

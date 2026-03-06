@@ -52,9 +52,9 @@ const main = async () => {
   );
   requireSnippet(
     ledgerPersistence,
-    "appendBaseTaxLedgerRecord",
+    "appendBaseTaxLedgerRecordAndMaybeCompact",
     LEDGER_PERSISTENCE_PATH,
-    "Ledger persistence module must append records to durable history",
+    "Ledger persistence module must append records into durable history and compaction flow",
     violations,
   );
   requireSnippet(
@@ -62,6 +62,21 @@ const main = async () => {
     "hydrateBaseTaxLedgerRuntime",
     LEDGER_PERSISTENCE_PATH,
     "Ledger persistence module must replay records into runtime state",
+    violations,
+  );
+
+  requireSnippet(
+    ledgerPersistence,
+    "compactBaseTaxLedgerPersistence",
+    LEDGER_PERSISTENCE_PATH,
+    "Ledger persistence module must support snapshot compaction for long-lived history",
+    violations,
+  );
+  requireSnippet(
+    ledgerPersistence,
+    "BASE_TAX_LEDGER_SNAPSHOT_PATH",
+    LEDGER_PERSISTENCE_PATH,
+    "Ledger persistence module must expose canonical snapshot path",
     violations,
   );
 
@@ -141,6 +156,13 @@ const main = async () => {
     "ledger_base_tax",
     SYSTEM_START_PATH,
     "System runtime must expose ledger-owned baseTax summary to observers",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_base_tax_persistence",
+    SYSTEM_START_PATH,
+    "System runtime must expose ledger persistence summary to observers",
     violations,
   );
 

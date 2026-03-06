@@ -22,11 +22,15 @@ import {
   type BaseTaxLedgerRuntimeState,
 } from "./GENETIC_LEDGER_RUNTIME.ts";
 import {
-  appendBaseTaxLedgerRecord,
+  BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
+  BASE_TAX_LEDGER_COMPACT_THRESHOLD,
+  appendBaseTaxLedgerRecordAndMaybeCompact,
+  BASE_TAX_LEDGER_LOG_PATH,
+  BASE_TAX_LEDGER_SNAPSHOT_PATH,
   hydrateBaseTaxLedgerRuntime,
+  type BaseTaxLedgerPersistenceSummary,
   recordFromApplyMutation,
   recordFromRollbackMutation,
-  type BaseTaxLedgerPersistenceSummary,
 } from "./GENETIC_LEDGER_PERSISTENCE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
@@ -208,11 +212,24 @@ let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
 let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
   createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
 let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
-  path: ".omega/ledger/base_tax_ledger.jsonl",
+  path: BASE_TAX_LEDGER_LOG_PATH,
+  snapshotPath: BASE_TAX_LEDGER_SNAPSHOT_PATH,
   exists: false,
+  snapshotExists: false,
   recordCount: 0,
   applyCount: 0,
   rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: BASE_TAX_LEDGER_COMPACT_THRESHOLD,
+  compactionKeepTail: BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
   hydrated: false,
   lastHydratedAt: null,
   lastHydrationError: null,
@@ -253,9 +270,18 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisBaseTaxLedgerPersistence = {
     ...homeostasisBaseTaxLedgerPersistence,
     exists: false,
+    snapshotExists: false,
     recordCount: 0,
     applyCount: 0,
     rollbackCount: 0,
+    tailRecordCount: 0,
+    tailApplyCount: 0,
+    tailRollbackCount: 0,
+    snapshotRecordCount: 0,
+    snapshotApplyCount: 0,
+    snapshotRollbackCount: 0,
+    lastCompactedAt: null,
+    lastCompactedTick: -1,
     hydrated: false,
     lastHydratedAt: null,
     lastHydrationError: null,
@@ -1342,12 +1368,19 @@ export const PULSE = {
     });
     if (result.changed) {
       if (result.mutation) {
-        await appendBaseTaxLedgerRecord(recordFromApplyMutation(result.mutation));
+        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
+          recordFromApplyMutation(result.mutation),
+          {
+            initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
+            historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
+          },
+        );
         homeostasisBaseTaxLedgerPersistence = {
-          ...homeostasisBaseTaxLedgerPersistence,
-          exists: true,
-          recordCount: homeostasisBaseTaxLedgerPersistence.recordCount + 1,
-          applyCount: homeostasisBaseTaxLedgerPersistence.applyCount + 1,
+          ...persisted,
+          hydrated: homeostasisBaseTaxLedgerPersistence.hydrated,
+          lastHydratedAt: homeostasisBaseTaxLedgerPersistence.lastHydratedAt,
+          lastHydrationError:
+            homeostasisBaseTaxLedgerPersistence.lastHydrationError,
         };
       }
       MUTATION_TELEMETRY.record({
@@ -1378,12 +1411,19 @@ export const PULSE = {
     });
     if (result.status === "rolled_back") {
       if (result.mutation) {
-        await appendBaseTaxLedgerRecord(recordFromRollbackMutation(result.mutation));
+        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
+          recordFromRollbackMutation(result.mutation),
+          {
+            initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
+            historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
+          },
+        );
         homeostasisBaseTaxLedgerPersistence = {
-          ...homeostasisBaseTaxLedgerPersistence,
-          exists: true,
-          recordCount: homeostasisBaseTaxLedgerPersistence.recordCount + 1,
-          rollbackCount: homeostasisBaseTaxLedgerPersistence.rollbackCount + 1,
+          ...persisted,
+          hydrated: homeostasisBaseTaxLedgerPersistence.hydrated,
+          lastHydratedAt: homeostasisBaseTaxLedgerPersistence.lastHydratedAt,
+          lastHydrationError:
+            homeostasisBaseTaxLedgerPersistence.lastHydrationError,
         };
       }
       MUTATION_TELEMETRY.record({

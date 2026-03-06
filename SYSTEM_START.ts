@@ -579,6 +579,7 @@ const buildTelemetry = async () => {
         last_update_source: homeostasis.lastUpdateSource,
         last_update_reason: homeostasis.lastUpdateReason,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence: geneticLedger.persistence,
       },
     },
     snapshot_guard: {
@@ -1096,6 +1097,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_update_source: homeostasis.lastUpdateSource,
           last_update_reason: homeostasis.lastUpdateReason,
           ledger_base_tax: geneticLedger.homeostasisBaseTax,
+          ledger_base_tax_persistence: geneticLedger.persistence,
         },
         latest_update: latestHomeostasisUpdate,
         history: homeostasisHistory,
@@ -1135,6 +1137,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         ok: true,
         physiology,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence: geneticLedger.persistence,
       }),
       { headers: JSON_HEADERS },
     );
@@ -1231,6 +1234,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 last_update_source: updated.lastUpdateSource,
                 last_update_reason: updated.lastUpdateReason,
                 ledger_base_tax: geneticLedger.homeostasisBaseTax,
+                ledger_base_tax_persistence: geneticLedger.persistence,
               },
             }),
             { status: 409, headers: JSON_HEADERS },
@@ -1289,6 +1293,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               last_update_source: updated.lastUpdateSource,
               last_update_reason: updated.lastUpdateReason,
               ledger_base_tax: geneticLedger.homeostasisBaseTax,
+              ledger_base_tax_persistence: geneticLedger.persistence,
             },
           }),
           {
@@ -1370,6 +1375,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             last_update_source: updated.lastUpdateSource,
             last_update_reason: updated.lastUpdateReason,
             ledger_base_tax: geneticLedger.homeostasisBaseTax,
+            ledger_base_tax_persistence: geneticLedger.persistence,
           },
         }),
         {

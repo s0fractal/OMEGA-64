@@ -47,6 +47,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    system,
+    "ledger_base_tax_persistence",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose ledger persistence summary",
+    violations,
+  );
+  requireSnippet(
     akasha,
     "proxyPhysiology",
     AKASHA_SERVER_PATH,

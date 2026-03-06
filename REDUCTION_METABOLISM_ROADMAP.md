@@ -33,7 +33,7 @@ Status snapshot as of 2026-03-06:
 | Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
 | Stage 5 | not started | internal glyph transport is still membrane-only and has not moved into substrate physics |
 | Stage 6 | not started | Codex evidence upgrade still depends on later ownership moves |
-| Stage 7: hormone / ledger layer | in progress | `baseTax` is now the first live ledger-owned knob via `GENETIC_LEDGER_RUNTIME.ts`, and its events survive restart through `GENETIC_LEDGER_PERSISTENCE.ts`; the rest of Stage 7 remains scaffolded and observational |
+| Stage 7: hormone / ledger layer | in progress | `baseTax` is now the first live ledger-owned knob via `GENETIC_LEDGER_RUNTIME.ts`; its events now survive restart and compact into `snapshot + tail` through `GENETIC_LEDGER_PERSISTENCE.ts`, while the rest of Stage 7 remains scaffolded and observational |
 | Stage 8+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -55,6 +55,7 @@ Latest completed planning work:
 - Added an observer-only physiology projection path: `PHYSIOLOGY_SNAPSHOT.ts` plus `/api/physiology` now expose Stage 7 state to runtime observers without granting write ownership to the hormone / ledger layer.
 - Added the first live Stage 7 ownership move: `pulse.homeostasis.baseTax` now flows through `GENETIC_LEDGER_RUNTIME.ts`, emits rollback tokens, and is visible through homeostasis / physiology observer surfaces.
 - Added durable replay for the first Stage 7 ownership move: `GENETIC_LEDGER_PERSISTENCE.ts` now persists `baseTax` ledger events and rehydrates them during `PULSE.initWorkers()`.
+- Added snapshot compaction for the first Stage 7 ownership move: `baseTax` persistence now compacts durable history into `snapshot + bounded tail`, and observer surfaces expose `ledger_base_tax_persistence` so long-lived memory is externally visible.
 
 ## Current diagnosis
 
