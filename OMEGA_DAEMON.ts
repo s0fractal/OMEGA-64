@@ -133,6 +133,9 @@ type CodexNarrative = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  daemonEffectStatus: string;
+  daemonEffectLineage: string;
+  daemonEffectDeltaBand: string;
   promptBridge: string;
   recentChronicles: Array<{
     tick: number;
@@ -1045,6 +1048,15 @@ const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
     glyphSourceMode: typeof source.glyphSourceMode === "string"
       ? source.glyphSourceMode
       : "none",
+    daemonEffectStatus: typeof source.daemonEffectStatus === "string"
+      ? source.daemonEffectStatus
+      : "Daemon effect status unavailable.",
+    daemonEffectLineage: typeof source.daemonEffectLineage === "string"
+      ? source.daemonEffectLineage
+      : "none",
+    daemonEffectDeltaBand: typeof source.daemonEffectDeltaBand === "string"
+      ? source.daemonEffectDeltaBand
+      : "none",
     promptBridge: typeof source.promptBridge === "string"
       ? source.promptBridge
       : "Use plain language for observer-facing updates.",
@@ -1079,6 +1091,9 @@ const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
       glyphRegime: "dormant",
       glyphDominantRole: "none",
       glyphSourceMode: "none",
+      daemonEffectStatus: "Daemon effect status unavailable.",
+      daemonEffectLineage: "none",
+      daemonEffectDeltaBand: "none",
       promptBridge: "Use plain language for observer-facing updates.",
       recentChronicles: [],
     };
@@ -1118,6 +1133,7 @@ const buildInvariantFrame = (
     codexNarrative.summary,
     codexNarrative.relicStatus,
     codexNarrative.glyphStatus,
+    codexNarrative.daemonEffectStatus,
     ...telemetry.voxPopuli.slice(0, 4),
   ]);
   const sharedTokens = setIntersection(memoryTokens, narrativeTokens).slice(

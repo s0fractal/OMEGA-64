@@ -132,6 +132,9 @@ type CodexNarrative = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  daemonEffectStatus: string;
+  daemonEffectLineage: string;
+  daemonEffectDeltaBand: string;
   promptBridge: string;
 };
 
@@ -153,6 +156,10 @@ type CodexState = {
   lastGlyphTransportSummary: string;
   lastGlyphTransportDominantRole: string;
   lastGlyphTransportSourceMode: string;
+  lastDaemonEffectTick: number;
+  lastDaemonEffectSummary: string;
+  lastDaemonEffectLineage: string;
+  lastDaemonEffectDeltaBand: string;
 };
 
 type GenomeStats = {
@@ -224,6 +231,10 @@ const fallbackState = (): CodexState => ({
   lastGlyphTransportSummary: "Glyph transport remains dormant.",
   lastGlyphTransportDominantRole: "none",
   lastGlyphTransportSourceMode: "none",
+  lastDaemonEffectTick: -1,
+  lastDaemonEffectSummary: "No daemon effect contour recorded yet.",
+  lastDaemonEffectLineage: "none",
+  lastDaemonEffectDeltaBand: "none",
 });
 
 let started = false;
@@ -401,6 +412,20 @@ const titleCase = (value: string): string =>
   value.split("_").map((part) =>
     part.length > 0 ? `${part[0].toUpperCase()}${part.slice(1)}` : part
   ).join(" ");
+
+const daemonEffectDeltaBand = (
+  deltaPopulation: number,
+  deltaAvgEnergy: number,
+  deltaNeuralCoherence: number,
+): string => {
+  if (deltaPopulation >= 2 || deltaAvgEnergy >= 6 || deltaNeuralCoherence >= 0.12) {
+    return "amplifying";
+  }
+  if (deltaPopulation <= -2 || deltaAvgEnergy <= -6 || deltaNeuralCoherence <= -0.12) {
+    return "dissipative";
+  }
+  return "stabilizing";
+};
 
 const buildGlyphTransportEvidence = (
   tick: number,
@@ -662,6 +687,25 @@ const ensureStorage = async (): Promise<void> => {
           state.lastGlyphTransportSourceMode.trim().length > 0
           ? state.lastGlyphTransportSourceMode
           : fallbackState().lastGlyphTransportSourceMode;
+      state.lastDaemonEffectTick = Math.max(
+        -1,
+        Math.floor(asFiniteNumber(state.lastDaemonEffectTick, -1)),
+      );
+      state.lastDaemonEffectSummary =
+        typeof state.lastDaemonEffectSummary === "string" &&
+          state.lastDaemonEffectSummary.trim().length > 0
+          ? state.lastDaemonEffectSummary
+          : fallbackState().lastDaemonEffectSummary;
+      state.lastDaemonEffectLineage =
+        typeof state.lastDaemonEffectLineage === "string" &&
+          state.lastDaemonEffectLineage.trim().length > 0
+          ? state.lastDaemonEffectLineage
+          : fallbackState().lastDaemonEffectLineage;
+      state.lastDaemonEffectDeltaBand =
+        typeof state.lastDaemonEffectDeltaBand === "string" &&
+          state.lastDaemonEffectDeltaBand.trim().length > 0
+          ? state.lastDaemonEffectDeltaBand
+          : fallbackState().lastDaemonEffectDeltaBand;
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -1316,9 +1360,22 @@ export const AKASHA_CODEX = {
       const deltaNeuralCoherence = Number(
         (outcomeNeuralCoherence - baselineNeuralCoherence).toFixed(3),
       );
+      const deltaBand = daemonEffectDeltaBand(
+        deltaPopulation,
+        deltaAvgEnergy,
+        deltaNeuralCoherence,
+      );
       const glyphContext = state.lastGlyphTransportSummary.length > 0
         ? ` Glyph transport context: ${state.lastGlyphTransportSummary}`
         : "";
+      state.lastDaemonEffectTick = tick;
+      state.lastDaemonEffectLineage = lineage.label;
+      state.lastDaemonEffectDeltaBand = deltaBand;
+      state.lastDaemonEffectSummary =
+        `Daemon effect ${titleCase(deltaBand)} via ${appliedAction.toLowerCase()} on ${lineage.label}. ` +
+        `Population delta ${deltaPopulation >= 0 ? "+" : ""}${deltaPopulation}, ` +
+        `energy delta ${deltaAvgEnergy >= 0 ? "+" : ""}${deltaAvgEnergy.toFixed(3)}, ` +
+        `coherence delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${deltaNeuralCoherence.toFixed(3)}.`;
       const title = `Daemon Effect ${appliedAction}: ${auditId}`;
       const body =
         `Deferred effect audit for ${requestedAction} -> ${appliedAction}. ` +
@@ -1360,6 +1417,12 @@ export const AKASHA_CODEX = {
         sourceMode: state.lastGlyphTransportSourceMode,
         lastRecordedTick: state.lastGlyphTransportTick,
         signature: state.lastGlyphTransportSignature,
+      },
+      daemonEffect: {
+        summary: state.lastDaemonEffectSummary,
+        lineage: state.lastDaemonEffectLineage,
+        deltaBand: state.lastDaemonEffectDeltaBand,
+        lastRecordedTick: state.lastDaemonEffectTick,
       },
       species: speciesIndex.slice(0, take),
       chronicles: chronicleIndex.slice(0, take),
@@ -1442,11 +1505,12 @@ export const AKASHA_CODEX = {
         relicIndex[0].size
       } blocks.`;
     const glyphStatus = state.lastGlyphTransportSummary;
+    const daemonEffectStatus = state.lastDaemonEffectSummary;
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
-      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}. ${glyphStatus}`;
+      `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}. ${glyphStatus} ${daemonEffectStatus}`;
     const promptBridge =
-      `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, and how the glyph transport regime affected the field.`;
+      `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, how the glyph transport regime affected the field, and what the latest daemon effect contour did to the lattice.`;
 
     return {
       tick,
@@ -1463,6 +1527,9 @@ export const AKASHA_CODEX = {
       glyphRegime: state.lastGlyphTransportRegime,
       glyphDominantRole: state.lastGlyphTransportDominantRole,
       glyphSourceMode: state.lastGlyphTransportSourceMode,
+      daemonEffectStatus,
+      daemonEffectLineage: state.lastDaemonEffectLineage,
+      daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
       promptBridge,
     };
   },

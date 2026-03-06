@@ -45,6 +45,13 @@ const main = async () => {
   );
   requireSnippet(
     codex,
+    "daemonEffectStatus",
+    CODEX_PATH,
+    "Codex narrative must surface daemon effect status once Stage 6 reaches outcome projection",
+    violations,
+  );
+  requireSnippet(
+    codex,
     "glyph_transport_regime",
     CODEX_PATH,
     "Codex must record glyph transport regime as a narrative chronicle type",
@@ -155,6 +162,13 @@ const main = async () => {
     "glyphStatus",
     DAEMON_PATH,
     "Daemon must normalize glyph transport status from codex narrative",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "daemonEffectStatus",
+    DAEMON_PATH,
+    "Daemon must normalize daemon effect status from codex narrative",
     violations,
   );
 
