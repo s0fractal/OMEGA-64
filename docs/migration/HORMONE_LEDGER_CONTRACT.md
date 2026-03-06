@@ -22,12 +22,15 @@ The Stage 7 code-backed surface now exists in:
 
 `HORMONE_BUFFER.ts` remains observational. `GENETIC_LEDGER.ts` is now partially
 live through the base-tax runtime controller in `GENETIC_LEDGER_RUNTIME.ts`.
+Durable replay now lives in
+[GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts).
 
 Executable guards:
 
 - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
 - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
 - [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
+- [test_genetic_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_persistence_contract.ts)
 - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
 - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 
@@ -111,11 +114,14 @@ This stage becomes real only when:
 At this point:
 
 - there is no live `SharedArrayBuffer` hormone region yet
-- there is no persistence layer for ledger history yet
+- there is now a durable event log for `pulse.homeostasis.baseTax` at
+  `.omega/ledger/base_tax_ledger.jsonl`
+- there is still no general persistence layer for the rest of the ledger surface
 - there is no runtime write path through `HORMONE_BUFFER`
 - there is exactly one live ledger-owned write path:
   - `pulse.homeostasis.baseTax`
   - routed through `GENETIC_LEDGER_RUNTIME.ts`
+  - persisted and replayed through `GENETIC_LEDGER_PERSISTENCE.ts`
   - exposed via `PULSE.applyGeneticLedgerUpdate(...)`
   - reverted via rollback token through `PULSE.rollbackGeneticLedgerUpdate(...)`
 
@@ -131,3 +137,4 @@ As of 2026-03-06 this layer is:
 - contract-tested
 - observer-visible through `/api/physiology`
 - partially authoritative over live runtime causality only for ledger-owned `baseTax`
+- durable enough that `baseTax` rollback tokens survive restart through replay

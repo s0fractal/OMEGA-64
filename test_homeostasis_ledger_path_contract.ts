@@ -1,6 +1,7 @@
 const PULSE_PATH = "PULSE.ts";
 const SYSTEM_START_PATH = "SYSTEM_START.ts";
 const LEDGER_RUNTIME_PATH = "GENETIC_LEDGER_RUNTIME.ts";
+const LEDGER_PERSISTENCE_PATH = "GENETIC_LEDGER_PERSISTENCE.ts";
 
 type Violation = {
   file: string;
@@ -21,10 +22,11 @@ const requireSnippet = (
 
 const main = async () => {
   const violations: Violation[] = [];
-  const [pulse, system, ledgerRuntime] = await Promise.all([
+  const [pulse, system, ledgerRuntime, ledgerPersistence] = await Promise.all([
     Deno.readTextFile(PULSE_PATH),
     Deno.readTextFile(SYSTEM_START_PATH),
     Deno.readTextFile(LEDGER_RUNTIME_PATH),
+    Deno.readTextFile(LEDGER_PERSISTENCE_PATH),
   ]);
 
   requireSnippet(
@@ -46,6 +48,20 @@ const main = async () => {
     "rollbackToken",
     LEDGER_RUNTIME_PATH,
     "Ledger runtime must mint rollback tokens",
+    violations,
+  );
+  requireSnippet(
+    ledgerPersistence,
+    "appendBaseTaxLedgerRecord",
+    LEDGER_PERSISTENCE_PATH,
+    "Ledger persistence module must append records to durable history",
+    violations,
+  );
+  requireSnippet(
+    ledgerPersistence,
+    "hydrateBaseTaxLedgerRuntime",
+    LEDGER_PERSISTENCE_PATH,
+    "Ledger persistence module must replay records into runtime state",
     violations,
   );
 
@@ -75,6 +91,13 @@ const main = async () => {
     "genetic_ledger_rollback",
     PULSE_PATH,
     "Pulse must emit telemetry for ledger rollback",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "hydrateGeneticLedgerRuntime",
+    PULSE_PATH,
+    "Pulse must hydrate ledger-owned state from persistence",
     violations,
   );
 

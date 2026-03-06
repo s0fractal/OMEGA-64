@@ -31,7 +31,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 7 physiological contract | in progress | Stage 7 now has a first live ownership move: `pulse.homeostasis.baseTax` is routed through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) with rollback-token semantics, while the rest of the layer remains bounded and observational |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` is now ledger-owned, rollback-tokenized, and replayable through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) + [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts), while the rest of the layer remains bounded and observational |
 
 Current rule:
 
@@ -406,18 +406,20 @@ For each global dynamic constant:
 - [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
 - `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an observer-only runtime projection of hormone / ledger state through `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
 - `GENETIC_LEDGER_RUNTIME.ts` now owns the first live ledger mutation path for `pulse.homeostasis.baseTax`, including rollback-token semantics and observer-visible summary state.
+- `GENETIC_LEDGER_PERSISTENCE.ts` now persists and replays `baseTax` ledger events, so rollback tokens survive restart and hydration happens during `PULSE.initWorkers()`.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
   - [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
+  - [test_genetic_ledger_persistence_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_persistence_contract.ts)
   - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
   - [test_physiology_snapshot_contract.ts](/Users/s0fractal/OMEGA/test_physiology_snapshot_contract.ts)
   - [test_physiology_api_contract.ts](/Users/s0fractal/OMEGA/test_physiology_api_contract.ts)
-- [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
+  - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 - current scope remains deliberately narrow:
   - no live `SharedArrayBuffer` hormone region
-  - no persisted ledger history
   - only `pulse.homeostasis.baseTax` is ledger-owned in live runtime
+  - only `pulse.homeostasis.baseTax` currently has durable replay history
   - all other hormone / ledger knobs remain observational or scaffold-only
 - next gate is deciding whether `targetEnergy` or `pressureRing.scale` becomes the second ledger-owned knob without diluting rollback discipline.
 

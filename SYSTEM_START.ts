@@ -1194,7 +1194,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const reason = envelope.reason ?? "daemon_homeostasis_controller";
 
       if (envelope.rollback_token !== undefined) {
-        const rollback = PULSE.rollbackGeneticLedgerUpdate({
+        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
           key: "pulse.homeostasis.baseTax",
           rollbackToken: envelope.rollback_token,
           source,
@@ -1300,7 +1300,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const ledgerUpdate = envelope.base_tax === undefined
         ? null
-        : PULSE.applyGeneticLedgerUpdate({
+        : await PULSE.applyGeneticLedgerUpdate({
           key: "pulse.homeostasis.baseTax",
           value: envelope.base_tax,
           source,

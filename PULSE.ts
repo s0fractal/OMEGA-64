@@ -21,6 +21,13 @@ import {
   type BaseTaxLedgerRuntimeSnapshot,
   type BaseTaxLedgerRuntimeState,
 } from "./GENETIC_LEDGER_RUNTIME.ts";
+import {
+  appendBaseTaxLedgerRecord,
+  hydrateBaseTaxLedgerRuntime,
+  recordFromApplyMutation,
+  recordFromRollbackMutation,
+  type BaseTaxLedgerPersistenceSummary,
+} from "./GENETIC_LEDGER_PERSISTENCE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -109,6 +116,7 @@ type HomeostasisState = {
 };
 type GeneticLedgerRuntimeState = {
   homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
+  persistence: BaseTaxLedgerPersistenceSummary;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -199,6 +207,16 @@ let spatialHashState: SpatialHashState = {
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
 let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
   createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
+let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
+  path: ".omega/ledger/base_tax_ledger.jsonl",
+  exists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -232,6 +250,16 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
   );
+  homeostasisBaseTaxLedgerPersistence = {
+    ...homeostasisBaseTaxLedgerPersistence,
+    exists: false,
+    recordCount: 0,
+    applyCount: 0,
+    rollbackCount: 0,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
     HOMEOSTASIS_TARGET_ENERGY,
   );
@@ -263,6 +291,7 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
 });
 const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
   homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
+  persistence: { ...homeostasisBaseTaxLedgerPersistence },
 });
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
@@ -324,6 +353,28 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     homeostasisLastUpdateReason = result.state.lastRollbackReason;
   }
   return result;
+};
+const syncHomeostasisBaseTaxLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydrateBaseTaxLedgerRuntime(
+    HOMEOSTASIS_BASE_TAX,
+    homeostasisBaseTaxLedgerRuntime.historyLimit,
+  );
+  homeostasisBaseTaxLedgerRuntime = hydrated.state;
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
+  homeostasisBaseTaxLedgerPersistence = hydrated.persistence;
+  if (hydrated.snapshot.lastRollbackTick >= 0) {
+    homeostasisLastUpdateTick = hydrated.snapshot.lastRollbackTick;
+    homeostasisLastUpdateSource = hydrated.snapshot.lastRollbackSource;
+    homeostasisLastUpdateReason = hydrated.snapshot.lastRollbackReason;
+    return;
+  }
+  if (hydrated.snapshot.lastAppliedTick >= 0) {
+    homeostasisLastUpdateTick = hydrated.snapshot.lastAppliedTick;
+    homeostasisLastUpdateSource = hydrated.snapshot.lastAppliedSource;
+    homeostasisLastUpdateReason = hydrated.snapshot.lastAppliedReason;
+  }
 };
 const applyEvolutionPressureRing = (
   next: {
@@ -1027,6 +1078,7 @@ export const PULSE = {
     resetEvolutionPressureStateForColdStart();
     resetSpatialHashStateForColdStart();
     resetHomeostasisStateForColdStart();
+    await syncHomeostasisBaseTaxLedgerHydration();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -1269,7 +1321,11 @@ export const PULSE = {
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
   getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
     snapshotGeneticLedgerRuntimeState(),
-  applyGeneticLedgerUpdate: (
+  hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {
+    await syncHomeostasisBaseTaxLedgerHydration();
+    return snapshotGeneticLedgerRuntimeState();
+  },
+  applyGeneticLedgerUpdate: async (
     update: {
       key: "pulse.homeostasis.baseTax";
       value: number;
@@ -1277,7 +1333,7 @@ export const PULSE = {
       reason?: string;
       tick?: number;
     },
-  ): BaseTaxLedgerApplyResult => {
+  ): Promise<BaseTaxLedgerApplyResult> => {
     const result = applyHomeostasisBaseTaxLedgerUpdate({
       value: update.value,
       source: update.source,
@@ -1285,6 +1341,15 @@ export const PULSE = {
       tick: update.tick,
     });
     if (result.changed) {
+      if (result.mutation) {
+        await appendBaseTaxLedgerRecord(recordFromApplyMutation(result.mutation));
+        homeostasisBaseTaxLedgerPersistence = {
+          ...homeostasisBaseTaxLedgerPersistence,
+          exists: true,
+          recordCount: homeostasisBaseTaxLedgerPersistence.recordCount + 1,
+          applyCount: homeostasisBaseTaxLedgerPersistence.applyCount + 1,
+        };
+      }
       MUTATION_TELEMETRY.record({
         lane: "internal_host",
         kind: "genetic_ledger_update",
@@ -1296,7 +1361,7 @@ export const PULSE = {
     }
     return result;
   },
-  rollbackGeneticLedgerUpdate: (
+  rollbackGeneticLedgerUpdate: async (
     rollback: {
       key: "pulse.homeostasis.baseTax";
       rollbackToken: string;
@@ -1304,7 +1369,7 @@ export const PULSE = {
       reason?: string;
       tick?: number;
     },
-  ): BaseTaxLedgerRollbackResult => {
+  ): Promise<BaseTaxLedgerRollbackResult> => {
     const result = rollbackHomeostasisBaseTaxLedgerUpdate({
       rollbackToken: rollback.rollbackToken,
       source: rollback.source,
@@ -1312,6 +1377,15 @@ export const PULSE = {
       tick: rollback.tick,
     });
     if (result.status === "rolled_back") {
+      if (result.mutation) {
+        await appendBaseTaxLedgerRecord(recordFromRollbackMutation(result.mutation));
+        homeostasisBaseTaxLedgerPersistence = {
+          ...homeostasisBaseTaxLedgerPersistence,
+          exists: true,
+          recordCount: homeostasisBaseTaxLedgerPersistence.recordCount + 1,
+          rollbackCount: homeostasisBaseTaxLedgerPersistence.rollbackCount + 1,
+        };
+      }
       MUTATION_TELEMETRY.record({
         lane: "internal_host",
         kind: "genetic_ledger_rollback",
