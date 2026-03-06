@@ -20,13 +20,13 @@ import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
+  type DaemonAction,
+  type DaemonInjectEnvelope,
   evaluateInvariantAdmission,
   evaluatePlasmidPolicy,
   evaluatePlasmidRisk,
   normalizeDaemonNarrativeContext,
   planInvariantIngress,
-  type DaemonAction,
-  type DaemonInjectEnvelope,
   type PlasmidRiskProfile,
 } from "./DAEMON_INGRESS_POLICY.ts";
 
@@ -138,7 +138,24 @@ type HomeostasisUpdateSnapshot = {
     | "consumed"
     | "stale"
     | null;
+  base_tax_ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  target_energy_ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
   base_tax_rollback_token: string | null;
+  target_energy_rollback_token: string | null;
   base_tax_before: number;
   base_tax_after: number;
   target_energy_before: number;
@@ -196,7 +213,8 @@ const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_INGRESS_POLICY_LIMITS
   .maxPlasmidCharge;
 const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
   .safeMinPopulation;
-const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
+const DAEMON_SAFE_MIN_AVG_ENERGY =
+  DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
 const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
 const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
 const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
@@ -598,7 +616,11 @@ const buildTelemetry = async () => {
         last_update_source: homeostasis.lastUpdateSource,
         last_update_reason: homeostasis.lastUpdateReason,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
       },
     },
     snapshot_guard: {
@@ -749,7 +771,9 @@ const parsePressureRingIngressEnvelope = (
     ? payloadSource.mode
     : "";
   const mode = modeRaw.trim().toLowerCase();
-  if (rollbackToken.length === 0 && mode !== "set" && mode !== "step") return null;
+  if (rollbackToken.length === 0 && mode !== "set" && mode !== "step") {
+    return null;
+  }
 
   const thetaValue = asFiniteNumber(
     payloadSource.theta ?? payloadSource.target_theta,
@@ -860,6 +884,32 @@ const parseHomeostasisIngressEnvelope = (
     envelope.rollback_token = rollbackToken.slice(0, 160);
   }
   return envelope;
+};
+
+const inferHomeostasisRollbackKey = (
+  rollbackToken: string,
+): "pulse.homeostasis.baseTax" | "pulse.homeostasis.targetEnergy" | null => {
+  if (rollbackToken.startsWith("pulse.homeostasis.baseTax@")) {
+    return "pulse.homeostasis.baseTax";
+  }
+  if (rollbackToken.startsWith("pulse.homeostasis.targetEnergy@")) {
+    return "pulse.homeostasis.targetEnergy";
+  }
+  return null;
+};
+
+const collapseHomeostasisLedgerStatus = (
+  baseStatus: HomeostasisUpdateSnapshot["base_tax_ledger_status"],
+  targetStatus: HomeostasisUpdateSnapshot["target_energy_ledger_status"],
+): HomeostasisUpdateSnapshot["ledger_status"] => {
+  if (baseStatus !== null && targetStatus === null) return baseStatus;
+  if (baseStatus === null && targetStatus !== null) return targetStatus;
+  if (
+    baseStatus !== null && targetStatus !== null && baseStatus === targetStatus
+  ) {
+    return baseStatus;
+  }
+  return null;
 };
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
@@ -1026,7 +1076,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             ),
             ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
             ledger_scale: geneticLedger.pressureRingScale,
-            ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
+            ledger_scale_persistence:
+              geneticLedger.pressureRingScalePersistence,
           },
         },
         latest_update: latestPressureRingUpdate,
@@ -1283,7 +1334,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 pressure.ring.egoLoveBalance.toFixed(6),
               ),
               ledger_scale: geneticLedger.pressureRingScale,
-              ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
+              ledger_scale_persistence:
+                geneticLedger.pressureRingScalePersistence,
             },
           },
         }),
@@ -1332,7 +1384,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_update_source: homeostasis.lastUpdateSource,
           last_update_reason: homeostasis.lastUpdateReason,
           ledger_base_tax: geneticLedger.homeostasisBaseTax,
-          ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
+          ledger_base_tax_persistence:
+            geneticLedger.homeostasisBaseTaxPersistence,
+          ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+          ledger_target_energy_persistence:
+            geneticLedger.homeostasisTargetEnergyPersistence,
         },
         latest_update: latestHomeostasisUpdate,
         history: homeostasisHistory,
@@ -1372,7 +1428,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         ok: true,
         physiology,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
         ledger_pressure_ring_scale: geneticLedger.pressureRingScale,
         ledger_pressure_ring_scale_persistence:
           geneticLedger.pressureRingScalePersistence,
@@ -1413,7 +1473,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (
         envelope.rollback_token !== undefined &&
-        (envelope.base_tax !== undefined || envelope.target_energy !== undefined)
+        (envelope.base_tax !== undefined ||
+          envelope.target_energy !== undefined)
       ) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
@@ -1433,10 +1494,54 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const before = PULSE.getHomeostasisState();
       const source = "daemon_homeostasis_controller";
       const reason = envelope.reason ?? "daemon_homeostasis_controller";
+      const serializeHomeostasis = (
+        updated: ReturnType<typeof PULSE.getHomeostasisState>,
+        geneticLedger: ReturnType<typeof PULSE.getGeneticLedgerState>,
+      ) => ({
+        enabled: updated.enabled,
+        target_energy: updated.targetEnergy,
+        target_energy_default: updated.targetEnergyDefault,
+        target_energy_current: updated.targetEnergyCurrent,
+        band: updated.band,
+        max_delta: updated.maxDelta,
+        overflow_threshold: updated.overflowThreshold,
+        starvation_floor: updated.starvationFloor,
+        subsidy_enabled: updated.subsidyEnabled,
+        base_tax_default: updated.baseTaxDefault,
+        base_tax_current: updated.baseTaxCurrent,
+        last_update_tick: updated.lastUpdateTick,
+        last_update_source: updated.lastUpdateSource,
+        last_update_reason: updated.lastUpdateReason,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
+      });
 
       if (envelope.rollback_token !== undefined) {
+        const rollbackKey = inferHomeostasisRollbackKey(
+          envelope.rollback_token,
+        );
+        if (rollbackKey === null) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_homeostasis_invalid_payload",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "UNKNOWN_HOMEOSTASIS_ROLLBACK_TOKEN",
+              rollback_token: envelope.rollback_token,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
         const rollback = await PULSE.rollbackGeneticLedgerUpdate({
-          key: "pulse.homeostasis.baseTax",
+          key: rollbackKey,
           rollbackToken: envelope.rollback_token,
           source,
           reason,
@@ -1444,6 +1549,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         });
         const updated = PULSE.getHomeostasisState();
         const geneticLedger = PULSE.getGeneticLedgerState();
+        const baseTaxLedgerStatus = rollbackKey === "pulse.homeostasis.baseTax"
+          ? rollback.status
+          : null;
+        const targetEnergyLedgerStatus =
+          rollbackKey === "pulse.homeostasis.targetEnergy"
+            ? rollback.status
+            : null;
+        const ledgerStatus = collapseHomeostasisLedgerStatus(
+          baseTaxLedgerStatus,
+          targetEnergyLedgerStatus,
+        );
         if (rollback.status !== "rolled_back") {
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
@@ -1454,27 +1570,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             JSON.stringify({
               ok: false,
               reason: "HOMEOSTASIS_ROLLBACK_REJECTED",
-              ledger_status: rollback.status,
+              ledger_status: ledgerStatus,
+              base_tax_ledger_status: baseTaxLedgerStatus,
+              target_energy_ledger_status: targetEnergyLedgerStatus,
               rollback_token: envelope.rollback_token,
-              homeostasis: {
-                enabled: updated.enabled,
-                target_energy: updated.targetEnergy,
-                target_energy_default: updated.targetEnergyDefault,
-                target_energy_current: updated.targetEnergyCurrent,
-                band: updated.band,
-                max_delta: updated.maxDelta,
-                overflow_threshold: updated.overflowThreshold,
-                starvation_floor: updated.starvationFloor,
-                subsidy_enabled: updated.subsidyEnabled,
-                base_tax_default: updated.baseTaxDefault,
-                base_tax_current: updated.baseTaxCurrent,
-                last_update_tick: updated.lastUpdateTick,
-                last_update_source: updated.lastUpdateSource,
-                last_update_reason: updated.lastUpdateReason,
-                ledger_base_tax: geneticLedger.homeostasisBaseTax,
-                ledger_base_tax_persistence:
-                  geneticLedger.homeostasisBaseTaxPersistence,
-              },
+              rollback_key: rollbackKey,
+              homeostasis: serializeHomeostasis(updated, geneticLedger),
             }),
             { status: 409, headers: JSON_HEADERS },
           );
@@ -1485,8 +1586,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           source,
           reason,
           mode: "rollback",
-          ledger_status: rollback.status,
-          base_tax_rollback_token: envelope.rollback_token,
+          ledger_status: ledgerStatus,
+          base_tax_ledger_status: baseTaxLedgerStatus,
+          target_energy_ledger_status: targetEnergyLedgerStatus,
+          base_tax_rollback_token: rollbackKey === "pulse.homeostasis.baseTax"
+            ? envelope.rollback_token
+            : null,
+          target_energy_rollback_token:
+            rollbackKey === "pulse.homeostasis.targetEnergy"
+              ? envelope.rollback_token
+              : null,
           base_tax_before: before.baseTaxCurrent,
           base_tax_after: updated.baseTaxCurrent,
           target_energy_before: before.targetEnergy,
@@ -1505,7 +1614,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           reason: snapshot.reason,
           mode: snapshot.mode,
           ledger_status: snapshot.ledger_status,
-          rollback_token: snapshot.base_tax_rollback_token,
+          base_tax_ledger_status: snapshot.base_tax_ledger_status,
+          target_energy_ledger_status: snapshot.target_energy_ledger_status,
+          rollback_key: rollbackKey,
+          rollback_token: envelope.rollback_token,
+          base_tax_rollback_token: snapshot.base_tax_rollback_token,
+          target_energy_rollback_token: snapshot.target_energy_rollback_token,
           base_tax_before: snapshot.base_tax_before,
           base_tax_after: snapshot.base_tax_after,
           target_energy_before: snapshot.target_energy_before,
@@ -1516,25 +1630,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           JSON.stringify({
             ok: true,
             updated: snapshot,
-            homeostasis: {
-              enabled: updated.enabled,
-              target_energy: updated.targetEnergy,
-              target_energy_default: updated.targetEnergyDefault,
-              target_energy_current: updated.targetEnergyCurrent,
-              band: updated.band,
-              max_delta: updated.maxDelta,
-              overflow_threshold: updated.overflowThreshold,
-              starvation_floor: updated.starvationFloor,
-              subsidy_enabled: updated.subsidyEnabled,
-              base_tax_default: updated.baseTaxDefault,
-              base_tax_current: updated.baseTaxCurrent,
-              last_update_tick: updated.lastUpdateTick,
-              last_update_source: updated.lastUpdateSource,
-              last_update_reason: updated.lastUpdateReason,
-              ledger_base_tax: geneticLedger.homeostasisBaseTax,
-              ledger_base_tax_persistence:
-                geneticLedger.homeostasisBaseTaxPersistence,
-            },
+            homeostasis: serializeHomeostasis(updated, geneticLedger),
           }),
           {
             status: 200,
@@ -1543,7 +1639,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const ledgerUpdate = envelope.base_tax === undefined
+      const baseTaxLedgerUpdate = envelope.base_tax === undefined
         ? null
         : await PULSE.applyGeneticLedgerUpdate({
           key: "pulse.homeostasis.baseTax",
@@ -1552,24 +1648,39 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           reason,
           tick,
         });
-      const updated = PULSE.updateHomeostasisPolicy({
-        targetEnergy: envelope.target_energy,
-        source,
-        reason,
-        tick,
-      });
+      const targetEnergyLedgerUpdate = envelope.target_energy === undefined
+        ? null
+        : await PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.homeostasis.targetEnergy",
+          value: envelope.target_energy,
+          source,
+          reason,
+          tick,
+        });
+      const updated = PULSE.getHomeostasisState();
       const geneticLedger = PULSE.getGeneticLedgerState();
+      const baseTaxLedgerStatus = baseTaxLedgerUpdate?.status ?? null;
+      const targetEnergyLedgerStatus = targetEnergyLedgerUpdate?.status ?? null;
       const snapshot: HomeostasisUpdateSnapshot = {
         tick,
         source,
         reason,
-        mode: envelope.base_tax !== undefined && envelope.target_energy !== undefined
+        mode: envelope.base_tax !== undefined &&
+            envelope.target_energy !== undefined
           ? "mixed"
           : envelope.base_tax !== undefined
           ? "apply"
           : "target_only",
-        ledger_status: ledgerUpdate?.status ?? null,
-        base_tax_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
+        ledger_status: collapseHomeostasisLedgerStatus(
+          baseTaxLedgerStatus,
+          targetEnergyLedgerStatus,
+        ),
+        base_tax_ledger_status: baseTaxLedgerStatus,
+        target_energy_ledger_status: targetEnergyLedgerStatus,
+        base_tax_rollback_token: baseTaxLedgerUpdate?.mutation?.rollbackToken ??
+          null,
+        target_energy_rollback_token:
+          targetEnergyLedgerUpdate?.mutation?.rollbackToken ?? null,
         base_tax_before: before.baseTaxCurrent,
         base_tax_after: updated.baseTaxCurrent,
         target_energy_before: before.targetEnergy,
@@ -1588,7 +1699,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         reason: snapshot.reason,
         mode: snapshot.mode,
         ledger_status: snapshot.ledger_status,
-        rollback_token: snapshot.base_tax_rollback_token,
+        base_tax_ledger_status: snapshot.base_tax_ledger_status,
+        target_energy_ledger_status: snapshot.target_energy_ledger_status,
+        rollback_token: snapshot.base_tax_rollback_token ??
+          snapshot.target_energy_rollback_token,
+        base_tax_rollback_token: snapshot.base_tax_rollback_token,
+        target_energy_rollback_token: snapshot.target_energy_rollback_token,
         base_tax_before: snapshot.base_tax_before,
         base_tax_after: snapshot.base_tax_after,
         target_energy_before: snapshot.target_energy_before,
@@ -1599,25 +1715,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         JSON.stringify({
           ok: true,
           updated: snapshot,
-          homeostasis: {
-            enabled: updated.enabled,
-            target_energy: updated.targetEnergy,
-            target_energy_default: updated.targetEnergyDefault,
-            target_energy_current: updated.targetEnergyCurrent,
-            band: updated.band,
-            max_delta: updated.maxDelta,
-            overflow_threshold: updated.overflowThreshold,
-            starvation_floor: updated.starvationFloor,
-            subsidy_enabled: updated.subsidyEnabled,
-            base_tax_default: updated.baseTaxDefault,
-            base_tax_current: updated.baseTaxCurrent,
-            last_update_tick: updated.lastUpdateTick,
-            last_update_source: updated.lastUpdateSource,
-            last_update_reason: updated.lastUpdateReason,
-            ledger_base_tax: geneticLedger.homeostasisBaseTax,
-            ledger_base_tax_persistence:
-              geneticLedger.homeostasisBaseTaxPersistence,
-          },
+          homeostasis: serializeHomeostasis(updated, geneticLedger),
         }),
         {
           status: 200,

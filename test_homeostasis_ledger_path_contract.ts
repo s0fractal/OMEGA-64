@@ -2,6 +2,9 @@ const PULSE_PATH = "PULSE.ts";
 const SYSTEM_START_PATH = "SYSTEM_START.ts";
 const LEDGER_RUNTIME_PATH = "GENETIC_LEDGER_RUNTIME.ts";
 const LEDGER_PERSISTENCE_PATH = "GENETIC_LEDGER_PERSISTENCE.ts";
+const TARGET_LEDGER_RUNTIME_PATH = "HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
+const TARGET_LEDGER_PERSISTENCE_PATH =
+  "HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
 
 type Violation = {
   file: string;
@@ -34,11 +37,20 @@ const requireAbsentSnippet = (
 
 const main = async () => {
   const violations: Violation[] = [];
-  const [pulse, system, ledgerRuntime, ledgerPersistence] = await Promise.all([
+  const [
+    pulse,
+    system,
+    ledgerRuntime,
+    ledgerPersistence,
+    targetLedgerRuntime,
+    targetLedgerPersistence,
+  ] = await Promise.all([
     Deno.readTextFile(PULSE_PATH),
     Deno.readTextFile(SYSTEM_START_PATH),
     Deno.readTextFile(LEDGER_RUNTIME_PATH),
     Deno.readTextFile(LEDGER_PERSISTENCE_PATH),
+    Deno.readTextFile(TARGET_LEDGER_RUNTIME_PATH),
+    Deno.readTextFile(TARGET_LEDGER_PERSISTENCE_PATH),
   ]);
 
   requireSnippet(
@@ -93,6 +105,42 @@ const main = async () => {
   );
 
   requireSnippet(
+    targetLedgerRuntime,
+    "applyTargetEnergyLedgerRuntimeUpdate",
+    TARGET_LEDGER_RUNTIME_PATH,
+    "Ledger runtime must provide apply path for targetEnergy",
+    violations,
+  );
+  requireSnippet(
+    targetLedgerRuntime,
+    "rollbackTargetEnergyLedgerRuntimeUpdate",
+    TARGET_LEDGER_RUNTIME_PATH,
+    "Ledger runtime must provide rollback path for targetEnergy",
+    violations,
+  );
+  requireSnippet(
+    targetLedgerPersistence,
+    "appendTargetEnergyLedgerRecordAndMaybeCompact",
+    TARGET_LEDGER_PERSISTENCE_PATH,
+    "Target-energy ledger persistence module must append records into durable history and compaction flow",
+    violations,
+  );
+  requireSnippet(
+    targetLedgerPersistence,
+    "hydrateTargetEnergyLedgerRuntime",
+    TARGET_LEDGER_PERSISTENCE_PATH,
+    "Target-energy ledger persistence module must replay records into runtime state",
+    violations,
+  );
+  requireSnippet(
+    targetLedgerPersistence,
+    "TARGET_ENERGY_LEDGER_SNAPSHOT_PATH",
+    TARGET_LEDGER_PERSISTENCE_PATH,
+    "Target-energy ledger persistence module must expose canonical snapshot path",
+    violations,
+  );
+
+  requireSnippet(
     pulse,
     "applyGeneticLedgerUpdate",
     PULSE_PATH,
@@ -139,6 +187,20 @@ const main = async () => {
     "update.baseTax",
     PULSE_PATH,
     "Pulse homeostasis overlay must not mutate baseTax outside genetic ledger route",
+    violations,
+  );
+  requireAbsentSnippet(
+    pulse,
+    "targetEnergy?: number;",
+    PULSE_PATH,
+    "Pulse homeostasis overlay must not expose ad-hoc targetEnergy path once ledger ownership is live",
+    violations,
+  );
+  requireAbsentSnippet(
+    pulse,
+    "update.targetEnergy",
+    PULSE_PATH,
+    "Pulse homeostasis overlay must not mutate targetEnergy outside genetic ledger route",
     violations,
   );
 
@@ -189,6 +251,27 @@ const main = async () => {
     "ledger_base_tax_persistence",
     SYSTEM_START_PATH,
     "System runtime must expose ledger persistence summary to observers",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_target_energy",
+    SYSTEM_START_PATH,
+    "System runtime must expose ledger-owned targetEnergy summary to observers",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_target_energy_persistence",
+    SYSTEM_START_PATH,
+    "System runtime must expose targetEnergy persistence summary to observers",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "target_energy_rollback_token",
+    SYSTEM_START_PATH,
+    "System runtime must expose targetEnergy rollback token in homeostasis updates",
     violations,
   );
 

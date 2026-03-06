@@ -1,6 +1,7 @@
 # OMEGA Transition Plan
 
-> Contract document. This file describes migration sequencing, not implementation approval.
+> Contract document. This file describes migration sequencing, not
+> implementation approval.
 
 ## Principle of transition
 
@@ -24,19 +25,21 @@ This matters because the current system already has:
 
 Status snapshot as of 2026-03-06:
 
-| Workstream | Status | Deliverable |
-| --- | --- | --- |
-| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts |
-| Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
-| Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
-| Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` and `pulse.pressureRing.scale` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
+| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                  |
+| ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                   |
+| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                       |
+| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts                                                                                                                                         |
+| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                 |
+| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                             |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, and `pulse.pressureRing.scale` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
 
-- no runtime causality moves to reduction until the corresponding golden trace exists and has a stated rollback path
-- observer-only telemetry surfaces may expand if needed to make the traces measurable without mutating causality
+- no runtime causality moves to reduction until the corresponding golden trace
+  exists and has a stated rollback path
+- observer-only telemetry surfaces may expand if needed to make the traces
+  measurable without mutating causality
 
 ## Checkpoint 0: break nothing
 
@@ -176,13 +179,27 @@ Current support files already suggest the trace direction:
 ### Current stage assessment
 
 - baseline scenarios are now committed under `verification/traces/`
-- `verification/golden_trace_capture.ts` provides the reproducible observer harness
+- `verification/golden_trace_capture.ts` provides the reproducible observer
+  harness
 - `verification/reduction_harness.ts` now covers the bridge-safe opcode subset
-- `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics, including explicit policy-block baselines, without pretending they already belong to the reduction bridge
-- next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
-- Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so persistence/compaction state is visible alongside the first live ledger-owned knob
-- `baseTax` now has one canonical mutation lane: `PULSE.updateHomeostasisPolicy(...)` no longer accepts it, so runtime overlay and ledger ownership are no longer mixed for the same knob
-- `pressureRing.scale` now has one canonical mutation lane: `PULSE.updateEvolutionPressureRing(...)` no longer accepts it, so phase controls and ledger-owned amplitude no longer compete for the same causal slot
+- `verification/admission_shadow_harness.ts` now covers daemon
+  mutation/admission semantics, including explicit policy-block baselines,
+  without pretending they already belong to the reduction bridge
+- next implementation step is not more baseline-definition prose; it is either
+  widening bridge control flow honestly or widening trace-tied shadow coverage
+- Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so
+  persistence/compaction state is visible alongside the first live ledger-owned
+  knob
+- `baseTax` now has one canonical mutation lane:
+  `PULSE.updateHomeostasisPolicy(...)` no longer accepts it, so runtime overlay
+  and ledger ownership are no longer mixed for the same knob
+- `targetEnergy` now has one canonical mutation lane:
+  `PULSE.updateHomeostasisPolicy(...)` no longer accepts it either, so the live
+  homeostasis contour is now ledger-owned instead of split between overlay and
+  constitutional state
+- `pressureRing.scale` now has one canonical mutation lane:
+  `PULSE.updateEvolutionPressureRing(...)` no longer accepts it, so phase
+  controls and ledger-owned amplitude no longer compete for the same causal slot
 
 ## Stage 3: Introduce `GlyphIR64`
 
@@ -195,7 +212,8 @@ Build a true bridge between legacy ISA and reduction execution.
 - `reduction_core/GlyphIR64.ts`
 - `runtime_bridge/opcode_to_glyph.ts`
 - `runtime_bridge/glyph_pretty.ts`
-- contract first: [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
+- contract first:
+  [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
 
 ### Minimum structure
 
@@ -232,7 +250,8 @@ Each glyph entry should expose:
 
 ### Goal
 
-Turn `RIBOSOME_TICK` and `LAMBDA_VM` into a verification engine, not production causality.
+Turn `RIBOSOME_TICK` and `LAMBDA_VM` into a verification engine, not production
+causality.
 
 ### Planned files
 
@@ -260,14 +279,17 @@ Only low-width behavior first:
 
 ### Exit gate
 
-- at least one complete atom life cycle is reproducible through the reduction harness
+- at least one complete atom life cycle is reproducible through the reduction
+  harness
 - mismatches are logged and explained, not hand-waved
 
 ### Current stage assessment
 
 - `verification/reduction_cases.ts` now provides six bounded bridge cases
-- `verification/reduction_harness.ts` runs parity between legacy shadow execution and glyph-reduction shadow execution
-- `verification/reduction_diffs/*.json` now persists structured diff artifacts for every covered case
+- `verification/reduction_harness.ts` runs parity between legacy shadow
+  execution and glyph-reduction shadow execution
+- `verification/reduction_diffs/*.json` now persists structured diff artifacts
+  for every covered case
 - current covered motifs:
   - seeded replicator loop
   - seeded architect loop
@@ -276,10 +298,16 @@ Only low-width behavior first:
   - homeostasis-band anchor match
   - homeostasis-band anchor mismatch
 - known bridge limit:
-  - the current bridge subset only has `Imm8` policy anchors, so `gt05 target_energy=300` cannot yet be encoded directly
-  - current `gt05` cases therefore use the representable `band=240` anchor rather than claiming full homeostasis semantics
-- mutation-sensitive admission coverage now lives in `verification/admission_shadow_harness.ts`, anchored to `gt04_plasmid_inject`, `gt06_daemon_admission_case`, and `gt07_daemon_policy_block`
-- next gate is no longer "cover `gt04` somehow"; it is deciding whether a real compare/range primitive belongs in the bridge, or whether those policy-first cases should remain outside reduction for now
+  - the current bridge subset only has `Imm8` policy anchors, so
+    `gt05 target_energy=300` cannot yet be encoded directly
+  - current `gt05` cases therefore use the representable `band=240` anchor
+    rather than claiming full homeostasis semantics
+- mutation-sensitive admission coverage now lives in
+  `verification/admission_shadow_harness.ts`, anchored to `gt04_plasmid_inject`,
+  `gt06_daemon_admission_case`, and `gt07_daemon_policy_block`
+- next gate is no longer "cover `gt04` somehow"; it is deciding whether a real
+  compare/range primitive belongs in the bridge, or whether those policy-first
+  cases should remain outside reduction for now
 
 ## Stage 5: Transport becomes internal
 
@@ -405,11 +433,25 @@ For each global dynamic constant:
   - `replication_bias`
   - `repair_drive`
   - `mutation_friction`
-- `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
-- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
-- `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an observer-only runtime projection of hormone / ledger state through `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
-- `GENETIC_LEDGER_RUNTIME.ts` now owns the first live ledger mutation path for `pulse.homeostasis.baseTax`, including rollback-token semantics and observer-visible summary state.
-- `GENETIC_LEDGER_PERSISTENCE.ts` now persists and replays `baseTax` ledger events, so rollback tokens survive restart and hydration happens during `PULSE.initWorkers()`.
+- `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis,
+  pressure-ring, daemon ingress, and federation degrade knobs.
+- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md)
+  is now the explicit Stage 7 contract artifact and is included in export.
+- `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an
+  observer-only runtime projection of hormone / ledger state through
+  `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
+- `GENETIC_LEDGER_RUNTIME.ts` now owns the first live ledger mutation path for
+  `pulse.homeostasis.baseTax`, including rollback-token semantics and
+  observer-visible summary state.
+- `GENETIC_LEDGER_PERSISTENCE.ts` now persists and replays `baseTax` ledger
+  events, so rollback tokens survive restart and hydration happens during
+  `PULSE.initWorkers()`.
+- `HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts` now owns the second live homeostasis
+  mutation path for `pulse.homeostasis.targetEnergy`, including rollback-token
+  semantics and observer-visible summary state.
+- `HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts` now persists and replays
+  `targetEnergy` ledger events, so rollback tokens survive restart and hydration
+  happens during `PULSE.initWorkers()`.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
@@ -421,10 +463,12 @@ For each global dynamic constant:
   - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 - current scope remains deliberately narrow:
   - no live `SharedArrayBuffer` hormone region
-  - only `pulse.homeostasis.baseTax` and `pulse.pressureRing.scale` are ledger-owned in live runtime
-  - only those two knobs currently have durable replay history
+  - only `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, and
+    `pulse.pressureRing.scale` are ledger-owned in live runtime
+  - only those three knobs currently have durable replay history
   - all other hormone / ledger knobs remain observational or scaffold-only
-- next gate is deciding whether `targetEnergy` or another daemon-governed knob should become the third ledger-owned path without diluting rollback discipline.
+- next gate is deciding which daemon-governed knob should become the fourth
+  ledger-owned path without diluting rollback discipline.
 
 ## Stage 8: First hybrid production path
 
@@ -512,8 +556,7 @@ Turn shadow runtime into a laboratory, not a leak path.
 - golden traces
 - top-20 mutation list
 
-Result:
-the spine is visible before any bridge code exists.
+Result: the spine is visible before any bridge code exists.
 
 ### Sprint B
 
@@ -521,8 +564,7 @@ the spine is visible before any bridge code exists.
 - opcode-to-glyph bridge
 - first 10-15 mappings
 
-Result:
-the new language exists without taking runtime ownership.
+Result: the new language exists without taking runtime ownership.
 
 ### Sprint C
 
@@ -530,8 +572,7 @@ the new language exists without taking runtime ownership.
 - parallel verification
 - first bounded reduction case
 
-Result:
-reduction becomes measurable instead of aspirational.
+Result: reduction becomes measurable instead of aspirational.
 
 ### Sprint D
 
@@ -539,8 +580,7 @@ reduction becomes measurable instead of aspirational.
 - internal transport
 - glyph-aware local behavior
 
-Result:
-transport becomes physics.
+Result: transport becomes physics.
 
 ### Sprint E
 
@@ -548,8 +588,7 @@ transport becomes physics.
 - `GENETIC_LEDGER`
 - daemon through formal knobs
 
-Result:
-homeostasis stops being ad-hoc tuning.
+Result: homeostasis stops being ad-hoc tuning.
 
 ### Sprint F
 
@@ -557,8 +596,7 @@ homeostasis stops being ad-hoc tuning.
 - fallback
 - trace diff
 
-Result:
-the new substrate touches live runtime safely.
+Result: the new substrate touches live runtime safely.
 
 ## Stop signals
 
@@ -574,11 +612,9 @@ Do not advance if:
 
 For every major stage, maintain two artifacts:
 
-1. `MYTH.md`
-   short, expressive, purpose-focused
+1. `MYTH.md` short, expressive, purpose-focused
 
-2. `CONTRACT.md`
-   strict:
+2. `CONTRACT.md` strict:
    - inputs
    - outputs
    - invariants
@@ -589,6 +625,10 @@ This keeps myth and engineering aligned without letting either erase the other.
 
 ## Immediate next 3 planning steps
 
-1. Fill [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) for the 8 key files.
-2. Define the first golden scenarios in [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
-3. Draft the first `GlyphIR64` type contract before any bridge implementation begins.
+1. Fill
+   [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md)
+   for the 8 key files.
+2. Define the first golden scenarios in
+   [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
+3. Draft the first `GlyphIR64` type contract before any bridge implementation
+   begins.

@@ -55,6 +55,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "ledger_target_energy",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose target-energy ledger summary",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_target_energy_persistence",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose target-energy ledger persistence summary",
+    violations,
+  );
+  requireSnippet(
+    system,
     "ledger_pressure_ring_scale",
     SYSTEM_START_PATH,
     "System physiology observer must expose pressure-ring ledger summary",
