@@ -10,12 +10,16 @@ const STRUCTURE_INTENT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/test_structure_intent_determinism.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
+const SHARE_TRANSFER_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/share_transfer_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
   "standalone-structure-intent-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
+const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
+  "standalone-share-transfer-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -131,6 +135,30 @@ type CollectiveTransportCapturePayload = {
   snapshot: CollectiveTransportSnapshot;
 };
 
+type ShareTransferAtomState = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+};
+
+type ShareTransferSnapshot = {
+  successfulSenderEnergy: number;
+  successfulReceiverEnergy: number;
+  failedSenderEnergy: number;
+  failedReceiverEnergy: number;
+  senderBondTarget: number;
+  failedBondTarget: number;
+  atoms: ShareTransferAtomState[];
+};
+
+type ShareTransferCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: ShareTransferSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -143,6 +171,7 @@ const decoder = new TextDecoder();
 const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
+const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -542,6 +571,68 @@ const notesForCollectiveTransportCapture = async (
     `- hive_value=${payload.snapshot.hiveValue}`,
     `- loaded_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
     `- pheromone_word=0x${payload.snapshot.pheromoneWord.toString(16)}`,
+  ].join("\n");
+};
+
+const runShareTransferCaptureSubprocess = async (): Promise<
+  ShareTransferCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", SHARE_TRANSFER_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] share-transfer subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(SHARE_TRANSFER_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] share-transfer capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(SHARE_TRANSFER_CAPTURE_MARKER.length),
+  ) as ShareTransferCapturePayload;
+};
+
+const notesForShareTransferCapture = async (
+  trace: GoldenTraceScenario,
+  payload: ShareTransferCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_SHARE_TRANSFER_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Share transfer capture`,
+    ``,
+    `- successful_sender_energy=${payload.snapshot.successfulSenderEnergy}`,
+    `- successful_receiver_energy=${payload.snapshot.successfulReceiverEnergy}`,
+    `- failed_sender_energy=${payload.snapshot.failedSenderEnergy}`,
+    `- failed_receiver_energy=${payload.snapshot.failedReceiverEnergy}`,
   ].join("\n");
 };
 
@@ -1004,6 +1095,64 @@ const runCollectiveTransportTrace = async (
   };
 };
 
+const runShareTransferTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runShareTransferCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "share_transfer",
+    runtime_mode: TRACE_SHARE_TRANSFER_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    successful_sender_energy: payload.snapshot.successfulSenderEnergy,
+    successful_receiver_energy: payload.snapshot.successfulReceiverEnergy,
+    failed_sender_energy: payload.snapshot.failedSenderEnergy,
+    failed_receiver_energy: payload.snapshot.failedReceiverEnergy,
+  };
+  const invariants = {
+    share_transfer_hash: payload.hash,
+    sender_bond_target: payload.snapshot.senderBondTarget,
+    failed_bond_target: payload.snapshot.failedBondTarget,
+    successful_sender_energy: payload.snapshot.successfulSenderEnergy,
+    successful_receiver_energy: payload.snapshot.successfulReceiverEnergy,
+    failed_sender_energy: payload.snapshot.failedSenderEnergy,
+    failed_receiver_energy: payload.snapshot.failedReceiverEnergy,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 2,
+    runtime_mode: TRACE_SHARE_TRANSFER_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      successfulSenderEnergy: payload.snapshot.successfulSenderEnergy,
+      successfulReceiverEnergy: payload.snapshot.successfulReceiverEnergy,
+      failedSenderEnergy: payload.snapshot.failedSenderEnergy,
+      failedReceiverEnergy: payload.snapshot.failedReceiverEnergy,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      share_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForShareTransferCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -1016,6 +1165,8 @@ export const captureGoldenTrace = async (
     ? await runStructureIntentTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
+    : trace.id === "gt10_share_transfer"
+    ? await runShareTransferTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);

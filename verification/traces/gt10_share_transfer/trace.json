@@ -1,0 +1,63 @@
+{
+  "trace_id": "gt10_share_transfer",
+  "scenario": "standalone bonded share transfer semantics",
+  "tick_start": 0,
+  "tick_end": 2,
+  "runtime_mode": "standalone-share-transfer-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "successfulSenderEnergy": 499.999,
+    "successfulReceiverEnergy": 600,
+    "failedSenderEnergy": 999.999,
+    "failedReceiverEnergy": 100,
+    "snapshotDigest": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "21f2b9e5b3537c2661988063814dd131402ad811d0ea8578c72b838e153d6696",
+  "invariant_digest": "fb2310c0a6cf47b7fba0cca5be3f21d83e64052e530b091e148d9a1c35d0b569",
+  "extra_artifacts": {
+    "share_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b",
+      "snapshot": {
+        "successfulSenderEnergy": 499.999,
+        "successfulReceiverEnergy": 600,
+        "failedSenderEnergy": 999.999,
+        "failedReceiverEnergy": 100,
+        "senderBondTarget": 1,
+        "failedBondTarget": 0,
+        "atoms": [
+          {
+            "idx": 0,
+            "energy": 499.999,
+            "pc": 3,
+            "role": 0
+          },
+          {
+            "idx": 1,
+            "energy": 600,
+            "pc": 0,
+            "role": 0
+          },
+          {
+            "idx": 2,
+            "energy": 999.999,
+            "pc": 3,
+            "role": 0
+          },
+          {
+            "idx": 3,
+            "energy": 100,
+            "pc": 0,
+            "role": 0
+          }
+        ]
+      }
+    }
+  }
+}

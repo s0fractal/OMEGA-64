@@ -10,8 +10,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    REDUCTION_CASES.length === 12,
-    "[reduction_cases] expected 12 reduction cases",
+    REDUCTION_CASES.length === 14,
+    "[reduction_cases] expected 14 reduction cases",
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
@@ -24,7 +24,8 @@ const main = () => {
         definition.baselineTraceId === "gt04_plasmid_inject" ||
         definition.baselineTraceId === "gt08_structure_intent_visibility" ||
         definition.baselineTraceId === "gt05_homeostasis_correction" ||
-        definition.baselineTraceId === "gt09_collective_transport",
+        definition.baselineTraceId === "gt09_collective_transport" ||
+        definition.baselineTraceId === "gt10_share_transfer",
       `[reduction_cases] unexpected baseline anchor for ${definition.id}`,
     );
     expect(
@@ -57,6 +58,10 @@ const main = () => {
   expect(
     reductionCaseById("rc12_gt09_collective_pheromone_emit") !== null,
     "[reduction_cases] rc12 must be addressable by id",
+  );
+  expect(
+    reductionCaseById("rc14_gt10_share_transfer_empty_bond") !== null,
+    "[reduction_cases] rc14 must be addressable by id",
   );
 
   console.log(

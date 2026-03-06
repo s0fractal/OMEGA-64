@@ -1,0 +1,11 @@
+{
+  "control_specimen": "share_transfer",
+  "runtime_mode": "standalone-share-transfer-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b",
+  "successful_sender_energy": 499.999,
+  "successful_receiver_energy": 600,
+  "failed_sender_energy": 999.999,
+  "failed_receiver_energy": 100
+}

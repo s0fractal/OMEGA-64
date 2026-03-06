@@ -10,6 +10,7 @@ export type ReductionCaseExpectation = {
   finalProps?: Partial<Record<number, number>>;
   finalHiveMemory?: Partial<Record<number, number>>;
   finalSignalGrid?: Partial<Record<number, number>>;
+  finalPeerEnergy?: Partial<Record<number, number>>;
   branchTaken?: boolean;
 };
 
@@ -20,6 +21,8 @@ export type ReductionCaseDefinition = {
   script: Uint8Array;
   maxSteps: number;
   initialProps: Partial<Record<number, number>>;
+  initialBondTargets?: Partial<Record<number, number>>;
+  initialPeerEnergy?: Partial<Record<number, number>>;
   expected: ReductionCaseExpectation;
 };
 
@@ -160,6 +163,21 @@ const makeCollectivePheromoneScript = (
   script[pc++] = 2;
   script[pc++] = intensity & 0xFF;
   script[pc++] = type & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeShareScript = (
+  slot: number,
+  percentage: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SHARE;
+  script[pc++] = slot & 0xFF;
+  script[pc++] = percentage & 0xFF;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
@@ -399,6 +417,63 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       finalRole: 0,
       finalSignalGrid: {
         1410: 0xC805,
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc13_gt10_share_transfer_success",
+    baselineTraceId: "gt10_share_transfer",
+    description:
+      "A bounded SHARE bridge should deduct percentage energy from self and credit the bonded peer when slot 0 resolves to a live target.",
+    script: makeShareScript(0, 50),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1000,
+    },
+    initialBondTargets: {
+      0: 2,
+    },
+    initialPeerEnergy: {
+      2: 100,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 500,
+      },
+      finalPeerEnergy: {
+        2: 600,
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc14_gt10_share_transfer_empty_bond",
+    baselineTraceId: "gt10_share_transfer",
+    description:
+      "The same SHARE bridge should fail closed when the selected bond slot is empty, leaving self and peer energy untouched.",
+    script: makeShareScript(0, 50),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1000,
+    },
+    initialPeerEnergy: {
+      2: 100,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 1000,
+      },
+      finalPeerEnergy: {
+        2: 100,
       },
       branchTaken: false,
     },

@@ -233,6 +233,33 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_neural_synthesis.ts",
     ],
   },
+  {
+    id: "gt10_share_transfer",
+    scenario: "standalone bonded share transfer semantics",
+    setup:
+      "standalone deterministic capture of OP_SHARE successful bonded transfer and empty-bond no-op through direct WASM execution",
+    duration: "2 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "successfulSenderEnergy",
+      "successfulReceiverEnergy",
+      "failedSenderEnergy",
+      "failedReceiverEnergy",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      successfulSenderEnergy: "strict",
+      successfulReceiverEnergy: "strict",
+      failedSenderEnergy: "strict",
+      failedReceiverEnergy: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/share_transfer_capture.ts",
+      "test_metabolism.ts",
+      "test_symbiosis.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(
