@@ -154,6 +154,11 @@ Latest completed planning work:
   behavior across `legacy`, `shadow`, and `hybrid` modes and persists committed
   `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
   fallback cases tied to `gt03`.
+- Added a pure promotion gate:
+  `GUARDIAN_SIGNAL_PROMOTION.ts` now computes whether the guardian slit has
+  accumulated enough shadow evidence to recommend `hybrid-reduce`; telemetry,
+  physiology, and long-run audits surface the same recommendation without
+  auto-promoting the runtime mode.
 
 ## Current diagnosis
 

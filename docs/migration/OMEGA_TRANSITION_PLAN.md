@@ -596,6 +596,11 @@ Current slit in progress:
   `legacy`, `shadow`, and `hybrid` modes and writes committed
   `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
   fallback cases before any default-mode promotion is considered
+- `GUARDIAN_SIGNAL_PROMOTION.ts` now acts as the promotion gate contract:
+  runtime telemetry, physiology, and long-run audit scripts all compute the
+  same `shadow -> hybrid` recommendation from fallback ratio and branch
+  coverage, but the default mode remains `shadow-reduce` until an explicit
+  promotion decision is made
 
 ### Exit gate
 

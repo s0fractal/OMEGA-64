@@ -19,6 +19,7 @@ import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -133,6 +134,27 @@ type RuntimeMetrics = {
     lastStatus: "legacy" | "stable" | "repair" | "fallback";
     lastBranch: "stable" | "repair" | "unknown";
     lastFallbackReason: string;
+  };
+  guardianSignalPromotion: {
+    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
+    ready: boolean;
+    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    shadowRuns: number;
+    hybridRuns: number;
+    reductionRuns: number;
+    fallbackRuns: number;
+    fallbackRatio: number;
+    stableBranchCount: number;
+    repairBranchCount: number;
+    shadowSuppressedGuardianSignals: number;
+    reasons: string[];
+    thresholds: {
+      minShadowRuns: number;
+      maxFallbackRatio: number;
+      minStableBranchCount: number;
+      minRepairBranchCount: number;
+      minShadowSuppressedGuardianSignals: number;
+    };
   };
   glyphTransport: {
     activeCells: number;
@@ -511,6 +533,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
   const active = STATE_MATRIX.getActiveIndices();
   const spatialHash = PULSE.getSpatialHashState();
+  const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -525,7 +548,10 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowRatio: spatialHash.overflowRatio,
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
-    guardianSignalHybrid: PULSE.getGuardianSignalHybridState(),
+    guardianSignalHybrid,
+    guardianSignalPromotion: evaluateGuardianSignalPromotion(
+      guardianSignalHybrid,
+    ),
     glyphTransport: GLYPH_BUFFER.snapshot(),
   };
 };
@@ -801,6 +827,7 @@ const buildTelemetry = async () => {
       },
     },
     guardian_signal_hybrid: metrics.guardianSignalHybrid,
+    guardian_signal_promotion: metrics.guardianSignalPromotion,
     glyph_transport: metrics.glyphTransport,
     daemon_governance: {
       safe_mode: safeMode.blocked,
@@ -1832,11 +1859,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         },
       },
     });
+    const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
     return new Response(
       JSON.stringify({
         ok: true,
         physiology,
-        guardian_signal_hybrid: PULSE.getGuardianSignalHybridState(),
+        guardian_signal_hybrid: guardianSignalHybrid,
+        guardian_signal_promotion: evaluateGuardianSignalPromotion(
+          guardianSignalHybrid,
+        ),
         glyph_transport: GLYPH_BUFFER.snapshot(),
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
         ledger_base_tax_persistence:

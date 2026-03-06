@@ -82,6 +82,13 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    system,
+    "guardian_signal_promotion",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose guardian promotion recommendation",
+    violations,
+  );
+  requireSnippet(
     akasha,
     "proxyPhysiology",
     AKASHA_SERVER_PATH,

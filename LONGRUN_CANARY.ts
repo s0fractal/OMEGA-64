@@ -1,3 +1,5 @@
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+
 type CanaryConfig = {
   hostUrl: string;
   durationSec: number;
@@ -18,6 +20,27 @@ type CanaryConfig = {
 type TelemetryEnvelope = {
   tick?: number;
   avgEnergy?: number;
+  guardian_signal_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    stableBranchCount?: number;
+    repairBranchCount?: number;
+    allowedGuardianSignals?: number;
+    suppressedGuardianSignals?: number;
+    shadowSuppressedGuardianSignals?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  guardian_signal_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
   daemon_governance?: {
     safe_mode?: boolean;
     safe_mode_reason?: string;
@@ -74,6 +97,10 @@ type Sample = {
   spatialMaxCellCount: number;
   federationAction: string;
   federationSeverity: string;
+  guardianPromotionReady: boolean;
+  guardianPromotionStatus: string;
+  guardianPromotionRecommendedMode: string;
+  guardianPromotionFallbackRatio: number;
   populationCurrent: number;
   populationPeak: number;
 };
@@ -162,6 +189,93 @@ const toStringSafe = (value: unknown, fallback = ""): string =>
   typeof value === "string" && value.trim().length > 0
     ? value.trim()
     : fallback;
+
+const deriveGuardianPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  ready: boolean;
+  status: string;
+  recommendedMode: string;
+  fallbackRatio: number;
+} => {
+  if (telemetry.guardian_signal_hybrid) {
+    const evaluated = evaluateGuardianSignalPromotion({
+      mode: toStringSafe(
+        telemetry.guardian_signal_hybrid.mode,
+        "shadow-reduce",
+      ) as "legacy-execute" | "hybrid-reduce" | "shadow-reduce",
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.fallbackRuns, 0),
+      ),
+      stableBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.stableBranchCount, 0),
+      ),
+      repairBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.repairBranchCount, 0),
+      ),
+      allowedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.allowedGuardianSignals,
+          0,
+        ),
+      ),
+      suppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.suppressedGuardianSignals,
+          0,
+        ),
+      ),
+      shadowSuppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.shadowSuppressedGuardianSignals,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastStatus,
+        "legacy",
+      ) as "legacy" | "stable" | "repair" | "fallback",
+      lastBranch: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastBranch,
+        "unknown",
+      ) as "stable" | "repair" | "unknown",
+      lastFallbackReason: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    ready: telemetry.guardian_signal_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.guardian_signal_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: toStringSafe(
+      telemetry.guardian_signal_promotion?.recommendedMode,
+      "shadow-reduce",
+    ),
+    fallbackRatio: toFiniteNumber(
+      telemetry.guardian_signal_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
 
 const createConfig = (): CanaryConfig => {
   const hostUrl = (Deno.env.get("OMEGA_LONGRUN_URL") ?? "http://127.0.0.1:8000")
@@ -328,6 +442,10 @@ const renderMarkdown = (
 - p95SpatialOverflowRatio: ${summary.p95SpatialOverflowRatio}
 - safeModeRatio: ${summary.safeModeRatio}
 - federationRejectRatio: ${summary.federationRejectRatio}
+- guardianSignalPromotionReadyLatest: ${summary.guardianSignalPromotionReadyLatest}
+- guardianSignalPromotionReadyRatio: ${summary.guardianSignalPromotionReadyRatio}
+- guardianSignalPromotionRecommendedMode: ${summary.guardianSignalPromotionRecommendedMode}
+- guardianSignalFallbackRatioP95: ${summary.guardianSignalFallbackRatioP95}
 
 | status | check | observed | limit |
 |---|---|---:|---:|
@@ -443,6 +561,8 @@ const main = async () => {
   const avgEnergySamples: number[] = [];
   const spatialOverflowRatios: number[] = [];
   const safeModeSamples: number[] = [];
+  const guardianPromotionReadySamples: number[] = [];
+  const guardianPromotionFallbackRatios: number[] = [];
   let successCount = 0;
   let failureCount = 0;
   let maxConsecutiveFailures = 0;
@@ -508,6 +628,7 @@ const main = async () => {
       telemetry.federation_admission?.latest?.severity,
       "",
     ).toUpperCase();
+    const guardianPromotion = deriveGuardianPromotion(telemetry);
 
     if (federationAction.length > 0) {
       federationActionSamples++;
@@ -534,6 +655,8 @@ const main = async () => {
     avgEnergySamples.push(avgEnergy);
     spatialOverflowRatios.push(overflowRatio);
     safeModeSamples.push(safeMode ? 1 : 0);
+    guardianPromotionReadySamples.push(guardianPromotion.ready ? 1 : 0);
+    guardianPromotionFallbackRatios.push(guardianPromotion.fallbackRatio);
 
     samples.push({
       sampleIndex: samples.length,
@@ -549,6 +672,12 @@ const main = async () => {
       spatialMaxCellCount: maxCellCount,
       federationAction: federationAction || "none",
       federationSeverity: federationSeverity || "NONE",
+      guardianPromotionReady: guardianPromotion.ready,
+      guardianPromotionStatus: guardianPromotion.status,
+      guardianPromotionRecommendedMode: guardianPromotion.recommendedMode,
+      guardianPromotionFallbackRatio: Number(
+        guardianPromotion.fallbackRatio.toFixed(6),
+      ),
       populationCurrent,
       populationPeak,
     });
@@ -582,6 +711,14 @@ const main = async () => {
   const p05AvgEnergy = percentile(avgEnergySamples, 5);
   const p95SpatialOverflowRatio = percentile(spatialOverflowRatios, 95);
   const safeModeRatio = mean(safeModeSamples);
+  const guardianSignalPromotionReadyRatio = mean(guardianPromotionReadySamples);
+  const guardianSignalFallbackRatioP95 = percentile(
+    guardianPromotionFallbackRatios,
+    95,
+  );
+  const guardianSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
   const federationRejectRatio = federationActionSamples > 0
     ? federationRejectSamples / federationActionSamples
     : 0;
@@ -680,6 +817,17 @@ const main = async () => {
     p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
     safeModeRatio: Number(safeModeRatio.toFixed(3)),
     federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
+    guardianSignalPromotionReadyLatest:
+      guardianSignalPromotionLatest?.guardianPromotionReady ?? false,
+    guardianSignalPromotionReadyRatio: Number(
+      guardianSignalPromotionReadyRatio.toFixed(3),
+    ),
+    guardianSignalPromotionRecommendedMode:
+      guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+        "shadow-reduce",
+    guardianSignalFallbackRatioP95: Number(
+      guardianSignalFallbackRatioP95.toFixed(6),
+    ),
     maxConsecutiveTelemetryFailures: maxConsecutiveFailures,
     processExitedUnexpectedly,
     childExitCode,
