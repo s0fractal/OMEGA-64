@@ -1,4 +1,5 @@
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 
 type AuditConfig = {
   hostUrl: string;
@@ -160,7 +161,7 @@ type Sample = {
   daemonActionsDynamicMaxInWindow: number;
   guardianPromotionReady: boolean;
   guardianPromotionStatus: string;
-  guardianPromotionRecommendedMode: string;
+  guardianPromotionRecommendedMode: GuardianPromotionMode;
   guardianPromotionFallbackRatio: number;
   populationCurrent: number;
   populationPeak: number;
@@ -190,6 +191,11 @@ type Check = {
 type FetchResult<T> =
   | { ok: true; data: T; latencyMs: number }
   | { ok: false; latencyMs: number; error: string };
+
+type GuardianPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
 
 type PerturbationContext = {
   nextU32: () => number;
@@ -283,12 +289,25 @@ const toBool = (value: unknown): boolean => {
   return false;
 };
 
+const normalizeGuardianPromotionMode = (
+  value: unknown,
+): GuardianPromotionMode => {
+  const normalized = toStringSafe(value, "shadow-reduce").toLowerCase();
+  if (normalized === "legacy-execute" || normalized === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (normalized === "hybrid-reduce" || normalized === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
 const deriveGuardianPromotion = (
   telemetry: TelemetryEnvelope,
 ): {
   ready: boolean;
   status: string;
-  recommendedMode: string;
+  recommendedMode: GuardianPromotionMode;
   fallbackRatio: number;
 } => {
   if (telemetry.guardian_signal_hybrid) {
@@ -359,9 +378,8 @@ const deriveGuardianPromotion = (
       telemetry.guardian_signal_promotion?.status,
       "unknown",
     ),
-    recommendedMode: toStringSafe(
+    recommendedMode: normalizeGuardianPromotionMode(
       telemetry.guardian_signal_promotion?.recommendedMode,
-      "shadow-reduce",
     ),
     fallbackRatio: toFiniteNumber(
       telemetry.guardian_signal_promotion?.fallbackRatio,
@@ -936,6 +954,8 @@ const renderMarkdown = (
 - guardianSignalPromotionReadyRatio: ${summary.guardianSignalPromotionReadyRatio}
 - guardianSignalPromotionRecommendedMode: ${summary.guardianSignalPromotionRecommendedMode}
 - guardianSignalFallbackRatioP95: ${summary.guardianSignalFallbackRatioP95}
+- guardianSignalPromotionVerdict: ${summary.guardianSignalPromotionVerdict}
+- guardianSignalPromotionBlockers: ${summary.guardianSignalPromotionBlockers}
 - perturbAttempts: ${summary.perturbAttempts}
 - perturbFailureRatio: ${summary.perturbFailureRatio}
 - daemonAdmissionEvents: ${summary.daemonAdmissionEvents}
@@ -1417,6 +1437,39 @@ const main = async () => {
     : 0;
   const enforceActionQualityGate = config.requireDaemonAccepts ||
     daemonAcceptCount > 0;
+  const guardianSignalPromotionDecision = evaluateGuardianSignalPromotionDecision(
+    {
+      promotion: {
+        latestReady: guardianSignalPromotionLatest?.guardianPromotionReady ??
+          false,
+        readyRatio: guardianSignalPromotionReadyRatio,
+        recommendedMode:
+          guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+            "shadow-reduce",
+        fallbackRatioP95: guardianSignalFallbackRatioP95,
+        status: guardianSignalPromotionLatest?.guardianPromotionStatus ??
+          "unknown",
+      },
+      health: {
+        bootReady,
+        processExitedUnexpectedly: coreUnexpectedExitDuringRun ||
+          (config.spawnDaemon && daemonUnexpectedExitDuringRun),
+        successRate,
+        minSuccessRate: config.minSuccessRate,
+        p95TelemetryLatencyMs,
+        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+        p95SpatialOverflowRatio,
+        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+        safeModeRatio,
+        maxSafeModeRatio: config.maxSafeModeRatio,
+        daemonRejectRatio,
+        maxDaemonRejectRatio: config.maxDaemonRejectRatio,
+        effectEvalCoverage,
+        minEffectEvalCoverage: config.minEffectEvalCoverage,
+        enforceActionQualityGate,
+      },
+    },
+  );
 
   const checks: Check[] = [
     {
@@ -1578,6 +1631,9 @@ const main = async () => {
     guardianSignalFallbackRatioP95: Number(
       guardianSignalFallbackRatioP95.toFixed(6),
     ),
+    guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
+    guardianSignalPromotionBlockers:
+      guardianSignalPromotionDecision.blockers.join("|") || "none",
     maxConsecutiveTelemetryFailures: maxConsecutiveFailures,
     perturbAttempts,
     perturbFailures,
@@ -1602,6 +1658,7 @@ const main = async () => {
     ok: failedChecks.length === 0,
     config,
     summary,
+    guardianSignalPromotionDecision,
     checks,
     daemonEventCounts,
     perturbationsTail,

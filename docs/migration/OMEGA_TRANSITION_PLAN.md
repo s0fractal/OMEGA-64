@@ -601,6 +601,9 @@ Current slit in progress:
   same `shadow -> hybrid` recommendation from fallback ratio and branch
   coverage, but the default mode remains `shadow-reduce` until an explicit
   promotion decision is made
+- `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now turns that recommendation into an
+  explicit `promote` / `hold` verdict inside long-run canary and daemon audit
+  reports by combining guardian readiness with enclosing runtime health
 
 ### Exit gate
 

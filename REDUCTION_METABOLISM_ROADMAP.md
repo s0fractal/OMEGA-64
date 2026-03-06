@@ -159,6 +159,11 @@ Latest completed planning work:
   accumulated enough shadow evidence to recommend `hybrid-reduce`; telemetry,
   physiology, and long-run audits surface the same recommendation without
   auto-promoting the runtime mode.
+- Added a promotion decision contract:
+  `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now folds the guardian recommendation
+  together with long-run health metrics into an explicit `promote` or `hold`
+  verdict, so Stage 8 rollout can be decided from committed audit artifacts
+  rather than ad hoc interpretation.
 
 ## Current diagnosis
 
