@@ -31,6 +31,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
+| Stage 7 physiological contract | in progress | [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts), [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts), and [HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) now define the initial bounded knob surface outside runtime ownership |
 
 Current rule:
 
@@ -391,6 +392,27 @@ For each global dynamic constant:
 
 - no globally meaningful dynamic number floats without owner and bounds
 - daemon acts through physiological knobs, not direct world rewriting
+
+### Current stage assessment
+
+- `HORMONE_BUFFER.ts` now defines the initial six-hormone physiological catalog:
+  - `entropy_pressure`
+  - `time_viscosity`
+  - `aggression`
+  - `replication_bias`
+  - `repair_drive`
+  - `mutation_friction`
+- `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
+- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
+- contract guards now exist for:
+  - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
+  - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+  - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+- current scope remains deliberately non-authoritative:
+  - no live `SharedArrayBuffer` hormone region
+  - no persisted ledger history
+  - no runtime write path through hormone / ledger ownership yet
+- next gate is wiring one existing live runtime knob through this layer without bypassing rollback semantics.
 
 ## Stage 8: First hybrid production path
 

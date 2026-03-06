@@ -9,6 +9,8 @@
     "assembly/index.ts"
   ],
   "runtime_support_files": [
+    "GENETIC_LEDGER.ts",
+    "HORMONE_BUFFER.ts",
     "build_wasm.ts",
     "HOLOGRAM_MODULE.ts",
     "mod.ts",
@@ -73,6 +75,7 @@
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
+    "docs/migration/HORMONE_LEDGER_CONTRACT.md",
     "verification/traces/gt01_coldstart_seeded_swarm/trace.json",
     "verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json",
     "verification/traces/gt01_coldstart_seeded_swarm/invariants.json",

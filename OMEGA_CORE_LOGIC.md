@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:46:22.632Z*
-*Exported Files: 120*
+*Generated: 2026-03-06T12:53:27.959Z*
+*Exported Files: 123*
 *Runtime Roots: 6*
 *Runtime Closure Files: 39*
-*Non-Runtime Code Files: 30*
-*Runtime-Support Code Files: 16*
+*Non-Runtime Code Files: 32*
+*Runtime-Support Code Files: 18*
 *Experimental Code Files: 14*
-*Manifest SHA256: c2774c0d6cc197486664b15f2a7ecc72b4ec5f73df181c046c5e58489f4d109e*
-*Export Set SHA256: dd58e80116ff41c0c71f98c533e07e339593328c29de39e91153a3f0091c28ab*
-*Export Content SHA256: 6be4c1f7502de22b328de362f81e8a5dc9d6815b71f2970ee310aa344cc67da8*
-*Git Commit: a1816eae979f*
+*Manifest SHA256: 203594105693f9096d3aad68cea71192def5b1686db5a0f2a771324ef2c859e1*
+*Export Set SHA256: cb973763c1291bb42033a14738117acca9512011d9af2fe0bb182216a421ea78*
+*Export Content SHA256: 5c271387793adb3d9e434460f5edba7b574e72e69eddc62850713de29793d4cb*
+*Git Commit: 218bd2692e9e*
 
 ---
 
@@ -73,7 +73,9 @@
 
 - build_wasm.ts
 - ECOLOGY_ENGINE.ts
+- GENETIC_LEDGER.ts
 - HOLOGRAM_MODULE.ts
+- HORMONE_BUFFER.ts
 - LAMBDA_VM.ts
 - MATRIX_ENGINE.ts
 - mod.ts
@@ -107,7 +109,9 @@
 ## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT
 
 - build_wasm.ts
+- GENETIC_LEDGER.ts
 - HOLOGRAM_MODULE.ts
+- HORMONE_BUFFER.ts
 - mod.ts
 - OBSERVER_LAB.ts
 - OBSERVER_UI.ts
@@ -6087,6 +6091,8 @@ export const CONTROL_INTENT_QUEUE = {
     "assembly/index.ts"
   ],
   "runtime_support_files": [
+    "GENETIC_LEDGER.ts",
+    "HORMONE_BUFFER.ts",
     "build_wasm.ts",
     "HOLOGRAM_MODULE.ts",
     "mod.ts",
@@ -6151,6 +6157,7 @@ export const CONTROL_INTENT_QUEUE = {
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
+    "docs/migration/HORMONE_LEDGER_CONTRACT.md",
     "verification/traces/gt01_coldstart_seeded_swarm/trace.json",
     "verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json",
     "verification/traces/gt01_coldstart_seeded_swarm/invariants.json",
@@ -7053,6 +7060,138 @@ Current exit assessment:
 
 ---
 
+## FILE: docs/migration/HORMONE_LEDGER_CONTRACT.md
+
+```markdown
+# Hormone / Ledger Contract
+
+> Stage 7 contract scaffold. This document formalizes the physiological knobs before they are wired into live runtime ownership.
+
+## Purpose
+
+Stage 7 needs two explicit layers:
+
+- `HORMONE_BUFFER`: the current global physiological field
+- `GENETIC_LEDGER`: the bounded registry of mutable global constants
+
+The point is not "more configuration". The point is to stop letting important
+global knobs live as disconnected ad-hoc controller state.
+
+## Current code-backed scaffold
+
+The non-runtime support catalog now exists in:
+
+- [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts)
+- [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts)
+
+These files are not yet imported by active runtime roots. They are migration
+contracts with executable structure.
+
+Executable guards:
+
+- [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
+- [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+- [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+
+## `HORMONE_BUFFER`
+
+Current hormone ids:
+
+1. `entropy_pressure`
+2. `time_viscosity`
+3. `aggression`
+4. `replication_bias`
+5. `repair_drive`
+6. `mutation_friction`
+
+Each hormone must expose:
+
+- `id`
+- `index`
+- `domain`
+- `min`
+- `max`
+- `defaultValue`
+- `controlPlane`
+- `sourcePath`
+- `notes`
+
+Current rule:
+
+- hormone values are normalized bounded scalars
+- defaults are derived from current runtime policy
+- no hormone is yet authoritative over live mutation flow
+
+## `GENETIC_LEDGER`
+
+The ledger is the bounded registry for global knobs that can later be changed by:
+
+- daemon governance
+- bounded runtime homeostasis
+- future rollback-aware physiology
+
+Each entry must expose:
+
+- `key`
+- `defaultValue`
+- `min`
+- `max`
+- `mutability`
+- `hormoneLink`
+- `rollbackClass`
+- `sourcePath`
+- `notes`
+
+Current initial ledger surface includes:
+
+- pulse homeostasis knobs
+- pressure-ring scale
+- daemon ingress budgets
+- federation degrade ratios
+
+## Design law
+
+Do not put everything in the ledger.
+
+Only global numbers that actually alter world-level dynamics belong here.
+
+This is not a bag of constants. It is the candidate constitutional layer for
+physiology.
+
+## Stage 7 gate
+
+This stage becomes real only when:
+
+1. live runtime knobs can be mapped to a hormone or a ledger entry
+2. hard invariants remain outside the ledger
+3. every ledger mutation has a rollback class
+4. daemon controllers can be described as ledger/hormone updates instead of
+   ad-hoc API pokes
+
+## Current scope limit
+
+At this point:
+
+- there is no live `SharedArrayBuffer` hormone region yet
+- there is no persistence layer for ledger history yet
+- there is no runtime write path through `HORMONE_BUFFER` / `GENETIC_LEDGER`
+
+That is intentional. This contract exists so the next step can wire these
+concepts into runtime without inventing semantics on the fly.
+
+## Current status
+
+As of 2026-03-06 this layer is:
+
+- code-backed
+- export-visible
+- contract-tested
+- still non-authoritative over live runtime causality
+
+```
+
+---
+
 ## FILE: docs/migration/OMEGA_TRANSITION_PLAN.md
 
 ```markdown
@@ -7089,6 +7228,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
+| Stage 7 physiological contract | in progress | [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts), [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts), and [HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) now define the initial bounded knob surface outside runtime ownership |
 
 Current rule:
 
@@ -7449,6 +7589,27 @@ For each global dynamic constant:
 
 - no globally meaningful dynamic number floats without owner and bounds
 - daemon acts through physiological knobs, not direct world rewriting
+
+### Current stage assessment
+
+- `HORMONE_BUFFER.ts` now defines the initial six-hormone physiological catalog:
+  - `entropy_pressure`
+  - `time_viscosity`
+  - `aggression`
+  - `replication_bias`
+  - `repair_drive`
+  - `mutation_friction`
+- `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
+- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
+- contract guards now exist for:
+  - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
+  - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+  - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+- current scope remains deliberately non-authoritative:
+  - no live `SharedArrayBuffer` hormone region
+  - no persisted ledger history
+  - no runtime write path through hormone / ledger ownership yet
+- next gate is wiring one existing live runtime knob through this layer without bypassing rollback semantics.
 
 ## Stage 8: First hybrid production path
 
@@ -8722,6 +8883,187 @@ export const GATE = {
 
 ---
 
+## FILE: GENETIC_LEDGER.ts
+
+```typescript
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+export type GeneticLedgerKey =
+  | "pulse.homeostasis.targetEnergy"
+  | "pulse.homeostasis.band"
+  | "pulse.homeostasis.maxDelta"
+  | "pulse.homeostasis.overflowThreshold"
+  | "pulse.homeostasis.baseTax"
+  | "pulse.pressureRing.scale"
+  | "daemon.maxActionsPerWindow"
+  | "daemon.maxPheromoneIntensity"
+  | "daemon.maxPlasmidCharge"
+  | "federation.admission.degradeEnergyRatio"
+  | "federation.admission.degradeResonanceRatio";
+
+export type LedgerMutability = "hard-invariant" | "bounded-runtime" | "daemon-governed";
+
+export type GeneticLedgerEntry = {
+  key: GeneticLedgerKey;
+  defaultValue: number;
+  min: number;
+  max: number;
+  mutability: LedgerMutability;
+  hormoneLink: string | null;
+  rollbackClass: "immediate" | "epochal";
+  sourcePath: string;
+  notes: string;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const ledgerEntry = (entry: GeneticLedgerEntry): GeneticLedgerEntry => ({
+  ...entry,
+  defaultValue: clamp(entry.defaultValue, entry.min, entry.max),
+});
+
+export const GENETIC_LEDGER_CATALOG: readonly GeneticLedgerEntry[] = Object.freeze([
+  ledgerEntry({
+    key: "pulse.homeostasis.targetEnergy",
+    defaultValue: RUNTIME_POLICY.pulse.homeostasis.targetEnergy,
+    min: 1,
+    max: 10_000,
+    mutability: "daemon-governed",
+    hormoneLink: "entropy_pressure",
+    rollbackClass: "immediate",
+    sourcePath: "pulse.homeostasis.targetEnergy",
+    notes: "Primary metabolic target for average energy plateau.",
+  }),
+  ledgerEntry({
+    key: "pulse.homeostasis.band",
+    defaultValue: RUNTIME_POLICY.pulse.homeostasis.band,
+    min: 1,
+    max: 4096,
+    mutability: "bounded-runtime",
+    hormoneLink: "entropy_pressure",
+    rollbackClass: "immediate",
+    sourcePath: "pulse.homeostasis.band",
+    notes: "Acceptable energy band around the target plateau.",
+  }),
+  ledgerEntry({
+    key: "pulse.homeostasis.maxDelta",
+    defaultValue: RUNTIME_POLICY.pulse.homeostasis.maxDelta,
+    min: 1,
+    max: 256,
+    mutability: "bounded-runtime",
+    hormoneLink: "entropy_pressure",
+    rollbackClass: "immediate",
+    sourcePath: "pulse.homeostasis.maxDelta",
+    notes: "Per-tick cap for host-side homeostasis adjustments.",
+  }),
+  ledgerEntry({
+    key: "pulse.homeostasis.overflowThreshold",
+    defaultValue: RUNTIME_POLICY.pulse.homeostasis.overflowThreshold,
+    min: 0.01,
+    max: 1,
+    mutability: "bounded-runtime",
+    hormoneLink: "time_viscosity",
+    rollbackClass: "epochal",
+    sourcePath: "pulse.homeostasis.overflowThreshold",
+    notes: "Threshold where spatial overflow starts contributing to taxation.",
+  }),
+  ledgerEntry({
+    key: "pulse.homeostasis.baseTax",
+    defaultValue: RUNTIME_POLICY.pulse.homeostasis.baseTax,
+    min: 0,
+    max: 128,
+    mutability: "daemon-governed",
+    hormoneLink: "entropy_pressure",
+    rollbackClass: "immediate",
+    sourcePath: "pulse.homeostasis.baseTax",
+    notes: "Base metabolic tax applied before overflow-specific pressure.",
+  }),
+  ledgerEntry({
+    key: "pulse.pressureRing.scale",
+    defaultValue: RUNTIME_POLICY.pulse.pressureRing.scale,
+    min: 0,
+    max: 2048,
+    mutability: "daemon-governed",
+    hormoneLink: "aggression",
+    rollbackClass: "epochal",
+    sourcePath: "pulse.pressureRing.scale",
+    notes: "Global amplitude of the pressure ring projected into signed axes.",
+  }),
+  ledgerEntry({
+    key: "daemon.maxActionsPerWindow",
+    defaultValue: RUNTIME_POLICY.daemon.maxActionsPerWindow,
+    min: 1,
+    max: 128,
+    mutability: "bounded-runtime",
+    hormoneLink: "time_viscosity",
+    rollbackClass: "immediate",
+    sourcePath: "daemon.maxActionsPerWindow",
+    notes: "Daemon action budget before rate-limiting blocks ingress.",
+  }),
+  ledgerEntry({
+    key: "daemon.maxPheromoneIntensity",
+    defaultValue: RUNTIME_POLICY.daemon.maxPheromoneIntensity,
+    min: 1,
+    max: 4096,
+    mutability: "daemon-governed",
+    hormoneLink: "aggression",
+    rollbackClass: "immediate",
+    sourcePath: "daemon.maxPheromoneIntensity",
+    notes: "Upper membrane intensity for soft external perturbations.",
+  }),
+  ledgerEntry({
+    key: "daemon.maxPlasmidCharge",
+    defaultValue: RUNTIME_POLICY.daemon.maxPlasmidCharge,
+    min: 1,
+    max: 4096,
+    mutability: "daemon-governed",
+    hormoneLink: "mutation_friction",
+    rollbackClass: "immediate",
+    sourcePath: "daemon.maxPlasmidCharge",
+    notes: "Upper membrane intensity for durable symbolic cargo.",
+  }),
+  ledgerEntry({
+    key: "federation.admission.degradeEnergyRatio",
+    defaultValue: RUNTIME_POLICY.federation.admission.degradeEnergyRatio,
+    min: 0.1,
+    max: 1,
+    mutability: "bounded-runtime",
+    hormoneLink: "repair_drive",
+    rollbackClass: "epochal",
+    sourcePath: "federation.admission.degradeEnergyRatio",
+    notes: "How sharply external federated ingress loses energy under degradation.",
+  }),
+  ledgerEntry({
+    key: "federation.admission.degradeResonanceRatio",
+    defaultValue: RUNTIME_POLICY.federation.admission.degradeResonanceRatio,
+    min: 0.1,
+    max: 1,
+    mutability: "bounded-runtime",
+    hormoneLink: "repair_drive",
+    rollbackClass: "epochal",
+    sourcePath: "federation.admission.degradeResonanceRatio",
+    notes: "How sharply external federated ingress loses resonance under degradation.",
+  }),
+]);
+
+const LEDGER_BY_KEY = new Map<GeneticLedgerKey, GeneticLedgerEntry>(
+  GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry]),
+);
+
+export const geneticLedgerEntryByKey = (
+  key: GeneticLedgerKey,
+): GeneticLedgerEntry | null => LEDGER_BY_KEY.get(key) ?? null;
+
+export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
+  Object.fromEntries(
+    GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
+  ) as Record<GeneticLedgerKey, number>;
+
+```
+
+---
+
 ## FILE: HOLOGRAM_MODULE.ts
 
 ```typescript
@@ -8830,6 +9172,170 @@ export function injectHologram(content: string, eigenvalue: string, symbol: stri
     }
     return newContent;
 }
+
+```
+
+---
+
+## FILE: HORMONE_BUFFER.ts
+
+```typescript
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+export type HormoneId =
+  | "entropy_pressure"
+  | "time_viscosity"
+  | "aggression"
+  | "replication_bias"
+  | "repair_drive"
+  | "mutation_friction";
+
+export type HormoneDomain = "systemic" | "temporal" | "conflict" | "reproduction" | "repair" | "mutation";
+
+export type HormoneSpec = {
+  id: HormoneId;
+  index: number;
+  domain: HormoneDomain;
+  min: number;
+  max: number;
+  defaultValue: number;
+  controlPlane: "daemon" | "pulse" | "mixed";
+  sourcePath: string;
+  notes: string;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const pressureScale = Math.max(1, RUNTIME_POLICY.pulse.pressureRing.scale);
+
+const hormone = (
+  spec: Omit<HormoneSpec, "index">,
+  index: number,
+): HormoneSpec => ({
+  ...spec,
+  index,
+  defaultValue: clamp(spec.defaultValue, spec.min, spec.max),
+});
+
+export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
+  hormone({
+    id: "entropy_pressure",
+    domain: "systemic",
+    min: 0,
+    max: 2048,
+    defaultValue: Math.round(
+      clamp(
+        (RUNTIME_POLICY.pulse.homeostasis.baseTax /
+          Math.max(1, RUNTIME_POLICY.pulse.homeostasis.maxDelta)) * 1024,
+        0,
+        2048,
+      ),
+    ),
+    controlPlane: "mixed",
+    sourcePath: "pulse.homeostasis.baseTax",
+    notes:
+      "Derived from homeostasis taxation. Higher values mean the world burns surplus energy faster.",
+  }, 0),
+  hormone({
+    id: "time_viscosity",
+    domain: "temporal",
+    min: 0,
+    max: 2048,
+    defaultValue: Math.round(
+      clamp(
+        (RUNTIME_POLICY.pulse.workerCount / 32) * 2048,
+        0,
+        2048,
+      ),
+    ),
+    controlPlane: "pulse",
+    sourcePath: "pulse.workerCount",
+    notes:
+      "Proxy for how dense each tick may become relative to available worker throughput.",
+  }, 1),
+  hormone({
+    id: "aggression",
+    domain: "conflict",
+    min: 0,
+    max: 2048,
+    defaultValue: clamp(
+      RUNTIME_POLICY.pulse.egoPressure + RUNTIME_POLICY.pulse.fearPressure,
+      0,
+      2048,
+    ),
+    controlPlane: "mixed",
+    sourcePath: "pulse.egoPressure + pulse.fearPressure",
+    notes:
+      "Conflict climate projected from the current pressure ring / signed pressure state.",
+  }, 2),
+  hormone({
+    id: "replication_bias",
+    domain: "reproduction",
+    min: 0,
+    max: 2048,
+    defaultValue: clamp(
+      RUNTIME_POLICY.pulse.noveltyPressure +
+        Math.round(
+          (RUNTIME_POLICY.coldstart.replicatorRatio / 1) * 256,
+        ),
+      0,
+      2048,
+    ),
+    controlPlane: "mixed",
+    sourcePath: "pulse.noveltyPressure + coldstart.replicatorRatio",
+    notes:
+      "Bias toward exploratory reproduction. Uses current novelty pressure with a coldstart baseline.",
+  }, 3),
+  hormone({
+    id: "repair_drive",
+    domain: "repair",
+    min: 0,
+    max: 2048,
+    defaultValue: clamp(
+      RUNTIME_POLICY.pulse.symbiosisPressure +
+        Math.round((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+      0,
+      2048,
+    ),
+    controlPlane: "mixed",
+    sourcePath: "pulse.symbiosisPressure + federation.admission.degradeEnergyRatio",
+    notes:
+      "World tendency to preserve/repair structure instead of letting mutations land at full energy.",
+  }, 4),
+  hormone({
+    id: "mutation_friction",
+    domain: "mutation",
+    min: 0,
+    max: 2048,
+    defaultValue: clamp(
+      Math.round(
+        (RUNTIME_POLICY.daemon.maxPlasmidCharge /
+          Math.max(1, pressureScale)) * 256,
+      ),
+      0,
+      2048,
+    ),
+    controlPlane: "daemon",
+    sourcePath: "daemon.maxPlasmidCharge / pulse.pressureRing.scale",
+    notes:
+      "How expensive it is for daemon-side symbolic ingress to cross the membrane.",
+  }, 5),
+]);
+
+const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
+  HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),
+);
+
+export const hormoneSpecById = (id: HormoneId): HormoneSpec | null =>
+  HORMONE_BY_ID.get(id) ?? null;
+
+export const HORMONE_BUFFER_LENGTH = HORMONE_BUFFER_CATALOG.length;
+
+export const hormoneBaselineState = (): Record<HormoneId, number> =>
+  Object.fromEntries(
+    HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
+  ) as Record<HormoneId, number>;
 
 ```
 
@@ -17042,6 +17548,7 @@ Supporting planning artifacts:
 - [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md)
 - [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md)
 - [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
+- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md)
 
 ## Progress ledger
 
@@ -17054,7 +17561,10 @@ Status snapshot as of 2026-03-06:
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
 | Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
-| Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
+| Stage 5 | not started | internal glyph transport is still membrane-only and has not moved into substrate physics |
+| Stage 6 | not started | Codex evidence upgrade still depends on later ownership moves |
+| Stage 7: hormone / ledger layer | in progress | code-backed scaffold exists via `HORMONE_BUFFER.ts`, `GENETIC_LEDGER.ts`, and Stage 7 contract guards; runtime ownership is still deferred |
+| Stage 8+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
 
@@ -17071,6 +17581,7 @@ Latest completed planning work:
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
+- Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
 
 ## Current diagnosis
 
@@ -17142,6 +17653,7 @@ The next practical priorities are:
 2. Keep widening shadow coverage only where a golden trace exposes real causality, even if that means using a non-reduction shadow lane first.
 3. Extend `GlyphIR64` mapping coverage only where a concrete trace id truly requires bridge-side control flow.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
+5. Keep Stage 7 in scaffold mode until live runtime knobs can be routed through ledger/hormone ownership with rollback semantics.
 
 Immediate execution edge:
 
@@ -17154,6 +17666,7 @@ Known bridge limit surfaced by Stage 4:
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 - `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
+- Stage 7 now has an executable contract, but there is still no live `SharedArrayBuffer` hormone region and no authoritative runtime write path through the ledger. This is also intentional.
 
 ## Explicit deferrals
 

@@ -18,6 +18,7 @@ Supporting planning artifacts:
 - [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md)
 - [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md)
 - [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
+- [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md)
 
 ## Progress ledger
 
@@ -30,7 +31,10 @@ Status snapshot as of 2026-03-06:
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
 | Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
-| Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
+| Stage 5 | not started | internal glyph transport is still membrane-only and has not moved into substrate physics |
+| Stage 6 | not started | Codex evidence upgrade still depends on later ownership moves |
+| Stage 7: hormone / ledger layer | in progress | code-backed scaffold exists via `HORMONE_BUFFER.ts`, `GENETIC_LEDGER.ts`, and Stage 7 contract guards; runtime ownership is still deferred |
+| Stage 8+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
 
@@ -47,6 +51,7 @@ Latest completed planning work:
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
+- Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
 
 ## Current diagnosis
 
@@ -118,6 +123,7 @@ The next practical priorities are:
 2. Keep widening shadow coverage only where a golden trace exposes real causality, even if that means using a non-reduction shadow lane first.
 3. Extend `GlyphIR64` mapping coverage only where a concrete trace id truly requires bridge-side control flow.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
+5. Keep Stage 7 in scaffold mode until live runtime knobs can be routed through ledger/hormone ownership with rollback semantics.
 
 Immediate execution edge:
 
@@ -130,6 +136,7 @@ Known bridge limit surfaced by Stage 4:
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 - `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
+- Stage 7 now has an executable contract, but there is still no live `SharedArrayBuffer` hormone region and no authoritative runtime write path through the ledger. This is also intentional.
 
 ## Explicit deferrals
 
