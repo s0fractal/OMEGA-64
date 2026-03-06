@@ -32,7 +32,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts                                                                                                                                                                                                    |
 | Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                                                                            |
 | Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                        |
-| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets directly |
+| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
@@ -353,7 +353,11 @@ This is a good membrane, but not yet an internal circulatory system.
   plasmid glyph packets directly during host lock, so Stage 5 now has a first
   agent-driven internal producer instead of only membrane ingress or substrate
   leakage.
-- broad role-specific secretion is still deferred; Stage 5 is now real, but not
+- that agent-driven producer is now role-shaped: guardians bias toward
+  pheromone emission, architects bias toward plasmid emission, producers can do
+  both under tighter gates, parasites leak plasmids, and observer surfaces can
+  inspect the per-role emission counters.
+- broad wasm-native secretion is still deferred; Stage 5 is now real, but not
   yet complete.
 
 ### Planned substrate additions

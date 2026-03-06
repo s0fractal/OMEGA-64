@@ -130,6 +130,20 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    glyphBuffer,
+    "atomRolePheromone",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must expose role-shaped pheromone emission counters",
+    violations,
+  );
+  requireSnippet(
+    glyphBuffer,
+    "atomRolePlasmid",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must expose role-shaped plasmid emission counters",
+    violations,
+  );
+  requireSnippet(
     avatar,
     "GLYPH_BUFFER.depositPheromone",
     AVATAR_ENGINE_PATH,
@@ -155,6 +169,20 @@ const main = async () => {
     "emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx)",
     PULSE_PATH,
     "Host lock must allow active atoms to seed glyph transport internally",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "STATE_MATRIX.ROLE_GUARDIAN",
+    PULSE_PATH,
+    "Internal glyph emission policy must be role-aware",
+    violations,
+  );
+  requireSnippet(
+    pulse,
+    "STATE_MATRIX.ROLE_ARCHITECT",
+    PULSE_PATH,
+    "Internal glyph emission policy must shape plasmid secretion by role",
     violations,
   );
   requireSnippet(

@@ -94,12 +94,18 @@ const main = () => {
 
   GLYPH_BUFFER.clear();
   GLYPH_BUFFER.beginInternalAtomEmissionTick();
-  GLYPH_BUFFER.emitAtomPheromone(200, 200, 96);
+  GLYPH_BUFFER.emitAtomPheromone(
+    200,
+    200,
+    96,
+    STATE_MATRIX.ROLE_GUARDIAN,
+  );
   GLYPH_BUFFER.emitAtomPlasmid(
     220,
     220,
     144,
     new Uint8Array([9, 8, 7, 6, 5, 4, 3, 2]),
+    STATE_MATRIX.ROLE_ARCHITECT,
   );
   const atomTick = GLYPH_BUFFER.tick(11);
   if (atomTick.internalAtomPheromoneSeeds <= 0) {
@@ -112,9 +118,27 @@ const main = () => {
       "[glyph-buffer] atom plasmid emission counter did not advance",
     );
   }
+  if (atomTick.atomRolePheromone.guardian <= 0) {
+    throw new Error(
+      "[glyph-buffer] guardian pheromone emission was not tracked by role",
+    );
+  }
+  if (atomTick.atomRolePlasmid.architect <= 0) {
+    throw new Error(
+      "[glyph-buffer] architect plasmid emission was not tracked by role",
+    );
+  }
+  if (
+    atomTick.atomRolePheromone.architect !== 0 ||
+    atomTick.atomRolePlasmid.guardian !== 0
+  ) {
+    throw new Error(
+      "[glyph-buffer] role emission counters drifted into the wrong buckets",
+    );
+  }
 
   console.log(
-    `[glyph-buffer] contract guard passed. active=${atomTick.activeCells} pheromone=${atomTick.pheromoneCells} plasmid=${atomTick.plasmidCells} signalSeeds=${internalTick.internalSignalSeeds} memorySeeds=${internalTick.internalMemorySeeds} atomPheromone=${atomTick.internalAtomPheromoneSeeds} atomPlasmid=${atomTick.internalAtomPlasmidSeeds}`,
+    `[glyph-buffer] contract guard passed. active=${atomTick.activeCells} pheromone=${atomTick.pheromoneCells} plasmid=${atomTick.plasmidCells} signalSeeds=${internalTick.internalSignalSeeds} memorySeeds=${internalTick.internalMemorySeeds} atomPheromone=${atomTick.internalAtomPheromoneSeeds} atomPlasmid=${atomTick.internalAtomPlasmidSeeds} guardianPheromone=${atomTick.atomRolePheromone.guardian} architectPlasmid=${atomTick.atomRolePlasmid.architect}`,
   );
 };
 

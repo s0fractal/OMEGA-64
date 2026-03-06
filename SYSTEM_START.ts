@@ -125,6 +125,20 @@ type RuntimeMetrics = {
     internalMemorySeeds: number;
     internalAtomPheromoneSeeds: number;
     internalAtomPlasmidSeeds: number;
+    atomRolePheromone: {
+      neutral: number;
+      producer: number;
+      guardian: number;
+      architect: number;
+      parasite: number;
+    };
+    atomRolePlasmid: {
+      neutral: number;
+      producer: number;
+      guardian: number;
+      architect: number;
+      parasite: number;
+    };
   };
 };
 

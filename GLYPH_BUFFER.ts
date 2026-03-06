@@ -25,6 +25,16 @@ type GlyphSnapshot = {
   internalMemorySeeds: number;
   internalAtomPheromoneSeeds: number;
   internalAtomPlasmidSeeds: number;
+  atomRolePheromone: GlyphRoleCounters;
+  atomRolePlasmid: GlyphRoleCounters;
+};
+
+type GlyphRoleCounters = {
+  neutral: number;
+  producer: number;
+  guardian: number;
+  architect: number;
+  parasite: number;
 };
 
 const scratchHeader = new Int32Array(GRID_CELLS);
@@ -38,6 +48,53 @@ const SIGNAL_SEED_THRESHOLD = 256;
 const SIGNAL_SEED_MAX = 512;
 const MEMORY_SEED_CHARGE_THRESHOLD = 64;
 const MEMORY_SEED_MAX = 384;
+
+const createRoleCounters = (): GlyphRoleCounters => ({
+  neutral: 0,
+  producer: 0,
+  guardian: 0,
+  architect: 0,
+  parasite: 0,
+});
+
+const resetRoleCounters = (counters: GlyphRoleCounters): void => {
+  counters.neutral = 0;
+  counters.producer = 0;
+  counters.guardian = 0;
+  counters.architect = 0;
+  counters.parasite = 0;
+};
+
+const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
+  neutral: counters.neutral,
+  producer: counters.producer,
+  guardian: counters.guardian,
+  architect: counters.architect,
+  parasite: counters.parasite,
+});
+
+let lastAtomRolePheromone = createRoleCounters();
+let lastAtomRolePlasmid = createRoleCounters();
+
+const incrementRoleCounter = (counters: GlyphRoleCounters, role: number): void => {
+  if (role === STATE_MATRIX.ROLE_PRODUCER) {
+    counters.producer++;
+    return;
+  }
+  if (role === STATE_MATRIX.ROLE_GUARDIAN) {
+    counters.guardian++;
+    return;
+  }
+  if (role === STATE_MATRIX.ROLE_ARCHITECT) {
+    counters.architect++;
+    return;
+  }
+  if (role === STATE_MATRIX.ROLE_PARASITE) {
+    counters.parasite++;
+    return;
+  }
+  counters.neutral++;
+};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -178,11 +235,15 @@ export const GLYPH_BUFFER = {
     lastInternalMemorySeeds = 0;
     lastInternalAtomPheromoneSeeds = 0;
     lastInternalAtomPlasmidSeeds = 0;
+    resetRoleCounters(lastAtomRolePheromone);
+    resetRoleCounters(lastAtomRolePlasmid);
   },
 
   beginInternalAtomEmissionTick: () => {
     lastInternalAtomPheromoneSeeds = 0;
     lastInternalAtomPlasmidSeeds = 0;
+    resetRoleCounters(lastAtomRolePheromone);
+    resetRoleCounters(lastAtomRolePlasmid);
   },
 
   depositPheromone: (x: number, y: number, intensity: number) => {
@@ -215,8 +276,9 @@ export const GLYPH_BUFFER = {
     );
   },
 
-  emitAtomPheromone: (x: number, y: number, intensity: number) => {
+  emitAtomPheromone: (x: number, y: number, intensity: number, role = 0) => {
     lastInternalAtomPheromoneSeeds++;
+    incrementRoleCounter(lastAtomRolePheromone, role);
     GLYPH_BUFFER.depositPheromone(x, y, intensity);
   },
 
@@ -225,8 +287,10 @@ export const GLYPH_BUFFER = {
     y: number,
     charge: number,
     payload: Uint8Array,
+    role = 0,
   ) => {
     lastInternalAtomPlasmidSeeds++;
+    incrementRoleCounter(lastAtomRolePlasmid, role);
     GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
   },
 
@@ -295,6 +359,8 @@ export const GLYPH_BUFFER = {
       internalMemorySeeds: lastInternalMemorySeeds,
       internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
       internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
+      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
+      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
     };
   },
 
@@ -327,6 +393,8 @@ export const GLYPH_BUFFER = {
       internalMemorySeeds: lastInternalMemorySeeds,
       internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
       internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
+      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
+      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
     };
   },
 };

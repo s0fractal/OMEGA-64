@@ -885,9 +885,6 @@ const genomeKey16 = (idx: number): number => {
 const INTERNAL_GLYPH_ATOM_SCAN_TARGET = 128;
 const INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET = 96;
 const INTERNAL_GLYPH_ATOM_PLASMID_BUDGET = 24;
-const INTERNAL_GLYPH_PHEROMONE_RESONANCE_FLOOR = 180;
-const INTERNAL_GLYPH_PLASMID_RESONANCE_FLOOR = 96;
-const INTERNAL_GLYPH_PLASMID_ENERGY_FLOOR = 128;
 const hasGenomeResidue = (idx: number): boolean => {
   const off = idx * 8;
   for (let i = 0; i < 8; i++) {
@@ -895,6 +892,52 @@ const hasGenomeResidue = (idx: number): boolean => {
   }
   return false;
 };
+const guardianShouldEmitPheromone = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+): boolean =>
+  resonance >= 140 && (((phase + tick + idx) & 0x01) === 0);
+const producerShouldEmitPheromone = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+  energy: number,
+): boolean =>
+  resonance >= 160 && energy >= 96 && (((phase + tick + idx) & 0x03) === 0);
+const neutralShouldEmitPheromone = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+): boolean =>
+  resonance >= 220 && (((phase + tick + idx) & 0x07) === 0);
+const architectShouldEmitPlasmid = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+  energy: number,
+): boolean =>
+  resonance >= 90 && energy >= 144 && (((phase + tick + idx) & 0x07) === 0);
+const producerShouldEmitPlasmid = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+  energy: number,
+): boolean =>
+  resonance >= 128 && energy >= 192 && (((phase + tick + idx) & 0x1F) === 0);
+const parasiteShouldEmitPlasmid = (
+  tick: number,
+  idx: number,
+  phase: number,
+  resonance: number,
+  energy: number,
+): boolean =>
+  resonance >= 72 && energy >= 96 && (((phase + tick + idx) & 0x0F) === 0);
 const emitInternalGlyphsFromActiveAtoms = (
   tick: number,
   activeIdx: number[],
@@ -925,37 +968,75 @@ const emitInternalGlyphsFromActiveAtoms = (
     const phase = Atomics.load(phasesView, idx);
     const role = rolesView[idx];
 
-    if (
-      atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET &&
-      resonance >= INTERNAL_GLYPH_PHEROMONE_RESONANCE_FLOOR &&
-      (((phase + tick + idx) & 0x03) === 0 ||
-        role === STATE_MATRIX.ROLE_GUARDIAN)
-    ) {
-      const intensity = Math.max(
-        24,
-        Math.min(320, Math.trunc(resonance / 6)),
-      );
-      GLYPH_BUFFER.emitAtomPheromone(x, y, intensity);
-      atomPheromoneSeeds++;
+    if (atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET) {
+      let pheromoneIntensity = 0;
+      if (role === STATE_MATRIX.ROLE_GUARDIAN &&
+        guardianShouldEmitPheromone(tick, idx, phase, resonance)) {
+        pheromoneIntensity = Math.max(
+          48,
+          Math.min(384, Math.trunc(resonance / 4)),
+        );
+      } else if (
+        role === STATE_MATRIX.ROLE_PRODUCER &&
+        producerShouldEmitPheromone(tick, idx, phase, resonance, energy)
+      ) {
+        pheromoneIntensity = Math.max(
+          24,
+          Math.min(256, Math.trunc((resonance + energy) / 10)),
+        );
+      } else if (
+        role === STATE_MATRIX.ROLE_NEUTRAL &&
+        neutralShouldEmitPheromone(tick, idx, phase, resonance)
+      ) {
+        pheromoneIntensity = Math.max(
+          24,
+          Math.min(192, Math.trunc(resonance / 8)),
+        );
+      }
+
+      if (pheromoneIntensity > 0) {
+        GLYPH_BUFFER.emitAtomPheromone(x, y, pheromoneIntensity, role);
+        atomPheromoneSeeds++;
+      }
     }
 
     if (
       atomPlasmidSeeds < INTERNAL_GLYPH_ATOM_PLASMID_BUDGET &&
-      (role === STATE_MATRIX.ROLE_ARCHITECT ||
-        role === STATE_MATRIX.ROLE_PRODUCER) &&
-      energy >= INTERNAL_GLYPH_PLASMID_ENERGY_FLOOR &&
-      resonance >= INTERNAL_GLYPH_PLASMID_RESONANCE_FLOOR &&
-      (((phase + tick + idx) & 0x0F) === 0) &&
       hasGenomeResidue(idx)
     ) {
+      let plasmidCharge = 0;
+      if (
+        role === STATE_MATRIX.ROLE_ARCHITECT &&
+        architectShouldEmitPlasmid(tick, idx, phase, resonance, energy)
+      ) {
+        plasmidCharge = Math.max(
+          48,
+          Math.min(320, Math.trunc((energy + resonance) / 10)),
+        );
+      } else if (
+        role === STATE_MATRIX.ROLE_PRODUCER &&
+        producerShouldEmitPlasmid(tick, idx, phase, resonance, energy)
+      ) {
+        plasmidCharge = Math.max(
+          32,
+          Math.min(224, Math.trunc((energy + resonance) / 14)),
+        );
+      } else if (
+        role === STATE_MATRIX.ROLE_PARASITE &&
+        parasiteShouldEmitPlasmid(tick, idx, phase, resonance, energy)
+      ) {
+        plasmidCharge = Math.max(
+          24,
+          Math.min(160, Math.trunc((energy + resonance) / 16)),
+        );
+      }
+
+      if (plasmidCharge > 0) {
       const off = idx * 8;
       const payload = logicView.slice(off, off + 8);
-      const charge = Math.max(
-        32,
-        Math.min(320, Math.trunc((energy + resonance) / 12)),
-      );
-      GLYPH_BUFFER.emitAtomPlasmid(x, y, charge, payload);
-      atomPlasmidSeeds++;
+        GLYPH_BUFFER.emitAtomPlasmid(x, y, plasmidCharge, payload, role);
+        atomPlasmidSeeds++;
+      }
     }
   }
 
