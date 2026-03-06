@@ -28,8 +28,14 @@ export type ReductionCaseDefinition = {
   initialPeerPc?: Partial<Record<number, number>>;
   initialCellPeers?: number[];
   initialHiveBalance?: number;
+  initialStructureGrid?: Partial<Record<number, number>>;
+  initialStructureIntentOwner?: Partial<Record<number, number>>;
+  initialStructureIntentValue?: Partial<Record<number, number>>;
   expected: ReductionCaseExpectation;
 };
+
+const GRID_W = 140;
+const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
   const script = new Uint8Array(64);
@@ -128,6 +134,18 @@ const makeSenseIntentScript = (buildType: number, targetType: number): Uint8Arra
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = buildType & 0xFF;
   script[pc++] = 1;
+  script[pc++] = RISC.OP_SENSE;
+  script[pc++] = 1;
+  script[pc++] = targetType & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeSenseScript = (targetType: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
   script[pc++] = RISC.OP_SENSE;
   script[pc++] = 1;
   script[pc++] = targetType & 0xFF;
@@ -243,6 +261,12 @@ const makeShareScript = (
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
   return script;
+};
+
+const structureNeighborCell = (centerX: number, centerY: number): number => {
+  const gx = Math.floor(centerX / 10);
+  const gy = Math.floor(centerY / 10);
+  return (gy * GRID_W) + gx + 1;
 };
 
 export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
@@ -639,6 +663,58 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
         1: 4,
         2: 4,
       },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc19_gt13_sense_stale_lock_visible",
+    baselineTraceId: "gt13_structure_lock_progress",
+    description:
+      "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
+    script: makeSenseScript(STRUCTURE.WIRE),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_X]: 705,
+      [RISC.PROP_Y]: 405,
+    },
+    initialStructureGrid: {
+      [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+    },
+    initialStructureIntentOwner: {
+      [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [0, 1, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc20_gt13_sense_stale_lock_typed_miss",
+    baselineTraceId: "gt13_structure_lock_progress",
+    description:
+      "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
+    script: makeSenseScript(STRUCTURE.NODE),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_X]: 705,
+      [RISC.PROP_Y]: 405,
+    },
+    initialStructureGrid: {
+      [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+    },
+    initialStructureIntentOwner: {
+      [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [0, 0, 0, 0, 0, 0, 0, 0],
       branchTaken: false,
     },
   },

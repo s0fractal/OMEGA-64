@@ -316,6 +316,32 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_lock_progress.ts",
     ],
   },
+  {
+    id: "gt13_structure_lock_progress",
+    scenario: "standalone structure stale-lock progress",
+    setup:
+      "standalone deterministic subprocess capture of OP_SENSE visibility through a stale structure lock plus tick_structure_grid intent clearing",
+    duration: "2 execute phases + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "visibleSenseReg",
+      "typedMissSenseReg",
+      "resolvedCellType",
+      "resolvedCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      visibleSenseReg: "strict",
+      typedMissSenseReg: "strict",
+      resolvedCellType: "strict",
+      resolvedCellCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_lock_capture.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

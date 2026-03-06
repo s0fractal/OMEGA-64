@@ -1,0 +1,11 @@
+{
+  "control_specimen": "structure_lock_progress",
+  "runtime_mode": "standalone-structure-lock-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
+  "visible_sense_reg": 1,
+  "typed_miss_sense_reg": 0,
+  "resolved_cell_type": 2,
+  "resolved_cell_charge": 255
+}

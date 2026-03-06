@@ -94,6 +94,11 @@ Latest completed planning work:
   phase-lock and quorum PC-sync semantics through direct WASM execution, so
   collective synchrony has a committed baseline before broader coordination
   bridge work.
+- Extended Stage 2 with a sixth standalone control specimen:
+  `gt13_structure_lock_progress` now captures bounded `OP_SENSE` visibility
+  through stale structure locks plus `tick_structure_grid` intent clearing, so
+  the structure lane has a forward-progress baseline before deeper lock/fallback
+  bridge work.
 - Extended Stage 4 with bounded `OP_SENSE` parity tied to `gt08`: the reduction
   harness now models build-intent overlays and structural sensing, and persists
   `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.
@@ -112,6 +117,10 @@ Latest completed planning work:
   `gt12`: the reduction harness now models mode `5` bonded phase-lock and
   mode `6` local quorum PC sync, and persists `rc17` / `rc18` artifacts for
   collective synchrony behavior.
+- Extended Stage 3/4 with bounded stale-lock `OP_SENSE` parity tied to `gt13`:
+  the reduction harness now seeds structure grid + owner overlays directly and
+  persists `rc19` / `rc20` artifacts for visible-through-lock and typed-miss
+  fallback behavior.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so
   runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed

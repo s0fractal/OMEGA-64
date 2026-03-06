@@ -1,0 +1,55 @@
+{
+  "trace_id": "gt13_structure_lock_progress",
+  "scenario": "standalone structure stale-lock progress",
+  "tick_start": 0,
+  "tick_end": 3,
+  "runtime_mode": "standalone-structure-lock-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "visibleSenseReg": 1,
+    "typedMissSenseReg": 0,
+    "resolvedCellType": 2,
+    "resolvedCellCharge": 255,
+    "snapshotDigest": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "394ca51df235779529436c24b5a9c83faa4203f8cb47b6fd5c21141616fd5580",
+  "invariant_digest": "84260c8e9974f763c7e725bbfc539f5b4363df6ad22689968392079ca6c7c298",
+  "extra_artifacts": {
+    "structure_lock_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
+      "snapshot": {
+        "visibleSense": {
+          "centerX": 705,
+          "centerY": 405,
+          "neighborCellIdx": 5671,
+          "neighborType": 1,
+          "senseReg": 1,
+          "pc": 0
+        },
+        "typedMissSense": {
+          "centerX": 705,
+          "centerY": 405,
+          "neighborCellIdx": 5671,
+          "neighborType": 1,
+          "senseReg": 0,
+          "pc": 0
+        },
+        "intentClearing": {
+          "cellIdx": 3424,
+          "resolvedType": 2,
+          "resolvedCharge": 255,
+          "ownerIntent": 0,
+          "valueIntent": 0,
+          "chargeIntent": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "structure_lock_hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
+  "visible_neighbor_cell": 5671,
+  "visible_neighbor_type": 1,
+  "visible_sense_reg": 1,
+  "typed_miss_sense_reg": 0,
+  "resolved_cell_type": 2,
+  "resolved_cell_charge": 255,
+  "owner_intent_after_tick": 0,
+  "value_intent_after_tick": 0,
+  "charge_intent_after_tick": 0
+}

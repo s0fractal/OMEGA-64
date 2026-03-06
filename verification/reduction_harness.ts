@@ -191,9 +191,28 @@ const createInitialState = (
   hiveMemory: {},
   hiveBalance: definition.initialHiveBalance ?? 0,
   signalGrid: {},
-  structureGrid: {},
-  structureIntentOwner: {},
-  structureIntentValue: {},
+  structureGrid: Object.fromEntries(
+    Object.entries(definition.initialStructureGrid ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  structureIntentOwner: Object.fromEntries(
+    Object.entries(definition.initialStructureIntentOwner ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  structureIntentValue: Object.fromEntries(
+    Object.entries(definition.initialStructureIntentValue ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
   effects: cloneEffects(),
   executed: [],
   energySpent: 0,

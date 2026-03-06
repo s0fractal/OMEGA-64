@@ -10,8 +10,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    REDUCTION_CASES.length === 18,
-    "[reduction_cases] expected 18 reduction cases",
+    REDUCTION_CASES.length === 20,
+    "[reduction_cases] expected 20 reduction cases",
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
@@ -27,7 +27,8 @@ const main = () => {
         definition.baselineTraceId === "gt09_collective_transport" ||
         definition.baselineTraceId === "gt10_share_transfer" ||
         definition.baselineTraceId === "gt11_collective_banking" ||
-        definition.baselineTraceId === "gt12_collective_synchrony",
+        definition.baselineTraceId === "gt12_collective_synchrony" ||
+        definition.baselineTraceId === "gt13_structure_lock_progress",
       `[reduction_cases] unexpected baseline anchor for ${definition.id}`,
     );
     expect(
@@ -72,6 +73,10 @@ const main = () => {
   expect(
     reductionCaseById("rc18_gt12_collective_pc_sync_quorum") !== null,
     "[reduction_cases] rc18 must be addressable by id",
+  );
+  expect(
+    reductionCaseById("rc20_gt13_sense_stale_lock_typed_miss") !== null,
+    "[reduction_cases] rc20 must be addressable by id",
   );
 
   console.log(

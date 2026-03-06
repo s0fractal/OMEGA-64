@@ -366,6 +366,10 @@ Only low-width behavior first:
   mode `5/6` semantics, so bonded phase-lock and local quorum sync can be
   verified against `gt12_collective_synchrony` before broader coordination or
   collective runtime hybridization
+- `verification/reduction_harness.ts` now also models stale-lock `OP_SENSE`
+  visibility against seeded structure overlays, so forward progress through
+  stale structure locks can be verified against
+  `gt13_structure_lock_progress` before deeper structure-lock bridge work
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so
     `gt05 target_energy=300` cannot yet be encoded directly

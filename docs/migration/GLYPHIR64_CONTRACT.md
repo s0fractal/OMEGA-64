@@ -75,7 +75,7 @@ The first bridge subset is intentionally narrow and tied to the active WASM ISA 
 | `32` | `COLLECTIVE` | `0xA6` | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active |
 | `33` | `ROLE` | `0xA7` | catalytic / identity shift | bridge candidate |
 | `26` | `BUILD` | `0xA8` | structural intent publish | bridge candidate |
-| `27` | `SENSE` | `0xA9` | structural query | bridge candidate |
+| `27` | `SENSE` | `0xA9` | structural query | bridge candidate; bounded stale-lock fallback parity active |
 
 ## Deferred opcodes
 
