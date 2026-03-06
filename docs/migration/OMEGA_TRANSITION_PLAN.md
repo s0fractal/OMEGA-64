@@ -181,6 +181,7 @@ Current support files already suggest the trace direction:
 - `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics, including explicit policy-block baselines, without pretending they already belong to the reduction bridge
 - next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
 - Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so persistence/compaction state is visible alongside the first live ledger-owned knob
+- `baseTax` now has one canonical mutation lane: `PULSE.updateHomeostasisPolicy(...)` no longer accepts it, so runtime overlay and ledger ownership are no longer mixed for the same knob
 
 ## Stage 3: Introduce `GlyphIR64`
 

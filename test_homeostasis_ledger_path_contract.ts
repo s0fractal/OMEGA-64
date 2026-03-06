@@ -20,6 +20,18 @@ const requireSnippet = (
   }
 };
 
+const requireAbsentSnippet = (
+  source: string,
+  snippet: string,
+  file: string,
+  reason: string,
+  violations: Violation[],
+) => {
+  if (source.includes(snippet)) {
+    violations.push({ file, reason: `${reason} (present: ${snippet})` });
+  }
+};
+
 const main = async () => {
   const violations: Violation[] = [];
   const [pulse, system, ledgerRuntime, ledgerPersistence] = await Promise.all([
@@ -113,6 +125,20 @@ const main = async () => {
     "hydrateGeneticLedgerRuntime",
     PULSE_PATH,
     "Pulse must hydrate ledger-owned state from persistence",
+    violations,
+  );
+  requireAbsentSnippet(
+    pulse,
+    "baseTax?: number;",
+    PULSE_PATH,
+    "Pulse homeostasis policy overlay must not expose ad-hoc baseTax path once ledger ownership is live",
+    violations,
+  );
+  requireAbsentSnippet(
+    pulse,
+    "update.baseTax",
+    PULSE_PATH,
+    "Pulse homeostasis overlay must not mutate baseTax outside genetic ledger route",
     violations,
   );
 

@@ -129,6 +129,7 @@ At this point:
   - persisted and replayed through `GENETIC_LEDGER_PERSISTENCE.ts`
   - exposed via `PULSE.applyGeneticLedgerUpdate(...)`
   - reverted via rollback token through `PULSE.rollbackGeneticLedgerUpdate(...)`
+  - no longer writable through ad-hoc `PULSE.updateHomeostasisPolicy(...)`
 
 That is intentional. The contract is moving from zero runtime ownership to one
 bounded ownership move, not to an open-ended configuration plane.

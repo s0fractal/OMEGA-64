@@ -56,6 +56,7 @@ Latest completed planning work:
 - Added the first live Stage 7 ownership move: `pulse.homeostasis.baseTax` now flows through `GENETIC_LEDGER_RUNTIME.ts`, emits rollback tokens, and is visible through homeostasis / physiology observer surfaces.
 - Added durable replay for the first Stage 7 ownership move: `GENETIC_LEDGER_PERSISTENCE.ts` now persists `baseTax` ledger events and rehydrates them during `PULSE.initWorkers()`.
 - Added snapshot compaction for the first Stage 7 ownership move: `baseTax` persistence now compacts durable history into `snapshot + bounded tail`, and observer surfaces expose `ledger_base_tax_persistence` so long-lived memory is externally visible.
+- Tightened the first Stage 7 ownership move into a single canonical lane: `baseTax` no longer rides through the generic homeostasis overlay and now mutates only through the ledger-owned path.
 
 ## Current diagnosis
 

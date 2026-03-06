@@ -1440,23 +1440,13 @@ export const PULSE = {
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
   updateHomeostasisPolicy: (
     update: {
-      baseTax?: number;
       targetEnergy?: number;
       source?: string;
       reason?: string;
       tick?: number;
     },
   ): HomeostasisState => {
-    const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
     const prevTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
-    if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
-      applyHomeostasisBaseTaxLedgerUpdate({
-        value: update.baseTax,
-        source: update.source,
-        reason: update.reason,
-        tick: update.tick,
-      });
-    }
     if (
       update.targetEnergy !== undefined &&
       Number.isFinite(update.targetEnergy)
@@ -1465,7 +1455,6 @@ export const PULSE = {
         update.targetEnergy,
       );
     }
-    const nextTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
     const nextTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
     const source = (update.source ?? "runtime").trim();
     const reason = (update.reason ?? "manual_update").trim();
@@ -1475,9 +1464,9 @@ export const PULSE = {
       ? Math.max(0, Math.floor(update.tick))
       : Atomics.load(STATE_MATRIX.tickCounter, 0);
 
-    if (nextTax !== prevTax || nextTarget !== prevTarget) {
+    if (nextTarget !== prevTarget) {
       LOGGER.info(
-        `   [PULSE] Homeostasis policy update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} baseTax=${prevTax}->${nextTax} target=${prevTarget}->${nextTarget} reason=${homeostasisLastUpdateReason}`,
+        `   [PULSE] Homeostasis policy update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} target=${prevTarget}->${nextTarget} reason=${homeostasisLastUpdateReason}`,
       );
       MUTATION_TELEMETRY.record({
         lane: "internal_host",
