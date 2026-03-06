@@ -1291,6 +1291,46 @@ export const AKASHA_CODEX = {
       await appendChronicle(tick, "daemon_admission", title, body);
     });
   },
+  recordDaemonEffect: (
+    tick: number,
+    auditId: string,
+    requestedAction: string,
+    appliedAction: string,
+    sharedCenter: string,
+    dominantVector: string,
+    baselinePopulation: number,
+    outcomePopulation: number,
+    baselineAvgEnergy: number,
+    outcomeAvgEnergy: number,
+    baselineNeuralCoherence: number,
+    outcomeNeuralCoherence: number,
+    dominantGenome: string,
+  ): void => {
+    if (!started) return;
+    enqueueWrite(async () => {
+      const lineage = AKASHA_CODEX.lookupLineageProfile(dominantGenome);
+      const deltaPopulation = outcomePopulation - baselinePopulation;
+      const deltaAvgEnergy = Number(
+        (outcomeAvgEnergy - baselineAvgEnergy).toFixed(3),
+      );
+      const deltaNeuralCoherence = Number(
+        (outcomeNeuralCoherence - baselineNeuralCoherence).toFixed(3),
+      );
+      const glyphContext = state.lastGlyphTransportSummary.length > 0
+        ? ` Glyph transport context: ${state.lastGlyphTransportSummary}`
+        : "";
+      const title = `Daemon Effect ${appliedAction}: ${auditId}`;
+      const body =
+        `Deferred effect audit for ${requestedAction} -> ${appliedAction}. ` +
+        `Shared center: ${sharedCenter}. Dominant invariant vector: ${dominantVector}. ` +
+        `Population ${baselinePopulation} -> ${outcomePopulation} (delta ${deltaPopulation >= 0 ? "+" : ""}${deltaPopulation}), ` +
+        `avgEnergy ${baselineAvgEnergy.toFixed(3)} -> ${outcomeAvgEnergy.toFixed(3)} (delta ${deltaAvgEnergy >= 0 ? "+" : ""}${deltaAvgEnergy.toFixed(3)}), ` +
+        `neuralCoherence ${baselineNeuralCoherence.toFixed(3)} -> ${outcomeNeuralCoherence.toFixed(3)} ` +
+        `(delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${deltaNeuralCoherence.toFixed(3)}). ` +
+        `Observed lineage: ${lineage.label}.${glyphContext}`;
+      await appendChronicle(tick, "daemon_effect", title, body);
+    });
+  },
   getChronicleContext: async (limit: number = 3): Promise<string> => {
     await ensureStorage();
     const take = Math.max(1, Math.min(12, Math.floor(limit)));

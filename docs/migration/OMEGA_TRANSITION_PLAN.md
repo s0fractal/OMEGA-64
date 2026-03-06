@@ -33,7 +33,7 @@ Status snapshot as of 2026-03-06:
 | Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                                                                            |
 | Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                        |
 | Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
-| Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, and feeds bounded glyph pressure into daemon admission scoring via read-only narrative context |
+| Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, and records deferred daemon effect chronicles once queued actions are evaluated |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
@@ -431,9 +431,12 @@ Codex should answer:
 - Glyph regime / dominant-role evidence now also contributes a bounded pressure
   term inside `evaluateInvariantAdmission(...)`, but only through normalized
   codex narrative context rather than raw runtime transport state.
+- Deferred daemon effect evaluation now also lands in Codex as
+  `daemon_effect` chronicles, so the evidence chain can extend from
+  ingress decision to observed runtime delta.
 - This is still a bridge, not a full Codex upgrade: transport evidence now
-  reaches daemon admission scoring, but it still does not drive rollback policy
-  or mutation pricing on its own.
+  reaches daemon admission scoring and post-admission effect chronicles, but it
+  still does not drive rollback policy or mutation pricing on its own.
 
 ### Exit gate
 

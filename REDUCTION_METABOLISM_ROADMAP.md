@@ -37,7 +37,7 @@ Status snapshot as of 2026-03-06:
 | Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure                                                                                                                                                                                                                                             |
 | Stage 4: shadow verification    | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts                                                                                                                                                                   |
 | Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
-| Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, and feeds bounded glyph pressure into daemon admission scoring via read-only narrative context |
+| Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, and records deferred daemon effect chronicles once queued actions are evaluated |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
 | Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                                                    |
 
@@ -137,6 +137,9 @@ Latest completed planning work:
   `DAEMON_INGRESS_POLICY.ts` now reads glyph regime / dominant role from Codex
   narrative context and adds a capped pressure term to daemon admission
   scoring instead of reaching around the membrane for raw transport state.
+- Extended Stage 6 into outcome evidence: `flushDaemonAuditEffects()` now
+  forwards evaluated daemon-action deltas into `AKASHA_CODEX.recordDaemonEffect`,
+  so the codex chain reaches beyond admission into observed runtime effect.
 
 ## Current diagnosis
 

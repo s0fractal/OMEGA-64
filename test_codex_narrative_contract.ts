@@ -52,6 +52,20 @@ const main = async () => {
   );
   requireSnippet(
     codex,
+    '"daemon_effect"',
+    CODEX_PATH,
+    "Codex must record deferred daemon effect chronicles once Stage 6 evidence reaches outcome tracking",
+    violations,
+  );
+  requireSnippet(
+    codex,
+    "recordDaemonEffect",
+    CODEX_PATH,
+    "Codex must expose a daemon effect recorder once Stage 6 reaches effect evidence",
+    violations,
+  );
+  requireSnippet(
+    codex,
     "Glyph transport context:",
     CODEX_PATH,
     "Codex admission chronicles must preserve glyph transport evidence once Stage 6 bridge reaches daemon governance",

@@ -160,6 +160,9 @@ type DaemonAuditPending = {
   tickApplied: number;
   evaluateAtTick: number;
   baseline: RuntimeMetrics;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel?: string;
 };
 
 type PressureRingIngressEnvelope = {
@@ -619,8 +622,12 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
       audit_id: pending.auditId,
       evaluated_at_tick: currentTick,
       action: pending.action,
+      requested_action: pending.requestedAction,
       target_x: pending.targetX,
       target_y: pending.targetY,
+      shared_center: pending.sharedCenter,
+      dominant_invariant_vector: pending.dominantInvariantVector,
+      codex_lineage_label: pending.codexLineageLabel ?? "none",
       baseline: pending.baseline,
       outcome: metrics,
       delta: {
@@ -635,6 +642,23 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
         ),
       },
     });
+    const currentDominantGenome =
+      dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0] ?? "";
+    AKASHA_CODEX.recordDaemonEffect(
+      currentTick,
+      pending.auditId,
+      pending.requestedAction,
+      pending.action,
+      pending.sharedCenter,
+      pending.dominantInvariantVector,
+      pending.baseline.population,
+      metrics.population,
+      pending.baseline.avgEnergy,
+      metrics.avgEnergy,
+      pending.baseline.neuralCoherence,
+      metrics.neuralCoherence,
+      currentDominantGenome,
+    );
   }
   daemonAuditPending.length = 0;
   daemonAuditPending.push(...remaining);
@@ -2913,6 +2937,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             tickApplied: baseline.tick,
             evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
             baseline,
+            sharedCenter: ingressPlan.admission.context.sharedCenter,
+            dominantInvariantVector:
+              ingressPlan.admission.context.dominantInvariantVector,
+            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
           });
         }
         await appendDaemonAudit({
@@ -3004,6 +3032,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           tickApplied: baseline.tick,
           evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
           baseline,
+          sharedCenter: ingressPlan.admission.context.sharedCenter,
+          dominantInvariantVector:
+            ingressPlan.admission.context.dominantInvariantVector,
+          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
         });
       }
       await appendDaemonAudit({

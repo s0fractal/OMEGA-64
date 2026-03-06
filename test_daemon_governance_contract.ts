@@ -230,6 +230,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "AKASHA_CODEX.recordDaemonEffect",
+    SYSTEM_START_PATH,
+    "Deferred daemon effect audits must publish effect chronicles into codex",
+    violations,
+  );
+  requireSnippet(
+    system,
+    '"DAEMON_EFFECT_EVAL"',
+    SYSTEM_START_PATH,
+    "Deferred daemon effect audits must emit effect-evaluation audit events",
+    violations,
+  );
+  requireSnippet(
+    system,
     '"external_daemon"',
     SYSTEM_START_PATH,
     "Daemon inject route must enqueue intents with daemon source lane",
