@@ -1,13 +1,13 @@
 {
-  "case_id": "rc03_gt03_guardian_stable_branch",
-  "baseline_trace_id": "gt03_pheromone_inject",
+  "case_id": "rc07_gt04_plasmid_prop_write_signal",
+  "baseline_trace_id": "gt04_plasmid_inject",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "9288a1cbaf22b91e03f4369e6550c6bdb25a7c84a840baf6f6619f8c2b065c9f",
-  "reduction_digest": "d0e357cebf1c56aa7273abb218d994d802808d1f4db37f8104145087f4673f89",
-  "executed_digest_legacy": "e433267f92e5e7715c90c3955a7f270503cde11f07c3034976b8d5642ddc01c5",
-  "executed_digest_reduction": "9d778a6616c0ec9124fcafbea879e115b4bfbd4a606bd6426eeff4e4635dc932",
+  "legacy_digest": "a85f461dc6d9a2d9de5fde756fdc9ac74cbbaccf83ee3d8f3cac8de23ebdd1f5",
+  "reduction_digest": "8fe530b54d7f15f5ed9d14075899281b9a35ff019e0c1adfb73d7cd3eaa5baee",
+  "executed_digest_legacy": "4b13ae17527ba14cb748298ab5e36a74f86455416109806ee93e6d14ac142a73",
+  "executed_digest_reduction": "762a425854ff53dd0ff55bad366707de329ab725e70f6c1782a28c1962546810",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -18,16 +18,16 @@
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 10
+    "energy_spent_delta": 8
   },
   "expectation_summary": {
     "finalPc": 0,
     "signalCount": 1,
     "buildCount": 0,
-    "finalRole": 2,
+    "finalRole": 0,
     "registers": [
-      200,
-      0,
+      5,
+      5,
       0,
       0,
       0,
@@ -35,6 +35,9 @@
       0,
       0
     ],
+    "finalProps": {
+      "1": 5
+    },
     "branchTaken": false
   }
 }

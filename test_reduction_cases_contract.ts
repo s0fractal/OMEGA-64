@@ -10,8 +10,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    REDUCTION_CASES.length === 6,
-    "[reduction_cases] expected 6 initial reduction cases",
+    REDUCTION_CASES.length === 8,
+    "[reduction_cases] expected 8 reduction cases",
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
@@ -21,6 +21,7 @@ const main = () => {
     expect(
       definition.baselineTraceId === "gt01_coldstart_seeded_swarm" ||
         definition.baselineTraceId === "gt03_pheromone_inject" ||
+        definition.baselineTraceId === "gt04_plasmid_inject" ||
         definition.baselineTraceId === "gt05_homeostasis_correction",
       `[reduction_cases] unexpected baseline anchor for ${definition.id}`,
     );
@@ -42,6 +43,10 @@ const main = () => {
   expect(
     reductionCaseById("rc06_gt05_band_anchor_mismatch") !== null,
     "[reduction_cases] rc06 must be addressable by id",
+  );
+  expect(
+    reductionCaseById("rc08_gt04_plasmid_zero_branch") !== null,
+    "[reduction_cases] rc08 must be addressable by id",
   );
 
   console.log(

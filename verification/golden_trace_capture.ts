@@ -38,6 +38,7 @@ type TraceTelemetry = {
   daemon_governance?: {
     last_admission?: unknown;
     last_admission_history?: unknown[];
+    last_pressure_ring_history?: unknown[];
     homeostasis?: unknown;
   };
   behavior_invariant?: string;
@@ -223,7 +224,7 @@ const postJsonWithStatus = async (
   } catch {
     parsed = { raw_body: raw };
   }
-  const root = parsed && typeof parsed === "object"
+  const root: Record<string, unknown> = parsed && typeof parsed === "object"
     ? { ...(parsed as Record<string, unknown>) }
     : { body: parsed };
   root.http_status = response.status;

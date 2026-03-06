@@ -32,8 +32,12 @@ const main = () => {
     pretty.includes("SIGNAL[17]"),
     "[opcode_to_glyph] pretty output must mention SIGNAL glyph",
   );
+  expect(
+    scriptToGlyphTape(new Uint8Array([RISC.OP_JZ, 0, 0]))[0]?.glyphMnemonic === "JZ",
+    "[opcode_to_glyph] OP_JZ must now map into the control glyph band",
+  );
 
-  const unmapped = new Uint8Array([RISC.OP_JZ, 0, 0]);
+  const unmapped = new Uint8Array([RISC.OP_BIND, 0, 0]);
   let failedClosed = false;
   try {
     scriptToGlyphTape(unmapped);

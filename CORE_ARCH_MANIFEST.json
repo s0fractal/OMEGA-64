@@ -130,6 +130,8 @@
     "verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json",
     "verification/reduction_diffs/rc05_gt05_band_anchor_match.json",
     "verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json",
+    "verification/reduction_diffs/rc07_gt04_plasmid_prop_write_signal.json",
+    "verification/reduction_diffs/rc08_gt04_plasmid_zero_branch.json",
     "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
     "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
     "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",

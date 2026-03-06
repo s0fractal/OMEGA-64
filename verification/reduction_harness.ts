@@ -39,6 +39,7 @@ type LegacyShadowResult = {
   finalPc: number;
   regs: number[];
   role: number;
+  props: HarnessProps;
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -50,6 +51,7 @@ type ReductionShadowResult = {
   finalPc: number;
   regs: number[];
   role: number;
+  props: HarnessProps;
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -93,6 +95,7 @@ export type ReductionHarnessArtifact = {
     final_pc_match: boolean;
     registers_match: boolean;
     role_match: boolean;
+    props_match: boolean;
     replicate_count_match: boolean;
     signal_count_match: boolean;
     build_count_match: boolean;
@@ -134,6 +137,13 @@ const createInitialState = (
 const equalNumberArray = (a: readonly number[], b: readonly number[]): boolean =>
   a.length === b.length && a.every((value, index) => value === b[index]);
 
+const equalHarnessProps = (a: HarnessProps, b: HarnessProps): boolean => {
+  const aKeys = Object.keys(a).map(Number).sort((x, y) => x - y);
+  const bKeys = Object.keys(b).map(Number).sort((x, y) => x - y);
+  if (!equalNumberArray(aKeys, bKeys)) return false;
+  return aKeys.every((key) => (a[key] ?? 0) === (b[key] ?? 0));
+};
+
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
     return JSON.stringify(value);
@@ -164,6 +174,7 @@ const snapshotLegacy = (
   finalPc: state.pc,
   regs: [...state.regs],
   role: state.role,
+  props: { ...state.props },
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -182,6 +193,7 @@ const snapshotReduction = (
   finalPc: state.pc,
   regs: [...state.regs],
   role: state.role,
+  props: { ...state.props },
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -214,6 +226,13 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
+    case RISC.OP_PUT: {
+      const reg = args[0] ?? 0;
+      const prop = args[1] ?? 0;
+      state.props[prop] = state.regs[reg] ?? 0;
+      state.pc += 3;
+      return;
+    }
     case RISC.OP_ADD: {
       const dst = args[0] ?? 0;
       const src = args[1] ?? 0;
@@ -232,6 +251,18 @@ const applyShadowOpcode = (
       const reg = args[0] ?? 0;
       const target = args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
+        state.effects.branchTaken = true;
+        state.effects.jumpCount += 1;
+        state.pc = target;
+      } else {
+        state.pc += 3;
+      }
+      return;
+    }
+    case RISC.OP_JZ: {
+      const reg = args[0] ?? 0;
+      const target = args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
         state.effects.branchTaken = true;
         state.effects.jumpCount += 1;
         state.pc = target;
@@ -356,6 +387,9 @@ const compareResults = (
   if (legacy.role !== reduction.role) {
     reasons.push(`role mismatch legacy=${legacy.role} reduction=${reduction.role}`);
   }
+  if (!equalHarnessProps(legacy.props, reduction.props)) {
+    reasons.push("props mismatch");
+  }
   if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
     reasons.push("replicateCount mismatch");
   }
@@ -412,6 +446,16 @@ const compareResults = (
   ) {
     reasons.push("expected registers mismatch");
   }
+  if (expected.finalProps) {
+    for (const [key, value] of Object.entries(expected.finalProps)) {
+      const prop = Number(key);
+      if ((legacy.props[prop] ?? 0) !== value) {
+        reasons.push(
+          `expected prop[${prop}]=${value} got=${legacy.props[prop] ?? 0}`,
+        );
+      }
+    }
+  }
   if (
     typeof expected.branchTaken === "boolean" &&
     legacy.effects.branchTaken !== expected.branchTaken
@@ -440,6 +484,7 @@ const buildReductionHarnessArtifact = async (
     finalPc: result.legacy.finalPc,
     regs: result.legacy.regs,
     role: result.legacy.role,
+    props: result.legacy.props,
     effects: result.legacy.effects,
     energySpent: result.legacy.energySpent,
   }),
@@ -447,6 +492,7 @@ const buildReductionHarnessArtifact = async (
     finalPc: result.reduction.finalPc,
     regs: result.reduction.regs,
     role: result.reduction.role,
+    props: result.reduction.props,
     effects: result.reduction.effects,
     energySpent: result.reduction.energySpent,
   }),
@@ -456,6 +502,7 @@ const buildReductionHarnessArtifact = async (
     final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
     registers_match: equalNumberArray(result.legacy.regs, result.reduction.regs),
     role_match: result.legacy.role === result.reduction.role,
+    props_match: equalHarnessProps(result.legacy.props, result.reduction.props),
     replicate_count_match:
       result.legacy.effects.replicateCount ===
         result.reduction.effects.replicateCount,

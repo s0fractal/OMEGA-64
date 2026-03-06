@@ -39,8 +39,8 @@ const main = () => {
     "[glyphir64] OP_BUILD must map",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_JZ) === null,
-    "[glyphir64] OP_JZ must stay unmapped for now",
+    glyphSpecByLegacyOpcode(RISC.OP_JZ)?.id === 15,
+    "[glyphir64] OP_JZ must map to glyph 15",
   );
   expect(
     glyphSpecByLegacyOpcode(RISC.OP_BIND) === null,

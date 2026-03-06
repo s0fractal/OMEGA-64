@@ -6,14 +6,14 @@ export type GoldenTraceScenario = {
   setup: string;
   duration: string;
   daemonEnabled: boolean;
-  metrics: string[];
-  driftPolicy: Record<string, GoldenTraceMetricPolicy>;
-  supportFiles: string[];
+  metrics: readonly string[];
+  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
+  supportFiles: readonly string[];
 };
 
 const TRACE_ROOT = "verification/traces";
 
-export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze([
+const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   {
     id: "gt01_coldstart_seeded_swarm",
     scenario: "coldstart / seeded swarm",
@@ -182,7 +182,18 @@ export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freez
       "test_daemon_governance_contract.ts",
     ],
   },
-]);
+];
+
+export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(
+  GOLDEN_TRACE_CATALOG_DATA.map((trace) =>
+    Object.freeze({
+      ...trace,
+      metrics: Object.freeze([...trace.metrics]),
+      driftPolicy: Object.freeze({ ...trace.driftPolicy }),
+      supportFiles: Object.freeze([...trace.supportFiles]),
+    })
+  ),
+);
 
 const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(
   GOLDEN_TRACE_CATALOG.map((trace) => [trace.id, trace]),

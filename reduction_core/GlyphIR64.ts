@@ -156,6 +156,13 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     legacyOpcode: RISC.OP_JMP,
     reductionRuleRef: "bridge/control/jmp",
   }],
+  [15, {
+    mnemonic: "JZ",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_JZ,
+    reductionRuleRef: "bridge/control/jz",
+  }],
   [16, {
     mnemonic: "REPLICATE",
     kind: "transport",

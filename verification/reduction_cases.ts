@@ -7,6 +7,7 @@ export type ReductionCaseExpectation = {
   buildCount?: number;
   finalRole?: number;
   registers?: number[];
+  finalProps?: Partial<Record<number, number>>;
   branchTaken?: boolean;
 };
 
@@ -77,6 +78,36 @@ const makeArchitectLoopScript = (): Uint8Array => {
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
 const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
+
+const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = resonanceValue & 0xFF;
+  script[pc++] = RISC.OP_PUT;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_RESONANCE;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 1;
+  script[pc++] = RISC.PROP_RESONANCE;
+  script[pc++] = RISC.OP_JZ;
+  script[pc++] = 1;
+  script[pc++] = 15;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
 
 export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
   {
@@ -184,6 +215,50 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       buildCount: 1,
       finalRole: STATE_MATRIX.ROLE_ARCHITECT,
       registers: [960, 240, 0, 0, 0, 0, 0, 0],
+      branchTaken: true,
+    },
+  },
+  {
+    id: "rc07_gt04_plasmid_prop_write_signal",
+    baselineTraceId: "gt04_plasmid_inject",
+    description:
+      "Durable symbolic ingress should preserve a property write through PUT and stay on the signaling branch when the written resonance value is non-zero.",
+    script: makePlasmidPropWriteScript(5),
+    maxSteps: 6,
+    initialProps: {
+      [RISC.PROP_RESONANCE]: 0,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [5, 5, 0, 0, 0, 0, 0, 0],
+      finalProps: {
+        [RISC.PROP_RESONANCE]: 5,
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc08_gt04_plasmid_zero_branch",
+    baselineTraceId: "gt04_plasmid_inject",
+    description:
+      "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
+    script: makePlasmidPropWriteScript(0),
+    maxSteps: 8,
+    initialProps: {
+      [RISC.PROP_RESONANCE]: 255,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [0, 0, 0, 0, 0, 0, 0, 0],
+      finalProps: {
+        [RISC.PROP_RESONANCE]: 0,
+      },
       branchTaken: true,
     },
   },
