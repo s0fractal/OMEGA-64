@@ -174,6 +174,11 @@ Latest completed planning work:
   through a bounded reduction-side contract with `legacy`, `shadow`,
   and `hybrid` modes; observer telemetry exposes `architect_plasmid_hybrid`
   while rollout remains shadow-first.
+- Added trace-tied verification for the second Stage 8 slit:
+  `verification/architect_plasmid_mode_harness.ts` now anchors the architect
+  plasmid slit to `gt04_plasmid_inject` and persists committed
+  `verification/architect_hybrid_mode_diffs/*.json` artifacts for emit,
+  suppress, and fallback cases.
 
 ## Current diagnosis
 

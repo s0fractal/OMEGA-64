@@ -611,6 +611,10 @@ Current slit in progress:
   bounded hybrid slit: architect plasmid emission can be observed through
   `legacy`, `shadow`, and `hybrid` reduction modes without yet adding a second
   promotion stack around it
+- `verification/architect_plasmid_mode_harness.ts` now anchors that second
+  slit to `gt04_plasmid_inject`, so architect plasmid reduction runs produce
+  committed emit/suppress/fallback artifacts before any broader rollout logic
+  is considered
 
 ### Exit gate
 

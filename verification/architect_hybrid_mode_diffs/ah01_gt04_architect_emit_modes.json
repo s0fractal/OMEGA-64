@@ -1,0 +1,38 @@
+{
+  "case_id": "ah01_gt04_architect_emit_modes",
+  "baseline_trace_id": "gt04_plasmid_inject",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "906f3ad67c865950158e43dfce9612b2b3b871a54ad3296d97c0b912bcd3ecc6",
+  "shadow_digest": "85a8b56b2ee31a00c3676bc4f6d5268e4828191f6f7962af9ec12b4f831210c7",
+  "hybrid_digest": "1c4d1201948da6d11ccd5314d81163adb7c5c1e79ff0a809e3c7e7ebd927f6b2",
+  "diffs": {
+    "shadow_preserves_legacy": true,
+    "hybrid_narrows_legacy": true,
+    "fallback_replays_legacy": true
+  },
+  "expectation_summary": {
+    "legacy-execute": {
+      "allowed": true,
+      "status": "legacy",
+      "branch": "unknown",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    },
+    "shadow-reduce": {
+      "allowed": true,
+      "status": "shadow",
+      "branch": "emit",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    },
+    "hybrid-reduce": {
+      "allowed": true,
+      "status": "hybrid",
+      "branch": "emit",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    }
+  }
+}

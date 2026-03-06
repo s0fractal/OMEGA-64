@@ -37,6 +37,8 @@
     "reduction_core/GlyphIR64.ts",
     "verification/guardian_signal_mode_cases.ts",
     "verification/guardian_signal_mode_harness.ts",
+    "verification/architect_plasmid_mode_cases.ts",
+    "verification/architect_plasmid_mode_harness.ts",
     "runtime_bridge/glyph_pretty.ts",
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
