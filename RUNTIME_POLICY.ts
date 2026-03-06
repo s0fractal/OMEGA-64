@@ -335,7 +335,7 @@ const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
 );
 const pulseHomeostasisBaseTax = parseEnvBoundedInt(
   rawHomeostasisBaseTax,
-  1,
+  2,
   0,
   1024,
 );
