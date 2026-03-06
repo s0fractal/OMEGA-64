@@ -15,7 +15,8 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Scenario catalog | complete | six baseline scenarios defined |
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
-| Persisted baseline captures | pending | no `verification/traces/*` artifacts committed yet |
+| Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
+| Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
 
 ## Artifact layout
 
@@ -25,6 +26,15 @@ Each baseline trace will eventually persist under:
 - `verification/traces/<trace-id>/codex_snapshot.json`
 - `verification/traces/<trace-id>/invariants.json`
 - `verification/traces/<trace-id>/notes.md`
+
+Committed baseline set now exists for:
+
+- `gt01_coldstart_seeded_swarm`
+- `gt02_free_run_no_ingress`
+- `gt03_pheromone_inject`
+- `gt04_plasmid_inject`
+- `gt05_homeostasis_correction`
+- `gt06_daemon_admission_case`
 
 Minimal `trace.json` payload:
 
@@ -91,6 +101,7 @@ Useful existing support files to draw from:
 - `worker_seeded_swarm.ts`
 - `worker_trend_baseline.ts`
 - `worker_trend_math.ts`
+- `verification/golden_trace_capture.ts`
 
 ## Exit condition for this document
 
@@ -100,3 +111,10 @@ This file is actionable when:
 - baseline artifacts are named,
 - acceptable drift thresholds are explicit,
 - the next implementation step can reference a trace id instead of hand-waving about "similar enough".
+
+Current exit assessment:
+
+- scenario procedures: satisfied
+- artifact persistence: satisfied
+- export visibility: satisfied
+- next blocker: build `verification/reduction_harness.ts` against these baselines rather than inventing bridge behavior in prose

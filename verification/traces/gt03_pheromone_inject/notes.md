@@ -1,0 +1,26 @@
+# gt03_pheromone_inject
+
+- scenario: bounded pheromone inject
+- setup: warmup 128 ticks, then one fixed DROP_PHEROMONE payload
+- duration: 512 ticks total
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56342
+- port: 56342
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=128 kind=DROP_PHEROMONE responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4

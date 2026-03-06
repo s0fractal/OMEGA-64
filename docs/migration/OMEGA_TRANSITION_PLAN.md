@@ -26,14 +26,15 @@ Status snapshot as of 2026-03-06:
 
 | Workstream | Status | Deliverable |
 | --- | --- | --- |
-| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion |
+| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts |
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | in progress | markdown contract exists and a code-backed golden trace catalog now mirrors the six baseline scenarios |
+| Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 
 Current rule:
 
 - no runtime causality moves to reduction until the corresponding golden trace exists and has a stated rollback path
+- observer-only telemetry surfaces may expand if needed to make the traces measurable without mutating causality
 
 ## Checkpoint 0: break nothing
 
@@ -169,6 +170,12 @@ Current support files already suggest the trace direction:
 
 - before/after drift is measurable for each golden scenario
 - baseline traces exist before any causal ownership migration
+
+### Current stage assessment
+
+- baseline scenarios are now committed under `verification/traces/`
+- `verification/golden_trace_capture.ts` provides the reproducible observer harness
+- next implementation step is `verification/reduction_harness.ts`, not more baseline-definition work
 
 ## Stage 3: Introduce `GlyphIR64`
 

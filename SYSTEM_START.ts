@@ -1296,6 +1296,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     );
   }
 
+  if (url.pathname === "/api/mutation-telemetry" && req.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
   if (url.pathname === "/api/telemetry/ws") {
     if (req.headers.get("upgrade") !== "websocket") {
       return new Response(

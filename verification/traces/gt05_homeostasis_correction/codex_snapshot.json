@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}

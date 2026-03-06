@@ -565,6 +565,10 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/mutation-telemetry") {
+    return proxyTelemetryPath(req, "/api/mutation-telemetry", url.search);
+  }
+
   if (
     (req.method === "GET" || req.method === "POST") &&
     url.pathname === "/api/pressure-ring"
@@ -608,7 +612,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },

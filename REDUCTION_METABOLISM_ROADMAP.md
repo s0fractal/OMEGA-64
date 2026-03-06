@@ -25,11 +25,11 @@ Status snapshot as of 2026-03-06:
 
 | Phase | Status | Notes |
 | --- | --- | --- |
-| Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts; baseline traces still need capture |
+| Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces |
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
-| Stage 2: golden traces | in progress | code-backed golden trace catalog now exists; persisted captures still missing |
+| Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4+ | not started | blocked on captured traces and bridge verification harness |
+| Stage 4+ | not started | next gate is reduction verification against captured baselines, not more planning prose |
 
 Latest completed planning work:
 
@@ -39,6 +39,8 @@ Latest completed planning work:
 - Added a dedicated `GlyphIR64` contract document so the bridge vocabulary is visible before implementation starts.
 - Added non-runtime bridge code for `GlyphIR64`, `opcode -> glyph` translation, and pretty/debug rendering without transferring any runtime ownership.
 - Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
+- Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
+- Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 
 ## Current diagnosis
 
@@ -107,15 +109,15 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Establish golden traces before any bridge work starts.
-3. Introduce `GlyphIR64` as the transitional IR.
-4. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness before any production ownership transfer.
+2. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness against the committed trace baselines.
+3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
+4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Capture the first persisted golden traces for the six baseline scenarios.
-2. Start the non-runtime bridge skeleton for `GlyphIR64` only after those traces exist.
-3. Keep all new bridge files in export so external audits can critique the migration path, not just the active runtime.
+1. Build `verification/reduction_harness.ts` and `verification/reduction_cases.ts` against `gt01..gt06`.
+2. Start with one bounded lifecycle under reduction shadow mode instead of widening glyph semantics prematurely.
+3. Use the trace artifacts as rollback anchors for every bridge experiment.
 
 ## Explicit deferrals
 

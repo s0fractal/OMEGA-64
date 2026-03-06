@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [
+    {
+      "id": "chronicle-193-daemonadmiss",
+      "tick": 193,
+      "epoch": 0,
+      "type": "daemon_admission",
+      "title": "Daemon Admission HIGH: INJECT_PLASMID -> DROP_PHEROMONE",
+      "body": "Ingress action was degraded due to invariant drift score 4. Reason: INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE. Shared center: tick.exists. Dominant invariant vector: none.",
+      "createdAt": "2026-03-06T12:00:14.553Z"
+    }
+  ],
+  "relics": [],
+  "invariants": []
+}

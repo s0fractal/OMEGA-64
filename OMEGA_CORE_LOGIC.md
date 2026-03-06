@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T11:46:09.395Z*
-*Exported Files: 76*
+*Generated: 2026-03-06T12:01:57.118Z*
+*Exported Files: 101*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
-*Non-Runtime Code Files: 25*
+*Non-Runtime Code Files: 26*
 *Runtime-Support Code Files: 16*
-*Experimental Code Files: 9*
-*Manifest SHA256: 0b2815337b64c91c31f01b0e95850fd46195f33acafd2321821e9131185b45a9*
-*Export Set SHA256: 1928b28b5832cba27422ef0aafa97d84945215271a02a6431ab6184f42a15e27*
-*Export Content SHA256: 6dd7d787296cfac68fb2c8f970e1b13b14761aa4ead5837713f8dc6691732657*
-*Git Commit: 48b1959ea937*
+*Experimental Code Files: 10*
+*Manifest SHA256: b2ae8fba9d8da030f70ca4e01dad13729ccf85044abc87bb1aaca1ea188fbf08*
+*Export Set SHA256: 4e358a3d7e802d3c62b53ccd3859e20b5e5d893cce16b7fe87877cd66b100aec*
+*Export Content SHA256: 40c1c66c8c4f051cbacf31a99c988eb305dacd57778e3ac88298f1365570db9c*
+*Git Commit: 6d650d15c62c*
 
 ---
 
@@ -87,6 +87,7 @@
 - runtime_bridge/opcode_to_glyph.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
+- verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
@@ -129,6 +130,7 @@
 - RIBOSOME_TICK.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
+- verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
 
 ---
@@ -1936,6 +1938,10 @@ const reqHandler = async (req: Request) => {
     return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
   }
 
+  if (req.method === "GET" && url.pathname === "/api/mutation-telemetry") {
+    return proxyTelemetryPath(req, "/api/mutation-telemetry", url.search);
+  }
+
   if (
     (req.method === "GET" || req.method === "POST") &&
     url.pathname === "/api/pressure-ring"
@@ -1979,7 +1985,7 @@ const reqHandler = async (req: Request) => {
 
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
       {
         status: 200,
       },
@@ -6098,7 +6104,8 @@ export const CONTROL_INTENT_QUEUE = {
     "reduction_core/GlyphIR64.ts",
     "runtime_bridge/glyph_pretty.ts",
     "runtime_bridge/opcode_to_glyph.ts",
-    "verification/golden_trace_catalog.ts"
+    "verification/golden_trace_catalog.ts",
+    "verification/golden_trace_capture.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
@@ -6130,6 +6137,30 @@ export const CONTROL_INTENT_QUEUE = {
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
+    "verification/traces/gt01_coldstart_seeded_swarm/trace.json",
+    "verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json",
+    "verification/traces/gt01_coldstart_seeded_swarm/invariants.json",
+    "verification/traces/gt01_coldstart_seeded_swarm/notes.md",
+    "verification/traces/gt02_free_run_no_ingress/trace.json",
+    "verification/traces/gt02_free_run_no_ingress/codex_snapshot.json",
+    "verification/traces/gt02_free_run_no_ingress/invariants.json",
+    "verification/traces/gt02_free_run_no_ingress/notes.md",
+    "verification/traces/gt03_pheromone_inject/trace.json",
+    "verification/traces/gt03_pheromone_inject/codex_snapshot.json",
+    "verification/traces/gt03_pheromone_inject/invariants.json",
+    "verification/traces/gt03_pheromone_inject/notes.md",
+    "verification/traces/gt04_plasmid_inject/trace.json",
+    "verification/traces/gt04_plasmid_inject/codex_snapshot.json",
+    "verification/traces/gt04_plasmid_inject/invariants.json",
+    "verification/traces/gt04_plasmid_inject/notes.md",
+    "verification/traces/gt05_homeostasis_correction/trace.json",
+    "verification/traces/gt05_homeostasis_correction/codex_snapshot.json",
+    "verification/traces/gt05_homeostasis_correction/invariants.json",
+    "verification/traces/gt05_homeostasis_correction/notes.md",
+    "verification/traces/gt06_daemon_admission_case/trace.json",
+    "verification/traces/gt06_daemon_admission_case/codex_snapshot.json",
+    "verification/traces/gt06_daemon_admission_case/invariants.json",
+    "verification/traces/gt06_daemon_admission_case/notes.md",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
@@ -6394,7 +6425,8 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Scenario catalog | complete | six baseline scenarios defined |
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
-| Persisted baseline captures | pending | no `verification/traces/*` artifacts committed yet |
+| Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
+| Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
 
 ## Artifact layout
 
@@ -6404,6 +6436,15 @@ Each baseline trace will eventually persist under:
 - `verification/traces/<trace-id>/codex_snapshot.json`
 - `verification/traces/<trace-id>/invariants.json`
 - `verification/traces/<trace-id>/notes.md`
+
+Committed baseline set now exists for:
+
+- `gt01_coldstart_seeded_swarm`
+- `gt02_free_run_no_ingress`
+- `gt03_pheromone_inject`
+- `gt04_plasmid_inject`
+- `gt05_homeostasis_correction`
+- `gt06_daemon_admission_case`
 
 Minimal `trace.json` payload:
 
@@ -6470,6 +6511,7 @@ Useful existing support files to draw from:
 - `worker_seeded_swarm.ts`
 - `worker_trend_baseline.ts`
 - `worker_trend_math.ts`
+- `verification/golden_trace_capture.ts`
 
 ## Exit condition for this document
 
@@ -6479,6 +6521,13 @@ This file is actionable when:
 - baseline artifacts are named,
 - acceptable drift thresholds are explicit,
 - the next implementation step can reference a trace id instead of hand-waving about "similar enough".
+
+Current exit assessment:
+
+- scenario procedures: satisfied
+- artifact persistence: satisfied
+- export visibility: satisfied
+- next blocker: build `verification/reduction_harness.ts` against these baselines rather than inventing bridge behavior in prose
 
 ```
 
@@ -6515,14 +6564,15 @@ Status snapshot as of 2026-03-06:
 
 | Workstream | Status | Deliverable |
 | --- | --- | --- |
-| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion |
+| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts |
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | in progress | markdown contract exists and a code-backed golden trace catalog now mirrors the six baseline scenarios |
+| Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 
 Current rule:
 
 - no runtime causality moves to reduction until the corresponding golden trace exists and has a stated rollback path
+- observer-only telemetry surfaces may expand if needed to make the traces measurable without mutating causality
 
 ## Checkpoint 0: break nothing
 
@@ -6658,6 +6708,12 @@ Current support files already suggest the trace direction:
 
 - before/after drift is measurable for each golden scenario
 - baseline traces exist before any causal ownership migration
+
+### Current stage assessment
+
+- baseline scenarios are now committed under `verification/traces/`
+- `verification/golden_trace_capture.ts` provides the reproducible observer harness
+- next implementation step is `verification/reduction_harness.ts`, not more baseline-definition work
 
 ## Stage 3: Introduce `GlyphIR64`
 
@@ -16452,11 +16508,11 @@ Status snapshot as of 2026-03-06:
 
 | Phase | Status | Notes |
 | --- | --- | --- |
-| Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts; baseline traces still need capture |
+| Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces |
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
-| Stage 2: golden traces | in progress | code-backed golden trace catalog now exists; persisted captures still missing |
+| Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4+ | not started | blocked on captured traces and bridge verification harness |
+| Stage 4+ | not started | next gate is reduction verification against captured baselines, not more planning prose |
 
 Latest completed planning work:
 
@@ -16466,6 +16522,8 @@ Latest completed planning work:
 - Added a dedicated `GlyphIR64` contract document so the bridge vocabulary is visible before implementation starts.
 - Added non-runtime bridge code for `GlyphIR64`, `opcode -> glyph` translation, and pretty/debug rendering without transferring any runtime ownership.
 - Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
+- Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
+- Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 
 ## Current diagnosis
 
@@ -16534,15 +16592,15 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Establish golden traces before any bridge work starts.
-3. Introduce `GlyphIR64` as the transitional IR.
-4. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness before any production ownership transfer.
+2. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness against the committed trace baselines.
+3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
+4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Capture the first persisted golden traces for the six baseline scenarios.
-2. Start the non-runtime bridge skeleton for `GlyphIR64` only after those traces exist.
-3. Keep all new bridge files in export so external audits can critique the migration path, not just the active runtime.
+1. Build `verification/reduction_harness.ts` and `verification/reduction_cases.ts` against `gt01..gt06`.
+2. Start with one bounded lifecycle under reduction shadow mode instead of widening glyph semantics prematurely.
+3. Use the trace artifacts as rollback anchors for every bridge experiment.
 
 ## Explicit deferrals
 
@@ -23336,6 +23394,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     );
   }
 
+  if (url.pathname === "/api/mutation-telemetry" && req.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
   if (url.pathname === "/api/telemetry/ws") {
     if (req.headers.get("upgrade") !== "websocket") {
       return new Response(
@@ -28184,6 +28255,655 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ---
 
+## FILE: verification/golden_trace_capture.ts
+
+```typescript
+import {
+  GOLDEN_TRACE_CATALOG,
+  goldenTraceArtifactPaths,
+  goldenTraceById,
+  type GoldenTraceScenario,
+} from "./golden_trace_catalog.ts";
+
+const SYSTEM_START_PATH = "/Users/s0fractal/OMEGA/SYSTEM_START.ts";
+const TRACE_CONTROL_TOKEN = "omega-golden-trace";
+const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
+const TRACE_SEED = 424242;
+const TRACE_WARM_COLDSTART_COUNT = 64;
+const TRACE_WARM_COLDSTART_REPLICATOR_RATIO = 0.5;
+const TRACE_WARM_COLDSTART_ENERGY = 240;
+const TRACE_WARM_COLDSTART_RESONANCE = 220;
+const TRACE_REQUEST_TIMEOUT_MS = 5_000;
+const TRACE_READY_TIMEOUT_MS = 20_000;
+const TRACE_TICK_TIMEOUT_MS = 60_000;
+const TRACE_POLL_MS = 50;
+const TRACE_CODEX_LIMIT = 12;
+const VOLATILE_KEYS = new Set([
+  "ts",
+  "generatedAt",
+  "writtenAt",
+  "createdAt",
+  "updatedAt",
+]);
+
+type JsonRecord = Record<string, unknown>;
+
+type TraceTelemetry = {
+  tick: number;
+  avgEnergy: number;
+  dominantGenomes?: string[];
+  spatial_hash_guard?: {
+    overflow_ratio?: number;
+  };
+  daemon_governance?: {
+    last_admission?: unknown;
+    last_admission_history?: unknown[];
+    homeostasis?: unknown;
+  };
+  behavior_invariant?: string;
+};
+
+type TelemetryStreamSample = {
+  tick?: number;
+  population?: number;
+  avgEnergy?: number;
+  spatialOverflowRatio?: number;
+};
+
+type MutationTelemetrySnapshot = {
+  enabled?: boolean;
+  total?: number;
+  lanes?: Record<string, number>;
+  topKinds?: Array<[string, number]>;
+};
+
+type GoldenTraceActionLog = {
+  kind: string;
+  tick: number;
+  response: unknown;
+};
+
+export type GoldenTraceCaptureResult = {
+  traceId: string;
+  trace: JsonRecord;
+  codexSnapshot: unknown;
+  invariants: unknown;
+  notes: string;
+};
+
+const decoder = new TextDecoder();
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>)
+    .filter(([key]) => !VOLATILE_KEYS.has(key))
+    .sort(([a], [b]) => a.localeCompare(b));
+  return `{${entries.map(([key, item]) =>
+    `${JSON.stringify(key)}:${stableStringify(item)}`
+  ).join(",")}}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const source = typeof value === "string" ? value : stableStringify(value);
+  const bytes = new TextEncoder().encode(source);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const sanitizeForDigest = (value: unknown): unknown => {
+  if (Array.isArray(value)) return value.map((item) => sanitizeForDigest(item));
+  if (!value || typeof value !== "object") return value;
+  const out: Record<string, unknown> = {};
+  for (
+    const [key, item] of Object.entries(value as Record<string, unknown>).sort((
+      [a],
+      [b],
+    ) => a.localeCompare(b))
+  ) {
+    if (VOLATILE_KEYS.has(key)) continue;
+    out[key] = sanitizeForDigest(item);
+  }
+  return out;
+};
+
+const asFiniteNumber = (value: unknown, fallback = 0): number => {
+  const n = typeof value === "number"
+    ? value
+    : typeof value === "string"
+    ? Number(value)
+    : NaN;
+  return Number.isFinite(n) ? n : fallback;
+};
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+const readStreamText = async (
+  stream: ReadableStream<Uint8Array> | null,
+): Promise<string> => {
+  if (!stream) return "";
+  const reader = stream.getReader();
+  let out = "";
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      out += decoder.decode(value, { stream: true });
+    }
+    out += decoder.decode();
+    return out;
+  } finally {
+    reader.releaseLock();
+  }
+};
+
+const findOpenPort = async (): Promise<number> => {
+  const listener = Deno.listen({ hostname: "127.0.0.1", port: 0 });
+  try {
+    return (listener.addr as Deno.NetAddr).port;
+  } finally {
+    listener.close();
+  }
+};
+
+const traceRuntimeEnv = (
+  port: number,
+  cwd: string,
+): Record<string, string> => ({
+  ...Deno.env.toObject(),
+  PORT: String(port),
+  OMEGA_SYSTEM_CONTROL_ENABLE: "1",
+  OMEGA_SYSTEM_CONTROL_TOKEN: TRACE_CONTROL_TOKEN,
+  OMEGA_MUTATION_TELEMETRY: "1",
+  OMEGA_AUTO_SNAPSHOT_ENABLE: "0",
+  OMEGA_PULSE_WORKERS: "1",
+  OMEGA_STRICT_DETERMINISM: "1",
+  OMEGA_COLDSTART_ENABLE: "1",
+  OMEGA_COLDSTART_COUNT: String(TRACE_WARM_COLDSTART_COUNT),
+  OMEGA_COLDSTART_REPLICATOR_RATIO: String(
+    TRACE_WARM_COLDSTART_REPLICATOR_RATIO,
+  ),
+  OMEGA_COLDSTART_SEED: String(TRACE_SEED),
+  OMEGA_COLDSTART_ENERGY: String(TRACE_WARM_COLDSTART_ENERGY),
+  OMEGA_COLDSTART_RESONANCE: String(TRACE_WARM_COLDSTART_RESONANCE),
+  OMEGA_DAEMON_AUDIT_PATH: `${cwd}/daemon_audit.jsonl`,
+});
+
+const traceHeaders = (): HeadersInit => ({
+  "Content-Type": "application/json",
+  "x-omega-control-token": TRACE_CONTROL_TOKEN,
+});
+
+const fetchJson = async <T>(
+  url: string,
+  init?: RequestInit,
+): Promise<T> => {
+  const response = await fetch(url, {
+    ...init,
+    signal: AbortSignal.timeout(TRACE_REQUEST_TIMEOUT_MS),
+  });
+  const raw = await response.text();
+  if (!response.ok) {
+    throw new Error(`[golden_trace_capture] ${url} failed ${response.status}: ${raw}`);
+  }
+  return JSON.parse(raw) as T;
+};
+
+const postJson = async <T>(
+  url: string,
+  body: unknown,
+): Promise<T> =>
+  await fetchJson<T>(url, {
+    method: "POST",
+    headers: traceHeaders(),
+    body: JSON.stringify(body),
+  });
+
+const waitForTelemetryReady = async (baseUrl: string): Promise<TraceTelemetry> => {
+  const started = Date.now();
+  let lastError = "not_started";
+  while (Date.now() - started < TRACE_READY_TIMEOUT_MS) {
+    try {
+      const telemetry = await fetchJson<TraceTelemetry>(`${baseUrl}/api/telemetry`);
+      if (typeof telemetry.tick === "number" && telemetry.tick >= 0) {
+        return telemetry;
+      }
+    } catch (err) {
+      lastError = String(err);
+    }
+    await sleep(TRACE_POLL_MS);
+  }
+  throw new Error(
+    `[golden_trace_capture] telemetry readiness timeout for ${baseUrl}: ${lastError}`,
+  );
+};
+
+const waitForTick = async (
+  baseUrl: string,
+  minTick: number,
+): Promise<TraceTelemetry> => {
+  const started = Date.now();
+  let latest: TraceTelemetry | null = null;
+  while (Date.now() - started < TRACE_TICK_TIMEOUT_MS) {
+    const telemetry = await fetchJson<TraceTelemetry>(`${baseUrl}/api/telemetry`);
+    latest = telemetry;
+    if (telemetry.tick >= minTick) return telemetry;
+    await sleep(TRACE_POLL_MS);
+  }
+  throw new Error(
+    `[golden_trace_capture] tick wait timeout target=${minTick} latest=${latest?.tick ?? -1}`,
+  );
+};
+
+const fetchMutationTelemetry = async (
+  baseUrl: string,
+): Promise<MutationTelemetrySnapshot> => {
+  const payload = await fetchJson<{
+    mutation_telemetry?: MutationTelemetrySnapshot;
+  }>(`${baseUrl}/api/mutation-telemetry`);
+  return payload.mutation_telemetry ?? {};
+};
+
+const fetchCodexSnapshot = async (baseUrl: string): Promise<unknown> =>
+  await fetchJson(`${baseUrl}/api/codex?limit=${TRACE_CODEX_LIMIT}`);
+
+const fetchInvariants = async (baseUrl: string): Promise<unknown> =>
+  await fetchJson(`${baseUrl}/api/codex/invariants?limit=${TRACE_CODEX_LIMIT}`);
+
+const fetchHomeostasis = async (baseUrl: string): Promise<unknown> =>
+  await fetchJson(`${baseUrl}/api/homeostasis`);
+
+const fetchTelemetryWindow = async (baseUrl: string, limit: number): Promise<unknown> =>
+  await fetchJson(`${baseUrl}/api/telemetry/stream?limit=${limit}`);
+
+const fetchLatestTelemetrySample = async (
+  baseUrl: string,
+): Promise<TelemetryStreamSample | null> => {
+  const payload = await fetchJson<{ history?: unknown[] }>(
+    `${baseUrl}/api/telemetry/stream?limit=1`,
+  );
+  const sample = Array.isArray(payload.history) ? payload.history.at(0) : null;
+  if (!sample || typeof sample !== "object") return null;
+  return sample as TelemetryStreamSample;
+};
+
+const notesForCapture = async (
+  trace: GoldenTraceScenario,
+  baseUrl: string,
+  port: number,
+  actions: GoldenTraceActionLog[],
+): Promise<string> => {
+  const actionLines = actions.length === 0
+    ? "- none"
+    : (await Promise.all(actions.map(async (entry) =>
+      `- tick=${entry.tick} kind=${entry.kind} responseDigest=${
+        await sha256Hex(sanitizeForDigest(entry.response))
+      }`
+    ))).join("\n");
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_RUNTIME_MODE}`,
+    `- base_url: ${baseUrl}`,
+    `- port: ${port}`,
+    `- seed: ${TRACE_SEED}`,
+    ``,
+    `## Environment`,
+    ``,
+    `- OMEGA_PULSE_WORKERS=1`,
+    `- OMEGA_STRICT_DETERMINISM=1`,
+    `- OMEGA_AUTO_SNAPSHOT_ENABLE=0`,
+    `- OMEGA_COLDSTART_ENABLE=1`,
+    `- OMEGA_COLDSTART_COUNT=${TRACE_WARM_COLDSTART_COUNT}`,
+    `- OMEGA_COLDSTART_REPLICATOR_RATIO=${TRACE_WARM_COLDSTART_REPLICATOR_RATIO}`,
+    `- OMEGA_COLDSTART_SEED=${TRACE_SEED}`,
+    `- OMEGA_COLDSTART_ENERGY=${TRACE_WARM_COLDSTART_ENERGY}`,
+    `- OMEGA_COLDSTART_RESONANCE=${TRACE_WARM_COLDSTART_RESONANCE}`,
+    ``,
+    `## Actions`,
+    ``,
+    actionLines,
+  ].join("\n");
+};
+
+const persistCapture = async (
+  traceId: string,
+  result: GoldenTraceCaptureResult,
+): Promise<void> => {
+  const paths = goldenTraceArtifactPaths(traceId);
+  await Deno.mkdir(paths.dir, { recursive: true });
+  await Deno.writeTextFile(
+    paths.traceJson,
+    JSON.stringify(result.trace, null, 2),
+  );
+  await Deno.writeTextFile(
+    paths.codexSnapshotJson,
+    JSON.stringify(result.codexSnapshot, null, 2),
+  );
+  await Deno.writeTextFile(
+    paths.invariantsJson,
+    JSON.stringify(result.invariants, null, 2),
+  );
+  await Deno.writeTextFile(paths.notesMd, result.notes);
+};
+
+const extractAppliedAction = (response: unknown): string => {
+  if (!response || typeof response !== "object") return "UNKNOWN";
+  const root = response as Record<string, unknown>;
+  if (typeof root.applied_action === "string") return root.applied_action;
+  if (typeof root.action === "string") return root.action;
+  return "UNKNOWN";
+};
+
+const extractAdmissionSeverity = (response: unknown): string => {
+  if (!response || typeof response !== "object") return "NONE";
+  const admission = (response as Record<string, unknown>).admission;
+  if (!admission || typeof admission !== "object") return "NONE";
+  return typeof (admission as Record<string, unknown>).severity === "string"
+    ? String((admission as Record<string, unknown>).severity)
+    : "NONE";
+};
+
+const captureScenario = async (
+  trace: GoldenTraceScenario,
+  baseUrl: string,
+): Promise<GoldenTraceCaptureResult> => {
+  const start = await waitForTelemetryReady(baseUrl);
+  const tickStart = start.tick;
+  const actions: GoldenTraceActionLog[] = [];
+  const mutationBefore = await fetchMutationTelemetry(baseUrl);
+
+  let endTelemetry = start;
+  let traceMetrics: Record<string, unknown> = {};
+  let extraArtifacts: Record<string, unknown> = {};
+  const startSample = await fetchLatestTelemetrySample(baseUrl);
+
+  if (trace.id === "gt01_coldstart_seeded_swarm") {
+    endTelemetry = await waitForTick(baseUrl, tickStart + 256);
+    const endSample = await fetchLatestTelemetrySample(baseUrl);
+    traceMetrics = {
+      population: endSample?.population ?? 0,
+      avgEnergy: endTelemetry.avgEnergy,
+      spatialOverflowRatio:
+        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      mutationCounts: await fetchMutationTelemetry(baseUrl),
+      invariantDigestSource: endTelemetry.behavior_invariant ?? "none",
+    };
+  } else if (trace.id === "gt02_free_run_no_ingress") {
+    endTelemetry = await waitForTick(baseUrl, tickStart + 2048);
+    const endSample = await fetchLatestTelemetrySample(baseUrl);
+    traceMetrics = {
+      population: endSample?.population ?? 0,
+      avgEnergy: endTelemetry.avgEnergy,
+      spatialOverflowRatio:
+        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      decreeShifts:
+        endTelemetry.daemon_governance?.last_pressure_ring_history ?? [],
+      mutationCounts: await fetchMutationTelemetry(baseUrl),
+    };
+  } else if (trace.id === "gt03_pheromone_inject") {
+    const warm = await waitForTick(baseUrl, tickStart + 128);
+    const response = await postJson<unknown>(`${baseUrl}/api/inject`, {
+      action_type: "DROP_PHEROMONE",
+      payload: {
+        target_x: 640,
+        target_y: 360,
+        intensity: 96,
+      },
+    });
+    actions.push({
+      kind: "DROP_PHEROMONE",
+      tick: warm.tick,
+      response,
+    });
+    endTelemetry = await waitForTick(baseUrl, tickStart + 512);
+    const endSample = await fetchLatestTelemetrySample(baseUrl);
+    traceMetrics = {
+      localResponseWindow: await fetchTelemetryWindow(baseUrl, 8),
+      population: endSample?.population ?? 0,
+      avgEnergy: endTelemetry.avgEnergy,
+      spatialOverflowRatio:
+        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      injectResponse: response,
+    };
+  } else if (trace.id === "gt04_plasmid_inject") {
+    const warm = await waitForTick(baseUrl, tickStart + 128);
+    const response = await postJson<unknown>(`${baseUrl}/api/inject`, {
+      action_type: "INJECT_PLASMID",
+      payload: {
+        target_x: 640,
+        target_y: 360,
+        intensity: 420,
+        hex_code: "0102030405101180",
+      },
+    });
+    actions.push({
+      kind: "INJECT_PLASMID",
+      tick: warm.tick,
+      response,
+    });
+    endTelemetry = await waitForTick(baseUrl, tickStart + 512);
+    const endSample = await fetchLatestTelemetrySample(baseUrl);
+    traceMetrics = {
+      acceptedMutationCounts: response && typeof response === "object" &&
+          (response as Record<string, unknown>).ok === true
+        ? 1
+        : 0,
+      rejectedMutationCounts: response && typeof response === "object" &&
+          (response as Record<string, unknown>).ok === true
+        ? 0
+        : 1,
+      population: endSample?.population ?? 0,
+      avgEnergy: endTelemetry.avgEnergy,
+      appliedAction: extractAppliedAction(response),
+      admissionSeverity: extractAdmissionSeverity(response),
+    };
+  } else if (trace.id === "gt05_homeostasis_correction") {
+    const warm = await waitForTick(baseUrl, tickStart + 256);
+    const beforeHomeostasis = await fetchHomeostasis(baseUrl);
+    const response = await postJson<unknown>(`${baseUrl}/api/homeostasis`, {
+      base_tax: 4,
+      target_energy: 300,
+      reason: "golden_trace_gt05",
+    });
+    actions.push({
+      kind: "HOMEOSTASIS_UPDATE",
+      tick: warm.tick,
+      response,
+    });
+    endTelemetry = await waitForTick(baseUrl, tickStart + 768);
+    const afterHomeostasis = await fetchHomeostasis(baseUrl);
+    const tickDelta = Math.max(1, endTelemetry.tick - warm.tick);
+    traceMetrics = {
+      avgEnergySlope: Number(
+        ((endTelemetry.avgEnergy - warm.avgEnergy) / tickDelta).toFixed(6),
+      ),
+      spatialOverflowRatio:
+        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      mutationCounts: await fetchMutationTelemetry(baseUrl),
+      updateResponse: response,
+    };
+    extraArtifacts = {
+      beforeHomeostasis,
+      afterHomeostasis,
+    };
+  } else if (trace.id === "gt06_daemon_admission_case") {
+    const warm = await waitForTick(baseUrl, tickStart + 128);
+    const accepted = await postJson<unknown>(`${baseUrl}/api/inject`, {
+      action_type: "DROP_PHEROMONE",
+      payload: {
+        target_x: 512,
+        target_y: 320,
+        intensity: 80,
+      },
+    });
+    actions.push({
+      kind: "DROP_PHEROMONE_ACCEPT",
+      tick: warm.tick,
+      response: accepted,
+    });
+    await waitForTick(baseUrl, warm.tick + 64);
+    const degraded = await postJson<unknown>(`${baseUrl}/api/inject`, {
+      action_type: "INJECT_PLASMID",
+      payload: {
+        target_x: 512,
+        target_y: 320,
+        intensity: 1100,
+        hex_code: "001011120381A4A5",
+      },
+    });
+    actions.push({
+      kind: "INJECT_PLASMID_DEGRADED",
+      tick: warm.tick + 64,
+      response: degraded,
+    });
+    endTelemetry = await waitForTick(baseUrl, warm.tick + 256);
+    traceMetrics = {
+      admissionSeverity: extractAdmissionSeverity(degraded),
+      appliedAction: extractAppliedAction(degraded),
+      admissionHistory:
+        endTelemetry.daemon_governance?.last_admission_history ?? [],
+      acceptedResponse: accepted,
+      degradedResponse: degraded,
+    };
+  } else {
+    throw new Error(`[golden_trace_capture] unsupported trace id: ${trace.id}`);
+  }
+
+  const mutationAfter = await fetchMutationTelemetry(baseUrl);
+  const codexSnapshot = await fetchCodexSnapshot(baseUrl);
+  const invariants = await fetchInvariants(baseUrl);
+  const notes = await notesForCapture(
+    trace,
+    baseUrl,
+    Number(new URL(baseUrl).port),
+    actions,
+  );
+
+  const codexSnapshotSanitized = sanitizeForDigest(codexSnapshot);
+  const invariantsSanitized = sanitizeForDigest(invariants);
+  const eventLogSanitized = sanitizeForDigest(actions);
+  const mutationAfterSanitized = sanitizeForDigest(mutationAfter);
+
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    seed: TRACE_SEED,
+    tick_start: tickStart,
+    tick_end: endTelemetry.tick,
+    runtime_mode: TRACE_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: traceMetrics,
+    telemetry_start: start,
+    telemetry_stream_start: startSample,
+    telemetry_end: endTelemetry,
+    mutation_telemetry_before: mutationBefore,
+    mutation_telemetry_after: mutationAfter,
+    event_log: actions,
+    event_log_digest: await sha256Hex(eventLogSanitized),
+    mutation_telemetry_digest: await sha256Hex(mutationAfterSanitized),
+    codex_snapshot_digest: await sha256Hex(codexSnapshotSanitized),
+    invariant_digest: await sha256Hex(invariantsSanitized),
+    extra_artifacts: extraArtifacts,
+  };
+
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes,
+  };
+};
+
+const runTraceServer = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const tempDir = await Deno.makeTempDir({ prefix: "omega-golden-trace-" });
+  const port = await findOpenPort();
+  const baseUrl = `http://127.0.0.1:${port}`;
+  const child = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", SYSTEM_START_PATH],
+    cwd: tempDir,
+    env: traceRuntimeEnv(port, tempDir),
+    stdout: "piped",
+    stderr: "piped",
+  }).spawn();
+  const stdoutPromise = readStreamText(child.stdout);
+  const stderrPromise = readStreamText(child.stderr);
+
+  try {
+    return await captureScenario(trace, baseUrl);
+  } catch (err) {
+    const [stdout, stderr] = await Promise.all([stdoutPromise, stderrPromise]);
+    throw new Error(
+      `[golden_trace_capture] ${trace.id} failed: ${String(err)}\n--- stdout ---\n${stdout}\n--- stderr ---\n${stderr}`,
+    );
+  } finally {
+    try {
+      child.kill("SIGTERM");
+    } catch {
+      // Process may have already exited.
+    }
+    await child.status.catch(() => undefined);
+    await Promise.all([stdoutPromise, stderrPromise]).catch(() => undefined);
+    await Deno.remove(tempDir, { recursive: true }).catch(() => undefined);
+  }
+};
+
+export const captureGoldenTrace = async (
+  traceId: string,
+  options: { writeArtifacts?: boolean } = {},
+): Promise<GoldenTraceCaptureResult> => {
+  const trace = goldenTraceById(traceId);
+  if (!trace) {
+    throw new Error(`[golden_trace_capture] unknown trace id: ${traceId}`);
+  }
+  const result = await runTraceServer(trace);
+  if (options.writeArtifacts ?? true) {
+    await persistCapture(traceId, result);
+  }
+  return result;
+};
+
+export const captureGoldenTraces = async (
+  traceIds: string[],
+  options: { writeArtifacts?: boolean } = {},
+): Promise<GoldenTraceCaptureResult[]> => {
+  const results: GoldenTraceCaptureResult[] = [];
+  for (const traceId of traceIds) {
+    results.push(await captureGoldenTrace(traceId, options));
+  }
+  return results;
+};
+
+export const SUPPORTED_GOLDEN_TRACE_IDS = GOLDEN_TRACE_CATALOG.map((trace) =>
+  trace.id
+);
+
+if (import.meta.main) {
+  const traceIds = Deno.args.length > 0 ? Deno.args : SUPPORTED_GOLDEN_TRACE_IDS;
+  await captureGoldenTraces(traceIds, { writeArtifacts: true });
+  console.log(
+    `[golden_trace_capture] captured ${traceIds.length} trace(s): ${traceIds.join(", ")}`,
+  );
+}
+
+```
+
+---
+
 ## FILE: verification/golden_trace_catalog.ts
 
 ```typescript
@@ -28371,6 +29091,3252 @@ export const goldenTraceArtifactPaths = (id: string) => {
   };
 };
 
+```
+
+---
+
+## FILE: verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 147,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt01_coldstart_seeded_swarm/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt01_coldstart_seeded_swarm/notes.md
+
+```markdown
+# gt01_coldstart_seeded_swarm
+
+- scenario: coldstart / seeded swarm
+- setup: cold boot, deterministic seed swarm, daemon off
+- duration: 256 ticks
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56313
+- port: 56313
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- none
+```
+
+---
+
+## FILE: verification/traces/gt01_coldstart_seeded_swarm/trace.json
+
+```json
+{
+  "trace_id": "gt01_coldstart_seeded_swarm",
+  "scenario": "coldstart / seeded swarm",
+  "seed": 424242,
+  "tick_start": 1,
+  "tick_end": 258,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": false,
+  "metrics": {
+    "population": 147,
+    "avgEnergy": 242.925,
+    "spatialOverflowRatio": 0.789116,
+    "mutationCounts": {
+      "enabled": true,
+      "total": 41966,
+      "lanes": {
+        "internal_host": 41914,
+        "canonical_gate": 52
+      },
+      "topKinds": [
+        [
+          "energy_homeostasis_adjust",
+          41769
+        ],
+        [
+          "spawn_seed_atom",
+          145
+        ],
+        [
+          "audit_matrix_cycle",
+          52
+        ]
+      ]
+    },
+    "invariantDigestSource": "R0.00|S0.00|B0.00"
+  },
+  "telemetry_start": {
+    "tick": 1,
+    "avgEnergy": 124.97,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 121. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59932,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 1,
+      "overflow_count": 0,
+      "max_cell_count": 1,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 89,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            89
+          ]
+        },
+        "lastTick": 1
+      },
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 1
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:58:14.667Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": {
+    "ts": 1772798294721,
+    "tick": 1,
+    "population": 121,
+    "avgEnergy": 124.97,
+    "neuralCoherence": 0,
+    "spatialOverflowRatio": 0,
+    "daemonSafeMode": false
+  },
+  "telemetry_end": {
+    "tick": 258,
+    "avgEnergy": 242.925,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 147. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 52833,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 258,
+      "overflow_count": 116,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.789116
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 258
+      },
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 2,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "FFB9DBB065DBB6ED",
+          "8081AB0E15700F22"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "lastTick": 258
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:58:14.667Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 179,
+    "lanes": {
+      "internal_host": 178,
+      "canonical_gate": 1
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        121
+      ],
+      [
+        "spawn_seed_atom",
+        57
+      ],
+      [
+        "audit_matrix_cycle",
+        1
+      ]
+    ]
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 41966,
+    "lanes": {
+      "internal_host": 41914,
+      "canonical_gate": 52
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        41769
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        52
+      ]
+    ]
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_digest": "21b819a629849c674107749b4e6e5293b4cf1be82b18db7eb6bd9f3a0ceda386",
+  "codex_snapshot_digest": "0a8bf1f5c921923d647423453ebdc939edfcdf04096952d58eedf2100c1980f7",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
+```
+
+---
+
+## FILE: verification/traces/gt02_free_run_no_ingress/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt02_free_run_no_ingress/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt02_free_run_no_ingress/notes.md
+
+```markdown
+# gt02_free_run_no_ingress
+
+- scenario: free run without external intervention
+- setup: cold boot, no inject, no daemon policy updates
+- duration: 2048 ticks
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56321
+- port: 56321
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- none
+```
+
+---
+
+## FILE: verification/traces/gt02_free_run_no_ingress/trace.json
+
+```json
+{
+  "trace_id": "gt02_free_run_no_ingress",
+  "scenario": "free run without external intervention",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 2049,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": false,
+  "metrics": {
+    "population": 145,
+    "avgEnergy": 217.922,
+    "spatialOverflowRatio": 0.793103,
+    "decreeShifts": [],
+    "mutationCounts": {
+      "enabled": true,
+      "total": 302194,
+      "lanes": {
+        "internal_host": 301784,
+        "canonical_gate": 410
+      },
+      "topKinds": [
+        [
+          "energy_homeostasis_adjust",
+          301639
+        ],
+        [
+          "audit_matrix_cycle",
+          410
+        ],
+        [
+          "spawn_seed_atom",
+          145
+        ]
+      ]
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59961,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:58:21.909Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 2049,
+    "avgEnergy": 217.922,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 3942,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 2049,
+      "overflow_count": 115,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.793103
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 2049
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:58:21.909Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 302194,
+    "lanes": {
+      "internal_host": 301784,
+      "canonical_gate": 410
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        301639
+      ],
+      [
+        "audit_matrix_cycle",
+        410
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ]
+    ]
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_digest": "a1025fc3579a30c33ebd0be2cfd744e3efd7a4f439b822d4165703678fb8c09d",
+  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
+```
+
+---
+
+## FILE: verification/traces/gt03_pheromone_inject/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt03_pheromone_inject/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt03_pheromone_inject/notes.md
+
+```markdown
+# gt03_pheromone_inject
+
+- scenario: bounded pheromone inject
+- setup: warmup 128 ticks, then one fixed DROP_PHEROMONE payload
+- duration: 512 ticks total
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56342
+- port: 56342
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=128 kind=DROP_PHEROMONE responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
+```
+
+---
+
+## FILE: verification/traces/gt03_pheromone_inject/trace.json
+
+```json
+{
+  "trace_id": "gt03_pheromone_inject",
+  "scenario": "bounded pheromone inject",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 514,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": false,
+  "metrics": {
+    "localResponseWindow": {
+      "ok": true,
+      "history": [
+        {
+          "ts": 1772798372176,
+          "tick": 499,
+          "population": 145,
+          "avgEnergy": 259.049,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372233,
+          "tick": 501,
+          "population": 145,
+          "avgEnergy": 259.017,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372283,
+          "tick": 503,
+          "population": 145,
+          "avgEnergy": 258.985,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372333,
+          "tick": 505,
+          "population": 145,
+          "avgEnergy": 258.953,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372397,
+          "tick": 507,
+          "population": 145,
+          "avgEnergy": 258.921,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372454,
+          "tick": 509,
+          "population": 145,
+          "avgEnergy": 258.889,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372518,
+          "tick": 511,
+          "population": 145,
+          "avgEnergy": 258.857,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        },
+        {
+          "ts": 1772798372575,
+          "tick": 513,
+          "population": 145,
+          "avgEnergy": 258.825,
+          "neuralCoherence": 0,
+          "spatialOverflowRatio": 0.793103,
+          "daemonSafeMode": false
+        }
+      ]
+    },
+    "population": 145,
+    "avgEnergy": 258.809,
+    "spatialOverflowRatio": 0.793103,
+    "injectResponse": {
+      "ok": true,
+      "status": 202,
+      "reason": "QUEUED",
+      "size": 1,
+      "max": 512,
+      "admission": {
+        "score": 0,
+        "severity": "LOW",
+        "reasons": [
+          "DRIFT_LOW"
+        ],
+        "context": {
+          "mood": "STABLE",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      },
+      "plasmid_risk": null,
+      "degraded": false,
+      "degrade_reason": null,
+      "applied_action": "DROP_PHEROMONE"
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59904,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:18.073Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 514,
+    "avgEnergy": 258.809,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 1,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 45467,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": {
+        "tick": 128,
+        "status": "accepted",
+        "requestedAction": "DROP_PHEROMONE",
+        "appliedAction": "DROP_PHEROMONE",
+        "degraded": false,
+        "severity": "LOW",
+        "score": 0,
+        "reason": "DRIFT_LOW",
+        "sharedCenter": "tick.exists",
+        "dominantInvariantVector": "none",
+        "codexLineageLabel": "none",
+        "codexLineageGuardScore": 0,
+        "codexLineageGuardReasons": []
+      },
+      "last_admission_history": [
+        {
+          "tick": 128,
+          "status": "accepted",
+          "requestedAction": "DROP_PHEROMONE",
+          "appliedAction": "DROP_PHEROMONE",
+          "degraded": false,
+          "severity": "LOW",
+          "score": 0,
+          "reason": "DRIFT_LOW",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      ],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 514,
+      "overflow_count": 115,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.793103
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 514
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:18.073Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 79496,
+    "lanes": {
+      "internal_host": 79390,
+      "canonical_gate": 103,
+      "external_daemon": 3
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        79245
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        103
+      ],
+      [
+        "daemon_intent_enqueued",
+        1
+      ],
+      [
+        "daemon_avatar_apply",
+        1
+      ],
+      [
+        "control_intent_applied",
+        1
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "DROP_PHEROMONE",
+      "tick": 128,
+      "response": {
+        "ok": true,
+        "status": 202,
+        "reason": "QUEUED",
+        "size": 1,
+        "max": 512,
+        "admission": {
+          "score": 0,
+          "severity": "LOW",
+          "reasons": [
+            "DRIFT_LOW"
+          ],
+          "context": {
+            "mood": "STABLE",
+            "sharedCenter": "tick.exists",
+            "dominantInvariantVector": "none",
+            "codexLineageLabel": "none",
+            "codexLineageGuardScore": 0,
+            "codexLineageGuardReasons": []
+          }
+        },
+        "plasmid_risk": null,
+        "degraded": false,
+        "degrade_reason": null,
+        "applied_action": "DROP_PHEROMONE"
+      }
+    }
+  ],
+  "event_log_digest": "57154432f78e846cabc844248a93d985bebd572e788505582d7d5ce3544352a9",
+  "mutation_telemetry_digest": "ee799bb36eff80f31c75219a9c67c7f8ce750e008bdb57c9ec844006f9320e05",
+  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
+```
+
+---
+
+## FILE: verification/traces/gt04_plasmid_inject/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt04_plasmid_inject/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt04_plasmid_inject/notes.md
+
+```markdown
+# gt04_plasmid_inject
+
+- scenario: durable symbolic ingress
+- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload
+- duration: 512 ticks total
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56351
+- port: 56351
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=129 kind=INJECT_PLASMID responseDigest=f0b6f469dc311dd275e6a54185402bae3a25d8c610334013ec5a4d86e97a499a
+```
+
+---
+
+## FILE: verification/traces/gt04_plasmid_inject/trace.json
+
+```json
+{
+  "trace_id": "gt04_plasmid_inject",
+  "scenario": "durable symbolic ingress",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 513,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": false,
+  "metrics": {
+    "acceptedMutationCounts": 1,
+    "rejectedMutationCounts": 0,
+    "population": 145,
+    "avgEnergy": 238.01,
+    "appliedAction": "INJECT_PLASMID",
+    "admissionSeverity": "LOW"
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 173.654,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59957,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 1,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:32.690Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 513,
+    "avgEnergy": 238.01,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 1,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 45479,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": {
+        "tick": 129,
+        "status": "accepted",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "INJECT_PLASMID",
+        "degraded": false,
+        "severity": "LOW",
+        "score": 0,
+        "reason": "RISK_LOW",
+        "sharedCenter": "tick.exists",
+        "dominantInvariantVector": "none",
+        "codexLineageLabel": "none",
+        "codexLineageGuardScore": 0,
+        "codexLineageGuardReasons": []
+      },
+      "last_admission_history": [
+        {
+          "tick": 129,
+          "status": "accepted",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "INJECT_PLASMID",
+          "degraded": false,
+          "severity": "LOW",
+          "score": 0,
+          "reason": "RISK_LOW",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      ],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 513,
+      "overflow_count": 115,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.793103
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 513
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:32.690Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 79340,
+    "lanes": {
+      "internal_host": 79233,
+      "canonical_gate": 103,
+      "external_daemon": 4
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        79088
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        103
+      ],
+      [
+        "daemon_plasmid_apply_cells",
+        2
+      ],
+      [
+        "daemon_intent_enqueued",
+        1
+      ],
+      [
+        "control_intent_applied",
+        1
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "INJECT_PLASMID",
+      "tick": 129,
+      "response": {
+        "ok": true,
+        "status": 202,
+        "reason": "QUEUED",
+        "size": 1,
+        "max": 512,
+        "admission": {
+          "score": 0,
+          "severity": "LOW",
+          "reasons": [
+            "RISK_LOW"
+          ],
+          "context": {
+            "mood": "STABLE",
+            "sharedCenter": "tick.exists",
+            "dominantInvariantVector": "none",
+            "codexLineageLabel": "none",
+            "codexLineageGuardScore": 0,
+            "codexLineageGuardReasons": []
+          }
+        },
+        "plasmid_risk": {
+          "level": "LOW",
+          "score": 0,
+          "reasons": [
+            "RISK_LOW"
+          ],
+          "opcode": 1
+        },
+        "degraded": false,
+        "degrade_reason": null,
+        "applied_action": "INJECT_PLASMID"
+      }
+    }
+  ],
+  "event_log_digest": "f92c588f76157aceb9fa62385c70ce46b3f34c06954c5af17d39e6dd367adff1",
+  "mutation_telemetry_digest": "47e78027f300975c4488f56f2d7d9ab6ca3e2e76bb02d24a03cd07320ce14f86",
+  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
+```
+
+---
+
+## FILE: verification/traces/gt05_homeostasis_correction/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt05_homeostasis_correction/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt05_homeostasis_correction/notes.md
+
+```markdown
+# gt05_homeostasis_correction
+
+- scenario: external homeostasis correction
+- setup: warmup 256 ticks, then one fixed /api/homeostasis update
+- duration: 768 ticks total
+- daemonEnabled: false
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56360
+- port: 56360
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=256 kind=HOMEOSTASIS_UPDATE responseDigest=97b4528315c05e7f1bb9ffdd270a30ffe8bb76e2eff12e5d0b6eb778d764ef5c
+```
+
+---
+
+## FILE: verification/traces/gt05_homeostasis_correction/trace.json
+
+```json
+{
+  "trace_id": "gt05_homeostasis_correction",
+  "scenario": "external homeostasis correction",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 769,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": false,
+  "metrics": {
+    "avgEnergySlope": -0.015088,
+    "spatialOverflowRatio": 0.793103,
+    "mutationCounts": {
+      "enabled": true,
+      "total": 116294,
+      "lanes": {
+        "internal_host": 116139,
+        "canonical_gate": 154,
+        "external_daemon": 1
+      },
+      "topKinds": [
+        [
+          "energy_homeostasis_adjust",
+          115993
+        ],
+        [
+          "audit_matrix_cycle",
+          154
+        ],
+        [
+          "spawn_seed_atom",
+          145
+        ],
+        [
+          "homeostasis_policy_update",
+          1
+        ],
+        [
+          "daemon_homeostasis_update",
+          1
+        ]
+      ]
+    },
+    "updateResponse": {
+      "ok": true,
+      "updated": {
+        "tick": 256,
+        "source": "daemon_homeostasis_controller",
+        "reason": "golden_trace_gt05",
+        "base_tax_before": 2,
+        "base_tax_after": 4,
+        "target_energy_before": 1200,
+        "target_energy_after": 300
+      },
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 300,
+        "target_energy_default": 1200,
+        "target_energy_current": 300,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 4,
+        "last_update_tick": 256,
+        "last_update_source": "daemon_homeostasis_controller",
+        "last_update_reason": "golden_trace_gt05"
+      }
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59956,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:47.301Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 769,
+    "avgEnergy": 202.431,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 38414,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": {
+        "tick": 256,
+        "source": "daemon_homeostasis_controller",
+        "reason": "golden_trace_gt05",
+        "base_tax_before": 2,
+        "base_tax_after": 4,
+        "target_energy_before": 1200,
+        "target_energy_after": 300
+      },
+      "last_homeostasis_history": [
+        {
+          "tick": 256,
+          "source": "daemon_homeostasis_controller",
+          "reason": "golden_trace_gt05",
+          "base_tax_before": 2,
+          "base_tax_after": 4,
+          "target_energy_before": 1200,
+          "target_energy_after": 300
+        }
+      ],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 300,
+        "target_energy_default": 1200,
+        "target_energy_current": 300,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 4,
+        "last_update_tick": 256,
+        "last_update_source": "daemon_homeostasis_controller",
+        "last_update_reason": "golden_trace_gt05"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 769,
+      "overflow_count": 115,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.793103
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 769
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T11:59:47.301Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 116294,
+    "lanes": {
+      "internal_host": 116139,
+      "canonical_gate": 154,
+      "external_daemon": 1
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        115993
+      ],
+      [
+        "audit_matrix_cycle",
+        154
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "homeostasis_policy_update",
+        1
+      ],
+      [
+        "daemon_homeostasis_update",
+        1
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "HOMEOSTASIS_UPDATE",
+      "tick": 256,
+      "response": {
+        "ok": true,
+        "updated": {
+          "tick": 256,
+          "source": "daemon_homeostasis_controller",
+          "reason": "golden_trace_gt05",
+          "base_tax_before": 2,
+          "base_tax_after": 4,
+          "target_energy_before": 1200,
+          "target_energy_after": 300
+        },
+        "homeostasis": {
+          "enabled": true,
+          "target_energy": 300,
+          "target_energy_default": 1200,
+          "target_energy_current": 300,
+          "band": 240,
+          "max_delta": 12,
+          "overflow_threshold": 0.2,
+          "starvation_floor": 200,
+          "subsidy_enabled": false,
+          "base_tax_default": 2,
+          "base_tax_current": 4,
+          "last_update_tick": 256,
+          "last_update_source": "daemon_homeostasis_controller",
+          "last_update_reason": "golden_trace_gt05"
+        }
+      }
+    }
+  ],
+  "event_log_digest": "4af4ca88a150b4f86be14df48f681201c8222318524bb81be21383e883a26935",
+  "mutation_telemetry_digest": "a2a497ce7fe1774e46d6c05ebc128943b52545f98d243257e2d03174e599704f",
+  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {
+    "beforeHomeostasis": {
+      "ok": true,
+      "tick": 256,
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      },
+      "latest_update": null,
+      "history": []
+    },
+    "afterHomeostasis": {
+      "ok": true,
+      "tick": 769,
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 300,
+        "target_energy_default": 1200,
+        "target_energy_current": 300,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 4,
+        "last_update_tick": 256,
+        "last_update_source": "daemon_homeostasis_controller",
+        "last_update_reason": "golden_trace_gt05"
+      },
+      "latest_update": {
+        "tick": 256,
+        "source": "daemon_homeostasis_controller",
+        "reason": "golden_trace_gt05",
+        "base_tax_before": 2,
+        "base_tax_after": 4,
+        "target_energy_before": 1200,
+        "target_energy_after": 300
+      },
+      "history": [
+        {
+          "tick": 256,
+          "source": "daemon_homeostasis_controller",
+          "reason": "golden_trace_gt05",
+          "base_tax_before": 2,
+          "base_tax_after": 4,
+          "target_energy_before": 1200,
+          "target_energy_after": 300
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
+## FILE: verification/traces/gt06_daemon_admission_case/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 145,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [
+    {
+      "id": "chronicle-193-daemonadmiss",
+      "tick": 193,
+      "epoch": 0,
+      "type": "daemon_admission",
+      "title": "Daemon Admission HIGH: INJECT_PLASMID -> DROP_PHEROMONE",
+      "body": "Ingress action was degraded due to invariant drift score 4. Reason: INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE. Shared center: tick.exists. Dominant invariant vector: none.",
+      "createdAt": "2026-03-06T12:00:14.553Z"
+    }
+  ],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt06_daemon_admission_case/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt06_daemon_admission_case/notes.md
+
+```markdown
+# gt06_daemon_admission_case
+
+- scenario: daemon admission / rejection
+- setup: one accepted ingress case and one degraded/rejected case with daemon governance on
+- duration: event-bounded
+- daemonEnabled: true
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56372
+- port: 56372
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=128 kind=DROP_PHEROMONE_ACCEPT responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
+- tick=192 kind=INJECT_PLASMID_DEGRADED responseDigest=6fa126b7c01f359bd42a6e787c80820493e36eeb0ffcf44e7ebbea351764ef7b
+```
+
+---
+
+## FILE: verification/traces/gt06_daemon_admission_case/trace.json
+
+```json
+{
+  "trace_id": "gt06_daemon_admission_case",
+  "scenario": "daemon admission / rejection",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 385,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": true,
+  "metrics": {
+    "admissionSeverity": "HIGH",
+    "appliedAction": "DROP_PHEROMONE",
+    "admissionHistory": [
+      {
+        "tick": 193,
+        "status": "accepted",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "DROP_PHEROMONE",
+        "degraded": true,
+        "severity": "HIGH",
+        "score": 4,
+        "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+        "sharedCenter": "tick.exists",
+        "dominantInvariantVector": "none",
+        "codexLineageLabel": "none",
+        "codexLineageGuardScore": 0,
+        "codexLineageGuardReasons": []
+      },
+      {
+        "tick": 128,
+        "status": "accepted",
+        "requestedAction": "DROP_PHEROMONE",
+        "appliedAction": "DROP_PHEROMONE",
+        "degraded": false,
+        "severity": "LOW",
+        "score": 0,
+        "reason": "DRIFT_LOW",
+        "sharedCenter": "tick.exists",
+        "dominantInvariantVector": "none",
+        "codexLineageLabel": "none",
+        "codexLineageGuardScore": 0,
+        "codexLineageGuardReasons": []
+      }
+    ],
+    "acceptedResponse": {
+      "ok": true,
+      "status": 202,
+      "reason": "QUEUED",
+      "size": 1,
+      "max": 512,
+      "admission": {
+        "score": 0,
+        "severity": "LOW",
+        "reasons": [
+          "DRIFT_LOW"
+        ],
+        "context": {
+          "mood": "STABLE",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      },
+      "plasmid_risk": null,
+      "degraded": false,
+      "degrade_reason": null,
+      "applied_action": "DROP_PHEROMONE"
+    },
+    "degradedResponse": {
+      "ok": true,
+      "status": 202,
+      "reason": "QUEUED",
+      "size": 1,
+      "max": 512,
+      "admission": {
+        "score": 4,
+        "severity": "HIGH",
+        "reasons": [
+          "PLASMID_INTENSITY_HIGH",
+          "RISK_INTENSITY_HIGH"
+        ],
+        "context": {
+          "mood": "STABLE",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      },
+      "plasmid_risk": {
+        "level": "MID",
+        "score": 2,
+        "reasons": [
+          "RISK_INTENSITY_HIGH"
+        ],
+        "opcode": 0
+      },
+      "degraded": true,
+      "degrade_reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+      "applied_action": "DROP_PHEROMONE"
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59960,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:00:09.097Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 385,
+    "avgEnergy": 226.963,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 2,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 49228,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": {
+        "tick": 193,
+        "status": "accepted",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "DROP_PHEROMONE",
+        "degraded": true,
+        "severity": "HIGH",
+        "score": 4,
+        "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+        "sharedCenter": "tick.exists",
+        "dominantInvariantVector": "none",
+        "codexLineageLabel": "none",
+        "codexLineageGuardScore": 0,
+        "codexLineageGuardReasons": []
+      },
+      "last_admission_history": [
+        {
+          "tick": 193,
+          "status": "accepted",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "DROP_PHEROMONE",
+          "degraded": true,
+          "severity": "HIGH",
+          "score": 4,
+          "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        },
+        {
+          "tick": 128,
+          "status": "accepted",
+          "requestedAction": "DROP_PHEROMONE",
+          "appliedAction": "DROP_PHEROMONE",
+          "degraded": false,
+          "severity": "LOW",
+          "score": 0,
+          "reason": "DRIFT_LOW",
+          "sharedCenter": "tick.exists",
+          "dominantInvariantVector": "none",
+          "codexLineageLabel": "none",
+          "codexLineageGuardScore": 0,
+          "codexLineageGuardReasons": []
+        }
+      ],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 385,
+      "overflow_count": 115,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.793103
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 385
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:00:09.097Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 60584,
+    "lanes": {
+      "internal_host": 60500,
+      "canonical_gate": 77,
+      "external_daemon": 7
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        60355
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        77
+      ],
+      [
+        "daemon_intent_enqueued",
+        2
+      ],
+      [
+        "daemon_avatar_apply",
+        2
+      ],
+      [
+        "control_intent_applied",
+        2
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "DROP_PHEROMONE_ACCEPT",
+      "tick": 128,
+      "response": {
+        "ok": true,
+        "status": 202,
+        "reason": "QUEUED",
+        "size": 1,
+        "max": 512,
+        "admission": {
+          "score": 0,
+          "severity": "LOW",
+          "reasons": [
+            "DRIFT_LOW"
+          ],
+          "context": {
+            "mood": "STABLE",
+            "sharedCenter": "tick.exists",
+            "dominantInvariantVector": "none",
+            "codexLineageLabel": "none",
+            "codexLineageGuardScore": 0,
+            "codexLineageGuardReasons": []
+          }
+        },
+        "plasmid_risk": null,
+        "degraded": false,
+        "degrade_reason": null,
+        "applied_action": "DROP_PHEROMONE"
+      }
+    },
+    {
+      "kind": "INJECT_PLASMID_DEGRADED",
+      "tick": 192,
+      "response": {
+        "ok": true,
+        "status": 202,
+        "reason": "QUEUED",
+        "size": 1,
+        "max": 512,
+        "admission": {
+          "score": 4,
+          "severity": "HIGH",
+          "reasons": [
+            "PLASMID_INTENSITY_HIGH",
+            "RISK_INTENSITY_HIGH"
+          ],
+          "context": {
+            "mood": "STABLE",
+            "sharedCenter": "tick.exists",
+            "dominantInvariantVector": "none",
+            "codexLineageLabel": "none",
+            "codexLineageGuardScore": 0,
+            "codexLineageGuardReasons": []
+          }
+        },
+        "plasmid_risk": {
+          "level": "MID",
+          "score": 2,
+          "reasons": [
+            "RISK_INTENSITY_HIGH"
+          ],
+          "opcode": 0
+        },
+        "degraded": true,
+        "degrade_reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+        "applied_action": "DROP_PHEROMONE"
+      }
+    }
+  ],
+  "event_log_digest": "66a1657f94ffd12bb5ac42abee048269a5cf375316684cd401ad1b05fe816772",
+  "mutation_telemetry_digest": "65a09ae6f53e1b4647a1f3f80e7eef805044e343c4521c6f95bf55c8e118fc2a",
+  "codex_snapshot_digest": "cf8c23e173b4d0d44ea065c57c98aa165161b0a309718e6240025e1510dd8d83",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
 ```
 
 ---
