@@ -101,6 +101,8 @@ type Telemetry = {
     homeostasis?: {
       enabled: boolean;
       target_energy: number;
+      target_energy_default?: number;
+      target_energy_current?: number;
       band: number;
       max_delta: number;
       overflow_threshold: number;
@@ -408,9 +410,38 @@ const HOMEOSTASIS_OVERFLOW_HARD = parseBoundedFloat(
   0,
   1,
 );
+const HOMEOSTASIS_TARGET_CONTROL_ENABLE = parseEnvBool(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_CONTROL_ENABLE"),
+  true,
+);
+const HOMEOSTASIS_TARGET_COOLDOWN_TICKS = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_COOLDOWN_TICKS"),
+  96,
+  4,
+  100_000,
+);
+const HOMEOSTASIS_TARGET_STEP = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_STEP"),
+  20,
+  1,
+  2000,
+);
+const HOMEOSTASIS_TARGET_MIN = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_MIN"),
+  120,
+  1,
+  100_000,
+);
+const HOMEOSTASIS_TARGET_MAX = parseBoundedInt(
+  Deno.env.get("OMEGA_DAEMON_HOMEOSTASIS_TARGET_MAX"),
+  2000,
+  10,
+  1_000_000,
+);
 
 let lastPhaseSeasonTick = -1;
 let lastHomeostasisControlTick = -1;
+let lastHomeostasisTargetControlTick = -1;
 
 const withTimeout = async (
   input: string,
@@ -884,6 +915,17 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             target_energy: asFiniteNumber(
               daemonHomeostasisRaw.target_energy,
               HOMEOSTASIS_TARGET_ENERGY,
+            ),
+            target_energy_default: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy_default,
+              HOMEOSTASIS_TARGET_ENERGY,
+            ),
+            target_energy_current: asFiniteNumber(
+              daemonHomeostasisRaw.target_energy_current,
+              asFiniteNumber(
+                daemonHomeostasisRaw.target_energy,
+                HOMEOSTASIS_TARGET_ENERGY,
+              ),
             ),
             band: asFiniteNumber(daemonHomeostasisRaw.band, HOMEOSTASIS_BAND),
             max_delta: asFiniteNumber(daemonHomeostasisRaw.max_delta, 0),
@@ -1423,7 +1465,8 @@ const postPressureRingUpdate = async (
 
 const postHomeostasisUpdate = async (
   payload: {
-    base_tax: number;
+    base_tax?: number;
+    target_energy?: number;
     reason?: string;
   },
 ): Promise<void> => {
@@ -1506,11 +1549,13 @@ const maybeAdvancePhaseRing = async (
 const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
   if (!HOMEOSTASIS_CONTROL_ENABLE) return;
   if (telemetry.daemon_governance?.safe_mode) return;
-  if (
-    telemetry.tick - lastHomeostasisControlTick < HOMEOSTASIS_COOLDOWN_TICKS
-  ) {
-    return;
-  }
+  const taxCooldownReady =
+    telemetry.tick - lastHomeostasisControlTick >= HOMEOSTASIS_COOLDOWN_TICKS;
+  const targetCooldownReady = !HOMEOSTASIS_TARGET_CONTROL_ENABLE ||
+    telemetry.tick - lastHomeostasisTargetControlTick >=
+      HOMEOSTASIS_TARGET_COOLDOWN_TICKS;
+  if (!taxCooldownReady && !targetCooldownReady) return;
+
   const live = telemetry.daemon_governance?.homeostasis;
   if (!live?.enabled) return;
 
@@ -1521,19 +1566,31 @@ const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
     HOMEOSTASIS_MIN_TAX,
     HOMEOSTASIS_MAX_TAX,
   );
-  const target = HOMEOSTASIS_TARGET_ENERGY;
-  const band = Math.max(1, HOMEOSTASIS_BAND);
+  const currentTarget = clamp(
+    Math.round(
+      asFiniteNumber(
+        live.target_energy_current,
+        asFiniteNumber(live.target_energy, HOMEOSTASIS_TARGET_ENERGY),
+      ),
+    ),
+    HOMEOSTASIS_TARGET_MIN,
+    HOMEOSTASIS_TARGET_MAX,
+  );
+  const band = Math.max(1, asFiniteNumber(live.band, HOMEOSTASIS_BAND));
   const overflow = clamp(
     asFiniteNumber(telemetry.spatial_hash_guard?.overflow_ratio, 0),
     0,
     1,
   );
 
-  const high = target + band;
-  const low = Math.max(0, target - band);
+  const high = currentTarget + band;
+  const low = Math.max(0, currentTarget - band);
   let nextTax = currentTax;
+  let nextTarget = currentTarget;
+  let taxChanged = false;
+  let targetChanged = false;
 
-  if (telemetry.avgEnergy > high) {
+  if (taxCooldownReady && telemetry.avgEnergy > high) {
     const overshoot = telemetry.avgEnergy - high;
     let step = Math.max(1, Math.round(overshoot * HOMEOSTASIS_GAIN_UP));
     if (overflow >= HOMEOSTASIS_OVERFLOW_HARD) {
@@ -1542,26 +1599,43 @@ const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
       step = Math.max(step, 1);
     }
     nextTax = currentTax + Math.min(HOMEOSTASIS_MAX_STEP, step);
-  } else if (telemetry.avgEnergy < low) {
+  } else if (taxCooldownReady && telemetry.avgEnergy < low) {
     const undershoot = low - telemetry.avgEnergy;
     const step = Math.max(1, Math.round(undershoot * HOMEOSTASIS_GAIN_DOWN));
     nextTax = currentTax - Math.min(HOMEOSTASIS_MAX_STEP, step);
-  } else {
-    return;
   }
-
   nextTax = clamp(nextTax, HOMEOSTASIS_MIN_TAX, HOMEOSTASIS_MAX_TAX);
-  if (nextTax === currentTax) return;
+  taxChanged = nextTax !== currentTax;
+
+  if (HOMEOSTASIS_TARGET_CONTROL_ENABLE && targetCooldownReady) {
+    if (overflow >= HOMEOSTASIS_OVERFLOW_HARD && telemetry.avgEnergy > high) {
+      nextTarget = currentTarget - HOMEOSTASIS_TARGET_STEP;
+    } else if (
+      overflow <= HOMEOSTASIS_OVERFLOW_SOFT * 0.6 &&
+      telemetry.avgEnergy < low
+    ) {
+      nextTarget = currentTarget + HOMEOSTASIS_TARGET_STEP;
+    }
+  }
+  nextTarget = clamp(nextTarget, HOMEOSTASIS_TARGET_MIN, HOMEOSTASIS_TARGET_MAX);
+  targetChanged = nextTarget !== currentTarget;
+  if (!taxChanged && !targetChanged) return;
+
+  const reasonParts: string[] = [];
+  if (taxChanged) reasonParts.push("daemon_homeostasis_feedback");
+  if (targetChanged) reasonParts.push("daemon_homeostasis_target_feedback");
 
   await postHomeostasisUpdate({
-    base_tax: nextTax,
-    reason: "daemon_homeostasis_feedback",
+    ...(taxChanged ? { base_tax: nextTax } : {}),
+    ...(targetChanged ? { target_energy: nextTarget } : {}),
+    reason: reasonParts.join("+"),
   });
-  lastHomeostasisControlTick = telemetry.tick;
+  if (taxChanged) lastHomeostasisControlTick = telemetry.tick;
+  if (targetChanged) lastHomeostasisTargetControlTick = telemetry.tick;
   logAction(
-    `[HOMEOSTASIS] baseTax=${currentTax}->${nextTax} avgEnergy=${
+    `[HOMEOSTASIS] baseTax=${currentTax}->${nextTax} target=${currentTarget}->${nextTarget} avgEnergy=${
       telemetry.avgEnergy.toFixed(2)
-    } target=${target.toFixed(2)} band=${band.toFixed(2)} overflow=${
+    } band=${band.toFixed(2)} overflow=${
       overflow.toFixed(3)
     }`,
   );
@@ -1657,7 +1731,7 @@ const startDaemon = (): void => {
   logAction(
     `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
       PHASE_SEASONS_STEP_RAD.toFixed(4)
-    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] target=${HOMEOSTASIS_TARGET_ENERGY.toFixed(2)} band=${HOMEOSTASIS_BAND.toFixed(2)}`,
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] targetCtl=${HOMEOSTASIS_TARGET_CONTROL_ENABLE} targetRange=[${HOMEOSTASIS_TARGET_MIN},${HOMEOSTASIS_TARGET_MAX}] targetStep=${HOMEOSTASIS_TARGET_STEP} target=${HOMEOSTASIS_TARGET_ENERGY.toFixed(2)} band=${HOMEOSTASIS_BAND.toFixed(2)}`,
   );
 
   const heartbeat = async (): Promise<void> => {

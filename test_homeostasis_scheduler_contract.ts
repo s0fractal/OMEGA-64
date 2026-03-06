@@ -50,6 +50,13 @@ const main = async () => {
     "Pulse must hold mutable base-tax runtime overlay",
     violations,
   );
+  requireSnippet(
+    pulse,
+    "homeostasisTargetEnergyRuntime",
+    PULSE_PATH,
+    "Pulse must hold mutable target-energy runtime overlay",
+    violations,
+  );
 
   requireSnippet(
     system,
@@ -63,6 +70,13 @@ const main = async () => {
     "parseHomeostasisIngressEnvelope",
     SYSTEM_START_PATH,
     "System runtime must parse daemon homeostasis ingress payload",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "target_energy",
+    SYSTEM_START_PATH,
+    "System homeostasis ingress must support dynamic target-energy updates",
     violations,
   );
   requireSnippet(
@@ -113,6 +127,20 @@ const main = async () => {
     "postHomeostasisUpdate",
     DAEMON_PATH,
     "Daemon must post homeostasis updates to runtime",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "HOMEOSTASIS_TARGET_CONTROL_ENABLE",
+    DAEMON_PATH,
+    "Daemon must expose target-energy control toggle for homeostasis scheduler",
+    violations,
+  );
+  requireSnippet(
+    daemon,
+    "target_energy",
+    DAEMON_PATH,
+    "Daemon homeostasis payload must support target-energy updates",
     violations,
   );
 

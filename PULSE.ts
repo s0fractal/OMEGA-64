@@ -53,6 +53,8 @@ const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
+const HOMEOSTASIS_TARGET_ENERGY_MIN = 1;
+const HOMEOSTASIS_TARGET_ENERGY_MAX = 1_000_000;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
 const WASM_RELEASE_URL = new URL("./build/release.wasm", import.meta.url);
@@ -81,6 +83,8 @@ type SpatialHashState = {
 type HomeostasisState = {
   enabled: boolean;
   targetEnergy: number;
+  targetEnergyDefault: number;
+  targetEnergyCurrent: number;
   band: number;
   maxDelta: number;
   overflowThreshold: number;
@@ -101,6 +105,11 @@ const clampHomeostasisBaseTax = (value: number): number =>
   Math.max(
     HOMEOSTASIS_BASE_TAX_MIN,
     Math.min(HOMEOSTASIS_BASE_TAX_MAX, Math.round(value)),
+  );
+const clampHomeostasisTargetEnergy = (value: number): number =>
+  Math.max(
+    HOMEOSTASIS_TARGET_ENERGY_MIN,
+    Math.min(HOMEOSTASIS_TARGET_ENERGY_MAX, Math.round(value)),
   );
 const normalizeTheta = (theta: number): number => {
   if (!Number.isFinite(theta)) return 0;
@@ -174,6 +183,9 @@ let spatialHashState: SpatialHashState = {
   overflowRatio: 0,
 };
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+  HOMEOSTASIS_TARGET_ENERGY,
+);
 let homeostasisLastUpdateTick = -1;
 let homeostasisLastUpdateSource = "runtime_policy";
 let homeostasisLastUpdateReason = "bootstrap";
@@ -198,6 +210,9 @@ const resetSpatialHashStateForColdStart = (): void => {
 };
 const resetHomeostasisStateForColdStart = (): void => {
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+  homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+    HOMEOSTASIS_TARGET_ENERGY,
+  );
   homeostasisLastUpdateTick = -1;
   homeostasisLastUpdateSource = "runtime_policy";
   homeostasisLastUpdateReason = "coldstart_reset";
@@ -210,7 +225,9 @@ const resetEvolutionPressureStateForColdStart = (): void => {
 };
 const snapshotHomeostasisState = (): HomeostasisState => ({
   enabled: HOMEOSTASIS_ENABLED,
-  targetEnergy: HOMEOSTASIS_TARGET_ENERGY,
+  targetEnergy: clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime),
+  targetEnergyDefault: HOMEOSTASIS_TARGET_ENERGY,
+  targetEnergyCurrent: clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime),
   band: HOMEOSTASIS_BAND,
   maxDelta: HOMEOSTASIS_MAX_DELTA,
   overflowThreshold: HOMEOSTASIS_OVERFLOW_THRESHOLD,
@@ -516,6 +533,7 @@ const applyEnergyHomeostasisTerms = (
   const bandStep = Math.max(1, Math.floor(HOMEOSTASIS_BAND / 2));
   const overflowActive = spatialOverflowRatio >= HOMEOSTASIS_OVERFLOW_THRESHOLD;
   const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+  const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
   let adjusted = 0;
   let netDelta = 0;
   let taxed = 0;
@@ -532,7 +550,7 @@ const applyEnergyHomeostasisTerms = (
       taxed += tax;
     }
 
-    const deviation = current - HOMEOSTASIS_TARGET_ENERGY;
+    const deviation = current - targetEnergy;
     const absDeviation = Math.abs(deviation);
     if (absDeviation > HOMEOSTASIS_BAND) {
       const gradient = absDeviation - HOMEOSTASIS_BAND;
@@ -579,7 +597,7 @@ const applyEnergyHomeostasisTerms = (
     });
     if (tick % 20 === 0) {
       LOGGER.debug(
-        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${HOMEOSTASIS_TARGET_ENERGY} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
+        `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${targetEnergy} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${spatialOverflowRatio.toFixed(3)}`,
       );
     }
   }
@@ -1182,16 +1200,27 @@ export const PULSE = {
   updateHomeostasisPolicy: (
     update: {
       baseTax?: number;
+      targetEnergy?: number;
       source?: string;
       reason?: string;
       tick?: number;
     },
   ): HomeostasisState => {
     const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    const prevTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
     if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
       homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(update.baseTax);
     }
+    if (
+      update.targetEnergy !== undefined &&
+      Number.isFinite(update.targetEnergy)
+    ) {
+      homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
+        update.targetEnergy,
+      );
+    }
     const nextTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+    const nextTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
     const source = (update.source ?? "runtime").trim();
     const reason = (update.reason ?? "manual_update").trim();
     homeostasisLastUpdateSource = source.length > 0 ? source : "runtime";
@@ -1200,9 +1229,9 @@ export const PULSE = {
       ? Math.max(0, Math.floor(update.tick))
       : Atomics.load(STATE_MATRIX.tickCounter, 0);
 
-    if (nextTax !== prevTax) {
+    if (nextTax !== prevTax || nextTarget !== prevTarget) {
       LOGGER.info(
-        `   [PULSE] Homeostasis base tax update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} ${prevTax} -> ${nextTax} reason=${homeostasisLastUpdateReason}`,
+        `   [PULSE] Homeostasis policy update source=${homeostasisLastUpdateSource} tick=${homeostasisLastUpdateTick} baseTax=${prevTax}->${nextTax} target=${prevTarget}->${nextTarget} reason=${homeostasisLastUpdateReason}`,
       );
       MUTATION_TELEMETRY.record({
         lane: "internal_host",

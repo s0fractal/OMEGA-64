@@ -139,6 +139,7 @@ type PressureRingUpdateSnapshot = {
 
 type HomeostasisIngressEnvelope = {
   base_tax?: number;
+  target_energy?: number;
   reason?: string;
 };
 
@@ -148,6 +149,8 @@ type HomeostasisUpdateSnapshot = {
   reason: string;
   base_tax_before: number;
   base_tax_after: number;
+  target_energy_before: number;
+  target_energy_after: number;
 };
 
 const requireControlAuth = (req: Request): Response | null => {
@@ -213,6 +216,8 @@ const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
 const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
+const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
+const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
 const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
 const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
 const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
@@ -682,6 +687,8 @@ const buildTelemetry = async () => {
       homeostasis: {
         enabled: homeostasis.enabled,
         target_energy: homeostasis.targetEnergy,
+        target_energy_default: homeostasis.targetEnergyDefault,
+        target_energy_current: homeostasis.targetEnergyCurrent,
         band: homeostasis.band,
         max_delta: homeostasis.maxDelta,
         overflow_threshold: homeostasis.overflowThreshold,
@@ -887,18 +894,32 @@ const parseHomeostasisIngressEnvelope = (
     payloadSource.base_tax ?? payloadSource.baseTax,
     Number.NaN,
   );
-  if (!Number.isFinite(baseTax)) return null;
+  const targetEnergy = asFiniteNumber(
+    payloadSource.target_energy ?? payloadSource.targetEnergy,
+    Number.NaN,
+  );
+  if (!Number.isFinite(baseTax) && !Number.isFinite(targetEnergy)) return null;
   const reason = typeof payloadSource.reason === "string"
     ? payloadSource.reason.trim().slice(0, 96)
     : "daemon_homeostasis_controller";
-  return {
-    base_tax: clamp(
+  const envelope: HomeostasisIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
+  };
+  if (Number.isFinite(baseTax)) {
+    envelope.base_tax = clamp(
       Math.round(baseTax),
       DAEMON_HOMEOSTASIS_BASE_TAX_MIN,
       DAEMON_HOMEOSTASIS_BASE_TAX_MAX,
-    ),
-    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
-  };
+    );
+  }
+  if (Number.isFinite(targetEnergy)) {
+    envelope.target_energy = clamp(
+      Math.round(targetEnergy),
+      DAEMON_HOMEOSTASIS_TARGET_MIN,
+      DAEMON_HOMEOSTASIS_TARGET_MAX,
+    );
+  }
+  return envelope;
 };
 
 const normalizeDaemonNarrativeContext = (
@@ -1415,6 +1436,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         homeostasis: {
           enabled: homeostasis.enabled,
           target_energy: homeostasis.targetEnergy,
+          target_energy_default: homeostasis.targetEnergyDefault,
+          target_energy_current: homeostasis.targetEnergyCurrent,
           band: homeostasis.band,
           max_delta: homeostasis.maxDelta,
           overflow_threshold: homeostasis.overflowThreshold,
@@ -1441,7 +1464,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     try {
       const body = await req.json();
       const envelope = parseHomeostasisIngressEnvelope(body);
-      if (!envelope || envelope.base_tax === undefined) {
+      if (
+        !envelope ||
+        (envelope.base_tax === undefined && envelope.target_energy === undefined)
+      ) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
           kind: "daemon_homeostasis_invalid_payload",
@@ -1451,7 +1477,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           JSON.stringify({
             ok: false,
             reason: "INVALID_HOMEOSTASIS_PAYLOAD",
-            expected: "Provide {base_tax:number, reason?:string}",
+            expected:
+              "Provide {base_tax?:number, target_energy?:number, reason?:string}",
           }),
           { status: 400, headers: JSON_HEADERS },
         );
@@ -1461,6 +1488,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const before = PULSE.getHomeostasisState();
       const updated = PULSE.updateHomeostasisPolicy({
         baseTax: envelope.base_tax,
+        targetEnergy: envelope.target_energy,
         source: "daemon_homeostasis_controller",
         reason: envelope.reason ?? "daemon_homeostasis_controller",
         tick,
@@ -1471,6 +1499,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         reason: envelope.reason ?? "daemon_homeostasis_controller",
         base_tax_before: before.baseTaxCurrent,
         base_tax_after: updated.baseTaxCurrent,
+        target_energy_before: before.targetEnergy,
+        target_energy_after: updated.targetEnergy,
       };
       setLatestHomeostasisUpdate(snapshot);
       MUTATION_TELEMETRY.record({
@@ -1485,6 +1515,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         reason: snapshot.reason,
         base_tax_before: snapshot.base_tax_before,
         base_tax_after: snapshot.base_tax_after,
+        target_energy_before: snapshot.target_energy_before,
+        target_energy_after: snapshot.target_energy_after,
       });
 
       return new Response(
@@ -1494,6 +1526,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           homeostasis: {
             enabled: updated.enabled,
             target_energy: updated.targetEnergy,
+            target_energy_default: updated.targetEnergyDefault,
+            target_energy_current: updated.targetEnergyCurrent,
             band: updated.band,
             max_delta: updated.maxDelta,
             overflow_threshold: updated.overflowThreshold,
