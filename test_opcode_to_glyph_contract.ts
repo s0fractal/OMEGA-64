@@ -1,0 +1,51 @@
+import { RISC } from "./STATE_MATRIX.ts";
+import { glyphTapeToPrettyText } from "./runtime_bridge/glyph_pretty.ts";
+import { scriptToGlyphTape } from "./runtime_bridge/opcode_to_glyph.ts";
+
+const expect = (condition: unknown, message: string): void => {
+  if (!condition) throw new Error(message);
+};
+
+const main = () => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+
+  const tape = scriptToGlyphTape(script);
+  expect(tape.length === 3, "[opcode_to_glyph] expected 3 mapped tokens");
+  expect(tape[0]?.glyphMnemonic === "GET", "[opcode_to_glyph] first token must be GET");
+  expect(
+    tape[1]?.glyphMnemonic === "SIGNAL",
+    "[opcode_to_glyph] second token must be SIGNAL",
+  );
+  expect(tape[2]?.glyphMnemonic === "JMP", "[opcode_to_glyph] third token must be JMP");
+
+  const pretty = glyphTapeToPrettyText(tape);
+  expect(pretty.includes("pc=0"), "[opcode_to_glyph] pretty output must include pc");
+  expect(pretty.includes("GET[9]"), "[opcode_to_glyph] pretty output must mention GET glyph");
+  expect(
+    pretty.includes("SIGNAL[17]"),
+    "[opcode_to_glyph] pretty output must mention SIGNAL glyph",
+  );
+
+  const unmapped = new Uint8Array([RISC.OP_JZ, 0, 0]);
+  let failedClosed = false;
+  try {
+    scriptToGlyphTape(unmapped);
+  } catch {
+    failedClosed = true;
+  }
+  expect(
+    failedClosed,
+    "[opcode_to_glyph] unmapped opcode must fail closed by default",
+  );
+
+  console.log(`[opcode_to_glyph] contract guard passed. tokens=${tape.length}`);
+};
+
+main();

@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T11:37:53.960Z*
-*Exported Files: 72*
+*Generated: 2026-03-06T11:46:09.395Z*
+*Exported Files: 76*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
-*Non-Runtime Code Files: 21*
+*Non-Runtime Code Files: 25*
 *Runtime-Support Code Files: 16*
-*Experimental Code Files: 5*
-*Manifest SHA256: ff31d0a846a41aabede88fc92c0b781431db2160366800f5c6b93b82e13ac1ef*
-*Export Set SHA256: a6deae17a3ad51db12978f2a19409f047e1632f66056f2512b9bd7af4d0c3aa3*
-*Export Content SHA256: 909c39b0d29e0c3cb4dc0fdf0cf24ee66ea9b1d6795ab20c5a950abdb1639cc6*
-*Git Commit: fa8bda4cce8c*
+*Experimental Code Files: 9*
+*Manifest SHA256: 0b2815337b64c91c31f01b0e95850fd46195f33acafd2321821e9131185b45a9*
+*Export Set SHA256: 1928b28b5832cba27422ef0aafa97d84945215271a02a6431ab6184f42a15e27*
+*Export Content SHA256: 6dd7d787296cfac68fb2c8f970e1b13b14761aa4ead5837713f8dc6691732657*
+*Git Commit: 48b1959ea937*
 
 ---
 
@@ -80,10 +80,14 @@
 - OBSERVER_UI.ts
 - P2P_SYNAPSE.ts
 - RECOVERY.ts
+- reduction_core/GlyphIR64.ts
 - REFLECTION_ENGINE.ts
 - RIBOSOME_TICK.ts
+- runtime_bridge/glyph_pretty.ts
+- runtime_bridge/opcode_to_glyph.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
+- verification/golden_trace_catalog.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
 - worker_gate_thresholds.ts
@@ -120,8 +124,12 @@
 - ECOLOGY_ENGINE.ts
 - LAMBDA_VM.ts
 - MATRIX_ENGINE.ts
+- reduction_core/GlyphIR64.ts
 - REFLECTION_ENGINE.ts
 - RIBOSOME_TICK.ts
+- runtime_bridge/glyph_pretty.ts
+- runtime_bridge/opcode_to_glyph.ts
+- verification/golden_trace_catalog.ts
 
 ---
 
@@ -6086,7 +6094,11 @@ export const CONTROL_INTENT_QUEUE = {
     "LAMBDA_VM.ts",
     "MATRIX_ENGINE.ts",
     "REFLECTION_ENGINE.ts",
-    "RIBOSOME_TICK.ts"
+    "RIBOSOME_TICK.ts",
+    "reduction_core/GlyphIR64.ts",
+    "runtime_bridge/glyph_pretty.ts",
+    "runtime_bridge/opcode_to_glyph.ts",
+    "verification/golden_trace_catalog.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
@@ -6505,8 +6517,8 @@ Status snapshot as of 2026-03-06:
 | --- | --- | --- |
 | Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion |
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | scaffolded | [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md) now contains concrete scenario contracts |
-| Stage 3 IR contract | scaffolded | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) defines the bridge vocabulary |
+| Stage 2 baseline definition | in progress | markdown contract exists and a code-backed golden trace catalog now mirrors the six baseline scenarios |
+| Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 
 Current rule:
 
@@ -16124,6 +16136,292 @@ export const ATOM = () => (x: any) => x;
 
 ---
 
+## FILE: reduction_core/GlyphIR64.ts
+
+```typescript
+import { RISC } from "../STATE_MATRIX.ts";
+
+export type GlyphKind =
+  | "core"
+  | "control"
+  | "transport"
+  | "structural"
+  | "catalytic"
+  | "regulatory"
+  | "memory"
+  | "reserve";
+
+export type GlyphStabilityClass =
+  | "hard-invariant"
+  | "legacy-bridge"
+  | "bounded-dynamic"
+  | "reserve";
+
+export type GlyphSpec = {
+  id: number;
+  mnemonic: string;
+  kind: GlyphKind;
+  arity: number;
+  energyCost: number;
+  stabilityClass: GlyphStabilityClass;
+  reductionRuleRef: string;
+  legacyOpcode?: number;
+  notes?: string;
+};
+
+const glyphKindForId = (id: number): GlyphKind => {
+  if (id <= 3) return "core";
+  if (id <= 15) return "control";
+  if (id <= 23) return "transport";
+  if (id <= 31) return "structural";
+  if (id <= 39) return "catalytic";
+  if (id <= 47) return "regulatory";
+  if (id <= 55) return "memory";
+  return "reserve";
+};
+
+const defaultReductionRuleRef = (kind: GlyphKind): string => {
+  if (kind === "core") return "reduction/core";
+  if (kind === "control") return "bridge/control";
+  if (kind === "transport") return "bridge/transport";
+  if (kind === "structural") return "bridge/structural";
+  if (kind === "catalytic") return "bridge/catalytic";
+  if (kind === "regulatory") return "bridge/regulatory";
+  if (kind === "memory") return "bridge/memory";
+  return "reserve/unassigned";
+};
+
+const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
+  if (kind === "core") return "hard-invariant";
+  if (kind === "reserve") return "reserve";
+  if (kind === "regulatory" || kind === "memory") return "bounded-dynamic";
+  return "legacy-bridge";
+};
+
+const defaultGlyphSpec = (id: number): GlyphSpec => {
+  const kind = glyphKindForId(id);
+  const stabilityClass = defaultStabilityClass(kind);
+  return {
+    id,
+    mnemonic: `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
+    kind,
+    arity: 0,
+    energyCost: kind === "core" ? 0 : 1,
+    stabilityClass,
+    reductionRuleRef: defaultReductionRuleRef(kind),
+    notes: stabilityClass === "reserve"
+      ? "Reserved for sandboxed semantic evolution only."
+      : "Unassigned placeholder within the fixed 64-glyph lattice.",
+  };
+};
+
+const overrides = new Map<number, Partial<GlyphSpec>>([
+  [0, {
+    mnemonic: "S",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/S",
+    notes: "Hard invariant combinator.",
+  }],
+  [1, {
+    mnemonic: "K",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/K",
+    notes: "Hard invariant combinator.",
+  }],
+  [2, {
+    mnemonic: "I",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/I",
+    notes: "Hard invariant combinator.",
+  }],
+  [3, {
+    mnemonic: "Y",
+    kind: "core",
+    energyCost: 1,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/Y",
+    notes: "Bounded recursion anchor under fuel budget.",
+  }],
+  [8, {
+    mnemonic: "SET",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_SET,
+    reductionRuleRef: "bridge/control/set",
+  }],
+  [9, {
+    mnemonic: "GET",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_GET,
+    reductionRuleRef: "bridge/control/get",
+  }],
+  [10, {
+    mnemonic: "PUT",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_PUT,
+    reductionRuleRef: "bridge/control/put",
+  }],
+  [11, {
+    mnemonic: "ADD",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_ADD,
+    reductionRuleRef: "bridge/control/add",
+  }],
+  [12, {
+    mnemonic: "SUB",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_SUB,
+    reductionRuleRef: "bridge/control/sub",
+  }],
+  [13, {
+    mnemonic: "JNZ",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_JNZ,
+    reductionRuleRef: "bridge/control/jnz",
+  }],
+  [14, {
+    mnemonic: "JMP",
+    arity: 1,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_JMP,
+    reductionRuleRef: "bridge/control/jmp",
+  }],
+  [16, {
+    mnemonic: "REPLICATE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 6,
+    legacyOpcode: RISC.OP_REPLICATE,
+    reductionRuleRef: "bridge/transport/replicate",
+  }],
+  [17, {
+    mnemonic: "SIGNAL",
+    kind: "transport",
+    arity: 0,
+    energyCost: 3,
+    legacyOpcode: RISC.OP_SIGNAL,
+    reductionRuleRef: "bridge/transport/signal",
+  }],
+  [18, {
+    mnemonic: "SHARE",
+    kind: "transport",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_SHARE,
+    reductionRuleRef: "bridge/transport/share",
+  }],
+  [24, {
+    mnemonic: "PLUG",
+    kind: "structural",
+    arity: 2,
+    energyCost: 3,
+    legacyOpcode: 0xA4,
+    reductionRuleRef: "bridge/structural/plug",
+  }],
+  [25, {
+    mnemonic: "TENSEGRITY",
+    kind: "structural",
+    arity: 3,
+    energyCost: 4,
+    legacyOpcode: RISC.OP_TENSEGRITY,
+    reductionRuleRef: "bridge/structural/tensegrity",
+  }],
+  [26, {
+    mnemonic: "BUILD",
+    kind: "structural",
+    arity: 2,
+    energyCost: 6,
+    legacyOpcode: RISC.OP_BUILD,
+    reductionRuleRef: "bridge/structural/build",
+  }],
+  [27, {
+    mnemonic: "SENSE",
+    kind: "structural",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_SENSE,
+    reductionRuleRef: "bridge/structural/sense",
+  }],
+  [32, {
+    mnemonic: "COLLECTIVE",
+    kind: "catalytic",
+    arity: 3,
+    energyCost: 4,
+    legacyOpcode: RISC.OP_COLLECTIVE,
+    reductionRuleRef: "bridge/catalytic/collective",
+  }],
+  [33, {
+    mnemonic: "ROLE",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_ROLE,
+    reductionRuleRef: "bridge/catalytic/role",
+  }],
+]);
+
+const buildGlyphSpecs = (): GlyphSpec[] => {
+  const specs: GlyphSpec[] = [];
+  for (let id = 0; id < 64; id++) {
+    specs.push({
+      ...defaultGlyphSpec(id),
+      ...(overrides.get(id) ?? {}),
+      id,
+    });
+  }
+  return specs;
+};
+
+export const GLYPH_SPECS: readonly GlyphSpec[] = Object.freeze(
+  buildGlyphSpecs().map((spec) => Object.freeze({ ...spec })),
+);
+
+const GLYPH_SPEC_BY_ID = new Map<number, GlyphSpec>(
+  GLYPH_SPECS.map((spec) => [spec.id, spec]),
+);
+
+const GLYPH_SPEC_BY_OPCODE = new Map<number, GlyphSpec>(
+  GLYPH_SPECS
+    .filter((spec) => typeof spec.legacyOpcode === "number")
+    .map((spec) => [spec.legacyOpcode!, spec]),
+);
+
+export const BRIDGE_GLYPH_IDS = Object.freeze(
+  GLYPH_SPECS
+    .filter((spec) => typeof spec.legacyOpcode === "number")
+    .map((spec) => spec.id)
+    .sort((a, b) => a - b),
+);
+
+export const glyphSpecById = (id: number): GlyphSpec | null =>
+  GLYPH_SPEC_BY_ID.get(Math.trunc(id)) ?? null;
+
+export const glyphSpecByLegacyOpcode = (opcode: number): GlyphSpec | null =>
+  GLYPH_SPEC_BY_OPCODE.get(Math.trunc(opcode)) ?? null;
+
+export const isCoreGlyph = (id: number): boolean => {
+  const spec = glyphSpecById(id);
+  return spec?.kind === "core";
+};
+
+export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
+  GLYPH_SPECS.filter((spec) => spec.kind === kind);
+
+```
+
+---
+
 ## FILE: REDUCTION_METABOLISM_ROADMAP.md
 
 ```markdown
@@ -16156,8 +16454,8 @@ Status snapshot as of 2026-03-06:
 | --- | --- | --- |
 | Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts; baseline traces still need capture |
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
-| Stage 2: golden traces | scaffolded | scenario catalog, artifact naming, and drift budgets are defined |
-| Stage 3: `GlyphIR64` | scaffolded | contract file exists; no runtime or bridge ownership transferred yet |
+| Stage 2: golden traces | in progress | code-backed golden trace catalog now exists; persisted captures still missing |
+| Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
 | Stage 4+ | not started | blocked on captured traces and bridge verification harness |
 
 Latest completed planning work:
@@ -16166,6 +16464,8 @@ Latest completed planning work:
 - Replaced the placeholder causal atlas with a first owner/risk/disposition table for the highest-impact mutations.
 - Replaced the placeholder golden trace sheet with concrete scenarios, artifact paths, and drift-budget rules.
 - Added a dedicated `GlyphIR64` contract document so the bridge vocabulary is visible before implementation starts.
+- Added non-runtime bridge code for `GlyphIR64`, `opcode -> glyph` translation, and pretty/debug rendering without transferring any runtime ownership.
+- Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
 
 ## Current diagnosis
 
@@ -16558,6 +16858,172 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
+
+```
+
+---
+
+## FILE: runtime_bridge/glyph_pretty.ts
+
+```typescript
+import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
+import type { GlyphTapeToken } from "./opcode_to_glyph.ts";
+
+export const describeGlyphToken = (token: GlyphTapeToken): string => {
+  const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);
+  const glyphLabel = token.mapped && spec
+    ? `${spec.mnemonic}[${spec.id}]`
+    : `UNMAPPED(${token.opcodeMnemonic})`;
+  const args = token.args.length > 0
+    ? ` args=[${token.args.join(",")}]`
+    : "";
+  const reductionRule = spec ? ` rule=${spec.reductionRuleRef}` : "";
+  const energy = spec ? ` energy=${spec.energyCost}` : "";
+  return `pc=${token.pc} opcode=${token.opcodeMnemonic} -> ${glyphLabel}${args}${energy}${reductionRule}`;
+};
+
+export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
+  tape.map((token) => describeGlyphToken(token));
+
+export const glyphTapeToPrettyText = (
+  tape: readonly GlyphTapeToken[],
+): string => glyphTapeToLines(tape).join("\n");
+
+```
+
+---
+
+## FILE: runtime_bridge/opcode_to_glyph.ts
+
+```typescript
+import { RISC } from "../STATE_MATRIX.ts";
+import { glyphSpecByLegacyOpcode } from "../reduction_core/GlyphIR64.ts";
+
+export type LegacyInstruction = {
+  pc: number;
+  opcode: number;
+  opcodeMnemonic: string;
+  length: number;
+  args: number[];
+};
+
+export type GlyphTapeToken = LegacyInstruction & {
+  glyphId: number | null;
+  glyphMnemonic: string | null;
+  mapped: boolean;
+};
+
+const OPCODE_NAMES = new Map<number, string>([
+  [RISC.OP_NOP, "NOP"],
+  [RISC.OP_SET, "SET"],
+  [RISC.OP_GET, "GET"],
+  [RISC.OP_PUT, "PUT"],
+  [RISC.OP_ADD, "ADD"],
+  [RISC.OP_SUB, "SUB"],
+  [RISC.OP_JZ, "JZ"],
+  [RISC.OP_JNZ, "JNZ"],
+  [RISC.OP_JMP, "JMP"],
+  [RISC.OP_REPLICATE, "REPLICATE"],
+  [RISC.OP_SIGNAL, "SIGNAL"],
+  [RISC.OP_BIND, "BIND"],
+  [RISC.OP_SHARE, "SHARE"],
+  [RISC.OP_TENSEGRITY, "TENSEGRITY"],
+  [RISC.OP_COLLECTIVE, "COLLECTIVE"],
+  [RISC.OP_ROLE, "ROLE"],
+  [RISC.OP_BUILD, "BUILD"],
+  [RISC.OP_SENSE, "SENSE"],
+  [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
+  [RISC.OP_ENTANGLE, "ENTANGLE"],
+  [0xA4, "PLUG"],
+]);
+
+const OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_NOP, 1],
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_PUT, 3],
+  [RISC.OP_ADD, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_REPLICATE, 1],
+  [RISC.OP_SIGNAL, 1],
+  [RISC.OP_BIND, 3],
+  [RISC.OP_SHARE, 3],
+  [0xA4, 3],
+  [RISC.OP_TENSEGRITY, 4],
+  [RISC.OP_COLLECTIVE, 4],
+  [RISC.OP_ROLE, 3],
+  [RISC.OP_BUILD, 3],
+  [RISC.OP_SENSE, 3],
+  [RISC.OP_SPORE_DRIVE, 1],
+  [RISC.OP_ENTANGLE, 1],
+]);
+
+const opcodeName = (opcode: number): string =>
+  OPCODE_NAMES.get(opcode) ?? `OP_0x${opcode.toString(16).toUpperCase()}`;
+
+export const legacyOpcodeLength = (opcode: number): number =>
+  OPCODE_LENGTHS.get(opcode) ?? 1;
+
+export const decodeLegacyInstruction = (
+  script: Uint8Array,
+  pc: number,
+): LegacyInstruction | null => {
+  if (pc < 0 || pc >= script.length) return null;
+  const opcode = script[pc] ?? RISC.OP_NOP;
+  const length = legacyOpcodeLength(opcode);
+  const args = Array.from(script.slice(pc + 1, pc + length));
+  return {
+    pc,
+    opcode,
+    opcodeMnemonic: opcodeName(opcode),
+    length,
+    args,
+  };
+};
+
+type ScriptToGlyphOptions = {
+  allowUnmapped?: boolean;
+  maxSteps?: number;
+};
+
+export const scriptToGlyphTape = (
+  script: Uint8Array,
+  options: ScriptToGlyphOptions = {},
+): GlyphTapeToken[] => {
+  const allowUnmapped = options.allowUnmapped ?? false;
+  const maxSteps = Math.max(1, Math.min(64, options.maxSteps ?? 64));
+  const out: GlyphTapeToken[] = [];
+  let pc = 0;
+  let steps = 0;
+
+  while (pc >= 0 && pc < script.length && steps < maxSteps) {
+    const decoded = decodeLegacyInstruction(script, pc);
+    if (!decoded) break;
+    if (decoded.opcode === RISC.OP_NOP) break;
+
+    const spec = glyphSpecByLegacyOpcode(decoded.opcode);
+    if (!spec && !allowUnmapped) {
+      throw new Error(
+        `[opcode_to_glyph] unmapped legacy opcode at pc=${pc}: ${decoded.opcodeMnemonic}`,
+      );
+    }
+
+    out.push({
+      ...decoded,
+      glyphId: spec?.id ?? null,
+      glyphMnemonic: spec?.mnemonic ?? null,
+      mapped: spec !== null,
+    });
+
+    pc += decoded.length;
+    steps++;
+  }
+
+  return out;
+};
 
 ```
 
@@ -27713,6 +28179,197 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
     </script>
   </body>
 </html>
+
+```
+
+---
+
+## FILE: verification/golden_trace_catalog.ts
+
+```typescript
+export type GoldenTraceMetricPolicy = "strict" | "bounded";
+
+export type GoldenTraceScenario = {
+  id: string;
+  scenario: string;
+  setup: string;
+  duration: string;
+  daemonEnabled: boolean;
+  metrics: string[];
+  driftPolicy: Record<string, GoldenTraceMetricPolicy>;
+  supportFiles: string[];
+};
+
+const TRACE_ROOT = "verification/traces";
+
+export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze([
+  {
+    id: "gt01_coldstart_seeded_swarm",
+    scenario: "coldstart / seeded swarm",
+    setup: "cold boot, deterministic seed swarm, daemon off",
+    duration: "256 ticks",
+    daemonEnabled: false,
+    metrics: [
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "mutationCounts",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      population: "strict",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      mutationCounts: "strict",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_seeded_swarm.ts",
+      "worker_determinism_capture.ts",
+    ],
+  },
+  {
+    id: "gt02_free_run_no_ingress",
+    scenario: "free run without external intervention",
+    setup: "cold boot, no inject, no daemon policy updates",
+    duration: "2048 ticks",
+    daemonEnabled: false,
+    metrics: [
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "decreeShifts",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      population: "bounded",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      decreeShifts: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "worker_trend_baseline.ts",
+      "worker_trend_math.ts",
+    ],
+  },
+  {
+    id: "gt03_pheromone_inject",
+    scenario: "bounded pheromone inject",
+    setup: "warmup 128 ticks, then one fixed DROP_PHEROMONE payload",
+    duration: "512 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "localResponseWindow",
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      localResponseWindow: "strict",
+      population: "bounded",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_determinism_capture.ts",
+    ],
+  },
+  {
+    id: "gt04_plasmid_inject",
+    scenario: "durable symbolic ingress",
+    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload",
+    duration: "512 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "acceptedMutationCounts",
+      "rejectedMutationCounts",
+      "population",
+      "avgEnergy",
+      "codexSnapshotDigest",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      acceptedMutationCounts: "strict",
+      rejectedMutationCounts: "strict",
+      population: "bounded",
+      avgEnergy: "bounded",
+      codexSnapshotDigest: "strict",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_resilience_capture.ts",
+    ],
+  },
+  {
+    id: "gt05_homeostasis_correction",
+    scenario: "external homeostasis correction",
+    setup: "warmup 256 ticks, then one fixed /api/homeostasis update",
+    duration: "768 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "avgEnergySlope",
+      "spatialOverflowRatio",
+      "homeostasisStateDigest",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      avgEnergySlope: "bounded",
+      spatialOverflowRatio: "bounded",
+      homeostasisStateDigest: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "worker_trend_math.ts",
+    ],
+  },
+  {
+    id: "gt06_daemon_admission_case",
+    scenario: "daemon admission / rejection",
+    setup: "one accepted ingress case and one degraded/rejected case with daemon governance on",
+    duration: "event-bounded",
+    daemonEnabled: true,
+    metrics: [
+      "admissionSeverity",
+      "appliedAction",
+      "codexChronicleDigest",
+      "dominantInvariantDigest",
+    ],
+    driftPolicy: {
+      admissionSeverity: "strict",
+      appliedAction: "strict",
+      codexChronicleDigest: "strict",
+      dominantInvariantDigest: "strict",
+    },
+    supportFiles: [
+      "test_daemon_governance_contract.ts",
+    ],
+  },
+]);
+
+const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(
+  GOLDEN_TRACE_CATALOG.map((trace) => [trace.id, trace]),
+);
+
+export const goldenTraceById = (id: string): GoldenTraceScenario | null =>
+  TRACE_BY_ID.get(id) ?? null;
+
+export const goldenTraceArtifactPaths = (id: string) => {
+  const trace = goldenTraceById(id);
+  if (!trace) {
+    throw new Error(`[golden_trace_catalog] unknown trace id: ${id}`);
+  }
+  const dir = `${TRACE_ROOT}/${trace.id}`;
+  return {
+    dir,
+    traceJson: `${dir}/trace.json`,
+    codexSnapshotJson: `${dir}/codex_snapshot.json`,
+    invariantsJson: `${dir}/invariants.json`,
+    notesMd: `${dir}/notes.md`,
+  };
+};
 
 ```
 

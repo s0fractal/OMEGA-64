@@ -27,8 +27,8 @@ Status snapshot as of 2026-03-06:
 | --- | --- | --- |
 | Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts; baseline traces still need capture |
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
-| Stage 2: golden traces | scaffolded | scenario catalog, artifact naming, and drift budgets are defined |
-| Stage 3: `GlyphIR64` | scaffolded | contract file exists; no runtime or bridge ownership transferred yet |
+| Stage 2: golden traces | in progress | code-backed golden trace catalog now exists; persisted captures still missing |
+| Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
 | Stage 4+ | not started | blocked on captured traces and bridge verification harness |
 
 Latest completed planning work:
@@ -37,6 +37,8 @@ Latest completed planning work:
 - Replaced the placeholder causal atlas with a first owner/risk/disposition table for the highest-impact mutations.
 - Replaced the placeholder golden trace sheet with concrete scenarios, artifact paths, and drift-budget rules.
 - Added a dedicated `GlyphIR64` contract document so the bridge vocabulary is visible before implementation starts.
+- Added non-runtime bridge code for `GlyphIR64`, `opcode -> glyph` translation, and pretty/debug rendering without transferring any runtime ownership.
+- Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
 
 ## Current diagnosis
 

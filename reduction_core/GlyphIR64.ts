@@ -1,0 +1,278 @@
+import { RISC } from "../STATE_MATRIX.ts";
+
+export type GlyphKind =
+  | "core"
+  | "control"
+  | "transport"
+  | "structural"
+  | "catalytic"
+  | "regulatory"
+  | "memory"
+  | "reserve";
+
+export type GlyphStabilityClass =
+  | "hard-invariant"
+  | "legacy-bridge"
+  | "bounded-dynamic"
+  | "reserve";
+
+export type GlyphSpec = {
+  id: number;
+  mnemonic: string;
+  kind: GlyphKind;
+  arity: number;
+  energyCost: number;
+  stabilityClass: GlyphStabilityClass;
+  reductionRuleRef: string;
+  legacyOpcode?: number;
+  notes?: string;
+};
+
+const glyphKindForId = (id: number): GlyphKind => {
+  if (id <= 3) return "core";
+  if (id <= 15) return "control";
+  if (id <= 23) return "transport";
+  if (id <= 31) return "structural";
+  if (id <= 39) return "catalytic";
+  if (id <= 47) return "regulatory";
+  if (id <= 55) return "memory";
+  return "reserve";
+};
+
+const defaultReductionRuleRef = (kind: GlyphKind): string => {
+  if (kind === "core") return "reduction/core";
+  if (kind === "control") return "bridge/control";
+  if (kind === "transport") return "bridge/transport";
+  if (kind === "structural") return "bridge/structural";
+  if (kind === "catalytic") return "bridge/catalytic";
+  if (kind === "regulatory") return "bridge/regulatory";
+  if (kind === "memory") return "bridge/memory";
+  return "reserve/unassigned";
+};
+
+const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
+  if (kind === "core") return "hard-invariant";
+  if (kind === "reserve") return "reserve";
+  if (kind === "regulatory" || kind === "memory") return "bounded-dynamic";
+  return "legacy-bridge";
+};
+
+const defaultGlyphSpec = (id: number): GlyphSpec => {
+  const kind = glyphKindForId(id);
+  const stabilityClass = defaultStabilityClass(kind);
+  return {
+    id,
+    mnemonic: `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
+    kind,
+    arity: 0,
+    energyCost: kind === "core" ? 0 : 1,
+    stabilityClass,
+    reductionRuleRef: defaultReductionRuleRef(kind),
+    notes: stabilityClass === "reserve"
+      ? "Reserved for sandboxed semantic evolution only."
+      : "Unassigned placeholder within the fixed 64-glyph lattice.",
+  };
+};
+
+const overrides = new Map<number, Partial<GlyphSpec>>([
+  [0, {
+    mnemonic: "S",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/S",
+    notes: "Hard invariant combinator.",
+  }],
+  [1, {
+    mnemonic: "K",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/K",
+    notes: "Hard invariant combinator.",
+  }],
+  [2, {
+    mnemonic: "I",
+    kind: "core",
+    energyCost: 0,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/I",
+    notes: "Hard invariant combinator.",
+  }],
+  [3, {
+    mnemonic: "Y",
+    kind: "core",
+    energyCost: 1,
+    stabilityClass: "hard-invariant",
+    reductionRuleRef: "reduction/core/Y",
+    notes: "Bounded recursion anchor under fuel budget.",
+  }],
+  [8, {
+    mnemonic: "SET",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_SET,
+    reductionRuleRef: "bridge/control/set",
+  }],
+  [9, {
+    mnemonic: "GET",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_GET,
+    reductionRuleRef: "bridge/control/get",
+  }],
+  [10, {
+    mnemonic: "PUT",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_PUT,
+    reductionRuleRef: "bridge/control/put",
+  }],
+  [11, {
+    mnemonic: "ADD",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_ADD,
+    reductionRuleRef: "bridge/control/add",
+  }],
+  [12, {
+    mnemonic: "SUB",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_SUB,
+    reductionRuleRef: "bridge/control/sub",
+  }],
+  [13, {
+    mnemonic: "JNZ",
+    arity: 2,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_JNZ,
+    reductionRuleRef: "bridge/control/jnz",
+  }],
+  [14, {
+    mnemonic: "JMP",
+    arity: 1,
+    energyCost: 1,
+    legacyOpcode: RISC.OP_JMP,
+    reductionRuleRef: "bridge/control/jmp",
+  }],
+  [16, {
+    mnemonic: "REPLICATE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 6,
+    legacyOpcode: RISC.OP_REPLICATE,
+    reductionRuleRef: "bridge/transport/replicate",
+  }],
+  [17, {
+    mnemonic: "SIGNAL",
+    kind: "transport",
+    arity: 0,
+    energyCost: 3,
+    legacyOpcode: RISC.OP_SIGNAL,
+    reductionRuleRef: "bridge/transport/signal",
+  }],
+  [18, {
+    mnemonic: "SHARE",
+    kind: "transport",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_SHARE,
+    reductionRuleRef: "bridge/transport/share",
+  }],
+  [24, {
+    mnemonic: "PLUG",
+    kind: "structural",
+    arity: 2,
+    energyCost: 3,
+    legacyOpcode: 0xA4,
+    reductionRuleRef: "bridge/structural/plug",
+  }],
+  [25, {
+    mnemonic: "TENSEGRITY",
+    kind: "structural",
+    arity: 3,
+    energyCost: 4,
+    legacyOpcode: RISC.OP_TENSEGRITY,
+    reductionRuleRef: "bridge/structural/tensegrity",
+  }],
+  [26, {
+    mnemonic: "BUILD",
+    kind: "structural",
+    arity: 2,
+    energyCost: 6,
+    legacyOpcode: RISC.OP_BUILD,
+    reductionRuleRef: "bridge/structural/build",
+  }],
+  [27, {
+    mnemonic: "SENSE",
+    kind: "structural",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_SENSE,
+    reductionRuleRef: "bridge/structural/sense",
+  }],
+  [32, {
+    mnemonic: "COLLECTIVE",
+    kind: "catalytic",
+    arity: 3,
+    energyCost: 4,
+    legacyOpcode: RISC.OP_COLLECTIVE,
+    reductionRuleRef: "bridge/catalytic/collective",
+  }],
+  [33, {
+    mnemonic: "ROLE",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 2,
+    legacyOpcode: RISC.OP_ROLE,
+    reductionRuleRef: "bridge/catalytic/role",
+  }],
+]);
+
+const buildGlyphSpecs = (): GlyphSpec[] => {
+  const specs: GlyphSpec[] = [];
+  for (let id = 0; id < 64; id++) {
+    specs.push({
+      ...defaultGlyphSpec(id),
+      ...(overrides.get(id) ?? {}),
+      id,
+    });
+  }
+  return specs;
+};
+
+export const GLYPH_SPECS: readonly GlyphSpec[] = Object.freeze(
+  buildGlyphSpecs().map((spec) => Object.freeze({ ...spec })),
+);
+
+const GLYPH_SPEC_BY_ID = new Map<number, GlyphSpec>(
+  GLYPH_SPECS.map((spec) => [spec.id, spec]),
+);
+
+const GLYPH_SPEC_BY_OPCODE = new Map<number, GlyphSpec>(
+  GLYPH_SPECS
+    .filter((spec) => typeof spec.legacyOpcode === "number")
+    .map((spec) => [spec.legacyOpcode!, spec]),
+);
+
+export const BRIDGE_GLYPH_IDS = Object.freeze(
+  GLYPH_SPECS
+    .filter((spec) => typeof spec.legacyOpcode === "number")
+    .map((spec) => spec.id)
+    .sort((a, b) => a - b),
+);
+
+export const glyphSpecById = (id: number): GlyphSpec | null =>
+  GLYPH_SPEC_BY_ID.get(Math.trunc(id)) ?? null;
+
+export const glyphSpecByLegacyOpcode = (opcode: number): GlyphSpec | null =>
+  GLYPH_SPEC_BY_OPCODE.get(Math.trunc(opcode)) ?? null;
+
+export const isCoreGlyph = (id: number): boolean => {
+  const spec = glyphSpecById(id);
+  return spec?.kind === "core";
+};
+
+export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
+  GLYPH_SPECS.filter((spec) => spec.kind === kind);

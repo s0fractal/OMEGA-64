@@ -28,8 +28,8 @@ Status snapshot as of 2026-03-06:
 | --- | --- | --- |
 | Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion |
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | scaffolded | [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md) now contains concrete scenario contracts |
-| Stage 3 IR contract | scaffolded | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) defines the bridge vocabulary |
+| Stage 2 baseline definition | in progress | markdown contract exists and a code-backed golden trace catalog now mirrors the six baseline scenarios |
+| Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 
 Current rule:
 

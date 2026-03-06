@@ -31,7 +31,11 @@
     "LAMBDA_VM.ts",
     "MATRIX_ENGINE.ts",
     "REFLECTION_ENGINE.ts",
-    "RIBOSOME_TICK.ts"
+    "RIBOSOME_TICK.ts",
+    "reduction_core/GlyphIR64.ts",
+    "runtime_bridge/glyph_pretty.ts",
+    "runtime_bridge/opcode_to_glyph.ts",
+    "verification/golden_trace_catalog.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
