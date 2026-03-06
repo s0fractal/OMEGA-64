@@ -19,6 +19,10 @@ export type DaemonNarrativeContext = {
   codexLineageLabel: string;
   codexLineageGuardScore: number;
   codexLineageGuardReasons: string[];
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
 };
 
 export type DaemonInvariantAdmission = {
@@ -128,6 +132,11 @@ const asFiniteNumber = (value: unknown, fallback: number): number => {
   return fallback;
 };
 
+const normalizeGlyphValue = (value: unknown, fallback: string): string =>
+  typeof value === "string" && value.trim().length > 0
+    ? value.trim().toLowerCase()
+    : fallback;
+
 const parseHex8Strict = (value: string): Uint8Array | null => {
   const normalized = value.trim().replace(/^0x/i, "");
   if (!/^[0-9a-fA-F]{16}$/u.test(normalized)) return null;
@@ -226,6 +235,16 @@ export const normalizeDaemonNarrativeContext = (
   const invariantHighlights = Array.isArray(root.invariantHighlights)
     ? root.invariantHighlights
     : [];
+  const glyphStatus = typeof root.glyphStatus === "string" &&
+      root.glyphStatus.trim().length > 0
+    ? root.glyphStatus.trim()
+    : "Glyph transport status unavailable.";
+  const glyphRegime = normalizeGlyphValue(root.glyphRegime, "dormant");
+  const glyphDominantRole = normalizeGlyphValue(
+    root.glyphDominantRole,
+    "none",
+  );
+  const glyphSourceMode = normalizeGlyphValue(root.glyphSourceMode, "none");
   const dominantInvariantVector = typeof invariantHighlights[0] === "object" &&
       invariantHighlights[0] !== null &&
       typeof (invariantHighlights[0] as Record<string, unknown>)
@@ -299,6 +318,10 @@ export const normalizeDaemonNarrativeContext = (
     codexLineageLabel,
     codexLineageGuardScore,
     codexLineageGuardReasons,
+    glyphStatus,
+    glyphRegime,
+    glyphDominantRole,
+    glyphSourceMode,
   };
 };
 
@@ -358,6 +381,35 @@ export const evaluateInvariantAdmission = (
         score += 1;
         reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
       }
+    }
+  }
+
+  if (envelope.action_type === "INJECT_PLASMID") {
+    if (
+      context.glyphRegime === "plasmid_surge" ||
+      context.glyphRegime === "agent_flux"
+    ) {
+      score += 1;
+      reasons.push("GLYPH_REGIME_PLASMID_PRESSURE");
+    }
+    if (
+      context.glyphDominantRole === "architect" ||
+      context.glyphDominantRole === "parasite"
+    ) {
+      score += 1;
+      reasons.push("GLYPH_ROLE_PLASMID_PRESSURE");
+    }
+  } else if (envelope.action_type === "DROP_PHEROMONE") {
+    if (
+      context.glyphRegime === "pheromone_canopy" ||
+      context.glyphRegime === "agent_flux"
+    ) {
+      score += 1;
+      reasons.push("GLYPH_REGIME_PHEROMONE_PRESSURE");
+    }
+    if (context.glyphDominantRole === "guardian") {
+      score += 1;
+      reasons.push("GLYPH_ROLE_PHEROMONE_PRESSURE");
     }
   }
 
