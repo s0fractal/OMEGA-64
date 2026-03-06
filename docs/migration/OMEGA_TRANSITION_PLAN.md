@@ -35,6 +35,7 @@ Status snapshot as of 2026-03-06:
 | Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
 | Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
+| Stage 8 first slit             | in progress | guardian pheromone emission now supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce` through `runtime_bridge/guardian_signal_hybrid.ts`, with runtime fallback counters and observer telemetry while `shadow-reduce` remains the default rollout |
 
 Current rule:
 
@@ -574,6 +575,23 @@ Choose exactly one behavior family:
 - role-expression
 
 No more than one at first.
+
+Current slit in progress:
+
+- guardian pheromone emission is now the chosen local-signaling slit
+- `runtime_bridge/guardian_signal_hybrid.ts` evaluates the live guardian script
+  through the mapped bridge subset using read-only neural coherence input
+- `PULSE.ts` now supports:
+  - `legacy-execute`
+  - `shadow-reduce`
+  - `hybrid-reduce`
+- rollout is intentionally conservative:
+  - `shadow-reduce` is the default mode
+  - `hybrid-reduce` exists but only narrows guardian pheromone emission
+  - any bridge failure falls back automatically to legacy emission
+- observer surfaces now expose `guardian_signal_hybrid`, so the slit is visible
+  in `/api/telemetry` and `/api/physiology` before broader runtime ownership is
+  transferred
 
 ### Exit gate
 

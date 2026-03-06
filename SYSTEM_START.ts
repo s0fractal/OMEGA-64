@@ -119,6 +119,21 @@ type RuntimeMetrics = {
   spatialOverflowRatio: number;
   spatialOverflowCount: number;
   spatialMaxCellCount: number;
+  guardianSignalHybrid: {
+    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    hybridRuns: number;
+    shadowRuns: number;
+    fallbackRuns: number;
+    stableBranchCount: number;
+    repairBranchCount: number;
+    allowedGuardianSignals: number;
+    suppressedGuardianSignals: number;
+    shadowSuppressedGuardianSignals: number;
+    lastTick: number;
+    lastStatus: "legacy" | "stable" | "repair" | "fallback";
+    lastBranch: "stable" | "repair" | "unknown";
+    lastFallbackReason: string;
+  };
   glyphTransport: {
     activeCells: number;
     pheromoneCells: number;
@@ -510,6 +525,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowRatio: spatialHash.overflowRatio,
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
+    guardianSignalHybrid: PULSE.getGuardianSignalHybridState(),
     glyphTransport: GLYPH_BUFFER.snapshot(),
   };
 };
@@ -784,6 +800,7 @@ const buildTelemetry = async () => {
         symbiosis_axis_from_ring: pressure.ring.enabled,
       },
     },
+    guardian_signal_hybrid: metrics.guardianSignalHybrid,
     glyph_transport: metrics.glyphTransport,
     daemon_governance: {
       safe_mode: safeMode.blocked,
@@ -1819,6 +1836,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       JSON.stringify({
         ok: true,
         physiology,
+        guardian_signal_hybrid: PULSE.getGuardianSignalHybridState(),
         glyph_transport: GLYPH_BUFFER.snapshot(),
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
         ledger_base_tax_persistence:

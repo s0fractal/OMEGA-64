@@ -39,7 +39,7 @@ Status snapshot as of 2026-03-06:
 | Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
 | Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
-| Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                                                    |
+| Stage 8+                        | in progress | first slit is now live in bounded form: guardian pheromone emission supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce`, with fallback counters and observer telemetry while `shadow-reduce` remains the default rollout                                                                                                                                    |
 
 Latest completed planning work:
 
@@ -143,6 +143,12 @@ Latest completed planning work:
 - Added Stage 6 outcome projection: Codex narrative/snapshot outputs now retain
   the latest daemon effect summary, lineage, and delta band, so observers and
   daemon reasoning can read effect contours without scraping raw chronicles.
+- Started Stage 8 with a bounded live slit:
+  `runtime_bridge/guardian_signal_hybrid.ts` now evaluates guardian scripts
+  through the mapped glyph subset, `PULSE.ts` routes guardian pheromone
+  emission through `legacy-execute` / `shadow-reduce` / `hybrid-reduce`, and
+  observer telemetry now exposes `guardian_signal_hybrid` so the bridge can run
+  live in shadow mode before it owns causality.
 
 ## Current diagnosis
 

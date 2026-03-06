@@ -2,6 +2,10 @@ import { parseEnvBool, parseEnvBoundedInt } from "./ENV_PARSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
+type GuardianSignalExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
 const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);
@@ -20,6 +24,18 @@ const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
     return "safe-noop";
   }
   return "fail-fast";
+};
+const parseGuardianSignalExecutionMode = (
+  raw: string | undefined,
+): GuardianSignalExecutionMode => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "legacy-execute" || value === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
 };
 const parseEnvBoundedFloat = (
   raw: string | undefined,
@@ -112,6 +128,9 @@ const rawStartupSelfTestFallback = readEnv("OMEGA_STARTUP_SELFTEST_FALLBACK");
 const rawStartupSelfTestQuiet = readEnv("OMEGA_STARTUP_SELFTEST_QUIET");
 const rawStartupSelfTestForceBreach = readEnv(
   "OMEGA_STARTUP_SELFTEST_FORCE_BREACH",
+);
+const rawGuardianSignalExecutionMode = readEnv(
+  "OMEGA_GUARDIAN_SIGNAL_EXECUTION_MODE",
 );
 const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
 const rawDaemonPolicyWindowMs = readEnv("OMEGA_DAEMON_POLICY_WINDOW_MS");
@@ -359,6 +378,9 @@ const pulseStartupSelfTestForceBreach = parseEnvBool(
   rawStartupSelfTestForceBreach,
   false,
 );
+const pulseGuardianSignalExecutionMode = parseGuardianSignalExecutionMode(
+  rawGuardianSignalExecutionMode,
+);
 
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
 const akashaPort = 8080;
@@ -508,6 +530,7 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -672,6 +695,7 @@ export const RUNTIME_POLICY = {
     startupSelfTestFallbackEnabled: pulseStartupSelfTestFallbackEnabled,
     startupSelfTestQuiet: pulseStartupSelfTestQuiet,
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
+    guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -701,6 +725,7 @@ export const RUNTIME_POLICY = {
       startupSelfTestFallback: rawStartupSelfTestFallback !== undefined,
       startupSelfTestQuiet: rawStartupSelfTestQuiet !== undefined,
       startupSelfTestForceBreach: rawStartupSelfTestForceBreach !== undefined,
+      guardianSignalExecutionMode: rawGuardianSignalExecutionMode !== undefined,
       homeostasisEnable: rawHomeostasisEnable !== undefined,
       homeostasisTargetEnergy: rawHomeostasisTargetEnergy !== undefined,
       homeostasisBand: rawHomeostasisBand !== undefined,

@@ -12,6 +12,10 @@ import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import {
+  evaluateGuardianSignalReduction,
+  type GuardianSignalExecutionMode,
+} from "./runtime_bridge/guardian_signal_hybrid.ts";
+import {
   applyBaseTaxLedgerRuntimeUpdate,
   type BaseTaxLedgerApplyResult,
   type BaseTaxLedgerRollbackResult,
@@ -116,6 +120,8 @@ const HOMEOSTASIS_MAX_DELTA = Math.max(1, HOMEOSTASIS_POLICY.maxDelta);
 const HOMEOSTASIS_OVERFLOW_THRESHOLD = HOMEOSTASIS_POLICY.overflowThreshold;
 const HOMEOSTASIS_STARVATION_FLOOR = HOMEOSTASIS_POLICY.starvationFloor;
 const HOMEOSTASIS_BASE_TAX = Math.max(0, HOMEOSTASIS_POLICY.baseTax ?? 0);
+const GUARDIAN_SIGNAL_EXECUTION_MODE =
+  RUNTIME_POLICY.pulse.guardianSignalExecutionMode;
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
@@ -169,6 +175,21 @@ type GeneticLedgerRuntimeState = {
   homeostasisTargetEnergyPersistence: TargetEnergyLedgerPersistenceSummary;
   pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
   pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
+};
+type GuardianSignalHybridState = {
+  mode: GuardianSignalExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  stableBranchCount: number;
+  repairBranchCount: number;
+  allowedGuardianSignals: number;
+  suppressedGuardianSignals: number;
+  shadowSuppressedGuardianSignals: number;
+  lastTick: number;
+  lastStatus: "legacy" | "stable" | "repair" | "fallback";
+  lastBranch: "stable" | "repair" | "unknown";
+  lastFallbackReason: string;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -238,6 +259,29 @@ const BASE_EVOLUTION_PRESSURE_STATE: EvolutionPressureState = {
 let evolutionPressureState: EvolutionPressureState = {
   ...BASE_EVOLUTION_PRESSURE_STATE,
 };
+const createGuardianSignalHybridState = (
+  mode: GuardianSignalExecutionMode,
+): GuardianSignalHybridState => ({
+  mode,
+  hybridRuns: 0,
+  shadowRuns: 0,
+  fallbackRuns: 0,
+  stableBranchCount: 0,
+  repairBranchCount: 0,
+  allowedGuardianSignals: 0,
+  suppressedGuardianSignals: 0,
+  shadowSuppressedGuardianSignals: 0,
+  lastTick: -1,
+  lastStatus: "legacy",
+  lastBranch: "unknown",
+  lastFallbackReason: "",
+});
+const snapshotGuardianSignalHybridState = (): GuardianSignalHybridState => ({
+  ...guardianSignalHybridState,
+});
+let guardianSignalHybridState = createGuardianSignalHybridState(
+  GUARDIAN_SIGNAL_EXECUTION_MODE,
+);
 
 let runtimeWorkerCount = WORKER_COUNT;
 let startupSelfTestDone = false;
@@ -899,6 +943,72 @@ const guardianShouldEmitPheromone = (
   resonance: number,
 ): boolean =>
   resonance >= 140 && (((phase + tick + idx) & 0x01) === 0);
+const guardianPheromoneAllowedByExecutionMode = (
+  tick: number,
+  idx: number,
+  legacyAllowed: boolean,
+): boolean => {
+  if (!legacyAllowed) return false;
+
+  guardianSignalHybridState.lastTick = tick;
+  guardianSignalHybridState.mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
+  guardianSignalHybridState.lastFallbackReason = "";
+
+  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "legacy-execute") {
+    guardianSignalHybridState.lastStatus = "legacy";
+    guardianSignalHybridState.lastBranch = "unknown";
+    return true;
+  }
+
+  const decision = evaluateGuardianSignalReduction({
+    script: STATE_MATRIX.getInstructions(idx),
+    neuralCoherence: Atomics.load(coherenceView, 0),
+  });
+
+  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
+    guardianSignalHybridState.shadowRuns++;
+  } else {
+    guardianSignalHybridState.hybridRuns++;
+  }
+
+  if (decision.status === "fallback") {
+    guardianSignalHybridState.fallbackRuns++;
+    guardianSignalHybridState.lastStatus = "fallback";
+    guardianSignalHybridState.lastBranch = decision.branch;
+    guardianSignalHybridState.lastFallbackReason =
+      decision.fallbackReason ?? "guardian_signal_bridge_fallback";
+    return true;
+  }
+
+  guardianSignalHybridState.lastBranch = decision.branch;
+  if (decision.branch === "stable") {
+    guardianSignalHybridState.stableBranchCount++;
+    guardianSignalHybridState.allowedGuardianSignals++;
+    guardianSignalHybridState.lastStatus = "stable";
+  } else if (decision.branch === "repair") {
+    guardianSignalHybridState.repairBranchCount++;
+    guardianSignalHybridState.lastStatus = "repair";
+  } else {
+    guardianSignalHybridState.lastStatus = "fallback";
+    guardianSignalHybridState.fallbackRuns++;
+    guardianSignalHybridState.lastFallbackReason = "guardian_signal_unknown";
+    return true;
+  }
+
+  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
+    if (!decision.signalAllowed) {
+      guardianSignalHybridState.shadowSuppressedGuardianSignals++;
+    }
+    return true;
+  }
+
+  if (!decision.signalAllowed) {
+    guardianSignalHybridState.suppressedGuardianSignals++;
+    return false;
+  }
+
+  return true;
+};
 const producerShouldEmitPheromone = (
   tick: number,
   idx: number,
@@ -971,7 +1081,11 @@ const emitInternalGlyphsFromActiveAtoms = (
     if (atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET) {
       let pheromoneIntensity = 0;
       if (role === STATE_MATRIX.ROLE_GUARDIAN &&
-        guardianShouldEmitPheromone(tick, idx, phase, resonance)) {
+        guardianPheromoneAllowedByExecutionMode(
+          tick,
+          idx,
+          guardianShouldEmitPheromone(tick, idx, phase, resonance),
+        )) {
         pheromoneIntensity = Math.max(
           48,
           Math.min(384, Math.trunc(resonance / 4)),
@@ -1807,6 +1921,8 @@ export const PULSE = {
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
+  getGuardianSignalHybridState: (): GuardianSignalHybridState =>
+    snapshotGuardianSignalHybridState(),
   getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
     snapshotGeneticLedgerRuntimeState(),
   hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {
