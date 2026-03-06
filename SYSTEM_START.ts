@@ -17,6 +17,17 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
+import {
+  DAEMON_INGRESS_POLICY_LIMITS,
+  evaluateInvariantAdmission,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  planInvariantIngress,
+  type DaemonAction,
+  type DaemonInjectEnvelope,
+  type PlasmidRiskProfile,
+} from "./DAEMON_INGRESS_POLICY.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -32,49 +43,6 @@ const JSON_HEADERS = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 } as const;
-
-type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-
-type DaemonInjectEnvelope = {
-  action_type: DaemonAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-type DaemonNarrativeContext = {
-  mood: string;
-  sharedCenter: string;
-  dominantInvariantVector: string;
-  codexLineageLabel: string;
-  codexLineageGuardScore: number;
-  codexLineageGuardReasons: string[];
-};
-
-type DaemonInvariantAdmission = {
-  score: number;
-  severity: "LOW" | "MID" | "HIGH";
-  reasons: string[];
-  context: DaemonNarrativeContext;
-};
-
-type PlasmidRiskProfile = {
-  level: "LOW" | "MID" | "HIGH";
-  score: number;
-  reasons: string[];
-  opcode: number;
-};
-
-type DaemonIngressPlan = {
-  requested: DaemonInjectEnvelope;
-  applied: DaemonInjectEnvelope;
-  degraded: boolean;
-  degradeReason: string | null;
-  admission: DaemonInvariantAdmission;
-};
 
 type DaemonAdmissionSnapshot = {
   tick: number;
@@ -198,18 +166,19 @@ const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
-const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY =
-  DAEMON_POLICY.maxPheromoneIntensity;
-const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_POLICY.maxPlasmidCharge;
-const DAEMON_SAFE_MIN_POPULATION = DAEMON_POLICY.safeMinPopulation;
-const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_POLICY.safeMinAvgEnergy;
+const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY = DAEMON_INGRESS_POLICY_LIMITS
+  .maxPheromoneIntensity;
+const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_INGRESS_POLICY_LIMITS
+  .maxPlasmidCharge;
+const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
+  .safeMinPopulation;
+const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
 const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
 const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
-const DAEMON_INVARIANT_DRIFT_MID_SCORE = 2;
-const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = 4;
-const DAEMON_INVARIANT_MID_RATIO = 0.6;
-const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
-const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
+const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftMidScore;
+const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftHighScore;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
@@ -218,9 +187,6 @@ const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
 const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
 const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
-const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
-const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
-const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
 const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
   1,
   Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
@@ -230,29 +196,6 @@ const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
 const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
 const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
 const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
-
-const ALLOWED_DAEMON_OPCODES = new Set<number>([
-  0x00,
-  0x01,
-  0x02,
-  0x03,
-  0x04,
-  0x05,
-  0x10,
-  0x11,
-  0x12,
-  0x80,
-  0x81,
-  0x83,
-  0xA4,
-  0xA5,
-  0xA6,
-  0xA7,
-  0xA8,
-  0xA9,
-  0xAA,
-  0xAB,
-]);
 
 let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
@@ -417,83 +360,6 @@ const consumeDaemonBudget = (maxActionsPerWindow: number): {
       0,
       DAEMON_POLICY_WINDOW_MS - (now - daemonWindowStartMs),
     ),
-  };
-};
-
-const parseHex8Strict = (value: string): Uint8Array | null => {
-  const normalized = value.trim().replace(/^0x/i, "");
-  if (!/^[0-9a-fA-F]{16}$/u.test(normalized)) return null;
-  const bytes = new Uint8Array(8);
-  for (let i = 0; i < 8; i++) {
-    bytes[i] = Number.parseInt(normalized.slice(i * 2, i * 2 + 2), 16);
-  }
-  return bytes;
-};
-
-const evaluatePlasmidPolicy = (
-  hexCode: string,
-): { ok: boolean; reason: string } => {
-  const bytes = parseHex8Strict(hexCode);
-  if (!bytes) return { ok: false, reason: "INVALID_HEX_CODE" };
-  if (bytes.every((b) => b === 0)) {
-    return { ok: false, reason: "PLASMID_ZERO_VECTOR_BLOCKED" };
-  }
-  const opcode = bytes[0];
-  if (!ALLOWED_DAEMON_OPCODES.has(opcode)) {
-    return {
-      ok: false,
-      reason: `PLASMID_OPCODE_BLOCKED_0x${
-        opcode.toString(16).toUpperCase().padStart(2, "0")
-      }`,
-    };
-  }
-  return { ok: true, reason: "PLASMID_POLICY_OK" };
-};
-
-const evaluatePlasmidRisk = (
-  hexCode: string,
-  intensity: number,
-): PlasmidRiskProfile => {
-  const bytes = parseHex8Strict(hexCode);
-  if (!bytes) {
-    return {
-      level: "HIGH",
-      score: 4,
-      reasons: ["PLASMID_HEX_INVALID"],
-      opcode: 0,
-    };
-  }
-  const opcode = bytes[0];
-  let score = 0;
-  const reasons: string[] = [];
-
-  if (opcode === 0x80) {
-    score += 2;
-    reasons.push("RISK_OPCODE_REPLICATE");
-  } else if (opcode === 0xA8 || opcode === 0xA5 || opcode === 0xA6) {
-    score += 1;
-    reasons.push("RISK_OPCODE_COMPLEX_STRUCT");
-  } else if (opcode === 0xAA || opcode === 0xAB) {
-    score += 2;
-    reasons.push("RISK_OPCODE_GLOBAL_TRANSFER");
-  }
-
-  const intensityRatio = clamp(intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE, 0, 1);
-  if (intensityRatio >= 0.85) {
-    score += 2;
-    reasons.push("RISK_INTENSITY_HIGH");
-  } else if (intensityRatio >= 0.55) {
-    score += 1;
-    reasons.push("RISK_INTENSITY_MID");
-  }
-
-  const level = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
-  if (reasons.length === 0) reasons.push("RISK_LOW");
-  return {
-    level,
-    score,
-    reasons,
-    opcode,
   };
 };
 
@@ -920,267 +786,6 @@ const parseHomeostasisIngressEnvelope = (
     );
   }
   return envelope;
-};
-
-const normalizeDaemonNarrativeContext = (
-  narrative: Awaited<ReturnType<typeof AKASHA_CODEX.getNarrative>>,
-  dominantGenome: string,
-): DaemonNarrativeContext => {
-  const mood = typeof narrative?.mood === "string"
-    ? narrative.mood.trim().toUpperCase()
-    : "STABLE";
-  const sharedCenter = typeof narrative?.sharedCenter === "string" &&
-      narrative.sharedCenter.trim().length > 0
-    ? narrative.sharedCenter.trim()
-    : "tick.exists";
-  const dominantInvariantVector =
-    typeof narrative?.invariantHighlights?.[0]?.dominantVector === "string" &&
-      narrative.invariantHighlights[0].dominantVector.trim().length > 0
-      ? narrative.invariantHighlights[0].dominantVector.trim()
-      : "none";
-  const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
-  const highlights = Array.isArray(narrative?.speciesHighlights)
-    ? narrative.speciesHighlights.filter((entry) =>
-      entry && typeof entry === "object"
-    )
-    : [];
-  const matchedSpecies =
-    highlights.find((entry) =>
-      typeof entry.genome === "string" &&
-      entry.genome.toUpperCase() === normalizedDominantGenome
-    ) ?? highlights[0];
-  let codexLineageLabel = "none";
-  let codexLineageGuardScore = 0;
-  const codexLineageGuardReasons: string[] = [];
-  if (matchedSpecies && typeof matchedSpecies === "object") {
-    const dominantEpochs = asFiniteNumber(matchedSpecies.dominantEpochs, 0);
-    const peakShare = asFiniteNumber(matchedSpecies.peakShare, 0);
-    codexLineageLabel = typeof matchedSpecies.latinName === "string" &&
-        matchedSpecies.latinName.trim().length > 0
-      ? matchedSpecies.latinName.trim()
-      : typeof matchedSpecies.genome === "string"
-      ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
-      : "unknown-lineage";
-    if (dominantEpochs >= DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
-    }
-    if (peakShare >= DAEMON_CODEX_LINEAGE_PEAK_SHARE) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_LINEAGE_DOMINANCE");
-    }
-    if (
-      normalizedDominantGenome.length > 0 &&
-      typeof matchedSpecies.genome === "string" &&
-      matchedSpecies.genome.toUpperCase() === normalizedDominantGenome
-    ) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_ACTIVE_LINEAGE_MATCH");
-    }
-  }
-  codexLineageGuardScore = clamp(
-    Math.round(codexLineageGuardScore),
-    0,
-    DAEMON_CODEX_LINEAGE_GUARD_MAX,
-  );
-  return {
-    mood,
-    sharedCenter,
-    dominantInvariantVector,
-    codexLineageLabel,
-    codexLineageGuardScore,
-    codexLineageGuardReasons,
-  };
-};
-
-const evaluateInvariantAdmission = (
-  envelope: DaemonInjectEnvelope,
-  metrics: RuntimeMetrics,
-  context: DaemonNarrativeContext,
-  plasmidRisk: PlasmidRiskProfile | null = null,
-): DaemonInvariantAdmission => {
-  let score = 0;
-  const reasons: string[] = [];
-  if (context.mood === "FRAGILE") {
-    score += 2;
-    reasons.push("NARRATIVE_MOOD_FRAGILE");
-  }
-
-  if (metrics.population <= Math.max(DAEMON_SAFE_MIN_POPULATION * 2, 24)) {
-    score += 1;
-    reasons.push("POPULATION_NEAR_SAFE_FLOOR");
-  }
-  if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 4) {
-    score += 2;
-    reasons.push("ENERGY_NEAR_SAFE_FLOOR");
-  } else if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 12) {
-    score += 1;
-    reasons.push("ENERGY_LOW_GRADIENT");
-  }
-
-  const normalizedVector = context.dominantInvariantVector.toUpperCase();
-  if (normalizedVector.includes("SCARCITY")) {
-    score += 1;
-    reasons.push("INVARIANT_SCARCITY_VECTOR");
-  } else if (normalizedVector.includes("TENSION")) {
-    score += 1;
-    reasons.push("INVARIANT_TENSION_VECTOR");
-  }
-
-  if (context.codexLineageGuardScore > 0) {
-    if (envelope.action_type === "INJECT_PLASMID") {
-      const codexGuardAdd = Math.min(2, context.codexLineageGuardScore);
-      score += codexGuardAdd;
-      reasons.push(
-        ...context.codexLineageGuardReasons.slice(0, codexGuardAdd),
-      );
-      reasons.push("CODEX_LINEAGE_GUARD_PLASMID");
-    } else if (envelope.action_type === "DROP_PHEROMONE") {
-      const pheromoneRatio = envelope.payload.intensity /
-        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
-      if (pheromoneRatio >= 0.9) {
-        score += 1;
-        reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
-      }
-    }
-  }
-
-  if (envelope.action_type === "INJECT_PLASMID") {
-    const ratio = envelope.payload.intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE;
-    if (ratio >= 0.8) {
-      score += 2;
-      reasons.push("PLASMID_INTENSITY_HIGH");
-    } else if (ratio >= 0.55) {
-      score += 1;
-      reasons.push("PLASMID_INTENSITY_MID");
-    }
-    if (context.mood === "FRAGILE") {
-      score += 1;
-      reasons.push("PLASMID_IN_FRAGILE_MOOD");
-    }
-    if (plasmidRisk) {
-      score += plasmidRisk.score;
-      reasons.push(...plasmidRisk.reasons);
-      if (plasmidRisk.level === "HIGH") {
-        score += 1;
-        reasons.push("PLASMID_RISK_HIGH");
-      }
-    }
-  } else if (envelope.action_type === "DROP_PHEROMONE") {
-    const ratio = envelope.payload.intensity /
-      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
-    if (ratio >= 0.85) {
-      score += 1;
-      reasons.push("PHEROMONE_INTENSITY_HIGH");
-    }
-  }
-
-  const severity = score >= DAEMON_INVARIANT_DRIFT_HIGH_SCORE
-    ? "HIGH"
-    : score >= DAEMON_INVARIANT_DRIFT_MID_SCORE
-    ? "MID"
-    : "LOW";
-  if (reasons.length === 0) reasons.push("DRIFT_LOW");
-  return { score, severity, reasons, context };
-};
-
-const planInvariantIngress = (
-  envelope: DaemonInjectEnvelope,
-  admission: DaemonInvariantAdmission,
-): DaemonIngressPlan => {
-  if (admission.severity === "LOW") {
-    return {
-      requested: envelope,
-      applied: envelope,
-      degraded: false,
-      degradeReason: null,
-      admission,
-    };
-  }
-
-  if (admission.severity === "MID") {
-    if (envelope.action_type === "INJECT_PLASMID") {
-      const capped = Math.max(
-        DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-        Math.round(
-          DAEMON_POLICY_MAX_PLASMID_CHARGE * DAEMON_INVARIANT_MID_RATIO,
-        ),
-      );
-      return {
-        requested: envelope,
-        applied: {
-          action_type: "INJECT_PLASMID",
-          payload: {
-            ...envelope.payload,
-            intensity: clamp(envelope.payload.intensity, 1, capped),
-          },
-        },
-        degraded: true,
-        degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
-        admission,
-      };
-    }
-    const capped = Math.max(
-      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-      Math.round(
-        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY * DAEMON_INVARIANT_MID_RATIO,
-      ),
-    );
-    return {
-      requested: envelope,
-      applied: {
-        action_type: "DROP_PHEROMONE",
-        payload: {
-          ...envelope.payload,
-          intensity: clamp(envelope.payload.intensity, 1, capped),
-        },
-      },
-      degraded: true,
-      degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
-      admission,
-    };
-  }
-
-  if (envelope.action_type === "INJECT_PLASMID") {
-    const softened = clamp(
-      Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
-      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
-    );
-    return {
-      requested: envelope,
-      applied: {
-        action_type: "DROP_PHEROMONE",
-        payload: {
-          target_x: envelope.payload.target_x,
-          target_y: envelope.payload.target_y,
-          intensity: softened,
-        },
-      },
-      degraded: true,
-      degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-      admission,
-    };
-  }
-
-  const softened = clamp(
-    Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
-    DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-    DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
-  );
-  return {
-    requested: envelope,
-    applied: {
-      action_type: "DROP_PHEROMONE",
-      payload: {
-        ...envelope.payload,
-        intensity: softened,
-      },
-    },
-    degraded: true,
-    degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_INTENSITY",
-    admission,
-  };
 };
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");

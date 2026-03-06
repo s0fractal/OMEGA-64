@@ -29,7 +29,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
+| Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
 | Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -44,6 +44,8 @@ Latest completed planning work:
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 - Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
 - Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
+- Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
+- Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 
 ## Current diagnosis
 
@@ -112,13 +114,13 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Widen reduction shadow coverage from `gt01`/`gt03` into one mutation-sensitive anchor (`gt04` or `gt05`).
-3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
+2. Keep widening shadow coverage only where a golden trace exposes real causality, even if that means using a non-reduction shadow lane first.
+3. Extend `GlyphIR64` mapping coverage only where a concrete trace id truly requires bridge-side control flow.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Introduce one mutation-adjacent shadow case using `gt04`, now that `gt05` policy-sensitive anchoring exists.
+1. Keep `gt04`/`gt06` in the new admission shadow lane until a real reduction-side control-flow contract exists for them.
 2. Decide whether to widen the bridge subset with a compare/range primitive or keep the current exact-anchor model explicit.
 3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
 
@@ -126,6 +128,7 @@ Known bridge limit surfaced by Stage 4:
 
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
+- `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
 
 ## Explicit deferrals
 

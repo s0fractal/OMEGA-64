@@ -1,0 +1,37 @@
+{
+  "case_id": "ac03_gt06_plasmid_high_degrade",
+  "baseline_trace_id": "gt06_daemon_admission_case",
+  "baseline_event_kind": "INJECT_PLASMID_DEGRADED",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "fe08cb56b3964babcca6bbbc5282b3cf5c4c5975ec38d5dacaa69a56a9d37581",
+  "shadow_digest": "7315232c9f8ff26b562aff7237dff948818d5ec4fa4e3c48174159fd095f50bc",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": true,
+    "policyReason": "PLASMID_POLICY_OK",
+    "severity": "HIGH",
+    "score": 4,
+    "appliedAction": "DROP_PHEROMONE",
+    "degraded": true,
+    "degradeReason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+    "plasmidRiskLevel": "MID",
+    "plasmidRiskScore": 2,
+    "plasmidRiskOpcode": 0,
+    "reasons": [
+      "PLASMID_INTENSITY_HIGH",
+      "RISK_INTENSITY_HIGH"
+    ]
+  }
+}

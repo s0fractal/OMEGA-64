@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:20:09.923Z*
-*Exported Files: 109*
+*Generated: 2026-03-06T12:33:29.023Z*
+*Exported Files: 115*
 *Runtime Roots: 6*
-*Runtime Closure Files: 38*
-*Non-Runtime Code Files: 28*
+*Runtime Closure Files: 39*
+*Non-Runtime Code Files: 30*
 *Runtime-Support Code Files: 16*
-*Experimental Code Files: 12*
-*Manifest SHA256: 673381c27fc8ad08590c998391b45b99bb68c79f2fb3d3b44faa51fb38b75959*
-*Export Set SHA256: 4ea2d9f7d57ce59708a7d5e94b73ee7da7a3ef3ccc1aee0cf92cd8a1dab91ee6*
-*Export Content SHA256: 91abd202ec0822fcff78ec67948a5e3faa17be148342cd98a45958f6026f702e*
-*Git Commit: 7dcb888c2e27*
+*Experimental Code Files: 14*
+*Manifest SHA256: c3582bdb1efecf7b99e3575c00bd884e659b48aa1d70b21182496d2824aee8a0*
+*Export Set SHA256: 50f3682ff6db39bd5afd7d98e52fa278675e108260c2161b42d9459843307cf4*
+*Export Content SHA256: 698e7512e44d94c7b63ad1a0f999344d218e2b11e9f5e1c5e50631c303a8f36c*
+*Git Commit: 481ba8b89836*
 
 ---
 
@@ -37,6 +37,7 @@
 - BREATH.ts
 - COLDSTART_BOOTSTRAP.ts
 - CONTROL_INTENT_QUEUE.ts
+- DAEMON_INGRESS_POLICY.ts
 - ENV_PARSE.ts
 - GATE_BUDGET.ts
 - GATE_LEDGER.ts
@@ -87,6 +88,8 @@
 - runtime_bridge/opcode_to_glyph.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
+- verification/admission_shadow_cases.ts
+- verification/admission_shadow_harness.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
 - verification/reduction_cases.ts
@@ -132,6 +135,8 @@
 - RIBOSOME_TICK.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
+- verification/admission_shadow_cases.ts
+- verification/admission_shadow_harness.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
 - verification/reduction_cases.ts
@@ -6110,6 +6115,8 @@ export const CONTROL_INTENT_QUEUE = {
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
     "verification/golden_trace_capture.ts",
+    "verification/admission_shadow_cases.ts",
+    "verification/admission_shadow_harness.ts",
     "verification/reduction_cases.ts",
     "verification/reduction_harness.ts"
   ],
@@ -6122,6 +6129,7 @@ export const CONTROL_INTENT_QUEUE = {
     "assembly/index.ts"
   ],
   "required_additional_files": [
+    "DAEMON_INGRESS_POLICY.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
@@ -6173,6 +6181,9 @@ export const CONTROL_INTENT_QUEUE = {
     "verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json",
     "verification/reduction_diffs/rc05_gt05_band_anchor_match.json",
     "verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json",
+    "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
+    "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
+    "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
@@ -6180,6 +6191,494 @@ export const CONTROL_INTENT_QUEUE = {
     "ui/index.html"
   ]
 }
+
+```
+
+---
+
+## FILE: DAEMON_INGRESS_POLICY.ts
+
+```typescript
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+export type DaemonInjectEnvelope = {
+  action_type: DaemonAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+export type DaemonNarrativeContext = {
+  mood: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel: string;
+  codexLineageGuardScore: number;
+  codexLineageGuardReasons: string[];
+};
+
+export type DaemonInvariantAdmission = {
+  score: number;
+  severity: "LOW" | "MID" | "HIGH";
+  reasons: string[];
+  context: DaemonNarrativeContext;
+};
+
+export type PlasmidRiskProfile = {
+  level: "LOW" | "MID" | "HIGH";
+  score: number;
+  reasons: string[];
+  opcode: number;
+};
+
+export type DaemonIngressPlan = {
+  requested: DaemonInjectEnvelope;
+  applied: DaemonInjectEnvelope;
+  degraded: boolean;
+  degradeReason: string | null;
+  admission: DaemonInvariantAdmission;
+};
+
+export type DaemonIngressMetrics = {
+  population: number;
+  avgEnergy: number;
+};
+
+const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+
+export const DAEMON_INGRESS_POLICY_LIMITS = Object.freeze({
+  maxPheromoneIntensity: DAEMON_POLICY.maxPheromoneIntensity,
+  maxPlasmidCharge: DAEMON_POLICY.maxPlasmidCharge,
+  safeMinPopulation: DAEMON_POLICY.safeMinPopulation,
+  safeMinAvgEnergy: DAEMON_POLICY.safeMinAvgEnergy,
+  invariantDriftMidScore: 2,
+  invariantDriftHighScore: 4,
+  invariantMidRatio: 0.6,
+  invariantHighRatio: 0.35,
+  invariantMinDegradedIntensity: 24,
+  codexLineageLongevityEpochs: 6,
+  codexLineagePeakShare: 0.35,
+  codexLineageGuardMax: 3,
+});
+
+const ALLOWED_DAEMON_OPCODES = new Set<number>([
+  0x00,
+  0x01,
+  0x02,
+  0x03,
+  0x04,
+  0x05,
+  0x10,
+  0x11,
+  0x12,
+  0x80,
+  0x81,
+  0x83,
+  0xA4,
+  0xA5,
+  0xA6,
+  0xA7,
+  0xA8,
+  0xA9,
+  0xAA,
+  0xAB,
+]);
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const asFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const parseHex8Strict = (value: string): Uint8Array | null => {
+  const normalized = value.trim().replace(/^0x/i, "");
+  if (!/^[0-9a-fA-F]{16}$/u.test(normalized)) return null;
+  const bytes = new Uint8Array(8);
+  for (let i = 0; i < 8; i++) {
+    bytes[i] = Number.parseInt(normalized.slice(i * 2, i * 2 + 2), 16);
+  }
+  return bytes;
+};
+
+export const evaluatePlasmidPolicy = (
+  hexCode: string,
+): { ok: boolean; reason: string } => {
+  const bytes = parseHex8Strict(hexCode);
+  if (!bytes) return { ok: false, reason: "INVALID_HEX_CODE" };
+  if (bytes.every((b) => b === 0)) {
+    return { ok: false, reason: "PLASMID_ZERO_VECTOR_BLOCKED" };
+  }
+  const opcode = bytes[0];
+  if (!ALLOWED_DAEMON_OPCODES.has(opcode)) {
+    return {
+      ok: false,
+      reason: `PLASMID_OPCODE_BLOCKED_0x${
+        opcode.toString(16).toUpperCase().padStart(2, "0")
+      }`,
+    };
+  }
+  return { ok: true, reason: "PLASMID_POLICY_OK" };
+};
+
+export const evaluatePlasmidRisk = (
+  hexCode: string,
+  intensity: number,
+): PlasmidRiskProfile => {
+  const bytes = parseHex8Strict(hexCode);
+  if (!bytes) {
+    return {
+      level: "HIGH",
+      score: 4,
+      reasons: ["PLASMID_HEX_INVALID"],
+      opcode: 0,
+    };
+  }
+  const opcode = bytes[0];
+  let score = 0;
+  const reasons: string[] = [];
+
+  if (opcode === 0x80) {
+    score += 2;
+    reasons.push("RISK_OPCODE_REPLICATE");
+  } else if (opcode === 0xA8 || opcode === 0xA5 || opcode === 0xA6) {
+    score += 1;
+    reasons.push("RISK_OPCODE_COMPLEX_STRUCT");
+  } else if (opcode === 0xAA || opcode === 0xAB) {
+    score += 2;
+    reasons.push("RISK_OPCODE_GLOBAL_TRANSFER");
+  }
+
+  const intensityRatio = clamp(
+    intensity / DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
+    0,
+    1,
+  );
+  if (intensityRatio >= 0.85) {
+    score += 2;
+    reasons.push("RISK_INTENSITY_HIGH");
+  } else if (intensityRatio >= 0.55) {
+    score += 1;
+    reasons.push("RISK_INTENSITY_MID");
+  }
+
+  const level = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
+  if (reasons.length === 0) reasons.push("RISK_LOW");
+  return {
+    level,
+    score,
+    reasons,
+    opcode,
+  };
+};
+
+export const normalizeDaemonNarrativeContext = (
+  narrative: unknown,
+  dominantGenome: string,
+): DaemonNarrativeContext => {
+  const root = narrative && typeof narrative === "object"
+    ? narrative as Record<string, unknown>
+    : {};
+  const mood = typeof root.mood === "string"
+    ? root.mood.trim().toUpperCase()
+    : "STABLE";
+  const sharedCenter = typeof root.sharedCenter === "string" &&
+      root.sharedCenter.trim().length > 0
+    ? root.sharedCenter.trim()
+    : "tick.exists";
+  const invariantHighlights = Array.isArray(root.invariantHighlights)
+    ? root.invariantHighlights
+    : [];
+  const dominantInvariantVector =
+    typeof invariantHighlights[0] === "object" &&
+        invariantHighlights[0] !== null &&
+        typeof (invariantHighlights[0] as Record<string, unknown>)
+          .dominantVector === "string" &&
+        ((invariantHighlights[0] as Record<string, unknown>).dominantVector as string)
+          .trim()
+          .length > 0
+      ? ((invariantHighlights[0] as Record<string, unknown>).dominantVector as string)
+        .trim()
+      : "none";
+
+  const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
+  const highlights = Array.isArray(root.speciesHighlights)
+    ? root.speciesHighlights.filter((entry) =>
+      entry && typeof entry === "object"
+    )
+    : [];
+  const matchedSpecies =
+    highlights.find((entry) =>
+      typeof (entry as Record<string, unknown>).genome === "string" &&
+      ((entry as Record<string, unknown>).genome as string).toUpperCase() ===
+        normalizedDominantGenome
+    ) ?? highlights[0];
+
+  let codexLineageLabel = "none";
+  let codexLineageGuardScore = 0;
+  const codexLineageGuardReasons: string[] = [];
+  if (matchedSpecies && typeof matchedSpecies === "object") {
+    const species = matchedSpecies as Record<string, unknown>;
+    const dominantEpochs = asFiniteNumber(species.dominantEpochs, 0);
+    const peakShare = asFiniteNumber(species.peakShare, 0);
+    codexLineageLabel = typeof species.latinName === "string" &&
+        species.latinName.trim().length > 0
+      ? species.latinName.trim()
+      : typeof species.genome === "string"
+      ? `Genome ${species.genome.slice(0, 8)}`
+      : "unknown-lineage";
+    if (
+      dominantEpochs >= DAEMON_INGRESS_POLICY_LIMITS
+        .codexLineageLongevityEpochs
+    ) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
+    }
+    if (peakShare >= DAEMON_INGRESS_POLICY_LIMITS.codexLineagePeakShare) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_LINEAGE_DOMINANCE");
+    }
+    if (
+      normalizedDominantGenome.length > 0 &&
+      typeof species.genome === "string" &&
+      species.genome.toUpperCase() === normalizedDominantGenome
+    ) {
+      codexLineageGuardScore += 1;
+      codexLineageGuardReasons.push("CODEX_ACTIVE_LINEAGE_MATCH");
+    }
+  }
+
+  codexLineageGuardScore = clamp(
+    Math.round(codexLineageGuardScore),
+    0,
+    DAEMON_INGRESS_POLICY_LIMITS.codexLineageGuardMax,
+  );
+
+  return {
+    mood,
+    sharedCenter,
+    dominantInvariantVector,
+    codexLineageLabel,
+    codexLineageGuardScore,
+    codexLineageGuardReasons,
+  };
+};
+
+export const evaluateInvariantAdmission = (
+  envelope: DaemonInjectEnvelope,
+  metrics: DaemonIngressMetrics,
+  context: DaemonNarrativeContext,
+  plasmidRisk: PlasmidRiskProfile | null = null,
+): DaemonInvariantAdmission => {
+  let score = 0;
+  const reasons: string[] = [];
+  if (context.mood === "FRAGILE") {
+    score += 2;
+    reasons.push("NARRATIVE_MOOD_FRAGILE");
+  }
+
+  if (
+    metrics.population <= Math.max(
+      DAEMON_INGRESS_POLICY_LIMITS.safeMinPopulation * 2,
+      24,
+    )
+  ) {
+    score += 1;
+    reasons.push("POPULATION_NEAR_SAFE_FLOOR");
+  }
+  if (metrics.avgEnergy <= DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy + 4) {
+    score += 2;
+    reasons.push("ENERGY_NEAR_SAFE_FLOOR");
+  } else if (
+    metrics.avgEnergy <= DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy + 12
+  ) {
+    score += 1;
+    reasons.push("ENERGY_LOW_GRADIENT");
+  }
+
+  const normalizedVector = context.dominantInvariantVector.toUpperCase();
+  if (normalizedVector.includes("SCARCITY")) {
+    score += 1;
+    reasons.push("INVARIANT_SCARCITY_VECTOR");
+  } else if (normalizedVector.includes("TENSION")) {
+    score += 1;
+    reasons.push("INVARIANT_TENSION_VECTOR");
+  }
+
+  if (context.codexLineageGuardScore > 0) {
+    if (envelope.action_type === "INJECT_PLASMID") {
+      const codexGuardAdd = Math.min(2, context.codexLineageGuardScore);
+      score += codexGuardAdd;
+      reasons.push(
+        ...context.codexLineageGuardReasons.slice(0, codexGuardAdd),
+      );
+      reasons.push("CODEX_LINEAGE_GUARD_PLASMID");
+    } else if (envelope.action_type === "DROP_PHEROMONE") {
+      const pheromoneRatio = envelope.payload.intensity /
+        DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
+      if (pheromoneRatio >= 0.9) {
+        score += 1;
+        reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
+      }
+    }
+  }
+
+  if (envelope.action_type === "INJECT_PLASMID") {
+    const ratio = envelope.payload.intensity /
+      DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge;
+    if (ratio >= 0.8) {
+      score += 2;
+      reasons.push("PLASMID_INTENSITY_HIGH");
+    } else if (ratio >= 0.55) {
+      score += 1;
+      reasons.push("PLASMID_INTENSITY_MID");
+    }
+    if (context.mood === "FRAGILE") {
+      score += 1;
+      reasons.push("PLASMID_IN_FRAGILE_MOOD");
+    }
+    if (plasmidRisk) {
+      score += plasmidRisk.score;
+      reasons.push(...plasmidRisk.reasons);
+      if (plasmidRisk.level === "HIGH") {
+        score += 1;
+        reasons.push("PLASMID_RISK_HIGH");
+      }
+    }
+  } else if (envelope.action_type === "DROP_PHEROMONE") {
+    const ratio = envelope.payload.intensity /
+      DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
+    if (ratio >= 0.85) {
+      score += 1;
+      reasons.push("PHEROMONE_INTENSITY_HIGH");
+    }
+  }
+
+  const severity = score >= DAEMON_INGRESS_POLICY_LIMITS.invariantDriftHighScore
+    ? "HIGH"
+    : score >= DAEMON_INGRESS_POLICY_LIMITS.invariantDriftMidScore
+    ? "MID"
+    : "LOW";
+  if (reasons.length === 0) reasons.push("DRIFT_LOW");
+  return { score, severity, reasons, context };
+};
+
+export const planInvariantIngress = (
+  envelope: DaemonInjectEnvelope,
+  admission: DaemonInvariantAdmission,
+): DaemonIngressPlan => {
+  if (admission.severity === "LOW") {
+    return {
+      requested: envelope,
+      applied: envelope,
+      degraded: false,
+      degradeReason: null,
+      admission,
+    };
+  }
+
+  if (admission.severity === "MID") {
+    if (envelope.action_type === "INJECT_PLASMID") {
+      const capped = Math.max(
+        DAEMON_INGRESS_POLICY_LIMITS.invariantMinDegradedIntensity,
+        Math.round(
+          DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge *
+            DAEMON_INGRESS_POLICY_LIMITS.invariantMidRatio,
+        ),
+      );
+      return {
+        requested: envelope,
+        applied: {
+          action_type: "INJECT_PLASMID",
+          payload: {
+            ...envelope.payload,
+            intensity: clamp(envelope.payload.intensity, 1, capped),
+          },
+        },
+        degraded: true,
+        degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
+        admission,
+      };
+    }
+    const capped = Math.max(
+      DAEMON_INGRESS_POLICY_LIMITS.invariantMinDegradedIntensity,
+      Math.round(
+        DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity *
+          DAEMON_INGRESS_POLICY_LIMITS.invariantMidRatio,
+      ),
+    );
+    return {
+      requested: envelope,
+      applied: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          ...envelope.payload,
+          intensity: clamp(envelope.payload.intensity, 1, capped),
+        },
+      },
+      degraded: true,
+      degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
+      admission,
+    };
+  }
+
+  if (envelope.action_type === "INJECT_PLASMID") {
+    const softened = clamp(
+      Math.round(
+        envelope.payload.intensity *
+          DAEMON_INGRESS_POLICY_LIMITS.invariantHighRatio,
+      ),
+      DAEMON_INGRESS_POLICY_LIMITS.invariantMinDegradedIntensity,
+      DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity,
+    );
+    return {
+      requested: envelope,
+      applied: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          target_x: envelope.payload.target_x,
+          target_y: envelope.payload.target_y,
+          intensity: softened,
+        },
+      },
+      degraded: true,
+      degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+      admission,
+    };
+  }
+
+  const softened = clamp(
+    Math.round(
+      envelope.payload.intensity *
+        DAEMON_INGRESS_POLICY_LIMITS.invariantHighRatio,
+    ),
+    DAEMON_INGRESS_POLICY_LIMITS.invariantMinDegradedIntensity,
+    DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity,
+  );
+  return {
+    requested: envelope,
+    applied: {
+      action_type: "DROP_PHEROMONE",
+      payload: {
+        ...envelope.payload,
+        intensity: softened,
+      },
+    },
+    degraded: true,
+    degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_INTENSITY",
+    admission,
+  };
+};
 
 ```
 
@@ -6380,6 +6879,7 @@ The first bridge subset is intentionally narrow and tied to the active WASM ISA 
 The following stay outside the initial bridge subset until parity is clearer:
 
 - `OP_BIND (0x82)` because the active WASM dispatch surface does not currently expose it alongside the other bridge-critical opcodes.
+- `OP_JZ (0x10)` because mutation-sensitive daemon ingress cases are currently covered more honestly through the admission-shadow lane than through a premature control-flow bridge.
 - `OP_SPORE_DRIVE (0xAA)` and `OP_ENTANGLE (0xAB)` until their active runtime path is confirmed end-to-end in the current kernel.
 - any future semantic-mutation glyphs in the reserve band.
 
@@ -6439,6 +6939,7 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Drift-budget policy | complete | strict vs bounded metrics defined |
 | Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
 | Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06` |
 
 ## Artifact layout
 
@@ -6539,7 +7040,7 @@ Current exit assessment:
 - scenario procedures: satisfied
 - artifact persistence: satisfied
 - export visibility: satisfied
-- next blocker: build `verification/reduction_harness.ts` against these baselines rather than inventing bridge behavior in prose
+- next blocker: widen shadow consumers only when they map to a real trace id and an explicit rollback path
 
 ```
 
@@ -6580,7 +7081,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
-| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
+| Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06` daemon-policy cases with persisted diff artifacts |
 
 Current rule:
 
@@ -6726,7 +7227,9 @@ Current support files already suggest the trace direction:
 
 - baseline scenarios are now committed under `verification/traces/`
 - `verification/golden_trace_capture.ts` provides the reproducible observer harness
-- next implementation step is `verification/reduction_harness.ts`, not more baseline-definition work
+- `verification/reduction_harness.ts` now covers the bridge-safe opcode subset
+- `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics without pretending they already belong to the reduction bridge
+- next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
 
 ## Stage 3: Introduce `GlyphIR64`
 
@@ -6822,7 +7325,8 @@ Only low-width behavior first:
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so `gt05 target_energy=300` cannot yet be encoded directly
   - current `gt05` cases therefore use the representable `band=240` anchor rather than claiming full homeostasis semantics
-- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive case (`gt04`) or widening the bridge subset with a compare/range primitive
+- mutation-sensitive admission coverage now lives in `verification/admission_shadow_harness.ts`, anchored to `gt04_plasmid_inject` and `gt06_daemon_admission_case`
+- next gate is no longer "cover `gt04` somehow"; it is deciding whether a real compare/range primitive belongs in the bridge, or whether those policy-first cases should remain outside reduction for now
 
 ## Stage 5: Transport becomes internal
 
@@ -16542,7 +17046,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
+| Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
 | Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -16557,6 +17061,8 @@ Latest completed planning work:
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 - Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
 - Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
+- Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
+- Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
 
 ## Current diagnosis
 
@@ -16625,13 +17131,13 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Widen reduction shadow coverage from `gt01`/`gt03` into one mutation-sensitive anchor (`gt04` or `gt05`).
-3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
+2. Keep widening shadow coverage only where a golden trace exposes real causality, even if that means using a non-reduction shadow lane first.
+3. Extend `GlyphIR64` mapping coverage only where a concrete trace id truly requires bridge-side control flow.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Introduce one mutation-adjacent shadow case using `gt04`, now that `gt05` policy-sensitive anchoring exists.
+1. Keep `gt04`/`gt06` in the new admission shadow lane until a real reduction-side control-flow contract exists for them.
 2. Decide whether to widen the bridge subset with a compare/range primitive or keep the current exact-anchor model explicit.
 3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
 
@@ -16639,6 +17145,7 @@ Known bridge limit surfaced by Stage 4:
 
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
+- `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
 
 ## Explicit deferrals
 
@@ -22153,6 +22660,17 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
+import {
+  DAEMON_INGRESS_POLICY_LIMITS,
+  evaluateInvariantAdmission,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  planInvariantIngress,
+  type DaemonAction,
+  type DaemonInjectEnvelope,
+  type PlasmidRiskProfile,
+} from "./DAEMON_INGRESS_POLICY.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -22168,49 +22686,6 @@ const JSON_HEADERS = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 } as const;
-
-type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-
-type DaemonInjectEnvelope = {
-  action_type: DaemonAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-type DaemonNarrativeContext = {
-  mood: string;
-  sharedCenter: string;
-  dominantInvariantVector: string;
-  codexLineageLabel: string;
-  codexLineageGuardScore: number;
-  codexLineageGuardReasons: string[];
-};
-
-type DaemonInvariantAdmission = {
-  score: number;
-  severity: "LOW" | "MID" | "HIGH";
-  reasons: string[];
-  context: DaemonNarrativeContext;
-};
-
-type PlasmidRiskProfile = {
-  level: "LOW" | "MID" | "HIGH";
-  score: number;
-  reasons: string[];
-  opcode: number;
-};
-
-type DaemonIngressPlan = {
-  requested: DaemonInjectEnvelope;
-  applied: DaemonInjectEnvelope;
-  degraded: boolean;
-  degradeReason: string | null;
-  admission: DaemonInvariantAdmission;
-};
 
 type DaemonAdmissionSnapshot = {
   tick: number;
@@ -22334,18 +22809,19 @@ const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
-const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY =
-  DAEMON_POLICY.maxPheromoneIntensity;
-const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_POLICY.maxPlasmidCharge;
-const DAEMON_SAFE_MIN_POPULATION = DAEMON_POLICY.safeMinPopulation;
-const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_POLICY.safeMinAvgEnergy;
+const DAEMON_POLICY_MAX_PHEROMONE_INTENSITY = DAEMON_INGRESS_POLICY_LIMITS
+  .maxPheromoneIntensity;
+const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_INGRESS_POLICY_LIMITS
+  .maxPlasmidCharge;
+const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
+  .safeMinPopulation;
+const DAEMON_SAFE_MIN_AVG_ENERGY = DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
 const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
 const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
-const DAEMON_INVARIANT_DRIFT_MID_SCORE = 2;
-const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = 4;
-const DAEMON_INVARIANT_MID_RATIO = 0.6;
-const DAEMON_INVARIANT_HIGH_RATIO = 0.35;
-const DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY = 24;
+const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftMidScore;
+const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftHighScore;
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
@@ -22354,9 +22830,6 @@ const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
 const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
 const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
 const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
-const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = 6;
-const DAEMON_CODEX_LINEAGE_PEAK_SHARE = 0.35;
-const DAEMON_CODEX_LINEAGE_GUARD_MAX = 3;
 const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
   1,
   Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
@@ -22366,29 +22839,6 @@ const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
 const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
 const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
 const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
-
-const ALLOWED_DAEMON_OPCODES = new Set<number>([
-  0x00,
-  0x01,
-  0x02,
-  0x03,
-  0x04,
-  0x05,
-  0x10,
-  0x11,
-  0x12,
-  0x80,
-  0x81,
-  0x83,
-  0xA4,
-  0xA5,
-  0xA6,
-  0xA7,
-  0xA8,
-  0xA9,
-  0xAA,
-  0xAB,
-]);
 
 let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
@@ -22553,83 +23003,6 @@ const consumeDaemonBudget = (maxActionsPerWindow: number): {
       0,
       DAEMON_POLICY_WINDOW_MS - (now - daemonWindowStartMs),
     ),
-  };
-};
-
-const parseHex8Strict = (value: string): Uint8Array | null => {
-  const normalized = value.trim().replace(/^0x/i, "");
-  if (!/^[0-9a-fA-F]{16}$/u.test(normalized)) return null;
-  const bytes = new Uint8Array(8);
-  for (let i = 0; i < 8; i++) {
-    bytes[i] = Number.parseInt(normalized.slice(i * 2, i * 2 + 2), 16);
-  }
-  return bytes;
-};
-
-const evaluatePlasmidPolicy = (
-  hexCode: string,
-): { ok: boolean; reason: string } => {
-  const bytes = parseHex8Strict(hexCode);
-  if (!bytes) return { ok: false, reason: "INVALID_HEX_CODE" };
-  if (bytes.every((b) => b === 0)) {
-    return { ok: false, reason: "PLASMID_ZERO_VECTOR_BLOCKED" };
-  }
-  const opcode = bytes[0];
-  if (!ALLOWED_DAEMON_OPCODES.has(opcode)) {
-    return {
-      ok: false,
-      reason: `PLASMID_OPCODE_BLOCKED_0x${
-        opcode.toString(16).toUpperCase().padStart(2, "0")
-      }`,
-    };
-  }
-  return { ok: true, reason: "PLASMID_POLICY_OK" };
-};
-
-const evaluatePlasmidRisk = (
-  hexCode: string,
-  intensity: number,
-): PlasmidRiskProfile => {
-  const bytes = parseHex8Strict(hexCode);
-  if (!bytes) {
-    return {
-      level: "HIGH",
-      score: 4,
-      reasons: ["PLASMID_HEX_INVALID"],
-      opcode: 0,
-    };
-  }
-  const opcode = bytes[0];
-  let score = 0;
-  const reasons: string[] = [];
-
-  if (opcode === 0x80) {
-    score += 2;
-    reasons.push("RISK_OPCODE_REPLICATE");
-  } else if (opcode === 0xA8 || opcode === 0xA5 || opcode === 0xA6) {
-    score += 1;
-    reasons.push("RISK_OPCODE_COMPLEX_STRUCT");
-  } else if (opcode === 0xAA || opcode === 0xAB) {
-    score += 2;
-    reasons.push("RISK_OPCODE_GLOBAL_TRANSFER");
-  }
-
-  const intensityRatio = clamp(intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE, 0, 1);
-  if (intensityRatio >= 0.85) {
-    score += 2;
-    reasons.push("RISK_INTENSITY_HIGH");
-  } else if (intensityRatio >= 0.55) {
-    score += 1;
-    reasons.push("RISK_INTENSITY_MID");
-  }
-
-  const level = score >= 4 ? "HIGH" : score >= 2 ? "MID" : "LOW";
-  if (reasons.length === 0) reasons.push("RISK_LOW");
-  return {
-    level,
-    score,
-    reasons,
-    opcode,
   };
 };
 
@@ -23056,267 +23429,6 @@ const parseHomeostasisIngressEnvelope = (
     );
   }
   return envelope;
-};
-
-const normalizeDaemonNarrativeContext = (
-  narrative: Awaited<ReturnType<typeof AKASHA_CODEX.getNarrative>>,
-  dominantGenome: string,
-): DaemonNarrativeContext => {
-  const mood = typeof narrative?.mood === "string"
-    ? narrative.mood.trim().toUpperCase()
-    : "STABLE";
-  const sharedCenter = typeof narrative?.sharedCenter === "string" &&
-      narrative.sharedCenter.trim().length > 0
-    ? narrative.sharedCenter.trim()
-    : "tick.exists";
-  const dominantInvariantVector =
-    typeof narrative?.invariantHighlights?.[0]?.dominantVector === "string" &&
-      narrative.invariantHighlights[0].dominantVector.trim().length > 0
-      ? narrative.invariantHighlights[0].dominantVector.trim()
-      : "none";
-  const normalizedDominantGenome = dominantGenome.trim().toUpperCase();
-  const highlights = Array.isArray(narrative?.speciesHighlights)
-    ? narrative.speciesHighlights.filter((entry) =>
-      entry && typeof entry === "object"
-    )
-    : [];
-  const matchedSpecies =
-    highlights.find((entry) =>
-      typeof entry.genome === "string" &&
-      entry.genome.toUpperCase() === normalizedDominantGenome
-    ) ?? highlights[0];
-  let codexLineageLabel = "none";
-  let codexLineageGuardScore = 0;
-  const codexLineageGuardReasons: string[] = [];
-  if (matchedSpecies && typeof matchedSpecies === "object") {
-    const dominantEpochs = asFiniteNumber(matchedSpecies.dominantEpochs, 0);
-    const peakShare = asFiniteNumber(matchedSpecies.peakShare, 0);
-    codexLineageLabel = typeof matchedSpecies.latinName === "string" &&
-        matchedSpecies.latinName.trim().length > 0
-      ? matchedSpecies.latinName.trim()
-      : typeof matchedSpecies.genome === "string"
-      ? `Genome ${matchedSpecies.genome.slice(0, 8)}`
-      : "unknown-lineage";
-    if (dominantEpochs >= DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_LINEAGE_LONGEVITY");
-    }
-    if (peakShare >= DAEMON_CODEX_LINEAGE_PEAK_SHARE) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_LINEAGE_DOMINANCE");
-    }
-    if (
-      normalizedDominantGenome.length > 0 &&
-      typeof matchedSpecies.genome === "string" &&
-      matchedSpecies.genome.toUpperCase() === normalizedDominantGenome
-    ) {
-      codexLineageGuardScore += 1;
-      codexLineageGuardReasons.push("CODEX_ACTIVE_LINEAGE_MATCH");
-    }
-  }
-  codexLineageGuardScore = clamp(
-    Math.round(codexLineageGuardScore),
-    0,
-    DAEMON_CODEX_LINEAGE_GUARD_MAX,
-  );
-  return {
-    mood,
-    sharedCenter,
-    dominantInvariantVector,
-    codexLineageLabel,
-    codexLineageGuardScore,
-    codexLineageGuardReasons,
-  };
-};
-
-const evaluateInvariantAdmission = (
-  envelope: DaemonInjectEnvelope,
-  metrics: RuntimeMetrics,
-  context: DaemonNarrativeContext,
-  plasmidRisk: PlasmidRiskProfile | null = null,
-): DaemonInvariantAdmission => {
-  let score = 0;
-  const reasons: string[] = [];
-  if (context.mood === "FRAGILE") {
-    score += 2;
-    reasons.push("NARRATIVE_MOOD_FRAGILE");
-  }
-
-  if (metrics.population <= Math.max(DAEMON_SAFE_MIN_POPULATION * 2, 24)) {
-    score += 1;
-    reasons.push("POPULATION_NEAR_SAFE_FLOOR");
-  }
-  if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 4) {
-    score += 2;
-    reasons.push("ENERGY_NEAR_SAFE_FLOOR");
-  } else if (metrics.avgEnergy <= DAEMON_SAFE_MIN_AVG_ENERGY + 12) {
-    score += 1;
-    reasons.push("ENERGY_LOW_GRADIENT");
-  }
-
-  const normalizedVector = context.dominantInvariantVector.toUpperCase();
-  if (normalizedVector.includes("SCARCITY")) {
-    score += 1;
-    reasons.push("INVARIANT_SCARCITY_VECTOR");
-  } else if (normalizedVector.includes("TENSION")) {
-    score += 1;
-    reasons.push("INVARIANT_TENSION_VECTOR");
-  }
-
-  if (context.codexLineageGuardScore > 0) {
-    if (envelope.action_type === "INJECT_PLASMID") {
-      const codexGuardAdd = Math.min(2, context.codexLineageGuardScore);
-      score += codexGuardAdd;
-      reasons.push(
-        ...context.codexLineageGuardReasons.slice(0, codexGuardAdd),
-      );
-      reasons.push("CODEX_LINEAGE_GUARD_PLASMID");
-    } else if (envelope.action_type === "DROP_PHEROMONE") {
-      const pheromoneRatio = envelope.payload.intensity /
-        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
-      if (pheromoneRatio >= 0.9) {
-        score += 1;
-        reasons.push("CODEX_LINEAGE_GUARD_PHEROMONE_HIGH");
-      }
-    }
-  }
-
-  if (envelope.action_type === "INJECT_PLASMID") {
-    const ratio = envelope.payload.intensity / DAEMON_POLICY_MAX_PLASMID_CHARGE;
-    if (ratio >= 0.8) {
-      score += 2;
-      reasons.push("PLASMID_INTENSITY_HIGH");
-    } else if (ratio >= 0.55) {
-      score += 1;
-      reasons.push("PLASMID_INTENSITY_MID");
-    }
-    if (context.mood === "FRAGILE") {
-      score += 1;
-      reasons.push("PLASMID_IN_FRAGILE_MOOD");
-    }
-    if (plasmidRisk) {
-      score += plasmidRisk.score;
-      reasons.push(...plasmidRisk.reasons);
-      if (plasmidRisk.level === "HIGH") {
-        score += 1;
-        reasons.push("PLASMID_RISK_HIGH");
-      }
-    }
-  } else if (envelope.action_type === "DROP_PHEROMONE") {
-    const ratio = envelope.payload.intensity /
-      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY;
-    if (ratio >= 0.85) {
-      score += 1;
-      reasons.push("PHEROMONE_INTENSITY_HIGH");
-    }
-  }
-
-  const severity = score >= DAEMON_INVARIANT_DRIFT_HIGH_SCORE
-    ? "HIGH"
-    : score >= DAEMON_INVARIANT_DRIFT_MID_SCORE
-    ? "MID"
-    : "LOW";
-  if (reasons.length === 0) reasons.push("DRIFT_LOW");
-  return { score, severity, reasons, context };
-};
-
-const planInvariantIngress = (
-  envelope: DaemonInjectEnvelope,
-  admission: DaemonInvariantAdmission,
-): DaemonIngressPlan => {
-  if (admission.severity === "LOW") {
-    return {
-      requested: envelope,
-      applied: envelope,
-      degraded: false,
-      degradeReason: null,
-      admission,
-    };
-  }
-
-  if (admission.severity === "MID") {
-    if (envelope.action_type === "INJECT_PLASMID") {
-      const capped = Math.max(
-        DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-        Math.round(
-          DAEMON_POLICY_MAX_PLASMID_CHARGE * DAEMON_INVARIANT_MID_RATIO,
-        ),
-      );
-      return {
-        requested: envelope,
-        applied: {
-          action_type: "INJECT_PLASMID",
-          payload: {
-            ...envelope.payload,
-            intensity: clamp(envelope.payload.intensity, 1, capped),
-          },
-        },
-        degraded: true,
-        degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
-        admission,
-      };
-    }
-    const capped = Math.max(
-      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-      Math.round(
-        DAEMON_POLICY_MAX_PHEROMONE_INTENSITY * DAEMON_INVARIANT_MID_RATIO,
-      ),
-    );
-    return {
-      requested: envelope,
-      applied: {
-        action_type: "DROP_PHEROMONE",
-        payload: {
-          ...envelope.payload,
-          intensity: clamp(envelope.payload.intensity, 1, capped),
-        },
-      },
-      degraded: true,
-      degradeReason: "INVARIANT_DRIFT_MID_DEGRADE_INTENSITY",
-      admission,
-    };
-  }
-
-  if (envelope.action_type === "INJECT_PLASMID") {
-    const softened = clamp(
-      Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
-      DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-      DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
-    );
-    return {
-      requested: envelope,
-      applied: {
-        action_type: "DROP_PHEROMONE",
-        payload: {
-          target_x: envelope.payload.target_x,
-          target_y: envelope.payload.target_y,
-          intensity: softened,
-        },
-      },
-      degraded: true,
-      degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-      admission,
-    };
-  }
-
-  const softened = clamp(
-    Math.round(envelope.payload.intensity * DAEMON_INVARIANT_HIGH_RATIO),
-    DAEMON_INVARIANT_MIN_DEGRADED_INTENSITY,
-    DAEMON_POLICY_MAX_PHEROMONE_INTENSITY,
-  );
-  return {
-    requested: envelope,
-    applied: {
-      action_type: "DROP_PHEROMONE",
-      payload: {
-        ...envelope.payload,
-        intensity: softened,
-      },
-    },
-    degraded: true,
-    degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_INTENSITY",
-    admission,
-  };
 };
 
 LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
@@ -28288,6 +28400,799 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
     </script>
   </body>
 </html>
+
+```
+
+---
+
+## FILE: verification/admission_diffs/ac01_gt04_low_risk_accept.json
+
+```json
+{
+  "case_id": "ac01_gt04_low_risk_accept",
+  "baseline_trace_id": "gt04_plasmid_inject",
+  "baseline_event_kind": "INJECT_PLASMID",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "61318c473cd7d666f3590533865cdc353672aec5f1cac00336e56453949df60f",
+  "shadow_digest": "2442bb600840c93cbbea96ec8317f6143f3da8e3cbd98ea1647ed32151393e2e",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": true,
+    "policyReason": "PLASMID_POLICY_OK",
+    "severity": "LOW",
+    "score": 0,
+    "appliedAction": "INJECT_PLASMID",
+    "degraded": false,
+    "degradeReason": null,
+    "plasmidRiskLevel": "LOW",
+    "plasmidRiskScore": 0,
+    "plasmidRiskOpcode": 1,
+    "reasons": [
+      "RISK_LOW"
+    ]
+  }
+}
+```
+
+---
+
+## FILE: verification/admission_diffs/ac02_gt06_pheromone_accept.json
+
+```json
+{
+  "case_id": "ac02_gt06_pheromone_accept",
+  "baseline_trace_id": "gt06_daemon_admission_case",
+  "baseline_event_kind": "DROP_PHEROMONE_ACCEPT",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "72b50e10ec2b08c97635f1c9a8ab877b3582cb8f54667aaa4a94eaf70b3696bd",
+  "shadow_digest": "bb5556b27612e71a617d509dc4807b78aca0a51dd3037b5a1aaf7a55d10b5205",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": null,
+    "policyReason": null,
+    "severity": "LOW",
+    "score": 0,
+    "appliedAction": "DROP_PHEROMONE",
+    "degraded": false,
+    "degradeReason": null,
+    "plasmidRiskLevel": null,
+    "plasmidRiskScore": null,
+    "plasmidRiskOpcode": null,
+    "reasons": [
+      "DRIFT_LOW"
+    ]
+  }
+}
+```
+
+---
+
+## FILE: verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json
+
+```json
+{
+  "case_id": "ac03_gt06_plasmid_high_degrade",
+  "baseline_trace_id": "gt06_daemon_admission_case",
+  "baseline_event_kind": "INJECT_PLASMID_DEGRADED",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "fe08cb56b3964babcca6bbbc5282b3cf5c4c5975ec38d5dacaa69a56a9d37581",
+  "shadow_digest": "7315232c9f8ff26b562aff7237dff948818d5ec4fa4e3c48174159fd095f50bc",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": true,
+    "policyReason": "PLASMID_POLICY_OK",
+    "severity": "HIGH",
+    "score": 4,
+    "appliedAction": "DROP_PHEROMONE",
+    "degraded": true,
+    "degradeReason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+    "plasmidRiskLevel": "MID",
+    "plasmidRiskScore": 2,
+    "plasmidRiskOpcode": 0,
+    "reasons": [
+      "PLASMID_INTENSITY_HIGH",
+      "RISK_INTENSITY_HIGH"
+    ]
+  }
+}
+```
+
+---
+
+## FILE: verification/admission_shadow_cases.ts
+
+```typescript
+import type {
+  DaemonInjectEnvelope,
+  DaemonIngressMetrics,
+} from "../DAEMON_INGRESS_POLICY.ts";
+
+export type AdmissionShadowExpectation = {
+  policyOk: boolean | null;
+  policyReason: string | null;
+  severity: "LOW" | "MID" | "HIGH";
+  score: number;
+  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+  degraded: boolean;
+  degradeReason: string | null;
+  plasmidRiskLevel: "LOW" | "MID" | "HIGH" | null;
+  plasmidRiskScore: number | null;
+  plasmidRiskOpcode: number | null;
+  reasons: string[];
+};
+
+export type AdmissionShadowCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  baselineEventKind: string;
+  description: string;
+  envelope: DaemonInjectEnvelope;
+  metrics: DaemonIngressMetrics;
+  dominantGenome: string;
+  narrativeSeed: Record<string, unknown>;
+  expected: AdmissionShadowExpectation;
+};
+
+export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
+  Object.freeze([
+    {
+      id: "ac01_gt04_low_risk_accept",
+      baselineTraceId: "gt04_plasmid_inject",
+      baselineEventKind: "INJECT_PLASMID",
+      description:
+        "Low-intensity plasmid ingress from gt04 should stay policy-clean and remain an undegraded plasmid admission.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 640,
+          target_y: 360,
+          intensity: 420,
+          hex_code: "0102030405101180",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 173.654,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: true,
+        policyReason: "PLASMID_POLICY_OK",
+        severity: "LOW",
+        score: 0,
+        appliedAction: "INJECT_PLASMID",
+        degraded: false,
+        degradeReason: null,
+        plasmidRiskLevel: "LOW",
+        plasmidRiskScore: 0,
+        plasmidRiskOpcode: 0x01,
+        reasons: ["RISK_LOW"],
+      },
+    },
+    {
+      id: "ac02_gt06_pheromone_accept",
+      baselineTraceId: "gt06_daemon_admission_case",
+      baselineEventKind: "DROP_PHEROMONE_ACCEPT",
+      description:
+        "The accepted gt06 pheromone ingress should remain a low-drift pheromone admission with no plasmid risk path involved.",
+      envelope: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 80,
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 238.609,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: null,
+        policyReason: null,
+        severity: "LOW",
+        score: 0,
+        appliedAction: "DROP_PHEROMONE",
+        degraded: false,
+        degradeReason: null,
+        plasmidRiskLevel: null,
+        plasmidRiskScore: null,
+        plasmidRiskOpcode: null,
+        reasons: ["DRIFT_LOW"],
+      },
+    },
+    {
+      id: "ac03_gt06_plasmid_high_degrade",
+      baselineTraceId: "gt06_daemon_admission_case",
+      baselineEventKind: "INJECT_PLASMID_DEGRADED",
+      description:
+        "The high-intensity gt06 plasmid ingress should stay policy-valid but degrade into a pheromone action under invariant pressure.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 1100,
+          hex_code: "001011120381A4A5",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 238.609,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: true,
+        policyReason: "PLASMID_POLICY_OK",
+        severity: "HIGH",
+        score: 4,
+        appliedAction: "DROP_PHEROMONE",
+        degraded: true,
+        degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+        plasmidRiskLevel: "MID",
+        plasmidRiskScore: 2,
+        plasmidRiskOpcode: 0x00,
+        reasons: ["PLASMID_INTENSITY_HIGH", "RISK_INTENSITY_HIGH"],
+      },
+    },
+  ]);
+
+const ADMISSION_SHADOW_CASE_BY_ID = new Map<string, AdmissionShadowCaseDefinition>(
+  ADMISSION_SHADOW_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const admissionShadowCaseById = (
+  id: string,
+): AdmissionShadowCaseDefinition | null =>
+  ADMISSION_SHADOW_CASE_BY_ID.get(id) ?? null;
+
+```
+
+---
+
+## FILE: verification/admission_shadow_harness.ts
+
+```typescript
+import {
+  evaluateInvariantAdmission,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  planInvariantIngress,
+  type DaemonInvariantAdmission,
+  type DaemonIngressPlan,
+  type DaemonNarrativeContext,
+  type PlasmidRiskProfile,
+} from "../DAEMON_INGRESS_POLICY.ts";
+import {
+  ADMISSION_SHADOW_CASES,
+  type AdmissionShadowCaseDefinition,
+} from "./admission_shadow_cases.ts";
+import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+
+type AdmissionBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  eventKind: string;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+  response: Record<string, unknown>;
+};
+
+type AdmissionShadowOutcome = {
+  context: DaemonNarrativeContext;
+  policy: { ok: boolean; reason: string } | null;
+  risk: PlasmidRiskProfile | null;
+  admission: DaemonInvariantAdmission;
+  plan: DaemonIngressPlan;
+};
+
+export type AdmissionShadowResult = {
+  caseId: string;
+  baseline: Omit<AdmissionBaselineAnchor, "response">;
+  shadow: AdmissionShadowOutcome;
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+export type AdmissionShadowArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_event_kind: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  baseline_digest: string;
+  shadow_digest: string;
+  diff: {
+    policy_match: boolean;
+    policy_reason_match: boolean;
+    risk_match: boolean;
+    severity_match: boolean;
+    score_match: boolean;
+    reasons_match: boolean;
+    applied_action_match: boolean;
+    degraded_match: boolean;
+    degrade_reason_match: boolean;
+    context_match: boolean;
+  };
+  expectation_summary: AdmissionShadowCaseDefinition["expected"];
+};
+
+const ADMISSION_DIFF_ROOT = "verification/admission_diffs";
+
+const equalStringArray = (a: readonly string[], b: readonly string[]): boolean =>
+  a.length === b.length && a.every((value, index) => value === b[index]);
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>).sort(([a], [b]) =>
+    a.localeCompare(b)
+  );
+  return `{${entries.map(([key, item]) =>
+    `${JSON.stringify(key)}:${stableStringify(item)}`
+  ).join(",")}}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const normalizeResponse = (
+  response: Record<string, unknown>,
+): {
+  policyOk: boolean | null;
+  policyReason: string | null;
+  risk: {
+    level: string | null;
+    score: number | null;
+    opcode: number | null;
+  };
+  admission: {
+    severity: string;
+    score: number;
+    reasons: string[];
+    context: {
+      mood: string;
+      sharedCenter: string;
+      dominantInvariantVector: string;
+      codexLineageLabel: string;
+      codexLineageGuardScore: number;
+      codexLineageGuardReasons: string[];
+    };
+  };
+  appliedAction: string;
+  degraded: boolean;
+  degradeReason: string | null;
+} => {
+  const admissionRoot = response.admission && typeof response.admission === "object"
+    ? response.admission as Record<string, unknown>
+    : {};
+  const contextRoot = admissionRoot.context && typeof admissionRoot.context === "object"
+    ? admissionRoot.context as Record<string, unknown>
+    : {};
+  const plasmidRisk = response.plasmid_risk && typeof response.plasmid_risk === "object"
+    ? response.plasmid_risk as Record<string, unknown>
+    : null;
+  return {
+    policyOk: typeof response.ok === "boolean" ? response.ok : null,
+    policyReason: typeof response.reason === "string" ? response.reason : null,
+    risk: {
+      level: plasmidRisk && typeof plasmidRisk.level === "string"
+        ? plasmidRisk.level
+        : null,
+      score: plasmidRisk && typeof plasmidRisk.score === "number"
+        ? plasmidRisk.score
+        : null,
+      opcode: plasmidRisk && typeof plasmidRisk.opcode === "number"
+        ? plasmidRisk.opcode
+        : null,
+    },
+    admission: {
+      severity: typeof admissionRoot.severity === "string"
+        ? admissionRoot.severity
+        : "UNKNOWN",
+      score: typeof admissionRoot.score === "number" ? admissionRoot.score : -1,
+      reasons: Array.isArray(admissionRoot.reasons)
+        ? admissionRoot.reasons.filter((item): item is string => typeof item === "string")
+        : [],
+      context: {
+        mood: typeof contextRoot.mood === "string" ? contextRoot.mood : "UNKNOWN",
+        sharedCenter: typeof contextRoot.sharedCenter === "string"
+          ? contextRoot.sharedCenter
+          : "unknown",
+        dominantInvariantVector:
+          typeof contextRoot.dominantInvariantVector === "string"
+            ? contextRoot.dominantInvariantVector
+            : "unknown",
+        codexLineageLabel: typeof contextRoot.codexLineageLabel === "string"
+          ? contextRoot.codexLineageLabel
+          : "unknown",
+        codexLineageGuardScore:
+          typeof contextRoot.codexLineageGuardScore === "number"
+            ? contextRoot.codexLineageGuardScore
+            : -1,
+        codexLineageGuardReasons:
+          Array.isArray(contextRoot.codexLineageGuardReasons)
+            ? contextRoot.codexLineageGuardReasons.filter((item): item is string =>
+              typeof item === "string"
+            )
+            : [],
+      },
+    },
+    appliedAction: typeof response.applied_action === "string"
+      ? response.applied_action
+      : "UNKNOWN",
+    degraded: response.degraded === true,
+    degradeReason: typeof response.degrade_reason === "string"
+      ? response.degrade_reason
+      : null,
+  };
+};
+
+const loadBaselineAnchor = async (
+  definition: AdmissionShadowCaseDefinition,
+): Promise<AdmissionBaselineAnchor> => {
+  const { traceJson } = goldenTraceArtifactPaths(definition.baselineTraceId);
+  const parsed = JSON.parse(
+    await Deno.readTextFile(traceJson),
+  ) as Record<string, unknown>;
+  const eventLog = Array.isArray(parsed.event_log)
+    ? parsed.event_log.filter((entry) => entry && typeof entry === "object")
+    : [];
+  const matched = eventLog.find((entry) =>
+    (entry as Record<string, unknown>).kind === definition.baselineEventKind
+  );
+  if (!matched || typeof matched !== "object") {
+    throw new Error(
+      `[admission_shadow] baseline event ${definition.baselineEventKind} missing in ${definition.baselineTraceId}`,
+    );
+  }
+  const event = matched as Record<string, unknown>;
+  if (!event.response || typeof event.response !== "object") {
+    throw new Error(
+      `[admission_shadow] baseline response missing for ${definition.id}`,
+    );
+  }
+  return {
+    traceId: definition.baselineTraceId,
+    scenario: String(parsed.scenario ?? definition.baselineTraceId),
+    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
+    eventKind: definition.baselineEventKind,
+    tickEnd: Number(parsed.tick_end ?? -1),
+    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
+    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+    response: event.response as Record<string, unknown>,
+  };
+};
+
+const runAdmissionShadow = (
+  definition: AdmissionShadowCaseDefinition,
+): AdmissionShadowOutcome => {
+  const context = normalizeDaemonNarrativeContext(
+    definition.narrativeSeed,
+    definition.dominantGenome,
+  );
+  const policy = definition.envelope.action_type === "INJECT_PLASMID" &&
+      definition.envelope.payload.hex_code
+    ? evaluatePlasmidPolicy(definition.envelope.payload.hex_code)
+    : null;
+  const risk = definition.envelope.action_type === "INJECT_PLASMID" &&
+      definition.envelope.payload.hex_code
+    ? evaluatePlasmidRisk(
+      definition.envelope.payload.hex_code,
+      definition.envelope.payload.intensity,
+    )
+    : null;
+  const admission = evaluateInvariantAdmission(
+    definition.envelope,
+    definition.metrics,
+    context,
+    risk,
+  );
+  const plan = planInvariantIngress(definition.envelope, admission);
+  return { context, policy, risk, admission, plan };
+};
+
+const compareToBaseline = (
+  definition: AdmissionShadowCaseDefinition,
+  baseline: AdmissionBaselineAnchor,
+  shadow: AdmissionShadowOutcome,
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+  const baselineResponse = normalizeResponse(baseline.response);
+  const expected = definition.expected;
+
+  const policyOk = shadow.policy?.ok ?? null;
+  const policyReason = shadow.policy?.reason ?? null;
+  const riskLevel = shadow.risk?.level ?? null;
+  const riskScore = shadow.risk?.score ?? null;
+  const riskOpcode = shadow.risk?.opcode ?? null;
+
+  if (policyOk !== expected.policyOk) {
+    reasons.push(`expected policyOk=${expected.policyOk} got=${policyOk}`);
+  }
+  if (policyReason !== expected.policyReason) {
+    reasons.push(
+      `expected policyReason=${expected.policyReason} got=${policyReason}`,
+    );
+  }
+  if (riskLevel !== expected.plasmidRiskLevel) {
+    reasons.push(`expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`);
+  }
+  if (riskScore !== expected.plasmidRiskScore) {
+    reasons.push(`expected riskScore=${expected.plasmidRiskScore} got=${riskScore}`);
+  }
+  if (riskOpcode !== expected.plasmidRiskOpcode) {
+    reasons.push(`expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`);
+  }
+  if (shadow.admission.severity !== expected.severity) {
+    reasons.push(
+      `expected severity=${expected.severity} got=${shadow.admission.severity}`,
+    );
+  }
+  if (shadow.admission.score !== expected.score) {
+    reasons.push(`expected score=${expected.score} got=${shadow.admission.score}`);
+  }
+  if (!equalStringArray(shadow.admission.reasons, expected.reasons)) {
+    reasons.push("expected reasons mismatch");
+  }
+  if (shadow.plan.applied.action_type !== expected.appliedAction) {
+    reasons.push(
+      `expected appliedAction=${expected.appliedAction} got=${shadow.plan.applied.action_type}`,
+    );
+  }
+  if (shadow.plan.degraded !== expected.degraded) {
+    reasons.push(`expected degraded=${expected.degraded} got=${shadow.plan.degraded}`);
+  }
+  if (shadow.plan.degradeReason !== expected.degradeReason) {
+    reasons.push(
+      `expected degradeReason=${expected.degradeReason} got=${shadow.plan.degradeReason}`,
+    );
+  }
+  if (baselineResponse.risk.level !== riskLevel) {
+    reasons.push(`baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`);
+  }
+  if (baselineResponse.risk.score !== riskScore) {
+    reasons.push(`baseline riskScore=${baselineResponse.risk.score} shadow=${riskScore}`);
+  }
+  if (baselineResponse.risk.opcode !== riskOpcode) {
+    reasons.push(
+      `baseline riskOpcode=${baselineResponse.risk.opcode} shadow=${riskOpcode}`,
+    );
+  }
+  if (baselineResponse.admission.severity !== shadow.admission.severity) {
+    reasons.push(
+      `baseline severity=${baselineResponse.admission.severity} shadow=${shadow.admission.severity}`,
+    );
+  }
+  if (baselineResponse.admission.score !== shadow.admission.score) {
+    reasons.push(
+      `baseline score=${baselineResponse.admission.score} shadow=${shadow.admission.score}`,
+    );
+  }
+  if (!equalStringArray(baselineResponse.admission.reasons, shadow.admission.reasons)) {
+    reasons.push("baseline reasons mismatch");
+  }
+  if (baselineResponse.appliedAction !== shadow.plan.applied.action_type) {
+    reasons.push(
+      `baseline appliedAction=${baselineResponse.appliedAction} shadow=${shadow.plan.applied.action_type}`,
+    );
+  }
+  if (baselineResponse.degraded !== shadow.plan.degraded) {
+    reasons.push(
+      `baseline degraded=${baselineResponse.degraded} shadow=${shadow.plan.degraded}`,
+    );
+  }
+  if (baselineResponse.degradeReason !== shadow.plan.degradeReason) {
+    reasons.push(
+      `baseline degradeReason=${baselineResponse.degradeReason} shadow=${shadow.plan.degradeReason}`,
+    );
+  }
+  if (baselineResponse.admission.context.sharedCenter !== shadow.context.sharedCenter) {
+    reasons.push("baseline sharedCenter mismatch");
+  }
+  if (
+    baselineResponse.admission.context.dominantInvariantVector !==
+      shadow.context.dominantInvariantVector
+  ) {
+    reasons.push("baseline dominantInvariantVector mismatch");
+  }
+  if (baselineResponse.admission.context.codexLineageLabel !== shadow.context.codexLineageLabel) {
+    reasons.push("baseline codexLineageLabel mismatch");
+  }
+  if (
+    baselineResponse.admission.context.codexLineageGuardScore !==
+      shadow.context.codexLineageGuardScore
+  ) {
+    reasons.push("baseline codexLineageGuardScore mismatch");
+  }
+  if (
+    !equalStringArray(
+      baselineResponse.admission.context.codexLineageGuardReasons,
+      shadow.context.codexLineageGuardReasons,
+    )
+  ) {
+    reasons.push("baseline codexLineageGuardReasons mismatch");
+  }
+
+  return { ok: reasons.length === 0, reasons };
+};
+
+const artifactForResult = async (
+  definition: AdmissionShadowCaseDefinition,
+  baseline: AdmissionBaselineAnchor,
+  shadow: AdmissionShadowOutcome,
+  parity: { ok: boolean; reasons: string[] },
+): Promise<AdmissionShadowArtifact> => {
+  const normalizedBaseline = normalizeResponse(baseline.response);
+  const policyOk = shadow.policy?.ok ?? null;
+  const policyReason = shadow.policy?.reason ?? null;
+  return {
+    case_id: definition.id,
+    baseline_trace_id: baseline.traceId,
+    baseline_event_kind: baseline.eventKind,
+    parity_ok: parity.ok,
+    parity_reasons: [...parity.reasons],
+    baseline_digest: await sha256Hex(normalizedBaseline),
+    shadow_digest: await sha256Hex({
+      policyOk,
+      policyReason,
+      risk: shadow.risk,
+      admission: shadow.admission,
+      plan: shadow.plan,
+    }),
+    diff: {
+      policy_match: definition.expected.policyOk === policyOk,
+      policy_reason_match: definition.expected.policyReason === policyReason,
+      risk_match:
+        normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
+        normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
+        normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
+      severity_match: normalizedBaseline.admission.severity === shadow.admission.severity,
+      score_match: normalizedBaseline.admission.score === shadow.admission.score,
+      reasons_match: equalStringArray(
+        normalizedBaseline.admission.reasons,
+        shadow.admission.reasons,
+      ),
+      applied_action_match:
+        normalizedBaseline.appliedAction === shadow.plan.applied.action_type,
+      degraded_match: normalizedBaseline.degraded === shadow.plan.degraded,
+      degrade_reason_match:
+        normalizedBaseline.degradeReason === shadow.plan.degradeReason,
+      context_match:
+        normalizedBaseline.admission.context.sharedCenter === shadow.context.sharedCenter &&
+        normalizedBaseline.admission.context.dominantInvariantVector ===
+          shadow.context.dominantInvariantVector &&
+        normalizedBaseline.admission.context.codexLineageLabel ===
+          shadow.context.codexLineageLabel &&
+        normalizedBaseline.admission.context.codexLineageGuardScore ===
+          shadow.context.codexLineageGuardScore &&
+        equalStringArray(
+          normalizedBaseline.admission.context.codexLineageGuardReasons,
+          shadow.context.codexLineageGuardReasons,
+        ),
+    },
+    expectation_summary: definition.expected,
+  };
+};
+
+export const writeAdmissionHarnessArtifacts = async (
+  results: AdmissionShadowResult[],
+): Promise<void> => {
+  await Deno.mkdir(ADMISSION_DIFF_ROOT, { recursive: true });
+  for (const result of results) {
+    const definition = ADMISSION_SHADOW_CASES.find((item) => item.id === result.caseId);
+    if (!definition) {
+      throw new Error(`[admission_shadow] missing case definition for ${result.caseId}`);
+    }
+    const baseline = await loadBaselineAnchor(definition);
+    const artifact = await artifactForResult(
+      definition,
+      baseline,
+      result.shadow,
+      result.parity,
+    );
+    const path = `${ADMISSION_DIFF_ROOT}/${definition.id}.json`;
+    await Deno.writeTextFile(`${path}.tmp`, JSON.stringify(artifact, null, 2));
+    await Deno.rename(`${path}.tmp`, path);
+  }
+};
+
+export const runAdmissionShadowHarness = async (): Promise<AdmissionShadowResult[]> => {
+  const results: AdmissionShadowResult[] = [];
+  for (const definition of ADMISSION_SHADOW_CASES) {
+    const baseline = await loadBaselineAnchor(definition);
+    const shadow = runAdmissionShadow(definition);
+    const parity = compareToBaseline(definition, baseline, shadow);
+    results.push({
+      caseId: definition.id,
+      baseline: {
+        traceId: baseline.traceId,
+        scenario: baseline.scenario,
+        runtimeMode: baseline.runtimeMode,
+        eventKind: baseline.eventKind,
+        tickEnd: baseline.tickEnd,
+        codexSnapshotDigest: baseline.codexSnapshotDigest,
+        invariantDigest: baseline.invariantDigest,
+      },
+      shadow,
+      parity,
+    });
+  }
+  return results;
+};
+
+const main = async () => {
+  const results = await runAdmissionShadowHarness();
+  await writeAdmissionHarnessArtifacts(results);
+  const failed = results.filter((result) => !result.parity.ok);
+  if (failed.length > 0) {
+    console.error("[admission_shadow] parity failure.");
+    for (const result of failed) {
+      console.error(` - ${result.caseId}`);
+      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
+    }
+    Deno.exit(1);
+  }
+  console.log(`[admission_shadow] capture complete. cases=${results.length}`);
+};
+
+if (import.meta.main) {
+  await main();
+}
 
 ```
 

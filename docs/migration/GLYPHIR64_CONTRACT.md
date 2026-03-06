@@ -81,6 +81,7 @@ The first bridge subset is intentionally narrow and tied to the active WASM ISA 
 The following stay outside the initial bridge subset until parity is clearer:
 
 - `OP_BIND (0x82)` because the active WASM dispatch surface does not currently expose it alongside the other bridge-critical opcodes.
+- `OP_JZ (0x10)` because mutation-sensitive daemon ingress cases are currently covered more honestly through the admission-shadow lane than through a premature control-flow bridge.
 - `OP_SPORE_DRIVE (0xAA)` and `OP_ENTANGLE (0xAB)` until their active runtime path is confirmed end-to-end in the current kernel.
 - any future semantic-mutation glyphs in the reserve band.
 

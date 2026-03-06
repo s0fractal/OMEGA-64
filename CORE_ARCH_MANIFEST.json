@@ -37,6 +37,8 @@
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
     "verification/golden_trace_capture.ts",
+    "verification/admission_shadow_cases.ts",
+    "verification/admission_shadow_harness.ts",
     "verification/reduction_cases.ts",
     "verification/reduction_harness.ts"
   ],
@@ -49,6 +51,7 @@
     "assembly/index.ts"
   ],
   "required_additional_files": [
+    "DAEMON_INGRESS_POLICY.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
@@ -100,6 +103,9 @@
     "verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json",
     "verification/reduction_diffs/rc05_gt05_band_anchor_match.json",
     "verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json",
+    "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
+    "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
+    "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",

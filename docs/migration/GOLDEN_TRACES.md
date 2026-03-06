@@ -17,6 +17,7 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Drift-budget policy | complete | strict vs bounded metrics defined |
 | Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
 | Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06` |
 
 ## Artifact layout
 
@@ -117,4 +118,4 @@ Current exit assessment:
 - scenario procedures: satisfied
 - artifact persistence: satisfied
 - export visibility: satisfied
-- next blocker: build `verification/reduction_harness.ts` against these baselines rather than inventing bridge behavior in prose
+- next blocker: widen shadow consumers only when they map to a real trace id and an explicit rollback path

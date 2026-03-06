@@ -1,0 +1,36 @@
+{
+  "case_id": "ac01_gt04_low_risk_accept",
+  "baseline_trace_id": "gt04_plasmid_inject",
+  "baseline_event_kind": "INJECT_PLASMID",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "61318c473cd7d666f3590533865cdc353672aec5f1cac00336e56453949df60f",
+  "shadow_digest": "2442bb600840c93cbbea96ec8317f6143f3da8e3cbd98ea1647ed32151393e2e",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": true,
+    "policyReason": "PLASMID_POLICY_OK",
+    "severity": "LOW",
+    "score": 0,
+    "appliedAction": "INJECT_PLASMID",
+    "degraded": false,
+    "degradeReason": null,
+    "plasmidRiskLevel": "LOW",
+    "plasmidRiskScore": 0,
+    "plasmidRiskOpcode": 1,
+    "reasons": [
+      "RISK_LOW"
+    ]
+  }
+}

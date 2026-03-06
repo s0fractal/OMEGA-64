@@ -1,0 +1,36 @@
+{
+  "case_id": "ac02_gt06_pheromone_accept",
+  "baseline_trace_id": "gt06_daemon_admission_case",
+  "baseline_event_kind": "DROP_PHEROMONE_ACCEPT",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "72b50e10ec2b08c97635f1c9a8ab877b3582cb8f54667aaa4a94eaf70b3696bd",
+  "shadow_digest": "bb5556b27612e71a617d509dc4807b78aca0a51dd3037b5a1aaf7a55d10b5205",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": null,
+    "policyReason": null,
+    "severity": "LOW",
+    "score": 0,
+    "appliedAction": "DROP_PHEROMONE",
+    "degraded": false,
+    "degradeReason": null,
+    "plasmidRiskLevel": null,
+    "plasmidRiskScore": null,
+    "plasmidRiskOpcode": null,
+    "reasons": [
+      "DRIFT_LOW"
+    ]
+  }
+}
