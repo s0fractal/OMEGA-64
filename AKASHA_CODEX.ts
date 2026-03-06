@@ -1261,21 +1261,33 @@ export const AKASHA_CODEX = {
     tick: number,
     requestedAction: string,
     appliedAction: string,
-    severity: "LOW" | "MID" | "HIGH",
+    severity: "LOW" | "MID" | "HIGH" | "BLOCKED",
     score: number,
     reason: string,
     sharedCenter: string,
     dominantVector: string,
+    glyphTransport?: GlyphSnapshot,
   ): void => {
     if (!started) return;
     if (severity === "LOW") return;
     enqueueWrite(async () => {
+      const glyphEvidence = glyphTransport
+        ? buildGlyphTransportEvidence(tick, glyphTransport)
+        : null;
+      const glyphContext = glyphEvidence
+        ? ` Glyph transport context: ${glyphEvidence.summary}`
+        : state.lastGlyphTransportSummary.length > 0
+        ? ` Glyph transport context: ${state.lastGlyphTransportSummary}`
+        : "";
+      const actionDisposition = severity === "BLOCKED"
+        ? "blocked"
+        : "degraded";
       const title =
         `Daemon Admission ${severity}: ${requestedAction} -> ${appliedAction}`;
       const body =
-        `Ingress action was degraded due to invariant drift score ${score}. ` +
+        `Ingress action was ${actionDisposition} due to invariant drift score ${score}. ` +
         `Reason: ${reason}. Shared center: ${sharedCenter}. ` +
-        `Dominant invariant vector: ${dominantVector}.`;
+        `Dominant invariant vector: ${dominantVector}.${glyphContext}`;
       await appendChronicle(tick, "daemon_admission", title, body);
     });
   },

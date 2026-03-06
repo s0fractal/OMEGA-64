@@ -105,6 +105,10 @@ type DaemonAdmissionSnapshot = {
   codexLineageLabel?: string;
   codexLineageGuardScore?: number;
   codexLineageGuardReasons?: string[];
+  glyphStatus?: string;
+  glyphRegime?: string;
+  glyphDominantRole?: string;
+  glyphSourceMode?: string;
 };
 
 type RuntimeMetrics = {
@@ -2519,6 +2523,27 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const baseline = collectRuntimeMetrics();
       const safeMode = isDaemonSafeMode(baseline);
+      const recordDaemonCodexAdmission = (
+        severity: "MID" | "HIGH" | "BLOCKED",
+        requestedAction: string,
+        appliedAction: string,
+        score: number,
+        reason: string,
+        sharedCenter: string,
+        dominantInvariantVector: string,
+      ): void => {
+        AKASHA_CODEX.recordDaemonAdmission(
+          baseline.tick,
+          requestedAction,
+          appliedAction,
+          severity,
+          score,
+          reason,
+          sharedCenter,
+          dominantInvariantVector,
+          baseline.glyphTransport,
+        );
+      };
 
       if (envelope.action_type === "OBSERVE") {
         setLatestDaemonAdmission({
@@ -2558,6 +2583,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       }
 
       if (safeMode.blocked) {
+        recordDaemonCodexAdmission(
+          "BLOCKED",
+          envelope.action_type,
+          "BLOCKED",
+          0,
+          safeMode.reason,
+          "safe-mode",
+          "none",
+        );
         setLatestDaemonAdmission({
           tick: baseline.tick,
           status: "rejected",
@@ -2597,6 +2631,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const dynamicBudgetMax = resolveDaemonBudgetMax(baseline);
       const budget = consumeDaemonBudget(dynamicBudgetMax);
       if (!budget.ok) {
+        recordDaemonCodexAdmission(
+          "BLOCKED",
+          envelope.action_type,
+          "BLOCKED",
+          0,
+          "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          "budget-window",
+          "none",
+        );
         setLatestDaemonAdmission({
           tick: baseline.tick,
           status: "rejected",
@@ -2638,6 +2681,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       let plasmidRisk: PlasmidRiskProfile | null = null;
       if (envelope.action_type === "INJECT_PLASMID") {
         if (!envelope.payload.hex_code) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            "INVALID_PLASMID_PAYLOAD",
+            "policy",
+            "none",
+          );
           setLatestDaemonAdmission({
             tick: baseline.tick,
             status: "rejected",
@@ -2666,6 +2718,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
 
         if (envelope.payload.intensity > currentDaemonMaxPlasmidCharge()) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            "policy",
+            "none",
+          );
           setLatestDaemonAdmission({
             tick: baseline.tick,
             status: "rejected",
@@ -2695,6 +2756,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
         if (!plasmidPolicy.ok) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            plasmidPolicy.reason,
+            "policy",
+            "none",
+          );
           setLatestDaemonAdmission({
             tick: baseline.tick,
             status: "rejected",
@@ -2773,6 +2843,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           ingressPlan.degradeReason ?? "INVARIANT_DEGRADED",
           ingressPlan.admission.context.sharedCenter,
           ingressPlan.admission.context.dominantInvariantVector,
+          baseline.glyphTransport,
         );
       }
 
@@ -2780,6 +2851,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         if (
           applied.payload.intensity > currentDaemonMaxPheromoneIntensity()
         ) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            applied.action_type,
+            ingressPlan.admission.score,
+            "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+            ingressPlan.admission.context.sharedCenter,
+            ingressPlan.admission.context.dominantInvariantVector,
+          );
           setLatestDaemonAdmission({
             tick: baseline.tick,
             status: "rejected",

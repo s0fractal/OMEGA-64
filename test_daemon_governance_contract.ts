@@ -132,6 +132,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "recordDaemonCodexAdmission(",
+    SYSTEM_START_PATH,
+    "Daemon ingress must route blocked/degraded admissions through a dedicated codex evidence helper",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "baseline.glyphTransport",
+    SYSTEM_START_PATH,
+    "Daemon admission evidence must include runtime glyph transport context",
+    violations,
+  );
+  requireSnippet(
+    system,
     "setLatestDaemonAdmission",
     SYSTEM_START_PATH,
     "Daemon ingress must track latest admission state for telemetry observers",

@@ -52,6 +52,13 @@ const main = async () => {
   );
   requireSnippet(
     codex,
+    "Glyph transport context:",
+    CODEX_PATH,
+    "Codex admission chronicles must preserve glyph transport evidence once Stage 6 bridge reaches daemon governance",
+    violations,
+  );
+  requireSnippet(
+    codex,
     "getInvariants",
     CODEX_PATH,
     "Codex module must expose invariant archive API",
