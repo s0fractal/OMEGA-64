@@ -91,6 +91,7 @@
     "REDUCTION_METABOLISM_ROADMAP.md",
     "WASM_MIGRATION_RFC.md",
     "WASM_THREADSAFE_ROADMAP.md",
+    "docs/migration/ROADMAP_2_SIGMA_CORE.md",
     "docs/migration/OMEGA_TRANSITION_PLAN.md",
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",

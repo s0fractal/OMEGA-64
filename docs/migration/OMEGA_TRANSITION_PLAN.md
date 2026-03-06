@@ -23,6 +23,10 @@ This matters because the current system already has:
 
 ## Progress status
 
+Adjacent future-vector artifacts:
+
+- [docs/migration/ROADMAP_2_SIGMA_CORE.md](/Users/s0fractal/OMEGA/docs/migration/ROADMAP_2_SIGMA_CORE.md)
+
 Status snapshot as of 2026-03-06:
 
 | Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                                             |

@@ -24,6 +24,7 @@ Supporting planning artifacts:
 - [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md)
 - [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
 - [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md)
+- [docs/migration/ROADMAP_2_SIGMA_CORE.md](/Users/s0fractal/OMEGA/docs/migration/ROADMAP_2_SIGMA_CORE.md)
 
 ## Progress ledger
 
