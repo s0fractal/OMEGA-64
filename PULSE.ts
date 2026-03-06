@@ -32,6 +32,28 @@ import {
   recordFromApplyMutation,
   recordFromRollbackMutation,
 } from "./GENETIC_LEDGER_PERSISTENCE.ts";
+import {
+  applyPressureRingScaleLedgerRuntimeUpdate,
+  createPressureRingScaleLedgerRuntime,
+  resetPressureRingScaleLedgerRuntime,
+  rollbackPressureRingScaleLedgerRuntimeUpdate,
+  snapshotPressureRingScaleLedgerRuntime,
+  type PressureRingScaleLedgerApplyResult,
+  type PressureRingScaleLedgerRollbackResult,
+  type PressureRingScaleLedgerRuntimeSnapshot,
+  type PressureRingScaleLedgerRuntimeState,
+} from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
+import {
+  PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
+  PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
+  PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
+  PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
+  appendPressureRingScaleLedgerRecordAndMaybeCompact,
+  hydratePressureRingScaleLedgerRuntime,
+  recordFromPressureRingScaleApplyMutation,
+  recordFromPressureRingScaleRollbackMutation,
+  type PressureRingScaleLedgerPersistenceSummary,
+} from "./PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -120,7 +142,9 @@ type HomeostasisState = {
 };
 type GeneticLedgerRuntimeState = {
   homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
-  persistence: BaseTaxLedgerPersistenceSummary;
+  homeostasisBaseTaxPersistence: BaseTaxLedgerPersistenceSummary;
+  pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
+  pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -234,6 +258,32 @@ let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
+let pressureRingScaleLedgerRuntime: PressureRingScaleLedgerRuntimeState =
+  createPressureRingScaleLedgerRuntime(PRESSURE_RING_BASELINE.scale);
+let pressureRingScaleLedgerPersistence: PressureRingScaleLedgerPersistenceSummary =
+  {
+    path: PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
+    snapshotPath: PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
+    exists: false,
+    snapshotExists: false,
+    recordCount: 0,
+    applyCount: 0,
+    rollbackCount: 0,
+    tailRecordCount: 0,
+    tailApplyCount: 0,
+    tailRollbackCount: 0,
+    snapshotRecordCount: 0,
+    snapshotApplyCount: 0,
+    snapshotRollbackCount: 0,
+    compactionEnabled: true,
+    compactionThreshold: PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
+    compactionKeepTail: PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
+    lastCompactedAt: null,
+    lastCompactedTick: -1,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -294,9 +344,35 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisLastUpdateReason = "coldstart_reset";
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
+  pressureRingScaleLedgerRuntime = resetPressureRingScaleLedgerRuntime(
+    pressureRingScaleLedgerRuntime,
+    "coldstart_reset",
+  );
+  pressureRingScaleLedgerPersistence = {
+    ...pressureRingScaleLedgerPersistence,
+    exists: false,
+    snapshotExists: false,
+    recordCount: 0,
+    applyCount: 0,
+    rollbackCount: 0,
+    tailRecordCount: 0,
+    tailApplyCount: 0,
+    tailRollbackCount: 0,
+    snapshotRecordCount: 0,
+    snapshotApplyCount: 0,
+    snapshotRollbackCount: 0,
+    lastCompactedAt: null,
+    lastCompactedTick: -1,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
   evolutionPressureState = {
     ...BASE_EVOLUTION_PRESSURE_STATE,
-    ring: { ...BASE_EVOLUTION_PRESSURE_STATE.ring },
+    ring: {
+      ...BASE_EVOLUTION_PRESSURE_STATE.ring,
+      scale: clampRingScale(pressureRingScaleLedgerRuntime.currentValue),
+    },
   };
 };
 const snapshotHomeostasisState = (): HomeostasisState => ({
@@ -317,7 +393,11 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
 });
 const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
   homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
-  persistence: { ...homeostasisBaseTaxLedgerPersistence },
+  homeostasisBaseTaxPersistence: { ...homeostasisBaseTaxLedgerPersistence },
+  pressureRingScale: snapshotPressureRingScaleLedgerRuntime(
+    pressureRingScaleLedgerRuntime,
+  ),
+  pressureRingScalePersistence: { ...pressureRingScaleLedgerPersistence },
 });
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
@@ -402,6 +482,66 @@ const syncHomeostasisBaseTaxLedgerHydration = async (): Promise<void> => {
     homeostasisLastUpdateReason = hydrated.snapshot.lastAppliedReason;
   }
 };
+const applyPressureRingScaleLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): PressureRingScaleLedgerApplyResult => {
+  const result = applyPressureRingScaleLedgerRuntimeUpdate(
+    pressureRingScaleLedgerRuntime,
+    update,
+  );
+  pressureRingScaleLedgerRuntime = result.state;
+  if (result.changed) {
+    applyEvolutionPressureRing({
+      mode: "set",
+      theta: evolutionPressureState.ring.theta,
+      scale: result.state.currentValue,
+      enabled: evolutionPressureState.ring.enabled,
+    });
+  }
+  return result;
+};
+const rollbackPressureRingScaleLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): PressureRingScaleLedgerRollbackResult => {
+  const result = rollbackPressureRingScaleLedgerRuntimeUpdate(
+    pressureRingScaleLedgerRuntime,
+    rollback,
+  );
+  pressureRingScaleLedgerRuntime = result.state;
+  if (result.status === "rolled_back") {
+    applyEvolutionPressureRing({
+      mode: "set",
+      theta: evolutionPressureState.ring.theta,
+      scale: result.state.currentValue,
+      enabled: evolutionPressureState.ring.enabled,
+    });
+  }
+  return result;
+};
+const syncPressureRingScaleLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydratePressureRingScaleLedgerRuntime(
+    PRESSURE_RING_BASELINE.scale,
+    pressureRingScaleLedgerRuntime.historyLimit,
+  );
+  pressureRingScaleLedgerRuntime = hydrated.state;
+  pressureRingScaleLedgerPersistence = hydrated.persistence;
+  applyEvolutionPressureRing({
+    mode: "set",
+    theta: evolutionPressureState.ring.theta,
+    scale: pressureRingScaleLedgerRuntime.currentValue,
+    enabled: evolutionPressureState.ring.enabled,
+  });
+};
 const applyEvolutionPressureRing = (
   next: {
     mode: "set" | "step";
@@ -413,6 +553,12 @@ const applyEvolutionPressureRing = (
 ): EvolutionPressureState => {
   const prev = snapshotEvolutionPressureState();
   const ringEnabled = next.enabled ?? prev.ring.enabled;
+  const baseTheta = prev.ring.theta;
+  const requestedTheta = next.mode === "step"
+    ? baseTheta + (next.deltaTheta ?? 0)
+    : (next.theta ?? baseTheta);
+  const requestedScale = next.scale ??
+    clampRingScale(pressureRingScaleLedgerRuntime.currentValue);
 
   if (!ringEnabled) {
     evolutionPressureState = {
@@ -420,16 +566,13 @@ const applyEvolutionPressureRing = (
       ring: {
         ...prev.ring,
         enabled: false,
+        theta: normalizeTheta(requestedTheta),
+        scale: clampRingScale(requestedScale),
       },
     };
     return snapshotEvolutionPressureState();
   }
 
-  const baseTheta = prev.ring.theta;
-  const requestedTheta = next.mode === "step"
-    ? baseTheta + (next.deltaTheta ?? 0)
-    : (next.theta ?? baseTheta);
-  const requestedScale = next.scale ?? prev.ring.scale;
   const derived = deriveRingPressure(requestedTheta, requestedScale);
   evolutionPressureState = {
     noveltySigned: clampPressureTerm(derived.noveltySigned),
@@ -1105,6 +1248,7 @@ export const PULSE = {
     resetSpatialHashStateForColdStart();
     resetHomeostasisStateForColdStart();
     await syncHomeostasisBaseTaxLedgerHydration();
+    await syncPressureRingScaleLedgerHydration();
     const pressureState = snapshotEvolutionPressureState();
     runtimeWorkerCount = requestedWorkerCount === undefined
       ? WORKER_COUNT
@@ -1349,17 +1493,54 @@ export const PULSE = {
     snapshotGeneticLedgerRuntimeState(),
   hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {
     await syncHomeostasisBaseTaxLedgerHydration();
+    await syncPressureRingScaleLedgerHydration();
     return snapshotGeneticLedgerRuntimeState();
   },
   applyGeneticLedgerUpdate: async (
     update: {
-      key: "pulse.homeostasis.baseTax";
+      key: "pulse.homeostasis.baseTax" | "pulse.pressureRing.scale";
       value: number;
       source?: string;
       reason?: string;
       tick?: number;
     },
-  ): Promise<BaseTaxLedgerApplyResult> => {
+  ): Promise<BaseTaxLedgerApplyResult | PressureRingScaleLedgerApplyResult> => {
+    if (update.key === "pulse.pressureRing.scale") {
+      const result = applyPressureRingScaleLedgerUpdate({
+        value: update.value,
+        source: update.source,
+        reason: update.reason,
+        tick: update.tick,
+      });
+      if (result.changed) {
+        if (result.mutation) {
+          const persisted = await appendPressureRingScaleLedgerRecordAndMaybeCompact(
+            recordFromPressureRingScaleApplyMutation(result.mutation),
+            {
+              initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+              historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+            },
+          );
+          pressureRingScaleLedgerPersistence = {
+            ...persisted,
+            hydrated: pressureRingScaleLedgerPersistence.hydrated,
+            lastHydratedAt: pressureRingScaleLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              pressureRingScaleLedgerPersistence.lastHydrationError,
+          };
+        }
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "genetic_ledger_update",
+          count: 1,
+        });
+        LOGGER.info(
+          `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
+        );
+      }
+      return result;
+    }
+
     const result = applyHomeostasisBaseTaxLedgerUpdate({
       value: update.value,
       source: update.source,
@@ -1396,13 +1577,52 @@ export const PULSE = {
   },
   rollbackGeneticLedgerUpdate: async (
     rollback: {
-      key: "pulse.homeostasis.baseTax";
+      key: "pulse.homeostasis.baseTax" | "pulse.pressureRing.scale";
       rollbackToken: string;
       source?: string;
       reason?: string;
       tick?: number;
     },
-  ): Promise<BaseTaxLedgerRollbackResult> => {
+  ): Promise<
+    BaseTaxLedgerRollbackResult | PressureRingScaleLedgerRollbackResult
+  > => {
+    if (rollback.key === "pulse.pressureRing.scale") {
+      const result = rollbackPressureRingScaleLedgerUpdate({
+        rollbackToken: rollback.rollbackToken,
+        source: rollback.source,
+        reason: rollback.reason,
+        tick: rollback.tick,
+      });
+      if (result.status === "rolled_back") {
+        if (result.mutation) {
+          const persisted =
+            await appendPressureRingScaleLedgerRecordAndMaybeCompact(
+              recordFromPressureRingScaleRollbackMutation(result.mutation),
+              {
+                initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+                historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+              },
+            );
+          pressureRingScaleLedgerPersistence = {
+            ...persisted,
+            hydrated: pressureRingScaleLedgerPersistence.hydrated,
+            lastHydratedAt: pressureRingScaleLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              pressureRingScaleLedgerPersistence.lastHydrationError,
+          };
+        }
+        MUTATION_TELEMETRY.record({
+          lane: "internal_host",
+          kind: "genetic_ledger_rollback",
+          count: 1,
+        });
+        LOGGER.info(
+          `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
+        );
+      }
+      return result;
+    }
+
     const result = rollbackHomeostasisBaseTaxLedgerUpdate({
       rollbackToken: rollback.rollbackToken,
       source: rollback.source,
@@ -1482,14 +1702,10 @@ export const PULSE = {
       mode: "set" | "step";
       theta?: number;
       deltaTheta?: number;
-      scale?: number;
       enabled?: boolean;
       source?: string;
     },
   ): EvolutionPressureState => {
-    const nextScale = update.scale === undefined
-      ? undefined
-      : clampRingScale(Math.round(update.scale));
     const boundedDelta = update.deltaTheta === undefined
       ? undefined
       : Math.max(-Math.PI, Math.min(Math.PI, update.deltaTheta));
@@ -1500,7 +1716,6 @@ export const PULSE = {
       mode: update.mode,
       theta: boundedTheta,
       deltaTheta: boundedDelta,
-      scale: nextScale,
       enabled: update.enabled,
     });
     LOGGER.info(

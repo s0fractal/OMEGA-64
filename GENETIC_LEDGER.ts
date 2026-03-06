@@ -98,7 +98,7 @@ export const GENETIC_LEDGER_CATALOG: readonly GeneticLedgerEntry[] = Object.free
     max: 2048,
     mutability: "daemon-governed",
     hormoneLink: "aggression",
-    rollbackClass: "epochal",
+    rollbackClass: "immediate",
     sourcePath: "pulse.pressureRing.scale",
     notes: "Global amplitude of the pressure ring projected into signed axes.",
   }),

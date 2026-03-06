@@ -88,22 +88,34 @@ type DaemonAuditPending = {
 };
 
 type PressureRingIngressEnvelope = {
-  mode: "set" | "step";
+  mode?: "set" | "step";
   theta?: number;
   delta_theta?: number;
   scale?: number;
   enabled?: boolean;
+  rollback_token?: string;
   reason?: string;
 };
 
 type PressureRingUpdateSnapshot = {
   tick: number;
-  mode: "set" | "step";
+  mode: "set" | "step" | "scale_only" | "mixed" | "rollback";
   source: string;
   delta_theta: number;
   theta: number;
   scale: number;
   enabled: boolean;
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  scale_rollback_token: string | null;
+  scale_before: number;
+  scale_after: number;
 };
 
 type HomeostasisIngressEnvelope = {
@@ -191,6 +203,11 @@ const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
   .invariantDriftMidScore;
 const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = DAEMON_INGRESS_POLICY_LIMITS
   .invariantDriftHighScore;
+const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = DAEMON_INGRESS_POLICY_LIMITS
+  .codexLineageLongevityEpochs;
+const DAEMON_CODEX_LINEAGE_PEAK_SHARE = DAEMON_INGRESS_POLICY_LIMITS
+  .codexLineagePeakShare;
+const CODEX_LINEAGE_GUARD_PLASMID = "CODEX_LINEAGE_GUARD_PLASMID";
 const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
 const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
 const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
@@ -536,6 +553,8 @@ const buildTelemetry = async () => {
         enabled: pressure.ring.enabled,
         theta: Number(pressure.ring.theta.toFixed(6)),
         scale: pressure.ring.scale,
+        ledger_scale: geneticLedger.pressureRingScale,
+        ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
         fear_curiosity_balance: Number(
           pressure.ring.fearCuriosityBalance.toFixed(6),
         ),
@@ -579,7 +598,7 @@ const buildTelemetry = async () => {
         last_update_source: homeostasis.lastUpdateSource,
         last_update_reason: homeostasis.lastUpdateReason,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence: geneticLedger.persistence,
+        ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
       },
     },
     snapshot_guard: {
@@ -718,14 +737,19 @@ const parsePressureRingIngressEnvelope = (
   const payloadSource = root.payload && typeof root.payload === "object"
     ? root.payload as Record<string, unknown>
     : root;
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
 
   const modeRaw = typeof root.mode === "string"
     ? root.mode
     : typeof payloadSource.mode === "string"
     ? payloadSource.mode
-    : "step";
+    : "";
   const mode = modeRaw.trim().toLowerCase();
-  if (mode !== "set" && mode !== "step") return null;
+  if (rollbackToken.length === 0 && mode !== "set" && mode !== "step") return null;
 
   const thetaValue = asFiniteNumber(
     payloadSource.theta ?? payloadSource.target_theta,
@@ -735,19 +759,37 @@ const parsePressureRingIngressEnvelope = (
     payloadSource.delta_theta ?? payloadSource.delta,
     Number.NaN,
   );
-  if (mode === "set" && !Number.isFinite(thetaValue)) return null;
-  if (mode === "step" && !Number.isFinite(deltaValue)) return null;
-
   const scaleRaw = asFiniteNumber(payloadSource.scale, Number.NaN);
   const enabled = asOptionalBoolean(payloadSource.enabled);
+  if (
+    rollbackToken.length === 0 &&
+    mode === "set" &&
+    !Number.isFinite(thetaValue)
+  ) return null;
+  if (
+    rollbackToken.length === 0 &&
+    mode === "step" &&
+    !Number.isFinite(deltaValue)
+  ) return null;
+  if (
+    rollbackToken.length === 0 &&
+    !Number.isFinite(thetaValue) &&
+    !Number.isFinite(deltaValue) &&
+    !Number.isFinite(scaleRaw) &&
+    enabled === undefined
+  ) {
+    return null;
+  }
   const reason = typeof payloadSource.reason === "string"
     ? payloadSource.reason.trim().slice(0, 96)
     : "daemon_phase_scheduler";
 
   const envelope: PressureRingIngressEnvelope = {
-    mode: mode as "set" | "step",
     reason: reason.length > 0 ? reason : "daemon_phase_scheduler",
   };
+  if (mode === "set" || mode === "step") {
+    envelope.mode = mode as "set" | "step";
+  }
   if (Number.isFinite(thetaValue)) envelope.theta = thetaValue;
   if (Number.isFinite(deltaValue)) {
     envelope.delta_theta = clamp(
@@ -760,6 +802,9 @@ const parsePressureRingIngressEnvelope = (
     envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
   }
   if (enabled !== undefined) envelope.enabled = enabled;
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
+  }
   return envelope;
 };
 
@@ -960,6 +1005,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
     const pressure = PULSE.getEvolutionPressureState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     return new Response(
       JSON.stringify({
         ok: true,
@@ -979,6 +1025,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               pressure.ring.fearCuriosityBalance.toFixed(6),
             ),
             ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
+            ledger_scale: geneticLedger.pressureRingScale,
+            ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
           },
         },
         latest_update: latestPressureRingUpdate,
@@ -1007,29 +1055,191 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             ok: false,
             reason: "INVALID_PRESSURE_RING_PAYLOAD",
             expected:
-              "Provide {mode:set|step, theta|delta_theta, scale?, enabled?, reason?}",
+              "Provide {mode?:set|step, theta|delta_theta, scale?, enabled?, rollback_token?, reason?}",
           }),
           { status: 400, headers: JSON_HEADERS },
         );
       }
 
-      const pressure = PULSE.updateEvolutionPressureRing({
-        mode: envelope.mode,
-        theta: envelope.theta,
-        deltaTheta: envelope.delta_theta,
-        scale: envelope.scale,
-        enabled: envelope.enabled,
-        source: envelope.reason ?? "daemon_phase_scheduler",
-      });
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const before = PULSE.getEvolutionPressureState();
+      const source = envelope.reason ?? "daemon_phase_scheduler";
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (
+          envelope.mode !== undefined ||
+          envelope.theta !== undefined ||
+          envelope.delta_theta !== undefined ||
+          envelope.scale !== undefined ||
+          envelope.enabled !== undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.rollback_token !== undefined) {
+        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
+          key: "pulse.pressureRing.scale",
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason: source,
+          tick,
+        });
+        const pressure = PULSE.getEvolutionPressureState();
+        const geneticLedger = PULSE.getGeneticLedgerState();
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_pressure_ring_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "PRESSURE_RING_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              pressure_ring: {
+                novelty_signed: pressure.noveltySigned,
+                symbiosis_signed: pressure.symbiosisSigned,
+                novelty: pressure.novelty,
+                fear: pressure.fear,
+                symbiosis: pressure.symbiosis,
+                ego: pressure.ego,
+                ring: {
+                  enabled: pressure.ring.enabled,
+                  theta: Number(pressure.ring.theta.toFixed(6)),
+                  scale: pressure.ring.scale,
+                  fear_curiosity_balance: Number(
+                    pressure.ring.fearCuriosityBalance.toFixed(6),
+                  ),
+                  ego_love_balance: Number(
+                    pressure.ring.egoLoveBalance.toFixed(6),
+                  ),
+                  ledger_scale: geneticLedger.pressureRingScale,
+                  ledger_scale_persistence:
+                    geneticLedger.pressureRingScalePersistence,
+                },
+              },
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        const snapshot: PressureRingUpdateSnapshot = {
+          tick,
+          mode: "rollback",
+          source,
+          delta_theta: 0,
+          theta: Number(pressure.ring.theta.toFixed(6)),
+          scale: pressure.ring.scale,
+          enabled: pressure.ring.enabled,
+          ledger_status: rollback.status,
+          scale_rollback_token: envelope.rollback_token,
+          scale_before: before.ring.scale,
+          scale_after: pressure.ring.scale,
+        };
+        setLatestPressureRingUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_PRESSURE_RING_ROLLBACK",
+          tick,
+          mode: snapshot.mode,
+          source: snapshot.source,
+          delta_theta: snapshot.delta_theta,
+          theta: snapshot.theta,
+          scale: snapshot.scale,
+          enabled: snapshot.enabled,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.scale_rollback_token,
+          scale_before: snapshot.scale_before,
+          scale_after: snapshot.scale_after,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            pressure_ring: {
+              novelty_signed: pressure.noveltySigned,
+              symbiosis_signed: pressure.symbiosisSigned,
+              novelty: pressure.novelty,
+              fear: pressure.fear,
+              symbiosis: pressure.symbiosis,
+              ego: pressure.ego,
+              ring: {
+                enabled: pressure.ring.enabled,
+                theta: Number(pressure.ring.theta.toFixed(6)),
+                scale: pressure.ring.scale,
+                fear_curiosity_balance: Number(
+                  pressure.ring.fearCuriosityBalance.toFixed(6),
+                ),
+                ego_love_balance: Number(
+                  pressure.ring.egoLoveBalance.toFixed(6),
+                ),
+                ledger_scale: geneticLedger.pressureRingScale,
+                ledger_scale_persistence:
+                  geneticLedger.pressureRingScalePersistence,
+              },
+            },
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const ledgerUpdate = envelope.scale === undefined
+        ? null
+        : await PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.pressureRing.scale",
+          value: envelope.scale,
+          source,
+          reason: source,
+          tick,
+        });
+      const pressure = envelope.mode === undefined
+        ? PULSE.getEvolutionPressureState()
+        : PULSE.updateEvolutionPressureRing({
+          mode: envelope.mode,
+          theta: envelope.theta,
+          deltaTheta: envelope.delta_theta,
+          enabled: envelope.enabled,
+          source,
+        });
+      const geneticLedger = PULSE.getGeneticLedgerState();
       const snapshot: PressureRingUpdateSnapshot = {
         tick,
-        mode: envelope.mode,
-        source: envelope.reason ?? "daemon_phase_scheduler",
+        mode: envelope.scale !== undefined && envelope.mode !== undefined
+          ? "mixed"
+          : envelope.scale !== undefined
+          ? "scale_only"
+          : envelope.mode ?? "set",
+        source,
         delta_theta: envelope.mode === "step" ? (envelope.delta_theta ?? 0) : 0,
         theta: Number(pressure.ring.theta.toFixed(6)),
         scale: pressure.ring.scale,
         enabled: pressure.ring.enabled,
+        ledger_status: ledgerUpdate?.status ?? null,
+        scale_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
+        scale_before: before.ring.scale,
+        scale_after: pressure.ring.scale,
       };
       setLatestPressureRingUpdate(snapshot);
       MUTATION_TELEMETRY.record({
@@ -1040,17 +1250,42 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       await appendDaemonAudit({
         event_type: "DAEMON_PRESSURE_RING",
         tick,
-        mode: envelope.mode,
+        mode: snapshot.mode,
         source: snapshot.source,
         delta_theta: snapshot.delta_theta,
         theta: snapshot.theta,
         scale: snapshot.scale,
         enabled: snapshot.enabled,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.scale_rollback_token,
+        scale_before: snapshot.scale_before,
+        scale_after: snapshot.scale_after,
       });
       return new Response(
         JSON.stringify({
           ok: true,
           updated: snapshot,
+          pressure_ring: {
+            novelty_signed: pressure.noveltySigned,
+            symbiosis_signed: pressure.symbiosisSigned,
+            novelty: pressure.novelty,
+            fear: pressure.fear,
+            symbiosis: pressure.symbiosis,
+            ego: pressure.ego,
+            ring: {
+              enabled: pressure.ring.enabled,
+              theta: Number(pressure.ring.theta.toFixed(6)),
+              scale: pressure.ring.scale,
+              fear_curiosity_balance: Number(
+                pressure.ring.fearCuriosityBalance.toFixed(6),
+              ),
+              ego_love_balance: Number(
+                pressure.ring.egoLoveBalance.toFixed(6),
+              ),
+              ledger_scale: geneticLedger.pressureRingScale,
+              ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
+            },
+          },
         }),
         {
           status: 200,
@@ -1097,7 +1332,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_update_source: homeostasis.lastUpdateSource,
           last_update_reason: homeostasis.lastUpdateReason,
           ledger_base_tax: geneticLedger.homeostasisBaseTax,
-          ledger_base_tax_persistence: geneticLedger.persistence,
+          ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
         },
         latest_update: latestHomeostasisUpdate,
         history: homeostasisHistory,
@@ -1137,7 +1372,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         ok: true,
         physiology,
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence: geneticLedger.persistence,
+        ledger_base_tax_persistence: geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_pressure_ring_scale: geneticLedger.pressureRingScale,
+        ledger_pressure_ring_scale_persistence:
+          geneticLedger.pressureRingScalePersistence,
       }),
       { headers: JSON_HEADERS },
     );
@@ -1234,7 +1472,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 last_update_source: updated.lastUpdateSource,
                 last_update_reason: updated.lastUpdateReason,
                 ledger_base_tax: geneticLedger.homeostasisBaseTax,
-                ledger_base_tax_persistence: geneticLedger.persistence,
+                ledger_base_tax_persistence:
+                  geneticLedger.homeostasisBaseTaxPersistence,
               },
             }),
             { status: 409, headers: JSON_HEADERS },
@@ -1293,7 +1532,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               last_update_source: updated.lastUpdateSource,
               last_update_reason: updated.lastUpdateReason,
               ledger_base_tax: geneticLedger.homeostasisBaseTax,
-              ledger_base_tax_persistence: geneticLedger.persistence,
+              ledger_base_tax_persistence:
+                geneticLedger.homeostasisBaseTaxPersistence,
             },
           }),
           {
@@ -1375,7 +1615,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             last_update_source: updated.lastUpdateSource,
             last_update_reason: updated.lastUpdateReason,
             ledger_base_tax: geneticLedger.homeostasisBaseTax,
-            ledger_base_tax_persistence: geneticLedger.persistence,
+            ledger_base_tax_persistence:
+              geneticLedger.homeostasisBaseTaxPersistence,
           },
         }),
         {

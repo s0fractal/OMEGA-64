@@ -20,6 +20,18 @@ const requireSnippet = (
   }
 };
 
+const requireAbsentSnippet = (
+  source: string,
+  snippet: string,
+  file: string,
+  reason: string,
+  violations: Violation[],
+) => {
+  if (source.includes(snippet)) {
+    violations.push({ file, reason: `${reason} (present: ${snippet})` });
+  }
+};
+
 const main = async () => {
   const violations: Violation[] = [];
   const [daemon, pulse, system, akasha] = await Promise.all([
@@ -50,6 +62,24 @@ const main = async () => {
     "Pulse must maintain ring-derivation path for runtime updates",
     violations,
   );
+  requireSnippet(
+    pulse,
+    "pressureRingScale",
+    PULSE_PATH,
+    "Pulse must expose pressure-ring ledger state to runtime observers",
+    violations,
+  );
+  requireAbsentSnippet(
+    pulse,
+    `update: {
+      mode: "set" | "step";
+      theta?: number;
+      deltaTheta?: number;
+      scale?: number;`,
+    PULSE_PATH,
+    "Pulse pressure-ring overlay must not expose ad-hoc scale parameter once ledger ownership is live",
+    violations,
+  );
 
   requireSnippet(
     system,
@@ -74,6 +104,13 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "daemon_pressure_ring_rollback",
+    SYSTEM_START_PATH,
+    "System start must emit telemetry lane events for pressure-ring rollbacks",
+    violations,
+  );
+  requireSnippet(
+    system,
     "latestPressureRingUpdate",
     SYSTEM_START_PATH,
     "System start telemetry must include latest pressure-ring update snapshot",
@@ -91,6 +128,13 @@ const main = async () => {
     "last_pressure_ring_history",
     SYSTEM_START_PATH,
     "System telemetry must publish recent pressure-ring update history",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_scale_persistence",
+    SYSTEM_START_PATH,
+    "System telemetry must publish pressure-ring ledger persistence summary",
     violations,
   );
   requireSnippet(

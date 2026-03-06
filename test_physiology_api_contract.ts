@@ -54,6 +54,20 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    system,
+    "ledger_pressure_ring_scale",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose pressure-ring ledger summary",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_pressure_ring_scale_persistence",
+    SYSTEM_START_PATH,
+    "System physiology observer must expose pressure-ring ledger persistence summary",
+    violations,
+  );
+  requireSnippet(
     akasha,
     "proxyPhysiology",
     AKASHA_SERVER_PATH,

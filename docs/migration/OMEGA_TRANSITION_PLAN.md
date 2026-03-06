@@ -31,7 +31,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` is now ledger-owned, rollback-tokenized, replayable, and compacted through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) + [GENETIC_LEDGER_PERSISTENCE.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_PERSISTENCE.ts), while the rest of the layer remains bounded and observational |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax` and `pulse.pressureRing.scale` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
 
@@ -182,6 +182,7 @@ Current support files already suggest the trace direction:
 - next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
 - Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so persistence/compaction state is visible alongside the first live ledger-owned knob
 - `baseTax` now has one canonical mutation lane: `PULSE.updateHomeostasisPolicy(...)` no longer accepts it, so runtime overlay and ledger ownership are no longer mixed for the same knob
+- `pressureRing.scale` now has one canonical mutation lane: `PULSE.updateEvolutionPressureRing(...)` no longer accepts it, so phase controls and ledger-owned amplitude no longer compete for the same causal slot
 
 ## Stage 3: Introduce `GlyphIR64`
 
@@ -420,10 +421,10 @@ For each global dynamic constant:
   - [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 - current scope remains deliberately narrow:
   - no live `SharedArrayBuffer` hormone region
-  - only `pulse.homeostasis.baseTax` is ledger-owned in live runtime
-  - only `pulse.homeostasis.baseTax` currently has durable replay history
+  - only `pulse.homeostasis.baseTax` and `pulse.pressureRing.scale` are ledger-owned in live runtime
+  - only those two knobs currently have durable replay history
   - all other hormone / ledger knobs remain observational or scaffold-only
-- next gate is deciding whether `targetEnergy` or `pressureRing.scale` becomes the second ledger-owned knob without diluting rollback discipline.
+- next gate is deciding whether `targetEnergy` or another daemon-governed knob should become the third ledger-owned path without diluting rollback discipline.
 
 ## Stage 8: First hybrid production path
 
