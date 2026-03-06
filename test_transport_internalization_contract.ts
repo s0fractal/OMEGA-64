@@ -102,6 +102,20 @@ const main = async () => {
     violations,
   );
   requireSnippet(
+    glyphBuffer,
+    "STATE_MATRIX.signalGrid",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must internalize signal grid as an internal emission source",
+    violations,
+  );
+  requireSnippet(
+    glyphBuffer,
+    "STATE_MATRIX.memoryGrid",
+    GLYPH_BUFFER_PATH,
+    "Glyph buffer must internalize memory grid as an internal emission source",
+    violations,
+  );
+  requireSnippet(
     avatar,
     "GLYPH_BUFFER.depositPheromone",
     AVATAR_ENGINE_PATH,

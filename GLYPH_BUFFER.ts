@@ -21,10 +21,19 @@ type GlyphSnapshot = {
   plasmidCells: number;
   maxAmplitude: number;
   totalAmplitude: number;
+  internalSignalSeeds: number;
+  internalMemorySeeds: number;
 };
 
 const scratchHeader = new Int32Array(GRID_CELLS);
 const scratchPayload = new Uint8Array(GRID_CELLS * 8);
+let lastInternalSignalSeeds = 0;
+let lastInternalMemorySeeds = 0;
+
+const SIGNAL_SEED_THRESHOLD = 256;
+const SIGNAL_SEED_MAX = 512;
+const MEMORY_SEED_CHARGE_THRESHOLD = 64;
+const MEMORY_SEED_MAX = 384;
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -114,12 +123,55 @@ const writeScratch = (
   scratchHeader[cell] = packHeader(mergedKind, mergedAmplitude);
 };
 
+const seedFromSignalGrid = (): number => {
+  let seeded = 0;
+  for (let cell = 0; cell < GRID_CELLS; cell++) {
+    const signal = Math.abs(Atomics.load(STATE_MATRIX.signalGrid, cell));
+    if (signal < SIGNAL_SEED_THRESHOLD) continue;
+    const amplitude = clamp(Math.floor(signal / 16), 16, SIGNAL_SEED_MAX);
+    writeScratch(cell, GLYPH_KIND.PHEROMONE, amplitude);
+    seeded++;
+  }
+  return seeded;
+};
+
+const seedFromMemoryGrid = (): number => {
+  let seeded = 0;
+  for (let cell = 0; cell < GRID_CELLS; cell++) {
+    const offset = cell * 8;
+    const charge = STATE_MATRIX.memoryGrid[offset] |
+      (STATE_MATRIX.memoryGrid[offset + 1] << 8);
+    let payloadResidue = false;
+    for (let i = offset + 4; i < offset + 8; i++) {
+      if (STATE_MATRIX.memoryGrid[i] !== 0) {
+        payloadResidue = true;
+        break;
+      }
+    }
+    if (!payloadResidue || charge < MEMORY_SEED_CHARGE_THRESHOLD) continue;
+    const amplitude = clamp(
+      Math.floor(charge / 8),
+      24,
+      MEMORY_SEED_MAX,
+    );
+    writeScratch(cell, GLYPH_KIND.PLASMID, amplitude);
+    scratchPayload.set(
+      STATE_MATRIX.memoryGrid.subarray(offset, offset + 8),
+      cell * 8,
+    );
+    seeded++;
+  }
+  return seeded;
+};
+
 export const GLYPH_BUFFER = {
   GLYPH_KIND,
 
   clear: () => {
     STATE_MATRIX.glyphHeaders.fill(0);
     STATE_MATRIX.glyphPayload.fill(0);
+    lastInternalSignalSeeds = 0;
+    lastInternalMemorySeeds = 0;
   },
 
   depositPheromone: (x: number, y: number, intensity: number) => {
@@ -183,6 +235,9 @@ export const GLYPH_BUFFER = {
       }
     }
 
+    lastInternalSignalSeeds = seedFromSignalGrid();
+    lastInternalMemorySeeds = seedFromMemoryGrid();
+
     let activeCells = 0;
     let pheromoneCells = 0;
     let plasmidCells = 0;
@@ -210,6 +265,8 @@ export const GLYPH_BUFFER = {
       plasmidCells,
       maxAmplitude,
       totalAmplitude,
+      internalSignalSeeds: lastInternalSignalSeeds,
+      internalMemorySeeds: lastInternalMemorySeeds,
     };
   },
 
@@ -238,6 +295,8 @@ export const GLYPH_BUFFER = {
       plasmidCells,
       maxAmplitude,
       totalAmplitude,
+      internalSignalSeeds: lastInternalSignalSeeds,
+      internalMemorySeeds: lastInternalMemorySeeds,
     };
   },
 };

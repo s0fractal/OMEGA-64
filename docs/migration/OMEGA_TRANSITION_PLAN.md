@@ -32,7 +32,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts                                                                                                                                                                                                    |
 | Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code                                                                                                                                                                                            |
 | Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                        |
-| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, and `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`                                                                                       |
+| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, and internal emission now leaks from `signalGrid` and `memoryGrid`                  |
 | Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
 
 Current rule:
@@ -346,8 +346,11 @@ This is a good membrane, but not yet an internal circulatory system.
 - `SYSTEM_START.ts` now exposes `glyph_transport` through observer surfaces.
 - `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`,
   so the transport field has a real local behavioral effect in the WASM plane.
-- internal auto-emission is still deferred; Stage 5 is now real, but not yet
-  complete.
+- `GLYPH_BUFFER.ts` now leaks `signalGrid` into pheromone glyph packets and
+  `memoryGrid` into plasmid glyph packets, so Stage 5 has two internal emission
+  sources that do not depend on REST ingress.
+- agent-driven auto-emission is still deferred; Stage 5 is now real, but not
+  yet complete.
 
 ### Planned substrate additions
 

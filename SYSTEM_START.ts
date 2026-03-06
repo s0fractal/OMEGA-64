@@ -121,6 +121,8 @@ type RuntimeMetrics = {
     plasmidCells: number;
     maxAmplitude: number;
     totalAmplitude: number;
+    internalSignalSeeds: number;
+    internalMemorySeeds: number;
   };
 };
 

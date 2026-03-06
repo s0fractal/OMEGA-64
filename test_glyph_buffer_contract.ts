@@ -54,8 +54,46 @@ const main = () => {
     );
   }
 
+  GLYPH_BUFFER.clear();
+  STATE_MATRIX.signalGrid.fill(0);
+  STATE_MATRIX.memoryGrid.fill(0);
+
+  Atomics.store(STATE_MATRIX.signalGrid, centerCell, 512);
+  const memoryCell = 12 * GRID_W + 12;
+  const memoryOffset = memoryCell * 8;
+  STATE_MATRIX.memoryGrid[memoryOffset] = 128;
+  STATE_MATRIX.memoryGrid[memoryOffset + 4] = 9;
+  STATE_MATRIX.memoryGrid[memoryOffset + 5] = 7;
+
+  const internalTick = GLYPH_BUFFER.tick(9);
+  if (internalTick.internalSignalSeeds <= 0) {
+    throw new Error(
+      "[glyph-buffer] signal grid did not seed internal pheromone transport",
+    );
+  }
+  if (internalTick.internalMemorySeeds <= 0) {
+    throw new Error(
+      "[glyph-buffer] memory grid did not seed internal plasmid transport",
+    );
+  }
+
+  const signalHeader = STATE_MATRIX.getGlyphHeader(centerCell);
+  if ((signalHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PHEROMONE) {
+    throw new Error("[glyph-buffer] signal leak did not emit pheromone glyph");
+  }
+  const leakedMemoryHeader = STATE_MATRIX.getGlyphHeader(memoryCell);
+  if ((leakedMemoryHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PLASMID) {
+    throw new Error("[glyph-buffer] memory leak did not emit plasmid glyph");
+  }
+  const leakedPayload = STATE_MATRIX.getGlyphPayload(memoryCell);
+  if (leakedPayload[4] !== 9 || leakedPayload[5] !== 7) {
+    throw new Error(
+      "[glyph-buffer] memory leak did not preserve plasmid residue bytes",
+    );
+  }
+
   console.log(
-    `[glyph-buffer] contract guard passed. active=${ticked.activeCells} pheromone=${ticked.pheromoneCells} plasmid=${ticked.plasmidCells}`,
+    `[glyph-buffer] contract guard passed. active=${internalTick.activeCells} pheromone=${internalTick.pheromoneCells} plasmid=${internalTick.plasmidCells} signalSeeds=${internalTick.internalSignalSeeds} memorySeeds=${internalTick.internalMemorySeeds}`,
   );
 };
 
