@@ -1,0 +1,18 @@
+{
+  "control_specimen": "structure_intent_visibility",
+  "runtime_mode": "standalone-structure-intent-capture",
+  "seed": 404,
+  "ticks": 1,
+  "atom_count": 20,
+  "one_worker": {
+    "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+    "sense_visibility": true,
+    "conflict_cell": 335478786
+  },
+  "four_worker": {
+    "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+    "sense_visibility": true,
+    "conflict_cell": 335478786
+  },
+  "hash_match": true
+}

@@ -12,12 +12,12 @@ Every reduction bridge step must point at one trace id and one rollback target.
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Scenario catalog | complete | six baseline scenarios defined |
+| Scenario catalog | complete | eight baseline scenarios defined |
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
-| Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
-| Persisted baseline captures | complete | all seven `verification/traces/gt01..gt07/*` artifacts have been written and are now export-visible |
-| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
+| Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures both system telemetry/control scenarios and standalone control specimens |
+| Persisted baseline captures | complete | all eight `verification/traces/gt01..gt08/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt04`/`gt05`/`gt08`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
 
 ## Artifact layout
 
@@ -37,6 +37,7 @@ Committed baseline set now exists for:
 - `gt05_homeostasis_correction`
 - `gt06_daemon_admission_case`
 - `gt07_daemon_policy_block`
+- `gt08_structure_intent_visibility`
 
 Minimal `trace.json` payload:
 
@@ -84,6 +85,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt05_homeostasis_correction` | external homeostasis correction | warmup `256` ticks, then one fixed `/api/homeostasis` update | `768` ticks total | avgEnergy slope, overflow, homeostasis state digest, mutation counts | `verification/traces/gt05_homeostasis_correction/trace.json` | homeostasis update `strict`, energy/overflow `bounded`, mutation counts `strict` | REST `/api/homeostasis`, `worker_trend_math.ts` |
 | `gt06_daemon_admission_case` | daemon admission / rejection | one accepted ingress case + one degraded/rejected case with daemon governance on | event-bounded | admission severity, applied action, codex chronicle digest, dominant invariant digest | `verification/traces/gt06_daemon_admission_case/trace.json` | severity/action `strict`, codex/invariant digest `strict` | `test_daemon_governance_contract.ts`, `/api/codex/invariants` |
 | `gt07_daemon_policy_block` | daemon policy block | warmup `128` ticks, then one fixed blocked-opcode `INJECT_PLASMID` payload | `256` ticks total | http status, response reason, latest admission status/reason, mutation counts | `verification/traces/gt07_daemon_policy_block/trace.json` | status/reason/mutation counts `strict` | `test_daemon_governance_contract.ts`, REST `/api/inject` |
+| `gt08_structure_intent_visibility` | same-tick structure intent visibility | standalone deterministic subprocess capture of contended `BUILD` intents and `OP_SENSE` visibility under `1w` vs `4w` strict execution | `1` tick / subprocess capture | strict hash match, sense visibility, conflict cell type/charge, snapshot digest | `verification/traces/gt08_structure_intent_visibility/trace.json` | hash/sense/type `strict`, charge `bounded` | `test_structure_intent_determinism.ts`, `test_structure_lock_progress.ts` |
 
 ## Capture rules
 
@@ -105,6 +107,8 @@ Useful existing support files to draw from:
 - `worker_trend_baseline.ts`
 - `worker_trend_math.ts`
 - `verification/golden_trace_capture.ts`
+- `test_structure_intent_determinism.ts`
+- `test_structure_lock_progress.ts`
 
 ## Exit condition for this document
 

@@ -1,0 +1,437 @@
+{
+  "trace_id": "gt08_structure_intent_visibility",
+  "scenario": "same-tick structure intent visibility",
+  "seed": 404,
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "standalone-structure-intent-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "strictHashMatch": true,
+    "senseVisibility": true,
+    "conflictCellType": 2,
+    "conflictCellCharge": 255,
+    "snapshotDigest": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "315092dd6e310152e68deadeef97159d081585b2e5c1afa13bac77790e5f91b3",
+  "invariant_digest": "0104ede56ba116fffd780182bd24e8e3eca168ebcdc1970d515c8112d5e1d3fc",
+  "extra_artifacts": {
+    "one_worker": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "seed": 404,
+      "ticks": 1,
+      "atomCount": 20,
+      "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+      "snapshot": {
+        "tickCounter": 2,
+        "centerCell": 12451841,
+        "centerX": 705,
+        "centerY": 405,
+        "conflictCell": 335478786,
+        "conflictX": 715,
+        "conflictY": 415,
+        "neighborhood": [
+          11796481,
+          11796481,
+          11796481,
+          10485761,
+          9175041,
+          11796481,
+          12451841,
+          11141121,
+          10485761,
+          9175041,
+          11141121,
+          11141121,
+          335478786,
+          15400961,
+          14090241,
+          9830401,
+          15400961,
+          15400961,
+          15400961,
+          14090241,
+          14090241,
+          14090241,
+          14090241,
+          14090241,
+          14090241
+        ],
+        "atoms": [
+          {
+            "idx": 200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          }
+        ]
+      }
+    },
+    "four_worker": {
+      "workerCount": 4,
+      "strictDeterminism": true,
+      "seed": 404,
+      "ticks": 1,
+      "atomCount": 20,
+      "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+      "snapshot": {
+        "tickCounter": 2,
+        "centerCell": 12451841,
+        "centerX": 705,
+        "centerY": 405,
+        "conflictCell": 335478786,
+        "conflictX": 715,
+        "conflictY": 415,
+        "neighborhood": [
+          11796481,
+          11796481,
+          11796481,
+          10485761,
+          9175041,
+          11796481,
+          12451841,
+          11141121,
+          10485761,
+          9175041,
+          11141121,
+          11141121,
+          335478786,
+          15400961,
+          14090241,
+          9830401,
+          15400961,
+          15400961,
+          15400961,
+          14090241,
+          14090241,
+          14090241,
+          14090241,
+          14090241,
+          14090241
+        ],
+        "atoms": [
+          {
+            "idx": 200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 25724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 50724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75200,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75331,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75462,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75593,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          },
+          {
+            "idx": 75724,
+            "energy": 2998.447,
+            "resonance": 0,
+            "pc": 12,
+            "role": 3,
+            "senseReg": 1
+          }
+        ]
+      }
+    }
+  }
+}

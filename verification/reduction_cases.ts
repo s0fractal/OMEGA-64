@@ -1,4 +1,4 @@
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {
   finalPc: number;
@@ -103,6 +103,24 @@ const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = 1;
   script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeSenseIntentScript = (buildType: number, targetType: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = buildType & 0xFF;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SENSE;
+  script[pc++] = 1;
+  script[pc++] = targetType & 0xFF;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
@@ -260,6 +278,48 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
         [RISC.PROP_RESONANCE]: 0,
       },
       branchTaken: true,
+    },
+  },
+  {
+    id: "rc09_gt08_structure_intent_visible",
+    baselineTraceId: "gt08_structure_intent_visibility",
+    description:
+      "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
+    script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.NODE),
+    maxSteps: 5,
+    initialProps: {
+      [RISC.PROP_X]: 705,
+      [RISC.PROP_Y]: 405,
+      [RISC.PROP_RESONANCE]: 2,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [0, 1, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc10_gt08_structure_intent_typed_miss",
+    baselineTraceId: "gt08_structure_intent_visibility",
+    description:
+      "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
+    script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.WIRE),
+    maxSteps: 5,
+    initialProps: {
+      [RISC.PROP_X]: 705,
+      [RISC.PROP_Y]: 405,
+      [RISC.PROP_RESONANCE]: 2,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [0, 0, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
     },
   },
 ]);

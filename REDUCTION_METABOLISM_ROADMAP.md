@@ -33,9 +33,9 @@ Status snapshot as of 2026-03-06:
 | ------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                             |
 | Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                          |
-| Stage 2: golden traces          | complete    | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/`                                                                                                                                                                                       |
+| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt08` baseline artifacts are committed under `verification/traces/`                                                                                                                                                      |
 | Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, and bounded `JZ` control-flow coverage now exist outside runtime closure                                                                                                                                                                                                    |
-| Stage 4: shadow verification    | in progress | reduction shadow covers eight bounded `gt01`/`gt03`/`gt04`/`gt05` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                                                                             |
+| Stage 4: shadow verification    | in progress | reduction shadow covers ten bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                                                                       |
 | Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
 | Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
@@ -70,6 +70,14 @@ Latest completed planning work:
   `verification/reduction_harness.ts`, and fixed the remaining
   `verification/golden_trace_catalog.ts` / `verification/golden_trace_capture.ts`
   type debt so the Stage 2/4 verification core now passes `deno check`.
+- Extended Stage 2 with a standalone control specimen:
+  `gt08_structure_intent_visibility` is now captured through
+  `test_structure_intent_determinism.ts --capture` rather than the REST server,
+  so same-tick structure-intent visibility has an honest baseline without
+  inventing a fake ingress path.
+- Extended Stage 4 with bounded `OP_SENSE` parity tied to `gt08`: the reduction
+  harness now models build-intent overlays and structural sensing, and persists
+  `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so
   runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed

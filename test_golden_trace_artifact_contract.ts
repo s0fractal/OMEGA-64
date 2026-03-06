@@ -4,6 +4,7 @@ import {
 } from "./verification/golden_trace_catalog.ts";
 
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
+const STRUCTURE_INTENT_RUNTIME_MODE = "standalone-structure-intent-capture";
 
 const main = async () => {
   for (const trace of GOLDEN_TRACE_CATALOG) {
@@ -30,7 +31,10 @@ const main = async () => {
         `[golden_trace_artifacts] trace id mismatch for ${trace.id}: ${String(traceJson.trace_id)}`,
       );
     }
-    if (traceJson.runtime_mode !== TRACE_RUNTIME_MODE) {
+    const expectedRuntimeMode = trace.id === "gt08_structure_intent_visibility"
+      ? STRUCTURE_INTENT_RUNTIME_MODE
+      : TRACE_RUNTIME_MODE;
+    if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(
         `[golden_trace_artifacts] runtime mode mismatch for ${trace.id}: ${String(traceJson.runtime_mode)}`,
       );

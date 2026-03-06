@@ -182,6 +182,32 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_daemon_governance_contract.ts",
     ],
   },
+  {
+    id: "gt08_structure_intent_visibility",
+    scenario: "same-tick structure intent visibility",
+    setup:
+      "standalone deterministic capture of contended BUILD intents and same-tick OP_SENSE visibility under 1-worker vs 4-worker execution",
+    duration: "1 tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "strictHashMatch",
+      "senseVisibility",
+      "conflictCellType",
+      "conflictCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      strictHashMatch: "strict",
+      senseVisibility: "strict",
+      conflictCellType: "strict",
+      conflictCellCharge: "bounded",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "test_structure_intent_determinism.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

@@ -1,13 +1,13 @@
 {
-  "case_id": "rc04_gt03_guardian_repair_branch",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "case_id": "rc09_gt08_structure_intent_visible",
+  "baseline_trace_id": "gt08_structure_intent_visibility",
+  "baseline_runtime_mode": "standalone-structure-intent-capture",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "1871ea2e63c291cf278d75c63a909783e371fea2f8039a01999068309a43083b",
-  "reduction_digest": "437c7dec2dc3ba77b130c60788346896312ffcb59666874b295c53479d954204",
-  "executed_digest_legacy": "03bdac584461411ffbb9687c4f8be98eaf24c6afad75f6f2b82879a348a8dad1",
-  "executed_digest_reduction": "16e9d1314dbfd16512b5e2661c924b1b2d1c5da78366f5618c1d53b68a950dc4",
+  "legacy_digest": "f899128e1bcc9bb4f5cc3332443ee9c62501c5b9b8f33f6ce0e749e5d94b16e3",
+  "reduction_digest": "fbcd2ec5eb6ea20d965269e83a3a6e4d405e3b950c34b5f7def5f99a4b9434ce",
+  "executed_digest_legacy": "1e9c033360deaa7ba37776a68bf70b228bab71d64c9d5153da8503ad6f4544d9",
+  "executed_digest_reduction": "cbad30ccf4a6f174699fb3dcea2153a485514cf96eadd61c6a847aa4764ec7cb",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -21,7 +21,7 @@
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 16
+    "energy_spent_delta": 14
   },
   "expectation_summary": {
     "finalPc": 0,
@@ -30,7 +30,7 @@
     "finalRole": 3,
     "registers": [
       0,
-      200,
+      1,
       0,
       0,
       0,
@@ -38,6 +38,6 @@
       0,
       0
     ],
-    "branchTaken": true
+    "branchTaken": false
   }
 }

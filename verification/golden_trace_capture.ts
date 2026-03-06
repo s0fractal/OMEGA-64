@@ -6,9 +6,16 @@ import {
 } from "./golden_trace_catalog.ts";
 
 const SYSTEM_START_PATH = "/Users/s0fractal/OMEGA/SYSTEM_START.ts";
+const STRUCTURE_INTENT_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/test_structure_intent_determinism.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
+const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
+  "standalone-structure-intent-capture";
 const TRACE_SEED = 424242;
+const TRACE_STRUCTURE_INTENT_SEED = 404;
+const TRACE_STRUCTURE_INTENT_TICKS = 1;
+const TRACE_STRUCTURE_INTENT_ATOMS = 20;
 const TRACE_WARM_COLDSTART_COUNT = 64;
 const TRACE_WARM_COLDSTART_REPLICATOR_RATIO = 0.5;
 const TRACE_WARM_COLDSTART_ENERGY = 240;
@@ -64,6 +71,37 @@ type GoldenTraceActionLog = {
   response: unknown;
 };
 
+type StructureIntentAtomState = {
+  idx: number;
+  energy: number;
+  resonance: number;
+  pc: number;
+  role: number;
+  senseReg: number;
+};
+
+type StructureIntentSnapshot = {
+  tickCounter: number;
+  centerCell: number;
+  centerX: number;
+  centerY: number;
+  conflictCell: number;
+  conflictX: number;
+  conflictY: number;
+  neighborhood: number[];
+  atoms: StructureIntentAtomState[];
+};
+
+type StructureIntentCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  seed: number;
+  ticks: number;
+  atomCount: number;
+  hash: string;
+  snapshot: StructureIntentSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -73,6 +111,7 @@ export type GoldenTraceCaptureResult = {
 };
 
 const decoder = new TextDecoder();
+const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -340,6 +379,77 @@ const notesForCapture = async (
     `## Actions`,
     ``,
     actionLines,
+  ].join("\n");
+};
+
+const runStructureIntentCaptureSubprocess = async (
+  workerCount: number,
+): Promise<StructureIntentCapturePayload> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", STRUCTURE_INTENT_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: String(workerCount),
+      OMEGA_STRICT_DETERMINISM: "1",
+      OMEGA_STRUCTURE_INTENT_SEED: String(TRACE_STRUCTURE_INTENT_SEED),
+      OMEGA_STRUCTURE_INTENT_TICKS: String(TRACE_STRUCTURE_INTENT_TICKS),
+      OMEGA_STRUCTURE_INTENT_ATOMS: String(TRACE_STRUCTURE_INTENT_ATOMS),
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] structure-intent subprocess failed workers=${workerCount}\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(STRUCTURE_INTENT_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] structure-intent capture marker missing workers=${workerCount}\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(STRUCTURE_INTENT_CAPTURE_MARKER.length),
+  ) as StructureIntentCapturePayload;
+};
+
+const notesForStructureIntentCapture = async (
+  trace: GoldenTraceScenario,
+  oneWorker: StructureIntentCapturePayload,
+  fourWorker: StructureIntentCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_STRUCTURE_INTENT_RUNTIME_MODE}`,
+    `- seed: ${TRACE_STRUCTURE_INTENT_SEED}`,
+    `- ticks: ${TRACE_STRUCTURE_INTENT_TICKS}`,
+    `- atom_count: ${TRACE_STRUCTURE_INTENT_ATOMS}`,
+    ``,
+    `## Subprocess captures`,
+    ``,
+    `- strict=true workers=1 hash=${oneWorker.hash}`,
+    `- strict=true workers=4 hash=${fourWorker.hash}`,
+    `- hash_match=${oneWorker.hash === fourWorker.hash}`,
+    `- sense_visibility_1w=${
+      oneWorker.snapshot.atoms.every((atom) => atom.senseReg === 1)
+    }`,
+    `- sense_visibility_4w=${
+      fourWorker.snapshot.atoms.every((atom) => atom.senseReg === 1)
+    }`,
   ].join("\n");
 };
 
@@ -666,6 +776,87 @@ const runTraceServer = async (
   }
 };
 
+const runStructureIntentTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const [oneWorker, fourWorker] = await Promise.all([
+    runStructureIntentCaptureSubprocess(1),
+    runStructureIntentCaptureSubprocess(4),
+  ]);
+  const senseVisibilityOne = oneWorker.snapshot.atoms.every((atom) =>
+    atom.senseReg === 1
+  );
+  const senseVisibilityFour = fourWorker.snapshot.atoms.every((atom) =>
+    atom.senseReg === 1
+  );
+  const hashMatch = oneWorker.hash === fourWorker.hash;
+  const codexSnapshot = {
+    control_specimen: "structure_intent_visibility",
+    runtime_mode: TRACE_STRUCTURE_INTENT_RUNTIME_MODE,
+    seed: TRACE_STRUCTURE_INTENT_SEED,
+    ticks: TRACE_STRUCTURE_INTENT_TICKS,
+    atom_count: TRACE_STRUCTURE_INTENT_ATOMS,
+    one_worker: {
+      hash: oneWorker.hash,
+      sense_visibility: senseVisibilityOne,
+      conflict_cell: oneWorker.snapshot.conflictCell,
+    },
+    four_worker: {
+      hash: fourWorker.hash,
+      sense_visibility: senseVisibilityFour,
+      conflict_cell: fourWorker.snapshot.conflictCell,
+    },
+    hash_match: hashMatch,
+  };
+  const invariants = {
+    structure_intent_hash_1w: oneWorker.hash,
+    structure_intent_hash_4w: fourWorker.hash,
+    hash_match: hashMatch,
+    conflict_neighborhood_digest_1w: await sha256Hex(oneWorker.snapshot.neighborhood),
+    conflict_neighborhood_digest_4w: await sha256Hex(fourWorker.snapshot.neighborhood),
+    sense_register_digest_1w: await sha256Hex(
+      oneWorker.snapshot.atoms.map((atom) => atom.senseReg),
+    ),
+    sense_register_digest_4w: await sha256Hex(
+      fourWorker.snapshot.atoms.map((atom) => atom.senseReg),
+    ),
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    seed: TRACE_STRUCTURE_INTENT_SEED,
+    tick_start: 0,
+    tick_end: TRACE_STRUCTURE_INTENT_TICKS,
+    runtime_mode: TRACE_STRUCTURE_INTENT_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      strictHashMatch: hashMatch,
+      senseVisibility: senseVisibilityOne && senseVisibilityFour,
+      conflictCellType: oneWorker.snapshot.conflictCell & 0xFF,
+      conflictCellCharge: (oneWorker.snapshot.conflictCell >> 16) & 0xFF,
+      snapshotDigest: oneWorker.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      one_worker: oneWorker,
+      four_worker: fourWorker,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForStructureIntentCapture(trace, oneWorker, fourWorker),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -674,7 +865,9 @@ export const captureGoldenTrace = async (
   if (!trace) {
     throw new Error(`[golden_trace_capture] unknown trace id: ${traceId}`);
   }
-  const result = await runTraceServer(trace);
+  const result = trace.id === "gt08_structure_intent_visibility"
+    ? await runStructureIntentTrace(trace)
+    : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);
   }

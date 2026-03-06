@@ -1,0 +1,9 @@
+{
+  "structure_intent_hash_1w": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+  "structure_intent_hash_4w": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
+  "hash_match": true,
+  "conflict_neighborhood_digest_1w": "620b07433a3eb9f92958d354030b0582c84e9884ea9212f340c3743b0d1c0290",
+  "conflict_neighborhood_digest_4w": "620b07433a3eb9f92958d354030b0582c84e9884ea9212f340c3743b0d1c0290",
+  "sense_register_digest_1w": "cd8f6fa7829beb5e33be6e912a674fc383310c63a9fb889910b6198d1cbc8127",
+  "sense_register_digest_4w": "cd8f6fa7829beb5e33be6e912a674fc383310c63a9fb889910b6198d1cbc8127"
+}
