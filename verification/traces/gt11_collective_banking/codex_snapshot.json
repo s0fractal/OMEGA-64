@@ -1,0 +1,12 @@
+{
+  "control_specimen": "collective_banking",
+  "runtime_mode": "standalone-collective-banking-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
+  "initial_hive_balance": 250,
+  "final_hive_balance": 230,
+  "depositor_energy": 4999.919,
+  "withdrawer_energy": 5000.099,
+  "withdraw_reg0": 100
+}

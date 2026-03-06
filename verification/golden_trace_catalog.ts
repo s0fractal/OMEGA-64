@@ -260,6 +260,33 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_symbiosis.ts",
     ],
   },
+  {
+    id: "gt11_collective_banking",
+    scenario: "standalone collective banking semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and mode 4 capped withdraw through direct WASM execution",
+    duration: "2 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "finalHiveBalance",
+      "depositorEnergy",
+      "withdrawerEnergy",
+      "withdrawReg0",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      finalHiveBalance: "strict",
+      depositorEnergy: "strict",
+      withdrawerEnergy: "strict",
+      withdrawReg0: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/collective_banking_capture.ts",
+      "test_metabolism.ts",
+      "test_neural_synthesis.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

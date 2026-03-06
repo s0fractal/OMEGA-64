@@ -1,0 +1,51 @@
+{
+  "trace_id": "gt11_collective_banking",
+  "scenario": "standalone collective banking semantics",
+  "tick_start": 0,
+  "tick_end": 2,
+  "runtime_mode": "standalone-collective-banking-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "finalHiveBalance": 230,
+    "depositorEnergy": 4999.919,
+    "withdrawerEnergy": 5000.099,
+    "withdrawReg0": 100,
+    "snapshotDigest": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "37b5a0dd9458b5fb90244950ead511e298d7fca33b783e7bf6b74fdbd4fff5c9",
+  "invariant_digest": "faad969fa8fdfcc8a731e3a84a0aab04dbe63b64e1364b0c5dacbe8019430f08",
+  "extra_artifacts": {
+    "collective_banking_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
+      "snapshot": {
+        "initialHiveBalance": 250,
+        "finalHiveBalance": 230,
+        "depositValueRaw": 80,
+        "withdrawCapRaw": 100,
+        "atoms": [
+          {
+            "idx": 0,
+            "energy": 4999.919,
+            "pc": 4,
+            "role": 0,
+            "reg0": 0
+          },
+          {
+            "idx": 1,
+            "energy": 5000.099,
+            "pc": 4,
+            "role": 0,
+            "reg0": 100
+          }
+        ]
+      }
+    }
+  }
+}

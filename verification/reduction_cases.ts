@@ -9,6 +9,7 @@ export type ReductionCaseExpectation = {
   registers?: number[];
   finalProps?: Partial<Record<number, number>>;
   finalHiveMemory?: Partial<Record<number, number>>;
+  finalHiveBalance?: number;
   finalSignalGrid?: Partial<Record<number, number>>;
   finalPeerEnergy?: Partial<Record<number, number>>;
   branchTaken?: boolean;
@@ -23,6 +24,7 @@ export type ReductionCaseDefinition = {
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
   initialPeerEnergy?: Partial<Record<number, number>>;
+  initialHiveBalance?: number;
   expected: ReductionCaseExpectation;
 };
 
@@ -163,6 +165,36 @@ const makeCollectivePheromoneScript = (
   script[pc++] = 2;
   script[pc++] = intensity & 0xFF;
   script[pc++] = type & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectiveBankDepositScript = (
+  amount: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 3;
+  script[pc++] = amount & 0xFF;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectiveBankWithdrawScript = (
+  reg: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 4;
+  script[pc++] = reg & 0xFF;
+  script[pc++] = 0;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
@@ -475,6 +507,53 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       finalPeerEnergy: {
         2: 100,
       },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc15_gt11_collective_bank_deposit",
+    baselineTraceId: "gt11_collective_banking",
+    description:
+      "A bounded COLLECTIVE bridge should preserve mode 3 bank deposit semantics as raw opcode units, reducing local energy and increasing hive balance.",
+    script: makeCollectiveBankDepositScript(80),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 5000,
+    },
+    initialHiveBalance: 250,
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 4920,
+      },
+      finalHiveBalance: 330,
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc16_gt11_collective_bank_withdraw",
+    baselineTraceId: "gt11_collective_banking",
+    description:
+      "The same bounded COLLECTIVE bridge should preserve mode 4 capped withdraw semantics, crediting at most 100 raw units to energy and writing the amount to the selected register.",
+    script: makeCollectiveBankWithdrawScript(0),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 5000,
+    },
+    initialHiveBalance: 250,
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [100, 0, 0, 0, 0, 0, 0, 0],
+      finalProps: {
+        [RISC.PROP_ENERGY]: 5100,
+      },
+      finalHiveBalance: 150,
       branchTaken: false,
     },
   },

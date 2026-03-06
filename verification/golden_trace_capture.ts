@@ -10,6 +10,8 @@ const STRUCTURE_INTENT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/test_structure_intent_determinism.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
+const COLLECTIVE_BANKING_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/collective_banking_capture.ts";
 const SHARE_TRANSFER_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/share_transfer_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
@@ -18,6 +20,8 @@ const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
   "standalone-structure-intent-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
+const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
+  "standalone-collective-banking-capture";
 const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
   "standalone-share-transfer-capture";
 const TRACE_SEED = 424242;
@@ -135,6 +139,29 @@ type CollectiveTransportCapturePayload = {
   snapshot: CollectiveTransportSnapshot;
 };
 
+type CollectiveBankingAtomState = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+  reg0: number;
+};
+
+type CollectiveBankingSnapshot = {
+  initialHiveBalance: number;
+  finalHiveBalance: number;
+  depositValueRaw: number;
+  withdrawCapRaw: number;
+  atoms: CollectiveBankingAtomState[];
+};
+
+type CollectiveBankingCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: CollectiveBankingSnapshot;
+};
+
 type ShareTransferAtomState = {
   idx: number;
   energy: number;
@@ -171,6 +198,8 @@ const decoder = new TextDecoder();
 const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
+const COLLECTIVE_BANKING_CAPTURE_MARKER =
+  "__OMEGA_COLLECTIVE_BANKING_CAPTURE__";
 const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
@@ -550,6 +579,43 @@ const runCollectiveTransportCaptureSubprocess = async (): Promise<
   ) as CollectiveTransportCapturePayload;
 };
 
+const runCollectiveBankingCaptureSubprocess = async (): Promise<
+  CollectiveBankingCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", COLLECTIVE_BANKING_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] collective-banking subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(COLLECTIVE_BANKING_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] collective-banking capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(COLLECTIVE_BANKING_CAPTURE_MARKER.length),
+  ) as CollectiveBankingCapturePayload;
+};
+
 const notesForCollectiveTransportCapture = async (
   trace: GoldenTraceScenario,
   payload: CollectiveTransportCapturePayload,
@@ -571,6 +637,32 @@ const notesForCollectiveTransportCapture = async (
     `- hive_value=${payload.snapshot.hiveValue}`,
     `- loaded_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
     `- pheromone_word=0x${payload.snapshot.pheromoneWord.toString(16)}`,
+  ].join("\n");
+};
+
+const notesForCollectiveBankingCapture = async (
+  trace: GoldenTraceScenario,
+  payload: CollectiveBankingCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_COLLECTIVE_BANKING_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Collective banking capture`,
+    ``,
+    `- initial_hive_balance=${payload.snapshot.initialHiveBalance}`,
+    `- final_hive_balance=${payload.snapshot.finalHiveBalance}`,
+    `- depositor_energy=${payload.snapshot.atoms.find((atom) => atom.idx === 0)?.energy ?? -1}`,
+    `- withdrawer_energy=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.energy ?? -1}`,
+    `- withdraw_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
   ].join("\n");
 };
 
@@ -1095,6 +1187,69 @@ const runCollectiveTransportTrace = async (
   };
 };
 
+const runCollectiveBankingTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runCollectiveBankingCaptureSubprocess();
+  const depositor = payload.snapshot.atoms.find((atom) => atom.idx === 0) ?? null;
+  const withdrawer = payload.snapshot.atoms.find((atom) => atom.idx === 1) ??
+    null;
+  const codexSnapshot = {
+    control_specimen: "collective_banking",
+    runtime_mode: TRACE_COLLECTIVE_BANKING_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    initial_hive_balance: payload.snapshot.initialHiveBalance,
+    final_hive_balance: payload.snapshot.finalHiveBalance,
+    depositor_energy: depositor?.energy ?? 0,
+    withdrawer_energy: withdrawer?.energy ?? 0,
+    withdraw_reg0: withdrawer?.reg0 ?? 0,
+  };
+  const invariants = {
+    collective_banking_hash: payload.hash,
+    initial_hive_balance: payload.snapshot.initialHiveBalance,
+    final_hive_balance: payload.snapshot.finalHiveBalance,
+    deposit_value_raw: payload.snapshot.depositValueRaw,
+    withdraw_cap_raw: payload.snapshot.withdrawCapRaw,
+    depositor_energy: depositor?.energy ?? 0,
+    withdrawer_energy: withdrawer?.energy ?? 0,
+    withdraw_reg0: withdrawer?.reg0 ?? 0,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 2,
+    runtime_mode: TRACE_COLLECTIVE_BANKING_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      finalHiveBalance: payload.snapshot.finalHiveBalance,
+      depositorEnergy: depositor?.energy ?? 0,
+      withdrawerEnergy: withdrawer?.energy ?? 0,
+      withdrawReg0: withdrawer?.reg0 ?? 0,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      collective_banking_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForCollectiveBankingCapture(trace, payload),
+  };
+};
+
 const runShareTransferTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
@@ -1165,6 +1320,8 @@ export const captureGoldenTrace = async (
     ? await runStructureIntentTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
+    : trace.id === "gt11_collective_banking"
+    ? await runCollectiveBankingTrace(trace)
     : trace.id === "gt10_share_transfer"
     ? await runShareTransferTrace(trace)
     : await runTraceServer(trace);

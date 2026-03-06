@@ -1,0 +1,10 @@
+{
+  "collective_banking_hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
+  "initial_hive_balance": 250,
+  "final_hive_balance": 230,
+  "deposit_value_raw": 80,
+  "withdraw_cap_raw": 100,
+  "depositor_energy": 4999.919,
+  "withdrawer_energy": 5000.099,
+  "withdraw_reg0": 100
+}

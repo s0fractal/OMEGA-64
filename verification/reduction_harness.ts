@@ -32,6 +32,7 @@ type ShadowState = {
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
   hiveMemory: HarnessProps;
+  hiveBalance: number;
   signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
@@ -50,6 +51,7 @@ type LegacyShadowResult = {
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
   hiveMemory: HarnessProps;
+  hiveBalance: number;
   signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
@@ -69,6 +71,7 @@ type ReductionShadowResult = {
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
   hiveMemory: HarnessProps;
+  hiveBalance: number;
   signalGrid: HarnessProps;
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
@@ -120,6 +123,7 @@ export type ReductionHarnessArtifact = {
     bond_targets_match: boolean;
     peer_energy_match: boolean;
     hive_memory_match: boolean;
+    hive_balance_match: boolean;
     signal_grid_match: boolean;
     structure_grid_match: boolean;
     structure_intent_owner_match: boolean;
@@ -173,6 +177,7 @@ const createInitialState = (
     ]),
   ),
   hiveMemory: {},
+  hiveBalance: definition.initialHiveBalance ?? 0,
   signalGrid: {},
   structureGrid: {},
   structureIntentOwner: {},
@@ -226,6 +231,7 @@ const snapshotLegacy = (
   bondTargets: { ...state.bondTargets },
   peerEnergy: { ...state.peerEnergy },
   hiveMemory: { ...state.hiveMemory },
+  hiveBalance: state.hiveBalance,
   signalGrid: { ...state.signalGrid },
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
@@ -252,6 +258,7 @@ const snapshotReduction = (
   bondTargets: { ...state.bondTargets },
   peerEnergy: { ...state.peerEnergy },
   hiveMemory: { ...state.hiveMemory },
+  hiveBalance: state.hiveBalance,
   signalGrid: { ...state.signalGrid },
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
@@ -405,6 +412,23 @@ const applyShadowOpcode = (
         if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
           state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
         }
+      } else if (mode === 3) {
+        const val = p2 & 0xFF;
+        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        if (energy >= val) {
+          state.hiveBalance += val;
+          state.props[RISC.PROP_ENERGY] = energy - val;
+        }
+      } else if (mode === 4) {
+        const reg = p2 & 7;
+        const balance = state.hiveBalance;
+        const amount = balance > 100 ? 100 : balance;
+        if (amount > 0) {
+          state.hiveBalance -= amount;
+          state.props[RISC.PROP_ENERGY] = (state.props[RISC.PROP_ENERGY] ?? 0) +
+            amount;
+        }
+        state.regs[reg] = amount;
       }
       state.pc += 4;
       return;
@@ -561,6 +585,9 @@ const compareResults = (
   if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
     reasons.push("hiveMemory mismatch");
   }
+  if (legacy.hiveBalance !== reduction.hiveBalance) {
+    reasons.push("hiveBalance mismatch");
+  }
   if (!equalHarnessProps(legacy.signalGrid, reduction.signalGrid)) {
     reasons.push("signalGrid mismatch");
   }
@@ -659,6 +686,14 @@ const compareResults = (
       }
     }
   }
+  if (
+    typeof expected.finalHiveBalance === "number" &&
+    legacy.hiveBalance !== expected.finalHiveBalance
+  ) {
+    reasons.push(
+      `expected hiveBalance=${expected.finalHiveBalance} got=${legacy.hiveBalance}`,
+    );
+  }
   if (expected.finalSignalGrid) {
     for (const [key, value] of Object.entries(expected.finalSignalGrid)) {
       const cell = Number(key);
@@ -711,6 +746,7 @@ const buildReductionHarnessArtifact = async (
     bondTargets: result.legacy.bondTargets,
     peerEnergy: result.legacy.peerEnergy,
     hiveMemory: result.legacy.hiveMemory,
+    hiveBalance: result.legacy.hiveBalance,
     signalGrid: result.legacy.signalGrid,
     structureGrid: result.legacy.structureGrid,
     structureIntentOwner: result.legacy.structureIntentOwner,
@@ -726,6 +762,7 @@ const buildReductionHarnessArtifact = async (
     bondTargets: result.reduction.bondTargets,
     peerEnergy: result.reduction.peerEnergy,
     hiveMemory: result.reduction.hiveMemory,
+    hiveBalance: result.reduction.hiveBalance,
     signalGrid: result.reduction.signalGrid,
     structureGrid: result.reduction.structureGrid,
     structureIntentOwner: result.reduction.structureIntentOwner,
@@ -752,6 +789,7 @@ const buildReductionHarnessArtifact = async (
       result.legacy.hiveMemory,
       result.reduction.hiveMemory,
     ),
+    hive_balance_match: result.legacy.hiveBalance === result.reduction.hiveBalance,
     signal_grid_match: equalHarnessProps(
       result.legacy.signalGrid,
       result.reduction.signalGrid,

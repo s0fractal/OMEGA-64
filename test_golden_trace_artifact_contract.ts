@@ -7,6 +7,8 @@ const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const STRUCTURE_INTENT_RUNTIME_MODE = "standalone-structure-intent-capture";
 const COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
+const COLLECTIVE_BANKING_RUNTIME_MODE =
+  "standalone-collective-banking-capture";
 const SHARE_TRANSFER_RUNTIME_MODE = "standalone-share-transfer-capture";
 
 const main = async () => {
@@ -38,6 +40,8 @@ const main = async () => {
       ? STRUCTURE_INTENT_RUNTIME_MODE
       : trace.id === "gt09_collective_transport"
       ? COLLECTIVE_TRANSPORT_RUNTIME_MODE
+      : trace.id === "gt11_collective_banking"
+      ? COLLECTIVE_BANKING_RUNTIME_MODE
       : trace.id === "gt10_share_transfer"
       ? SHARE_TRANSFER_RUNTIME_MODE
       : TRACE_RUNTIME_MODE;
