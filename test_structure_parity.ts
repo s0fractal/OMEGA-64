@@ -34,11 +34,15 @@ const decodeCell = (cell: number) => ({
 
 async function loadWasm(): Promise<WasmStructureExports> {
     const wasmBytes = await Deno.readFile("./build/release.wasm");
+    const trace_atom = (_idx: number, _op: number, _gx: number, _gy: number, _target: number) => {};
     const instantiated = await WebAssembly.instantiate(wasmBytes, {
+        index: {
+            trace_atom,
+        },
         env: {
             memory: STATE_MATRIX.wasmMemory,
             abort: () => {},
-            trace_atom: (_idx: number, _op: number, _gx: number, _gy: number, _target: number) => {},
+            trace_atom,
         },
     });
     return instantiated.instance.exports as unknown as WasmStructureExports;

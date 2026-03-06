@@ -10,6 +10,7 @@ import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,
   type BaseTaxLedgerApplyResult,
@@ -2188,6 +2189,7 @@ export const PULSE = {
           `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
+      GLYPH_BUFFER.tick(currentTick);
       applyEvolutionPressureTerms(currentTick, activeIdx);
       applyEnergyHomeostasisTerms(
         currentTick,

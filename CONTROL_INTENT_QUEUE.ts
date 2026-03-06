@@ -6,6 +6,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -1108,6 +1109,12 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
 const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
   const { gx, cell } = toGridCell(intent.x, intent.y);
   const gridIdx = cell * GRID_CELL_BYTES;
+  GLYPH_BUFFER.depositPlasmid(
+    intent.x,
+    intent.y,
+    intent.charge,
+    intent.plasmidBytes,
+  );
   writeMemoryCell(gridIdx, intent.charge, intent.plasmidBytes.subarray(0, 4));
   let seededCells = 1;
 

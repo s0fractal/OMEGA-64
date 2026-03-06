@@ -3,9 +3,9 @@
 
 export const MAX_ATOMS = 100000;
 export const SCALE = 1000;
-const GRID_W = 140;
-const GRID_H = 80;
-const GRID_CELLS = GRID_W * GRID_H;
+export const GRID_W = 140;
+export const GRID_H = 80;
+export const GRID_CELLS = GRID_W * GRID_H;
 const U64_BYTES = 8;
 const I32_BYTES = 4;
 const I16_BYTES = 2;
@@ -58,6 +58,8 @@ export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 42444800;
 export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 42489600;
 export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 42534400;
 export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 42579200;
+export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 42580224;
+export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42625024;
 
 type MemoryLayoutRegion = {
   name: string;
@@ -121,7 +123,12 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     I32_BYTES,
   ),
   region("ROLES", ROLES_OFFSET, MAX_ATOMS, 1),
-  region("STRUCTURE_GRID", STRUCTURE_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region(
+    "STRUCTURE_GRID",
+    STRUCTURE_GRID_OFFSET,
+    GRID_CELLS * I32_BYTES,
+    I32_BYTES,
+  ),
   region("SIGNAL_GRID", SIGNAL_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
   region("MEMORY_GRID", MEMORY_GRID_OFFSET, GRID_CELLS * 8, 1),
   region(
@@ -204,11 +211,18 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     256 * I32_BYTES,
     I32_BYTES,
   ),
+  region(
+    "GLYPH_HEADER",
+    GLYPH_HEADER_OFFSET,
+    GRID_CELLS * I32_BYTES,
+    I32_BYTES,
+  ),
+  region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = HIVE_ENERGY_POOL_OFFSET + 256 * 4;
+export const LATTICE_MEMORY_END = GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -219,9 +233,7 @@ export const validateMemoryLayout = (
   wasmBytes: number = WASM_MEMORY_BYTES,
 ): MemoryLayoutValidationResult => {
   const errors: string[] = [];
-  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) =>
-    a.offset - b.offset
-  );
+  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) => a.offset - b.offset);
 
   for (const item of sorted) {
     if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {

@@ -84,25 +84,29 @@ self.onmessage = async (e) => {
         new URL("./build/release.wasm", import.meta.url).href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
+      const traceAtom = (
+        idx: number,
+        op: number,
+        gx: number,
+        gy: number,
+        target: number,
+      ) => {
+        if (idx <= 10) {
+          LOGGER.debug(
+            `   [WASM TRACE] Atom ${idx} | OP: 0x${
+              op.toString(16)
+            } | Pos: (${gx},${gy}) | Target: ${target}`,
+          );
+        }
+      };
       const instantiated = await WebAssembly.instantiate(wasmBytes, {
+        index: {
+          trace_atom: traceAtom,
+        },
         env: {
           memory: wasmMemory,
           abort: (msg: any) => LOGGER.error("   [WASM ABORT]:", msg),
-          trace_atom: (
-            idx: number,
-            op: number,
-            gx: number,
-            gy: number,
-            target: number,
-          ) => {
-            if (idx <= 10) {
-              LOGGER.debug(
-                `   [WASM TRACE] Atom ${idx} | OP: 0x${
-                  op.toString(16)
-                } | Pos: (${gx},${gy}) | Target: ${target}`,
-              );
-            }
-          },
+          trace_atom: traceAtom,
         },
       });
       wasmInstance = instantiated.instance;

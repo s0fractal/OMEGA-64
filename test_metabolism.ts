@@ -8,10 +8,14 @@ async function testMetabolism() {
 
     // 1. Initialize State
     const wasmCode = await Deno.readFile("./build/release.wasm");
+    const trace_atom = (_idx: number, _op: number, _gx: number, _gy: number, _tIdx: number) => {};
     const wasmModule = await WebAssembly.instantiate(wasmCode, {
+        index: {
+            trace_atom,
+        },
         env: {
             memory: STATE_MATRIX.wasmMemory,
-            trace_atom: (idx: number, op: number, gx: number, gy: number, tIdx: number) => {},
+            trace_atom,
             abort: () => console.log("WASM Abort")
         }
     });

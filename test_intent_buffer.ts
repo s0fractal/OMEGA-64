@@ -11,7 +11,8 @@ async function testIntentBuffer() {
     const wasmCode = await Deno.readFile("./build/release.wasm");
     const wasmModule = await WebAssembly.compile(wasmCode);
     const instance = await WebAssembly.instantiate(wasmModule, {
-        env: { memory: wasmMemory }
+        index: { trace_atom: () => {} },
+        env: { memory: wasmMemory, trace_atom: () => {} }
     });
     const execute_atom = instance.exports.execute_atom as (idx: number) => void;
     

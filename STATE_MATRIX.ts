@@ -9,7 +9,9 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
     `[STATE_MATRIX] WASM memory too small: pages=${OFFSETS.WASM_MEMORY_PAGES}, required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
   );
 }
-const layoutValidation = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);
+const layoutValidation = OFFSETS.validateMemoryLayout(
+  OFFSETS.WASM_MEMORY_BYTES,
+);
 if (!layoutValidation.ok) {
   throw new Error(
     `[STATE_MATRIX] Invalid OFFSETS memory layout:\n${
@@ -67,6 +69,11 @@ export const structureGridBuffer =
   new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
 export const attentionFieldBuffer =
   new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80)
+    .buffer;
+export const glyphHeaderBuffer =
+  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, 140 * 80).buffer;
+export const glyphPayloadBuffer =
+  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, 140 * 80 * 8)
     .buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
@@ -146,6 +153,16 @@ const attentionField = new Float32Array(
   sharedBuffer,
   OFFSETS.ATTENTION_FIELD_OFFSET,
   140 * 80,
+);
+const glyphHeaders = new Int32Array(
+  sharedBuffer,
+  OFFSETS.GLYPH_HEADER_OFFSET,
+  140 * 80,
+);
+const glyphPayload = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.GLYPH_PAYLOAD_OFFSET,
+  140 * 80 * 8,
 );
 const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 const neuralCoherence = new Int32Array(
@@ -276,6 +293,8 @@ export const STATE_MATRIX = {
   signalGrid,
   memoryGrid,
   attentionField,
+  glyphHeaders,
+  glyphPayload,
   hiveEnergyPool,
   coherence,
   neuralCoherence,
@@ -289,6 +308,8 @@ export const STATE_MATRIX = {
   signalGridBuffer,
   structureGridBuffer,
   attentionFieldBuffer,
+  glyphHeaderBuffer,
+  glyphPayloadBuffer,
   roleRegistryBuffer: roleBuffer,
   bondStiffnessBuffer: stiffnessBuffer,
   bondDistancesBuffer: bondDistBuffer,
@@ -580,6 +601,14 @@ export const STATE_MATRIX = {
   getGridDensity: (i: number) => (Atomics.load(structureGrid, i) >> 8) & 0xFF,
   getGridCharge: (i: number) => (Atomics.load(structureGrid, i) >> 16) & 0xFF,
   getGridState: (i: number) => (Atomics.load(structureGrid, i) >> 24) & 0xFF,
+  getGlyphHeader: (i: number) => Atomics.load(glyphHeaders, i),
+  getGlyphPayload: (i: number) => glyphPayload.subarray(i * 8, i * 8 + 8),
+  setGlyphHeader: (i: number, val: number) =>
+    Atomics.store(glyphHeaders, i, val),
+  setGlyphPayload: (i: number, val: Uint8Array) => {
+    glyphPayload.fill(0, i * 8, i * 8 + 8);
+    glyphPayload.set(val.subarray(0, 8), i * 8);
+  },
 
   setGridType: (i: number, val: number) => {
     Atomics.and(structureGrid, i, ~0x000000FF);

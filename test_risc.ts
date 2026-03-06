@@ -5,11 +5,15 @@ async function runTest() {
     console.log("🚀 Initializing RISC VM Test...");
 
     const wasmCode = await Deno.readFile("./build/release.wasm");
+    const trace_atom = (idx: number, op: number, gx: number, gy: number, pc: number) => {
+        console.log(`[TRACE] Atom ${idx}: Op 0x${op.toString(16)} @ PC ${pc}`);
+    };
     const wasmModule = await WebAssembly.instantiate(wasmCode, {
+        index: {
+            trace_atom,
+        },
         env: {
-            trace_atom: (idx: number, op: number, gx: number, gy: number, pc: number) => {
-                console.log(`[TRACE] Atom ${idx}: Op 0x${op.toString(16)} @ PC ${pc}`);
-            },
+            trace_atom,
             memory: STATE_MATRIX.wasmMemory,
             abort: () => console.error("WASM Aborted")
         }

@@ -18,6 +18,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
+import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -114,6 +115,13 @@ type RuntimeMetrics = {
   spatialOverflowRatio: number;
   spatialOverflowCount: number;
   spatialMaxCellCount: number;
+  glyphTransport: {
+    activeCells: number;
+    pheromoneCells: number;
+    plasmidCells: number;
+    maxAmplitude: number;
+    totalAmplitude: number;
+  };
 };
 
 type DaemonAuditPending = {
@@ -477,6 +485,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowRatio: spatialHash.overflowRatio,
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
+    glyphTransport: GLYPH_BUFFER.snapshot(),
   };
 };
 
@@ -729,6 +738,7 @@ const buildTelemetry = async () => {
         symbiosis_axis_from_ring: pressure.ring.enabled,
       },
     },
+    glyph_transport: metrics.glyphTransport,
     daemon_governance: {
       safe_mode: safeMode.blocked,
       safe_mode_reason: safeMode.reason,
@@ -1763,6 +1773,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       JSON.stringify({
         ok: true,
         physiology,
+        glyph_transport: GLYPH_BUFFER.snapshot(),
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
         ledger_base_tax_persistence:
           geneticLedger.homeostasisBaseTaxPersistence,

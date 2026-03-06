@@ -88,10 +88,14 @@ const genomePoolSlot = (logic: Uint8Array): number => {
 
 const instantiate = async (): Promise<WasmExports> => {
   const wasmCode = await Deno.readFile("./build/release.wasm");
+  const trace_atom = () => {};
   const wasmModule = await WebAssembly.instantiate(wasmCode, {
+    index: {
+      trace_atom,
+    },
     env: {
       memory: STATE_MATRIX.wasmMemory,
-      trace_atom: () => {},
+      trace_atom,
       abort: () => {},
     },
   });

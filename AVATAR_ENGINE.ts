@@ -2,6 +2,7 @@
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
+import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 
 export const AVATAR_ENGINE = {
   /**
@@ -9,6 +10,7 @@ export const AVATAR_ENGINE = {
    * Atoms will naturally react to this scent based on their genetic logic.
    */
   dropPheromone: (x: number, y: number, intensity: number = 100) => {
+    GLYPH_BUFFER.depositPheromone(x, y, intensity);
     const idx = PHYSICS_ENGINE.getGridIdx(x, y);
     const coreDelta = Math.max(1, Math.min(1000, intensity));
     const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));

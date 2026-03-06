@@ -13,13 +13,17 @@ async function runTest() {
     // Load WASM
     const wasmRes = await fetch(new URL("./build/release.wasm", import.meta.url).href);
     const wasmBytes = await wasmRes.arrayBuffer();
+    const trace_atom = (idx: number, op: number, p1: number, p2: number, p3: number) => {
+        console.log(`   [TR] Atom ${idx} | OP: 0x${op.toString(16)} | P1: ${p1} | P2: ${p2} | P3: ${p3}`);
+    };
     const { instance } = await WebAssembly.instantiate(wasmBytes, {
+        index: {
+            trace_atom,
+        },
         env: {
             memory: wasmMemory,
             abort: () => {},
-            trace_atom: (idx: number, op: number, p1: number, p2: number, p3: number) => {
-                console.log(`   [TR] Atom ${idx} | OP: 0x${op.toString(16)} | P1: ${p1} | P2: ${p2} | P3: ${p3}`);
-            }
+            trace_atom
         }
     });
 
