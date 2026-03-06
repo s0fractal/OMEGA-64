@@ -33,7 +33,7 @@ Status snapshot as of 2026-03-06:
 | Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
 | Stage 5 | not started | internal glyph transport is still membrane-only and has not moved into substrate physics |
 | Stage 6 | not started | Codex evidence upgrade still depends on later ownership moves |
-| Stage 7: hormone / ledger layer | in progress | code-backed scaffold exists via `HORMONE_BUFFER.ts`, `GENETIC_LEDGER.ts`, and Stage 7 contract guards; runtime ownership is still deferred |
+| Stage 7: hormone / ledger layer | in progress | `baseTax` is now the first live ledger-owned knob via `GENETIC_LEDGER_RUNTIME.ts`; the rest of Stage 7 remains scaffolded and observational |
 | Stage 8+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -53,6 +53,7 @@ Latest completed planning work:
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 - Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
 - Added an observer-only physiology projection path: `PHYSIOLOGY_SNAPSHOT.ts` plus `/api/physiology` now expose Stage 7 state to runtime observers without granting write ownership to the hormone / ledger layer.
+- Added the first live Stage 7 ownership move: `pulse.homeostasis.baseTax` now flows through `GENETIC_LEDGER_RUNTIME.ts`, emits rollback tokens, and is visible through homeostasis / physiology observer surfaces.
 
 ## Current diagnosis
 
@@ -137,7 +138,7 @@ Known bridge limit surfaced by Stage 4:
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 - `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
-- Stage 7 now has an executable contract, but there is still no live `SharedArrayBuffer` hormone region and no authoritative runtime write path through the ledger. This is also intentional.
+- Stage 7 now has an executable contract and one authoritative runtime ledger write path (`baseTax`), but there is still no live `SharedArrayBuffer` hormone region and no broad ledger ownership over the rest of the knob surface. This is intentional.
 
 ## Explicit deferrals
 

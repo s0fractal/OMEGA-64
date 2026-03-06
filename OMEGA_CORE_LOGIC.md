@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:57:24.270Z*
-*Exported Files: 124*
+*Generated: 2026-03-06T13:14:07.824Z*
+*Exported Files: 125*
 *Runtime Roots: 6*
-*Runtime Closure Files: 42*
+*Runtime Closure Files: 43*
 *Non-Runtime Code Files: 30*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 14*
-*Manifest SHA256: bc2c48bc737b6066c20d87339bedefed054c3c0ecb01dba1dacefb3490a19c43*
-*Export Set SHA256: 68f6265c57ad1f02be30bb5b1a2f858e40622fd0fcd62cc747cddc79307d446d*
-*Export Content SHA256: 8a24a0f2b6598972227b7aa7332f371f1b39462ca62ac2769276b71c5dfb9417*
-*Git Commit: 7f1d54c3050d*
+*Manifest SHA256: 7bf002dc5955ce396a1e2e1cb3e37483ed194eaddaae89cfd49e041d03dd90e7*
+*Export Set SHA256: 3fe9c97d93574f8f7f9b24ff1f040a33b0711398f76312270578363b9efcd25d*
+*Export Content SHA256: 789a356292632e3998b9a5c62f97eda0d179c13976dd0fa61e31c390e3378481*
+*Git Commit: f3a4db0c5d5e*
 
 ---
 
@@ -44,6 +44,7 @@
 - GATE_MERGER.ts
 - GATE_VALIDATOR.ts
 - GATE.ts
+- GENETIC_LEDGER_RUNTIME.ts
 - GENETIC_LEDGER.ts
 - HORMONE_BUFFER.ts
 - LLM_SYNAPSE.ts
@@ -6165,6 +6166,7 @@ export const CONTROL_INTENT_QUEUE = {
   ],
   "required_additional_files": [
     "DAEMON_INGRESS_POLICY.ts",
+    "GENETIC_LEDGER_RUNTIME.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
@@ -7112,15 +7114,18 @@ The non-runtime support catalog now exists in:
 
 - [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts)
 - [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts)
+- [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts)
 
-These files are not yet imported by active runtime roots. They are migration
-contracts with executable structure.
+`HORMONE_BUFFER.ts` remains observational. `GENETIC_LEDGER.ts` is now partially
+live through the base-tax runtime controller in `GENETIC_LEDGER_RUNTIME.ts`.
 
 Executable guards:
 
 - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
 - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+- [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
 - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+- [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 
 ## `HORMONE_BUFFER`
 
@@ -7203,10 +7208,15 @@ At this point:
 
 - there is no live `SharedArrayBuffer` hormone region yet
 - there is no persistence layer for ledger history yet
-- there is no runtime write path through `HORMONE_BUFFER` / `GENETIC_LEDGER`
+- there is no runtime write path through `HORMONE_BUFFER`
+- there is exactly one live ledger-owned write path:
+  - `pulse.homeostasis.baseTax`
+  - routed through `GENETIC_LEDGER_RUNTIME.ts`
+  - exposed via `PULSE.applyGeneticLedgerUpdate(...)`
+  - reverted via rollback token through `PULSE.rollbackGeneticLedgerUpdate(...)`
 
-That is intentional. This contract exists so the next step can wire these
-concepts into runtime without inventing semantics on the fly.
+That is intentional. The contract is moving from zero runtime ownership to one
+bounded ownership move, not to an open-ended configuration plane.
 
 ## Current status
 
@@ -7215,7 +7225,8 @@ As of 2026-03-06 this layer is:
 - code-backed
 - export-visible
 - contract-tested
-- still non-authoritative over live runtime causality
+- observer-visible through `/api/physiology`
+- partially authoritative over live runtime causality only for ledger-owned `baseTax`
 
 ```
 
@@ -7257,7 +7268,7 @@ Status snapshot as of 2026-03-06:
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
 | Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 7 physiological contract | in progress | [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts), [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts), and [HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) now define the initial bounded knob surface outside runtime ownership |
+| Stage 7 physiological contract | in progress | Stage 7 now has a first live ownership move: `pulse.homeostasis.baseTax` is routed through [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts) with rollback-token semantics, while the rest of the layer remains bounded and observational |
 
 Current rule:
 
@@ -7631,17 +7642,21 @@ For each global dynamic constant:
 - `GENETIC_LEDGER.ts` now defines the initial bounded registry for homeostasis, pressure-ring, daemon ingress, and federation degrade knobs.
 - [docs/migration/HORMONE_LEDGER_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/HORMONE_LEDGER_CONTRACT.md) is now the explicit Stage 7 contract artifact and is included in export.
 - `PHYSIOLOGY_SNAPSHOT.ts` plus `GET /api/physiology` now provide an observer-only runtime projection of hormone / ledger state through `SYSTEM_START.ts` and `AKASHA_SERVER.ts`.
+- `GENETIC_LEDGER_RUNTIME.ts` now owns the first live ledger mutation path for `pulse.homeostasis.baseTax`, including rollback-token semantics and observer-visible summary state.
 - contract guards now exist for:
   - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
   - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+  - [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
   - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
   - [test_physiology_snapshot_contract.ts](/Users/s0fractal/OMEGA/test_physiology_snapshot_contract.ts)
   - [test_physiology_api_contract.ts](/Users/s0fractal/OMEGA/test_physiology_api_contract.ts)
-- current scope remains deliberately non-authoritative:
+- [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
+- current scope remains deliberately narrow:
   - no live `SharedArrayBuffer` hormone region
   - no persisted ledger history
-  - no runtime write path through hormone / ledger ownership yet
-- next gate is wiring one existing live runtime knob through this layer without bypassing rollback semantics.
+  - only `pulse.homeostasis.baseTax` is ledger-owned in live runtime
+  - all other hormone / ledger knobs remain observational or scaffold-only
+- next gate is deciding whether `targetEnergy` or `pressureRing.scale` becomes the second ledger-owned knob without diluting rollback discipline.
 
 ## Stage 8: First hybrid production path
 
@@ -8910,6 +8925,316 @@ export const GATE = {
     );
   },
 };
+
+```
+
+---
+
+## FILE: GENETIC_LEDGER_RUNTIME.ts
+
+```typescript
+import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
+
+const BASE_TAX_ENTRY = geneticLedgerEntryByKey("pulse.homeostasis.baseTax");
+if (!BASE_TAX_ENTRY) {
+  throw new Error(
+    "[GENETIC_LEDGER_RUNTIME] missing pulse.homeostasis.baseTax entry",
+  );
+}
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+export type BaseTaxLedgerRuntimeEvent = {
+  rollbackToken: string;
+  previousValue: number;
+  nextValue: number;
+  tick: number;
+  source: string;
+  reason: string;
+  rolledBackAtTick: number | null;
+  rolledBackSource: string | null;
+  rolledBackReason: string | null;
+};
+
+export type BaseTaxLedgerRuntimeState = {
+  key: "pulse.homeostasis.baseTax";
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate";
+  seq: number;
+  historyLimit: number;
+  history: readonly BaseTaxLedgerRuntimeEvent[];
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+};
+
+export type BaseTaxLedgerRuntimeSnapshot = {
+  key: "pulse.homeostasis.baseTax";
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate";
+  historyDepth: number;
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+};
+
+export type BaseTaxLedgerApplyResult = {
+  status: "applied" | "noop";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: BaseTaxLedgerRuntimeEvent | null;
+  state: BaseTaxLedgerRuntimeState;
+};
+
+export type BaseTaxLedgerRollbackResult = {
+  status: "rolled_back" | "missing" | "consumed" | "stale";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: BaseTaxLedgerRuntimeEvent | null;
+  state: BaseTaxLedgerRuntimeState;
+};
+
+const cloneHistory = (
+  history: readonly BaseTaxLedgerRuntimeEvent[],
+): BaseTaxLedgerRuntimeEvent[] =>
+  history.map((event) => ({ ...event }));
+
+export const createBaseTaxLedgerRuntime = (
+  initialValue = BASE_TAX_ENTRY.defaultValue,
+  historyLimit = 32,
+): BaseTaxLedgerRuntimeState => ({
+  key: "pulse.homeostasis.baseTax",
+  currentValue: clamp(initialValue, BASE_TAX_ENTRY.min, BASE_TAX_ENTRY.max),
+  defaultValue: BASE_TAX_ENTRY.defaultValue,
+  min: BASE_TAX_ENTRY.min,
+  max: BASE_TAX_ENTRY.max,
+  rollbackClass: "immediate",
+  seq: 0,
+  historyLimit: Math.max(1, Math.floor(historyLimit)),
+  history: [],
+  lastAppliedTick: -1,
+  lastAppliedSource: "runtime_policy",
+  lastAppliedReason: "bootstrap",
+  lastAppliedRollbackToken: null,
+  lastRollbackTick: -1,
+  lastRollbackSource: "runtime_policy",
+  lastRollbackReason: "bootstrap",
+  lastRollbackToken: null,
+});
+
+export const snapshotBaseTaxLedgerRuntime = (
+  state: BaseTaxLedgerRuntimeState,
+): BaseTaxLedgerRuntimeSnapshot => ({
+  key: state.key,
+  currentValue: state.currentValue,
+  defaultValue: state.defaultValue,
+  min: state.min,
+  max: state.max,
+  rollbackClass: state.rollbackClass,
+  historyDepth: state.history.length,
+  lastAppliedTick: state.lastAppliedTick,
+  lastAppliedSource: state.lastAppliedSource,
+  lastAppliedReason: state.lastAppliedReason,
+  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
+  lastRollbackTick: state.lastRollbackTick,
+  lastRollbackSource: state.lastRollbackSource,
+  lastRollbackReason: state.lastRollbackReason,
+  lastRollbackToken: state.lastRollbackToken,
+});
+
+export const applyBaseTaxLedgerRuntimeUpdate = (
+  state: BaseTaxLedgerRuntimeState,
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerApplyResult => {
+  const previousValue = state.currentValue;
+  const nextValue = clamp(update.value, state.min, state.max);
+  if (nextValue === previousValue) {
+    return {
+      status: "noop",
+      changed: false,
+      previousValue,
+      nextValue,
+      mutation: null,
+      state: {
+        ...state,
+        history: cloneHistory(state.history),
+      },
+    };
+  }
+
+  const tick = update.tick === undefined ? 0 : Math.max(0, Math.floor(update.tick));
+  const source = (update.source ?? "runtime").trim() || "runtime";
+  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
+  const rollbackToken =
+    `${state.key}@${tick}:${String(state.seq + 1).padStart(4, "0")}`;
+  const mutation: BaseTaxLedgerRuntimeEvent = {
+    rollbackToken,
+    previousValue,
+    nextValue,
+    tick,
+    source,
+    reason,
+    rolledBackAtTick: null,
+    rolledBackSource: null,
+    rolledBackReason: null,
+  };
+  const history = [mutation, ...cloneHistory(state.history)].slice(
+    0,
+    state.historyLimit,
+  );
+  return {
+    status: "applied",
+    changed: true,
+    previousValue,
+    nextValue,
+    mutation,
+    state: {
+      ...state,
+      currentValue: nextValue,
+      seq: state.seq + 1,
+      history,
+      lastAppliedTick: tick,
+      lastAppliedSource: source,
+      lastAppliedReason: reason,
+      lastAppliedRollbackToken: rollbackToken,
+    },
+  };
+};
+
+export const rollbackBaseTaxLedgerRuntimeUpdate = (
+  state: BaseTaxLedgerRuntimeState,
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerRollbackResult => {
+  const rollbackToken = rollback.rollbackToken.trim();
+  const previousValue = state.currentValue;
+  if (rollbackToken.length === 0) {
+    return {
+      status: "missing",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: null,
+      state: {
+        ...state,
+        history: cloneHistory(state.history),
+      },
+    };
+  }
+
+  const history = cloneHistory(state.history);
+  const idx = history.findIndex((event) => event.rollbackToken === rollbackToken);
+  if (idx === -1) {
+    return {
+      status: "missing",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: null,
+      state: {
+        ...state,
+        history,
+      },
+    };
+  }
+
+  const target = history[idx];
+  if (target.rolledBackAtTick !== null) {
+    return {
+      status: "consumed",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: { ...target },
+      state: {
+        ...state,
+        history,
+      },
+    };
+  }
+
+  const latestActive = history.find((event) => event.rolledBackAtTick === null);
+  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
+    return {
+      status: "stale",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: { ...target },
+      state: {
+        ...state,
+        history,
+      },
+    };
+  }
+
+  const tick = rollback.tick === undefined ? 0 : Math.max(0, Math.floor(rollback.tick));
+  const source = (rollback.source ?? "runtime").trim() || "runtime";
+  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
+    "ledger_rollback";
+  const nextValue = clamp(target.previousValue, state.min, state.max);
+  const updatedMutation: BaseTaxLedgerRuntimeEvent = {
+    ...target,
+    rolledBackAtTick: tick,
+    rolledBackSource: source,
+    rolledBackReason: reason,
+  };
+  history[idx] = updatedMutation;
+
+  return {
+    status: "rolled_back",
+    changed: nextValue !== previousValue,
+    previousValue,
+    nextValue,
+    mutation: { ...updatedMutation },
+    state: {
+      ...state,
+      currentValue: nextValue,
+      history,
+      lastRollbackTick: tick,
+      lastRollbackSource: source,
+      lastRollbackReason: reason,
+      lastRollbackToken: rollbackToken,
+    },
+  };
+};
+
+export const resetBaseTaxLedgerRuntime = (
+  state: BaseTaxLedgerRuntimeState,
+  reason = "reset",
+): BaseTaxLedgerRuntimeState => ({
+  ...createBaseTaxLedgerRuntime(state.defaultValue, state.historyLimit),
+  lastAppliedReason: reason,
+  lastRollbackReason: reason,
+});
 
 ```
 
@@ -15617,6 +15942,17 @@ import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import {
+  applyBaseTaxLedgerRuntimeUpdate,
+  createBaseTaxLedgerRuntime,
+  resetBaseTaxLedgerRuntime,
+  rollbackBaseTaxLedgerRuntimeUpdate,
+  snapshotBaseTaxLedgerRuntime,
+  type BaseTaxLedgerApplyResult,
+  type BaseTaxLedgerRollbackResult,
+  type BaseTaxLedgerRuntimeSnapshot,
+  type BaseTaxLedgerRuntimeState,
+} from "./GENETIC_LEDGER_RUNTIME.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -15702,6 +16038,9 @@ type HomeostasisState = {
   lastUpdateTick: number;
   lastUpdateSource: string;
   lastUpdateReason: string;
+};
+type GeneticLedgerRuntimeState = {
+  homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -15790,6 +16129,8 @@ let spatialHashState: SpatialHashState = {
   overflowRatio: 0,
 };
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
+  createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -15816,7 +16157,13 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+  homeostasisBaseTaxLedgerRuntime = resetBaseTaxLedgerRuntime(
+    homeostasisBaseTaxLedgerRuntime,
+    "coldstart_reset",
+  );
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
     HOMEOSTASIS_TARGET_ENERGY,
   );
@@ -15846,6 +16193,9 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   lastUpdateSource: homeostasisLastUpdateSource,
   lastUpdateReason: homeostasisLastUpdateReason,
 });
+const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
+  homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
+});
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
   symbiosisSigned: evolutionPressureState.symbiosisSigned,
@@ -15861,6 +16211,52 @@ const snapshotSpatialHashState = (): SpatialHashState => ({
   maxCellCount: spatialHashState.maxCellCount,
   overflowRatio: spatialHashState.overflowRatio,
 });
+const applyHomeostasisBaseTaxLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerApplyResult => {
+  const result = applyBaseTaxLedgerRuntimeUpdate(
+    homeostasisBaseTaxLedgerRuntime,
+    update,
+  );
+  homeostasisBaseTaxLedgerRuntime = result.state;
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
+  if (result.changed) {
+    homeostasisLastUpdateTick = result.state.lastAppliedTick;
+    homeostasisLastUpdateSource = result.state.lastAppliedSource;
+    homeostasisLastUpdateReason = result.state.lastAppliedReason;
+  }
+  return result;
+};
+const rollbackHomeostasisBaseTaxLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerRollbackResult => {
+  const result = rollbackBaseTaxLedgerRuntimeUpdate(
+    homeostasisBaseTaxLedgerRuntime,
+    rollback,
+  );
+  homeostasisBaseTaxLedgerRuntime = result.state;
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
+  if (result.status === "rolled_back") {
+    homeostasisLastUpdateTick = result.state.lastRollbackTick;
+    homeostasisLastUpdateSource = result.state.lastRollbackSource;
+    homeostasisLastUpdateReason = result.state.lastRollbackReason;
+  }
+  return result;
+};
 const applyEvolutionPressureRing = (
   next: {
     mode: "set" | "step";
@@ -16803,6 +17199,62 @@ export const PULSE = {
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
+  getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
+    snapshotGeneticLedgerRuntimeState(),
+  applyGeneticLedgerUpdate: (
+    update: {
+      key: "pulse.homeostasis.baseTax";
+      value: number;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): BaseTaxLedgerApplyResult => {
+    const result = applyHomeostasisBaseTaxLedgerUpdate({
+      value: update.value,
+      source: update.source,
+      reason: update.reason,
+      tick: update.tick,
+    });
+    if (result.changed) {
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "genetic_ledger_update",
+        count: 1,
+      });
+      LOGGER.info(
+        `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
+      );
+    }
+    return result;
+  },
+  rollbackGeneticLedgerUpdate: (
+    rollback: {
+      key: "pulse.homeostasis.baseTax";
+      rollbackToken: string;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): BaseTaxLedgerRollbackResult => {
+    const result = rollbackHomeostasisBaseTaxLedgerUpdate({
+      rollbackToken: rollback.rollbackToken,
+      source: rollback.source,
+      reason: rollback.reason,
+      tick: rollback.tick,
+    });
+    if (result.status === "rolled_back") {
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "genetic_ledger_rollback",
+        count: 1,
+      });
+      LOGGER.info(
+        `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
+      );
+    }
+    return result;
+  },
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
   updateHomeostasisPolicy: (
     update: {
@@ -16816,7 +17268,12 @@ export const PULSE = {
     const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
     const prevTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
     if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
-      homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(update.baseTax);
+      applyHomeostasisBaseTaxLedgerUpdate({
+        value: update.baseTax,
+        source: update.source,
+        reason: update.reason,
+        tick: update.tick,
+      });
     }
     if (
       update.targetEnergy !== undefined &&
@@ -17801,7 +18258,7 @@ Status snapshot as of 2026-03-06:
 | Stage 4: shadow verification | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts |
 | Stage 5 | not started | internal glyph transport is still membrane-only and has not moved into substrate physics |
 | Stage 6 | not started | Codex evidence upgrade still depends on later ownership moves |
-| Stage 7: hormone / ledger layer | in progress | code-backed scaffold exists via `HORMONE_BUFFER.ts`, `GENETIC_LEDGER.ts`, and Stage 7 contract guards; runtime ownership is still deferred |
+| Stage 7: hormone / ledger layer | in progress | `baseTax` is now the first live ledger-owned knob via `GENETIC_LEDGER_RUNTIME.ts`; the rest of Stage 7 remains scaffolded and observational |
 | Stage 8+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -17821,6 +18278,7 @@ Latest completed planning work:
 - Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 - Added a formal Stage 7 scaffold through `HORMONE_BUFFER.ts` and `GENETIC_LEDGER.ts`, plus contract guards that keep the physiological knob surface explicit before any live runtime integration.
 - Added an observer-only physiology projection path: `PHYSIOLOGY_SNAPSHOT.ts` plus `/api/physiology` now expose Stage 7 state to runtime observers without granting write ownership to the hormone / ledger layer.
+- Added the first live Stage 7 ownership move: `pulse.homeostasis.baseTax` now flows through `GENETIC_LEDGER_RUNTIME.ts`, emits rollback tokens, and is visible through homeostasis / physiology observer surfaces.
 
 ## Current diagnosis
 
@@ -17905,7 +18363,7 @@ Known bridge limit surfaced by Stage 4:
 - The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
 - The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 - `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in the daemon-admission policy lane rather than the reduction bridge. This is intentional until `GlyphIR64` gains a mature control-flow contract.
-- Stage 7 now has an executable contract, but there is still no live `SharedArrayBuffer` hormone region and no authoritative runtime write path through the ledger. This is also intentional.
+- Stage 7 now has an executable contract and one authoritative runtime ledger write path (`baseTax`), but there is still no live `SharedArrayBuffer` hormone region and no broad ledger ownership over the rest of the knob surface. This is intentional.
 
 ## Explicit deferrals
 
@@ -23512,6 +23970,7 @@ type PressureRingUpdateSnapshot = {
 type HomeostasisIngressEnvelope = {
   base_tax?: number;
   target_energy?: number;
+  rollback_token?: string;
   reason?: string;
 };
 
@@ -23519,6 +23978,16 @@ type HomeostasisUpdateSnapshot = {
   tick: number;
   source: string;
   reason: string;
+  mode: "apply" | "target_only" | "mixed" | "rollback";
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  base_tax_rollback_token: string | null;
   base_tax_before: number;
   base_tax_after: number;
   target_energy_before: number;
@@ -23887,6 +24356,7 @@ const buildTelemetry = async () => {
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
   const homeostasis = PULSE.getHomeostasisState();
+  const geneticLedger = PULSE.getGeneticLedgerState();
   const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
@@ -23969,6 +24439,7 @@ const buildTelemetry = async () => {
         last_update_tick: homeostasis.lastUpdateTick,
         last_update_source: homeostasis.lastUpdateSource,
         last_update_reason: homeostasis.lastUpdateReason,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
       },
     },
     snapshot_guard: {
@@ -24168,7 +24639,18 @@ const parseHomeostasisIngressEnvelope = (
     payloadSource.target_energy ?? payloadSource.targetEnergy,
     Number.NaN,
   );
-  if (!Number.isFinite(baseTax) && !Number.isFinite(targetEnergy)) return null;
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+  if (
+    !Number.isFinite(baseTax) &&
+    !Number.isFinite(targetEnergy) &&
+    rollbackToken.length === 0
+  ) {
+    return null;
+  }
   const reason = typeof payloadSource.reason === "string"
     ? payloadSource.reason.trim().slice(0, 96)
     : "daemon_homeostasis_controller";
@@ -24188,6 +24670,9 @@ const parseHomeostasisIngressEnvelope = (
       DAEMON_HOMEOSTASIS_TARGET_MIN,
       DAEMON_HOMEOSTASIS_TARGET_MAX,
     );
+  }
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
   }
   return envelope;
 };
@@ -24451,6 +24936,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/api/homeostasis" && req.method === "GET") {
     const homeostasis = PULSE.getHomeostasisState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     return new Response(
       JSON.stringify({
         ok: true,
@@ -24470,6 +24956,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_update_tick: homeostasis.lastUpdateTick,
           last_update_source: homeostasis.lastUpdateSource,
           last_update_reason: homeostasis.lastUpdateReason,
+          ledger_base_tax: geneticLedger.homeostasisBaseTax,
         },
         latest_update: latestHomeostasisUpdate,
         history: homeostasisHistory,
@@ -24484,6 +24971,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     const homeostasis = PULSE.getHomeostasisState();
     const pressure = PULSE.getEvolutionPressureState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     const physiology = capturePhysiologySnapshot({
       tick,
       homeostasis: {
@@ -24507,6 +24995,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       JSON.stringify({
         ok: true,
         physiology,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
       }),
       { headers: JSON_HEADERS },
     );
@@ -24520,7 +25009,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const envelope = parseHomeostasisIngressEnvelope(body);
       if (
         !envelope ||
-        (envelope.base_tax === undefined && envelope.target_energy === undefined)
+        (
+          envelope.base_tax === undefined &&
+          envelope.target_energy === undefined &&
+          envelope.rollback_token === undefined
+        )
       ) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
@@ -24532,7 +25025,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             ok: false,
             reason: "INVALID_HOMEOSTASIS_PAYLOAD",
             expected:
-              "Provide {base_tax?:number, target_energy?:number, reason?:string}",
+              "Provide {base_tax?:number, target_energy?:number, rollback_token?:string, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (envelope.base_tax !== undefined || envelope.target_energy !== undefined)
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
           }),
           { status: 400, headers: JSON_HEADERS },
         );
@@ -24540,17 +25051,141 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
       const before = PULSE.getHomeostasisState();
+      const source = "daemon_homeostasis_controller";
+      const reason = envelope.reason ?? "daemon_homeostasis_controller";
+
+      if (envelope.rollback_token !== undefined) {
+        const rollback = PULSE.rollbackGeneticLedgerUpdate({
+          key: "pulse.homeostasis.baseTax",
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason,
+          tick,
+        });
+        const updated = PULSE.getHomeostasisState();
+        const geneticLedger = PULSE.getGeneticLedgerState();
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_homeostasis_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "HOMEOSTASIS_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              homeostasis: {
+                enabled: updated.enabled,
+                target_energy: updated.targetEnergy,
+                target_energy_default: updated.targetEnergyDefault,
+                target_energy_current: updated.targetEnergyCurrent,
+                band: updated.band,
+                max_delta: updated.maxDelta,
+                overflow_threshold: updated.overflowThreshold,
+                starvation_floor: updated.starvationFloor,
+                subsidy_enabled: updated.subsidyEnabled,
+                base_tax_default: updated.baseTaxDefault,
+                base_tax_current: updated.baseTaxCurrent,
+                last_update_tick: updated.lastUpdateTick,
+                last_update_source: updated.lastUpdateSource,
+                last_update_reason: updated.lastUpdateReason,
+                ledger_base_tax: geneticLedger.homeostasisBaseTax,
+              },
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        const snapshot: HomeostasisUpdateSnapshot = {
+          tick,
+          source,
+          reason,
+          mode: "rollback",
+          ledger_status: rollback.status,
+          base_tax_rollback_token: envelope.rollback_token,
+          base_tax_before: before.baseTaxCurrent,
+          base_tax_after: updated.baseTaxCurrent,
+          target_energy_before: before.targetEnergy,
+          target_energy_after: updated.targetEnergy,
+        };
+        setLatestHomeostasisUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_HOMEOSTASIS_ROLLBACK",
+          tick,
+          source: snapshot.source,
+          reason: snapshot.reason,
+          mode: snapshot.mode,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.base_tax_rollback_token,
+          base_tax_before: snapshot.base_tax_before,
+          base_tax_after: snapshot.base_tax_after,
+          target_energy_before: snapshot.target_energy_before,
+          target_energy_after: snapshot.target_energy_after,
+        });
+
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            homeostasis: {
+              enabled: updated.enabled,
+              target_energy: updated.targetEnergy,
+              target_energy_default: updated.targetEnergyDefault,
+              target_energy_current: updated.targetEnergyCurrent,
+              band: updated.band,
+              max_delta: updated.maxDelta,
+              overflow_threshold: updated.overflowThreshold,
+              starvation_floor: updated.starvationFloor,
+              subsidy_enabled: updated.subsidyEnabled,
+              base_tax_default: updated.baseTaxDefault,
+              base_tax_current: updated.baseTaxCurrent,
+              last_update_tick: updated.lastUpdateTick,
+              last_update_source: updated.lastUpdateSource,
+              last_update_reason: updated.lastUpdateReason,
+              ledger_base_tax: geneticLedger.homeostasisBaseTax,
+            },
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const ledgerUpdate = envelope.base_tax === undefined
+        ? null
+        : PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.homeostasis.baseTax",
+          value: envelope.base_tax,
+          source,
+          reason,
+          tick,
+        });
       const updated = PULSE.updateHomeostasisPolicy({
-        baseTax: envelope.base_tax,
         targetEnergy: envelope.target_energy,
-        source: "daemon_homeostasis_controller",
-        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        source,
+        reason,
         tick,
       });
+      const geneticLedger = PULSE.getGeneticLedgerState();
       const snapshot: HomeostasisUpdateSnapshot = {
         tick,
-        source: "daemon_homeostasis_controller",
-        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        source,
+        reason,
+        mode: envelope.base_tax !== undefined && envelope.target_energy !== undefined
+          ? "mixed"
+          : envelope.base_tax !== undefined
+          ? "apply"
+          : "target_only",
+        ledger_status: ledgerUpdate?.status ?? null,
+        base_tax_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
         base_tax_before: before.baseTaxCurrent,
         base_tax_after: updated.baseTaxCurrent,
         target_energy_before: before.targetEnergy,
@@ -24567,6 +25202,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         tick,
         source: snapshot.source,
         reason: snapshot.reason,
+        mode: snapshot.mode,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.base_tax_rollback_token,
         base_tax_before: snapshot.base_tax_before,
         base_tax_after: snapshot.base_tax_after,
         target_energy_before: snapshot.target_energy_before,
@@ -24592,6 +25230,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             last_update_tick: updated.lastUpdateTick,
             last_update_source: updated.lastUpdateSource,
             last_update_reason: updated.lastUpdateReason,
+            ledger_base_tax: geneticLedger.homeostasisBaseTax,
           },
         }),
         {

@@ -10,6 +10,17 @@ import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import {
+  applyBaseTaxLedgerRuntimeUpdate,
+  createBaseTaxLedgerRuntime,
+  resetBaseTaxLedgerRuntime,
+  rollbackBaseTaxLedgerRuntimeUpdate,
+  snapshotBaseTaxLedgerRuntime,
+  type BaseTaxLedgerApplyResult,
+  type BaseTaxLedgerRollbackResult,
+  type BaseTaxLedgerRuntimeSnapshot,
+  type BaseTaxLedgerRuntimeState,
+} from "./GENETIC_LEDGER_RUNTIME.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -95,6 +106,9 @@ type HomeostasisState = {
   lastUpdateTick: number;
   lastUpdateSource: string;
   lastUpdateReason: string;
+};
+type GeneticLedgerRuntimeState = {
+  homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -183,6 +197,8 @@ let spatialHashState: SpatialHashState = {
   overflowRatio: 0,
 };
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
+  createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -209,7 +225,13 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+  homeostasisBaseTaxLedgerRuntime = resetBaseTaxLedgerRuntime(
+    homeostasisBaseTaxLedgerRuntime,
+    "coldstart_reset",
+  );
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
     HOMEOSTASIS_TARGET_ENERGY,
   );
@@ -239,6 +261,9 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   lastUpdateSource: homeostasisLastUpdateSource,
   lastUpdateReason: homeostasisLastUpdateReason,
 });
+const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
+  homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
+});
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
   symbiosisSigned: evolutionPressureState.symbiosisSigned,
@@ -254,6 +279,52 @@ const snapshotSpatialHashState = (): SpatialHashState => ({
   maxCellCount: spatialHashState.maxCellCount,
   overflowRatio: spatialHashState.overflowRatio,
 });
+const applyHomeostasisBaseTaxLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerApplyResult => {
+  const result = applyBaseTaxLedgerRuntimeUpdate(
+    homeostasisBaseTaxLedgerRuntime,
+    update,
+  );
+  homeostasisBaseTaxLedgerRuntime = result.state;
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
+  if (result.changed) {
+    homeostasisLastUpdateTick = result.state.lastAppliedTick;
+    homeostasisLastUpdateSource = result.state.lastAppliedSource;
+    homeostasisLastUpdateReason = result.state.lastAppliedReason;
+  }
+  return result;
+};
+const rollbackHomeostasisBaseTaxLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): BaseTaxLedgerRollbackResult => {
+  const result = rollbackBaseTaxLedgerRuntimeUpdate(
+    homeostasisBaseTaxLedgerRuntime,
+    rollback,
+  );
+  homeostasisBaseTaxLedgerRuntime = result.state;
+  homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
+    homeostasisBaseTaxLedgerRuntime.currentValue,
+  );
+  if (result.status === "rolled_back") {
+    homeostasisLastUpdateTick = result.state.lastRollbackTick;
+    homeostasisLastUpdateSource = result.state.lastRollbackSource;
+    homeostasisLastUpdateReason = result.state.lastRollbackReason;
+  }
+  return result;
+};
 const applyEvolutionPressureRing = (
   next: {
     mode: "set" | "step";
@@ -1196,6 +1267,62 @@ export const PULSE = {
   getEvolutionPressureState: (): EvolutionPressureState =>
     snapshotEvolutionPressureState(),
   getSpatialHashState: (): SpatialHashState => snapshotSpatialHashState(),
+  getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
+    snapshotGeneticLedgerRuntimeState(),
+  applyGeneticLedgerUpdate: (
+    update: {
+      key: "pulse.homeostasis.baseTax";
+      value: number;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): BaseTaxLedgerApplyResult => {
+    const result = applyHomeostasisBaseTaxLedgerUpdate({
+      value: update.value,
+      source: update.source,
+      reason: update.reason,
+      tick: update.tick,
+    });
+    if (result.changed) {
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "genetic_ledger_update",
+        count: 1,
+      });
+      LOGGER.info(
+        `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
+      );
+    }
+    return result;
+  },
+  rollbackGeneticLedgerUpdate: (
+    rollback: {
+      key: "pulse.homeostasis.baseTax";
+      rollbackToken: string;
+      source?: string;
+      reason?: string;
+      tick?: number;
+    },
+  ): BaseTaxLedgerRollbackResult => {
+    const result = rollbackHomeostasisBaseTaxLedgerUpdate({
+      rollbackToken: rollback.rollbackToken,
+      source: rollback.source,
+      reason: rollback.reason,
+      tick: rollback.tick,
+    });
+    if (result.status === "rolled_back") {
+      MUTATION_TELEMETRY.record({
+        lane: "internal_host",
+        kind: "genetic_ledger_rollback",
+        count: 1,
+      });
+      LOGGER.info(
+        `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
+      );
+    }
+    return result;
+  },
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
   updateHomeostasisPolicy: (
     update: {
@@ -1209,7 +1336,12 @@ export const PULSE = {
     const prevTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
     const prevTarget = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
     if (update.baseTax !== undefined && Number.isFinite(update.baseTax)) {
-      homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(update.baseTax);
+      applyHomeostasisBaseTaxLedgerUpdate({
+        value: update.baseTax,
+        source: update.source,
+        reason: update.reason,
+        tick: update.tick,
+      });
     }
     if (
       update.targetEnergy !== undefined &&

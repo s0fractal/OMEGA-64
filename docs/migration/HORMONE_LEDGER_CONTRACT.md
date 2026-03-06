@@ -14,19 +14,22 @@ global knobs live as disconnected ad-hoc controller state.
 
 ## Current code-backed scaffold
 
-The non-runtime support catalog now exists in:
+The Stage 7 code-backed surface now exists in:
 
 - [HORMONE_BUFFER.ts](/Users/s0fractal/OMEGA/HORMONE_BUFFER.ts)
 - [GENETIC_LEDGER.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER.ts)
+- [GENETIC_LEDGER_RUNTIME.ts](/Users/s0fractal/OMEGA/GENETIC_LEDGER_RUNTIME.ts)
 
-These files are not yet imported by active runtime roots. They are migration
-contracts with executable structure.
+`HORMONE_BUFFER.ts` remains observational. `GENETIC_LEDGER.ts` is now partially
+live through the base-tax runtime controller in `GENETIC_LEDGER_RUNTIME.ts`.
 
 Executable guards:
 
 - [test_hormone_buffer_contract.ts](/Users/s0fractal/OMEGA/test_hormone_buffer_contract.ts)
 - [test_genetic_ledger_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_contract.ts)
+- [test_genetic_ledger_runtime_contract.ts](/Users/s0fractal/OMEGA/test_genetic_ledger_runtime_contract.ts)
 - [test_hormone_ledger_alignment_contract.ts](/Users/s0fractal/OMEGA/test_hormone_ledger_alignment_contract.ts)
+- [test_homeostasis_ledger_path_contract.ts](/Users/s0fractal/OMEGA/test_homeostasis_ledger_path_contract.ts)
 
 ## `HORMONE_BUFFER`
 
@@ -109,10 +112,15 @@ At this point:
 
 - there is no live `SharedArrayBuffer` hormone region yet
 - there is no persistence layer for ledger history yet
-- there is no runtime write path through `HORMONE_BUFFER` / `GENETIC_LEDGER`
+- there is no runtime write path through `HORMONE_BUFFER`
+- there is exactly one live ledger-owned write path:
+  - `pulse.homeostasis.baseTax`
+  - routed through `GENETIC_LEDGER_RUNTIME.ts`
+  - exposed via `PULSE.applyGeneticLedgerUpdate(...)`
+  - reverted via rollback token through `PULSE.rollbackGeneticLedgerUpdate(...)`
 
-That is intentional. This contract exists so the next step can wire these
-concepts into runtime without inventing semantics on the fly.
+That is intentional. The contract is moving from zero runtime ownership to one
+bounded ownership move, not to an open-ended configuration plane.
 
 ## Current status
 
@@ -121,4 +129,5 @@ As of 2026-03-06 this layer is:
 - code-backed
 - export-visible
 - contract-tested
-- still non-authoritative over live runtime causality
+- observer-visible through `/api/physiology`
+- partially authoritative over live runtime causality only for ledger-owned `baseTax`

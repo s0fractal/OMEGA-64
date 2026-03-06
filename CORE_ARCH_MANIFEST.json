@@ -52,6 +52,7 @@
   ],
   "required_additional_files": [
     "DAEMON_INGRESS_POLICY.ts",
+    "GENETIC_LEDGER_RUNTIME.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",

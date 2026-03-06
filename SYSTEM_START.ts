@@ -109,6 +109,7 @@ type PressureRingUpdateSnapshot = {
 type HomeostasisIngressEnvelope = {
   base_tax?: number;
   target_energy?: number;
+  rollback_token?: string;
   reason?: string;
 };
 
@@ -116,6 +117,16 @@ type HomeostasisUpdateSnapshot = {
   tick: number;
   source: string;
   reason: string;
+  mode: "apply" | "target_only" | "mixed" | "rollback";
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  base_tax_rollback_token: string | null;
   base_tax_before: number;
   base_tax_after: number;
   target_energy_before: number;
@@ -484,6 +495,7 @@ const buildTelemetry = async () => {
   const active = STATE_MATRIX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
   const homeostasis = PULSE.getHomeostasisState();
+  const geneticLedger = PULSE.getGeneticLedgerState();
   const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
   const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
     metrics.tick,
@@ -566,6 +578,7 @@ const buildTelemetry = async () => {
         last_update_tick: homeostasis.lastUpdateTick,
         last_update_source: homeostasis.lastUpdateSource,
         last_update_reason: homeostasis.lastUpdateReason,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
       },
     },
     snapshot_guard: {
@@ -765,7 +778,18 @@ const parseHomeostasisIngressEnvelope = (
     payloadSource.target_energy ?? payloadSource.targetEnergy,
     Number.NaN,
   );
-  if (!Number.isFinite(baseTax) && !Number.isFinite(targetEnergy)) return null;
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+  if (
+    !Number.isFinite(baseTax) &&
+    !Number.isFinite(targetEnergy) &&
+    rollbackToken.length === 0
+  ) {
+    return null;
+  }
   const reason = typeof payloadSource.reason === "string"
     ? payloadSource.reason.trim().slice(0, 96)
     : "daemon_homeostasis_controller";
@@ -785,6 +809,9 @@ const parseHomeostasisIngressEnvelope = (
       DAEMON_HOMEOSTASIS_TARGET_MIN,
       DAEMON_HOMEOSTASIS_TARGET_MAX,
     );
+  }
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
   }
   return envelope;
 };
@@ -1048,6 +1075,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/api/homeostasis" && req.method === "GET") {
     const homeostasis = PULSE.getHomeostasisState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     return new Response(
       JSON.stringify({
         ok: true,
@@ -1067,6 +1095,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           last_update_tick: homeostasis.lastUpdateTick,
           last_update_source: homeostasis.lastUpdateSource,
           last_update_reason: homeostasis.lastUpdateReason,
+          ledger_base_tax: geneticLedger.homeostasisBaseTax,
         },
         latest_update: latestHomeostasisUpdate,
         history: homeostasisHistory,
@@ -1081,6 +1110,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     const homeostasis = PULSE.getHomeostasisState();
     const pressure = PULSE.getEvolutionPressureState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     const physiology = capturePhysiologySnapshot({
       tick,
       homeostasis: {
@@ -1104,6 +1134,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       JSON.stringify({
         ok: true,
         physiology,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
       }),
       { headers: JSON_HEADERS },
     );
@@ -1117,7 +1148,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const envelope = parseHomeostasisIngressEnvelope(body);
       if (
         !envelope ||
-        (envelope.base_tax === undefined && envelope.target_energy === undefined)
+        (
+          envelope.base_tax === undefined &&
+          envelope.target_energy === undefined &&
+          envelope.rollback_token === undefined
+        )
       ) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
@@ -1129,7 +1164,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             ok: false,
             reason: "INVALID_HOMEOSTASIS_PAYLOAD",
             expected:
-              "Provide {base_tax?:number, target_energy?:number, reason?:string}",
+              "Provide {base_tax?:number, target_energy?:number, rollback_token?:string, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (envelope.base_tax !== undefined || envelope.target_energy !== undefined)
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
           }),
           { status: 400, headers: JSON_HEADERS },
         );
@@ -1137,17 +1190,141 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
       const before = PULSE.getHomeostasisState();
+      const source = "daemon_homeostasis_controller";
+      const reason = envelope.reason ?? "daemon_homeostasis_controller";
+
+      if (envelope.rollback_token !== undefined) {
+        const rollback = PULSE.rollbackGeneticLedgerUpdate({
+          key: "pulse.homeostasis.baseTax",
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason,
+          tick,
+        });
+        const updated = PULSE.getHomeostasisState();
+        const geneticLedger = PULSE.getGeneticLedgerState();
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_homeostasis_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "HOMEOSTASIS_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              homeostasis: {
+                enabled: updated.enabled,
+                target_energy: updated.targetEnergy,
+                target_energy_default: updated.targetEnergyDefault,
+                target_energy_current: updated.targetEnergyCurrent,
+                band: updated.band,
+                max_delta: updated.maxDelta,
+                overflow_threshold: updated.overflowThreshold,
+                starvation_floor: updated.starvationFloor,
+                subsidy_enabled: updated.subsidyEnabled,
+                base_tax_default: updated.baseTaxDefault,
+                base_tax_current: updated.baseTaxCurrent,
+                last_update_tick: updated.lastUpdateTick,
+                last_update_source: updated.lastUpdateSource,
+                last_update_reason: updated.lastUpdateReason,
+                ledger_base_tax: geneticLedger.homeostasisBaseTax,
+              },
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        const snapshot: HomeostasisUpdateSnapshot = {
+          tick,
+          source,
+          reason,
+          mode: "rollback",
+          ledger_status: rollback.status,
+          base_tax_rollback_token: envelope.rollback_token,
+          base_tax_before: before.baseTaxCurrent,
+          base_tax_after: updated.baseTaxCurrent,
+          target_energy_before: before.targetEnergy,
+          target_energy_after: updated.targetEnergy,
+        };
+        setLatestHomeostasisUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_HOMEOSTASIS_ROLLBACK",
+          tick,
+          source: snapshot.source,
+          reason: snapshot.reason,
+          mode: snapshot.mode,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.base_tax_rollback_token,
+          base_tax_before: snapshot.base_tax_before,
+          base_tax_after: snapshot.base_tax_after,
+          target_energy_before: snapshot.target_energy_before,
+          target_energy_after: snapshot.target_energy_after,
+        });
+
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            homeostasis: {
+              enabled: updated.enabled,
+              target_energy: updated.targetEnergy,
+              target_energy_default: updated.targetEnergyDefault,
+              target_energy_current: updated.targetEnergyCurrent,
+              band: updated.band,
+              max_delta: updated.maxDelta,
+              overflow_threshold: updated.overflowThreshold,
+              starvation_floor: updated.starvationFloor,
+              subsidy_enabled: updated.subsidyEnabled,
+              base_tax_default: updated.baseTaxDefault,
+              base_tax_current: updated.baseTaxCurrent,
+              last_update_tick: updated.lastUpdateTick,
+              last_update_source: updated.lastUpdateSource,
+              last_update_reason: updated.lastUpdateReason,
+              ledger_base_tax: geneticLedger.homeostasisBaseTax,
+            },
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const ledgerUpdate = envelope.base_tax === undefined
+        ? null
+        : PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.homeostasis.baseTax",
+          value: envelope.base_tax,
+          source,
+          reason,
+          tick,
+        });
       const updated = PULSE.updateHomeostasisPolicy({
-        baseTax: envelope.base_tax,
         targetEnergy: envelope.target_energy,
-        source: "daemon_homeostasis_controller",
-        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        source,
+        reason,
         tick,
       });
+      const geneticLedger = PULSE.getGeneticLedgerState();
       const snapshot: HomeostasisUpdateSnapshot = {
         tick,
-        source: "daemon_homeostasis_controller",
-        reason: envelope.reason ?? "daemon_homeostasis_controller",
+        source,
+        reason,
+        mode: envelope.base_tax !== undefined && envelope.target_energy !== undefined
+          ? "mixed"
+          : envelope.base_tax !== undefined
+          ? "apply"
+          : "target_only",
+        ledger_status: ledgerUpdate?.status ?? null,
+        base_tax_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
         base_tax_before: before.baseTaxCurrent,
         base_tax_after: updated.baseTaxCurrent,
         target_energy_before: before.targetEnergy,
@@ -1164,6 +1341,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         tick,
         source: snapshot.source,
         reason: snapshot.reason,
+        mode: snapshot.mode,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.base_tax_rollback_token,
         base_tax_before: snapshot.base_tax_before,
         base_tax_after: snapshot.base_tax_after,
         target_energy_before: snapshot.target_energy_before,
@@ -1189,6 +1369,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             last_update_tick: updated.lastUpdateTick,
             last_update_source: updated.lastUpdateSource,
             last_update_reason: updated.lastUpdateReason,
+            ledger_base_tax: geneticLedger.homeostasisBaseTax,
           },
         }),
         {
