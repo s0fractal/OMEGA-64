@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:08:45.417Z*
-*Exported Files: 103*
+*Generated: 2026-03-06T12:20:09.923Z*
+*Exported Files: 109*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
 *Non-Runtime Code Files: 28*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 12*
-*Manifest SHA256: f02431fb2e9bdc365087e9fb262e99b3dab451ae2b98d9ab9d1f4236c8cc2650*
-*Export Set SHA256: 1eba8d414313ada06fa78c4cb4cb727021ef1aa38b6fd7e8c8c4ee27b4045e6e*
-*Export Content SHA256: 0942bd73c424dfaa02a93a98f180b63943c7d93ed2a64c44c402df7cb129c598*
-*Git Commit: 08e24957c936*
+*Manifest SHA256: 673381c27fc8ad08590c998391b45b99bb68c79f2fb3d3b44faa51fb38b75959*
+*Export Set SHA256: 4ea2d9f7d57ce59708a7d5e94b73ee7da7a3ef3ccc1aee0cf92cd8a1dab91ee6*
+*Export Content SHA256: 91abd202ec0822fcff78ec67948a5e3faa17be148342cd98a45958f6026f702e*
+*Git Commit: 7dcb888c2e27*
 
 ---
 
@@ -6167,6 +6167,12 @@ export const CONTROL_INTENT_QUEUE = {
     "verification/traces/gt06_daemon_admission_case/codex_snapshot.json",
     "verification/traces/gt06_daemon_admission_case/invariants.json",
     "verification/traces/gt06_daemon_admission_case/notes.md",
+    "verification/reduction_diffs/rc01_gt01_replicator_loop.json",
+    "verification/reduction_diffs/rc02_gt01_architect_loop.json",
+    "verification/reduction_diffs/rc03_gt03_guardian_stable_branch.json",
+    "verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json",
+    "verification/reduction_diffs/rc05_gt05_band_anchor_match.json",
+    "verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
@@ -6574,7 +6580,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
-| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
 
 Current rule:
 
@@ -6803,14 +6809,20 @@ Only low-width behavior first:
 
 ### Current stage assessment
 
-- `verification/reduction_cases.ts` now provides four bounded bridge cases
+- `verification/reduction_cases.ts` now provides six bounded bridge cases
 - `verification/reduction_harness.ts` runs parity between legacy shadow execution and glyph-reduction shadow execution
+- `verification/reduction_diffs/*.json` now persists structured diff artifacts for every covered case
 - current covered motifs:
   - seeded replicator loop
   - seeded architect loop
   - guardian stable branch
   - guardian repair branch
-- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive or homeostasis-sensitive case
+  - homeostasis-band anchor match
+  - homeostasis-band anchor mismatch
+- known bridge limit:
+  - the current bridge subset only has `Imm8` policy anchors, so `gt05 target_energy=300` cannot yet be encoded directly
+  - current `gt05` cases therefore use the representable `band=240` anchor rather than claiming full homeostasis semantics
+- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive case (`gt04`) or widening the bridge subset with a compare/range primitive
 
 ## Stage 5: Transport becomes internal
 
@@ -16530,7 +16542,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
 | Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -16544,6 +16556,7 @@ Latest completed planning work:
 - Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 - Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
+- Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
 
 ## Current diagnosis
 
@@ -16618,9 +16631,14 @@ The next practical priorities are:
 
 Immediate execution edge:
 
-1. Add trace-diff summaries so reduction harness outputs can be compared to baseline anchors as structured artifacts, not only console parity.
-2. Introduce one mutation-adjacent shadow case using `gt04` or one homeostasis-adjacent case using `gt05`.
+1. Introduce one mutation-adjacent shadow case using `gt04`, now that `gt05` policy-sensitive anchoring exists.
+2. Decide whether to widen the bridge subset with a compare/range primitive or keep the current exact-anchor model explicit.
 3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
+
+Known bridge limit surfaced by Stage 4:
+
+- The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
+- The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 
 ## Explicit deferrals
 
@@ -29140,6 +29158,36 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
+  script[pc++] = targetEnergy & 0xFF;
+  script[pc++] = RISC.OP_SUB;
+  script[pc++] = 0;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_JNZ;
+  script[pc++] = 0;
+  script[pc++] = 15;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
 const makeReplicatorLoopScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
@@ -29166,6 +29214,7 @@ const makeArchitectLoopScript = (): Uint8Array => {
 };
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
+const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
 export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
   {
@@ -29238,6 +29287,44 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       branchTaken: true,
     },
   },
+  {
+    id: "rc05_gt05_band_anchor_match",
+    baselineTraceId: "gt05_homeostasis_correction",
+    description:
+      "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
+    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+    maxSteps: 6,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 240,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [0, 240, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc06_gt05_band_anchor_mismatch",
+    baselineTraceId: "gt05_homeostasis_correction",
+    description:
+      "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
+    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+    maxSteps: 8,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1200,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [960, 240, 0, 0, 0, 0, 0, 0],
+      branchTaken: true,
+    },
+  },
 ]);
 
 const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
@@ -29247,6 +29334,262 @@ const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
 export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
   REDUCTION_CASE_BY_ID.get(id) ?? null;
 
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc01_gt01_replicator_loop.json
+
+```json
+{
+  "case_id": "rc01_gt01_replicator_loop",
+  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "c9cb2e05513087d11803547415d41567694ca73f451af869d1469e0f47295409",
+  "reduction_digest": "65a355e353a30e4fd83eb6be317e0237fb10f69b146bbc816225d70b01b06e1b",
+  "executed_digest_legacy": "b1f7923015e4e9abf6cdcd108ed36db4a78d43057e132a9784d7b5cf24c37db5",
+  "executed_digest_reduction": "c98cd51eeab478b4b3a455eaf5c27f29039da28660cf3bfa00e651da4974ab57",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 20
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "replicateCount": 2,
+    "signalCount": 2,
+    "buildCount": 0,
+    "branchTaken": false
+  }
+}
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc02_gt01_architect_loop.json
+
+```json
+{
+  "case_id": "rc02_gt01_architect_loop",
+  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "32b80b957fa5345f07555da8a41898e6f02b3868272fd098bd64cf4496cf9f78",
+  "reduction_digest": "4727f23fea3582f0e9984e26feab078e29abea65b352a0b50ce9fa570845fa3d",
+  "executed_digest_legacy": "ac0e02c7fcc8ba2d0948e22f31479fbce750ee9c76583653a09600271305585e",
+  "executed_digest_reduction": "047db417dabaf8999ea5dd6803239d04aa4df70d2ce019ff99ef59ff0c1ffeb7",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 24
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "buildCount": 2,
+    "signalCount": 2,
+    "finalRole": 3,
+    "branchTaken": false
+  }
+}
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc03_gt03_guardian_stable_branch.json
+
+```json
+{
+  "case_id": "rc03_gt03_guardian_stable_branch",
+  "baseline_trace_id": "gt03_pheromone_inject",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "4152ca1fd4c622aa1fd2c6ae2140705ccd34e6293214f28abca8135759af4436",
+  "reduction_digest": "6cdba45279367c9e4c951731c0dc2dabbb23cfcf43cd572243e262fde042ccd0",
+  "executed_digest_legacy": "e433267f92e5e7715c90c3955a7f270503cde11f07c3034976b8d5642ddc01c5",
+  "executed_digest_reduction": "9d778a6616c0ec9124fcafbea879e115b4bfbd4a606bd6426eeff4e4635dc932",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 10
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 0,
+    "finalRole": 2,
+    "registers": [
+      200,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "branchTaken": false
+  }
+}
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json
+
+```json
+{
+  "case_id": "rc04_gt03_guardian_repair_branch",
+  "baseline_trace_id": "gt03_pheromone_inject",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "c04af2f0758dc17b1be277ebf9d181bc71b87aca4d9d533769e4171ef6cc3748",
+  "reduction_digest": "12ba1f58726d87ad52e0ce2cbbe0b5251889ecd62d7bf792e1b0a75aa5e8f857",
+  "executed_digest_legacy": "03bdac584461411ffbb9687c4f8be98eaf24c6afad75f6f2b82879a348a8dad1",
+  "executed_digest_reduction": "16e9d1314dbfd16512b5e2661c924b1b2d1c5da78366f5618c1d53b68a950dc4",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 16
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 1,
+    "finalRole": 3,
+    "registers": [
+      0,
+      200,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "branchTaken": true
+  }
+}
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc05_gt05_band_anchor_match.json
+
+```json
+{
+  "case_id": "rc05_gt05_band_anchor_match",
+  "baseline_trace_id": "gt05_homeostasis_correction",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "60cfc91a25c743844b439687ccf7893d5e13f761dc4679136621f098e1ae9503",
+  "reduction_digest": "ea57a4a205daae7ec7b6dd33630d6b55359ccf49f3bba58e9c966c9e98f7f3ce",
+  "executed_digest_legacy": "9385d516c1cf208297cb61255dc1e63a3403490e1bb021ad95e2eee5401e8498",
+  "executed_digest_reduction": "efc8b6c1f98234b9a498681d248dea130c5e47404edd6bc03870ea69e42c6131",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 8
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 0,
+    "finalRole": 0,
+    "registers": [
+      0,
+      240,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "branchTaken": false
+  }
+}
+```
+
+---
+
+## FILE: verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json
+
+```json
+{
+  "case_id": "rc06_gt05_band_anchor_mismatch",
+  "baseline_trace_id": "gt05_homeostasis_correction",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "35e809daa221b946dfba1fede2ac19a9410a3cdee633e57193745b9a601694ec",
+  "reduction_digest": "95dab13b716a583fd0a3c57865b5db8ddd740e050cace4c7efb25fc36ff8ce1c",
+  "executed_digest_legacy": "36a8437a4fb645a82d075bc035e52bcfe8d04924abe5dc3c2e006ee17dcb7ec7",
+  "executed_digest_reduction": "fe9f44b3b8020643a4eb37085012511152cf9188fa71da6dd379e0a4c9ca3756",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 16
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 1,
+    "finalRole": 3,
+    "registers": [
+      960,
+      240,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "branchTaken": true
+  }
+}
 ```
 
 ---
@@ -29335,6 +29678,32 @@ export type ReductionHarnessResult = {
   };
 };
 
+export type ReductionHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  reduction_digest: string;
+  executed_digest_legacy: string;
+  executed_digest_reduction: string;
+  diff: {
+    final_pc_match: boolean;
+    registers_match: boolean;
+    role_match: boolean;
+    replicate_count_match: boolean;
+    signal_count_match: boolean;
+    build_count_match: boolean;
+    branch_taken_match: boolean;
+    role_writes_match: boolean;
+    energy_spent_delta: number;
+  };
+  expectation_summary: ReductionCaseDefinition["expected"];
+};
+
+const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
+
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
   signalCount: 0,
@@ -29363,6 +29732,28 @@ const createInitialState = (
 
 const equalNumberArray = (a: readonly number[], b: readonly number[]): boolean =>
   a.length === b.length && a.every((value, index) => value === b[index]);
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>)
+    .sort(([a], [b]) => a.localeCompare(b));
+  return `{${entries.map(([key, item]) =>
+    `${JSON.stringify(key)}:${stableStringify(item)}`
+  ).join(",")}}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
 
 const snapshotLegacy = (
   state: ShadowState,
@@ -29632,6 +30023,76 @@ const compareResults = (
   return { ok: reasons.length === 0, reasons };
 };
 
+const artifactPathForCase = (caseId: string): string =>
+  `${REDUCTION_DIFF_ROOT}/${caseId}.json`;
+
+const buildReductionHarnessArtifact = async (
+  definition: ReductionCaseDefinition,
+  result: ReductionHarnessResult,
+): Promise<ReductionHarnessArtifact> => ({
+  case_id: result.caseId,
+  baseline_trace_id: result.baseline.traceId,
+  baseline_runtime_mode: result.baseline.runtimeMode,
+  parity_ok: result.parity.ok,
+  parity_reasons: [...result.parity.reasons],
+  legacy_digest: await sha256Hex({
+    finalPc: result.legacy.finalPc,
+    regs: result.legacy.regs,
+    role: result.legacy.role,
+    effects: result.legacy.effects,
+    energySpent: result.legacy.energySpent,
+  }),
+  reduction_digest: await sha256Hex({
+    finalPc: result.reduction.finalPc,
+    regs: result.reduction.regs,
+    role: result.reduction.role,
+    effects: result.reduction.effects,
+    energySpent: result.reduction.energySpent,
+  }),
+  executed_digest_legacy: await sha256Hex(result.legacy.executed),
+  executed_digest_reduction: await sha256Hex(result.reduction.executed),
+  diff: {
+    final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
+    registers_match: equalNumberArray(result.legacy.regs, result.reduction.regs),
+    role_match: result.legacy.role === result.reduction.role,
+    replicate_count_match:
+      result.legacy.effects.replicateCount ===
+        result.reduction.effects.replicateCount,
+    signal_count_match:
+      result.legacy.effects.signalCount === result.reduction.effects.signalCount,
+    build_count_match:
+      result.legacy.effects.buildCount === result.reduction.effects.buildCount,
+    branch_taken_match:
+      result.legacy.effects.branchTaken === result.reduction.effects.branchTaken,
+    role_writes_match: equalNumberArray(
+      result.legacy.effects.roleWrites,
+      result.reduction.effects.roleWrites,
+    ),
+    energy_spent_delta: result.reduction.energySpent - result.legacy.energySpent,
+  },
+  expectation_summary: definition.expected,
+});
+
+export const writeReductionHarnessArtifacts = async (
+  results: ReductionHarnessResult[],
+): Promise<string[]> => {
+  await Deno.mkdir(REDUCTION_DIFF_ROOT, { recursive: true });
+  const written: string[] = [];
+  for (const result of results) {
+    const definition = reductionCaseById(result.caseId);
+    if (!definition) {
+      throw new Error(
+        `[reduction_harness] missing definition for artifact case ${result.caseId}`,
+      );
+    }
+    const artifact = await buildReductionHarnessArtifact(definition, result);
+    const path = artifactPathForCase(result.caseId);
+    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2));
+    written.push(path);
+  }
+  return written;
+};
+
 export const runReductionHarnessCase = async (
   caseId: string,
 ): Promise<ReductionHarnessResult> => {
@@ -29668,6 +30129,7 @@ export const runReductionHarness = async (
 if (import.meta.main) {
   const caseIds = Deno.args.length > 0 ? Deno.args : REDUCTION_CASES.map((caseDef) => caseDef.id);
   const results = await runReductionHarness(caseIds);
+  await writeReductionHarnessArtifacts(results);
   for (const result of results) {
     console.log(
       `[reduction_harness] case=${result.caseId} baseline=${result.baseline.traceId} parity=${

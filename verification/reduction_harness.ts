@@ -79,6 +79,32 @@ export type ReductionHarnessResult = {
   };
 };
 
+export type ReductionHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  reduction_digest: string;
+  executed_digest_legacy: string;
+  executed_digest_reduction: string;
+  diff: {
+    final_pc_match: boolean;
+    registers_match: boolean;
+    role_match: boolean;
+    replicate_count_match: boolean;
+    signal_count_match: boolean;
+    build_count_match: boolean;
+    branch_taken_match: boolean;
+    role_writes_match: boolean;
+    energy_spent_delta: number;
+  };
+  expectation_summary: ReductionCaseDefinition["expected"];
+};
+
+const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
+
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
   signalCount: 0,
@@ -107,6 +133,28 @@ const createInitialState = (
 
 const equalNumberArray = (a: readonly number[], b: readonly number[]): boolean =>
   a.length === b.length && a.every((value, index) => value === b[index]);
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>)
+    .sort(([a], [b]) => a.localeCompare(b));
+  return `{${entries.map(([key, item]) =>
+    `${JSON.stringify(key)}:${stableStringify(item)}`
+  ).join(",")}}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
 
 const snapshotLegacy = (
   state: ShadowState,
@@ -376,6 +424,76 @@ const compareResults = (
   return { ok: reasons.length === 0, reasons };
 };
 
+const artifactPathForCase = (caseId: string): string =>
+  `${REDUCTION_DIFF_ROOT}/${caseId}.json`;
+
+const buildReductionHarnessArtifact = async (
+  definition: ReductionCaseDefinition,
+  result: ReductionHarnessResult,
+): Promise<ReductionHarnessArtifact> => ({
+  case_id: result.caseId,
+  baseline_trace_id: result.baseline.traceId,
+  baseline_runtime_mode: result.baseline.runtimeMode,
+  parity_ok: result.parity.ok,
+  parity_reasons: [...result.parity.reasons],
+  legacy_digest: await sha256Hex({
+    finalPc: result.legacy.finalPc,
+    regs: result.legacy.regs,
+    role: result.legacy.role,
+    effects: result.legacy.effects,
+    energySpent: result.legacy.energySpent,
+  }),
+  reduction_digest: await sha256Hex({
+    finalPc: result.reduction.finalPc,
+    regs: result.reduction.regs,
+    role: result.reduction.role,
+    effects: result.reduction.effects,
+    energySpent: result.reduction.energySpent,
+  }),
+  executed_digest_legacy: await sha256Hex(result.legacy.executed),
+  executed_digest_reduction: await sha256Hex(result.reduction.executed),
+  diff: {
+    final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
+    registers_match: equalNumberArray(result.legacy.regs, result.reduction.regs),
+    role_match: result.legacy.role === result.reduction.role,
+    replicate_count_match:
+      result.legacy.effects.replicateCount ===
+        result.reduction.effects.replicateCount,
+    signal_count_match:
+      result.legacy.effects.signalCount === result.reduction.effects.signalCount,
+    build_count_match:
+      result.legacy.effects.buildCount === result.reduction.effects.buildCount,
+    branch_taken_match:
+      result.legacy.effects.branchTaken === result.reduction.effects.branchTaken,
+    role_writes_match: equalNumberArray(
+      result.legacy.effects.roleWrites,
+      result.reduction.effects.roleWrites,
+    ),
+    energy_spent_delta: result.reduction.energySpent - result.legacy.energySpent,
+  },
+  expectation_summary: definition.expected,
+});
+
+export const writeReductionHarnessArtifacts = async (
+  results: ReductionHarnessResult[],
+): Promise<string[]> => {
+  await Deno.mkdir(REDUCTION_DIFF_ROOT, { recursive: true });
+  const written: string[] = [];
+  for (const result of results) {
+    const definition = reductionCaseById(result.caseId);
+    if (!definition) {
+      throw new Error(
+        `[reduction_harness] missing definition for artifact case ${result.caseId}`,
+      );
+    }
+    const artifact = await buildReductionHarnessArtifact(definition, result);
+    const path = artifactPathForCase(result.caseId);
+    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2));
+    written.push(path);
+  }
+  return written;
+};
+
 export const runReductionHarnessCase = async (
   caseId: string,
 ): Promise<ReductionHarnessResult> => {
@@ -412,6 +530,7 @@ export const runReductionHarness = async (
 if (import.meta.main) {
   const caseIds = Deno.args.length > 0 ? Deno.args : REDUCTION_CASES.map((caseDef) => caseDef.id);
   const results = await runReductionHarness(caseIds);
+  await writeReductionHarnessArtifacts(results);
   for (const result of results) {
     console.log(
       `[reduction_harness] case=${result.caseId} baseline=${result.baseline.traceId} parity=${

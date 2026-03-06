@@ -30,7 +30,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
-| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
 
 Current rule:
 
@@ -259,14 +259,20 @@ Only low-width behavior first:
 
 ### Current stage assessment
 
-- `verification/reduction_cases.ts` now provides four bounded bridge cases
+- `verification/reduction_cases.ts` now provides six bounded bridge cases
 - `verification/reduction_harness.ts` runs parity between legacy shadow execution and glyph-reduction shadow execution
+- `verification/reduction_diffs/*.json` now persists structured diff artifacts for every covered case
 - current covered motifs:
   - seeded replicator loop
   - seeded architect loop
   - guardian stable branch
   - guardian repair branch
-- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive or homeostasis-sensitive case
+  - homeostasis-band anchor match
+  - homeostasis-band anchor mismatch
+- known bridge limit:
+  - the current bridge subset only has `Imm8` policy anchors, so `gt05 target_energy=300` cannot yet be encoded directly
+  - current `gt05` cases therefore use the representable `band=240` anchor rather than claiming full homeostasis semantics
+- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive case (`gt04`) or widening the bridge subset with a compare/range primitive
 
 ## Stage 5: Transport becomes internal
 

@@ -29,7 +29,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow six bounded cases against `gt01`/`gt03`/`gt05` anchors with parity guards and persisted diff artifacts |
 | Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
@@ -43,6 +43,7 @@ Latest completed planning work:
 - Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
 - Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
+- Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
 
 ## Current diagnosis
 
@@ -117,9 +118,14 @@ The next practical priorities are:
 
 Immediate execution edge:
 
-1. Add trace-diff summaries so reduction harness outputs can be compared to baseline anchors as structured artifacts, not only console parity.
-2. Introduce one mutation-adjacent shadow case using `gt04` or one homeostasis-adjacent case using `gt05`.
+1. Introduce one mutation-adjacent shadow case using `gt04`, now that `gt05` policy-sensitive anchoring exists.
+2. Decide whether to widen the bridge subset with a compare/range primitive or keep the current exact-anchor model explicit.
 3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
+
+Known bridge limit surfaced by Stage 4:
+
+- The current bridge subset only supports `Imm8` anchors via `OP_SET`, so `gt05 target_energy=300` cannot yet be encoded directly in a shadow case.
+- The current `gt05` reduction cases therefore use the representable policy anchor `band=240` instead of pretending full target-energy semantics already exist.
 
 ## Explicit deferrals
 

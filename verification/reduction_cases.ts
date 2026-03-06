@@ -20,6 +20,36 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
+  script[pc++] = targetEnergy & 0xFF;
+  script[pc++] = RISC.OP_SUB;
+  script[pc++] = 0;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_JNZ;
+  script[pc++] = 0;
+  script[pc++] = 15;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
 const makeReplicatorLoopScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
@@ -46,6 +76,7 @@ const makeArchitectLoopScript = (): Uint8Array => {
 };
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
+const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
 export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
   {
@@ -115,6 +146,44 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       buildCount: 1,
       finalRole: STATE_MATRIX.ROLE_ARCHITECT,
       registers: [0, 200, 0, 0, 0, 0, 0, 0],
+      branchTaken: true,
+    },
+  },
+  {
+    id: "rc05_gt05_band_anchor_match",
+    baselineTraceId: "gt05_homeostasis_correction",
+    description:
+      "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
+    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+    maxSteps: 6,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 240,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [0, 240, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc06_gt05_band_anchor_mismatch",
+    baselineTraceId: "gt05_homeostasis_correction",
+    description:
+      "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
+    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+    maxSteps: 8,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1200,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [960, 240, 0, 0, 0, 0, 0, 0],
       branchTaken: true,
     },
   },

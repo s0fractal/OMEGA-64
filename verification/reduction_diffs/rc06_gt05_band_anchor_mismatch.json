@@ -1,0 +1,39 @@
+{
+  "case_id": "rc06_gt05_band_anchor_mismatch",
+  "baseline_trace_id": "gt05_homeostasis_correction",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "35e809daa221b946dfba1fede2ac19a9410a3cdee633e57193745b9a601694ec",
+  "reduction_digest": "95dab13b716a583fd0a3c57865b5db8ddd740e050cace4c7efb25fc36ff8ce1c",
+  "executed_digest_legacy": "36a8437a4fb645a82d075bc035e52bcfe8d04924abe5dc3c2e006ee17dcb7ec7",
+  "executed_digest_reduction": "fe9f44b3b8020643a4eb37085012511152cf9188fa71da6dd379e0a4c9ca3756",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 16
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 1,
+    "finalRole": 3,
+    "registers": [
+      960,
+      240,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "branchTaken": true
+  }
+}

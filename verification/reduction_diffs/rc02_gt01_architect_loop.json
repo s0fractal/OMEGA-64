@@ -1,0 +1,29 @@
+{
+  "case_id": "rc02_gt01_architect_loop",
+  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "32b80b957fa5345f07555da8a41898e6f02b3868272fd098bd64cf4496cf9f78",
+  "reduction_digest": "4727f23fea3582f0e9984e26feab078e29abea65b352a0b50ce9fa570845fa3d",
+  "executed_digest_legacy": "ac0e02c7fcc8ba2d0948e22f31479fbce750ee9c76583653a09600271305585e",
+  "executed_digest_reduction": "047db417dabaf8999ea5dd6803239d04aa4df70d2ce019ff99ef59ff0c1ffeb7",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 24
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "buildCount": 2,
+    "signalCount": 2,
+    "finalRole": 3,
+    "branchTaken": false
+  }
+}
