@@ -188,6 +188,20 @@ const main = async () => {
   );
   requireSnippet(
     system,
+    "ledger_max_plasmid_charge",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish ledger-owned plasmid-charge state",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "ledger_max_plasmid_charge_persistence",
+    SYSTEM_START_PATH,
+    "Daemon telemetry surface must publish plasmid-charge persistence state",
+    violations,
+  );
+  requireSnippet(
+    system,
     "/api/daemon-policy",
     SYSTEM_START_PATH,
     "Daemon governance surface must expose daemon-policy endpoint",
@@ -205,6 +219,13 @@ const main = async () => {
     '"external_daemon"',
     SYSTEM_START_PATH,
     "Daemon inject route must enqueue intents with daemon source lane",
+    violations,
+  );
+  requireSnippet(
+    system,
+    "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+    SYSTEM_START_PATH,
+    "Daemon ingress must enforce dynamic plasmid charge cap",
     violations,
   );
 

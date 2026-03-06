@@ -29,17 +29,17 @@ Supporting planning artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                           |
-| ------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                  |
-| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                               |
-| Stage 2: golden traces          | complete    | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/`                                                                                                                                                            |
-| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure                                                                                                                                                                                                                  |
-| Stage 4: shadow verification    | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts                                                                                                                                        |
-| Stage 5                         | not started | internal glyph transport is still membrane-only and has not moved into substrate physics                                                                                                                                                                                                        |
-| Stage 6                         | not started | Codex evidence upgrade still depends on later ownership moves                                                                                                                                                                                                                                   |
-| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, and `daemon.maxPheromoneIntensity` are now live ledger-owned knobs; all four survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
-| Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                         |
+| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                             |
+| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                          |
+| Stage 2: golden traces          | complete    | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/`                                                                                                                                                                                       |
+| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure                                                                                                                                                                                                                                             |
+| Stage 4: shadow verification    | in progress | reduction shadow covers six bounded `gt01`/`gt03`/`gt05` cases, and admission shadow now covers `gt04`/`gt06` policy cases with persisted diff artifacts                                                                                                                                                                   |
+| Stage 5                         | not started | internal glyph transport is still membrane-only and has not moved into substrate physics                                                                                                                                                                                                                                   |
+| Stage 6                         | not started | Codex evidence upgrade still depends on later ownership moves                                                                                                                                                                                                                                                              |
+| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
+| Stage 8+                        | not started | next gate is widening shadow coverage before any runtime ownership move                                                                                                                                                                                                                                                    |
 
 Latest completed planning work:
 
@@ -107,6 +107,11 @@ Latest completed planning work:
   rollback tokens, survives restart through replay, compacts into
   `snapshot + bounded tail`, and is no longer just a frozen ingress-policy
   constant inside the daemon membrane.
+- Added the fifth live Stage 7 ownership move: `daemon.maxPlasmidCharge` now
+  flows through a dedicated ledger runtime/persistence path, exposes rollback
+  tokens, survives restart through replay, compacts into
+  `snapshot + bounded tail`, and removes the last fixed plasmid budget from the
+  daemon ingress membrane.
 
 ## Current diagnosis
 
@@ -216,11 +221,11 @@ Known bridge limit surfaced by Stage 4:
 - `gt04` and `gt06` now have honest shadow coverage, but that coverage lives in
   the daemon-admission policy lane rather than the reduction bridge. This is
   intentional until `GlyphIR64` gains a mature control-flow contract.
-- Stage 7 now has an executable contract and four authoritative runtime ledger
+- Stage 7 now has an executable contract and five authoritative runtime ledger
   write paths (`baseTax`, `targetEnergy`, `pressureRing.scale`,
-  `daemon.maxPheromoneIntensity`), but there is still no live
-  `SharedArrayBuffer` hormone region and no broad ledger ownership over the rest
-  of the knob surface. This is intentional.
+  `daemon.maxPheromoneIntensity`, `daemon.maxPlasmidCharge`), but there is still
+  no live `SharedArrayBuffer` hormone region and no broad ledger ownership over
+  the rest of the knob surface. This is intentional.
 
 ## Explicit deferrals
 

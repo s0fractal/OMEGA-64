@@ -30,6 +30,7 @@ import {
   type PlasmidRiskProfile,
   snapshotDaemonIngressPolicyLimits,
   syncDaemonIngressMaxPheromoneIntensity,
+  syncDaemonIngressMaxPlasmidCharge,
 } from "./DAEMON_INGRESS_POLICY.ts";
 import {
   applyDaemonPheromoneLedgerRuntimeUpdate,
@@ -52,6 +53,27 @@ import {
   recordFromDaemonPheromoneApplyMutation,
   recordFromDaemonPheromoneRollbackMutation,
 } from "./DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts";
+import {
+  applyDaemonPlasmidLedgerRuntimeUpdate,
+  createDaemonPlasmidLedgerRuntime,
+  type DaemonPlasmidLedgerApplyResult,
+  type DaemonPlasmidLedgerRollbackResult,
+  type DaemonPlasmidLedgerRuntimeSnapshot,
+  type DaemonPlasmidLedgerRuntimeState,
+  rollbackDaemonPlasmidLedgerRuntimeUpdate,
+  snapshotDaemonPlasmidLedgerRuntime,
+} from "./DAEMON_PLASMID_LEDGER_RUNTIME.ts";
+import {
+  appendDaemonPlasmidLedgerRecordAndMaybeCompact,
+  DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
+  DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
+  DAEMON_PLASMID_LEDGER_LOG_PATH,
+  DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
+  type DaemonPlasmidLedgerPersistenceSummary,
+  hydrateDaemonPlasmidLedgerRuntime,
+  recordFromDaemonPlasmidApplyMutation,
+  recordFromDaemonPlasmidRollbackMutation,
+} from "./DAEMON_PLASMID_LEDGER_PERSISTENCE.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -187,6 +209,7 @@ type HomeostasisUpdateSnapshot = {
 
 type DaemonPolicyIngressEnvelope = {
   max_pheromone_intensity?: number;
+  max_plasmid_charge?: number;
   rollback_token?: string;
   reason?: string;
 };
@@ -196,6 +219,10 @@ type DaemonPolicyUpdateSnapshot = {
   source: string;
   reason: string;
   mode: "apply" | "rollback";
+  policy_key:
+    | "daemon.maxPheromoneIntensity"
+    | "daemon.maxPlasmidCharge"
+    | null;
   ledger_status:
     | "applied"
     | "noop"
@@ -205,8 +232,11 @@ type DaemonPolicyUpdateSnapshot = {
     | "stale"
     | null;
   pheromone_rollback_token: string | null;
+  plasmid_rollback_token: string | null;
   max_pheromone_intensity_before: number;
   max_pheromone_intensity_after: number;
+  max_plasmid_charge_before: number;
+  max_plasmid_charge_after: number;
 };
 
 const requireControlAuth = (req: Request): Response | null => {
@@ -254,8 +284,6 @@ const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
 const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
 const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
 const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
-const DAEMON_POLICY_MAX_PLASMID_CHARGE = DAEMON_INGRESS_POLICY_LIMITS
-  .maxPlasmidCharge;
 const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
   .safeMinPopulation;
 const DAEMON_SAFE_MIN_AVG_ENERGY =
@@ -282,6 +310,8 @@ const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
 const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
 const DAEMON_MAX_PHEROMONE_INTENSITY_MIN = 1;
 const DAEMON_MAX_PHEROMONE_INTENSITY_MAX = 4096;
+const DAEMON_MAX_PLASMID_CHARGE_MIN = 1;
+const DAEMON_MAX_PLASMID_CHARGE_MAX = 4096;
 const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
   1,
   Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
@@ -294,6 +324,8 @@ const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
 
 const currentDaemonMaxPheromoneIntensity = (): number =>
   DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
+const currentDaemonMaxPlasmidCharge = (): number =>
+  DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge;
 
 let daemonWindowStartMs = Date.now();
 let daemonActionsInWindow = 0;
@@ -333,6 +365,31 @@ let daemonPheromoneLedgerPersistence: DaemonPheromoneLedgerPersistenceSummary =
     lastHydratedAt: null,
     lastHydrationError: null,
   };
+let daemonPlasmidLedgerRuntime: DaemonPlasmidLedgerRuntimeState =
+  createDaemonPlasmidLedgerRuntime(currentDaemonMaxPlasmidCharge());
+let daemonPlasmidLedgerPersistence: DaemonPlasmidLedgerPersistenceSummary = {
+  path: DAEMON_PLASMID_LEDGER_LOG_PATH,
+  snapshotPath: DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
+  compactionKeepTail: DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
 let autoSnapshotLastTick = -1;
 let autoSnapshotInFlight = false;
 let telemetryStreamLastTick = -1;
@@ -680,12 +737,16 @@ const buildTelemetry = async () => {
       actions_dynamic_max_in_window: dynamicMaxActions,
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
-      max_plasmid_charge: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+      max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
       ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
         daemonPheromoneLedgerRuntime,
       ),
       ledger_max_pheromone_intensity_persistence:
         daemonPheromoneLedgerPersistence,
+      ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+        daemonPlasmidLedgerRuntime,
+      ),
+      ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
       invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
       invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
       last_admission: latestDaemonAdmission,
@@ -995,12 +1056,21 @@ const parseDaemonPolicyIngressEnvelope = (
       payloadSource.maxPheromoneIntensity,
     Number.NaN,
   );
+  const maxPlasmidCharge = asFiniteNumber(
+    payloadSource.max_plasmid_charge ??
+      payloadSource.maxPlasmidCharge,
+    Number.NaN,
+  );
   const rollbackToken = typeof (
       payloadSource.rollback_token ?? payloadSource.rollbackToken
     ) === "string"
     ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
     : "";
-  if (!Number.isFinite(maxPheromoneIntensity) && rollbackToken.length === 0) {
+  if (
+    !Number.isFinite(maxPheromoneIntensity) &&
+    !Number.isFinite(maxPlasmidCharge) &&
+    rollbackToken.length === 0
+  ) {
     return null;
   }
   const reason = typeof payloadSource.reason === "string"
@@ -1014,6 +1084,13 @@ const parseDaemonPolicyIngressEnvelope = (
       Math.round(maxPheromoneIntensity),
       DAEMON_MAX_PHEROMONE_INTENSITY_MIN,
       DAEMON_MAX_PHEROMONE_INTENSITY_MAX,
+    );
+  }
+  if (Number.isFinite(maxPlasmidCharge)) {
+    envelope.max_plasmid_charge = clamp(
+      Math.round(maxPlasmidCharge),
+      DAEMON_MAX_PLASMID_CHARGE_MIN,
+      DAEMON_MAX_PLASMID_CHARGE_MAX,
     );
   }
   if (rollbackToken.length > 0) {
@@ -1030,6 +1107,18 @@ const inferHomeostasisRollbackKey = (
   }
   if (rollbackToken.startsWith("pulse.homeostasis.targetEnergy@")) {
     return "pulse.homeostasis.targetEnergy";
+  }
+  return null;
+};
+
+const inferDaemonPolicyRollbackKey = (
+  rollbackToken: string,
+): "daemon.maxPheromoneIntensity" | "daemon.maxPlasmidCharge" | null => {
+  if (rollbackToken.startsWith("daemon.maxPheromoneIntensity@")) {
+    return "daemon.maxPheromoneIntensity";
+  }
+  if (rollbackToken.startsWith("daemon.maxPlasmidCharge@")) {
+    return "daemon.maxPlasmidCharge";
   }
   return null;
 };
@@ -1078,13 +1167,59 @@ const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
   syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
 };
 
+const applyDaemonPlasmidPolicyLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): DaemonPlasmidLedgerApplyResult => {
+  const result = applyDaemonPlasmidLedgerRuntimeUpdate(
+    daemonPlasmidLedgerRuntime,
+    update,
+  );
+  daemonPlasmidLedgerRuntime = result.state;
+  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
+  return result;
+};
+
+const rollbackDaemonPlasmidPolicyLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): DaemonPlasmidLedgerRollbackResult => {
+  const result = rollbackDaemonPlasmidLedgerRuntimeUpdate(
+    daemonPlasmidLedgerRuntime,
+    rollback,
+  );
+  daemonPlasmidLedgerRuntime = result.state;
+  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
+  return result;
+};
+
+const syncDaemonPlasmidPolicyLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydrateDaemonPlasmidLedgerRuntime(
+    currentDaemonMaxPlasmidCharge(),
+    daemonPlasmidLedgerRuntime.historyLimit,
+  );
+  daemonPlasmidLedgerRuntime = hydrated.state;
+  daemonPlasmidLedgerPersistence = hydrated.persistence;
+  syncDaemonIngressMaxPlasmidCharge(hydrated.state.currentValue);
+};
+
 const serializeDaemonPolicyState = () => {
   const liveLimits = snapshotDaemonIngressPolicyLimits();
   return {
     max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
     max_pheromone_intensity_default: daemonPheromoneLedgerRuntime.defaultValue,
     max_pheromone_intensity_current: daemonPheromoneLedgerRuntime.currentValue,
-    max_plasmid_charge: liveLimits.maxPlasmidCharge,
+    max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
+    max_plasmid_charge_default: daemonPlasmidLedgerRuntime.defaultValue,
+    max_plasmid_charge_current: daemonPlasmidLedgerRuntime.currentValue,
     safe_min_population: liveLimits.safeMinPopulation,
     safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
     ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
@@ -1092,6 +1227,10 @@ const serializeDaemonPolicyState = () => {
     ),
     ledger_max_pheromone_intensity_persistence:
       daemonPheromoneLedgerPersistence,
+    ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+      daemonPlasmidLedgerRuntime,
+    ),
+    ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
   };
 };
 
@@ -1961,6 +2100,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         !envelope ||
         (
           envelope.max_pheromone_intensity === undefined &&
+          envelope.max_plasmid_charge === undefined &&
           envelope.rollback_token === undefined
         )
       ) {
@@ -1974,7 +2114,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             ok: false,
             reason: "INVALID_DAEMON_POLICY_PAYLOAD",
             expected:
-              "Provide {max_pheromone_intensity?:number, rollback_token?:string, reason?:string}",
+              "Provide {max_pheromone_intensity?:number, max_plasmid_charge?:number, rollback_token?:string, reason?:string}",
           }),
           { status: 400, headers: JSON_HEADERS },
         );
@@ -1982,7 +2122,10 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (
         envelope.rollback_token !== undefined &&
-        envelope.max_pheromone_intensity !== undefined
+        (
+          envelope.max_pheromone_intensity !== undefined ||
+          envelope.max_plasmid_charge !== undefined
+        )
       ) {
         MUTATION_TELEMETRY.record({
           lane: "external_daemon",
@@ -1998,18 +2141,61 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
+      if (
+        envelope.max_pheromone_intensity !== undefined &&
+        envelope.max_plasmid_charge !== undefined
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "MULTIPLE_DAEMON_POLICY_FIELDS_NOT_ALLOWED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
       const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
       const source = "daemon_policy_controller";
       const reason = envelope.reason ?? "daemon_policy_controller";
-      const before = currentDaemonMaxPheromoneIntensity();
+      const beforePheromone = currentDaemonMaxPheromoneIntensity();
+      const beforePlasmid = currentDaemonMaxPlasmidCharge();
 
       if (envelope.rollback_token !== undefined) {
-        const rollback = rollbackDaemonPheromonePolicyLedgerUpdate({
-          rollbackToken: envelope.rollback_token,
-          source,
-          reason,
-          tick,
-        });
+        const rollbackKey = inferDaemonPolicyRollbackKey(
+          envelope.rollback_token,
+        );
+        if (rollbackKey === null) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_invalid_payload",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "INVALID_DAEMON_POLICY_ROLLBACK_TOKEN",
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+        const rollback = rollbackKey === "daemon.maxPheromoneIntensity"
+          ? rollbackDaemonPheromonePolicyLedgerUpdate({
+            rollbackToken: envelope.rollback_token,
+            source,
+            reason,
+            tick,
+          })
+          : rollbackDaemonPlasmidPolicyLedgerUpdate({
+            rollbackToken: envelope.rollback_token,
+            source,
+            reason,
+            tick,
+          });
         if (rollback.status !== "rolled_back") {
           MUTATION_TELEMETRY.record({
             lane: "external_daemon",
@@ -2029,21 +2215,39 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         }
 
         if (rollback.mutation) {
-          const persisted =
-            await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-              recordFromDaemonPheromoneRollbackMutation(rollback.mutation),
-              {
-                initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-              },
-            );
-          daemonPheromoneLedgerPersistence = {
-            ...persisted,
-            hydrated: daemonPheromoneLedgerPersistence.hydrated,
-            lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
-            lastHydrationError:
-              daemonPheromoneLedgerPersistence.lastHydrationError,
-          };
+          if (rollbackKey === "daemon.maxPheromoneIntensity") {
+            const persisted =
+              await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
+                recordFromDaemonPheromoneRollbackMutation(rollback.mutation),
+                {
+                  initialValue: daemonPheromoneLedgerRuntime.defaultValue,
+                  historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+                },
+              );
+            daemonPheromoneLedgerPersistence = {
+              ...persisted,
+              hydrated: daemonPheromoneLedgerPersistence.hydrated,
+              lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+              lastHydrationError:
+                daemonPheromoneLedgerPersistence.lastHydrationError,
+            };
+          } else {
+            const persisted =
+              await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
+                recordFromDaemonPlasmidRollbackMutation(rollback.mutation),
+                {
+                  initialValue: daemonPlasmidLedgerRuntime.defaultValue,
+                  historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+                },
+              );
+            daemonPlasmidLedgerPersistence = {
+              ...persisted,
+              hydrated: daemonPlasmidLedgerPersistence.hydrated,
+              lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
+              lastHydrationError:
+                daemonPlasmidLedgerPersistence.lastHydrationError,
+            };
+          }
         }
 
         const snapshot: DaemonPolicyUpdateSnapshot = {
@@ -2051,10 +2255,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           source,
           reason,
           mode: "rollback",
+          policy_key: rollbackKey,
           ledger_status: rollback.status,
-          pheromone_rollback_token: envelope.rollback_token,
-          max_pheromone_intensity_before: before,
+          pheromone_rollback_token:
+            rollbackKey === "daemon.maxPheromoneIntensity"
+              ? envelope.rollback_token
+              : null,
+          plasmid_rollback_token: rollbackKey === "daemon.maxPlasmidCharge"
+            ? envelope.rollback_token
+            : null,
+          max_pheromone_intensity_before: beforePheromone,
           max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+          max_plasmid_charge_before: beforePlasmid,
+          max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
         };
         setLatestDaemonPolicyUpdate(snapshot);
         MUTATION_TELEMETRY.record({
@@ -2068,11 +2281,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           source: snapshot.source,
           reason: snapshot.reason,
           mode: snapshot.mode,
+          policy_key: snapshot.policy_key,
           ledger_status: snapshot.ledger_status,
-          rollback_token: snapshot.pheromone_rollback_token,
+          rollback_token: snapshot.pheromone_rollback_token ??
+            snapshot.plasmid_rollback_token,
           max_pheromone_intensity_before:
             snapshot.max_pheromone_intensity_before,
           max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+          max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
+          max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
         });
         return new Response(
           JSON.stringify({
@@ -2087,28 +2304,56 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const result = applyDaemonPheromonePolicyLedgerUpdate({
-        value: envelope.max_pheromone_intensity!,
-        source,
-        reason,
-        tick,
-      });
+      const updateKey = envelope.max_pheromone_intensity !== undefined
+        ? "daemon.maxPheromoneIntensity"
+        : "daemon.maxPlasmidCharge";
+      const result = updateKey === "daemon.maxPheromoneIntensity"
+        ? applyDaemonPheromonePolicyLedgerUpdate({
+          value: envelope.max_pheromone_intensity!,
+          source,
+          reason,
+          tick,
+        })
+        : applyDaemonPlasmidPolicyLedgerUpdate({
+          value: envelope.max_plasmid_charge!,
+          source,
+          reason,
+          tick,
+        });
       if (result.mutation) {
-        const persisted =
-          await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-            recordFromDaemonPheromoneApplyMutation(result.mutation),
-            {
-              initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-            },
-          );
-        daemonPheromoneLedgerPersistence = {
-          ...persisted,
-          hydrated: daemonPheromoneLedgerPersistence.hydrated,
-          lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
-          lastHydrationError:
-            daemonPheromoneLedgerPersistence.lastHydrationError,
-        };
+        if (updateKey === "daemon.maxPheromoneIntensity") {
+          const persisted =
+            await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
+              recordFromDaemonPheromoneApplyMutation(result.mutation),
+              {
+                initialValue: daemonPheromoneLedgerRuntime.defaultValue,
+                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+              },
+            );
+          daemonPheromoneLedgerPersistence = {
+            ...persisted,
+            hydrated: daemonPheromoneLedgerPersistence.hydrated,
+            lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              daemonPheromoneLedgerPersistence.lastHydrationError,
+          };
+        } else {
+          const persisted =
+            await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
+              recordFromDaemonPlasmidApplyMutation(result.mutation),
+              {
+                initialValue: daemonPlasmidLedgerRuntime.defaultValue,
+                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+              },
+            );
+          daemonPlasmidLedgerPersistence = {
+            ...persisted,
+            hydrated: daemonPlasmidLedgerPersistence.hydrated,
+            lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              daemonPlasmidLedgerPersistence.lastHydrationError,
+          };
+        }
       }
 
       const snapshot: DaemonPolicyUpdateSnapshot = {
@@ -2116,10 +2361,18 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         source,
         reason,
         mode: "apply",
+        policy_key: updateKey,
         ledger_status: result.status,
-        pheromone_rollback_token: result.mutation?.rollbackToken ?? null,
-        max_pheromone_intensity_before: before,
+        pheromone_rollback_token: updateKey === "daemon.maxPheromoneIntensity"
+          ? result.mutation?.rollbackToken ?? null
+          : null,
+        plasmid_rollback_token: updateKey === "daemon.maxPlasmidCharge"
+          ? result.mutation?.rollbackToken ?? null
+          : null,
+        max_pheromone_intensity_before: beforePheromone,
         max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+        max_plasmid_charge_before: beforePlasmid,
+        max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
       };
       setLatestDaemonPolicyUpdate(snapshot);
       MUTATION_TELEMETRY.record({
@@ -2133,10 +2386,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         source: snapshot.source,
         reason: snapshot.reason,
         mode: snapshot.mode,
+        policy_key: snapshot.policy_key,
         ledger_status: snapshot.ledger_status,
-        rollback_token: snapshot.pheromone_rollback_token,
+        rollback_token: snapshot.pheromone_rollback_token ??
+          snapshot.plasmid_rollback_token,
         max_pheromone_intensity_before: snapshot.max_pheromone_intensity_before,
         max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+        max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
+        max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
       });
       return new Response(
         JSON.stringify({
@@ -2379,7 +2636,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           );
         }
 
-        if (envelope.payload.intensity > DAEMON_POLICY_MAX_PLASMID_CHARGE) {
+        if (envelope.payload.intensity > currentDaemonMaxPlasmidCharge()) {
           setLatestDaemonAdmission({
             tick: baseline.tick,
             status: "rejected",
@@ -2401,7 +2658,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
             JSON.stringify({
               ok: false,
               reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
-              max: DAEMON_POLICY_MAX_PLASMID_CHARGE,
+              max: currentDaemonMaxPlasmidCharge(),
             }),
             { status: 400, headers: JSON_HEADERS },
           );
@@ -3188,6 +3445,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     );
   }
   await syncDaemonPheromonePolicyLedgerHydration();
+  await syncDaemonPlasmidPolicyLedgerHydration();
   await PULSE.initWorkers();
 
   while (true) {

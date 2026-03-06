@@ -81,6 +81,18 @@ export const syncDaemonIngressMaxPheromoneIntensity = (
 export const resetDaemonIngressMaxPheromoneIntensity = (): number =>
   syncDaemonIngressMaxPheromoneIntensity(DAEMON_POLICY.maxPheromoneIntensity);
 
+export const syncDaemonIngressMaxPlasmidCharge = (
+  value: number,
+): number => {
+  const bounded = clamp(Math.round(value), 1, 4096);
+  (DAEMON_INGRESS_POLICY_LIMITS as { maxPlasmidCharge: number })
+    .maxPlasmidCharge = bounded;
+  return bounded;
+};
+
+export const resetDaemonIngressMaxPlasmidCharge = (): number =>
+  syncDaemonIngressMaxPlasmidCharge(DAEMON_POLICY.maxPlasmidCharge);
+
 const ALLOWED_DAEMON_OPCODES = new Set<number>([
   0x00,
   0x01,
