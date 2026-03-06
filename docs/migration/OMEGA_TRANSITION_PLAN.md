@@ -604,6 +604,9 @@ Current slit in progress:
 - `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now turns that recommendation into an
   explicit `promote` / `hold` verdict inside long-run canary and daemon audit
   reports by combining guardian readiness with enclosing runtime health
+- `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now turns that verdict into a canonical
+  `promote` / `hold` / `demote` action artifact so the Stage 8 slit can be
+  reasoned about symmetrically before any default-mode switch is attempted
 
 ### Exit gate
 

@@ -1,3 +1,4 @@
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
 import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 
@@ -98,6 +99,7 @@ type Sample = {
   spatialMaxCellCount: number;
   federationAction: string;
   federationSeverity: string;
+  guardianPromotionCurrentMode: GuardianPromotionMode;
   guardianPromotionReady: boolean;
   guardianPromotionStatus: string;
   guardianPromotionRecommendedMode: GuardianPromotionMode;
@@ -212,17 +214,18 @@ const normalizeGuardianPromotionMode = (
 const deriveGuardianPromotion = (
   telemetry: TelemetryEnvelope,
 ): {
+  currentMode: GuardianPromotionMode;
   ready: boolean;
   status: string;
   recommendedMode: GuardianPromotionMode;
   fallbackRatio: number;
 } => {
   if (telemetry.guardian_signal_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.guardian_signal_hybrid.mode,
+    );
     const evaluated = evaluateGuardianSignalPromotion({
-      mode: toStringSafe(
-        telemetry.guardian_signal_hybrid.mode,
-        "shadow-reduce",
-      ) as "legacy-execute" | "hybrid-reduce" | "shadow-reduce",
+      mode: currentMode,
       hybridRuns: Math.floor(
         toFiniteNumber(telemetry.guardian_signal_hybrid.hybridRuns, 0),
       ),
@@ -273,6 +276,7 @@ const deriveGuardianPromotion = (
       ),
     });
     return {
+      currentMode,
       ready: evaluated.ready,
       status: evaluated.status,
       recommendedMode: evaluated.recommendedMode,
@@ -280,6 +284,7 @@ const deriveGuardianPromotion = (
     };
   }
   return {
+    currentMode: "shadow-reduce",
     ready: telemetry.guardian_signal_promotion?.ready === true,
     status: toStringSafe(
       telemetry.guardian_signal_promotion?.status,
@@ -460,12 +465,16 @@ const renderMarkdown = (
 - p95SpatialOverflowRatio: ${summary.p95SpatialOverflowRatio}
 - safeModeRatio: ${summary.safeModeRatio}
 - federationRejectRatio: ${summary.federationRejectRatio}
+- guardianSignalPromotionCurrentMode: ${summary.guardianSignalPromotionCurrentMode}
 - guardianSignalPromotionReadyLatest: ${summary.guardianSignalPromotionReadyLatest}
 - guardianSignalPromotionReadyRatio: ${summary.guardianSignalPromotionReadyRatio}
 - guardianSignalPromotionRecommendedMode: ${summary.guardianSignalPromotionRecommendedMode}
 - guardianSignalFallbackRatioP95: ${summary.guardianSignalFallbackRatioP95}
 - guardianSignalPromotionVerdict: ${summary.guardianSignalPromotionVerdict}
 - guardianSignalPromotionBlockers: ${summary.guardianSignalPromotionBlockers}
+- guardianSignalPromotionAction: ${summary.guardianSignalPromotionAction}
+- guardianSignalPromotionTargetMode: ${summary.guardianSignalPromotionTargetMode}
+- guardianSignalPromotionActionReasons: ${summary.guardianSignalPromotionActionReasons}
 
 | status | check | observed | limit |
 |---|---|---:|---:|
@@ -692,6 +701,7 @@ const main = async () => {
       spatialMaxCellCount: maxCellCount,
       federationAction: federationAction || "none",
       federationSeverity: federationSeverity || "NONE",
+      guardianPromotionCurrentMode: guardianPromotion.currentMode,
       guardianPromotionReady: guardianPromotion.ready,
       guardianPromotionStatus: guardianPromotion.status,
       guardianPromotionRecommendedMode: guardianPromotion.recommendedMode,
@@ -772,6 +782,12 @@ const main = async () => {
       },
     },
   );
+  const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
+    currentMode:
+      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+        "shadow-reduce",
+    decision: guardianSignalPromotionDecision,
+  });
 
   const checks: Check[] = [
     {
@@ -865,6 +881,9 @@ const main = async () => {
     p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
     safeModeRatio: Number(safeModeRatio.toFixed(3)),
     federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
+    guardianSignalPromotionCurrentMode:
+      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+        "shadow-reduce",
     guardianSignalPromotionReadyLatest:
       guardianSignalPromotionLatest?.guardianPromotionReady ?? false,
     guardianSignalPromotionReadyRatio: Number(
@@ -879,6 +898,10 @@ const main = async () => {
     guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
     guardianSignalPromotionBlockers:
       guardianSignalPromotionDecision.blockers.join("|") || "none",
+    guardianSignalPromotionAction: guardianSignalPromotionAction.verdict,
+    guardianSignalPromotionTargetMode: guardianSignalPromotionAction.targetMode,
+    guardianSignalPromotionActionReasons:
+      guardianSignalPromotionAction.reasons.join("|") || "none",
     maxConsecutiveTelemetryFailures: maxConsecutiveFailures,
     processExitedUnexpectedly,
     childExitCode,
@@ -891,6 +914,7 @@ const main = async () => {
     config,
     summary,
     guardianSignalPromotionDecision,
+    guardianSignalPromotionAction,
     checks,
     logsTail: logTail,
     samplesHead: samples.slice(0, 12),

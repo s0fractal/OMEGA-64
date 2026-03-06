@@ -164,6 +164,11 @@ Latest completed planning work:
   together with long-run health metrics into an explicit `promote` or `hold`
   verdict, so Stage 8 rollout can be decided from committed audit artifacts
   rather than ad hoc interpretation.
+- Added a promotion action contract:
+  `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now translates the Stage 8 decision into
+  an explicit `promote`, `hold`, or `demote` action for canary/daemon audit
+  reports, keeping rollout semantics symmetric without auto-mutating runtime
+  mode.
 
 ## Current diagnosis
 
