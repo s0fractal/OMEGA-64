@@ -12,6 +12,7 @@ import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import {
+  evaluateGuardianSignalExecution,
   evaluateGuardianSignalReduction,
   type GuardianSignalExecutionMode,
 } from "./runtime_bridge/guardian_signal_hybrid.ts";
@@ -960,9 +961,11 @@ const guardianPheromoneAllowedByExecutionMode = (
     return true;
   }
 
-  const decision = evaluateGuardianSignalReduction({
+  const execution = evaluateGuardianSignalExecution({
+    mode: GUARDIAN_SIGNAL_EXECUTION_MODE,
     script: STATE_MATRIX.getInstructions(idx),
     neuralCoherence: Atomics.load(coherenceView, 0),
+    legacyAllowed,
   });
 
   if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
@@ -971,21 +974,21 @@ const guardianPheromoneAllowedByExecutionMode = (
     guardianSignalHybridState.hybridRuns++;
   }
 
-  if (decision.status === "fallback") {
+  if (execution.status === "fallback") {
     guardianSignalHybridState.fallbackRuns++;
     guardianSignalHybridState.lastStatus = "fallback";
-    guardianSignalHybridState.lastBranch = decision.branch;
+    guardianSignalHybridState.lastBranch = execution.branch;
     guardianSignalHybridState.lastFallbackReason =
-      decision.fallbackReason ?? "guardian_signal_bridge_fallback";
+      execution.fallbackReason ?? "guardian_signal_bridge_fallback";
     return true;
   }
 
-  guardianSignalHybridState.lastBranch = decision.branch;
-  if (decision.branch === "stable") {
+  guardianSignalHybridState.lastBranch = execution.branch;
+  if (execution.branch === "stable") {
     guardianSignalHybridState.stableBranchCount++;
     guardianSignalHybridState.allowedGuardianSignals++;
     guardianSignalHybridState.lastStatus = "stable";
-  } else if (decision.branch === "repair") {
+  } else if (execution.branch === "repair") {
     guardianSignalHybridState.repairBranchCount++;
     guardianSignalHybridState.lastStatus = "repair";
   } else {
@@ -996,13 +999,13 @@ const guardianPheromoneAllowedByExecutionMode = (
   }
 
   if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
-    if (!decision.signalAllowed) {
+    if (execution.shadowSuppressed) {
       guardianSignalHybridState.shadowSuppressedGuardianSignals++;
     }
     return true;
   }
 
-  if (!decision.signalAllowed) {
+  if (execution.hybridSuppressed) {
     guardianSignalHybridState.suppressedGuardianSignals++;
     return false;
   }

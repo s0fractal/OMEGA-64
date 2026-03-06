@@ -592,6 +592,10 @@ Current slit in progress:
 - observer surfaces now expose `guardian_signal_hybrid`, so the slit is visible
   in `/api/telemetry` and `/api/physiology` before broader runtime ownership is
   transferred
+- `verification/guardian_signal_mode_harness.ts` now compares the slit across
+  `legacy`, `shadow`, and `hybrid` modes and writes committed
+  `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
+  fallback cases before any default-mode promotion is considered
 
 ### Exit gate
 

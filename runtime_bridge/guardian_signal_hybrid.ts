@@ -20,6 +20,28 @@ export type GuardianSignalReductionDecision = {
   fallbackReason?: string;
 };
 
+export type GuardianSignalExecutionDecision = {
+  mode: GuardianSignalExecutionMode;
+  legacyAllowed: boolean;
+  allowed: boolean;
+  status:
+    | "legacy-blocked"
+    | "legacy"
+    | "shadow"
+    | "hybrid"
+    | "fallback";
+  branch: GuardianSignalBranch;
+  finalRole: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+  glyphCount: number;
+  stepsExecuted: number;
+  shadowSuppressed: boolean;
+  hybridSuppressed: boolean;
+  fallbackReason?: string;
+};
+
 type GuardianShadowState = {
   pc: number;
   regs: number[];
@@ -248,4 +270,109 @@ export const evaluateGuardianSignalReduction = (
   } catch (err) {
     return fallbackDecision(0, 0, String(err));
   }
+};
+
+export const evaluateGuardianSignalExecution = (
+  input: {
+    mode: GuardianSignalExecutionMode;
+    script: Uint8Array;
+    neuralCoherence: number;
+    legacyAllowed: boolean;
+    maxSteps?: number;
+  },
+): GuardianSignalExecutionDecision => {
+  if (!input.legacyAllowed) {
+    return {
+      mode: input.mode,
+      legacyAllowed: false,
+      allowed: false,
+      status: "legacy-blocked",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  if (input.mode === "legacy-execute") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "legacy",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  const reduction = evaluateGuardianSignalReduction({
+    script: input.script,
+    neuralCoherence: input.neuralCoherence,
+    maxSteps: input.maxSteps,
+  });
+
+  if (reduction.status === "fallback") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "fallback",
+      branch: reduction.branch,
+      finalRole: reduction.finalRole,
+      signalCount: reduction.signalCount,
+      buildCount: reduction.buildCount,
+      branchTaken: reduction.branchTaken,
+      glyphCount: reduction.glyphCount,
+      stepsExecuted: reduction.stepsExecuted,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+      fallbackReason: reduction.fallbackReason,
+    };
+  }
+
+  if (input.mode === "shadow-reduce") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "shadow",
+      branch: reduction.branch,
+      finalRole: reduction.finalRole,
+      signalCount: reduction.signalCount,
+      buildCount: reduction.buildCount,
+      branchTaken: reduction.branchTaken,
+      glyphCount: reduction.glyphCount,
+      stepsExecuted: reduction.stepsExecuted,
+      shadowSuppressed: !reduction.signalAllowed,
+      hybridSuppressed: false,
+    };
+  }
+
+  return {
+    mode: input.mode,
+    legacyAllowed: true,
+    allowed: reduction.signalAllowed,
+    status: "hybrid",
+    branch: reduction.branch,
+    finalRole: reduction.finalRole,
+    signalCount: reduction.signalCount,
+    buildCount: reduction.buildCount,
+    branchTaken: reduction.branchTaken,
+    glyphCount: reduction.glyphCount,
+    stepsExecuted: reduction.stepsExecuted,
+    shadowSuppressed: false,
+    hybridSuppressed: !reduction.signalAllowed,
+  };
 };

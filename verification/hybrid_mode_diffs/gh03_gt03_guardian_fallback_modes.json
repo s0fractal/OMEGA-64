@@ -1,0 +1,38 @@
+{
+  "case_id": "gh03_gt03_guardian_fallback_modes",
+  "baseline_trace_id": "gt03_pheromone_inject",
+  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "906f3ad67c865950158e43dfce9612b2b3b871a54ad3296d97c0b912bcd3ecc6",
+  "shadow_digest": "982d16ee928feb06adb8cd06046e1a96d3568ee41db4feb5bf004cb60d520a1d",
+  "hybrid_digest": "f1c27af54ecf224965027146fd24f41a5d90e5611e859a466191baa977f93f89",
+  "diffs": {
+    "shadow_preserves_legacy": true,
+    "hybrid_narrows_legacy": true,
+    "fallback_replays_legacy": true
+  },
+  "expectation_summary": {
+    "legacy-execute": {
+      "allowed": true,
+      "status": "legacy",
+      "branch": "unknown",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    },
+    "shadow-reduce": {
+      "allowed": true,
+      "status": "fallback",
+      "branch": "unknown",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    },
+    "hybrid-reduce": {
+      "allowed": true,
+      "status": "fallback",
+      "branch": "unknown",
+      "shadowSuppressed": false,
+      "hybridSuppressed": false
+    }
+  }
+}

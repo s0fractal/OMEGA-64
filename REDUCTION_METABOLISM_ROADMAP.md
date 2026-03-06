@@ -149,6 +149,11 @@ Latest completed planning work:
   emission through `legacy-execute` / `shadow-reduce` / `hybrid-reduce`, and
   observer telemetry now exposes `guardian_signal_hybrid` so the bridge can run
   live in shadow mode before it owns causality.
+- Added Stage 8 mode-aware verification:
+  `verification/guardian_signal_mode_harness.ts` now compares guardian slit
+  behavior across `legacy`, `shadow`, and `hybrid` modes and persists committed
+  `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
+  fallback cases tied to `gt03`.
 
 ## Current diagnosis
 
