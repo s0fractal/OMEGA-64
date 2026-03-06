@@ -20,6 +20,21 @@ This matters because the current system already has:
 - external ingress that must not mutate `STATE_MATRIX` directly
 - queue and telemetry mechanisms for mutation flow
 
+## Progress status
+
+Status snapshot as of 2026-03-06:
+
+| Workstream | Status | Deliverable |
+| --- | --- | --- |
+| Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion |
+| Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
+| Stage 2 baseline definition | scaffolded | [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md) now contains concrete scenario contracts |
+| Stage 3 IR contract | scaffolded | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) defines the bridge vocabulary |
+
+Current rule:
+
+- no runtime causality moves to reduction until the corresponding golden trace exists and has a stated rollback path
+
 ## Checkpoint 0: break nothing
 
 ### Goal
@@ -166,6 +181,7 @@ Build a true bridge between legacy ISA and reduction execution.
 - `reduction_core/GlyphIR64.ts`
 - `runtime_bridge/opcode_to_glyph.ts`
 - `runtime_bridge/glyph_pretty.ts`
+- contract first: [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
 
 ### Minimum structure
 

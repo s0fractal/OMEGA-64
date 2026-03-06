@@ -17,6 +17,26 @@ Supporting planning artifacts:
 
 - [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md)
 - [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md)
+- [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md)
+
+## Progress ledger
+
+Status snapshot as of 2026-03-06:
+
+| Phase | Status | Notes |
+| --- | --- | --- |
+| Checkpoint 0 | in progress | control surface frozen in planning docs; export now includes migration artifacts; baseline traces still need capture |
+| Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
+| Stage 2: golden traces | scaffolded | scenario catalog, artifact naming, and drift budgets are defined |
+| Stage 3: `GlyphIR64` | scaffolded | contract file exists; no runtime or bridge ownership transferred yet |
+| Stage 4+ | not started | blocked on captured traces and bridge verification harness |
+
+Latest completed planning work:
+
+- Added migration artifacts to the canonical export surface so external model audits can see both current runtime and declared direction of travel.
+- Replaced the placeholder causal atlas with a first owner/risk/disposition table for the highest-impact mutations.
+- Replaced the placeholder golden trace sheet with concrete scenarios, artifact paths, and drift-budget rules.
+- Added a dedicated `GlyphIR64` contract document so the bridge vocabulary is visible before implementation starts.
 
 ## Current diagnosis
 
@@ -88,6 +108,12 @@ The next practical priorities are:
 2. Establish golden traces before any bridge work starts.
 3. Introduce `GlyphIR64` as the transitional IR.
 4. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness before any production ownership transfer.
+
+Immediate execution edge:
+
+1. Capture the first persisted golden traces for the six baseline scenarios.
+2. Start the non-runtime bridge skeleton for `GlyphIR64` only after those traces exist.
+3. Keep all new bridge files in export so external audits can critique the migration path, not just the active runtime.
 
 ## Explicit deferrals
 

@@ -1,48 +1,86 @@
 # Golden Traces
 
-> Planning placeholder. This file defines the baseline scenarios required before bridge work.
+> Stage 2 scaffold. Baseline scenarios are defined here before any runtime ownership moves toward reduction.
 
 ## Purpose
 
 Golden traces are the control specimens for migration. They make "looks similar" unacceptable and replace it with measurable drift.
 
+Every reduction bridge step must point at one trace id and one rollback target.
+
+## Current status
+
+| Item | Status | Notes |
+| --- | --- | --- |
+| Scenario catalog | complete | six baseline scenarios defined |
+| Artifact naming | complete | future captures have fixed paths |
+| Drift-budget policy | complete | strict vs bounded metrics defined |
+| Persisted baseline captures | pending | no `verification/traces/*` artifacts committed yet |
+
+## Artifact layout
+
+Each baseline trace will eventually persist under:
+
+- `verification/traces/<trace-id>/trace.json`
+- `verification/traces/<trace-id>/codex_snapshot.json`
+- `verification/traces/<trace-id>/invariants.json`
+- `verification/traces/<trace-id>/notes.md`
+
+Minimal `trace.json` payload:
+
+- `trace_id`
+- `scenario`
+- `seed`
+- `tick_start`
+- `tick_end`
+- `metrics`
+- `event_log_digest`
+- `codex_snapshot_digest`
+- `invariant_digest`
+- `runtime_mode`
+
+## Drift-budget policy
+
+Metrics are split into two classes:
+
+- `strict`: must match exactly between legacy and bridge/shadow runs
+- `bounded`: may drift within a stated numeric envelope
+
+Initial policy:
+
+- `strict`
+  - tick count
+  - accepted / rejected mutation counts
+  - decree shifts
+  - admission outcome
+  - codex/invariant digests when LLM-free and daemon-free
+- `bounded`
+  - `avgEnergy`: absolute drift <= `max(1 raw unit, 2%)`
+  - `spatialOverflowRatio`: absolute drift <= `0.01`
+  - `population`: absolute drift <= `1` unless the scenario is mutation/admission sensitive
+
+If a scenario cannot satisfy these bounds, it is not a valid bridge candidate yet.
+
 ## Scenario catalog
 
-The initial baseline set should contain:
-
-1. coldstart / seeded swarm
-2. several thousand ticks without external intervention
-3. pheromone inject
-4. plasmid inject
-5. homeostasis correction
-6. daemon admission / rejection case
-
-## Minimum metrics per trace
-
-For every trace capture:
-
-- tick count
-- population
-- avgEnergy
-- spatial overflow
-- mutation counts
-- decree shifts
-- codex snapshot digest
-- invariant digest
-
-## Suggested trace metadata schema
-
-| Trace ID | Scenario | Seed / Inputs | Duration | Metrics Captured | Baseline Artifact | Drift Threshold | Notes |
+| Trace ID | Scenario | Setup / Inputs | Duration | Metrics Captured | Baseline Artifact | Drift Threshold | Existing support |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `gt01_coldstart_seeded_swarm` | coldstart / seeded swarm | cold boot, deterministic seed swarm, daemon off | `256` ticks | population, avgEnergy, overflow, mutation counts, invariant digest | `verification/traces/gt01_coldstart_seeded_swarm/trace.json` | population `strict`, avgEnergy `bounded`, overflow `bounded`, invariants `strict` | `worker_seeded_swarm.ts`, `worker_determinism_capture.ts` |
+| `gt02_free_run_no_ingress` | free run without external intervention | cold boot, no inject, no daemon policy updates | `2048` ticks | population, avgEnergy, overflow, decree shifts, mutation counts | `verification/traces/gt02_free_run_no_ingress/trace.json` | tick/decree/mutation `strict`, energy/overflow `bounded` | `worker_trend_baseline.ts`, `worker_trend_math.ts` |
+| `gt03_pheromone_inject` | bounded pheromone inject | warmup `128` ticks, then one fixed `DROP_PHEROMONE` payload | `512` ticks total | local response window, population, avgEnergy, overflow, invariant digest | `verification/traces/gt03_pheromone_inject/trace.json` | inject admission `strict`, energy/overflow `bounded`, invariants `strict` | REST `/api/inject`, `worker_determinism_capture.ts` |
+| `gt04_plasmid_inject` | durable symbolic ingress | warmup `128` ticks, then one fixed `INJECT_PLASMID` payload | `512` ticks total | accepted/rejected mutation counts, codex snapshot digest, invariant digest, population | `verification/traces/gt04_plasmid_inject/trace.json` | admission outcome `strict`, mutation counts `strict`, population/energy `bounded` | REST `/api/inject`, `worker_resilience_capture.ts` |
+| `gt05_homeostasis_correction` | external homeostasis correction | warmup `256` ticks, then one fixed `/api/homeostasis` update | `768` ticks total | avgEnergy slope, overflow, homeostasis state digest, mutation counts | `verification/traces/gt05_homeostasis_correction/trace.json` | homeostasis update `strict`, energy/overflow `bounded`, mutation counts `strict` | REST `/api/homeostasis`, `worker_trend_math.ts` |
+| `gt06_daemon_admission_case` | daemon admission / rejection | one accepted ingress case + one degraded/rejected case with daemon governance on | event-bounded | admission severity, applied action, codex chronicle digest, dominant invariant digest | `verification/traces/gt06_daemon_admission_case/trace.json` | severity/action `strict`, codex/invariant digest `strict` | `test_daemon_governance_contract.ts`, `/api/codex/invariants` |
 
-## Initial worksheet
+## Capture rules
 
-| Trace ID | Scenario | Seed / Inputs | Duration | Metrics Captured | Baseline Artifact | Drift Threshold | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `trace_coldstart_seeded` | coldstart / seeded swarm | controlled coldstart seed | TBD | population, avgEnergy, overflow, invariants | TBD | TBD | define first |
-| `trace_pheromone_inject` | observer membrane influence | one bounded pheromone inject | TBD | energy, overflow, local response | TBD | TBD | define first |
-| `trace_plasmid_inject` | durable symbolic ingress | one bounded plasmid inject | TBD | mutation counts, codex, invariants | TBD | TBD | define first |
-| `trace_daemon_admission` | daemon accept / reject | one accepted + one rejected case | TBD | governance state, codex, drift | TBD | TBD | define first |
+For each golden trace:
+
+1. daemon must be off unless the scenario explicitly tests daemon governance,
+2. control inputs must be fixed and serialized in `notes.md`,
+3. the same runtime policy env must be recorded,
+4. if codex is enabled, codex snapshot and invariant digest must be persisted with the trace,
+5. any scenario that crosses an epoch boundary must record the exact epoch tick in the baseline.
 
 ## Existing support signals
 
@@ -56,8 +94,9 @@ Useful existing support files to draw from:
 
 ## Exit condition for this document
 
-This file is ready when:
+This file is actionable when:
 
-- each baseline scenario has a concrete reproducible procedure
-- baseline artifacts are named
-- acceptable drift thresholds are explicit
+- each baseline scenario has a concrete reproducible procedure,
+- baseline artifacts are named,
+- acceptable drift thresholds are explicit,
+- the next implementation step can reference a trace id instead of hand-waving about "similar enough".
