@@ -287,6 +287,35 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_neural_synthesis.ts",
     ],
   },
+  {
+    id: "gt12_collective_synchrony",
+    scenario: "standalone collective synchrony semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 5 bonded phase-lock and mode 6 local quorum PC sync through direct WASM execution",
+    duration: "2 standalone execute phases / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "phasePeer1Pc",
+      "phasePeer2Pc",
+      "quorumPeer1Pc",
+      "quorumPeer2Pc",
+      "quorumOutsiderPc",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      phasePeer1Pc: "strict",
+      phasePeer2Pc: "strict",
+      quorumPeer1Pc: "strict",
+      quorumPeer2Pc: "strict",
+      quorumOutsiderPc: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/collective_synchrony_capture.ts",
+      "test_swarm.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

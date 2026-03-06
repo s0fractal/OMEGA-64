@@ -12,6 +12,7 @@ export type ReductionCaseExpectation = {
   finalHiveBalance?: number;
   finalSignalGrid?: Partial<Record<number, number>>;
   finalPeerEnergy?: Partial<Record<number, number>>;
+  finalPeerPc?: Partial<Record<number, number>>;
   branchTaken?: boolean;
 };
 
@@ -24,6 +25,8 @@ export type ReductionCaseDefinition = {
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
   initialPeerEnergy?: Partial<Record<number, number>>;
+  initialPeerPc?: Partial<Record<number, number>>;
+  initialCellPeers?: number[];
   initialHiveBalance?: number;
   expected: ReductionCaseExpectation;
 };
@@ -194,6 +197,32 @@ const makeCollectiveBankWithdrawScript = (
   script[pc++] = RISC.OP_COLLECTIVE;
   script[pc++] = 4;
   script[pc++] = reg & 0xFF;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePhaseLockScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 5;
+  script[pc++] = 0;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePcSyncQuorumScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 6;
+  script[pc++] = 0;
   script[pc++] = 0;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
@@ -554,6 +583,62 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
         [RISC.PROP_ENERGY]: 5100,
       },
       finalHiveBalance: 150,
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc17_gt12_collective_phase_lock",
+    baselineTraceId: "gt12_collective_synchrony",
+    description:
+      "A bounded COLLECTIVE bridge should preserve mode 5 phase-lock semantics by pushing bonded peers to the next instruction boundary.",
+    script: makeCollectivePhaseLockScript(),
+    maxSteps: 3,
+    initialProps: {},
+    initialBondTargets: {
+      0: 1,
+      1: 2,
+    },
+    initialPeerPc: {
+      1: 9,
+      2: 10,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalPeerPc: {
+        1: 4,
+        2: 4,
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc18_gt12_collective_pc_sync_quorum",
+    baselineTraceId: "gt12_collective_synchrony",
+    description:
+      "The same bounded COLLECTIVE bridge should preserve mode 6 quorum semantics by pushing local cell peers to the next instruction boundary.",
+    script: makeCollectivePcSyncQuorumScript(),
+    maxSteps: 3,
+    initialProps: {
+      [RISC.PROP_X]: 205,
+      [RISC.PROP_Y]: 105,
+    },
+    initialPeerPc: {
+      1: 7,
+      2: 8,
+    },
+    initialCellPeers: [1, 2],
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: 0,
+      finalPeerPc: {
+        1: 4,
+        2: 4,
+      },
       branchTaken: false,
     },
   },

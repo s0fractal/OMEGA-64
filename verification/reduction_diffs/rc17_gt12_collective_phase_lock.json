@@ -1,0 +1,43 @@
+{
+  "case_id": "rc17_gt12_collective_phase_lock",
+  "baseline_trace_id": "gt12_collective_synchrony",
+  "baseline_runtime_mode": "standalone-collective-synchrony-capture",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "dca51f60e1cfb9da93321ff4841b1d8065b34615249e564328d401c33bb299ef",
+  "reduction_digest": "ccd0e33e3080b7c3a59ad6dc2388eb3d193db9617d0f0ea2207e5848fb3e0fe3",
+  "executed_digest_legacy": "efa4d0fca68421daaf2244aecbb335f7bd70a3e5aad552bd5779d6da56d9c816",
+  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "props_match": true,
+    "bond_targets_match": true,
+    "peer_energy_match": true,
+    "peer_pc_match": true,
+    "hive_memory_match": true,
+    "hive_balance_match": true,
+    "signal_grid_match": true,
+    "structure_grid_match": true,
+    "structure_intent_owner_match": true,
+    "structure_intent_value_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 8
+  },
+  "expectation_summary": {
+    "finalPc": 0,
+    "signalCount": 1,
+    "buildCount": 0,
+    "finalRole": 0,
+    "finalPeerPc": {
+      "1": 4,
+      "2": 4
+    },
+    "branchTaken": false
+  }
+}

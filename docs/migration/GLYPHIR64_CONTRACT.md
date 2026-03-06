@@ -72,7 +72,7 @@ The first bridge subset is intentionally narrow and tied to the active WASM ISA 
 | `18` | `SHARE` | `0x83` | transport / resource exchange | bridge candidate; bounded bonded-transfer parity active |
 | `24` | `PLUG` | `0xA4` | structural IO | bridge candidate |
 | `25` | `TENSEGRITY` | `0xA5` | structural constraint | bridge candidate |
-| `32` | `COLLECTIVE` | `0xA6` | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4` parity active |
+| `32` | `COLLECTIVE` | `0xA6` | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active |
 | `33` | `ROLE` | `0xA7` | catalytic / identity shift | bridge candidate |
 | `26` | `BUILD` | `0xA8` | structural intent publish | bridge candidate |
 | `27` | `SENSE` | `0xA9` | structural query | bridge candidate |

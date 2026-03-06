@@ -1,0 +1,12 @@
+{
+  "control_specimen": "collective_synchrony",
+  "runtime_mode": "standalone-collective-synchrony-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963",
+  "phase_peer_1_pc": 4,
+  "phase_peer_2_pc": 4,
+  "quorum_peer_1_pc": 4,
+  "quorum_peer_2_pc": 4,
+  "quorum_outsider_pc": 13
+}

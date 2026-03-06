@@ -1,0 +1,50 @@
+{
+  "trace_id": "gt12_collective_synchrony",
+  "scenario": "standalone collective synchrony semantics",
+  "tick_start": 0,
+  "tick_end": 2,
+  "runtime_mode": "standalone-collective-synchrony-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "phasePeer1Pc": 4,
+    "phasePeer2Pc": 4,
+    "quorumPeer1Pc": 4,
+    "quorumPeer2Pc": 4,
+    "quorumOutsiderPc": 13,
+    "snapshotDigest": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "3fe1c18026a89d03a3dea8f08910e0296fd224162662e70de5195531c70e83a9",
+  "invariant_digest": "d078cc9cb216a8082f75cd055d50bf31cb5ac5a707e18898b7485c462bd28f0b",
+  "extra_artifacts": {
+    "collective_synchrony_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963",
+      "snapshot": {
+        "phaseLock": {
+          "sourcePc": 4,
+          "peer1Pc": 4,
+          "peer2Pc": 4,
+          "peer1InitialPc": 9,
+          "peer2InitialPc": 10
+        },
+        "quorum": {
+          "sourcePc": 4,
+          "peer1Pc": 4,
+          "peer2Pc": 4,
+          "outsiderPc": 13,
+          "peer1InitialPc": 7,
+          "peer2InitialPc": 8,
+          "outsiderInitialPc": 13,
+          "cellIdx": 1420,
+          "cellCount": 3
+        }
+      }
+    }
+  }
+}

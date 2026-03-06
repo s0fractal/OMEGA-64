@@ -31,6 +31,8 @@ type ShadowState = {
   props: HarnessProps;
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  cellPeers: number[];
   hiveMemory: HarnessProps;
   hiveBalance: number;
   signalGrid: HarnessProps;
@@ -50,6 +52,7 @@ type LegacyShadowResult = {
   props: HarnessProps;
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
   hiveMemory: HarnessProps;
   hiveBalance: number;
   signalGrid: HarnessProps;
@@ -70,6 +73,7 @@ type ReductionShadowResult = {
   props: HarnessProps;
   bondTargets: HarnessProps;
   peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
   hiveMemory: HarnessProps;
   hiveBalance: number;
   signalGrid: HarnessProps;
@@ -122,6 +126,7 @@ export type ReductionHarnessArtifact = {
     props_match: boolean;
     bond_targets_match: boolean;
     peer_energy_match: boolean;
+    peer_pc_match: boolean;
     hive_memory_match: boolean;
     hive_balance_match: boolean;
     signal_grid_match: boolean;
@@ -176,6 +181,13 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+  peerPc: Object.fromEntries(
+    Object.entries(definition.initialPeerPc ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  cellPeers: [...(definition.initialCellPeers ?? [])],
   hiveMemory: {},
   hiveBalance: definition.initialHiveBalance ?? 0,
   signalGrid: {},
@@ -230,6 +242,7 @@ const snapshotLegacy = (
   props: { ...state.props },
   bondTargets: { ...state.bondTargets },
   peerEnergy: { ...state.peerEnergy },
+  peerPc: { ...state.peerPc },
   hiveMemory: { ...state.hiveMemory },
   hiveBalance: state.hiveBalance,
   signalGrid: { ...state.signalGrid },
@@ -257,6 +270,7 @@ const snapshotReduction = (
   props: { ...state.props },
   bondTargets: { ...state.bondTargets },
   peerEnergy: { ...state.peerEnergy },
+  peerPc: { ...state.peerPc },
   hiveMemory: { ...state.hiveMemory },
   hiveBalance: state.hiveBalance,
   signalGrid: { ...state.signalGrid },
@@ -429,6 +443,19 @@ const applyShadowOpcode = (
             amount;
         }
         state.regs[reg] = amount;
+      } else if (mode === 5) {
+        for (let slot = 0; slot < 4; slot++) {
+          const target = state.bondTargets[slot] ?? 0;
+          if (target > 0) {
+            state.peerPc[target] = state.pc + 4;
+          }
+        }
+      } else if (mode === 6) {
+        for (const peer of state.cellPeers) {
+          if (peer > 0) {
+            state.peerPc[peer] = state.pc + 4;
+          }
+        }
       }
       state.pc += 4;
       return;
@@ -582,6 +609,9 @@ const compareResults = (
   if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
     reasons.push("peerEnergy mismatch");
   }
+  if (!equalHarnessProps(legacy.peerPc, reduction.peerPc)) {
+    reasons.push("peerPc mismatch");
+  }
   if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
     reasons.push("hiveMemory mismatch");
   }
@@ -714,6 +744,16 @@ const compareResults = (
       }
     }
   }
+  if (expected.finalPeerPc) {
+    for (const [key, value] of Object.entries(expected.finalPeerPc)) {
+      const peer = Number(key);
+      if ((legacy.peerPc[peer] ?? 0) !== value) {
+        reasons.push(
+          `expected peerPc[${peer}]=${value} got=${legacy.peerPc[peer] ?? 0}`,
+        );
+      }
+    }
+  }
   if (
     typeof expected.branchTaken === "boolean" &&
     legacy.effects.branchTaken !== expected.branchTaken
@@ -745,6 +785,7 @@ const buildReductionHarnessArtifact = async (
     props: result.legacy.props,
     bondTargets: result.legacy.bondTargets,
     peerEnergy: result.legacy.peerEnergy,
+    peerPc: result.legacy.peerPc,
     hiveMemory: result.legacy.hiveMemory,
     hiveBalance: result.legacy.hiveBalance,
     signalGrid: result.legacy.signalGrid,
@@ -761,6 +802,7 @@ const buildReductionHarnessArtifact = async (
     props: result.reduction.props,
     bondTargets: result.reduction.bondTargets,
     peerEnergy: result.reduction.peerEnergy,
+    peerPc: result.reduction.peerPc,
     hiveMemory: result.reduction.hiveMemory,
     hiveBalance: result.reduction.hiveBalance,
     signalGrid: result.reduction.signalGrid,
@@ -784,6 +826,10 @@ const buildReductionHarnessArtifact = async (
     peer_energy_match: equalHarnessProps(
       result.legacy.peerEnergy,
       result.reduction.peerEnergy,
+    ),
+    peer_pc_match: equalHarnessProps(
+      result.legacy.peerPc,
+      result.reduction.peerPc,
     ),
     hive_memory_match: equalHarnessProps(
       result.legacy.hiveMemory,

@@ -16,8 +16,8 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
 | Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures both system telemetry/control scenarios and standalone control specimens |
-| Persisted baseline captures | complete | all eleven `verification/traces/gt01..gt11/*` artifacts have been written and are now export-visible |
-| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
+| Persisted baseline captures | complete | all twelve `verification/traces/gt01..gt12/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
 
 ## Artifact layout
 
@@ -41,6 +41,7 @@ Committed baseline set now exists for:
 - `gt09_collective_transport`
 - `gt10_share_transfer`
 - `gt11_collective_banking`
+- `gt12_collective_synchrony`
 
 Minimal `trace.json` payload:
 
@@ -92,6 +93,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt09_collective_transport` | standalone collective hive and pheromone semantics | standalone deterministic subprocess capture of `OP_COLLECTIVE` mode `0/1` hive store-load and mode `2` pheromone emit via direct WASM execution | `3` execute calls / subprocess capture | hive value, loaded reg0, pheromone word, snapshot digest | `verification/traces/gt09_collective_transport/trace.json` | hive/reg/pheromone/digest `strict` | `verification/collective_transport_capture.ts`, `test_swarm.ts`, `test_neural_synthesis.ts` |
 | `gt10_share_transfer` | standalone bonded share transfer semantics | standalone deterministic subprocess capture of `OP_SHARE` successful bonded transfer and empty-bond no-op via direct WASM execution | `2` execute calls / subprocess capture | successful sender energy, successful receiver energy, failed sender energy, failed receiver energy, snapshot digest | `verification/traces/gt10_share_transfer/trace.json` | all metrics `strict` | `verification/share_transfer_capture.ts`, `test_metabolism.ts`, `test_symbiosis.ts` |
 | `gt11_collective_banking` | standalone collective banking semantics | standalone deterministic subprocess capture of `OP_COLLECTIVE` mode `3` deposit and mode `4` capped withdraw via direct WASM execution | `2` execute calls / subprocess capture | final hive balance, depositor energy, withdrawer energy, withdraw reg0, snapshot digest | `verification/traces/gt11_collective_banking/trace.json` | all metrics `strict` | `verification/collective_banking_capture.ts`, `test_metabolism.ts`, `test_neural_synthesis.ts` |
+| `gt12_collective_synchrony` | standalone collective synchrony semantics | standalone deterministic subprocess capture of `OP_COLLECTIVE` mode `5` bonded phase-lock and mode `6` local quorum PC sync via direct WASM execution | `2` execute phases / subprocess capture | phase peer1 pc, phase peer2 pc, quorum peer1 pc, quorum peer2 pc, quorum outsider pc, snapshot digest | `verification/traces/gt12_collective_synchrony/trace.json` | all metrics `strict` | `verification/collective_synchrony_capture.ts`, `test_swarm.ts`, `test_structure_lock_progress.ts` |
 
 ## Capture rules
 
