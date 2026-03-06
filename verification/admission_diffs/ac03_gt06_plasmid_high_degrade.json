@@ -5,7 +5,7 @@
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "fe08cb56b3964babcca6bbbc5282b3cf5c4c5975ec38d5dacaa69a56a9d37581",
-  "shadow_digest": "7315232c9f8ff26b562aff7237dff948818d5ec4fa4e3c48174159fd095f50bc",
+  "shadow_digest": "4cf07bcf1a33fbd1bdfdeb97e17c97860f4bee9245996b8724abbf5f4c80f72e",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -21,6 +21,8 @@
   "expectation_summary": {
     "policyOk": true,
     "policyReason": "PLASMID_POLICY_OK",
+    "blocked": false,
+    "blockReason": null,
     "severity": "HIGH",
     "score": 4,
     "appliedAction": "DROP_PHEROMONE",

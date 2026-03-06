@@ -16,8 +16,8 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
 | Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
-| Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
-| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06` |
+| Persisted baseline captures | complete | all seven `verification/traces/gt01..gt07/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
 
 ## Artifact layout
 
@@ -36,6 +36,7 @@ Committed baseline set now exists for:
 - `gt04_plasmid_inject`
 - `gt05_homeostasis_correction`
 - `gt06_daemon_admission_case`
+- `gt07_daemon_policy_block`
 
 Minimal `trace.json` payload:
 
@@ -82,6 +83,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt04_plasmid_inject` | durable symbolic ingress | warmup `128` ticks, then one fixed `INJECT_PLASMID` payload | `512` ticks total | accepted/rejected mutation counts, codex snapshot digest, invariant digest, population | `verification/traces/gt04_plasmid_inject/trace.json` | admission outcome `strict`, mutation counts `strict`, population/energy `bounded` | REST `/api/inject`, `worker_resilience_capture.ts` |
 | `gt05_homeostasis_correction` | external homeostasis correction | warmup `256` ticks, then one fixed `/api/homeostasis` update | `768` ticks total | avgEnergy slope, overflow, homeostasis state digest, mutation counts | `verification/traces/gt05_homeostasis_correction/trace.json` | homeostasis update `strict`, energy/overflow `bounded`, mutation counts `strict` | REST `/api/homeostasis`, `worker_trend_math.ts` |
 | `gt06_daemon_admission_case` | daemon admission / rejection | one accepted ingress case + one degraded/rejected case with daemon governance on | event-bounded | admission severity, applied action, codex chronicle digest, dominant invariant digest | `verification/traces/gt06_daemon_admission_case/trace.json` | severity/action `strict`, codex/invariant digest `strict` | `test_daemon_governance_contract.ts`, `/api/codex/invariants` |
+| `gt07_daemon_policy_block` | daemon policy block | warmup `128` ticks, then one fixed blocked-opcode `INJECT_PLASMID` payload | `256` ticks total | http status, response reason, latest admission status/reason, mutation counts | `verification/traces/gt07_daemon_policy_block/trace.json` | status/reason/mutation counts `strict` | `test_daemon_governance_contract.ts`, REST `/api/inject` |
 
 ## Capture rules
 

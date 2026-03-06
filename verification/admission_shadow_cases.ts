@@ -6,10 +6,12 @@ import type {
 export type AdmissionShadowExpectation = {
   policyOk: boolean | null;
   policyReason: string | null;
-  severity: "LOW" | "MID" | "HIGH";
-  score: number;
-  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-  degraded: boolean;
+  blocked: boolean;
+  blockReason: string | null;
+  severity: "LOW" | "MID" | "HIGH" | null;
+  score: number | null;
+  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE" | "BLOCKED";
+  degraded: boolean | null;
   degradeReason: string | null;
   plasmidRiskLevel: "LOW" | "MID" | "HIGH" | null;
   plasmidRiskScore: number | null;
@@ -55,6 +57,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: true,
         policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
         severity: "LOW",
         score: 0,
         appliedAction: "INJECT_PLASMID",
@@ -89,6 +93,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: null,
         policyReason: null,
+        blocked: false,
+        blockReason: null,
         severity: "LOW",
         score: 0,
         appliedAction: "DROP_PHEROMONE",
@@ -124,6 +130,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: true,
         policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
         severity: "HIGH",
         score: 4,
         appliedAction: "DROP_PHEROMONE",
@@ -133,6 +141,43 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
         plasmidRiskScore: 2,
         plasmidRiskOpcode: 0x00,
         reasons: ["PLASMID_INTENSITY_HIGH", "RISK_INTENSITY_HIGH"],
+      },
+    },
+    {
+      id: "ac04_gt07_plasmid_policy_block",
+      baselineTraceId: "gt07_daemon_policy_block",
+      baselineEventKind: "INJECT_PLASMID_BLOCKED",
+      description:
+        "A blocked-opcode plasmid should fail at policy stage before any admission scoring or ingress degradation occurs.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 420,
+          hex_code: "FF02030405101180",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 173.654,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: false,
+        policyReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        blocked: true,
+        blockReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        severity: null,
+        score: null,
+        appliedAction: "BLOCKED",
+        degraded: null,
+        degradeReason: null,
+        plasmidRiskLevel: null,
+        plasmidRiskScore: null,
+        plasmidRiskOpcode: null,
+        reasons: [],
       },
     },
   ]);

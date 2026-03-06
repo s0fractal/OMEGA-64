@@ -5,7 +5,7 @@
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "72b50e10ec2b08c97635f1c9a8ab877b3582cb8f54667aaa4a94eaf70b3696bd",
-  "shadow_digest": "bb5556b27612e71a617d509dc4807b78aca0a51dd3037b5a1aaf7a55d10b5205",
+  "shadow_digest": "39674cf2748bcae555805654839fe0efd37ced6dde8132c3d72aafaf8e334339",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -21,6 +21,8 @@
   "expectation_summary": {
     "policyOk": null,
     "policyReason": null,
+    "blocked": false,
+    "blockReason": null,
     "severity": "LOW",
     "score": 0,
     "appliedAction": "DROP_PHEROMONE",

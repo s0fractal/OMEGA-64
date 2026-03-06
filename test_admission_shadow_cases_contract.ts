@@ -6,8 +6,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    ADMISSION_SHADOW_CASES.length === 3,
-    "[admission_shadow_cases] expected 3 initial admission shadow cases",
+    ADMISSION_SHADOW_CASES.length === 4,
+    "[admission_shadow_cases] expected 4 initial admission shadow cases",
   );
 
   const ids = new Set(ADMISSION_SHADOW_CASES.map((definition) => definition.id));
@@ -19,7 +19,8 @@ const main = () => {
   for (const definition of ADMISSION_SHADOW_CASES) {
     expect(
       definition.baselineTraceId === "gt04_plasmid_inject" ||
-        definition.baselineTraceId === "gt06_daemon_admission_case",
+        definition.baselineTraceId === "gt06_daemon_admission_case" ||
+        definition.baselineTraceId === "gt07_daemon_policy_block",
       `[admission_shadow_cases] unexpected baseline anchor for ${definition.id}`,
     );
     expect(
@@ -46,6 +47,16 @@ const main = () => {
         `[admission_shadow_cases] non-plasmid cases must keep policy expectation null for ${definition.id}`,
       );
     }
+    if (definition.expected.blocked) {
+      expect(
+        definition.expected.blockReason !== null,
+        `[admission_shadow_cases] blocked cases must declare block reason for ${definition.id}`,
+      );
+      expect(
+        definition.expected.severity === null,
+        `[admission_shadow_cases] blocked cases must keep severity null for ${definition.id}`,
+      );
+    }
   }
 
   expect(
@@ -55,6 +66,10 @@ const main = () => {
   expect(
     admissionShadowCaseById("ac03_gt06_plasmid_high_degrade") !== null,
     "[admission_shadow_cases] ac03 must be addressable by id",
+  );
+  expect(
+    admissionShadowCaseById("ac04_gt07_plasmid_policy_block") !== null,
+    "[admission_shadow_cases] ac04 must be addressable by id",
   );
 
   console.log(

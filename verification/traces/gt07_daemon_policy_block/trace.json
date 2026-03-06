@@ -1,0 +1,479 @@
+{
+  "trace_id": "gt07_daemon_policy_block",
+  "scenario": "daemon policy block",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 257,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": true,
+  "metrics": {
+    "httpStatus": 400,
+    "responseReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "latestAdmissionStatus": "rejected",
+    "latestAdmissionReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "blockedResponse": {
+      "ok": false,
+      "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+      "http_status": 400,
+      "http_ok": false,
+      "latest_admission": {
+        "tick": 129,
+        "status": "rejected",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "BLOCKED",
+        "degraded": false,
+        "severity": "BLOCKED",
+        "score": 0,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "sharedCenter": "policy",
+        "dominantInvariantVector": "none"
+      },
+      "applied_action": "BLOCKED"
+    },
+    "mutationCounts": {
+      "enabled": true,
+      "total": 42605,
+      "lanes": {
+        "internal_host": 42552,
+        "canonical_gate": 52,
+        "external_daemon": 1
+      },
+      "topKinds": [
+        [
+          "energy_homeostasis_adjust",
+          42407
+        ],
+        [
+          "spawn_seed_atom",
+          145
+        ],
+        [
+          "audit_matrix_cycle",
+          52
+        ],
+        [
+          "daemon_policy_block_plasmid_rule",
+          1
+        ]
+      ]
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59930,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:45:11.196Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 257,
+    "avgEnergy": 201.17,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 154. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 1,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 51357,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": {
+        "tick": 129,
+        "status": "rejected",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "BLOCKED",
+        "degraded": false,
+        "severity": "BLOCKED",
+        "score": 0,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "sharedCenter": "policy",
+        "dominantInvariantVector": "none"
+      },
+      "last_admission_history": [
+        {
+          "tick": 129,
+          "status": "rejected",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "BLOCKED",
+          "degraded": false,
+          "severity": "BLOCKED",
+          "score": 0,
+          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+          "sharedCenter": "policy",
+          "dominantInvariantVector": "none"
+        }
+      ],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 257,
+      "overflow_count": 124,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.805195
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 257
+      },
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 9,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "FFB9DBB065DBB6ED",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "808193D63D78776A",
+          "8081AB0E15700F22",
+          "8081DB7EC5603F92"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "lastTick": 257
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:45:11.196Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 42605,
+    "lanes": {
+      "internal_host": 42552,
+      "canonical_gate": 52,
+      "external_daemon": 1
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        42407
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        52
+      ],
+      [
+        "daemon_policy_block_plasmid_rule",
+        1
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "INJECT_PLASMID_BLOCKED",
+      "tick": 129,
+      "response": {
+        "ok": false,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "http_status": 400,
+        "http_ok": false,
+        "latest_admission": {
+          "tick": 129,
+          "status": "rejected",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "BLOCKED",
+          "degraded": false,
+          "severity": "BLOCKED",
+          "score": 0,
+          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+          "sharedCenter": "policy",
+          "dominantInvariantVector": "none"
+        },
+        "applied_action": "BLOCKED"
+      }
+    }
+  ],
+  "event_log_digest": "50695f132f6c71b8c8f0c221843d594ff82ac80e3bc518a6571ab6bf35c15f8e",
+  "mutation_telemetry_digest": "d6977ea2458249896fba2c4c4dfa0842a6b59de07665a7c28a8dd6247672008f",
+  "codex_snapshot_digest": "6a410051926b28dfb62609130c2fb11b32820b81ed00e246e08057024300399e",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}

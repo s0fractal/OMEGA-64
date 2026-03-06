@@ -1,0 +1,36 @@
+{
+  "case_id": "ac04_gt07_plasmid_policy_block",
+  "baseline_trace_id": "gt07_daemon_policy_block",
+  "baseline_event_kind": "INJECT_PLASMID_BLOCKED",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "e6d65cd34188a0ecda38793b671165394aa9cae8fc1bd2fe62f97d0cc6ae411e",
+  "shadow_digest": "94d82d63267db7e31a9923231ebd42dc52ee1b0a36fe7852a882624b56048876",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": false,
+    "policyReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "blocked": true,
+    "blockReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "severity": null,
+    "score": null,
+    "appliedAction": "BLOCKED",
+    "degraded": null,
+    "degradeReason": null,
+    "plasmidRiskLevel": null,
+    "plasmidRiskScore": null,
+    "plasmidRiskOpcode": null,
+    "reasons": []
+  }
+}

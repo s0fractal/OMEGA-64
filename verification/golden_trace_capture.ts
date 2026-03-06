@@ -206,6 +206,31 @@ const postJson = async <T>(
     body: JSON.stringify(body),
   });
 
+const postJsonWithStatus = async (
+  url: string,
+  body: unknown,
+): Promise<Record<string, unknown>> => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: traceHeaders(),
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(TRACE_REQUEST_TIMEOUT_MS),
+  });
+  const raw = await response.text();
+  let parsed: unknown = {};
+  try {
+    parsed = raw.length > 0 ? JSON.parse(raw) : {};
+  } catch {
+    parsed = { raw_body: raw };
+  }
+  const root = parsed && typeof parsed === "object"
+    ? { ...(parsed as Record<string, unknown>) }
+    : { body: parsed };
+  root.http_status = response.status;
+  root.http_ok = response.ok;
+  return root;
+};
+
 const waitForTelemetryReady = async (baseUrl: string): Promise<TraceTelemetry> => {
   const started = Date.now();
   let lastError = "not_started";
@@ -516,6 +541,44 @@ const captureScenario = async (
         endTelemetry.daemon_governance?.last_admission_history ?? [],
       acceptedResponse: accepted,
       degradedResponse: degraded,
+    };
+  } else if (trace.id === "gt07_daemon_policy_block") {
+    const warm = await waitForTick(baseUrl, tickStart + 128);
+    const blocked = await postJsonWithStatus(`${baseUrl}/api/inject`, {
+      action_type: "INJECT_PLASMID",
+      payload: {
+        target_x: 512,
+        target_y: 320,
+        intensity: 420,
+        hex_code: "FF02030405101180",
+      },
+    });
+    const afterBlock = await waitForTick(baseUrl, warm.tick + 1);
+    const latestAdmission = afterBlock.daemon_governance?.last_admission ?? null;
+    const blockedAnnotated = {
+      ...blocked,
+      latest_admission: latestAdmission,
+      applied_action: latestAdmission && typeof latestAdmission === "object"
+          ? (latestAdmission as Record<string, unknown>).appliedAction ?? "BLOCKED"
+          : "BLOCKED",
+    };
+    actions.push({
+      kind: "INJECT_PLASMID_BLOCKED",
+      tick: warm.tick,
+      response: blockedAnnotated,
+    });
+    endTelemetry = await waitForTick(baseUrl, warm.tick + 128);
+    traceMetrics = {
+      httpStatus: blocked.http_status ?? 0,
+      responseReason: typeof blocked.reason === "string" ? blocked.reason : "UNKNOWN",
+      latestAdmissionStatus: latestAdmission && typeof latestAdmission === "object"
+        ? (latestAdmission as Record<string, unknown>).status ?? "unknown"
+        : "missing",
+      latestAdmissionReason: latestAdmission && typeof latestAdmission === "object"
+        ? (latestAdmission as Record<string, unknown>).reason ?? "unknown"
+        : "missing",
+      blockedResponse: blockedAnnotated,
+      mutationCounts: await fetchMutationTelemetry(baseUrl),
     };
   } else {
     throw new Error(`[golden_trace_capture] unsupported trace id: ${trace.id}`);

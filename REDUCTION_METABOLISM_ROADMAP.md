@@ -46,6 +46,7 @@ Latest completed planning work:
 - Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
+- Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 
 ## Current diagnosis
 

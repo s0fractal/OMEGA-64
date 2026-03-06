@@ -158,6 +158,30 @@ export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freez
       "test_daemon_governance_contract.ts",
     ],
   },
+  {
+    id: "gt07_daemon_policy_block",
+    scenario: "daemon policy block",
+    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
+    duration: "256 ticks total",
+    daemonEnabled: true,
+    metrics: [
+      "httpStatus",
+      "responseReason",
+      "latestAdmissionStatus",
+      "latestAdmissionReason",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      httpStatus: "strict",
+      responseReason: "strict",
+      latestAdmissionStatus: "strict",
+      latestAdmissionReason: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "test_daemon_governance_contract.ts",
+    ],
+  },
 ]);
 
 const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(

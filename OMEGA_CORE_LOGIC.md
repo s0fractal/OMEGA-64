@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:33:29.023Z*
-*Exported Files: 115*
+*Generated: 2026-03-06T12:46:22.632Z*
+*Exported Files: 120*
 *Runtime Roots: 6*
 *Runtime Closure Files: 39*
 *Non-Runtime Code Files: 30*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 14*
-*Manifest SHA256: c3582bdb1efecf7b99e3575c00bd884e659b48aa1d70b21182496d2824aee8a0*
-*Export Set SHA256: 50f3682ff6db39bd5afd7d98e52fa278675e108260c2161b42d9459843307cf4*
-*Export Content SHA256: 698e7512e44d94c7b63ad1a0f999344d218e2b11e9f5e1c5e50631c303a8f36c*
-*Git Commit: 481ba8b89836*
+*Manifest SHA256: c2774c0d6cc197486664b15f2a7ecc72b4ec5f73df181c046c5e58489f4d109e*
+*Export Set SHA256: dd58e80116ff41c0c71f98c533e07e339593328c29de39e91153a3f0091c28ab*
+*Export Content SHA256: 6be4c1f7502de22b328de362f81e8a5dc9d6815b71f2970ee310aa344cc67da8*
+*Git Commit: a1816eae979f*
 
 ---
 
@@ -6175,6 +6175,10 @@ export const CONTROL_INTENT_QUEUE = {
     "verification/traces/gt06_daemon_admission_case/codex_snapshot.json",
     "verification/traces/gt06_daemon_admission_case/invariants.json",
     "verification/traces/gt06_daemon_admission_case/notes.md",
+    "verification/traces/gt07_daemon_policy_block/trace.json",
+    "verification/traces/gt07_daemon_policy_block/codex_snapshot.json",
+    "verification/traces/gt07_daemon_policy_block/invariants.json",
+    "verification/traces/gt07_daemon_policy_block/notes.md",
     "verification/reduction_diffs/rc01_gt01_replicator_loop.json",
     "verification/reduction_diffs/rc02_gt01_architect_loop.json",
     "verification/reduction_diffs/rc03_gt03_guardian_stable_branch.json",
@@ -6184,6 +6188,7 @@ export const CONTROL_INTENT_QUEUE = {
     "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
     "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
     "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
+    "verification/admission_diffs/ac04_gt07_plasmid_policy_block.json",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "AKASHA_UI.html",
@@ -6938,8 +6943,8 @@ Every reduction bridge step must point at one trace id and one rollback target.
 | Artifact naming | complete | future captures have fixed paths |
 | Drift-budget policy | complete | strict vs bounded metrics defined |
 | Observer capture harness | complete | `verification/golden_trace_capture.ts` now captures scenarios through system telemetry/control endpoints |
-| Persisted baseline captures | complete | all six `verification/traces/gt01..gt06/*` artifacts have been written and are now export-visible |
-| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06` |
+| Persisted baseline captures | complete | all seven `verification/traces/gt01..gt07/*` artifacts have been written and are now export-visible |
+| Shadow consumers | in progress | reduction shadow consumes `gt01`/`gt03`/`gt05`, while admission shadow consumes `gt04`/`gt06`/`gt07` |
 
 ## Artifact layout
 
@@ -6958,6 +6963,7 @@ Committed baseline set now exists for:
 - `gt04_plasmid_inject`
 - `gt05_homeostasis_correction`
 - `gt06_daemon_admission_case`
+- `gt07_daemon_policy_block`
 
 Minimal `trace.json` payload:
 
@@ -7004,6 +7010,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt04_plasmid_inject` | durable symbolic ingress | warmup `128` ticks, then one fixed `INJECT_PLASMID` payload | `512` ticks total | accepted/rejected mutation counts, codex snapshot digest, invariant digest, population | `verification/traces/gt04_plasmid_inject/trace.json` | admission outcome `strict`, mutation counts `strict`, population/energy `bounded` | REST `/api/inject`, `worker_resilience_capture.ts` |
 | `gt05_homeostasis_correction` | external homeostasis correction | warmup `256` ticks, then one fixed `/api/homeostasis` update | `768` ticks total | avgEnergy slope, overflow, homeostasis state digest, mutation counts | `verification/traces/gt05_homeostasis_correction/trace.json` | homeostasis update `strict`, energy/overflow `bounded`, mutation counts `strict` | REST `/api/homeostasis`, `worker_trend_math.ts` |
 | `gt06_daemon_admission_case` | daemon admission / rejection | one accepted ingress case + one degraded/rejected case with daemon governance on | event-bounded | admission severity, applied action, codex chronicle digest, dominant invariant digest | `verification/traces/gt06_daemon_admission_case/trace.json` | severity/action `strict`, codex/invariant digest `strict` | `test_daemon_governance_contract.ts`, `/api/codex/invariants` |
+| `gt07_daemon_policy_block` | daemon policy block | warmup `128` ticks, then one fixed blocked-opcode `INJECT_PLASMID` payload | `256` ticks total | http status, response reason, latest admission status/reason, mutation counts | `verification/traces/gt07_daemon_policy_block/trace.json` | status/reason/mutation counts `strict` | `test_daemon_governance_contract.ts`, REST `/api/inject` |
 
 ## Capture rules
 
@@ -7079,9 +7086,9 @@ Status snapshot as of 2026-03-06:
 | --- | --- | --- |
 | Checkpoint 0 planning surface | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts |
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
-| Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
+| Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt07/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
-| Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06` daemon-policy cases with persisted diff artifacts |
+| Stage 4 shadow verification | in progress | reduction shadow covers `gt01`/`gt03`/`gt05`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
 
 Current rule:
 
@@ -7228,7 +7235,7 @@ Current support files already suggest the trace direction:
 - baseline scenarios are now committed under `verification/traces/`
 - `verification/golden_trace_capture.ts` provides the reproducible observer harness
 - `verification/reduction_harness.ts` now covers the bridge-safe opcode subset
-- `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics without pretending they already belong to the reduction bridge
+- `verification/admission_shadow_harness.ts` now covers daemon mutation/admission semantics, including explicit policy-block baselines, without pretending they already belong to the reduction bridge
 - next implementation step is not more baseline-definition prose; it is either widening bridge control flow honestly or widening trace-tied shadow coverage
 
 ## Stage 3: Introduce `GlyphIR64`
@@ -7325,7 +7332,7 @@ Only low-width behavior first:
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so `gt05 target_energy=300` cannot yet be encoded directly
   - current `gt05` cases therefore use the representable `band=240` anchor rather than claiming full homeostasis semantics
-- mutation-sensitive admission coverage now lives in `verification/admission_shadow_harness.ts`, anchored to `gt04_plasmid_inject` and `gt06_daemon_admission_case`
+- mutation-sensitive admission coverage now lives in `verification/admission_shadow_harness.ts`, anchored to `gt04_plasmid_inject`, `gt06_daemon_admission_case`, and `gt07_daemon_policy_block`
 - next gate is no longer "cover `gt04` somehow"; it is deciding whether a real compare/range primitive belongs in the bridge, or whether those policy-first cases should remain outside reduction for now
 
 ## Stage 5: Transport becomes internal
@@ -17063,6 +17070,7 @@ Latest completed planning work:
 - Extended the reduction harness with two policy-sensitive `gt05` anchor cases and persisted `verification/reduction_diffs/*.json` artifacts for all reduction cases.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed `verification/admission_diffs/*.json` artifacts for low-risk plasmid acceptance, pheromone acceptance, and high-drift plasmid degradation.
+- Extended the admission shadow lane with `gt07_daemon_policy_block`, so daemon ingress now has baseline evidence for accept, degrade, and hard policy block paths.
 
 ## Current diagnosis
 
@@ -28415,7 +28423,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "61318c473cd7d666f3590533865cdc353672aec5f1cac00336e56453949df60f",
-  "shadow_digest": "2442bb600840c93cbbea96ec8317f6143f3da8e3cbd98ea1647ed32151393e2e",
+  "shadow_digest": "1b422b402cad79b5acf4ce814e4dee90ecb54ec7655e9ec6d0c4259bfe0c6794",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -28431,6 +28439,8 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "expectation_summary": {
     "policyOk": true,
     "policyReason": "PLASMID_POLICY_OK",
+    "blocked": false,
+    "blockReason": null,
     "severity": "LOW",
     "score": 0,
     "appliedAction": "INJECT_PLASMID",
@@ -28458,7 +28468,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "72b50e10ec2b08c97635f1c9a8ab877b3582cb8f54667aaa4a94eaf70b3696bd",
-  "shadow_digest": "bb5556b27612e71a617d509dc4807b78aca0a51dd3037b5a1aaf7a55d10b5205",
+  "shadow_digest": "39674cf2748bcae555805654839fe0efd37ced6dde8132c3d72aafaf8e334339",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -28474,6 +28484,8 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "expectation_summary": {
     "policyOk": null,
     "policyReason": null,
+    "blocked": false,
+    "blockReason": null,
     "severity": "LOW",
     "score": 0,
     "appliedAction": "DROP_PHEROMONE",
@@ -28501,7 +28513,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "fe08cb56b3964babcca6bbbc5282b3cf5c4c5975ec38d5dacaa69a56a9d37581",
-  "shadow_digest": "7315232c9f8ff26b562aff7237dff948818d5ec4fa4e3c48174159fd095f50bc",
+  "shadow_digest": "4cf07bcf1a33fbd1bdfdeb97e17c97860f4bee9245996b8724abbf5f4c80f72e",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -28517,6 +28529,8 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
   "expectation_summary": {
     "policyOk": true,
     "policyReason": "PLASMID_POLICY_OK",
+    "blocked": false,
+    "blockReason": null,
     "severity": "HIGH",
     "score": 4,
     "appliedAction": "DROP_PHEROMONE",
@@ -28535,6 +28549,49 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ---
 
+## FILE: verification/admission_diffs/ac04_gt07_plasmid_policy_block.json
+
+```json
+{
+  "case_id": "ac04_gt07_plasmid_policy_block",
+  "baseline_trace_id": "gt07_daemon_policy_block",
+  "baseline_event_kind": "INJECT_PLASMID_BLOCKED",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "baseline_digest": "e6d65cd34188a0ecda38793b671165394aa9cae8fc1bd2fe62f97d0cc6ae411e",
+  "shadow_digest": "94d82d63267db7e31a9923231ebd42dc52ee1b0a36fe7852a882624b56048876",
+  "diff": {
+    "policy_match": true,
+    "policy_reason_match": true,
+    "risk_match": true,
+    "severity_match": true,
+    "score_match": true,
+    "reasons_match": true,
+    "applied_action_match": true,
+    "degraded_match": true,
+    "degrade_reason_match": true,
+    "context_match": true
+  },
+  "expectation_summary": {
+    "policyOk": false,
+    "policyReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "blocked": true,
+    "blockReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "severity": null,
+    "score": null,
+    "appliedAction": "BLOCKED",
+    "degraded": null,
+    "degradeReason": null,
+    "plasmidRiskLevel": null,
+    "plasmidRiskScore": null,
+    "plasmidRiskOpcode": null,
+    "reasons": []
+  }
+}
+```
+
+---
+
 ## FILE: verification/admission_shadow_cases.ts
 
 ```typescript
@@ -28546,10 +28603,12 @@ import type {
 export type AdmissionShadowExpectation = {
   policyOk: boolean | null;
   policyReason: string | null;
-  severity: "LOW" | "MID" | "HIGH";
-  score: number;
-  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-  degraded: boolean;
+  blocked: boolean;
+  blockReason: string | null;
+  severity: "LOW" | "MID" | "HIGH" | null;
+  score: number | null;
+  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE" | "BLOCKED";
+  degraded: boolean | null;
   degradeReason: string | null;
   plasmidRiskLevel: "LOW" | "MID" | "HIGH" | null;
   plasmidRiskScore: number | null;
@@ -28595,6 +28654,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: true,
         policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
         severity: "LOW",
         score: 0,
         appliedAction: "INJECT_PLASMID",
@@ -28629,6 +28690,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: null,
         policyReason: null,
+        blocked: false,
+        blockReason: null,
         severity: "LOW",
         score: 0,
         appliedAction: "DROP_PHEROMONE",
@@ -28664,6 +28727,8 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
       expected: {
         policyOk: true,
         policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
         severity: "HIGH",
         score: 4,
         appliedAction: "DROP_PHEROMONE",
@@ -28673,6 +28738,43 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
         plasmidRiskScore: 2,
         plasmidRiskOpcode: 0x00,
         reasons: ["PLASMID_INTENSITY_HIGH", "RISK_INTENSITY_HIGH"],
+      },
+    },
+    {
+      id: "ac04_gt07_plasmid_policy_block",
+      baselineTraceId: "gt07_daemon_policy_block",
+      baselineEventKind: "INJECT_PLASMID_BLOCKED",
+      description:
+        "A blocked-opcode plasmid should fail at policy stage before any admission scoring or ingress degradation occurs.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 420,
+          hex_code: "FF02030405101180",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 173.654,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: false,
+        policyReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        blocked: true,
+        blockReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        severity: null,
+        score: null,
+        appliedAction: "BLOCKED",
+        degraded: null,
+        degradeReason: null,
+        plasmidRiskLevel: null,
+        plasmidRiskScore: null,
+        plasmidRiskOpcode: null,
+        reasons: [],
       },
     },
   ]);
@@ -28725,8 +28827,10 @@ type AdmissionShadowOutcome = {
   context: DaemonNarrativeContext;
   policy: { ok: boolean; reason: string } | null;
   risk: PlasmidRiskProfile | null;
-  admission: DaemonInvariantAdmission;
-  plan: DaemonIngressPlan;
+  admission: DaemonInvariantAdmission | null;
+  plan: DaemonIngressPlan | null;
+  blocked: boolean;
+  blockReason: string | null;
 };
 
 export type AdmissionShadowResult = {
@@ -28820,8 +28924,15 @@ const normalizeResponse = (
   const admissionRoot = response.admission && typeof response.admission === "object"
     ? response.admission as Record<string, unknown>
     : {};
-  const contextRoot = admissionRoot.context && typeof admissionRoot.context === "object"
-    ? admissionRoot.context as Record<string, unknown>
+  const latestAdmissionRoot =
+    response.latest_admission && typeof response.latest_admission === "object"
+      ? response.latest_admission as Record<string, unknown>
+      : {};
+  const admissionLike = Object.keys(admissionRoot).length > 0
+    ? admissionRoot
+    : latestAdmissionRoot;
+  const contextRoot = admissionLike.context && typeof admissionLike.context === "object"
+    ? admissionLike.context as Record<string, unknown>
     : {};
   const plasmidRisk = response.plasmid_risk && typeof response.plasmid_risk === "object"
     ? response.plasmid_risk as Record<string, unknown>
@@ -28841,12 +28952,12 @@ const normalizeResponse = (
         : null,
     },
     admission: {
-      severity: typeof admissionRoot.severity === "string"
-        ? admissionRoot.severity
+      severity: typeof admissionLike.severity === "string"
+        ? admissionLike.severity
         : "UNKNOWN",
-      score: typeof admissionRoot.score === "number" ? admissionRoot.score : -1,
-      reasons: Array.isArray(admissionRoot.reasons)
-        ? admissionRoot.reasons.filter((item): item is string => typeof item === "string")
+      score: typeof admissionLike.score === "number" ? admissionLike.score : -1,
+      reasons: Array.isArray(admissionLike.reasons)
+        ? admissionLike.reasons.filter((item): item is string => typeof item === "string")
         : [],
       context: {
         mood: typeof contextRoot.mood === "string" ? contextRoot.mood : "UNKNOWN",
@@ -28874,10 +28985,15 @@ const normalizeResponse = (
     },
     appliedAction: typeof response.applied_action === "string"
       ? response.applied_action
+      : typeof latestAdmissionRoot.appliedAction === "string"
+      ? latestAdmissionRoot.appliedAction
       : "UNKNOWN",
-    degraded: response.degraded === true,
+    degraded: response.degraded === true || latestAdmissionRoot.degraded === true,
     degradeReason: typeof response.degrade_reason === "string"
       ? response.degrade_reason
+      : typeof latestAdmissionRoot.reason === "string" &&
+          latestAdmissionRoot.appliedAction === "BLOCKED"
+      ? null
       : null,
   };
 };
@@ -28936,6 +29052,17 @@ const runAdmissionShadow = (
       definition.envelope.payload.intensity,
     )
     : null;
+  if (policy && !policy.ok) {
+    return {
+      context,
+      policy,
+      risk: null,
+      admission: null,
+      plan: null,
+      blocked: true,
+      blockReason: policy.reason,
+    };
+  }
   const admission = evaluateInvariantAdmission(
     definition.envelope,
     definition.metrics,
@@ -28943,7 +29070,15 @@ const runAdmissionShadow = (
     risk,
   );
   const plan = planInvariantIngress(definition.envelope, admission);
-  return { context, policy, risk, admission, plan };
+  return {
+    context,
+    policy,
+    risk,
+    admission,
+    plan,
+    blocked: false,
+    blockReason: null,
+  };
 };
 
 const compareToBaseline = (
@@ -28969,6 +29104,14 @@ const compareToBaseline = (
       `expected policyReason=${expected.policyReason} got=${policyReason}`,
     );
   }
+  if (shadow.blocked !== expected.blocked) {
+    reasons.push(`expected blocked=${expected.blocked} got=${shadow.blocked}`);
+  }
+  if (shadow.blockReason !== expected.blockReason) {
+    reasons.push(
+      `expected blockReason=${expected.blockReason} got=${shadow.blockReason}`,
+    );
+  }
   if (riskLevel !== expected.plasmidRiskLevel) {
     reasons.push(`expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`);
   }
@@ -28978,29 +29121,45 @@ const compareToBaseline = (
   if (riskOpcode !== expected.plasmidRiskOpcode) {
     reasons.push(`expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`);
   }
-  if (shadow.admission.severity !== expected.severity) {
+  if ((shadow.admission?.severity ?? null) !== expected.severity) {
     reasons.push(
-      `expected severity=${expected.severity} got=${shadow.admission.severity}`,
+      `expected severity=${expected.severity} got=${shadow.admission?.severity ?? null}`,
     );
   }
-  if (shadow.admission.score !== expected.score) {
-    reasons.push(`expected score=${expected.score} got=${shadow.admission.score}`);
+  if ((shadow.admission?.score ?? null) !== expected.score) {
+    reasons.push(`expected score=${expected.score} got=${shadow.admission?.score ?? null}`);
   }
-  if (!equalStringArray(shadow.admission.reasons, expected.reasons)) {
+  if (!equalStringArray(shadow.admission?.reasons ?? [], expected.reasons)) {
     reasons.push("expected reasons mismatch");
   }
-  if (shadow.plan.applied.action_type !== expected.appliedAction) {
+  if ((shadow.plan?.applied.action_type ?? "BLOCKED") !== expected.appliedAction) {
     reasons.push(
-      `expected appliedAction=${expected.appliedAction} got=${shadow.plan.applied.action_type}`,
+      `expected appliedAction=${expected.appliedAction} got=${shadow.plan?.applied.action_type ?? "BLOCKED"}`,
     );
   }
-  if (shadow.plan.degraded !== expected.degraded) {
-    reasons.push(`expected degraded=${expected.degraded} got=${shadow.plan.degraded}`);
+  if ((shadow.plan?.degraded ?? null) !== expected.degraded) {
+    reasons.push(`expected degraded=${expected.degraded} got=${shadow.plan?.degraded ?? null}`);
   }
-  if (shadow.plan.degradeReason !== expected.degradeReason) {
+  if ((shadow.plan?.degradeReason ?? null) !== expected.degradeReason) {
     reasons.push(
-      `expected degradeReason=${expected.degradeReason} got=${shadow.plan.degradeReason}`,
+      `expected degradeReason=${expected.degradeReason} got=${shadow.plan?.degradeReason ?? null}`,
     );
+  }
+  if (shadow.blocked) {
+    if (baselineResponse.policyOk !== policyOk) {
+      reasons.push(`baseline policyOk=${baselineResponse.policyOk} shadow=${policyOk}`);
+    }
+    if (baselineResponse.policyReason !== policyReason) {
+      reasons.push(
+        `baseline policyReason=${baselineResponse.policyReason} shadow=${policyReason}`,
+      );
+    }
+    if (baselineResponse.appliedAction !== expected.appliedAction) {
+      reasons.push(
+        `baseline appliedAction=${baselineResponse.appliedAction} expected=${expected.appliedAction}`,
+      );
+    }
+    return { ok: reasons.length === 0, reasons };
   }
   if (baselineResponse.risk.level !== riskLevel) {
     reasons.push(`baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`);
@@ -29080,6 +29239,7 @@ const artifactForResult = async (
   const normalizedBaseline = normalizeResponse(baseline.response);
   const policyOk = shadow.policy?.ok ?? null;
   const policyReason = shadow.policy?.reason ?? null;
+  const blocked = shadow.blocked;
   return {
     case_id: definition.id,
     baseline_trace_id: baseline.traceId,
@@ -29093,37 +29253,54 @@ const artifactForResult = async (
       risk: shadow.risk,
       admission: shadow.admission,
       plan: shadow.plan,
+      blocked: shadow.blocked,
+      blockReason: shadow.blockReason,
     }),
     diff: {
       policy_match: definition.expected.policyOk === policyOk,
       policy_reason_match: definition.expected.policyReason === policyReason,
-      risk_match:
+      risk_match: blocked
+        ? definition.expected.plasmidRiskLevel === null &&
+          definition.expected.plasmidRiskScore === null &&
+          definition.expected.plasmidRiskOpcode === null
+        :
         normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
         normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
         normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
-      severity_match: normalizedBaseline.admission.severity === shadow.admission.severity,
-      score_match: normalizedBaseline.admission.score === shadow.admission.score,
-      reasons_match: equalStringArray(
-        normalizedBaseline.admission.reasons,
-        shadow.admission.reasons,
-      ),
-      applied_action_match:
-        normalizedBaseline.appliedAction === shadow.plan.applied.action_type,
-      degraded_match: normalizedBaseline.degraded === shadow.plan.degraded,
-      degrade_reason_match:
-        normalizedBaseline.degradeReason === shadow.plan.degradeReason,
-      context_match:
-        normalizedBaseline.admission.context.sharedCenter === shadow.context.sharedCenter &&
-        normalizedBaseline.admission.context.dominantInvariantVector ===
-          shadow.context.dominantInvariantVector &&
-        normalizedBaseline.admission.context.codexLineageLabel ===
-          shadow.context.codexLineageLabel &&
-        normalizedBaseline.admission.context.codexLineageGuardScore ===
-          shadow.context.codexLineageGuardScore &&
-        equalStringArray(
-          normalizedBaseline.admission.context.codexLineageGuardReasons,
-          shadow.context.codexLineageGuardReasons,
+      severity_match: blocked
+        ? definition.expected.severity === null
+        : normalizedBaseline.admission.severity === (shadow.admission?.severity ?? "UNKNOWN"),
+      score_match: blocked
+        ? definition.expected.score === null
+        : normalizedBaseline.admission.score === (shadow.admission?.score ?? -1),
+      reasons_match: blocked
+        ? equalStringArray(definition.expected.reasons, [])
+        : equalStringArray(
+          normalizedBaseline.admission.reasons,
+          shadow.admission?.reasons ?? [],
         ),
+      applied_action_match:
+        normalizedBaseline.appliedAction === (shadow.plan?.applied.action_type ?? "BLOCKED"),
+      degraded_match: blocked
+        ? definition.expected.degraded === null
+        : normalizedBaseline.degraded === (shadow.plan?.degraded ?? false),
+      degrade_reason_match:
+        blocked
+          ? definition.expected.degradeReason === null
+          : normalizedBaseline.degradeReason === (shadow.plan?.degradeReason ?? null),
+      context_match: blocked
+        ? true
+        : normalizedBaseline.admission.context.sharedCenter === shadow.context.sharedCenter &&
+          normalizedBaseline.admission.context.dominantInvariantVector ===
+            shadow.context.dominantInvariantVector &&
+          normalizedBaseline.admission.context.codexLineageLabel ===
+            shadow.context.codexLineageLabel &&
+          normalizedBaseline.admission.context.codexLineageGuardScore ===
+            shadow.context.codexLineageGuardScore &&
+          equalStringArray(
+            normalizedBaseline.admission.context.codexLineageGuardReasons,
+            shadow.context.codexLineageGuardReasons,
+          ),
     },
     expectation_summary: definition.expected,
   };
@@ -29408,6 +29585,31 @@ const postJson = async <T>(
     headers: traceHeaders(),
     body: JSON.stringify(body),
   });
+
+const postJsonWithStatus = async (
+  url: string,
+  body: unknown,
+): Promise<Record<string, unknown>> => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: traceHeaders(),
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(TRACE_REQUEST_TIMEOUT_MS),
+  });
+  const raw = await response.text();
+  let parsed: unknown = {};
+  try {
+    parsed = raw.length > 0 ? JSON.parse(raw) : {};
+  } catch {
+    parsed = { raw_body: raw };
+  }
+  const root = parsed && typeof parsed === "object"
+    ? { ...(parsed as Record<string, unknown>) }
+    : { body: parsed };
+  root.http_status = response.status;
+  root.http_ok = response.ok;
+  return root;
+};
 
 const waitForTelemetryReady = async (baseUrl: string): Promise<TraceTelemetry> => {
   const started = Date.now();
@@ -29720,6 +29922,44 @@ const captureScenario = async (
       acceptedResponse: accepted,
       degradedResponse: degraded,
     };
+  } else if (trace.id === "gt07_daemon_policy_block") {
+    const warm = await waitForTick(baseUrl, tickStart + 128);
+    const blocked = await postJsonWithStatus(`${baseUrl}/api/inject`, {
+      action_type: "INJECT_PLASMID",
+      payload: {
+        target_x: 512,
+        target_y: 320,
+        intensity: 420,
+        hex_code: "FF02030405101180",
+      },
+    });
+    const afterBlock = await waitForTick(baseUrl, warm.tick + 1);
+    const latestAdmission = afterBlock.daemon_governance?.last_admission ?? null;
+    const blockedAnnotated = {
+      ...blocked,
+      latest_admission: latestAdmission,
+      applied_action: latestAdmission && typeof latestAdmission === "object"
+          ? (latestAdmission as Record<string, unknown>).appliedAction ?? "BLOCKED"
+          : "BLOCKED",
+    };
+    actions.push({
+      kind: "INJECT_PLASMID_BLOCKED",
+      tick: warm.tick,
+      response: blockedAnnotated,
+    });
+    endTelemetry = await waitForTick(baseUrl, warm.tick + 128);
+    traceMetrics = {
+      httpStatus: blocked.http_status ?? 0,
+      responseReason: typeof blocked.reason === "string" ? blocked.reason : "UNKNOWN",
+      latestAdmissionStatus: latestAdmission && typeof latestAdmission === "object"
+        ? (latestAdmission as Record<string, unknown>).status ?? "unknown"
+        : "missing",
+      latestAdmissionReason: latestAdmission && typeof latestAdmission === "object"
+        ? (latestAdmission as Record<string, unknown>).reason ?? "unknown"
+        : "missing",
+      blockedResponse: blockedAnnotated,
+      mutationCounts: await fetchMutationTelemetry(baseUrl),
+    };
   } else {
     throw new Error(`[golden_trace_capture] unsupported trace id: ${trace.id}`);
   }
@@ -30005,6 +30245,30 @@ export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freez
       appliedAction: "strict",
       codexChronicleDigest: "strict",
       dominantInvariantDigest: "strict",
+    },
+    supportFiles: [
+      "test_daemon_governance_contract.ts",
+    ],
+  },
+  {
+    id: "gt07_daemon_policy_block",
+    scenario: "daemon policy block",
+    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
+    duration: "256 ticks total",
+    daemonEnabled: true,
+    metrics: [
+      "httpStatus",
+      "responseReason",
+      "latestAdmissionStatus",
+      "latestAdmissionReason",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      httpStatus: "strict",
+      responseReason: "strict",
+      latestAdmissionStatus: "strict",
+      latestAdmissionReason: "strict",
+      mutationCounts: "strict",
     },
     supportFiles: [
       "test_daemon_governance_contract.ts",
@@ -34290,6 +34554,555 @@ if (import.meta.main) {
   "event_log_digest": "66a1657f94ffd12bb5ac42abee048269a5cf375316684cd401ad1b05fe816772",
   "mutation_telemetry_digest": "65a09ae6f53e1b4647a1f3f80e7eef805044e343c4521c6f95bf55c8e118fc2a",
   "codex_snapshot_digest": "cf8c23e173b4d0d44ea065c57c98aa165161b0a309718e6240025e1510dd8d83",
+  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "extra_artifacts": {}
+}
+```
+
+---
+
+## FILE: verification/traces/gt07_daemon_policy_block/codex_snapshot.json
+
+```json
+{
+  "enabled": true,
+  "root": "codex",
+  "epochTicks": 10000,
+  "dominanceThreshold": 0.05,
+  "minEpochsForDiscovery": 3,
+  "population": {
+    "current": 154,
+    "peak": 209
+  },
+  "species": [],
+  "chronicles": [],
+  "relics": [],
+  "invariants": []
+}
+```
+
+---
+
+## FILE: verification/traces/gt07_daemon_policy_block/invariants.json
+
+```json
+[]
+```
+
+---
+
+## FILE: verification/traces/gt07_daemon_policy_block/notes.md
+
+```markdown
+# gt07_daemon_policy_block
+
+- scenario: daemon policy block
+- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode
+- duration: 256 ticks total
+- daemonEnabled: true
+- runtime_mode: legacy-runtime/api-observer-harness
+- base_url: http://127.0.0.1:56891
+- port: 56891
+- seed: 424242
+
+## Environment
+
+- OMEGA_PULSE_WORKERS=1
+- OMEGA_STRICT_DETERMINISM=1
+- OMEGA_AUTO_SNAPSHOT_ENABLE=0
+- OMEGA_COLDSTART_ENABLE=1
+- OMEGA_COLDSTART_COUNT=64
+- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
+- OMEGA_COLDSTART_SEED=424242
+- OMEGA_COLDSTART_ENERGY=240
+- OMEGA_COLDSTART_RESONANCE=220
+
+## Actions
+
+- tick=129 kind=INJECT_PLASMID_BLOCKED responseDigest=caf24b26650a33cecdd051a60150527b8c23cb63640a1d3a32e02cd3f619928e
+```
+
+---
+
+## FILE: verification/traces/gt07_daemon_policy_block/trace.json
+
+```json
+{
+  "trace_id": "gt07_daemon_policy_block",
+  "scenario": "daemon policy block",
+  "seed": 424242,
+  "tick_start": 0,
+  "tick_end": 257,
+  "runtime_mode": "legacy-runtime/api-observer-harness",
+  "daemon_enabled": true,
+  "metrics": {
+    "httpStatus": 400,
+    "responseReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "latestAdmissionStatus": "rejected",
+    "latestAdmissionReason": "PLASMID_OPCODE_BLOCKED_0xFF",
+    "blockedResponse": {
+      "ok": false,
+      "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+      "http_status": 400,
+      "http_ok": false,
+      "latest_admission": {
+        "tick": 129,
+        "status": "rejected",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "BLOCKED",
+        "degraded": false,
+        "severity": "BLOCKED",
+        "score": 0,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "sharedCenter": "policy",
+        "dominantInvariantVector": "none"
+      },
+      "applied_action": "BLOCKED"
+    },
+    "mutationCounts": {
+      "enabled": true,
+      "total": 42605,
+      "lanes": {
+        "internal_host": 42552,
+        "canonical_gate": 52,
+        "external_daemon": 1
+      },
+      "topKinds": [
+        [
+          "energy_homeostasis_adjust",
+          42407
+        ],
+        [
+          "spawn_seed_atom",
+          145
+        ],
+        [
+          "audit_matrix_cycle",
+          52
+        ],
+        [
+          "daemon_policy_block_plasmid_rule",
+          1
+        ]
+      ]
+    }
+  },
+  "telemetry_start": {
+    "tick": 0,
+    "avgEnergy": 238.609,
+    "dominantGenomes": [
+      "808103862DA8E71A",
+      "80816F0279841356",
+      "80811BBE05A07FD2"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 0,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 59930,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": null,
+      "last_admission_history": [],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 0,
+      "overflow_count": 0,
+      "max_cell_count": 0,
+      "overflow_ratio": 0
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
+      }
+    ],
+    "behavior_invariant": "R0.50|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:45:11.196Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "telemetry_stream_start": null,
+  "telemetry_end": {
+    "tick": 257,
+    "avgEnergy": 201.17,
+    "dominantGenomes": [
+      "80816F0279841356",
+      "80811BBE05A07FD2",
+      "80819F72297443C6"
+    ],
+    "voxPopuli": [
+      "[SYSTEM_STATE] Active Entities: 154. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+    ],
+    "pulse_pressure": {
+      "novelty_signed": 0,
+      "symbiosis_signed": 0,
+      "novelty": 0,
+      "fear": 0,
+      "symbiosis": 0,
+      "ego": 0,
+      "ring": {
+        "enabled": false,
+        "theta": 0,
+        "scale": 0,
+        "fear_curiosity_balance": 1,
+        "ego_love_balance": 0,
+        "novelty_axis_from_ring": false,
+        "symbiosis_axis_from_ring": false
+      }
+    },
+    "daemon_governance": {
+      "safe_mode": false,
+      "safe_mode_reason": "SAFE_MODE_OFF",
+      "actions_used_in_window": 1,
+      "actions_max_in_window": 8,
+      "actions_dynamic_max_in_window": 2,
+      "window_reset_in_ms": 51357,
+      "max_pheromone_intensity": 300,
+      "max_plasmid_charge": 1200,
+      "invariant_drift_mid_score": 2,
+      "invariant_drift_high_score": 4,
+      "last_admission": {
+        "tick": 129,
+        "status": "rejected",
+        "requestedAction": "INJECT_PLASMID",
+        "appliedAction": "BLOCKED",
+        "degraded": false,
+        "severity": "BLOCKED",
+        "score": 0,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "sharedCenter": "policy",
+        "dominantInvariantVector": "none"
+      },
+      "last_admission_history": [
+        {
+          "tick": 129,
+          "status": "rejected",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "BLOCKED",
+          "degraded": false,
+          "severity": "BLOCKED",
+          "score": 0,
+          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+          "sharedCenter": "policy",
+          "dominantInvariantVector": "none"
+        }
+      ],
+      "last_pressure_ring_update": null,
+      "last_pressure_ring_history": [],
+      "last_homeostasis_update": null,
+      "last_homeostasis_history": [],
+      "homeostasis": {
+        "enabled": true,
+        "target_energy": 1200,
+        "target_energy_default": 1200,
+        "target_energy_current": 1200,
+        "band": 240,
+        "max_delta": 12,
+        "overflow_threshold": 0.2,
+        "starvation_floor": 200,
+        "subsidy_enabled": false,
+        "base_tax_default": 2,
+        "base_tax_current": 2,
+        "last_update_tick": -1,
+        "last_update_source": "runtime_policy",
+        "last_update_reason": "coldstart_reset"
+      }
+    },
+    "snapshot_guard": {
+      "enabled": false,
+      "interval_ticks": 10000,
+      "retention": 8,
+      "in_flight": false,
+      "last_tick": -1,
+      "last_result": null
+    },
+    "spatial_hash_guard": {
+      "tick": 257,
+      "overflow_count": 124,
+      "max_cell_count": 30,
+      "overflow_ratio": 0.805195
+    },
+    "behavior_clusters": [
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 145,
+        "dominantRole": 0,
+        "genomeSamples": [
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "80819F72297443C6",
+          "80814B2EB590AF42",
+          "8081372A81EC5BFE",
+          "808163668D8847FA"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145,
+            145
+          ]
+        },
+        "lastTick": 257
+      },
+      {
+        "behaviorSignature": "R0.50|S0.00|B0.00",
+        "memberCount": 9,
+        "dominantRole": 1,
+        "genomeSamples": [
+          "FFB9DBB065DBB6ED",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "808193D63D78776A",
+          "8081AB0E15700F22",
+          "8081DB7EC5603F92"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0.5,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ]
+        },
+        "lastTick": 257
+      }
+    ],
+    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "federation_rule_genome": {
+      "local": {
+        "signature": "A6C95F29",
+        "noveltySigned": 0,
+        "symbiosisSigned": 0,
+        "pressureRingScale": 0,
+        "workerCount": 1,
+        "strictDeterminism": true,
+        "generatedAt": "2026-03-06T12:45:11.196Z"
+      },
+      "peers": []
+    },
+    "federation_admission": {
+      "latest": null,
+      "history": [],
+      "policy": {
+        "enabled": true,
+        "midScore": 4,
+        "highScore": 7,
+        "rejectOnStrictMismatch": true,
+        "hybridizeEnabled": true,
+        "degradeEnergyRatio": 0.72,
+        "degradeResonanceRatio": 0.68,
+        "openWorld": false
+      }
+    }
+  },
+  "mutation_telemetry_before": {
+    "enabled": true,
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
+  },
+  "mutation_telemetry_after": {
+    "enabled": true,
+    "total": 42605,
+    "lanes": {
+      "internal_host": 42552,
+      "canonical_gate": 52,
+      "external_daemon": 1
+    },
+    "topKinds": [
+      [
+        "energy_homeostasis_adjust",
+        42407
+      ],
+      [
+        "spawn_seed_atom",
+        145
+      ],
+      [
+        "audit_matrix_cycle",
+        52
+      ],
+      [
+        "daemon_policy_block_plasmid_rule",
+        1
+      ]
+    ]
+  },
+  "event_log": [
+    {
+      "kind": "INJECT_PLASMID_BLOCKED",
+      "tick": 129,
+      "response": {
+        "ok": false,
+        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+        "http_status": 400,
+        "http_ok": false,
+        "latest_admission": {
+          "tick": 129,
+          "status": "rejected",
+          "requestedAction": "INJECT_PLASMID",
+          "appliedAction": "BLOCKED",
+          "degraded": false,
+          "severity": "BLOCKED",
+          "score": 0,
+          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
+          "sharedCenter": "policy",
+          "dominantInvariantVector": "none"
+        },
+        "applied_action": "BLOCKED"
+      }
+    }
+  ],
+  "event_log_digest": "50695f132f6c71b8c8f0c221843d594ff82ac80e3bc518a6571ab6bf35c15f8e",
+  "mutation_telemetry_digest": "d6977ea2458249896fba2c4c4dfa0842a6b59de07665a7c28a8dd6247672008f",
+  "codex_snapshot_digest": "6a410051926b28dfb62609130c2fb11b32820b81ed00e246e08057024300399e",
   "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
   "extra_artifacts": {}
 }

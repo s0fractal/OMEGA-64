@@ -5,7 +5,7 @@
   "parity_ok": true,
   "parity_reasons": [],
   "baseline_digest": "61318c473cd7d666f3590533865cdc353672aec5f1cac00336e56453949df60f",
-  "shadow_digest": "2442bb600840c93cbbea96ec8317f6143f3da8e3cbd98ea1647ed32151393e2e",
+  "shadow_digest": "1b422b402cad79b5acf4ce814e4dee90ecb54ec7655e9ec6d0c4259bfe0c6794",
   "diff": {
     "policy_match": true,
     "policy_reason_match": true,
@@ -21,6 +21,8 @@
   "expectation_summary": {
     "policyOk": true,
     "policyReason": "PLASMID_POLICY_OK",
+    "blocked": false,
+    "blockReason": null,
     "severity": "LOW",
     "score": 0,
     "appliedAction": "INJECT_PLASMID",
