@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-06T12:01:57.118Z*
-*Exported Files: 101*
+*Generated: 2026-03-06T12:08:45.417Z*
+*Exported Files: 103*
 *Runtime Roots: 6*
 *Runtime Closure Files: 38*
-*Non-Runtime Code Files: 26*
+*Non-Runtime Code Files: 28*
 *Runtime-Support Code Files: 16*
-*Experimental Code Files: 10*
-*Manifest SHA256: b2ae8fba9d8da030f70ca4e01dad13729ccf85044abc87bb1aaca1ea188fbf08*
-*Export Set SHA256: 4e358a3d7e802d3c62b53ccd3859e20b5e5d893cce16b7fe87877cd66b100aec*
-*Export Content SHA256: 40c1c66c8c4f051cbacf31a99c988eb305dacd57778e3ac88298f1365570db9c*
-*Git Commit: 6d650d15c62c*
+*Experimental Code Files: 12*
+*Manifest SHA256: f02431fb2e9bdc365087e9fb262e99b3dab451ae2b98d9ab9d1f4236c8cc2650*
+*Export Set SHA256: 1eba8d414313ada06fa78c4cb4cb727021ef1aa38b6fd7e8c8c4ee27b4045e6e*
+*Export Content SHA256: 0942bd73c424dfaa02a93a98f180b63943c7d93ed2a64c44c402df7cb129c598*
+*Git Commit: 08e24957c936*
 
 ---
 
@@ -89,6 +89,8 @@
 - STRUCTURE_ENGINE.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
+- verification/reduction_cases.ts
+- verification/reduction_harness.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
 - worker_gate_thresholds.ts
@@ -132,6 +134,8 @@
 - runtime_bridge/opcode_to_glyph.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
+- verification/reduction_cases.ts
+- verification/reduction_harness.ts
 
 ---
 
@@ -6105,7 +6109,9 @@ export const CONTROL_INTENT_QUEUE = {
     "runtime_bridge/glyph_pretty.ts",
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
-    "verification/golden_trace_capture.ts"
+    "verification/golden_trace_capture.ts",
+    "verification/reduction_cases.ts",
+    "verification/reduction_harness.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
@@ -6568,6 +6574,7 @@ Status snapshot as of 2026-03-06:
 | Stage 1 owner classification | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table |
 | Stage 2 baseline definition | complete | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt06/*` baseline artifacts |
 | Stage 3 IR contract | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code |
+| Stage 4 reduction verification | in progress | [reduction_harness.ts](/Users/s0fractal/OMEGA/verification/reduction_harness.ts) now shadows four bounded cases against `gt01`/`gt03` anchors with parity guards |
 
 Current rule:
 
@@ -6793,6 +6800,17 @@ Only low-width behavior first:
 
 - at least one complete atom life cycle is reproducible through the reduction harness
 - mismatches are logged and explained, not hand-waved
+
+### Current stage assessment
+
+- `verification/reduction_cases.ts` now provides four bounded bridge cases
+- `verification/reduction_harness.ts` runs parity between legacy shadow execution and glyph-reduction shadow execution
+- current covered motifs:
+  - seeded replicator loop
+  - seeded architect loop
+  - guardian stable branch
+  - guardian repair branch
+- next gate is not "more reduction poetry"; it is widening coverage into one mutation-sensitive or homeostasis-sensitive case
 
 ## Stage 5: Transport becomes internal
 
@@ -16512,7 +16530,8 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4+ | not started | next gate is reduction verification against captured baselines, not more planning prose |
+| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
 
@@ -16524,6 +16543,7 @@ Latest completed planning work:
 - Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
 - Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
+- Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
 
 ## Current diagnosis
 
@@ -16592,15 +16612,15 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness against the committed trace baselines.
+2. Widen reduction shadow coverage from `gt01`/`gt03` into one mutation-sensitive anchor (`gt04` or `gt05`).
 3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Build `verification/reduction_harness.ts` and `verification/reduction_cases.ts` against `gt01..gt06`.
-2. Start with one bounded lifecycle under reduction shadow mode instead of widening glyph semantics prematurely.
-3. Use the trace artifacts as rollback anchors for every bridge experiment.
+1. Add trace-diff summaries so reduction harness outputs can be compared to baseline anchors as structured artifacts, not only console parity.
+2. Introduce one mutation-adjacent shadow case using `gt04` or one homeostasis-adjacent case using `gt05`.
+3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
 
 ## Explicit deferrals
 
@@ -29090,6 +29110,575 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
+
+```
+
+---
+
+## FILE: verification/reduction_cases.ts
+
+```typescript
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+
+export type ReductionCaseExpectation = {
+  finalPc: number;
+  replicateCount?: number;
+  signalCount?: number;
+  buildCount?: number;
+  finalRole?: number;
+  registers?: number[];
+  branchTaken?: boolean;
+};
+
+export type ReductionCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  script: Uint8Array;
+  maxSteps: number;
+  initialProps: Partial<Record<number, number>>;
+  expected: ReductionCaseExpectation;
+};
+
+const makeReplicatorLoopScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_REPLICATE;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeArchitectLoopScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
+
+export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
+  {
+    id: "rc01_gt01_replicator_loop",
+    baselineTraceId: "gt01_coldstart_seeded_swarm",
+    description:
+      "Seeded-swarm replicator loop shadowed through REPLICATE -> SIGNAL -> JMP bridge subset.",
+    script: makeReplicatorLoopScript(),
+    maxSteps: 6,
+    initialProps: {},
+    expected: {
+      finalPc: 0,
+      replicateCount: 2,
+      signalCount: 2,
+      buildCount: 0,
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc02_gt01_architect_loop",
+    baselineTraceId: "gt01_coldstart_seeded_swarm",
+    description:
+      "Seeded-swarm architect loop shadowed through ROLE -> BUILD -> SIGNAL -> JMP bridge subset.",
+    script: makeArchitectLoopScript(),
+    maxSteps: 8,
+    initialProps: {},
+    expected: {
+      finalPc: 0,
+      buildCount: 2,
+      signalCount: 2,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc03_gt03_guardian_stable_branch",
+    baselineTraceId: "gt03_pheromone_inject",
+    description:
+      "Guardian script on a coherent field should stay in the stable signaling branch.",
+    script: GUARDIAN_SCRIPT,
+    maxSteps: 7,
+    initialProps: {
+      [RISC.PROP_NEURAL_COHERENCE]: 200,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 0,
+      finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+      registers: [200, 0, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc04_gt03_guardian_repair_branch",
+    baselineTraceId: "gt03_pheromone_inject",
+    description:
+      "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
+    script: GUARDIAN_SCRIPT,
+    maxSteps: 8,
+    initialProps: {
+      [RISC.PROP_NEURAL_COHERENCE]: 0,
+    },
+    expected: {
+      finalPc: 0,
+      signalCount: 1,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      registers: [0, 200, 0, 0, 0, 0, 0, 0],
+      branchTaken: true,
+    },
+  },
+]);
+
+const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
+  REDUCTION_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
+  REDUCTION_CASE_BY_ID.get(id) ?? null;
+
+```
+
+---
+
+## FILE: verification/reduction_harness.ts
+
+```typescript
+import { glyphTapeToPrettyText } from "../runtime_bridge/glyph_pretty.ts";
+import {
+  decodeLegacyInstruction,
+  scriptToGlyphTape,
+  type GlyphTapeToken,
+} from "../runtime_bridge/opcode_to_glyph.ts";
+import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
+import { RISC } from "../STATE_MATRIX.ts";
+import {
+  REDUCTION_CASES,
+  reductionCaseById,
+  type ReductionCaseDefinition,
+} from "./reduction_cases.ts";
+import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+
+type HarnessProps = Record<number, number>;
+
+type ShadowEffects = {
+  replicateCount: number;
+  signalCount: number;
+  buildCount: number;
+  roleWrites: number[];
+  branchTaken: boolean;
+  jumpCount: number;
+};
+
+type ShadowState = {
+  pc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  effects: ShadowEffects;
+  executed: string[];
+  energySpent: number;
+};
+
+type LegacyShadowResult = {
+  mode: "legacy";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+};
+
+type ReductionShadowResult = {
+  mode: "glyph-reduction";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+  glyphTape: GlyphTapeToken[];
+  prettyTape: string;
+};
+
+type ReductionBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  tickStart: number;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+};
+
+export type ReductionHarnessResult = {
+  caseId: string;
+  baseline: ReductionBaselineAnchor;
+  legacy: LegacyShadowResult;
+  reduction: ReductionShadowResult;
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+const cloneEffects = (): ShadowEffects => ({
+  replicateCount: 0,
+  signalCount: 0,
+  buildCount: 0,
+  roleWrites: [],
+  branchTaken: false,
+  jumpCount: 0,
+});
+
+const createInitialState = (
+  definition: ReductionCaseDefinition,
+): ShadowState => ({
+  pc: 0,
+  regs: new Array(8).fill(0),
+  role: 0,
+  props: Object.fromEntries(
+    Object.entries(definition.initialProps).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  effects: cloneEffects(),
+  executed: [],
+  energySpent: 0,
+});
+
+const equalNumberArray = (a: readonly number[], b: readonly number[]): boolean =>
+  a.length === b.length && a.every((value, index) => value === b[index]);
+
+const snapshotLegacy = (
+  state: ShadowState,
+  stepsExecuted: number,
+): LegacyShadowResult => ({
+  mode: "legacy",
+  finalPc: state.pc,
+  regs: [...state.regs],
+  role: state.role,
+  effects: {
+    ...state.effects,
+    roleWrites: [...state.effects.roleWrites],
+  },
+  energySpent: state.energySpent,
+  executed: [...state.executed],
+  stepsExecuted,
+});
+
+const snapshotReduction = (
+  state: ShadowState,
+  stepsExecuted: number,
+  glyphTape: GlyphTapeToken[],
+): ReductionShadowResult => ({
+  mode: "glyph-reduction",
+  finalPc: state.pc,
+  regs: [...state.regs],
+  role: state.role,
+  effects: {
+    ...state.effects,
+    roleWrites: [...state.effects.roleWrites],
+  },
+  energySpent: state.energySpent,
+  executed: [...state.executed],
+  stepsExecuted,
+  glyphTape,
+  prettyTape: glyphTapeToPrettyText(glyphTape),
+});
+
+const applyShadowOpcode = (
+  state: ShadowState,
+  opcode: number,
+  args: number[],
+  energyCost: number,
+): void => {
+  state.energySpent += energyCost;
+  switch (opcode) {
+    case RISC.OP_SET: {
+      const reg = args[0] ?? 0;
+      state.regs[reg] = args[1] ?? 0;
+      state.pc += 3;
+      return;
+    }
+    case RISC.OP_GET: {
+      const reg = args[0] ?? 0;
+      const prop = args[1] ?? 0;
+      state.regs[reg] = state.props[prop] ?? 0;
+      state.pc += 3;
+      return;
+    }
+    case RISC.OP_ADD: {
+      const dst = args[0] ?? 0;
+      const src = args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
+      state.pc += 3;
+      return;
+    }
+    case RISC.OP_SUB: {
+      const dst = args[0] ?? 0;
+      const src = args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += 3;
+      return;
+    }
+    case RISC.OP_JNZ: {
+      const reg = args[0] ?? 0;
+      const target = args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.effects.branchTaken = true;
+        state.effects.jumpCount += 1;
+        state.pc = target;
+      } else {
+        state.pc += 3;
+      }
+      return;
+    }
+    case RISC.OP_JMP: {
+      state.effects.jumpCount += 1;
+      state.pc = args[0] ?? 0;
+      return;
+    }
+    case RISC.OP_REPLICATE: {
+      state.effects.replicateCount += 1;
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_SIGNAL: {
+      state.effects.signalCount += 1;
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_ROLE: {
+      const mode = args[0] ?? 0;
+      const role = args[1] ?? 0;
+      if (mode === 0) {
+        state.role = role;
+        state.effects.roleWrites.push(role);
+      }
+      state.pc += 3;
+      return;
+    }
+    case RISC.OP_BUILD: {
+      state.effects.buildCount += 1;
+      state.pc += 3;
+      return;
+    }
+    default:
+      throw new Error(`[reduction_harness] unsupported legacy opcode 0x${opcode.toString(16)}`);
+  }
+};
+
+const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResult => {
+  const state = createInitialState(definition);
+  let stepsExecuted = 0;
+  while (stepsExecuted < definition.maxSteps) {
+    const decoded = decodeLegacyInstruction(definition.script, state.pc);
+    if (!decoded || decoded.opcode === RISC.OP_NOP) break;
+    state.executed.push(
+      `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${decoded.args.join(",")}]`,
+    );
+    applyShadowOpcode(state, decoded.opcode, decoded.args, 0);
+    stepsExecuted++;
+  }
+  return snapshotLegacy(state, stepsExecuted);
+};
+
+const runReductionShadow = (
+  definition: ReductionCaseDefinition,
+): ReductionShadowResult => {
+  const glyphTape = scriptToGlyphTape(definition.script);
+  const tokenByPc = new Map<number, GlyphTapeToken>(glyphTape.map((token) => [token.pc, token]));
+  const state = createInitialState(definition);
+  let stepsExecuted = 0;
+
+  while (stepsExecuted < definition.maxSteps) {
+    const token = tokenByPc.get(state.pc);
+    if (!token) break;
+    if (token.glyphId === null) {
+      throw new Error(
+        `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,
+      );
+    }
+    const spec = glyphSpecById(token.glyphId);
+    if (!spec) {
+      throw new Error(
+        `[reduction_harness] missing glyph spec for id=${token.glyphId} case=${definition.id}`,
+      );
+    }
+    state.executed.push(
+      `pc=${token.pc} glyph=${spec.mnemonic}[${spec.id}] rule=${spec.reductionRuleRef}`,
+    );
+    applyShadowOpcode(state, token.opcode, token.args, spec.energyCost);
+    stepsExecuted++;
+  }
+
+  return snapshotReduction(state, stepsExecuted, glyphTape);
+};
+
+const loadBaselineAnchor = async (
+  traceId: string,
+): Promise<ReductionBaselineAnchor> => {
+  const { traceJson } = goldenTraceArtifactPaths(traceId);
+  const parsed = JSON.parse(
+    await Deno.readTextFile(traceJson),
+  ) as Record<string, unknown>;
+  return {
+    traceId,
+    scenario: String(parsed.scenario ?? traceId),
+    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
+    tickStart: Number(parsed.tick_start ?? -1),
+    tickEnd: Number(parsed.tick_end ?? -1),
+    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
+    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+  };
+};
+
+const compareResults = (
+  definition: ReductionCaseDefinition,
+  legacy: LegacyShadowResult,
+  reduction: ReductionShadowResult,
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+
+  if (legacy.finalPc !== reduction.finalPc) {
+    reasons.push(`finalPc mismatch legacy=${legacy.finalPc} reduction=${reduction.finalPc}`);
+  }
+  if (!equalNumberArray(legacy.regs, reduction.regs)) {
+    reasons.push("register vector mismatch");
+  }
+  if (legacy.role !== reduction.role) {
+    reasons.push(`role mismatch legacy=${legacy.role} reduction=${reduction.role}`);
+  }
+  if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
+    reasons.push("replicateCount mismatch");
+  }
+  if (legacy.effects.signalCount !== reduction.effects.signalCount) {
+    reasons.push("signalCount mismatch");
+  }
+  if (legacy.effects.buildCount !== reduction.effects.buildCount) {
+    reasons.push("buildCount mismatch");
+  }
+  if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
+    reasons.push("branchTaken mismatch");
+  }
+  if (!equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)) {
+    reasons.push("roleWrites mismatch");
+  }
+
+  const expected = definition.expected;
+  if (typeof expected.finalPc === "number" && legacy.finalPc !== expected.finalPc) {
+    reasons.push(`expected finalPc=${expected.finalPc} got=${legacy.finalPc}`);
+  }
+  if (
+    typeof expected.replicateCount === "number" &&
+    legacy.effects.replicateCount !== expected.replicateCount
+  ) {
+    reasons.push(
+      `expected replicateCount=${expected.replicateCount} got=${legacy.effects.replicateCount}`,
+    );
+  }
+  if (
+    typeof expected.signalCount === "number" &&
+    legacy.effects.signalCount !== expected.signalCount
+  ) {
+    reasons.push(
+      `expected signalCount=${expected.signalCount} got=${legacy.effects.signalCount}`,
+    );
+  }
+  if (
+    typeof expected.buildCount === "number" &&
+    legacy.effects.buildCount !== expected.buildCount
+  ) {
+    reasons.push(
+      `expected buildCount=${expected.buildCount} got=${legacy.effects.buildCount}`,
+    );
+  }
+  if (
+    typeof expected.finalRole === "number" &&
+    legacy.role !== expected.finalRole
+  ) {
+    reasons.push(`expected finalRole=${expected.finalRole} got=${legacy.role}`);
+  }
+  if (
+    Array.isArray(expected.registers) &&
+    !equalNumberArray(legacy.regs, expected.registers)
+  ) {
+    reasons.push("expected registers mismatch");
+  }
+  if (
+    typeof expected.branchTaken === "boolean" &&
+    legacy.effects.branchTaken !== expected.branchTaken
+  ) {
+    reasons.push(
+      `expected branchTaken=${expected.branchTaken} got=${legacy.effects.branchTaken}`,
+    );
+  }
+
+  return { ok: reasons.length === 0, reasons };
+};
+
+export const runReductionHarnessCase = async (
+  caseId: string,
+): Promise<ReductionHarnessResult> => {
+  const definition = reductionCaseById(caseId);
+  if (!definition) {
+    throw new Error(`[reduction_harness] unknown case id: ${caseId}`);
+  }
+
+  const [baseline, legacy, reduction] = await Promise.all([
+    loadBaselineAnchor(definition.baselineTraceId),
+    Promise.resolve(runLegacyShadow(definition)),
+    Promise.resolve(runReductionShadow(definition)),
+  ]);
+
+  return {
+    caseId,
+    baseline,
+    legacy,
+    reduction,
+    parity: compareResults(definition, legacy, reduction),
+  };
+};
+
+export const runReductionHarness = async (
+  caseIds: string[] = REDUCTION_CASES.map((definition) => definition.id),
+): Promise<ReductionHarnessResult[]> => {
+  const results: ReductionHarnessResult[] = [];
+  for (const caseId of caseIds) {
+    results.push(await runReductionHarnessCase(caseId));
+  }
+  return results;
+};
+
+if (import.meta.main) {
+  const caseIds = Deno.args.length > 0 ? Deno.args : REDUCTION_CASES.map((caseDef) => caseDef.id);
+  const results = await runReductionHarness(caseIds);
+  for (const result of results) {
+    console.log(
+      `[reduction_harness] case=${result.caseId} baseline=${result.baseline.traceId} parity=${
+        result.parity.ok ? "OK" : "FAIL"
+      } steps=${result.legacy.stepsExecuted} glyphs=${result.reduction.glyphTape.length}`,
+    );
+    if (!result.parity.ok) {
+      console.log(`  reasons=${result.parity.reasons.join(" | ")}`);
+    }
+  }
+}
 
 ```
 

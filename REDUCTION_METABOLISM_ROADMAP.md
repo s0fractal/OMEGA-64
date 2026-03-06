@@ -29,7 +29,8 @@ Status snapshot as of 2026-03-06:
 | Stage 1: causal atlas | in progress | top-20 critical mutations owner-classified across the 8 key files |
 | Stage 2: golden traces | complete | capture harness + observer telemetry surface added; persisted `gt01..gt06` baseline artifacts committed under `verification/traces/` |
 | Stage 3: `GlyphIR64` | in progress | registry, bridge mapping, and pretty/debug layer exist outside runtime closure |
-| Stage 4+ | not started | next gate is reduction verification against captured baselines, not more planning prose |
+| Stage 4: reduction harness | in progress | `verification/reduction_harness.ts` + `verification/reduction_cases.ts` now shadow four bounded cases against `gt01`/`gt03` anchors with parity guards |
+| Stage 5+ | not started | next gate is widening shadow coverage before any runtime ownership move |
 
 Latest completed planning work:
 
@@ -41,6 +42,7 @@ Latest completed planning work:
 - Added a code-backed golden trace catalog so Stage 2 is no longer markdown-only planning.
 - Added an observer-only mutation telemetry API surface so golden traces can capture mutation counters without touching causality.
 - Added a persisted golden trace capture harness and committed six baseline trace artifact sets into `verification/traces/`.
+- Added a bounded reduction verification harness with four initial parity-checked cases: seeded replicator loop, seeded architect loop, guardian stable branch, guardian repair branch.
 
 ## Current diagnosis
 
@@ -109,15 +111,15 @@ The detailed plan is maintained in [docs/migration/OMEGA_TRANSITION_PLAN.md](/Us
 The next practical priorities are:
 
 1. Build the causal atlas for the key runtime roots and closure files.
-2. Lift `RIBOSOME_TICK` / `LAMBDA_VM` into a verification harness against the committed trace baselines.
+2. Widen reduction shadow coverage from `gt01`/`gt03` into one mutation-sensitive anchor (`gt04` or `gt05`).
 3. Extend `GlyphIR64` mapping coverage only where a concrete trace id needs it.
 4. Keep new bridge and trace artifacts inside export so external audits critique the real migration edge.
 
 Immediate execution edge:
 
-1. Build `verification/reduction_harness.ts` and `verification/reduction_cases.ts` against `gt01..gt06`.
-2. Start with one bounded lifecycle under reduction shadow mode instead of widening glyph semantics prematurely.
-3. Use the trace artifacts as rollback anchors for every bridge experiment.
+1. Add trace-diff summaries so reduction harness outputs can be compared to baseline anchors as structured artifacts, not only console parity.
+2. Introduce one mutation-adjacent shadow case using `gt04` or one homeostasis-adjacent case using `gt05`.
+3. Keep using the trace artifacts as rollback anchors for every bridge experiment.
 
 ## Explicit deferrals
 

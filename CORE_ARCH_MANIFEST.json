@@ -36,7 +36,9 @@
     "runtime_bridge/glyph_pretty.ts",
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
-    "verification/golden_trace_capture.ts"
+    "verification/golden_trace_capture.ts",
+    "verification/reduction_cases.ts",
+    "verification/reduction_harness.ts"
   ],
   "core_entry_files": [
     "SYSTEM_START.ts",
