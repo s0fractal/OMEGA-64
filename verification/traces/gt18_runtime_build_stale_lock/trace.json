@@ -1,0 +1,43 @@
+{
+  "trace_id": "gt18_runtime_build_stale_lock",
+  "scenario": "runtime structure build stale-lock fallback",
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "targetResolvedType": 4,
+    "targetResolvedCharge": 255,
+    "targetResolvedState": 55,
+    "ownerIntentAfterTick": 0,
+    "snapshotDigest": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "c2a6ca0840096be8e6ddbfa14c8ab11b49e8b919dcebd956f1afa73615fc2dd0",
+  "invariant_digest": "9104648482116e4ae8a7b97542b734bbb25caacbe6f4d1ff8d0d6a6c6c8fef7c",
+  "extra_artifacts": {
+    "structure_build_lock_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
+      "snapshot": {
+        "targetCellIdx": 423,
+        "targetResolvedType": 4,
+        "targetResolvedCharge": 255,
+        "targetResolvedState": 55,
+        "ownerIntentAfterTick": 0,
+        "valueIntentAfterTick": 0,
+        "chargeIntentAfterTick": 0,
+        "staleLockOwnerToken": 3,
+        "staleLockedState": 55,
+        "attemptedOwnerAtomIdx": 2,
+        "attemptedBuildState": 99,
+        "atomPc": 6
+      }
+    }
+  }
+}

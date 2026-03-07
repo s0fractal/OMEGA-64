@@ -1,0 +1,12 @@
+{
+  "control_specimen": "runtime_build_stale_lock",
+  "runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "target_resolved_state": 55,
+  "stale_lock_owner_token": 3,
+  "stale_locked_state": 55
+}

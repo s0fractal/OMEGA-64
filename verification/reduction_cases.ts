@@ -965,6 +965,40 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       branchTaken: false,
     },
   },
+  {
+    id: "rc27_gt18_build_stale_lock_blocked",
+    baselineTraceId: "gt18_runtime_build_stale_lock",
+    description:
+      "A bounded BUILD bridge should fail closed on a stale locked intent and let postStructureTick materialize the locked SOURCE value instead of the attempted overwrite.",
+    script: makeBuildSourceWithStateScript(99),
+    maxSteps: 2,
+    ownerAtomIdx: 2,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+      [RISC.PROP_RESONANCE]: 1,
+    },
+    initialStructureIntentOwner: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+        STRUCTURE_INTENT_LOCK_BIT | 3,
+    },
+    initialStructureIntentValue: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+        STRUCTURE.SOURCE | (55 << 24),
+    },
+    expected: {
+      finalPc: 6,
+      signalCount: 0,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+          (255 << 16) | (55 << 24),
+      },
+      branchTaken: false,
+    },
+  },
 ]);
 
 const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(

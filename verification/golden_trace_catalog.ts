@@ -448,6 +448,34 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_intent_determinism.ts",
     ],
   },
+  {
+    id: "gt18_runtime_build_stale_lock",
+    scenario: "runtime structure build stale-lock fallback",
+    setup:
+      "worker-backed deterministic subprocess capture of a single architect attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "targetResolvedState",
+      "ownerIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      targetResolvedState: "strict",
+      ownerIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_build_lock_capture.ts",
+      "verification/structure_build_runtime_capture.ts",
+      "verification/structure_lock_capture.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

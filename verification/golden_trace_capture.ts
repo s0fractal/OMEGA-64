@@ -18,6 +18,8 @@ const STRUCTURE_BUILD_RUNTIME_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_build_runtime_capture.ts";
 const STRUCTURE_BUILD_COMPETITION_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_build_competition_capture.ts";
+const STRUCTURE_BUILD_LOCK_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/structure_build_lock_capture.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
 const COLLECTIVE_BANKING_CAPTURE_PATH =
@@ -39,6 +41,8 @@ const TRACE_STRUCTURE_BUILD_RUNTIME_MODE =
   "worker-runtime-structure-build-capture";
 const TRACE_STRUCTURE_BUILD_COMPETITION_RUNTIME_MODE =
   "worker-runtime-structure-build-competition-capture";
+const TRACE_STRUCTURE_BUILD_LOCK_RUNTIME_MODE =
+  "worker-runtime-structure-build-stale-lock-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
 const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
@@ -259,6 +263,28 @@ type StructureBuildCompetitionCapturePayload = {
   snapshot: StructureBuildCompetitionSnapshot;
 };
 
+type StructureBuildLockSnapshot = {
+  targetCellIdx: number;
+  targetResolvedType: number;
+  targetResolvedCharge: number;
+  targetResolvedState: number;
+  ownerIntentAfterTick: number;
+  valueIntentAfterTick: number;
+  chargeIntentAfterTick: number;
+  staleLockOwnerToken: number;
+  staleLockedState: number;
+  attemptedOwnerAtomIdx: number;
+  attemptedBuildState: number;
+  atomPc: number;
+};
+
+type StructureBuildLockCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: StructureBuildLockSnapshot;
+};
+
 type CollectiveTransportAtomState = {
   idx: number;
   energy: number;
@@ -381,6 +407,8 @@ const STRUCTURE_BUILD_RUNTIME_CAPTURE_MARKER =
   "__OMEGA_STRUCTURE_BUILD_RUNTIME_CAPTURE__";
 const STRUCTURE_BUILD_COMPETITION_CAPTURE_MARKER =
   "__OMEGA_STRUCTURE_BUILD_COMPETITION_CAPTURE__";
+const STRUCTURE_BUILD_LOCK_CAPTURE_MARKER =
+  "__OMEGA_STRUCTURE_BUILD_LOCK_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 const COLLECTIVE_BANKING_CAPTURE_MARKER =
@@ -1046,6 +1074,71 @@ const notesForStructureBuildCompetitionCapture = async (
     `- lower_owner_state=${payload.snapshot.lowerOwnerState}`,
     `- higher_owner_atom_idx=${payload.snapshot.higherOwnerAtomIdx}`,
     `- higher_owner_state=${payload.snapshot.higherOwnerState}`,
+  ].join("\n");
+};
+
+const runStructureBuildLockCaptureSubprocess = async (): Promise<
+  StructureBuildLockCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", STRUCTURE_BUILD_LOCK_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] structure-build-lock subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(STRUCTURE_BUILD_LOCK_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] structure-build-lock capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(STRUCTURE_BUILD_LOCK_CAPTURE_MARKER.length),
+  ) as StructureBuildLockCapturePayload;
+};
+
+const notesForStructureBuildLockCapture = async (
+  trace: GoldenTraceScenario,
+  payload: StructureBuildLockCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_STRUCTURE_BUILD_LOCK_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Runtime build stale-lock capture`,
+    ``,
+    `- target_resolved_type=${payload.snapshot.targetResolvedType}`,
+    `- target_resolved_charge=${payload.snapshot.targetResolvedCharge}`,
+    `- target_resolved_state=${payload.snapshot.targetResolvedState}`,
+    `- stale_lock_owner_token=${payload.snapshot.staleLockOwnerToken}`,
+    `- stale_locked_state=${payload.snapshot.staleLockedState}`,
+    `- attempted_owner_atom_idx=${payload.snapshot.attemptedOwnerAtomIdx}`,
+    `- attempted_build_state=${payload.snapshot.attemptedBuildState}`,
   ].join("\n");
 };
 
@@ -2002,6 +2095,69 @@ const runStructureBuildCompetitionTrace = async (
   };
 };
 
+const runStructureBuildLockTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runStructureBuildLockCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "runtime_build_stale_lock",
+    runtime_mode: TRACE_STRUCTURE_BUILD_LOCK_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    target_resolved_type: payload.snapshot.targetResolvedType,
+    target_resolved_charge: payload.snapshot.targetResolvedCharge,
+    target_resolved_state: payload.snapshot.targetResolvedState,
+    stale_lock_owner_token: payload.snapshot.staleLockOwnerToken,
+    stale_locked_state: payload.snapshot.staleLockedState,
+  };
+  const invariants = {
+    structure_build_lock_hash: payload.hash,
+    target_cell_idx: payload.snapshot.targetCellIdx,
+    target_resolved_type: payload.snapshot.targetResolvedType,
+    target_resolved_charge: payload.snapshot.targetResolvedCharge,
+    target_resolved_state: payload.snapshot.targetResolvedState,
+    owner_intent_after_tick: payload.snapshot.ownerIntentAfterTick,
+    value_intent_after_tick: payload.snapshot.valueIntentAfterTick,
+    stale_lock_owner_token: payload.snapshot.staleLockOwnerToken,
+    stale_locked_state: payload.snapshot.staleLockedState,
+    attempted_owner_atom_idx: payload.snapshot.attemptedOwnerAtomIdx,
+    attempted_build_state: payload.snapshot.attemptedBuildState,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_STRUCTURE_BUILD_LOCK_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      targetResolvedType: payload.snapshot.targetResolvedType,
+      targetResolvedCharge: payload.snapshot.targetResolvedCharge,
+      targetResolvedState: payload.snapshot.targetResolvedState,
+      ownerIntentAfterTick: payload.snapshot.ownerIntentAfterTick,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      structure_build_lock_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForStructureBuildLockCapture(trace, payload),
+  };
+};
+
 const runCollectiveTransportTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
@@ -2261,6 +2417,8 @@ export const captureGoldenTrace = async (
     ? await runStructureBuildRuntimeTrace(trace)
     : trace.id === "gt17_runtime_build_competition"
     ? await runStructureBuildCompetitionTrace(trace)
+    : trace.id === "gt18_runtime_build_stale_lock"
+    ? await runStructureBuildLockTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
     : trace.id === "gt11_collective_banking"

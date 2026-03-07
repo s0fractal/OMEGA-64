@@ -1,0 +1,43 @@
+{
+  "case_id": "rc27_gt18_build_stale_lock_blocked",
+  "baseline_trace_id": "gt18_runtime_build_stale_lock",
+  "baseline_runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "051cd70513513dddfc450783b8bacfdd235d9c2788ff06ae40ba72d865aa007f",
+  "reduction_digest": "13c82207044379b838ca0c15897f6af25dd85bc7093bf2a0c0dc0494e2bfea48",
+  "executed_digest_legacy": "533746a37b112cf0b3ae2ccfdfa7d58a6e517b170e3609f29ac975f7e07992f7",
+  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "props_match": true,
+    "bond_targets_match": true,
+    "peer_energy_match": true,
+    "peer_pc_match": true,
+    "hive_memory_match": true,
+    "hive_balance_match": true,
+    "signal_grid_match": true,
+    "structure_grid_match": true,
+    "structure_intent_owner_match": true,
+    "structure_intent_value_match": true,
+    "structure_charge_intent_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 8
+  },
+  "expectation_summary": {
+    "finalPc": 6,
+    "signalCount": 0,
+    "buildCount": 1,
+    "finalRole": 3,
+    "finalStructureGrid": {
+      "423": 939458564
+    },
+    "branchTaken": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "structure_build_lock_hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
+  "target_cell_idx": 423,
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "target_resolved_state": 55,
+  "owner_intent_after_tick": 0,
+  "value_intent_after_tick": 0,
+  "stale_lock_owner_token": 3,
+  "stale_locked_state": 55,
+  "attempted_owner_atom_idx": 2,
+  "attempted_build_state": 99
+}
