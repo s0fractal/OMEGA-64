@@ -1,0 +1,12 @@
+{
+  "control_specimen": "runtime_build_competition",
+  "runtime_mode": "worker-runtime-structure-build-competition-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "target_resolved_state": 91,
+  "higher_owner_atom_idx": 3,
+  "higher_owner_state": 91
+}

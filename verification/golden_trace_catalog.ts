@@ -421,6 +421,33 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_intent_determinism.ts",
     ],
   },
+  {
+    id: "gt17_runtime_build_competition",
+    scenario: "runtime structure build competition",
+    setup:
+      "worker-backed deterministic subprocess capture of two architects publishing competing OP_BUILD SOURCE intents into the same cell through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "targetResolvedState",
+      "ownerIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      targetResolvedState: "strict",
+      ownerIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_build_competition_capture.ts",
+      "verification/structure_build_runtime_capture.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

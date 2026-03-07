@@ -23,6 +23,7 @@ export type ReductionCaseDefinition = {
   description: string;
   script: Uint8Array;
   maxSteps: number;
+  ownerAtomIdx?: number;
   postStructureTick?: boolean;
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
@@ -200,6 +201,18 @@ const makeBuildSourceScript = (): Uint8Array => {
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = STRUCTURE.SOURCE;
   script[pc++] = 0;
+  return script;
+};
+
+const makeBuildSourceWithStateScript = (state: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = STRUCTURE.SOURCE;
+  script[pc++] = state & 0xFF;
   return script;
 };
 
@@ -882,6 +895,72 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       finalStructureGrid: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
           (255 << 16),
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc25_gt17_build_competition_high_owner_overwrite",
+    baselineTraceId: "gt17_runtime_build_competition",
+    description:
+      "A bounded BUILD bridge should let a higher owner token overwrite a preseeded lower owner SOURCE intent on the same cell.",
+    script: makeBuildSourceWithStateScript(91),
+    maxSteps: 2,
+    ownerAtomIdx: 3,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+      [RISC.PROP_RESONANCE]: 1,
+    },
+    initialStructureIntentOwner: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 3,
+    },
+    initialStructureIntentValue: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+        (17 << 24),
+    },
+    expected: {
+      finalPc: 6,
+      signalCount: 0,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+          (255 << 16) | (91 << 24),
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc26_gt17_build_competition_low_owner_blocked",
+    baselineTraceId: "gt17_runtime_build_competition",
+    description:
+      "The same bounded BUILD bridge should fail closed when a lower owner token attempts to overwrite a preseeded higher owner SOURCE intent.",
+    script: makeBuildSourceWithStateScript(17),
+    maxSteps: 2,
+    ownerAtomIdx: 2,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+      [RISC.PROP_RESONANCE]: 1,
+    },
+    initialStructureIntentOwner: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 4,
+    },
+    initialStructureIntentValue: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+        (91 << 24),
+    },
+    expected: {
+      finalPc: 6,
+      signalCount: 0,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+          (255 << 16) | (91 << 24),
       },
       branchTaken: false,
     },

@@ -25,6 +25,7 @@ type ShadowEffects = {
 };
 
 type ShadowState = {
+  atomIndex: number;
   pc: number;
   regs: number[];
   role: number;
@@ -165,6 +166,7 @@ const cloneEffects = (): ShadowEffects => ({
 const createInitialState = (
   definition: ReductionCaseDefinition,
 ): ShadowState => ({
+  atomIndex: definition.ownerAtomIdx ?? 0,
   pc: 0,
   regs: new Array(8).fill(0),
   role: 0,
@@ -563,7 +565,7 @@ const applyShadowOpcode = (
         if (tx >= 0 && tx < GRID_W && ty >= 0 && ty < GRID_H) {
           const cellIdx = ty * GRID_W + tx;
           const newVal = ((buildState & 0xFF) << 24) | (type & 0xFF);
-          publishBuildIntent(state, cellIdx, 0, newVal);
+          publishBuildIntent(state, cellIdx, state.atomIndex, newVal);
         }
       }
       state.pc += 3;

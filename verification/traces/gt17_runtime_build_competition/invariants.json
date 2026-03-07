@@ -1,0 +1,13 @@
+{
+  "structure_build_competition_hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
+  "target_cell_idx": 423,
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "target_resolved_state": 91,
+  "owner_intent_after_tick": 0,
+  "value_intent_after_tick": 0,
+  "lower_owner_atom_idx": 2,
+  "lower_owner_state": 17,
+  "higher_owner_atom_idx": 3,
+  "higher_owner_state": 91
+}

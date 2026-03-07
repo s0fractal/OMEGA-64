@@ -1,0 +1,44 @@
+{
+  "trace_id": "gt17_runtime_build_competition",
+  "scenario": "runtime structure build competition",
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "worker-runtime-structure-build-competition-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "targetResolvedType": 4,
+    "targetResolvedCharge": 255,
+    "targetResolvedState": 91,
+    "ownerIntentAfterTick": 0,
+    "snapshotDigest": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "9a21c92c529b4b2f5a944570974632027cc6114cac2aea4ad28cf80cd436336a",
+  "invariant_digest": "58d698b1f06b93f44942f14915cff4b5353320baa8bfe46f14357a5870b41d12",
+  "extra_artifacts": {
+    "structure_build_competition_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
+      "snapshot": {
+        "targetCellIdx": 423,
+        "targetResolvedType": 4,
+        "targetResolvedCharge": 255,
+        "targetResolvedState": 91,
+        "ownerIntentAfterTick": 0,
+        "valueIntentAfterTick": 0,
+        "chargeIntentAfterTick": 0,
+        "lowerOwnerAtomIdx": 2,
+        "lowerOwnerState": 17,
+        "higherOwnerAtomIdx": 3,
+        "higherOwnerState": 91,
+        "lowerAtomPc": 6,
+        "higherAtomPc": 6
+      }
+    }
+  }
+}
