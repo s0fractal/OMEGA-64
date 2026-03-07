@@ -1,0 +1,11 @@
+{
+  "control_specimen": "runtime_build_materialization",
+  "runtime_mode": "worker-runtime-structure-build-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "owner_intent_after_tick": 0,
+  "value_intent_after_tick": 0
+}

@@ -16,6 +16,7 @@ const STRUCTURE_LOCK_RUNTIME_MODE = "standalone-structure-lock-capture";
 const STRUCTURE_CHARGE_RUNTIME_MODE = "standalone-structure-charge-capture";
 const STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE =
   "standalone-structure-charge-competition-capture";
+const STRUCTURE_BUILD_RUNTIME_MODE = "worker-runtime-structure-build-capture";
 
 const main = async () => {
   for (const trace of GOLDEN_TRACE_CATALOG) {
@@ -58,6 +59,8 @@ const main = async () => {
       ? STRUCTURE_CHARGE_RUNTIME_MODE
       : trace.id === "gt15_structure_charge_competition"
       ? STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE
+      : trace.id === "gt16_runtime_build_materialization"
+      ? STRUCTURE_BUILD_RUNTIME_MODE
       : TRACE_RUNTIME_MODE;
     if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(

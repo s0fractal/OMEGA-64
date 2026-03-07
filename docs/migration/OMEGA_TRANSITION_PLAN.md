@@ -380,6 +380,11 @@ Only low-width behavior first:
   `gt15_structure_charge_competition` can verify competitive charge
   publication without pretending the structure engine has already been fully
   reduced
+- `verification/structure_build_runtime_capture.ts` now provides a first
+  honest worker-backed `OP_BUILD` control specimen via `PULSE.tick`, and
+  `verification/reduction_harness.ts` now mirrors bounded `SOURCE` charge
+  semantics so `gt16_runtime_build_materialization` can anchor BUILD parity
+  without claiming the whole structure engine is already bridged
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so
     `gt05 target_energy=300` cannot yet be encoded directly

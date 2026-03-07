@@ -394,6 +394,33 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_lock_progress.ts",
     ],
   },
+  {
+    id: "gt16_runtime_build_materialization",
+    scenario: "runtime structure build materialization",
+    setup:
+      "worker-backed deterministic subprocess capture of a single architect executing OP_BUILD SOURCE through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "ownerIntentAfterTick",
+      "valueIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      ownerIntentAfterTick: "strict",
+      valueIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_build_runtime_capture.ts",
+      "test_neural_synthesis.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

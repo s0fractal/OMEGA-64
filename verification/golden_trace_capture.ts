@@ -14,6 +14,8 @@ const STRUCTURE_CHARGE_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_charge_capture.ts";
 const STRUCTURE_CHARGE_COMPETITION_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_charge_competition_capture.ts";
+const STRUCTURE_BUILD_RUNTIME_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/structure_build_runtime_capture.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
 const COLLECTIVE_BANKING_CAPTURE_PATH =
@@ -31,6 +33,8 @@ const TRACE_STRUCTURE_CHARGE_RUNTIME_MODE =
   "standalone-structure-charge-capture";
 const TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE =
   "standalone-structure-charge-competition-capture";
+const TRACE_STRUCTURE_BUILD_RUNTIME_MODE =
+  "worker-runtime-structure-build-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
 const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
@@ -206,6 +210,28 @@ type StructureChargeCompetitionCapturePayload = {
   snapshot: StructureChargeCompetitionSnapshot;
 };
 
+type StructureBuildRuntimeSnapshot = {
+  targetCellIdx: number;
+  targetResolvedType: number;
+  targetResolvedCharge: number;
+  targetResolvedState: number;
+  ownerIntentAfterTick: number;
+  valueIntentAfterTick: number;
+  chargeIntentAfterTick: number;
+  neighborCellIdx: number;
+  neighborResolvedType: number;
+  neighborResolvedCharge: number;
+  atomPc: number;
+  atomRole: number;
+};
+
+type StructureBuildRuntimeCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: StructureBuildRuntimeSnapshot;
+};
+
 type CollectiveTransportAtomState = {
   idx: number;
   energy: number;
@@ -324,6 +350,8 @@ const STRUCTURE_LOCK_CAPTURE_MARKER = "__OMEGA_STRUCTURE_LOCK_CAPTURE__";
 const STRUCTURE_CHARGE_CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
 const STRUCTURE_CHARGE_COMPETITION_CAPTURE_MARKER =
   "__OMEGA_STRUCTURE_CHARGE_COMPETITION_CAPTURE__";
+const STRUCTURE_BUILD_RUNTIME_CAPTURE_MARKER =
+  "__OMEGA_STRUCTURE_BUILD_RUNTIME_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 const COLLECTIVE_BANKING_CAPTURE_MARKER =
@@ -858,6 +886,70 @@ const notesForStructureChargeCompetitionCapture = async (
     `- low_then_high_resolved_charge=${payload.snapshot.lowThenHigh.resolvedCharge}`,
     `- high_then_low_charge_intent=${payload.snapshot.highThenLow.chargeIntentBeforeTick}`,
     `- high_then_low_resolved_charge=${payload.snapshot.highThenLow.resolvedCharge}`,
+  ].join("\n");
+};
+
+const runStructureBuildRuntimeCaptureSubprocess = async (): Promise<
+  StructureBuildRuntimeCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", STRUCTURE_BUILD_RUNTIME_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] structure-build-runtime subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(STRUCTURE_BUILD_RUNTIME_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] structure-build-runtime capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(STRUCTURE_BUILD_RUNTIME_CAPTURE_MARKER.length),
+  ) as StructureBuildRuntimeCapturePayload;
+};
+
+const notesForStructureBuildRuntimeCapture = async (
+  trace: GoldenTraceScenario,
+  payload: StructureBuildRuntimeCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_STRUCTURE_BUILD_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Runtime build capture`,
+    ``,
+    `- target_resolved_type=${payload.snapshot.targetResolvedType}`,
+    `- target_resolved_charge=${payload.snapshot.targetResolvedCharge}`,
+    `- owner_intent_after_tick=${payload.snapshot.ownerIntentAfterTick}`,
+    `- value_intent_after_tick=${payload.snapshot.valueIntentAfterTick}`,
+    `- neighbor_resolved_type=${payload.snapshot.neighborResolvedType}`,
+    `- neighbor_resolved_charge=${payload.snapshot.neighborResolvedCharge}`,
   ].join("\n");
 };
 
@@ -1690,6 +1782,67 @@ const runStructureChargeCompetitionTrace = async (
   };
 };
 
+const runStructureBuildRuntimeTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runStructureBuildRuntimeCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "runtime_build_materialization",
+    runtime_mode: TRACE_STRUCTURE_BUILD_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    target_resolved_type: payload.snapshot.targetResolvedType,
+    target_resolved_charge: payload.snapshot.targetResolvedCharge,
+    owner_intent_after_tick: payload.snapshot.ownerIntentAfterTick,
+    value_intent_after_tick: payload.snapshot.valueIntentAfterTick,
+  };
+  const invariants = {
+    structure_build_runtime_hash: payload.hash,
+    target_cell_idx: payload.snapshot.targetCellIdx,
+    target_resolved_type: payload.snapshot.targetResolvedType,
+    target_resolved_charge: payload.snapshot.targetResolvedCharge,
+    target_resolved_state: payload.snapshot.targetResolvedState,
+    owner_intent_after_tick: payload.snapshot.ownerIntentAfterTick,
+    value_intent_after_tick: payload.snapshot.valueIntentAfterTick,
+    charge_intent_after_tick: payload.snapshot.chargeIntentAfterTick,
+    atom_pc: payload.snapshot.atomPc,
+    atom_role: payload.snapshot.atomRole,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_STRUCTURE_BUILD_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      targetResolvedType: payload.snapshot.targetResolvedType,
+      targetResolvedCharge: payload.snapshot.targetResolvedCharge,
+      ownerIntentAfterTick: payload.snapshot.ownerIntentAfterTick,
+      valueIntentAfterTick: payload.snapshot.valueIntentAfterTick,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      structure_build_runtime_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForStructureBuildRuntimeCapture(trace, payload),
+  };
+};
+
 const runCollectiveTransportTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
@@ -1945,6 +2098,8 @@ export const captureGoldenTrace = async (
     ? await runStructureChargeTrace(trace)
     : trace.id === "gt15_structure_charge_competition"
     ? await runStructureChargeCompetitionTrace(trace)
+    : trace.id === "gt16_runtime_build_materialization"
+    ? await runStructureBuildRuntimeTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
     : trace.id === "gt11_collective_banking"

@@ -109,6 +109,10 @@ Latest completed planning work:
   publications competing for the same cell under both orderings, so the
   structure charge lane now has a committed `max-intent wins` baseline rather
   than an accidental last-write model.
+- Extended Stage 2 with a ninth control specimen:
+  `gt16_runtime_build_materialization` now captures a real worker-backed
+  `OP_BUILD SOURCE` path through `PULSE.tick`, so BUILD has an honest runtime
+  anchor before any broader attempt to bridge structure materialization.
 - Extended Stage 4 with bounded `OP_SENSE` parity tied to `gt08`: the reduction
   harness now models build-intent overlays and structural sensing, and persists
   `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.

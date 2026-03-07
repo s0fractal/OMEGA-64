@@ -191,6 +191,18 @@ const makePlugChargeCompetitionScript = (
   return script;
 };
 
+const makeBuildSourceScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = STRUCTURE.SOURCE;
+  script[pc++] = 0;
+  return script;
+};
+
 const makeSenseScript = (targetType: number): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
@@ -845,6 +857,31 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       finalStructureGrid: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
           (210 << 16),
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc24_gt16_build_source_materialize",
+    baselineTraceId: "gt16_runtime_build_materialization",
+    description:
+      "A bounded BUILD bridge should materialize an architect-published SOURCE through postStructureTick, including canonical SOURCE charge semantics.",
+    script: makeBuildSourceScript(),
+    maxSteps: 2,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+      [RISC.PROP_RESONANCE]: 1,
+    },
+    expected: {
+      finalPc: 6,
+      signalCount: 0,
+      buildCount: 1,
+      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
+          (255 << 16),
       },
       branchTaken: false,
     },

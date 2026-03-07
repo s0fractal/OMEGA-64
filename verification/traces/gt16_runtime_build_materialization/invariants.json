@@ -1,0 +1,12 @@
+{
+  "structure_build_runtime_hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
+  "target_cell_idx": 423,
+  "target_resolved_type": 4,
+  "target_resolved_charge": 255,
+  "target_resolved_state": 0,
+  "owner_intent_after_tick": 0,
+  "value_intent_after_tick": 0,
+  "charge_intent_after_tick": 0,
+  "atom_pc": 6,
+  "atom_role": 3
+}

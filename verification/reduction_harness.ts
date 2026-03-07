@@ -377,7 +377,10 @@ const flushStructureTick = (state: ShadowState): void => {
     }
     const type = cellVal & 0xFF;
     const currentCharge = (cellVal >> 16) & 0xFF;
-    if (
+    if (type === STRUCTURE.SOURCE) {
+      cellVal = (cellVal & ~0x00FF0000) | (255 << 16);
+      state.structureGrid[cellIdx] = cellVal;
+    } else if (
       (type === STRUCTURE.WIRE || type === STRUCTURE.NODE ||
         type === STRUCTURE.CAPACITOR) &&
       currentCharge > 0

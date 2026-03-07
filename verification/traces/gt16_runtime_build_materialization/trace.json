@@ -1,0 +1,43 @@
+{
+  "trace_id": "gt16_runtime_build_materialization",
+  "scenario": "runtime structure build materialization",
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "worker-runtime-structure-build-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "targetResolvedType": 4,
+    "targetResolvedCharge": 255,
+    "ownerIntentAfterTick": 0,
+    "valueIntentAfterTick": 0,
+    "snapshotDigest": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "914335ad40e1eef6feda4d1bbc752b0eb4198a660e411efccddba4fb34a545e1",
+  "invariant_digest": "e85d3b19d2cd7cf730c5f9604bf6f4a0e3b9c893b5f9eda4a25afd5a08701eaa",
+  "extra_artifacts": {
+    "structure_build_runtime_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
+      "snapshot": {
+        "targetCellIdx": 423,
+        "targetResolvedType": 4,
+        "targetResolvedCharge": 255,
+        "targetResolvedState": 0,
+        "ownerIntentAfterTick": 0,
+        "valueIntentAfterTick": 0,
+        "chargeIntentAfterTick": 0,
+        "neighborCellIdx": 424,
+        "neighborResolvedType": 1,
+        "neighborResolvedCharge": 235,
+        "atomPc": 6,
+        "atomRole": 3
+      }
+    }
+  }
+}

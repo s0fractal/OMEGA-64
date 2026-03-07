@@ -45,6 +45,7 @@ Committed baseline set now exists for:
 - `gt13_structure_lock_progress`
 - `gt14_structure_charge_resolution`
 - `gt15_structure_charge_competition`
+- `gt16_runtime_build_materialization`
 
 Minimal `trace.json` payload:
 
@@ -100,6 +101,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt13_structure_lock_progress` | standalone structure stale-lock progress | standalone deterministic subprocess capture of `OP_SENSE` visibility through a stale structure lock plus `tick_structure_grid` intent clearing | `2` execute phases + `1` structure tick / subprocess capture | visible sense reg, typed miss sense reg, resolved cell type, resolved cell charge, snapshot digest | `verification/traces/gt13_structure_lock_progress/trace.json` | all metrics `strict` | `verification/structure_lock_capture.ts`, `test_structure_lock_progress.ts` |
 | `gt14_structure_charge_resolution` | standalone structure charge resolution | standalone deterministic subprocess capture of `OP_PLUG` publishing a charge intent and `tick_structure_grid` resolving it into a concrete charged structure cell | `1` execute phase + `1` structure tick / subprocess capture | charge intent before tick, resolved cell type, resolved cell charge, snapshot digest | `verification/traces/gt14_structure_charge_resolution/trace.json` | all metrics `strict` | `verification/structure_charge_capture.ts`, `test_structure_lock_progress.ts`, `test_neural_synthesis.ts` |
 | `gt15_structure_charge_competition` | standalone structure charge competition | standalone deterministic subprocess capture of two `OP_PLUG` publications hitting the same cell in both `low->high` and `high->low` orderings | `4` execute calls + `1` structure tick / subprocess capture | low->high charge intent, high->low charge intent, low->high resolved charge, high->low resolved charge, snapshot digest | `verification/traces/gt15_structure_charge_competition/trace.json` | all metrics `strict` | `verification/structure_charge_competition_capture.ts`, `verification/structure_charge_capture.ts`, `test_structure_lock_progress.ts` |
+| `gt16_runtime_build_materialization` | runtime structure build materialization | worker-backed deterministic subprocess capture of a single architect executing `OP_BUILD SOURCE` through `PULSE.tick` | `1` pulse tick / subprocess capture | target resolved type, target resolved charge, owner intent after tick, value intent after tick, snapshot digest | `verification/traces/gt16_runtime_build_materialization/trace.json` | all metrics `strict` | `verification/structure_build_runtime_capture.ts`, `test_neural_synthesis.ts`, `test_structure_intent_determinism.ts` |
 
 ## Capture rules
 
