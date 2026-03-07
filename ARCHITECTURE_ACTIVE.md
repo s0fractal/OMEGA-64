@@ -84,6 +84,31 @@ export context. It intentionally excludes historical era narratives.
 - `OMEGA_DAEMON` can run a phase-season scheduler
   (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
   telemetry/invariant context while respecting cooldown and safe-mode gates.
+- **WASM-Native Secretion Path (Direct Emission)**: The WASM kernel now
+  possesses direct authority over glyph emission. Legacy JS-side deposition
+  logic has been removed.
+  - RISC opcodes `OP_SIGNAL` (0x81) and `OP_COLLECTIVE` (modes 2/7) now consume
+    energy and emit glyphs directly via `secreteGlyph`.
+  - Grid-based leakage (Signal/Memory -> Pheromone/Plasmid) is handled during
+    `tickGlyphTransport` in WASM.
+  - Unified 12-index telemetry (`SECRETION_STATS_OFFSET`) tracks role-based
+    secretions and internal reflection leaks in shared memory for real-time
+    observation.
+- **Total Physiological Closure (Endocrine Wiring)**: The Genetic Ledger now
+  governs 10 physiological knobs consolidated via `GENERIC_LEDGER_SYSTEM.ts`.
+  These are synchronized to a Hormone Shared-Memory Lattice
+  (`HORMONE_BUFFER_RUNTIME.ts`) within `STATE_MATRIX`. The WASM kernel directly
+  reads these 6 derivation-hormones to modulate physical reality:
+  - `entropy_pressure` (H0) scales metabolic cost.
+  - `time_viscosity` (H1) dynamically clamps execution budget (8..24 steps).
+  - `replication_bias` (H3) shifts the `OP_REPLICATE` energy threshold.
+  - `aggression` (H2) scales the `OP_SHARE` percentage.
+  - `repair_drive` (H4) modulates resonance decay.
+  - `mutation_friction` (H5) adds a metabolic floor to complex operations.
+- **Deno-Native Architecture**: The project has fully transitioned to a
+  Deno-native environment. Legacy `node_modules`, `package.json`, and
+  `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
+  via Deno's native NPM resolution in `build_wasm.ts`.
 
 ## Governance and Integrity
 

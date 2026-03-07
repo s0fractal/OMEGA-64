@@ -1,34 +1,34 @@
 # Longrun Canary Audit
 
-- generatedAt: 2026-03-07T19:57:45.793Z
-- durationSec: 30
-- elapsedMs: 31170
+- generatedAt: 2026-03-07T20:25:10.853Z
+- durationSec: 300
+- elapsedMs: 5126
 - bootReady: true
-- bootMs: 1645
-- sampleCount: 6
-- successCount: 6
+- bootMs: 173
+- sampleCount: 1
+- successCount: 1
 - failureCount: 0
 - successRate: 1
-- tickStart: 7
-- tickEnd: 966
-- tickAdvance: 959
-- p95TelemetryLatencyMs: 341.818
-- p05AvgEnergy: 76.668
+- tickStart: 271
+- tickEnd: 271
+- tickAdvance: 0
+- p95TelemetryLatencyMs: 122.635
+- p05AvgEnergy: 272.742
 - p95SpatialOverflowRatio: 0
 - safeModeRatio: 1
 - federationRejectRatio: 0
-- guardianSignalPromotionVerdict: promote
-- architectPlasmidPromotionVerdict: promote
-- replicationPromotionVerdict: promote
+- guardianSignalPromotionVerdict: hold
+- architectPlasmidPromotionVerdict: hold
+- replicationPromotionVerdict: hold
 
 | status | check | observed | limit |
 |---|---|---:|---:|
 | PASS | bootReady | true | true |
-| PASS | processExitedUnexpectedly == false | false | false |
+| FAIL | processExitedUnexpectedly == false | true | false |
 | PASS | successRate | 1 | 0.9 |
-| PASS | p95TelemetryLatencyMs | 341.8 | 700 |
+| PASS | p95TelemetryLatencyMs | 122.6 | 700 |
 | PASS | p95SpatialOverflowRatio | 0 | 0.05 |
 | PASS | safeModeRatio | 1 | 0.95 |
-| PASS | guardianSignalPromotionVerdict == promote | promote | promote |
-| PASS | architectPlasmidPromotionVerdict == promote | promote | promote |
-| PASS | replicationPromotionVerdict == promote | promote | promote |
+| FAIL | guardianSignalPromotionVerdict == promote | hold | promote |
+| FAIL | architectPlasmidPromotionVerdict == promote | hold | promote |
+| FAIL | replicationPromotionVerdict == promote | hold | promote |

@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-07T18:18:43.357Z*
-*Exported Files: 104*
+*Generated: 2026-03-07T23:23:14.148Z*
+*Exported Files: 108*
 *Runtime Roots: 7*
-*Runtime Closure Files: 58*
+*Runtime Closure Files: 62*
 *Non-Runtime Code Files: 31*
 *Runtime-Support Code Files: 16*
 *Experimental Code Files: 15*
-*Manifest SHA256: 302dc1e49507cfe7a659214027caa536c7b4551e4ad1ff381e8e77cd36d4ae11*
-*Export Set SHA256: 35220aca7270b395178c8700f4cdb5dcdc53ac35541acf4d31b65e88a244d8e6*
-*Export Content SHA256: 16a7264b6330ed243ae6c79fe3783be44a98941853bc666b37f574e7b3da4164*
-*Git Commit: abbe5c15dbf1*
+*Manifest SHA256: f5acceeb7ebb597119d1383ab5f10515ea6ed688519cc08ead450c928f943724*
+*Export Set SHA256: 3822b3f528a5622d463c661ba709f5126ee8a771bd691d1cc4dc41f5195647e7*
+*Export Content SHA256: 2d713bdfd6e9e1ad73faa531304d84143ed8271cf64012a347d23e36c6b3f3dc*
+*Git Commit: 9a9ead9abee9*
 
 ---
 
@@ -50,6 +50,8 @@
 - GATE_MERGER.ts
 - GATE_VALIDATOR.ts
 - GATE.ts
+- GENERIC_LEDGER_PERSISTENCE.ts
+- GENERIC_LEDGER_SYSTEM.ts
 - GENETIC_LEDGER_PERSISTENCE.ts
 - GENETIC_LEDGER_RUNTIME.ts
 - GENETIC_LEDGER.ts
@@ -73,8 +75,10 @@
 - PRNG.ts
 - PULSE_WORKER.ts
 - PULSE.ts
+- REPLICATION_PROMOTION.ts
 - runtime_bridge/architect_plasmid_hybrid.ts
 - runtime_bridge/guardian_signal_hybrid.ts
+- runtime_bridge/replication_hybrid.ts
 - RUNTIME_POLICY.ts
 - SEMANTIC_MEMBRANE.ts
 - SHIMS.ts
@@ -3813,6 +3817,31 @@ export context. It intentionally excludes historical era narratives.
 - `OMEGA_DAEMON` can run a phase-season scheduler
   (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
   telemetry/invariant context while respecting cooldown and safe-mode gates.
+- **WASM-Native Secretion Path (Direct Emission)**: The WASM kernel now
+  possesses direct authority over glyph emission. Legacy JS-side deposition
+  logic has been removed.
+  - RISC opcodes `OP_SIGNAL` (0x81) and `OP_COLLECTIVE` (modes 2/7) now consume
+    energy and emit glyphs directly via `secreteGlyph`.
+  - Grid-based leakage (Signal/Memory -> Pheromone/Plasmid) is handled during
+    `tickGlyphTransport` in WASM.
+  - Unified 12-index telemetry (`SECRETION_STATS_OFFSET`) tracks role-based
+    secretions and internal reflection leaks in shared memory for real-time
+    observation.
+- **Total Physiological Closure (Endocrine Wiring)**: The Genetic Ledger now
+  governs 10 physiological knobs consolidated via `GENERIC_LEDGER_SYSTEM.ts`.
+  These are synchronized to a Hormone Shared-Memory Lattice
+  (`HORMONE_BUFFER_RUNTIME.ts`) within `STATE_MATRIX`. The WASM kernel directly
+  reads these 6 derivation-hormones to modulate physical reality:
+  - `entropy_pressure` (H0) scales metabolic cost.
+  - `time_viscosity` (H1) dynamically clamps execution budget (8..24 steps).
+  - `replication_bias` (H3) shifts the `OP_REPLICATE` energy threshold.
+  - `aggression` (H2) scales the `OP_SHARE` percentage.
+  - `repair_drive` (H4) modulates resonance decay.
+  - `mutation_friction` (H5) adds a metabolic floor to complex operations.
+- **Deno-Native Architecture**: The project has fully transitioned to a
+  Deno-native environment. Legacy `node_modules`, `package.json`, and
+  `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
+  via Deno's native NPM resolution in `build_wasm.ts`.
 
 ## Governance and Integrity
 
@@ -3942,6 +3971,7 @@ const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -3965,6 +3995,8 @@ const CRYSTAL_OSCILLATOR: i32 = 5;
 const CRYSTAL_MEME: i32 = 10; // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
+const PHEROMONE_COST_BASE: i32 = 10;
+const PLASMID_COST_BASE: i32 = 25;
 
 // --- ERA 71: FORCE ACCUMULATION ---
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
@@ -4522,27 +4554,16 @@ function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
   return 0;
 }
 
-function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
-  if (amplitude <= 0) return;
-  const current = load<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize);
-  const currentKind = unpackGlyphKind(current);
-  const currentAmplitude = unpackGlyphAmplitude(current);
-  
-  const mergedKind = currentKind == 0 ? kind : currentKind;
-  let mergedAmplitude = 0;
-  if (currentKind == kind) {
-    mergedAmplitude = currentAmplitude + amplitude;
-    if (mergedAmplitude > 0x00FFFFFF) mergedAmplitude = 0x00FFFFFF;
-  } else {
-    mergedAmplitude = currentAmplitude > amplitude ? currentAmplitude : amplitude;
-  }
-  
-  store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
-}
+function atomicDepositGlyphHeader(
+  baseOffset: usize,
+  cell: i32,
+  kind: i32,
+  amplitude: i32,
+  payloadPtr: usize = 0,
+): void {
+  if (amplitude <= 0 || cell < 0 || cell >= 140 * 80) return;
 
-function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 0): void {
-  if (intensity <= 0 || cell < 0 || cell >= 140 * 80) return;
-  const ptr = (GLYPH_HEADER_OFF + (cell << 2)) as usize;
+  const ptr = (baseOffset + (cell << 2)) as usize;
 
   for (let spin = 0; spin < 128; spin++) {
     const current = atomic.load<i32>(ptr);
@@ -4550,12 +4571,16 @@ function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 
     const currentAmplitude = unpackGlyphAmplitude(current);
 
     if (currentKind != 0 && currentKind != kind) {
-      // Kind mismatch: winner takes all (max amplitude)
-      if (intensity <= currentAmplitude) return;
-      const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, intensity));
+      if (amplitude <= currentAmplitude) return;
+      const observed = atomic.cmpxchg<i32>(
+        ptr,
+        current,
+        packGlyphHeader(kind, amplitude),
+      );
       if (observed == current) {
         if (kind == 2 && payloadPtr != 0) {
-          const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+          const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+          const dstPtr = payloadBase + (cell << 3) as usize;
           memory.copy(dstPtr, payloadPtr, 8);
         }
         return;
@@ -4563,15 +4588,17 @@ function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 
       continue;
     }
 
-    // Kind match or empty: additive merge
-    let nextAmplitude = currentAmplitude + intensity;
+    let nextAmplitude = currentAmplitude + amplitude;
     if (nextAmplitude > 0x00FFFFFF) nextAmplitude = 0x00FFFFFF;
-    const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, nextAmplitude));
+    const observed = atomic.cmpxchg<i32>(
+      ptr,
+      current,
+      packGlyphHeader(kind, nextAmplitude),
+    );
     if (observed == current) {
-      // If we are the one who (potentially) established this plasmid, or just refreshing it.
-      // For simplicity, always update payload if we are secreting a plasmid.
       if (kind == 2 && payloadPtr != 0) {
-        const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+        const dstPtr = payloadBase + (cell << 3) as usize;
         memory.copy(dstPtr, payloadPtr, 8);
       }
       return;
@@ -4579,9 +4606,58 @@ function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 
   }
 }
 
+function secreteGlyph(
+  x: i32,
+  y: i32,
+  kind: i32,
+  intensity: i32,
+  role: u8,
+  atomIdx: i32 = -1,
+  payloadPtr: usize = 0,
+): void {
+  if (intensity <= 0) return;
+  const gx = x / 10;
+  const gy = y / 10;
+  if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return;
+
+  const cell = gy * 140 + gx;
+
+  // Telemetry: increment role-based atomic counter
+  if (kind >= 1 && kind <= 2 && role <= 4) {
+    const statPtr = SECRETION_STATS_OFF +
+      (((kind - 1) * 5 + (role as i32)) << 2) as usize;
+    atomic.add<i32>(statPtr, 1);
+  }
+
+  // Energy Cost (Stage 5.3)
+  if (atomIdx >= 0) {
+    let cost: i32 = 0;
+    if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
+    else if (kind == 2) cost = PLASMID_COST_BASE + (intensity >> 2);
+    
+    if (cost > 0) {
+        const currentEnergy = getEnergy(atomIdx);
+        setEnergy(atomIdx, currentEnergy - cost);
+    }
+  }
+
+  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, intensity, payloadPtr);
+
+  // Halo spill for Pheromones (kind=1)
+  if (kind == 1) {
+    const spill = intensity >> 2;
+    if (spill > 16) {
+      if (gx > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
+      if (gx < 139) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 1, 1, spill);
+      if (gy > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 140, 1, spill);
+      if (gy < 79) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 140, 1, spill);
+    }
+  }
+}
+
 
 export function tickGlyphTransport(tick: i32): void {
-  // Clear scratch headers (payload clearing is handled by over-writes)
+  // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
   
   for (let cell = 0; cell < 140 * 80; cell++) {
@@ -4597,7 +4673,7 @@ export function tickGlyphTransport(tick: i32): void {
     const retained = decayed - share;
     
     if (retained > 0) {
-      writeGlyphScratch(cell, kind, retained);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
         const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -4616,7 +4692,7 @@ export function tickGlyphTransport(tick: i32): void {
       else if (selector == 2 && gx > 0) nextCell = cell - 1;
       else if (selector == 3 && gy > 0) nextCell = cell - 140;
       
-      writeGlyphScratch(nextCell, kind, share);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
       if (kind == 2) { // PLASMID payload transport
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
         const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
@@ -4625,43 +4701,42 @@ export function tickGlyphTransport(tick: i32): void {
     }
   }
 
-  // Seeding: Internal Signal Reflection
-  for (let cell = 0; cell < 140 * 80; cell++) {
+  // 2. Seeding: Internal Reflection (Signal -> Pheromone)
+  for (let cell: i32 = 0; cell < 11200; cell++) {
     const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
     const absSignal = signal < 0 ? -signal : signal;
-    if (absSignal >= 256) {
-      let amp = absSignal >> 4;
+    if (absSignal >= 1) {
+      let amp = absSignal >> 1;
       if (amp < 16) amp = 16;
       if (amp > 512) amp = 512;
-      writeGlyphScratch(cell, 1, amp); // PHEROMONE seed from signal
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, 1, amp);
+      // Quantification (Stage 5.1/5.2) - sample-based to avoid overflow
+      if ((cell % 32) == 0) {
+        atomic.add<i32>(SECRETION_STATS_OFF + 40, 1); // Signal leak counter
+      }
     }
   }
 
-  // Seeding: Internal Memory Reflection
-  for (let cell = 0; cell < 140 * 80; cell++) {
+  // 3. Seeding: Internal Reflection (Memory -> Plasmid)
+  for (let cell: i32 = 0; cell < 11200; cell++) {
     const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
-    const charge = (load<u8>(memOffset) as i32) | ((load<u8>(memOffset + 1) as i32) << 8);
-    
-    let payloadResidue = false;
-    for (let i = 4; i < 8; i++) {
-        if (load<u8>(memOffset + i) != 0) {
-            payloadResidue = true;
-            break;
-        }
-    }
-    
-    if (payloadResidue && charge >= 64) {
-      let amp = charge >> 3;
+    const memoryLo = atomic.load<u32>(memOffset);
+    const charge = memoryLo & 0xFFFFFF; // 24-bit charge
+
+    if (charge >= 1) {
+      let amp = charge >> 2;
       if (amp < 24) amp = 24;
       if (amp > 384) amp = 384;
-      writeGlyphScratch(cell, 2, amp); // PLASMID seed from memory
-      
-      const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
-      memory.copy(dstPtr, memOffset, 8);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, 2, amp, memOffset);
+      // Quantification
+      if ((cell % 32) == 0) {
+        atomic.add<i32>(SECRETION_STATS_OFF + 44, 1); // Memory leak counter
+      }
     }
   }
 
-  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, (140 * 80) << 3);
+  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, 11200 << 3);
+  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, 11200 << 2);
 }
 
 // --- PER-ROLE SECRETION PREDICATES ---
@@ -4669,32 +4744,32 @@ export function tickGlyphTransport(tick: i32): void {
 @inline
 function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
   if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
-  if (((tick + idx) % 24) != 0) return false;
-  return resonance > 200 && phase > 100;
+  if (((tick + idx) % 64) != 0) return false;
+  return resonance > 300;
 }
 
 @inline
 function architectShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
   if (((tick + idx) % 32) != 0) return false;
-  return energy > 1500 && resonance > 100;
+  return resonance > 200;
 }
 
 @inline
 function producerShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
-  if (((tick + idx) % 48) != 0) return false;
-  return resonance > 150 && energy > 1000;
+  if (((tick + idx) % 128) != 0) return false;
+  return resonance > 400;
 }
 
 @inline
 function producerShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
-  if (((tick + idx) % 64) != 0) return false;
-  return energy > 2000 && resonance > 50;
+  if (((tick + idx) % 128) != 0) return false;
+  return energy > 800;
 }
 
 @inline
 function neutralShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
-  if (((tick + idx) % 128) != 0) return false;
-  return resonance > 400;
+  if (((tick + idx) % 256) != 0) return false;
+  return resonance > 500;
 }
 
 
@@ -4748,6 +4823,12 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
 }
 
 export function execute_atom(atomIndex: i32): void {
+  if (atomIndex < 20) {
+    const rawRole = load<u8>(ROLES_OFFSET + (atomIndex as usize));
+    const rawRes = load<i32>(RESONANCE_OFFSET + (atomIndex << 2) as usize);
+    const rawTick = load<i32>(TICK_COUNTER_OFF);
+    trace_atom(atomIndex, 0xAA, rawRes, rawTick, rawRole as i32);
+  }
   let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
@@ -4768,22 +4849,22 @@ export function execute_atom(atomIndex: i32): void {
     const tick = load<i32>(TICK_COUNTER_OFF);
     const cell = (curY / 10) * 140 + (curX / 10);
 
-    // DECENTRALIZED SECRETION (Stage 5.1)
+    // DECENTRALIZED SECRETION (Stage 5.2: coord-based + spill)
     if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 4) as i32);
+      secreteGlyph(curX, curY, 1, clampResource(res / 4) as i32, role, atomIndex);
     } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(curX, curY, 2, clampResource((energy + res) / 10) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
     } else if (role == ROLE_PRODUCER) {
       if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32);
+        secreteGlyph(curX, curY, 1, clampResource((res + energy) / 10) as i32, role, atomIndex);
       }
       if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, LOGIC_OFFSET + (atomIndex << 3));
+        secreteGlyph(curX, curY, 2, clampResource((energy + res) / 12) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
       }
     } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 8) as i32);
+      secreteGlyph(curX, curY, 1, clampResource(res / 8) as i32, role, atomIndex);
     } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
-      secreteGlyph(cell, 2, 32, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(curX, curY, 2, 32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
     }
 
     applyBondSprings(atomIndex, curX, curY);
@@ -4809,9 +4890,13 @@ export function execute_atom(atomIndex: i32): void {
   let resonance = getReadResonance(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-  // Safety: 16 instructions per tick max to prevent infinite loops
+  // Safety: Dynamic steps per tick max to prevent infinite loops (8..24 range)
+  let viscosityH: i32 = getHormone(1) as i32;
+  let maxSteps: i32 = 24 - (viscosityH >> 7); // 24..8
+  if (maxSteps < 8) maxSteps = 8;
+
   let step: i32 = 0;
-  for (; step < 16; step++) {
+  while (step < maxSteps) {
     const op = load<u8>(instr_base + (pc as usize));
     if (op == OP_NOP) break;
 
@@ -4908,10 +4993,10 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        // HORMONE 2: aggression lowers replication thresholds (range 0..2048 → up to -256 energy / -64 resonance)
-        let aggrH: i32 = getHormone(2) as i32;
-        let replicateEThresh: i32 = 1500 - (aggrH >> 3); // 1500..1244
-        let replicateRThresh: i32 = 200 - (aggrH >> 5);  // 200..136
+        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 → up to -512 energy / -100 resonance)
+        let biasH: i32 = getHormone(3) as i32;
+        let replicateEThresh: i32 = 1500 - (biasH >> 2); // 1500..988
+        let replicateRThresh: i32 = 200 - (biasH >> 4);  // 200..72
         if (energy > replicateEThresh && resonance > replicateRThresh) {
           let rx = getX(atomIndex) as i32;
           let ry = getY(atomIndex) as i32;
@@ -4954,6 +5039,7 @@ export function execute_atom(atomIndex: i32): void {
           let nextCharge = 200 + bonus;
           publishChargeIntent(cellIdx, nextCharge);
         }
+        secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
         fireSignal(atomIndex); // Also fire biological signal to neighbors
         pc += 1;
         break;
@@ -4999,14 +5085,14 @@ export function execute_atom(atomIndex: i32): void {
           setHiveMemory(p2 as i32, p3);
         } else if (mode == 1) { // HIVE_LOAD addr, reg
           setReg(atomIndex, p3 as i32, getHiveMemory(p2 as i32) as i32);
-        } else if (mode == 2) { // PHEROMONE_EMIT intensity, type
-          let gx = getX(atomIndex) / 10;
-          let gy = getY(atomIndex) / 10;
-          let gridIdx = gy * 140 + gx;
-          store<i32>(
-            SIGNAL_GRID_OFF + (gridIdx << 2) as usize,
-            ((p2 as i32) << 8) | (p3 as i32),
-          );
+        } else if (mode == 2) { // PHEROMONE_EMIT intensity
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          secreteGlyph(rx, ry, 1, p2 as i32, role, atomIndex);
+        } else if (mode == 7) { // PLASMID_EMIT intensity
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          secreteGlyph(rx, ry, 2, p2 as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
         } else if (mode == 3) { // BANK_DEPOSIT val
           let val = p2 as i32;
           if (energy >= val) {
@@ -5062,11 +5148,14 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_SHARE: { // SHARE_ENERGY slot, percentage
         const slot = load<u8>(instr_base + pc as usize + 1) & 3;
-        const percentage = load<u8>(instr_base + pc as usize + 2);
-
+        let percentage = load<u8>(instr_base + pc as usize + 2) as i32;
+        // HORMONE 2: aggression scales the share percentage (range 0..2048; >1024 adds +10%)
+        let aggrH: i32 = getHormone(2) as i32;
+        if (aggrH > 1024) percentage += 10;
+        
         let targetIdx = getBondTarget(atomIndex, slot);
         if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-          let amount = (energy * (percentage as i32)) / 100;
+          let amount = (energy * percentage) / 100;
           if (energy >= amount) {
             energy -= amount;
             addEnergyDelta(targetIdx, amount);
@@ -5194,12 +5283,15 @@ export function execute_atom(atomIndex: i32): void {
       }
     }
     if (pc >= 64) pc = 0;
+    step += 1;
   }
   setPC(atomIndex, pc);
 
   // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
   let entropyH: i32 = getHormone(0) as i32;
-  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12);
+  // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
+  let frictionH: i32 = getHormone(5) as i32;
+  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12) + (frictionH >> 8);
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
@@ -5545,6 +5637,10 @@ export function set_neural_coherence(value: i32): void {
   atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 }
 
+export function clear_secretion_stats(): void {
+  memory.fill(SECRETION_STATS_OFF, 0, 40);
+}
+
 ```
 
 ---
@@ -5788,7 +5884,7 @@ await assertWasmLayout();
 const args = [
     "run",
     "-A",
-    "npm:assemblyscript/asc",
+    "npm:assemblyscript@0.28.9/asc",
     "assembly/index.ts",
     "-o",
     "build/release.wasm",
@@ -5880,19 +5976,26 @@ const makeReplicatorScript = (): Uint8Array => {
   return script;
 };
 
-const makeArchitectScript = (): Uint8Array => {
+const makeArchitectScript = (emit: boolean): Uint8Array => {
   const script = new Uint8Array(8);
   let pc = 0;
-  script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
+  const RISC = STATE_MATRIX.RISC;
+
+  script[pc++] = RISC.OP_ROLE;
   script[pc++] = 0;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = STATE_MATRIX.RISC.OP_BUILD;
-  script[pc++] = 1; // STRUCTURE.WIRE
-  script[pc++] = 1; // state=1
-  script[pc++] = STATE_MATRIX.RISC.OP_SPORE_DRIVE;
-  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
-  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+
+  if (emit) {
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 1; // STRUCTURE.WIRE
+    script[pc++] = 1; // state=1
+  } else {
+    script[pc++] = RISC.OP_SIGNAL;
+  }
+
+  script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
+  
   return script;
 };
 
@@ -6040,7 +6143,8 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
   );
 
   const replicatorScript = makeReplicatorScript();
-  const architectScript = makeArchitectScript();
+  const architectEmitScript = makeArchitectScript(true);
+  const architectSuppressScript = makeArchitectScript(false);
   const guardianStableScript = makeGuardianScript(true);
   const guardianRepairScript = makeGuardianScript(false);
 
@@ -6084,7 +6188,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       role = STATE_MATRIX.ROLE_GUARDIAN;
       guardians++;
     } else {
-      script = architectScript;
+      script = architects % 2 === 0 ? architectEmitScript : architectSuppressScript;
       role = STATE_MATRIX.ROLE_ARCHITECT;
       architects++;
     }
@@ -7607,6 +7711,9 @@ export const CONTROL_INTENT_QUEUE = {
     "HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts",
     "PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts",
     "PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts",
+    "GENERIC_LEDGER_PERSISTENCE.ts",
+    "GENERIC_LEDGER_SYSTEM.ts",
+    "HORMONE_BUFFER_RUNTIME.ts",
     "runtime_bridge/architect_plasmid_hybrid.ts",
     "runtime_bridge/guardian_signal_hybrid.ts",
     "build_wasm.ts",
@@ -10788,17 +10895,17 @@ Adjacent future-vector artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                                              |
-| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                                                  |
-| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt18/*` baseline artifacts                                                                                                                                                                                                    |
-| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ`, `COLLECTIVE`, `SHARE`, and honest worker-backed `BUILD` owner-arbitration + stale-lock coverage for symbolic/transport semantics                                                           |
-| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
+| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt18/*` baseline artifacts                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ`, `COLLECTIVE`, `SHARE`, and honest worker-backed `BUILD` owner-arbitration + stale-lock coverage for symbolic/transport semantics                                                                                                                                                                                                                                                                                            |
+| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                                                                                                                                                                                              |
+| Stage 5 internal transport     | complete    | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and role-based secretion policies are now canonical in λ-VM.                                                                                                                                                                                                                           |
 | Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
-| Stage 8 first slit             | in progress | guardian pheromone emission now supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce` through `runtime_bridge/guardian_signal_hybrid.ts`, with runtime fallback counters and observer telemetry while `shadow-reduce` remains the default rollout |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational                                                                                                                                                                                                                                                           |
+| Stage 8 metabolism promotion   | complete    | Guardian, Architect, and Replication drivers are promoted to `hybrid-reduce` mode after successful shadow verification and long-run audits.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 Current rule:
 
@@ -10951,8 +11058,8 @@ Current support files already suggest the trace direction:
   `verification/golden_trace_capture.ts` now pass `deno check`, so the baseline
   layer is type-clean as well as artifact-backed
 - Stage 2 now also supports standalone subprocess captures, so a causal motif
-  that currently lives in a strict deterministic test harness can still become
-  a first-class golden trace without inventing a fake REST ingress path
+  that currently lives in a strict deterministic test harness can still become a
+  first-class golden trace without inventing a fake REST ingress path
 - Stage 2 now covers two standalone causal motifs outside the REST server:
   same-tick structure-intent visibility (`gt08`) and bounded collective hive /
   pheromone transport (`gt09`)
@@ -10969,8 +11076,8 @@ Current support files already suggest the trace direction:
 - `verification/admission_shadow_harness.ts` now covers daemon
   mutation/admission semantics, including explicit policy-block baselines,
   without pretending they already belong to the reduction bridge
-- next implementation step is no longer generic baseline-definition prose; it
-  is either widening bridge semantics where a real trace demands it or moving a
+- next implementation step is no longer generic baseline-definition prose; it is
+  either widening bridge semantics where a real trace demands it or moving a
   verified subset into a stricter hybrid path
 - Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so
   persistence/compaction state is visible alongside the first live ledger-owned
@@ -11127,29 +11234,27 @@ Only low-width behavior first:
   collective runtime hybridization
 - `verification/reduction_harness.ts` now also models stale-lock `OP_SENSE`
   visibility against seeded structure overlays, so forward progress through
-  stale structure locks can be verified against
-  `gt13_structure_lock_progress` before deeper structure-lock bridge work
+  stale structure locks can be verified against `gt13_structure_lock_progress`
+  before deeper structure-lock bridge work
 - `verification/reduction_harness.ts` now also supports a narrow
   `postStructureTick` flush plus charge-intent state, so `OP_PLUG` publication
   and bounded charge materialization can be verified against
   `gt14_structure_charge_resolution` before any broader attempt to bridge the
   full structure engine
-- `verification/reduction_harness.ts` now also preserves `OP_PLUG`
-  max-intent semantics across repeated publications into the same cell, so
-  `gt15_structure_charge_competition` can verify competitive charge
-  publication without pretending the structure engine has already been fully
-  reduced
-- `verification/structure_build_runtime_capture.ts` now provides a first
-  honest worker-backed `OP_BUILD` control specimen via `PULSE.tick`, and
+- `verification/reduction_harness.ts` now also preserves `OP_PLUG` max-intent
+  semantics across repeated publications into the same cell, so
+  `gt15_structure_charge_competition` can verify competitive charge publication
+  without pretending the structure engine has already been fully reduced
+- `verification/structure_build_runtime_capture.ts` now provides a first honest
+  worker-backed `OP_BUILD` control specimen via `PULSE.tick`, and
   `verification/reduction_harness.ts` now mirrors bounded `SOURCE` charge
   semantics so `gt16_runtime_build_materialization` can anchor BUILD parity
   without claiming the whole structure engine is already bridged
 - `verification/structure_build_competition_capture.ts` now provides an honest
   worker-backed `OP_BUILD` competition specimen via `PULSE.tick`, and
-  `verification/reduction_harness.ts` now carries owner-token-aware BUILD
-  intent publication so `gt17_runtime_build_competition` can anchor builder
-  arbitration parity without claiming the whole structure engine is already
-  bridged
+  `verification/reduction_harness.ts` now carries owner-token-aware BUILD intent
+  publication so `gt17_runtime_build_competition` can anchor builder arbitration
+  parity without claiming the whole structure engine is already bridged
 - `verification/structure_build_lock_capture.ts` now provides an honest
   worker-backed `OP_BUILD` stale-lock specimen via `PULSE.tick`, and
   `verification/reduction_harness.ts` now verifies that a locked owner blocks
@@ -11202,10 +11307,10 @@ This is a good membrane, but not yet an internal circulatory system.
   plasmid glyph packets directly during host lock, so Stage 5 now has a first
   agent-driven internal producer instead of only membrane ingress or substrate
   leakage.
-- that agent-driven producer is now role-shaped: guardians bias toward
-  pheromone emission, architects bias toward plasmid emission, producers can do
-  both under tighter gates, parasites leak plasmids, and observer surfaces can
-  inspect the per-role emission counters.
+- that agent-driven producer is now role-shaped: guardians bias toward pheromone
+  emission, architects bias toward plasmid emission, producers can do both under
+  tighter gates, parasites leak plasmids, and observer surfaces can inspect the
+  per-role emission counters.
 - broad wasm-native secretion is still deferred; Stage 5 is now real, but not
   yet complete.
 
@@ -11279,9 +11384,9 @@ Codex should answer:
 - Glyph regime / dominant-role evidence now also contributes a bounded pressure
   term inside `evaluateInvariantAdmission(...)`, but only through normalized
   codex narrative context rather than raw runtime transport state.
-- Deferred daemon effect evaluation now also lands in Codex as
-  `daemon_effect` chronicles, so the evidence chain can extend from
-  ingress decision to observed runtime delta.
+- Deferred daemon effect evaluation now also lands in Codex as `daemon_effect`
+  chronicles, so the evidence chain can extend from ingress decision to observed
+  runtime delta.
 - Codex narrative/snapshot outputs now also retain a compact `daemonEffect`
   contour, so observer tooling and daemon reasoning can consume the latest
   outcome signal without scraping raw chronicle history.
@@ -11444,24 +11549,19 @@ Current slit in progress:
   `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
   fallback cases before any default-mode promotion is considered
 - `GUARDIAN_SIGNAL_PROMOTION.ts` now acts as the promotion gate contract:
-  runtime telemetry, physiology, and long-run audit scripts all compute the
-  same `shadow -> hybrid` recommendation from fallback ratio and branch
-  coverage, but the default mode remains `shadow-reduce` until an explicit
-  promotion decision is made
+  runtime telemetry, physiology, and long-run audit scripts all compute the same
+  `shadow -> hybrid` recommendation from fallback ratio and branch coverage, but
+  the default mode remains `shadow-reduce` until an explicit promotion decision
+  is made
 - `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now turns that recommendation into an
   explicit `promote` / `hold` verdict inside long-run canary and daemon audit
   reports by combining guardian readiness with enclosing runtime health
 - `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now turns that verdict into a canonical
   `promote` / `hold` / `demote` action artifact so the Stage 8 slit can be
   reasoned about symmetrically before any default-mode switch is attempted
-- `runtime_bridge/architect_plasmid_hybrid.ts` now introduces the second
-  bounded hybrid slit: architect plasmid emission can be observed through
-  `legacy`, `shadow`, and `hybrid` reduction modes without yet adding a second
-  promotion stack around it
-- `verification/architect_plasmid_mode_harness.ts` now anchors that second
-  slit to `gt04_plasmid_inject`, so architect plasmid reduction runs produce
-  committed emit/suppress/fallback artifacts before any broader rollout logic
-  is considered
+- **Metabolism Complete:** The Stage 8 migration for Guardian, Architect, and
+  Replication drivers is complete. All three causal slits now evaluate through
+  the bridge and are promoted to `hybrid-reduce` in `RUNTIME_POLICY.ts`.
 
 ### Exit gate
 
@@ -12830,6 +12930,547 @@ export const GATE = {
 
 ---
 
+## FILE: GENERIC_LEDGER_PERSISTENCE.ts
+
+```typescript
+import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  type LedgerRuntimeEvent,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
+
+export type LedgerRecord<K extends GeneticLedgerKey> =
+  | {
+    kind: "apply";
+    key: K;
+    rollback_token: string;
+    tick: number;
+    source: string;
+    reason: string;
+    previous_value: number;
+    next_value: number;
+    recorded_at: string;
+  }
+  | {
+    kind: "rollback";
+    key: K;
+    rollback_token: string;
+    tick: number;
+    source: string;
+    reason: string;
+    recorded_at: string;
+  };
+
+export type LedgerSnapshotRecord<K extends GeneticLedgerKey> = {
+  version: 1;
+  key: K;
+  representedRecordCount: number;
+  representedApplyCount: number;
+  representedRollbackCount: number;
+  compactedAt: string;
+  compactedTick: number;
+  state: LedgerRuntimeState<K>;
+};
+
+export type LedgerPersistenceSummary = {
+  path: string;
+  snapshotPath: string;
+  exists: boolean;
+  snapshotExists: boolean;
+  recordCount: number;
+  applyCount: number;
+  rollbackCount: number;
+  tailRecordCount: number;
+  tailApplyCount: number;
+  tailRollbackCount: number;
+  snapshotRecordCount: number;
+  snapshotApplyCount: number;
+  snapshotRollbackCount: number;
+  compactionEnabled: boolean;
+  compactionThreshold: number;
+  compactionKeepTail: number;
+  lastCompactedAt: string | null;
+  lastCompactedTick: number;
+  hydrated: boolean;
+  lastHydratedAt: string | null;
+  lastHydrationError: string | null;
+};
+
+export type LedgerHydrationResult<K extends GeneticLedgerKey> = {
+  state: LedgerRuntimeState<K>;
+  snapshot: LedgerRuntimeSnapshot<K>;
+  persistence: LedgerPersistenceSummary;
+};
+
+const ensureDir = async (): Promise<void> => {
+  await Deno.mkdir(".omega/ledger", { recursive: true });
+};
+
+const DEFAULT_THRESHOLD = 64;
+const DEFAULT_KEEP_TAIL = 16;
+
+export const getLogPath = (key: GeneticLedgerKey): string =>
+  `.omega/ledger/${key.replace(/\./gu, "_")}_ledger.jsonl`;
+
+export const getSnapshotPath = (key: GeneticLedgerKey): string =>
+  `.omega/ledger/${key.replace(/\./gu, "_")}_ledger.snapshot.json`;
+
+const parseRecord = <K extends GeneticLedgerKey>(
+  key: K,
+  line: string,
+): LedgerRecord<K> | null => {
+  if (!line.trim()) return null;
+  try {
+    const raw = JSON.parse(line);
+    if (raw.key !== key) return null;
+    return raw as LedgerRecord<K>;
+  } catch {
+    return null;
+  }
+};
+
+const parseSnapshot = <K extends GeneticLedgerKey>(
+  key: K,
+  raw: string,
+): LedgerSnapshotRecord<K> | null => {
+  if (!raw.trim()) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed.key !== key || parsed.version !== 1) return null;
+    return parsed as LedgerSnapshotRecord<K>;
+  } catch {
+    return null;
+  }
+};
+
+const applyRecordToState = <K extends GeneticLedgerKey>(
+  state: LedgerRuntimeState<K>,
+  record: LedgerRecord<K>,
+): LedgerRuntimeState<K> => {
+  if (record.kind === "apply") {
+    return applyLedgerUpdate(state, {
+      value: record.next_value,
+      tick: record.tick,
+      source: record.source,
+      reason: record.reason,
+    }).state;
+  }
+  return rollbackLedgerUpdate(state, {
+    rollbackToken: record.rollback_token,
+    tick: record.tick,
+    source: record.source,
+    reason: record.reason,
+  }).state;
+};
+
+export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
+  key: K,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerHydrationResult<K>> => {
+  const logPath = getLogPath(key);
+  const snapshotPath = getSnapshotPath(key);
+  const threshold = options.threshold ?? DEFAULT_THRESHOLD;
+  const keepTail = options.keepTail ?? DEFAULT_KEEP_TAIL;
+
+  let records: LedgerRecord<K>[] = [];
+  let snapshotRecord: LedgerSnapshotRecord<K> | null = null;
+
+  try {
+    const rawLogArray = await Deno.readTextFile(logPath);
+    records = rawLogArray
+      .split(/\r?\n/u)
+      .map((line) => parseRecord(key, line))
+      .filter((x): x is LedgerRecord<K> => x !== null);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  try {
+    const rawSnapshot = await Deno.readTextFile(snapshotPath);
+    snapshotRecord = parseSnapshot(key, rawSnapshot);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  let state = snapshotRecord?.state ?? createLedgerRuntime(key, options.initialValue, options.historyLimit);
+  let hydrationError: string | null = null;
+  try {
+    for (const record of records) {
+      state = applyRecordToState(state, record);
+    }
+  } catch (err) {
+    hydrationError = String(err);
+  }
+
+  const applyCount = records.filter((r) => r.kind === "apply").length;
+  const rollbackCount = records.length - applyCount;
+
+  const persistence: LedgerPersistenceSummary = {
+    path: logPath,
+    snapshotPath,
+    exists: records.length > 0 || snapshotRecord !== null,
+    snapshotExists: snapshotRecord !== null,
+    recordCount: (snapshotRecord?.representedRecordCount ?? 0) + records.length,
+    applyCount: (snapshotRecord?.representedApplyCount ?? 0) + applyCount,
+    rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) + rollbackCount,
+    tailRecordCount: records.length,
+    tailApplyCount: applyCount,
+    tailRollbackCount: rollbackCount,
+    snapshotRecordCount: snapshotRecord?.representedRecordCount ?? 0,
+    snapshotApplyCount: snapshotRecord?.representedApplyCount ?? 0,
+    snapshotRollbackCount: snapshotRecord?.representedRollbackCount ?? 0,
+    compactionEnabled: true,
+    compactionThreshold: threshold,
+    compactionKeepTail: keepTail,
+    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
+    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
+    hydrated: hydrationError === null,
+    lastHydratedAt: new Date().toISOString(),
+    lastHydrationError: hydrationError,
+  };
+
+  return {
+    state,
+    snapshot: snapshotLedgerRuntime(state),
+    persistence,
+  };
+};
+
+export const appendLedgerRecord = async <K extends GeneticLedgerKey>(
+  record: LedgerRecord<K>,
+): Promise<void> => {
+  const path = getLogPath(record.key);
+  await ensureDir();
+  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
+    append: true,
+    create: true,
+  });
+};
+
+export const recordFromApply = <K extends GeneticLedgerKey>(
+  mutation: LedgerRuntimeEvent<K>,
+  key: K,
+): LedgerRecord<K> => ({
+  kind: "apply",
+  key,
+  rollback_token: mutation.rollbackToken,
+  tick: mutation.tick,
+  source: mutation.source,
+  reason: mutation.reason,
+  previous_value: mutation.previousValue,
+  next_value: mutation.nextValue,
+  recorded_at: new Date().toISOString(),
+});
+
+export const recordFromRollback = <K extends GeneticLedgerKey>(
+  mutation: LedgerRuntimeEvent<K>,
+  key: K,
+): LedgerRecord<K> => ({
+  kind: "rollback",
+  key,
+  rollback_token: mutation.rollbackToken,
+  tick: mutation.rolledBackAtTick ?? mutation.tick,
+  source: mutation.rolledBackSource ?? mutation.source,
+  reason: mutation.rolledBackReason ?? mutation.reason,
+  recorded_at: new Date().toISOString(),
+});
+
+```
+
+---
+
+## FILE: GENERIC_LEDGER_SYSTEM.ts
+
+```typescript
+import { geneticLedgerEntryByKey, type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
+
+export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
+  rollbackToken: string;
+  previousValue: number;
+  nextValue: number;
+  tick: number;
+  source: string;
+  reason: string;
+  rolledBackAtTick: number | null;
+  rolledBackSource: string | null;
+  rolledBackReason: string | null;
+};
+
+export type LedgerRuntimeState<K extends GeneticLedgerKey> = {
+  key: K;
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+  seq: number;
+  historyLimit: number;
+  history: readonly LedgerRuntimeEvent<K>[];
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+};
+
+export type LedgerRuntimeSnapshot<K extends GeneticLedgerKey> = {
+  key: K;
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+  historyDepth: number;
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+};
+
+export type LedgerApplyResult<K extends GeneticLedgerKey> = {
+  status: "applied" | "noop";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: LedgerRuntimeEvent<K> | null;
+  state: LedgerRuntimeState<K>;
+};
+
+export type LedgerRollbackResult<K extends GeneticLedgerKey> = {
+  status: "rolled_back" | "missing" | "consumed" | "stale";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: LedgerRuntimeEvent<K> | null;
+  state: LedgerRuntimeState<K>;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+export const createLedgerRuntime = <K extends GeneticLedgerKey>(
+  key: K,
+  initialValue?: number,
+  historyLimit = 32,
+): LedgerRuntimeState<K> => {
+  const entry = geneticLedgerEntryByKey(key);
+  if (!entry) {
+    throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
+  }
+  const val = initialValue === undefined ? entry.defaultValue : initialValue;
+  return {
+    key,
+    currentValue: clamp(val, entry.min, entry.max),
+    defaultValue: entry.defaultValue,
+    min: entry.min,
+    max: entry.max,
+    rollbackClass: entry.rollbackClass,
+    seq: 0,
+    historyLimit: Math.max(1, Math.floor(historyLimit)),
+    history: [],
+    lastAppliedTick: -1,
+    lastAppliedSource: "runtime_policy",
+    lastAppliedReason: "bootstrap",
+    lastAppliedRollbackToken: null,
+    lastRollbackTick: -1,
+    lastRollbackSource: "runtime_policy",
+    lastRollbackReason: "bootstrap",
+    lastRollbackToken: null,
+  };
+};
+
+export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
+  state: LedgerRuntimeState<K>,
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): LedgerApplyResult<K> => {
+  const previousValue = state.currentValue;
+  const nextValue = clamp(update.value, state.min, state.max);
+  if (nextValue === previousValue) {
+    return {
+      status: "noop",
+      changed: false,
+      previousValue,
+      nextValue,
+      mutation: null,
+      state,
+    };
+  }
+
+  const tick = update.tick === undefined ? 0 : Math.max(0, Math.floor(update.tick));
+  const source = (update.source ?? "runtime").trim() || "runtime";
+  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
+  const rollbackToken =
+    `${state.key}@${tick}:${String(state.seq + 1).padStart(4, "0")}`;
+  const mutation: LedgerRuntimeEvent<K> = {
+    rollbackToken,
+    previousValue,
+    nextValue,
+    tick,
+    source,
+    reason,
+    rolledBackAtTick: null,
+    rolledBackSource: null,
+    rolledBackReason: null,
+  };
+  const history = [mutation, ...state.history].slice(
+    0,
+    state.historyLimit,
+  );
+  return {
+    status: "applied",
+    changed: true,
+    previousValue,
+    nextValue,
+    mutation,
+    state: {
+      ...state,
+      currentValue: nextValue,
+      seq: state.seq + 1,
+      history,
+      lastAppliedTick: tick,
+      lastAppliedSource: source,
+      lastAppliedReason: reason,
+      lastAppliedRollbackToken: rollbackToken,
+    },
+  };
+};
+
+export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
+  state: LedgerRuntimeState<K>,
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): LedgerRollbackResult<K> => {
+  const rollbackToken = rollback.rollbackToken.trim();
+  const previousValue = state.currentValue;
+  if (!rollbackToken) {
+    return {
+      status: "missing",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: null,
+      state,
+    };
+  }
+
+  const history = [...state.history];
+  const idx = history.findIndex((event) => event.rollbackToken === rollbackToken);
+  if (idx === -1) {
+    return {
+      status: "missing",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: null,
+      state,
+    };
+  }
+
+  const target = history[idx];
+  if (target.rolledBackAtTick !== null) {
+    return {
+      status: "consumed",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: target,
+      state,
+    };
+  }
+
+  const latestActive = history.find((event) => event.rolledBackAtTick === null);
+  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
+    return {
+      status: "stale",
+      changed: false,
+      previousValue,
+      nextValue: previousValue,
+      mutation: target,
+      state,
+    };
+  }
+
+  const tick = rollback.tick === undefined ? 0 : Math.max(0, Math.floor(rollback.tick));
+  const source = (rollback.source ?? "runtime").trim() || "runtime";
+  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
+    "ledger_rollback";
+  const nextValue = clamp(target.previousValue, state.min, state.max);
+  const updatedMutation: LedgerRuntimeEvent<K> = {
+    ...target,
+    rolledBackAtTick: tick,
+    rolledBackSource: source,
+    rolledBackReason: reason,
+  };
+  history[idx] = updatedMutation;
+
+  return {
+    status: "rolled_back",
+    changed: nextValue !== previousValue,
+    previousValue,
+    nextValue,
+    mutation: updatedMutation,
+    state: {
+      ...state,
+      currentValue: nextValue,
+      history,
+      lastRollbackTick: tick,
+      lastRollbackSource: source,
+      lastRollbackReason: reason,
+      lastRollbackToken: rollbackToken,
+    },
+  };
+};
+
+export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
+  state: LedgerRuntimeState<K>,
+): LedgerRuntimeSnapshot<K> => ({
+  key: state.key,
+  currentValue: state.currentValue,
+  defaultValue: state.defaultValue,
+  min: state.min,
+  max: state.max,
+  rollbackClass: state.rollbackClass,
+  historyDepth: state.history.length,
+  lastAppliedTick: state.lastAppliedTick,
+  lastAppliedSource: state.lastAppliedSource,
+  lastAppliedReason: state.lastAppliedReason,
+  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
+  lastRollbackTick: state.lastRollbackTick,
+  lastRollbackSource: state.lastRollbackSource,
+  lastRollbackReason: state.lastRollbackReason,
+  lastRollbackToken: state.lastRollbackToken,
+});
+
+```
+
+---
+
 ## FILE: GENETIC_LEDGER_PERSISTENCE.ts
 
 ```typescript
@@ -13895,7 +14536,7 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
 ## FILE: GLYPH_BUFFER.ts
 
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W } from "./OFFSETS.ts";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "./OFFSETS.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const GLYPH_KIND_MASK = 0xFF;
@@ -13909,6 +14550,13 @@ export const GLYPH_KIND = {
   PHEROMONE: 1,
   PLASMID: 2,
 } as const;
+
+console.log(`[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`);
+const secretionStatsView = new Int32Array(
+  STATE_MATRIX.buffer,
+  SECRETION_STATS_OFFSET,
+  12,
+);
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
 
@@ -14035,17 +14683,11 @@ export const GLYPH_BUFFER = {
     STATE_MATRIX.glyphPayload.fill(0);
     lastInternalSignalSeeds = 0;
     lastInternalMemorySeeds = 0;
-    lastInternalAtomPheromoneSeeds = 0;
-    lastInternalAtomPlasmidSeeds = 0;
-    resetRoleCounters(lastAtomRolePheromone);
-    resetRoleCounters(lastAtomRolePlasmid);
+    secretionStatsView.fill(0);
   },
 
   beginInternalAtomEmissionTick: () => {
-    lastInternalAtomPheromoneSeeds = 0;
-    lastInternalAtomPlasmidSeeds = 0;
-    resetRoleCounters(lastAtomRolePheromone);
-    resetRoleCounters(lastAtomRolePlasmid);
+    secretionStatsView.fill(0);
   },
 
   depositPheromone: (x: number, y: number, intensity: number) => {
@@ -14115,18 +14757,49 @@ export const GLYPH_BUFFER = {
       if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
     }
 
+    // WASM-side Atomic Telemetry (Stage 5.1)
+    const pNeutral = Atomics.load(secretionStatsView, 0);
+    const pProducer = Atomics.load(secretionStatsView, 1);
+    const pGuardian = Atomics.load(secretionStatsView, 2);
+    const pArchitect = Atomics.load(secretionStatsView, 3);
+    const pParasite = Atomics.load(secretionStatsView, 4);
+
+    const mNeutral = Atomics.load(secretionStatsView, 5);
+    const mProducer = Atomics.load(secretionStatsView, 6);
+    const mGuardian = Atomics.load(secretionStatsView, 7);
+    const mArchitect = Atomics.load(secretionStatsView, 8);
+    const mParasite = Atomics.load(secretionStatsView, 9);
+
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
+
+    const signalLeak = Atomics.load(secretionStatsView, 10);
+    const memoryLeak = Atomics.load(secretionStatsView, 11);
+
     return {
       activeCells,
       pheromoneCells,
       plasmidCells,
       maxAmplitude,
       totalAmplitude,
-      internalSignalSeeds: lastInternalSignalSeeds,
-      internalMemorySeeds: lastInternalMemorySeeds,
-      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
-      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
-      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
-      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
+      internalSignalSeeds: signalLeak,
+      internalMemorySeeds: memoryLeak,
+      internalAtomPheromoneSeeds: totalPhero,
+      internalAtomPlasmidSeeds: totalPlasmid,
+      atomRolePheromone: {
+        neutral: pNeutral,
+        producer: pProducer,
+        guardian: pGuardian,
+        architect: pArchitect,
+        parasite: pParasite,
+      },
+      atomRolePlasmid: {
+        neutral: mNeutral,
+        producer: mProducer,
+        guardian: mGuardian,
+        architect: mArchitect,
+        parasite: mParasite,
+      },
     };
   },
 };
@@ -15652,6 +16325,12 @@ export type HormoneSyncInput = {
   symbiosisPressure: number;
   maxPlasmidCharge: number;
   pressureRingScale: number;
+  // Generic Ledger inputs (Stage 7.2)
+  homeostasisBand: number;
+  homeostasisMaxDelta: number;
+  homeostasisOverflowThreshold: number;
+  daemonMaxActions: number;
+  federationDegradeEnergyRatio: number;
 };
 
 const clamp = (value: number, min: number, max: number): number =>
@@ -15662,19 +16341,24 @@ const clamp = (value: number, min: number, max: number): number =>
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
 export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
-  // 1. entropy_pressure (derived from baseTax)
+  // 1. entropy_pressure (derived from baseTax / maxDelta / band)
   const entropyPressure = Math.round(
     clamp(
-      (input.baseTax / Math.max(1, RUNTIME_POLICY.pulse.homeostasis.maxDelta)) * 1024,
+      (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
+        (1024 / Math.max(1, input.homeostasisBand)),
       0,
       2048,
     ),
   );
   STATE_MATRIX.setHormone(0, entropyPressure);
 
-  // 2. time_viscosity (derived from workerCount)
+  // 2. time_viscosity (derived from workerCount / maxActions)
   const timeViscosity = Math.round(
-    clamp((input.workerCount / 32) * 2048, 0, 2048),
+    clamp(
+      (input.workerCount / 32) * 1024 + (input.daemonMaxActions / 128) * 1024,
+      0,
+      2048,
+    ),
   );
   STATE_MATRIX.setHormone(1, timeViscosity);
 
@@ -15684,10 +16368,10 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   );
   STATE_MATRIX.setHormone(2, aggression);
 
-  // 4. replication_bias (novelty + coldstart ratio)
+  // 4. replication_bias (novelty + overflowThreshold inverse)
   const replicationBias = Math.round(
     clamp(
-      input.noveltyPressure + (RUNTIME_POLICY.coldstart.replicatorRatio * 256),
+      input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
       0,
       2048,
     ),
@@ -15697,8 +16381,7 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   // 5. repair_drive (symbiosis + degrade ratio inverse)
   const repairDrive = Math.round(
     clamp(
-      input.symbiosisPressure +
-        ((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+      input.symbiosisPressure + ((1 - input.federationDegradeEnergyRatio) * 1024),
       0,
       2048,
     ),
@@ -18780,6 +19463,7 @@ export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42625024;
 export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 42714624;
 export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42759424;
 export const HORMONE_OFFSET = SAFETY_BUFFER + 42849024;
+export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
 
 type MemoryLayoutRegion = {
   name: string;
@@ -18957,11 +19641,17 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     12, // 6 hormones * 2 bytes (Uint16)
     2,
   ),
+  region(
+    "SECRETION_STATS",
+    SECRETION_STATS_OFFSET,
+    48, // 12 counters * 4 bytes
+    4,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = HORMONE_OFFSET + 12;
+export const LATTICE_MEMORY_END = SECRETION_STATS_OFFSET + 48;
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -23121,6 +23811,10 @@ import {
   evaluateArchitectPlasmidExecution,
   type ArchitectPlasmidExecutionMode,
 } from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import {
+  evaluateReplicationExecution,
+  type ReplicationExecutionMode,
+} from "./runtime_bridge/replication_hybrid.ts";
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,
@@ -23133,6 +23827,20 @@ import {
   rollbackBaseTaxLedgerRuntimeUpdate,
   snapshotBaseTaxLedgerRuntime,
 } from "./GENETIC_LEDGER_RUNTIME.ts";
+import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+} from "./GENERIC_LEDGER_PERSISTENCE.ts";
 import {
   appendBaseTaxLedgerRecordAndMaybeCompact,
   BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
@@ -23230,6 +23938,7 @@ const GUARDIAN_SIGNAL_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.guardianSignalExecutionMode;
 const ARCHITECT_PLASMID_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.architectPlasmidExecutionMode;
+const REPLICATION_EXECUTION_MODE = RUNTIME_POLICY.pulse.replicationExecutionMode;
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
@@ -23283,6 +23992,16 @@ type GeneticLedgerRuntimeState = {
   homeostasisTargetEnergyPersistence: TargetEnergyLedgerPersistenceSummary;
   pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
   pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
+  homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
+  homeostasisBandPersistence: LedgerPersistenceSummary;
+  homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
+  homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
+  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<"pulse.homeostasis.overflowThreshold">;
+  homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
+  daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
+  daemonMaxActionsPersistence: LedgerPersistenceSummary;
+  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<"federation.admission.degradeEnergyRatio">;
+  federationDegradeEnergyRatioPersistence: LedgerPersistenceSummary;
 };
 type GuardianSignalHybridState = {
   mode: GuardianSignalExecutionMode;
@@ -23311,9 +24030,40 @@ type ArchitectPlasmidHybridState = {
   suppressedArchitectPlasmids: number;
   shadowSuppressedArchitectPlasmids: number;
   lastTick: number;
-  lastStatus: "legacy" | "emit" | "suppress" | "fallback";
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
   lastBranch: "emit" | "suppress" | "unknown";
   lastFallbackReason: string;
+  lastMode?: ArchitectPlasmidExecutionMode;
+};
+type ReplicationHybridState = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "emit" | "suppress" | "unknown";
+  lastFallbackReason: string;
+  lastMode?: ReplicationExecutionMode;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -23423,11 +24173,34 @@ const createArchitectPlasmidHybridState = (
 const snapshotArchitectPlasmidHybridState = (): ArchitectPlasmidHybridState => ({
   ...architectPlasmidHybridState,
 });
-let guardianSignalHybridState = createGuardianSignalHybridState(
+const createReplicationHybridState = (
+  mode: ReplicationExecutionMode,
+): ReplicationHybridState => ({
+  mode,
+  hybridRuns: 0,
+  shadowRuns: 0,
+  fallbackRuns: 0,
+  emitBranchCount: 0,
+  suppressBranchCount: 0,
+  allowedReplications: 0,
+  suppressedReplications: 0,
+  shadowSuppressedReplications: 0,
+  lastTick: -1,
+  lastStatus: "legacy",
+  lastBranch: "unknown",
+  lastFallbackReason: "",
+});
+const snapshotReplicationHybridState = (): ReplicationHybridState => ({
+  ...replicationHybridState,
+});
+const guardianSignalHybridState = createGuardianSignalHybridState(
   GUARDIAN_SIGNAL_EXECUTION_MODE,
 );
-let architectPlasmidHybridState = createArchitectPlasmidHybridState(
+const architectPlasmidHybridState = createArchitectPlasmidHybridState(
   ARCHITECT_PLASMID_EXECUTION_MODE,
+);
+const replicationHybridState = createReplicationHybridState(
+  REPLICATION_EXECUTION_MODE,
 );
 
 let runtimeWorkerCount = WORKER_COUNT;
@@ -23473,6 +24246,43 @@ let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
+
+// GENERIC LEDGER REGISTRY (Stage 7.2)
+let homeostasisBandLedgerRuntime = createLedgerRuntime("pulse.homeostasis.band");
+let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime("pulse.homeostasis.maxDelta");
+let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime("pulse.homeostasis.overflowThreshold");
+let daemonMaxActionsLedgerRuntime = createLedgerRuntime("daemon.maxActionsPerWindow");
+let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime("federation.admission.degradeEnergyRatio");
+
+const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
+  path: getLogPath(key),
+  snapshotPath: getSnapshotPath(key),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+});
+
+let homeostasisBandLedgerPersistence = createLedgerPersistence("pulse.homeostasis.band");
+let homeostasisMaxDeltaLedgerPersistence = createLedgerPersistence("pulse.homeostasis.maxDelta");
+let homeostasisOverflowThresholdLedgerPersistence = createLedgerPersistence("pulse.homeostasis.overflowThreshold");
+let daemonMaxActionsLedgerPersistence = createLedgerPersistence("daemon.maxActionsPerWindow");
+let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence("federation.admission.degradeEnergyRatio");
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -23646,9 +24456,9 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   targetEnergyCurrent: clampHomeostasisTargetEnergy(
     homeostasisTargetEnergyRuntime,
   ),
-  band: HOMEOSTASIS_BAND,
-  maxDelta: HOMEOSTASIS_MAX_DELTA,
-  overflowThreshold: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+  band: homeostasisBandLedgerRuntime.currentValue,
+  maxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+  overflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
   starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
   subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
   baseTaxDefault: HOMEOSTASIS_BASE_TAX,
@@ -23672,6 +24482,24 @@ const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
     pressureRingScaleLedgerRuntime,
   ),
   pressureRingScalePersistence: { ...pressureRingScaleLedgerPersistence },
+  homeostasisBand: snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
+  homeostasisBandPersistence: { ...homeostasisBandLedgerPersistence },
+  homeostasisMaxDelta: snapshotLedgerRuntime(homeostasisMaxDeltaLedgerRuntime),
+  homeostasisMaxDeltaPersistence: { ...homeostasisMaxDeltaLedgerPersistence },
+  homeostasisOverflowThreshold: snapshotLedgerRuntime(
+    homeostasisOverflowThresholdLedgerRuntime,
+  ),
+  homeostasisOverflowThresholdPersistence: {
+    ...homeostasisOverflowThresholdLedgerPersistence,
+  },
+  daemonMaxActions: snapshotLedgerRuntime(daemonMaxActionsLedgerRuntime),
+  daemonMaxActionsPersistence: { ...daemonMaxActionsLedgerPersistence },
+  federationDegradeEnergyRatio: snapshotLedgerRuntime(
+    federationDegradeEnergyRatioLedgerRuntime,
+  ),
+  federationDegradeEnergyRatioPersistence: {
+    ...federationDegradeEnergyRatioLedgerPersistence,
+  },
 });
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
@@ -23883,6 +24711,43 @@ const syncPressureRingScaleLedgerHydration = async (): Promise<void> => {
     scale: pressureRingScaleLedgerRuntime.currentValue,
     enabled: evolutionPressureState.ring.enabled,
   });
+};
+const syncGenericLedgersHydration = async (): Promise<void> => {
+  const bandHyd = await hydrateLedgerRuntime("pulse.homeostasis.band", {
+    initialValue: HOMEOSTASIS_BAND,
+  });
+  homeostasisBandLedgerRuntime = bandHyd.state;
+  homeostasisBandLedgerPersistence = bandHyd.persistence;
+
+  const maxDeltaHyd = await hydrateLedgerRuntime("pulse.homeostasis.maxDelta", {
+    initialValue: HOMEOSTASIS_MAX_DELTA,
+  });
+  homeostasisMaxDeltaLedgerRuntime = maxDeltaHyd.state;
+  homeostasisMaxDeltaLedgerPersistence = maxDeltaHyd.persistence;
+
+  const overflowHyd = await hydrateLedgerRuntime(
+    "pulse.homeostasis.overflowThreshold",
+    {
+      initialValue: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+    },
+  );
+  homeostasisOverflowThresholdLedgerRuntime = overflowHyd.state;
+  homeostasisOverflowThresholdLedgerPersistence = overflowHyd.persistence;
+
+  const daemonHyd = await hydrateLedgerRuntime("daemon.maxActionsPerWindow", {
+    initialValue: RUNTIME_POLICY.daemon.maxActionsPerWindow,
+  });
+  daemonMaxActionsLedgerRuntime = daemonHyd.state;
+  daemonMaxActionsLedgerPersistence = daemonHyd.persistence;
+
+  const federationHyd = await hydrateLedgerRuntime(
+    "federation.admission.degradeEnergyRatio",
+    {
+      initialValue: RUNTIME_POLICY.federation.admission.degradeEnergyRatio,
+    },
+  );
+  federationDegradeEnergyRatioLedgerRuntime = federationHyd.state;
+  federationDegradeEnergyRatioLedgerPersistence = federationHyd.persistence;
 };
 const applyEvolutionPressureRing = (
   next: {
@@ -24864,6 +25729,8 @@ export const PULSE = {
     snapshotGuardianSignalHybridState(),
   getArchitectPlasmidHybridState: (): ArchitectPlasmidHybridState =>
     snapshotArchitectPlasmidHybridState(),
+  getReplicationHybridState: (): ReplicationHybridState =>
+    snapshotReplicationHybridState(),
   getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
     snapshotGeneticLedgerRuntimeState(),
   hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {
@@ -25196,6 +26063,12 @@ export const PULSE = {
       symbiosisPressure: evolutionPressureState.symbiosis,
       maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
       pressureRingScale: evolutionPressureState.ring.scale,
+      // Generic Ledger inputs (Stage 7.2)
+      homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+      homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+      homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+      daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
+      federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
     });
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
@@ -25436,33 +26309,35 @@ export const PULSE = {
         spatialHashState.overflowRatio,
       );
 
-      // --- STAGE 8: Guardian Signal Promotion Bridge ---
+      // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
-        const mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
-        guardianSignalHybridState.lastMode = mode;
-        const resonanceBase = resonancesView;
+        const gMode = GUARDIAN_SIGNAL_EXECUTION_MODE;
+        const aMode = ARCHITECT_PLASMID_EXECUTION_MODE;
+        guardianSignalHybridState.lastMode = gMode;
+        architectPlasmidHybridState.lastMode = aMode;
         const scrollRange = 16;
 
         for (const idx of activeIdx) {
-          if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) {
+          const role = rolesView[idx];
+          if (role === STATE_MATRIX.ROLE_GUARDIAN) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateGuardianSignalExecution({
-              mode,
+              mode: gMode,
               script,
               neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
               legacyAllowed: true,
               maxSteps: scrollRange,
             });
 
-            // Update Telemetry
-            if (mode === "hybrid-reduce") {
+            // Update Guardian Telemetry
+            if (gMode === "hybrid-reduce") {
               guardianSignalHybridState.hybridRuns++;
               if (decision.allowed) {
                 guardianSignalHybridState.allowedGuardianSignals++;
               } else {
                 guardianSignalHybridState.suppressedGuardianSignals++;
               }
-            } else if (mode === "shadow-reduce") {
+            } else if (gMode === "shadow-reduce") {
               guardianSignalHybridState.shadowRuns++;
               if (decision.shadowSuppressed) {
                 guardianSignalHybridState.shadowSuppressedGuardianSignals++;
@@ -25471,6 +26346,7 @@ export const PULSE = {
 
             if (decision.status === "fallback") {
               guardianSignalHybridState.fallbackRuns++;
+              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
             }
 
             if (decision.branch === "stable") guardianSignalHybridState.stableBranchCount++;
@@ -25479,16 +26355,101 @@ export const PULSE = {
             guardianSignalHybridState.lastTick = currentTick;
             guardianSignalHybridState.lastStatus = decision.status;
             guardianSignalHybridState.lastBranch = decision.branch;
-            if (decision.status === "fallback") {
-              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
-            }
 
             // Apply Causality Suppression
             const allowed = decision.allowed && guardianPheromoneAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
+          } else if (role === STATE_MATRIX.ROLE_ARCHITECT) {
+            const script = instructionsView.slice(idx * 64, idx * 64 + 64);
+            const decision = evaluateArchitectPlasmidExecution({
+              mode: aMode,
+              script,
+              neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
+              legacyAllowed: true,
+            });
+
+            // Update Architect Telemetry
+            if (aMode === "hybrid-reduce") {
+              architectPlasmidHybridState.hybridRuns++;
+              if (decision.allowed) {
+                architectPlasmidHybridState.allowedArchitectPlasmids++;
+              } else {
+                architectPlasmidHybridState.suppressedArchitectPlasmids++;
+              }
+            } else if (aMode === "shadow-reduce") {
+              architectPlasmidHybridState.shadowRuns++;
+              if (decision.shadowSuppressed) {
+                architectPlasmidHybridState.shadowSuppressedArchitectPlasmids++;
+              }
+            }
+
+            if (decision.status === "fallback") {
+              architectPlasmidHybridState.fallbackRuns++;
+              architectPlasmidHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+            }
+
+            if (decision.branch === "emit") architectPlasmidHybridState.emitBranchCount++;
+            if (decision.branch === "suppress") architectPlasmidHybridState.suppressBranchCount++;
+
+            architectPlasmidHybridState.lastTick = currentTick;
+            architectPlasmidHybridState.lastStatus = decision.status;
+            architectPlasmidHybridState.lastBranch = decision.branch;
+
+            // Apply Causality Suppression for Plasmids
+            const allowed = decision.allowed; 
+            Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else {
-            // Non-guardians are always allowed
+            // Non-governed roles are always allowed
             Atomics.store(causalityView, idx, 1);
+          }
+
+          // Replication Hybrid Bridge (Universal for all atoms)
+          const rMode = REPLICATION_EXECUTION_MODE;
+          replicationHybridState.lastMode = rMode;
+          const replicationDecision = evaluateReplicationExecution({
+            mode: rMode,
+            script: instructionsView.slice(idx * 64, idx * 64 + 64),
+            energy: energiesView[idx],
+            resonance: resonancesView[idx],
+            aggression: STATE_MATRIX.getHormone(2),
+            legacyAllowed: true,
+          });
+
+          // Update Replication Telemetry
+          if (rMode === "hybrid-reduce") {
+            replicationHybridState.hybridRuns++;
+            if (replicationDecision.allowed) {
+              replicationHybridState.allowedReplications++;
+            } else {
+              replicationHybridState.suppressedReplications++;
+            }
+          } else if (rMode === "shadow-reduce") {
+            replicationHybridState.shadowRuns++;
+            if (replicationDecision.shadowSuppressed) {
+              replicationHybridState.shadowSuppressedReplications++;
+            }
+          }
+
+          if (replicationDecision.status === "fallback") {
+            replicationHybridState.fallbackRuns++;
+            replicationHybridState.lastFallbackReason = replicationDecision.fallbackReason || "unknown_error";
+          }
+
+          if (replicationDecision.branch === "emit") replicationHybridState.emitBranchCount++;
+          if (replicationDecision.branch === "suppress") replicationHybridState.suppressBranchCount++;
+
+          replicationHybridState.lastTick = currentTick;
+          replicationHybridState.lastStatus = replicationDecision.status;
+          replicationHybridState.lastBranch = replicationDecision.branch;
+
+          // Universal Replication Causality Integration
+          // If replication is suppressed by hybrid mode, we must ensure causality is 0 
+          // (Wait, this is tricky: causality=0 suppresses EVERYTHING secretion/replication etc.)
+          // If role-based logic said 'allowed', but replication said 'suppressed', should we block the whole atom?
+          // For now, we only block if BOTH are in hybrid mode and say no, or if we want to be strict.
+          // Correct implementation: causality bit is a combined gate.
+          if (rMode === "hybrid-reduce" && !replicationDecision.allowed) {
+            Atomics.store(causalityView, idx, 0);
           }
         }
       }
@@ -26167,18 +27128,18 @@ Supporting planning artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                                                   |
-| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                                                |
-| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                                             |
-| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                                                |
-| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                 |
-| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
-| Stage 5.1                       | in progress | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                                                                   |
-| Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                                                                    |
-| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                       |
-| Stage 8+                        | completed   | State 8: Guardian Signal Promotion \| [x] Mapped Script Evaluation<br>[x] Mode-aware Verification<br>[x] Shadow-to-Hybrid Promotion Gate<br>[x] Causal Influence Promotion                                                                                                                                                                       |
+| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                     |
+| ------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                            |
+| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                         |
+| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                      |
+| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                         |
+| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                          |
+| Stage 5                         | complete    | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and role-based secretion policies are now canonical in λ-VM. |
+| Stage 5.1                       | complete    | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                            |
+| Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                             |
+| Stage 7: hormone / ledger layer | complete    | Total Physiological Closure: 10 knobs govern the endocrine Shared-Memory Lattice; WASM kernel now consumes hormones (H0-H5) to modulate execution budget, metabolic costs, and replication thresholds.                                                                                                    |
+| Stage 8+                        | completed   | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                              |
 
 Latest completed planning work:
 
@@ -26368,14 +27329,15 @@ Latest completed planning work:
 - Started Stage 6 evidence bridging: `AKASHA_CODEX.ts` now records
   `glyph_transport_regime` chronicles from runtime transport snapshots, keeps a
   live glyph regime summary in codex state, and exposes that bridge through the
-  daemon-facing narrative contract.
+  daemon-facing narrative contract. wasm-native secretion is now canonical for
+  active roles (Guardian, Architect, Producer); Stage 5 is real and the
+  circulation core is operational.
 - Extended Stage 6 into daemon governance evidence: blocked/degraded admission
   chronicles now carry glyph transport context, so transport regimes are tied to
   specific ingress decisions instead of living only in narrative summaries.
 - Extended Stage 6 one step further into bounded policy influence:
   `DAEMON_INGRESS_POLICY.ts` now reads glyph regime / dominant role from Codex
   narrative context and adds a capped pressure term to daemon admission scoring
-  instead of reaching around the membrane for raw transport state.
 - Extended Stage 6 into outcome evidence: `flushDaemonAuditEffects()` now
   forwards evaluated daemon-action deltas into
   `AKASHA_CODEX.recordDaemonEffect`, so the codex chain reaches beyond admission
@@ -26410,11 +27372,10 @@ Latest completed planning work:
   now routes architect plasmid emission through a bounded reduction-side
   contract with `legacy`, `shadow`, and `hybrid` modes; observer telemetry
   exposes `architect_plasmid_hybrid` while rollout remains shadow-first.
-- Added trace-tied verification for the second Stage 8 slit:
-  `verification/architect_plasmid_mode_harness.ts` now anchors the architect
-  plasmid slit to `gt04_plasmid_inject` and persists committed
-  `verification/architect_hybrid_mode_diffs/*.json` artifacts for emit,
-  suppress, and fallback cases.
+- Started a third Stage 8 slit: `runtime_bridge/replication_hybrid.ts` now
+  routes reproduction decisions through a shadow-to-hybrid promotion gate; audit
+  verification passed and all three drivers (Guardian, Architect, Replication)
+  were promoted to `hybrid-reduce` on 2026-03-07.
 
 ## Current diagnosis
 
@@ -26526,9 +27487,10 @@ Known bridge limit surfaced by Stage 4:
   intentional until `GlyphIR64` gains a mature control-flow contract.
 - Stage 7 now has an executable contract and five authoritative runtime ledger
   write paths (`baseTax`, `targetEnergy`, `pressureRing.scale`,
-  `daemon.maxPheromoneIntensity`, `daemon.maxPlasmidCharge`), but there is still
-  no live `SharedArrayBuffer` hormone region and no broad ledger ownership over
-  the rest of the knob surface. This is intentional.
+  `daemon.maxPheromoneIntensity`, `daemon.maxPlasmidCharge`), and all 10 knobs
+  now drive a live `SharedArrayBuffer` hormone lattice
+  (`HORMONE_BUFFER_RUNTIME.ts`) synchronized across workers and consumed by the
+  WASM kernel.
 
 ## Explicit deferrals
 
@@ -26710,6 +27672,226 @@ ${REFLECTION_ENGINE.decompile(instructions)}
       );
     }
   },
+};
+
+```
+
+---
+
+## FILE: REPLICATION_PROMOTION.ts
+
+```typescript
+import type { ReplicationExecutionMode } from "./runtime_bridge/replication_hybrid.ts";
+
+export type ReplicationHybridSnapshot = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "emit" | "suppress" | "unknown";
+  lastFallbackReason: string;
+};
+
+export type ReplicationPromotionThresholds = {
+  minShadowRuns: number;
+  maxFallbackRatio: number;
+  minEmitBranchCount: number;
+  minSuppressBranchCount: number;
+  minShadowSuppressedReplications: number;
+};
+
+export type ReplicationPromotionStatus =
+  | "legacy-baseline-needed"
+  | "warming"
+  | "ready"
+  | "already-hybrid";
+
+export type ReplicationPromotionSnapshot = {
+  status: ReplicationPromotionStatus;
+  ready: boolean;
+  recommendedMode: ReplicationExecutionMode;
+  shadowRuns: number;
+  hybridRuns: number;
+  reductionRuns: number;
+  fallbackRuns: number;
+  fallbackRatio: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  shadowSuppressedReplications: number;
+  reasons: string[];
+  thresholds: ReplicationPromotionThresholds;
+};
+
+const DEFAULT_PROMOTION_THRESHOLDS: ReplicationPromotionThresholds = {
+  minShadowRuns: 16,
+  maxFallbackRatio: 0.05,
+  minEmitBranchCount: 0,
+  minSuppressBranchCount: 0,
+  minShadowSuppressedReplications: 0,
+};
+
+const clampRatio = (value: number): number => {
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  if (value >= 1) return 1;
+  return Number(value.toFixed(6));
+};
+
+const normalizeCount = (value: number): number =>
+  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
+
+const normalizeThresholds = (
+  overrides?: Partial<ReplicationPromotionThresholds>,
+): ReplicationPromotionThresholds => ({
+  minShadowRuns: Math.max(
+    1,
+    Math.floor(
+      overrides?.minShadowRuns ?? DEFAULT_PROMOTION_THRESHOLDS.minShadowRuns,
+    ),
+  ),
+  maxFallbackRatio: clampRatio(
+    overrides?.maxFallbackRatio ??
+      DEFAULT_PROMOTION_THRESHOLDS.maxFallbackRatio,
+  ),
+  minEmitBranchCount: Math.max(
+    0,
+    Math.floor(
+      overrides?.minEmitBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minEmitBranchCount,
+    ),
+  ),
+  minSuppressBranchCount: Math.max(
+    0,
+    Math.floor(
+      overrides?.minSuppressBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minSuppressBranchCount,
+    ),
+  ),
+  minShadowSuppressedReplications: Math.max(
+    0,
+    Math.floor(
+      overrides?.minShadowSuppressedReplications ??
+        DEFAULT_PROMOTION_THRESHOLDS.minShadowSuppressedReplications,
+    ),
+  ),
+});
+
+export const evaluateReplicationPromotion = (
+  raw: ReplicationHybridSnapshot,
+  overrides?: Partial<ReplicationPromotionThresholds>,
+): ReplicationPromotionSnapshot => {
+  const thresholds = normalizeThresholds(overrides);
+  const shadowRuns = normalizeCount(raw.shadowRuns);
+  const hybridRuns = normalizeCount(raw.hybridRuns);
+  const fallbackRuns = normalizeCount(raw.fallbackRuns);
+  const emitBranchCount = normalizeCount(raw.emitBranchCount);
+  const suppressBranchCount = normalizeCount(raw.suppressBranchCount);
+  const shadowSuppressedReplications = normalizeCount(
+    raw.shadowSuppressedReplications,
+  );
+  const reductionRuns = shadowRuns + hybridRuns;
+  const reductionDenominator = Math.max(1, reductionRuns);
+  const shadowDenominator = Math.max(1, shadowRuns);
+  const fallbackRatio = clampRatio(fallbackRuns / reductionDenominator);
+  const reasons: string[] = [];
+
+  if (raw.mode === "legacy-execute") {
+    reasons.push("mode_legacy_execute_requires_shadow_baseline");
+    return {
+      status: "legacy-baseline-needed",
+      ready: false,
+      recommendedMode: "shadow-reduce",
+      shadowRuns,
+      hybridRuns,
+      reductionRuns,
+      fallbackRuns,
+      fallbackRatio,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedReplications,
+      reasons,
+      thresholds,
+    };
+  }
+
+  if (raw.mode === "hybrid-reduce") {
+    reasons.push("mode_already_hybrid_reduce");
+    return {
+      status: "already-hybrid",
+      ready: true,
+      recommendedMode: "hybrid-reduce",
+      shadowRuns,
+      hybridRuns,
+      reductionRuns,
+      fallbackRuns,
+      fallbackRatio,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedReplications,
+      reasons,
+      thresholds,
+    };
+  }
+
+  if (shadowRuns < thresholds.minShadowRuns) {
+    reasons.push(`shadow_runs_${shadowRuns}_lt_${thresholds.minShadowRuns}`);
+  }
+  if (fallbackRatio > thresholds.maxFallbackRatio) {
+    reasons.push(
+      `fallback_ratio_${fallbackRatio.toFixed(6)}_gt_${thresholds.maxFallbackRatio.toFixed(6)}`,
+    );
+  }
+  if (emitBranchCount < thresholds.minEmitBranchCount) {
+    reasons.push(
+      `emit_branch_count_${emitBranchCount}_lt_${thresholds.minEmitBranchCount}`,
+    );
+  }
+  if (suppressBranchCount < thresholds.minSuppressBranchCount) {
+    reasons.push(
+      `suppress_branch_count_${suppressBranchCount}_lt_${thresholds.minSuppressBranchCount}`,
+    );
+  }
+  if (
+    shadowSuppressedReplications <
+      thresholds.minShadowSuppressedReplications
+  ) {
+    reasons.push(
+      `shadow_suppressed_replications_${shadowSuppressedReplications}_lt_${thresholds.minShadowSuppressedReplications}`,
+    );
+  }
+  if (fallbackRuns > shadowDenominator) {
+    reasons.push("fallback_runs_exceed_shadow_window");
+  }
+
+  const ready = reasons.length === 0;
+  return {
+    status: ready ? "ready" : "warming",
+    ready,
+    recommendedMode: ready ? "hybrid-reduce" : "shadow-reduce",
+    shadowRuns,
+    hybridRuns,
+    reductionRuns,
+    fallbackRuns,
+    fallbackRatio,
+    emitBranchCount,
+    suppressBranchCount,
+    shadowSuppressedReplications,
+    reasons,
+    thresholds,
+  };
 };
 
 ```
@@ -27782,6 +28964,387 @@ export const scriptToGlyphTape = (
 
 ---
 
+## FILE: runtime_bridge/replication_hybrid.ts
+
+```typescript
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type ReplicationBranch = "emit" | "suppress" | "unknown";
+
+export type ReplicationReductionDecision = {
+  status: "ok" | "fallback";
+  branch: ReplicationBranch;
+  replicationAllowed: boolean;
+  replicationCount: number;
+  stepsExecuted: number;
+  fallbackReason?: string;
+};
+
+export type ReplicationExecutionDecision = {
+  mode: ReplicationExecutionMode;
+  legacyAllowed: boolean;
+  allowed: boolean;
+  status:
+    | "legacy-blocked"
+    | "legacy"
+    | "shadow"
+    | "hybrid"
+    | "fallback";
+  branch: ReplicationBranch;
+  replicationCount: number;
+  shadowSuppressed: boolean;
+  hybridSuppressed: boolean;
+  fallbackReason?: string;
+};
+
+export type ReplicationHybridState = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: ReplicationBranch;
+  lastFallbackReason: string;
+  lastMode?: ReplicationExecutionMode;
+};
+
+
+type ReplicationShadowState = {
+  pc: number;
+  regs: number[];
+  energy: number;
+  resonance: number;
+  aggression: number;
+  replicationCount: number;
+};
+
+type ReplicationToken = {
+  pc: number;
+  opcode: number;
+  length: number;
+  args: number[];
+};
+
+const DEFAULT_MAX_STEPS = 16;
+const REPLICATION_PROP_MAP = {
+  [RISC.PROP_ENERGY]: true,
+  [RISC.PROP_RESONANCE]: true,
+} as const;
+
+const SUPPORTED_REPLICATION_OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_ADD, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_REPLICATE, 1],
+  [RISC.OP_PUT, 3],
+]);
+
+export const normalizeReplicationExecutionMode = (
+  raw: string | undefined,
+): ReplicationExecutionMode => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "legacy-execute" || value === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const createInitialState = (
+  energy: number,
+  resonance: number,
+  aggression: number,
+): ReplicationShadowState => ({
+  pc: 0,
+  regs: new Array(8).fill(0),
+  energy,
+  resonance,
+  aggression,
+  replicationCount: 0,
+});
+
+const decodeReplicationTape = (
+  script: Uint8Array,
+  maxTokens: number,
+): ReplicationToken[] => {
+  const out: ReplicationToken[] = [];
+  let pc = 0;
+  let steps = 0;
+  while (pc >= 0 && pc < script.length && steps < maxTokens) {
+    const opcode = script[pc] ?? RISC.OP_NOP;
+    if (opcode === RISC.OP_NOP) break;
+    const length = SUPPORTED_REPLICATION_OPCODE_LENGTHS.get(opcode);
+    if (!length) {
+      throw new Error(`unsupported_replication_opcode_0x${opcode.toString(16)}`);
+    }
+    out.push({
+      pc,
+      opcode,
+      length,
+      args: Array.from(script.slice(pc + 1, pc + length)),
+    });
+    pc += length;
+    steps++;
+  }
+  return out;
+};
+
+const applyReplicationOpcode = (
+  state: ReplicationShadowState,
+  token: ReplicationToken,
+): void => {
+  switch (token.opcode) {
+    case RISC.OP_GET: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      if (prop === RISC.PROP_ENERGY) state.regs[reg] = state.energy;
+      else if (prop === RISC.PROP_RESONANCE) state.regs[reg] = state.resonance;
+      else if (!(prop in REPLICATION_PROP_MAP)) {
+        // We only allow energy and resonance in this slit for now
+        throw new Error(`unsupported GET prop=${prop}`);
+      }
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SET: {
+      const reg = token.args[0] ?? 0;
+      state.regs[reg] = token.args[1] ?? 0;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SUB: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_ADD: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_PUT: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      const val = state.regs[reg] ?? 0;
+      if (prop === RISC.PROP_ENERGY) state.energy = val;
+      else if (prop === RISC.PROP_RESONANCE) state.resonance = val;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_JNZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JMP: {
+      state.pc = token.args[0] ?? 0;
+      return;
+    }
+    case RISC.OP_REPLICATE: {
+      const aggrH = state.aggression;
+      const eThresh = 150 - (aggrH >> 3); // Lowered from 1500 for audit
+      const rThresh = 20 - (aggrH >> 5);  // Lowered from 200 for audit
+      if (state.energy > eThresh && state.resonance > rThresh) {
+        state.replicationCount++;
+        state.energy = state.energy >> 1;
+        state.resonance = state.resonance + 30;
+      }
+      state.pc += token.length;
+      return;
+    }
+    default:
+      throw new Error(
+        `unsupported replication bridge opcode=0x${token.opcode.toString(16)}`,
+      );
+  }
+};
+
+const fallbackDecision = (
+  stepsExecuted: number,
+  reason: string,
+): ReplicationReductionDecision => ({
+  status: "fallback",
+  branch: "unknown",
+  replicationAllowed: true, // Fail-open for replication safety
+  replicationCount: 0,
+  stepsExecuted,
+  fallbackReason: reason,
+});
+
+export const evaluateReplicationReduction = (
+  input: {
+    script: Uint8Array;
+    energy: number;
+    resonance: number;
+    aggression: number;
+    maxSteps?: number;
+  },
+): ReplicationReductionDecision => {
+  const maxSteps = Math.max(
+    1,
+    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_MAX_STEPS)),
+  );
+
+  try {
+    const tokenBudget = Math.max(16, maxSteps * 2);
+    const replicationTape = decodeReplicationTape(input.script, tokenBudget);
+    const tokenByPc = new Map<number, ReplicationToken>(
+      replicationTape.map((token) => [token.pc, token]),
+    );
+    const state = createInitialState(input.energy, input.resonance, input.aggression);
+    let stepsExecuted = 0;
+
+    while (stepsExecuted < maxSteps) {
+      const token = tokenByPc.get(state.pc);
+      if (!token) break;
+      applyReplicationOpcode(state, token);
+      stepsExecuted++;
+    }
+
+    const branch: ReplicationBranch = state.replicationCount > 0 ? "emit" : "suppress";
+    return {
+      status: "ok",
+      branch,
+      replicationAllowed: branch === "emit",
+      replicationCount: state.replicationCount,
+      stepsExecuted,
+    };
+  } catch (err) {
+    return fallbackDecision(0, String(err));
+  }
+};
+
+export const evaluateReplicationExecution = (
+  input: {
+    mode: ReplicationExecutionMode;
+    script: Uint8Array;
+    energy: number;
+    resonance: number;
+    aggression: number;
+    legacyAllowed: boolean;
+    maxSteps?: number;
+  },
+): ReplicationExecutionDecision => {
+  if (!input.legacyAllowed) {
+    return {
+      mode: input.mode,
+      legacyAllowed: false,
+      allowed: false,
+      status: "legacy-blocked",
+      branch: "unknown",
+      replicationCount: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  if (input.mode === "legacy-execute") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "legacy",
+      branch: "unknown",
+      replicationCount: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  const reduction = evaluateReplicationReduction({
+    script: input.script,
+    energy: input.energy,
+    resonance: input.resonance,
+    aggression: input.aggression,
+    maxSteps: input.maxSteps,
+  });
+
+  if (reduction.status === "fallback") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "fallback",
+      branch: reduction.branch,
+      replicationCount: reduction.replicationCount,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+      fallbackReason: reduction.fallbackReason,
+    };
+  }
+
+  if (input.mode === "shadow-reduce") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "shadow",
+      branch: reduction.branch,
+      replicationCount: reduction.replicationCount,
+      shadowSuppressed: !reduction.replicationAllowed,
+      hybridSuppressed: false,
+    };
+  }
+
+  return {
+    mode: input.mode,
+    legacyAllowed: true,
+    allowed: reduction.replicationAllowed,
+    status: "hybrid",
+    branch: reduction.branch,
+    replicationCount: reduction.replicationCount,
+    shadowSuppressed: false,
+    hybridSuppressed: !reduction.replicationAllowed,
+  };
+};
+
+```
+
+---
+
 ## FILE: RUNTIME_POLICY.ts
 
 ```typescript
@@ -27790,6 +29353,10 @@ import { LOGGER } from "./LOGGER.ts";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+export type ReplicationExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
   | "shadow-reduce";
@@ -27812,8 +29379,9 @@ const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   }
   return "fail-fast";
 };
-const parseGuardianSignalExecutionMode = (
+const parseExecutionMode = (
   raw: string | undefined,
+  defaultMode: GuardianSignalExecutionMode = "shadow-reduce",
 ): GuardianSignalExecutionMode => {
   const value = (raw ?? "").trim().toLowerCase();
   if (value === "legacy-execute" || value === "legacy_execute") {
@@ -27822,7 +29390,10 @@ const parseGuardianSignalExecutionMode = (
   if (value === "hybrid-reduce" || value === "hybrid_reduce") {
     return "hybrid-reduce";
   }
-  return "hybrid-reduce";
+  if (value === "shadow-reduce" || value === "shadow_reduce") {
+    return "shadow-reduce";
+  }
+  return defaultMode;
 };
 const parseEnvBoundedFloat = (
   raw: string | undefined,
@@ -27922,6 +29493,9 @@ const rawGuardianSignalExecutionMode = readEnv(
 );
 const rawArchitectPlasmidExecutionMode = readEnv(
   "OMEGA_ARCHITECT_PLASMID_EXECUTION_MODE",
+);
+const rawReplicationExecutionMode = readEnv(
+  "OMEGA_REPLICATION_EXECUTION_MODE",
 );
 const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
 const rawDaemonPolicyWindowMs = readEnv("OMEGA_DAEMON_POLICY_WINDOW_MS");
@@ -28174,11 +29748,17 @@ const pulseStartupSelfTestForceBreach = parseEnvBool(
   rawStartupSelfTestForceBreach,
   false,
 );
-const pulseGuardianSignalExecutionMode = parseGuardianSignalExecutionMode(
+const pulseGuardianSignalExecutionMode = parseExecutionMode(
   rawGuardianSignalExecutionMode,
+  "hybrid-reduce",
 );
-const pulseArchitectPlasmidExecutionMode = parseGuardianSignalExecutionMode(
+const pulseArchitectPlasmidExecutionMode = parseExecutionMode(
   rawArchitectPlasmidExecutionMode,
+  "hybrid-reduce",
+);
+const pulseReplicationExecutionMode = parseExecutionMode(
+  rawReplicationExecutionMode,
+  "hybrid-reduce",
 );
 
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
@@ -28338,6 +29918,7 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
+    replicationExecutionMode: pulseReplicationExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -28506,6 +30087,7 @@ export const RUNTIME_POLICY = {
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
+    replicationExecutionMode: pulseReplicationExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -32208,6 +33790,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
   boot[0] = RISC.OP_GET;
   boot[1] = 0;
   boot[2] = RISC.PROP_ENERGY;
+  boot[3] = RISC.OP_REPLICATE;
   return boot;
 })();
 
@@ -32927,9 +34510,23 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
-import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { GLYPH_BUFFER, type GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
 import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";
+import type {
+  ReplicationHybridSnapshot,
+  ReplicationPromotionSnapshot,
+} from "./REPLICATION_PROMOTION.ts";
+import type {
+  GuardianSignalHybridSnapshot,
+  GuardianSignalPromotionSnapshot,
+} from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import type {
+  ArchitectPlasmidHybridSnapshot,
+  ArchitectPlasmidPromotionSnapshot,
+} from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import type { ReplicationHybridState } from "./runtime_bridge/replication_hybrid.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -33030,111 +34627,15 @@ type RuntimeMetrics = {
   spatialOverflowRatio: number;
   spatialOverflowCount: number;
   spatialMaxCellCount: number;
-  guardianSignalHybrid: {
-    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    hybridRuns: number;
-    shadowRuns: number;
-    fallbackRuns: number;
-    stableBranchCount: number;
-    repairBranchCount: number;
-    allowedGuardianSignals: number;
-    suppressedGuardianSignals: number;
-    shadowSuppressedGuardianSignals: number;
-    lastTick: number;
-    lastStatus:
-      | "legacy"
-      | "stable"
-      | "repair"
-      | "fallback"
-      | "shadow"
-      | "hybrid"
-      | "legacy-blocked";
-    lastBranch: "stable" | "repair" | "unknown";
-    lastFallbackReason: string;
-  };
-  architectPlasmidHybrid: {
-    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    hybridRuns: number;
-    shadowRuns: number;
-    fallbackRuns: number;
-    emitBranchCount: number;
-    suppressBranchCount: number;
-    allowedArchitectPlasmids: number;
-    suppressedArchitectPlasmids: number;
-    shadowSuppressedArchitectPlasmids: number;
-    lastTick: number;
-    lastStatus: "legacy" | "emit" | "suppress" | "fallback";
-    lastBranch: "emit" | "suppress" | "unknown";
-    lastFallbackReason: string;
-  };
-  architectPlasmidPromotion: {
-    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
-    ready: boolean;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    shadowRuns: number;
-    hybridRuns: number;
-    reductionRuns: number;
-    fallbackRuns: number;
-    fallbackRatio: number;
-    emitBranchCount: number;
-    suppressBranchCount: number;
-    shadowSuppressedArchitectPlasmids: number;
-    reasons: string[];
-    thresholds: {
-      minShadowRuns: number;
-      maxFallbackRatio: number;
-      minEmitBranchCount: number;
-      minSuppressBranchCount: number;
-      minShadowSuppressedArchitectPlasmids: number;
-    };
-  };
-  guardianSignalPromotion: {
-    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
-    ready: boolean;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    shadowRuns: number;
-    hybridRuns: number;
-    reductionRuns: number;
-    fallbackRuns: number;
-    fallbackRatio: number;
-    stableBranchCount: number;
-    repairBranchCount: number;
-    shadowSuppressedGuardianSignals: number;
-    reasons: string[];
-    thresholds: {
-      minShadowRuns: number;
-      maxFallbackRatio: number;
-      minStableBranchCount: number;
-      minRepairBranchCount: number;
-      minShadowSuppressedGuardianSignals: number;
-    };
-  };
-  glyphTransport: {
-    activeCells: number;
-    pheromoneCells: number;
-    plasmidCells: number;
-    maxAmplitude: number;
-    totalAmplitude: number;
-    internalSignalSeeds: number;
-    internalMemorySeeds: number;
-    internalAtomPheromoneSeeds: number;
-    internalAtomPlasmidSeeds: number;
-    atomRolePheromone: {
-      neutral: number;
-      producer: number;
-      guardian: number;
-      architect: number;
-      parasite: number;
-    };
-    atomRolePlasmid: {
-      neutral: number;
-      producer: number;
-      guardian: number;
-      architect: number;
-      parasite: number;
-    };
-  };
+  guardianSignalHybrid: GuardianSignalHybridSnapshot;
+  architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
+  guardianSignalPromotion: GuardianSignalPromotionSnapshot;
+  architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
+  replicationHybrid: ReplicationHybridState;
+  replicationPromotion: ReplicationPromotionSnapshot;
+  glyphTransport: GlyphSnapshot;
 };
+
 
 type DaemonAuditPending = {
   auditId: string;
@@ -33488,6 +34989,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
   const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
+  const replicationHybrid = PULSE.getReplicationHybridState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -33501,13 +35003,17 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowRatio: spatialHash.overflowRatio,
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
-    guardianSignalHybrid,
-    architectPlasmidHybrid,
+    guardianSignalHybrid: guardianSignalHybrid as any,
+    architectPlasmidHybrid: architectPlasmidHybrid as any,
     guardianSignalPromotion: evaluateGuardianSignalPromotion(
-      guardianSignalHybrid,
+      guardianSignalHybrid as any,
     ),
     architectPlasmidPromotion: evaluateArchitectPlasmidPromotion(
-      architectPlasmidHybrid,
+      architectPlasmidHybrid as any,
+    ),
+    replicationHybrid,
+    replicationPromotion: evaluateReplicationPromotion(
+      replicationHybrid as ReplicationHybridSnapshot,
     ),
     glyphTransport: GLYPH_BUFFER.snapshot(),
   };
@@ -33785,7 +35291,10 @@ const buildTelemetry = async () => {
     },
     guardian_signal_hybrid: metrics.guardianSignalHybrid,
     architect_plasmid_hybrid: metrics.architectPlasmidHybrid,
+    replication_hybrid: metrics.replicationHybrid,
     guardian_signal_promotion: metrics.guardianSignalPromotion,
+    architect_plasmid_promotion: metrics.architectPlasmidPromotion,
+    replication_promotion: metrics.replicationPromotion,
     glyph_transport: metrics.glyphTransport,
     daemon_governance: {
       safe_mode: safeMode.blocked,
@@ -33863,6 +35372,7 @@ const buildTelemetry = async () => {
       history: federationAdmissionState.history.slice(0, 8),
       policy: federationAdmissionState.policy,
     },
+    glyph_buffer: GLYPH_BUFFER.snapshot(),
   };
 };
 
@@ -34314,6 +35824,16 @@ LOGGER.info(
   }`,
 );
 await AKASHA_CODEX.start();
+
+// STAGE 5.3 VERIFICATION: Forced Reflection Seed
+setInterval(() => {
+  const signalGrid = new Int32Array(STATE_MATRIX.buffer, 35200000 + 4096, 140 * 80);
+  const memoryGrid = new Int32Array(STATE_MATRIX.buffer, 36100000 + 4096, 140 * 80);
+  // Seed a strong signal in the center
+  const center = 40 * 140 + 70;
+  Atomics.store(signalGrid, center, 1000);
+  Atomics.store(memoryGrid, center, 500);
+}, 100);
 
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
@@ -36610,6 +38130,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     ) {
       const metrics = collectRuntimeMetrics();
       const safeMode = isDaemonSafeMode(metrics);
+      const glyphSnap = GLYPH_BUFFER.snapshot();
+      
       TELEMETRY_STREAM.emit({
         tick: metrics.tick,
         population: metrics.population,

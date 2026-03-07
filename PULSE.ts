@@ -38,6 +38,20 @@ import {
   snapshotBaseTaxLedgerRuntime,
 } from "./GENETIC_LEDGER_RUNTIME.ts";
 import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+} from "./GENERIC_LEDGER_PERSISTENCE.ts";
+import {
   appendBaseTaxLedgerRecordAndMaybeCompact,
   BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
   BASE_TAX_LEDGER_COMPACT_THRESHOLD,
@@ -188,6 +202,16 @@ type GeneticLedgerRuntimeState = {
   homeostasisTargetEnergyPersistence: TargetEnergyLedgerPersistenceSummary;
   pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
   pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
+  homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
+  homeostasisBandPersistence: LedgerPersistenceSummary;
+  homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
+  homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
+  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<"pulse.homeostasis.overflowThreshold">;
+  homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
+  daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
+  daemonMaxActionsPersistence: LedgerPersistenceSummary;
+  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<"federation.admission.degradeEnergyRatio">;
+  federationDegradeEnergyRatioPersistence: LedgerPersistenceSummary;
 };
 type GuardianSignalHybridState = {
   mode: GuardianSignalExecutionMode;
@@ -432,6 +456,43 @@ let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
+
+// GENERIC LEDGER REGISTRY (Stage 7.2)
+let homeostasisBandLedgerRuntime = createLedgerRuntime("pulse.homeostasis.band");
+let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime("pulse.homeostasis.maxDelta");
+let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime("pulse.homeostasis.overflowThreshold");
+let daemonMaxActionsLedgerRuntime = createLedgerRuntime("daemon.maxActionsPerWindow");
+let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime("federation.admission.degradeEnergyRatio");
+
+const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
+  path: getLogPath(key),
+  snapshotPath: getSnapshotPath(key),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+});
+
+let homeostasisBandLedgerPersistence = createLedgerPersistence("pulse.homeostasis.band");
+let homeostasisMaxDeltaLedgerPersistence = createLedgerPersistence("pulse.homeostasis.maxDelta");
+let homeostasisOverflowThresholdLedgerPersistence = createLedgerPersistence("pulse.homeostasis.overflowThreshold");
+let daemonMaxActionsLedgerPersistence = createLedgerPersistence("daemon.maxActionsPerWindow");
+let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence("federation.admission.degradeEnergyRatio");
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -605,9 +666,9 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   targetEnergyCurrent: clampHomeostasisTargetEnergy(
     homeostasisTargetEnergyRuntime,
   ),
-  band: HOMEOSTASIS_BAND,
-  maxDelta: HOMEOSTASIS_MAX_DELTA,
-  overflowThreshold: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+  band: homeostasisBandLedgerRuntime.currentValue,
+  maxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+  overflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
   starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
   subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
   baseTaxDefault: HOMEOSTASIS_BASE_TAX,
@@ -631,6 +692,24 @@ const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
     pressureRingScaleLedgerRuntime,
   ),
   pressureRingScalePersistence: { ...pressureRingScaleLedgerPersistence },
+  homeostasisBand: snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
+  homeostasisBandPersistence: { ...homeostasisBandLedgerPersistence },
+  homeostasisMaxDelta: snapshotLedgerRuntime(homeostasisMaxDeltaLedgerRuntime),
+  homeostasisMaxDeltaPersistence: { ...homeostasisMaxDeltaLedgerPersistence },
+  homeostasisOverflowThreshold: snapshotLedgerRuntime(
+    homeostasisOverflowThresholdLedgerRuntime,
+  ),
+  homeostasisOverflowThresholdPersistence: {
+    ...homeostasisOverflowThresholdLedgerPersistence,
+  },
+  daemonMaxActions: snapshotLedgerRuntime(daemonMaxActionsLedgerRuntime),
+  daemonMaxActionsPersistence: { ...daemonMaxActionsLedgerPersistence },
+  federationDegradeEnergyRatio: snapshotLedgerRuntime(
+    federationDegradeEnergyRatioLedgerRuntime,
+  ),
+  federationDegradeEnergyRatioPersistence: {
+    ...federationDegradeEnergyRatioLedgerPersistence,
+  },
 });
 const snapshotEvolutionPressureState = (): EvolutionPressureState => ({
   noveltySigned: evolutionPressureState.noveltySigned,
@@ -842,6 +921,43 @@ const syncPressureRingScaleLedgerHydration = async (): Promise<void> => {
     scale: pressureRingScaleLedgerRuntime.currentValue,
     enabled: evolutionPressureState.ring.enabled,
   });
+};
+const syncGenericLedgersHydration = async (): Promise<void> => {
+  const bandHyd = await hydrateLedgerRuntime("pulse.homeostasis.band", {
+    initialValue: HOMEOSTASIS_BAND,
+  });
+  homeostasisBandLedgerRuntime = bandHyd.state;
+  homeostasisBandLedgerPersistence = bandHyd.persistence;
+
+  const maxDeltaHyd = await hydrateLedgerRuntime("pulse.homeostasis.maxDelta", {
+    initialValue: HOMEOSTASIS_MAX_DELTA,
+  });
+  homeostasisMaxDeltaLedgerRuntime = maxDeltaHyd.state;
+  homeostasisMaxDeltaLedgerPersistence = maxDeltaHyd.persistence;
+
+  const overflowHyd = await hydrateLedgerRuntime(
+    "pulse.homeostasis.overflowThreshold",
+    {
+      initialValue: HOMEOSTASIS_OVERFLOW_THRESHOLD,
+    },
+  );
+  homeostasisOverflowThresholdLedgerRuntime = overflowHyd.state;
+  homeostasisOverflowThresholdLedgerPersistence = overflowHyd.persistence;
+
+  const daemonHyd = await hydrateLedgerRuntime("daemon.maxActionsPerWindow", {
+    initialValue: RUNTIME_POLICY.daemon.maxActionsPerWindow,
+  });
+  daemonMaxActionsLedgerRuntime = daemonHyd.state;
+  daemonMaxActionsLedgerPersistence = daemonHyd.persistence;
+
+  const federationHyd = await hydrateLedgerRuntime(
+    "federation.admission.degradeEnergyRatio",
+    {
+      initialValue: RUNTIME_POLICY.federation.admission.degradeEnergyRatio,
+    },
+  );
+  federationDegradeEnergyRatioLedgerRuntime = federationHyd.state;
+  federationDegradeEnergyRatioLedgerPersistence = federationHyd.persistence;
 };
 const applyEvolutionPressureRing = (
   next: {
@@ -2157,6 +2273,12 @@ export const PULSE = {
       symbiosisPressure: evolutionPressureState.symbiosis,
       maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
       pressureRingScale: evolutionPressureState.ring.scale,
+      // Generic Ledger inputs (Stage 7.2)
+      homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+      homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+      homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+      daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
+      federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
     });
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling

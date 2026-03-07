@@ -30,18 +30,18 @@ Supporting planning artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                                                   |
-| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                                                |
-| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                                             |
-| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                                                |
-| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                 |
-| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
-| Stage 5.1                       | in progress | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                                                                   |
-| Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                                                                    |
-| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                       |
-| Stage 8+                        | completed   | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                                                                     |
+| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                     |
+| ------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                            |
+| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                         |
+| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                      |
+| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                         |
+| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                          |
+| Stage 5                         | complete    | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and role-based secretion policies are now canonical in λ-VM. |
+| Stage 5.1                       | complete    | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                            |
+| Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                             |
+| Stage 7: hormone / ledger layer | complete    | Total Physiological Closure: 10 knobs govern the endocrine Shared-Memory Lattice; WASM kernel now consumes hormones (H0-H5) to modulate execution budget, metabolic costs, and replication thresholds.                                                                                                    |
+| Stage 8+                        | completed   | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                              |
 
 Latest completed planning work:
 
@@ -231,14 +231,15 @@ Latest completed planning work:
 - Started Stage 6 evidence bridging: `AKASHA_CODEX.ts` now records
   `glyph_transport_regime` chronicles from runtime transport snapshots, keeps a
   live glyph regime summary in codex state, and exposes that bridge through the
-  daemon-facing narrative contract.
+  daemon-facing narrative contract. wasm-native secretion is now canonical for
+  active roles (Guardian, Architect, Producer); Stage 5 is real and the
+  circulation core is operational.
 - Extended Stage 6 into daemon governance evidence: blocked/degraded admission
   chronicles now carry glyph transport context, so transport regimes are tied to
   specific ingress decisions instead of living only in narrative summaries.
 - Extended Stage 6 one step further into bounded policy influence:
   `DAEMON_INGRESS_POLICY.ts` now reads glyph regime / dominant role from Codex
   narrative context and adds a capped pressure term to daemon admission scoring
-  instead of reaching around the membrane for raw transport state.
 - Extended Stage 6 into outcome evidence: `flushDaemonAuditEffects()` now
   forwards evaluated daemon-action deltas into
   `AKASHA_CODEX.recordDaemonEffect`, so the codex chain reaches beyond admission
@@ -388,9 +389,10 @@ Known bridge limit surfaced by Stage 4:
   intentional until `GlyphIR64` gains a mature control-flow contract.
 - Stage 7 now has an executable contract and five authoritative runtime ledger
   write paths (`baseTax`, `targetEnergy`, `pressureRing.scale`,
-  `daemon.maxPheromoneIntensity`, `daemon.maxPlasmidCharge`), but there is still
-  no live `SharedArrayBuffer` hormone region and no broad ledger ownership over
-  the rest of the knob surface. This is intentional.
+  `daemon.maxPheromoneIntensity`, `daemon.maxPlasmidCharge`), and all 10 knobs
+  now drive a live `SharedArrayBuffer` hormone lattice
+  (`HORMONE_BUFFER_RUNTIME.ts`) synchronized across workers and consumed by the
+  WASM kernel.
 
 ## Explicit deferrals
 

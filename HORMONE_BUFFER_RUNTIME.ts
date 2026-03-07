@@ -12,6 +12,12 @@ export type HormoneSyncInput = {
   symbiosisPressure: number;
   maxPlasmidCharge: number;
   pressureRingScale: number;
+  // Generic Ledger inputs (Stage 7.2)
+  homeostasisBand: number;
+  homeostasisMaxDelta: number;
+  homeostasisOverflowThreshold: number;
+  daemonMaxActions: number;
+  federationDegradeEnergyRatio: number;
 };
 
 const clamp = (value: number, min: number, max: number): number =>
@@ -22,19 +28,24 @@ const clamp = (value: number, min: number, max: number): number =>
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
 export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
-  // 1. entropy_pressure (derived from baseTax)
+  // 1. entropy_pressure (derived from baseTax / maxDelta / band)
   const entropyPressure = Math.round(
     clamp(
-      (input.baseTax / Math.max(1, RUNTIME_POLICY.pulse.homeostasis.maxDelta)) * 1024,
+      (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
+        (1024 / Math.max(1, input.homeostasisBand)),
       0,
       2048,
     ),
   );
   STATE_MATRIX.setHormone(0, entropyPressure);
 
-  // 2. time_viscosity (derived from workerCount)
+  // 2. time_viscosity (derived from workerCount / maxActions)
   const timeViscosity = Math.round(
-    clamp((input.workerCount / 32) * 2048, 0, 2048),
+    clamp(
+      (input.workerCount / 32) * 1024 + (input.daemonMaxActions / 128) * 1024,
+      0,
+      2048,
+    ),
   );
   STATE_MATRIX.setHormone(1, timeViscosity);
 
@@ -44,10 +55,10 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   );
   STATE_MATRIX.setHormone(2, aggression);
 
-  // 4. replication_bias (novelty + coldstart ratio)
+  // 4. replication_bias (novelty + overflowThreshold inverse)
   const replicationBias = Math.round(
     clamp(
-      input.noveltyPressure + (RUNTIME_POLICY.coldstart.replicatorRatio * 256),
+      input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
       0,
       2048,
     ),
@@ -57,8 +68,7 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   // 5. repair_drive (symbiosis + degrade ratio inverse)
   const repairDrive = Math.round(
     clamp(
-      input.symbiosisPressure +
-        ((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+      input.symbiosisPressure + ((1 - input.federationDegradeEnergyRatio) * 1024),
       0,
       2048,
     ),

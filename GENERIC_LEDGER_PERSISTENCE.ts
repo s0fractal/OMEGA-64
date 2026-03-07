@@ -1,0 +1,251 @@
+import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  type LedgerRuntimeEvent,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
+
+export type LedgerRecord<K extends GeneticLedgerKey> =
+  | {
+    kind: "apply";
+    key: K;
+    rollback_token: string;
+    tick: number;
+    source: string;
+    reason: string;
+    previous_value: number;
+    next_value: number;
+    recorded_at: string;
+  }
+  | {
+    kind: "rollback";
+    key: K;
+    rollback_token: string;
+    tick: number;
+    source: string;
+    reason: string;
+    recorded_at: string;
+  };
+
+export type LedgerSnapshotRecord<K extends GeneticLedgerKey> = {
+  version: 1;
+  key: K;
+  representedRecordCount: number;
+  representedApplyCount: number;
+  representedRollbackCount: number;
+  compactedAt: string;
+  compactedTick: number;
+  state: LedgerRuntimeState<K>;
+};
+
+export type LedgerPersistenceSummary = {
+  path: string;
+  snapshotPath: string;
+  exists: boolean;
+  snapshotExists: boolean;
+  recordCount: number;
+  applyCount: number;
+  rollbackCount: number;
+  tailRecordCount: number;
+  tailApplyCount: number;
+  tailRollbackCount: number;
+  snapshotRecordCount: number;
+  snapshotApplyCount: number;
+  snapshotRollbackCount: number;
+  compactionEnabled: boolean;
+  compactionThreshold: number;
+  compactionKeepTail: number;
+  lastCompactedAt: string | null;
+  lastCompactedTick: number;
+  hydrated: boolean;
+  lastHydratedAt: string | null;
+  lastHydrationError: string | null;
+};
+
+export type LedgerHydrationResult<K extends GeneticLedgerKey> = {
+  state: LedgerRuntimeState<K>;
+  snapshot: LedgerRuntimeSnapshot<K>;
+  persistence: LedgerPersistenceSummary;
+};
+
+const ensureDir = async (): Promise<void> => {
+  await Deno.mkdir(".omega/ledger", { recursive: true });
+};
+
+const DEFAULT_THRESHOLD = 64;
+const DEFAULT_KEEP_TAIL = 16;
+
+export const getLogPath = (key: GeneticLedgerKey): string =>
+  `.omega/ledger/${key.replace(/\./gu, "_")}_ledger.jsonl`;
+
+export const getSnapshotPath = (key: GeneticLedgerKey): string =>
+  `.omega/ledger/${key.replace(/\./gu, "_")}_ledger.snapshot.json`;
+
+const parseRecord = <K extends GeneticLedgerKey>(
+  key: K,
+  line: string,
+): LedgerRecord<K> | null => {
+  if (!line.trim()) return null;
+  try {
+    const raw = JSON.parse(line);
+    if (raw.key !== key) return null;
+    return raw as LedgerRecord<K>;
+  } catch {
+    return null;
+  }
+};
+
+const parseSnapshot = <K extends GeneticLedgerKey>(
+  key: K,
+  raw: string,
+): LedgerSnapshotRecord<K> | null => {
+  if (!raw.trim()) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed.key !== key || parsed.version !== 1) return null;
+    return parsed as LedgerSnapshotRecord<K>;
+  } catch {
+    return null;
+  }
+};
+
+const applyRecordToState = <K extends GeneticLedgerKey>(
+  state: LedgerRuntimeState<K>,
+  record: LedgerRecord<K>,
+): LedgerRuntimeState<K> => {
+  if (record.kind === "apply") {
+    return applyLedgerUpdate(state, {
+      value: record.next_value,
+      tick: record.tick,
+      source: record.source,
+      reason: record.reason,
+    }).state;
+  }
+  return rollbackLedgerUpdate(state, {
+    rollbackToken: record.rollback_token,
+    tick: record.tick,
+    source: record.source,
+    reason: record.reason,
+  }).state;
+};
+
+export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
+  key: K,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerHydrationResult<K>> => {
+  const logPath = getLogPath(key);
+  const snapshotPath = getSnapshotPath(key);
+  const threshold = options.threshold ?? DEFAULT_THRESHOLD;
+  const keepTail = options.keepTail ?? DEFAULT_KEEP_TAIL;
+
+  let records: LedgerRecord<K>[] = [];
+  let snapshotRecord: LedgerSnapshotRecord<K> | null = null;
+
+  try {
+    const rawLogArray = await Deno.readTextFile(logPath);
+    records = rawLogArray
+      .split(/\r?\n/u)
+      .map((line) => parseRecord(key, line))
+      .filter((x): x is LedgerRecord<K> => x !== null);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  try {
+    const rawSnapshot = await Deno.readTextFile(snapshotPath);
+    snapshotRecord = parseSnapshot(key, rawSnapshot);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  let state = snapshotRecord?.state ?? createLedgerRuntime(key, options.initialValue, options.historyLimit);
+  let hydrationError: string | null = null;
+  try {
+    for (const record of records) {
+      state = applyRecordToState(state, record);
+    }
+  } catch (err) {
+    hydrationError = String(err);
+  }
+
+  const applyCount = records.filter((r) => r.kind === "apply").length;
+  const rollbackCount = records.length - applyCount;
+
+  const persistence: LedgerPersistenceSummary = {
+    path: logPath,
+    snapshotPath,
+    exists: records.length > 0 || snapshotRecord !== null,
+    snapshotExists: snapshotRecord !== null,
+    recordCount: (snapshotRecord?.representedRecordCount ?? 0) + records.length,
+    applyCount: (snapshotRecord?.representedApplyCount ?? 0) + applyCount,
+    rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) + rollbackCount,
+    tailRecordCount: records.length,
+    tailApplyCount: applyCount,
+    tailRollbackCount: rollbackCount,
+    snapshotRecordCount: snapshotRecord?.representedRecordCount ?? 0,
+    snapshotApplyCount: snapshotRecord?.representedApplyCount ?? 0,
+    snapshotRollbackCount: snapshotRecord?.representedRollbackCount ?? 0,
+    compactionEnabled: true,
+    compactionThreshold: threshold,
+    compactionKeepTail: keepTail,
+    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
+    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
+    hydrated: hydrationError === null,
+    lastHydratedAt: new Date().toISOString(),
+    lastHydrationError: hydrationError,
+  };
+
+  return {
+    state,
+    snapshot: snapshotLedgerRuntime(state),
+    persistence,
+  };
+};
+
+export const appendLedgerRecord = async <K extends GeneticLedgerKey>(
+  record: LedgerRecord<K>,
+): Promise<void> => {
+  const path = getLogPath(record.key);
+  await ensureDir();
+  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
+    append: true,
+    create: true,
+  });
+};
+
+export const recordFromApply = <K extends GeneticLedgerKey>(
+  mutation: LedgerRuntimeEvent<K>,
+  key: K,
+): LedgerRecord<K> => ({
+  kind: "apply",
+  key,
+  rollback_token: mutation.rollbackToken,
+  tick: mutation.tick,
+  source: mutation.source,
+  reason: mutation.reason,
+  previous_value: mutation.previousValue,
+  next_value: mutation.nextValue,
+  recorded_at: new Date().toISOString(),
+});
+
+export const recordFromRollback = <K extends GeneticLedgerKey>(
+  mutation: LedgerRuntimeEvent<K>,
+  key: K,
+): LedgerRecord<K> => ({
+  kind: "rollback",
+  key,
+  rollback_token: mutation.rollbackToken,
+  tick: mutation.rolledBackAtTick ?? mutation.tick,
+  source: mutation.rolledBackSource ?? mutation.source,
+  reason: mutation.rolledBackReason ?? mutation.reason,
+  recorded_at: new Date().toISOString(),
+});

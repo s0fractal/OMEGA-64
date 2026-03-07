@@ -13,10 +13,11 @@ export const GLYPH_KIND = {
   PLASMID: 2,
 } as const;
 
+console.log(`[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`);
 const secretionStatsView = new Int32Array(
   STATE_MATRIX.buffer,
   SECRETION_STATS_OFFSET,
-  10,
+  12,
 );
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
@@ -234,14 +235,17 @@ export const GLYPH_BUFFER = {
     const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
     const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
 
+    const signalLeak = Atomics.load(secretionStatsView, 10);
+    const memoryLeak = Atomics.load(secretionStatsView, 11);
+
     return {
       activeCells,
       pheromoneCells,
       plasmidCells,
       maxAmplitude,
       totalAmplitude,
-      internalSignalSeeds: lastInternalSignalSeeds,
-      internalMemorySeeds: lastInternalMemorySeeds,
+      internalSignalSeeds: signalLeak,
+      internalMemorySeeds: memoryLeak,
       internalAtomPheromoneSeeds: totalPhero,
       internalAtomPlasmidSeeds: totalPlasmid,
       atomRolePheromone: {

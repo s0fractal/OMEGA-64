@@ -14,7 +14,7 @@ await assertWasmLayout();
 const args = [
     "run",
     "-A",
-    "npm:assemblyscript/asc",
+    "npm:assemblyscript@0.28.9/asc",
     "assembly/index.ts",
     "-o",
     "build/release.wasm",

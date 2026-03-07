@@ -1333,6 +1333,16 @@ LOGGER.info(
 );
 await AKASHA_CODEX.start();
 
+// STAGE 5.3 VERIFICATION: Forced Reflection Seed
+setInterval(() => {
+  const signalGrid = new Int32Array(STATE_MATRIX.buffer, 35200000 + 4096, 140 * 80);
+  const memoryGrid = new Int32Array(STATE_MATRIX.buffer, 36100000 + 4096, 140 * 80);
+  // Seed a strong signal in the center
+  const center = 40 * 140 + 70;
+  Atomics.store(signalGrid, center, 1000);
+  Atomics.store(memoryGrid, center, 500);
+}, 100);
+
 // 1. Initialize Observer UI Server
 Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const url = new URL(req.url);
@@ -3628,6 +3638,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     ) {
       const metrics = collectRuntimeMetrics();
       const safeMode = isDaemonSafeMode(metrics);
+      const glyphSnap = GLYPH_BUFFER.snapshot();
+      
       TELEMETRY_STREAM.emit({
         tick: metrics.tick,
         population: metrics.population,

@@ -58,7 +58,7 @@ const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 10 x I32
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -82,6 +82,8 @@ const CRYSTAL_OSCILLATOR: i32 = 5;
 const CRYSTAL_MEME: i32 = 10; // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
+const PHEROMONE_COST_BASE: i32 = 10;
+const PLASMID_COST_BASE: i32 = 25;
 
 // --- ERA 71: FORCE ACCUMULATION ---
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
@@ -639,40 +641,16 @@ function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
   return 0;
 }
 
-function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
-  if (amplitude <= 0) return;
-  const current = load<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize);
-  const currentKind = unpackGlyphKind(current);
-  const currentAmplitude = unpackGlyphAmplitude(current);
-  
-  const mergedKind = currentKind == 0 ? kind : currentKind;
-  let mergedAmplitude = 0;
-  if (currentKind == kind) {
-    mergedAmplitude = currentAmplitude + amplitude;
-    if (mergedAmplitude > 0x00FFFFFF) mergedAmplitude = 0x00FFFFFF;
-  } else {
-    mergedAmplitude = currentAmplitude > amplitude ? currentAmplitude : amplitude;
-  }
-  
-  store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
-}
-
-function secreteGlyph(
+function atomicDepositGlyphHeader(
+  baseOffset: usize,
   cell: i32,
   kind: i32,
-  intensity: i32,
-  role: u8,
+  amplitude: i32,
   payloadPtr: usize = 0,
 ): void {
-  if (intensity <= 0 || cell < 0 || cell >= 140 * 80) return;
+  if (amplitude <= 0 || cell < 0 || cell >= 140 * 80) return;
 
-  // Telemetry: increment role-based atomic counter
-  if (kind >= 1 && kind <= 2 && role <= 4) {
-    const statPtr = SECRETION_STATS_OFF + (((kind - 1) * 5 + (role as i32)) << 2) as usize;
-    atomic.add<i32>(statPtr, 1);
-  }
-
-  const ptr = (GLYPH_HEADER_OFF + (cell << 2)) as usize;
+  const ptr = (baseOffset + (cell << 2)) as usize;
 
   for (let spin = 0; spin < 128; spin++) {
     const current = atomic.load<i32>(ptr);
@@ -680,12 +658,16 @@ function secreteGlyph(
     const currentAmplitude = unpackGlyphAmplitude(current);
 
     if (currentKind != 0 && currentKind != kind) {
-      // Kind mismatch: winner takes all (max amplitude)
-      if (intensity <= currentAmplitude) return;
-      const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, intensity));
+      if (amplitude <= currentAmplitude) return;
+      const observed = atomic.cmpxchg<i32>(
+        ptr,
+        current,
+        packGlyphHeader(kind, amplitude),
+      );
       if (observed == current) {
         if (kind == 2 && payloadPtr != 0) {
-          const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+          const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+          const dstPtr = payloadBase + (cell << 3) as usize;
           memory.copy(dstPtr, payloadPtr, 8);
         }
         return;
@@ -693,15 +675,17 @@ function secreteGlyph(
       continue;
     }
 
-    // Kind match or empty: additive merge
-    let nextAmplitude = currentAmplitude + intensity;
+    let nextAmplitude = currentAmplitude + amplitude;
     if (nextAmplitude > 0x00FFFFFF) nextAmplitude = 0x00FFFFFF;
-    const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, nextAmplitude));
+    const observed = atomic.cmpxchg<i32>(
+      ptr,
+      current,
+      packGlyphHeader(kind, nextAmplitude),
+    );
     if (observed == current) {
-      // If we are the one who (potentially) established this plasmid, or just refreshing it.
-      // For simplicity, always update payload if we are secreting a plasmid.
       if (kind == 2 && payloadPtr != 0) {
-        const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+        const dstPtr = payloadBase + (cell << 3) as usize;
         memory.copy(dstPtr, payloadPtr, 8);
       }
       return;
@@ -709,9 +693,58 @@ function secreteGlyph(
   }
 }
 
+function secreteGlyph(
+  x: i32,
+  y: i32,
+  kind: i32,
+  intensity: i32,
+  role: u8,
+  atomIdx: i32 = -1,
+  payloadPtr: usize = 0,
+): void {
+  if (intensity <= 0) return;
+  const gx = x / 10;
+  const gy = y / 10;
+  if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return;
+
+  const cell = gy * 140 + gx;
+
+  // Telemetry: increment role-based atomic counter
+  if (kind >= 1 && kind <= 2 && role <= 4) {
+    const statPtr = SECRETION_STATS_OFF +
+      (((kind - 1) * 5 + (role as i32)) << 2) as usize;
+    atomic.add<i32>(statPtr, 1);
+  }
+
+  // Energy Cost (Stage 5.3)
+  if (atomIdx >= 0) {
+    let cost: i32 = 0;
+    if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
+    else if (kind == 2) cost = PLASMID_COST_BASE + (intensity >> 2);
+    
+    if (cost > 0) {
+        const currentEnergy = getEnergy(atomIdx);
+        setEnergy(atomIdx, currentEnergy - cost);
+    }
+  }
+
+  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, intensity, payloadPtr);
+
+  // Halo spill for Pheromones (kind=1)
+  if (kind == 1) {
+    const spill = intensity >> 2;
+    if (spill > 16) {
+      if (gx > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
+      if (gx < 139) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 1, 1, spill);
+      if (gy > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 140, 1, spill);
+      if (gy < 79) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 140, 1, spill);
+    }
+  }
+}
+
 
 export function tickGlyphTransport(tick: i32): void {
-  // Clear scratch headers (payload clearing is handled by over-writes)
+  // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
   
   for (let cell = 0; cell < 140 * 80; cell++) {
@@ -727,7 +760,7 @@ export function tickGlyphTransport(tick: i32): void {
     const retained = decayed - share;
     
     if (retained > 0) {
-      writeGlyphScratch(cell, kind, retained);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
         const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -746,7 +779,7 @@ export function tickGlyphTransport(tick: i32): void {
       else if (selector == 2 && gx > 0) nextCell = cell - 1;
       else if (selector == 3 && gy > 0) nextCell = cell - 140;
       
-      writeGlyphScratch(nextCell, kind, share);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
       if (kind == 2) { // PLASMID payload transport
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
         const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
@@ -755,43 +788,42 @@ export function tickGlyphTransport(tick: i32): void {
     }
   }
 
-  // Seeding: Internal Signal Reflection
-  for (let cell = 0; cell < 140 * 80; cell++) {
+  // 2. Seeding: Internal Reflection (Signal -> Pheromone)
+  for (let cell: i32 = 0; cell < 11200; cell++) {
     const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
     const absSignal = signal < 0 ? -signal : signal;
-    if (absSignal >= 256) {
-      let amp = absSignal >> 4;
+    if (absSignal >= 1) {
+      let amp = absSignal >> 1;
       if (amp < 16) amp = 16;
       if (amp > 512) amp = 512;
-      writeGlyphScratch(cell, 1, amp); // PHEROMONE seed from signal
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, 1, amp);
+      // Quantification (Stage 5.1/5.2) - sample-based to avoid overflow
+      if ((cell % 32) == 0) {
+        atomic.add<i32>(SECRETION_STATS_OFF + 40, 1); // Signal leak counter
+      }
     }
   }
 
-  // Seeding: Internal Memory Reflection
-  for (let cell = 0; cell < 140 * 80; cell++) {
+  // 3. Seeding: Internal Reflection (Memory -> Plasmid)
+  for (let cell: i32 = 0; cell < 11200; cell++) {
     const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
-    const charge = (load<u8>(memOffset) as i32) | ((load<u8>(memOffset + 1) as i32) << 8);
-    
-    let payloadResidue = false;
-    for (let i = 4; i < 8; i++) {
-        if (load<u8>(memOffset + i) != 0) {
-            payloadResidue = true;
-            break;
-        }
-    }
-    
-    if (payloadResidue && charge >= 64) {
-      let amp = charge >> 3;
+    const memoryLo = atomic.load<u32>(memOffset);
+    const charge = memoryLo & 0xFFFFFF; // 24-bit charge
+
+    if (charge >= 1) {
+      let amp = charge >> 2;
       if (amp < 24) amp = 24;
       if (amp > 384) amp = 384;
-      writeGlyphScratch(cell, 2, amp); // PLASMID seed from memory
-      
-      const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
-      memory.copy(dstPtr, memOffset, 8);
+      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, 2, amp, memOffset);
+      // Quantification
+      if ((cell % 32) == 0) {
+        atomic.add<i32>(SECRETION_STATS_OFF + 44, 1); // Memory leak counter
+      }
     }
   }
 
-  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, (140 * 80) << 3);
+  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, 11200 << 3);
+  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, 11200 << 2);
 }
 
 // --- PER-ROLE SECRETION PREDICATES ---
@@ -799,32 +831,32 @@ export function tickGlyphTransport(tick: i32): void {
 @inline
 function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
   if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
-  if (((tick + idx) % 24) != 0) return false;
-  return resonance > 200 && phase > 100;
+  if (((tick + idx) % 64) != 0) return false;
+  return resonance > 300;
 }
 
 @inline
 function architectShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
   if (((tick + idx) % 32) != 0) return false;
-  return energy > 1500 && resonance > 100;
+  return resonance > 200;
 }
 
 @inline
 function producerShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
-  if (((tick + idx) % 48) != 0) return false;
-  return resonance > 150 && energy > 1000;
+  if (((tick + idx) % 128) != 0) return false;
+  return resonance > 400;
 }
 
 @inline
 function producerShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
-  if (((tick + idx) % 64) != 0) return false;
-  return energy > 2000 && resonance > 50;
+  if (((tick + idx) % 128) != 0) return false;
+  return energy > 800;
 }
 
 @inline
 function neutralShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
-  if (((tick + idx) % 128) != 0) return false;
-  return resonance > 400;
+  if (((tick + idx) % 256) != 0) return false;
+  return resonance > 500;
 }
 
 
@@ -878,6 +910,12 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
 }
 
 export function execute_atom(atomIndex: i32): void {
+  if (atomIndex < 20) {
+    const rawRole = load<u8>(ROLES_OFFSET + (atomIndex as usize));
+    const rawRes = load<i32>(RESONANCE_OFFSET + (atomIndex << 2) as usize);
+    const rawTick = load<i32>(TICK_COUNTER_OFF);
+    trace_atom(atomIndex, 0xAA, rawRes, rawTick, rawRole as i32);
+  }
   let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
@@ -898,22 +936,22 @@ export function execute_atom(atomIndex: i32): void {
     const tick = load<i32>(TICK_COUNTER_OFF);
     const cell = (curY / 10) * 140 + (curX / 10);
 
-    // DECENTRALIZED SECRETION (Stage 5.1)
+    // DECENTRALIZED SECRETION (Stage 5.2: coord-based + spill)
     if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 4) as i32, role);
+      secreteGlyph(curX, curY, 1, clampResource(res / 4) as i32, role, atomIndex);
     } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, role, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(curX, curY, 2, clampResource((energy + res) / 10) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
     } else if (role == ROLE_PRODUCER) {
       if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32, role);
+        secreteGlyph(curX, curY, 1, clampResource((res + energy) / 10) as i32, role, atomIndex);
       }
       if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, role, LOGIC_OFFSET + (atomIndex << 3));
+        secreteGlyph(curX, curY, 2, clampResource((energy + res) / 12) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
       }
     } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 8) as i32, role);
+      secreteGlyph(curX, curY, 1, clampResource(res / 8) as i32, role, atomIndex);
     } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
-      secreteGlyph(cell, 2, 32, role, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(curX, curY, 2, 32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
     }
 
     applyBondSprings(atomIndex, curX, curY);
@@ -939,9 +977,13 @@ export function execute_atom(atomIndex: i32): void {
   let resonance = getReadResonance(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-  // Safety: 16 instructions per tick max to prevent infinite loops
+  // Safety: Dynamic steps per tick max to prevent infinite loops (8..24 range)
+  let viscosityH: i32 = getHormone(1) as i32;
+  let maxSteps: i32 = 24 - (viscosityH >> 7); // 24..8
+  if (maxSteps < 8) maxSteps = 8;
+
   let step: i32 = 0;
-  for (; step < 16; step++) {
+  while (step < maxSteps) {
     const op = load<u8>(instr_base + (pc as usize));
     if (op == OP_NOP) break;
 
@@ -1038,10 +1080,10 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        // HORMONE 2: aggression lowers replication thresholds (range 0..2048 → up to -256 energy / -64 resonance)
-        let aggrH: i32 = getHormone(2) as i32;
-        let replicateEThresh: i32 = 1500 - (aggrH >> 3); // 1500..1244
-        let replicateRThresh: i32 = 200 - (aggrH >> 5);  // 200..136
+        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 → up to -512 energy / -100 resonance)
+        let biasH: i32 = getHormone(3) as i32;
+        let replicateEThresh: i32 = 1500 - (biasH >> 2); // 1500..988
+        let replicateRThresh: i32 = 200 - (biasH >> 4);  // 200..72
         if (energy > replicateEThresh && resonance > replicateRThresh) {
           let rx = getX(atomIndex) as i32;
           let ry = getY(atomIndex) as i32;
@@ -1084,6 +1126,7 @@ export function execute_atom(atomIndex: i32): void {
           let nextCharge = 200 + bonus;
           publishChargeIntent(cellIdx, nextCharge);
         }
+        secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
         fireSignal(atomIndex); // Also fire biological signal to neighbors
         pc += 1;
         break;
@@ -1129,14 +1172,14 @@ export function execute_atom(atomIndex: i32): void {
           setHiveMemory(p2 as i32, p3);
         } else if (mode == 1) { // HIVE_LOAD addr, reg
           setReg(atomIndex, p3 as i32, getHiveMemory(p2 as i32) as i32);
-        } else if (mode == 2) { // PHEROMONE_EMIT intensity, type
-          let gx = getX(atomIndex) / 10;
-          let gy = getY(atomIndex) / 10;
-          let gridIdx = gy * 140 + gx;
-          store<i32>(
-            SIGNAL_GRID_OFF + (gridIdx << 2) as usize,
-            ((p2 as i32) << 8) | (p3 as i32),
-          );
+        } else if (mode == 2) { // PHEROMONE_EMIT intensity
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          secreteGlyph(rx, ry, 1, p2 as i32, role, atomIndex);
+        } else if (mode == 7) { // PLASMID_EMIT intensity
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          secreteGlyph(rx, ry, 2, p2 as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
         } else if (mode == 3) { // BANK_DEPOSIT val
           let val = p2 as i32;
           if (energy >= val) {
@@ -1192,11 +1235,14 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_SHARE: { // SHARE_ENERGY slot, percentage
         const slot = load<u8>(instr_base + pc as usize + 1) & 3;
-        const percentage = load<u8>(instr_base + pc as usize + 2);
-
+        let percentage = load<u8>(instr_base + pc as usize + 2) as i32;
+        // HORMONE 2: aggression scales the share percentage (range 0..2048; >1024 adds +10%)
+        let aggrH: i32 = getHormone(2) as i32;
+        if (aggrH > 1024) percentage += 10;
+        
         let targetIdx = getBondTarget(atomIndex, slot);
         if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-          let amount = (energy * (percentage as i32)) / 100;
+          let amount = (energy * percentage) / 100;
           if (energy >= amount) {
             energy -= amount;
             addEnergyDelta(targetIdx, amount);
@@ -1324,12 +1370,15 @@ export function execute_atom(atomIndex: i32): void {
       }
     }
     if (pc >= 64) pc = 0;
+    step += 1;
   }
   setPC(atomIndex, pc);
 
   // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
   let entropyH: i32 = getHormone(0) as i32;
-  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12);
+  // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
+  let frictionH: i32 = getHormone(5) as i32;
+  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12) + (frictionH >> 8);
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
