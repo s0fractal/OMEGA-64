@@ -897,17 +897,17 @@ const collectGenomeStats = (): {
 const fallbackTaxonomy = (
   genome: string,
   dominantInstructions: string[],
+  hormoneRegime: string,
 ): TaxonomyResult => {
-  const genus = [
-    "Structura",
-    "Mycelia",
-    "Nexa",
-    "Aethera",
-    "Crypta",
-    "Lumen",
-    "Fracta",
-    "Vorax",
-  ];
+  const genusMap: Record<string, string[]> = {
+    "high_entropy": ["Metabolix", "Entropia", "Vortex"],
+    "aggressive_bloom": ["Agressor", "Praedo", "Bellum"],
+    "repair_surge": ["Sano", "Medicus", "Regen"],
+    "viscous_stasis": ["Stasix", "Tenax", "Fixus"],
+    "dormant_baseline": ["Structura", "Mycelia", "Nexa"],
+    "balanced_homeostasis": ["Equil", "Harmonia", "Lattice"],
+  };
+  const genusList = genusMap[hormoneRegime] || genusMap["dormant_baseline"];
   const species = [
     "stabilis",
     "migrans",
@@ -918,16 +918,18 @@ const fallbackTaxonomy = (
     "silentis",
     "orbitae",
   ];
-  const a = Number.parseInt(genome.slice(0, 2), 16) % genus.length;
+  const a = Number.parseInt(genome.slice(0, 2), 16) % genusList.length;
   const b = Number.parseInt(genome.slice(2, 4), 16) % species.length;
   const stack = dominantInstructions.length > 0
     ? dominantInstructions.join(", ")
     : "adaptive scripts";
   return {
-    latinName: `${genus[a]} ${species[b]}`,
-    behavior: `Dominant lineage specializing in ${stack}.`,
+    latinName: `${genusList[a]} ${species[b]}`,
+    behavior: `Dominant lineage specializing in ${stack} under ${
+      titleCase(hormoneRegime)
+    } conditions.`,
     philosophy:
-      "Survival through iterative structure and opportunistic resonance.",
+      `Survival through iterative structure influenced by ${hormoneRegime} pressure.`,
   };
 };
 
@@ -939,7 +941,11 @@ const discoverSpecies = async (
   if (speciesIndex.some((entry) => entry.genome === stat.genome)) return;
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
-  const fallback = fallbackTaxonomy(stat.genome, dominantInstructions);
+  // Stage 7.4: Fetch current hormone regime label
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const regime = hormoneRegimeLabel(h);
+
+  const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);
   let taxonomy: TaxonomyResult = fallback;
   try {
     const llmTaxonomy = await LLM_SYNAPSE.generateSpeciesTaxonomy({
@@ -947,6 +953,7 @@ const discoverSpecies = async (
       dominantInstructions,
       dominanceShare: stat.share,
       epochs,
+      hormoneRegime: regime,
     });
     if (
       llmTaxonomy.latinName.trim().length > 0 &&
@@ -989,6 +996,7 @@ const discoverSpecies = async (
       `- Dominant Instructions: ${
         entry.dominantInstructions.join(", ") || "n/a"
       }`,
+      `- Hormone Regime: ${titleCase(regime)}`,
       `- Created At: ${entry.createdAt}`,
       "",
       "## Behavioral Profile",
@@ -1003,10 +1011,12 @@ const discoverSpecies = async (
   await appendChronicle(
     tick,
     "species_discovery",
-    `New Species Recorded: ${entry.latinName}`,
+    `New Species Recorded: ${entry.latinName} (${titleCase(regime)})`,
     `Genome ${entry.genome} crossed ${
       (stat.share * 100).toFixed(2)
-    }% population share and persisted across ${epochs} macro-epochs.`,
+    }% population share under ${
+      titleCase(regime)
+    } conditions, persisting across ${epochs} macro-epochs.`,
   );
 };
 
@@ -1228,6 +1238,12 @@ const runEpochScan = async (tick: number): Promise<void> => {
 };
 
 export const AKASHA_CODEX = {
+  // Test/Internal surface (Stage 7.4)
+  _discoverSpecies: discoverSpecies,
+  _fallbackTaxonomy: fallbackTaxonomy,
+  _getSpeciesIndex: () => speciesIndex,
+  _getChronicleIndex: () => chronicleIndex,
+
   start: async (): Promise<void> => {
     if (started) return;
     started = true;

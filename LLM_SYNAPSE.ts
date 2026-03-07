@@ -140,6 +140,7 @@ export const LLM_SYNAPSE = {
             dominantInstructions: string[];
             dominanceShare: number;
             epochs: number;
+            hormoneRegime: string;
         },
     ): Promise<{ latinName: string; behavior: string; philosophy: string }> => {
         const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
@@ -160,11 +161,12 @@ export const LLM_SYNAPSE = {
             Dominance Share: ${(input.dominanceShare * 100).toFixed(2)}%
             Survived Epochs: ${input.epochs}
             Dominant Instructions: ${instructionProfile}
+            Current Hormone Regime: ${input.hormoneRegime}
 
             Return STRICT JSON:
             {
               "latinName": "Two-word pseudo-latin binomial",
-              "behavior": "One concise sentence about behavior",
+              "behavior": "One concise sentence about behavior reflecting the ${input.hormoneRegime} state",
               "philosophy": "One concise sentence about worldview"
             }
         `.trim();
