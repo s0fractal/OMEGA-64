@@ -24,6 +24,7 @@ export type DaemonNarrativeContext = {
   glyphDominantRole: string;
   glyphSourceMode: string;
   metabolicPressure: number;
+  hormoneRegime: string;
 };
 
 export type DaemonInvariantAdmission = {
@@ -246,6 +247,8 @@ export const normalizeDaemonNarrativeContext = (
     "none",
   );
   const glyphSourceMode = normalizeGlyphValue(root.glyphSourceMode, "none");
+  // Stage 7.3: hormone regime from Codex narrative (written by Stage 7.2)
+  const hormoneRegime = normalizeGlyphValue(root.hormoneRegime, "dormant_baseline");
   const dominantInvariantVector = typeof invariantHighlights[0] === "object" &&
       invariantHighlights[0] !== null &&
       typeof (invariantHighlights[0] as Record<string, unknown>)
@@ -324,6 +327,7 @@ export const normalizeDaemonNarrativeContext = (
     glyphDominantRole,
     glyphSourceMode,
     metabolicPressure: asFiniteNumber(root.metabolicPressure, 0),
+    hormoneRegime,
   };
 };
 
@@ -413,6 +417,26 @@ export const evaluateInvariantAdmission = (
       score += 1;
       reasons.push("GLYPH_ROLE_PHEROMONE_PRESSURE");
     }
+  }
+
+  // Stage 7.3: Hormone regime pressure terms
+  if (context.hormoneRegime === "high_entropy") {
+    score += 1;
+    reasons.push("HORMONE_HIGH_ENTROPY_RISK");
+  }
+  if (
+    context.hormoneRegime === "aggressive_bloom" &&
+    envelope.action_type === "INJECT_PLASMID"
+  ) {
+    score += 1;
+    reasons.push("HORMONE_AGGRESSIVE_BLOOM_PLASMID");
+  }
+  if (
+    context.hormoneRegime === "repair_surge" &&
+    envelope.action_type === "DROP_PHEROMONE"
+  ) {
+    score = Math.max(0, score - 1);
+    reasons.push("HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT");
   }
 
   if (envelope.action_type === "INJECT_PLASMID") {
