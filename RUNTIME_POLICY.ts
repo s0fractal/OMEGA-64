@@ -6,6 +6,10 @@ type GuardianSignalExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
   | "shadow-reduce";
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
 const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);
@@ -25,8 +29,9 @@ const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   }
   return "fail-fast";
 };
-const parseGuardianSignalExecutionMode = (
+const parseExecutionMode = (
   raw: string | undefined,
+  defaultMode: GuardianSignalExecutionMode = "shadow-reduce",
 ): GuardianSignalExecutionMode => {
   const value = (raw ?? "").trim().toLowerCase();
   if (value === "legacy-execute" || value === "legacy_execute") {
@@ -35,7 +40,10 @@ const parseGuardianSignalExecutionMode = (
   if (value === "hybrid-reduce" || value === "hybrid_reduce") {
     return "hybrid-reduce";
   }
-  return "hybrid-reduce";
+  if (value === "shadow-reduce" || value === "shadow_reduce") {
+    return "shadow-reduce";
+  }
+  return defaultMode;
 };
 const parseEnvBoundedFloat = (
   raw: string | undefined,
@@ -135,6 +143,9 @@ const rawGuardianSignalExecutionMode = readEnv(
 );
 const rawArchitectPlasmidExecutionMode = readEnv(
   "OMEGA_ARCHITECT_PLASMID_EXECUTION_MODE",
+);
+const rawReplicationExecutionMode = readEnv(
+  "OMEGA_REPLICATION_EXECUTION_MODE",
 );
 const rawAkashaHost = readEnv("OMEGA_AKASHA_HOST");
 const rawDaemonPolicyWindowMs = readEnv("OMEGA_DAEMON_POLICY_WINDOW_MS");
@@ -387,11 +398,17 @@ const pulseStartupSelfTestForceBreach = parseEnvBool(
   rawStartupSelfTestForceBreach,
   false,
 );
-const pulseGuardianSignalExecutionMode = parseGuardianSignalExecutionMode(
+const pulseGuardianSignalExecutionMode = parseExecutionMode(
   rawGuardianSignalExecutionMode,
+  "hybrid-reduce",
 );
-const pulseArchitectPlasmidExecutionMode = parseGuardianSignalExecutionMode(
+const pulseArchitectPlasmidExecutionMode = parseExecutionMode(
   rawArchitectPlasmidExecutionMode,
+  "hybrid-reduce",
+);
+const pulseReplicationExecutionMode = parseExecutionMode(
+  rawReplicationExecutionMode,
+  "hybrid-reduce",
 );
 
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
@@ -551,6 +568,7 @@ const policyFingerprintSource = JSON.stringify({
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
+    replicationExecutionMode: pulseReplicationExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,
@@ -719,6 +737,7 @@ export const RUNTIME_POLICY = {
     startupSelfTestForceBreach: pulseStartupSelfTestForceBreach,
     guardianSignalExecutionMode: pulseGuardianSignalExecutionMode,
     architectPlasmidExecutionMode: pulseArchitectPlasmidExecutionMode,
+    replicationExecutionMode: pulseReplicationExecutionMode,
     homeostasis: {
       enabled: pulseHomeostasisEnabled,
       targetEnergy: pulseHomeostasisTargetEnergy,

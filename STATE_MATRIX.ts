@@ -273,6 +273,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
   boot[0] = RISC.OP_GET;
   boot[1] = 0;
   boot[2] = RISC.PROP_ENERGY;
+  boot[3] = RISC.OP_REPLICATE;
   return boot;
 })();
 

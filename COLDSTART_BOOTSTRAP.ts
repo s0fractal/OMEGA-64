@@ -51,19 +51,26 @@ const makeReplicatorScript = (): Uint8Array => {
   return script;
 };
 
-const makeArchitectScript = (): Uint8Array => {
+const makeArchitectScript = (emit: boolean): Uint8Array => {
   const script = new Uint8Array(8);
   let pc = 0;
-  script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
+  const RISC = STATE_MATRIX.RISC;
+
+  script[pc++] = RISC.OP_ROLE;
   script[pc++] = 0;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = STATE_MATRIX.RISC.OP_BUILD;
-  script[pc++] = 1; // STRUCTURE.WIRE
-  script[pc++] = 1; // state=1
-  script[pc++] = STATE_MATRIX.RISC.OP_SPORE_DRIVE;
-  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
-  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+
+  if (emit) {
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 1; // STRUCTURE.WIRE
+    script[pc++] = 1; // state=1
+  } else {
+    script[pc++] = RISC.OP_SIGNAL;
+  }
+
+  script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
+  
   return script;
 };
 
@@ -211,7 +218,8 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
   );
 
   const replicatorScript = makeReplicatorScript();
-  const architectScript = makeArchitectScript();
+  const architectEmitScript = makeArchitectScript(true);
+  const architectSuppressScript = makeArchitectScript(false);
   const guardianStableScript = makeGuardianScript(true);
   const guardianRepairScript = makeGuardianScript(false);
 
@@ -255,7 +263,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       role = STATE_MATRIX.ROLE_GUARDIAN;
       guardians++;
     } else {
-      script = architectScript;
+      script = architects % 2 === 0 ? architectEmitScript : architectSuppressScript;
       role = STATE_MATRIX.ROLE_ARCHITECT;
       architects++;
     }

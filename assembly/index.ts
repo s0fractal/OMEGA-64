@@ -58,6 +58,7 @@ const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 10 x I32
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -656,8 +657,21 @@ function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
   store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
 }
 
-function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 0): void {
+function secreteGlyph(
+  cell: i32,
+  kind: i32,
+  intensity: i32,
+  role: u8,
+  payloadPtr: usize = 0,
+): void {
   if (intensity <= 0 || cell < 0 || cell >= 140 * 80) return;
+
+  // Telemetry: increment role-based atomic counter
+  if (kind >= 1 && kind <= 2 && role <= 4) {
+    const statPtr = SECRETION_STATS_OFF + (((kind - 1) * 5 + (role as i32)) << 2) as usize;
+    atomic.add<i32>(statPtr, 1);
+  }
+
   const ptr = (GLYPH_HEADER_OFF + (cell << 2)) as usize;
 
   for (let spin = 0; spin < 128; spin++) {
@@ -886,20 +900,20 @@ export function execute_atom(atomIndex: i32): void {
 
     // DECENTRALIZED SECRETION (Stage 5.1)
     if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 4) as i32);
+      secreteGlyph(cell, 1, clampResource(res / 4) as i32, role);
     } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, role, LOGIC_OFFSET + (atomIndex << 3));
     } else if (role == ROLE_PRODUCER) {
       if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32);
+        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32, role);
       }
       if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, LOGIC_OFFSET + (atomIndex << 3));
+        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, role, LOGIC_OFFSET + (atomIndex << 3));
       }
     } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(cell, 1, clampResource(res / 8) as i32);
+      secreteGlyph(cell, 1, clampResource(res / 8) as i32, role);
     } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
-      secreteGlyph(cell, 2, 32, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(cell, 2, 32, role, LOGIC_OFFSET + (atomIndex << 3));
     }
 
     applyBondSprings(atomIndex, curX, curY);
@@ -1659,4 +1673,8 @@ export function get_neural_coherence(): i32 {
 // SOVEREIGN_ORACLE writes computed coherence back to shared broadcast channel
 export function set_neural_coherence(value: i32): void {
   atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
+}
+
+export function clear_secretion_stats(): void {
+  memory.fill(SECRETION_STATS_OFF, 0, 40);
 }

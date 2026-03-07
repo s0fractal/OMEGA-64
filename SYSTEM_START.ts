@@ -18,9 +18,23 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
-import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { GLYPH_BUFFER, type GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
 import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";
+import type {
+  ReplicationHybridSnapshot,
+  ReplicationPromotionSnapshot,
+} from "./REPLICATION_PROMOTION.ts";
+import type {
+  GuardianSignalHybridSnapshot,
+  GuardianSignalPromotionSnapshot,
+} from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import type {
+  ArchitectPlasmidHybridSnapshot,
+  ArchitectPlasmidPromotionSnapshot,
+} from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import type { ReplicationHybridState } from "./runtime_bridge/replication_hybrid.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -121,111 +135,15 @@ type RuntimeMetrics = {
   spatialOverflowRatio: number;
   spatialOverflowCount: number;
   spatialMaxCellCount: number;
-  guardianSignalHybrid: {
-    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    hybridRuns: number;
-    shadowRuns: number;
-    fallbackRuns: number;
-    stableBranchCount: number;
-    repairBranchCount: number;
-    allowedGuardianSignals: number;
-    suppressedGuardianSignals: number;
-    shadowSuppressedGuardianSignals: number;
-    lastTick: number;
-    lastStatus:
-      | "legacy"
-      | "stable"
-      | "repair"
-      | "fallback"
-      | "shadow"
-      | "hybrid"
-      | "legacy-blocked";
-    lastBranch: "stable" | "repair" | "unknown";
-    lastFallbackReason: string;
-  };
-  architectPlasmidHybrid: {
-    mode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    hybridRuns: number;
-    shadowRuns: number;
-    fallbackRuns: number;
-    emitBranchCount: number;
-    suppressBranchCount: number;
-    allowedArchitectPlasmids: number;
-    suppressedArchitectPlasmids: number;
-    shadowSuppressedArchitectPlasmids: number;
-    lastTick: number;
-    lastStatus: "legacy" | "emit" | "suppress" | "fallback";
-    lastBranch: "emit" | "suppress" | "unknown";
-    lastFallbackReason: string;
-  };
-  architectPlasmidPromotion: {
-    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
-    ready: boolean;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    shadowRuns: number;
-    hybridRuns: number;
-    reductionRuns: number;
-    fallbackRuns: number;
-    fallbackRatio: number;
-    emitBranchCount: number;
-    suppressBranchCount: number;
-    shadowSuppressedArchitectPlasmids: number;
-    reasons: string[];
-    thresholds: {
-      minShadowRuns: number;
-      maxFallbackRatio: number;
-      minEmitBranchCount: number;
-      minSuppressBranchCount: number;
-      minShadowSuppressedArchitectPlasmids: number;
-    };
-  };
-  guardianSignalPromotion: {
-    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
-    ready: boolean;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    shadowRuns: number;
-    hybridRuns: number;
-    reductionRuns: number;
-    fallbackRuns: number;
-    fallbackRatio: number;
-    stableBranchCount: number;
-    repairBranchCount: number;
-    shadowSuppressedGuardianSignals: number;
-    reasons: string[];
-    thresholds: {
-      minShadowRuns: number;
-      maxFallbackRatio: number;
-      minStableBranchCount: number;
-      minRepairBranchCount: number;
-      minShadowSuppressedGuardianSignals: number;
-    };
-  };
-  glyphTransport: {
-    activeCells: number;
-    pheromoneCells: number;
-    plasmidCells: number;
-    maxAmplitude: number;
-    totalAmplitude: number;
-    internalSignalSeeds: number;
-    internalMemorySeeds: number;
-    internalAtomPheromoneSeeds: number;
-    internalAtomPlasmidSeeds: number;
-    atomRolePheromone: {
-      neutral: number;
-      producer: number;
-      guardian: number;
-      architect: number;
-      parasite: number;
-    };
-    atomRolePlasmid: {
-      neutral: number;
-      producer: number;
-      guardian: number;
-      architect: number;
-      parasite: number;
-    };
-  };
+  guardianSignalHybrid: GuardianSignalHybridSnapshot;
+  architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
+  guardianSignalPromotion: GuardianSignalPromotionSnapshot;
+  architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
+  replicationHybrid: ReplicationHybridState;
+  replicationPromotion: ReplicationPromotionSnapshot;
+  glyphTransport: GlyphSnapshot;
 };
+
 
 type DaemonAuditPending = {
   auditId: string;
@@ -579,6 +497,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
   const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
+  const replicationHybrid = PULSE.getReplicationHybridState();
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
@@ -592,13 +511,17 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     spatialOverflowRatio: spatialHash.overflowRatio,
     spatialOverflowCount: spatialHash.overflowCount,
     spatialMaxCellCount: spatialHash.maxCellCount,
-    guardianSignalHybrid,
-    architectPlasmidHybrid,
+    guardianSignalHybrid: guardianSignalHybrid as any,
+    architectPlasmidHybrid: architectPlasmidHybrid as any,
     guardianSignalPromotion: evaluateGuardianSignalPromotion(
-      guardianSignalHybrid,
+      guardianSignalHybrid as any,
     ),
     architectPlasmidPromotion: evaluateArchitectPlasmidPromotion(
-      architectPlasmidHybrid,
+      architectPlasmidHybrid as any,
+    ),
+    replicationHybrid,
+    replicationPromotion: evaluateReplicationPromotion(
+      replicationHybrid as ReplicationHybridSnapshot,
     ),
     glyphTransport: GLYPH_BUFFER.snapshot(),
   };
@@ -876,7 +799,10 @@ const buildTelemetry = async () => {
     },
     guardian_signal_hybrid: metrics.guardianSignalHybrid,
     architect_plasmid_hybrid: metrics.architectPlasmidHybrid,
+    replication_hybrid: metrics.replicationHybrid,
     guardian_signal_promotion: metrics.guardianSignalPromotion,
+    architect_plasmid_promotion: metrics.architectPlasmidPromotion,
+    replication_promotion: metrics.replicationPromotion,
     glyph_transport: metrics.glyphTransport,
     daemon_governance: {
       safe_mode: safeMode.blocked,
@@ -954,6 +880,7 @@ const buildTelemetry = async () => {
       history: federationAdmissionState.history.slice(0, 8),
       policy: federationAdmissionState.policy,
     },
+    glyph_buffer: GLYPH_BUFFER.snapshot(),
   };
 };
 

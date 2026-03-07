@@ -1,4 +1,4 @@
-import { GRID_CELLS, GRID_H, GRID_W } from "./OFFSETS.ts";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "./OFFSETS.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const GLYPH_KIND_MASK = 0xFF;
@@ -12,6 +12,12 @@ export const GLYPH_KIND = {
   PHEROMONE: 1,
   PLASMID: 2,
 } as const;
+
+const secretionStatsView = new Int32Array(
+  STATE_MATRIX.buffer,
+  SECRETION_STATS_OFFSET,
+  10,
+);
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
 
@@ -138,17 +144,11 @@ export const GLYPH_BUFFER = {
     STATE_MATRIX.glyphPayload.fill(0);
     lastInternalSignalSeeds = 0;
     lastInternalMemorySeeds = 0;
-    lastInternalAtomPheromoneSeeds = 0;
-    lastInternalAtomPlasmidSeeds = 0;
-    resetRoleCounters(lastAtomRolePheromone);
-    resetRoleCounters(lastAtomRolePlasmid);
+    secretionStatsView.fill(0);
   },
 
   beginInternalAtomEmissionTick: () => {
-    lastInternalAtomPheromoneSeeds = 0;
-    lastInternalAtomPlasmidSeeds = 0;
-    resetRoleCounters(lastAtomRolePheromone);
-    resetRoleCounters(lastAtomRolePlasmid);
+    secretionStatsView.fill(0);
   },
 
   depositPheromone: (x: number, y: number, intensity: number) => {
@@ -218,6 +218,22 @@ export const GLYPH_BUFFER = {
       if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
     }
 
+    // WASM-side Atomic Telemetry (Stage 5.1)
+    const pNeutral = Atomics.load(secretionStatsView, 0);
+    const pProducer = Atomics.load(secretionStatsView, 1);
+    const pGuardian = Atomics.load(secretionStatsView, 2);
+    const pArchitect = Atomics.load(secretionStatsView, 3);
+    const pParasite = Atomics.load(secretionStatsView, 4);
+
+    const mNeutral = Atomics.load(secretionStatsView, 5);
+    const mProducer = Atomics.load(secretionStatsView, 6);
+    const mGuardian = Atomics.load(secretionStatsView, 7);
+    const mArchitect = Atomics.load(secretionStatsView, 8);
+    const mParasite = Atomics.load(secretionStatsView, 9);
+
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
+
     return {
       activeCells,
       pheromoneCells,
@@ -226,10 +242,22 @@ export const GLYPH_BUFFER = {
       totalAmplitude,
       internalSignalSeeds: lastInternalSignalSeeds,
       internalMemorySeeds: lastInternalMemorySeeds,
-      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
-      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
-      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
-      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
+      internalAtomPheromoneSeeds: totalPhero,
+      internalAtomPlasmidSeeds: totalPlasmid,
+      atomRolePheromone: {
+        neutral: pNeutral,
+        producer: pProducer,
+        guardian: pGuardian,
+        architect: pArchitect,
+        parasite: pParasite,
+      },
+      atomRolePlasmid: {
+        neutral: mNeutral,
+        producer: mProducer,
+        guardian: mGuardian,
+        architect: mArchitect,
+        parasite: mParasite,
+      },
     };
   },
 };

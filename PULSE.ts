@@ -21,6 +21,10 @@ import {
   evaluateArchitectPlasmidExecution,
   type ArchitectPlasmidExecutionMode,
 } from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import {
+  evaluateReplicationExecution,
+  type ReplicationExecutionMode,
+} from "./runtime_bridge/replication_hybrid.ts";
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,
@@ -130,6 +134,7 @@ const GUARDIAN_SIGNAL_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.guardianSignalExecutionMode;
 const ARCHITECT_PLASMID_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.architectPlasmidExecutionMode;
+const REPLICATION_EXECUTION_MODE = RUNTIME_POLICY.pulse.replicationExecutionMode;
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
@@ -211,9 +216,40 @@ type ArchitectPlasmidHybridState = {
   suppressedArchitectPlasmids: number;
   shadowSuppressedArchitectPlasmids: number;
   lastTick: number;
-  lastStatus: "legacy" | "emit" | "suppress" | "fallback";
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
   lastBranch: "emit" | "suppress" | "unknown";
   lastFallbackReason: string;
+  lastMode?: ArchitectPlasmidExecutionMode;
+};
+type ReplicationHybridState = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "emit" | "suppress" | "unknown";
+  lastFallbackReason: string;
+  lastMode?: ReplicationExecutionMode;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -323,11 +359,34 @@ const createArchitectPlasmidHybridState = (
 const snapshotArchitectPlasmidHybridState = (): ArchitectPlasmidHybridState => ({
   ...architectPlasmidHybridState,
 });
-let guardianSignalHybridState = createGuardianSignalHybridState(
+const createReplicationHybridState = (
+  mode: ReplicationExecutionMode,
+): ReplicationHybridState => ({
+  mode,
+  hybridRuns: 0,
+  shadowRuns: 0,
+  fallbackRuns: 0,
+  emitBranchCount: 0,
+  suppressBranchCount: 0,
+  allowedReplications: 0,
+  suppressedReplications: 0,
+  shadowSuppressedReplications: 0,
+  lastTick: -1,
+  lastStatus: "legacy",
+  lastBranch: "unknown",
+  lastFallbackReason: "",
+});
+const snapshotReplicationHybridState = (): ReplicationHybridState => ({
+  ...replicationHybridState,
+});
+const guardianSignalHybridState = createGuardianSignalHybridState(
   GUARDIAN_SIGNAL_EXECUTION_MODE,
 );
-let architectPlasmidHybridState = createArchitectPlasmidHybridState(
+const architectPlasmidHybridState = createArchitectPlasmidHybridState(
   ARCHITECT_PLASMID_EXECUTION_MODE,
+);
+const replicationHybridState = createReplicationHybridState(
+  REPLICATION_EXECUTION_MODE,
 );
 
 let runtimeWorkerCount = WORKER_COUNT;
@@ -1764,6 +1823,8 @@ export const PULSE = {
     snapshotGuardianSignalHybridState(),
   getArchitectPlasmidHybridState: (): ArchitectPlasmidHybridState =>
     snapshotArchitectPlasmidHybridState(),
+  getReplicationHybridState: (): ReplicationHybridState =>
+    snapshotReplicationHybridState(),
   getGeneticLedgerState: (): GeneticLedgerRuntimeState =>
     snapshotGeneticLedgerRuntimeState(),
   hydrateGeneticLedgerRuntime: async (): Promise<GeneticLedgerRuntimeState> => {
@@ -2336,33 +2397,35 @@ export const PULSE = {
         spatialHashState.overflowRatio,
       );
 
-      // --- STAGE 8: Guardian Signal Promotion Bridge ---
+      // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
-        const mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
-        guardianSignalHybridState.lastMode = mode;
-        const resonanceBase = resonancesView;
+        const gMode = GUARDIAN_SIGNAL_EXECUTION_MODE;
+        const aMode = ARCHITECT_PLASMID_EXECUTION_MODE;
+        guardianSignalHybridState.lastMode = gMode;
+        architectPlasmidHybridState.lastMode = aMode;
         const scrollRange = 16;
 
         for (const idx of activeIdx) {
-          if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) {
+          const role = rolesView[idx];
+          if (role === STATE_MATRIX.ROLE_GUARDIAN) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateGuardianSignalExecution({
-              mode,
+              mode: gMode,
               script,
               neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
               legacyAllowed: true,
               maxSteps: scrollRange,
             });
 
-            // Update Telemetry
-            if (mode === "hybrid-reduce") {
+            // Update Guardian Telemetry
+            if (gMode === "hybrid-reduce") {
               guardianSignalHybridState.hybridRuns++;
               if (decision.allowed) {
                 guardianSignalHybridState.allowedGuardianSignals++;
               } else {
                 guardianSignalHybridState.suppressedGuardianSignals++;
               }
-            } else if (mode === "shadow-reduce") {
+            } else if (gMode === "shadow-reduce") {
               guardianSignalHybridState.shadowRuns++;
               if (decision.shadowSuppressed) {
                 guardianSignalHybridState.shadowSuppressedGuardianSignals++;
@@ -2371,6 +2434,7 @@ export const PULSE = {
 
             if (decision.status === "fallback") {
               guardianSignalHybridState.fallbackRuns++;
+              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
             }
 
             if (decision.branch === "stable") guardianSignalHybridState.stableBranchCount++;
@@ -2379,16 +2443,101 @@ export const PULSE = {
             guardianSignalHybridState.lastTick = currentTick;
             guardianSignalHybridState.lastStatus = decision.status;
             guardianSignalHybridState.lastBranch = decision.branch;
-            if (decision.status === "fallback") {
-              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
-            }
 
             // Apply Causality Suppression
             const allowed = decision.allowed && guardianPheromoneAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
+          } else if (role === STATE_MATRIX.ROLE_ARCHITECT) {
+            const script = instructionsView.slice(idx * 64, idx * 64 + 64);
+            const decision = evaluateArchitectPlasmidExecution({
+              mode: aMode,
+              script,
+              neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
+              legacyAllowed: true,
+            });
+
+            // Update Architect Telemetry
+            if (aMode === "hybrid-reduce") {
+              architectPlasmidHybridState.hybridRuns++;
+              if (decision.allowed) {
+                architectPlasmidHybridState.allowedArchitectPlasmids++;
+              } else {
+                architectPlasmidHybridState.suppressedArchitectPlasmids++;
+              }
+            } else if (aMode === "shadow-reduce") {
+              architectPlasmidHybridState.shadowRuns++;
+              if (decision.shadowSuppressed) {
+                architectPlasmidHybridState.shadowSuppressedArchitectPlasmids++;
+              }
+            }
+
+            if (decision.status === "fallback") {
+              architectPlasmidHybridState.fallbackRuns++;
+              architectPlasmidHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+            }
+
+            if (decision.branch === "emit") architectPlasmidHybridState.emitBranchCount++;
+            if (decision.branch === "suppress") architectPlasmidHybridState.suppressBranchCount++;
+
+            architectPlasmidHybridState.lastTick = currentTick;
+            architectPlasmidHybridState.lastStatus = decision.status;
+            architectPlasmidHybridState.lastBranch = decision.branch;
+
+            // Apply Causality Suppression for Plasmids
+            const allowed = decision.allowed; 
+            Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else {
-            // Non-guardians are always allowed
+            // Non-governed roles are always allowed
             Atomics.store(causalityView, idx, 1);
+          }
+
+          // Replication Hybrid Bridge (Universal for all atoms)
+          const rMode = REPLICATION_EXECUTION_MODE;
+          replicationHybridState.lastMode = rMode;
+          const replicationDecision = evaluateReplicationExecution({
+            mode: rMode,
+            script: instructionsView.slice(idx * 64, idx * 64 + 64),
+            energy: energiesView[idx],
+            resonance: resonancesView[idx],
+            aggression: STATE_MATRIX.getHormone(2),
+            legacyAllowed: true,
+          });
+
+          // Update Replication Telemetry
+          if (rMode === "hybrid-reduce") {
+            replicationHybridState.hybridRuns++;
+            if (replicationDecision.allowed) {
+              replicationHybridState.allowedReplications++;
+            } else {
+              replicationHybridState.suppressedReplications++;
+            }
+          } else if (rMode === "shadow-reduce") {
+            replicationHybridState.shadowRuns++;
+            if (replicationDecision.shadowSuppressed) {
+              replicationHybridState.shadowSuppressedReplications++;
+            }
+          }
+
+          if (replicationDecision.status === "fallback") {
+            replicationHybridState.fallbackRuns++;
+            replicationHybridState.lastFallbackReason = replicationDecision.fallbackReason || "unknown_error";
+          }
+
+          if (replicationDecision.branch === "emit") replicationHybridState.emitBranchCount++;
+          if (replicationDecision.branch === "suppress") replicationHybridState.suppressBranchCount++;
+
+          replicationHybridState.lastTick = currentTick;
+          replicationHybridState.lastStatus = replicationDecision.status;
+          replicationHybridState.lastBranch = replicationDecision.branch;
+
+          // Universal Replication Causality Integration
+          // If replication is suppressed by hybrid mode, we must ensure causality is 0 
+          // (Wait, this is tricky: causality=0 suppresses EVERYTHING secretion/replication etc.)
+          // If role-based logic said 'allowed', but replication said 'suppressed', should we block the whole atom?
+          // For now, we only block if BOTH are in hybrid mode and say no, or if we want to be strict.
+          // Correct implementation: causality bit is a combined gate.
+          if (rMode === "hybrid-reduce" && !replicationDecision.allowed) {
+            Atomics.store(causalityView, idx, 0);
           }
         }
       }

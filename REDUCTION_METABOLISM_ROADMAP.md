@@ -41,7 +41,7 @@ Status snapshot as of 2026-03-06:
 | Stage 5.1                       | in progress | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                                                                   |
 | Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                                                                    |
 | Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                       |
-| Stage 8+                        | completed   | State 8: Guardian Signal Promotion \| [x] Mapped Script Evaluation<br>[x] Mode-aware Verification<br>[x] Shadow-to-Hybrid Promotion Gate<br>[x] Causal Influence Promotion                                                                                                                                                                       |
+| Stage 8+                        | completed   | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                                                                     |
 
 Latest completed planning work:
 
@@ -273,11 +273,10 @@ Latest completed planning work:
   now routes architect plasmid emission through a bounded reduction-side
   contract with `legacy`, `shadow`, and `hybrid` modes; observer telemetry
   exposes `architect_plasmid_hybrid` while rollout remains shadow-first.
-- Added trace-tied verification for the second Stage 8 slit:
-  `verification/architect_plasmid_mode_harness.ts` now anchors the architect
-  plasmid slit to `gt04_plasmid_inject` and persists committed
-  `verification/architect_hybrid_mode_diffs/*.json` artifacts for emit,
-  suppress, and fallback cases.
+- Started a third Stage 8 slit: `runtime_bridge/replication_hybrid.ts` now
+  routes reproduction decisions through a shadow-to-hybrid promotion gate; audit
+  verification passed and all three drivers (Guardian, Architect, Replication)
+  were promoted to `hybrid-reduce` on 2026-03-07.
 
 ## Current diagnosis
 

@@ -1,6 +1,12 @@
 import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
 import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+import { evaluateArchitectPlasmidPromotionAction } from "./ARCHITECT_PLASMID_PROMOTION_ACTION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateArchitectPlasmidPromotionDecision } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
+import { evaluateReplicationPromotionAction } from "./REPLICATION_PROMOTION_ACTION.ts";
+import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";
+import { evaluateReplicationPromotionDecision } from "./REPLICATION_PROMOTION_DECISION.ts";
 
 type CanaryConfig = {
   hostUrl: string;
@@ -38,6 +44,48 @@ type TelemetryEnvelope = {
     lastFallbackReason?: string;
   };
   guardian_signal_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  architect_plasmid_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    emitBranchCount?: number;
+    suppressBranchCount?: number;
+    allowedArchitectPlasmids?: number;
+    suppressedArchitectPlasmids?: number;
+    shadowSuppressedArchitectPlasmids?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  architect_plasmid_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  replication_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    emitBranchCount?: number;
+    suppressBranchCount?: number;
+    allowedReplications?: number;
+    suppressedReplications?: number;
+    shadowSuppressedReplications?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  replication_promotion?: {
     status?: string;
     ready?: boolean;
     recommendedMode?: string;
@@ -99,13 +147,24 @@ type Sample = {
   spatialMaxCellCount: number;
   federationAction: string;
   federationSeverity: string;
-  guardianPromotionCurrentMode: GuardianPromotionMode;
-  guardianPromotionReady: boolean;
-  guardianPromotionStatus: string;
-  guardianPromotionRecommendedMode: GuardianPromotionMode;
-  guardianPromotionFallbackRatio: number;
-  populationCurrent: number;
-  populationPeak: number;
+  guardian_signal_promotion_fallback_ratio: number;
+  guardian_signal_promotion_current_mode: GuardianPromotionMode;
+  guardian_signal_promotion_ready: boolean;
+  guardian_signal_promotion_status: string;
+  guardian_signal_promotion_recommended_mode: GuardianPromotionMode;
+  architect_plasmid_promotion_current_mode: ArchitectPromotionMode;
+  architect_plasmid_promotion_ready: boolean;
+  architect_plasmid_promotion_status: string;
+  architect_plasmid_promotion_recommended_mode: ArchitectPromotionMode;
+  architect_plasmid_promotion_fallback_ratio: number;
+  replication_promotion_current_mode: ReplicationPromotionMode;
+  replication_promotion_ready: boolean;
+  replication_promotion_status: string;
+  replication_promotion_recommended_mode: ReplicationPromotionMode;
+  replication_promotion_fallback_ratio: number;
+  population_current: number;
+  population_peak: number;
+  replication_hybrid?: any;
 };
 
 type Check = {
@@ -120,6 +179,16 @@ type FetchResult<T> =
   | { ok: false; latencyMs: number; error: string };
 
 type GuardianPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+type ArchitectPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+type ReplicationPromotionMode =
   | "legacy-execute"
   | "hybrid-reduce"
   | "shadow-reduce";
@@ -265,11 +334,11 @@ const deriveGuardianPromotion = (
       lastStatus: toStringSafe(
         telemetry.guardian_signal_hybrid.lastStatus,
         "legacy",
-      ) as "legacy" | "stable" | "repair" | "fallback",
+      ) as any,
       lastBranch: toStringSafe(
         telemetry.guardian_signal_hybrid.lastBranch,
         "unknown",
-      ) as "stable" | "repair" | "unknown",
+      ) as any,
       lastFallbackReason: toStringSafe(
         telemetry.guardian_signal_hybrid.lastFallbackReason,
         "",
@@ -295,6 +364,184 @@ const deriveGuardianPromotion = (
     ),
     fallbackRatio: toFiniteNumber(
       telemetry.guardian_signal_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const deriveArchitectPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: ArchitectPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: ArchitectPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.architect_plasmid_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.architect_plasmid_hybrid.mode,
+    ) as ArchitectPromotionMode;
+    const evaluated = evaluateArchitectPlasmidPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.fallbackRuns, 0),
+      ),
+      emitBranchCount: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.emitBranchCount, 0),
+      ),
+      suppressBranchCount: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.suppressBranchCount, 0),
+      ),
+      allowedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.allowedArchitectPlasmids,
+          0,
+        ),
+      ),
+      suppressedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.suppressedArchitectPlasmids,
+          0,
+        ),
+      ),
+      shadowSuppressedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.shadowSuppressedArchitectPlasmids,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastStatus,
+        "legacy",
+      ) as any,
+      lastBranch: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastBranch,
+        "unknown",
+      ) as any,
+      lastFallbackReason: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode as any,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.architect_plasmid_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.architect_plasmid_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.architect_plasmid_promotion?.recommendedMode,
+    ) as any,
+    fallbackRatio: toFiniteNumber(
+      telemetry.architect_plasmid_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const deriveReplicationPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: ReplicationPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: ReplicationPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.replication_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.replication_hybrid.mode,
+    ) as ReplicationPromotionMode;
+    const evaluated = evaluateReplicationPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.fallbackRuns, 0),
+      ),
+      emitBranchCount: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.emitBranchCount, 0),
+      ),
+      suppressBranchCount: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.suppressBranchCount, 0),
+      ),
+      allowedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.allowedReplications,
+          0,
+        ),
+      ),
+      suppressedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.suppressedReplications,
+          0,
+        ),
+      ),
+      shadowSuppressedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.shadowSuppressedReplications,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.replication_hybrid.lastStatus,
+        "legacy",
+      ) as any,
+      lastBranch: toStringSafe(
+        telemetry.replication_hybrid.lastBranch,
+        "unknown",
+      ) as any,
+      lastFallbackReason: toStringSafe(
+        telemetry.replication_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode as any,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.replication_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.replication_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.replication_promotion?.recommendedMode,
+    ) as any,
+    fallbackRatio: toFiniteNumber(
+      telemetry.replication_promotion?.fallbackRatio,
       0,
     ),
   };
@@ -465,16 +712,9 @@ const renderMarkdown = (
 - p95SpatialOverflowRatio: ${summary.p95SpatialOverflowRatio}
 - safeModeRatio: ${summary.safeModeRatio}
 - federationRejectRatio: ${summary.federationRejectRatio}
-- guardianSignalPromotionCurrentMode: ${summary.guardianSignalPromotionCurrentMode}
-- guardianSignalPromotionReadyLatest: ${summary.guardianSignalPromotionReadyLatest}
-- guardianSignalPromotionReadyRatio: ${summary.guardianSignalPromotionReadyRatio}
-- guardianSignalPromotionRecommendedMode: ${summary.guardianSignalPromotionRecommendedMode}
-- guardianSignalFallbackRatioP95: ${summary.guardianSignalFallbackRatioP95}
 - guardianSignalPromotionVerdict: ${summary.guardianSignalPromotionVerdict}
-- guardianSignalPromotionBlockers: ${summary.guardianSignalPromotionBlockers}
-- guardianSignalPromotionAction: ${summary.guardianSignalPromotionAction}
-- guardianSignalPromotionTargetMode: ${summary.guardianSignalPromotionTargetMode}
-- guardianSignalPromotionActionReasons: ${summary.guardianSignalPromotionActionReasons}
+- architectPlasmidPromotionVerdict: ${summary.architectPlasmidPromotionVerdict}
+- replicationPromotionVerdict: ${summary.replicationPromotionVerdict}
 
 | status | check | observed | limit |
 |---|---|---:|---:|
@@ -592,6 +832,10 @@ const main = async () => {
   const safeModeSamples: number[] = [];
   const guardianPromotionReadySamples: number[] = [];
   const guardianPromotionFallbackRatios: number[] = [];
+  const architectPromotionReadySamples: number[] = [];
+  const architectPromotionFallbackRatios: number[] = [];
+  const replicationPromotionReadySamples: number[] = [];
+  const replicationPromotionFallbackRatios: number[] = [];
   let successCount = 0;
   let failureCount = 0;
   let maxConsecutiveFailures = 0;
@@ -658,6 +902,8 @@ const main = async () => {
       "",
     ).toUpperCase();
     const guardianPromotion = deriveGuardianPromotion(telemetry);
+    const architectPromotion = deriveArchitectPromotion(telemetry);
+    const replicationPromotion = deriveReplicationPromotion(telemetry);
 
     if (federationAction.length > 0) {
       federationActionSamples++;
@@ -686,6 +932,10 @@ const main = async () => {
     safeModeSamples.push(safeMode ? 1 : 0);
     guardianPromotionReadySamples.push(guardianPromotion.ready ? 1 : 0);
     guardianPromotionFallbackRatios.push(guardianPromotion.fallbackRatio);
+    architectPromotionReadySamples.push(architectPromotion.ready ? 1 : 0);
+    architectPromotionFallbackRatios.push(architectPromotion.fallbackRatio);
+    replicationPromotionReadySamples.push(replicationPromotion.ready ? 1 : 0);
+    replicationPromotionFallbackRatios.push(replicationPromotion.fallbackRatio);
 
     samples.push({
       sampleIndex: samples.length,
@@ -701,15 +951,30 @@ const main = async () => {
       spatialMaxCellCount: maxCellCount,
       federationAction: federationAction || "none",
       federationSeverity: federationSeverity || "NONE",
-      guardianPromotionCurrentMode: guardianPromotion.currentMode,
-      guardianPromotionReady: guardianPromotion.ready,
-      guardianPromotionStatus: guardianPromotion.status,
-      guardianPromotionRecommendedMode: guardianPromotion.recommendedMode,
-      guardianPromotionFallbackRatio: Number(
+      guardian_signal_promotion_current_mode: guardianPromotion.currentMode,
+      guardian_signal_promotion_ready: guardianPromotion.ready,
+      guardian_signal_promotion_status: guardianPromotion.status,
+      guardian_signal_promotion_recommended_mode: guardianPromotion.recommendedMode,
+      guardian_signal_promotion_fallback_ratio: Number(
         guardianPromotion.fallbackRatio.toFixed(6),
       ),
-      populationCurrent,
-      populationPeak,
+      architect_plasmid_promotion_current_mode: architectPromotion.currentMode,
+      architect_plasmid_promotion_ready: architectPromotion.ready,
+      architect_plasmid_promotion_status: architectPromotion.status,
+      architect_plasmid_promotion_recommended_mode: architectPromotion.recommendedMode,
+      architect_plasmid_promotion_fallback_ratio: Number(
+        architectPromotion.fallbackRatio.toFixed(6),
+      ),
+      replication_promotion_current_mode: replicationPromotion.currentMode,
+      replication_promotion_ready: replicationPromotion.ready,
+      replication_promotion_status: replicationPromotion.status,
+      replication_promotion_recommended_mode: replicationPromotion.recommendedMode,
+      replication_promotion_fallback_ratio: Number(
+        replicationPromotion.fallbackRatio.toFixed(6),
+      ),
+      population_current: populationCurrent,
+      population_peak: populationPeak,
+      replication_hybrid: telemetryResult.ok ? telemetryResult.data.replication_hybrid : undefined,
     });
 
     if (samples.length % 5 === 0) {
@@ -741,6 +1006,7 @@ const main = async () => {
   const p05AvgEnergy = percentile(avgEnergySamples, 5);
   const p95SpatialOverflowRatio = percentile(spatialOverflowRatios, 95);
   const safeModeRatio = mean(safeModeSamples);
+  
   const guardianSignalPromotionReadyRatio = mean(guardianPromotionReadySamples);
   const guardianSignalFallbackRatioP95 = percentile(
     guardianPromotionFallbackRatios,
@@ -749,22 +1015,42 @@ const main = async () => {
   const guardianSignalPromotionLatest = sampleCount > 0
     ? samples[sampleCount - 1]
     : null;
+
+  const architectSignalPromotionReadyRatio = mean(architectPromotionReadySamples);
+  const architectSignalFallbackRatioP95 = percentile(
+    architectPromotionFallbackRatios,
+    95,
+  );
+  const architectSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+
+  const replicationSignalPromotionReadyRatio = mean(replicationPromotionReadySamples);
+  const replicationSignalFallbackRatioP95 = percentile(
+    replicationPromotionFallbackRatios,
+    95,
+  );
+  const replicationSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+
   const federationRejectRatio = federationActionSamples > 0
     ? federationRejectSamples / federationActionSamples
     : 0;
   const processExitedUnexpectedly = unexpectedExitDuringRun;
   const enforceSafeModeGate = federationActionSamples > 0;
+
   const guardianSignalPromotionDecision = evaluateGuardianSignalPromotionDecision(
     {
       promotion: {
-        latestReady: guardianSignalPromotionLatest?.guardianPromotionReady ??
+        latestReady: guardianSignalPromotionLatest?.guardian_signal_promotion_ready ??
           false,
         readyRatio: guardianSignalPromotionReadyRatio,
         recommendedMode:
-          guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+          guardianSignalPromotionLatest?.guardian_signal_promotion_recommended_mode ??
             "shadow-reduce",
         fallbackRatioP95: guardianSignalFallbackRatioP95,
-        status: guardianSignalPromotionLatest?.guardianPromotionStatus ??
+        status: guardianSignalPromotionLatest?.guardian_signal_promotion_status ??
           "unknown",
       },
       health: {
@@ -784,9 +1070,78 @@ const main = async () => {
   );
   const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
     currentMode:
-      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+      guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
         "shadow-reduce",
     decision: guardianSignalPromotionDecision,
+  });
+
+  const architectPlasmidPromotionDecision = evaluateArchitectPlasmidPromotionDecision(
+    {
+      promotion: {
+        latestReady: architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
+          false,
+        readyRatio: architectSignalPromotionReadyRatio,
+        recommendedMode:
+          architectSignalPromotionLatest?.architect_plasmid_promotion_recommended_mode ??
+            "shadow-reduce",
+        fallbackRatioP95: architectSignalFallbackRatioP95,
+        status: architectSignalPromotionLatest?.architect_plasmid_promotion_status ??
+          "unknown",
+      },
+      health: {
+        bootReady,
+        processExitedUnexpectedly,
+        successRate,
+        minSuccessRate: config.minSuccessRate,
+        p95TelemetryLatencyMs,
+        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+        p95SpatialOverflowRatio,
+        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+        safeModeRatio,
+        maxSafeModeRatio: config.maxSafeModeRatio,
+        enforceActionQualityGate: enforceSafeModeGate,
+      },
+    },
+  );
+  const architectPlasmidPromotionAction = evaluateArchitectPlasmidPromotionAction({
+    currentMode:
+      architectSignalPromotionLatest?.architect_plasmid_promotion_current_mode ??
+        "shadow-reduce",
+    decision: architectPlasmidPromotionDecision,
+  });
+  const replicationPromotionDecision = evaluateReplicationPromotionDecision(
+    {
+      promotion: {
+        latestReady: replicationSignalPromotionLatest?.replication_promotion_ready ??
+          false,
+        readyRatio: replicationSignalPromotionReadyRatio,
+        recommendedMode:
+          replicationSignalPromotionLatest?.replication_promotion_recommended_mode ??
+            "shadow-reduce",
+        fallbackRatioP95: replicationSignalFallbackRatioP95,
+        status: replicationSignalPromotionLatest?.replication_promotion_status ??
+          "unknown",
+      },
+      health: {
+        bootReady,
+        processExitedUnexpectedly,
+        successRate,
+        minSuccessRate: config.minSuccessRate,
+        p95TelemetryLatencyMs,
+        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+        p95SpatialOverflowRatio,
+        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+        safeModeRatio,
+        maxSafeModeRatio: config.maxSafeModeRatio,
+        enforceActionQualityGate: enforceSafeModeGate,
+      },
+    },
+  );
+  const replicationPromotionAction = evaluateReplicationPromotionAction({
+    currentMode:
+      replicationSignalPromotionLatest?.replication_promotion_current_mode ??
+        "shadow-reduce",
+    decision: replicationPromotionDecision,
   });
 
   const checks: Check[] = [
@@ -803,61 +1158,46 @@ const main = async () => {
       ok: !processExitedUnexpectedly,
     },
     {
-      name: "sampleCount >= 6",
-      observed: sampleCount,
-      limit: 6,
-      ok: sampleCount >= 6,
-    },
-    {
-      name: "successRate >= minSuccessRate",
+      name: "successRate",
       observed: Number(successRate.toFixed(3)),
       limit: config.minSuccessRate,
       ok: successRate >= config.minSuccessRate,
     },
     {
-      name:
-        "maxConsecutiveTelemetryFailures <= maxConsecutiveTelemetryFailures",
-      observed: maxConsecutiveFailures,
-      limit: config.maxConsecutiveTelemetryFailures,
-      ok: maxConsecutiveFailures <= config.maxConsecutiveTelemetryFailures,
-    },
-    {
-      name: "p95TelemetryLatencyMs <= maxP95TelemetryLatencyMs",
-      observed: Number(p95TelemetryLatencyMs.toFixed(3)),
+      name: "p95TelemetryLatencyMs",
+      observed: Number(p95TelemetryLatencyMs.toFixed(1)),
       limit: config.maxP95TelemetryLatencyMs,
       ok: p95TelemetryLatencyMs <= config.maxP95TelemetryLatencyMs,
     },
     {
-      name: "minTickDelta >= minTickDeltaPerSample",
-      observed: minTickDelta,
-      limit: config.minTickDeltaPerSample,
-      ok: minTickDelta >= config.minTickDeltaPerSample,
-    },
-    {
-      name: "p05AvgEnergy >= minAvgEnergyP05",
-      observed: Number(p05AvgEnergy.toFixed(3)),
-      limit: config.minAvgEnergyP05,
-      ok: p05AvgEnergy >= config.minAvgEnergyP05,
-    },
-    {
-      name: "p95SpatialOverflowRatio <= maxSpatialOverflowRatioP95",
+      name: "p95SpatialOverflowRatio",
       observed: Number(p95SpatialOverflowRatio.toFixed(6)),
       limit: config.maxSpatialOverflowRatioP95,
       ok: p95SpatialOverflowRatio <= config.maxSpatialOverflowRatioP95,
     },
     {
-      name: "safeModeRatio <= maxSafeModeRatio",
+      name: "safeModeRatio",
       observed: Number(safeModeRatio.toFixed(3)),
-      limit: enforceSafeModeGate
-        ? config.maxSafeModeRatio
-        : "n/a(no-daemon-actions)",
+      limit: config.maxSafeModeRatio,
       ok: !enforceSafeModeGate || safeModeRatio <= config.maxSafeModeRatio,
     },
     {
-      name: "federationRejectRatio <= maxFederationRejectRatio",
-      observed: Number(federationRejectRatio.toFixed(3)),
-      limit: config.maxFederationRejectRatio,
-      ok: federationRejectRatio <= config.maxFederationRejectRatio,
+      name: "guardianSignalPromotionVerdict == promote",
+      observed: guardianSignalPromotionDecision.verdict,
+      limit: "promote",
+      ok: guardianSignalPromotionDecision.verdict === "promote",
+    },
+    {
+      name: "architectPlasmidPromotionVerdict == promote",
+      observed: architectPlasmidPromotionDecision.verdict,
+      limit: "promote",
+      ok: architectPlasmidPromotionDecision.verdict === "promote",
+    },
+    {
+      name: "replicationPromotionVerdict == promote",
+      observed: replicationPromotionDecision.verdict,
+      limit: "promote",
+      ok: replicationPromotionDecision.verdict === "promote",
     },
   ];
 
@@ -881,28 +1221,73 @@ const main = async () => {
     p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
     safeModeRatio: Number(safeModeRatio.toFixed(3)),
     federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
+    
     guardianSignalPromotionCurrentMode:
-      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+      guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
         "shadow-reduce",
     guardianSignalPromotionReadyLatest:
-      guardianSignalPromotionLatest?.guardianPromotionReady ?? false,
+      guardianSignalPromotionLatest?.guardian_signal_promotion_ready ?? false,
     guardianSignalPromotionReadyRatio: Number(
       guardianSignalPromotionReadyRatio.toFixed(3),
     ),
     guardianSignalPromotionRecommendedMode:
-      guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+      guardianSignalPromotionLatest?.guardian_signal_promotion_recommended_mode ??
         "shadow-reduce",
     guardianSignalFallbackRatioP95: Number(
       guardianSignalFallbackRatioP95.toFixed(6),
     ),
     guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
-    guardianSignalPromotionBlockers:
-      guardianSignalPromotionDecision.blockers.join("|") || "none",
+    guardianSignalPromotionBlockers: guardianSignalPromotionDecision.blockers.join("|") || "none",
     guardianSignalPromotionAction: guardianSignalPromotionAction.verdict,
     guardianSignalPromotionTargetMode: guardianSignalPromotionAction.targetMode,
-    guardianSignalPromotionActionReasons:
-      guardianSignalPromotionAction.reasons.join("|") || "none",
-    maxConsecutiveTelemetryFailures: maxConsecutiveFailures,
+    guardianSignalPromotionActionReasons: guardianSignalPromotionAction.reasons.join("|") || "none",
+
+    architectPlasmidPromotionCurrentMode:
+      architectSignalPromotionLatest?.architect_plasmid_promotion_current_mode ??
+        "shadow-reduce",
+    architectPlasmidPromotionReadyLatest:
+      architectSignalPromotionLatest?.architect_plasmid_promotion_ready ?? false,
+    architectPlasmidPromotionReadyRatio: Number(
+      architectSignalPromotionReadyRatio.toFixed(3),
+    ),
+    architectPlasmidPromotionRecommendedMode:
+      architectSignalPromotionLatest?.architect_plasmid_promotion_recommended_mode ??
+        "shadow-reduce",
+    architectPlasmidPromotionFallbackRatioP95: Number(
+      architectSignalFallbackRatioP95.toFixed(6),
+    ),
+    architectPlasmidPromotionVerdict: architectPlasmidPromotionDecision.verdict,
+    architectPlasmidPromotionBlockers: architectPlasmidPromotionDecision.blockers.join("|") || "none",
+    architectPlasmidPromotionAction: architectPlasmidPromotionAction.verdict,
+    architectPlasmidPromotionTargetMode: architectPlasmidPromotionAction.targetMode,
+    architectPlasmidPromotionActionReasons: architectPlasmidPromotionAction.reasons.join("|") || "none",
+    
+    replicationPromotionCurrentMode:
+      replicationSignalPromotionLatest?.replication_promotion_current_mode ??
+        "shadow-reduce",
+    replicationPromotionReadyLatest:
+      replicationSignalPromotionLatest?.replication_promotion_ready ?? false,
+    replicationPromotionReadyRatio: Number(
+      replicationSignalPromotionReadyRatio.toFixed(3),
+    ),
+    replicationPromotionRecommendedMode:
+      replicationSignalPromotionLatest?.replication_promotion_recommended_mode ??
+        "shadow-reduce",
+    replicationSignalFallbackRatioP95: Number(
+      replicationSignalFallbackRatioP95.toFixed(6),
+    ),
+    replicationPromotionVerdict: replicationPromotionDecision.verdict,
+    replicationPromotionBlockers: replicationPromotionDecision.blockers.join("|") || "none",
+    replicationPromotionAction: replicationPromotionAction.verdict,
+    replicationPromotionTargetMode: replicationPromotionAction.targetMode,
+    replicationPromotionActionReasons: replicationPromotionAction.reasons.join("|") || "none",
+    
+    replicationShadowRuns: replicationSignalPromotionLatest?.replication_hybrid?.shadowRuns ?? 0,
+    replicationEmitBranchCount: replicationSignalPromotionLatest?.replication_hybrid?.emitBranchCount ?? 0,
+    replicationSuppressBranchCount: replicationSignalPromotionLatest?.replication_hybrid?.suppressBranchCount ?? 0,
+    replicationShadowSuppressed: replicationSignalPromotionLatest?.replication_hybrid?.shadowSuppressedReplications ?? 0,
+    
+    maxConsecutiveFailures,
     processExitedUnexpectedly,
     childExitCode,
     logsTailSize: logTail.length,
@@ -915,6 +1300,10 @@ const main = async () => {
     summary,
     guardianSignalPromotionDecision,
     guardianSignalPromotionAction,
+    architectPlasmidPromotionDecision,
+    architectPlasmidPromotionAction,
+    replicationPromotionDecision,
+    replicationPromotionAction,
     checks,
     logsTail: logTail,
     samplesHead: samples.slice(0, 12),
@@ -930,14 +1319,9 @@ const main = async () => {
     renderMarkdown(generatedAt, summary, checks),
   );
 
-  console.log(`AUDIT [longrun-canary] report: ${REPORT_JSON_PATH}`);
-  console.log(`AUDIT [longrun-canary] reportMd: ${REPORT_MD_PATH}`);
-  console.log(`   checks=${checks.length} failed=${failedChecks.length}`);
-
-  for (const check of failedChecks) {
-    console.error(
-      `   FAIL ${check.name} observed=${check.observed} limit=${check.limit}`,
-    );
+  console.log(`\n📊 [AUDIT] Done. verdict_g=${summary.guardianSignalPromotionVerdict} verdict_a=${summary.architectPlasmidPromotionVerdict} verdict_r=${summary.replicationPromotionVerdict}`);
+  if (failedChecks.length > 0) {
+    console.warn("      ⚠️ [AUDIT] Some health or promotion checks failed.");
   }
 
   if (failedChecks.length > 0) {

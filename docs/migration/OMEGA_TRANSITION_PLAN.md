@@ -29,17 +29,17 @@ Adjacent future-vector artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                                              |
-| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                                                  |
-| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt18/*` baseline artifacts                                                                                                                                                                                                    |
-| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ`, `COLLECTIVE`, `SHARE`, and honest worker-backed `BUILD` owner-arbitration + stale-lock coverage for symbolic/transport semantics                                                           |
-| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts |
-| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
+| Workstream                     | Status      | Deliverable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0 planning surface  | in progress | this file + causal atlas + golden traces + export inclusion + persisted baseline artifacts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Stage 1 owner classification   | in progress | [docs/migration/CAUSAL_ATLAS.md](/Users/s0fractal/OMEGA/docs/migration/CAUSAL_ATLAS.md) now contains the first critical-mutation table                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Stage 2 baseline definition    | complete    | markdown contract + code-backed catalog + observer capture harness + committed `verification/traces/gt01..gt18/*` baseline artifacts                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Stage 3 IR contract            | in progress | [docs/migration/GLYPHIR64_CONTRACT.md](/Users/s0fractal/OMEGA/docs/migration/GLYPHIR64_CONTRACT.md) is now backed by non-runtime bridge code, including bounded `JZ`, `COLLECTIVE`, `SHARE`, and honest worker-backed `BUILD` owner-arbitration + stale-lock coverage for symbolic/transport semantics                                                                                                                                                                                                                                                                                            |
+| Stage 4 shadow verification    | in progress | reduction shadow covers `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18`, while [admission_shadow_harness.ts](/Users/s0fractal/OMEGA/verification/admission_shadow_harness.ts) covers `gt04`/`gt06`/`gt07` daemon-policy cases with persisted diff artifacts                                                                                                                                                                                                                                                                              |
+| Stage 5 internal transport     | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances bounded transport decay/diffusion, telemetry exposes `glyph_transport`, `assembly/index.ts` now reads glyph gradients inside `calculateTrophism(...)`, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies                                                                                                                                                                                    |
 | Stage 6 codex evidence bridge  | in progress | `AKASHA_CODEX.ts` now records `glyph_transport_regime` chronicles from runtime transport snapshots, maintains live glyph regime state inside narrative/snapshot outputs, forwards that evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
-| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational |
-| Stage 8 first slit             | in progress | guardian pheromone emission now supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce` through `runtime_bridge/guardian_signal_hybrid.ts`, with runtime fallback counters and observer telemetry while `shadow-reduce` remains the default rollout |
+| Stage 7 physiological contract | in progress | `pulse.homeostasis.baseTax`, `pulse.homeostasis.targetEnergy`, `pulse.pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now ledger-owned, rollback-tokenized, replayable, and compacted through dedicated runtime/persistence lanes, while the rest of the layer remains bounded and observational                                                                                                                                                                                                                                                           |
+| Stage 8 metabolism promotion   | complete    | Guardian, Architect, and Replication drivers are promoted to `hybrid-reduce` mode after successful shadow verification and long-run audits.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 Current rule:
 
@@ -192,8 +192,8 @@ Current support files already suggest the trace direction:
   `verification/golden_trace_capture.ts` now pass `deno check`, so the baseline
   layer is type-clean as well as artifact-backed
 - Stage 2 now also supports standalone subprocess captures, so a causal motif
-  that currently lives in a strict deterministic test harness can still become
-  a first-class golden trace without inventing a fake REST ingress path
+  that currently lives in a strict deterministic test harness can still become a
+  first-class golden trace without inventing a fake REST ingress path
 - Stage 2 now covers two standalone causal motifs outside the REST server:
   same-tick structure-intent visibility (`gt08`) and bounded collective hive /
   pheromone transport (`gt09`)
@@ -210,8 +210,8 @@ Current support files already suggest the trace direction:
 - `verification/admission_shadow_harness.ts` now covers daemon
   mutation/admission semantics, including explicit policy-block baselines,
   without pretending they already belong to the reduction bridge
-- next implementation step is no longer generic baseline-definition prose; it
-  is either widening bridge semantics where a real trace demands it or moving a
+- next implementation step is no longer generic baseline-definition prose; it is
+  either widening bridge semantics where a real trace demands it or moving a
   verified subset into a stricter hybrid path
 - Stage 7 observer surfaces now expose `ledger_base_tax_persistence`, so
   persistence/compaction state is visible alongside the first live ledger-owned
@@ -368,29 +368,27 @@ Only low-width behavior first:
   collective runtime hybridization
 - `verification/reduction_harness.ts` now also models stale-lock `OP_SENSE`
   visibility against seeded structure overlays, so forward progress through
-  stale structure locks can be verified against
-  `gt13_structure_lock_progress` before deeper structure-lock bridge work
+  stale structure locks can be verified against `gt13_structure_lock_progress`
+  before deeper structure-lock bridge work
 - `verification/reduction_harness.ts` now also supports a narrow
   `postStructureTick` flush plus charge-intent state, so `OP_PLUG` publication
   and bounded charge materialization can be verified against
   `gt14_structure_charge_resolution` before any broader attempt to bridge the
   full structure engine
-- `verification/reduction_harness.ts` now also preserves `OP_PLUG`
-  max-intent semantics across repeated publications into the same cell, so
-  `gt15_structure_charge_competition` can verify competitive charge
-  publication without pretending the structure engine has already been fully
-  reduced
-- `verification/structure_build_runtime_capture.ts` now provides a first
-  honest worker-backed `OP_BUILD` control specimen via `PULSE.tick`, and
+- `verification/reduction_harness.ts` now also preserves `OP_PLUG` max-intent
+  semantics across repeated publications into the same cell, so
+  `gt15_structure_charge_competition` can verify competitive charge publication
+  without pretending the structure engine has already been fully reduced
+- `verification/structure_build_runtime_capture.ts` now provides a first honest
+  worker-backed `OP_BUILD` control specimen via `PULSE.tick`, and
   `verification/reduction_harness.ts` now mirrors bounded `SOURCE` charge
   semantics so `gt16_runtime_build_materialization` can anchor BUILD parity
   without claiming the whole structure engine is already bridged
 - `verification/structure_build_competition_capture.ts` now provides an honest
   worker-backed `OP_BUILD` competition specimen via `PULSE.tick`, and
-  `verification/reduction_harness.ts` now carries owner-token-aware BUILD
-  intent publication so `gt17_runtime_build_competition` can anchor builder
-  arbitration parity without claiming the whole structure engine is already
-  bridged
+  `verification/reduction_harness.ts` now carries owner-token-aware BUILD intent
+  publication so `gt17_runtime_build_competition` can anchor builder arbitration
+  parity without claiming the whole structure engine is already bridged
 - `verification/structure_build_lock_capture.ts` now provides an honest
   worker-backed `OP_BUILD` stale-lock specimen via `PULSE.tick`, and
   `verification/reduction_harness.ts` now verifies that a locked owner blocks
@@ -443,10 +441,10 @@ This is a good membrane, but not yet an internal circulatory system.
   plasmid glyph packets directly during host lock, so Stage 5 now has a first
   agent-driven internal producer instead of only membrane ingress or substrate
   leakage.
-- that agent-driven producer is now role-shaped: guardians bias toward
-  pheromone emission, architects bias toward plasmid emission, producers can do
-  both under tighter gates, parasites leak plasmids, and observer surfaces can
-  inspect the per-role emission counters.
+- that agent-driven producer is now role-shaped: guardians bias toward pheromone
+  emission, architects bias toward plasmid emission, producers can do both under
+  tighter gates, parasites leak plasmids, and observer surfaces can inspect the
+  per-role emission counters.
 - broad wasm-native secretion is still deferred; Stage 5 is now real, but not
   yet complete.
 
@@ -520,9 +518,9 @@ Codex should answer:
 - Glyph regime / dominant-role evidence now also contributes a bounded pressure
   term inside `evaluateInvariantAdmission(...)`, but only through normalized
   codex narrative context rather than raw runtime transport state.
-- Deferred daemon effect evaluation now also lands in Codex as
-  `daemon_effect` chronicles, so the evidence chain can extend from
-  ingress decision to observed runtime delta.
+- Deferred daemon effect evaluation now also lands in Codex as `daemon_effect`
+  chronicles, so the evidence chain can extend from ingress decision to observed
+  runtime delta.
 - Codex narrative/snapshot outputs now also retain a compact `daemonEffect`
   contour, so observer tooling and daemon reasoning can consume the latest
   outcome signal without scraping raw chronicle history.
@@ -685,24 +683,19 @@ Current slit in progress:
   `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
   fallback cases before any default-mode promotion is considered
 - `GUARDIAN_SIGNAL_PROMOTION.ts` now acts as the promotion gate contract:
-  runtime telemetry, physiology, and long-run audit scripts all compute the
-  same `shadow -> hybrid` recommendation from fallback ratio and branch
-  coverage, but the default mode remains `shadow-reduce` until an explicit
-  promotion decision is made
+  runtime telemetry, physiology, and long-run audit scripts all compute the same
+  `shadow -> hybrid` recommendation from fallback ratio and branch coverage, but
+  the default mode remains `shadow-reduce` until an explicit promotion decision
+  is made
 - `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now turns that recommendation into an
   explicit `promote` / `hold` verdict inside long-run canary and daemon audit
   reports by combining guardian readiness with enclosing runtime health
 - `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now turns that verdict into a canonical
   `promote` / `hold` / `demote` action artifact so the Stage 8 slit can be
   reasoned about symmetrically before any default-mode switch is attempted
-- `runtime_bridge/architect_plasmid_hybrid.ts` now introduces the second
-  bounded hybrid slit: architect plasmid emission can be observed through
-  `legacy`, `shadow`, and `hybrid` reduction modes without yet adding a second
-  promotion stack around it
-- `verification/architect_plasmid_mode_harness.ts` now anchors that second
-  slit to `gt04_plasmid_inject`, so architect plasmid reduction runs produce
-  committed emit/suppress/fallback artifacts before any broader rollout logic
-  is considered
+- **Metabolism Complete:** The Stage 8 migration for Guardian, Architect, and
+  Replication drivers is complete. All three causal slits now evaluate through
+  the bridge and are promoted to `hybrid-reduce` in `RUNTIME_POLICY.ts`.
 
 ### Exit gate
 
