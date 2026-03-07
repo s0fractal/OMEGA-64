@@ -1,0 +1,36 @@
+{
+  "trace_id": "gt19_tensegrity_kinematics",
+  "scenario": "standalone tensegrity kinematics and bonding",
+  "tick_start": 0,
+  "tick_end": 100,
+  "runtime_mode": "standalone-tensegrity-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "finalDistance": 98.99494936611666,
+    "finalDamping": 255,
+    "snapshotDigest": "11455f2a2ebab64363516de79b39a054018e9f665cfb6a5e54f04f92540bc0e5"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "c9fdd960cde6e01b13ba22ca618f1d2927bb86ba1d9200aa9b8c246958590f92",
+  "invariant_digest": "037d6f92129e5dc5f398997dbd1faa8a92ae4df49f63f235a6387f56f1d4b6a4",
+  "extra_artifacts": {
+    "tensegrity_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "11455f2a2ebab64363516de79b39a054018e9f665cfb6a5e54f04f92540bc0e5",
+      "snapshot": {
+        "initialDistance": 14.142135623730951,
+        "finalDistance": 98.99494936611666,
+        "finalDamping": 255,
+        "atom0X": 100,
+        "atom0Y": 100,
+        "atom1X": 170,
+        "atom1Y": 170
+      }
+    }
+  }
+}

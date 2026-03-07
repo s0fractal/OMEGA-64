@@ -30,20 +30,24 @@ Supporting planning artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                      |
-| ------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                             |
-| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                          |
-| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                      |
-| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                              |
-| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                             |
-| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
+| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                                                                                                                                                                                                                                              |
+| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                                                                                                                                                                                                                                                 |
+| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                                                                                                                                                                                                                  |
+| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies                                                                                                                                                                                                  |
 | Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
-| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance |
-| Stage 8+                        | in progress | first slit is now live in bounded form: guardian pheromone emission supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce`, with fallback counters and observer telemetry while `shadow-reduce` remains the default rollout                                                                                                                                    |
+| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                                                                                                                                                                                                                        |
+| Stage 8+                        | in progress | first slit is now live in bounded form: guardian pheromone emission supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce`, with fallback counters and observer telemetry while `shadow-reduce` remains the default rollout                                                                                                                                                                                                                                                                                                              |
 
 Latest completed planning work:
 
+- Extended Stage 2 with a twelfth control specimen: `gt19_tensegrity_kinematics`
+  now captures bounded `OP_TENSEGRITY` kinematics and bonding through standalone
+  WASM execution, so bounded bridges have an honest baseline before attempting
+  structural constraint logic migration.
 - Added migration artifacts to the canonical export surface so external model
   audits can see both current runtime and declared direction of travel.
 - Replaced the placeholder causal atlas with a first owner/risk/disposition
@@ -69,8 +73,9 @@ Latest completed planning work:
 - Extended the reduction bridge and shadow harness with bounded `PUT` + `JZ`
   semantics tied to `gt04_plasmid_inject`, added prop-state parity to
   `verification/reduction_harness.ts`, and fixed the remaining
-  `verification/golden_trace_catalog.ts` / `verification/golden_trace_capture.ts`
-  type debt so the Stage 2/4 verification core now passes `deno check`.
+  `verification/golden_trace_catalog.ts` /
+  `verification/golden_trace_capture.ts` type debt so the Stage 2/4 verification
+  core now passes `deno check`.
 - Extended Stage 2 with a standalone control specimen:
   `gt08_structure_intent_visibility` is now captured through
   `test_structure_intent_determinism.ts --capture` rather than the REST server,
@@ -78,8 +83,8 @@ Latest completed planning work:
   inventing a fake ingress path.
 - Extended Stage 2 with a second standalone control specimen:
   `gt09_collective_transport` now captures bounded `OP_COLLECTIVE` hive
-  store/load and pheromone emission semantics through direct WASM execution,
-  so collective transport has a committed baseline before wider bridge work.
+  store/load and pheromone emission semantics through direct WASM execution, so
+  collective transport has a committed baseline before wider bridge work.
 - Extended Stage 2 with a third standalone control specimen:
   `gt10_share_transfer` now captures bounded `OP_SHARE` successful bonded
   transfer and empty-bond fail-closed semantics through direct WASM execution,
@@ -105,10 +110,10 @@ Latest completed planning work:
   structure charge lane has a committed baseline before deeper structure-engine
   bridge work.
 - Extended Stage 2 with an eighth standalone control specimen:
-  `gt15_structure_charge_competition` now captures two `OP_PLUG`
-  publications competing for the same cell under both orderings, so the
-  structure charge lane now has a committed `max-intent wins` baseline rather
-  than an accidental last-write model.
+  `gt15_structure_charge_competition` now captures two `OP_PLUG` publications
+  competing for the same cell under both orderings, so the structure charge lane
+  now has a committed `max-intent wins` baseline rather than an accidental
+  last-write model.
 - Extended Stage 2 with a ninth control specimen:
   `gt16_runtime_build_materialization` now captures a real worker-backed
   `OP_BUILD SOURCE` path through `PULSE.tick`, so BUILD has an honest runtime
@@ -127,36 +132,36 @@ Latest completed planning work:
   harness now models build-intent overlays and structural sensing, and persists
   `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.
 - Extended Stage 3/4 with bounded `OP_COLLECTIVE` parity tied to `gt09`: the
-  reduction harness now models hive store/load and local pheromone emission,
-  and persists `rc11` / `rc12` artifacts for collective transport semantics.
+  reduction harness now models hive store/load and local pheromone emission, and
+  persists `rc11` / `rc12` artifacts for collective transport semantics.
 - Extended Stage 3/4 with bounded `OP_SHARE` parity tied to `gt10`: the
   reduction harness now models bonded percentage transfer and empty-slot
   fail-closed semantics, and persists `rc13` / `rc14` artifacts for local
   share-transfer behavior.
-- Extended Stage 3/4 with bounded `OP_COLLECTIVE` banking parity tied to
-  `gt11`: the reduction harness now models mode `3` deposit and mode `4`
-  capped withdraw semantics, and persists `rc15` / `rc16` artifacts for
-  collective banking behavior.
+- Extended Stage 3/4 with bounded `OP_COLLECTIVE` banking parity tied to `gt11`:
+  the reduction harness now models mode `3` deposit and mode `4` capped withdraw
+  semantics, and persists `rc15` / `rc16` artifacts for collective banking
+  behavior.
 - Extended Stage 3/4 with bounded `OP_COLLECTIVE` synchrony parity tied to
-  `gt12`: the reduction harness now models mode `5` bonded phase-lock and
-  mode `6` local quorum PC sync, and persists `rc17` / `rc18` artifacts for
+  `gt12`: the reduction harness now models mode `5` bonded phase-lock and mode
+  `6` local quorum PC sync, and persists `rc17` / `rc18` artifacts for
   collective synchrony behavior.
 - Extended Stage 3/4 with bounded stale-lock `OP_SENSE` parity tied to `gt13`:
   the reduction harness now seeds structure grid + owner overlays directly and
   persists `rc19` / `rc20` artifacts for visible-through-lock and typed-miss
   fallback behavior.
-- Extended Stage 3/4 with bounded `OP_PLUG` post-tick resolution parity tied
-  to `gt14`: the reduction harness now supports a narrow `postStructureTick`
-  flush plus charge-intent state and persists `rc21` for charge materialization
-  / intent-clearing behavior.
+- Extended Stage 3/4 with bounded `OP_PLUG` post-tick resolution parity tied to
+  `gt14`: the reduction harness now supports a narrow `postStructureTick` flush
+  plus charge-intent state and persists `rc21` for charge materialization /
+  intent-clearing behavior.
 - Extended Stage 3/4 with bounded `OP_BUILD` owner-arbitration parity tied to
-  `gt17`: the reduction harness now carries owner-token state, persists `rc25`
-  / `rc26`, and verifies that higher owner tokens overwrite lower build intents
+  `gt17`: the reduction harness now carries owner-token state, persists `rc25` /
+  `rc26`, and verifies that higher owner tokens overwrite lower build intents
   while lower owner tokens fail closed against preseeded higher owners.
 - Extended Stage 3/4 with bounded `OP_BUILD` stale-lock parity tied to `gt18`:
   the reduction harness now persists `rc27` and verifies that locked owners
-  block competing BUILD publication while `postStructureTick` still
-  materializes the locked SOURCE value and clears intents.
+  block competing BUILD publication while `postStructureTick` still materializes
+  the locked SOURCE value and clears intents.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so
   runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed
@@ -209,11 +214,11 @@ Latest completed planning work:
   telemetry exposes `glyph_transport`, and AssemblyScript trophism reads glyph
   gradients as a real local influence instead of a pure API-side event.
 - Extended Stage 5 transport with the first two internal emission sources:
-  `signalGrid` now leaks into pheromone glyph packets and `memoryGrid` now
-  leaks into plasmid glyph packets, so transport is no longer membrane-only.
+  `signalGrid` now leaks into pheromone glyph packets and `memoryGrid` now leaks
+  into plasmid glyph packets, so transport is no longer membrane-only.
 - Added the first agent-driven Stage 5 producer: a bounded subset of active
-  atoms now emits pheromone/plasmid glyph packets directly during host lock,
-  so internal transport no longer depends only on ingress or substrate leakage.
+  atoms now emits pheromone/plasmid glyph packets directly during host lock, so
+  internal transport no longer depends only on ingress or substrate leakage.
 - Refined the first agent-driven producer into a role-shaped secretion policy:
   guardians bias toward pheromone emission, architects bias toward plasmid
   emission, producers can do both under tighter gates, parasites leak plasmids,
@@ -227,45 +232,42 @@ Latest completed planning work:
   specific ingress decisions instead of living only in narrative summaries.
 - Extended Stage 6 one step further into bounded policy influence:
   `DAEMON_INGRESS_POLICY.ts` now reads glyph regime / dominant role from Codex
-  narrative context and adds a capped pressure term to daemon admission
-  scoring instead of reaching around the membrane for raw transport state.
+  narrative context and adds a capped pressure term to daemon admission scoring
+  instead of reaching around the membrane for raw transport state.
 - Extended Stage 6 into outcome evidence: `flushDaemonAuditEffects()` now
-  forwards evaluated daemon-action deltas into `AKASHA_CODEX.recordDaemonEffect`,
-  so the codex chain reaches beyond admission into observed runtime effect.
+  forwards evaluated daemon-action deltas into
+  `AKASHA_CODEX.recordDaemonEffect`, so the codex chain reaches beyond admission
+  into observed runtime effect.
 - Added Stage 6 outcome projection: Codex narrative/snapshot outputs now retain
   the latest daemon effect summary, lineage, and delta band, so observers and
   daemon reasoning can read effect contours without scraping raw chronicles.
 - Started Stage 8 with a bounded live slit:
   `runtime_bridge/guardian_signal_hybrid.ts` now evaluates guardian scripts
-  through the mapped glyph subset, `PULSE.ts` routes guardian pheromone
-  emission through `legacy-execute` / `shadow-reduce` / `hybrid-reduce`, and
-  observer telemetry now exposes `guardian_signal_hybrid` so the bridge can run
-  live in shadow mode before it owns causality.
+  through the mapped glyph subset, `PULSE.ts` routes guardian pheromone emission
+  through `legacy-execute` / `shadow-reduce` / `hybrid-reduce`, and observer
+  telemetry now exposes `guardian_signal_hybrid` so the bridge can run live in
+  shadow mode before it owns causality.
 - Added Stage 8 mode-aware verification:
   `verification/guardian_signal_mode_harness.ts` now compares guardian slit
   behavior across `legacy`, `shadow`, and `hybrid` modes and persists committed
   `verification/hybrid_mode_diffs/*.json` artifacts for stable, repair, and
   fallback cases tied to `gt03`.
-- Added a pure promotion gate:
-  `GUARDIAN_SIGNAL_PROMOTION.ts` now computes whether the guardian slit has
-  accumulated enough shadow evidence to recommend `hybrid-reduce`; telemetry,
-  physiology, and long-run audits surface the same recommendation without
-  auto-promoting the runtime mode.
-- Added a promotion decision contract:
-  `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts` now folds the guardian recommendation
-  together with long-run health metrics into an explicit `promote` or `hold`
-  verdict, so Stage 8 rollout can be decided from committed audit artifacts
-  rather than ad hoc interpretation.
-- Added a promotion action contract:
-  `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now translates the Stage 8 decision into
-  an explicit `promote`, `hold`, or `demote` action for canary/daemon audit
-  reports, keeping rollout semantics symmetric without auto-mutating runtime
-  mode.
-- Started a second Stage 8 slit:
-  `runtime_bridge/architect_plasmid_hybrid.ts` now routes architect plasmid emission
-  through a bounded reduction-side contract with `legacy`, `shadow`,
-  and `hybrid` modes; observer telemetry exposes `architect_plasmid_hybrid`
-  while rollout remains shadow-first.
+- Added a pure promotion gate: `GUARDIAN_SIGNAL_PROMOTION.ts` now computes
+  whether the guardian slit has accumulated enough shadow evidence to recommend
+  `hybrid-reduce`; telemetry, physiology, and long-run audits surface the same
+  recommendation without auto-promoting the runtime mode.
+- Added a promotion decision contract: `GUARDIAN_SIGNAL_PROMOTION_DECISION.ts`
+  now folds the guardian recommendation together with long-run health metrics
+  into an explicit `promote` or `hold` verdict, so Stage 8 rollout can be
+  decided from committed audit artifacts rather than ad hoc interpretation.
+- Added a promotion action contract: `GUARDIAN_SIGNAL_PROMOTION_ACTION.ts` now
+  translates the Stage 8 decision into an explicit `promote`, `hold`, or
+  `demote` action for canary/daemon audit reports, keeping rollout semantics
+  symmetric without auto-mutating runtime mode.
+- Started a second Stage 8 slit: `runtime_bridge/architect_plasmid_hybrid.ts`
+  now routes architect plasmid emission through a bounded reduction-side
+  contract with `legacy`, `shadow`, and `hybrid` modes; observer telemetry
+  exposes `architect_plasmid_hybrid` while rollout remains shadow-first.
 - Added trace-tied verification for the second Stage 8 slit:
   `verification/architect_plasmid_mode_harness.ts` now anchors the architect
   plasmid slit to `gt04_plasmid_inject` and persists committed

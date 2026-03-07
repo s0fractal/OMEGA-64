@@ -476,6 +476,28 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_intent_determinism.ts",
     ],
   },
+  {
+    id: "gt19_tensegrity_kinematics",
+    scenario: "standalone tensegrity kinematics and bonding",
+    setup:
+      "standalone deterministic capture of OP_TENSEGRITY setting bond distances and damping, executing physics to resolve forces",
+    duration: "100 physics ticks execution / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "finalDistance",
+      "finalDamping",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      finalDistance: "bounded",
+      finalDamping: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/tensegrity_capture.ts",
+      "test_tensegrity.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

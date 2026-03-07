@@ -28,6 +28,8 @@ const COLLECTIVE_SYNCHRONY_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_synchrony_capture.ts";
 const SHARE_TRANSFER_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/share_transfer_capture.ts";
+const TENSEGRITY_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/tensegrity_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
@@ -51,6 +53,8 @@ const TRACE_COLLECTIVE_SYNCHRONY_RUNTIME_MODE =
   "standalone-collective-synchrony-capture";
 const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
   "standalone-share-transfer-capture";
+const TRACE_TENSEGRITY_RUNTIME_MODE =
+  "standalone-tensegrity-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -389,6 +393,23 @@ type ShareTransferCapturePayload = {
   snapshot: ShareTransferSnapshot;
 };
 
+type TensegritySnapshot = {
+  initialDistance: number;
+  finalDistance: number;
+  finalDamping: number;
+  atom0X: number;
+  atom0Y: number;
+  atom1X: number;
+  atom1Y: number;
+};
+
+type TensegrityCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: TensegritySnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -416,6 +437,7 @@ const COLLECTIVE_BANKING_CAPTURE_MARKER =
 const COLLECTIVE_SYNCHRONY_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
 const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
+const TENSEGRITY_CAPTURE_MARKER = "__OMEGA_TENSEGRITY_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -1388,6 +1410,67 @@ const notesForShareTransferCapture = async (
     `- successful_receiver_energy=${payload.snapshot.successfulReceiverEnergy}`,
     `- failed_sender_energy=${payload.snapshot.failedSenderEnergy}`,
     `- failed_receiver_energy=${payload.snapshot.failedReceiverEnergy}`,
+  ].join("\n");
+};
+
+const runTensegrityCaptureSubprocess = async (): Promise<
+  TensegrityCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", TENSEGRITY_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] tensegrity subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(TENSEGRITY_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] tensegrity capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(TENSEGRITY_CAPTURE_MARKER.length),
+  ) as TensegrityCapturePayload;
+};
+
+const notesForTensegrityCapture = async (
+  trace: GoldenTraceScenario,
+  payload: TensegrityCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_TENSEGRITY_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Tensegrity capture`,
+    ``,
+    `- initial_distance=${payload.snapshot.initialDistance}`,
+    `- final_distance=${payload.snapshot.finalDistance}`,
+    `- final_damping=${payload.snapshot.finalDamping}`,
   ].join("\n");
 };
 
@@ -2397,6 +2480,62 @@ const runShareTransferTrace = async (
   };
 };
 
+const runTensegrityTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runTensegrityCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "tensegrity_kinematics",
+    runtime_mode: TRACE_TENSEGRITY_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    initial_distance: payload.snapshot.initialDistance,
+    final_distance: payload.snapshot.finalDistance,
+    final_damping: payload.snapshot.finalDamping,
+  };
+  const invariants = {
+    tensegrity_hash: payload.hash,
+    initial_distance: payload.snapshot.initialDistance,
+    final_distance: payload.snapshot.finalDistance,
+    final_damping: payload.snapshot.finalDamping,
+    atom0_x: payload.snapshot.atom0X,
+    atom0_y: payload.snapshot.atom0Y,
+    atom1_x: payload.snapshot.atom1X,
+    atom1_y: payload.snapshot.atom1Y,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 100,
+    runtime_mode: TRACE_TENSEGRITY_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      finalDistance: payload.snapshot.finalDistance,
+      finalDamping: payload.snapshot.finalDamping,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      tensegrity_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForTensegrityCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -2427,6 +2566,8 @@ export const captureGoldenTrace = async (
     ? await runCollectiveSynchronyTrace(trace)
     : trace.id === "gt10_share_transfer"
     ? await runShareTransferTrace(trace)
+    : trace.id === "gt19_tensegrity_kinematics"
+    ? await runTensegrityTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);
