@@ -62,6 +62,7 @@ export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 42580224;
 export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42625024;
 export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 42714624;
 export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42759424;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 42849024;
 
 type MemoryLayoutRegion = {
   name: string;
@@ -232,11 +233,17 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     GRID_CELLS * 8,
     1,
   ),
+  region(
+    "HORMONES",
+    HORMONE_OFFSET,
+    12, // 6 hormones * 2 bytes (Uint16)
+    2,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8);
+export const LATTICE_MEMORY_END = HORMONE_OFFSET + 12;
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );

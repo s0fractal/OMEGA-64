@@ -20,6 +20,7 @@ import {
   evaluateArchitectPlasmidExecution,
   type ArchitectPlasmidExecutionMode,
 } from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,
   type BaseTaxLedgerApplyResult,
@@ -2067,6 +2068,18 @@ export const PULSE = {
     }
 
     const { syncState, tickCounter, SYNC } = STATE_MATRIX;
+    // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
+    syncHormonesToLattice({
+      baseTax: homeostasisBaseTaxRuntime,
+      targetEnergy: homeostasisTargetEnergyRuntime,
+      workerCount: WORKER_COUNT,
+      egoPressure: evolutionPressureState.ego,
+      fearPressure: evolutionPressureState.fear,
+      noveltyPressure: evolutionPressureState.novelty,
+      symbiosisPressure: evolutionPressureState.symbiosis,
+      maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
+      pressureRingScale: evolutionPressureState.ring.scale,
+    });
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);

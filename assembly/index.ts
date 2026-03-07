@@ -56,6 +56,7 @@ const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
 const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
+const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -107,6 +108,12 @@ function getPhase(idx: i32): i32 {
 }
 function setPhase(idx: i32, val: i32): void {
   store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
+}
+// Read a global hormone value from the shared lattice (index 0..5).
+// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction
+@inline
+function getHormone(id: i32): u16 {
+  return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
 }
 function getX(idx: i32): i16 {
   return load<i16>(XS_OFFSET + (idx << 1) as usize);

@@ -79,6 +79,8 @@ export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
+export const hormoneBuffer =
+  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -170,6 +172,7 @@ const neuralCoherence = new Int32Array(
   OFFSETS.NEURAL_COHERENCE_OFFSET,
   1,
 );
+const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -298,6 +301,7 @@ export const STATE_MATRIX = {
   hiveEnergyPool,
   coherence,
   neuralCoherence,
+  hormones,
   instructions,
   contexts,
   semanticBonuses,
@@ -322,6 +326,7 @@ export const STATE_MATRIX = {
   viralGridBuffer: signalGridBuffer, // Legacy alias for UI endpoints
   hiveMemoryBuffer,
   hiveEnergyPoolBuffer,
+  hormoneBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -643,4 +648,6 @@ export const STATE_MATRIX = {
     Atomics.and(structureGrid, i, ~0xFF000000);
     Atomics.or(structureGrid, i, (val & 0xFF) << 24);
   },
+  getHormone: (id: number) => Atomics.load(hormones, id),
+  setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
