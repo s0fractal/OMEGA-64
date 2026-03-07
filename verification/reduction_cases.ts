@@ -170,6 +170,27 @@ const makePlugChargeScript = (charge: number): Uint8Array => {
   return script;
 };
 
+const makePlugChargeCompetitionScript = (
+  firstCharge: number,
+  secondCharge: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = firstCharge & 0xFF;
+  script[pc++] = 0xA4;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = secondCharge & 0xFF;
+  script[pc++] = 0xA4;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  return script;
+};
+
 const makeSenseScript = (targetType: number): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
@@ -768,6 +789,62 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       finalStructureGrid: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
           (170 << 16),
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc22_gt15_plug_charge_competition_low_high",
+    baselineTraceId: "gt15_structure_charge_competition",
+    description:
+      "A bounded PLUG bridge should preserve max-intent semantics when a lower charge is published before a higher one to the same cell.",
+    script: makePlugChargeCompetitionScript(120, 220),
+    maxSteps: 4,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+    },
+    initialStructureGrid: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+    },
+    expected: {
+      finalPc: 12,
+      signalCount: 0,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [220, 0, 0, 0, 0, 0, 0, 0],
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
+          (210 << 16),
+      },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc23_gt15_plug_charge_competition_high_low",
+    baselineTraceId: "gt15_structure_charge_competition",
+    description:
+      "The same bounded PLUG bridge should still preserve max-intent semantics when the higher charge arrives first and a lower publication follows.",
+    script: makePlugChargeCompetitionScript(220, 120),
+    maxSteps: 4,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+    },
+    initialStructureGrid: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+    },
+    expected: {
+      finalPc: 12,
+      signalCount: 0,
+      buildCount: 0,
+      finalRole: 0,
+      registers: [120, 0, 0, 0, 0, 0, 0, 0],
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
+          (210 << 16),
       },
       branchTaken: false,
     },

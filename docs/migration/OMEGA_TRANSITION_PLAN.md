@@ -375,6 +375,11 @@ Only low-width behavior first:
   and bounded charge materialization can be verified against
   `gt14_structure_charge_resolution` before any broader attempt to bridge the
   full structure engine
+- `verification/reduction_harness.ts` now also preserves `OP_PLUG`
+  max-intent semantics across repeated publications into the same cell, so
+  `gt15_structure_charge_competition` can verify competitive charge
+  publication without pretending the structure engine has already been fully
+  reduced
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so
     `gt05 target_energy=300` cannot yet be encoded directly

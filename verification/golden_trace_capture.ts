@@ -12,6 +12,8 @@ const STRUCTURE_LOCK_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_lock_capture.ts";
 const STRUCTURE_CHARGE_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_charge_capture.ts";
+const STRUCTURE_CHARGE_COMPETITION_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/structure_charge_competition_capture.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
 const COLLECTIVE_BANKING_CAPTURE_PATH =
@@ -27,6 +29,8 @@ const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
 const TRACE_STRUCTURE_LOCK_RUNTIME_MODE = "standalone-structure-lock-capture";
 const TRACE_STRUCTURE_CHARGE_RUNTIME_MODE =
   "standalone-structure-charge-capture";
+const TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE =
+  "standalone-structure-charge-competition-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
 const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
@@ -180,6 +184,28 @@ type StructureChargeCapturePayload = {
   snapshot: StructureChargeSnapshot;
 };
 
+type StructureChargeCompetitionOrderSnapshot = {
+  targetCellIdx: number;
+  firstRequestedCharge: number;
+  secondRequestedCharge: number;
+  chargeIntentBeforeTick: number;
+  resolvedType: number;
+  resolvedCharge: number;
+  chargeIntentAfterTick: number;
+};
+
+type StructureChargeCompetitionSnapshot = {
+  lowThenHigh: StructureChargeCompetitionOrderSnapshot;
+  highThenLow: StructureChargeCompetitionOrderSnapshot;
+};
+
+type StructureChargeCompetitionCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: StructureChargeCompetitionSnapshot;
+};
+
 type CollectiveTransportAtomState = {
   idx: number;
   energy: number;
@@ -296,6 +322,8 @@ const decoder = new TextDecoder();
 const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
 const STRUCTURE_LOCK_CAPTURE_MARKER = "__OMEGA_STRUCTURE_LOCK_CAPTURE__";
 const STRUCTURE_CHARGE_CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
+const STRUCTURE_CHARGE_COMPETITION_CAPTURE_MARKER =
+  "__OMEGA_STRUCTURE_CHARGE_COMPETITION_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 const COLLECTIVE_BANKING_CAPTURE_MARKER =
@@ -766,6 +794,70 @@ const notesForStructureChargeCapture = async (
     `- resolved_cell_type=${payload.snapshot.afterTick.resolvedType}`,
     `- resolved_cell_charge=${payload.snapshot.afterTick.resolvedCharge}`,
     `- charge_intent_after_tick=${payload.snapshot.afterTick.chargeIntent}`,
+  ].join("\n");
+};
+
+const runStructureChargeCompetitionCaptureSubprocess = async (): Promise<
+  StructureChargeCompetitionCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", STRUCTURE_CHARGE_COMPETITION_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] structure-charge-competition subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) =>
+      item.startsWith(STRUCTURE_CHARGE_COMPETITION_CAPTURE_MARKER)
+    );
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] structure-charge-competition capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(STRUCTURE_CHARGE_COMPETITION_CAPTURE_MARKER.length),
+  ) as StructureChargeCompetitionCapturePayload;
+};
+
+const notesForStructureChargeCompetitionCapture = async (
+  trace: GoldenTraceScenario,
+  payload: StructureChargeCompetitionCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Structure charge competition capture`,
+    ``,
+    `- low_then_high_charge_intent=${payload.snapshot.lowThenHigh.chargeIntentBeforeTick}`,
+    `- low_then_high_resolved_charge=${payload.snapshot.lowThenHigh.resolvedCharge}`,
+    `- high_then_low_charge_intent=${payload.snapshot.highThenLow.chargeIntentBeforeTick}`,
+    `- high_then_low_resolved_charge=${payload.snapshot.highThenLow.resolvedCharge}`,
   ].join("\n");
 };
 
@@ -1538,6 +1630,66 @@ const runStructureChargeTrace = async (
   };
 };
 
+const runStructureChargeCompetitionTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runStructureChargeCompetitionCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "structure_charge_competition",
+    runtime_mode: TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    low_then_high_charge_intent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+    low_then_high_resolved_charge: payload.snapshot.lowThenHigh.resolvedCharge,
+    high_then_low_charge_intent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+    high_then_low_resolved_charge: payload.snapshot.highThenLow.resolvedCharge,
+  };
+  const invariants = {
+    structure_charge_competition_hash: payload.hash,
+    low_then_high_cell: payload.snapshot.lowThenHigh.targetCellIdx,
+    low_then_high_charge_intent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+    low_then_high_resolved_charge: payload.snapshot.lowThenHigh.resolvedCharge,
+    low_then_high_charge_after_tick: payload.snapshot.lowThenHigh.chargeIntentAfterTick,
+    high_then_low_cell: payload.snapshot.highThenLow.targetCellIdx,
+    high_then_low_charge_intent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+    high_then_low_resolved_charge: payload.snapshot.highThenLow.resolvedCharge,
+    high_then_low_charge_after_tick: payload.snapshot.highThenLow.chargeIntentAfterTick,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 2,
+    runtime_mode: TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      lowThenHighChargeIntent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+      highThenLowChargeIntent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+      lowThenHighResolvedCharge: payload.snapshot.lowThenHigh.resolvedCharge,
+      highThenLowResolvedCharge: payload.snapshot.highThenLow.resolvedCharge,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      structure_charge_competition_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForStructureChargeCompetitionCapture(trace, payload),
+  };
+};
+
 const runCollectiveTransportTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
@@ -1791,6 +1943,8 @@ export const captureGoldenTrace = async (
     ? await runStructureLockTrace(trace)
     : trace.id === "gt14_structure_charge_resolution"
     ? await runStructureChargeTrace(trace)
+    : trace.id === "gt15_structure_charge_competition"
+    ? await runStructureChargeCompetitionTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
     : trace.id === "gt11_collective_banking"

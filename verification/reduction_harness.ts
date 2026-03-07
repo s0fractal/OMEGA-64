@@ -576,7 +576,11 @@ const applyShadowOpcode = (
         const gy = Math.floor(ry / 10);
         if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
           const cellIdx = gy * GRID_W + gx;
-          state.structureChargeIntent[cellIdx] = (state.regs[p2 & 7] ?? 0) & 0xFF;
+          const nextCharge = (state.regs[p2 & 7] ?? 0) & 0xFF;
+          const currentCharge = state.structureChargeIntent[cellIdx] ?? 0;
+          state.structureChargeIntent[cellIdx] = nextCharge > currentCharge
+            ? nextCharge
+            : currentCharge;
         }
       }
       state.pc += 3;

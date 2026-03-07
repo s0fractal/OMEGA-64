@@ -367,6 +367,33 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_neural_synthesis.ts",
     ],
   },
+  {
+    id: "gt15_structure_charge_competition",
+    scenario: "standalone structure charge competition",
+    setup:
+      "standalone deterministic subprocess capture of two OP_PLUG publications hitting the same cell in both low->high and high->low orderings",
+    duration: "4 execute_atom calls + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "lowThenHighChargeIntent",
+      "highThenLowChargeIntent",
+      "lowThenHighResolvedCharge",
+      "highThenLowResolvedCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      lowThenHighChargeIntent: "strict",
+      highThenLowChargeIntent: "strict",
+      lowThenHighResolvedCharge: "strict",
+      highThenLowResolvedCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_charge_competition_capture.ts",
+      "verification/structure_charge_capture.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

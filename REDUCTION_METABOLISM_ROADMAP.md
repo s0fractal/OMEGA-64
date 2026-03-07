@@ -104,6 +104,11 @@ Latest completed planning work:
   intent publication plus `tick_structure_grid` materialization, so the
   structure charge lane has a committed baseline before deeper structure-engine
   bridge work.
+- Extended Stage 2 with an eighth standalone control specimen:
+  `gt15_structure_charge_competition` now captures two `OP_PLUG`
+  publications competing for the same cell under both orderings, so the
+  structure charge lane now has a committed `max-intent wins` baseline rather
+  than an accidental last-write model.
 - Extended Stage 4 with bounded `OP_SENSE` parity tied to `gt08`: the reduction
   harness now models build-intent overlays and structural sensing, and persists
   `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.

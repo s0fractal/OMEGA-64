@@ -44,6 +44,7 @@ Committed baseline set now exists for:
 - `gt12_collective_synchrony`
 - `gt13_structure_lock_progress`
 - `gt14_structure_charge_resolution`
+- `gt15_structure_charge_competition`
 
 Minimal `trace.json` payload:
 
@@ -98,6 +99,7 @@ If a scenario cannot satisfy these bounds, it is not a valid bridge candidate ye
 | `gt12_collective_synchrony` | standalone collective synchrony semantics | standalone deterministic subprocess capture of `OP_COLLECTIVE` mode `5` bonded phase-lock and mode `6` local quorum PC sync via direct WASM execution | `2` execute phases / subprocess capture | phase peer1 pc, phase peer2 pc, quorum peer1 pc, quorum peer2 pc, quorum outsider pc, snapshot digest | `verification/traces/gt12_collective_synchrony/trace.json` | all metrics `strict` | `verification/collective_synchrony_capture.ts`, `test_swarm.ts`, `test_structure_lock_progress.ts` |
 | `gt13_structure_lock_progress` | standalone structure stale-lock progress | standalone deterministic subprocess capture of `OP_SENSE` visibility through a stale structure lock plus `tick_structure_grid` intent clearing | `2` execute phases + `1` structure tick / subprocess capture | visible sense reg, typed miss sense reg, resolved cell type, resolved cell charge, snapshot digest | `verification/traces/gt13_structure_lock_progress/trace.json` | all metrics `strict` | `verification/structure_lock_capture.ts`, `test_structure_lock_progress.ts` |
 | `gt14_structure_charge_resolution` | standalone structure charge resolution | standalone deterministic subprocess capture of `OP_PLUG` publishing a charge intent and `tick_structure_grid` resolving it into a concrete charged structure cell | `1` execute phase + `1` structure tick / subprocess capture | charge intent before tick, resolved cell type, resolved cell charge, snapshot digest | `verification/traces/gt14_structure_charge_resolution/trace.json` | all metrics `strict` | `verification/structure_charge_capture.ts`, `test_structure_lock_progress.ts`, `test_neural_synthesis.ts` |
+| `gt15_structure_charge_competition` | standalone structure charge competition | standalone deterministic subprocess capture of two `OP_PLUG` publications hitting the same cell in both `low->high` and `high->low` orderings | `4` execute calls + `1` structure tick / subprocess capture | low->high charge intent, high->low charge intent, low->high resolved charge, high->low resolved charge, snapshot digest | `verification/traces/gt15_structure_charge_competition/trace.json` | all metrics `strict` | `verification/structure_charge_competition_capture.ts`, `verification/structure_charge_capture.ts`, `test_structure_lock_progress.ts` |
 
 ## Capture rules
 

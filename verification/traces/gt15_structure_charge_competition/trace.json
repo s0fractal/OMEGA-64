@@ -1,0 +1,49 @@
+{
+  "trace_id": "gt15_structure_charge_competition",
+  "scenario": "standalone structure charge competition",
+  "tick_start": 0,
+  "tick_end": 2,
+  "runtime_mode": "standalone-structure-charge-competition-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "lowThenHighChargeIntent": 220,
+    "highThenLowChargeIntent": 220,
+    "lowThenHighResolvedCharge": 210,
+    "highThenLowResolvedCharge": 210,
+    "snapshotDigest": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "36d05cf4c048606075dfee36a4486bceea75f9b735ff0a2ad5572d449daf0b81",
+  "invariant_digest": "e233da5db7c1dd088e73248aca40d47c4a6442ae9e035e2218615f7894d5bd44",
+  "extra_artifacts": {
+    "structure_charge_competition_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01",
+      "snapshot": {
+        "lowThenHigh": {
+          "targetCellIdx": 423,
+          "firstRequestedCharge": 120,
+          "secondRequestedCharge": 220,
+          "chargeIntentBeforeTick": 220,
+          "resolvedType": 1,
+          "resolvedCharge": 210,
+          "chargeIntentAfterTick": 0
+        },
+        "highThenLow": {
+          "targetCellIdx": 427,
+          "firstRequestedCharge": 220,
+          "secondRequestedCharge": 120,
+          "chargeIntentBeforeTick": 220,
+          "resolvedType": 1,
+          "resolvedCharge": 210,
+          "chargeIntentAfterTick": 0
+        }
+      }
+    }
+  }
+}

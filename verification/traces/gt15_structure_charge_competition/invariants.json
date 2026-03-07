@@ -1,0 +1,11 @@
+{
+  "structure_charge_competition_hash": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01",
+  "low_then_high_cell": 423,
+  "low_then_high_charge_intent": 220,
+  "low_then_high_resolved_charge": 210,
+  "low_then_high_charge_after_tick": 0,
+  "high_then_low_cell": 427,
+  "high_then_low_charge_intent": 220,
+  "high_then_low_resolved_charge": 210,
+  "high_then_low_charge_after_tick": 0
+}
