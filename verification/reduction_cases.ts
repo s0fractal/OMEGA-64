@@ -11,9 +11,13 @@ export type ReductionCaseExpectation = {
   finalHiveMemory?: Partial<Record<number, number>>;
   finalHiveBalance?: number;
   finalSignalGrid?: Partial<Record<number, number>>;
+
   finalPeerEnergy?: Partial<Record<number, number>>;
   finalPeerPc?: Partial<Record<number, number>>;
+  finalBondDistances?: Partial<Record<number, number>>;
+  finalDamping?: number;
   finalStructureGrid?: Partial<Record<number, number>>;
+
   branchTaken?: boolean;
 };
 
@@ -25,8 +29,11 @@ export type ReductionCaseDefinition = {
   maxSteps: number;
   ownerAtomIdx?: number;
   postStructureTick?: boolean;
+
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
+  initialBondDistances?: Partial<Record<number, number>>;
+  initialDamping?: number;
   initialPeerEnergy?: Partial<Record<number, number>>;
   initialPeerPc?: Partial<Record<number, number>>;
   initialCellPeers?: number[];
@@ -155,7 +162,22 @@ const makeBuildOnlyScript = (buildType: number, buildState: number): Uint8Array 
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = buildType & 0xFF;
+
   script[pc++] = buildState & 0xFF;
+  return script;
+};
+
+const makeTensegrityScript = (slot: number, dist: number, damping: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_TENSEGRITY;
+  script[pc++] = 0;
+  script[pc++] = slot & 0xFF;
+  script[pc++] = dist & 0xFF;
+  script[pc++] = RISC.OP_TENSEGRITY;
+  script[pc++] = 1;
+  script[pc++] = damping & 0xFF;
+  script[pc++] = 0;
   return script;
 };
 
@@ -996,6 +1018,30 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
           (255 << 16) | (55 << 24),
       },
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc28_gt19_tensegrity_kinematics",
+    baselineTraceId: "gt19_tensegrity_kinematics",
+    description:
+      "A bounded TENSEGRITY bridge should preserve mode 0 (SET_BOND_DIST) and mode 1 (SET_DAMPING) semantics.",
+    script: makeTensegrityScript(0, 100, 255),
+    maxSteps: 2,
+    initialProps: {},
+    initialBondDistances: {
+      0: 50,
+    },
+    initialDamping: 100,
+    expected: {
+      finalPc: 8,
+      signalCount: 0,
+      buildCount: 0,
+      finalRole: 0,
+      finalBondDistances: {
+        0: 100,
+      },
+      finalDamping: 255,
       branchTaken: false,
     },
   },

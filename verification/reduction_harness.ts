@@ -31,6 +31,9 @@ type ShadowState = {
   role: number;
   props: HarnessProps;
   bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
   peerEnergy: HarnessProps;
   peerPc: HarnessProps;
   cellPeers: number[];
@@ -53,6 +56,9 @@ type LegacyShadowResult = {
   role: number;
   props: HarnessProps;
   bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
   peerEnergy: HarnessProps;
   peerPc: HarnessProps;
   hiveMemory: HarnessProps;
@@ -75,6 +81,8 @@ type ReductionShadowResult = {
   role: number;
   props: HarnessProps;
   bondTargets: HarnessProps;
+  bondDistances: HarnessProps;
+  damping: number;
   peerEnergy: HarnessProps;
   peerPc: HarnessProps;
   hiveMemory: HarnessProps;
@@ -126,9 +134,12 @@ export type ReductionHarnessArtifact = {
   diff: {
     final_pc_match: boolean;
     registers_match: boolean;
+
     role_match: boolean;
     props_match: boolean;
     bond_targets_match: boolean;
+    bond_distances_match: boolean;
+    damping_match: boolean;
     peer_energy_match: boolean;
     peer_pc_match: boolean;
     hive_memory_match: boolean;
@@ -182,6 +193,14 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+
+  bondDistances: Object.fromEntries(
+    Object.entries(definition.initialBondDistances ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  damping: definition.initialDamping ?? 0,
   peerEnergy: Object.fromEntries(
     Object.entries(definition.initialPeerEnergy ?? {}).map(([key, value]) => [
       Number(key),
@@ -275,6 +294,9 @@ const snapshotLegacy = (
   role: state.role,
   props: { ...state.props },
   bondTargets: { ...state.bondTargets },
+
+  bondDistances: { ...state.bondDistances },
+  damping: state.damping,
   peerEnergy: { ...state.peerEnergy },
   peerPc: { ...state.peerPc },
   hiveMemory: { ...state.hiveMemory },
@@ -304,6 +326,8 @@ const snapshotReduction = (
   role: state.role,
   props: { ...state.props },
   bondTargets: { ...state.bondTargets },
+  bondDistances: { ...state.bondDistances },
+  damping: state.damping,
   peerEnergy: { ...state.peerEnergy },
   peerPc: { ...state.peerPc },
   hiveMemory: { ...state.hiveMemory },
@@ -571,6 +595,19 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
+
+    case RISC.OP_TENSEGRITY: {
+      const mode = args[0] ?? 0;
+      const p2 = args[1] ?? 0;
+      const p3 = args[2] ?? 0;
+      if (mode === 0) {
+        state.bondDistances[p2] = p3;
+      } else if (mode === 1) {
+        state.damping = p2;
+      }
+      state.pc += 4;
+      return;
+    }
     case OP_PLUG: {
       const mode = args[0] ?? 0;
       const p2 = args[1] ?? 0;
@@ -714,6 +751,15 @@ const compareResults = (
   if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
     reasons.push("bondTargets mismatch");
   }
+  if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
+    reasons.push("bondTargets mismatch");
+  }
+  if (!equalHarnessProps(legacy.bondDistances, reduction.bondDistances)) {
+    reasons.push("bondDistances mismatch");
+  }
+  if (legacy.damping !== reduction.damping) {
+    reasons.push(`damping mismatch legacy=${legacy.damping} reduction=${reduction.damping}`);
+  }
   if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
     reasons.push("peerEnergy mismatch");
   }
@@ -850,6 +896,25 @@ const compareResults = (
       }
     }
   }
+
+  if (expected.finalBondDistances) {
+    for (const [key, value] of Object.entries(expected.finalBondDistances)) {
+      const slot = Number(key);
+      if ((legacy.bondDistances[slot] ?? 0) !== value) {
+        reasons.push(
+          `expected bondDistances[${slot}]=${value} got=${legacy.bondDistances[slot] ?? 0}`,
+        );
+      }
+    }
+  }
+  if (
+    typeof expected.finalDamping === "number" &&
+    legacy.damping !== expected.finalDamping
+  ) {
+    reasons.push(
+      `expected finalDamping=${expected.finalDamping} got=${legacy.damping}`,
+    );
+  }
   if (expected.finalPeerEnergy) {
     for (const [key, value] of Object.entries(expected.finalPeerEnergy)) {
       const peer = Number(key);
@@ -910,6 +975,9 @@ const buildReductionHarnessArtifact = async (
     role: result.legacy.role,
     props: result.legacy.props,
     bondTargets: result.legacy.bondTargets,
+
+    bondDistances: result.legacy.bondDistances,
+    damping: result.legacy.damping,
     peerEnergy: result.legacy.peerEnergy,
     peerPc: result.legacy.peerPc,
     hiveMemory: result.legacy.hiveMemory,
@@ -924,10 +992,13 @@ const buildReductionHarnessArtifact = async (
   }),
   reduction_digest: await sha256Hex({
     finalPc: result.reduction.finalPc,
+
     regs: result.reduction.regs,
     role: result.reduction.role,
     props: result.reduction.props,
     bondTargets: result.reduction.bondTargets,
+    bondDistances: result.reduction.bondDistances,
+    damping: result.reduction.damping,
     peerEnergy: result.reduction.peerEnergy,
     peerPc: result.reduction.peerPc,
     hiveMemory: result.reduction.hiveMemory,
@@ -951,6 +1022,12 @@ const buildReductionHarnessArtifact = async (
       result.legacy.bondTargets,
       result.reduction.bondTargets,
     ),
+
+    bond_distances_match: equalHarnessProps(
+      result.legacy.bondDistances,
+      result.reduction.bondDistances,
+    ),
+    damping_match: result.legacy.damping === result.reduction.damping,
     peer_energy_match: equalHarnessProps(
       result.legacy.peerEnergy,
       result.reduction.peerEnergy,

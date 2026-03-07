@@ -8,7 +8,7 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const TRACE_THRESHOLD: u64 = 20; // Trace logic for atoms with ID < TRACE_THRESHOLD
 const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS
@@ -53,6 +53,9 @@ const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
 const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
 const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42579200;
 const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
+const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
+const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
+const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -76,6 +79,11 @@ const CRYSTAL_OSCILLATOR: i32 = 5;
 const CRYSTAL_MEME: i32 = 10; // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
+
+// --- ERA 71: FORCE ACCUMULATION ---
+// Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
+let accForceX: f32 = 0;
+let accForceY: f32 = 0;
 
 function clampResource(value: i64): i32 {
   if (value < 0) return 0;
@@ -414,10 +422,10 @@ function getGenomeVelocityX(idx: i32): i32 {
   let vx: i32 = 0;
   for (let b = 0; b < 2; b++) {
     let byte = getLogicByte(idx, b);
-    let hi = (byte >> 4) & 0x0F;
-    vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = byte & 0x0F;
-    vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
   }
   return vx;
 }
@@ -426,10 +434,10 @@ function getGenomeVelocityY(idx: i32): i32 {
   let vy: i32 = 0;
   for (let b = 2; b < 4; b++) {
     let byte = getLogicByte(idx, b);
-    let hi = (byte >> 4) & 0x0F;
-    vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = byte & 0x0F;
-    vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
   }
   return vy;
 }
@@ -462,7 +470,12 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           let dx = oX - (x as f32);
           let dy = oY - (y as f32);
           let d2 = dx * dx + dy * dy;
-          if (d2 < 1.0) continue;
+          if (d2 < 0.001) {
+            // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
+            d2 = 0.001; 
+          } else if (d2 < 1.0) {
+            // Minor overlap, let it through
+          }
 
           // --- PHASE 15: SOCIAL RECOGNITION (AVOIDANCE) ---
           if (d2 < 100.0) { // Too close!
@@ -573,12 +586,152 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
     }
   }
 
-  // Final position integration (velocity)
-  storeClampedPos(
-    idx,
-    x + (Math.round(tx) as i32),
-    y + (Math.round(ty) as i32),
-  );
+  // ERA 71: ACCUMULATE instead of immediate store
+  accForceX += tx;
+  accForceY += ty;
+}
+
+// --- ERA 72: GLYPH INTERNALIZATION ---
+
+@inline
+function unpackGlyphKind(header: i32): i32 {
+  return header & 0xFF;
+}
+
+@inline
+function unpackGlyphAmplitude(header: i32): i32 {
+  return (header >>> 8) & 0x00FFFFFF;
+}
+
+@inline
+function packGlyphHeader(kind: i32, amplitude: i32): i32 {
+  if (amplitude < 0) amplitude = 0;
+  if (amplitude > 0x00FFFFFF) amplitude = 0x00FFFFFF;
+  return (amplitude << 8) | (kind & 0xFF);
+}
+
+function decayForKind(kind: i32, amplitude: i32): i32 {
+  if (kind == 2) { // PLASMID
+    return amplitude > 256 ? 3 : 1;
+  }
+  if (kind == 1) { // PHEROMONE
+    return amplitude > 64 ? 8 : 4;
+  }
+  return amplitude;
+}
+
+function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
+  if (kind == 2) { // PLASMID
+    return amplitude >= 96 ? (amplitude >> 3) : 0; // amplitude * 0.125
+  }
+  if (kind == 1) { // PHEROMONE
+    return amplitude >= 24 ? (amplitude >> 2) : 0; // amplitude * 0.25
+  }
+  return 0;
+}
+
+function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
+  if (amplitude <= 0) return;
+  const current = load<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize);
+  const currentKind = unpackGlyphKind(current);
+  const currentAmplitude = unpackGlyphAmplitude(current);
+  
+  const mergedKind = currentKind == 0 ? kind : currentKind;
+  let mergedAmplitude = 0;
+  if (currentKind == kind) {
+    mergedAmplitude = currentAmplitude + amplitude;
+    if (mergedAmplitude > 0x00FFFFFF) mergedAmplitude = 0x00FFFFFF;
+  } else {
+    mergedAmplitude = currentAmplitude > amplitude ? currentAmplitude : amplitude;
+  }
+  
+  store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
+}
+
+export function tickGlyphTransport(tick: i32): void {
+  // Clear scratch headers (payload clearing is handled by over-writes)
+  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
+  
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
+    const kind = unpackGlyphKind(header);
+    const amplitude = unpackGlyphAmplitude(header);
+    if (kind == 0 || amplitude <= 0) continue;
+
+    const decayed = amplitude - decayForKind(kind, amplitude);
+    if (decayed <= 0) continue;
+
+    const share = diffusionShareForKind(kind, decayed);
+    const retained = decayed - share;
+    
+    if (retained > 0) {
+      writeGlyphScratch(cell, kind, retained);
+      if (kind == 2) { // PLASMID payload persistence
+        const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
+        memory.copy(dstPtr, srcPtr, 8);
+      }
+    }
+
+    if (share > 0) {
+      const gx = cell % 140;
+      const gy = cell / 140;
+      const selector = (tick + cell) & 3;
+      let nextCell = cell;
+      
+      if (selector == 0 && gx < 139) nextCell = cell + 1;
+      else if (selector == 1 && gy < 79) nextCell = cell + 140;
+      else if (selector == 2 && gx > 0) nextCell = cell - 1;
+      else if (selector == 3 && gy > 0) nextCell = cell - 140;
+      
+      writeGlyphScratch(nextCell, kind, share);
+      if (kind == 2) { // PLASMID payload transport
+        const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
+        memory.copy(dstPtr, srcPtr, 8);
+      }
+    }
+  }
+
+  // Seeding: Internal Signal Reflection
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
+    const absSignal = signal < 0 ? -signal : signal;
+    if (absSignal >= 256) {
+      let amp = absSignal >> 4;
+      if (amp < 16) amp = 16;
+      if (amp > 512) amp = 512;
+      writeGlyphScratch(cell, 1, amp); // PHEROMONE seed from signal
+    }
+  }
+
+  // Seeding: Internal Memory Reflection
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
+    const charge = (load<u8>(memOffset) as i32) | ((load<u8>(memOffset + 1) as i32) << 8);
+    
+    let payloadResidue = false;
+    for (let i = 4; i < 8; i++) {
+        if (load<u8>(memOffset + i) != 0) {
+            payloadResidue = true;
+            break;
+        }
+    }
+    
+    if (payloadResidue && charge >= 64) {
+      let amp = charge >> 3;
+      if (amp < 24) amp = 24;
+      if (amp > 384) amp = 384;
+      writeGlyphScratch(cell, 2, amp); // PLASMID seed from memory
+      
+      const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
+      memory.copy(dstPtr, memOffset, 8);
+    }
+  }
+
+  // Copy results back to main buffers
+  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, (140 * 80) << 2);
+  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, (140 * 80) << 3);
 }
 
 function applyBondSprings(idx: i32, x: i32, y: i32): void {
@@ -625,11 +778,9 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     fy *= dampingFactor;
   }
 
-  storeClampedPos(
-    idx,
-    x + (Math.round(fx) as i32),
-    y + (Math.round(fy) as i32),
-  );
+  // ERA 71: ACCUMULATE instead of immediate store
+  accForceX += fx;
+  accForceY += fy;
 }
 
 export function execute_atom(atomIndex: i32): void {
@@ -641,22 +792,27 @@ export function execute_atom(atomIndex: i32): void {
   // --- VECTOR 7: THE QUANTUM SHIFT ---
   // If id > 10, calculate physics (matching JS neural verification)
   if (id > 10) {
+    // ERA 71: Reset accumulation
+    accForceX = 0;
+    accForceY = 0;
+    
     let vx = getGenomeVelocityX(atomIndex);
     let vy = getGenomeVelocityY(atomIndex);
 
     applyBondSprings(atomIndex, curX, curY);
     calculateTrophism(atomIndex, curX, curY, role);
 
-    // Final position integration (velocity)
-    let midX = getX(atomIndex) as i32;
-    let midY = getY(atomIndex) as i32;
+    // Final position integration (velocity + forces)
     let damping = load<u8>(DAMPING_OFF + atomIndex as usize);
     let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
 
     // Behavior velocity is added on top of force integration
-    let nextX = midX + (vx * 2 * (dampingFactor as i32));
-    let nextY = midY + (vy * 2 * (dampingFactor as i32));
-    storeClampedPos(atomIndex, nextX, nextY);
+    let nextX = (curX as f32) + accForceX +
+      (vx as f32) * 2.0 * (dampingFactor as f32);
+    let nextY = (curY as f32) + accForceY +
+      (vy as f32) * 2.0 * (dampingFactor as f32);
+
+    storeClampedPos(atomIndex, Math.round(nextX) as i32, Math.round(nextY) as i32);
   }
 
   let pc = getPC(atomIndex);
@@ -669,8 +825,6 @@ export function execute_atom(atomIndex: i32): void {
   for (; step < 16; step++) {
     const op = load<u8>(instr_base + (pc as usize));
     if (op == OP_NOP) break;
-
-    trace_atom(atomIndex, op as i32, curX / 10, curY / 10, pc as i32);
 
     switch (op) {
       case OP_SET: {

@@ -20,6 +20,7 @@ import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -149,6 +150,27 @@ type RuntimeMetrics = {
     lastStatus: "legacy" | "emit" | "suppress" | "fallback";
     lastBranch: "emit" | "suppress" | "unknown";
     lastFallbackReason: string;
+  };
+  architectPlasmidPromotion: {
+    status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
+    ready: boolean;
+    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    shadowRuns: number;
+    hybridRuns: number;
+    reductionRuns: number;
+    fallbackRuns: number;
+    fallbackRatio: number;
+    emitBranchCount: number;
+    suppressBranchCount: number;
+    shadowSuppressedArchitectPlasmids: number;
+    reasons: string[];
+    thresholds: {
+      minShadowRuns: number;
+      maxFallbackRatio: number;
+      minEmitBranchCount: number;
+      minSuppressBranchCount: number;
+      minShadowSuppressedArchitectPlasmids: number;
+    };
   };
   guardianSignalPromotion: {
     status: "legacy-baseline-needed" | "warming" | "ready" | "already-hybrid";
@@ -568,6 +590,9 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     architectPlasmidHybrid,
     guardianSignalPromotion: evaluateGuardianSignalPromotion(
       guardianSignalHybrid,
+    ),
+    architectPlasmidPromotion: evaluateArchitectPlasmidPromotion(
+      architectPlasmidHybrid,
     ),
     glyphTransport: GLYPH_BUFFER.snapshot(),
   };

@@ -5,11 +5,35 @@
   "dominanceThreshold": 0.05,
   "minEpochsForDiscovery": 3,
   "population": {
-    "current": 147,
-    "peak": 209
+    "current": 145,
+    "peak": 208
+  },
+  "glyphTransport": {
+    "regime": "plasmid_surge",
+    "summary": "Glyph regime Plasmid Surge | dominant role None | source None | amplitude surged.",
+    "dominantRole": "none",
+    "sourceMode": "none",
+    "lastRecordedTick": 0,
+    "signature": "pheromone_canopy|producer|actor_secretion|surged"
+  },
+  "daemonEffect": {
+    "summary": "No daemon effect contour recorded yet.",
+    "lineage": "none",
+    "deltaBand": "none",
+    "lastRecordedTick": -1
   },
   "species": [],
-  "chronicles": [],
+  "chronicles": [
+    {
+      "id": "chronicle-0-glyphtranspo",
+      "tick": 0,
+      "epoch": 0,
+      "type": "glyph_transport_regime",
+      "title": "Glyph Transport Regime: Pheromone Canopy",
+      "body": "Tick 0 registered Pheromone Canopy with dominant role Producer via Actor Secretion. Active cells=55, pheromone=44, plasmid=11, totalAmplitude=4501, maxAmplitude=278, atomPheromone=7, atomPlasmid=6.",
+      "createdAt": "2026-03-07T15:10:01.747Z"
+    }
+  ],
   "relics": [],
   "invariants": []
 }

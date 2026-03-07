@@ -6,7 +6,8 @@
     "PULSE_WORKER.ts",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
-    "assembly/index.ts"
+    "assembly/index.ts",
+    "MUTATION_TELEMETRY.ts"
   ],
   "runtime_support_files": [
     "build_wasm.ts",
@@ -34,6 +35,8 @@
     "RIBOSOME_TICK.ts",
     "GUARDIAN_SIGNAL_PROMOTION_ACTION.ts",
     "GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
+    "ARCHITECT_PLASMID_PROMOTION_ACTION.ts",
+    "ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
     "reduction_core/GlyphIR64.ts",
     "verification/guardian_signal_mode_cases.ts",
     "verification/guardian_signal_mode_harness.ts",
@@ -64,7 +67,8 @@
     "PULSE_WORKER.ts",
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
-    "assembly/index.ts"
+    "assembly/index.ts",
+    "MUTATION_TELEMETRY.ts"
   ],
   "required_additional_files": [
     "DAEMON_INGRESS_POLICY.ts",
@@ -75,6 +79,9 @@
     "GUARDIAN_SIGNAL_PROMOTION_ACTION.ts",
     "GUARDIAN_SIGNAL_PROMOTION.ts",
     "GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
+    "ARCHITECT_PLASMID_PROMOTION.ts",
+    "ARCHITECT_PLASMID_PROMOTION_ACTION.ts",
+    "ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
     "GLYPH_BUFFER.ts",
     "GENETIC_LEDGER_PERSISTENCE.ts",
     "GENETIC_LEDGER_RUNTIME.ts",

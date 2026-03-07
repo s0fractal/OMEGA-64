@@ -5,11 +5,53 @@
   "dominanceThreshold": 0.05,
   "minEpochsForDiscovery": 3,
   "population": {
-    "current": 145,
-    "peak": 209
+    "current": 144,
+    "peak": 208
+  },
+  "glyphTransport": {
+    "regime": "plasmid_surge",
+    "summary": "Glyph regime Plasmid Surge | dominant role None | source None | amplitude surged.",
+    "dominantRole": "none",
+    "sourceMode": "none",
+    "lastRecordedTick": 256,
+    "signature": "plasmid_surge|none|none|surged"
+  },
+  "daemonEffect": {
+    "summary": "Daemon effect Amplifying via inject_plasmid on Genome 80816F02. Population delta -10, energy delta +218.865, coherence delta +0.000.",
+    "lineage": "Genome 80816F02",
+    "deltaBand": "amplifying",
+    "lastRecordedTick": 161
   },
   "species": [],
-  "chronicles": [],
+  "chronicles": [
+    {
+      "id": "chronicle-256-glyphtranspo",
+      "tick": 256,
+      "epoch": 0,
+      "type": "glyph_transport_regime",
+      "title": "Glyph Transport Regime: Plasmid Surge",
+      "body": "Tick 256 registered Plasmid Surge with dominant role None via None. Active cells=144, pheromone=0, plasmid=144, totalAmplitude=20840, maxAmplitude=754, atomPheromone=0, atomPlasmid=0.",
+      "createdAt": "2026-03-07T15:10:17.064Z"
+    },
+    {
+      "id": "chronicle-161-daemoneffect",
+      "tick": 161,
+      "epoch": 0,
+      "type": "daemon_effect",
+      "title": "Daemon Effect INJECT_PLASMID: daemon-129-1",
+      "body": "Deferred effect audit for INJECT_PLASMID -> INJECT_PLASMID. Shared center: tick.exists. Dominant invariant vector: none. Population 157 -> 147 (delta -10), avgEnergy 34.963 -> 253.828 (delta +218.865), neuralCoherence 0.000 -> 0.000 (delta +0.000). Observed lineage: Genome 80816F02. Glyph transport context: Glyph regime Plasmid Surge | dominant role None | source None | amplitude surged.",
+      "createdAt": "2026-03-07T15:10:14.500Z"
+    },
+    {
+      "id": "chronicle-0-glyphtranspo",
+      "tick": 0,
+      "epoch": 0,
+      "type": "glyph_transport_regime",
+      "title": "Glyph Transport Regime: Pheromone Canopy",
+      "body": "Tick 0 registered Pheromone Canopy with dominant role Producer via Actor Secretion. Active cells=55, pheromone=44, plasmid=11, totalAmplitude=4501, maxAmplitude=278, atomPheromone=7, atomPlasmid=6.",
+      "createdAt": "2026-03-07T15:10:09.324Z"
+    }
+  ],
   "relics": [],
   "invariants": []
 }

@@ -23,6 +23,7 @@ export type DaemonNarrativeContext = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  metabolicPressure: number;
 };
 
 export type DaemonInvariantAdmission = {
@@ -322,6 +323,7 @@ export const normalizeDaemonNarrativeContext = (
     glyphRegime,
     glyphDominantRole,
     glyphSourceMode,
+    metabolicPressure: asFiniteNumber(root.metabolicPressure, 0),
   };
 };
 
@@ -442,6 +444,14 @@ export const evaluateInvariantAdmission = (
       score += 1;
       reasons.push("PHEROMONE_INTENSITY_HIGH");
     }
+  }
+
+  if (context.metabolicPressure > 0.8) {
+    score += 2;
+    reasons.push("METABOLIC_PRESSURE_SATURED");
+  } else if (context.metabolicPressure > 0.5) {
+    score += 1;
+    reasons.push("METABOLIC_PRESSURE_HIGH");
   }
 
   const severity = score >= DAEMON_INGRESS_POLICY_LIMITS.invariantDriftHighScore

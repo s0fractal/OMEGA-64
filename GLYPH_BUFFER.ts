@@ -37,17 +37,10 @@ export type GlyphSnapshot = {
   atomRolePlasmid: GlyphRoleCounters;
 };
 
-const scratchHeader = new Int32Array(GRID_CELLS);
-const scratchPayload = new Uint8Array(GRID_CELLS * 8);
 let lastInternalSignalSeeds = 0;
 let lastInternalMemorySeeds = 0;
 let lastInternalAtomPheromoneSeeds = 0;
 let lastInternalAtomPlasmidSeeds = 0;
-
-const SIGNAL_SEED_THRESHOLD = 256;
-const SIGNAL_SEED_MAX = 512;
-const MEMORY_SEED_CHARGE_THRESHOLD = 64;
-const MEMORY_SEED_MAX = 384;
 
 const createRoleCounters = (): GlyphRoleCounters => ({
   neutral: 0,
@@ -73,8 +66,8 @@ const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
   parasite: counters.parasite,
 });
 
-let lastAtomRolePheromone = createRoleCounters();
-let lastAtomRolePlasmid = createRoleCounters();
+const lastAtomRolePheromone = createRoleCounters();
+const lastAtomRolePlasmid = createRoleCounters();
 
 const incrementRoleCounter = (counters: GlyphRoleCounters, role: number): void => {
   if (role === STATE_MATRIX.ROLE_PRODUCER) {
@@ -113,8 +106,8 @@ const toGridCell = (x: number, y: number): number => {
   const wx = clamp(Math.round(x), 0, WORLD_W - 1);
   const wy = clamp(Math.round(y), 0, WORLD_H - 1);
   const gx = clamp(Math.floor(wx / 10), 0, GRID_W - 1);
-  const gy = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
-  return gy * GRID_W + gx;
+  const wy_grid = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
+  return wy_grid * GRID_W + gx;
 };
 
 const depositHeader = (
@@ -135,94 +128,6 @@ const depositHeader = (
   if (payload && payload.length > 0) {
     STATE_MATRIX.setGlyphPayload(cell, payload);
   }
-};
-
-const decayForKind = (kind: GlyphKind, amplitude: number): number => {
-  if (kind === GLYPH_KIND.PLASMID) {
-    return amplitude > 256 ? 3 : 1;
-  }
-  if (kind === GLYPH_KIND.PHEROMONE) {
-    return amplitude > 64 ? 8 : 4;
-  }
-  return amplitude;
-};
-
-const diffusionShareForKind = (kind: GlyphKind, amplitude: number): number => {
-  if (kind === GLYPH_KIND.PLASMID) {
-    return amplitude >= 96 ? Math.floor(amplitude * 0.125) : 0;
-  }
-  if (kind === GLYPH_KIND.PHEROMONE) {
-    return amplitude >= 24 ? Math.floor(amplitude * 0.25) : 0;
-  }
-  return 0;
-};
-
-const nextCellForDiffusion = (cell: number, tick: number): number => {
-  const gx = cell % GRID_W;
-  const gy = Math.floor(cell / GRID_W);
-  const selector = (tick + cell) & 3;
-  if (selector === 0 && gx < GRID_W - 1) return cell + 1;
-  if (selector === 1 && gy < GRID_H - 1) return cell + GRID_W;
-  if (selector === 2 && gx > 0) return cell - 1;
-  if (selector === 3 && gy > 0) return cell - GRID_W;
-  return cell;
-};
-
-const writeScratch = (
-  cell: number,
-  kind: GlyphKind,
-  amplitude: number,
-): void => {
-  if (amplitude <= 0) return;
-  const current = scratchHeader[cell];
-  const currentKind = unpackKind(current);
-  const currentAmplitude = unpackAmplitude(current);
-  const mergedKind = currentKind === GLYPH_KIND.NONE ? kind : currentKind;
-  const mergedAmplitude = currentKind === kind
-    ? Math.min(GLYPH_AMPLITUDE_MAX, currentAmplitude + amplitude)
-    : Math.max(currentAmplitude, amplitude);
-  scratchHeader[cell] = packHeader(mergedKind, mergedAmplitude);
-};
-
-const seedFromSignalGrid = (): number => {
-  let seeded = 0;
-  for (let cell = 0; cell < GRID_CELLS; cell++) {
-    const signal = Math.abs(Atomics.load(STATE_MATRIX.signalGrid, cell));
-    if (signal < SIGNAL_SEED_THRESHOLD) continue;
-    const amplitude = clamp(Math.floor(signal / 16), 16, SIGNAL_SEED_MAX);
-    writeScratch(cell, GLYPH_KIND.PHEROMONE, amplitude);
-    seeded++;
-  }
-  return seeded;
-};
-
-const seedFromMemoryGrid = (): number => {
-  let seeded = 0;
-  for (let cell = 0; cell < GRID_CELLS; cell++) {
-    const offset = cell * 8;
-    const charge = STATE_MATRIX.memoryGrid[offset] |
-      (STATE_MATRIX.memoryGrid[offset + 1] << 8);
-    let payloadResidue = false;
-    for (let i = offset + 4; i < offset + 8; i++) {
-      if (STATE_MATRIX.memoryGrid[i] !== 0) {
-        payloadResidue = true;
-        break;
-      }
-    }
-    if (!payloadResidue || charge < MEMORY_SEED_CHARGE_THRESHOLD) continue;
-    const amplitude = clamp(
-      Math.floor(charge / 8),
-      24,
-      MEMORY_SEED_MAX,
-    );
-    writeScratch(cell, GLYPH_KIND.PLASMID, amplitude);
-    scratchPayload.set(
-      STATE_MATRIX.memoryGrid.subarray(offset, offset + 8),
-      cell * 8,
-    );
-    seeded++;
-  }
-  return seeded;
 };
 
 export const GLYPH_BUFFER = {
@@ -292,76 +197,6 @@ export const GLYPH_BUFFER = {
     lastInternalAtomPlasmidSeeds++;
     incrementRoleCounter(lastAtomRolePlasmid, role);
     GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
-  },
-
-  tick: (tick: number): GlyphSnapshot => {
-    scratchHeader.fill(0);
-    scratchPayload.fill(0);
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = STATE_MATRIX.getGlyphHeader(cell);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (kind === GLYPH_KIND.NONE || amplitude <= 0) continue;
-
-      const decayed = Math.max(0, amplitude - decayForKind(kind, amplitude));
-      if (decayed <= 0) continue;
-
-      const share = diffusionShareForKind(kind, decayed);
-      const retained = Math.max(0, decayed - share);
-      writeScratch(cell, kind, retained);
-      if (kind === GLYPH_KIND.PLASMID && retained > 0) {
-        const targetOffset = cell * 8;
-        scratchPayload.set(STATE_MATRIX.getGlyphPayload(cell), targetOffset);
-      }
-
-      if (share > 0) {
-        const nextCell = nextCellForDiffusion(cell, tick);
-        writeScratch(nextCell, kind, share);
-        if (kind === GLYPH_KIND.PLASMID && nextCell !== cell) {
-          const targetOffset = nextCell * 8;
-          scratchPayload.set(STATE_MATRIX.getGlyphPayload(cell), targetOffset);
-        }
-      }
-    }
-
-    lastInternalSignalSeeds = seedFromSignalGrid();
-    lastInternalMemorySeeds = seedFromMemoryGrid();
-
-    let activeCells = 0;
-    let pheromoneCells = 0;
-    let plasmidCells = 0;
-    let maxAmplitude = 0;
-    let totalAmplitude = 0;
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = scratchHeader[cell];
-      Atomics.store(STATE_MATRIX.glyphHeaders, cell, header);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (amplitude > 0) {
-        activeCells++;
-        totalAmplitude += amplitude;
-        if (amplitude > maxAmplitude) maxAmplitude = amplitude;
-        if (kind === GLYPH_KIND.PHEROMONE) pheromoneCells++;
-        if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
-      }
-    }
-    STATE_MATRIX.glyphPayload.set(scratchPayload);
-
-    return {
-      activeCells,
-      pheromoneCells,
-      plasmidCells,
-      maxAmplitude,
-      totalAmplitude,
-      internalSignalSeeds: lastInternalSignalSeeds,
-      internalMemorySeeds: lastInternalMemorySeeds,
-      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
-      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
-      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
-      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
-    };
   },
 
   snapshot: (): GlyphSnapshot => {

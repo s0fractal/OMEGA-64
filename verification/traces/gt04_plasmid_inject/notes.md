@@ -5,8 +5,8 @@
 - duration: 512 ticks total
 - daemonEnabled: false
 - runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56351
-- port: 56351
+- base_url: http://127.0.0.1:59765
+- port: 59765
 - seed: 424242
 
 ## Environment
@@ -23,4 +23,4 @@
 
 ## Actions
 
-- tick=129 kind=INJECT_PLASMID responseDigest=f0b6f469dc311dd275e6a54185402bae3a25d8c610334013ec5a4d86e97a499a
+- tick=129 kind=INJECT_PLASMID responseDigest=52c776d6a98a7999fb2f6baa1316e37dca77bd046edf84d12400a47b1ca35139

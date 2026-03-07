@@ -2,29 +2,29 @@
   "trace_id": "gt01_coldstart_seeded_swarm",
   "scenario": "coldstart / seeded swarm",
   "seed": 424242,
-  "tick_start": 1,
-  "tick_end": 258,
+  "tick_start": 0,
+  "tick_end": 256,
   "runtime_mode": "legacy-runtime/api-observer-harness",
   "daemon_enabled": false,
   "metrics": {
-    "population": 147,
-    "avgEnergy": 242.925,
-    "spatialOverflowRatio": 0.789116,
+    "population": 145,
+    "avgEnergy": 270.626,
+    "spatialOverflowRatio": 0.531034,
     "mutationCounts": {
       "enabled": true,
-      "total": 41966,
+      "total": 41066,
       "lanes": {
-        "internal_host": 41914,
+        "internal_host": 41014,
         "canonical_gate": 52
       },
       "topKinds": [
         [
           "energy_homeostasis_adjust",
-          41769
+          40870
         ],
         [
           "spawn_seed_atom",
-          145
+          144
         ],
         [
           "audit_matrix_cycle",
@@ -35,15 +35,15 @@
     "invariantDigestSource": "R0.00|S0.00|B0.00"
   },
   "telemetry_start": {
-    "tick": 1,
-    "avgEnergy": 124.97,
+    "tick": 0,
+    "avgEnergy": 238.609,
     "dominantGenomes": [
+      "808103862DA8E71A",
       "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
+      "80811BBE05A07FD2"
     ],
     "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 121. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
     ],
     "pulse_pressure": {
       "novelty_signed": 0,
@@ -56,10 +56,131 @@
         "enabled": false,
         "theta": 0,
         "scale": 0,
+        "ledger_scale": {
+          "key": "pulse.pressureRing.scale",
+          "currentValue": 0,
+          "defaultValue": 0,
+          "min": 0,
+          "max": 2048,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_scale_persistence": {
+          "path": ".omega/ledger/pressure_ring_scale_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/pressure_ring_scale_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        },
         "fear_curiosity_balance": 1,
         "ego_love_balance": 0,
         "novelty_axis_from_ring": false,
         "symbiosis_axis_from_ring": false
+      }
+    },
+    "guardian_signal_hybrid": {
+      "mode": "shadow-reduce",
+      "hybridRuns": 0,
+      "shadowRuns": 0,
+      "fallbackRuns": 0,
+      "stableBranchCount": 0,
+      "repairBranchCount": 0,
+      "allowedGuardianSignals": 0,
+      "suppressedGuardianSignals": 0,
+      "shadowSuppressedGuardianSignals": 0,
+      "lastTick": -1,
+      "lastStatus": "legacy",
+      "lastBranch": "unknown",
+      "lastFallbackReason": ""
+    },
+    "architect_plasmid_hybrid": {
+      "mode": "shadow-reduce",
+      "hybridRuns": 0,
+      "shadowRuns": 0,
+      "fallbackRuns": 0,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 0,
+      "allowedArchitectPlasmids": 0,
+      "suppressedArchitectPlasmids": 0,
+      "shadowSuppressedArchitectPlasmids": 0,
+      "lastTick": -1,
+      "lastStatus": "legacy",
+      "lastBranch": "unknown",
+      "lastFallbackReason": ""
+    },
+    "guardian_signal_promotion": {
+      "status": "warming",
+      "ready": false,
+      "recommendedMode": "shadow-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 0,
+      "reductionRuns": 0,
+      "fallbackRuns": 0,
+      "fallbackRatio": 0,
+      "stableBranchCount": 0,
+      "repairBranchCount": 0,
+      "shadowSuppressedGuardianSignals": 0,
+      "reasons": [
+        "shadow_runs_0_lt_64",
+        "stable_branch_count_0_lt_8",
+        "repair_branch_count_0_lt_4",
+        "shadow_suppressed_guardian_signals_0_lt_4"
+      ],
+      "thresholds": {
+        "minShadowRuns": 64,
+        "maxFallbackRatio": 0.05,
+        "minStableBranchCount": 8,
+        "minRepairBranchCount": 4,
+        "minShadowSuppressedGuardianSignals": 4
+      }
+    },
+    "glyph_transport": {
+      "activeCells": 0,
+      "pheromoneCells": 0,
+      "plasmidCells": 0,
+      "maxAmplitude": 0,
+      "totalAmplitude": 0,
+      "internalSignalSeeds": 0,
+      "internalMemorySeeds": 0,
+      "internalAtomPheromoneSeeds": 0,
+      "internalAtomPlasmidSeeds": 0,
+      "atomRolePheromone": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
+      },
+      "atomRolePlasmid": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
       }
     },
     "daemon_governance": {
@@ -68,13 +189,95 @@
       "actions_used_in_window": 0,
       "actions_max_in_window": 8,
       "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59932,
+      "window_reset_in_ms": 59930,
       "max_pheromone_intensity": 300,
       "max_plasmid_charge": 1200,
+      "ledger_max_pheromone_intensity": {
+        "key": "daemon.maxPheromoneIntensity",
+        "currentValue": 300,
+        "defaultValue": 300,
+        "min": 1,
+        "max": 4096,
+        "rollbackClass": "immediate",
+        "historyDepth": 0,
+        "lastAppliedTick": -1,
+        "lastAppliedSource": "runtime_policy",
+        "lastAppliedReason": "bootstrap",
+        "lastAppliedRollbackToken": null,
+        "lastRollbackTick": -1,
+        "lastRollbackSource": "runtime_policy",
+        "lastRollbackReason": "bootstrap",
+        "lastRollbackToken": null
+      },
+      "ledger_max_pheromone_intensity_persistence": {
+        "path": ".omega/ledger/daemon_pheromone_ledger.jsonl",
+        "snapshotPath": ".omega/ledger/daemon_pheromone_ledger.snapshot.json",
+        "exists": false,
+        "snapshotExists": false,
+        "recordCount": 0,
+        "applyCount": 0,
+        "rollbackCount": 0,
+        "tailRecordCount": 0,
+        "tailApplyCount": 0,
+        "tailRollbackCount": 0,
+        "snapshotRecordCount": 0,
+        "snapshotApplyCount": 0,
+        "snapshotRollbackCount": 0,
+        "compactionEnabled": true,
+        "compactionThreshold": 64,
+        "compactionKeepTail": 16,
+        "lastCompactedAt": null,
+        "lastCompactedTick": -1,
+        "hydrated": true,
+        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydrationError": null
+      },
+      "ledger_max_plasmid_charge": {
+        "key": "daemon.maxPlasmidCharge",
+        "currentValue": 1200,
+        "defaultValue": 1200,
+        "min": 1,
+        "max": 4096,
+        "rollbackClass": "immediate",
+        "historyDepth": 0,
+        "lastAppliedTick": -1,
+        "lastAppliedSource": "runtime_policy",
+        "lastAppliedReason": "bootstrap",
+        "lastAppliedRollbackToken": null,
+        "lastRollbackTick": -1,
+        "lastRollbackSource": "runtime_policy",
+        "lastRollbackReason": "bootstrap",
+        "lastRollbackToken": null
+      },
+      "ledger_max_plasmid_charge_persistence": {
+        "path": ".omega/ledger/daemon_plasmid_ledger.jsonl",
+        "snapshotPath": ".omega/ledger/daemon_plasmid_ledger.snapshot.json",
+        "exists": false,
+        "snapshotExists": false,
+        "recordCount": 0,
+        "applyCount": 0,
+        "rollbackCount": 0,
+        "tailRecordCount": 0,
+        "tailApplyCount": 0,
+        "tailRollbackCount": 0,
+        "snapshotRecordCount": 0,
+        "snapshotApplyCount": 0,
+        "snapshotRollbackCount": 0,
+        "compactionEnabled": true,
+        "compactionThreshold": 64,
+        "compactionKeepTail": 16,
+        "lastCompactedAt": null,
+        "lastCompactedTick": -1,
+        "hydrated": true,
+        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydrationError": null
+      },
       "invariant_drift_mid_score": 2,
       "invariant_drift_high_score": 4,
       "last_admission": null,
       "last_admission_history": [],
+      "last_policy_update": null,
+      "last_policy_history": [],
       "last_pressure_ring_update": null,
       "last_pressure_ring_history": [],
       "last_homeostasis_update": null,
@@ -93,7 +296,87 @@
         "base_tax_current": 2,
         "last_update_tick": -1,
         "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
+        "last_update_reason": "coldstart_reset",
+        "ledger_base_tax": {
+          "key": "pulse.homeostasis.baseTax",
+          "currentValue": 2,
+          "defaultValue": 2,
+          "min": 0,
+          "max": 128,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_base_tax_persistence": {
+          "path": ".omega/ledger/base_tax_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/base_tax_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        },
+        "ledger_target_energy": {
+          "key": "pulse.homeostasis.targetEnergy",
+          "currentValue": 1200,
+          "defaultValue": 1200,
+          "min": 1,
+          "max": 10000,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_target_energy_persistence": {
+          "path": ".omega/ledger/target_energy_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/target_energy_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        }
       }
     },
     "snapshot_guard": {
@@ -105,34 +388,12 @@
       "last_result": null
     },
     "spatial_hash_guard": {
-      "tick": 1,
+      "tick": 0,
       "overflow_count": 0,
-      "max_cell_count": 1,
+      "max_cell_count": 0,
       "overflow_ratio": 0
     },
     "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 89,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            89
-          ]
-        },
-        "lastTick": 1
-      },
       {
         "behaviorSignature": "R0.50|S0.00|B0.00",
         "memberCount": 32,
@@ -153,10 +414,32 @@
             32
           ]
         },
-        "lastTick": 1
+        "lastTick": 0
+      },
+      {
+        "behaviorSignature": "R0.00|S0.00|B0.00",
+        "memberCount": 32,
+        "dominantRole": 3,
+        "genomeSamples": [
+          "A8A78306AD28679A",
+          "A8A7EF82F90493D6",
+          "A8A79B3E8520FF52",
+          "A8A7873A517CAB0E",
+          "A8A7B3765D18970A",
+          "A8A71FF2A9F4C346"
+        ],
+        "fingerprint": {
+          "replicateRatio": 0,
+          "signalRatio": 0,
+          "buildRatio": 0,
+          "survivalCurve": [
+            32
+          ]
+        },
+        "lastTick": 0
       }
     ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
+    "behavior_invariant": "R0.50|S0.00|B0.00",
     "federation_rule_genome": {
       "local": {
         "signature": "A6C95F29",
@@ -165,7 +448,7 @@
         "pressureRingScale": 0,
         "workerCount": 1,
         "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:14.667Z"
+        "generatedAt": "2026-03-07T15:10:01.651Z"
       },
       "peers": []
     },
@@ -184,25 +467,17 @@
       }
     }
   },
-  "telemetry_stream_start": {
-    "ts": 1772798294721,
-    "tick": 1,
-    "population": 121,
-    "avgEnergy": 124.97,
-    "neuralCoherence": 0,
-    "spatialOverflowRatio": 0,
-    "daemonSafeMode": false
-  },
+  "telemetry_stream_start": null,
   "telemetry_end": {
-    "tick": 258,
-    "avgEnergy": 242.925,
+    "tick": 256,
+    "avgEnergy": 270.626,
     "dominantGenomes": [
       "80816F0279841356",
       "80811BBE05A07FD2",
       "80819F72297443C6"
     ],
     "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 147. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
     ],
     "pulse_pressure": {
       "novelty_signed": 0,
@@ -215,10 +490,131 @@
         "enabled": false,
         "theta": 0,
         "scale": 0,
+        "ledger_scale": {
+          "key": "pulse.pressureRing.scale",
+          "currentValue": 0,
+          "defaultValue": 0,
+          "min": 0,
+          "max": 2048,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_scale_persistence": {
+          "path": ".omega/ledger/pressure_ring_scale_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/pressure_ring_scale_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        },
         "fear_curiosity_balance": 1,
         "ego_love_balance": 0,
         "novelty_axis_from_ring": false,
         "symbiosis_axis_from_ring": false
+      }
+    },
+    "guardian_signal_hybrid": {
+      "mode": "shadow-reduce",
+      "hybridRuns": 0,
+      "shadowRuns": 0,
+      "fallbackRuns": 0,
+      "stableBranchCount": 0,
+      "repairBranchCount": 0,
+      "allowedGuardianSignals": 0,
+      "suppressedGuardianSignals": 0,
+      "shadowSuppressedGuardianSignals": 0,
+      "lastTick": -1,
+      "lastStatus": "legacy",
+      "lastBranch": "unknown",
+      "lastFallbackReason": ""
+    },
+    "architect_plasmid_hybrid": {
+      "mode": "shadow-reduce",
+      "hybridRuns": 0,
+      "shadowRuns": 249,
+      "fallbackRuns": 249,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 0,
+      "allowedArchitectPlasmids": 0,
+      "suppressedArchitectPlasmids": 0,
+      "shadowSuppressedArchitectPlasmids": 0,
+      "lastTick": 83,
+      "lastStatus": "fallback",
+      "lastBranch": "unknown",
+      "lastFallbackReason": "unsupported_architect_opcode_0xaa"
+    },
+    "guardian_signal_promotion": {
+      "status": "warming",
+      "ready": false,
+      "recommendedMode": "shadow-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 0,
+      "reductionRuns": 0,
+      "fallbackRuns": 0,
+      "fallbackRatio": 0,
+      "stableBranchCount": 0,
+      "repairBranchCount": 0,
+      "shadowSuppressedGuardianSignals": 0,
+      "reasons": [
+        "shadow_runs_0_lt_64",
+        "stable_branch_count_0_lt_8",
+        "repair_branch_count_0_lt_4",
+        "shadow_suppressed_guardian_signals_0_lt_4"
+      ],
+      "thresholds": {
+        "minShadowRuns": 64,
+        "maxFallbackRatio": 0.05,
+        "minStableBranchCount": 8,
+        "minRepairBranchCount": 4,
+        "minShadowSuppressedGuardianSignals": 4
+      }
+    },
+    "glyph_transport": {
+      "activeCells": 99,
+      "pheromoneCells": 0,
+      "plasmidCells": 99,
+      "maxAmplitude": 512,
+      "totalAmplitude": 14026,
+      "internalSignalSeeds": 0,
+      "internalMemorySeeds": 0,
+      "internalAtomPheromoneSeeds": 0,
+      "internalAtomPlasmidSeeds": 0,
+      "atomRolePheromone": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
+      },
+      "atomRolePlasmid": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
       }
     },
     "daemon_governance": {
@@ -227,13 +623,95 @@
       "actions_used_in_window": 0,
       "actions_max_in_window": 8,
       "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 52833,
+      "window_reset_in_ms": 52567,
       "max_pheromone_intensity": 300,
       "max_plasmid_charge": 1200,
+      "ledger_max_pheromone_intensity": {
+        "key": "daemon.maxPheromoneIntensity",
+        "currentValue": 300,
+        "defaultValue": 300,
+        "min": 1,
+        "max": 4096,
+        "rollbackClass": "immediate",
+        "historyDepth": 0,
+        "lastAppliedTick": -1,
+        "lastAppliedSource": "runtime_policy",
+        "lastAppliedReason": "bootstrap",
+        "lastAppliedRollbackToken": null,
+        "lastRollbackTick": -1,
+        "lastRollbackSource": "runtime_policy",
+        "lastRollbackReason": "bootstrap",
+        "lastRollbackToken": null
+      },
+      "ledger_max_pheromone_intensity_persistence": {
+        "path": ".omega/ledger/daemon_pheromone_ledger.jsonl",
+        "snapshotPath": ".omega/ledger/daemon_pheromone_ledger.snapshot.json",
+        "exists": false,
+        "snapshotExists": false,
+        "recordCount": 0,
+        "applyCount": 0,
+        "rollbackCount": 0,
+        "tailRecordCount": 0,
+        "tailApplyCount": 0,
+        "tailRollbackCount": 0,
+        "snapshotRecordCount": 0,
+        "snapshotApplyCount": 0,
+        "snapshotRollbackCount": 0,
+        "compactionEnabled": true,
+        "compactionThreshold": 64,
+        "compactionKeepTail": 16,
+        "lastCompactedAt": null,
+        "lastCompactedTick": -1,
+        "hydrated": true,
+        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydrationError": null
+      },
+      "ledger_max_plasmid_charge": {
+        "key": "daemon.maxPlasmidCharge",
+        "currentValue": 1200,
+        "defaultValue": 1200,
+        "min": 1,
+        "max": 4096,
+        "rollbackClass": "immediate",
+        "historyDepth": 0,
+        "lastAppliedTick": -1,
+        "lastAppliedSource": "runtime_policy",
+        "lastAppliedReason": "bootstrap",
+        "lastAppliedRollbackToken": null,
+        "lastRollbackTick": -1,
+        "lastRollbackSource": "runtime_policy",
+        "lastRollbackReason": "bootstrap",
+        "lastRollbackToken": null
+      },
+      "ledger_max_plasmid_charge_persistence": {
+        "path": ".omega/ledger/daemon_plasmid_ledger.jsonl",
+        "snapshotPath": ".omega/ledger/daemon_plasmid_ledger.snapshot.json",
+        "exists": false,
+        "snapshotExists": false,
+        "recordCount": 0,
+        "applyCount": 0,
+        "rollbackCount": 0,
+        "tailRecordCount": 0,
+        "tailApplyCount": 0,
+        "tailRollbackCount": 0,
+        "snapshotRecordCount": 0,
+        "snapshotApplyCount": 0,
+        "snapshotRollbackCount": 0,
+        "compactionEnabled": true,
+        "compactionThreshold": 64,
+        "compactionKeepTail": 16,
+        "lastCompactedAt": null,
+        "lastCompactedTick": -1,
+        "hydrated": true,
+        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydrationError": null
+      },
       "invariant_drift_mid_score": 2,
       "invariant_drift_high_score": 4,
       "last_admission": null,
       "last_admission_history": [],
+      "last_policy_update": null,
+      "last_policy_history": [],
       "last_pressure_ring_update": null,
       "last_pressure_ring_history": [],
       "last_homeostasis_update": null,
@@ -252,7 +730,87 @@
         "base_tax_current": 2,
         "last_update_tick": -1,
         "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
+        "last_update_reason": "coldstart_reset",
+        "ledger_base_tax": {
+          "key": "pulse.homeostasis.baseTax",
+          "currentValue": 2,
+          "defaultValue": 2,
+          "min": 0,
+          "max": 128,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_base_tax_persistence": {
+          "path": ".omega/ledger/base_tax_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/base_tax_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        },
+        "ledger_target_energy": {
+          "key": "pulse.homeostasis.targetEnergy",
+          "currentValue": 1200,
+          "defaultValue": 1200,
+          "min": 1,
+          "max": 10000,
+          "rollbackClass": "immediate",
+          "historyDepth": 0,
+          "lastAppliedTick": -1,
+          "lastAppliedSource": "runtime_policy",
+          "lastAppliedReason": "bootstrap",
+          "lastAppliedRollbackToken": null,
+          "lastRollbackTick": -1,
+          "lastRollbackSource": "runtime_policy",
+          "lastRollbackReason": "bootstrap",
+          "lastRollbackToken": null
+        },
+        "ledger_target_energy_persistence": {
+          "path": ".omega/ledger/target_energy_ledger.jsonl",
+          "snapshotPath": ".omega/ledger/target_energy_ledger.snapshot.json",
+          "exists": false,
+          "snapshotExists": false,
+          "recordCount": 0,
+          "applyCount": 0,
+          "rollbackCount": 0,
+          "tailRecordCount": 0,
+          "tailApplyCount": 0,
+          "tailRollbackCount": 0,
+          "snapshotRecordCount": 0,
+          "snapshotApplyCount": 0,
+          "snapshotRollbackCount": 0,
+          "compactionEnabled": true,
+          "compactionThreshold": 64,
+          "compactionKeepTail": 16,
+          "lastCompactedAt": null,
+          "lastCompactedTick": -1,
+          "hydrated": true,
+          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydrationError": null
+        }
       }
     },
     "snapshot_guard": {
@@ -264,15 +822,15 @@
       "last_result": null
     },
     "spatial_hash_guard": {
-      "tick": 258,
-      "overflow_count": 116,
+      "tick": 256,
+      "overflow_count": 77,
       "max_cell_count": 30,
-      "overflow_ratio": 0.789116
+      "overflow_ratio": 0.531034
     },
     "behavior_clusters": [
       {
         "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
+        "memberCount": 144,
         "dominantRole": 0,
         "genomeSamples": [
           "80816F0279841356",
@@ -287,58 +845,57 @@
           "signalRatio": 0,
           "buildRatio": 0,
           "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144,
+            144
           ]
         },
-        "lastTick": 258
+        "lastTick": 256
       },
       {
         "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 2,
+        "memberCount": 1,
         "dominantRole": 1,
         "genomeSamples": [
-          "FFB9DBB065DBB6ED",
-          "8081AB0E15700F22"
+          "FFB9DBB065DBB6ED"
         ],
         "fingerprint": {
           "replicateRatio": 0.5,
           "signalRatio": 0,
           "buildRatio": 0,
           "survivalCurve": [
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
           ]
         },
-        "lastTick": 258
+        "lastTick": 256
       }
     ],
     "behavior_invariant": "R0.00|S0.00|B0.00",
@@ -350,7 +907,7 @@
         "pressureRingScale": 0,
         "workerCount": 1,
         "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:14.667Z"
+        "generatedAt": "2026-03-07T15:10:01.651Z"
       },
       "peers": []
     },
@@ -371,41 +928,25 @@
   },
   "mutation_telemetry_before": {
     "enabled": true,
-    "total": 179,
-    "lanes": {
-      "internal_host": 178,
-      "canonical_gate": 1
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        121
-      ],
-      [
-        "spawn_seed_atom",
-        57
-      ],
-      [
-        "audit_matrix_cycle",
-        1
-      ]
-    ]
+    "total": 0,
+    "lanes": {},
+    "topKinds": []
   },
   "mutation_telemetry_after": {
     "enabled": true,
-    "total": 41966,
+    "total": 41066,
     "lanes": {
-      "internal_host": 41914,
+      "internal_host": 41014,
       "canonical_gate": 52
     },
     "topKinds": [
       [
         "energy_homeostasis_adjust",
-        41769
+        40870
       ],
       [
         "spawn_seed_atom",
-        145
+        144
       ],
       [
         "audit_matrix_cycle",
@@ -415,8 +956,8 @@
   },
   "event_log": [],
   "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_digest": "21b819a629849c674107749b4e6e5293b4cf1be82b18db7eb6bd9f3a0ceda386",
-  "codex_snapshot_digest": "0a8bf1f5c921923d647423453ebdc939edfcdf04096952d58eedf2100c1980f7",
+  "mutation_telemetry_digest": "922abb8b46e898eac914755ea81ba1bf30286db62f2cba61639d1e164fce90bf",
+  "codex_snapshot_digest": "1040f88d853e20ada67be0524dfae5815d326e4a0b66cadd969e0265f7d39348",
   "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
   "extra_artifacts": {}
 }

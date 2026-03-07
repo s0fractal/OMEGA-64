@@ -93,8 +93,7 @@ const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
 const WORKER_TIMEOUT_RETRY_COUNT = RUNTIME_POLICY.pulse.workerTimeoutRetryCount;
 const WORKER_TIMEOUT_RETRY_MS = RUNTIME_POLICY.pulse.workerTimeoutRetryMs;
 const WORKER_RECOVERY_LOG_COOLDOWN_MS = 5_000;
-const WORKER_RECOVERY_VERBOSE =
-  (Deno.env.get("OMEGA_WORKER_RECOVERY_VERBOSE") ?? "") === "1";
+const WORKER_RECOVERY_VERBOSE = RUNTIME_POLICY.pulse.workerRecoveryVerbose;
 const WORKER_INIT_FALLBACK_ENABLED =
   RUNTIME_POLICY.pulse.workerInitFallbackEnabled;
 const WASM_BOOT_POLICY = RUNTIME_POLICY.pulse.wasmBootPolicy;
@@ -2590,7 +2589,15 @@ export const PULSE = {
         );
       }
       emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx);
-      const glyphTransport = GLYPH_BUFFER.tick(currentTick);
+      // WASM handled glyph transport (diffusion/decay/reflection) during parallel transition or here:
+      await postAndWait(0, workers[0], {
+        type: "TICK_GLYPH_TRANSPORT",
+        tick: currentTick,
+        pulseId: nextPulseId(),
+      }, "GLYPH_TRANSPORT_DONE");
+
+      const glyphTransport = GLYPH_BUFFER.snapshot();
+
       applyEvolutionPressureTerms(currentTick, activeIdx);
       applyEnergyHomeostasisTerms(
         currentTick,

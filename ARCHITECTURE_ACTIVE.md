@@ -32,15 +32,15 @@ export context. It intentionally excludes historical era narratives.
    compact risk summary + drift trend sparkline, top degrade-reason aggregate,
    phase-ring quadrant badge/trend from canonical pressure-ring history
    (`daemon_governance.last_pressure_ring_history`) with local fallback, and
-   scene halo tint driven by
-   `max(drift severity, daemon admission severity)`.
+   scene halo tint driven by `max(drift severity, daemon admission severity)`.
 
 ## Runtime Classification Contract (Manifest)
 
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
   closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
-  `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`.
+  `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`,
+  `MUTATION_TELEMETRY.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
 - `experimental_files`: explicitly exported experimental surfaces that must not
@@ -79,8 +79,8 @@ export context. It intentionally excludes historical era narratives.
   fail fast on silent layout drift before any worker tick starts.
 - Runtime exposes `/api/pressure-ring` for authorized daemon control of phase
   updates (`set`/`step`) with bounded theta delta clamps and audit trail
-  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry),
-  and preserves bounded canonical update history for observers.
+  (`DAEMON_PRESSURE_RING` events + `daemon_pressure_ring_update` telemetry), and
+  preserves bounded canonical update history for observers.
 - `OMEGA_DAEMON` can run a phase-season scheduler
   (`OMEGA_DAEMON_PHASE_SEASONS_*`) that advances `theta` deterministically from
   telemetry/invariant context while respecting cooldown and safe-mode gates.
@@ -94,8 +94,8 @@ export context. It intentionally excludes historical era narratives.
   (intensity clamp or plasmid->pheromone conversion) instead of hard blocking.
   Codex species memory now feeds a lineage guard score (dominant epochs +
   historical peak share + active-lineage match) to increase drift pressure on
-  aggressive external plasmid ingress during stable lineage windows.
-  Degradation rationale is written to daemon audit log and codex chronicles
+  aggressive external plasmid ingress during stable lineage windows. Degradation
+  rationale is written to daemon audit log and codex chronicles
   (`daemon_admission`) for operator visibility in narrative surfaces.
 - Bridge/policy/invariant checks are validated before commit.
 - Ledger (`LEDGER__08_00_LEDGER`) uses hash-chain anchoring: `chain_version`,

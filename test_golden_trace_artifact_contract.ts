@@ -21,6 +21,7 @@ const STRUCTURE_BUILD_COMPETITION_RUNTIME_MODE =
   "worker-runtime-structure-build-competition-capture";
 const STRUCTURE_BUILD_LOCK_RUNTIME_MODE =
   "worker-runtime-structure-build-stale-lock-capture";
+const TENSEGRITY_KINEMATICS_RUNTIME_MODE = "standalone-tensegrity-capture";
 
 const main = async () => {
   for (const trace of GOLDEN_TRACE_CATALOG) {
@@ -69,6 +70,8 @@ const main = async () => {
       ? STRUCTURE_BUILD_COMPETITION_RUNTIME_MODE
       : trace.id === "gt18_runtime_build_stale_lock"
       ? STRUCTURE_BUILD_LOCK_RUNTIME_MODE
+      : trace.id === "gt19_tensegrity_kinematics"
+      ? TENSEGRITY_KINEMATICS_RUNTIME_MODE
       : TRACE_RUNTIME_MODE;
     if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(

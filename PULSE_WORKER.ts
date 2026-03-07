@@ -15,6 +15,7 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
   null;
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
+let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
@@ -91,11 +92,11 @@ self.onmessage = async (e) => {
         gy: number,
         target: number,
       ) => {
-        if (idx <= 10) {
+        if (idx < 100) { // TRACE_THRESHOLD
           LOGGER.debug(
-            `   [WASM TRACE] Atom ${idx} | OP: 0x${
+            `   [TRACE] At ${idx} | OP: 0x${
               op.toString(16)
-            } | Pos: (${gx},${gy}) | Target: ${target}`,
+            } | Pos: (${gx},${gy}) | PC: ${target}`,
           );
         }
       };
@@ -123,6 +124,7 @@ self.onmessage = async (e) => {
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
+      tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
@@ -192,6 +194,12 @@ self.onmessage = async (e) => {
       : 0;
     await maybeDelay();
     self.postMessage({ type: "HASH_DONE", pulseId, overflowCount, maxCellCount });
+  }
+
+  if (type === "TICK_GLYPH_TRANSPORT") {
+    if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
+    await maybeDelay();
+    self.postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
   }
 
   if (type === "POLL_COHERENCE") {

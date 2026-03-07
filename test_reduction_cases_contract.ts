@@ -10,8 +10,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    REDUCTION_CASES.length === 27,
-    "[reduction_cases] expected 27 reduction cases",
+    REDUCTION_CASES.length === 28,
+    "[reduction_cases] expected 28 reduction cases",
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
@@ -33,7 +33,8 @@ const main = () => {
         definition.baselineTraceId === "gt15_structure_charge_competition" ||
         definition.baselineTraceId === "gt16_runtime_build_materialization" ||
         definition.baselineTraceId === "gt17_runtime_build_competition" ||
-        definition.baselineTraceId === "gt18_runtime_build_stale_lock",
+        definition.baselineTraceId === "gt18_runtime_build_stale_lock" ||
+        definition.baselineTraceId === "gt19_tensegrity_kinematics",
       `[reduction_cases] unexpected baseline anchor for ${definition.id}`,
     );
     expect(

@@ -101,6 +101,7 @@ const rawWorkerResponseTimeoutMs = readEnv("OMEGA_WORKER_RESPONSE_TIMEOUT_MS");
 const rawWorkerTimeoutRetryCount = readEnv("OMEGA_WORKER_TIMEOUT_RETRY_COUNT");
 const rawWorkerTimeoutRetryMs = readEnv("OMEGA_WORKER_TIMEOUT_RETRY_MS");
 const rawWorkerInitFallback = readEnv("OMEGA_WORKER_INIT_FALLBACK");
+const rawWorkerRecoveryVerbose = readEnv("OMEGA_WORKER_RECOVERY_VERBOSE");
 const rawWasmBootPolicy = readEnv("OMEGA_WASM_BOOT_POLICY");
 const rawWasmBootPrecheck = readEnv("OMEGA_WASM_BOOT_PRECHECK");
 const rawForceWasmPreflightFail = readEnv("OMEGA_FORCE_WASM_PREFLIGHT_FAIL");
@@ -273,6 +274,10 @@ const pulseWorkerTimeoutRetryMs = parseEnvBoundedInt(
 const pulseWorkerInitFallbackEnabled = parseEnvBool(
   rawWorkerInitFallback,
   true,
+);
+const pulseWorkerRecoveryVerbose = parseEnvBool(
+  rawWorkerRecoveryVerbose,
+  false,
 );
 const pulseWasmBootPolicy = parseWasmBootPolicy(rawWasmBootPolicy);
 const pulseWasmBootPrecheckEnabled = parseEnvBool(rawWasmBootPrecheck, true);
@@ -518,6 +523,7 @@ const policyFingerprintSource = JSON.stringify({
     workerTimeoutRetryCount: pulseWorkerTimeoutRetryCount,
     workerTimeoutRetryMs: pulseWorkerTimeoutRetryMs,
     workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
+    workerRecoveryVerbose: pulseWorkerRecoveryVerbose,
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
     pressureRingEnabled: pulsePressureRingEnabled,
@@ -678,6 +684,7 @@ export const RUNTIME_POLICY = {
     workerTimeoutRetryCount: pulseWorkerTimeoutRetryCount,
     workerTimeoutRetryMs: pulseWorkerTimeoutRetryMs,
     workerInitFallbackEnabled: pulseWorkerInitFallbackEnabled,
+    workerRecoveryVerbose: pulseWorkerRecoveryVerbose,
     wasmBootPolicy: pulseWasmBootPolicy,
     wasmBootPrecheckEnabled: pulseWasmBootPrecheckEnabled,
     forceWasmPreflightFail: pulseForceWasmPreflightFail,
@@ -721,6 +728,7 @@ export const RUNTIME_POLICY = {
       workerTimeoutRetryCount: rawWorkerTimeoutRetryCount !== undefined,
       workerTimeoutRetryMs: rawWorkerTimeoutRetryMs !== undefined,
       workerInitFallback: rawWorkerInitFallback !== undefined,
+      workerRecoveryVerbose: rawWorkerRecoveryVerbose !== undefined,
       wasmBootPolicy: rawWasmBootPolicy !== undefined,
       wasmBootPrecheck: rawWasmBootPrecheck !== undefined,
       forceWasmPreflightFail: rawForceWasmPreflightFail !== undefined,

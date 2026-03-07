@@ -1,0 +1,2082 @@
+[
+  {
+    "tick": 21703,
+    "epoch": 2,
+    "center": "tick.exists",
+    "signature": "cecc4f3a",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=679.78",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T00:49:15.582Z"
+  },
+  {
+    "tick": 22151,
+    "epoch": 2,
+    "center": "tick.exists",
+    "signature": "a0ce0ce0",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=672.61",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T00:49:27.566Z"
+  },
+  {
+    "tick": 405,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "af64c284",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=681.04",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.3626,
+        "evidence": [
+          "members=63",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=13,63,63"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:05:02.411Z"
+  },
+  {
+    "tick": 873,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "22d40e47",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=467.79",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36079999999999995,
+        "evidence": [
+          "members=54",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=63,63,54,54"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:05:14.395Z"
+  },
+  {
+    "tick": 1344,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "b89016b3",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=419.56",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=54,54,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:05:26.393Z"
+  },
+  {
+    "tick": 1791,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "930bd62d",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=422.66",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:05:38.447Z"
+  },
+  {
+    "tick": 2250,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "c17f3468",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=414.40",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:05:50.415Z"
+  },
+  {
+    "tick": 2708,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "66e0f792",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=406.16",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:06:02.434Z"
+  },
+  {
+    "tick": 3173,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "bbfa7dbd",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=397.79",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:06:14.495Z"
+  },
+  {
+    "tick": 3633,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "1826b1b6",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=389.51",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:06:26.433Z"
+  },
+  {
+    "tick": 4093,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "276ac117",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=381.23",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:06:38.435Z"
+  },
+  {
+    "tick": 4560,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "359eeb64",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=372.82",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:06:50.435Z"
+  },
+  {
+    "tick": 5021,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "10a0439b",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=364.52",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:07:02.570Z"
+  },
+  {
+    "tick": 5453,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "3e83b6f0",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=356.75",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:07:14.554Z"
+  },
+  {
+    "tick": 5915,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "7d77c70f",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=512.45",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:07:26.440Z"
+  },
+  {
+    "tick": 6376,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "f0db1a51",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=509.86",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:07:38.452Z"
+  },
+  {
+    "tick": 6779,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "a9f6be46",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=502.61",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:07:50.501Z"
+  },
+  {
+    "tick": 411,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "3510fd6b",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=632.52",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.3626,
+        "evidence": [
+          "members=63",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=13,63,63,63"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:14:52.677Z"
+  },
+  {
+    "tick": 884,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "e01b1a3d",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=441.04",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.3604,
+        "evidence": [
+          "members=52",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=63,63,54,52"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:15:04.711Z"
+  },
+  {
+    "tick": 1353,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "01fa722f",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=377.82",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=54,52,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:15:16.834Z"
+  },
+  {
+    "tick": 1794,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "2fde3814",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=383.42",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:15:28.717Z"
+  },
+  {
+    "tick": 2265,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "1ad0df34",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=376.83",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:15:40.853Z"
+  },
+  {
+    "tick": 2725,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "ae3f2cdd",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=370.39",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:15:52.818Z"
+  },
+  {
+    "tick": 3191,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "66e4ee25",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=363.87",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:16:04.700Z"
+  },
+  {
+    "tick": 3654,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "87c29eb3",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=357.38",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:16:16.735Z"
+  },
+  {
+    "tick": 4115,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "a8b67978",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=350.93",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:16:28.724Z"
+  },
+  {
+    "tick": 4581,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "40842363",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=344.41",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:16:40.775Z"
+  },
+  {
+    "tick": 5045,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "a2ef33fd",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=337.91",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:16:52.777Z"
+  },
+  {
+    "tick": 5468,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "1391de8e",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=331.99",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:17:04.833Z"
+  },
+  {
+    "tick": 5937,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "c17a3643",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=549.73",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:17:16.746Z"
+  },
+  {
+    "tick": 6403,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "76bb1d2e",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=547.85",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:17:28.730Z"
+  },
+  {
+    "tick": 6862,
+    "epoch": 0,
+    "center": "tick.exists",
+    "signature": "6c660671",
+    "invariants": [
+      {
+        "key": "energy_mood_coupling",
+        "vector": "SURPLUS:FRAGILE",
+        "weight": 0.94,
+        "evidence": [
+          "avgEnergy=541.43",
+          "mood=FRAGILE"
+        ]
+      },
+      {
+        "key": "lineage_anchor",
+        "vector": "8081167D",
+        "weight": 0.71,
+        "evidence": [
+          "8081167DB8B7AA01",
+          "808192C994E3E60D"
+        ]
+      },
+      {
+        "key": "semantic_intersection",
+        "vector": "none",
+        "weight": 0.12,
+        "evidence": [
+          "no-overlap"
+        ]
+      },
+      {
+        "key": "behavior_cluster",
+        "vector": "R0.00|S0.00|B0.00",
+        "weight": 0.36,
+        "evidence": [
+          "members=50",
+          "role=0",
+          "signature=R0.00|S0.00|B0.00",
+          "curve=50,50,50,50"
+        ]
+      },
+      {
+        "key": "federated_rule_pressure",
+        "vector": "ADECA2D1:local",
+        "weight": 0.42,
+        "evidence": [
+          "localNovelty=0",
+          "localSymbiosis=0",
+          "workerCount=4"
+        ]
+      },
+      {
+        "key": "federation_admission_vector",
+        "vector": "none",
+        "weight": 0.14,
+        "evidence": [
+          "admission=none"
+        ]
+      }
+    ],
+    "summary": "center=tick.exists | energy=SURPLUS | mood=FRAGILE | lineage=8081167D | behavior=R0.00|S0.00|B0.00 | federation=ADECA2D1 | fedAdmission=none | overlap=none",
+    "created_at": "2026-03-06T01:17:40.788Z"
+  }
+]

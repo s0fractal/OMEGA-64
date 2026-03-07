@@ -132,6 +132,7 @@ type CodexNarrative = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  metabolicPressure: number;
   daemonEffectStatus: string;
   daemonEffectLineage: string;
   daemonEffectDeltaBand: string;
@@ -286,9 +287,12 @@ const slugify = (value: string): string =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
     .slice(0, 64) || "unnamed";
 
-const stableId = (prefix: string, tick: number, suffix: string): string => {
-  const compact = suffix.replace(/[^a-zA-Z0-9]/g, "").slice(0, 12) || "seed";
-  return `${prefix}-${tick}-${compact}`;
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const stableId = (kind: string, tick: number, entropy: string): string => {
+  const compact = entropy.replace(/[^a-zA-Z0-9]/g, "").slice(0, 12) || "seed";
+  return `${kind}-${tick}-${compact}`;
 };
 
 const opcodeLength = (op: number): number => {
@@ -357,6 +361,7 @@ type GlyphTransportEvidence = {
   title: string;
   body: string;
   summary: string;
+  metabolicPressure: number;
 };
 
 const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
@@ -441,6 +446,7 @@ const buildGlyphTransportEvidence = (
     snapshot.internalMemorySeeds > 0 ||
     snapshot.internalAtomPheromoneSeeds > 0 ||
     snapshot.internalAtomPlasmidSeeds > 0;
+  const metabolicPressure = clamp(snapshot.totalAmplitude / 16384, 0, 1);
   const title = `Glyph Transport Regime: ${titleCase(regime)}`;
   const body =
     `Tick ${tick} registered ${titleCase(regime)} with dominant role ${titleCase(dominantRole)} ` +
@@ -450,7 +456,9 @@ const buildGlyphTransportEvidence = (
     `atomPheromone=${snapshot.internalAtomPheromoneSeeds}, atomPlasmid=${snapshot.internalAtomPlasmidSeeds}.`;
   const summary =
     `Glyph regime ${titleCase(regime)} | dominant role ${titleCase(dominantRole)} | ` +
-    `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand}.`;
+    `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand} | pressure ${
+      metabolicPressure.toFixed(3)
+    }.`;
   return {
     active,
     regime,
@@ -461,6 +469,7 @@ const buildGlyphTransportEvidence = (
     title,
     body,
     summary,
+    metabolicPressure,
   };
 };
 
@@ -1417,6 +1426,7 @@ export const AKASHA_CODEX = {
         sourceMode: state.lastGlyphTransportSourceMode,
         lastRecordedTick: state.lastGlyphTransportTick,
         signature: state.lastGlyphTransportSignature,
+        metabolicPressure: (await AKASHA_CODEX.getNarrative()).metabolicPressure,
       },
       daemonEffect: {
         summary: state.lastDaemonEffectSummary,
@@ -1527,6 +1537,14 @@ export const AKASHA_CODEX = {
       glyphRegime: state.lastGlyphTransportRegime,
       glyphDominantRole: state.lastGlyphTransportDominantRole,
       glyphSourceMode: state.lastGlyphTransportSourceMode,
+      metabolicPressure: clamp(
+        asFiniteNumber(
+          state.lastGlyphTransportSummary.match(/pressure ([\d.]+)/)?.[1],
+          0,
+        ),
+        0,
+        1,
+      ),
       daemonEffectStatus,
       daemonEffectLineage: state.lastDaemonEffectLineage,
       daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
