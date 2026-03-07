@@ -11,7 +11,14 @@ export type GuardianSignalHybridSnapshot = {
   suppressedGuardianSignals: number;
   shadowSuppressedGuardianSignals: number;
   lastTick: number;
-  lastStatus: "legacy" | "stable" | "repair" | "fallback";
+  lastStatus:
+    | "legacy"
+    | "stable"
+    | "repair"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
   lastBranch: "stable" | "repair" | "unknown";
   lastFallbackReason: string;
 };

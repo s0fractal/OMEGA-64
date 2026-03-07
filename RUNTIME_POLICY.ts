@@ -35,7 +35,7 @@ const parseGuardianSignalExecutionMode = (
   if (value === "hybrid-reduce" || value === "hybrid_reduce") {
     return "hybrid-reduce";
   }
-  return "shadow-reduce";
+  return "hybrid-reduce";
 };
 const parseEnvBoundedFloat = (
   raw: string | undefined,
@@ -152,6 +152,7 @@ const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
 const rawColdstartEnable = readEnv("OMEGA_COLDSTART_ENABLE");
 const rawColdstartCount = readEnv("OMEGA_COLDSTART_COUNT");
 const rawColdstartReplicatorRatio = readEnv("OMEGA_COLDSTART_REPLICATOR_RATIO");
+const rawColdstartGuardianRatio = readEnv("OMEGA_COLDSTART_GUARDIAN_RATIO");
 const rawColdstartSeed = readEnv("OMEGA_COLDSTART_SEED");
 const rawColdstartEnergy = readEnv("OMEGA_COLDSTART_ENERGY");
 const rawColdstartResonance = readEnv("OMEGA_COLDSTART_RESONANCE");
@@ -445,7 +446,13 @@ const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
 const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
 const coldstartReplicatorRatio = parseEnvBoundedFloat(
   rawColdstartReplicatorRatio,
-  0.72,
+  0.15,
+  0,
+  1,
+);
+const coldstartGuardianRatio = parseEnvBoundedFloat(
+  rawColdstartGuardianRatio,
+  0.08,
   0,
   1,
 );
@@ -586,6 +593,7 @@ const policyFingerprintSource = JSON.stringify({
     enabled: coldstartEnabled,
     count: coldstartCount,
     replicatorRatio: coldstartReplicatorRatio,
+    guardianRatio: coldstartGuardianRatio,
     seed: coldstartSeed,
     energy: coldstartEnergy,
     resonance: coldstartResonance,
@@ -783,6 +791,7 @@ export const RUNTIME_POLICY = {
     enabled: coldstartEnabled,
     count: coldstartCount,
     replicatorRatio: coldstartReplicatorRatio,
+    guardianRatio: coldstartGuardianRatio,
     seed: coldstartSeed,
     energy: coldstartEnergy,
     resonance: coldstartResonance,
@@ -790,6 +799,7 @@ export const RUNTIME_POLICY = {
       enabled: rawColdstartEnable !== undefined,
       count: rawColdstartCount !== undefined,
       replicatorRatio: rawColdstartReplicatorRatio !== undefined,
+      guardianRatio: rawColdstartGuardianRatio !== undefined,
       seed: rawColdstartSeed !== undefined,
       energy: rawColdstartEnergy !== undefined,
       resonance: rawColdstartResonance !== undefined,

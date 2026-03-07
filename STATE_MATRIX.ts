@@ -53,6 +53,8 @@ export const bondDistBuffer =
     .buffer;
 export const dampingBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
+export const causalityBuffer =
+  new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS).buffer;
 export const roleBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
 export const hiveMemoryBuffer =
@@ -116,6 +118,11 @@ const bondRequests = new Int32Array(
   MAX_ATOMS * 3,
 );
 const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
+const causality = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.CAUSALITY_OFFSET,
+  MAX_ATOMS,
+);
 const hiveMemory = new Uint8Array(
   sharedBuffer,
   OFFSETS.HIVE_MEMORY_OFFSET,
@@ -648,6 +655,9 @@ export const STATE_MATRIX = {
     Atomics.and(structureGrid, i, ~0xFF000000);
     Atomics.or(structureGrid, i, (val & 0xFF) << 24);
   },
+  getCausality: (idx: number) => Atomics.load(causality, idx),
+  setCausality: (idx: number, val: number) => Atomics.store(causality, idx, val),
+  clearDamping: () => damping.fill(0),
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };

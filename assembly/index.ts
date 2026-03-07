@@ -36,6 +36,7 @@ const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 36200000;
 const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 37200000;
 const BOND_DIST_OFF: usize = SAFETY_BUFFER + 38200000;
 const DAMPING_OFF: usize = SAFETY_BUFFER + 39200000;
+const CAUSALITY_OFF: usize = SAFETY_BUFFER + 39300000;
 const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
 const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
@@ -783,6 +784,7 @@ export function tickGlyphTransport(tick: i32): void {
 
 @inline
 function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+  if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
   if (((tick + idx) % 24) != 0) return false;
   return resonance > 200 && phase > 100;
 }

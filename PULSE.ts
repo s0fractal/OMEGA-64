@@ -11,6 +11,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import {
   evaluateGuardianSignalExecution,
   evaluateGuardianSignalReduction,
@@ -194,9 +195,10 @@ type GuardianSignalHybridState = {
   suppressedGuardianSignals: number;
   shadowSuppressedGuardianSignals: number;
   lastTick: number;
-  lastStatus: "legacy" | "stable" | "repair" | "fallback";
+  lastStatus: "legacy" | "stable" | "repair" | "fallback" | "shadow" | "hybrid" | "legacy-blocked";
   lastBranch: "stable" | "repair" | "unknown";
   lastFallbackReason: string;
+  lastMode?: GuardianSignalExecutionMode;
 };
 type ArchitectPlasmidHybridState = {
   mode: ArchitectPlasmidExecutionMode;
@@ -897,12 +899,22 @@ const resonancesView = new Int32Array(
   OFFSETS.RESONANCE_OFFSET,
   MAX_ATOMS,
 );
-const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
-const logicView = new Uint8Array(
+const causalityView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.CAUSALITY_OFFSET,
+  MAX_ATOMS,
+);
+export const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+export const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+export const logicView = new Uint8Array(
   sharedBuffer,
   OFFSETS.LOGIC_OFFSET,
   MAX_ATOMS * 8,
+);
+const instructionsView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.INSTRUCTIONS_OFFSET,
+  MAX_ATOMS * 64,
 );
 const bondsView = new Uint32Array(
   sharedBuffer,
@@ -943,6 +955,11 @@ const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
+
+const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
+  return Atomics.load(causalityView, idx) !== 0;
+};
+
 const CHILD_ID_SALT = 0x9E3779B97F4A7C15n;
 const deriveChildId = (
   tick: number,
@@ -2318,6 +2335,63 @@ export const PULSE = {
         activeIdx,
         spatialHashState.overflowRatio,
       );
+
+      // --- STAGE 8: Guardian Signal Promotion Bridge ---
+      {
+        const mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
+        guardianSignalHybridState.lastMode = mode;
+        const resonanceBase = resonancesView;
+        const scrollRange = 16;
+
+        for (const idx of activeIdx) {
+          if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) {
+            const script = instructionsView.slice(idx * 64, idx * 64 + 64);
+            const decision = evaluateGuardianSignalExecution({
+              mode,
+              script,
+              neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
+              legacyAllowed: true,
+              maxSteps: scrollRange,
+            });
+
+            // Update Telemetry
+            if (mode === "hybrid-reduce") {
+              guardianSignalHybridState.hybridRuns++;
+              if (decision.allowed) {
+                guardianSignalHybridState.allowedGuardianSignals++;
+              } else {
+                guardianSignalHybridState.suppressedGuardianSignals++;
+              }
+            } else if (mode === "shadow-reduce") {
+              guardianSignalHybridState.shadowRuns++;
+              if (decision.shadowSuppressed) {
+                guardianSignalHybridState.shadowSuppressedGuardianSignals++;
+              }
+            }
+
+            if (decision.status === "fallback") {
+              guardianSignalHybridState.fallbackRuns++;
+            }
+
+            if (decision.branch === "stable") guardianSignalHybridState.stableBranchCount++;
+            if (decision.branch === "repair") guardianSignalHybridState.repairBranchCount++;
+
+            guardianSignalHybridState.lastTick = currentTick;
+            guardianSignalHybridState.lastStatus = decision.status;
+            guardianSignalHybridState.lastBranch = decision.branch;
+            if (decision.status === "fallback") {
+              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+            }
+
+            // Apply Causality Suppression
+            const allowed = decision.allowed && guardianPheromoneAllowedByExecutionMode(idx);
+            Atomics.store(causalityView, idx, allowed ? 1 : 0);
+          } else {
+            // Non-guardians are always allowed
+            Atomics.store(causalityView, idx, 1);
+          }
+        }
+      }
 
       // Decay host pheromone fields (including observer attention).
       PHYSICS_ENGINE.decayPheromones();

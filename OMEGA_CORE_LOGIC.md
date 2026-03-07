@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-07T14:12:23.232Z*
-*Exported Files: 226*
+*Generated: 2026-03-07T18:18:43.357Z*
+*Exported Files: 104*
 *Runtime Roots: 7*
-*Runtime Closure Files: 57*
-*Non-Runtime Code Files: 48*
+*Runtime Closure Files: 58*
+*Non-Runtime Code Files: 31*
 *Runtime-Support Code Files: 16*
-*Experimental Code Files: 32*
-*Manifest SHA256: 1b18aa0a4c841fb9fd2ef8cc4b6c75ced07f37d960d1c3caed0df357f415f1a1*
-*Export Set SHA256: ff5adaca0f8ee571e69038c533563a0186eb3c890fd4c9f3fa14140e88219588*
-*Export Content SHA256: 685296e8b8d8fb0de842585c83927e661b3fbd027e0a9ba5f5cf74ad22b5d344*
-*Git Commit: fe8d15aabd86*
+*Experimental Code Files: 15*
+*Manifest SHA256: 302dc1e49507cfe7a659214027caa536c7b4551e4ad1ff381e8e77cd36d4ae11*
+*Export Set SHA256: 35220aca7270b395178c8700f4cdb5dcdc53ac35541acf4d31b65e88a244d8e6*
+*Export Content SHA256: 16a7264b6330ed243ae6c79fe3783be44a98941853bc666b37f574e7b3da4164*
+*Git Commit: abbe5c15dbf1*
 
 ---
 
@@ -57,6 +57,7 @@
 - GUARDIAN_SIGNAL_PROMOTION.ts
 - HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts
 - HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts
+- HORMONE_BUFFER_RUNTIME.ts
 - HORMONE_BUFFER.ts
 - LLM_SYNAPSE.ts
 - LOGGER.ts
@@ -111,26 +112,9 @@
 - runtime_bridge/opcode_to_glyph.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
-- verification/admission_shadow_cases.ts
-- verification/admission_shadow_harness.ts
-- verification/architect_plasmid_mode_cases.ts
-- verification/architect_plasmid_mode_harness.ts
-- verification/collective_banking_capture.ts
-- verification/collective_synchrony_capture.ts
-- verification/collective_transport_capture.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
-- verification/guardian_signal_mode_cases.ts
-- verification/guardian_signal_mode_harness.ts
-- verification/reduction_cases.ts
 - verification/reduction_harness.ts
-- verification/share_transfer_capture.ts
-- verification/structure_build_competition_capture.ts
-- verification/structure_build_lock_capture.ts
-- verification/structure_build_runtime_capture.ts
-- verification/structure_charge_capture.ts
-- verification/structure_charge_competition_capture.ts
-- verification/structure_lock_capture.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
 - worker_gate_thresholds.ts
@@ -176,26 +160,9 @@
 - RIBOSOME_TICK.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
-- verification/admission_shadow_cases.ts
-- verification/admission_shadow_harness.ts
-- verification/architect_plasmid_mode_cases.ts
-- verification/architect_plasmid_mode_harness.ts
-- verification/collective_banking_capture.ts
-- verification/collective_synchrony_capture.ts
-- verification/collective_transport_capture.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
-- verification/guardian_signal_mode_cases.ts
-- verification/guardian_signal_mode_harness.ts
-- verification/reduction_cases.ts
 - verification/reduction_harness.ts
-- verification/share_transfer_capture.ts
-- verification/structure_build_competition_capture.ts
-- verification/structure_build_lock_capture.ts
-- verification/structure_build_runtime_capture.ts
-- verification/structure_charge_capture.ts
-- verification/structure_charge_competition_capture.ts
-- verification/structure_lock_capture.ts
 
 ---
 
@@ -336,9 +303,11 @@ type CodexNarrative = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  metabolicPressure: number;
   daemonEffectStatus: string;
   daemonEffectLineage: string;
   daemonEffectDeltaBand: string;
+  hormoneRegime: string;
   promptBridge: string;
 };
 
@@ -360,6 +329,9 @@ type CodexState = {
   lastGlyphTransportSummary: string;
   lastGlyphTransportDominantRole: string;
   lastGlyphTransportSourceMode: string;
+  lastHormoneRegimeSignature: string;
+  lastHormoneRegimeTick: number;
+  lastHormoneRegimeSummary: string;
   lastDaemonEffectTick: number;
   lastDaemonEffectSummary: string;
   lastDaemonEffectLineage: string;
@@ -435,6 +407,9 @@ const fallbackState = (): CodexState => ({
   lastGlyphTransportSummary: "Glyph transport remains dormant.",
   lastGlyphTransportDominantRole: "none",
   lastGlyphTransportSourceMode: "none",
+  lastHormoneRegimeSignature: "baseline",
+  lastHormoneRegimeTick: -1,
+  lastHormoneRegimeSummary: "Hormone lattice at baseline.",
   lastDaemonEffectTick: -1,
   lastDaemonEffectSummary: "No daemon effect contour recorded yet.",
   lastDaemonEffectLineage: "none",
@@ -490,9 +465,12 @@ const slugify = (value: string): string =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
     .slice(0, 64) || "unnamed";
 
-const stableId = (prefix: string, tick: number, suffix: string): string => {
-  const compact = suffix.replace(/[^a-zA-Z0-9]/g, "").slice(0, 12) || "seed";
-  return `${prefix}-${tick}-${compact}`;
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const stableId = (kind: string, tick: number, entropy: string): string => {
+  const compact = entropy.replace(/[^a-zA-Z0-9]/g, "").slice(0, 12) || "seed";
+  return `${kind}-${tick}-${compact}`;
 };
 
 const opcodeLength = (op: number): number => {
@@ -561,6 +539,7 @@ type GlyphTransportEvidence = {
   title: string;
   body: string;
   summary: string;
+  metabolicPressure: number;
 };
 
 const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
@@ -645,6 +624,7 @@ const buildGlyphTransportEvidence = (
     snapshot.internalMemorySeeds > 0 ||
     snapshot.internalAtomPheromoneSeeds > 0 ||
     snapshot.internalAtomPlasmidSeeds > 0;
+  const metabolicPressure = clamp(snapshot.totalAmplitude / 16384, 0, 1);
   const title = `Glyph Transport Regime: ${titleCase(regime)}`;
   const body =
     `Tick ${tick} registered ${titleCase(regime)} with dominant role ${titleCase(dominantRole)} ` +
@@ -654,7 +634,9 @@ const buildGlyphTransportEvidence = (
     `atomPheromone=${snapshot.internalAtomPheromoneSeeds}, atomPlasmid=${snapshot.internalAtomPlasmidSeeds}.`;
   const summary =
     `Glyph regime ${titleCase(regime)} | dominant role ${titleCase(dominantRole)} | ` +
-    `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand}.`;
+    `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand} | pressure ${
+      metabolicPressure.toFixed(3)
+    }.`;
   return {
     active,
     regime,
@@ -665,7 +647,46 @@ const buildGlyphTransportEvidence = (
     title,
     body,
     summary,
+    metabolicPressure,
   };
+};
+
+// ── Stage 7.2: Hormone Regime Evidence ──────────────────────────────────────
+// id 0=entropy_pressure 1=time_viscosity 2=aggression
+//    3=replication_bias  4=repair_drive   5=mutation_friction
+
+const HORMONE_RECORD_INTERVAL = 512;
+
+type HormoneRegimeEvidence = {
+  signature: string;
+  title: string;
+  body: string;
+  summary: string;
+};
+
+const hormoneRegimeLabel = (h: number[]): string => {
+  if (h[0] > 1500) return "high_entropy";
+  if (h[2] > 1500) return "aggressive_bloom";
+  if (h[4] > 1500) return "repair_surge";
+  if (h[1] > 1500) return "viscous_stasis";
+  if (h[0] < 256 && h[2] < 256 && h[4] < 256) return "dormant_baseline";
+  return "balanced_homeostasis";
+};
+
+const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const regime = hormoneRegimeLabel(h);
+  // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
+  const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join("");
+  const signature = `${regime}|${sig}`;
+  const [ep, tv, ag, rb, rd, mf] = h;
+  const title = `Hormone Regime: ${titleCase(regime)}`;
+  const body =
+    `Tick ${tick} | entropy_pressure=${ep} time_viscosity=${tv} aggression=${ag} ` +
+    `replication_bias=${rb} repair_drive=${rd} mutation_friction=${mf}. ` +
+    `Regime: '${regime}'.`;
+  const summary = `Hormone regime ${titleCase(regime)} | entropy=${ep} aggr=${ag} repair=${rd}.`;
+  return { signature, title, body, summary };
 };
 
 const parseInvariantSignal = (value: unknown): InvariantSignal | null => {
@@ -1047,17 +1068,17 @@ const collectGenomeStats = (): {
 const fallbackTaxonomy = (
   genome: string,
   dominantInstructions: string[],
+  hormoneRegime: string,
 ): TaxonomyResult => {
-  const genus = [
-    "Structura",
-    "Mycelia",
-    "Nexa",
-    "Aethera",
-    "Crypta",
-    "Lumen",
-    "Fracta",
-    "Vorax",
-  ];
+  const genusMap: Record<string, string[]> = {
+    "high_entropy": ["Metabolix", "Entropia", "Vortex"],
+    "aggressive_bloom": ["Agressor", "Praedo", "Bellum"],
+    "repair_surge": ["Sano", "Medicus", "Regen"],
+    "viscous_stasis": ["Stasix", "Tenax", "Fixus"],
+    "dormant_baseline": ["Structura", "Mycelia", "Nexa"],
+    "balanced_homeostasis": ["Equil", "Harmonia", "Lattice"],
+  };
+  const genusList = genusMap[hormoneRegime] || genusMap["dormant_baseline"];
   const species = [
     "stabilis",
     "migrans",
@@ -1068,16 +1089,18 @@ const fallbackTaxonomy = (
     "silentis",
     "orbitae",
   ];
-  const a = Number.parseInt(genome.slice(0, 2), 16) % genus.length;
+  const a = Number.parseInt(genome.slice(0, 2), 16) % genusList.length;
   const b = Number.parseInt(genome.slice(2, 4), 16) % species.length;
   const stack = dominantInstructions.length > 0
     ? dominantInstructions.join(", ")
     : "adaptive scripts";
   return {
-    latinName: `${genus[a]} ${species[b]}`,
-    behavior: `Dominant lineage specializing in ${stack}.`,
+    latinName: `${genusList[a]} ${species[b]}`,
+    behavior: `Dominant lineage specializing in ${stack} under ${
+      titleCase(hormoneRegime)
+    } conditions.`,
     philosophy:
-      "Survival through iterative structure and opportunistic resonance.",
+      `Survival through iterative structure influenced by ${hormoneRegime} pressure.`,
   };
 };
 
@@ -1089,7 +1112,11 @@ const discoverSpecies = async (
   if (speciesIndex.some((entry) => entry.genome === stat.genome)) return;
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
-  const fallback = fallbackTaxonomy(stat.genome, dominantInstructions);
+  // Stage 7.4: Fetch current hormone regime label
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const regime = hormoneRegimeLabel(h);
+
+  const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);
   let taxonomy: TaxonomyResult = fallback;
   try {
     const llmTaxonomy = await LLM_SYNAPSE.generateSpeciesTaxonomy({
@@ -1097,6 +1124,7 @@ const discoverSpecies = async (
       dominantInstructions,
       dominanceShare: stat.share,
       epochs,
+      hormoneRegime: regime,
     });
     if (
       llmTaxonomy.latinName.trim().length > 0 &&
@@ -1139,6 +1167,7 @@ const discoverSpecies = async (
       `- Dominant Instructions: ${
         entry.dominantInstructions.join(", ") || "n/a"
       }`,
+      `- Hormone Regime: ${titleCase(regime)}`,
       `- Created At: ${entry.createdAt}`,
       "",
       "## Behavioral Profile",
@@ -1153,10 +1182,12 @@ const discoverSpecies = async (
   await appendChronicle(
     tick,
     "species_discovery",
-    `New Species Recorded: ${entry.latinName}`,
+    `New Species Recorded: ${entry.latinName} (${titleCase(regime)})`,
     `Genome ${entry.genome} crossed ${
       (stat.share * 100).toFixed(2)
-    }% population share and persisted across ${epochs} macro-epochs.`,
+    }% population share under ${
+      titleCase(regime)
+    } conditions, persisting across ${epochs} macro-epochs.`,
   );
 };
 
@@ -1378,6 +1409,12 @@ const runEpochScan = async (tick: number): Promise<void> => {
 };
 
 export const AKASHA_CODEX = {
+  // Test/Internal surface (Stage 7.4)
+  _discoverSpecies: discoverSpecies,
+  _fallbackTaxonomy: fallbackTaxonomy,
+  _getSpeciesIndex: () => speciesIndex,
+  _getChronicleIndex: () => chronicleIndex,
+
   start: async (): Promise<void> => {
     if (started) return;
     started = true;
@@ -1422,6 +1459,26 @@ export const AKASHA_CODEX = {
           );
         });
       }
+    }
+
+    // Stage 7.2: Hormone regime chronicle
+    const hormoneEvidence = buildHormoneRegimeEvidence(tick);
+    state.lastHormoneRegimeSummary = hormoneEvidence.summary;
+    const hormoneRecordDue =
+      hormoneEvidence.signature !== state.lastHormoneRegimeSignature &&
+      (state.lastHormoneRegimeTick < 0 ||
+        tick - state.lastHormoneRegimeTick >= HORMONE_RECORD_INTERVAL);
+    if (hormoneRecordDue) {
+      state.lastHormoneRegimeSignature = hormoneEvidence.signature;
+      state.lastHormoneRegimeTick = tick;
+      enqueueWrite(async () => {
+        await appendChronicle(
+          tick,
+          "hormone_regime",
+          hormoneEvidence.title,
+          hormoneEvidence.body,
+        );
+      });
     }
 
     const extinctionThreshold = Math.floor(state.populationPeak * 0.2);
@@ -1621,6 +1678,7 @@ export const AKASHA_CODEX = {
         sourceMode: state.lastGlyphTransportSourceMode,
         lastRecordedTick: state.lastGlyphTransportTick,
         signature: state.lastGlyphTransportSignature,
+        metabolicPressure: (await AKASHA_CODEX.getNarrative()).metabolicPressure,
       },
       daemonEffect: {
         summary: state.lastDaemonEffectSummary,
@@ -1731,9 +1789,18 @@ export const AKASHA_CODEX = {
       glyphRegime: state.lastGlyphTransportRegime,
       glyphDominantRole: state.lastGlyphTransportDominantRole,
       glyphSourceMode: state.lastGlyphTransportSourceMode,
+      metabolicPressure: clamp(
+        asFiniteNumber(
+          state.lastGlyphTransportSummary.match(/pressure ([\d.]+)/)?.[1],
+          0,
+        ),
+        0,
+        1,
+      ),
       daemonEffectStatus,
       daemonEffectLineage: state.lastDaemonEffectLineage,
       daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
+      hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
     };
   },
@@ -3825,7 +3892,7 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const TRACE_THRESHOLD: u64 = 100; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const TRACE_THRESHOLD: u64 = 20; // Trace logic for atoms with ID < TRACE_THRESHOLD
 const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS
@@ -3853,6 +3920,7 @@ const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 36200000;
 const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 37200000;
 const BOND_DIST_OFF: usize = SAFETY_BUFFER + 38200000;
 const DAMPING_OFF: usize = SAFETY_BUFFER + 39200000;
+const CAUSALITY_OFF: usize = SAFETY_BUFFER + 39300000;
 const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
 const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
@@ -3870,6 +3938,10 @@ const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
 const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
 const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42579200;
 const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
+const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
+const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
+const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
+const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -3894,6 +3966,11 @@ const CRYSTAL_MEME: i32 = 10; // Type for memetic nodes
 const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
 
+// --- ERA 71: FORCE ACCUMULATION ---
+// Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
+let accForceX: f32 = 0;
+let accForceY: f32 = 0;
+
 function clampResource(value: i64): i32 {
   if (value < 0) return 0;
   if (value > RESOURCE_MAX as i64) return RESOURCE_MAX;
@@ -3916,6 +3993,12 @@ function getPhase(idx: i32): i32 {
 }
 function setPhase(idx: i32, val: i32): void {
   store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
+}
+// Read a global hormone value from the shared lattice (index 0..5).
+// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction
+@inline
+function getHormone(id: i32): u16 {
+  return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
 }
 function getX(idx: i32): i16 {
   return load<i16>(XS_OFFSET + (idx << 1) as usize);
@@ -4231,10 +4314,10 @@ function getGenomeVelocityX(idx: i32): i32 {
   let vx: i32 = 0;
   for (let b = 0; b < 2; b++) {
     let byte = getLogicByte(idx, b);
-    let hi = (byte >> 4) & 0x0F;
-    vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = byte & 0x0F;
-    vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
   }
   return vx;
 }
@@ -4243,10 +4326,10 @@ function getGenomeVelocityY(idx: i32): i32 {
   let vy: i32 = 0;
   for (let b = 2; b < 4; b++) {
     let byte = getLogicByte(idx, b);
-    let hi = (byte >> 4) & 0x0F;
-    vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = byte & 0x0F;
-    vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
   }
   return vy;
 }
@@ -4279,7 +4362,12 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           let dx = oX - (x as f32);
           let dy = oY - (y as f32);
           let d2 = dx * dx + dy * dy;
-          if (d2 < 1.0) continue;
+          if (d2 < 0.001) {
+            // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
+            d2 = 0.001; 
+          } else if (d2 < 1.0) {
+            // Minor overlap, let it through
+          }
 
           // --- PHASE 15: SOCIAL RECOGNITION (AVOIDANCE) ---
           if (d2 < 100.0) { // Too close!
@@ -4390,13 +4478,225 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
     }
   }
 
-  // Final position integration (velocity)
-  storeClampedPos(
-    idx,
-    x + (Math.round(tx) as i32),
-    y + (Math.round(ty) as i32),
-  );
+  // ERA 71: ACCUMULATE instead of immediate store
+  accForceX += tx;
+  accForceY += ty;
 }
+
+// --- ERA 72: GLYPH INTERNALIZATION ---
+
+@inline
+function unpackGlyphKind(header: i32): i32 {
+  return header & 0xFF;
+}
+
+@inline
+function unpackGlyphAmplitude(header: i32): i32 {
+  return (header >>> 8) & 0x00FFFFFF;
+}
+
+@inline
+function packGlyphHeader(kind: i32, amplitude: i32): i32 {
+  if (amplitude < 0) amplitude = 0;
+  if (amplitude > 0x00FFFFFF) amplitude = 0x00FFFFFF;
+  return (amplitude << 8) | (kind & 0xFF);
+}
+
+function decayForKind(kind: i32, amplitude: i32): i32 {
+  if (kind == 2) { // PLASMID
+    return amplitude > 256 ? 3 : 1;
+  }
+  if (kind == 1) { // PHEROMONE
+    return amplitude > 64 ? 8 : 4;
+  }
+  return amplitude;
+}
+
+function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
+  if (kind == 2) { // PLASMID
+    return amplitude >= 96 ? (amplitude >> 3) : 0; // amplitude * 0.125
+  }
+  if (kind == 1) { // PHEROMONE
+    return amplitude >= 24 ? (amplitude >> 2) : 0; // amplitude * 0.25
+  }
+  return 0;
+}
+
+function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
+  if (amplitude <= 0) return;
+  const current = load<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize);
+  const currentKind = unpackGlyphKind(current);
+  const currentAmplitude = unpackGlyphAmplitude(current);
+  
+  const mergedKind = currentKind == 0 ? kind : currentKind;
+  let mergedAmplitude = 0;
+  if (currentKind == kind) {
+    mergedAmplitude = currentAmplitude + amplitude;
+    if (mergedAmplitude > 0x00FFFFFF) mergedAmplitude = 0x00FFFFFF;
+  } else {
+    mergedAmplitude = currentAmplitude > amplitude ? currentAmplitude : amplitude;
+  }
+  
+  store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
+}
+
+function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 0): void {
+  if (intensity <= 0 || cell < 0 || cell >= 140 * 80) return;
+  const ptr = (GLYPH_HEADER_OFF + (cell << 2)) as usize;
+
+  for (let spin = 0; spin < 128; spin++) {
+    const current = atomic.load<i32>(ptr);
+    const currentKind = unpackGlyphKind(current);
+    const currentAmplitude = unpackGlyphAmplitude(current);
+
+    if (currentKind != 0 && currentKind != kind) {
+      // Kind mismatch: winner takes all (max amplitude)
+      if (intensity <= currentAmplitude) return;
+      const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, intensity));
+      if (observed == current) {
+        if (kind == 2 && payloadPtr != 0) {
+          const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+          memory.copy(dstPtr, payloadPtr, 8);
+        }
+        return;
+      }
+      continue;
+    }
+
+    // Kind match or empty: additive merge
+    let nextAmplitude = currentAmplitude + intensity;
+    if (nextAmplitude > 0x00FFFFFF) nextAmplitude = 0x00FFFFFF;
+    const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, nextAmplitude));
+    if (observed == current) {
+      // If we are the one who (potentially) established this plasmid, or just refreshing it.
+      // For simplicity, always update payload if we are secreting a plasmid.
+      if (kind == 2 && payloadPtr != 0) {
+        const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        memory.copy(dstPtr, payloadPtr, 8);
+      }
+      return;
+    }
+  }
+}
+
+
+export function tickGlyphTransport(tick: i32): void {
+  // Clear scratch headers (payload clearing is handled by over-writes)
+  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
+  
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
+    const kind = unpackGlyphKind(header);
+    const amplitude = unpackGlyphAmplitude(header);
+    if (kind == 0 || amplitude <= 0) continue;
+
+    const decayed = amplitude - decayForKind(kind, amplitude);
+    if (decayed <= 0) continue;
+
+    const share = diffusionShareForKind(kind, decayed);
+    const retained = decayed - share;
+    
+    if (retained > 0) {
+      writeGlyphScratch(cell, kind, retained);
+      if (kind == 2) { // PLASMID payload persistence
+        const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
+        memory.copy(dstPtr, srcPtr, 8);
+      }
+    }
+
+    if (share > 0) {
+      const gx = cell % 140;
+      const gy = cell / 140;
+      const selector = (tick + cell) & 3;
+      let nextCell = cell;
+      
+      if (selector == 0 && gx < 139) nextCell = cell + 1;
+      else if (selector == 1 && gy < 79) nextCell = cell + 140;
+      else if (selector == 2 && gx > 0) nextCell = cell - 1;
+      else if (selector == 3 && gy > 0) nextCell = cell - 140;
+      
+      writeGlyphScratch(nextCell, kind, share);
+      if (kind == 2) { // PLASMID payload transport
+        const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
+        memory.copy(dstPtr, srcPtr, 8);
+      }
+    }
+  }
+
+  // Seeding: Internal Signal Reflection
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
+    const absSignal = signal < 0 ? -signal : signal;
+    if (absSignal >= 256) {
+      let amp = absSignal >> 4;
+      if (amp < 16) amp = 16;
+      if (amp > 512) amp = 512;
+      writeGlyphScratch(cell, 1, amp); // PHEROMONE seed from signal
+    }
+  }
+
+  // Seeding: Internal Memory Reflection
+  for (let cell = 0; cell < 140 * 80; cell++) {
+    const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
+    const charge = (load<u8>(memOffset) as i32) | ((load<u8>(memOffset + 1) as i32) << 8);
+    
+    let payloadResidue = false;
+    for (let i = 4; i < 8; i++) {
+        if (load<u8>(memOffset + i) != 0) {
+            payloadResidue = true;
+            break;
+        }
+    }
+    
+    if (payloadResidue && charge >= 64) {
+      let amp = charge >> 3;
+      if (amp < 24) amp = 24;
+      if (amp > 384) amp = 384;
+      writeGlyphScratch(cell, 2, amp); // PLASMID seed from memory
+      
+      const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
+      memory.copy(dstPtr, memOffset, 8);
+    }
+  }
+
+  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, (140 * 80) << 3);
+}
+
+// --- PER-ROLE SECRETION PREDICATES ---
+
+@inline
+function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+  if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
+  if (((tick + idx) % 24) != 0) return false;
+  return resonance > 200 && phase > 100;
+}
+
+@inline
+function architectShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 32) != 0) return false;
+  return energy > 1500 && resonance > 100;
+}
+
+@inline
+function producerShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 48) != 0) return false;
+  return resonance > 150 && energy > 1000;
+}
+
+@inline
+function producerShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 64) != 0) return false;
+  return energy > 2000 && resonance > 50;
+}
+
+@inline
+function neutralShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+  if (((tick + idx) % 128) != 0) return false;
+  return resonance > 400;
+}
+
 
 function applyBondSprings(idx: i32, x: i32, y: i32): void {
   let fx: f32 = 0;
@@ -4442,11 +4742,9 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     fy *= dampingFactor;
   }
 
-  storeClampedPos(
-    idx,
-    x + (Math.round(fx) as i32),
-    y + (Math.round(fy) as i32),
-  );
+  // ERA 71: ACCUMULATE instead of immediate store
+  accForceX += fx;
+  accForceY += fy;
 }
 
 export function execute_atom(atomIndex: i32): void {
@@ -4458,22 +4756,52 @@ export function execute_atom(atomIndex: i32): void {
   // --- VECTOR 7: THE QUANTUM SHIFT ---
   // If id > 10, calculate physics (matching JS neural verification)
   if (id > 10) {
+    // ERA 71: Reset accumulation
+    accForceX = 0;
+    accForceY = 0;
+    
     let vx = getGenomeVelocityX(atomIndex);
     let vy = getGenomeVelocityY(atomIndex);
+    let energy = getEnergy(atomIndex);
+    let phase = getPhase(atomIndex);
+    let res = getResonance(atomIndex);
+    const tick = load<i32>(TICK_COUNTER_OFF);
+    const cell = (curY / 10) * 140 + (curX / 10);
+
+    // DECENTRALIZED SECRETION (Stage 5.1)
+    if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
+      secreteGlyph(cell, 1, clampResource(res / 4) as i32);
+    } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
+      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, LOGIC_OFFSET + (atomIndex << 3));
+    } else if (role == ROLE_PRODUCER) {
+      if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
+        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32);
+      }
+      if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
+        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, LOGIC_OFFSET + (atomIndex << 3));
+      }
+    } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
+      secreteGlyph(cell, 1, clampResource(res / 8) as i32);
+    } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
+      secreteGlyph(cell, 2, 32, LOGIC_OFFSET + (atomIndex << 3));
+    }
 
     applyBondSprings(atomIndex, curX, curY);
     calculateTrophism(atomIndex, curX, curY, role);
 
-    // Final position integration (velocity)
-    let midX = getX(atomIndex) as i32;
-    let midY = getY(atomIndex) as i32;
+    // Final position integration (velocity + forces)
     let damping = load<u8>(DAMPING_OFF + atomIndex as usize);
-    let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
+    // HORMONE 1: time_viscosity lowers effective dampingFactor (range 0..2048 → 0..0.15 additive)
+    let viscosityH: f32 = getHormone(1) as f32 / 2048.0;
+    let dampingFactor = Mathf.max(0, 1.0 - (damping as f32) / 255.0 - viscosityH * 0.15);
 
     // Behavior velocity is added on top of force integration
-    let nextX = midX + (vx * 2 * (dampingFactor as i32));
-    let nextY = midY + (vy * 2 * (dampingFactor as i32));
-    storeClampedPos(atomIndex, nextX, nextY);
+    let nextX = (curX as f32) + accForceX +
+      (vx as f32) * 2.0 * (dampingFactor as f32);
+    let nextY = (curY as f32) + accForceY +
+      (vy as f32) * 2.0 * (dampingFactor as f32);
+
+    storeClampedPos(atomIndex, Math.round(nextX) as i32, Math.round(nextY) as i32);
   }
 
   let pc = getPC(atomIndex);
@@ -4486,8 +4814,6 @@ export function execute_atom(atomIndex: i32): void {
   for (; step < 16; step++) {
     const op = load<u8>(instr_base + (pc as usize));
     if (op == OP_NOP) break;
-
-    trace_atom(atomIndex, op as i32, curX / 10, curY / 10, pc as i32);
 
     switch (op) {
       case OP_SET: {
@@ -4582,7 +4908,11 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        if (energy > 1500 && resonance > 200) {
+        // HORMONE 2: aggression lowers replication thresholds (range 0..2048 → up to -256 energy / -64 resonance)
+        let aggrH: i32 = getHormone(2) as i32;
+        let replicateEThresh: i32 = 1500 - (aggrH >> 3); // 1500..1244
+        let replicateRThresh: i32 = 200 - (aggrH >> 5);  // 200..136
+        if (energy > replicateEThresh && resonance > replicateRThresh) {
           let rx = getX(atomIndex) as i32;
           let ry = getY(atomIndex) as i32;
           let gx = rx / 10;
@@ -4867,8 +5197,9 @@ export function execute_atom(atomIndex: i32): void {
   }
   setPC(atomIndex, pc);
 
-  // Metabolic Cost
-  let metabolicCost = 1 + (step >> 1); // 1 to 9 energy units per tick
+  // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
+  let entropyH: i32 = getHormone(0) as i32;
+  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12);
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
@@ -4882,7 +5213,10 @@ export function execute_atom(atomIndex: i32): void {
     }
   }
 
-  if (resonance > 0) setResonance(atomIndex, resonance - 2);
+  // HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
+  let repairH: i32 = getHormone(4) as i32;
+  let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
+  if (resonance > 0) setResonance(atomIndex, resonance - resonanceDecay);
   setEnergy(atomIndex, energy > metabolicCost ? energy - metabolicCost : 0);
 }
 
@@ -5499,6 +5833,7 @@ type ColdstartConfig = {
   enabled: boolean;
   count: number;
   replicatorRatio: number;
+  guardianRatio: number;
   seed: number;
   energy: number;
   resonance: number;
@@ -5511,6 +5846,7 @@ type ColdstartResult = {
   configuredCount: number;
   seeded: number;
   replicators: number;
+  guardians: number;
   architects: number;
   seed: number;
 };
@@ -5531,7 +5867,7 @@ const createLcg = (seed: number): (() => number) => {
 };
 
 const makeReplicatorScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
+  const script = new Uint8Array(8);
   let pc = 0;
   script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
   script[pc++] = 0;
@@ -5545,7 +5881,7 @@ const makeReplicatorScript = (): Uint8Array => {
 };
 
 const makeArchitectScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
+  const script = new Uint8Array(8);
   let pc = 0;
   script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
   script[pc++] = 0;
@@ -5560,16 +5896,45 @@ const makeArchitectScript = (): Uint8Array => {
   return script;
 };
 
+const makeGuardianScript = (stable: boolean): Uint8Array => {
+  const script = new Uint8Array(16);
+  let pc = 0;
+  const RISC = STATE_MATRIX.RISC;
+
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_GUARDIAN;
+
+  if (stable) {
+    script[pc++] = RISC.OP_SIGNAL;
+  } else {
+    script[pc++] = RISC.OP_BUILD;
+  }
+
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+
+  return script;
+};
+
 const buildGenome = (
   nextU32: () => number,
-  mode: "replicator" | "architect",
+  mode: "replicator" | "architect" | "guardian",
 ): Uint8Array => {
   const genome = new Uint8Array(8);
   for (let i = 0; i < 8; i++) {
     genome[i] = nextU32() & 0xFF;
   }
-  genome[0] = mode === "replicator" ? 0x80 : 0xA8;
-  genome[1] = mode === "replicator" ? 0x81 : 0xA7;
+  if (mode === "replicator") {
+    genome[0] = 0x80;
+    genome[1] = 0x81;
+  } else if (mode === "architect") {
+    genome[0] = 0xA8;
+    genome[1] = 0xA7;
+  } else { // guardian
+    genome[0] = 0xA7;
+    genome[1] = 0x81;
+  }
   return genome;
 };
 
@@ -5625,6 +5990,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
@@ -5638,6 +6004,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
@@ -5652,32 +6019,49 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
   }
 
   const nextU32 = createLcg(config.seed);
-  const replicatorTarget = clamp(
-    Math.round(config.count * config.replicatorRatio),
+  const replicatorTarget = Math.max(
     1,
-    config.count,
+    Math.round(config.count * config.replicatorRatio),
   );
-  const architectTarget = Math.max(0, config.count - replicatorTarget);
+  const guardianTarget = Math.max(
+    1,
+    Math.round(config.count * config.guardianRatio),
+  );
+  const architectTarget = Math.max(
+    0,
+    config.count - replicatorTarget - guardianTarget,
+  );
+
   const replicatorScript = makeReplicatorScript();
   const architectScript = makeArchitectScript();
+  const guardianStableScript = makeGuardianScript(true);
+  const guardianRepairScript = makeGuardianScript(false);
 
   let seeded = 0;
   let replicators = 0;
+  let guardians = 0;
   let architects = 0;
 
   for (let i = 0; i < config.count; i++) {
     const slot = STATE_MATRIX.findFreeSlot();
     if (slot < 0) break;
 
-    const mode: "replicator" | "architect" = i < replicatorTarget
-      ? "replicator"
-      : "architect";
+    let mode: "replicator" | "architect" | "guardian";
+    if (i < replicatorTarget) {
+      mode = "replicator";
+    } else if (i < replicatorTarget + guardianTarget) {
+      mode = "guardian";
+    } else {
+      mode = "architect";
+    }
+
     const genome = buildGenome(nextU32, mode);
     const pos = seedPosition(i, config.count, nextU32);
     const energy = variedResource(config.energy, nextU32, 0.18);
@@ -5688,6 +6072,23 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       0xA17EA17En
     );
 
+    let script: Uint8Array;
+    let role: number;
+
+    if (mode === "replicator") {
+      script = replicatorScript;
+      role = STATE_MATRIX.ROLE_PRODUCER;
+      replicators++;
+    } else if (mode === "guardian") {
+      script = guardians % 2 === 0 ? guardianStableScript : guardianRepairScript;
+      role = STATE_MATRIX.ROLE_GUARDIAN;
+      guardians++;
+    } else {
+      script = architectScript;
+      role = STATE_MATRIX.ROLE_ARCHITECT;
+      architects++;
+    }
+
     STATE_MATRIX.seedAtom(
       slot,
       id,
@@ -5696,15 +6097,10 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       energy,
       resonance,
       genome,
-      mode === "replicator" ? replicatorScript : architectScript,
+      script,
     );
-    STATE_MATRIX.setRole(
-      slot,
-      mode === "replicator" ? STATE_MATRIX.ROLE_PRODUCER : STATE_MATRIX.ROLE_ARCHITECT,
-    );
+    STATE_MATRIX.setRole(slot, role);
     seeded++;
-    if (mode === "replicator") replicators++;
-    else architects++;
   }
 
   return {
@@ -5713,8 +6109,9 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
     reason: seeded > 0 ? "COLDSTART_SEEDED" : "COLDSTART_NO_FREE_SLOT",
     configuredCount: config.count,
     seeded,
-    replicators: Math.min(replicatorTarget, replicators),
-    architects: Math.min(architectTarget, architects),
+    replicators,
+    guardians,
+    architects,
     seed: config.seed,
   };
 };
@@ -7176,27 +7573,10 @@ export const CONTROL_INTENT_QUEUE = {
     "ARCHITECT_PLASMID_PROMOTION_ACTION.ts",
     "ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
     "reduction_core/GlyphIR64.ts",
-    "verification/guardian_signal_mode_cases.ts",
-    "verification/guardian_signal_mode_harness.ts",
-    "verification/architect_plasmid_mode_cases.ts",
-    "verification/architect_plasmid_mode_harness.ts",
     "runtime_bridge/glyph_pretty.ts",
     "runtime_bridge/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
     "verification/golden_trace_capture.ts",
-    "verification/structure_lock_capture.ts",
-    "verification/structure_charge_capture.ts",
-    "verification/structure_charge_competition_capture.ts",
-    "verification/structure_build_runtime_capture.ts",
-    "verification/structure_build_competition_capture.ts",
-    "verification/structure_build_lock_capture.ts",
-    "verification/collective_transport_capture.ts",
-    "verification/collective_banking_capture.ts",
-    "verification/collective_synchrony_capture.ts",
-    "verification/share_transfer_capture.ts",
-    "verification/admission_shadow_cases.ts",
-    "verification/admission_shadow_harness.ts",
-    "verification/reduction_cases.ts",
     "verification/reduction_harness.ts"
   ],
   "core_entry_files": [
@@ -7251,121 +7631,13 @@ export const CONTROL_INTENT_QUEUE = {
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
-    "docs/migration/HORMONE_LEDGER_CONTRACT.md",
-    "verification/traces/gt01_coldstart_seeded_swarm/trace.json",
-    "verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json",
-    "verification/traces/gt01_coldstart_seeded_swarm/invariants.json",
-    "verification/traces/gt01_coldstart_seeded_swarm/notes.md",
-    "verification/traces/gt02_free_run_no_ingress/trace.json",
-    "verification/traces/gt02_free_run_no_ingress/codex_snapshot.json",
-    "verification/traces/gt02_free_run_no_ingress/invariants.json",
-    "verification/traces/gt02_free_run_no_ingress/notes.md",
-    "verification/traces/gt03_pheromone_inject/trace.json",
-    "verification/traces/gt03_pheromone_inject/codex_snapshot.json",
-    "verification/traces/gt03_pheromone_inject/invariants.json",
-    "verification/traces/gt03_pheromone_inject/notes.md",
-    "verification/traces/gt04_plasmid_inject/trace.json",
-    "verification/traces/gt04_plasmid_inject/codex_snapshot.json",
-    "verification/traces/gt04_plasmid_inject/invariants.json",
-    "verification/traces/gt04_plasmid_inject/notes.md",
-    "verification/traces/gt05_homeostasis_correction/trace.json",
-    "verification/traces/gt05_homeostasis_correction/codex_snapshot.json",
-    "verification/traces/gt05_homeostasis_correction/invariants.json",
-    "verification/traces/gt05_homeostasis_correction/notes.md",
-    "verification/traces/gt06_daemon_admission_case/trace.json",
-    "verification/traces/gt06_daemon_admission_case/codex_snapshot.json",
-    "verification/traces/gt06_daemon_admission_case/invariants.json",
-    "verification/traces/gt06_daemon_admission_case/notes.md",
-    "verification/traces/gt07_daemon_policy_block/trace.json",
-    "verification/traces/gt07_daemon_policy_block/codex_snapshot.json",
-    "verification/traces/gt07_daemon_policy_block/invariants.json",
-    "verification/traces/gt07_daemon_policy_block/notes.md",
-    "verification/traces/gt08_structure_intent_visibility/trace.json",
-    "verification/traces/gt08_structure_intent_visibility/codex_snapshot.json",
-    "verification/traces/gt08_structure_intent_visibility/invariants.json",
-    "verification/traces/gt08_structure_intent_visibility/notes.md",
-    "verification/traces/gt09_collective_transport/trace.json",
-    "verification/traces/gt09_collective_transport/codex_snapshot.json",
-    "verification/traces/gt09_collective_transport/invariants.json",
-    "verification/traces/gt09_collective_transport/notes.md",
-    "verification/traces/gt10_share_transfer/trace.json",
-    "verification/traces/gt10_share_transfer/codex_snapshot.json",
-    "verification/traces/gt10_share_transfer/invariants.json",
-    "verification/traces/gt10_share_transfer/notes.md",
-    "verification/traces/gt11_collective_banking/trace.json",
-    "verification/traces/gt11_collective_banking/codex_snapshot.json",
-    "verification/traces/gt11_collective_banking/invariants.json",
-    "verification/traces/gt11_collective_banking/notes.md",
-    "verification/traces/gt12_collective_synchrony/trace.json",
-    "verification/traces/gt12_collective_synchrony/codex_snapshot.json",
-    "verification/traces/gt12_collective_synchrony/invariants.json",
-    "verification/traces/gt12_collective_synchrony/notes.md",
-    "verification/traces/gt13_structure_lock_progress/trace.json",
-    "verification/traces/gt13_structure_lock_progress/codex_snapshot.json",
-    "verification/traces/gt13_structure_lock_progress/invariants.json",
-    "verification/traces/gt13_structure_lock_progress/notes.md",
-    "verification/traces/gt14_structure_charge_resolution/trace.json",
-    "verification/traces/gt14_structure_charge_resolution/codex_snapshot.json",
-    "verification/traces/gt14_structure_charge_resolution/invariants.json",
-    "verification/traces/gt14_structure_charge_resolution/notes.md",
-    "verification/traces/gt15_structure_charge_competition/trace.json",
-    "verification/traces/gt15_structure_charge_competition/codex_snapshot.json",
-    "verification/traces/gt15_structure_charge_competition/invariants.json",
-    "verification/traces/gt15_structure_charge_competition/notes.md",
-    "verification/traces/gt16_runtime_build_materialization/trace.json",
-    "verification/traces/gt16_runtime_build_materialization/codex_snapshot.json",
-    "verification/traces/gt16_runtime_build_materialization/invariants.json",
-    "verification/traces/gt16_runtime_build_materialization/notes.md",
-    "verification/traces/gt17_runtime_build_competition/trace.json",
-    "verification/traces/gt17_runtime_build_competition/codex_snapshot.json",
-    "verification/traces/gt17_runtime_build_competition/invariants.json",
-    "verification/traces/gt17_runtime_build_competition/notes.md",
-    "verification/traces/gt18_runtime_build_stale_lock/trace.json",
-    "verification/traces/gt18_runtime_build_stale_lock/codex_snapshot.json",
-    "verification/traces/gt18_runtime_build_stale_lock/invariants.json",
-    "verification/traces/gt18_runtime_build_stale_lock/notes.md",
-    "verification/reduction_diffs/rc01_gt01_replicator_loop.json",
-    "verification/reduction_diffs/rc02_gt01_architect_loop.json",
-    "verification/reduction_diffs/rc03_gt03_guardian_stable_branch.json",
-    "verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json",
-    "verification/reduction_diffs/rc05_gt05_band_anchor_match.json",
-    "verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json",
-    "verification/reduction_diffs/rc07_gt04_plasmid_prop_write_signal.json",
-    "verification/reduction_diffs/rc08_gt04_plasmid_zero_branch.json",
-    "verification/reduction_diffs/rc09_gt08_structure_intent_visible.json",
-    "verification/reduction_diffs/rc10_gt08_structure_intent_typed_miss.json",
-    "verification/reduction_diffs/rc11_gt09_collective_hive_store_load.json",
-    "verification/reduction_diffs/rc12_gt09_collective_pheromone_emit.json",
-    "verification/reduction_diffs/rc13_gt10_share_transfer_success.json",
-    "verification/reduction_diffs/rc14_gt10_share_transfer_empty_bond.json",
-    "verification/reduction_diffs/rc15_gt11_collective_bank_deposit.json",
-    "verification/reduction_diffs/rc16_gt11_collective_bank_withdraw.json",
-    "verification/reduction_diffs/rc17_gt12_collective_phase_lock.json",
-    "verification/reduction_diffs/rc18_gt12_collective_pc_sync_quorum.json",
-    "verification/reduction_diffs/rc19_gt13_sense_stale_lock_visible.json",
-    "verification/reduction_diffs/rc20_gt13_sense_stale_lock_typed_miss.json",
-    "verification/reduction_diffs/rc21_gt14_plug_charge_resolve.json",
-    "verification/reduction_diffs/rc22_gt15_plug_charge_competition_low_high.json",
-    "verification/reduction_diffs/rc23_gt15_plug_charge_competition_high_low.json",
-    "verification/reduction_diffs/rc24_gt16_build_source_materialize.json",
-    "verification/reduction_diffs/rc25_gt17_build_competition_high_owner_overwrite.json",
-    "verification/reduction_diffs/rc26_gt17_build_competition_low_owner_blocked.json",
-    "verification/reduction_diffs/rc27_gt18_build_stale_lock_blocked.json",
-    "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
-    "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
-    "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
-    "verification/admission_diffs/ac04_gt07_plasmid_policy_block.json",
-    "verification/hybrid_mode_diffs/gh01_gt03_guardian_stable_modes.json",
-    "verification/hybrid_mode_diffs/gh02_gt03_guardian_repair_modes.json",
-    "verification/hybrid_mode_diffs/gh03_gt03_guardian_fallback_modes.json",
-    "AKASHA_SERVER.ts",
-    "OMEGA_DAEMON.ts",
+    "docs/migration/HORMONE_LEDGER_CONTRACT.md"
+,
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html"
   ]
 }
-
 ```
 
 ---
@@ -7398,6 +7670,8 @@ export type DaemonNarrativeContext = {
   glyphRegime: string;
   glyphDominantRole: string;
   glyphSourceMode: string;
+  metabolicPressure: number;
+  hormoneRegime: string;
 };
 
 export type DaemonInvariantAdmission = {
@@ -7620,6 +7894,8 @@ export const normalizeDaemonNarrativeContext = (
     "none",
   );
   const glyphSourceMode = normalizeGlyphValue(root.glyphSourceMode, "none");
+  // Stage 7.3: hormone regime from Codex narrative (written by Stage 7.2)
+  const hormoneRegime = normalizeGlyphValue(root.hormoneRegime, "dormant_baseline");
   const dominantInvariantVector = typeof invariantHighlights[0] === "object" &&
       invariantHighlights[0] !== null &&
       typeof (invariantHighlights[0] as Record<string, unknown>)
@@ -7697,6 +7973,8 @@ export const normalizeDaemonNarrativeContext = (
     glyphRegime,
     glyphDominantRole,
     glyphSourceMode,
+    metabolicPressure: asFiniteNumber(root.metabolicPressure, 0),
+    hormoneRegime,
   };
 };
 
@@ -7788,6 +8066,26 @@ export const evaluateInvariantAdmission = (
     }
   }
 
+  // Stage 7.3: Hormone regime pressure terms
+  if (context.hormoneRegime === "high_entropy") {
+    score += 1;
+    reasons.push("HORMONE_HIGH_ENTROPY_RISK");
+  }
+  if (
+    context.hormoneRegime === "aggressive_bloom" &&
+    envelope.action_type === "INJECT_PLASMID"
+  ) {
+    score += 1;
+    reasons.push("HORMONE_AGGRESSIVE_BLOOM_PLASMID");
+  }
+  if (
+    context.hormoneRegime === "repair_surge" &&
+    envelope.action_type === "DROP_PHEROMONE"
+  ) {
+    score = Math.max(0, score - 1);
+    reasons.push("HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT");
+  }
+
   if (envelope.action_type === "INJECT_PLASMID") {
     const ratio = envelope.payload.intensity /
       DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge;
@@ -7817,6 +8115,14 @@ export const evaluateInvariantAdmission = (
       score += 1;
       reasons.push("PHEROMONE_INTENSITY_HIGH");
     }
+  }
+
+  if (context.metabolicPressure > 0.8) {
+    score += 2;
+    reasons.push("METABOLIC_PRESSURE_SATURED");
+  } else if (context.metabolicPressure > 0.5) {
+    score += 1;
+    reasons.push("METABOLIC_PRESSURE_HIGH");
   }
 
   const severity = score >= DAEMON_INGRESS_POLICY_LIMITS.invariantDriftHighScore
@@ -13628,17 +13934,10 @@ export type GlyphSnapshot = {
   atomRolePlasmid: GlyphRoleCounters;
 };
 
-const scratchHeader = new Int32Array(GRID_CELLS);
-const scratchPayload = new Uint8Array(GRID_CELLS * 8);
 let lastInternalSignalSeeds = 0;
 let lastInternalMemorySeeds = 0;
 let lastInternalAtomPheromoneSeeds = 0;
 let lastInternalAtomPlasmidSeeds = 0;
-
-const SIGNAL_SEED_THRESHOLD = 256;
-const SIGNAL_SEED_MAX = 512;
-const MEMORY_SEED_CHARGE_THRESHOLD = 64;
-const MEMORY_SEED_MAX = 384;
 
 const createRoleCounters = (): GlyphRoleCounters => ({
   neutral: 0,
@@ -13664,8 +13963,8 @@ const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
   parasite: counters.parasite,
 });
 
-let lastAtomRolePheromone = createRoleCounters();
-let lastAtomRolePlasmid = createRoleCounters();
+const lastAtomRolePheromone = createRoleCounters();
+const lastAtomRolePlasmid = createRoleCounters();
 
 const incrementRoleCounter = (counters: GlyphRoleCounters, role: number): void => {
   if (role === STATE_MATRIX.ROLE_PRODUCER) {
@@ -13704,8 +14003,8 @@ const toGridCell = (x: number, y: number): number => {
   const wx = clamp(Math.round(x), 0, WORLD_W - 1);
   const wy = clamp(Math.round(y), 0, WORLD_H - 1);
   const gx = clamp(Math.floor(wx / 10), 0, GRID_W - 1);
-  const gy = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
-  return gy * GRID_W + gx;
+  const wy_grid = clamp(Math.floor(wy / 10), 0, GRID_H - 1);
+  return wy_grid * GRID_W + gx;
 };
 
 const depositHeader = (
@@ -13726,94 +14025,6 @@ const depositHeader = (
   if (payload && payload.length > 0) {
     STATE_MATRIX.setGlyphPayload(cell, payload);
   }
-};
-
-const decayForKind = (kind: GlyphKind, amplitude: number): number => {
-  if (kind === GLYPH_KIND.PLASMID) {
-    return amplitude > 256 ? 3 : 1;
-  }
-  if (kind === GLYPH_KIND.PHEROMONE) {
-    return amplitude > 64 ? 8 : 4;
-  }
-  return amplitude;
-};
-
-const diffusionShareForKind = (kind: GlyphKind, amplitude: number): number => {
-  if (kind === GLYPH_KIND.PLASMID) {
-    return amplitude >= 96 ? Math.floor(amplitude * 0.125) : 0;
-  }
-  if (kind === GLYPH_KIND.PHEROMONE) {
-    return amplitude >= 24 ? Math.floor(amplitude * 0.25) : 0;
-  }
-  return 0;
-};
-
-const nextCellForDiffusion = (cell: number, tick: number): number => {
-  const gx = cell % GRID_W;
-  const gy = Math.floor(cell / GRID_W);
-  const selector = (tick + cell) & 3;
-  if (selector === 0 && gx < GRID_W - 1) return cell + 1;
-  if (selector === 1 && gy < GRID_H - 1) return cell + GRID_W;
-  if (selector === 2 && gx > 0) return cell - 1;
-  if (selector === 3 && gy > 0) return cell - GRID_W;
-  return cell;
-};
-
-const writeScratch = (
-  cell: number,
-  kind: GlyphKind,
-  amplitude: number,
-): void => {
-  if (amplitude <= 0) return;
-  const current = scratchHeader[cell];
-  const currentKind = unpackKind(current);
-  const currentAmplitude = unpackAmplitude(current);
-  const mergedKind = currentKind === GLYPH_KIND.NONE ? kind : currentKind;
-  const mergedAmplitude = currentKind === kind
-    ? Math.min(GLYPH_AMPLITUDE_MAX, currentAmplitude + amplitude)
-    : Math.max(currentAmplitude, amplitude);
-  scratchHeader[cell] = packHeader(mergedKind, mergedAmplitude);
-};
-
-const seedFromSignalGrid = (): number => {
-  let seeded = 0;
-  for (let cell = 0; cell < GRID_CELLS; cell++) {
-    const signal = Math.abs(Atomics.load(STATE_MATRIX.signalGrid, cell));
-    if (signal < SIGNAL_SEED_THRESHOLD) continue;
-    const amplitude = clamp(Math.floor(signal / 16), 16, SIGNAL_SEED_MAX);
-    writeScratch(cell, GLYPH_KIND.PHEROMONE, amplitude);
-    seeded++;
-  }
-  return seeded;
-};
-
-const seedFromMemoryGrid = (): number => {
-  let seeded = 0;
-  for (let cell = 0; cell < GRID_CELLS; cell++) {
-    const offset = cell * 8;
-    const charge = STATE_MATRIX.memoryGrid[offset] |
-      (STATE_MATRIX.memoryGrid[offset + 1] << 8);
-    let payloadResidue = false;
-    for (let i = offset + 4; i < offset + 8; i++) {
-      if (STATE_MATRIX.memoryGrid[i] !== 0) {
-        payloadResidue = true;
-        break;
-      }
-    }
-    if (!payloadResidue || charge < MEMORY_SEED_CHARGE_THRESHOLD) continue;
-    const amplitude = clamp(
-      Math.floor(charge / 8),
-      24,
-      MEMORY_SEED_MAX,
-    );
-    writeScratch(cell, GLYPH_KIND.PLASMID, amplitude);
-    scratchPayload.set(
-      STATE_MATRIX.memoryGrid.subarray(offset, offset + 8),
-      cell * 8,
-    );
-    seeded++;
-  }
-  return seeded;
 };
 
 export const GLYPH_BUFFER = {
@@ -13883,76 +14094,6 @@ export const GLYPH_BUFFER = {
     lastInternalAtomPlasmidSeeds++;
     incrementRoleCounter(lastAtomRolePlasmid, role);
     GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
-  },
-
-  tick: (tick: number): GlyphSnapshot => {
-    scratchHeader.fill(0);
-    scratchPayload.fill(0);
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = STATE_MATRIX.getGlyphHeader(cell);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (kind === GLYPH_KIND.NONE || amplitude <= 0) continue;
-
-      const decayed = Math.max(0, amplitude - decayForKind(kind, amplitude));
-      if (decayed <= 0) continue;
-
-      const share = diffusionShareForKind(kind, decayed);
-      const retained = Math.max(0, decayed - share);
-      writeScratch(cell, kind, retained);
-      if (kind === GLYPH_KIND.PLASMID && retained > 0) {
-        const targetOffset = cell * 8;
-        scratchPayload.set(STATE_MATRIX.getGlyphPayload(cell), targetOffset);
-      }
-
-      if (share > 0) {
-        const nextCell = nextCellForDiffusion(cell, tick);
-        writeScratch(nextCell, kind, share);
-        if (kind === GLYPH_KIND.PLASMID && nextCell !== cell) {
-          const targetOffset = nextCell * 8;
-          scratchPayload.set(STATE_MATRIX.getGlyphPayload(cell), targetOffset);
-        }
-      }
-    }
-
-    lastInternalSignalSeeds = seedFromSignalGrid();
-    lastInternalMemorySeeds = seedFromMemoryGrid();
-
-    let activeCells = 0;
-    let pheromoneCells = 0;
-    let plasmidCells = 0;
-    let maxAmplitude = 0;
-    let totalAmplitude = 0;
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = scratchHeader[cell];
-      Atomics.store(STATE_MATRIX.glyphHeaders, cell, header);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (amplitude > 0) {
-        activeCells++;
-        totalAmplitude += amplitude;
-        if (amplitude > maxAmplitude) maxAmplitude = amplitude;
-        if (kind === GLYPH_KIND.PHEROMONE) pheromoneCells++;
-        if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
-      }
-    }
-    STATE_MATRIX.glyphPayload.set(scratchPayload);
-
-    return {
-      activeCells,
-      pheromoneCells,
-      plasmidCells,
-      maxAmplitude,
-      totalAmplitude,
-      internalSignalSeeds: lastInternalSignalSeeds,
-      internalMemorySeeds: lastInternalMemorySeeds,
-      internalAtomPheromoneSeeds: lastInternalAtomPheromoneSeeds,
-      internalAtomPlasmidSeeds: lastInternalAtomPlasmidSeeds,
-      atomRolePheromone: cloneRoleCounters(lastAtomRolePheromone),
-      atomRolePlasmid: cloneRoleCounters(lastAtomRolePlasmid),
-    };
   },
 
   snapshot: (): GlyphSnapshot => {
@@ -14263,7 +14404,14 @@ export type GuardianSignalHybridSnapshot = {
   suppressedGuardianSignals: number;
   shadowSuppressedGuardianSignals: number;
   lastTick: number;
-  lastStatus: "legacy" | "stable" | "repair" | "fallback";
+  lastStatus:
+    | "legacy"
+    | "stable"
+    | "repair"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
   lastBranch: "stable" | "repair" | "unknown";
   lastFallbackReason: string;
 };
@@ -15482,6 +15630,91 @@ export const resetTargetEnergyLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
+```
+
+---
+
+## FILE: HORMONE_BUFFER_RUNTIME.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { HORMONE_BUFFER_CATALOG } from "./HORMONE_BUFFER.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+export type HormoneSyncInput = {
+  baseTax: number;
+  targetEnergy: number;
+  workerCount: number;
+  egoPressure: number;
+  fearPressure: number;
+  noveltyPressure: number;
+  symbiosisPressure: number;
+  maxPlasmidCharge: number;
+  pressureRingScale: number;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+/**
+ * Synchronizes physiological signals from host runtimes into the shared memory lattice.
+ * This allows the WASM λ-VM to read global "hormones" directly.
+ */
+export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
+  // 1. entropy_pressure (derived from baseTax)
+  const entropyPressure = Math.round(
+    clamp(
+      (input.baseTax / Math.max(1, RUNTIME_POLICY.pulse.homeostasis.maxDelta)) * 1024,
+      0,
+      2048,
+    ),
+  );
+  STATE_MATRIX.setHormone(0, entropyPressure);
+
+  // 2. time_viscosity (derived from workerCount)
+  const timeViscosity = Math.round(
+    clamp((input.workerCount / 32) * 2048, 0, 2048),
+  );
+  STATE_MATRIX.setHormone(1, timeViscosity);
+
+  // 3. aggression (ego + fear)
+  const aggression = Math.round(
+    clamp(input.egoPressure + input.fearPressure, 0, 2048),
+  );
+  STATE_MATRIX.setHormone(2, aggression);
+
+  // 4. replication_bias (novelty + coldstart ratio)
+  const replicationBias = Math.round(
+    clamp(
+      input.noveltyPressure + (RUNTIME_POLICY.coldstart.replicatorRatio * 256),
+      0,
+      2048,
+    ),
+  );
+  STATE_MATRIX.setHormone(3, replicationBias);
+
+  // 5. repair_drive (symbiosis + degrade ratio inverse)
+  const repairDrive = Math.round(
+    clamp(
+      input.symbiosisPressure +
+        ((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+      0,
+      2048,
+    ),
+  );
+  STATE_MATRIX.setHormone(4, repairDrive);
+
+  // 6. mutation_friction (maxPlasmidCharge / ringScale)
+  const mutationFriction = Math.round(
+    clamp(
+      (input.maxPlasmidCharge / Math.max(1, input.pressureRingScale)) * 256,
+      0,
+      2048,
+    ),
+  );
+  STATE_MATRIX.setHormone(5, mutationFriction);
+};
 
 ```
 
@@ -16842,6 +17075,7 @@ export const LLM_SYNAPSE = {
             dominantInstructions: string[];
             dominanceShare: number;
             epochs: number;
+            hormoneRegime: string;
         },
     ): Promise<{ latinName: string; behavior: string; philosophy: string }> => {
         const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
@@ -16862,11 +17096,12 @@ export const LLM_SYNAPSE = {
             Dominance Share: ${(input.dominanceShare * 100).toFixed(2)}%
             Survived Epochs: ${input.epochs}
             Dominant Instructions: ${instructionProfile}
+            Current Hormone Regime: ${input.hormoneRegime}
 
             Return STRICT JSON:
             {
               "latinName": "Two-word pseudo-latin binomial",
-              "behavior": "One concise sentence about behavior",
+              "behavior": "One concise sentence about behavior reflecting the ${input.hormoneRegime} state",
               "philosophy": "One concise sentence about worldview"
             }
         `.trim();
@@ -18523,6 +18758,7 @@ export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 36200000;
 export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 37200000;
 export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 38200000;
 export const DAMPING_OFFSET = SAFETY_BUFFER + 39200000;
+export const CAUSALITY_OFFSET = SAFETY_BUFFER + 39300000;
 export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 40200000;
 export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 40201024;
 export const QUORUM_OFFSET = SAFETY_BUFFER + 40300000;
@@ -18541,6 +18777,9 @@ export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 42534400;
 export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 42579200;
 export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 42580224;
 export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42625024;
+export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 42714624;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42759424;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 42849024;
 
 type MemoryLayoutRegion = {
   name: string;
@@ -18620,6 +18859,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   ),
   region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
   region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
+  region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
   region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, 1024, 1),
   region("HIVE_BALANCE", HIVE_BALANCE_OFFSET, I32_BYTES, I32_BYTES),
   // Canonical host window (legacy AssemblyScript may still treat quorum as wider scratch).
@@ -18699,11 +18939,29 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     I32_BYTES,
   ),
   region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
+  region(
+    "GLYPH_SCRATCH_HEADER",
+    GLYPH_SCRATCH_HEADER_OFFSET,
+    GRID_CELLS * I32_BYTES,
+    I32_BYTES,
+  ),
+  region(
+    "GLYPH_SCRATCH_PAYLOAD",
+    GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    GRID_CELLS * 8,
+    1,
+  ),
+  region(
+    "HORMONES",
+    HORMONE_OFFSET,
+    12, // 6 hormones * 2 bytes (Uint16)
+    2,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8);
+export const LATTICE_MEMORY_END = HORMONE_OFFSET + 12;
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -22602,6 +22860,7 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
   null;
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
+let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
@@ -22678,11 +22937,11 @@ self.onmessage = async (e) => {
         gy: number,
         target: number,
       ) => {
-        if (idx <= 10) {
+        if (idx < 100) { // TRACE_THRESHOLD
           LOGGER.debug(
-            `   [WASM TRACE] Atom ${idx} | OP: 0x${
+            `   [TRACE] At ${idx} | OP: 0x${
               op.toString(16)
-            } | Pos: (${gx},${gy}) | Target: ${target}`,
+            } | Pos: (${gx},${gy}) | PC: ${target}`,
           );
         }
       };
@@ -22710,6 +22969,7 @@ self.onmessage = async (e) => {
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
+      tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
@@ -22781,6 +23041,12 @@ self.onmessage = async (e) => {
     self.postMessage({ type: "HASH_DONE", pulseId, overflowCount, maxCellCount });
   }
 
+  if (type === "TICK_GLYPH_TRANSPORT") {
+    if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
+    await maybeDelay();
+    self.postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
+  }
+
   if (type === "POLL_COHERENCE") {
     if (get_neural_coherence_fn) {
       const coherence = get_neural_coherence_fn();
@@ -22845,6 +23111,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import {
   evaluateGuardianSignalExecution,
   evaluateGuardianSignalReduction,
@@ -22854,6 +23121,7 @@ import {
   evaluateArchitectPlasmidExecution,
   type ArchitectPlasmidExecutionMode,
 } from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,
   type BaseTaxLedgerApplyResult,
@@ -23027,9 +23295,10 @@ type GuardianSignalHybridState = {
   suppressedGuardianSignals: number;
   shadowSuppressedGuardianSignals: number;
   lastTick: number;
-  lastStatus: "legacy" | "stable" | "repair" | "fallback";
+  lastStatus: "legacy" | "stable" | "repair" | "fallback" | "shadow" | "hybrid" | "legacy-blocked";
   lastBranch: "stable" | "repair" | "unknown";
   lastFallbackReason: string;
+  lastMode?: GuardianSignalExecutionMode;
 };
 type ArchitectPlasmidHybridState = {
   mode: ArchitectPlasmidExecutionMode;
@@ -23730,12 +23999,22 @@ const resonancesView = new Int32Array(
   OFFSETS.RESONANCE_OFFSET,
   MAX_ATOMS,
 );
-const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
-const logicView = new Uint8Array(
+const causalityView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.CAUSALITY_OFFSET,
+  MAX_ATOMS,
+);
+export const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+export const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+export const logicView = new Uint8Array(
   sharedBuffer,
   OFFSETS.LOGIC_OFFSET,
   MAX_ATOMS * 8,
+);
+const instructionsView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.INSTRUCTIONS_OFFSET,
+  MAX_ATOMS * 64,
 );
 const bondsView = new Uint32Array(
   sharedBuffer,
@@ -23776,6 +24055,11 @@ const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
+
+const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
+  return Atomics.load(causalityView, idx) !== 0;
+};
+
 const CHILD_ID_SALT = 0x9E3779B97F4A7C15n;
 const deriveChildId = (
   tick: number,
@@ -23804,310 +24088,12 @@ const genomeKey16 = (idx: number): number => {
   const off = idx * 8;
   return ((logicView[off] << 8) | logicView[off + 1]) >>> 0;
 };
-const INTERNAL_GLYPH_ATOM_SCAN_TARGET = 128;
-const INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET = 96;
-const INTERNAL_GLYPH_ATOM_PLASMID_BUDGET = 24;
 const hasGenomeResidue = (idx: number): boolean => {
   const off = idx * 8;
   for (let i = 0; i < 8; i++) {
     if (logicView[off + i] !== 0) return true;
   }
   return false;
-};
-const guardianShouldEmitPheromone = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-): boolean =>
-  resonance >= 140 && (((phase + tick + idx) & 0x01) === 0);
-const guardianPheromoneAllowedByExecutionMode = (
-  tick: number,
-  idx: number,
-  legacyAllowed: boolean,
-): boolean => {
-  if (!legacyAllowed) return false;
-
-  guardianSignalHybridState.lastTick = tick;
-  guardianSignalHybridState.mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
-  guardianSignalHybridState.lastFallbackReason = "";
-
-  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "legacy-execute") {
-    guardianSignalHybridState.lastStatus = "legacy";
-    guardianSignalHybridState.lastBranch = "unknown";
-    return true;
-  }
-
-  const execution = evaluateGuardianSignalExecution({
-    mode: GUARDIAN_SIGNAL_EXECUTION_MODE,
-    script: STATE_MATRIX.getInstructions(idx),
-    neuralCoherence: Atomics.load(coherenceView, 0),
-    legacyAllowed,
-  });
-
-  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
-    guardianSignalHybridState.shadowRuns++;
-  } else {
-    guardianSignalHybridState.hybridRuns++;
-  }
-
-  if (execution.status === "fallback") {
-    guardianSignalHybridState.fallbackRuns++;
-    guardianSignalHybridState.lastStatus = "fallback";
-    guardianSignalHybridState.lastBranch = execution.branch;
-    guardianSignalHybridState.lastFallbackReason =
-      execution.fallbackReason ?? "guardian_signal_bridge_fallback";
-    return true;
-  }
-
-  guardianSignalHybridState.lastBranch = execution.branch;
-  if (execution.branch === "stable") {
-    guardianSignalHybridState.stableBranchCount++;
-    guardianSignalHybridState.allowedGuardianSignals++;
-    guardianSignalHybridState.lastStatus = "stable";
-  } else if (execution.branch === "repair") {
-    guardianSignalHybridState.repairBranchCount++;
-    guardianSignalHybridState.lastStatus = "repair";
-  } else {
-    guardianSignalHybridState.lastStatus = "fallback";
-    guardianSignalHybridState.fallbackRuns++;
-    guardianSignalHybridState.lastFallbackReason = "guardian_signal_unknown";
-    return true;
-  }
-
-  if (GUARDIAN_SIGNAL_EXECUTION_MODE === "shadow-reduce") {
-    if (execution.shadowSuppressed) {
-      guardianSignalHybridState.shadowSuppressedGuardianSignals++;
-    }
-    return true;
-  }
-
-  if (execution.hybridSuppressed) {
-    guardianSignalHybridState.suppressedGuardianSignals++;
-    return false;
-  }
-
-  return true;
-};
-const producerShouldEmitPheromone = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-  energy: number,
-): boolean =>
-  resonance >= 160 && energy >= 96 && (((phase + tick + idx) & 0x03) === 0);
-const neutralShouldEmitPheromone = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-): boolean =>
-  resonance >= 220 && (((phase + tick + idx) & 0x07) === 0);
-const architectShouldEmitPlasmid = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-  energy: number,
-): boolean =>
-  resonance >= 90 && energy >= 144 && (((phase + tick + idx) & 0x07) === 0);
-const producerShouldEmitPlasmid = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-  energy: number,
-): boolean =>
-  resonance >= 128 && energy >= 192 && (((phase + tick + idx) & 0x1F) === 0);
-const parasiteShouldEmitPlasmid = (
-  tick: number,
-  idx: number,
-  phase: number,
-  resonance: number,
-  energy: number,
-): boolean =>
-  resonance >= 72 && energy >= 96 && (((phase + tick + idx) & 0x0F) === 0);
-const architectPlasmidAllowedByExecutionMode = (
-  tick: number,
-  idx: number,
-  legacyAllowed: boolean,
-): boolean => {
-  if (!legacyAllowed) return false;
-
-  architectPlasmidHybridState.lastTick = tick;
-  architectPlasmidHybridState.mode = ARCHITECT_PLASMID_EXECUTION_MODE;
-  architectPlasmidHybridState.lastFallbackReason = "";
-
-  if (ARCHITECT_PLASMID_EXECUTION_MODE === "legacy-execute") {
-    architectPlasmidHybridState.lastStatus = "legacy";
-    architectPlasmidHybridState.lastBranch = "unknown";
-    return true;
-  }
-
-  const execution = evaluateArchitectPlasmidExecution({
-    mode: ARCHITECT_PLASMID_EXECUTION_MODE,
-    script: STATE_MATRIX.getInstructions(idx),
-    neuralCoherence: Atomics.load(coherenceView, 0),
-    legacyAllowed,
-  });
-
-  if (ARCHITECT_PLASMID_EXECUTION_MODE === "shadow-reduce") {
-    architectPlasmidHybridState.shadowRuns++;
-  } else {
-    architectPlasmidHybridState.hybridRuns++;
-  }
-
-  if (execution.status === "fallback") {
-    architectPlasmidHybridState.fallbackRuns++;
-    architectPlasmidHybridState.lastStatus = "fallback";
-    architectPlasmidHybridState.lastBranch = execution.branch;
-    architectPlasmidHybridState.lastFallbackReason =
-      execution.fallbackReason ?? "architect_plasmid_bridge_fallback";
-    return true;
-  }
-
-  architectPlasmidHybridState.lastBranch = execution.branch;
-  if (execution.branch === "emit") {
-    architectPlasmidHybridState.emitBranchCount++;
-    architectPlasmidHybridState.allowedArchitectPlasmids++;
-    architectPlasmidHybridState.lastStatus = "emit";
-  } else if (execution.branch === "suppress") {
-    architectPlasmidHybridState.suppressBranchCount++;
-    architectPlasmidHybridState.lastStatus = "suppress";
-  } else {
-    architectPlasmidHybridState.lastStatus = "fallback";
-    architectPlasmidHybridState.fallbackRuns++;
-    architectPlasmidHybridState.lastFallbackReason =
-      "architect_plasmid_unknown";
-    return true;
-  }
-
-  if (ARCHITECT_PLASMID_EXECUTION_MODE === "shadow-reduce") {
-    if (execution.shadowSuppressed) {
-      architectPlasmidHybridState.shadowSuppressedArchitectPlasmids++;
-    }
-    return true;
-  }
-
-  if (execution.hybridSuppressed) {
-    architectPlasmidHybridState.suppressedArchitectPlasmids++;
-    return false;
-  }
-
-  return true;
-};
-const emitInternalGlyphsFromActiveAtoms = (
-  tick: number,
-  activeIdx: number[],
-): { atomPheromoneSeeds: number; atomPlasmidSeeds: number } => {
-  GLYPH_BUFFER.beginInternalAtomEmissionTick();
-  if (activeIdx.length === 0) {
-    return { atomPheromoneSeeds: 0, atomPlasmidSeeds: 0 };
-  }
-
-  const scanBudget = Math.min(activeIdx.length, INTERNAL_GLYPH_ATOM_SCAN_TARGET);
-  const stride = Math.max(1, Math.floor(activeIdx.length / Math.max(1, scanBudget)));
-  const startOffset = tick % stride;
-  let atomPheromoneSeeds = 0;
-  let atomPlasmidSeeds = 0;
-
-  for (
-    let cursor = startOffset;
-    cursor < activeIdx.length &&
-      (atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET ||
-        atomPlasmidSeeds < INTERNAL_GLYPH_ATOM_PLASMID_BUDGET);
-    cursor += stride
-  ) {
-    const idx = activeIdx[cursor];
-    const x = xsView[idx];
-    const y = ysView[idx];
-    const resonance = Atomics.load(resonancesView, idx);
-    const energy = Atomics.load(energiesView, idx);
-    const phase = Atomics.load(phasesView, idx);
-    const role = rolesView[idx];
-
-    if (atomPheromoneSeeds < INTERNAL_GLYPH_ATOM_PHEROMONE_BUDGET) {
-      let pheromoneIntensity = 0;
-      if (role === STATE_MATRIX.ROLE_GUARDIAN &&
-        guardianPheromoneAllowedByExecutionMode(
-          tick,
-          idx,
-          guardianShouldEmitPheromone(tick, idx, phase, resonance),
-        )) {
-        pheromoneIntensity = Math.max(
-          48,
-          Math.min(384, Math.trunc(resonance / 4)),
-        );
-      } else if (
-        role === STATE_MATRIX.ROLE_PRODUCER &&
-        producerShouldEmitPheromone(tick, idx, phase, resonance, energy)
-      ) {
-        pheromoneIntensity = Math.max(
-          24,
-          Math.min(256, Math.trunc((resonance + energy) / 10)),
-        );
-      } else if (
-        role === STATE_MATRIX.ROLE_NEUTRAL &&
-        neutralShouldEmitPheromone(tick, idx, phase, resonance)
-      ) {
-        pheromoneIntensity = Math.max(
-          24,
-          Math.min(192, Math.trunc(resonance / 8)),
-        );
-      }
-
-      if (pheromoneIntensity > 0) {
-        GLYPH_BUFFER.emitAtomPheromone(x, y, pheromoneIntensity, role);
-        atomPheromoneSeeds++;
-      }
-    }
-
-    if (
-      atomPlasmidSeeds < INTERNAL_GLYPH_ATOM_PLASMID_BUDGET &&
-      hasGenomeResidue(idx)
-    ) {
-      let plasmidCharge = 0;
-      if (
-        role === STATE_MATRIX.ROLE_ARCHITECT &&
-        architectPlasmidAllowedByExecutionMode(
-          tick,
-          idx,
-          architectShouldEmitPlasmid(tick, idx, phase, resonance, energy),
-        )
-      ) {
-        plasmidCharge = Math.max(
-          48,
-          Math.min(320, Math.trunc((energy + resonance) / 10)),
-        );
-      } else if (
-        role === STATE_MATRIX.ROLE_PRODUCER &&
-        producerShouldEmitPlasmid(tick, idx, phase, resonance, energy)
-      ) {
-        plasmidCharge = Math.max(
-          32,
-          Math.min(224, Math.trunc((energy + resonance) / 14)),
-        );
-      } else if (
-        role === STATE_MATRIX.ROLE_PARASITE &&
-        parasiteShouldEmitPlasmid(tick, idx, phase, resonance, energy)
-      ) {
-        plasmidCharge = Math.max(
-          24,
-          Math.min(160, Math.trunc((energy + resonance) / 16)),
-        );
-      }
-
-      if (plasmidCharge > 0) {
-      const off = idx * 8;
-      const payload = logicView.slice(off, off + 8);
-        GLYPH_BUFFER.emitAtomPlasmid(x, y, plasmidCharge, payload, role);
-        atomPlasmidSeeds++;
-      }
-    }
-  }
-
-  return { atomPheromoneSeeds, atomPlasmidSeeds };
 };
 const applyEvolutionPressureTerms = (
   tick: number,
@@ -25199,6 +25185,18 @@ export const PULSE = {
     }
 
     const { syncState, tickCounter, SYNC } = STATE_MATRIX;
+    // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
+    syncHormonesToLattice({
+      baseTax: homeostasisBaseTaxRuntime,
+      targetEnergy: homeostasisTargetEnergyRuntime,
+      workerCount: WORKER_COUNT,
+      egoPressure: evolutionPressureState.ego,
+      fearPressure: evolutionPressureState.fear,
+      noveltyPressure: evolutionPressureState.novelty,
+      symbiosisPressure: evolutionPressureState.symbiosis,
+      maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
+      pressureRingScale: evolutionPressureState.ring.scale,
+    });
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
@@ -25422,14 +25420,78 @@ export const PULSE = {
           `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
         );
       }
-      emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx);
-      const glyphTransport = GLYPH_BUFFER.tick(currentTick);
+      // WASM handled glyph transport (diffusion/decay/reflection) during parallel transition or here:
+      await postAndWait(0, workers[0], {
+        type: "TICK_GLYPH_TRANSPORT",
+        tick: currentTick,
+        pulseId: nextPulseId(),
+      }, "GLYPH_TRANSPORT_DONE");
+
+      const glyphTransport = GLYPH_BUFFER.snapshot();
+
       applyEvolutionPressureTerms(currentTick, activeIdx);
       applyEnergyHomeostasisTerms(
         currentTick,
         activeIdx,
         spatialHashState.overflowRatio,
       );
+
+      // --- STAGE 8: Guardian Signal Promotion Bridge ---
+      {
+        const mode = GUARDIAN_SIGNAL_EXECUTION_MODE;
+        guardianSignalHybridState.lastMode = mode;
+        const resonanceBase = resonancesView;
+        const scrollRange = 16;
+
+        for (const idx of activeIdx) {
+          if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) {
+            const script = instructionsView.slice(idx * 64, idx * 64 + 64);
+            const decision = evaluateGuardianSignalExecution({
+              mode,
+              script,
+              neuralCoherence: SOVEREIGN_ORACLE.neuralCoherence,
+              legacyAllowed: true,
+              maxSteps: scrollRange,
+            });
+
+            // Update Telemetry
+            if (mode === "hybrid-reduce") {
+              guardianSignalHybridState.hybridRuns++;
+              if (decision.allowed) {
+                guardianSignalHybridState.allowedGuardianSignals++;
+              } else {
+                guardianSignalHybridState.suppressedGuardianSignals++;
+              }
+            } else if (mode === "shadow-reduce") {
+              guardianSignalHybridState.shadowRuns++;
+              if (decision.shadowSuppressed) {
+                guardianSignalHybridState.shadowSuppressedGuardianSignals++;
+              }
+            }
+
+            if (decision.status === "fallback") {
+              guardianSignalHybridState.fallbackRuns++;
+            }
+
+            if (decision.branch === "stable") guardianSignalHybridState.stableBranchCount++;
+            if (decision.branch === "repair") guardianSignalHybridState.repairBranchCount++;
+
+            guardianSignalHybridState.lastTick = currentTick;
+            guardianSignalHybridState.lastStatus = decision.status;
+            guardianSignalHybridState.lastBranch = decision.branch;
+            if (decision.status === "fallback") {
+              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+            }
+
+            // Apply Causality Suppression
+            const allowed = decision.allowed && guardianPheromoneAllowedByExecutionMode(idx);
+            Atomics.store(causalityView, idx, allowed ? 1 : 0);
+          } else {
+            // Non-guardians are always allowed
+            Atomics.store(causalityView, idx, 1);
+          }
+        }
+      }
 
       // Decay host pheromone fields (including observer attention).
       PHYSICS_ENGINE.decayPheromones();
@@ -26105,17 +26167,18 @@ Supporting planning artifacts:
 
 Status snapshot as of 2026-03-06:
 
-| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                                                                                                                                                                                                                                              |
-| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                                                                                                                                                                                                                                                 |
-| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                                                                                                                                                                                                                  |
-| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies                                                                                                                                                                                                  |
-| Stage 6                         | in progress | Codex now records `glyph_transport_regime` chronicles, preserves the latest transport regime in narrative/snapshot state, passes glyph evidence through the daemon-facing codex narrative contract, attaches glyph transport context to blocked/degraded daemon admission chronicles, feeds bounded glyph pressure into daemon admission scoring via read-only narrative context, records deferred daemon effect chronicles once queued actions are evaluated, and projects the latest daemon effect contour back into narrative/snapshot outputs |
-| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                                                                                                                                                                                                                        |
-| Stage 8+                        | in progress | first slit is now live in bounded form: guardian pheromone emission supports `legacy-execute`, `shadow-reduce`, and `hybrid-reduce`, with fallback counters and observer telemetry while `shadow-reduce` remains the default rollout                                                                                                                                                                                                                                                                                                              |
+| Phase                           | Status      | Notes                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Checkpoint 0                    | in progress | control surface frozen in planning docs; export now includes migration artifacts and persisted baseline traces                                                                                                                                                                                                                                   |
+| Stage 1: causal atlas           | in progress | top-20 critical mutations owner-classified across the 8 key files                                                                                                                                                                                                                                                                                |
+| Stage 2: golden traces          | complete    | capture harness now spans API-observer traces and standalone control specimens; persisted `gt01..gt18` baseline artifacts are committed under `verification/traces/`                                                                                                                                                                             |
+| Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                                                                |
+| Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                                                                 |
+| Stage 5                         | in progress | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and a bounded subset of active atoms now emits glyph packets through role-shaped secretion policies |
+| Stage 5.1                       | in progress | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                                                                   |
+| Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                                                                    |
+| Stage 7: hormone / ledger layer | in progress | `baseTax`, `targetEnergy`, `pressureRing.scale`, `daemon.maxPheromoneIntensity`, and `daemon.maxPlasmidCharge` are now live ledger-owned knobs; all five survive restart and compact into `snapshot + tail` through dedicated persistence lanes, and Stage 7 now spans both pulse physiology and daemon ingress governance                       |
+| Stage 8+                        | completed   | State 8: Guardian Signal Promotion \| [x] Mapped Script Evaluation<br>[x] Mode-aware Verification<br>[x] Shadow-to-Hybrid Promotion Gate<br>[x] Causal Influence Promotion                                                                                                                                                                       |
 
 Latest completed planning work:
 
@@ -27256,6 +27319,8 @@ const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_ROLE, 3],
   [RISC.OP_BUILD, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_SPORE_DRIVE, 1],
 ]);
 
 export const normalizeGuardianSignalExecutionMode = (
@@ -27366,6 +27431,17 @@ const applyGuardianOpcode = (
       }
       return;
     }
+    case RISC.OP_JZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.branchTaken = true;
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
     case RISC.OP_JMP: {
       state.pc = token.args[0] ?? 0;
       return;
@@ -27384,6 +27460,11 @@ const applyGuardianOpcode = (
     }
     case RISC.OP_BUILD: {
       state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SPORE_DRIVE: {
+      // Movement is no-op in bridge reduction
       state.pc += token.length;
       return;
     }
@@ -27741,7 +27822,7 @@ const parseGuardianSignalExecutionMode = (
   if (value === "hybrid-reduce" || value === "hybrid_reduce") {
     return "hybrid-reduce";
   }
-  return "shadow-reduce";
+  return "hybrid-reduce";
 };
 const parseEnvBoundedFloat = (
   raw: string | undefined,
@@ -27858,6 +27939,7 @@ const rawDaemonAuditPath = readEnv("OMEGA_DAEMON_AUDIT_PATH");
 const rawColdstartEnable = readEnv("OMEGA_COLDSTART_ENABLE");
 const rawColdstartCount = readEnv("OMEGA_COLDSTART_COUNT");
 const rawColdstartReplicatorRatio = readEnv("OMEGA_COLDSTART_REPLICATOR_RATIO");
+const rawColdstartGuardianRatio = readEnv("OMEGA_COLDSTART_GUARDIAN_RATIO");
 const rawColdstartSeed = readEnv("OMEGA_COLDSTART_SEED");
 const rawColdstartEnergy = readEnv("OMEGA_COLDSTART_ENERGY");
 const rawColdstartResonance = readEnv("OMEGA_COLDSTART_RESONANCE");
@@ -28151,7 +28233,13 @@ const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
 const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
 const coldstartReplicatorRatio = parseEnvBoundedFloat(
   rawColdstartReplicatorRatio,
-  0.72,
+  0.15,
+  0,
+  1,
+);
+const coldstartGuardianRatio = parseEnvBoundedFloat(
+  rawColdstartGuardianRatio,
+  0.08,
   0,
   1,
 );
@@ -28292,6 +28380,7 @@ const policyFingerprintSource = JSON.stringify({
     enabled: coldstartEnabled,
     count: coldstartCount,
     replicatorRatio: coldstartReplicatorRatio,
+    guardianRatio: coldstartGuardianRatio,
     seed: coldstartSeed,
     energy: coldstartEnergy,
     resonance: coldstartResonance,
@@ -28489,6 +28578,7 @@ export const RUNTIME_POLICY = {
     enabled: coldstartEnabled,
     count: coldstartCount,
     replicatorRatio: coldstartReplicatorRatio,
+    guardianRatio: coldstartGuardianRatio,
     seed: coldstartSeed,
     energy: coldstartEnergy,
     resonance: coldstartResonance,
@@ -28496,6 +28586,7 @@ export const RUNTIME_POLICY = {
       enabled: rawColdstartEnable !== undefined,
       count: rawColdstartCount !== undefined,
       replicatorRatio: rawColdstartReplicatorRatio !== undefined,
+      guardianRatio: rawColdstartGuardianRatio !== undefined,
       seed: rawColdstartSeed !== undefined,
       energy: rawColdstartEnergy !== undefined,
       resonance: rawColdstartResonance !== undefined,
@@ -31897,6 +31988,8 @@ export const bondDistBuffer =
     .buffer;
 export const dampingBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
+export const causalityBuffer =
+  new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS).buffer;
 export const roleBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
 export const hiveMemoryBuffer =
@@ -31923,6 +32016,8 @@ export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
 export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
+export const hormoneBuffer =
+  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -31958,6 +32053,11 @@ const bondRequests = new Int32Array(
   MAX_ATOMS * 3,
 );
 const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
+const causality = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.CAUSALITY_OFFSET,
+  MAX_ATOMS,
+);
 const hiveMemory = new Uint8Array(
   sharedBuffer,
   OFFSETS.HIVE_MEMORY_OFFSET,
@@ -32014,6 +32114,7 @@ const neuralCoherence = new Int32Array(
   OFFSETS.NEURAL_COHERENCE_OFFSET,
   1,
 );
+const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -32142,6 +32243,7 @@ export const STATE_MATRIX = {
   hiveEnergyPool,
   coherence,
   neuralCoherence,
+  hormones,
   instructions,
   contexts,
   semanticBonuses,
@@ -32166,6 +32268,7 @@ export const STATE_MATRIX = {
   viralGridBuffer: signalGridBuffer, // Legacy alias for UI endpoints
   hiveMemoryBuffer,
   hiveEnergyPoolBuffer,
+  hormoneBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -32487,6 +32590,11 @@ export const STATE_MATRIX = {
     Atomics.and(structureGrid, i, ~0xFF000000);
     Atomics.or(structureGrid, i, (val & 0xFF) << 24);
   },
+  getCausality: (idx: number) => Atomics.load(causality, idx),
+  setCausality: (idx: number, val: number) => Atomics.store(causality, idx, val),
+  clearDamping: () => damping.fill(0),
+  getHormone: (id: number) => Atomics.load(hormones, id),
+  setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
 
 ```
@@ -32933,7 +33041,14 @@ type RuntimeMetrics = {
     suppressedGuardianSignals: number;
     shadowSuppressedGuardianSignals: number;
     lastTick: number;
-    lastStatus: "legacy" | "stable" | "repair" | "fallback";
+    lastStatus:
+      | "legacy"
+      | "stable"
+      | "repair"
+      | "fallback"
+      | "shadow"
+      | "hybrid"
+      | "legacy-blocked";
     lastBranch: "stable" | "repair" | "unknown";
     lastFallbackReason: string;
   };
@@ -33376,8 +33491,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
-  const rawCoherence = (STATE_MATRIX.getNeuralCoherence?.() ??
-    STATE_MATRIX.getClusterSync?.() ??
+  const rawCoherence = (STATE_MATRIX.getClusterSync?.() ??
     0) as number;
   return {
     tick,
@@ -33567,7 +33681,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       tick,
       reason,
       prune: true,
-      retention: SNAPSHOT_POLICY.retention,
+      retention: SNAPSHOT_POLICY.retention ?? 10,
     });
     if (result.success) {
       autoSnapshotLastTick = tick;
@@ -36469,6 +36583,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     enabled: COLDSTART_POLICY.enabled,
     count: COLDSTART_POLICY.count,
     replicatorRatio: COLDSTART_POLICY.replicatorRatio,
+    guardianRatio: COLDSTART_POLICY.guardianRatio,
     seed: COLDSTART_POLICY.seed,
     energy: COLDSTART_POLICY.energy,
     resonance: COLDSTART_POLICY.resonance,
@@ -40043,2073 +40158,6 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ---
 
-## FILE: verification/admission_diffs/ac01_gt04_low_risk_accept.json
-
-```json
-{
-  "case_id": "ac01_gt04_low_risk_accept",
-  "baseline_trace_id": "gt04_plasmid_inject",
-  "baseline_event_kind": "INJECT_PLASMID",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "baseline_digest": "61318c473cd7d666f3590533865cdc353672aec5f1cac00336e56453949df60f",
-  "shadow_digest": "1b422b402cad79b5acf4ce814e4dee90ecb54ec7655e9ec6d0c4259bfe0c6794",
-  "diff": {
-    "policy_match": true,
-    "policy_reason_match": true,
-    "risk_match": true,
-    "severity_match": true,
-    "score_match": true,
-    "reasons_match": true,
-    "applied_action_match": true,
-    "degraded_match": true,
-    "degrade_reason_match": true,
-    "context_match": true
-  },
-  "expectation_summary": {
-    "policyOk": true,
-    "policyReason": "PLASMID_POLICY_OK",
-    "blocked": false,
-    "blockReason": null,
-    "severity": "LOW",
-    "score": 0,
-    "appliedAction": "INJECT_PLASMID",
-    "degraded": false,
-    "degradeReason": null,
-    "plasmidRiskLevel": "LOW",
-    "plasmidRiskScore": 0,
-    "plasmidRiskOpcode": 1,
-    "reasons": [
-      "RISK_LOW"
-    ]
-  }
-}
-```
-
----
-
-## FILE: verification/admission_diffs/ac02_gt06_pheromone_accept.json
-
-```json
-{
-  "case_id": "ac02_gt06_pheromone_accept",
-  "baseline_trace_id": "gt06_daemon_admission_case",
-  "baseline_event_kind": "DROP_PHEROMONE_ACCEPT",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "baseline_digest": "72b50e10ec2b08c97635f1c9a8ab877b3582cb8f54667aaa4a94eaf70b3696bd",
-  "shadow_digest": "39674cf2748bcae555805654839fe0efd37ced6dde8132c3d72aafaf8e334339",
-  "diff": {
-    "policy_match": true,
-    "policy_reason_match": true,
-    "risk_match": true,
-    "severity_match": true,
-    "score_match": true,
-    "reasons_match": true,
-    "applied_action_match": true,
-    "degraded_match": true,
-    "degrade_reason_match": true,
-    "context_match": true
-  },
-  "expectation_summary": {
-    "policyOk": null,
-    "policyReason": null,
-    "blocked": false,
-    "blockReason": null,
-    "severity": "LOW",
-    "score": 0,
-    "appliedAction": "DROP_PHEROMONE",
-    "degraded": false,
-    "degradeReason": null,
-    "plasmidRiskLevel": null,
-    "plasmidRiskScore": null,
-    "plasmidRiskOpcode": null,
-    "reasons": [
-      "DRIFT_LOW"
-    ]
-  }
-}
-```
-
----
-
-## FILE: verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json
-
-```json
-{
-  "case_id": "ac03_gt06_plasmid_high_degrade",
-  "baseline_trace_id": "gt06_daemon_admission_case",
-  "baseline_event_kind": "INJECT_PLASMID_DEGRADED",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "baseline_digest": "fe08cb56b3964babcca6bbbc5282b3cf5c4c5975ec38d5dacaa69a56a9d37581",
-  "shadow_digest": "4cf07bcf1a33fbd1bdfdeb97e17c97860f4bee9245996b8724abbf5f4c80f72e",
-  "diff": {
-    "policy_match": true,
-    "policy_reason_match": true,
-    "risk_match": true,
-    "severity_match": true,
-    "score_match": true,
-    "reasons_match": true,
-    "applied_action_match": true,
-    "degraded_match": true,
-    "degrade_reason_match": true,
-    "context_match": true
-  },
-  "expectation_summary": {
-    "policyOk": true,
-    "policyReason": "PLASMID_POLICY_OK",
-    "blocked": false,
-    "blockReason": null,
-    "severity": "HIGH",
-    "score": 4,
-    "appliedAction": "DROP_PHEROMONE",
-    "degraded": true,
-    "degradeReason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-    "plasmidRiskLevel": "MID",
-    "plasmidRiskScore": 2,
-    "plasmidRiskOpcode": 0,
-    "reasons": [
-      "PLASMID_INTENSITY_HIGH",
-      "RISK_INTENSITY_HIGH"
-    ]
-  }
-}
-```
-
----
-
-## FILE: verification/admission_diffs/ac04_gt07_plasmid_policy_block.json
-
-```json
-{
-  "case_id": "ac04_gt07_plasmid_policy_block",
-  "baseline_trace_id": "gt07_daemon_policy_block",
-  "baseline_event_kind": "INJECT_PLASMID_BLOCKED",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "baseline_digest": "e6d65cd34188a0ecda38793b671165394aa9cae8fc1bd2fe62f97d0cc6ae411e",
-  "shadow_digest": "94d82d63267db7e31a9923231ebd42dc52ee1b0a36fe7852a882624b56048876",
-  "diff": {
-    "policy_match": true,
-    "policy_reason_match": true,
-    "risk_match": true,
-    "severity_match": true,
-    "score_match": true,
-    "reasons_match": true,
-    "applied_action_match": true,
-    "degraded_match": true,
-    "degrade_reason_match": true,
-    "context_match": true
-  },
-  "expectation_summary": {
-    "policyOk": false,
-    "policyReason": "PLASMID_OPCODE_BLOCKED_0xFF",
-    "blocked": true,
-    "blockReason": "PLASMID_OPCODE_BLOCKED_0xFF",
-    "severity": null,
-    "score": null,
-    "appliedAction": "BLOCKED",
-    "degraded": null,
-    "degradeReason": null,
-    "plasmidRiskLevel": null,
-    "plasmidRiskScore": null,
-    "plasmidRiskOpcode": null,
-    "reasons": []
-  }
-}
-```
-
----
-
-## FILE: verification/admission_shadow_cases.ts
-
-```typescript
-import type {
-  DaemonInjectEnvelope,
-  DaemonIngressMetrics,
-} from "../DAEMON_INGRESS_POLICY.ts";
-
-export type AdmissionShadowExpectation = {
-  policyOk: boolean | null;
-  policyReason: string | null;
-  blocked: boolean;
-  blockReason: string | null;
-  severity: "LOW" | "MID" | "HIGH" | null;
-  score: number | null;
-  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE" | "BLOCKED";
-  degraded: boolean | null;
-  degradeReason: string | null;
-  plasmidRiskLevel: "LOW" | "MID" | "HIGH" | null;
-  plasmidRiskScore: number | null;
-  plasmidRiskOpcode: number | null;
-  reasons: string[];
-};
-
-export type AdmissionShadowCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  baselineEventKind: string;
-  description: string;
-  envelope: DaemonInjectEnvelope;
-  metrics: DaemonIngressMetrics;
-  dominantGenome: string;
-  narrativeSeed: Record<string, unknown>;
-  expected: AdmissionShadowExpectation;
-};
-
-export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
-  Object.freeze([
-    {
-      id: "ac01_gt04_low_risk_accept",
-      baselineTraceId: "gt04_plasmid_inject",
-      baselineEventKind: "INJECT_PLASMID",
-      description:
-        "Low-intensity plasmid ingress from gt04 should stay policy-clean and remain an undegraded plasmid admission.",
-      envelope: {
-        action_type: "INJECT_PLASMID",
-        payload: {
-          target_x: 640,
-          target_y: 360,
-          intensity: 420,
-          hex_code: "0102030405101180",
-        },
-      },
-      metrics: {
-        population: 64,
-        avgEnergy: 173.654,
-      },
-      dominantGenome: "808103862DA8E71A",
-      narrativeSeed: {},
-      expected: {
-        policyOk: true,
-        policyReason: "PLASMID_POLICY_OK",
-        blocked: false,
-        blockReason: null,
-        severity: "LOW",
-        score: 0,
-        appliedAction: "INJECT_PLASMID",
-        degraded: false,
-        degradeReason: null,
-        plasmidRiskLevel: "LOW",
-        plasmidRiskScore: 0,
-        plasmidRiskOpcode: 0x01,
-        reasons: ["RISK_LOW"],
-      },
-    },
-    {
-      id: "ac02_gt06_pheromone_accept",
-      baselineTraceId: "gt06_daemon_admission_case",
-      baselineEventKind: "DROP_PHEROMONE_ACCEPT",
-      description:
-        "The accepted gt06 pheromone ingress should remain a low-drift pheromone admission with no plasmid risk path involved.",
-      envelope: {
-        action_type: "DROP_PHEROMONE",
-        payload: {
-          target_x: 512,
-          target_y: 320,
-          intensity: 80,
-        },
-      },
-      metrics: {
-        population: 64,
-        avgEnergy: 238.609,
-      },
-      dominantGenome: "808103862DA8E71A",
-      narrativeSeed: {},
-      expected: {
-        policyOk: null,
-        policyReason: null,
-        blocked: false,
-        blockReason: null,
-        severity: "LOW",
-        score: 0,
-        appliedAction: "DROP_PHEROMONE",
-        degraded: false,
-        degradeReason: null,
-        plasmidRiskLevel: null,
-        plasmidRiskScore: null,
-        plasmidRiskOpcode: null,
-        reasons: ["DRIFT_LOW"],
-      },
-    },
-    {
-      id: "ac03_gt06_plasmid_high_degrade",
-      baselineTraceId: "gt06_daemon_admission_case",
-      baselineEventKind: "INJECT_PLASMID_DEGRADED",
-      description:
-        "The high-intensity gt06 plasmid ingress should stay policy-valid but degrade into a pheromone action under invariant pressure.",
-      envelope: {
-        action_type: "INJECT_PLASMID",
-        payload: {
-          target_x: 512,
-          target_y: 320,
-          intensity: 1100,
-          hex_code: "001011120381A4A5",
-        },
-      },
-      metrics: {
-        population: 64,
-        avgEnergy: 238.609,
-      },
-      dominantGenome: "808103862DA8E71A",
-      narrativeSeed: {},
-      expected: {
-        policyOk: true,
-        policyReason: "PLASMID_POLICY_OK",
-        blocked: false,
-        blockReason: null,
-        severity: "HIGH",
-        score: 4,
-        appliedAction: "DROP_PHEROMONE",
-        degraded: true,
-        degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-        plasmidRiskLevel: "MID",
-        plasmidRiskScore: 2,
-        plasmidRiskOpcode: 0x00,
-        reasons: ["PLASMID_INTENSITY_HIGH", "RISK_INTENSITY_HIGH"],
-      },
-    },
-    {
-      id: "ac04_gt07_plasmid_policy_block",
-      baselineTraceId: "gt07_daemon_policy_block",
-      baselineEventKind: "INJECT_PLASMID_BLOCKED",
-      description:
-        "A blocked-opcode plasmid should fail at policy stage before any admission scoring or ingress degradation occurs.",
-      envelope: {
-        action_type: "INJECT_PLASMID",
-        payload: {
-          target_x: 512,
-          target_y: 320,
-          intensity: 420,
-          hex_code: "FF02030405101180",
-        },
-      },
-      metrics: {
-        population: 64,
-        avgEnergy: 173.654,
-      },
-      dominantGenome: "808103862DA8E71A",
-      narrativeSeed: {},
-      expected: {
-        policyOk: false,
-        policyReason: "PLASMID_OPCODE_BLOCKED_0xFF",
-        blocked: true,
-        blockReason: "PLASMID_OPCODE_BLOCKED_0xFF",
-        severity: null,
-        score: null,
-        appliedAction: "BLOCKED",
-        degraded: null,
-        degradeReason: null,
-        plasmidRiskLevel: null,
-        plasmidRiskScore: null,
-        plasmidRiskOpcode: null,
-        reasons: [],
-      },
-    },
-  ]);
-
-const ADMISSION_SHADOW_CASE_BY_ID = new Map<string, AdmissionShadowCaseDefinition>(
-  ADMISSION_SHADOW_CASES.map((definition) => [definition.id, definition]),
-);
-
-export const admissionShadowCaseById = (
-  id: string,
-): AdmissionShadowCaseDefinition | null =>
-  ADMISSION_SHADOW_CASE_BY_ID.get(id) ?? null;
-
-```
-
----
-
-## FILE: verification/admission_shadow_harness.ts
-
-```typescript
-import {
-  evaluateInvariantAdmission,
-  evaluatePlasmidPolicy,
-  evaluatePlasmidRisk,
-  normalizeDaemonNarrativeContext,
-  planInvariantIngress,
-  type DaemonInvariantAdmission,
-  type DaemonIngressPlan,
-  type DaemonNarrativeContext,
-  type PlasmidRiskProfile,
-} from "../DAEMON_INGRESS_POLICY.ts";
-import {
-  ADMISSION_SHADOW_CASES,
-  type AdmissionShadowCaseDefinition,
-} from "./admission_shadow_cases.ts";
-import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-
-type AdmissionBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  eventKind: string;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-  response: Record<string, unknown>;
-};
-
-type AdmissionShadowOutcome = {
-  context: DaemonNarrativeContext;
-  policy: { ok: boolean; reason: string } | null;
-  risk: PlasmidRiskProfile | null;
-  admission: DaemonInvariantAdmission | null;
-  plan: DaemonIngressPlan | null;
-  blocked: boolean;
-  blockReason: string | null;
-};
-
-export type AdmissionShadowResult = {
-  caseId: string;
-  baseline: Omit<AdmissionBaselineAnchor, "response">;
-  shadow: AdmissionShadowOutcome;
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type AdmissionShadowArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_event_kind: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  baseline_digest: string;
-  shadow_digest: string;
-  diff: {
-    policy_match: boolean;
-    policy_reason_match: boolean;
-    risk_match: boolean;
-    severity_match: boolean;
-    score_match: boolean;
-    reasons_match: boolean;
-    applied_action_match: boolean;
-    degraded_match: boolean;
-    degrade_reason_match: boolean;
-    context_match: boolean;
-  };
-  expectation_summary: AdmissionShadowCaseDefinition["expected"];
-};
-
-const ADMISSION_DIFF_ROOT = "verification/admission_diffs";
-
-const equalStringArray = (a: readonly string[], b: readonly string[]): boolean =>
-  a.length === b.length && a.every((value, index) => value === b[index]);
-
-const stableStringify = (value: unknown): string => {
-  if (value === null || typeof value !== "object") {
-    return JSON.stringify(value);
-  }
-  if (Array.isArray(value)) {
-    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
-  }
-  const entries = Object.entries(value as Record<string, unknown>).sort(([a], [b]) =>
-    a.localeCompare(b)
-  );
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
-};
-
-const sha256Hex = async (value: unknown): Promise<string> => {
-  const bytes = new TextEncoder().encode(stableStringify(value));
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const normalizeResponse = (
-  response: Record<string, unknown>,
-): {
-  policyOk: boolean | null;
-  policyReason: string | null;
-  risk: {
-    level: string | null;
-    score: number | null;
-    opcode: number | null;
-  };
-  admission: {
-    severity: string;
-    score: number;
-    reasons: string[];
-    context: {
-      mood: string;
-      sharedCenter: string;
-      dominantInvariantVector: string;
-      codexLineageLabel: string;
-      codexLineageGuardScore: number;
-      codexLineageGuardReasons: string[];
-    };
-  };
-  appliedAction: string;
-  degraded: boolean;
-  degradeReason: string | null;
-} => {
-  const admissionRoot = response.admission && typeof response.admission === "object"
-    ? response.admission as Record<string, unknown>
-    : {};
-  const latestAdmissionRoot =
-    response.latest_admission && typeof response.latest_admission === "object"
-      ? response.latest_admission as Record<string, unknown>
-      : {};
-  const admissionLike = Object.keys(admissionRoot).length > 0
-    ? admissionRoot
-    : latestAdmissionRoot;
-  const contextRoot = admissionLike.context && typeof admissionLike.context === "object"
-    ? admissionLike.context as Record<string, unknown>
-    : {};
-  const plasmidRisk = response.plasmid_risk && typeof response.plasmid_risk === "object"
-    ? response.plasmid_risk as Record<string, unknown>
-    : null;
-  return {
-    policyOk: typeof response.ok === "boolean" ? response.ok : null,
-    policyReason: typeof response.reason === "string" ? response.reason : null,
-    risk: {
-      level: plasmidRisk && typeof plasmidRisk.level === "string"
-        ? plasmidRisk.level
-        : null,
-      score: plasmidRisk && typeof plasmidRisk.score === "number"
-        ? plasmidRisk.score
-        : null,
-      opcode: plasmidRisk && typeof plasmidRisk.opcode === "number"
-        ? plasmidRisk.opcode
-        : null,
-    },
-    admission: {
-      severity: typeof admissionLike.severity === "string"
-        ? admissionLike.severity
-        : "UNKNOWN",
-      score: typeof admissionLike.score === "number" ? admissionLike.score : -1,
-      reasons: Array.isArray(admissionLike.reasons)
-        ? admissionLike.reasons.filter((item): item is string => typeof item === "string")
-        : [],
-      context: {
-        mood: typeof contextRoot.mood === "string" ? contextRoot.mood : "UNKNOWN",
-        sharedCenter: typeof contextRoot.sharedCenter === "string"
-          ? contextRoot.sharedCenter
-          : "unknown",
-        dominantInvariantVector:
-          typeof contextRoot.dominantInvariantVector === "string"
-            ? contextRoot.dominantInvariantVector
-            : "unknown",
-        codexLineageLabel: typeof contextRoot.codexLineageLabel === "string"
-          ? contextRoot.codexLineageLabel
-          : "unknown",
-        codexLineageGuardScore:
-          typeof contextRoot.codexLineageGuardScore === "number"
-            ? contextRoot.codexLineageGuardScore
-            : -1,
-        codexLineageGuardReasons:
-          Array.isArray(contextRoot.codexLineageGuardReasons)
-            ? contextRoot.codexLineageGuardReasons.filter((item): item is string =>
-              typeof item === "string"
-            )
-            : [],
-      },
-    },
-    appliedAction: typeof response.applied_action === "string"
-      ? response.applied_action
-      : typeof latestAdmissionRoot.appliedAction === "string"
-      ? latestAdmissionRoot.appliedAction
-      : "UNKNOWN",
-    degraded: response.degraded === true || latestAdmissionRoot.degraded === true,
-    degradeReason: typeof response.degrade_reason === "string"
-      ? response.degrade_reason
-      : typeof latestAdmissionRoot.reason === "string" &&
-          latestAdmissionRoot.appliedAction === "BLOCKED"
-      ? null
-      : null,
-  };
-};
-
-const loadBaselineAnchor = async (
-  definition: AdmissionShadowCaseDefinition,
-): Promise<AdmissionBaselineAnchor> => {
-  const { traceJson } = goldenTraceArtifactPaths(definition.baselineTraceId);
-  const parsed = JSON.parse(
-    await Deno.readTextFile(traceJson),
-  ) as Record<string, unknown>;
-  const eventLog = Array.isArray(parsed.event_log)
-    ? parsed.event_log.filter((entry) => entry && typeof entry === "object")
-    : [];
-  const matched = eventLog.find((entry) =>
-    (entry as Record<string, unknown>).kind === definition.baselineEventKind
-  );
-  if (!matched || typeof matched !== "object") {
-    throw new Error(
-      `[admission_shadow] baseline event ${definition.baselineEventKind} missing in ${definition.baselineTraceId}`,
-    );
-  }
-  const event = matched as Record<string, unknown>;
-  if (!event.response || typeof event.response !== "object") {
-    throw new Error(
-      `[admission_shadow] baseline response missing for ${definition.id}`,
-    );
-  }
-  return {
-    traceId: definition.baselineTraceId,
-    scenario: String(parsed.scenario ?? definition.baselineTraceId),
-    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
-    eventKind: definition.baselineEventKind,
-    tickEnd: Number(parsed.tick_end ?? -1),
-    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
-    invariantDigest: String(parsed.invariant_digest ?? "missing"),
-    response: event.response as Record<string, unknown>,
-  };
-};
-
-const runAdmissionShadow = (
-  definition: AdmissionShadowCaseDefinition,
-): AdmissionShadowOutcome => {
-  const context = normalizeDaemonNarrativeContext(
-    definition.narrativeSeed,
-    definition.dominantGenome,
-  );
-  const policy = definition.envelope.action_type === "INJECT_PLASMID" &&
-      definition.envelope.payload.hex_code
-    ? evaluatePlasmidPolicy(definition.envelope.payload.hex_code)
-    : null;
-  const risk = definition.envelope.action_type === "INJECT_PLASMID" &&
-      definition.envelope.payload.hex_code
-    ? evaluatePlasmidRisk(
-      definition.envelope.payload.hex_code,
-      definition.envelope.payload.intensity,
-    )
-    : null;
-  if (policy && !policy.ok) {
-    return {
-      context,
-      policy,
-      risk: null,
-      admission: null,
-      plan: null,
-      blocked: true,
-      blockReason: policy.reason,
-    };
-  }
-  const admission = evaluateInvariantAdmission(
-    definition.envelope,
-    definition.metrics,
-    context,
-    risk,
-  );
-  const plan = planInvariantIngress(definition.envelope, admission);
-  return {
-    context,
-    policy,
-    risk,
-    admission,
-    plan,
-    blocked: false,
-    blockReason: null,
-  };
-};
-
-const compareToBaseline = (
-  definition: AdmissionShadowCaseDefinition,
-  baseline: AdmissionBaselineAnchor,
-  shadow: AdmissionShadowOutcome,
-): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = [];
-  const baselineResponse = normalizeResponse(baseline.response);
-  const expected = definition.expected;
-
-  const policyOk = shadow.policy?.ok ?? null;
-  const policyReason = shadow.policy?.reason ?? null;
-  const riskLevel = shadow.risk?.level ?? null;
-  const riskScore = shadow.risk?.score ?? null;
-  const riskOpcode = shadow.risk?.opcode ?? null;
-
-  if (policyOk !== expected.policyOk) {
-    reasons.push(`expected policyOk=${expected.policyOk} got=${policyOk}`);
-  }
-  if (policyReason !== expected.policyReason) {
-    reasons.push(
-      `expected policyReason=${expected.policyReason} got=${policyReason}`,
-    );
-  }
-  if (shadow.blocked !== expected.blocked) {
-    reasons.push(`expected blocked=${expected.blocked} got=${shadow.blocked}`);
-  }
-  if (shadow.blockReason !== expected.blockReason) {
-    reasons.push(
-      `expected blockReason=${expected.blockReason} got=${shadow.blockReason}`,
-    );
-  }
-  if (riskLevel !== expected.plasmidRiskLevel) {
-    reasons.push(`expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`);
-  }
-  if (riskScore !== expected.plasmidRiskScore) {
-    reasons.push(`expected riskScore=${expected.plasmidRiskScore} got=${riskScore}`);
-  }
-  if (riskOpcode !== expected.plasmidRiskOpcode) {
-    reasons.push(`expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`);
-  }
-  if ((shadow.admission?.severity ?? null) !== expected.severity) {
-    reasons.push(
-      `expected severity=${expected.severity} got=${shadow.admission?.severity ?? null}`,
-    );
-  }
-  if ((shadow.admission?.score ?? null) !== expected.score) {
-    reasons.push(`expected score=${expected.score} got=${shadow.admission?.score ?? null}`);
-  }
-  if (!equalStringArray(shadow.admission?.reasons ?? [], expected.reasons)) {
-    reasons.push("expected reasons mismatch");
-  }
-  if ((shadow.plan?.applied.action_type ?? "BLOCKED") !== expected.appliedAction) {
-    reasons.push(
-      `expected appliedAction=${expected.appliedAction} got=${shadow.plan?.applied.action_type ?? "BLOCKED"}`,
-    );
-  }
-  if ((shadow.plan?.degraded ?? null) !== expected.degraded) {
-    reasons.push(`expected degraded=${expected.degraded} got=${shadow.plan?.degraded ?? null}`);
-  }
-  if ((shadow.plan?.degradeReason ?? null) !== expected.degradeReason) {
-    reasons.push(
-      `expected degradeReason=${expected.degradeReason} got=${shadow.plan?.degradeReason ?? null}`,
-    );
-  }
-  if (shadow.blocked) {
-    if (baselineResponse.policyOk !== policyOk) {
-      reasons.push(`baseline policyOk=${baselineResponse.policyOk} shadow=${policyOk}`);
-    }
-    if (baselineResponse.policyReason !== policyReason) {
-      reasons.push(
-        `baseline policyReason=${baselineResponse.policyReason} shadow=${policyReason}`,
-      );
-    }
-    if (baselineResponse.appliedAction !== expected.appliedAction) {
-      reasons.push(
-        `baseline appliedAction=${baselineResponse.appliedAction} expected=${expected.appliedAction}`,
-      );
-    }
-    return { ok: reasons.length === 0, reasons };
-  }
-  if (baselineResponse.risk.level !== riskLevel) {
-    reasons.push(`baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`);
-  }
-  if (baselineResponse.risk.score !== riskScore) {
-    reasons.push(`baseline riskScore=${baselineResponse.risk.score} shadow=${riskScore}`);
-  }
-  if (baselineResponse.risk.opcode !== riskOpcode) {
-    reasons.push(
-      `baseline riskOpcode=${baselineResponse.risk.opcode} shadow=${riskOpcode}`,
-    );
-  }
-  if (baselineResponse.admission.severity !== shadow.admission.severity) {
-    reasons.push(
-      `baseline severity=${baselineResponse.admission.severity} shadow=${shadow.admission.severity}`,
-    );
-  }
-  if (baselineResponse.admission.score !== shadow.admission.score) {
-    reasons.push(
-      `baseline score=${baselineResponse.admission.score} shadow=${shadow.admission.score}`,
-    );
-  }
-  if (!equalStringArray(baselineResponse.admission.reasons, shadow.admission.reasons)) {
-    reasons.push("baseline reasons mismatch");
-  }
-  if (baselineResponse.appliedAction !== shadow.plan.applied.action_type) {
-    reasons.push(
-      `baseline appliedAction=${baselineResponse.appliedAction} shadow=${shadow.plan.applied.action_type}`,
-    );
-  }
-  if (baselineResponse.degraded !== shadow.plan.degraded) {
-    reasons.push(
-      `baseline degraded=${baselineResponse.degraded} shadow=${shadow.plan.degraded}`,
-    );
-  }
-  if (baselineResponse.degradeReason !== shadow.plan.degradeReason) {
-    reasons.push(
-      `baseline degradeReason=${baselineResponse.degradeReason} shadow=${shadow.plan.degradeReason}`,
-    );
-  }
-  if (baselineResponse.admission.context.sharedCenter !== shadow.context.sharedCenter) {
-    reasons.push("baseline sharedCenter mismatch");
-  }
-  if (
-    baselineResponse.admission.context.dominantInvariantVector !==
-      shadow.context.dominantInvariantVector
-  ) {
-    reasons.push("baseline dominantInvariantVector mismatch");
-  }
-  if (baselineResponse.admission.context.codexLineageLabel !== shadow.context.codexLineageLabel) {
-    reasons.push("baseline codexLineageLabel mismatch");
-  }
-  if (
-    baselineResponse.admission.context.codexLineageGuardScore !==
-      shadow.context.codexLineageGuardScore
-  ) {
-    reasons.push("baseline codexLineageGuardScore mismatch");
-  }
-  if (
-    !equalStringArray(
-      baselineResponse.admission.context.codexLineageGuardReasons,
-      shadow.context.codexLineageGuardReasons,
-    )
-  ) {
-    reasons.push("baseline codexLineageGuardReasons mismatch");
-  }
-
-  return { ok: reasons.length === 0, reasons };
-};
-
-const artifactForResult = async (
-  definition: AdmissionShadowCaseDefinition,
-  baseline: AdmissionBaselineAnchor,
-  shadow: AdmissionShadowOutcome,
-  parity: { ok: boolean; reasons: string[] },
-): Promise<AdmissionShadowArtifact> => {
-  const normalizedBaseline = normalizeResponse(baseline.response);
-  const policyOk = shadow.policy?.ok ?? null;
-  const policyReason = shadow.policy?.reason ?? null;
-  const blocked = shadow.blocked;
-  return {
-    case_id: definition.id,
-    baseline_trace_id: baseline.traceId,
-    baseline_event_kind: baseline.eventKind,
-    parity_ok: parity.ok,
-    parity_reasons: [...parity.reasons],
-    baseline_digest: await sha256Hex(normalizedBaseline),
-    shadow_digest: await sha256Hex({
-      policyOk,
-      policyReason,
-      risk: shadow.risk,
-      admission: shadow.admission,
-      plan: shadow.plan,
-      blocked: shadow.blocked,
-      blockReason: shadow.blockReason,
-    }),
-    diff: {
-      policy_match: definition.expected.policyOk === policyOk,
-      policy_reason_match: definition.expected.policyReason === policyReason,
-      risk_match: blocked
-        ? definition.expected.plasmidRiskLevel === null &&
-          definition.expected.plasmidRiskScore === null &&
-          definition.expected.plasmidRiskOpcode === null
-        :
-        normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
-        normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
-        normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
-      severity_match: blocked
-        ? definition.expected.severity === null
-        : normalizedBaseline.admission.severity === (shadow.admission?.severity ?? "UNKNOWN"),
-      score_match: blocked
-        ? definition.expected.score === null
-        : normalizedBaseline.admission.score === (shadow.admission?.score ?? -1),
-      reasons_match: blocked
-        ? equalStringArray(definition.expected.reasons, [])
-        : equalStringArray(
-          normalizedBaseline.admission.reasons,
-          shadow.admission?.reasons ?? [],
-        ),
-      applied_action_match:
-        normalizedBaseline.appliedAction === (shadow.plan?.applied.action_type ?? "BLOCKED"),
-      degraded_match: blocked
-        ? definition.expected.degraded === null
-        : normalizedBaseline.degraded === (shadow.plan?.degraded ?? false),
-      degrade_reason_match:
-        blocked
-          ? definition.expected.degradeReason === null
-          : normalizedBaseline.degradeReason === (shadow.plan?.degradeReason ?? null),
-      context_match: blocked
-        ? true
-        : normalizedBaseline.admission.context.sharedCenter === shadow.context.sharedCenter &&
-          normalizedBaseline.admission.context.dominantInvariantVector ===
-            shadow.context.dominantInvariantVector &&
-          normalizedBaseline.admission.context.codexLineageLabel ===
-            shadow.context.codexLineageLabel &&
-          normalizedBaseline.admission.context.codexLineageGuardScore ===
-            shadow.context.codexLineageGuardScore &&
-          equalStringArray(
-            normalizedBaseline.admission.context.codexLineageGuardReasons,
-            shadow.context.codexLineageGuardReasons,
-          ),
-    },
-    expectation_summary: definition.expected,
-  };
-};
-
-export const writeAdmissionHarnessArtifacts = async (
-  results: AdmissionShadowResult[],
-): Promise<void> => {
-  await Deno.mkdir(ADMISSION_DIFF_ROOT, { recursive: true });
-  for (const result of results) {
-    const definition = ADMISSION_SHADOW_CASES.find((item) => item.id === result.caseId);
-    if (!definition) {
-      throw new Error(`[admission_shadow] missing case definition for ${result.caseId}`);
-    }
-    const baseline = await loadBaselineAnchor(definition);
-    const artifact = await artifactForResult(
-      definition,
-      baseline,
-      result.shadow,
-      result.parity,
-    );
-    const path = `${ADMISSION_DIFF_ROOT}/${definition.id}.json`;
-    await Deno.writeTextFile(`${path}.tmp`, JSON.stringify(artifact, null, 2));
-    await Deno.rename(`${path}.tmp`, path);
-  }
-};
-
-export const runAdmissionShadowHarness = async (): Promise<AdmissionShadowResult[]> => {
-  const results: AdmissionShadowResult[] = [];
-  for (const definition of ADMISSION_SHADOW_CASES) {
-    const baseline = await loadBaselineAnchor(definition);
-    const shadow = runAdmissionShadow(definition);
-    const parity = compareToBaseline(definition, baseline, shadow);
-    results.push({
-      caseId: definition.id,
-      baseline: {
-        traceId: baseline.traceId,
-        scenario: baseline.scenario,
-        runtimeMode: baseline.runtimeMode,
-        eventKind: baseline.eventKind,
-        tickEnd: baseline.tickEnd,
-        codexSnapshotDigest: baseline.codexSnapshotDigest,
-        invariantDigest: baseline.invariantDigest,
-      },
-      shadow,
-      parity,
-    });
-  }
-  return results;
-};
-
-const main = async () => {
-  const results = await runAdmissionShadowHarness();
-  await writeAdmissionHarnessArtifacts(results);
-  const failed = results.filter((result) => !result.parity.ok);
-  if (failed.length > 0) {
-    console.error("[admission_shadow] parity failure.");
-    for (const result of failed) {
-      console.error(` - ${result.caseId}`);
-      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
-    }
-    Deno.exit(1);
-  }
-  console.log(`[admission_shadow] capture complete. cases=${results.length}`);
-};
-
-if (import.meta.main) {
-  await main();
-}
-
-```
-
----
-
-## FILE: verification/architect_plasmid_mode_cases.ts
-
-```typescript
-import {
-  type ArchitectPlasmidExecutionMode,
-} from "../runtime_bridge/architect_plasmid_hybrid.ts";
-
-export type ArchitectPlasmidModeCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  neuralCoherence: number;
-  legacyAllowed: boolean;
-  scriptKind: "architect" | "guardian" | "custom";
-  script?: Uint8Array;
-  expected: Record<
-    ArchitectPlasmidExecutionMode,
-    {
-      allowed: boolean;
-      status: "legacy" | "shadow" | "hybrid" | "fallback";
-      branch: "emit" | "suppress" | "unknown";
-      shadowSuppressed: boolean;
-      hybridSuppressed: boolean;
-    }
-  >;
-};
-
-export const ARCHITECT_PLASMID_MODE_CASES: readonly ArchitectPlasmidModeCaseDefinition[] =
-  Object.freeze([
-    {
-      id: "ah01_gt04_architect_emit_modes",
-      baselineTraceId: "gt04_plasmid_inject",
-      description:
-        "Canonical architect loop should preserve legacy behavior in shadow mode and remain allowed in hybrid mode.",
-      neuralCoherence: 200,
-      legacyAllowed: true,
-      scriptKind: "architect",
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "shadow",
-          branch: "emit",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: true,
-          status: "hybrid",
-          branch: "emit",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-      },
-    },
-    {
-      id: "ah02_gt04_architect_suppress_modes",
-      baselineTraceId: "gt04_plasmid_inject",
-      description:
-        "A signaling-only script should preserve legacy behavior in shadow mode but suppress architect plasmid emission in hybrid mode.",
-      neuralCoherence: 200,
-      legacyAllowed: true,
-      scriptKind: "guardian",
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "shadow",
-          branch: "suppress",
-          shadowSuppressed: true,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: false,
-          status: "hybrid",
-          branch: "suppress",
-          shadowSuppressed: false,
-          hybridSuppressed: true,
-        },
-      },
-    },
-    {
-      id: "ah03_gt04_architect_fallback_modes",
-      baselineTraceId: "gt04_plasmid_inject",
-      description:
-        "Unsupported architect scripts must fall back to legacy behavior in shadow and hybrid modes.",
-      neuralCoherence: 200,
-      legacyAllowed: true,
-      scriptKind: "custom",
-      script: new Uint8Array([0xFF, 0, 0]),
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "fallback",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: true,
-          status: "fallback",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-      },
-    },
-  ]);
-
-const CASE_BY_ID = new Map(
-  ARCHITECT_PLASMID_MODE_CASES.map((definition) => [definition.id, definition]),
-);
-
-export const architectPlasmidModeCaseById = (
-  id: string,
-): ArchitectPlasmidModeCaseDefinition | null => CASE_BY_ID.get(id) ?? null;
-
-```
-
----
-
-## FILE: verification/architect_plasmid_mode_harness.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import {
-  evaluateArchitectPlasmidExecution,
-  type ArchitectPlasmidExecutionDecision,
-  type ArchitectPlasmidExecutionMode,
-} from "../runtime_bridge/architect_plasmid_hybrid.ts";
-import {
-  ARCHITECT_PLASMID_MODE_CASES,
-  architectPlasmidModeCaseById,
-  type ArchitectPlasmidModeCaseDefinition,
-} from "./architect_plasmid_mode_cases.ts";
-import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-
-const HYBRID_DIFF_ROOT = "verification/architect_hybrid_mode_diffs";
-
-type ArchitectModeResult = {
-  mode: ArchitectPlasmidExecutionMode;
-  decision: ArchitectPlasmidExecutionDecision;
-};
-
-type ArchitectModeBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  tickStart: number;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-};
-
-export type ArchitectPlasmidModeHarnessResult = {
-  caseId: string;
-  baseline: ArchitectModeBaselineAnchor;
-  results: ArchitectModeResult[];
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type ArchitectPlasmidModeHarnessArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_runtime_mode: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  legacy_digest: string;
-  shadow_digest: string;
-  hybrid_digest: string;
-  diffs: {
-    shadow_preserves_legacy: boolean;
-    hybrid_narrows_legacy: boolean;
-    fallback_replays_legacy: boolean;
-  };
-  expectation_summary: ArchitectPlasmidModeCaseDefinition["expected"];
-};
-
-const stableStringify = (value: unknown): string => {
-  if (value === null || typeof value !== "object") {
-    return JSON.stringify(value);
-  }
-  if (Array.isArray(value)) {
-    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
-  }
-  const entries = Object.entries(value as Record<string, unknown>).sort((
-    [a],
-    [b],
-  ) => a.localeCompare(b));
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
-};
-
-const sha256Hex = async (value: unknown): Promise<string> => {
-  const bytes = new TextEncoder().encode(stableStringify(value));
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const loadBaselineAnchor = async (
-  traceId: string,
-): Promise<ArchitectModeBaselineAnchor> => {
-  const { traceJson } = goldenTraceArtifactPaths(traceId);
-  const parsed = JSON.parse(
-    await Deno.readTextFile(traceJson),
-  ) as Record<string, unknown>;
-  return {
-    traceId,
-    scenario: String(parsed.scenario ?? traceId),
-    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
-    tickStart: Number(parsed.tick_start ?? -1),
-    tickEnd: Number(parsed.tick_end ?? -1),
-    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
-    invariantDigest: String(parsed.invariant_digest ?? "missing"),
-  };
-};
-
-const scriptForCase = (
-  definition: ArchitectPlasmidModeCaseDefinition,
-): Uint8Array => {
-  if (definition.scriptKind === "architect") return STATE_MATRIX.getArchitectScript();
-  if (definition.scriptKind === "guardian") return STATE_MATRIX.getGuardianScript();
-  return definition.script ? definition.script : new Uint8Array();
-};
-
-const runMode = (
-  definition: ArchitectPlasmidModeCaseDefinition,
-  mode: ArchitectPlasmidExecutionMode,
-): ArchitectModeResult => ({
-  mode,
-  decision: evaluateArchitectPlasmidExecution({
-    mode,
-    script: scriptForCase(definition),
-    neuralCoherence: definition.neuralCoherence,
-    legacyAllowed: definition.legacyAllowed,
-  }),
-});
-
-const compareResults = (
-  definition: ArchitectPlasmidModeCaseDefinition,
-  results: ArchitectModeResult[],
-): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = [];
-  for (const result of results) {
-    const expected = definition.expected[result.mode];
-    if (result.decision.allowed !== expected.allowed) {
-      reasons.push(
-        `${result.mode} allowed mismatch expected=${expected.allowed} actual=${result.decision.allowed}`,
-      );
-    }
-    if (result.decision.status !== expected.status) {
-      reasons.push(
-        `${result.mode} status mismatch expected=${expected.status} actual=${result.decision.status}`,
-      );
-    }
-    if (result.decision.branch !== expected.branch) {
-      reasons.push(
-        `${result.mode} branch mismatch expected=${expected.branch} actual=${result.decision.branch}`,
-      );
-    }
-    if (result.decision.shadowSuppressed !== expected.shadowSuppressed) {
-      reasons.push(
-        `${result.mode} shadowSuppressed mismatch expected=${expected.shadowSuppressed} actual=${result.decision.shadowSuppressed}`,
-      );
-    }
-    if (result.decision.hybridSuppressed !== expected.hybridSuppressed) {
-      reasons.push(
-        `${result.mode} hybridSuppressed mismatch expected=${expected.hybridSuppressed} actual=${result.decision.hybridSuppressed}`,
-      );
-    }
-  }
-  return { ok: reasons.length === 0, reasons };
-};
-
-const artifactPathForCase = (caseId: string): string =>
-  `${HYBRID_DIFF_ROOT}/${caseId}.json`;
-
-const artifactFromResult = async (
-  result: ArchitectPlasmidModeHarnessResult,
-): Promise<ArchitectPlasmidModeHarnessArtifact> => {
-  const legacy = result.results.find((entry) => entry.mode === "legacy-execute");
-  const shadow = result.results.find((entry) => entry.mode === "shadow-reduce");
-  const hybrid = result.results.find((entry) => entry.mode === "hybrid-reduce");
-  if (!legacy || !shadow || !hybrid) {
-    throw new Error(
-      `[architect_plasmid_mode_harness] incomplete mode coverage for case=${result.caseId}`,
-    );
-  }
-  return {
-    case_id: result.caseId,
-    baseline_trace_id: result.baseline.traceId,
-    baseline_runtime_mode: result.baseline.runtimeMode,
-    parity_ok: result.parity.ok,
-    parity_reasons: result.parity.reasons,
-    legacy_digest: await sha256Hex(legacy.decision),
-    shadow_digest: await sha256Hex(shadow.decision),
-    hybrid_digest: await sha256Hex(hybrid.decision),
-    diffs: {
-      shadow_preserves_legacy: shadow.decision.allowed === legacy.decision.allowed,
-      hybrid_narrows_legacy:
-        hybrid.decision.allowed === legacy.decision.allowed ||
-        (legacy.decision.allowed && !hybrid.decision.allowed),
-      fallback_replays_legacy:
-        (shadow.decision.status === "fallback"
-          ? shadow.decision.allowed === legacy.decision.allowed
-          : true) &&
-        (hybrid.decision.status === "fallback"
-          ? hybrid.decision.allowed === legacy.decision.allowed
-          : true),
-    },
-    expectation_summary: architectPlasmidModeCaseById(result.caseId)!.expected,
-  };
-};
-
-export const runArchitectPlasmidModeCase = async (
-  caseId: string,
-): Promise<ArchitectPlasmidModeHarnessResult> => {
-  const definition = architectPlasmidModeCaseById(caseId);
-  if (!definition) {
-    throw new Error(
-      `[architect_plasmid_mode_harness] unknown case id: ${caseId}`,
-    );
-  }
-  const baseline = await loadBaselineAnchor(definition.baselineTraceId);
-  const results: ArchitectModeResult[] = [
-    runMode(definition, "legacy-execute"),
-    runMode(definition, "shadow-reduce"),
-    runMode(definition, "hybrid-reduce"),
-  ];
-  return {
-    caseId,
-    baseline,
-    results,
-    parity: compareResults(definition, results),
-  };
-};
-
-export const runArchitectPlasmidModeHarness = async (): Promise<
-  ArchitectPlasmidModeHarnessResult[]
-> => {
-  const results: ArchitectPlasmidModeHarnessResult[] = [];
-  for (const definition of ARCHITECT_PLASMID_MODE_CASES) {
-    results.push(await runArchitectPlasmidModeCase(definition.id));
-  }
-  return results;
-};
-
-export const persistArchitectPlasmidModeHarnessArtifacts = async (
-  results: readonly ArchitectPlasmidModeHarnessResult[],
-): Promise<string[]> => {
-  await Deno.mkdir(HYBRID_DIFF_ROOT, { recursive: true });
-  const written: string[] = [];
-  for (const result of results) {
-    const artifact = await artifactFromResult(result);
-    const path = artifactPathForCase(result.caseId);
-    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2) + "\n");
-    written.push(path);
-  }
-  return written;
-};
-
-if (import.meta.main) {
-  const results = await runArchitectPlasmidModeHarness();
-  const failed = results.filter((result) => !result.parity.ok);
-  if (failed.length > 0) {
-    console.error("[architect_plasmid_mode_harness] parity failure.");
-    for (const result of failed) {
-      console.error(` - ${result.caseId}`);
-      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
-    }
-    Deno.exit(1);
-  }
-  const written = await persistArchitectPlasmidModeHarnessArtifacts(results);
-  console.log(
-    `[architect_plasmid_mode_harness] capture complete. cases=${results.length} artifacts=${written.length}`,
-  );
-}
-
-```
-
----
-
-## FILE: verification/collective_banking_capture.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_BANKING_CAPTURE__";
-
-const OP_COLLECTIVE = 0xA6;
-const CELL_X = 105;
-const CELL_Y = 105;
-const INITIAL_HIVE_BALANCE = 250;
-const DEPOSIT_VALUE = 80;
-const WITHDRAW_CAP = 100;
-
-type AtomSnapshot = {
-  idx: number;
-  energy: number;
-  pc: number;
-  role: number;
-  reg0: number;
-};
-
-type Snapshot = {
-  initialHiveBalance: number;
-  finalHiveBalance: number;
-  depositValueRaw: number;
-  withdrawCapRaw: number;
-  atoms: AtomSnapshot[];
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((b) =>
-    b.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const collectiveScript = (
-  mode: number,
-  p2: number,
-  p3: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_COLLECTIVE;
-  script[1] = mode & 0xFF;
-  script[2] = p2 & 0xFF;
-  script[3] = p3 & 0xFF;
-  return script;
-};
-
-const buildSnapshot = (): Snapshot => ({
-  initialHiveBalance: INITIAL_HIVE_BALANCE,
-  finalHiveBalance: STATE_MATRIX.getHiveBalance(),
-  depositValueRaw: DEPOSIT_VALUE,
-  withdrawCapRaw: WITHDRAW_CAP,
-  atoms: [0, 1].map((idx) => ({
-    idx,
-    energy: STATE_MATRIX.getEnergy(idx),
-    pc: STATE_MATRIX.getPC(idx),
-    role: STATE_MATRIX.getRole(idx),
-    reg0: STATE_MATRIX.getReg(idx, 0),
-  })),
-});
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-  STATE_MATRIX.setHiveBalance(INITIAL_HIVE_BALANCE);
-
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _p1: number,
-    _p2: number,
-    _p3: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-
-  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
-  const readXs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_XS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readYs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_YS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readEnergies = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readResonances = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const xs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.XS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const ys = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.YS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const energies = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const resonances = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.RESONANCE_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    CELL_X,
-    CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(3, DEPOSIT_VALUE, 0),
-  );
-  STATE_MATRIX.seedAtom(
-    1,
-    2n,
-    CELL_X,
-    CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(4, 0, 0),
-  );
-
-  readXs.set(xs);
-  readYs.set(ys);
-  readEnergies.set(energies);
-  readResonances.set(resonances);
-
-  execute_atom(0);
-  execute_atom(1);
-
-  const snapshot = buildSnapshot();
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  const depositor = payload.snapshot.atoms[0];
-  const withdrawer = payload.snapshot.atoms[1];
-  if (payload.snapshot.finalHiveBalance !== 230) {
-    throw new Error(
-      `[collective_banking_capture] finalHiveBalance mismatch: ${payload.snapshot.finalHiveBalance}`,
-    );
-  }
-  if (Math.abs((depositor?.energy ?? 0) - 4999.92) > 0.0011) {
-    throw new Error(
-      `[collective_banking_capture] depositor energy mismatch: ${depositor?.energy ?? -1}`,
-    );
-  }
-  if (Math.abs((withdrawer?.energy ?? 0) - 5000.1) > 0.0011) {
-    throw new Error(
-      `[collective_banking_capture] withdrawer energy mismatch: ${withdrawer?.energy ?? -1}`,
-    );
-  }
-  if ((withdrawer?.reg0 ?? -1) !== WITHDRAW_CAP) {
-    throw new Error(
-      `[collective_banking_capture] withdraw reg0 mismatch: ${withdrawer?.reg0 ?? -1}`,
-    );
-  }
-  console.log(
-    `[collective_banking_capture] ok hash=${payload.hash} hive=${payload.snapshot.finalHiveBalance} deposit_energy=${depositor?.energy ?? -1} withdraw_energy=${withdrawer?.energy ?? -1} reg0=${withdrawer?.reg0 ?? -1}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/collective_synchrony_capture.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
-const OP_COLLECTIVE = 0xA6;
-const GRID_W = 140;
-const PHASE_CELL_X = 105;
-const PHASE_CELL_Y = 105;
-const QUORUM_CELL_X = 205;
-const QUORUM_CELL_Y = 105;
-const OUTSIDER_CELL_X = 405;
-const OUTSIDER_CELL_Y = 105;
-
-type PhaseLockSnapshot = {
-  sourcePc: number;
-  peer1Pc: number;
-  peer2Pc: number;
-  peer1InitialPc: number;
-  peer2InitialPc: number;
-};
-
-type QuorumSnapshot = {
-  sourcePc: number;
-  peer1Pc: number;
-  peer2Pc: number;
-  outsiderPc: number;
-  peer1InitialPc: number;
-  peer2InitialPc: number;
-  outsiderInitialPc: number;
-  cellIdx: number;
-  cellCount: number;
-};
-
-type Snapshot = {
-  phaseLock: PhaseLockSnapshot;
-  quorum: QuorumSnapshot;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((b) =>
-    b.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const collectiveScript = (mode: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_COLLECTIVE;
-  script[1] = mode & 0xFF;
-  script[2] = 0;
-  script[3] = 0;
-  return script;
-};
-
-const setSpatialCell = (cellIdx: number, atoms: number[]): void => {
-  const spatialGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.SPATIAL_GRID_OFFSET,
-    140 * 80 * 32,
-  );
-  const base = cellIdx * 32;
-  spatialGrid.fill(0, base, base + 32);
-  spatialGrid[base] = atoms.length;
-  for (let i = 0; i < atoms.length && i < 31; i++) {
-    spatialGrid[base + 1 + i] = atoms[i]!;
-  }
-};
-
-const runPhaseLockCapture = (
-  execute_atom: (idx: number) => void,
-): PhaseLockSnapshot => {
-  STATE_MATRIX.clear();
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    PHASE_CELL_X,
-    PHASE_CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(5),
-  );
-  STATE_MATRIX.seedAtom(
-    1,
-    2n,
-    PHASE_CELL_X,
-    PHASE_CELL_Y,
-    5000,
-    100,
-    undefined,
-    new Uint8Array(64),
-  );
-  STATE_MATRIX.seedAtom(
-    2,
-    3n,
-    PHASE_CELL_X,
-    PHASE_CELL_Y,
-    5000,
-    100,
-    undefined,
-    new Uint8Array(64),
-  );
-
-  STATE_MATRIX.setPC(1, 9);
-  STATE_MATRIX.setPC(2, 10);
-  STATE_MATRIX.setBondTarget(0, 0, 1);
-  STATE_MATRIX.setBondTarget(0, 1, 2);
-
-  execute_atom(0);
-
-  return {
-    sourcePc: STATE_MATRIX.getPC(0),
-    peer1Pc: STATE_MATRIX.getPC(1),
-    peer2Pc: STATE_MATRIX.getPC(2),
-    peer1InitialPc: 9,
-    peer2InitialPc: 10,
-  };
-};
-
-const runQuorumCapture = (
-  execute_atom: (idx: number) => void,
-): QuorumSnapshot => {
-  STATE_MATRIX.clear();
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    QUORUM_CELL_X,
-    QUORUM_CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(6),
-  );
-  STATE_MATRIX.seedAtom(
-    1,
-    2n,
-    QUORUM_CELL_X,
-    QUORUM_CELL_Y,
-    5000,
-    100,
-    undefined,
-    new Uint8Array(64),
-  );
-  STATE_MATRIX.seedAtom(
-    2,
-    3n,
-    QUORUM_CELL_X,
-    QUORUM_CELL_Y,
-    5000,
-    100,
-    undefined,
-    new Uint8Array(64),
-  );
-  STATE_MATRIX.seedAtom(
-    3,
-    4n,
-    OUTSIDER_CELL_X,
-    OUTSIDER_CELL_Y,
-    5000,
-    100,
-    undefined,
-    new Uint8Array(64),
-  );
-
-  STATE_MATRIX.setPC(1, 7);
-  STATE_MATRIX.setPC(2, 8);
-  STATE_MATRIX.setPC(3, 13);
-
-  const gx = Math.floor(QUORUM_CELL_X / 10);
-  const gy = Math.floor(QUORUM_CELL_Y / 10);
-  const cellIdx = gy * GRID_W + gx;
-  setSpatialCell(cellIdx, [0, 1, 2]);
-
-  execute_atom(0);
-
-  return {
-    sourcePc: STATE_MATRIX.getPC(0),
-    peer1Pc: STATE_MATRIX.getPC(1),
-    peer2Pc: STATE_MATRIX.getPC(2),
-    outsiderPc: STATE_MATRIX.getPC(3),
-    peer1InitialPc: 7,
-    peer2InitialPc: 8,
-    outsiderInitialPc: 13,
-    cellIdx,
-    cellCount: 3,
-  };
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _p1: number,
-    _p2: number,
-    _p3: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-
-  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
-
-  const snapshot: Snapshot = {
-    phaseLock: runPhaseLockCapture(execute_atom),
-    quorum: runQuorumCapture(execute_atom),
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  if (payload.snapshot.phaseLock.sourcePc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] phase source pc mismatch: ${payload.snapshot.phaseLock.sourcePc}`,
-    );
-  }
-  if (payload.snapshot.phaseLock.peer1Pc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] phase peer1 pc mismatch: ${payload.snapshot.phaseLock.peer1Pc}`,
-    );
-  }
-  if (payload.snapshot.phaseLock.peer2Pc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] phase peer2 pc mismatch: ${payload.snapshot.phaseLock.peer2Pc}`,
-    );
-  }
-  if (payload.snapshot.quorum.sourcePc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] quorum source pc mismatch: ${payload.snapshot.quorum.sourcePc}`,
-    );
-  }
-  if (payload.snapshot.quorum.peer1Pc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] quorum peer1 pc mismatch: ${payload.snapshot.quorum.peer1Pc}`,
-    );
-  }
-  if (payload.snapshot.quorum.peer2Pc !== 4) {
-    throw new Error(
-      `[collective_synchrony_capture] quorum peer2 pc mismatch: ${payload.snapshot.quorum.peer2Pc}`,
-    );
-  }
-  if (payload.snapshot.quorum.outsiderPc !== 13) {
-    throw new Error(
-      `[collective_synchrony_capture] quorum outsider pc mismatch: ${payload.snapshot.quorum.outsiderPc}`,
-    );
-  }
-  console.log(
-    `[collective_synchrony_capture] ok hash=${payload.hash} phase=[${payload.snapshot.phaseLock.peer1Pc},${payload.snapshot.phaseLock.peer2Pc}] quorum=[${payload.snapshot.quorum.peer1Pc},${payload.snapshot.quorum.peer2Pc}] outsider=${payload.snapshot.quorum.outsiderPc}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/collective_transport_capture.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
-
-const OP_COLLECTIVE = 0xA6;
-const GRID_W = 140;
-const CELL_X = 105;
-const CELL_Y = 105;
-const HIVE_ADDR = 1;
-const HIVE_VALUE = 88;
-const SIGNAL_INTENSITY = 200;
-const SIGNAL_TYPE = 5;
-
-type AtomSnapshot = {
-  idx: number;
-  energy: number;
-  pc: number;
-  role: number;
-  reg0: number;
-};
-
-type Snapshot = {
-  hiveValue: number;
-  hiveBalance: number;
-  pheromoneWord: number;
-  pheromoneCellIdx: number;
-  pheromoneX: number;
-  pheromoneY: number;
-  atoms: AtomSnapshot[];
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((b) =>
-    b.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const collectiveScript = (
-  mode: number,
-  p2: number,
-  p3: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_COLLECTIVE;
-  script[1] = mode & 0xFF;
-  script[2] = p2 & 0xFF;
-  script[3] = p3 & 0xFF;
-  return script;
-};
-
-const buildSnapshot = (): Snapshot => {
-  const gx = Math.floor(CELL_X / 10);
-  const gy = Math.floor(CELL_Y / 10);
-  const cellIdx = gy * GRID_W + gx;
-  const signalGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80,
-  );
-
-  return {
-    hiveValue: STATE_MATRIX.getHiveMemory(HIVE_ADDR),
-    hiveBalance: STATE_MATRIX.getHiveBalance(),
-    pheromoneWord: signalGrid[cellIdx] ?? 0,
-    pheromoneCellIdx: cellIdx,
-    pheromoneX: CELL_X,
-    pheromoneY: CELL_Y,
-    atoms: [0, 1, 2].map((idx) => ({
-      idx,
-      energy: STATE_MATRIX.getEnergy(idx),
-      pc: STATE_MATRIX.getPC(idx),
-      role: STATE_MATRIX.getRole(idx),
-      reg0: STATE_MATRIX.getReg(idx, 0),
-    })),
-  };
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-  STATE_MATRIX.setHiveBalance(1000);
-
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _p1: number,
-    _p2: number,
-    _p3: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-
-  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    CELL_X,
-    CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(0, HIVE_ADDR, HIVE_VALUE),
-  );
-  STATE_MATRIX.seedAtom(
-    1,
-    2n,
-    CELL_X,
-    CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(1, HIVE_ADDR, 0),
-  );
-  STATE_MATRIX.seedAtom(
-    2,
-    3n,
-    CELL_X,
-    CELL_Y,
-    5000,
-    100,
-    undefined,
-    collectiveScript(2, SIGNAL_INTENSITY, SIGNAL_TYPE),
-  );
-
-  execute_atom(0);
-  execute_atom(1);
-  execute_atom(2);
-
-  const snapshot = buildSnapshot();
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  const expectedWord = (SIGNAL_INTENSITY << 8) | SIGNAL_TYPE;
-  if (payload.snapshot.hiveValue !== HIVE_VALUE) {
-    throw new Error(
-      `[collective_transport_capture] hiveValue mismatch: ${payload.snapshot.hiveValue}`,
-    );
-  }
-  if (payload.snapshot.atoms[1]?.reg0 !== HIVE_VALUE) {
-    throw new Error(
-      `[collective_transport_capture] load reg0 mismatch: ${payload.snapshot.atoms[1]?.reg0 ?? -1}`,
-    );
-  }
-  if ((payload.snapshot.pheromoneWord & 0xFFFF) !== expectedWord) {
-    throw new Error(
-      `[collective_transport_capture] pheromone mismatch: ${payload.snapshot.pheromoneWord}`,
-    );
-  }
-  console.log(
-    `[collective_transport_capture] ok hash=${payload.hash} hive=${payload.snapshot.hiveValue} reg0=${
-      payload.snapshot.atoms[1]?.reg0 ?? -1
-    } pheromone=0x${payload.snapshot.pheromoneWord.toString(16)}`,
-  );
-};
-
-await main();
-
-```
-
----
-
 ## FILE: verification/golden_trace_capture.ts
 
 ```typescript
@@ -45259,3142 +43307,6 @@ export const goldenTraceArtifactPaths = (id: string) => {
 
 ---
 
-## FILE: verification/guardian_signal_mode_cases.ts
-
-```typescript
-import {
-  type GuardianSignalExecutionMode,
-} from "../runtime_bridge/guardian_signal_hybrid.ts";
-
-export type GuardianSignalModeCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  neuralCoherence: number;
-  legacyAllowed: boolean;
-  useGuardianScript: boolean;
-  script?: Uint8Array;
-  expected: Record<
-    GuardianSignalExecutionMode,
-    {
-      allowed: boolean;
-      status: "legacy" | "shadow" | "hybrid" | "fallback";
-      branch: "stable" | "repair" | "unknown";
-      shadowSuppressed: boolean;
-      hybridSuppressed: boolean;
-    }
-  >;
-};
-
-export const GUARDIAN_SIGNAL_MODE_CASES: readonly GuardianSignalModeCaseDefinition[] =
-  Object.freeze([
-    {
-      id: "gh01_gt03_guardian_stable_modes",
-      baselineTraceId: "gt03_pheromone_inject",
-      description:
-        "Stable guardian signaling should preserve legacy behavior across all three execution modes.",
-      neuralCoherence: 200,
-      legacyAllowed: true,
-      useGuardianScript: true,
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "shadow",
-          branch: "stable",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: true,
-          status: "hybrid",
-          branch: "stable",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-      },
-    },
-    {
-      id: "gh02_gt03_guardian_repair_modes",
-      baselineTraceId: "gt03_pheromone_inject",
-      description:
-        "Repair-branch guardians should preserve legacy behavior in shadow mode but be suppressed in hybrid mode.",
-      neuralCoherence: 0,
-      legacyAllowed: true,
-      useGuardianScript: true,
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "shadow",
-          branch: "repair",
-          shadowSuppressed: true,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: false,
-          status: "hybrid",
-          branch: "repair",
-          shadowSuppressed: false,
-          hybridSuppressed: true,
-        },
-      },
-    },
-    {
-      id: "gh03_gt03_guardian_fallback_modes",
-      baselineTraceId: "gt03_pheromone_inject",
-      description:
-        "Unsupported guardian scripts must fall back to legacy behavior in shadow and hybrid modes.",
-      neuralCoherence: 200,
-      legacyAllowed: true,
-      useGuardianScript: false,
-      script: new Uint8Array([0xFF, 0, 0]),
-      expected: {
-        "legacy-execute": {
-          allowed: true,
-          status: "legacy",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "shadow-reduce": {
-          allowed: true,
-          status: "fallback",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-        "hybrid-reduce": {
-          allowed: true,
-          status: "fallback",
-          branch: "unknown",
-          shadowSuppressed: false,
-          hybridSuppressed: false,
-        },
-      },
-    },
-  ]);
-
-const CASE_BY_ID = new Map(
-  GUARDIAN_SIGNAL_MODE_CASES.map((definition) => [definition.id, definition]),
-);
-
-export const guardianSignalModeCaseById = (
-  id: string,
-): GuardianSignalModeCaseDefinition | null => CASE_BY_ID.get(id) ?? null;
-
-```
-
----
-
-## FILE: verification/guardian_signal_mode_harness.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import {
-  evaluateGuardianSignalExecution,
-  type GuardianSignalExecutionDecision,
-  type GuardianSignalExecutionMode,
-} from "../runtime_bridge/guardian_signal_hybrid.ts";
-import {
-  GUARDIAN_SIGNAL_MODE_CASES,
-  guardianSignalModeCaseById,
-  type GuardianSignalModeCaseDefinition,
-} from "./guardian_signal_mode_cases.ts";
-import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-
-const HYBRID_DIFF_ROOT = "verification/hybrid_mode_diffs";
-
-type GuardianModeResult = {
-  mode: GuardianSignalExecutionMode;
-  decision: GuardianSignalExecutionDecision;
-};
-
-type GuardianModeBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  tickStart: number;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-};
-
-export type GuardianSignalModeHarnessResult = {
-  caseId: string;
-  baseline: GuardianModeBaselineAnchor;
-  results: GuardianModeResult[];
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type GuardianSignalModeHarnessArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_runtime_mode: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  legacy_digest: string;
-  shadow_digest: string;
-  hybrid_digest: string;
-  diffs: {
-    shadow_preserves_legacy: boolean;
-    hybrid_narrows_legacy: boolean;
-    fallback_replays_legacy: boolean;
-  };
-  expectation_summary: GuardianSignalModeCaseDefinition["expected"];
-};
-
-const stableStringify = (value: unknown): string => {
-  if (value === null || typeof value !== "object") {
-    return JSON.stringify(value);
-  }
-  if (Array.isArray(value)) {
-    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
-  }
-  const entries = Object.entries(value as Record<string, unknown>).sort((
-    [a],
-    [b],
-  ) => a.localeCompare(b));
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
-};
-
-const sha256Hex = async (value: unknown): Promise<string> => {
-  const bytes = new TextEncoder().encode(stableStringify(value));
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const loadBaselineAnchor = async (
-  traceId: string,
-): Promise<GuardianModeBaselineAnchor> => {
-  const { traceJson } = goldenTraceArtifactPaths(traceId);
-  const parsed = JSON.parse(
-    await Deno.readTextFile(traceJson),
-  ) as Record<string, unknown>;
-  return {
-    traceId,
-    scenario: String(parsed.scenario ?? traceId),
-    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
-    tickStart: Number(parsed.tick_start ?? -1),
-    tickEnd: Number(parsed.tick_end ?? -1),
-    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
-    invariantDigest: String(parsed.invariant_digest ?? "missing"),
-  };
-};
-
-const scriptForCase = (definition: GuardianSignalModeCaseDefinition): Uint8Array =>
-  definition.useGuardianScript
-    ? STATE_MATRIX.getGuardianScript()
-    : (definition.script ? definition.script : new Uint8Array());
-
-const runMode = (
-  definition: GuardianSignalModeCaseDefinition,
-  mode: GuardianSignalExecutionMode,
-): GuardianModeResult => ({
-  mode,
-  decision: evaluateGuardianSignalExecution({
-    mode,
-    script: scriptForCase(definition),
-    neuralCoherence: definition.neuralCoherence,
-    legacyAllowed: definition.legacyAllowed,
-  }),
-});
-
-const compareResults = (
-  definition: GuardianSignalModeCaseDefinition,
-  results: GuardianModeResult[],
-): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = [];
-  for (const result of results) {
-    const expected = definition.expected[result.mode];
-    if (result.decision.allowed !== expected.allowed) {
-      reasons.push(
-        `${result.mode} allowed mismatch expected=${expected.allowed} actual=${result.decision.allowed}`,
-      );
-    }
-    if (result.decision.status !== expected.status) {
-      reasons.push(
-        `${result.mode} status mismatch expected=${expected.status} actual=${result.decision.status}`,
-      );
-    }
-    if (result.decision.branch !== expected.branch) {
-      reasons.push(
-        `${result.mode} branch mismatch expected=${expected.branch} actual=${result.decision.branch}`,
-      );
-    }
-    if (result.decision.shadowSuppressed !== expected.shadowSuppressed) {
-      reasons.push(
-        `${result.mode} shadowSuppressed mismatch expected=${expected.shadowSuppressed} actual=${result.decision.shadowSuppressed}`,
-      );
-    }
-    if (result.decision.hybridSuppressed !== expected.hybridSuppressed) {
-      reasons.push(
-        `${result.mode} hybridSuppressed mismatch expected=${expected.hybridSuppressed} actual=${result.decision.hybridSuppressed}`,
-      );
-    }
-  }
-  return { ok: reasons.length === 0, reasons };
-};
-
-const artifactPathForCase = (caseId: string): string =>
-  `${HYBRID_DIFF_ROOT}/${caseId}.json`;
-
-const artifactFromResult = async (
-  result: GuardianSignalModeHarnessResult,
-): Promise<GuardianSignalModeHarnessArtifact> => {
-  const legacy = result.results.find((entry) => entry.mode === "legacy-execute");
-  const shadow = result.results.find((entry) => entry.mode === "shadow-reduce");
-  const hybrid = result.results.find((entry) => entry.mode === "hybrid-reduce");
-  if (!legacy || !shadow || !hybrid) {
-    throw new Error(
-      `[guardian_signal_mode_harness] incomplete mode coverage for case=${result.caseId}`,
-    );
-  }
-  return {
-    case_id: result.caseId,
-    baseline_trace_id: result.baseline.traceId,
-    baseline_runtime_mode: result.baseline.runtimeMode,
-    parity_ok: result.parity.ok,
-    parity_reasons: result.parity.reasons,
-    legacy_digest: await sha256Hex(legacy.decision),
-    shadow_digest: await sha256Hex(shadow.decision),
-    hybrid_digest: await sha256Hex(hybrid.decision),
-    diffs: {
-      shadow_preserves_legacy: shadow.decision.allowed === legacy.decision.allowed,
-      hybrid_narrows_legacy:
-        hybrid.decision.allowed === legacy.decision.allowed ||
-        (legacy.decision.allowed && !hybrid.decision.allowed),
-      fallback_replays_legacy:
-        (shadow.decision.status === "fallback"
-          ? shadow.decision.allowed === legacy.decision.allowed
-          : true) &&
-        (hybrid.decision.status === "fallback"
-          ? hybrid.decision.allowed === legacy.decision.allowed
-          : true),
-    },
-    expectation_summary: result.results.reduce((acc, entry) => {
-      acc[entry.mode] = result.results.find((candidate) =>
-          candidate.mode === entry.mode
-        )
-        ? guardianSignalModeCaseById(result.caseId)!.expected[entry.mode]
-        : acc[entry.mode];
-      return acc;
-    }, {} as GuardianSignalModeCaseDefinition["expected"]),
-  };
-};
-
-export const runGuardianSignalModeCase = async (
-  caseId: string,
-): Promise<GuardianSignalModeHarnessResult> => {
-  const definition = guardianSignalModeCaseById(caseId);
-  if (!definition) {
-    throw new Error(
-      `[guardian_signal_mode_harness] unknown case id: ${caseId}`,
-    );
-  }
-  const baseline = await loadBaselineAnchor(definition.baselineTraceId);
-  const results: GuardianModeResult[] = [
-    runMode(definition, "legacy-execute"),
-    runMode(definition, "shadow-reduce"),
-    runMode(definition, "hybrid-reduce"),
-  ];
-  return {
-    caseId,
-    baseline,
-    results,
-    parity: compareResults(definition, results),
-  };
-};
-
-export const runGuardianSignalModeHarness = async (): Promise<
-  GuardianSignalModeHarnessResult[]
-> => {
-  const results: GuardianSignalModeHarnessResult[] = [];
-  for (const definition of GUARDIAN_SIGNAL_MODE_CASES) {
-    results.push(await runGuardianSignalModeCase(definition.id));
-  }
-  return results;
-};
-
-export const persistGuardianSignalModeHarnessArtifacts = async (
-  results: readonly GuardianSignalModeHarnessResult[],
-): Promise<string[]> => {
-  await Deno.mkdir(HYBRID_DIFF_ROOT, { recursive: true });
-  const written: string[] = [];
-  for (const result of results) {
-    const artifact = await artifactFromResult(result);
-    const path = artifactPathForCase(result.caseId);
-    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2) + "\n");
-    written.push(path);
-  }
-  return written;
-};
-
-if (import.meta.main) {
-  const results = await runGuardianSignalModeHarness();
-  const failed = results.filter((result) => !result.parity.ok);
-  if (failed.length > 0) {
-    console.error("[guardian_signal_mode_harness] parity failure.");
-    for (const result of failed) {
-      console.error(` - ${result.caseId}`);
-      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
-    }
-    Deno.exit(1);
-  }
-  const written = await persistGuardianSignalModeHarnessArtifacts(results);
-  console.log(
-    `[guardian_signal_mode_harness] capture complete. cases=${results.length} artifacts=${written.length}`,
-  );
-}
-
-```
-
----
-
-## FILE: verification/hybrid_mode_diffs/gh01_gt03_guardian_stable_modes.json
-
-```json
-{
-  "case_id": "gh01_gt03_guardian_stable_modes",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "906f3ad67c865950158e43dfce9612b2b3b871a54ad3296d97c0b912bcd3ecc6",
-  "shadow_digest": "4cbfac653e84696b32fb1824ee65ce4c27fa4b3329c245498f27a72cd4bcf520",
-  "hybrid_digest": "c6122454d757d17e3026193c44e86f40785920b34d5893d57f7276a4ea7777e1",
-  "diffs": {
-    "shadow_preserves_legacy": true,
-    "hybrid_narrows_legacy": true,
-    "fallback_replays_legacy": true
-  },
-  "expectation_summary": {
-    "legacy-execute": {
-      "allowed": true,
-      "status": "legacy",
-      "branch": "unknown",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    },
-    "shadow-reduce": {
-      "allowed": true,
-      "status": "shadow",
-      "branch": "stable",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    },
-    "hybrid-reduce": {
-      "allowed": true,
-      "status": "hybrid",
-      "branch": "stable",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    }
-  }
-}
-
-```
-
----
-
-## FILE: verification/hybrid_mode_diffs/gh02_gt03_guardian_repair_modes.json
-
-```json
-{
-  "case_id": "gh02_gt03_guardian_repair_modes",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "906f3ad67c865950158e43dfce9612b2b3b871a54ad3296d97c0b912bcd3ecc6",
-  "shadow_digest": "35df1ec06bdccabe9699d40aaccab6bb8424be8afb46d907f559214152e6fba5",
-  "hybrid_digest": "1f08b2d2f88a4f09d8d814b32e9a3f0e747d11e5f566f72641d509db012c507f",
-  "diffs": {
-    "shadow_preserves_legacy": true,
-    "hybrid_narrows_legacy": true,
-    "fallback_replays_legacy": true
-  },
-  "expectation_summary": {
-    "legacy-execute": {
-      "allowed": true,
-      "status": "legacy",
-      "branch": "unknown",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    },
-    "shadow-reduce": {
-      "allowed": true,
-      "status": "shadow",
-      "branch": "repair",
-      "shadowSuppressed": true,
-      "hybridSuppressed": false
-    },
-    "hybrid-reduce": {
-      "allowed": false,
-      "status": "hybrid",
-      "branch": "repair",
-      "shadowSuppressed": false,
-      "hybridSuppressed": true
-    }
-  }
-}
-
-```
-
----
-
-## FILE: verification/hybrid_mode_diffs/gh03_gt03_guardian_fallback_modes.json
-
-```json
-{
-  "case_id": "gh03_gt03_guardian_fallback_modes",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "906f3ad67c865950158e43dfce9612b2b3b871a54ad3296d97c0b912bcd3ecc6",
-  "shadow_digest": "982d16ee928feb06adb8cd06046e1a96d3568ee41db4feb5bf004cb60d520a1d",
-  "hybrid_digest": "f1c27af54ecf224965027146fd24f41a5d90e5611e859a466191baa977f93f89",
-  "diffs": {
-    "shadow_preserves_legacy": true,
-    "hybrid_narrows_legacy": true,
-    "fallback_replays_legacy": true
-  },
-  "expectation_summary": {
-    "legacy-execute": {
-      "allowed": true,
-      "status": "legacy",
-      "branch": "unknown",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    },
-    "shadow-reduce": {
-      "allowed": true,
-      "status": "fallback",
-      "branch": "unknown",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    },
-    "hybrid-reduce": {
-      "allowed": true,
-      "status": "fallback",
-      "branch": "unknown",
-      "shadowSuppressed": false,
-      "hybridSuppressed": false
-    }
-  }
-}
-
-```
-
----
-
-## FILE: verification/reduction_cases.ts
-
-```typescript
-import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-
-export type ReductionCaseExpectation = {
-  finalPc: number;
-  replicateCount?: number;
-  signalCount?: number;
-  buildCount?: number;
-  finalRole?: number;
-  registers?: number[];
-  finalProps?: Partial<Record<number, number>>;
-  finalHiveMemory?: Partial<Record<number, number>>;
-  finalHiveBalance?: number;
-  finalSignalGrid?: Partial<Record<number, number>>;
-
-  finalPeerEnergy?: Partial<Record<number, number>>;
-  finalPeerPc?: Partial<Record<number, number>>;
-  finalBondDistances?: Partial<Record<number, number>>;
-  finalDamping?: number;
-  finalStructureGrid?: Partial<Record<number, number>>;
-
-  branchTaken?: boolean;
-};
-
-export type ReductionCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  script: Uint8Array;
-  maxSteps: number;
-  ownerAtomIdx?: number;
-  postStructureTick?: boolean;
-
-  initialProps: Partial<Record<number, number>>;
-  initialBondTargets?: Partial<Record<number, number>>;
-  initialBondDistances?: Partial<Record<number, number>>;
-  initialDamping?: number;
-  initialPeerEnergy?: Partial<Record<number, number>>;
-  initialPeerPc?: Partial<Record<number, number>>;
-  initialCellPeers?: number[];
-  initialHiveBalance?: number;
-  initialStructureGrid?: Partial<Record<number, number>>;
-  initialStructureIntentOwner?: Partial<Record<number, number>>;
-  initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialStructureChargeIntent?: Partial<Record<number, number>>;
-  expected: ReductionCaseExpectation;
-};
-
-const GRID_W = 140;
-const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
-
-const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_GET;
-  script[pc++] = 0;
-  script[pc++] = RISC.PROP_ENERGY;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = targetEnergy & 0xFF;
-  script[pc++] = RISC.OP_SUB;
-  script[pc++] = 0;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_JNZ;
-  script[pc++] = 0;
-  script[pc++] = 15;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeReplicatorLoopScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_REPLICATE;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeArchitectLoopScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
-const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
-
-const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = resonanceValue & 0xFF;
-  script[pc++] = RISC.OP_PUT;
-  script[pc++] = 0;
-  script[pc++] = RISC.PROP_RESONANCE;
-  script[pc++] = RISC.OP_GET;
-  script[pc++] = 1;
-  script[pc++] = RISC.PROP_RESONANCE;
-  script[pc++] = RISC.OP_JZ;
-  script[pc++] = 1;
-  script[pc++] = 15;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeSenseIntentScript = (buildType: number, targetType: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = buildType & 0xFF;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SENSE;
-  script[pc++] = 1;
-  script[pc++] = targetType & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeBuildOnlyScript = (buildType: number, buildState: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = buildType & 0xFF;
-
-  script[pc++] = buildState & 0xFF;
-  return script;
-};
-
-const makeTensegrityScript = (slot: number, dist: number, damping: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_TENSEGRITY;
-  script[pc++] = 0;
-  script[pc++] = slot & 0xFF;
-  script[pc++] = dist & 0xFF;
-  script[pc++] = RISC.OP_TENSEGRITY;
-  script[pc++] = 1;
-  script[pc++] = damping & 0xFF;
-  script[pc++] = 0;
-  return script;
-};
-
-const makePlugChargeScript = (charge: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = charge & 0xFF;
-  script[pc++] = 0xA4;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
-
-const makePlugChargeCompetitionScript = (
-  firstCharge: number,
-  secondCharge: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = firstCharge & 0xFF;
-  script[pc++] = 0xA4;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = secondCharge & 0xFF;
-  script[pc++] = 0xA4;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeBuildSourceScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = STRUCTURE.SOURCE;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeBuildSourceWithStateScript = (state: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = STRUCTURE.SOURCE;
-  script[pc++] = state & 0xFF;
-  return script;
-};
-
-const makeSenseScript = (targetType: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SENSE;
-  script[pc++] = 1;
-  script[pc++] = targetType & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectiveHiveScript = (
-  addr: number,
-  value: number,
-  reg: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 0;
-  script[pc++] = addr & 0xFF;
-  script[pc++] = value & 0xFF;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 1;
-  script[pc++] = addr & 0xFF;
-  script[pc++] = reg & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectivePheromoneScript = (
-  intensity: number,
-  type: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 2;
-  script[pc++] = intensity & 0xFF;
-  script[pc++] = type & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectiveBankDepositScript = (
-  amount: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 3;
-  script[pc++] = amount & 0xFF;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectiveBankWithdrawScript = (
-  reg: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 4;
-  script[pc++] = reg & 0xFF;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectivePhaseLockScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 5;
-  script[pc++] = 0;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeCollectivePcSyncQuorumScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 6;
-  script[pc++] = 0;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeShareScript = (
-  slot: number,
-  percentage: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SHARE;
-  script[pc++] = slot & 0xFF;
-  script[pc++] = percentage & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const structureNeighborCell = (centerX: number, centerY: number): number => {
-  const gx = Math.floor(centerX / 10);
-  const gy = Math.floor(centerY / 10);
-  return (gy * GRID_W) + gx + 1;
-};
-
-export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze([
-  {
-    id: "rc01_gt01_replicator_loop",
-    baselineTraceId: "gt01_coldstart_seeded_swarm",
-    description:
-      "Seeded-swarm replicator loop shadowed through REPLICATE -> SIGNAL -> JMP bridge subset.",
-    script: makeReplicatorLoopScript(),
-    maxSteps: 6,
-    initialProps: {},
-    expected: {
-      finalPc: 0,
-      replicateCount: 2,
-      signalCount: 2,
-      buildCount: 0,
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc02_gt01_architect_loop",
-    baselineTraceId: "gt01_coldstart_seeded_swarm",
-    description:
-      "Seeded-swarm architect loop shadowed through ROLE -> BUILD -> SIGNAL -> JMP bridge subset.",
-    script: makeArchitectLoopScript(),
-    maxSteps: 8,
-    initialProps: {},
-    expected: {
-      finalPc: 0,
-      buildCount: 2,
-      signalCount: 2,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc03_gt03_guardian_stable_branch",
-    baselineTraceId: "gt03_pheromone_inject",
-    description:
-      "Guardian script on a coherent field should stay in the stable signaling branch.",
-    script: GUARDIAN_SCRIPT,
-    maxSteps: 7,
-    initialProps: {
-      [RISC.PROP_NEURAL_COHERENCE]: 200,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: STATE_MATRIX.ROLE_GUARDIAN,
-      registers: [200, 0, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc04_gt03_guardian_repair_branch",
-    baselineTraceId: "gt03_pheromone_inject",
-    description:
-      "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
-    script: GUARDIAN_SCRIPT,
-    maxSteps: 8,
-    initialProps: {
-      [RISC.PROP_NEURAL_COHERENCE]: 0,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      registers: [0, 200, 0, 0, 0, 0, 0, 0],
-      branchTaken: true,
-    },
-  },
-  {
-    id: "rc05_gt05_band_anchor_match",
-    baselineTraceId: "gt05_homeostasis_correction",
-    description:
-      "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
-    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
-    maxSteps: 6,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 240,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [0, 240, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc06_gt05_band_anchor_mismatch",
-    baselineTraceId: "gt05_homeostasis_correction",
-    description:
-      "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
-    script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
-    maxSteps: 8,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 1200,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      registers: [960, 240, 0, 0, 0, 0, 0, 0],
-      branchTaken: true,
-    },
-  },
-  {
-    id: "rc07_gt04_plasmid_prop_write_signal",
-    baselineTraceId: "gt04_plasmid_inject",
-    description:
-      "Durable symbolic ingress should preserve a property write through PUT and stay on the signaling branch when the written resonance value is non-zero.",
-    script: makePlasmidPropWriteScript(5),
-    maxSteps: 6,
-    initialProps: {
-      [RISC.PROP_RESONANCE]: 0,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [5, 5, 0, 0, 0, 0, 0, 0],
-      finalProps: {
-        [RISC.PROP_RESONANCE]: 5,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc08_gt04_plasmid_zero_branch",
-    baselineTraceId: "gt04_plasmid_inject",
-    description:
-      "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
-    script: makePlasmidPropWriteScript(0),
-    maxSteps: 8,
-    initialProps: {
-      [RISC.PROP_RESONANCE]: 255,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      registers: [0, 0, 0, 0, 0, 0, 0, 0],
-      finalProps: {
-        [RISC.PROP_RESONANCE]: 0,
-      },
-      branchTaken: true,
-    },
-  },
-  {
-    id: "rc09_gt08_structure_intent_visible",
-    baselineTraceId: "gt08_structure_intent_visibility",
-    description:
-      "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
-    script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.NODE),
-    maxSteps: 5,
-    initialProps: {
-      [RISC.PROP_X]: 705,
-      [RISC.PROP_Y]: 405,
-      [RISC.PROP_RESONANCE]: 2,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      registers: [0, 1, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc10_gt08_structure_intent_typed_miss",
-    baselineTraceId: "gt08_structure_intent_visibility",
-    description:
-      "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
-    script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.WIRE),
-    maxSteps: 5,
-    initialProps: {
-      [RISC.PROP_X]: 705,
-      [RISC.PROP_Y]: 405,
-      [RISC.PROP_RESONANCE]: 2,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      registers: [0, 0, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc11_gt09_collective_hive_store_load",
-    baselineTraceId: "gt09_collective_transport",
-    description:
-      "A bounded COLLECTIVE bridge should preserve hive store/load semantics through mode 0 and mode 1 without reaching outside the local shadow state.",
-    script: makeCollectiveHiveScript(1, 88, 0),
-    maxSteps: 4,
-    initialProps: {},
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [88, 0, 0, 0, 0, 0, 0, 0],
-      finalHiveMemory: {
-        1: 88,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc12_gt09_collective_pheromone_emit",
-    baselineTraceId: "gt09_collective_transport",
-    description:
-      "The same bounded COLLECTIVE bridge should preserve pheromone emission through mode 2 at the atom's local grid cell.",
-    script: makeCollectivePheromoneScript(200, 5),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_X]: 105,
-      [RISC.PROP_Y]: 105,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalSignalGrid: {
-        1410: 0xC805,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc13_gt10_share_transfer_success",
-    baselineTraceId: "gt10_share_transfer",
-    description:
-      "A bounded SHARE bridge should deduct percentage energy from self and credit the bonded peer when slot 0 resolves to a live target.",
-    script: makeShareScript(0, 50),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 1000,
-    },
-    initialBondTargets: {
-      0: 2,
-    },
-    initialPeerEnergy: {
-      2: 100,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalProps: {
-        [RISC.PROP_ENERGY]: 500,
-      },
-      finalPeerEnergy: {
-        2: 600,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc14_gt10_share_transfer_empty_bond",
-    baselineTraceId: "gt10_share_transfer",
-    description:
-      "The same SHARE bridge should fail closed when the selected bond slot is empty, leaving self and peer energy untouched.",
-    script: makeShareScript(0, 50),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 1000,
-    },
-    initialPeerEnergy: {
-      2: 100,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalProps: {
-        [RISC.PROP_ENERGY]: 1000,
-      },
-      finalPeerEnergy: {
-        2: 100,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc15_gt11_collective_bank_deposit",
-    baselineTraceId: "gt11_collective_banking",
-    description:
-      "A bounded COLLECTIVE bridge should preserve mode 3 bank deposit semantics as raw opcode units, reducing local energy and increasing hive balance.",
-    script: makeCollectiveBankDepositScript(80),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 5000,
-    },
-    initialHiveBalance: 250,
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalProps: {
-        [RISC.PROP_ENERGY]: 4920,
-      },
-      finalHiveBalance: 330,
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc16_gt11_collective_bank_withdraw",
-    baselineTraceId: "gt11_collective_banking",
-    description:
-      "The same bounded COLLECTIVE bridge should preserve mode 4 capped withdraw semantics, crediting at most 100 raw units to energy and writing the amount to the selected register.",
-    script: makeCollectiveBankWithdrawScript(0),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_ENERGY]: 5000,
-    },
-    initialHiveBalance: 250,
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [100, 0, 0, 0, 0, 0, 0, 0],
-      finalProps: {
-        [RISC.PROP_ENERGY]: 5100,
-      },
-      finalHiveBalance: 150,
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc17_gt12_collective_phase_lock",
-    baselineTraceId: "gt12_collective_synchrony",
-    description:
-      "A bounded COLLECTIVE bridge should preserve mode 5 phase-lock semantics by pushing bonded peers to the next instruction boundary.",
-    script: makeCollectivePhaseLockScript(),
-    maxSteps: 3,
-    initialProps: {},
-    initialBondTargets: {
-      0: 1,
-      1: 2,
-    },
-    initialPeerPc: {
-      1: 9,
-      2: 10,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalPeerPc: {
-        1: 4,
-        2: 4,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc18_gt12_collective_pc_sync_quorum",
-    baselineTraceId: "gt12_collective_synchrony",
-    description:
-      "The same bounded COLLECTIVE bridge should preserve mode 6 quorum semantics by pushing local cell peers to the next instruction boundary.",
-    script: makeCollectivePcSyncQuorumScript(),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_X]: 205,
-      [RISC.PROP_Y]: 105,
-    },
-    initialPeerPc: {
-      1: 7,
-      2: 8,
-    },
-    initialCellPeers: [1, 2],
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      finalPeerPc: {
-        1: 4,
-        2: 4,
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc19_gt13_sense_stale_lock_visible",
-    baselineTraceId: "gt13_structure_lock_progress",
-    description:
-      "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
-    script: makeSenseScript(STRUCTURE.WIRE),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_X]: 705,
-      [RISC.PROP_Y]: 405,
-    },
-    initialStructureGrid: {
-      [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
-    },
-    initialStructureIntentOwner: {
-      [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [0, 1, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc20_gt13_sense_stale_lock_typed_miss",
-    baselineTraceId: "gt13_structure_lock_progress",
-    description:
-      "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
-    script: makeSenseScript(STRUCTURE.NODE),
-    maxSteps: 3,
-    initialProps: {
-      [RISC.PROP_X]: 705,
-      [RISC.PROP_Y]: 405,
-    },
-    initialStructureGrid: {
-      [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
-    },
-    initialStructureIntentOwner: {
-      [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
-    },
-    expected: {
-      finalPc: 0,
-      signalCount: 1,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [0, 0, 0, 0, 0, 0, 0, 0],
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc21_gt14_plug_charge_resolve",
-    baselineTraceId: "gt14_structure_charge_resolution",
-    description:
-      "A bounded PLUG bridge should publish a charge intent that resolves into a concrete wire charge on the next bounded structure tick, clearing the intent afterward.",
-    script: makePlugChargeScript(180),
-    maxSteps: 2,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-    },
-    initialStructureGrid: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
-    },
-    expected: {
-      finalPc: 6,
-      signalCount: 0,
-      buildCount: 0,
-      finalRole: 0,
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
-          (170 << 16),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc22_gt15_plug_charge_competition_low_high",
-    baselineTraceId: "gt15_structure_charge_competition",
-    description:
-      "A bounded PLUG bridge should preserve max-intent semantics when a lower charge is published before a higher one to the same cell.",
-    script: makePlugChargeCompetitionScript(120, 220),
-    maxSteps: 4,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-    },
-    initialStructureGrid: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
-    },
-    expected: {
-      finalPc: 12,
-      signalCount: 0,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [220, 0, 0, 0, 0, 0, 0, 0],
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
-          (210 << 16),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc23_gt15_plug_charge_competition_high_low",
-    baselineTraceId: "gt15_structure_charge_competition",
-    description:
-      "The same bounded PLUG bridge should still preserve max-intent semantics when the higher charge arrives first and a lower publication follows.",
-    script: makePlugChargeCompetitionScript(220, 120),
-    maxSteps: 4,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-    },
-    initialStructureGrid: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
-    },
-    expected: {
-      finalPc: 12,
-      signalCount: 0,
-      buildCount: 0,
-      finalRole: 0,
-      registers: [120, 0, 0, 0, 0, 0, 0, 0],
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
-          (210 << 16),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc24_gt16_build_source_materialize",
-    baselineTraceId: "gt16_runtime_build_materialization",
-    description:
-      "A bounded BUILD bridge should materialize an architect-published SOURCE through postStructureTick, including canonical SOURCE charge semantics.",
-    script: makeBuildSourceScript(),
-    maxSteps: 2,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-      [RISC.PROP_RESONANCE]: 1,
-    },
-    expected: {
-      finalPc: 6,
-      signalCount: 0,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-          (255 << 16),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc25_gt17_build_competition_high_owner_overwrite",
-    baselineTraceId: "gt17_runtime_build_competition",
-    description:
-      "A bounded BUILD bridge should let a higher owner token overwrite a preseeded lower owner SOURCE intent on the same cell.",
-    script: makeBuildSourceWithStateScript(91),
-    maxSteps: 2,
-    ownerAtomIdx: 3,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-      [RISC.PROP_RESONANCE]: 1,
-    },
-    initialStructureIntentOwner: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 3,
-    },
-    initialStructureIntentValue: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-        (17 << 24),
-    },
-    expected: {
-      finalPc: 6,
-      signalCount: 0,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-          (255 << 16) | (91 << 24),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc26_gt17_build_competition_low_owner_blocked",
-    baselineTraceId: "gt17_runtime_build_competition",
-    description:
-      "The same bounded BUILD bridge should fail closed when a lower owner token attempts to overwrite a preseeded higher owner SOURCE intent.",
-    script: makeBuildSourceWithStateScript(17),
-    maxSteps: 2,
-    ownerAtomIdx: 2,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-      [RISC.PROP_RESONANCE]: 1,
-    },
-    initialStructureIntentOwner: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 4,
-    },
-    initialStructureIntentValue: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-        (91 << 24),
-    },
-    expected: {
-      finalPc: 6,
-      signalCount: 0,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-          (255 << 16) | (91 << 24),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc27_gt18_build_stale_lock_blocked",
-    baselineTraceId: "gt18_runtime_build_stale_lock",
-    description:
-      "A bounded BUILD bridge should fail closed on a stale locked intent and let postStructureTick materialize the locked SOURCE value instead of the attempted overwrite.",
-    script: makeBuildSourceWithStateScript(99),
-    maxSteps: 2,
-    ownerAtomIdx: 2,
-    postStructureTick: true,
-    initialProps: {
-      [RISC.PROP_X]: 35,
-      [RISC.PROP_Y]: 35,
-      [RISC.PROP_RESONANCE]: 1,
-    },
-    initialStructureIntentOwner: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-        STRUCTURE_INTENT_LOCK_BIT | 3,
-    },
-    initialStructureIntentValue: {
-      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-        STRUCTURE.SOURCE | (55 << 24),
-    },
-    expected: {
-      finalPc: 6,
-      signalCount: 0,
-      buildCount: 1,
-      finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-      finalStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.SOURCE |
-          (255 << 16) | (55 << 24),
-      },
-      branchTaken: false,
-    },
-  },
-  {
-    id: "rc28_gt19_tensegrity_kinematics",
-    baselineTraceId: "gt19_tensegrity_kinematics",
-    description:
-      "A bounded TENSEGRITY bridge should preserve mode 0 (SET_BOND_DIST) and mode 1 (SET_DAMPING) semantics.",
-    script: makeTensegrityScript(0, 100, 255),
-    maxSteps: 2,
-    initialProps: {},
-    initialBondDistances: {
-      0: 50,
-    },
-    initialDamping: 100,
-    expected: {
-      finalPc: 8,
-      signalCount: 0,
-      buildCount: 0,
-      finalRole: 0,
-      finalBondDistances: {
-        0: 100,
-      },
-      finalDamping: 255,
-      branchTaken: false,
-    },
-  },
-]);
-
-const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
-  REDUCTION_CASES.map((definition) => [definition.id, definition]),
-);
-
-export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
-  REDUCTION_CASE_BY_ID.get(id) ?? null;
-
-```
-
----
-
-## FILE: verification/reduction_diffs/rc01_gt01_replicator_loop.json
-
-```json
-{
-  "case_id": "rc01_gt01_replicator_loop",
-  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "83f8f65817108a6f5ce0007755cd35c7ea65ee354258c1115ea87a6f61b2faab",
-  "reduction_digest": "6eeac9a1e5525a0d6fbc884fe3377a4bf0513d9c979956fc846160c15abbff56",
-  "executed_digest_legacy": "b1f7923015e4e9abf6cdcd108ed36db4a78d43057e132a9784d7b5cf24c37db5",
-  "executed_digest_reduction": "c98cd51eeab478b4b3a455eaf5c27f29039da28660cf3bfa00e651da4974ab57",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 20
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "replicateCount": 2,
-    "signalCount": 2,
-    "buildCount": 0,
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc02_gt01_architect_loop.json
-
-```json
-{
-  "case_id": "rc02_gt01_architect_loop",
-  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "695b91b2f303dc4fc2619269c870373811849a9a25f2c3d5246e8d5ccd7a7cf2",
-  "reduction_digest": "35f24c178a183a222aec3d25a1b14c4b8141404a1d35f8b300f4503f4a04cb74",
-  "executed_digest_legacy": "ac0e02c7fcc8ba2d0948e22f31479fbce750ee9c76583653a09600271305585e",
-  "executed_digest_reduction": "047db417dabaf8999ea5dd6803239d04aa4df70d2ce019ff99ef59ff0c1ffeb7",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 24
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "buildCount": 2,
-    "signalCount": 2,
-    "finalRole": 3,
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc03_gt03_guardian_stable_branch.json
-
-```json
-{
-  "case_id": "rc03_gt03_guardian_stable_branch",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "0cc94fed91521f4321cfda7ff4c31de41224f444f41015a3f1b48cbc4f61d283",
-  "reduction_digest": "3b8fb47211f1ced0efabbee488279ac448ac22fcb334a5d7040c6eae61c95b5c",
-  "executed_digest_legacy": "e433267f92e5e7715c90c3955a7f270503cde11f07c3034976b8d5642ddc01c5",
-  "executed_digest_reduction": "9d778a6616c0ec9124fcafbea879e115b4bfbd4a606bd6426eeff4e4635dc932",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 10
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 2,
-    "registers": [
-      200,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc04_gt03_guardian_repair_branch.json
-
-```json
-{
-  "case_id": "rc04_gt03_guardian_repair_branch",
-  "baseline_trace_id": "gt03_pheromone_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "543bb99a0c639a105a05c48f872467cb892cd4ea569a73e85713e0a3afc23328",
-  "reduction_digest": "09c1d904a04c276a41c828c546a14aa24e0f7404a8200b2b2b95a04fdf5280e5",
-  "executed_digest_legacy": "03bdac584461411ffbb9687c4f8be98eaf24c6afad75f6f2b82879a348a8dad1",
-  "executed_digest_reduction": "16e9d1314dbfd16512b5e2661c924b1b2d1c5da78366f5618c1d53b68a950dc4",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 16
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 1,
-    "finalRole": 3,
-    "registers": [
-      0,
-      200,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": true
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc05_gt05_band_anchor_match.json
-
-```json
-{
-  "case_id": "rc05_gt05_band_anchor_match",
-  "baseline_trace_id": "gt05_homeostasis_correction",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "933c504d378288d02ddddfc639f718c307be6e6bc4d7bf605fd02901da0ae23f",
-  "reduction_digest": "7a9047ad1307f73a9060cb30d8b1d5d8bfdf27f623599b8b71b3cd31c0e69ddc",
-  "executed_digest_legacy": "9385d516c1cf208297cb61255dc1e63a3403490e1bb021ad95e2eee5401e8498",
-  "executed_digest_reduction": "efc8b6c1f98234b9a498681d248dea130c5e47404edd6bc03870ea69e42c6131",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      0,
-      240,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc06_gt05_band_anchor_mismatch.json
-
-```json
-{
-  "case_id": "rc06_gt05_band_anchor_mismatch",
-  "baseline_trace_id": "gt05_homeostasis_correction",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "fcae25de05e227b1a4feafc14b880dc3373ff049e491c0e4415b1598850017f6",
-  "reduction_digest": "c8f675ba18df8f1c7bbc18be6bf3c7823096f8c579fc9001a62f8296acfbf994",
-  "executed_digest_legacy": "36a8437a4fb645a82d075bc035e52bcfe8d04924abe5dc3c2e006ee17dcb7ec7",
-  "executed_digest_reduction": "fe9f44b3b8020643a4eb37085012511152cf9188fa71da6dd379e0a4c9ca3756",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 16
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 1,
-    "finalRole": 3,
-    "registers": [
-      960,
-      240,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": true
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc07_gt04_plasmid_prop_write_signal.json
-
-```json
-{
-  "case_id": "rc07_gt04_plasmid_prop_write_signal",
-  "baseline_trace_id": "gt04_plasmid_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "ea680fa6ba257f318c070a157832024b057a89e9f830d94a0281e3dba72364b7",
-  "reduction_digest": "70d50cda1d57b10188adab0fe9c8cbfc8a6645e6b554fec99709499a27f49b07",
-  "executed_digest_legacy": "4b13ae17527ba14cb748298ab5e36a74f86455416109806ee93e6d14ac142a73",
-  "executed_digest_reduction": "762a425854ff53dd0ff55bad366707de329ab725e70f6c1782a28c1962546810",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      5,
-      5,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalProps": {
-      "1": 5
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc08_gt04_plasmid_zero_branch.json
-
-```json
-{
-  "case_id": "rc08_gt04_plasmid_zero_branch",
-  "baseline_trace_id": "gt04_plasmid_inject",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "b106f7ee202e226f45264e968bc5a7fd0a6fedf6d50c5a4c6c5d976b57867546",
-  "reduction_digest": "0855e7c81076846a512d38d6c3031d13f3fbc90d20f05e9dca57479400d4bae3",
-  "executed_digest_legacy": "aa6a2b67ff0c1586de942259eaa1f13ed63b70f9dfb033d1bbe217b4951c5bdc",
-  "executed_digest_reduction": "7f95bd0be6500a98f1f2cb903dd199c03923ecdc319341e4d5a71a6db36fda68",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 16
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 1,
-    "finalRole": 3,
-    "registers": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalProps": {
-      "1": 0
-    },
-    "branchTaken": true
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc09_gt08_structure_intent_visible.json
-
-```json
-{
-  "case_id": "rc09_gt08_structure_intent_visible",
-  "baseline_trace_id": "gt08_structure_intent_visibility",
-  "baseline_runtime_mode": "standalone-structure-intent-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "d053864dd826b06028aa84c57b1d8a5a0e6edad96c14d7317f7cfd554c2a9ad3",
-  "reduction_digest": "c719033af9049b89818b22fa7bcf8adf4eedfd3d4a42bc9968263d7fde3e5538",
-  "executed_digest_legacy": "1e9c033360deaa7ba37776a68bf70b228bab71d64c9d5153da8503ad6f4544d9",
-  "executed_digest_reduction": "cbad30ccf4a6f174699fb3dcea2153a485514cf96eadd61c6a847aa4764ec7cb",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 14
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 1,
-    "finalRole": 3,
-    "registers": [
-      0,
-      1,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc10_gt08_structure_intent_typed_miss.json
-
-```json
-{
-  "case_id": "rc10_gt08_structure_intent_typed_miss",
-  "baseline_trace_id": "gt08_structure_intent_visibility",
-  "baseline_runtime_mode": "standalone-structure-intent-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "c10b7b2cf85f2071d0de226a6e3b5b6e06b0e89e8b1b842dc15d814faaa31ec8",
-  "reduction_digest": "36533ca49f86e92850e4d1bc172f0d9b560285fb0300c608622abf59795f6050",
-  "executed_digest_legacy": "da58a5f119ea0b4ed351de034b1a6fcca3ae0321ff37b11b9c04a8e386b7e954",
-  "executed_digest_reduction": "cbad30ccf4a6f174699fb3dcea2153a485514cf96eadd61c6a847aa4764ec7cb",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 14
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 1,
-    "finalRole": 3,
-    "registers": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc11_gt09_collective_hive_store_load.json
-
-```json
-{
-  "case_id": "rc11_gt09_collective_hive_store_load",
-  "baseline_trace_id": "gt09_collective_transport",
-  "baseline_runtime_mode": "standalone-collective-transport-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "d5403061f5fd6964783a736d1c1b51ec81529215236416ef6e59170421d596d1",
-  "reduction_digest": "414f30c2fe0b19a9251ef58b02aa0ecc4a729e3fdd47e0643923af4f324eef94",
-  "executed_digest_legacy": "4015ccec7f18c01e3c931000ecd78c706ba4d5a0b49e03ac7f3ad1f772d6ef25",
-  "executed_digest_reduction": "224b081b2250ab4081c81a8ebc9738be2f9e85a9944aa6a62c2e5b8a6351aa4c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 12
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      88,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalHiveMemory": {
-      "1": 88
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc12_gt09_collective_pheromone_emit.json
-
-```json
-{
-  "case_id": "rc12_gt09_collective_pheromone_emit",
-  "baseline_trace_id": "gt09_collective_transport",
-  "baseline_runtime_mode": "standalone-collective-transport-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "bbd328920e8170f6aac4fc03a8ea470c27138c9f61350cb8fd0a6227a77fe114",
-  "reduction_digest": "a122b4c23dc587edb3ed8dcd27f218150fc817f7af87211c5d56b7d52299296c",
-  "executed_digest_legacy": "411e7ea0feb7827f664cf3c52406f0cc04cac10d27bc3d14099b532104fff702",
-  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalSignalGrid": {
-      "1410": 51205
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc13_gt10_share_transfer_success.json
-
-```json
-{
-  "case_id": "rc13_gt10_share_transfer_success",
-  "baseline_trace_id": "gt10_share_transfer",
-  "baseline_runtime_mode": "standalone-share-transfer-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "cc2977e241a809ba807cc71e5f7a836f666950dd71b8262c9e5f7a89d248e3a0",
-  "reduction_digest": "7517c7aa1012298b5c0903169443aef0fcd30ccd243dd39537103b94e40046a5",
-  "executed_digest_legacy": "5a52efaaaad0e26382e5111f57b6132a9fa902e113cae155a01469e6cb38b267",
-  "executed_digest_reduction": "0fdfce5c76b40acb4be81b810c0b7b468e8bf6137eab6b4f118ab8daa6532089",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 6
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalProps": {
-      "0": 500
-    },
-    "finalPeerEnergy": {
-      "2": 600
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc14_gt10_share_transfer_empty_bond.json
-
-```json
-{
-  "case_id": "rc14_gt10_share_transfer_empty_bond",
-  "baseline_trace_id": "gt10_share_transfer",
-  "baseline_runtime_mode": "standalone-share-transfer-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "f6ce67fa0fafdca02a3119f80566644456b4da082f0622469647aa2838d8bf5b",
-  "reduction_digest": "4a6420424edf819c652c7e6154cf89e4978d525a8bfa7cc0fce9598f4df96961",
-  "executed_digest_legacy": "5a52efaaaad0e26382e5111f57b6132a9fa902e113cae155a01469e6cb38b267",
-  "executed_digest_reduction": "0fdfce5c76b40acb4be81b810c0b7b468e8bf6137eab6b4f118ab8daa6532089",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 6
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalProps": {
-      "0": 1000
-    },
-    "finalPeerEnergy": {
-      "2": 100
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc15_gt11_collective_bank_deposit.json
-
-```json
-{
-  "case_id": "rc15_gt11_collective_bank_deposit",
-  "baseline_trace_id": "gt11_collective_banking",
-  "baseline_runtime_mode": "standalone-collective-banking-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "e1efa68146167831eb0ee2b1fa76655492abb18f512621b5c5cd2c1091f0ba05",
-  "reduction_digest": "eedc25f5cd1506b3e0400409688da33c7301d23042c6bb7cdd22f5c2f86598c6",
-  "executed_digest_legacy": "5b220555b17d14fbac1b6e545e6953ce688fdf6119ea3b141a7bc5c558c38718",
-  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalProps": {
-      "0": 4920
-    },
-    "finalHiveBalance": 330,
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc16_gt11_collective_bank_withdraw.json
-
-```json
-{
-  "case_id": "rc16_gt11_collective_bank_withdraw",
-  "baseline_trace_id": "gt11_collective_banking",
-  "baseline_runtime_mode": "standalone-collective-banking-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "ebb532a55c2be9a89850613b84252109d8035bd69c019cade387ddd079e8e9f9",
-  "reduction_digest": "b5ab21875b65c4f73af3a6d6b7dacfa53c33d4e4d15ec9656cb037a5d79e49cf",
-  "executed_digest_legacy": "2aa70281362870f52dc408312c9e37ad12270a8499ddbb73af4b9d2f3becf479",
-  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      100,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalProps": {
-      "0": 5100
-    },
-    "finalHiveBalance": 150,
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc17_gt12_collective_phase_lock.json
-
-```json
-{
-  "case_id": "rc17_gt12_collective_phase_lock",
-  "baseline_trace_id": "gt12_collective_synchrony",
-  "baseline_runtime_mode": "standalone-collective-synchrony-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "096aa5cc563c2268e746d78b3820b83eb660d5cd70079652683598deca879333",
-  "reduction_digest": "7aee0c695a69aa8cba4c3487c3711be2c700cde07e2f6f70bfa942f1bf6aa46e",
-  "executed_digest_legacy": "efa4d0fca68421daaf2244aecbb335f7bd70a3e5aad552bd5779d6da56d9c816",
-  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalPeerPc": {
-      "1": 4,
-      "2": 4
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc18_gt12_collective_pc_sync_quorum.json
-
-```json
-{
-  "case_id": "rc18_gt12_collective_pc_sync_quorum",
-  "baseline_trace_id": "gt12_collective_synchrony",
-  "baseline_runtime_mode": "standalone-collective-synchrony-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "7cb68111b048b914a49bac76197aa0a9a8641cdcb4605b51d29bb167da291b2a",
-  "reduction_digest": "465bb905d2ef9ddde3c9a41ae27044f2a840476f428a411ca520561d19febd86",
-  "executed_digest_legacy": "e04b7bfe9af68fee3fbd9e009ad35803025a1a67c0b931c77c286c9ca1b175a9",
-  "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalPeerPc": {
-      "1": 4,
-      "2": 4
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc19_gt13_sense_stale_lock_visible.json
-
-```json
-{
-  "case_id": "rc19_gt13_sense_stale_lock_visible",
-  "baseline_trace_id": "gt13_structure_lock_progress",
-  "baseline_runtime_mode": "standalone-structure-lock-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "f468717e0533f6666d7c99046dd2e590a172998dc7d85d202c779b2b9fe7990a",
-  "reduction_digest": "1b0d7cf909dd3a16278c01fffe2ca3818ef63163d890b0d3b3388ee5b7c63346",
-  "executed_digest_legacy": "fac35fabcb5c9db9277962fbc316cb3ce071615693a59817a2d47a63923abdeb",
-  "executed_digest_reduction": "2e5ee0d1f6816e5034e45ab88d1f5c8f58238b35ffb07330bd1a113a90d0c1e1",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 6
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      0,
-      1,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc20_gt13_sense_stale_lock_typed_miss.json
-
-```json
-{
-  "case_id": "rc20_gt13_sense_stale_lock_typed_miss",
-  "baseline_trace_id": "gt13_structure_lock_progress",
-  "baseline_runtime_mode": "standalone-structure-lock-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "4a25c5c0919afe1f32a6f909e9de150aba19430b5308fa19752ddbcb8bf54e93",
-  "reduction_digest": "6bcf31f701fbc43a3cdb68808ce6e89f778c984a16b76667ee526e91295edfbd",
-  "executed_digest_legacy": "34e5853f6e2c8f84e83103cd7284f5776b28ae02216ef09579e970a431557db3",
-  "executed_digest_reduction": "2e5ee0d1f6816e5034e45ab88d1f5c8f58238b35ffb07330bd1a113a90d0c1e1",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 6
-  },
-  "expectation_summary": {
-    "finalPc": 0,
-    "signalCount": 1,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc21_gt14_plug_charge_resolve.json
-
-```json
-{
-  "case_id": "rc21_gt14_plug_charge_resolve",
-  "baseline_trace_id": "gt14_structure_charge_resolution",
-  "baseline_runtime_mode": "standalone-structure-charge-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "c42819b2d34ca545d29fc4e221c9bdb8bffa743c4df4ba27448daf15a7922b96",
-  "reduction_digest": "e0204535aebb0daffde3a7ad6bc0cadeb6e6bc7b199a6da5db1e64f9b3cdb9cb",
-  "executed_digest_legacy": "f1bff94fde50cd2d7cf9097e325dddcff3655182c4e442c0fa4678120fafd281",
-  "executed_digest_reduction": "89770328be014270fd3d0a485e080520db8b6f49608c6d896911a0a7e61d348c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 4
-  },
-  "expectation_summary": {
-    "finalPc": 6,
-    "signalCount": 0,
-    "buildCount": 0,
-    "finalRole": 0,
-    "finalStructureGrid": {
-      "423": 11141121
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc22_gt15_plug_charge_competition_low_high.json
-
-```json
-{
-  "case_id": "rc22_gt15_plug_charge_competition_low_high",
-  "baseline_trace_id": "gt15_structure_charge_competition",
-  "baseline_runtime_mode": "standalone-structure-charge-competition-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "3dfc511e9bd2904acaae7ce4d4c83f885fed33cf36c9d4e9e0a46687411e9693",
-  "reduction_digest": "5db3f35422f9a26400df18d0df2390eb57fd8fc6fe6e3bd86a099b70bdfccffb",
-  "executed_digest_legacy": "ce4a2ee8dcb56cfb6837aef91f04123cb13f9c8a81f364e69c66f1c621cc41ba",
-  "executed_digest_reduction": "588e5a93c08bf27d9a7aeaa1b1b7266145449516ca9cb303165725c4e2557035",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 12,
-    "signalCount": 0,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      220,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalStructureGrid": {
-      "423": 13762561
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc23_gt15_plug_charge_competition_high_low.json
-
-```json
-{
-  "case_id": "rc23_gt15_plug_charge_competition_high_low",
-  "baseline_trace_id": "gt15_structure_charge_competition",
-  "baseline_runtime_mode": "standalone-structure-charge-competition-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "176e00c93e8bbbb1bc8a7721943560dac012fdd0b14f7f82840517c9e8c15003",
-  "reduction_digest": "5a3730a9e3ab385ca4c049e9aa3602f97b8c2c20d64b19cdbfa889b92e0431d3",
-  "executed_digest_legacy": "ccd2ff28059af801cc2c26cca4848c433e351b05933ea82c6b0ffc0c648f363d",
-  "executed_digest_reduction": "588e5a93c08bf27d9a7aeaa1b1b7266145449516ca9cb303165725c4e2557035",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 12,
-    "signalCount": 0,
-    "buildCount": 0,
-    "finalRole": 0,
-    "registers": [
-      120,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "finalStructureGrid": {
-      "423": 13762561
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc24_gt16_build_source_materialize.json
-
-```json
-{
-  "case_id": "rc24_gt16_build_source_materialize",
-  "baseline_trace_id": "gt16_runtime_build_materialization",
-  "baseline_runtime_mode": "worker-runtime-structure-build-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "df6c3793e58326d5b46aae107971c1007b0e55858a63cf2540f14f1c5b793cac",
-  "reduction_digest": "08fdc9ce545b8bf6c3756908a9989e4ffc22f7ba54b5b3f660dfac05c2acf72d",
-  "executed_digest_legacy": "82a6f845bab09806fe23ddc9fd0ea3abbff2b14fd6bd2f0167977dab290bb4e7",
-  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 6,
-    "signalCount": 0,
-    "buildCount": 1,
-    "finalRole": 3,
-    "finalStructureGrid": {
-      "423": 16711684
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc25_gt17_build_competition_high_owner_overwrite.json
-
-```json
-{
-  "case_id": "rc25_gt17_build_competition_high_owner_overwrite",
-  "baseline_trace_id": "gt17_runtime_build_competition",
-  "baseline_runtime_mode": "worker-runtime-structure-build-competition-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "985a33f0fc4ccdc265eacf9ba37cc6f2ffd3f1558b46bcff0b93787a39c190d2",
-  "reduction_digest": "8995fb4b7f3738dda098bbad2690c35d789f7144dba682a1f3404fa455b92770",
-  "executed_digest_legacy": "1adf673d442b616461894c3ea88e787f38bb8f65f9cb013ccb9b9bbf1d069cf8",
-  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 6,
-    "signalCount": 0,
-    "buildCount": 1,
-    "finalRole": 3,
-    "finalStructureGrid": {
-      "423": 1543438340
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc26_gt17_build_competition_low_owner_blocked.json
-
-```json
-{
-  "case_id": "rc26_gt17_build_competition_low_owner_blocked",
-  "baseline_trace_id": "gt17_runtime_build_competition",
-  "baseline_runtime_mode": "worker-runtime-structure-build-competition-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "985a33f0fc4ccdc265eacf9ba37cc6f2ffd3f1558b46bcff0b93787a39c190d2",
-  "reduction_digest": "8995fb4b7f3738dda098bbad2690c35d789f7144dba682a1f3404fa455b92770",
-  "executed_digest_legacy": "ade5db5374be30375a9fad3521caa49ddea50a75ebddc083c03638ede0c8d21d",
-  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 6,
-    "signalCount": 0,
-    "buildCount": 1,
-    "finalRole": 3,
-    "finalStructureGrid": {
-      "423": 1543438340
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
-## FILE: verification/reduction_diffs/rc27_gt18_build_stale_lock_blocked.json
-
-```json
-{
-  "case_id": "rc27_gt18_build_stale_lock_blocked",
-  "baseline_trace_id": "gt18_runtime_build_stale_lock",
-  "baseline_runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "f1fcce083c718d24c82e9d7defbc19851fb668d0d592ce19efa2b80b9eb10b3a",
-  "reduction_digest": "263ed04d3ae6e94041e6494cc3ee8d1b07e92603ff610745005fefab3e133a7e",
-  "executed_digest_legacy": "533746a37b112cf0b3ae2ccfdfa7d58a6e517b170e3609f29ac975f7e07992f7",
-  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
-  "diff": {
-    "final_pc_match": true,
-    "registers_match": true,
-    "role_match": true,
-    "props_match": true,
-    "bond_targets_match": true,
-    "bond_distances_match": true,
-    "damping_match": true,
-    "peer_energy_match": true,
-    "peer_pc_match": true,
-    "hive_memory_match": true,
-    "hive_balance_match": true,
-    "signal_grid_match": true,
-    "structure_grid_match": true,
-    "structure_intent_owner_match": true,
-    "structure_intent_value_match": true,
-    "structure_charge_intent_match": true,
-    "replicate_count_match": true,
-    "signal_count_match": true,
-    "build_count_match": true,
-    "branch_taken_match": true,
-    "role_writes_match": true,
-    "energy_spent_delta": 8
-  },
-  "expectation_summary": {
-    "finalPc": 6,
-    "signalCount": 0,
-    "buildCount": 1,
-    "finalRole": 3,
-    "finalStructureGrid": {
-      "423": 939458564
-    },
-    "branchTaken": false
-  }
-}
-```
-
----
-
 ## FILE: verification/reduction_harness.ts
 
 ```typescript
@@ -49548,6949 +44460,6 @@ if (import.meta.main) {
   }
 }
 
-```
-
----
-
-## FILE: verification/share_transfer_capture.ts
-
-```typescript
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
-const OP_SHARE = 0x83;
-const SHARE_PERCENT = 50;
-const ENERGY_EPSILON = 0.0011;
-const EXPECTED_SUCCESSFUL_SENDER_ENERGY = 499.999;
-const EXPECTED_SUCCESSFUL_RECEIVER_ENERGY = 600;
-const EXPECTED_FAILED_SENDER_ENERGY = 999.999;
-const EXPECTED_FAILED_RECEIVER_ENERGY = 100;
-
-type AtomSnapshot = {
-  idx: number;
-  energy: number;
-  pc: number;
-  role: number;
-};
-
-type Snapshot = {
-  successfulSenderEnergy: number;
-  successfulReceiverEnergy: number;
-  failedSenderEnergy: number;
-  failedReceiverEnergy: number;
-  senderBondTarget: number;
-  failedBondTarget: number;
-  atoms: AtomSnapshot[];
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((b) =>
-    b.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const assertApproxEnergy = (
-  label: string,
-  actual: number,
-  expected: number,
-): void => {
-  if (Math.abs(actual - expected) > ENERGY_EPSILON) {
-    throw new Error(
-      `[share_transfer_capture] ${label} mismatch: actual=${actual} expected=${expected}`,
-    );
-  }
-};
-
-const shareScript = (slot: number, percentage: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_SHARE;
-  script[1] = slot & 0xFF;
-  script[2] = percentage & 0xFF;
-  return script;
-};
-
-const buildSnapshot = (): Snapshot => ({
-  successfulSenderEnergy: STATE_MATRIX.getEnergy(0),
-  successfulReceiverEnergy: STATE_MATRIX.getEnergy(1),
-  failedSenderEnergy: STATE_MATRIX.getEnergy(2),
-  failedReceiverEnergy: STATE_MATRIX.getEnergy(3),
-  senderBondTarget: STATE_MATRIX.getBondTarget(0, 0),
-  failedBondTarget: STATE_MATRIX.getBondTarget(2, 0),
-  atoms: [0, 1, 2, 3].map((idx) => ({
-    idx,
-    energy: STATE_MATRIX.getEnergy(idx),
-    pc: STATE_MATRIX.getPC(idx),
-    role: STATE_MATRIX.getRole(idx),
-  })),
-});
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _p1: number,
-    _p2: number,
-    _p3: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
-  const reduce_atom_deltas = instance.exports.reduce_atom_deltas as (
-    startIdx: number,
-    endIdx: number,
-  ) => void;
-
-  const readXs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_XS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readYs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_YS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readEnergies = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const readResonances = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const xs = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.XS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const ys = new Int16Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.YS_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const energies = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-  const resonances = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.RESONANCE_OFFSET,
-    STATE_MATRIX.MAX_ATOMS,
-  );
-
-  STATE_MATRIX.seedAtom(0, 1n, 100, 100, 1000, 0, undefined, shareScript(0, SHARE_PERCENT));
-  STATE_MATRIX.seedAtom(1, 2n, 110, 100, 100, 0, undefined, new Uint8Array(64));
-  STATE_MATRIX.setBondTarget(0, 0, 1);
-
-  STATE_MATRIX.seedAtom(2, 3n, 120, 100, 1000, 0, undefined, shareScript(0, SHARE_PERCENT));
-  STATE_MATRIX.seedAtom(3, 4n, 130, 100, 100, 0, undefined, new Uint8Array(64));
-
-  readXs.set(xs);
-  readYs.set(ys);
-  readEnergies.set(energies);
-  readResonances.set(resonances);
-
-  execute_atom(0);
-  execute_atom(2);
-  reduce_atom_deltas(0, 4);
-
-  const snapshot = buildSnapshot();
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  assertApproxEnergy(
-    "successful sender",
-    payload.snapshot.successfulSenderEnergy,
-    EXPECTED_SUCCESSFUL_SENDER_ENERGY,
-  );
-  assertApproxEnergy(
-    "successful receiver",
-    payload.snapshot.successfulReceiverEnergy,
-    EXPECTED_SUCCESSFUL_RECEIVER_ENERGY,
-  );
-  assertApproxEnergy(
-    "failed sender",
-    payload.snapshot.failedSenderEnergy,
-    EXPECTED_FAILED_SENDER_ENERGY,
-  );
-  assertApproxEnergy(
-    "failed receiver",
-    payload.snapshot.failedReceiverEnergy,
-    EXPECTED_FAILED_RECEIVER_ENERGY,
-  );
-  console.log(
-    `[share_transfer_capture] ok hash=${payload.hash} sender0=${payload.snapshot.successfulSenderEnergy} receiver1=${payload.snapshot.successfulReceiverEnergy} sender2=${payload.snapshot.failedSenderEnergy}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_build_competition_capture.ts
-
-```typescript
-import { PULSE } from "../PULSE.ts";
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_COMPETITION_CAPTURE__";
-const GRID_W = 140;
-const OP_ROLE = 0xA7;
-const OP_BUILD = 0xA8;
-const LOWER_STATE = 17;
-const HIGHER_STATE = 91;
-
-type Snapshot = {
-  targetCellIdx: number;
-  targetResolvedType: number;
-  targetResolvedCharge: number;
-  targetResolvedState: number;
-  ownerIntentAfterTick: number;
-  valueIntentAfterTick: number;
-  chargeIntentAfterTick: number;
-  lowerOwnerAtomIdx: number;
-  lowerOwnerState: number;
-  higherOwnerAtomIdx: number;
-  higherOwnerState: number;
-  lowerAtomPc: number;
-  higherAtomPc: number;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const buildSourceScript = (state: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_ROLE;
-  script[1] = 0;
-  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[3] = OP_BUILD;
-  script[4] = STRUCTURE.SOURCE;
-  script[5] = state & 0xFF;
-  return script;
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
-  const strictDeterminism =
-    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
-
-  const x = 35;
-  const y = 35;
-  const gx = Math.floor(x / 10);
-  const gy = Math.floor(y / 10);
-  const targetCellIdx = gy * GRID_W + gx;
-
-  STATE_MATRIX.seedAtom(
-    2,
-    2n,
-    x,
-    y,
-    1000,
-    1,
-    undefined,
-    buildSourceScript(LOWER_STATE),
-  );
-  STATE_MATRIX.seedAtom(
-    3,
-    3n,
-    x,
-    y,
-    1000,
-    1,
-    undefined,
-    buildSourceScript(HIGHER_STATE),
-  );
-
-  await PULSE.initWorkers(1);
-  await PULSE.tick();
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * 80,
-  );
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * 80,
-  );
-  const valueIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    GRID_W * 80,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * 80,
-  );
-
-  const targetCell = structureGrid[targetCellIdx];
-  const snapshot: Snapshot = {
-    targetCellIdx,
-    targetResolvedType: targetCell & 0xFF,
-    targetResolvedCharge: (targetCell >> 16) & 0xFF,
-    targetResolvedState: (targetCell >> 24) & 0xFF,
-    ownerIntentAfterTick: ownerIntents[targetCellIdx],
-    valueIntentAfterTick: valueIntents[targetCellIdx],
-    chargeIntentAfterTick: chargeIntents[targetCellIdx],
-    lowerOwnerAtomIdx: 2,
-    lowerOwnerState: LOWER_STATE,
-    higherOwnerAtomIdx: 3,
-    higherOwnerState: HIGHER_STATE,
-    lowerAtomPc: STATE_MATRIX.getPC(2),
-    higherAtomPc: STATE_MATRIX.getPC(3),
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount,
-    strictDeterminism,
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  try {
-    const payload = await runCapture();
-    if (Deno.args.includes("--capture")) {
-      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-      return;
-    }
-
-    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
-      throw new Error(
-        `[structure_build_competition_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
-      );
-    }
-    if (payload.snapshot.targetResolvedCharge !== 255) {
-      throw new Error(
-        `[structure_build_competition_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
-      );
-    }
-    if (payload.snapshot.targetResolvedState !== HIGHER_STATE) {
-      throw new Error(
-        `[structure_build_competition_capture] winner state mismatch: ${payload.snapshot.targetResolvedState}`,
-      );
-    }
-    if (payload.snapshot.ownerIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_competition_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.valueIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_competition_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.chargeIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_competition_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
-      );
-    }
-
-    console.log(
-      `[structure_build_competition_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} targetState=${payload.snapshot.targetResolvedState}`,
-    );
-  } finally {
-    PULSE.stopWorkers();
-  }
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_build_lock_capture.ts
-
-```typescript
-import { PULSE } from "../PULSE.ts";
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_LOCK_CAPTURE__";
-const GRID_W = 140;
-const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
-const OP_ROLE = 0xA7;
-const OP_BUILD = 0xA8;
-const LOCKED_STATE = 55;
-const ATTEMPTED_STATE = 99;
-
-type Snapshot = {
-  targetCellIdx: number;
-  targetResolvedType: number;
-  targetResolvedCharge: number;
-  targetResolvedState: number;
-  ownerIntentAfterTick: number;
-  valueIntentAfterTick: number;
-  chargeIntentAfterTick: number;
-  staleLockOwnerToken: number;
-  staleLockedState: number;
-  attemptedOwnerAtomIdx: number;
-  attemptedBuildState: number;
-  atomPc: number;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const buildSourceScript = (state: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_ROLE;
-  script[1] = 0;
-  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[3] = OP_BUILD;
-  script[4] = STRUCTURE.SOURCE;
-  script[5] = state & 0xFF;
-  return script;
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
-  const strictDeterminism =
-    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
-
-  const x = 35;
-  const y = 35;
-  const gx = Math.floor(x / 10);
-  const gy = Math.floor(y / 10);
-  const targetCellIdx = gy * GRID_W + gx;
-
-  STATE_MATRIX.seedAtom(
-    2,
-    2n,
-    x,
-    y,
-    1000,
-    1,
-    undefined,
-    buildSourceScript(ATTEMPTED_STATE),
-  );
-
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * 80,
-  );
-  const valueIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    GRID_W * 80,
-  );
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * 80,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * 80,
-  );
-
-  ownerIntents[targetCellIdx] = STRUCTURE_INTENT_LOCK_BIT | 3;
-  valueIntents[targetCellIdx] = STRUCTURE.SOURCE | (LOCKED_STATE << 24);
-
-  await PULSE.initWorkers(1);
-  await PULSE.tick();
-
-  const targetCell = structureGrid[targetCellIdx];
-  const snapshot: Snapshot = {
-    targetCellIdx,
-    targetResolvedType: targetCell & 0xFF,
-    targetResolvedCharge: (targetCell >> 16) & 0xFF,
-    targetResolvedState: (targetCell >> 24) & 0xFF,
-    ownerIntentAfterTick: ownerIntents[targetCellIdx],
-    valueIntentAfterTick: valueIntents[targetCellIdx],
-    chargeIntentAfterTick: chargeIntents[targetCellIdx],
-    staleLockOwnerToken: 3,
-    staleLockedState: LOCKED_STATE,
-    attemptedOwnerAtomIdx: 2,
-    attemptedBuildState: ATTEMPTED_STATE,
-    atomPc: STATE_MATRIX.getPC(2),
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount,
-    strictDeterminism,
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  try {
-    const payload = await runCapture();
-    if (Deno.args.includes("--capture")) {
-      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-      return;
-    }
-
-    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
-      throw new Error(
-        `[structure_build_lock_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
-      );
-    }
-    if (payload.snapshot.targetResolvedCharge !== 255) {
-      throw new Error(
-        `[structure_build_lock_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
-      );
-    }
-    if (payload.snapshot.targetResolvedState !== LOCKED_STATE) {
-      throw new Error(
-        `[structure_build_lock_capture] stale lock state mismatch: ${payload.snapshot.targetResolvedState}`,
-      );
-    }
-    if (payload.snapshot.ownerIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_lock_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.valueIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_lock_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.chargeIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_lock_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
-      );
-    }
-
-    console.log(
-      `[structure_build_lock_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} targetState=${payload.snapshot.targetResolvedState}`,
-    );
-  } finally {
-    PULSE.stopWorkers();
-  }
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_build_runtime_capture.ts
-
-```typescript
-import { PULSE } from "../PULSE.ts";
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_RUNTIME_CAPTURE__";
-const GRID_W = 140;
-const OP_ROLE = 0xA7;
-const OP_BUILD = 0xA8;
-
-type Snapshot = {
-  targetCellIdx: number;
-  targetResolvedType: number;
-  targetResolvedCharge: number;
-  targetResolvedState: number;
-  ownerIntentAfterTick: number;
-  valueIntentAfterTick: number;
-  chargeIntentAfterTick: number;
-  neighborCellIdx: number;
-  neighborResolvedType: number;
-  neighborResolvedCharge: number;
-  atomPc: number;
-  atomRole: number;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const buildSourceScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_ROLE;
-  script[1] = 0;
-  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[3] = OP_BUILD;
-  script[4] = STRUCTURE.SOURCE;
-  script[5] = 0;
-  return script;
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
-  const strictDeterminism =
-    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
-
-  const x = 35;
-  const y = 35;
-  const gx = Math.floor(x / 10);
-  const gy = Math.floor(y / 10);
-  const targetCellIdx = gy * GRID_W + gx;
-  const neighborCellIdx = (gy * GRID_W) + gx + 1;
-
-  STATE_MATRIX.seedAtom(
-    2,
-    2n,
-    x,
-    y,
-    1000,
-    1,
-    undefined,
-    buildSourceScript(),
-  );
-
-  await PULSE.initWorkers(1);
-  await PULSE.tick();
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * 80,
-  );
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * 80,
-  );
-  const valueIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    GRID_W * 80,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * 80,
-  );
-
-  const targetCell = structureGrid[targetCellIdx];
-  const neighborCell = structureGrid[neighborCellIdx];
-
-  const snapshot: Snapshot = {
-    targetCellIdx,
-    targetResolvedType: targetCell & 0xFF,
-    targetResolvedCharge: (targetCell >> 16) & 0xFF,
-    targetResolvedState: (targetCell >> 24) & 0xFF,
-    ownerIntentAfterTick: ownerIntents[targetCellIdx],
-    valueIntentAfterTick: valueIntents[targetCellIdx],
-    chargeIntentAfterTick: chargeIntents[targetCellIdx],
-    neighborCellIdx,
-    neighborResolvedType: neighborCell & 0xFF,
-    neighborResolvedCharge: (neighborCell >> 16) & 0xFF,
-    atomPc: STATE_MATRIX.getPC(2),
-    atomRole: STATE_MATRIX.getRole(2),
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount,
-    strictDeterminism,
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  try {
-    const payload = await runCapture();
-    if (Deno.args.includes("--capture")) {
-      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-      return;
-    }
-
-    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
-      throw new Error(
-        `[structure_build_runtime_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
-      );
-    }
-    if (payload.snapshot.targetResolvedCharge !== 255) {
-      throw new Error(
-        `[structure_build_runtime_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
-      );
-    }
-    if (payload.snapshot.ownerIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_runtime_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.valueIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_runtime_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
-      );
-    }
-    if (payload.snapshot.chargeIntentAfterTick !== 0) {
-      throw new Error(
-        `[structure_build_runtime_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
-      );
-    }
-
-    console.log(
-      `[structure_build_runtime_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} neighborType=${payload.snapshot.neighborResolvedType} neighborCharge=${payload.snapshot.neighborResolvedCharge}`,
-    );
-  } finally {
-    PULSE.stopWorkers();
-  }
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_charge_capture.ts
-
-```typescript
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
-const GRID_W = 140;
-const GRID_H = 80;
-const OP_SET = 0x01;
-const OP_PLUG = 0xA4;
-
-type BeforeTickSnapshot = {
-  targetCellIdx: number;
-  chargeIntent: number;
-};
-
-type AfterTickSnapshot = {
-  targetCellIdx: number;
-  resolvedType: number;
-  resolvedCharge: number;
-  chargeIntent: number;
-};
-
-type Snapshot = {
-  beforeTick: BeforeTickSnapshot;
-  afterTick: AfterTickSnapshot;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-type WasmExports = {
-  execute_atom: (idx: number) => void;
-  tick_structure_grid?: () => void;
-  tick_matrix?: () => void;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const loadWasm = async (): Promise<WasmExports> => {
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _gx: number,
-    _gy: number,
-    _target: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-  return instance.exports as unknown as WasmExports;
-};
-
-const chargeScript = (charge: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = OP_SET;
-  script[pc++] = 0;
-  script[pc++] = charge & 0xFF;
-  script[pc++] = OP_PLUG;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
-
-const targetCellIdxFor = (x: number, y: number): number =>
-  Math.floor(y / 10) * GRID_W + Math.floor(x / 10);
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const wasm = await loadWasm();
-  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
-  if (!tickStructure) {
-    throw new Error(
-      "[structure_charge_capture] WASM exports missing tick_structure_grid/tick_matrix.",
-    );
-  }
-
-  const centerX = 35;
-  const centerY = 35;
-  const targetCellIdx = targetCellIdxFor(centerX, centerY);
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    centerX,
-    centerY,
-    1000,
-    1,
-    new Uint8Array(8),
-    chargeScript(180),
-  );
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * GRID_H,
-  );
-
-  structureGrid[targetCellIdx] = STRUCTURE.WIRE;
-
-  wasm.execute_atom(0);
-
-  const beforeTick: BeforeTickSnapshot = {
-    targetCellIdx,
-    chargeIntent: chargeIntents[targetCellIdx],
-  };
-
-  tickStructure();
-
-  const resolvedCell = structureGrid[targetCellIdx];
-  const afterTick: AfterTickSnapshot = {
-    targetCellIdx,
-    resolvedType: resolvedCell & 0xFF,
-    resolvedCharge: (resolvedCell >> 16) & 0xFF,
-    chargeIntent: chargeIntents[targetCellIdx],
-  };
-
-  const snapshot: Snapshot = {
-    beforeTick,
-    afterTick,
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  if (payload.snapshot.beforeTick.chargeIntent !== 180) {
-    throw new Error(
-      `[structure_charge_capture] charge intent mismatch before tick: ${payload.snapshot.beforeTick.chargeIntent}`,
-    );
-  }
-  if (payload.snapshot.afterTick.resolvedType !== STRUCTURE.WIRE) {
-    throw new Error(
-      `[structure_charge_capture] resolved type mismatch: ${payload.snapshot.afterTick.resolvedType}`,
-    );
-  }
-  if (payload.snapshot.afterTick.resolvedCharge !== 170) {
-    throw new Error(
-      `[structure_charge_capture] resolved charge mismatch: ${payload.snapshot.afterTick.resolvedCharge}`,
-    );
-  }
-  if (payload.snapshot.afterTick.chargeIntent !== 0) {
-    throw new Error(
-      `[structure_charge_capture] charge intent not cleared after tick: ${payload.snapshot.afterTick.chargeIntent}`,
-    );
-  }
-
-  console.log(
-    `[structure_charge_capture] ok hash=${payload.hash} beforeCharge=${payload.snapshot.beforeTick.chargeIntent} resolvedCharge=${payload.snapshot.afterTick.resolvedCharge}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_charge_competition_capture.ts
-
-```typescript
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_COMPETITION_CAPTURE__";
-const GRID_W = 140;
-const GRID_H = 80;
-const OP_SET = 0x01;
-const OP_PLUG = 0xA4;
-const LOW_CHARGE = 120;
-const HIGH_CHARGE = 220;
-
-type OrderSnapshot = {
-  targetCellIdx: number;
-  firstRequestedCharge: number;
-  secondRequestedCharge: number;
-  chargeIntentBeforeTick: number;
-  resolvedType: number;
-  resolvedCharge: number;
-  chargeIntentAfterTick: number;
-};
-
-type Snapshot = {
-  lowThenHigh: OrderSnapshot;
-  highThenLow: OrderSnapshot;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-type WasmExports = {
-  execute_atom: (idx: number) => void;
-  tick_structure_grid?: () => void;
-  tick_matrix?: () => void;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const loadWasm = async (): Promise<WasmExports> => {
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _gx: number,
-    _gy: number,
-    _target: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-  return instance.exports as unknown as WasmExports;
-};
-
-const chargeScript = (charge: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = OP_SET;
-  script[pc++] = 0;
-  script[pc++] = charge & 0xFF;
-  script[pc++] = OP_PLUG;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
-
-const targetCellIdxFor = (x: number, y: number): number =>
-  Math.floor(y / 10) * GRID_W + Math.floor(x / 10);
-
-const runCapture = async (): Promise<CapturePayload> => {
-  STATE_MATRIX.clear();
-
-  const wasm = await loadWasm();
-  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
-  if (!tickStructure) {
-    throw new Error(
-      "[structure_charge_competition_capture] WASM exports missing tick_structure_grid/tick_matrix.",
-    );
-  }
-
-  const lowThenHighX = 35;
-  const highThenLowX = 75;
-  const y = 35;
-  const lowThenHighCellIdx = targetCellIdxFor(lowThenHighX, y);
-  const highThenLowCellIdx = targetCellIdxFor(highThenLowX, y);
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    lowThenHighX,
-    y,
-    1000,
-    1,
-    new Uint8Array(8),
-    chargeScript(LOW_CHARGE),
-  );
-  STATE_MATRIX.seedAtom(
-    1,
-    2n,
-    lowThenHighX,
-    y,
-    1000,
-    1,
-    new Uint8Array(8),
-    chargeScript(HIGH_CHARGE),
-  );
-  STATE_MATRIX.seedAtom(
-    2,
-    3n,
-    highThenLowX,
-    y,
-    1000,
-    1,
-    new Uint8Array(8),
-    chargeScript(HIGH_CHARGE),
-  );
-  STATE_MATRIX.seedAtom(
-    3,
-    4n,
-    highThenLowX,
-    y,
-    1000,
-    1,
-    new Uint8Array(8),
-    chargeScript(LOW_CHARGE),
-  );
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * GRID_H,
-  );
-
-  structureGrid[lowThenHighCellIdx] = STRUCTURE.WIRE;
-  structureGrid[highThenLowCellIdx] = STRUCTURE.WIRE;
-
-  wasm.execute_atom(0);
-  wasm.execute_atom(1);
-  wasm.execute_atom(2);
-  wasm.execute_atom(3);
-
-  const lowThenHighBefore = chargeIntents[lowThenHighCellIdx];
-  const highThenLowBefore = chargeIntents[highThenLowCellIdx];
-
-  tickStructure();
-
-  const lowThenHighResolved = structureGrid[lowThenHighCellIdx];
-  const highThenLowResolved = structureGrid[highThenLowCellIdx];
-
-  const snapshot: Snapshot = {
-    lowThenHigh: {
-      targetCellIdx: lowThenHighCellIdx,
-      firstRequestedCharge: LOW_CHARGE,
-      secondRequestedCharge: HIGH_CHARGE,
-      chargeIntentBeforeTick: lowThenHighBefore,
-      resolvedType: lowThenHighResolved & 0xFF,
-      resolvedCharge: (lowThenHighResolved >> 16) & 0xFF,
-      chargeIntentAfterTick: chargeIntents[lowThenHighCellIdx],
-    },
-    highThenLow: {
-      targetCellIdx: highThenLowCellIdx,
-      firstRequestedCharge: HIGH_CHARGE,
-      secondRequestedCharge: LOW_CHARGE,
-      chargeIntentBeforeTick: highThenLowBefore,
-      resolvedType: highThenLowResolved & 0xFF,
-      resolvedCharge: (highThenLowResolved >> 16) & 0xFF,
-      chargeIntentAfterTick: chargeIntents[highThenLowCellIdx],
-    },
-  };
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const validateOrder = (label: string, snapshot: OrderSnapshot) => {
-  if (snapshot.chargeIntentBeforeTick !== HIGH_CHARGE) {
-    throw new Error(
-      `[structure_charge_competition_capture] ${label} before-tick charge mismatch: ${snapshot.chargeIntentBeforeTick}`,
-    );
-  }
-  if (snapshot.resolvedType !== STRUCTURE.WIRE) {
-    throw new Error(
-      `[structure_charge_competition_capture] ${label} resolved type mismatch: ${snapshot.resolvedType}`,
-    );
-  }
-  if (snapshot.resolvedCharge !== HIGH_CHARGE - 10) {
-    throw new Error(
-      `[structure_charge_competition_capture] ${label} resolved charge mismatch: ${snapshot.resolvedCharge}`,
-    );
-  }
-  if (snapshot.chargeIntentAfterTick !== 0) {
-    throw new Error(
-      `[structure_charge_competition_capture] ${label} charge intent not cleared: ${snapshot.chargeIntentAfterTick}`,
-    );
-  }
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  validateOrder("lowThenHigh", payload.snapshot.lowThenHigh);
-  validateOrder("highThenLow", payload.snapshot.highThenLow);
-
-  console.log(
-    `[structure_charge_competition_capture] ok hash=${payload.hash} lowHigh=${payload.snapshot.lowThenHigh.resolvedCharge} highLow=${payload.snapshot.highThenLow.resolvedCharge}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/structure_lock_capture.ts
-
-```typescript
-import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
-import * as OFFSETS from "../OFFSETS.ts";
-
-const CAPTURE_MARKER = "__OMEGA_STRUCTURE_LOCK_CAPTURE__";
-const GRID_W = 140;
-const GRID_H = 80;
-const LOCK_BIT = -2147483648;
-const OP_SENSE = 0xA9;
-const OP_JMP = 0x12;
-
-type SenseSnapshot = {
-  centerX: number;
-  centerY: number;
-  neighborCellIdx: number;
-  neighborType: number;
-  senseReg: number;
-  pc: number;
-};
-
-type IntentClearingSnapshot = {
-  cellIdx: number;
-  resolvedType: number;
-  resolvedCharge: number;
-  ownerIntent: number;
-  valueIntent: number;
-  chargeIntent: number;
-};
-
-type Snapshot = {
-  visibleSense: SenseSnapshot;
-  typedMissSense: SenseSnapshot;
-  intentClearing: IntentClearingSnapshot;
-};
-
-type CapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  hash: string;
-  snapshot: Snapshot;
-};
-
-type WasmExports = {
-  execute_atom: (idx: number) => void;
-  tick_structure_grid?: () => void;
-  tick_matrix?: () => void;
-};
-
-const hashHex = async (payload: string): Promise<string> => {
-  const bytes = new TextEncoder().encode(payload);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const loadWasm = async (): Promise<WasmExports> => {
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (
-    _idx: number,
-    _op: number,
-    _gx: number,
-    _gy: number,
-    _target: number,
-  ) => {};
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom },
-    env: {
-      memory: STATE_MATRIX.wasmMemory,
-      trace_atom,
-      abort: () => {},
-    },
-  });
-  return instance.exports as unknown as WasmExports;
-};
-
-const gridIndex = (x: number, y: number): number => y * GRID_W + x;
-
-const senseScript = (targetType: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  script[0] = OP_SENSE;
-  script[1] = 1;
-  script[2] = targetType & 0xFF;
-  script[3] = OP_JMP;
-  script[4] = 0;
-  return script;
-};
-
-const runSenseCapture = (
-  execute_atom: (idx: number) => void,
-  targetType: number,
-): SenseSnapshot => {
-  STATE_MATRIX.clear();
-
-  const centerX = 705;
-  const centerY = 405;
-  const gx = Math.floor(centerX / 10);
-  const gy = Math.floor(centerY / 10);
-  const neighborCellIdx = gridIndex(gx + 1, gy);
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    centerX,
-    centerY,
-    2000,
-    0,
-    new Uint8Array(8),
-    senseScript(targetType),
-  );
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * GRID_H,
-  );
-
-  structureGrid[neighborCellIdx] = STRUCTURE.WIRE;
-  ownerIntents[neighborCellIdx] = LOCK_BIT;
-
-  execute_atom(0);
-
-  return {
-    centerX,
-    centerY,
-    neighborCellIdx,
-    neighborType: structureGrid[neighborCellIdx] & 0xFF,
-    senseReg: STATE_MATRIX.getReg(0, 1),
-    pc: STATE_MATRIX.getPC(0),
-  };
-};
-
-const runIntentClearingCapture = (
-  tickStructure: () => void,
-): IntentClearingSnapshot => {
-  STATE_MATRIX.clear();
-
-  const cellIdx = gridIndex(64, 24);
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const valueIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    GRID_W * GRID_H,
-  );
-  const chargeIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * GRID_H,
-  );
-
-  structureGrid[cellIdx] = STRUCTURE.VOID;
-  ownerIntents[cellIdx] = LOCK_BIT | 17;
-  valueIntents[cellIdx] = ((3 & 0xFF) << 24) | (STRUCTURE.NODE & 0xFF);
-  chargeIntents[cellIdx] = 180;
-
-  tickStructure();
-
-  const resolvedCell = structureGrid[cellIdx];
-  return {
-    cellIdx,
-    resolvedType: resolvedCell & 0xFF,
-    resolvedCharge: (resolvedCell >> 16) & 0xFF,
-    ownerIntent: ownerIntents[cellIdx],
-    valueIntent: valueIntents[cellIdx],
-    chargeIntent: chargeIntents[cellIdx],
-  };
-};
-
-const runCapture = async (): Promise<CapturePayload> => {
-  const wasm = await loadWasm();
-  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
-  if (!tickStructure) {
-    throw new Error(
-      "[structure_lock_capture] WASM exports missing tick_structure_grid/tick_matrix.",
-    );
-  }
-
-  const snapshot: Snapshot = {
-    visibleSense: runSenseCapture(wasm.execute_atom, STRUCTURE.WIRE),
-    typedMissSense: runSenseCapture(wasm.execute_atom, STRUCTURE.NODE),
-    intentClearing: runIntentClearingCapture(tickStructure),
-  };
-
-  const hash = await hashHex(JSON.stringify(snapshot));
-  return {
-    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
-    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
-    hash,
-    snapshot,
-  };
-};
-
-const main = async () => {
-  const payload = await runCapture();
-  if (Deno.args.includes("--capture")) {
-    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
-    return;
-  }
-
-  if (payload.snapshot.visibleSense.senseReg !== 1) {
-    throw new Error(
-      `[structure_lock_capture] visible sense mismatch: ${payload.snapshot.visibleSense.senseReg}`,
-    );
-  }
-  if (payload.snapshot.typedMissSense.senseReg !== 0) {
-    throw new Error(
-      `[structure_lock_capture] typed miss mismatch: ${payload.snapshot.typedMissSense.senseReg}`,
-    );
-  }
-  if (payload.snapshot.intentClearing.ownerIntent !== 0) {
-    throw new Error(
-      `[structure_lock_capture] owner intent not cleared: ${payload.snapshot.intentClearing.ownerIntent}`,
-    );
-  }
-  if (payload.snapshot.intentClearing.valueIntent !== 0) {
-    throw new Error(
-      `[structure_lock_capture] value intent not cleared: ${payload.snapshot.intentClearing.valueIntent}`,
-    );
-  }
-  if (payload.snapshot.intentClearing.chargeIntent !== 0) {
-    throw new Error(
-      `[structure_lock_capture] charge intent not cleared: ${payload.snapshot.intentClearing.chargeIntent}`,
-    );
-  }
-  if (payload.snapshot.intentClearing.resolvedType !== STRUCTURE.NODE) {
-    throw new Error(
-      `[structure_lock_capture] resolved type mismatch: ${payload.snapshot.intentClearing.resolvedType}`,
-    );
-  }
-  if (payload.snapshot.intentClearing.resolvedCharge < 150) {
-    throw new Error(
-      `[structure_lock_capture] resolved charge too low: ${payload.snapshot.intentClearing.resolvedCharge}`,
-    );
-  }
-
-  console.log(
-    `[structure_lock_capture] ok hash=${payload.hash} visible=${payload.snapshot.visibleSense.senseReg} typedMiss=${payload.snapshot.typedMissSense.senseReg} charge=${payload.snapshot.intentClearing.resolvedCharge}`,
-  );
-};
-
-await main();
-
-```
-
----
-
-## FILE: verification/traces/gt01_coldstart_seeded_swarm/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 147,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt01_coldstart_seeded_swarm/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt01_coldstart_seeded_swarm/notes.md
-
-```markdown
-# gt01_coldstart_seeded_swarm
-
-- scenario: coldstart / seeded swarm
-- setup: cold boot, deterministic seed swarm, daemon off
-- duration: 256 ticks
-- daemonEnabled: false
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56313
-- port: 56313
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- none
-```
-
----
-
-## FILE: verification/traces/gt01_coldstart_seeded_swarm/trace.json
-
-```json
-{
-  "trace_id": "gt01_coldstart_seeded_swarm",
-  "scenario": "coldstart / seeded swarm",
-  "seed": 424242,
-  "tick_start": 1,
-  "tick_end": 258,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": false,
-  "metrics": {
-    "population": 147,
-    "avgEnergy": 242.925,
-    "spatialOverflowRatio": 0.789116,
-    "mutationCounts": {
-      "enabled": true,
-      "total": 41966,
-      "lanes": {
-        "internal_host": 41914,
-        "canonical_gate": 52
-      },
-      "topKinds": [
-        [
-          "energy_homeostasis_adjust",
-          41769
-        ],
-        [
-          "spawn_seed_atom",
-          145
-        ],
-        [
-          "audit_matrix_cycle",
-          52
-        ]
-      ]
-    },
-    "invariantDigestSource": "R0.00|S0.00|B0.00"
-  },
-  "telemetry_start": {
-    "tick": 1,
-    "avgEnergy": 124.97,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 121. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59932,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 1,
-      "overflow_count": 0,
-      "max_cell_count": 1,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 89,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            89
-          ]
-        },
-        "lastTick": 1
-      },
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 1
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:14.667Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": {
-    "ts": 1772798294721,
-    "tick": 1,
-    "population": 121,
-    "avgEnergy": 124.97,
-    "neuralCoherence": 0,
-    "spatialOverflowRatio": 0,
-    "daemonSafeMode": false
-  },
-  "telemetry_end": {
-    "tick": 258,
-    "avgEnergy": 242.925,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 147. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 52833,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 258,
-      "overflow_count": 116,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.789116
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 258
-      },
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 2,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "FFB9DBB065DBB6ED",
-          "8081AB0E15700F22"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2
-          ]
-        },
-        "lastTick": 258
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:14.667Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 179,
-    "lanes": {
-      "internal_host": 178,
-      "canonical_gate": 1
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        121
-      ],
-      [
-        "spawn_seed_atom",
-        57
-      ],
-      [
-        "audit_matrix_cycle",
-        1
-      ]
-    ]
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 41966,
-    "lanes": {
-      "internal_host": 41914,
-      "canonical_gate": 52
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        41769
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "audit_matrix_cycle",
-        52
-      ]
-    ]
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_digest": "21b819a629849c674107749b4e6e5293b4cf1be82b18db7eb6bd9f3a0ceda386",
-  "codex_snapshot_digest": "0a8bf1f5c921923d647423453ebdc939edfcdf04096952d58eedf2100c1980f7",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt02_free_run_no_ingress/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 145,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt02_free_run_no_ingress/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt02_free_run_no_ingress/notes.md
-
-```markdown
-# gt02_free_run_no_ingress
-
-- scenario: free run without external intervention
-- setup: cold boot, no inject, no daemon policy updates
-- duration: 2048 ticks
-- daemonEnabled: false
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56321
-- port: 56321
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- none
-```
-
----
-
-## FILE: verification/traces/gt02_free_run_no_ingress/trace.json
-
-```json
-{
-  "trace_id": "gt02_free_run_no_ingress",
-  "scenario": "free run without external intervention",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 2049,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": false,
-  "metrics": {
-    "population": 145,
-    "avgEnergy": 217.922,
-    "spatialOverflowRatio": 0.793103,
-    "decreeShifts": [],
-    "mutationCounts": {
-      "enabled": true,
-      "total": 302194,
-      "lanes": {
-        "internal_host": 301784,
-        "canonical_gate": 410
-      },
-      "topKinds": [
-        [
-          "energy_homeostasis_adjust",
-          301639
-        ],
-        [
-          "audit_matrix_cycle",
-          410
-        ],
-        [
-          "spawn_seed_atom",
-          145
-        ]
-      ]
-    }
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 238.609,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59961,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 0,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:21.909Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 2049,
-    "avgEnergy": 217.922,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 3942,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 2049,
-      "overflow_count": 115,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.793103
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 2049
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:58:21.909Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 302194,
-    "lanes": {
-      "internal_host": 301784,
-      "canonical_gate": 410
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        301639
-      ],
-      [
-        "audit_matrix_cycle",
-        410
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ]
-    ]
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_digest": "a1025fc3579a30c33ebd0be2cfd744e3efd7a4f439b822d4165703678fb8c09d",
-  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt03_pheromone_inject/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 145,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt03_pheromone_inject/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt03_pheromone_inject/notes.md
-
-```markdown
-# gt03_pheromone_inject
-
-- scenario: bounded pheromone inject
-- setup: warmup 128 ticks, then one fixed DROP_PHEROMONE payload
-- duration: 512 ticks total
-- daemonEnabled: false
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56342
-- port: 56342
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- tick=128 kind=DROP_PHEROMONE responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
-```
-
----
-
-## FILE: verification/traces/gt03_pheromone_inject/trace.json
-
-```json
-{
-  "trace_id": "gt03_pheromone_inject",
-  "scenario": "bounded pheromone inject",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 514,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": false,
-  "metrics": {
-    "localResponseWindow": {
-      "ok": true,
-      "history": [
-        {
-          "ts": 1772798372176,
-          "tick": 499,
-          "population": 145,
-          "avgEnergy": 259.049,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372233,
-          "tick": 501,
-          "population": 145,
-          "avgEnergy": 259.017,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372283,
-          "tick": 503,
-          "population": 145,
-          "avgEnergy": 258.985,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372333,
-          "tick": 505,
-          "population": 145,
-          "avgEnergy": 258.953,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372397,
-          "tick": 507,
-          "population": 145,
-          "avgEnergy": 258.921,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372454,
-          "tick": 509,
-          "population": 145,
-          "avgEnergy": 258.889,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372518,
-          "tick": 511,
-          "population": 145,
-          "avgEnergy": 258.857,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        },
-        {
-          "ts": 1772798372575,
-          "tick": 513,
-          "population": 145,
-          "avgEnergy": 258.825,
-          "neuralCoherence": 0,
-          "spatialOverflowRatio": 0.793103,
-          "daemonSafeMode": false
-        }
-      ]
-    },
-    "population": 145,
-    "avgEnergy": 258.809,
-    "spatialOverflowRatio": 0.793103,
-    "injectResponse": {
-      "ok": true,
-      "status": 202,
-      "reason": "QUEUED",
-      "size": 1,
-      "max": 512,
-      "admission": {
-        "score": 0,
-        "severity": "LOW",
-        "reasons": [
-          "DRIFT_LOW"
-        ],
-        "context": {
-          "mood": "STABLE",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      },
-      "plasmid_risk": null,
-      "degraded": false,
-      "degrade_reason": null,
-      "applied_action": "DROP_PHEROMONE"
-    }
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 238.609,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59904,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 0,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:18.073Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 514,
-    "avgEnergy": 258.809,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 1,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 45467,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": {
-        "tick": 128,
-        "status": "accepted",
-        "requestedAction": "DROP_PHEROMONE",
-        "appliedAction": "DROP_PHEROMONE",
-        "degraded": false,
-        "severity": "LOW",
-        "score": 0,
-        "reason": "DRIFT_LOW",
-        "sharedCenter": "tick.exists",
-        "dominantInvariantVector": "none",
-        "codexLineageLabel": "none",
-        "codexLineageGuardScore": 0,
-        "codexLineageGuardReasons": []
-      },
-      "last_admission_history": [
-        {
-          "tick": 128,
-          "status": "accepted",
-          "requestedAction": "DROP_PHEROMONE",
-          "appliedAction": "DROP_PHEROMONE",
-          "degraded": false,
-          "severity": "LOW",
-          "score": 0,
-          "reason": "DRIFT_LOW",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      ],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 514,
-      "overflow_count": 115,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.793103
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 514
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:18.073Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 79496,
-    "lanes": {
-      "internal_host": 79390,
-      "canonical_gate": 103,
-      "external_daemon": 3
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        79245
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "audit_matrix_cycle",
-        103
-      ],
-      [
-        "daemon_intent_enqueued",
-        1
-      ],
-      [
-        "daemon_avatar_apply",
-        1
-      ],
-      [
-        "control_intent_applied",
-        1
-      ]
-    ]
-  },
-  "event_log": [
-    {
-      "kind": "DROP_PHEROMONE",
-      "tick": 128,
-      "response": {
-        "ok": true,
-        "status": 202,
-        "reason": "QUEUED",
-        "size": 1,
-        "max": 512,
-        "admission": {
-          "score": 0,
-          "severity": "LOW",
-          "reasons": [
-            "DRIFT_LOW"
-          ],
-          "context": {
-            "mood": "STABLE",
-            "sharedCenter": "tick.exists",
-            "dominantInvariantVector": "none",
-            "codexLineageLabel": "none",
-            "codexLineageGuardScore": 0,
-            "codexLineageGuardReasons": []
-          }
-        },
-        "plasmid_risk": null,
-        "degraded": false,
-        "degrade_reason": null,
-        "applied_action": "DROP_PHEROMONE"
-      }
-    }
-  ],
-  "event_log_digest": "57154432f78e846cabc844248a93d985bebd572e788505582d7d5ce3544352a9",
-  "mutation_telemetry_digest": "ee799bb36eff80f31c75219a9c67c7f8ce750e008bdb57c9ec844006f9320e05",
-  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt04_plasmid_inject/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 145,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt04_plasmid_inject/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt04_plasmid_inject/notes.md
-
-```markdown
-# gt04_plasmid_inject
-
-- scenario: durable symbolic ingress
-- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload
-- duration: 512 ticks total
-- daemonEnabled: false
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56351
-- port: 56351
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- tick=129 kind=INJECT_PLASMID responseDigest=f0b6f469dc311dd275e6a54185402bae3a25d8c610334013ec5a4d86e97a499a
-```
-
----
-
-## FILE: verification/traces/gt04_plasmid_inject/trace.json
-
-```json
-{
-  "trace_id": "gt04_plasmid_inject",
-  "scenario": "durable symbolic ingress",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 513,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": false,
-  "metrics": {
-    "acceptedMutationCounts": 1,
-    "rejectedMutationCounts": 0,
-    "population": 145,
-    "avgEnergy": 238.01,
-    "appliedAction": "INJECT_PLASMID",
-    "admissionSeverity": "LOW"
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 173.654,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59957,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 1,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:32.690Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 513,
-    "avgEnergy": 238.01,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 1,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 45479,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": {
-        "tick": 129,
-        "status": "accepted",
-        "requestedAction": "INJECT_PLASMID",
-        "appliedAction": "INJECT_PLASMID",
-        "degraded": false,
-        "severity": "LOW",
-        "score": 0,
-        "reason": "RISK_LOW",
-        "sharedCenter": "tick.exists",
-        "dominantInvariantVector": "none",
-        "codexLineageLabel": "none",
-        "codexLineageGuardScore": 0,
-        "codexLineageGuardReasons": []
-      },
-      "last_admission_history": [
-        {
-          "tick": 129,
-          "status": "accepted",
-          "requestedAction": "INJECT_PLASMID",
-          "appliedAction": "INJECT_PLASMID",
-          "degraded": false,
-          "severity": "LOW",
-          "score": 0,
-          "reason": "RISK_LOW",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      ],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 513,
-      "overflow_count": 115,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.793103
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 513
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:32.690Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 79340,
-    "lanes": {
-      "internal_host": 79233,
-      "canonical_gate": 103,
-      "external_daemon": 4
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        79088
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "audit_matrix_cycle",
-        103
-      ],
-      [
-        "daemon_plasmid_apply_cells",
-        2
-      ],
-      [
-        "daemon_intent_enqueued",
-        1
-      ],
-      [
-        "control_intent_applied",
-        1
-      ]
-    ]
-  },
-  "event_log": [
-    {
-      "kind": "INJECT_PLASMID",
-      "tick": 129,
-      "response": {
-        "ok": true,
-        "status": 202,
-        "reason": "QUEUED",
-        "size": 1,
-        "max": 512,
-        "admission": {
-          "score": 0,
-          "severity": "LOW",
-          "reasons": [
-            "RISK_LOW"
-          ],
-          "context": {
-            "mood": "STABLE",
-            "sharedCenter": "tick.exists",
-            "dominantInvariantVector": "none",
-            "codexLineageLabel": "none",
-            "codexLineageGuardScore": 0,
-            "codexLineageGuardReasons": []
-          }
-        },
-        "plasmid_risk": {
-          "level": "LOW",
-          "score": 0,
-          "reasons": [
-            "RISK_LOW"
-          ],
-          "opcode": 1
-        },
-        "degraded": false,
-        "degrade_reason": null,
-        "applied_action": "INJECT_PLASMID"
-      }
-    }
-  ],
-  "event_log_digest": "f92c588f76157aceb9fa62385c70ce46b3f34c06954c5af17d39e6dd367adff1",
-  "mutation_telemetry_digest": "47e78027f300975c4488f56f2d7d9ab6ca3e2e76bb02d24a03cd07320ce14f86",
-  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt05_homeostasis_correction/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 145,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt05_homeostasis_correction/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt05_homeostasis_correction/notes.md
-
-```markdown
-# gt05_homeostasis_correction
-
-- scenario: external homeostasis correction
-- setup: warmup 256 ticks, then one fixed /api/homeostasis update
-- duration: 768 ticks total
-- daemonEnabled: false
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56360
-- port: 56360
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- tick=256 kind=HOMEOSTASIS_UPDATE responseDigest=97b4528315c05e7f1bb9ffdd270a30ffe8bb76e2eff12e5d0b6eb778d764ef5c
-```
-
----
-
-## FILE: verification/traces/gt05_homeostasis_correction/trace.json
-
-```json
-{
-  "trace_id": "gt05_homeostasis_correction",
-  "scenario": "external homeostasis correction",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 769,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": false,
-  "metrics": {
-    "avgEnergySlope": -0.015088,
-    "spatialOverflowRatio": 0.793103,
-    "mutationCounts": {
-      "enabled": true,
-      "total": 116294,
-      "lanes": {
-        "internal_host": 116139,
-        "canonical_gate": 154,
-        "external_daemon": 1
-      },
-      "topKinds": [
-        [
-          "energy_homeostasis_adjust",
-          115993
-        ],
-        [
-          "audit_matrix_cycle",
-          154
-        ],
-        [
-          "spawn_seed_atom",
-          145
-        ],
-        [
-          "homeostasis_policy_update",
-          1
-        ],
-        [
-          "daemon_homeostasis_update",
-          1
-        ]
-      ]
-    },
-    "updateResponse": {
-      "ok": true,
-      "updated": {
-        "tick": 256,
-        "source": "daemon_homeostasis_controller",
-        "reason": "golden_trace_gt05",
-        "base_tax_before": 2,
-        "base_tax_after": 4,
-        "target_energy_before": 1200,
-        "target_energy_after": 300
-      },
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 300,
-        "target_energy_default": 1200,
-        "target_energy_current": 300,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 4,
-        "last_update_tick": 256,
-        "last_update_source": "daemon_homeostasis_controller",
-        "last_update_reason": "golden_trace_gt05"
-      }
-    }
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 238.609,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59956,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 0,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:47.301Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 769,
-    "avgEnergy": 202.431,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 38414,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": {
-        "tick": 256,
-        "source": "daemon_homeostasis_controller",
-        "reason": "golden_trace_gt05",
-        "base_tax_before": 2,
-        "base_tax_after": 4,
-        "target_energy_before": 1200,
-        "target_energy_after": 300
-      },
-      "last_homeostasis_history": [
-        {
-          "tick": 256,
-          "source": "daemon_homeostasis_controller",
-          "reason": "golden_trace_gt05",
-          "base_tax_before": 2,
-          "base_tax_after": 4,
-          "target_energy_before": 1200,
-          "target_energy_after": 300
-        }
-      ],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 300,
-        "target_energy_default": 1200,
-        "target_energy_current": 300,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 4,
-        "last_update_tick": 256,
-        "last_update_source": "daemon_homeostasis_controller",
-        "last_update_reason": "golden_trace_gt05"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 769,
-      "overflow_count": 115,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.793103
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 769
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T11:59:47.301Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 116294,
-    "lanes": {
-      "internal_host": 116139,
-      "canonical_gate": 154,
-      "external_daemon": 1
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        115993
-      ],
-      [
-        "audit_matrix_cycle",
-        154
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "homeostasis_policy_update",
-        1
-      ],
-      [
-        "daemon_homeostasis_update",
-        1
-      ]
-    ]
-  },
-  "event_log": [
-    {
-      "kind": "HOMEOSTASIS_UPDATE",
-      "tick": 256,
-      "response": {
-        "ok": true,
-        "updated": {
-          "tick": 256,
-          "source": "daemon_homeostasis_controller",
-          "reason": "golden_trace_gt05",
-          "base_tax_before": 2,
-          "base_tax_after": 4,
-          "target_energy_before": 1200,
-          "target_energy_after": 300
-        },
-        "homeostasis": {
-          "enabled": true,
-          "target_energy": 300,
-          "target_energy_default": 1200,
-          "target_energy_current": 300,
-          "band": 240,
-          "max_delta": 12,
-          "overflow_threshold": 0.2,
-          "starvation_floor": 200,
-          "subsidy_enabled": false,
-          "base_tax_default": 2,
-          "base_tax_current": 4,
-          "last_update_tick": 256,
-          "last_update_source": "daemon_homeostasis_controller",
-          "last_update_reason": "golden_trace_gt05"
-        }
-      }
-    }
-  ],
-  "event_log_digest": "4af4ca88a150b4f86be14df48f681201c8222318524bb81be21383e883a26935",
-  "mutation_telemetry_digest": "a2a497ce7fe1774e46d6c05ebc128943b52545f98d243257e2d03174e599704f",
-  "codex_snapshot_digest": "b5bba8ecc87f42ef67e6e73929712b1a0c757510cc94ff6d3dee15f8fd18c535",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {
-    "beforeHomeostasis": {
-      "ok": true,
-      "tick": 256,
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      },
-      "latest_update": null,
-      "history": []
-    },
-    "afterHomeostasis": {
-      "ok": true,
-      "tick": 769,
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 300,
-        "target_energy_default": 1200,
-        "target_energy_current": 300,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 4,
-        "last_update_tick": 256,
-        "last_update_source": "daemon_homeostasis_controller",
-        "last_update_reason": "golden_trace_gt05"
-      },
-      "latest_update": {
-        "tick": 256,
-        "source": "daemon_homeostasis_controller",
-        "reason": "golden_trace_gt05",
-        "base_tax_before": 2,
-        "base_tax_after": 4,
-        "target_energy_before": 1200,
-        "target_energy_after": 300
-      },
-      "history": [
-        {
-          "tick": 256,
-          "source": "daemon_homeostasis_controller",
-          "reason": "golden_trace_gt05",
-          "base_tax_before": 2,
-          "base_tax_after": 4,
-          "target_energy_before": 1200,
-          "target_energy_after": 300
-        }
-      ]
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt06_daemon_admission_case/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 145,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [
-    {
-      "id": "chronicle-193-daemonadmiss",
-      "tick": 193,
-      "epoch": 0,
-      "type": "daemon_admission",
-      "title": "Daemon Admission HIGH: INJECT_PLASMID -> DROP_PHEROMONE",
-      "body": "Ingress action was degraded due to invariant drift score 4. Reason: INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE. Shared center: tick.exists. Dominant invariant vector: none.",
-      "createdAt": "2026-03-06T12:00:14.553Z"
-    }
-  ],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt06_daemon_admission_case/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt06_daemon_admission_case/notes.md
-
-```markdown
-# gt06_daemon_admission_case
-
-- scenario: daemon admission / rejection
-- setup: one accepted ingress case and one degraded/rejected case with daemon governance on
-- duration: event-bounded
-- daemonEnabled: true
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56372
-- port: 56372
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- tick=128 kind=DROP_PHEROMONE_ACCEPT responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
-- tick=192 kind=INJECT_PLASMID_DEGRADED responseDigest=6fa126b7c01f359bd42a6e787c80820493e36eeb0ffcf44e7ebbea351764ef7b
-```
-
----
-
-## FILE: verification/traces/gt06_daemon_admission_case/trace.json
-
-```json
-{
-  "trace_id": "gt06_daemon_admission_case",
-  "scenario": "daemon admission / rejection",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 385,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": true,
-  "metrics": {
-    "admissionSeverity": "HIGH",
-    "appliedAction": "DROP_PHEROMONE",
-    "admissionHistory": [
-      {
-        "tick": 193,
-        "status": "accepted",
-        "requestedAction": "INJECT_PLASMID",
-        "appliedAction": "DROP_PHEROMONE",
-        "degraded": true,
-        "severity": "HIGH",
-        "score": 4,
-        "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-        "sharedCenter": "tick.exists",
-        "dominantInvariantVector": "none",
-        "codexLineageLabel": "none",
-        "codexLineageGuardScore": 0,
-        "codexLineageGuardReasons": []
-      },
-      {
-        "tick": 128,
-        "status": "accepted",
-        "requestedAction": "DROP_PHEROMONE",
-        "appliedAction": "DROP_PHEROMONE",
-        "degraded": false,
-        "severity": "LOW",
-        "score": 0,
-        "reason": "DRIFT_LOW",
-        "sharedCenter": "tick.exists",
-        "dominantInvariantVector": "none",
-        "codexLineageLabel": "none",
-        "codexLineageGuardScore": 0,
-        "codexLineageGuardReasons": []
-      }
-    ],
-    "acceptedResponse": {
-      "ok": true,
-      "status": 202,
-      "reason": "QUEUED",
-      "size": 1,
-      "max": 512,
-      "admission": {
-        "score": 0,
-        "severity": "LOW",
-        "reasons": [
-          "DRIFT_LOW"
-        ],
-        "context": {
-          "mood": "STABLE",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      },
-      "plasmid_risk": null,
-      "degraded": false,
-      "degrade_reason": null,
-      "applied_action": "DROP_PHEROMONE"
-    },
-    "degradedResponse": {
-      "ok": true,
-      "status": 202,
-      "reason": "QUEUED",
-      "size": 1,
-      "max": 512,
-      "admission": {
-        "score": 4,
-        "severity": "HIGH",
-        "reasons": [
-          "PLASMID_INTENSITY_HIGH",
-          "RISK_INTENSITY_HIGH"
-        ],
-        "context": {
-          "mood": "STABLE",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      },
-      "plasmid_risk": {
-        "level": "MID",
-        "score": 2,
-        "reasons": [
-          "RISK_INTENSITY_HIGH"
-        ],
-        "opcode": 0
-      },
-      "degraded": true,
-      "degrade_reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-      "applied_action": "DROP_PHEROMONE"
-    }
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 238.609,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59960,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 0,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T12:00:09.097Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 385,
-    "avgEnergy": 226.963,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 2,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 49228,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": {
-        "tick": 193,
-        "status": "accepted",
-        "requestedAction": "INJECT_PLASMID",
-        "appliedAction": "DROP_PHEROMONE",
-        "degraded": true,
-        "severity": "HIGH",
-        "score": 4,
-        "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-        "sharedCenter": "tick.exists",
-        "dominantInvariantVector": "none",
-        "codexLineageLabel": "none",
-        "codexLineageGuardScore": 0,
-        "codexLineageGuardReasons": []
-      },
-      "last_admission_history": [
-        {
-          "tick": 193,
-          "status": "accepted",
-          "requestedAction": "INJECT_PLASMID",
-          "appliedAction": "DROP_PHEROMONE",
-          "degraded": true,
-          "severity": "HIGH",
-          "score": 4,
-          "reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        },
-        {
-          "tick": 128,
-          "status": "accepted",
-          "requestedAction": "DROP_PHEROMONE",
-          "appliedAction": "DROP_PHEROMONE",
-          "degraded": false,
-          "severity": "LOW",
-          "score": 0,
-          "reason": "DRIFT_LOW",
-          "sharedCenter": "tick.exists",
-          "dominantInvariantVector": "none",
-          "codexLineageLabel": "none",
-          "codexLineageGuardScore": 0,
-          "codexLineageGuardReasons": []
-        }
-      ],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 385,
-      "overflow_count": 115,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.793103
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 385
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T12:00:09.097Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 60584,
-    "lanes": {
-      "internal_host": 60500,
-      "canonical_gate": 77,
-      "external_daemon": 7
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        60355
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "audit_matrix_cycle",
-        77
-      ],
-      [
-        "daemon_intent_enqueued",
-        2
-      ],
-      [
-        "daemon_avatar_apply",
-        2
-      ],
-      [
-        "control_intent_applied",
-        2
-      ]
-    ]
-  },
-  "event_log": [
-    {
-      "kind": "DROP_PHEROMONE_ACCEPT",
-      "tick": 128,
-      "response": {
-        "ok": true,
-        "status": 202,
-        "reason": "QUEUED",
-        "size": 1,
-        "max": 512,
-        "admission": {
-          "score": 0,
-          "severity": "LOW",
-          "reasons": [
-            "DRIFT_LOW"
-          ],
-          "context": {
-            "mood": "STABLE",
-            "sharedCenter": "tick.exists",
-            "dominantInvariantVector": "none",
-            "codexLineageLabel": "none",
-            "codexLineageGuardScore": 0,
-            "codexLineageGuardReasons": []
-          }
-        },
-        "plasmid_risk": null,
-        "degraded": false,
-        "degrade_reason": null,
-        "applied_action": "DROP_PHEROMONE"
-      }
-    },
-    {
-      "kind": "INJECT_PLASMID_DEGRADED",
-      "tick": 192,
-      "response": {
-        "ok": true,
-        "status": 202,
-        "reason": "QUEUED",
-        "size": 1,
-        "max": 512,
-        "admission": {
-          "score": 4,
-          "severity": "HIGH",
-          "reasons": [
-            "PLASMID_INTENSITY_HIGH",
-            "RISK_INTENSITY_HIGH"
-          ],
-          "context": {
-            "mood": "STABLE",
-            "sharedCenter": "tick.exists",
-            "dominantInvariantVector": "none",
-            "codexLineageLabel": "none",
-            "codexLineageGuardScore": 0,
-            "codexLineageGuardReasons": []
-          }
-        },
-        "plasmid_risk": {
-          "level": "MID",
-          "score": 2,
-          "reasons": [
-            "RISK_INTENSITY_HIGH"
-          ],
-          "opcode": 0
-        },
-        "degraded": true,
-        "degrade_reason": "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
-        "applied_action": "DROP_PHEROMONE"
-      }
-    }
-  ],
-  "event_log_digest": "66a1657f94ffd12bb5ac42abee048269a5cf375316684cd401ad1b05fe816772",
-  "mutation_telemetry_digest": "65a09ae6f53e1b4647a1f3f80e7eef805044e343c4521c6f95bf55c8e118fc2a",
-  "codex_snapshot_digest": "cf8c23e173b4d0d44ea065c57c98aa165161b0a309718e6240025e1510dd8d83",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt07_daemon_policy_block/codex_snapshot.json
-
-```json
-{
-  "enabled": true,
-  "root": "codex",
-  "epochTicks": 10000,
-  "dominanceThreshold": 0.05,
-  "minEpochsForDiscovery": 3,
-  "population": {
-    "current": 154,
-    "peak": 209
-  },
-  "species": [],
-  "chronicles": [],
-  "relics": [],
-  "invariants": []
-}
-```
-
----
-
-## FILE: verification/traces/gt07_daemon_policy_block/invariants.json
-
-```json
-[]
-```
-
----
-
-## FILE: verification/traces/gt07_daemon_policy_block/notes.md
-
-```markdown
-# gt07_daemon_policy_block
-
-- scenario: daemon policy block
-- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode
-- duration: 256 ticks total
-- daemonEnabled: true
-- runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56891
-- port: 56891
-- seed: 424242
-
-## Environment
-
-- OMEGA_PULSE_WORKERS=1
-- OMEGA_STRICT_DETERMINISM=1
-- OMEGA_AUTO_SNAPSHOT_ENABLE=0
-- OMEGA_COLDSTART_ENABLE=1
-- OMEGA_COLDSTART_COUNT=64
-- OMEGA_COLDSTART_REPLICATOR_RATIO=0.5
-- OMEGA_COLDSTART_SEED=424242
-- OMEGA_COLDSTART_ENERGY=240
-- OMEGA_COLDSTART_RESONANCE=220
-
-## Actions
-
-- tick=129 kind=INJECT_PLASMID_BLOCKED responseDigest=caf24b26650a33cecdd051a60150527b8c23cb63640a1d3a32e02cd3f619928e
-```
-
----
-
-## FILE: verification/traces/gt07_daemon_policy_block/trace.json
-
-```json
-{
-  "trace_id": "gt07_daemon_policy_block",
-  "scenario": "daemon policy block",
-  "seed": 424242,
-  "tick_start": 0,
-  "tick_end": 257,
-  "runtime_mode": "legacy-runtime/api-observer-harness",
-  "daemon_enabled": true,
-  "metrics": {
-    "httpStatus": 400,
-    "responseReason": "PLASMID_OPCODE_BLOCKED_0xFF",
-    "latestAdmissionStatus": "rejected",
-    "latestAdmissionReason": "PLASMID_OPCODE_BLOCKED_0xFF",
-    "blockedResponse": {
-      "ok": false,
-      "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-      "http_status": 400,
-      "http_ok": false,
-      "latest_admission": {
-        "tick": 129,
-        "status": "rejected",
-        "requestedAction": "INJECT_PLASMID",
-        "appliedAction": "BLOCKED",
-        "degraded": false,
-        "severity": "BLOCKED",
-        "score": 0,
-        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-        "sharedCenter": "policy",
-        "dominantInvariantVector": "none"
-      },
-      "applied_action": "BLOCKED"
-    },
-    "mutationCounts": {
-      "enabled": true,
-      "total": 42605,
-      "lanes": {
-        "internal_host": 42552,
-        "canonical_gate": 52,
-        "external_daemon": 1
-      },
-      "topKinds": [
-        [
-          "energy_homeostasis_adjust",
-          42407
-        ],
-        [
-          "spawn_seed_atom",
-          145
-        ],
-        [
-          "audit_matrix_cycle",
-          52
-        ],
-        [
-          "daemon_policy_block_plasmid_rule",
-          1
-        ]
-      ]
-    }
-  },
-  "telemetry_start": {
-    "tick": 0,
-    "avgEnergy": 238.609,
-    "dominantGenomes": [
-      "808103862DA8E71A",
-      "80816F0279841356",
-      "80811BBE05A07FD2"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 64. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 0,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59930,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": null,
-      "last_admission_history": [],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 0,
-      "overflow_count": 0,
-      "max_cell_count": 0,
-      "overflow_ratio": 0
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "808103862DA8E71A",
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "80819F72297443C6"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      },
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 32,
-        "dominantRole": 3,
-        "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
-          "A8A71FF2A9F4C346"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            32
-          ]
-        },
-        "lastTick": 0
-      }
-    ],
-    "behavior_invariant": "R0.50|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T12:45:11.196Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "telemetry_stream_start": null,
-  "telemetry_end": {
-    "tick": 257,
-    "avgEnergy": 201.17,
-    "dominantGenomes": [
-      "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
-    ],
-    "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 154. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
-    ],
-    "pulse_pressure": {
-      "novelty_signed": 0,
-      "symbiosis_signed": 0,
-      "novelty": 0,
-      "fear": 0,
-      "symbiosis": 0,
-      "ego": 0,
-      "ring": {
-        "enabled": false,
-        "theta": 0,
-        "scale": 0,
-        "fear_curiosity_balance": 1,
-        "ego_love_balance": 0,
-        "novelty_axis_from_ring": false,
-        "symbiosis_axis_from_ring": false
-      }
-    },
-    "daemon_governance": {
-      "safe_mode": false,
-      "safe_mode_reason": "SAFE_MODE_OFF",
-      "actions_used_in_window": 1,
-      "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 51357,
-      "max_pheromone_intensity": 300,
-      "max_plasmid_charge": 1200,
-      "invariant_drift_mid_score": 2,
-      "invariant_drift_high_score": 4,
-      "last_admission": {
-        "tick": 129,
-        "status": "rejected",
-        "requestedAction": "INJECT_PLASMID",
-        "appliedAction": "BLOCKED",
-        "degraded": false,
-        "severity": "BLOCKED",
-        "score": 0,
-        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-        "sharedCenter": "policy",
-        "dominantInvariantVector": "none"
-      },
-      "last_admission_history": [
-        {
-          "tick": 129,
-          "status": "rejected",
-          "requestedAction": "INJECT_PLASMID",
-          "appliedAction": "BLOCKED",
-          "degraded": false,
-          "severity": "BLOCKED",
-          "score": 0,
-          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-          "sharedCenter": "policy",
-          "dominantInvariantVector": "none"
-        }
-      ],
-      "last_pressure_ring_update": null,
-      "last_pressure_ring_history": [],
-      "last_homeostasis_update": null,
-      "last_homeostasis_history": [],
-      "homeostasis": {
-        "enabled": true,
-        "target_energy": 1200,
-        "target_energy_default": 1200,
-        "target_energy_current": 1200,
-        "band": 240,
-        "max_delta": 12,
-        "overflow_threshold": 0.2,
-        "starvation_floor": 200,
-        "subsidy_enabled": false,
-        "base_tax_default": 2,
-        "base_tax_current": 2,
-        "last_update_tick": -1,
-        "last_update_source": "runtime_policy",
-        "last_update_reason": "coldstart_reset"
-      }
-    },
-    "snapshot_guard": {
-      "enabled": false,
-      "interval_ticks": 10000,
-      "retention": 8,
-      "in_flight": false,
-      "last_tick": -1,
-      "last_result": null
-    },
-    "spatial_hash_guard": {
-      "tick": 257,
-      "overflow_count": 124,
-      "max_cell_count": 30,
-      "overflow_ratio": 0.805195
-    },
-    "behavior_clusters": [
-      {
-        "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 145,
-        "dominantRole": 0,
-        "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145,
-            145
-          ]
-        },
-        "lastTick": 257
-      },
-      {
-        "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 9,
-        "dominantRole": 1,
-        "genomeSamples": [
-          "FFB9DBB065DBB6ED",
-          "808107BAD1FC2B8E",
-          "808133F6DD98178A",
-          "808193D63D78776A",
-          "8081AB0E15700F22",
-          "8081DB7EC5603F92"
-        ],
-        "fingerprint": {
-          "replicateRatio": 0.5,
-          "signalRatio": 0,
-          "buildRatio": 0,
-          "survivalCurve": [
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9,
-            9
-          ]
-        },
-        "lastTick": 257
-      }
-    ],
-    "behavior_invariant": "R0.00|S0.00|B0.00",
-    "federation_rule_genome": {
-      "local": {
-        "signature": "A6C95F29",
-        "noveltySigned": 0,
-        "symbiosisSigned": 0,
-        "pressureRingScale": 0,
-        "workerCount": 1,
-        "strictDeterminism": true,
-        "generatedAt": "2026-03-06T12:45:11.196Z"
-      },
-      "peers": []
-    },
-    "federation_admission": {
-      "latest": null,
-      "history": [],
-      "policy": {
-        "enabled": true,
-        "midScore": 4,
-        "highScore": 7,
-        "rejectOnStrictMismatch": true,
-        "hybridizeEnabled": true,
-        "degradeEnergyRatio": 0.72,
-        "degradeResonanceRatio": 0.68,
-        "openWorld": false
-      }
-    }
-  },
-  "mutation_telemetry_before": {
-    "enabled": true,
-    "total": 0,
-    "lanes": {},
-    "topKinds": []
-  },
-  "mutation_telemetry_after": {
-    "enabled": true,
-    "total": 42605,
-    "lanes": {
-      "internal_host": 42552,
-      "canonical_gate": 52,
-      "external_daemon": 1
-    },
-    "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        42407
-      ],
-      [
-        "spawn_seed_atom",
-        145
-      ],
-      [
-        "audit_matrix_cycle",
-        52
-      ],
-      [
-        "daemon_policy_block_plasmid_rule",
-        1
-      ]
-    ]
-  },
-  "event_log": [
-    {
-      "kind": "INJECT_PLASMID_BLOCKED",
-      "tick": 129,
-      "response": {
-        "ok": false,
-        "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-        "http_status": 400,
-        "http_ok": false,
-        "latest_admission": {
-          "tick": 129,
-          "status": "rejected",
-          "requestedAction": "INJECT_PLASMID",
-          "appliedAction": "BLOCKED",
-          "degraded": false,
-          "severity": "BLOCKED",
-          "score": 0,
-          "reason": "PLASMID_OPCODE_BLOCKED_0xFF",
-          "sharedCenter": "policy",
-          "dominantInvariantVector": "none"
-        },
-        "applied_action": "BLOCKED"
-      }
-    }
-  ],
-  "event_log_digest": "50695f132f6c71b8c8f0c221843d594ff82ac80e3bc518a6571ab6bf35c15f8e",
-  "mutation_telemetry_digest": "d6977ea2458249896fba2c4c4dfa0842a6b59de07665a7c28a8dd6247672008f",
-  "codex_snapshot_digest": "6a410051926b28dfb62609130c2fb11b32820b81ed00e246e08057024300399e",
-  "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "extra_artifacts": {}
-}
-```
-
----
-
-## FILE: verification/traces/gt08_structure_intent_visibility/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "structure_intent_visibility",
-  "runtime_mode": "standalone-structure-intent-capture",
-  "seed": 404,
-  "ticks": 1,
-  "atom_count": 20,
-  "one_worker": {
-    "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-    "sense_visibility": true,
-    "conflict_cell": 335478786
-  },
-  "four_worker": {
-    "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-    "sense_visibility": true,
-    "conflict_cell": 335478786
-  },
-  "hash_match": true
-}
-```
-
----
-
-## FILE: verification/traces/gt08_structure_intent_visibility/invariants.json
-
-```json
-{
-  "structure_intent_hash_1w": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-  "structure_intent_hash_4w": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-  "hash_match": true,
-  "conflict_neighborhood_digest_1w": "620b07433a3eb9f92958d354030b0582c84e9884ea9212f340c3743b0d1c0290",
-  "conflict_neighborhood_digest_4w": "620b07433a3eb9f92958d354030b0582c84e9884ea9212f340c3743b0d1c0290",
-  "sense_register_digest_1w": "cd8f6fa7829beb5e33be6e912a674fc383310c63a9fb889910b6198d1cbc8127",
-  "sense_register_digest_4w": "cd8f6fa7829beb5e33be6e912a674fc383310c63a9fb889910b6198d1cbc8127"
-}
-```
-
----
-
-## FILE: verification/traces/gt08_structure_intent_visibility/notes.md
-
-```markdown
-# gt08_structure_intent_visibility
-
-- scenario: same-tick structure intent visibility
-- setup: standalone deterministic capture of contended BUILD intents and same-tick OP_SENSE visibility under 1-worker vs 4-worker execution
-- duration: 1 tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-structure-intent-capture
-- seed: 404
-- ticks: 1
-- atom_count: 20
-
-## Subprocess captures
-
-- strict=true workers=1 hash=f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93
-- strict=true workers=4 hash=f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93
-- hash_match=true
-- sense_visibility_1w=true
-- sense_visibility_4w=true
-```
-
----
-
-## FILE: verification/traces/gt08_structure_intent_visibility/trace.json
-
-```json
-{
-  "trace_id": "gt08_structure_intent_visibility",
-  "scenario": "same-tick structure intent visibility",
-  "seed": 404,
-  "tick_start": 0,
-  "tick_end": 1,
-  "runtime_mode": "standalone-structure-intent-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "strictHashMatch": true,
-    "senseVisibility": true,
-    "conflictCellType": 2,
-    "conflictCellCharge": 255,
-    "snapshotDigest": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "315092dd6e310152e68deadeef97159d081585b2e5c1afa13bac77790e5f91b3",
-  "invariant_digest": "0104ede56ba116fffd780182bd24e8e3eca168ebcdc1970d515c8112d5e1d3fc",
-  "extra_artifacts": {
-    "one_worker": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "seed": 404,
-      "ticks": 1,
-      "atomCount": 20,
-      "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-      "snapshot": {
-        "tickCounter": 2,
-        "centerCell": 12451841,
-        "centerX": 705,
-        "centerY": 405,
-        "conflictCell": 335478786,
-        "conflictX": 715,
-        "conflictY": 415,
-        "neighborhood": [
-          11796481,
-          11796481,
-          11796481,
-          10485761,
-          9175041,
-          11796481,
-          12451841,
-          11141121,
-          10485761,
-          9175041,
-          11141121,
-          11141121,
-          335478786,
-          15400961,
-          14090241,
-          9830401,
-          15400961,
-          15400961,
-          15400961,
-          14090241,
-          14090241,
-          14090241,
-          14090241,
-          14090241,
-          14090241
-        ],
-        "atoms": [
-          {
-            "idx": 200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          }
-        ]
-      }
-    },
-    "four_worker": {
-      "workerCount": 4,
-      "strictDeterminism": true,
-      "seed": 404,
-      "ticks": 1,
-      "atomCount": 20,
-      "hash": "f453e1c624c222787f039e07fc85360e60abb82f271d74e88e19e9d22da72a93",
-      "snapshot": {
-        "tickCounter": 2,
-        "centerCell": 12451841,
-        "centerX": 705,
-        "centerY": 405,
-        "conflictCell": 335478786,
-        "conflictX": 715,
-        "conflictY": 415,
-        "neighborhood": [
-          11796481,
-          11796481,
-          11796481,
-          10485761,
-          9175041,
-          11796481,
-          12451841,
-          11141121,
-          10485761,
-          9175041,
-          11141121,
-          11141121,
-          335478786,
-          15400961,
-          14090241,
-          9830401,
-          15400961,
-          15400961,
-          15400961,
-          14090241,
-          14090241,
-          14090241,
-          14090241,
-          14090241,
-          14090241
-        ],
-        "atoms": [
-          {
-            "idx": 200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 25724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 50724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75200,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75331,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75462,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75593,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          },
-          {
-            "idx": 75724,
-            "energy": 2998.447,
-            "resonance": 0,
-            "pc": 12,
-            "role": 3,
-            "senseReg": 1
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt09_collective_transport/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "collective_transport",
-  "runtime_mode": "standalone-collective-transport-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6",
-  "hive_value": 88,
-  "loaded_reg0": 88,
-  "pheromone_word": 51205
-}
-```
-
----
-
-## FILE: verification/traces/gt09_collective_transport/invariants.json
-
-```json
-{
-  "collective_transport_hash": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6",
-  "hive_value": 88,
-  "loaded_reg0": 88,
-  "pheromone_word": 51205,
-  "pheromone_cell_idx": 1410
-}
-```
-
----
-
-## FILE: verification/traces/gt09_collective_transport/notes.md
-
-```markdown
-# gt09_collective_transport
-
-- scenario: standalone collective hive and pheromone semantics
-- setup: standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive store-load and mode 2 pheromone emit through direct WASM execution
-- duration: 3 execute_atom calls / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-collective-transport-capture
-- workers: 1
-- strict: true
-- hash: 1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6
-
-## Collective capture
-
-- hive_value=88
-- loaded_reg0=88
-- pheromone_word=0xc805
-```
-
----
-
-## FILE: verification/traces/gt09_collective_transport/trace.json
-
-```json
-{
-  "trace_id": "gt09_collective_transport",
-  "scenario": "standalone collective hive and pheromone semantics",
-  "tick_start": 0,
-  "tick_end": 3,
-  "runtime_mode": "standalone-collective-transport-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "hiveValue": 88,
-    "loadedReg0": 88,
-    "pheromoneWord": 51205,
-    "snapshotDigest": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "6af42d774c6d6c5b01f8b7c7302759efff270cfa14eddfa1a62d5cedaadb396a",
-  "invariant_digest": "1f96d59146a8a67c73559c96144dcad1f97491d61af352fa7861db64cad92cbc",
-  "extra_artifacts": {
-    "collective_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "1beaa58c7bcee05eaa5d1ff783477d0fe67c7dbcdc060a4c692223544c00e1d6",
-      "snapshot": {
-        "hiveValue": 88,
-        "hiveBalance": 1000,
-        "pheromoneWord": 51205,
-        "pheromoneCellIdx": 1410,
-        "pheromoneX": 105,
-        "pheromoneY": 105,
-        "atoms": [
-          {
-            "idx": 0,
-            "energy": 0,
-            "pc": 4,
-            "role": 0,
-            "reg0": 0
-          },
-          {
-            "idx": 1,
-            "energy": 0,
-            "pc": 4,
-            "role": 0,
-            "reg0": 88
-          },
-          {
-            "idx": 2,
-            "energy": 0,
-            "pc": 4,
-            "role": 0,
-            "reg0": 0
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt10_share_transfer/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "share_transfer",
-  "runtime_mode": "standalone-share-transfer-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b",
-  "successful_sender_energy": 499.999,
-  "successful_receiver_energy": 600,
-  "failed_sender_energy": 999.999,
-  "failed_receiver_energy": 100
-}
-```
-
----
-
-## FILE: verification/traces/gt10_share_transfer/invariants.json
-
-```json
-{
-  "share_transfer_hash": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b",
-  "sender_bond_target": 1,
-  "failed_bond_target": 0,
-  "successful_sender_energy": 499.999,
-  "successful_receiver_energy": 600,
-  "failed_sender_energy": 999.999,
-  "failed_receiver_energy": 100
-}
-```
-
----
-
-## FILE: verification/traces/gt10_share_transfer/notes.md
-
-```markdown
-# gt10_share_transfer
-
-- scenario: standalone bonded share transfer semantics
-- setup: standalone deterministic capture of OP_SHARE successful bonded transfer and empty-bond no-op through direct WASM execution
-- duration: 2 execute_atom calls / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-share-transfer-capture
-- workers: 1
-- strict: true
-- hash: b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b
-
-## Share transfer capture
-
-- successful_sender_energy=499.999
-- successful_receiver_energy=600
-- failed_sender_energy=999.999
-- failed_receiver_energy=100
-```
-
----
-
-## FILE: verification/traces/gt10_share_transfer/trace.json
-
-```json
-{
-  "trace_id": "gt10_share_transfer",
-  "scenario": "standalone bonded share transfer semantics",
-  "tick_start": 0,
-  "tick_end": 2,
-  "runtime_mode": "standalone-share-transfer-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "successfulSenderEnergy": 499.999,
-    "successfulReceiverEnergy": 600,
-    "failedSenderEnergy": 999.999,
-    "failedReceiverEnergy": 100,
-    "snapshotDigest": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "21f2b9e5b3537c2661988063814dd131402ad811d0ea8578c72b838e153d6696",
-  "invariant_digest": "fb2310c0a6cf47b7fba0cca5be3f21d83e64052e530b091e148d9a1c35d0b569",
-  "extra_artifacts": {
-    "share_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "b145f3d37f4b7b20a9087fd3fb4f1abc7de7bac24f1598a7e87f80a9617e8d3b",
-      "snapshot": {
-        "successfulSenderEnergy": 499.999,
-        "successfulReceiverEnergy": 600,
-        "failedSenderEnergy": 999.999,
-        "failedReceiverEnergy": 100,
-        "senderBondTarget": 1,
-        "failedBondTarget": 0,
-        "atoms": [
-          {
-            "idx": 0,
-            "energy": 499.999,
-            "pc": 3,
-            "role": 0
-          },
-          {
-            "idx": 1,
-            "energy": 600,
-            "pc": 0,
-            "role": 0
-          },
-          {
-            "idx": 2,
-            "energy": 999.999,
-            "pc": 3,
-            "role": 0
-          },
-          {
-            "idx": 3,
-            "energy": 100,
-            "pc": 0,
-            "role": 0
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt11_collective_banking/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "collective_banking",
-  "runtime_mode": "standalone-collective-banking-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
-  "initial_hive_balance": 250,
-  "final_hive_balance": 230,
-  "depositor_energy": 4999.919,
-  "withdrawer_energy": 5000.099,
-  "withdraw_reg0": 100
-}
-```
-
----
-
-## FILE: verification/traces/gt11_collective_banking/invariants.json
-
-```json
-{
-  "collective_banking_hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
-  "initial_hive_balance": 250,
-  "final_hive_balance": 230,
-  "deposit_value_raw": 80,
-  "withdraw_cap_raw": 100,
-  "depositor_energy": 4999.919,
-  "withdrawer_energy": 5000.099,
-  "withdraw_reg0": 100
-}
-```
-
----
-
-## FILE: verification/traces/gt11_collective_banking/notes.md
-
-```markdown
-# gt11_collective_banking
-
-- scenario: standalone collective banking semantics
-- setup: standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and mode 4 capped withdraw through direct WASM execution
-- duration: 2 execute_atom calls / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-collective-banking-capture
-- workers: 1
-- strict: true
-- hash: 78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9
-
-## Collective banking capture
-
-- initial_hive_balance=250
-- final_hive_balance=230
-- depositor_energy=4999.919
-- withdrawer_energy=5000.099
-- withdraw_reg0=100
-```
-
----
-
-## FILE: verification/traces/gt11_collective_banking/trace.json
-
-```json
-{
-  "trace_id": "gt11_collective_banking",
-  "scenario": "standalone collective banking semantics",
-  "tick_start": 0,
-  "tick_end": 2,
-  "runtime_mode": "standalone-collective-banking-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "finalHiveBalance": 230,
-    "depositorEnergy": 4999.919,
-    "withdrawerEnergy": 5000.099,
-    "withdrawReg0": 100,
-    "snapshotDigest": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "37b5a0dd9458b5fb90244950ead511e298d7fca33b783e7bf6b74fdbd4fff5c9",
-  "invariant_digest": "faad969fa8fdfcc8a731e3a84a0aab04dbe63b64e1364b0c5dacbe8019430f08",
-  "extra_artifacts": {
-    "collective_banking_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "78668b6c2aa1306acaa63cbc93831cebd4e6fcb9d36c02e0b38652326a3b7fa9",
-      "snapshot": {
-        "initialHiveBalance": 250,
-        "finalHiveBalance": 230,
-        "depositValueRaw": 80,
-        "withdrawCapRaw": 100,
-        "atoms": [
-          {
-            "idx": 0,
-            "energy": 4999.919,
-            "pc": 4,
-            "role": 0,
-            "reg0": 0
-          },
-          {
-            "idx": 1,
-            "energy": 5000.099,
-            "pc": 4,
-            "role": 0,
-            "reg0": 100
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt12_collective_synchrony/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "collective_synchrony",
-  "runtime_mode": "standalone-collective-synchrony-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963",
-  "phase_peer_1_pc": 4,
-  "phase_peer_2_pc": 4,
-  "quorum_peer_1_pc": 4,
-  "quorum_peer_2_pc": 4,
-  "quorum_outsider_pc": 13
-}
-```
-
----
-
-## FILE: verification/traces/gt12_collective_synchrony/invariants.json
-
-```json
-{
-  "collective_synchrony_hash": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963",
-  "phase_source_pc": 4,
-  "phase_peer_1_pc": 4,
-  "phase_peer_2_pc": 4,
-  "quorum_source_pc": 4,
-  "quorum_peer_1_pc": 4,
-  "quorum_peer_2_pc": 4,
-  "quorum_outsider_pc": 13,
-  "quorum_cell_idx": 1420,
-  "quorum_cell_count": 3
-}
-```
-
----
-
-## FILE: verification/traces/gt12_collective_synchrony/notes.md
-
-```markdown
-# gt12_collective_synchrony
-
-- scenario: standalone collective synchrony semantics
-- setup: standalone deterministic capture of OP_COLLECTIVE mode 5 bonded phase-lock and mode 6 local quorum PC sync through direct WASM execution
-- duration: 2 standalone execute phases / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-collective-synchrony-capture
-- workers: 1
-- strict: true
-- hash: df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963
-
-## Collective synchrony capture
-
-- phase_peer_1_pc=4
-- phase_peer_2_pc=4
-- quorum_peer_1_pc=4
-- quorum_peer_2_pc=4
-- quorum_outsider_pc=13
-```
-
----
-
-## FILE: verification/traces/gt12_collective_synchrony/trace.json
-
-```json
-{
-  "trace_id": "gt12_collective_synchrony",
-  "scenario": "standalone collective synchrony semantics",
-  "tick_start": 0,
-  "tick_end": 2,
-  "runtime_mode": "standalone-collective-synchrony-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "phasePeer1Pc": 4,
-    "phasePeer2Pc": 4,
-    "quorumPeer1Pc": 4,
-    "quorumPeer2Pc": 4,
-    "quorumOutsiderPc": 13,
-    "snapshotDigest": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "3fe1c18026a89d03a3dea8f08910e0296fd224162662e70de5195531c70e83a9",
-  "invariant_digest": "d078cc9cb216a8082f75cd055d50bf31cb5ac5a707e18898b7485c462bd28f0b",
-  "extra_artifacts": {
-    "collective_synchrony_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "df3e8266f4fede871e87c849b4f025a2bfd279681441211d5bc5f3a5c0794963",
-      "snapshot": {
-        "phaseLock": {
-          "sourcePc": 4,
-          "peer1Pc": 4,
-          "peer2Pc": 4,
-          "peer1InitialPc": 9,
-          "peer2InitialPc": 10
-        },
-        "quorum": {
-          "sourcePc": 4,
-          "peer1Pc": 4,
-          "peer2Pc": 4,
-          "outsiderPc": 13,
-          "peer1InitialPc": 7,
-          "peer2InitialPc": 8,
-          "outsiderInitialPc": 13,
-          "cellIdx": 1420,
-          "cellCount": 3
-        }
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt13_structure_lock_progress/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "structure_lock_progress",
-  "runtime_mode": "standalone-structure-lock-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
-  "visible_sense_reg": 1,
-  "typed_miss_sense_reg": 0,
-  "resolved_cell_type": 2,
-  "resolved_cell_charge": 255
-}
-```
-
----
-
-## FILE: verification/traces/gt13_structure_lock_progress/invariants.json
-
-```json
-{
-  "structure_lock_hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
-  "visible_neighbor_cell": 5671,
-  "visible_neighbor_type": 1,
-  "visible_sense_reg": 1,
-  "typed_miss_sense_reg": 0,
-  "resolved_cell_type": 2,
-  "resolved_cell_charge": 255,
-  "owner_intent_after_tick": 0,
-  "value_intent_after_tick": 0,
-  "charge_intent_after_tick": 0
-}
-```
-
----
-
-## FILE: verification/traces/gt13_structure_lock_progress/notes.md
-
-```markdown
-# gt13_structure_lock_progress
-
-- scenario: standalone structure stale-lock progress
-- setup: standalone deterministic subprocess capture of OP_SENSE visibility through a stale structure lock plus tick_structure_grid intent clearing
-- duration: 2 execute phases + 1 structure tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-structure-lock-capture
-- workers: 1
-- strict: true
-- hash: c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927
-
-## Structure lock capture
-
-- visible_sense_reg=1
-- typed_miss_sense_reg=0
-- resolved_cell_type=2
-- resolved_cell_charge=255
-- owner_intent_after_tick=0
-```
-
----
-
-## FILE: verification/traces/gt13_structure_lock_progress/trace.json
-
-```json
-{
-  "trace_id": "gt13_structure_lock_progress",
-  "scenario": "standalone structure stale-lock progress",
-  "tick_start": 0,
-  "tick_end": 3,
-  "runtime_mode": "standalone-structure-lock-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "visibleSenseReg": 1,
-    "typedMissSenseReg": 0,
-    "resolvedCellType": 2,
-    "resolvedCellCharge": 255,
-    "snapshotDigest": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "394ca51df235779529436c24b5a9c83faa4203f8cb47b6fd5c21141616fd5580",
-  "invariant_digest": "84260c8e9974f763c7e725bbfc539f5b4363df6ad22689968392079ca6c7c298",
-  "extra_artifacts": {
-    "structure_lock_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "c4e1db4abc263e82780df33a55558a82622fe4fb99f4be582452d761b6193927",
-      "snapshot": {
-        "visibleSense": {
-          "centerX": 705,
-          "centerY": 405,
-          "neighborCellIdx": 5671,
-          "neighborType": 1,
-          "senseReg": 1,
-          "pc": 0
-        },
-        "typedMissSense": {
-          "centerX": 705,
-          "centerY": 405,
-          "neighborCellIdx": 5671,
-          "neighborType": 1,
-          "senseReg": 0,
-          "pc": 0
-        },
-        "intentClearing": {
-          "cellIdx": 3424,
-          "resolvedType": 2,
-          "resolvedCharge": 255,
-          "ownerIntent": 0,
-          "valueIntent": 0,
-          "chargeIntent": 0
-        }
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt14_structure_charge_resolution/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "structure_charge_resolution",
-  "runtime_mode": "standalone-structure-charge-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484",
-  "charge_intent_before_tick": 180,
-  "resolved_cell_type": 1,
-  "resolved_cell_charge": 170
-}
-```
-
----
-
-## FILE: verification/traces/gt14_structure_charge_resolution/invariants.json
-
-```json
-{
-  "structure_charge_hash": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484",
-  "target_cell_before_tick": 423,
-  "charge_intent_before_tick": 180,
-  "resolved_cell_type": 1,
-  "resolved_cell_charge": 170,
-  "charge_intent_after_tick": 0
-}
-```
-
----
-
-## FILE: verification/traces/gt14_structure_charge_resolution/notes.md
-
-```markdown
-# gt14_structure_charge_resolution
-
-- scenario: standalone structure charge resolution
-- setup: standalone deterministic subprocess capture of OP_PLUG publishing a charge intent and tick_structure_grid resolving it into a concrete charged structure cell
-- duration: 1 execute phase + 1 structure tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-structure-charge-capture
-- workers: 1
-- strict: true
-- hash: 5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484
-
-## Structure charge capture
-
-- charge_intent_before_tick=180
-- resolved_cell_type=1
-- resolved_cell_charge=170
-- charge_intent_after_tick=0
-```
-
----
-
-## FILE: verification/traces/gt14_structure_charge_resolution/trace.json
-
-```json
-{
-  "trace_id": "gt14_structure_charge_resolution",
-  "scenario": "standalone structure charge resolution",
-  "tick_start": 0,
-  "tick_end": 2,
-  "runtime_mode": "standalone-structure-charge-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "chargeIntentBeforeTick": 180,
-    "resolvedCellType": 1,
-    "resolvedCellCharge": 170,
-    "snapshotDigest": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "ff46fab60433cb5ab0f8ac71f2199b0962f631326b2c50aaa6d3035d603d0195",
-  "invariant_digest": "f9e01ad4f091c72b83af8df9ee628fa1d3ffbd0d90907287d82192e80d5c70b6",
-  "extra_artifacts": {
-    "structure_charge_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484",
-      "snapshot": {
-        "beforeTick": {
-          "targetCellIdx": 423,
-          "chargeIntent": 180
-        },
-        "afterTick": {
-          "targetCellIdx": 423,
-          "resolvedType": 1,
-          "resolvedCharge": 170,
-          "chargeIntent": 0
-        }
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt15_structure_charge_competition/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "structure_charge_competition",
-  "runtime_mode": "standalone-structure-charge-competition-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01",
-  "low_then_high_charge_intent": 220,
-  "low_then_high_resolved_charge": 210,
-  "high_then_low_charge_intent": 220,
-  "high_then_low_resolved_charge": 210
-}
-```
-
----
-
-## FILE: verification/traces/gt15_structure_charge_competition/invariants.json
-
-```json
-{
-  "structure_charge_competition_hash": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01",
-  "low_then_high_cell": 423,
-  "low_then_high_charge_intent": 220,
-  "low_then_high_resolved_charge": 210,
-  "low_then_high_charge_after_tick": 0,
-  "high_then_low_cell": 427,
-  "high_then_low_charge_intent": 220,
-  "high_then_low_resolved_charge": 210,
-  "high_then_low_charge_after_tick": 0
-}
-```
-
----
-
-## FILE: verification/traces/gt15_structure_charge_competition/notes.md
-
-```markdown
-# gt15_structure_charge_competition
-
-- scenario: standalone structure charge competition
-- setup: standalone deterministic subprocess capture of two OP_PLUG publications hitting the same cell in both low->high and high->low orderings
-- duration: 4 execute_atom calls + 1 structure tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: standalone-structure-charge-competition-capture
-- workers: 1
-- strict: true
-- hash: 028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01
-
-## Structure charge competition capture
-
-- low_then_high_charge_intent=220
-- low_then_high_resolved_charge=210
-- high_then_low_charge_intent=220
-- high_then_low_resolved_charge=210
-```
-
----
-
-## FILE: verification/traces/gt15_structure_charge_competition/trace.json
-
-```json
-{
-  "trace_id": "gt15_structure_charge_competition",
-  "scenario": "standalone structure charge competition",
-  "tick_start": 0,
-  "tick_end": 2,
-  "runtime_mode": "standalone-structure-charge-competition-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "lowThenHighChargeIntent": 220,
-    "highThenLowChargeIntent": 220,
-    "lowThenHighResolvedCharge": 210,
-    "highThenLowResolvedCharge": 210,
-    "snapshotDigest": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "36d05cf4c048606075dfee36a4486bceea75f9b735ff0a2ad5572d449daf0b81",
-  "invariant_digest": "e233da5db7c1dd088e73248aca40d47c4a6442ae9e035e2218615f7894d5bd44",
-  "extra_artifacts": {
-    "structure_charge_competition_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "028319ea4fafa984573566120d552d3706b7ab2df57c53458883665f181f7b01",
-      "snapshot": {
-        "lowThenHigh": {
-          "targetCellIdx": 423,
-          "firstRequestedCharge": 120,
-          "secondRequestedCharge": 220,
-          "chargeIntentBeforeTick": 220,
-          "resolvedType": 1,
-          "resolvedCharge": 210,
-          "chargeIntentAfterTick": 0
-        },
-        "highThenLow": {
-          "targetCellIdx": 427,
-          "firstRequestedCharge": 220,
-          "secondRequestedCharge": 120,
-          "chargeIntentBeforeTick": 220,
-          "resolvedType": 1,
-          "resolvedCharge": 210,
-          "chargeIntentAfterTick": 0
-        }
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt16_runtime_build_materialization/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "runtime_build_materialization",
-  "runtime_mode": "worker-runtime-structure-build-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "owner_intent_after_tick": 0,
-  "value_intent_after_tick": 0
-}
-```
-
----
-
-## FILE: verification/traces/gt16_runtime_build_materialization/invariants.json
-
-```json
-{
-  "structure_build_runtime_hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
-  "target_cell_idx": 423,
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "target_resolved_state": 0,
-  "owner_intent_after_tick": 0,
-  "value_intent_after_tick": 0,
-  "charge_intent_after_tick": 0,
-  "atom_pc": 6,
-  "atom_role": 3
-}
-```
-
----
-
-## FILE: verification/traces/gt16_runtime_build_materialization/notes.md
-
-```markdown
-# gt16_runtime_build_materialization
-
-- scenario: runtime structure build materialization
-- setup: worker-backed deterministic subprocess capture of a single architect executing OP_BUILD SOURCE through PULSE.tick
-- duration: 1 pulse tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: worker-runtime-structure-build-capture
-- workers: 1
-- strict: true
-- hash: a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da
-
-## Runtime build capture
-
-- target_resolved_type=4
-- target_resolved_charge=255
-- owner_intent_after_tick=0
-- value_intent_after_tick=0
-- neighbor_resolved_type=1
-- neighbor_resolved_charge=235
-```
-
----
-
-## FILE: verification/traces/gt16_runtime_build_materialization/trace.json
-
-```json
-{
-  "trace_id": "gt16_runtime_build_materialization",
-  "scenario": "runtime structure build materialization",
-  "tick_start": 0,
-  "tick_end": 1,
-  "runtime_mode": "worker-runtime-structure-build-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "targetResolvedType": 4,
-    "targetResolvedCharge": 255,
-    "ownerIntentAfterTick": 0,
-    "valueIntentAfterTick": 0,
-    "snapshotDigest": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "914335ad40e1eef6feda4d1bbc752b0eb4198a660e411efccddba4fb34a545e1",
-  "invariant_digest": "e85d3b19d2cd7cf730c5f9604bf6f4a0e3b9c893b5f9eda4a25afd5a08701eaa",
-  "extra_artifacts": {
-    "structure_build_runtime_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "a01baa0b17b106dcd8959c3003c0415b039f5f44f15120f6bc5c8a20f86374da",
-      "snapshot": {
-        "targetCellIdx": 423,
-        "targetResolvedType": 4,
-        "targetResolvedCharge": 255,
-        "targetResolvedState": 0,
-        "ownerIntentAfterTick": 0,
-        "valueIntentAfterTick": 0,
-        "chargeIntentAfterTick": 0,
-        "neighborCellIdx": 424,
-        "neighborResolvedType": 1,
-        "neighborResolvedCharge": 235,
-        "atomPc": 6,
-        "atomRole": 3
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt17_runtime_build_competition/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "runtime_build_competition",
-  "runtime_mode": "worker-runtime-structure-build-competition-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "target_resolved_state": 91,
-  "higher_owner_atom_idx": 3,
-  "higher_owner_state": 91
-}
-```
-
----
-
-## FILE: verification/traces/gt17_runtime_build_competition/invariants.json
-
-```json
-{
-  "structure_build_competition_hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
-  "target_cell_idx": 423,
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "target_resolved_state": 91,
-  "owner_intent_after_tick": 0,
-  "value_intent_after_tick": 0,
-  "lower_owner_atom_idx": 2,
-  "lower_owner_state": 17,
-  "higher_owner_atom_idx": 3,
-  "higher_owner_state": 91
-}
-```
-
----
-
-## FILE: verification/traces/gt17_runtime_build_competition/notes.md
-
-```markdown
-# gt17_runtime_build_competition
-
-- scenario: runtime structure build competition
-- setup: worker-backed deterministic subprocess capture of two architects publishing competing OP_BUILD SOURCE intents into the same cell through PULSE.tick
-- duration: 1 pulse tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: worker-runtime-structure-build-competition-capture
-- workers: 1
-- strict: true
-- hash: 02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad
-
-## Runtime build competition capture
-
-- target_resolved_type=4
-- target_resolved_charge=255
-- target_resolved_state=91
-- lower_owner_atom_idx=2
-- lower_owner_state=17
-- higher_owner_atom_idx=3
-- higher_owner_state=91
-```
-
----
-
-## FILE: verification/traces/gt17_runtime_build_competition/trace.json
-
-```json
-{
-  "trace_id": "gt17_runtime_build_competition",
-  "scenario": "runtime structure build competition",
-  "tick_start": 0,
-  "tick_end": 1,
-  "runtime_mode": "worker-runtime-structure-build-competition-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "targetResolvedType": 4,
-    "targetResolvedCharge": 255,
-    "targetResolvedState": 91,
-    "ownerIntentAfterTick": 0,
-    "snapshotDigest": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "9a21c92c529b4b2f5a944570974632027cc6114cac2aea4ad28cf80cd436336a",
-  "invariant_digest": "58d698b1f06b93f44942f14915cff4b5353320baa8bfe46f14357a5870b41d12",
-  "extra_artifacts": {
-    "structure_build_competition_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "02ff0109cee9073a2cbfc75e4f6e81be8cb0ad960aabe1b306b3f483e22aa4ad",
-      "snapshot": {
-        "targetCellIdx": 423,
-        "targetResolvedType": 4,
-        "targetResolvedCharge": 255,
-        "targetResolvedState": 91,
-        "ownerIntentAfterTick": 0,
-        "valueIntentAfterTick": 0,
-        "chargeIntentAfterTick": 0,
-        "lowerOwnerAtomIdx": 2,
-        "lowerOwnerState": 17,
-        "higherOwnerAtomIdx": 3,
-        "higherOwnerState": 91,
-        "lowerAtomPc": 6,
-        "higherAtomPc": 6
-      }
-    }
-  }
-}
-```
-
----
-
-## FILE: verification/traces/gt18_runtime_build_stale_lock/codex_snapshot.json
-
-```json
-{
-  "control_specimen": "runtime_build_stale_lock",
-  "runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
-  "worker_count": 1,
-  "strict_determinism": true,
-  "hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "target_resolved_state": 55,
-  "stale_lock_owner_token": 3,
-  "stale_locked_state": 55
-}
-```
-
----
-
-## FILE: verification/traces/gt18_runtime_build_stale_lock/invariants.json
-
-```json
-{
-  "structure_build_lock_hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
-  "target_cell_idx": 423,
-  "target_resolved_type": 4,
-  "target_resolved_charge": 255,
-  "target_resolved_state": 55,
-  "owner_intent_after_tick": 0,
-  "value_intent_after_tick": 0,
-  "stale_lock_owner_token": 3,
-  "stale_locked_state": 55,
-  "attempted_owner_atom_idx": 2,
-  "attempted_build_state": 99
-}
-```
-
----
-
-## FILE: verification/traces/gt18_runtime_build_stale_lock/notes.md
-
-```markdown
-# gt18_runtime_build_stale_lock
-
-- scenario: runtime structure build stale-lock fallback
-- setup: worker-backed deterministic subprocess capture of a single architect attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent through PULSE.tick
-- duration: 1 pulse tick / subprocess capture
-- daemonEnabled: false
-- runtime_mode: worker-runtime-structure-build-stale-lock-capture
-- workers: 1
-- strict: true
-- hash: 4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156
-
-## Runtime build stale-lock capture
-
-- target_resolved_type=4
-- target_resolved_charge=255
-- target_resolved_state=55
-- stale_lock_owner_token=3
-- stale_locked_state=55
-- attempted_owner_atom_idx=2
-- attempted_build_state=99
-```
-
----
-
-## FILE: verification/traces/gt18_runtime_build_stale_lock/trace.json
-
-```json
-{
-  "trace_id": "gt18_runtime_build_stale_lock",
-  "scenario": "runtime structure build stale-lock fallback",
-  "tick_start": 0,
-  "tick_end": 1,
-  "runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
-  "daemon_enabled": false,
-  "metrics": {
-    "targetResolvedType": 4,
-    "targetResolvedCharge": 255,
-    "targetResolvedState": 55,
-    "ownerIntentAfterTick": 0,
-    "snapshotDigest": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156"
-  },
-  "event_log": [],
-  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_before": {},
-  "mutation_telemetry_after": {},
-  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "codex_snapshot_digest": "c2a6ca0840096be8e6ddbfa14c8ab11b49e8b919dcebd956f1afa73615fc2dd0",
-  "invariant_digest": "9104648482116e4ae8a7b97542b734bbb25caacbe6f4d1ff8d0d6a6c6c8fef7c",
-  "extra_artifacts": {
-    "structure_build_lock_capture": {
-      "workerCount": 1,
-      "strictDeterminism": true,
-      "hash": "4f0464a743d1960d246e952e48929d625f04d5dcf2d10c1df2907e8b4b6c7156",
-      "snapshot": {
-        "targetCellIdx": 423,
-        "targetResolvedType": 4,
-        "targetResolvedCharge": 255,
-        "targetResolvedState": 55,
-        "ownerIntentAfterTick": 0,
-        "valueIntentAfterTick": 0,
-        "chargeIntentAfterTick": 0,
-        "staleLockOwnerToken": 3,
-        "staleLockedState": 55,
-        "attemptedOwnerAtomIdx": 2,
-        "attemptedBuildState": 99,
-        "atomPc": 6
-      }
-    }
-  }
-}
 ```
 
 ---

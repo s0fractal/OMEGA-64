@@ -132,7 +132,14 @@ type RuntimeMetrics = {
     suppressedGuardianSignals: number;
     shadowSuppressedGuardianSignals: number;
     lastTick: number;
-    lastStatus: "legacy" | "stable" | "repair" | "fallback";
+    lastStatus:
+      | "legacy"
+      | "stable"
+      | "repair"
+      | "fallback"
+      | "shadow"
+      | "hybrid"
+      | "legacy-blocked";
     lastBranch: "stable" | "repair" | "unknown";
     lastFallbackReason: string;
   };
@@ -575,8 +582,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
   let totalEnergy = 0;
   for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
-  const rawCoherence = (STATE_MATRIX.getNeuralCoherence?.() ??
-    STATE_MATRIX.getClusterSync?.() ??
+  const rawCoherence = (STATE_MATRIX.getClusterSync?.() ??
     0) as number;
   return {
     tick,
@@ -766,7 +772,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       tick,
       reason,
       prune: true,
-      retention: SNAPSHOT_POLICY.retention,
+      retention: SNAPSHOT_POLICY.retention ?? 10,
     });
     if (result.success) {
       autoSnapshotLastTick = tick;
@@ -3668,6 +3674,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     enabled: COLDSTART_POLICY.enabled,
     count: COLDSTART_POLICY.count,
     replicatorRatio: COLDSTART_POLICY.replicatorRatio,
+    guardianRatio: COLDSTART_POLICY.guardianRatio,
     seed: COLDSTART_POLICY.seed,
     energy: COLDSTART_POLICY.energy,
     resonance: COLDSTART_POLICY.resonance,

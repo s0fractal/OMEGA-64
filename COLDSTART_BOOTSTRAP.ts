@@ -4,6 +4,7 @@ type ColdstartConfig = {
   enabled: boolean;
   count: number;
   replicatorRatio: number;
+  guardianRatio: number;
   seed: number;
   energy: number;
   resonance: number;
@@ -16,6 +17,7 @@ type ColdstartResult = {
   configuredCount: number;
   seeded: number;
   replicators: number;
+  guardians: number;
   architects: number;
   seed: number;
 };
@@ -36,7 +38,7 @@ const createLcg = (seed: number): (() => number) => {
 };
 
 const makeReplicatorScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
+  const script = new Uint8Array(8);
   let pc = 0;
   script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
   script[pc++] = 0;
@@ -50,7 +52,7 @@ const makeReplicatorScript = (): Uint8Array => {
 };
 
 const makeArchitectScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
+  const script = new Uint8Array(8);
   let pc = 0;
   script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
   script[pc++] = 0;
@@ -65,16 +67,45 @@ const makeArchitectScript = (): Uint8Array => {
   return script;
 };
 
+const makeGuardianScript = (stable: boolean): Uint8Array => {
+  const script = new Uint8Array(16);
+  let pc = 0;
+  const RISC = STATE_MATRIX.RISC;
+
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_GUARDIAN;
+
+  if (stable) {
+    script[pc++] = RISC.OP_SIGNAL;
+  } else {
+    script[pc++] = RISC.OP_BUILD;
+  }
+
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+
+  return script;
+};
+
 const buildGenome = (
   nextU32: () => number,
-  mode: "replicator" | "architect",
+  mode: "replicator" | "architect" | "guardian",
 ): Uint8Array => {
   const genome = new Uint8Array(8);
   for (let i = 0; i < 8; i++) {
     genome[i] = nextU32() & 0xFF;
   }
-  genome[0] = mode === "replicator" ? 0x80 : 0xA8;
-  genome[1] = mode === "replicator" ? 0x81 : 0xA7;
+  if (mode === "replicator") {
+    genome[0] = 0x80;
+    genome[1] = 0x81;
+  } else if (mode === "architect") {
+    genome[0] = 0xA8;
+    genome[1] = 0xA7;
+  } else { // guardian
+    genome[0] = 0xA7;
+    genome[1] = 0x81;
+  }
   return genome;
 };
 
@@ -130,6 +161,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
@@ -143,6 +175,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
@@ -157,32 +190,49 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       configuredCount: config.count,
       seeded: 0,
       replicators: 0,
+      guardians: 0,
       architects: 0,
       seed: config.seed,
     };
   }
 
   const nextU32 = createLcg(config.seed);
-  const replicatorTarget = clamp(
-    Math.round(config.count * config.replicatorRatio),
+  const replicatorTarget = Math.max(
     1,
-    config.count,
+    Math.round(config.count * config.replicatorRatio),
   );
-  const architectTarget = Math.max(0, config.count - replicatorTarget);
+  const guardianTarget = Math.max(
+    1,
+    Math.round(config.count * config.guardianRatio),
+  );
+  const architectTarget = Math.max(
+    0,
+    config.count - replicatorTarget - guardianTarget,
+  );
+
   const replicatorScript = makeReplicatorScript();
   const architectScript = makeArchitectScript();
+  const guardianStableScript = makeGuardianScript(true);
+  const guardianRepairScript = makeGuardianScript(false);
 
   let seeded = 0;
   let replicators = 0;
+  let guardians = 0;
   let architects = 0;
 
   for (let i = 0; i < config.count; i++) {
     const slot = STATE_MATRIX.findFreeSlot();
     if (slot < 0) break;
 
-    const mode: "replicator" | "architect" = i < replicatorTarget
-      ? "replicator"
-      : "architect";
+    let mode: "replicator" | "architect" | "guardian";
+    if (i < replicatorTarget) {
+      mode = "replicator";
+    } else if (i < replicatorTarget + guardianTarget) {
+      mode = "guardian";
+    } else {
+      mode = "architect";
+    }
+
     const genome = buildGenome(nextU32, mode);
     const pos = seedPosition(i, config.count, nextU32);
     const energy = variedResource(config.energy, nextU32, 0.18);
@@ -193,6 +243,23 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       0xA17EA17En
     );
 
+    let script: Uint8Array;
+    let role: number;
+
+    if (mode === "replicator") {
+      script = replicatorScript;
+      role = STATE_MATRIX.ROLE_PRODUCER;
+      replicators++;
+    } else if (mode === "guardian") {
+      script = guardians % 2 === 0 ? guardianStableScript : guardianRepairScript;
+      role = STATE_MATRIX.ROLE_GUARDIAN;
+      guardians++;
+    } else {
+      script = architectScript;
+      role = STATE_MATRIX.ROLE_ARCHITECT;
+      architects++;
+    }
+
     STATE_MATRIX.seedAtom(
       slot,
       id,
@@ -201,15 +268,10 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       energy,
       resonance,
       genome,
-      mode === "replicator" ? replicatorScript : architectScript,
+      script,
     );
-    STATE_MATRIX.setRole(
-      slot,
-      mode === "replicator" ? STATE_MATRIX.ROLE_PRODUCER : STATE_MATRIX.ROLE_ARCHITECT,
-    );
+    STATE_MATRIX.setRole(slot, role);
     seeded++;
-    if (mode === "replicator") replicators++;
-    else architects++;
   }
 
   return {
@@ -218,8 +280,9 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
     reason: seeded > 0 ? "COLDSTART_SEEDED" : "COLDSTART_NO_FREE_SLOT",
     configuredCount: config.count,
     seeded,
-    replicators: Math.min(replicatorTarget, replicators),
-    architects: Math.min(architectTarget, architects),
+    replicators,
+    guardians,
+    architects,
     seed: config.seed,
   };
 };

@@ -72,6 +72,8 @@ const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_ROLE, 3],
   [RISC.OP_BUILD, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_SPORE_DRIVE, 1],
 ]);
 
 export const normalizeGuardianSignalExecutionMode = (
@@ -182,6 +184,17 @@ const applyGuardianOpcode = (
       }
       return;
     }
+    case RISC.OP_JZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.branchTaken = true;
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
     case RISC.OP_JMP: {
       state.pc = token.args[0] ?? 0;
       return;
@@ -200,6 +213,11 @@ const applyGuardianOpcode = (
     }
     case RISC.OP_BUILD: {
       state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SPORE_DRIVE: {
+      // Movement is no-op in bridge reduction
       state.pc += token.length;
       return;
     }
