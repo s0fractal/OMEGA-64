@@ -1,0 +1,40 @@
+{
+  "trace_id": "gt14_structure_charge_resolution",
+  "scenario": "standalone structure charge resolution",
+  "tick_start": 0,
+  "tick_end": 2,
+  "runtime_mode": "standalone-structure-charge-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "chargeIntentBeforeTick": 180,
+    "resolvedCellType": 1,
+    "resolvedCellCharge": 170,
+    "snapshotDigest": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "ff46fab60433cb5ab0f8ac71f2199b0962f631326b2c50aaa6d3035d603d0195",
+  "invariant_digest": "f9e01ad4f091c72b83af8df9ee628fa1d3ffbd0d90907287d82192e80d5c70b6",
+  "extra_artifacts": {
+    "structure_charge_capture": {
+      "workerCount": 1,
+      "strictDeterminism": true,
+      "hash": "5169f3bb10720912217ba528781cda8902c8e992dca299829d98114bdd8fa484",
+      "snapshot": {
+        "beforeTick": {
+          "targetCellIdx": 423,
+          "chargeIntent": 180
+        },
+        "afterTick": {
+          "targetCellIdx": 423,
+          "resolvedType": 1,
+          "resolvedCharge": 170,
+          "chargeIntent": 0
+        }
+      }
+    }
+  }
+}

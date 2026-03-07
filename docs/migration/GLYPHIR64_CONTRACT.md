@@ -70,7 +70,7 @@ The first bridge subset is intentionally narrow and tied to the active WASM ISA 
 | `16` | `REPLICATE` | `0x80` | transport / reproduction | bridge candidate |
 | `17` | `SIGNAL` | `0x81` | transport / field write | bridge candidate |
 | `18` | `SHARE` | `0x83` | transport / resource exchange | bridge candidate; bounded bonded-transfer parity active |
-| `24` | `PLUG` | `0xA4` | structural IO | bridge candidate |
+| `24` | `PLUG` | `0xA4` | structural IO | bridge candidate; bounded charge-resolve parity active |
 | `25` | `TENSEGRITY` | `0xA5` | structural constraint | bridge candidate |
 | `32` | `COLLECTIVE` | `0xA6` | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active |
 | `33` | `ROLE` | `0xA7` | catalytic / identity shift | bridge candidate |

@@ -13,6 +13,7 @@ export type ReductionCaseExpectation = {
   finalSignalGrid?: Partial<Record<number, number>>;
   finalPeerEnergy?: Partial<Record<number, number>>;
   finalPeerPc?: Partial<Record<number, number>>;
+  finalStructureGrid?: Partial<Record<number, number>>;
   branchTaken?: boolean;
 };
 
@@ -22,6 +23,7 @@ export type ReductionCaseDefinition = {
   description: string;
   script: Uint8Array;
   maxSteps: number;
+  postStructureTick?: boolean;
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
   initialPeerEnergy?: Partial<Record<number, number>>;
@@ -31,6 +33,7 @@ export type ReductionCaseDefinition = {
   initialStructureGrid?: Partial<Record<number, number>>;
   initialStructureIntentOwner?: Partial<Record<number, number>>;
   initialStructureIntentValue?: Partial<Record<number, number>>;
+  initialStructureChargeIntent?: Partial<Record<number, number>>;
   expected: ReductionCaseExpectation;
 };
 
@@ -139,6 +142,30 @@ const makeSenseIntentScript = (buildType: number, targetType: number): Uint8Arra
   script[pc++] = targetType & 0xFF;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeBuildOnlyScript = (buildType: number, buildState: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = buildType & 0xFF;
+  script[pc++] = buildState & 0xFF;
+  return script;
+};
+
+const makePlugChargeScript = (charge: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = charge & 0xFF;
+  script[pc++] = 0xA4;
+  script[pc++] = 1;
   script[pc++] = 0;
   return script;
 };
@@ -715,6 +742,33 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       buildCount: 0,
       finalRole: 0,
       registers: [0, 0, 0, 0, 0, 0, 0, 0],
+      branchTaken: false,
+    },
+  },
+  {
+    id: "rc21_gt14_plug_charge_resolve",
+    baselineTraceId: "gt14_structure_charge_resolution",
+    description:
+      "A bounded PLUG bridge should publish a charge intent that resolves into a concrete wire charge on the next bounded structure tick, clearing the intent afterward.",
+    script: makePlugChargeScript(180),
+    maxSteps: 2,
+    postStructureTick: true,
+    initialProps: {
+      [RISC.PROP_X]: 35,
+      [RISC.PROP_Y]: 35,
+    },
+    initialStructureGrid: {
+      [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+    },
+    expected: {
+      finalPc: 6,
+      signalCount: 0,
+      buildCount: 0,
+      finalRole: 0,
+      finalStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE |
+          (170 << 16),
+      },
       branchTaken: false,
     },
   },

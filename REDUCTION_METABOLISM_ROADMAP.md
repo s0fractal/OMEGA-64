@@ -99,6 +99,11 @@ Latest completed planning work:
   through stale structure locks plus `tick_structure_grid` intent clearing, so
   the structure lane has a forward-progress baseline before deeper lock/fallback
   bridge work.
+- Extended Stage 2 with a seventh standalone control specimen:
+  `gt14_structure_charge_resolution` now captures bounded `OP_PLUG` charge
+  intent publication plus `tick_structure_grid` materialization, so the
+  structure charge lane has a committed baseline before deeper structure-engine
+  bridge work.
 - Extended Stage 4 with bounded `OP_SENSE` parity tied to `gt08`: the reduction
   harness now models build-intent overlays and structural sensing, and persists
   `rc09` / `rc10` artifacts for visible-intent and typed-miss cases.
@@ -121,6 +126,10 @@ Latest completed planning work:
   the reduction harness now seeds structure grid + owner overlays directly and
   persists `rc19` / `rc20` artifacts for visible-through-lock and typed-miss
   fallback behavior.
+- Extended Stage 3/4 with bounded `OP_PLUG` post-tick resolution parity tied
+  to `gt14`: the reduction harness now supports a narrow `postStructureTick`
+  flush plus charge-intent state and persists `rc21` for charge materialization
+  / intent-clearing behavior.
 - Extracted daemon ingress admission logic into `DAEMON_INGRESS_POLICY.ts` so
   runtime and verification now share one pure policy contract.
 - Added an admission shadow harness for `gt04` and `gt06`, with committed

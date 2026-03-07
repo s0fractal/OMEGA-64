@@ -342,6 +342,31 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_structure_lock_progress.ts",
     ],
   },
+  {
+    id: "gt14_structure_charge_resolution",
+    scenario: "standalone structure charge resolution",
+    setup:
+      "standalone deterministic subprocess capture of OP_PLUG publishing a charge intent and tick_structure_grid resolving it into a concrete charged structure cell",
+    duration: "1 execute phase + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "chargeIntentBeforeTick",
+      "resolvedCellType",
+      "resolvedCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      chargeIntentBeforeTick: "strict",
+      resolvedCellType: "strict",
+      resolvedCellCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/structure_charge_capture.ts",
+      "test_structure_lock_progress.ts",
+      "test_neural_synthesis.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(

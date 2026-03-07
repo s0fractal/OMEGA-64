@@ -13,6 +13,7 @@ const COLLECTIVE_SYNCHRONY_RUNTIME_MODE =
   "standalone-collective-synchrony-capture";
 const SHARE_TRANSFER_RUNTIME_MODE = "standalone-share-transfer-capture";
 const STRUCTURE_LOCK_RUNTIME_MODE = "standalone-structure-lock-capture";
+const STRUCTURE_CHARGE_RUNTIME_MODE = "standalone-structure-charge-capture";
 
 const main = async () => {
   for (const trace of GOLDEN_TRACE_CATALOG) {
@@ -51,6 +52,8 @@ const main = async () => {
       ? SHARE_TRANSFER_RUNTIME_MODE
       : trace.id === "gt13_structure_lock_progress"
       ? STRUCTURE_LOCK_RUNTIME_MODE
+      : trace.id === "gt14_structure_charge_resolution"
+      ? STRUCTURE_CHARGE_RUNTIME_MODE
       : TRACE_RUNTIME_MODE;
     if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(

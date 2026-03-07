@@ -370,6 +370,11 @@ Only low-width behavior first:
   visibility against seeded structure overlays, so forward progress through
   stale structure locks can be verified against
   `gt13_structure_lock_progress` before deeper structure-lock bridge work
+- `verification/reduction_harness.ts` now also supports a narrow
+  `postStructureTick` flush plus charge-intent state, so `OP_PLUG` publication
+  and bounded charge materialization can be verified against
+  `gt14_structure_charge_resolution` before any broader attempt to bridge the
+  full structure engine
 - known bridge limit:
   - the current bridge subset only has `Imm8` policy anchors, so
     `gt05 target_energy=300` cannot yet be encoded directly

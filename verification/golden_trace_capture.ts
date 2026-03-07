@@ -10,6 +10,8 @@ const STRUCTURE_INTENT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/test_structure_intent_determinism.ts";
 const STRUCTURE_LOCK_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/structure_lock_capture.ts";
+const STRUCTURE_CHARGE_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/structure_charge_capture.ts";
 const COLLECTIVE_TRANSPORT_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/collective_transport_capture.ts";
 const COLLECTIVE_BANKING_CAPTURE_PATH =
@@ -23,6 +25,8 @@ const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
   "standalone-structure-intent-capture";
 const TRACE_STRUCTURE_LOCK_RUNTIME_MODE = "standalone-structure-lock-capture";
+const TRACE_STRUCTURE_CHARGE_RUNTIME_MODE =
+  "standalone-structure-charge-capture";
 const TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
 const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
@@ -152,6 +156,30 @@ type StructureLockCapturePayload = {
   snapshot: StructureLockSnapshot;
 };
 
+type StructureChargeBeforeTickSnapshot = {
+  targetCellIdx: number;
+  chargeIntent: number;
+};
+
+type StructureChargeAfterTickSnapshot = {
+  targetCellIdx: number;
+  resolvedType: number;
+  resolvedCharge: number;
+  chargeIntent: number;
+};
+
+type StructureChargeSnapshot = {
+  beforeTick: StructureChargeBeforeTickSnapshot;
+  afterTick: StructureChargeAfterTickSnapshot;
+};
+
+type StructureChargeCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: StructureChargeSnapshot;
+};
+
 type CollectiveTransportAtomState = {
   idx: number;
   energy: number;
@@ -267,6 +295,7 @@ export type GoldenTraceCaptureResult = {
 const decoder = new TextDecoder();
 const STRUCTURE_INTENT_CAPTURE_MARKER = "__OMEGA_STRUCTURE_INTENT_CAPTURE__";
 const STRUCTURE_LOCK_CAPTURE_MARKER = "__OMEGA_STRUCTURE_LOCK_CAPTURE__";
+const STRUCTURE_CHARGE_CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
 const COLLECTIVE_TRANSPORT_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 const COLLECTIVE_BANKING_CAPTURE_MARKER =
@@ -675,6 +704,68 @@ const notesForStructureLockCapture = async (
     `- resolved_cell_type=${payload.snapshot.intentClearing.resolvedType}`,
     `- resolved_cell_charge=${payload.snapshot.intentClearing.resolvedCharge}`,
     `- owner_intent_after_tick=${payload.snapshot.intentClearing.ownerIntent}`,
+  ].join("\n");
+};
+
+const runStructureChargeCaptureSubprocess = async (): Promise<
+  StructureChargeCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", STRUCTURE_CHARGE_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] structure-charge subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(STRUCTURE_CHARGE_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] structure-charge capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(STRUCTURE_CHARGE_CAPTURE_MARKER.length),
+  ) as StructureChargeCapturePayload;
+};
+
+const notesForStructureChargeCapture = async (
+  trace: GoldenTraceScenario,
+  payload: StructureChargeCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_STRUCTURE_CHARGE_RUNTIME_MODE}`,
+    `- workers: ${payload.workerCount}`,
+    `- strict: ${payload.strictDeterminism}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Structure charge capture`,
+    ``,
+    `- charge_intent_before_tick=${payload.snapshot.beforeTick.chargeIntent}`,
+    `- resolved_cell_type=${payload.snapshot.afterTick.resolvedType}`,
+    `- resolved_cell_charge=${payload.snapshot.afterTick.resolvedCharge}`,
+    `- charge_intent_after_tick=${payload.snapshot.afterTick.chargeIntent}`,
   ].join("\n");
 };
 
@@ -1392,6 +1483,61 @@ const runStructureLockTrace = async (
   };
 };
 
+const runStructureChargeTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runStructureChargeCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "structure_charge_resolution",
+    runtime_mode: TRACE_STRUCTURE_CHARGE_RUNTIME_MODE,
+    worker_count: payload.workerCount,
+    strict_determinism: payload.strictDeterminism,
+    hash: payload.hash,
+    charge_intent_before_tick: payload.snapshot.beforeTick.chargeIntent,
+    resolved_cell_type: payload.snapshot.afterTick.resolvedType,
+    resolved_cell_charge: payload.snapshot.afterTick.resolvedCharge,
+  };
+  const invariants = {
+    structure_charge_hash: payload.hash,
+    target_cell_before_tick: payload.snapshot.beforeTick.targetCellIdx,
+    charge_intent_before_tick: payload.snapshot.beforeTick.chargeIntent,
+    resolved_cell_type: payload.snapshot.afterTick.resolvedType,
+    resolved_cell_charge: payload.snapshot.afterTick.resolvedCharge,
+    charge_intent_after_tick: payload.snapshot.afterTick.chargeIntent,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 2,
+    runtime_mode: TRACE_STRUCTURE_CHARGE_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      chargeIntentBeforeTick: payload.snapshot.beforeTick.chargeIntent,
+      resolvedCellType: payload.snapshot.afterTick.resolvedType,
+      resolvedCellCharge: payload.snapshot.afterTick.resolvedCharge,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+    extra_artifacts: {
+      structure_charge_capture: payload,
+    },
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForStructureChargeCapture(trace, payload),
+  };
+};
+
 const runCollectiveTransportTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
@@ -1643,6 +1789,8 @@ export const captureGoldenTrace = async (
     ? await runStructureIntentTrace(trace)
     : trace.id === "gt13_structure_lock_progress"
     ? await runStructureLockTrace(trace)
+    : trace.id === "gt14_structure_charge_resolution"
+    ? await runStructureChargeTrace(trace)
     : trace.id === "gt09_collective_transport"
     ? await runCollectiveTransportTrace(trace)
     : trace.id === "gt11_collective_banking"

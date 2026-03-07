@@ -5,7 +5,7 @@ import {
   type GlyphTapeToken,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -39,6 +39,7 @@ type ShadowState = {
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
   effects: ShadowEffects;
   executed: string[];
   energySpent: number;
@@ -59,6 +60,7 @@ type LegacyShadowResult = {
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -80,6 +82,7 @@ type ReductionShadowResult = {
   structureGrid: HarnessProps;
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -133,6 +136,7 @@ export type ReductionHarnessArtifact = {
     structure_grid_match: boolean;
     structure_intent_owner_match: boolean;
     structure_intent_value_match: boolean;
+    structure_charge_intent_match: boolean;
     replicate_count_match: boolean;
     signal_count_match: boolean;
     build_count_match: boolean;
@@ -147,6 +151,7 @@ const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
 const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
+const OP_PLUG = 0xA4;
 
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
@@ -213,6 +218,14 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+  structureChargeIntent: Object.fromEntries(
+    Object.entries(definition.initialStructureChargeIntent ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
   effects: cloneEffects(),
   executed: [],
   energySpent: 0,
@@ -268,6 +281,7 @@ const snapshotLegacy = (
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
+  structureChargeIntent: { ...state.structureChargeIntent },
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -296,6 +310,7 @@ const snapshotReduction = (
   structureGrid: { ...state.structureGrid },
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
+  structureChargeIntent: { ...state.structureChargeIntent },
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -331,6 +346,47 @@ const publishBuildIntent = (
   if (ownerToken < winningOwner) return;
   state.structureIntentValue[cellIdx] = buildValue;
   state.structureIntentOwner[cellIdx] = ownerToken;
+};
+
+const flushStructureTick = (state: ShadowState): void => {
+  const cellKeys = new Set<number>([
+    ...Object.keys(state.structureGrid).map(Number),
+    ...Object.keys(state.structureIntentOwner).map(Number),
+    ...Object.keys(state.structureIntentValue).map(Number),
+    ...Object.keys(state.structureChargeIntent).map(Number),
+  ]);
+
+  for (const cellIdx of cellKeys) {
+    let cellVal = state.structureGrid[cellIdx] ?? 0;
+    const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
+    if (ownerRaw !== 0) {
+      cellVal = state.structureIntentValue[cellIdx] ?? 0;
+      state.structureGrid[cellIdx] = cellVal;
+      state.structureIntentOwner[cellIdx] = 0;
+      state.structureIntentValue[cellIdx] = 0;
+    }
+    const chargeRaw = state.structureChargeIntent[cellIdx] ?? 0;
+    if (chargeRaw > 0) {
+      const intentCharge = Math.min(chargeRaw, 255);
+      const baseCharge = (cellVal >> 16) & 0xFF;
+      if (intentCharge > baseCharge) {
+        cellVal = (cellVal & ~0x00FF0000) | (intentCharge << 16);
+      }
+      state.structureGrid[cellIdx] = cellVal;
+      state.structureChargeIntent[cellIdx] = 0;
+    }
+    const type = cellVal & 0xFF;
+    const currentCharge = (cellVal >> 16) & 0xFF;
+    if (
+      (type === STRUCTURE.WIRE || type === STRUCTURE.NODE ||
+        type === STRUCTURE.CAPACITOR) &&
+      currentCharge > 0
+    ) {
+      const nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
+      cellVal = (cellVal & ~0x00FF0000) | (nextCharge << 16);
+      state.structureGrid[cellIdx] = cellVal;
+    }
+  }
 };
 
 const applyShadowOpcode = (
@@ -510,6 +566,22 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
+    case OP_PLUG: {
+      const mode = args[0] ?? 0;
+      const p2 = args[1] ?? 0;
+      if (mode === 1) {
+        const rx = state.props[RISC.PROP_X] ?? 0;
+        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          const cellIdx = gy * GRID_W + gx;
+          state.structureChargeIntent[cellIdx] = (state.regs[p2 & 7] ?? 0) & 0xFF;
+        }
+      }
+      state.pc += 3;
+      return;
+    }
     case RISC.OP_SENSE: {
       const reg = args[0] ?? 0;
       const targetType = args[1] ?? 0;
@@ -550,6 +622,10 @@ const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResul
     applyShadowOpcode(state, decoded.opcode, decoded.args, 0);
     stepsExecuted++;
   }
+  if (definition.postStructureTick) {
+    state.executed.push("post=structure_tick");
+    flushStructureTick(state);
+  }
   return snapshotLegacy(state, stepsExecuted);
 };
 
@@ -580,6 +656,10 @@ const runReductionShadow = (
     );
     applyShadowOpcode(state, token.opcode, token.args, spec.energyCost);
     stepsExecuted++;
+  }
+  if (definition.postStructureTick) {
+    state.executed.push("post=structure_tick");
+    flushStructureTick(state);
   }
 
   return snapshotReduction(state, stepsExecuted, glyphTape);
@@ -658,6 +738,14 @@ const compareResults = (
     )
   ) {
     reasons.push("structureIntentValue mismatch");
+  }
+  if (
+    !equalHarnessProps(
+      legacy.structureChargeIntent,
+      reduction.structureChargeIntent,
+    )
+  ) {
+    reasons.push("structureChargeIntent mismatch");
   }
   if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
     reasons.push("replicateCount mismatch");
@@ -773,6 +861,16 @@ const compareResults = (
       }
     }
   }
+  if (expected.finalStructureGrid) {
+    for (const [key, value] of Object.entries(expected.finalStructureGrid)) {
+      const cell = Number(key);
+      if ((legacy.structureGrid[cell] ?? 0) !== value) {
+        reasons.push(
+          `expected structureGrid[${cell}]=${value} got=${legacy.structureGrid[cell] ?? 0}`,
+        );
+      }
+    }
+  }
   if (
     typeof expected.branchTaken === "boolean" &&
     legacy.effects.branchTaken !== expected.branchTaken
@@ -811,6 +909,7 @@ const buildReductionHarnessArtifact = async (
     structureGrid: result.legacy.structureGrid,
     structureIntentOwner: result.legacy.structureIntentOwner,
     structureIntentValue: result.legacy.structureIntentValue,
+    structureChargeIntent: result.legacy.structureChargeIntent,
     effects: result.legacy.effects,
     energySpent: result.legacy.energySpent,
   }),
@@ -828,6 +927,7 @@ const buildReductionHarnessArtifact = async (
     structureGrid: result.reduction.structureGrid,
     structureIntentOwner: result.reduction.structureIntentOwner,
     structureIntentValue: result.reduction.structureIntentValue,
+    structureChargeIntent: result.reduction.structureChargeIntent,
     effects: result.reduction.effects,
     energySpent: result.reduction.energySpent,
   }),
@@ -870,6 +970,10 @@ const buildReductionHarnessArtifact = async (
     structure_intent_value_match: equalHarnessProps(
       result.legacy.structureIntentValue,
       result.reduction.structureIntentValue,
+    ),
+    structure_charge_intent_match: equalHarnessProps(
+      result.legacy.structureChargeIntent,
+      result.reduction.structureChargeIntent,
     ),
     replicate_count_match:
       result.legacy.effects.replicateCount ===
