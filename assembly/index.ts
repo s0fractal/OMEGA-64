@@ -905,7 +905,9 @@ export function execute_atom(atomIndex: i32): void {
 
     // Final position integration (velocity + forces)
     let damping = load<u8>(DAMPING_OFF + atomIndex as usize);
-    let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
+    // HORMONE 1: time_viscosity lowers effective dampingFactor (range 0..2048 → 0..0.15 additive)
+    let viscosityH: f32 = getHormone(1) as f32 / 2048.0;
+    let dampingFactor = Mathf.max(0, 1.0 - (damping as f32) / 255.0 - viscosityH * 0.15);
 
     // Behavior velocity is added on top of force integration
     let nextX = (curX as f32) + accForceX +
@@ -1020,7 +1022,11 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        if (energy > 1500 && resonance > 200) {
+        // HORMONE 2: aggression lowers replication thresholds (range 0..2048 → up to -256 energy / -64 resonance)
+        let aggrH: i32 = getHormone(2) as i32;
+        let replicateEThresh: i32 = 1500 - (aggrH >> 3); // 1500..1244
+        let replicateRThresh: i32 = 200 - (aggrH >> 5);  // 200..136
+        if (energy > replicateEThresh && resonance > replicateRThresh) {
           let rx = getX(atomIndex) as i32;
           let ry = getY(atomIndex) as i32;
           let gx = rx / 10;
@@ -1305,8 +1311,9 @@ export function execute_atom(atomIndex: i32): void {
   }
   setPC(atomIndex, pc);
 
-  // Metabolic Cost
-  let metabolicCost = 1 + (step >> 1); // 1 to 9 energy units per tick
+  // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
+  let entropyH: i32 = getHormone(0) as i32;
+  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12);
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
@@ -1320,7 +1327,10 @@ export function execute_atom(atomIndex: i32): void {
     }
   }
 
-  if (resonance > 0) setResonance(atomIndex, resonance - 2);
+  // HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
+  let repairH: i32 = getHormone(4) as i32;
+  let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
+  if (resonance > 0) setResonance(atomIndex, resonance - resonanceDecay);
   setEnergy(atomIndex, energy > metabolicCost ? energy - metabolicCost : 0);
 }
 
