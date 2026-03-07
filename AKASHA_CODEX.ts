@@ -136,6 +136,7 @@ type CodexNarrative = {
   daemonEffectStatus: string;
   daemonEffectLineage: string;
   daemonEffectDeltaBand: string;
+  hormoneRegime: string;
   promptBridge: string;
 };
 
@@ -157,6 +158,9 @@ type CodexState = {
   lastGlyphTransportSummary: string;
   lastGlyphTransportDominantRole: string;
   lastGlyphTransportSourceMode: string;
+  lastHormoneRegimeSignature: string;
+  lastHormoneRegimeTick: number;
+  lastHormoneRegimeSummary: string;
   lastDaemonEffectTick: number;
   lastDaemonEffectSummary: string;
   lastDaemonEffectLineage: string;
@@ -232,6 +236,9 @@ const fallbackState = (): CodexState => ({
   lastGlyphTransportSummary: "Glyph transport remains dormant.",
   lastGlyphTransportDominantRole: "none",
   lastGlyphTransportSourceMode: "none",
+  lastHormoneRegimeSignature: "baseline",
+  lastHormoneRegimeTick: -1,
+  lastHormoneRegimeSummary: "Hormone lattice at baseline.",
   lastDaemonEffectTick: -1,
   lastDaemonEffectSummary: "No daemon effect contour recorded yet.",
   lastDaemonEffectLineage: "none",
@@ -471,6 +478,44 @@ const buildGlyphTransportEvidence = (
     summary,
     metabolicPressure,
   };
+};
+
+// ── Stage 7.2: Hormone Regime Evidence ──────────────────────────────────────
+// id 0=entropy_pressure 1=time_viscosity 2=aggression
+//    3=replication_bias  4=repair_drive   5=mutation_friction
+
+const HORMONE_RECORD_INTERVAL = 512;
+
+type HormoneRegimeEvidence = {
+  signature: string;
+  title: string;
+  body: string;
+  summary: string;
+};
+
+const hormoneRegimeLabel = (h: number[]): string => {
+  if (h[0] > 1500) return "high_entropy";
+  if (h[2] > 1500) return "aggressive_bloom";
+  if (h[4] > 1500) return "repair_surge";
+  if (h[1] > 1500) return "viscous_stasis";
+  if (h[0] < 256 && h[2] < 256 && h[4] < 256) return "dormant_baseline";
+  return "balanced_homeostasis";
+};
+
+const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const regime = hormoneRegimeLabel(h);
+  // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
+  const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join("");
+  const signature = `${regime}|${sig}`;
+  const [ep, tv, ag, rb, rd, mf] = h;
+  const title = `Hormone Regime: ${titleCase(regime)}`;
+  const body =
+    `Tick ${tick} | entropy_pressure=${ep} time_viscosity=${tv} aggression=${ag} ` +
+    `replication_bias=${rb} repair_drive=${rd} mutation_friction=${mf}. ` +
+    `Regime: '${regime}'.`;
+  const summary = `Hormone regime ${titleCase(regime)} | entropy=${ep} aggr=${ag} repair=${rd}.`;
+  return { signature, title, body, summary };
 };
 
 const parseInvariantSignal = (value: unknown): InvariantSignal | null => {
@@ -1229,6 +1274,26 @@ export const AKASHA_CODEX = {
       }
     }
 
+    // Stage 7.2: Hormone regime chronicle
+    const hormoneEvidence = buildHormoneRegimeEvidence(tick);
+    state.lastHormoneRegimeSummary = hormoneEvidence.summary;
+    const hormoneRecordDue =
+      hormoneEvidence.signature !== state.lastHormoneRegimeSignature &&
+      (state.lastHormoneRegimeTick < 0 ||
+        tick - state.lastHormoneRegimeTick >= HORMONE_RECORD_INTERVAL);
+    if (hormoneRecordDue) {
+      state.lastHormoneRegimeSignature = hormoneEvidence.signature;
+      state.lastHormoneRegimeTick = tick;
+      enqueueWrite(async () => {
+        await appendChronicle(
+          tick,
+          "hormone_regime",
+          hormoneEvidence.title,
+          hormoneEvidence.body,
+        );
+      });
+    }
+
     const extinctionThreshold = Math.floor(state.populationPeak * 0.2);
     if (
       state.populationPeak >= 100 &&
@@ -1548,6 +1613,7 @@ export const AKASHA_CODEX = {
       daemonEffectStatus,
       daemonEffectLineage: state.lastDaemonEffectLineage,
       daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
+      hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
     };
   },
