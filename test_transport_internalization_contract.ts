@@ -96,27 +96,6 @@ const main = async () => {
   );
   requireSnippet(
     glyphBuffer,
-    "tick:",
-    GLYPH_BUFFER_PATH,
-    "Glyph buffer must support host decay/diffusion ticks",
-    violations,
-  );
-  requireSnippet(
-    glyphBuffer,
-    "STATE_MATRIX.signalGrid",
-    GLYPH_BUFFER_PATH,
-    "Glyph buffer must internalize signal grid as an internal emission source",
-    violations,
-  );
-  requireSnippet(
-    glyphBuffer,
-    "STATE_MATRIX.memoryGrid",
-    GLYPH_BUFFER_PATH,
-    "Glyph buffer must internalize memory grid as an internal emission source",
-    violations,
-  );
-  requireSnippet(
-    glyphBuffer,
     "emitAtomPheromone",
     GLYPH_BUFFER_PATH,
     "Glyph buffer must support atom-driven pheromone emission",
@@ -159,30 +138,37 @@ const main = async () => {
   );
   requireSnippet(
     pulse,
-    "GLYPH_BUFFER.tick(currentTick)",
+    "TICK_GLYPH_TRANSPORT",
     PULSE_PATH,
-    "Host lock must advance internal glyph transport",
+    "Host lock must trigger WASM glyph transport",
     violations,
   );
   requireSnippet(
-    pulse,
-    "emitInternalGlyphsFromActiveAtoms(currentTick, activeIdx)",
-    PULSE_PATH,
-    "Host lock must allow active atoms to seed glyph transport internally",
+    assembly,
+    "function secreteGlyph",
+    ASSEMBLY_PATH,
+    "WASM kernel must implement decentralized secretion",
     violations,
   );
   requireSnippet(
-    pulse,
-    "STATE_MATRIX.ROLE_GUARDIAN",
-    PULSE_PATH,
-    "Internal glyph emission policy must be role-aware",
+    assembly,
+    "function tickGlyphTransport",
+    ASSEMBLY_PATH,
+    "WASM kernel must implement glyph transport cycle",
     violations,
   );
   requireSnippet(
-    pulse,
-    "STATE_MATRIX.ROLE_ARCHITECT",
-    PULSE_PATH,
-    "Internal glyph emission policy must shape plasmid secretion by role",
+    assembly,
+    "ROLE_GUARDIAN",
+    ASSEMBLY_PATH,
+    "WASM secretion must be role-aware (Guardian)",
+    violations,
+  );
+  requireSnippet(
+    assembly,
+    "ROLE_ARCHITECT",
+    ASSEMBLY_PATH,
+    "WASM secretion must be role-aware (Architect)",
     violations,
   );
   requireSnippet(
@@ -208,9 +194,9 @@ const main = async () => {
   );
   requireSnippet(
     roadmap,
-    "Stage 5                         | in progress",
+    "Stage 5.1                       | in progress",
     ROADMAP_PATH,
-    "Roadmap must mark Stage 5 as in progress once internal glyph transport is live",
+    "Roadmap must mark Stage 5.1 as in progress",
     violations,
   );
   requireSnippet(

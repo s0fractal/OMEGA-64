@@ -648,6 +648,46 @@ function writeGlyphScratch(cell: i32, kind: i32, amplitude: i32): void {
   store<i32>(GLYPH_SCRATCH_HEADER_OFF + (cell << 2) as usize, packGlyphHeader(mergedKind, mergedAmplitude));
 }
 
+function secreteGlyph(cell: i32, kind: i32, intensity: i32, payloadPtr: usize = 0): void {
+  if (intensity <= 0 || cell < 0 || cell >= 140 * 80) return;
+  const ptr = (GLYPH_HEADER_OFF + (cell << 2)) as usize;
+
+  for (let spin = 0; spin < 128; spin++) {
+    const current = atomic.load<i32>(ptr);
+    const currentKind = unpackGlyphKind(current);
+    const currentAmplitude = unpackGlyphAmplitude(current);
+
+    if (currentKind != 0 && currentKind != kind) {
+      // Kind mismatch: winner takes all (max amplitude)
+      if (intensity <= currentAmplitude) return;
+      const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, intensity));
+      if (observed == current) {
+        if (kind == 2 && payloadPtr != 0) {
+          const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+          memory.copy(dstPtr, payloadPtr, 8);
+        }
+        return;
+      }
+      continue;
+    }
+
+    // Kind match or empty: additive merge
+    let nextAmplitude = currentAmplitude + intensity;
+    if (nextAmplitude > 0x00FFFFFF) nextAmplitude = 0x00FFFFFF;
+    const observed = atomic.cmpxchg<i32>(ptr, current, packGlyphHeader(kind, nextAmplitude));
+    if (observed == current) {
+      // If we are the one who (potentially) established this plasmid, or just refreshing it.
+      // For simplicity, always update payload if we are secreting a plasmid.
+      if (kind == 2 && payloadPtr != 0) {
+        const dstPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+        memory.copy(dstPtr, payloadPtr, 8);
+      }
+      return;
+    }
+  }
+}
+
+
 export function tickGlyphTransport(tick: i32): void {
   // Clear scratch headers (payload clearing is handled by over-writes)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
@@ -729,10 +769,41 @@ export function tickGlyphTransport(tick: i32): void {
     }
   }
 
-  // Copy results back to main buffers
-  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, (140 * 80) << 2);
   memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, (140 * 80) << 3);
 }
+
+// --- PER-ROLE SECRETION PREDICATES ---
+
+@inline
+function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+  if (((tick + idx) % 24) != 0) return false;
+  return resonance > 200 && phase > 100;
+}
+
+@inline
+function architectShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 32) != 0) return false;
+  return energy > 1500 && resonance > 100;
+}
+
+@inline
+function producerShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 48) != 0) return false;
+  return resonance > 150 && energy > 1000;
+}
+
+@inline
+function producerShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+  if (((tick + idx) % 64) != 0) return false;
+  return energy > 2000 && resonance > 50;
+}
+
+@inline
+function neutralShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+  if (((tick + idx) % 128) != 0) return false;
+  return resonance > 400;
+}
+
 
 function applyBondSprings(idx: i32, x: i32, y: i32): void {
   let fx: f32 = 0;
@@ -798,6 +869,29 @@ export function execute_atom(atomIndex: i32): void {
     
     let vx = getGenomeVelocityX(atomIndex);
     let vy = getGenomeVelocityY(atomIndex);
+    let energy = getEnergy(atomIndex);
+    let phase = getPhase(atomIndex);
+    let res = getResonance(atomIndex);
+    const tick = load<i32>(TICK_COUNTER_OFF);
+    const cell = (curY / 10) * 140 + (curX / 10);
+
+    // DECENTRALIZED SECRETION (Stage 5.1)
+    if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
+      secreteGlyph(cell, 1, clampResource(res / 4) as i32);
+    } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
+      secreteGlyph(cell, 2, clampResource((energy + res) / 10) as i32, LOGIC_OFFSET + (atomIndex << 3));
+    } else if (role == ROLE_PRODUCER) {
+      if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
+        secreteGlyph(cell, 1, clampResource((res + energy) / 10) as i32);
+      }
+      if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
+        secreteGlyph(cell, 2, clampResource((energy + res) / 12) as i32, LOGIC_OFFSET + (atomIndex << 3));
+      }
+    } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
+      secreteGlyph(cell, 1, clampResource(res / 8) as i32);
+    } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
+      secreteGlyph(cell, 2, 32, LOGIC_OFFSET + (atomIndex << 3));
+    }
 
     applyBondSprings(atomIndex, curX, curY);
     calculateTrophism(atomIndex, curX, curY, role);
