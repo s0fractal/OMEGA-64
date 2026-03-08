@@ -64,6 +64,7 @@ const SYS_MUTATE = 7;
 const SYS_MSG = 8;
 const SYS_READ_INBOX = 9;
 const SYS_TRANSFER = 10;
+const SYS_REPLICATE = 11;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -91,6 +92,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_MSG: gasCost = 20; break;
     case SYS_READ_INBOX: gasCost = 2; break;
     case SYS_TRANSFER: gasCost = 10; break;
+    case SYS_REPLICATE: gasCost = 100; break;
     default: gasCost = 1; break;
   }
 
@@ -234,6 +236,46 @@ function handle_syscall(atomIdx: number) {
              console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`);
           }
         }
+      }
+      break;
+    }
+    case SYS_REPLICATE: {
+      const targetIdx = r1;
+      
+      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && targetIdx !== atomIdx && instructionsView && contextU8View) {
+        const receiverEnergy = Atomics.load(energiesView, targetIdx);
+        // Only allow replication into dead slots or by aggressive "infection" 
+        // For now, let's keep it simple: can replicate anywhere, it overwrites the genome.
+        
+        // Copy 64 bytes of genome
+        const srcOffset = atomIdx * 64;
+        const dstOffset = targetIdx * 64;
+        
+        for (let i = 0; i < 64; i++) {
+          Atomics.store(instructionsView, dstOffset + i, Atomics.load(instructionsView, srcOffset + i));
+        }
+
+        // Reset target PC (PC is at offset 32 in contextU8View)
+        const targetFlagIdx = (targetIdx << 6) + 32;
+        Atomics.store(contextU8View, targetFlagIdx, 0);
+        
+        // Give the child a starter spark of energy from the sender
+        const replicationSpark = 50 * 1000; // 50 energy units
+        const senderEnergy = Atomics.load(energiesView, atomIdx);
+        
+        if (senderEnergy > replicationSpark) {
+           Atomics.sub(energiesView, atomIdx, replicationSpark);
+           Atomics.add(energiesView, targetIdx, replicationSpark);
+        }
+
+        // Also "wake up" the atom by giving it ID if it doesn't have one
+        if (idsView && idsView[targetIdx] === 0n) {
+           idsView[targetIdx] = BigInt(targetIdx + 1);
+        }
+
+        console.log(`   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`);
+      } else {
+        console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`);
       }
       break;
     }

@@ -297,6 +297,7 @@ export const SYS = {
   MSG: 0x08,
   READ_INBOX: 0x09,
   TRANSFER: 0x0A,
+  REPLICATE: 0x0B,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
