@@ -1,13 +1,13 @@
 {
-  "case_id": "rc01_gt01_replicator_loop",
-  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "case_id": "rc29_gt20_bind_resolution",
+  "baseline_trace_id": "gt20_bind_resolution",
+  "baseline_runtime_mode": "standalone-bind-capture",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "1b57e03e6854046e86abccbb1aeabacf7cd733c6894a6a731c3c07b661e8b764",
-  "reduction_digest": "531e2b0e6094a77d511a89c53932f2a97af08b0fa1bc16354bf6228c3cd2e2a9",
-  "executed_digest_legacy": "b1f7923015e4e9abf6cdcd108ed36db4a78d43057e132a9784d7b5cf24c37db5",
-  "executed_digest_reduction": "c98cd51eeab478b4b3a455eaf5c27f29039da28660cf3bfa00e651da4974ab57",
+  "legacy_digest": "84803343e912d577cd205f83f30a4bc52f0788244c5cdb9b5f1909b8dc0de3cc",
+  "reduction_digest": "e63f9d5eb4a0bee2fc2bf90ed22b40d93abce3795813da5e0bf3849492303dc9",
+  "executed_digest_legacy": "31e8f15f26086a0d4094fb7c363f7c312dc51f50b302f1f733855912828edbef",
+  "executed_digest_reduction": "5754fc31748c1b3345562dd50445091cd4e036df56f91c2b8f195abfafd3e5c9",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -35,10 +35,11 @@
     "energy_spent_delta": 20
   },
   "expectation_summary": {
-    "finalPc": 0,
-    "replicateCount": 2,
-    "signalCount": 2,
-    "buildCount": 0,
-    "branchTaken": false
+    "finalPc": 1,
+    "finalBondRequests": {
+      "3": 2,
+      "4": 3,
+      "5": 1
+    }
   }
 }

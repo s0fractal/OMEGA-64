@@ -1,13 +1,13 @@
 {
-  "case_id": "rc01_gt01_replicator_loop",
-  "baseline_trace_id": "gt01_coldstart_seeded_swarm",
-  "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
+  "case_id": "rc32_quorum_pc_sync",
+  "baseline_trace_id": "gt21_quorum_sync",
+  "baseline_runtime_mode": "standalone-quorum-sync-capture",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "1b57e03e6854046e86abccbb1aeabacf7cd733c6894a6a731c3c07b661e8b764",
-  "reduction_digest": "531e2b0e6094a77d511a89c53932f2a97af08b0fa1bc16354bf6228c3cd2e2a9",
-  "executed_digest_legacy": "b1f7923015e4e9abf6cdcd108ed36db4a78d43057e132a9784d7b5cf24c37db5",
-  "executed_digest_reduction": "c98cd51eeab478b4b3a455eaf5c27f29039da28660cf3bfa00e651da4974ab57",
+  "legacy_digest": "75c7df713f501bdc08bf56e17a6bc43119892fdf9ff6920006c3610b4ce03d02",
+  "reduction_digest": "0f9b653e304b1532555524a9c02471628d5579d9c149397089d989970dc47151",
+  "executed_digest_legacy": "44f94c0f10d5daaba57167856d42b7794ae9a0a3d54fd8b5c5125bbb25e216a9",
+  "executed_digest_reduction": "31fe54c8c79e440bce94eff421eb77587b3d3abba11f5a0ab55893a9b059fbf5",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -32,13 +32,13 @@
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 20
+    "energy_spent_delta": 4
   },
   "expectation_summary": {
-    "finalPc": 0,
-    "replicateCount": 2,
-    "signalCount": 2,
-    "buildCount": 0,
-    "branchTaken": false
+    "finalPc": 4,
+    "finalPeerPc": {
+      "1": 4,
+      "2": 4
+    }
   }
 }

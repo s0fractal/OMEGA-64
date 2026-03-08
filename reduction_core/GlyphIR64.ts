@@ -26,6 +26,40 @@ export type GlyphSpec = {
   reductionRuleRef: string;
   legacyOpcode?: number;
   notes?: string;
+  vertexIndex?: number; // C60 Vertex (0..59)
+  rgb?: [number, number, number]; // Chromatic Hash
+};
+
+/**
+ * Calculates a deterministic RGB color for a given vertex index (0..59).
+ * Uses a basic spherical projection into the RGB cube.
+ */
+const calculateChromaticHash = (index: number): [number, number, number] => {
+  const phi = (Math.sqrt(5) + 1) / 2;
+  const t = index / 60;
+  
+  // Golden angle distribution for hue, with saturation/value variation
+  const h = (t * 360) % 360;
+  const s = 0.7 + 0.3 * Math.sin(t * Math.PI * 2);
+  const v = 0.8 + 0.2 * Math.cos(t * Math.PI * 4);
+
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; b = 0; }
+  else if (h < 120) { r = x; g = c; b = 0; }
+  else if (h < 180) { r = 0; g = c; b = x; }
+  else if (h < 240) { r = 0; g = x; b = c; }
+  else if (h < 300) { r = x; g = 0; b = c; }
+  else { r = c; g = 0; b = x; }
+
+  return [
+    Math.round((r + m) * 255),
+    Math.round((g + m) * 255),
+    Math.round((b + m) * 255)
+  ];
 };
 
 const glyphKindForId = (id: number): GlyphKind => {
@@ -71,6 +105,16 @@ const defaultGlyphSpec = (id: number): GlyphSpec => {
     notes: stabilityClass === "reserve"
       ? "Reserved for sandboxed semantic evolution only."
       : "Unassigned placeholder within the fixed 64-glyph lattice.",
+    ...(id >= 4 ? { 
+      vertexIndex: id - 4,
+      rgb: calculateChromaticHash(id - 4)
+    } : {
+      // Core Glyphs (0..3) are the stabilizers, mapped to grayscale/secondary colors
+      rgb: id === 0 ? [255, 255, 255] : // S (White)
+           id === 1 ? [128, 128, 128] : // K (Gray)
+           id === 2 ? [0, 0, 0] :       // I (Black)
+                    [255, 0, 255]      // Y (Magenta)
+    }),
   };
 };
 

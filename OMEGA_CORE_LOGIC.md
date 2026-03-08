@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-08T02:02:47.890Z*
-*Exported Files: 108*
+*Generated: 2026-03-08T13:31:15.954Z*
+*Exported Files: 118*
 *Runtime Roots: 7*
-*Runtime Closure Files: 62*
-*Non-Runtime Code Files: 31*
-*Runtime-Support Code Files: 16*
+*Runtime Closure Files: 70*
+*Non-Runtime Code Files: 33*
+*Runtime-Support Code Files: 18*
 *Experimental Code Files: 15*
-*Manifest SHA256: f5acceeb7ebb597119d1383ab5f10515ea6ed688519cc08ead450c928f943724*
-*Export Set SHA256: 3822b3f528a5622d463c661ba709f5126ee8a771bd691d1cc4dc41f5195647e7*
-*Export Content SHA256: c9b29fcd63b7e458f4104d1f73a0f7da982c010953c095af5179adf474d500bc*
-*Git Commit: 800f9463e150*
+*Manifest SHA256: a04698bc1f857c457f5044180804ff81b2eb8c53c414e569fde08ed1f58f130e*
+*Export Set SHA256: 5c8467e2b973c49407b2427791b556e45f6d1fbf28f3375a141547a42e28961f*
+*Export Content SHA256: 1b55fff25c5e7d33cb75c18b107e06c26343944be23b09459a27539bd52c3f74*
+*Git Commit: 436f5336107e*
 
 ---
 
@@ -75,6 +75,13 @@
 - PRNG.ts
 - PULSE_WORKER.ts
 - PULSE.ts
+- reduction_core/doll_fork/DOLL_FORK_MATRIX.ts
+- reduction_core/doll_fork/DOLL_FORK_RUNNER.ts
+- reduction_core/DRIFT_WARDEN.ts
+- reduction_core/GENESIS_BOOT.ts
+- reduction_core/GENESIS_INCEPTOR.ts
+- reduction_core/GENESIS_REIFIED.ts
+- reduction_core/relics/LINEAGE_TRACKER.ts
 - REPLICATION_PROMOTION.ts
 - runtime_bridge/architect_plasmid_hybrid.ts
 - runtime_bridge/guardian_signal_hybrid.ts
@@ -82,6 +89,7 @@
 - RUNTIME_POLICY.ts
 - SEMANTIC_MEMBRANE.ts
 - SHIMS.ts
+- SNAP_ENGINE.ts
 - SNAPSHOT_ENGINE.ts
 - SOVEREIGN_ORACLE.ts
 - SOVEREIGNTY_ENGINE.ts
@@ -110,6 +118,8 @@
 - P2P_SYNAPSE.ts
 - RECOVERY.ts
 - reduction_core/GlyphIR64.ts
+- reduction_core/REIFICATION_ACTION.ts
+- reduction_core/relics/RELIC_CULTIVATION.ts
 - REFLECTION_ENGINE.ts
 - RIBOSOME_TICK.ts
 - runtime_bridge/glyph_pretty.ts
@@ -138,6 +148,8 @@
 - OBSERVER_UI.ts
 - P2P_SYNAPSE.ts
 - RECOVERY.ts
+- reduction_core/REIFICATION_ACTION.ts
+- reduction_core/relics/RELIC_CULTIVATION.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
 - wasm_layout_guard.ts
@@ -3955,6 +3967,8 @@ const BONDS_OFFSET: usize = SAFETY_BUFFER + 3200000;
 const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 4800000;
 const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 6400000;
 const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 12800000;
+const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 19200000;
+const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
 const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 22000000;
 const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 23200000;
 const ROLES_OFFSET: usize = SAFETY_BUFFER + 33200000;
@@ -3988,10 +4002,15 @@ const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
 const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
+const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 43000000;
+const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 20800000;
+const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
+const SPAWN_MAX: i32 = 1024;
+const SPAWN_SLOT: i32 = 24;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
-const SPAWN_MAX: i32 = 1024;
-const SPAWN_SLOT: i32 = 16;
+const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET; 
+// Genomes are at the start of instructions
 
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
@@ -4028,8 +4047,16 @@ function getEnergy(idx: i32): i32 {
   return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
 }
 function setEnergy(idx: i32, val: i32): void {
-  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
 }
+
+function genomeKey16(idx: i32): i32 {
+  const ptr = (LOGIC_OFFSET + (idx << 3)) as usize;
+  const b0 = load<u8>(ptr) as i32;
+  const b1 = load<u8>(ptr + 1) as i32;
+  return (b0 << 8) | b1;
+}
+
 function getResonance(idx: i32): i32 {
   return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
 }
@@ -4177,6 +4204,129 @@ function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 {
     SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize,
   );
 }
+
+function findNextFreeSlot(start: i32): i32 {
+  for (let i = 0; i < MAX_ATOMS; i++) {
+    const idx = (start + i) % MAX_ATOMS;
+    const idPtr = IDS_OFFSET + (idx << 3) as usize;
+    if (load<i64>(idPtr) == 0) return idx;
+  }
+  return -1;
+}
+
+function seed_atom(
+  idx: i32,
+  id: i64,
+  x: i32,
+  y: i32,
+  energy: i32,
+  resonance: i32,
+  genomePtr: usize,
+  lineagePtr: usize,
+): void {
+  const idPtr = IDS_OFFSET + (idx << 3) as usize;
+  store<i64>(idPtr, id);
+
+  const xPtr = XS_OFFSET + (idx << 1) as usize;
+  store<i16>(xPtr, x as i16);
+
+  const yPtr = YS_OFFSET + (idx << 1) as usize;
+  store<i16>(yPtr, y as i16);
+
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, energy);
+  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, resonance);
+  store<i32>(PHASE_OFFSET + (idx << 2) as usize, 0);
+  store<u8>(ROLES_OFFSET + (idx as usize), 0);
+
+  const logicPtr = LOGIC_OFFSET + (idx << 3) as usize;
+  if (genomePtr != 0) {
+    memory.copy(logicPtr, genomePtr, 8);
+  } else {
+    for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
+  }
+
+  const linOff = LINEAGE_OFFSET + (idx << 3) as usize;
+  if (lineagePtr != 0) {
+    memory.copy(linOff, lineagePtr, 8);
+  } else {
+    store<i64>(linOff, 0);
+  }
+
+  // Clear instructions and context
+  const instPtr = INSTRUCTIONS_OFFSET + (idx << 6) as usize;
+  const ctxPtr = CONTEXT_OFFSET + (idx << 6) as usize;
+  for (let b = 0; b < 64; b++) {
+    store<u8>(instPtr + b, 0);
+    store<u8>(ctxPtr + b, 0);
+  }
+}
+
+export function resolve_bond_requests(start: i32, end: i32): i32 {
+  let resolved: i32 = 0;
+  for (let i = start; i < end; i++) {
+    const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
+    const initiatorPlus1 = atomic.load<i32>(ptr);
+    if (initiatorPlus1 == 0) continue;
+
+    if (atomic.load<i32>(ptr + 8) != 1) { // Not active
+      atomic.store<i32>(ptr, 0);
+      continue;
+    }
+
+    const targetPlus1 = atomic.load<i32>(ptr + 4);
+    const initiator = initiatorPlus1 - 1;
+    const target = targetPlus1 - 1;
+
+    if (target >= 0 && target < MAX_ATOMS) {
+      trace_atom(initiator, 0xBB, target, 0, resolved);
+      setBondTarget(initiator, 0, target);
+      setBondStiffness(initiator, 0, 0.1);
+      setBondTarget(target, 1, initiator);
+      setBondStiffness(target, 1, 0.1);
+      trace_atom(initiator, 0xCC, getBondTarget(initiator, 0), 0, 0);
+      resolved++;
+    }
+
+    // Clear request
+    atomic.store<i32>(ptr, 0);
+    atomic.store<i32>(ptr + 4, 0);
+    atomic.store<i32>(ptr + 8, 0);
+  }
+  trace_atom(888, 0xEE, resolved, 0, 0);
+  return resolved;
+}
+
+export function drain_spawn_requests(tick: i32): i32 {
+  const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
+  const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
+
+  let cursor = readHead;
+  const writeCursor = writeHead; // Don't modulo here, we modulo access
+  let spawned: i32 = 0;
+  let freeSearchCursor: i32 = 0;
+
+  while (cursor != writeCursor && spawned < 64) {
+    const slotOff = SPAWN_DATA_OFF + ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
+    const gLo = load<i32>(slotOff);
+    if (gLo != 0) {
+      const cx = load<i16>(slotOff + 8) as i32;
+      const cy = load<i16>(slotOff + 10) as i32;
+      const energyScaled = load<i32>(slotOff + 12);
+
+      const freeIdx = findNextFreeSlot(freeSearchCursor);
+      if (freeIdx != -1) {
+        const childId = (tick as i64) << 32 | (freeIdx as i64);
+        seed_atom(freeIdx, childId, cx, cy, energyScaled, 100, slotOff, slotOff + 16);
+        freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
+      }
+    }
+    cursor++;
+    spawned++;
+  }
+
+  atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
+  return spawned;
+}
 function getAttentionCell(gx: i32, gy: i32): f32 {
   if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
   return load<f32>(ATTENTION_FIELD_OFF + ((gy * 140 + gx) << 2) as usize);
@@ -4241,6 +4391,7 @@ const OP_BUILD: u8 = 0xA8;
 const OP_SENSE: u8 = 0xA9;
 const OP_SPORE_DRIVE: u8 = 0xAA;
 const OP_ENTANGLE: u8 = 0xAB;
+const OP_RESOLVE: u8 = 0xAC;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -5070,6 +5221,11 @@ export function execute_atom(atomIndex: i32): void {
             store<i16>((slotOff + 8) as usize, childGx as i16);
             store<i16>((slotOff + 10) as usize, childGy as i16);
             store<i32>((slotOff + 12) as usize, energy >> 1);
+            
+            // --- STAGE 23: LINEAGE INHERITANCE ---
+            let parentLineage = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
+            store<u64>((slotOff + 16) as usize, parentLineage);
+
             energy = energy >> 1;
             resonance = resonance + 30;
           }
@@ -5239,6 +5395,14 @@ export function execute_atom(atomIndex: i32): void {
         pc += 3;
         break;
       }
+      case 0xAD: { // OP_WISDOM reg
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let lin = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
+        // Wisdom is the lower 32 bits of the ancestral hash for now
+        setReg(atomIndex, reg & 7, lin as i32);
+        pc += 2;
+        break;
+      }
       case OP_SHARE: { // SHARE_ENERGY slot, percentage
         const slot = load<u8>(instr_base + pc as usize + 1) & 3;
         let percentage = load<u8>(instr_base + pc as usize + 2) as i32;
@@ -5314,6 +5478,7 @@ export function execute_atom(atomIndex: i32): void {
           const idPtr = IDS_OFFSET + (atomIndex << 3) as usize;
           const idLo = load<u32>(idPtr);
           const idHi = load<u32>(idPtr + 4);
+
           const tick = atomic.load<i32>(TICK_COUNTER_OFF as usize) as u32;
           const phaseBits = getPhase(atomIndex) as u32;
           const genomeHead = ((getLogicByte(atomIndex, 0) as u32) << 8) |
@@ -5367,6 +5532,56 @@ export function execute_atom(atomIndex: i32): void {
           }
         }
         pc += 1;
+        break;
+      }
+      case OP_RESOLVE: {
+        let mode = load<u8>(instr_base + (pc + 1) as usize) as i32;
+        let value = load<u8>(instr_base + (pc + 2) as usize) as i32;
+        
+        // Neighborhood Quorum Check (r=1)
+        let rx = getX(atomIndex) as i32;
+        let ry = getY(atomIndex) as i32;
+        let gx = rx / 10;
+        let gy = ry / 10;
+        let count: i32 = 0;
+        
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (dx == 0 && dy == 0) continue;
+            let nx = gx + dx;
+            let ny = gy + dy;
+            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+              let ni = ny * 140 + nx;
+              if (readStructureCell(ni) != STR_VOID) {
+                count++;
+              }
+            }
+          }
+        }
+
+        trace_atom(atomIndex, 0xAC, mode, count, energy);
+
+        if (mode == 0) { // ROLE RESOLUTION
+          // If neighbor count >= value (threshold), commit role from R0
+          if (count >= value) {
+            let desiredRole = getReg(atomIndex, 0);
+            setRole(atomIndex, desiredRole as u8);
+            resonance = resonance + 20;
+          }
+        } 
+        else if (mode == 1) { // ENERGY BANKING
+          // Deposit 'value' if quorum count >= 3 (hardcoded for now)
+          let depositValue = value * 1000;
+          if (count >= 3 && energy >= depositValue) {
+            const slot = genomePoolSlot(atomIndex);
+            const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
+            energy -= depositValue;
+            atomic.add<i32>(poolPtr, depositValue);
+            resonance = resonance + 10;
+          }
+        }
+
+        pc += 3;
         break;
       }
       default: {
@@ -5524,6 +5739,61 @@ export function build_spatial_hash(): void {
   }
 }
 
+// --- OMEGA-64 | Environmental Physics: Viral Diffusion ---
+
+@inline
+function prng_next(state: u32): u32 {
+  return (state * 1664525 + 1013904223) | 0;
+}
+
+export function diffuseViralSemantics(pulseId: i32): void {
+  const GRID_W: i32 = 140;
+  const GRID_H: i32 = 80;
+  let state = pulseId as u32;
+
+  for (let y = 0; y < GRID_H; y++) {
+    for (let x = 0; x < GRID_W; x++) {
+      const idx = (y * GRID_W + x) * 9;
+      const targetOff = SIGNAL_GRID_OFF + (idx as usize);
+      const intensity = atomic.load<u8>(targetOff + 8);
+      if (intensity == 0) continue;
+
+      // 1. DECAY
+      const nextIntensity = intensity > 2 ? intensity - 2 : 0;
+      atomic.store<u8>(targetOff + 8, nextIntensity);
+
+      // 2. DIFFUSE (Deterministic chance to spread logic to neighbors)
+      state = prng_next(state);
+      const v1 = (state as f32) / (0xFFFFFFFF as f32);
+
+      if (intensity > 150 && v1 < 0.1) {
+        state = prng_next(state);
+        const v2 = (state as f32) / (0xFFFFFFFF as f32);
+        state = prng_next(state);
+        const v3 = (state as f32) / (0xFFFFFFFF as f32);
+
+        const nx = x + (v2 > 0.5 ? 1 : -1);
+        const ny = y + (v3 > 0.5 ? 1 : -1);
+        
+        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          const nIdx = (ny * GRID_W + nx) * 9;
+          const nTargetOff = SIGNAL_GRID_OFF + (nIdx as usize);
+          const nIntensity = atomic.load<u8>(nTargetOff + 8);
+          
+          if (nIntensity < (intensity >> 1)) {
+            // Copy logic and part of intensity
+            for (let b: usize = 0; b < 8; b++) {
+              const logicByte = atomic.load<u8>(targetOff + b);
+              atomic.store<u8>(nTargetOff + b, logicByte);
+            }
+            atomic.store<u8>(nTargetOff + 8, (intensity >> 1) as u8);
+          }
+        }
+      }
+    }
+  }
+}
+
 export function tick_structure_grid(): void {
   const GRID_W: i32 = 140;
   const GRID_H: i32 = 80;
@@ -5617,6 +5887,33 @@ export function tick_structure_grid(): void {
       if (avgPhase > 128) decay = 2; // Shielded
       
       let nextCharge = currentCharge > decay ? currentCharge - decay : 0;
+
+      // --- ERA 34: Structural Memory Leakage ---
+      // If density is low but not yet zero, leak memory logic into signal grid.
+      if (nextCharge > 0 && nextCharge < 50) {
+        const memoryPtr = MEMORY_GRID_OFF + (i << 3) as usize;
+        const signalPtr = SIGNAL_GRID_OFF + (i << 3) as usize; // Each cell has 8+1 bytes in signal grid? 
+        // Wait, SIGNAL_GRID cell size depends on implementation. 
+        // In OMEGA, signalGrid usually matches GRID size (140x80) but here 
+        // we follow the JS logic: gridIdx = i * 9.
+        const gridIdx = i * 9;
+        const targetSignalOff = SIGNAL_GRID_OFF + (gridIdx as usize);
+        
+        for (let b: usize = 0; b < 8; b++) {
+          const logicByte = load<u8>(memoryPtr + b);
+          if (logicByte != 0) {
+            atomic.store<u8>(targetSignalOff + b, logicByte);
+          }
+        }
+        // Set intensity (byte 8 of the 9-byte viral/signal cell)
+        atomic.store<u8>(targetSignalOff + 8, (50 - nextCharge) as u8);
+      }
+
+      if (nextCharge == 0) {
+        // Clear memory if structure is gone
+        const memoryPtr = MEMORY_GRID_OFF + (i << 3) as usize;
+        store<u64>(memoryPtr, 0);
+      }
 
       if (type == STR_SOURCE) {
         nextCharge = 255;
@@ -5727,7 +6024,32 @@ export function tick_structure_grid(): void {
   }
 }
 
-// Deprecated in favor of tick_structure_grid, kept for legacy compatibility if needed
+/**
+ * ERA 71: THE PHEROMONE CANOPY
+ * Unifies all environmental physics into a single serial tick.
+ * Called by Worker 0 during the Matrix phase.
+ */
+export function tick_environment(tick: i32): void {
+  // 1. Attention Field Decay (90% per tick)
+  for (let i = 0; i < 11200; i++) {
+    const ptr = ATTENTION_FIELD_OFF + (i << 2);
+    const val = load<f32>(ptr as usize);
+    if (val > 0.0) {
+      store<f32>(ptr as usize, val * 0.9);
+    }
+  }
+
+  // 2. Structural Decay & Autopoiesis
+  tick_structure_grid();
+
+  // 3. Viral Semantic Diffusion
+  diffuseViralSemantics(tick);
+
+  // 4. Pheromone / Plasmid Diffusion
+  tickGlyphTransport(tick);
+}
+
+// Deprecated in favor of tick_environment
 export function tick_matrix(): void {
   tick_structure_grid();
 }
@@ -5805,6 +6127,137 @@ export function clear_secretion_stats(): void {
 
 export function reset_neural_coherence(): void {
   atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
+}
+
+export function clear_metabolism_stats(): void {
+  // Clear genome count scratch (65536 * 4 bytes = 256KB)
+  // and generic stats (population, noveltyDelta, symbiosisDelta, etc)
+  memory.fill(METABOLISM_SCRATCH_OFF, 0, (65536 * 4) + 64);
+}
+
+export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
+  for (let i = startIdx; i < endIdx; i++) {
+    const pId = IDS_OFFSET + (i << 3) as usize;
+    if (load<i64>(pId) == 0) continue;
+
+    const key = genomeKey16(i);
+    // Atomic add to genome frequency map in scratch space
+    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (key << 2), 1);
+    // Atomic add to global population counter (scratch end)
+    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4), 1);
+  }
+}
+
+export function apply_metabolism_kernel(
+  startIdx: i32,
+  endIdx: i32,
+  noveltySigned: i32,
+  symbiosisSigned: i32,
+  baseTax: i32,
+  targetEnergy: i32,
+  homeostasisBand: i32,
+  homeostasisMaxDelta: i32,
+  overflowThreshold: i32, // multiplied by 1024
+  spatialOverflowRatio: i32, // multiplied by 1024
+  starvationFloor: i32,
+  subsidyEnabled: i32,
+): void {
+  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4));
+  if (population == 0) return;
+
+  const overflowActive = spatialOverflowRatio >= overflowThreshold;
+  const bandStep = i32(Math.max(1, Math.floor(homeostasisBand / 2)));
+  const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
+
+  for (let i = startIdx; i < endIdx; i++) {
+    const pId = IDS_OFFSET + (i << 3) as usize;
+    if (load<i64>(pId) == 0) continue;
+
+    const current = getEnergy(i);
+    if (current <= 0) continue;
+
+    const key = genomeKey16(i);
+    const sameGenomeCount = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (key << 2));
+
+    let delta: i32 = 0;
+
+    // Pass 1: Evolution Pressure (Novelty + Symbiosis)
+    if (noveltySigned != 0) {
+      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) / population;
+      delta += noveltyTerm;
+    }
+
+    if (symbiosisSigned != 0) {
+      const base = i * 4;
+      let crossGenomeBonds = 0;
+      for (let slot = 0; slot < 4; slot++) {
+        const target = atomic.load<i32>(BONDS_OFFSET + ((base + slot) << 2) as usize);
+        if (target <= 0 || target >= MAX_ATOMS) continue;
+        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) continue;
+        if (genomeKey16(target) != key) crossGenomeBonds++;
+      }
+      delta += crossGenomeBonds > 0
+        ? symbiosisSigned * crossGenomeBonds
+        : bondPolarity * -symbiosisSigned;
+    }
+
+    // 2. Homeostasis
+    // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
+    const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
+    
+    if (baseTax > 0 && interimEnergy > starvationFloor) {
+      let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
+      delta -= tax;
+    }
+
+    const deviation = interimEnergy - targetEnergy;
+    const absDeviation = Math.abs(deviation);
+    
+    if (absDeviation > homeostasisBand) {
+      const gradient = absDeviation - homeostasisBand;
+      const step = i32(Math.min(
+        homeostasisMaxDelta,
+        1 + Math.floor(gradient / bandStep),
+      ));
+
+      if (deviation > 0) {
+        delta -= step;
+        if (overflowActive) delta -= 1;
+      } else if (subsidyEnabled) {
+        let subsidy = step;
+        if (overflowActive) {
+          subsidy = i32(Math.max(1, Math.floor(f32(subsidy) * 0.6)));
+        }
+        delta += subsidy;
+      }
+    }
+
+    // Starvation Floor Guard (using interim energy for sequential match)
+    if (interimEnergy <= starvationFloor && delta < 0) {
+      // If we are at or below floor after evolution pressure, 
+      // block any further downward delta from homeostasis/tax.
+      // But we should subtract what was already added in Pass 1 if it was negative?
+      // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
+      // where current is energy after Pass 1.
+      // This means Pass 2 delta becomes 0.
+      
+      // To match exactly:
+      const pass2Delta = delta - (interimEnergy - current);
+      if (pass2Delta < 0) {
+         delta = interimEnergy - current; 
+      }
+    }
+
+    if (delta != 0) {
+      let next = i32(Math.max(0.0, f64(current) + f64(delta)));
+      if (next != current) {
+        setEnergy(i, next);
+        // Track stats for telemetry
+        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 4, 1);
+        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 8, delta);
+      }
+    }
+  }
 }
 
 ```
@@ -7830,7 +8283,9 @@ export const CONTROL_INTENT_QUEUE = {
     "worker_resilience_capture.ts",
     "worker_seeded_swarm.ts",
     "worker_trend_baseline.ts",
-    "worker_trend_math.ts"
+    "worker_trend_math.ts",
+    "reduction_core/REIFICATION_ACTION.ts",
+    "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
   "experimental_files": [
     "ECOLOGY_ENGINE.ts",
@@ -7889,7 +8344,9 @@ export const CONTROL_INTENT_QUEUE = {
     "worker_resilience_capture.ts",
     "worker_seeded_swarm.ts",
     "worker_trend_math.ts",
-    "worker_trend_baseline.ts"
+    "worker_trend_baseline.ts",
+    "reduction_core/REIFICATION_ACTION.ts",
+    "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
@@ -7904,8 +8361,7 @@ export const CONTROL_INTENT_QUEUE = {
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
-    "docs/migration/HORMONE_LEDGER_CONTRACT.md"
-,
+    "docs/migration/HORMONE_LEDGER_CONTRACT.md",
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html"
@@ -10359,7 +10815,7 @@ export const resetDaemonPlasmidLedgerRuntime = (
 ```markdown
 # Causal Atlas
 
-> Stage 1 working draft. Owner classification started on 2026-03-06. This is a migration control document, not an implementation artifact.
+> Stage 1 COMPLETED. Owner classification finalized on 2026-03-08. This is a migration control document, not an implementation artifact.
 
 ## Purpose
 
@@ -10384,10 +10840,10 @@ Stage 1 minimum atlas coverage:
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Owner classification | in progress | top-20 critical mutations mapped below |
-| Determinism risk classification | in progress | low/medium/high/critical scale applied |
-| Future disposition tagging | in progress | keep / wrap / move to ledger / move to reduction |
-| Residual file notes | pending | lower-risk observer and helper surfaces still need secondary pass |
+| Owner classification | complete | top-20 critical mutations mapped and verified |
+| Determinism risk classification | complete | low/medium/high/critical scale applied |
+| Future disposition tagging | complete | keep / wrap / move to ledger / move to reduction |
+| Residual file notes | complete | verified against `reduction_harness.ts` parity results |
 
 ## Mutation types
 
@@ -10544,21 +11000,20 @@ surface.
 | `16`     | `REPLICATE`  | `0x80`        | transport / reproduction      | bridge candidate                                                                                                     |
 | `17`     | `SIGNAL`     | `0x81`        | transport / field write       | bridge candidate                                                                                                     |
 | `18`     | `SHARE`      | `0x83`        | transport / resource exchange | bridge candidate; bounded bonded-transfer parity active                                                              |
+| `19`     | `BIND`       | `0x82`        | transport / bond request      | bridge candidate                                                                                                     |
+| `20`     | `SPORE_DRIVE`| `0xAA`        | transport / relocation        | bridge candidate                                                                                                     |
+| `21`     | `ENTANGLE`   | `0xAB`        | transport / hive exchange     | bridge candidate                                                                                                     |
 | `24`     | `PLUG`       | `0xA4`        | structural IO                 | bridge candidate; bounded charge-resolve parity active, including max-intent competition semantics                   |
 | `25`     | `TENSEGRITY` | `0xA5`        | structural constraint         | bridge candidate; bounded bond-dist/damping parity active                                                            |
-| `32`     | `COLLECTIVE` | `0xA6`        | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active                                                         |
-| `33`     | `ROLE`       | `0xA7`        | catalytic / identity shift    | bridge candidate                                                                                                     |
 | `26`     | `BUILD`      | `0xA8`        | structural intent publish     | bridge candidate; bounded SOURCE materialization, owner-arbitration parity, and stale-lock fail-closed parity active |
 | `27`     | `SENSE`      | `0xA9`        | structural query              | bridge candidate; bounded stale-lock fallback parity active                                                          |
+| `32`     | `COLLECTIVE` | `0xA6`        | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active                                                         |
+| `33`     | `ROLE`       | `0xA7`        | catalytic / identity shift    | bridge candidate                                                                                                     |
 
 ## Deferred opcodes
 
 The following stay outside the initial bridge subset until parity is clearer:
 
-- `OP_BIND (0x82)` because the active WASM dispatch surface does not currently
-  expose it alongside the other bridge-critical opcodes.
-- `OP_SPORE_DRIVE (0xAA)` and `OP_ENTANGLE (0xAB)` until their active runtime
-  path is confirmed end-to-end in the current kernel.
 - any future semantic-mutation glyphs in the reserve band.
 
 ## Debug and verification requirements
@@ -10712,6 +11167,7 @@ yet.
 | `gt17_runtime_build_competition`     | runtime structure build competition                | worker-backed deterministic subprocess capture of two architects publishing competing `OP_BUILD SOURCE` intents into the same cell through `PULSE.tick`                    | `1` pulse tick / subprocess capture                          | target resolved type, target resolved charge, target resolved state, owner intent after tick, snapshot digest           | `verification/traces/gt17_runtime_build_competition/trace.json`     | all metrics `strict`                                                              | `verification/structure_build_competition_capture.ts`, `verification/structure_build_runtime_capture.ts`, `test_structure_intent_determinism.ts`                                    |
 | `gt18_runtime_build_stale_lock`      | runtime structure build stale-lock fallback        | worker-backed deterministic subprocess capture of a single architect attempting `OP_BUILD SOURCE` into a cell carrying a stale locked `SOURCE` intent through `PULSE.tick` | `1` pulse tick / subprocess capture                          | target resolved type, target resolved charge, target resolved state, owner intent after tick, snapshot digest           | `verification/traces/gt18_runtime_build_stale_lock/trace.json`      | all metrics `strict`                                                              | `verification/structure_build_lock_capture.ts`, `verification/structure_build_runtime_capture.ts`, `verification/structure_lock_capture.ts`, `test_structure_intent_determinism.ts` |
 | `gt19_tensegrity_kinematics`         | standalone tensegrity kinematics and bonding       | standalone deterministic capture of `OP_TENSEGRITY` setting bond distances and damping, executing physics to resolve forces                                                | `100` physics ticks execution / subprocess capture           | final distance, final damping, snapshot digest                                                                          | `verification/traces/gt19_tensegrity_kinematics/trace.json`         | final damping / digest `strict`, final distance `bounded`                         | `verification/tensegrity_capture.ts`, `test_tensegrity.ts`                                                                                                                          |
+| `gt20_bind_resolution`               | standalone symbiotic bond request resolution        | standalone deterministic subprocess capture of `OP_BIND` requests and their resolution                                                                                     | `1` execute call / subprocess capture                        | bond status, bond ID, snapshot digest                                                                                   | `verification/traces/gt20_bind_resolution/trace.json`               | all metrics `strict`                                                              | `verification/bind_capture.ts`, `test_symbiosis.ts`                                                                                                                                 |
 
 ## Capture rules
 
@@ -19323,6 +19779,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 type MutationLane =
   | "internal_oracle"
   | "internal_host"
+  | "internal_wasm"
   | "canonical_gate"
   | "external_ingress"
   | "external_daemon";
@@ -19630,6 +20087,7 @@ export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 42714624;
 export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42759424;
 export const HORMONE_OFFSET = SAFETY_BUFFER + 42849024;
 export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 43000000; // Ancestral lineage hashes (8 bytes per atom)
 
 type MemoryLayoutRegion = {
   name: string;
@@ -19673,7 +20131,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * 64, 1),
   region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * 64, I32_BYTES),
   region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 16), 8),
+  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
   region(
     "MEIOSIS_RESERVED",
     MEIOSIS_OFFSET,
@@ -19813,11 +20271,17 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     48, // 12 counters * 4 bytes
     4,
   ),
+  region(
+    "LINEAGE",
+    LINEAGE_OFFSET,
+    MAX_ATOMS * U64_BYTES,
+    U64_BYTES,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = SECRETION_STATS_OFFSET + 48;
+export const LATTICE_MEMORY_END = LINEAGE_OFFSET + (MAX_ATOMS * U64_BYTES);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -23706,7 +24170,8 @@ import { LOGGER } from "./LOGGER.ts";
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
-let execute_atom_fn: (idx: number) => void;
+let execute_atom_fn: ((idx: number) => void) | null = null;
+let tick_environment_fn: ((tick: number) => void) | null = null;
 let tick_matrix_fn: (() => void) | null = null;
 let tick_structure_grid_fn: (() => void) | null = null;
 let build_spatial_hash_fn: (() => void) | null = null;
@@ -23717,6 +24182,24 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
+let resolve_bond_requests_fn: ((start: number, end: number) => number) | null = null;
+let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
+let clear_metabolism_stats_fn: (() => void) | null = null;
+let accumulate_metabolism_stats_fn: ((start: number, end: number) => void) | null = null;
+let apply_metabolism_kernel_fn: ((
+  start: number,
+  end: number,
+  noveltySigned: number,
+  symbiosisSigned: number,
+  baseTax: number,
+  targetEnergy: number,
+  homeostasisBand: number,
+  homeostasisMaxDelta: number,
+  overflowThreshold: number,
+  spatialOverflowRatio: number,
+  starvationFloor: number,
+  subsidyEnabled: number,
+) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
@@ -23813,6 +24296,7 @@ self.onmessage = async (e) => {
       });
       wasmInstance = instantiated.instance;
       execute_atom_fn = wasmInstance.exports.execute_atom as any;
+      tick_environment_fn = wasmInstance.exports.tick_environment as any;
       tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
       tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
       build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
@@ -23824,8 +24308,13 @@ self.onmessage = async (e) => {
       get_neural_coherence_fn = wasmInstance.exports
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
-        .set_neural_coherence as any;
+          .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
+      resolve_bond_requests_fn = wasmInstance.exports.resolve_bond_requests as any;
+      drain_spawn_requests_fn = wasmInstance.exports.drain_spawn_requests as any;
+      clear_metabolism_stats_fn = wasmInstance.exports.clear_metabolism_stats as any;
+      accumulate_metabolism_stats_fn = wasmInstance.exports.accumulate_metabolism_stats as any;
+      apply_metabolism_kernel_fn = wasmInstance.exports.apply_metabolism_kernel as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
@@ -23879,10 +24368,40 @@ self.onmessage = async (e) => {
   }
 
   if (type === "TICK_MATRIX") {
-    if (tick_structure_grid_fn) tick_structure_grid_fn();
+    if (tick_environment_fn) tick_environment_fn(e.data.tick || e.data.pulseId);
+    else if (tick_structure_grid_fn) tick_structure_grid_fn();
     else if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
     self.postMessage({ type: "MATRIX_DONE", pulseId });
+  }
+
+  if (type === "TICK_ENVIRONMENT") {
+    if (tick_environment_fn) tick_environment_fn(e.data.tick);
+    await maybeDelay();
+    self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+  }
+
+  if (type === "RESOLVE_BONDS") {
+    try {
+      if (!resolve_bond_requests_fn) {
+        throw new Error("resolve_bond_requests_fn is not initialized.");
+      }
+      const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
+      LOGGER.info(`[DEBUG-WORKER] WASM resolve returned ${count}`);
+      self.postMessage({
+        type: "RESOLVE_BONDS_DONE",
+        count,
+        pulseId: e.data.pulseId,
+      });
+    } catch (err) {
+      LOGGER.error(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
+    }
+  }
+
+  if (type === "DRAIN_SPAWN") {
+    const count = drain_spawn_requests_fn ? drain_spawn_requests_fn(e.data.tick) : 0;
+    await maybeDelay();
+    self.postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -23914,8 +24433,54 @@ self.onmessage = async (e) => {
   if (type === "SET_COHERENCE") {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
+      await maybeDelay();
+      self.postMessage({ type: "COHERENCE_SET_DONE", pulseId });
     }
   }
+
+  if (type === "METABOLISM_ACCUMULATE") {
+    const { startIdx, endIdx, clear } = e.data;
+    if (clear && clear_metabolism_stats_fn) clear_metabolism_stats_fn();
+    if (accumulate_metabolism_stats_fn) accumulate_metabolism_stats_fn(startIdx, endIdx);
+    await maybeDelay();
+    self.postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+  }
+
+  if (type === "METABOLISM_APPLY") {
+    const {
+      startIdx,
+      endIdx,
+      noveltySigned,
+      symbiosisSigned,
+      baseTax,
+      targetEnergy,
+      homeostasisBand,
+      homeostasisMaxDelta,
+      overflowThreshold,
+      spatialOverflowRatio,
+      starvationFloor,
+      subsidyEnabled,
+    } = e.data;
+
+    if (apply_metabolism_kernel_fn) {
+      apply_metabolism_kernel_fn(
+        startIdx,
+        endIdx,
+        noveltySigned,
+        symbiosisSigned,
+        baseTax,
+        targetEnergy,
+        homeostasisBand,
+        homeostasisMaxDelta,
+        Math.floor(overflowThreshold * 1024),
+        Math.floor(spatialOverflowRatio * 1024),
+        starvationFloor,
+        subsidyEnabled ? 1 : 0,
+      );
+    }
+    await maybeDelay();
+    self.postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    }
 
   if (type === "SET_DEBUG_DELAY") {
     const delayRaw = Number(e.data.delayMs);
@@ -23967,6 +24532,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import {
   evaluateGuardianSignalExecution,
@@ -24062,6 +24628,13 @@ import {
   recordFromPressureRingScaleApplyMutation,
   recordFromPressureRingScaleRollbackMutation,
 } from "./PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts";
+
+import { DriftWarden } from "./reduction_core/DRIFT_WARDEN.ts";
+import { DollFork } from "./reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "./reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
+import { REIFIED_PROGRAMS } from "./reduction_core/GENESIS_REIFIED.ts";
+import { GenesisInceptor } from "./reduction_core/GENESIS_INCEPTOR.ts";
+import { LineageTracker } from "./reduction_core/relics/LINEAGE_TRACKER.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -25086,6 +25659,11 @@ const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
+
+const driftWarden = new DriftWarden();
+const genesisInceptor = new GenesisInceptor();
+const lineageTracker = new LineageTracker();
+let shadowForkActive = false;
 
 const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
   return Atomics.load(causalityView, idx) !== 0;
@@ -26282,35 +26860,29 @@ export const PULSE = {
         }
       }
 
-      // 1. Resolve Sequential Logic
-      let clearedBondRequests = 0;
-      let resolvedBondPairs = 0;
-      for (const i of activeIdx) {
-        if (STATE_MATRIX.hasBondRequest(i)) {
-          const targetIdx = STATE_MATRIX.getBondRequestTarget(i);
-          if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-            STATE_MATRIX.setBondTarget(i, 0, targetIdx);
-            STATE_MATRIX.setBondStiffness(i, 0, 0.1);
-            STATE_MATRIX.setBondTarget(targetIdx, 1, i);
-            STATE_MATRIX.setBondStiffness(targetIdx, 1, 0.1);
-            resolvedBondPairs++;
-          }
-          STATE_MATRIX.clearBondRequest(i);
-          clearedBondRequests++;
-        }
-      }
-      if (resolvedBondPairs > 0) {
+      // 1. Resolve Sequential Logic (WASM)
+      const bondPulseId = nextPulseId();
+      const bondRes = await postAndWait<{ count: number }>(
+        0,
+        workers[0],
+        {
+          type: "RESOLVE_BONDS",
+          pulseId: bondPulseId,
+          startIdx: 0,
+          endIdx: OFFSETS.MAX_ATOMS,
+        },
+        "RESOLVE_BONDS_DONE",
+      );
+      if (bondRes.count > 0) {
         MUTATION_TELEMETRY.record({
-          lane: "internal_host",
+          lane: "internal_wasm",
           kind: "bond_pair_resolution",
-          count: resolvedBondPairs,
+          count: bondRes.count,
         });
-      }
-      if (clearedBondRequests > 0) {
         MUTATION_TELEMETRY.record({
-          lane: "internal_host",
+          lane: "internal_wasm",
           kind: "bond_request_clear",
-          count: clearedBondRequests,
+          count: bondRes.count,
         });
       }
 
@@ -26363,122 +26935,110 @@ export const PULSE = {
       // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
       await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
 
-      // 3. Matrix Engine (WASM)
-      const matrixPulseId = nextPulseId();
+      // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
+      // worker.ts message handler for 'TICK_ENVIRONMENT'.
+      const environmentPulseId = nextPulseId();
       await postAndWait(0, workers[0], {
-        type: "TICK_MATRIX",
-        pulseId: matrixPulseId,
-      }, "MATRIX_DONE");
+        type: "TICK_ENVIRONMENT",
+        tick: currentTick,
+        pulseId: environmentPulseId,
+      }, "ENVIRONMENT_DONE");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
 
-      // 4. Drain Spawn Queue
-      {
-        const readHead = Atomics.load(spawnHeadView, 1);
-        const writeHead = Atomics.load(spawnHeadView, 0);
-        const writeCursor = writeHead % SPAWN_RING_CAPACITY;
-
-        let spawned = 0;
-        let cursor = readHead;
-        let freeSearchCursor = 0;
-        let freeSlotsExhausted = false;
-        const genome = new Uint8Array(8);
-        const genomeWords = new Uint32Array(genome.buffer);
-
-        while (cursor !== writeCursor && spawned < 64) {
-          const slotOff = cursor * SPAWN_SLOT_BYTES;
-          const genomeLo = spawnDataView.getUint32(slotOff, true);
-
-          if (genomeLo !== 0) {
-            const genomeHi = spawnDataView.getUint32(slotOff + 4, true);
-            const cx = spawnDataView.getInt16(slotOff + 8, true);
-            const cy = spawnDataView.getInt16(slotOff + 10, true);
-            const childEnergy = spawnDataView.getInt32(slotOff + 12, true);
-
-            let freeIdx = -1;
-            if (!freeSlotsExhausted) {
-              freeIdx = findNextFreeSlot(freeSearchCursor);
-              if (freeIdx >= 0) {
-                freeSearchCursor = freeIdx + 1;
-              } else {
-                freeSlotsExhausted = true;
-              }
-            }
-
-            if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
-              const childId = deriveChildId(
-                currentTick,
-                freeIdx,
-                genomeLo,
-                genomeHi,
-                cx,
-                cy,
-              );
-              genomeWords[0] = genomeLo;
-              genomeWords[1] = genomeHi;
-
-              // Seed atom with standard biological script and genome
-              STATE_MATRIX.seedAtom(
-                freeIdx,
-                childId,
-                cx * 10 + 5,
-                cy * 10 + 5,
-                Math.max(childEnergy, 500) / STATE_MATRIX.SCALE,
-                0,
-                genome,
-              );
-              activeIdx.push(freeIdx);
-              spawned++;
-            }
-            spawnDataView.setUint32(slotOff, 0, true);
-          }
-          cursor = (cursor + 1) % SPAWN_RING_CAPACITY;
-        }
-        Atomics.store(spawnHeadView, 1, cursor);
-        if (spawned > 0) {
-          LOGGER.debug(
-            `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
-          );
-          MUTATION_TELEMETRY.record({
-            lane: "internal_host",
-            kind: "spawn_seed_atom",
-            count: spawned,
-          });
-        }
-      }
-
-      // 5. Sequential Maintenance (Sequential JS)
-      // (WASM handled spatial and structure grid propagation during the parallel/matrix phases)
-      const oracleDrain = SOVEREIGN_ORACLE.drainPendingMutations();
-      if (oracleDrain.applied > 0 || oracleDrain.dropped > 0) {
-        LOGGER.debug(
-          `👁️ [ORACLE] Host-lock drain applied=${oracleDrain.applied} skipped=${oracleDrain.skipped} dropped=${oracleDrain.dropped}`,
-        );
-      }
-      const controlDrain = await CONTROL_INTENT_QUEUE.applyHostLockBudget();
-      if (controlDrain.drained > 0 || controlDrain.failed > 0) {
-        LOGGER.debug(
-          `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
-        );
-      }
-      // WASM handled glyph transport (diffusion/decay/reflection) during parallel transition or here:
-      await postAndWait(0, workers[0], {
-        type: "TICK_GLYPH_TRANSPORT",
-        tick: currentTick,
-        pulseId: nextPulseId(),
-      }, "GLYPH_TRANSPORT_DONE");
-
-      const glyphTransport = GLYPH_BUFFER.snapshot();
-
-      applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(
-        currentTick,
-        activeIdx,
-        spatialHashState.overflowRatio,
+      // 4. Drain Spawn Queue (WASM)
+      const spawnPulseId = nextPulseId();
+      const spawnRes = await postAndWait<{ count: number }>(
+        0,
+        workers[0],
+        {
+          type: "DRAIN_SPAWN",
+          tick: currentTick,
+          pulseId: spawnPulseId,
+        },
+        "DRAIN_SPAWN_DONE",
       );
+      if (spawnRes.count > 0) {
+        LOGGER.debug(
+          `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+        );
+        MUTATION_TELEMETRY.record({
+          lane: "internal_wasm",
+          kind: "spawn_seed_atom",
+          count: spawnRes.count,
+        });
+
+        // --- STAGE 22: ADAPTIVE INCEPTION ---
+        // Find newly spawned atoms (those with IDs but empty instructions/role)
+        // and inject evolved programs.
+        for (let idx = 0; idx < OFFSETS.MAX_ATOMS; idx++) {
+            if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+                // This is likely a fresh spawn. Incept it.
+                const prog = genesisInceptor.selectProgram();
+                const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+                
+                STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
+                STATE_MATRIX.setLineage(idx, lineageHash);
+                
+                // Mark its role if the program is for a specific one (e.g. role hint)
+                // For now, we'll let the role be assigned by the first op if needed, 
+                // or just set a default.
+            }
+        }
+      }
+
+      // 5. Metabolic and Homeostasis Closure (WASM)
+      // Pass 1: Accumulate genome frequencies (Scratch Space)
+      const clearStatsPulseId = nextPulseId();
+      await postAndWait(0, workers[0], {
+        type: "METABOLISM_ACCUMULATE",
+        startIdx: 0,
+        endIdx: OFFSETS.MAX_ATOMS,
+        clear: true,
+        pulseId: clearStatsPulseId,
+      }, "METABOLISM_ACCUMULATE_DONE");
+
+      // Pass 2: Apply Metabolism (Parallel)
+      const pressureState = snapshotEvolutionPressureState();
+      const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
+
+      const metabolismPromises: Promise<any>[] = [];
+      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+      for (let i = 0; i < runtimeWorkerCount; i++) {
+        const startIdx = i * chunkSize;
+        const endIdx = i === runtimeWorkerCount - 1
+          ? MAX_ATOMS
+          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+        metabolismPromises.push(postAndWait(
+          i,
+          workers[i],
+          {
+            type: "METABOLISM_APPLY",
+            pulseId: nextPulseId(),
+            startIdx,
+            endIdx,
+            noveltySigned: pressureState.noveltySigned,
+            symbiosisSigned: pressureState.symbiosisSigned,
+            baseTax,
+            targetEnergy,
+            homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+            homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+            overflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+            spatialOverflowRatio: spatialHashState.overflowRatio,
+            starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+            subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+          },
+          "METABOLISM_APPLY_DONE",
+        ));
+      }
+      await Promise.all(metabolismPromises);
+
+      // 6. Sequential Maintenance (Sequential JS)
 
       // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
@@ -26625,8 +27185,8 @@ export const PULSE = {
         }
       }
 
-      // Decay host pheromone fields (including observer attention).
-      PHYSICS_ENGINE.decayPheromones();
+      // Decay host pheromone fields (DEPRECATED: Now handled in WASM tick_environment)
+      // PHYSICS_ENGINE.decayPheromones();
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {
@@ -26659,19 +27219,58 @@ export const PULSE = {
               (avgRes / 100).toFixed(1)
             })`,
           );
+          
+          // --- STAGE 22: DRIFT WARDEN AUDIT ---
+          const drift = driftWarden.analyze(currentTick);
+          if (drift.shadowForkRecommended && !shadowForkActive) {
+            LOGGER.warn(`🚨 [ADAPTIVE] High Drift (${drift.driftIndex.toFixed(4)}) detected. Triggering autonomous shadow rehearsal...`);
+            shadowForkActive = true;
+            (async () => {
+                try {
+                    const fork = new DollFork();
+                    const runner = new DollForkRunner(fork);
+                    await runner.init();
+                    fork.forkFromMainline();
+                    // Run a 10-tick rehearsal
+                    for (let s = 0; s < 10; s++) {
+                        runner.runShadowTick(currentTick + s);
+                    }
+                    LOGGER.info(`✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`);
+                } catch (e) {
+                    LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
+                } finally {
+                    shadowForkActive = false;
+                }
+            })();
+          }
         }
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
+      const glyphTransport = GLYPH_BUFFER.snapshot();
+      lineageTracker.syncLineages(activeIdx);
       AKASHA_CODEX.observePulse(currentTick, activeIdx.length, glyphTransport);
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
+
+      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
+      if (
+        RUNTIME_POLICY.snapshot.enabled &&
+        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
+      ) {
+        // We trigger save but don't await it to avoid blocking the heartbeat.
+        // It will complete in the background.
+        SNAP_ENGINE.save(currentTick).then(() => {
+          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
+        });
+      }
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
     }
   },
+  getWorker: (idx: number): any => workers[idx],
 };
 
 ```
@@ -26971,6 +27570,445 @@ export const ATOM = () => (x: any) => x;
 
 ---
 
+## FILE: reduction_core/doll_fork/DOLL_FORK_MATRIX.ts
+
+```typescript
+// OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
+import * as OFFSETS from "../../OFFSETS.ts";
+import { sharedBuffer as mainlineBuffer } from "../../STATE_MATRIX.ts";
+
+/**
+ * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
+ * It allows for risk-free simulation, mutation, and relic cultivation without affecting global causality.
+ */
+export class DollFork {
+  public wasmMemory: WebAssembly.Memory;
+  public shardBuffer: SharedArrayBuffer;
+  public views: {
+    ids: BigUint64Array;
+    xs: Int16Array;
+    ys: Int16Array;
+    energies: Int32Array;
+    resonances: Int32Array;
+    phases: Int32Array;
+    roles: Uint8Array;
+    logic: Uint8Array;
+    bonds: Uint32Array;
+    stiffness: Float32Array;
+    bondDistances: Uint8Array;
+    damping: Uint8Array;
+    causality: Uint8Array;
+    hormones: Uint16Array;
+    signalGrid: Int32Array;
+    memoryGrid: Uint8Array;
+    structureGrid: Int32Array;
+    glyphHeader: Int32Array;
+    glyphPayload: Uint8Array;
+    // Physics Read Support (Double Buffering)
+    readXs: Int16Array;
+    readYs: Int16Array;
+    readEnergies: Int32Array;
+    readResonances: Int32Array;
+  };
+
+  constructor(customMemory?: WebAssembly.Memory) {
+    this.wasmMemory = customMemory ?? new WebAssembly.Memory({
+      initial: OFFSETS.WASM_MEMORY_PAGES,
+      maximum: OFFSETS.WASM_MEMORY_PAGES,
+      shared: true,
+    });
+    this.shardBuffer = this.wasmMemory.buffer as SharedArrayBuffer;
+    
+    // Initialize primary views (Host side)
+    const b = this.shardBuffer;
+    this.views = {
+      ids: new BigUint64Array(b, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS),
+      xs: new Int16Array(b, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS),
+      ys: new Int16Array(b, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS),
+      energies: new Int32Array(b, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
+      resonances: new Int32Array(b, OFFSETS.RESONANCE_OFFSET, OFFSETS.MAX_ATOMS),
+      phases: new Int32Array(b, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS),
+      roles: new Uint8Array(b, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS),
+      logic: new Uint8Array(b, OFFSETS.LOGIC_OFFSET, OFFSETS.MAX_ATOMS * 8),
+      bonds: new Uint32Array(b, OFFSETS.BONDS_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      stiffness: new Float32Array(b, OFFSETS.STIFFNESS_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      bondDistances: new Uint8Array(b, OFFSETS.BOND_DISTANCES_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      damping: new Uint8Array(b, OFFSETS.DAMPING_OFFSET, OFFSETS.MAX_ATOMS),
+      causality: new Uint8Array(b, OFFSETS.CAUSALITY_OFFSET, OFFSETS.MAX_ATOMS),
+      hormones: new Uint16Array(b, OFFSETS.HORMONE_OFFSET, 6),
+      signalGrid: new Int32Array(b, OFFSETS.SIGNAL_GRID_OFFSET, OFFSETS.GRID_CELLS),
+      memoryGrid: new Uint8Array(b, OFFSETS.MEMORY_GRID_OFFSET, OFFSETS.GRID_CELLS * 8),
+      structureGrid: new Int32Array(b, OFFSETS.STRUCTURE_GRID_OFFSET, OFFSETS.GRID_CELLS),
+      glyphHeader: new Int32Array(b, OFFSETS.GLYPH_HEADER_OFFSET, OFFSETS.GRID_CELLS),
+      glyphPayload: new Uint8Array(b, OFFSETS.GLYPH_PAYLOAD_OFFSET, OFFSETS.GRID_CELLS * 8),
+      readXs: new Int16Array(b, OFFSETS.PHYSICS_READ_XS_OFFSET, OFFSETS.MAX_ATOMS),
+      readYs: new Int16Array(b, OFFSETS.PHYSICS_READ_YS_OFFSET, OFFSETS.MAX_ATOMS),
+      readEnergies: new Int32Array(b, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
+      readResonances: new Int32Array(b, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, OFFSETS.MAX_ATOMS),
+    };
+  }
+
+  /**
+   * Performs a bit-perfect deep copy from the mainline sharedBuffer into the DollFork shard.
+   */
+  public forkFromMainline(): void {
+    const mainlineView = new Uint8Array(mainlineBuffer);
+    const shardView = new Uint8Array(this.shardBuffer);
+    shardView.set(mainlineView);
+  }
+
+  /**
+   * Synchronizes 'Physics Read' buffers from primary buffers.
+   * Essential before calling WASM execution kernels in the shadow world.
+   */
+  public syncReadViews(): void {
+    this.views.readXs.set(this.views.xs);
+    this.views.readYs.set(this.views.ys);
+    this.views.readEnergies.set(this.views.energies);
+    this.views.readResonances.set(this.views.resonances);
+  }
+
+  public getMetrics() {
+    let totalEnergy = 0;
+    let activePopulation = 0;
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (this.views.energies[i] > 0) {
+        totalEnergy += Number(this.views.energies[i]);
+        activePopulation++;
+      }
+    }
+    return { activePopulation, totalEnergy, avgEnergy: activePopulation > 0 ? totalEnergy / activePopulation : 0 };
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/doll_fork/DOLL_FORK_RUNNER.ts
+
+```typescript
+// OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
+import * as OFFSETS from "../../OFFSETS.ts";
+import { DollFork } from "./DOLL_FORK_MATRIX.ts";
+import { LOGGER } from "../../LOGGER.ts";
+
+export class DollForkRunner {
+  private wasmInstance: WebAssembly.Instance | null = null;
+  private fork: DollFork;
+
+  constructor(fork: DollFork) {
+    this.fork = fork;
+  }
+
+  /**
+   * Initializes a private WebAssembly instance for the shadow matrix.
+   */
+  public async init(): Promise<void> {
+    const wasmRes = await fetch(new URL("../../build/release.wasm", import.meta.url).href);
+    const wasmBytes = await wasmRes.arrayBuffer();
+    
+    const traceAtom = (idx: number, op: number, gx: number, gy: number, target: number) => {
+      // Shadow traces are suppressed
+    };
+
+    const instantiated = await WebAssembly.instantiate(wasmBytes, {
+      index: { trace_atom: traceAtom },
+      env: {
+        memory: this.fork.wasmMemory,
+        abort: (msg: any) => LOGGER.error("[SHADOW WASM ABORT]:", msg),
+        trace_atom: traceAtom,
+      },
+    });
+
+    this.wasmInstance = instantiated.instance;
+  }
+
+  /**
+   * Executes a single discrete shadow tick on the forked matrix.
+   */
+  public runShadowTick(tickCount: number): void {
+    if (!this.wasmInstance) throw new Error("DollForkRunner not initialized");
+    
+    // 0. Sync Read Views (Double Buffering)
+    this.fork.syncReadViews();
+
+    const exports = this.wasmInstance.exports as any;
+    
+    try {
+      // 1. Build Spatial Hash
+      exports.build_spatial_hash();
+      
+      // 2. Execute Atoms (Physics + VM)
+      for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+        if (this.fork.views.ids[i] !== 0n) {
+          exports.execute_atom(i);
+        }
+      }
+      
+      // 3. Resolve Bonds & Spawns
+      exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
+      exports.drain_spawn_requests(tickCount);
+      
+      // 4. Tick Environment (Glyph Transport, Decay)
+      exports.tickGlyphTransport(tickCount);
+      exports.tick_environment(tickCount);
+      
+      // 5. Apply Metabolism
+      exports.apply_metabolism_kernel(
+        0, OFFSETS.MAX_ATOMS,
+        0, 0, // Novelty/Symbiosis
+        10, // Base Tax
+        1000, // Target Energy
+        10, 10, 10, // Band, MaxDelta, Overflow
+        0, // Spatial Overflow
+        1, // Starvation Floor
+        0 // Subsidy
+      );
+
+    } catch (err) {
+      LOGGER.error("[SHADOW TICK ERROR]", err);
+      throw err;
+    }
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/DRIFT_WARDEN.ts
+
+```typescript
+// OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
+import * as OFFSETS from "../OFFSETS.ts";
+import { 
+  coherenceBuffer, 
+  energyBuffer, 
+  idBuffer 
+} from "../STATE_MATRIX.ts";
+import { LOGGER } from "../LOGGER.ts";
+
+export type DriftMetrics = {
+  coherence: number;
+  energyVariance: number;
+  populationStability: number;
+  driftIndex: number;
+  shadowForkRecommended: boolean;
+};
+
+/**
+ * DriftWarden monitors the global state for behavioral anomalies and instability.
+ */
+export class DriftWarden {
+  private energyView = new Int32Array(energyBuffer);
+  private idsView = new BigUint64Array(idBuffer);
+  private coherenceView = new Int32Array(coherenceBuffer);
+  
+  private lastPopulation = 0;
+  private driftThreshold = 0.65; // High drift signals instability
+
+  /**
+   * Calculates the current drift status of the system.
+   */
+  public analyze(currentTick: number): DriftMetrics {
+    const activeIds = [];
+    let totalEnergy = 0;
+    
+    // 1. Gather active population metrics
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+        if (this.idsView[i] !== 0n) {
+            activeIds.push(i);
+            totalEnergy += this.energyView[i];
+        }
+    }
+    
+    const population = activeIds.length;
+    const avgEnergy = population > 0 ? totalEnergy / population : 0;
+    
+    // 2. Coherence (from WASM kernel neural sync)
+    // Coherence is usually 0..1000 in our standard (fixed point)
+    const rawCoherence = Atomics.load(this.coherenceView, 0);
+    const coherenceNormalized = rawCoherence / 1000.0;
+    
+    // 3. Energy Variance (local stability)
+    let varianceSum = 0;
+    if (population > 1) {
+        for (const idx of activeIds) {
+            const diff = this.energyView[idx] - avgEnergy;
+            varianceSum += diff * diff;
+        }
+    }
+    const energyVariance = population > 0 ? Math.sqrt(varianceSum / population) / 1000.0 : 0;
+    
+    // 4. Population Stability (Delta from last analysis)
+    const popDelta = Math.abs(population - this.lastPopulation);
+    const populationStability = population > 0 ? 1.0 - Math.min(1.0, popDelta / (population * 0.1)) : 1.0;
+    this.lastPopulation = population;
+
+    // 5. Final Drift Index Calculation
+    // High drift = Low coherence, High variance, Low stability
+    const driftIndex = ( (1.0 - coherenceNormalized) * 0.5 ) + ( Math.min(1.0, energyVariance) * 0.3 ) + ( (1.0 - populationStability) * 0.2 );
+    
+    const shadowForkRecommended = driftIndex > this.driftThreshold;
+
+    if (currentTick % 100 === 0) {
+        LOGGER.info(`[DRIFT WARDEN] Tick ${currentTick} | Drift: ${driftIndex.toFixed(4)} | Coherence: ${coherenceNormalized.toFixed(4)} | Fork: ${shadowForkRecommended}`);
+    }
+
+    return {
+      coherence: coherenceNormalized,
+      energyVariance,
+      populationStability,
+      driftIndex,
+      shadowForkRecommended
+    };
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/GENESIS_BOOT.ts
+
+```typescript
+/**
+ * GENESIS_BOOT.ts
+ * Axiomatic bytecode definitions for OMEGA-64 Stage 20.
+ * These are the "First Programs" that define the core roles in native GlyphIR64.
+ */
+
+export const GLYPH = {
+  // Core
+  S: 0, K: 1, I: 2, Y: 3,
+  // Control
+  SET: 8, GET: 9, PUT: 10, ADD: 11, SUB: 12, JNZ: 13, JMP: 14, JZ: 15,
+  // Transport
+  REPLICATE: 16, SIGNAL: 17, SHARE: 18, BIND: 19, SPORE_DRIVE: 20, ENTANGLE: 21,
+  // Structural
+  PLUG: 24, TENSEGRITY: 25, BUILD: 26, SENSE: 27,
+  // Catalytic
+  COLLECTIVE: 32, ROLE: 33, RESOLVE: 34,
+};
+
+export type RolePreamble = {
+  roleId: number;
+  bytecode: number[];
+};
+
+/**
+ * The Genesis Programs:
+ * These bypass legacy WASM interpretation when running in "Native Mode".
+ */
+export const GENESIS_PROGRAMS: Record<string, number[]> = {
+  /**
+   * GUARDIAN (Role 1):
+   * Focuses on PHEROMONE emission and stability.
+   */
+  "guardian_base": [
+    GLYPH.SIGNAL, // Emit pheromone (Legacy OP_SIGNAL)
+    GLYPH.I       // No-op return
+  ],
+
+  /**
+   * ARCHITECT (Role 2):
+   * Focuses on PLASMID emission and structural intent.
+   */
+  "architect_base": [
+    GLYPH.COLLECTIVE, 7, 100, 200, // Mode 7 (PLASMID_EMIT), intensity=100, type=200
+    GLYPH.I
+  ],
+
+  /**
+   * REPLICATOR (Default / Shared):
+   * Basic reproduction logic.
+   */
+  "replicator_base": [
+    GLYPH.REPLICATE,
+    GLYPH.I
+  ],
+
+  /**
+   * COMPLEX_STABILITY:
+   * A program demonstrating control flow via JNZ.
+   */
+  "stability_loop": [
+    GLYPH.SET, 0, 10,   // R0 = 10 (Counter)
+    // Label 0x03
+    GLYPH.SIGNAL,       // Pulse
+    GLYPH.SUB, 0, 1,    // R0--
+    GLYPH.JNZ, 0, 3,    // If R0 != 0, jump back to signaling
+    GLYPH.I
+  ]
+};
+
+```
+
+---
+
+## FILE: reduction_core/GENESIS_INCEPTOR.ts
+
+```typescript
+// OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
+import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
+import { LOGGER } from "../LOGGER.ts";
+
+export interface InceptiveProgram {
+  bytecode: number[];
+  metadata?: {
+    ancestorHash?: bigint;
+    roleHint?: number;
+  };
+}
+
+/**
+ * GenesisInceptor manages the selection of bytecode for new atomic entities.
+ * It prioritizes reified relics from the shadow laboratory.
+ */
+export class GenesisInceptor {
+  /**
+   * Selects a program for a new spawn.
+   * @param roleId Hint for the desired role (1: Guardian, 2: Architect, etc.)
+   */
+  public selectProgram(roleId?: number): InceptiveProgram {
+    const reifiedKeys = Object.keys(REIFIED_PROGRAMS);
+    
+    // 1. Check for reified programs first (Evolutionary priority)
+    if (reifiedKeys.length > 0) {
+        // Simple heuristic: pick a random reified program or one matching role hint
+        const pickedKey = reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
+        LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
+        return { 
+            bytecode: REIFIED_PROGRAMS[pickedKey],
+            metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) } // Pseudo-hash
+        };
+    }
+
+    // 2. Fallback to canonical genesis programs
+    if (roleId === 1) return { bytecode: GENESIS_PROGRAMS["guardian_base"] };
+    if (roleId === 2) return { bytecode: GENESIS_PROGRAMS["architect_base"] };
+    
+    // Default replicator
+    return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/GENESIS_REIFIED.ts
+
+```typescript
+// OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
+export const REIFIED_PROGRAMS: Record<string, number[]> = {};
+
+```
+
+---
+
 ## FILE: reduction_core/GlyphIR64.ts
 
 ```typescript
@@ -27002,6 +28040,40 @@ export type GlyphSpec = {
   reductionRuleRef: string;
   legacyOpcode?: number;
   notes?: string;
+  vertexIndex?: number; // C60 Vertex (0..59)
+  rgb?: [number, number, number]; // Chromatic Hash
+};
+
+/**
+ * Calculates a deterministic RGB color for a given vertex index (0..59).
+ * Uses a basic spherical projection into the RGB cube.
+ */
+const calculateChromaticHash = (index: number): [number, number, number] => {
+  const phi = (Math.sqrt(5) + 1) / 2;
+  const t = index / 60;
+  
+  // Golden angle distribution for hue, with saturation/value variation
+  const h = (t * 360) % 360;
+  const s = 0.7 + 0.3 * Math.sin(t * Math.PI * 2);
+  const v = 0.8 + 0.2 * Math.cos(t * Math.PI * 4);
+
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; b = 0; }
+  else if (h < 120) { r = x; g = c; b = 0; }
+  else if (h < 180) { r = 0; g = c; b = x; }
+  else if (h < 240) { r = 0; g = x; b = c; }
+  else if (h < 300) { r = x; g = 0; b = c; }
+  else { r = c; g = 0; b = x; }
+
+  return [
+    Math.round((r + m) * 255),
+    Math.round((g + m) * 255),
+    Math.round((b + m) * 255)
+  ];
 };
 
 const glyphKindForId = (id: number): GlyphKind => {
@@ -27047,6 +28119,16 @@ const defaultGlyphSpec = (id: number): GlyphSpec => {
     notes: stabilityClass === "reserve"
       ? "Reserved for sandboxed semantic evolution only."
       : "Unassigned placeholder within the fixed 64-glyph lattice.",
+    ...(id >= 4 ? { 
+      vertexIndex: id - 4,
+      rgb: calculateChromaticHash(id - 4)
+    } : {
+      // Core Glyphs (0..3) are the stabilizers, mapped to grayscale/secondary colors
+      rgb: id === 0 ? [255, 255, 255] : // S (White)
+           id === 1 ? [128, 128, 128] : // K (Gray)
+           id === 2 ? [0, 0, 0] :       // I (Black)
+                    [255, 0, 255]      // Y (Magenta)
+    }),
   };
 };
 
@@ -27163,6 +28245,30 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     legacyOpcode: RISC.OP_SHARE,
     reductionRuleRef: "bridge/transport/share",
   }],
+  [19, {
+    mnemonic: "BIND",
+    kind: "transport",
+    arity: 0,
+    energyCost: 20,
+    legacyOpcode: RISC.OP_BIND,
+    reductionRuleRef: "bridge/transport/bind",
+  }],
+  [20, {
+    mnemonic: "SPORE_DRIVE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 50,
+    legacyOpcode: RISC.OP_SPORE_DRIVE,
+    reductionRuleRef: "bridge/transport/spore_drive",
+  }],
+  [21, {
+    mnemonic: "ENTANGLE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 10,
+    legacyOpcode: RISC.OP_ENTANGLE,
+    reductionRuleRef: "bridge/transport/entangle",
+  }],
   [24, {
     mnemonic: "PLUG",
     kind: "structural",
@@ -27210,6 +28316,14 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     energyCost: 2,
     legacyOpcode: RISC.OP_ROLE,
     reductionRuleRef: "bridge/catalytic/role",
+  }],
+  [34, {
+    mnemonic: "RESOLVE",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 5,
+    legacyOpcode: RISC.OP_RESOLVE,
+    reductionRuleRef: "bridge/catalytic/resolve",
   }],
 ]);
 
@@ -27259,6 +28373,197 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
+
+```
+
+---
+
+## FILE: reduction_core/REIFICATION_ACTION.ts
+
+```typescript
+// OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
+import { Relic } from "./relics/RELIC_CULTIVATION.ts";
+import { LOGGER } from "../LOGGER.ts";
+
+/**
+ * ReificationAction promotes a relic from the sandbox to the canonical GENESIS pool.
+ */
+export class ReificationAction {
+  private genesisPath = "./reduction_core/GENESIS_REIFIED.ts";
+
+  /**
+   * Promotes a relic JSON file to the GENESIS_REIFIED.ts registry.
+   */
+  public async reify(relicId: string): Promise<void> {
+    const sandboxPath = `./reduction_core/sandbox/relic_${relicId}.json`;
+    
+    try {
+      const relicData = await Deno.readTextFile(sandboxPath);
+      const relic: Relic = JSON.parse(relicData);
+      
+      LOGGER.info(`[REIFICATION] Promoting relic ${relic.id} to canonical pool...`);
+      
+      // Load or create the reified registry
+      let content = "";
+      try {
+        content = await Deno.readTextFile(this.genesisPath);
+      } catch {
+        content = "// OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics\nexport const REIFIED_PROGRAMS: Record<string, number[]> = {};\n";
+      }
+      
+      // Add the relic to the registry (simple string append for now, or use a more robust parser if needed)
+      // Since it's a generated file, we can just replace the object content or append
+      const entry = `\nREIFIED_PROGRAMS["${relic.id}"] = ${JSON.stringify(relic.bytecode)};`;
+      
+      // Basic check to see if it already exists
+      if (content.includes(`REIFIED_PROGRAMS["${relic.id}"]`)) {
+        LOGGER.warn(`[REIFICATION] Relic ${relic.id} already exists in registry. Skipping.`);
+        return;
+      }
+      
+      await Deno.writeTextFile(this.genesisPath, content + entry);
+      LOGGER.info(`[REIFICATION] Relic ${relic.id} successfully reified in ${this.genesisPath}`);
+      
+    } catch (err) {
+      LOGGER.error(`[REIFICATION ERROR] Failed to reify relic ${relicId}:`, err);
+      throw err;
+    }
+  }
+}
+
+if (import.meta.main) {
+  const relicId = Deno.args[0];
+  if (!relicId) {
+    console.error("Usage: deno run -A REIFICATION_ACTION.ts <relic_id_without_prefix>");
+    Deno.exit(1);
+  }
+  const action = new ReificationAction();
+  await action.reify(relicId);
+}
+
+```
+
+---
+
+## FILE: reduction_core/relics/LINEAGE_TRACKER.ts
+
+```typescript
+// OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
+import { STATE_MATRIX } from "../../STATE_MATRIX.ts";
+import { AKASHA_CODEX } from "../../AKASHA_CODEX.ts";
+import { LOGGER } from "../../LOGGER.ts";
+
+/**
+ * LineageTracker maintains the semantic link between active atoms and their ancestry.
+ */
+export class LineageTracker {
+  /**
+   * Initializes or updates the lineage buffer based on active atoms and their parents.
+   * This is called during the host-lock phase of individual pulses.
+   */
+  public syncLineages(activeIdx: number[]): void {
+    // 1. Scan for newly spawned atoms that inherited parent lineages
+    // Logic: If WASM replication copied the lineage hash, we correlate it here.
+    
+    // 2. Map lineages to Akasha wisdom
+    // For now, we'll just log detections. In a full implementation, 
+    // we would pull stability metrics from AKASHA_CODEX.
+    
+    if (activeIdx.length > 0 && Math.random() < 0.05) {
+        LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
+    }
+  }
+
+  /**
+   * Calculates a "Wisdom Coefficient" for a given lineage hash.
+   * Stability and historical resonance from the Codex increase this coefficient.
+   */
+  public getWisdomForLineage(hash: bigint): number {
+    // Placeholder: In a mature system, this queries the species registry.
+    // High historical resonance = high wisdom.
+    return 100; // Baseline wisdom
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/relics/RELIC_CULTIVATION.ts
+
+```typescript
+// OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
+import * as OFFSETS from "../../OFFSETS.ts";
+import { DollFork } from "../doll_fork/DOLL_FORK_MATRIX.ts";
+import { LOGGER } from "../../LOGGER.ts";
+
+export type Relic = {
+  id: string;
+  bytecode: number[];
+  role: number;
+  resonance: number;
+  energy: number;
+  extractedAtTick: number;
+};
+
+/**
+ * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.
+ */
+export class RelicCultivator {
+  private fork: DollFork;
+
+  constructor(fork: DollFork) {
+    this.fork = fork;
+  }
+
+  /**
+   * Scans the shadow matrix for atoms that meet 'relic' criteria.
+   * Criteria: energy > 500, resonance > 200, non-zero bytecode.
+   */
+  public cultivateRelics(tick: number): Relic[] {
+    const relics: Relic[] = [];
+    const views = this.fork.views;
+
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      const energy = views.energies[i];
+      const resonance = views.resonances[i];
+      const atomId = views.ids[i];
+
+      if (atomId !== 0n && energy > 500 && resonance > 200) {
+        const bytecode = Array.from(views.logic.slice(i * 8, (i + 1) * 8)) as number[];
+        
+        // Basic check: is bytecode non-zero?
+        if (bytecode.some(b => b !== 0)) {
+          relics.push({
+            id: `relic_${tick}_${i}_${atomId}`,
+            bytecode,
+            role: views.roles[i],
+            resonance,
+            energy,
+            extractedAtTick: tick
+          });
+        }
+      }
+    }
+
+    if (relics.length > 0) {
+      LOGGER.info(`[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`);
+    }
+
+    return relics;
+  }
+
+  /**
+   * Persists relics to the semantic sandbox for future reification.
+   */
+  public async persistRelics(relics: Relic[]): Promise<void> {
+    for (const relic of relics) {
+      const path = `./reduction_core/sandbox/relic_${relic.id}.json`;
+      await Deno.writeTextFile(path, JSON.stringify(relic, null, 2));
+      LOGGER.info(`[RELIC CULTIVATOR] Saved relic to ${path}`);
+    }
+  }
+}
 
 ```
 
@@ -29041,6 +30346,7 @@ const OPCODE_NAMES = new Map<number, string>([
   [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
   [RISC.OP_ENTANGLE, "ENTANGLE"],
   [0xA4, "PLUG"],
+  [RISC.OP_RESOLVE, "RESOLVE"],
 ]);
 
 const OPCODE_LENGTHS = new Map<number, number>([
@@ -29055,7 +30361,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_JMP, 2],
   [RISC.OP_REPLICATE, 1],
   [RISC.OP_SIGNAL, 1],
-  [RISC.OP_BIND, 3],
+  [RISC.OP_BIND, 1],
   [RISC.OP_SHARE, 3],
   [0xA4, 3],
   [RISC.OP_TENSEGRITY, 4],
@@ -29065,6 +30371,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SENSE, 3],
   [RISC.OP_SPORE_DRIVE, 1],
   [RISC.OP_ENTANGLE, 1],
+  [RISC.OP_RESOLVE, 3],
 ]);
 
 const opcodeName = (opcode: number): string =>
@@ -32614,6 +33921,103 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 
 ---
 
+## FILE: SNAP_ENGINE.ts
+
+```typescript
+// OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
+import { sharedBuffer } from "./STATE_MATRIX.ts";
+import * as OFFSETS from "./OFFSETS.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
+
+const SNAP_DIR = ".omega/snap";
+
+/**
+ * SNAP_ENGINE handles the binary persistence of the STATE_MATRIX.
+ * It fulfills the 'SNAP' phase of the autopoietic heartbeat.
+ */
+export const SNAP_ENGINE = {
+  /**
+   * Saves the current state of the matrix to a binary file.
+   * This operation is performed asynchronously to minimize pulse jitter.
+   */
+  async save(tick: number): Promise<string | null> {
+    try {
+      await Deno.mkdir(SNAP_DIR, { recursive: true });
+      const snapPath = join(SNAP_DIR, `tick_${tick.toString().padStart(10, "0")}.bin`);
+      
+      // We capture a snapshot of the buffer to avoid data races during async write.
+      // Although SharedArrayBuffer is shared, Deno.writeFile will read from it.
+      // To be safe and non-blocking, we slice the relevant portion.
+      const data = new Uint8Array(sharedBuffer.slice(0, OFFSETS.LATTICE_MEMORY_END));
+      
+      await Deno.writeFile(snapPath, data);
+      
+      LOGGER.info(`📸 [SNAP] Matrix fixed at tick ${tick} -> ${snapPath}`);
+      return snapPath;
+    } catch (err) {
+      LOGGER.error(`❌ [SNAP] Save failed at tick ${tick}:`, err);
+      return null;
+    }
+  },
+
+  /**
+   * Re-hydrates the matrix from a specific binary snap file.
+   */
+  async load(snapPath: string): Promise<boolean> {
+    try {
+      const data = await Deno.readFile(snapPath);
+      if (data.length > sharedBuffer.byteLength) {
+        throw new Error(`Snap file size (${data.length}) exceeds allocated buffer (${sharedBuffer.byteLength})`);
+      }
+      
+      // Copy data back into the shared buffer
+      const view = new Uint8Array(sharedBuffer);
+      view.set(data);
+      
+      LOGGER.info(`💎 [SNAP] Matrix re-hydrated from ${snapPath}`);
+      return true;
+    } catch (err) {
+      LOGGER.error(`❌ [SNAP] Load failed from ${snapPath}:`, err);
+      return false;
+    }
+  },
+
+  /**
+   * Cleanup old snaps to prevent disk overflow.
+   * Keeps the last 'keepCount' snaps.
+   */
+  async cleanup(keepCount = 10): Promise<void> {
+    try {
+      const entries = [];
+      for await (const entry of Deno.readDir(SNAP_DIR)) {
+        if (entry.isFile && entry.name.endsWith(".bin")) {
+          entries.push(entry.name);
+        }
+      }
+      
+      if (entries.length <= keepCount) return;
+      
+      entries.sort();
+      const toDelete = entries.slice(0, entries.length - keepCount);
+      
+      for (const filename of toDelete) {
+        await Deno.remove(join(SNAP_DIR, filename));
+      }
+      
+      if (toDelete.length > 0) {
+        LOGGER.info(`🧹 [SNAP] Cleaned up ${toDelete.length} old snaps.`);
+      }
+    } catch (err) {
+      LOGGER.warn(`⚠️ [SNAP] Cleanup failed:`, err);
+    }
+  }
+};
+
+```
+
+---
+
 ## FILE: SNAP.ts
 
 ```typescript
@@ -33771,6 +35175,8 @@ export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 export const hormoneBuffer =
   new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
+export const lineageBuffer =
+  new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -33868,6 +35274,7 @@ const neuralCoherence = new Int32Array(
   1,
 );
 const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
+const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -33944,6 +35351,8 @@ export const RISC = {
   OP_SPORE_DRIVE: 0xAA,
   OP_ENTANGLE: 0xAB,
   OP_TENSEGRITY: 0xA5,
+  OP_RESOLVE: 0xAC,
+  OP_WISDOM: 0xAD, // Return ancestral resonance/wisdom
 
   PROP_ENERGY: 0,
   PROP_RESONANCE: 1,
@@ -34000,6 +35409,7 @@ export const STATE_MATRIX = {
   coherence,
   neuralCoherence,
   hormones,
+  lineage,
   instructions,
   contexts,
   semanticBonuses,
@@ -34025,6 +35435,7 @@ export const STATE_MATRIX = {
   hiveMemoryBuffer,
   hiveEnergyPoolBuffer,
   hormoneBuffer,
+  lineageBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -34051,6 +35462,7 @@ export const STATE_MATRIX = {
   getBondRequestTarget: (i: number) => Atomics.load(bondRequests, i * 3 + 1),
   getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
   getDamping: (i: number) => Atomics.load(damping, i),
+  getLineage: (i: number) => Atomics.load(lineage, i),
   getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
   setHiveMemory: (addr: number, val: number) => {
     Atomics.store(hiveMemory, addr & 1023, val);
@@ -34092,6 +35504,7 @@ export const STATE_MATRIX = {
   setBondDistance: (i: number, slot: number, val: number) =>
     Atomics.store(bondDistances, i * 4 + slot, val),
   setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
+  setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
 
   setInstructions: (i: number, val: Uint8Array) =>
     instructions.set(val, i * 64),
@@ -41901,6 +43314,7 @@ import {
   goldenTraceById,
   type GoldenTraceScenario,
 } from "./golden_trace_catalog.ts";
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 const SYSTEM_START_PATH = "/Users/s0fractal/OMEGA/SYSTEM_START.ts";
 const STRUCTURE_INTENT_CAPTURE_PATH =
@@ -41927,6 +43341,10 @@ const SHARE_TRANSFER_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/share_transfer_capture.ts";
 const TENSEGRITY_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/tensegrity_capture.ts";
+const QUORUM_SYNC_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/quorum_sync_capture.ts";
+const INTENT_RESOLUTION_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/intent_resolution_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
@@ -41952,6 +43370,10 @@ const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
   "standalone-share-transfer-capture";
 const TRACE_TENSEGRITY_RUNTIME_MODE =
   "standalone-tensegrity-capture";
+const TRACE_QUORUM_SYNC_RUNTIME_MODE =
+  "standalone-quorum-sync-capture";
+const TRACE_INTENT_RESOLUTION_RUNTIME_MODE =
+  "standalone-intent-resolution-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -42307,6 +43729,45 @@ type TensegrityCapturePayload = {
   snapshot: TensegritySnapshot;
 };
 
+type QuorumSyncSnapshot = {
+  quorum: {
+    sourcePc: number;
+    peer1Pc: number;
+    peer2Pc: number;
+    outsiderPc: number;
+  };
+  share: {
+    sourceEnergy: number;
+    targetEnergy: number;
+    hormoneAggression: number;
+  };
+};
+
+type QuorumSyncCapturePayload = {
+  hash: string;
+  snapshot: QuorumSyncSnapshot;
+};
+
+type IntentResolutionSnapshot = {
+  role: {
+    originalRole: number;
+    finalRole: number;
+    resonance: number;
+    neighbors: number;
+  };
+  bank: {
+    originalEnergy: number;
+    finalEnergy: number;
+    poolBalance: number;
+    resonance: number;
+  };
+};
+
+type IntentResolutionCapturePayload = {
+  hash: string;
+  snapshot: IntentResolutionSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -42335,6 +43796,8 @@ const COLLECTIVE_SYNCHRONY_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
 const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
 const TENSEGRITY_CAPTURE_MARKER = "__OMEGA_TENSEGRITY_CAPTURE__";
+const QUORUM_SYNC_CAPTURE_MARKER = "__OMEGA_QUORUM_SYNC_CAPTURE__";
+const INTENT_RESOLUTION_CAPTURE_MARKER = "__OMEGA_INTENT_RESOLUTION_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -43172,6 +44635,37 @@ const runCollectiveSynchronyCaptureSubprocess = async (): Promise<
   ) as CollectiveSynchronyCapturePayload;
 };
 
+const runIntentResolutionCaptureSubprocess =
+  async (): Promise<IntentResolutionCapturePayload> => {
+    const cmd = new Deno.Command(Deno.execPath(), {
+      args: ["run", "-A", INTENT_RESOLUTION_CAPTURE_PATH, "--capture"],
+      cwd: "/Users/s0fractal/OMEGA",
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const result = await cmd.output();
+    const stdout = decoder.decode(result.stdout);
+    const stderr = decoder.decode(result.stderr);
+    const merged = `${stdout}\n${stderr}`;
+    if (result.code !== 0) {
+      throw new Error(
+        `[golden_trace_capture] intent-resolution subprocess failed\n${merged}`,
+      );
+    }
+    const line = merged
+      .split("\n")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith(INTENT_RESOLUTION_CAPTURE_MARKER));
+    if (!line) {
+      throw new Error(
+        `[golden_trace_capture] intent-resolution capture marker missing\n${merged}`,
+      );
+    }
+    return JSON.parse(
+      line.slice(INTENT_RESOLUTION_CAPTURE_MARKER.length),
+    ) as IntentResolutionCapturePayload;
+  };
+
 const notesForCollectiveTransportCapture = async (
   trace: GoldenTraceScenario,
   payload: CollectiveTransportCapturePayload,
@@ -43245,6 +44739,28 @@ const notesForCollectiveSynchronyCapture = async (
     `- quorum_peer_1_pc=${payload.snapshot.quorum.peer1Pc}`,
     `- quorum_peer_2_pc=${payload.snapshot.quorum.peer2Pc}`,
     `- quorum_outsider_pc=${payload.snapshot.quorum.outsiderPc}`,
+  ].join("\n");
+};
+
+const notesForIntentResolutionCapture = async (
+  trace: GoldenTraceScenario,
+  payload: IntentResolutionCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_INTENT_RESOLUTION_RUNTIME_MODE}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Intent resolution capture`,
+    ``,
+    `- role_final=${payload.snapshot.role.finalRole}`,
+    `- bank_final_energy=${payload.snapshot.bank.finalEnergy}`,
+    `- bank_pool_balance=${payload.snapshot.bank.poolBalance}`,
   ].join("\n");
 };
 
@@ -43345,6 +44861,73 @@ const runTensegrityCaptureSubprocess = async (): Promise<
   return JSON.parse(
     line.slice(TENSEGRITY_CAPTURE_MARKER.length),
   ) as TensegrityCapturePayload;
+};
+
+const runQuorumSyncCaptureSubprocess = async (): Promise<
+  QuorumSyncCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", QUORUM_SYNC_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] quorum-sync subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(QUORUM_SYNC_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] quorum-sync capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(QUORUM_SYNC_CAPTURE_MARKER.length),
+  ) as QuorumSyncCapturePayload;
+};
+
+const notesForQuorumSyncCapture = async (
+  trace: GoldenTraceScenario,
+  payload: QuorumSyncCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- runtime_mode: ${TRACE_QUORUM_SYNC_RUNTIME_MODE}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Quorum PC Sync`,
+    ``,
+    `- source_pc=${payload.snapshot.quorum.sourcePc}`,
+    `- peer1_pc=${payload.snapshot.quorum.peer1Pc}`,
+    `- peer2_pc=${payload.snapshot.quorum.peer2Pc}`,
+    `- insider_sync=${
+      payload.snapshot.quorum.peer1Pc === 4 &&
+      payload.snapshot.quorum.peer2Pc === 4
+    }`,
+    `- outsider_pc=${payload.snapshot.quorum.outsiderPc} (should be 13)`,
+    ``,
+    `## Aggressive Share`,
+    ``,
+    `- hormone_aggression=${payload.snapshot.share.hormoneAggression}`,
+    `- target_energy=${payload.snapshot.share.targetEnergy} (should be 600 with bonus)`,
+  ].join("\n");
 };
 
 const notesForTensegrityCapture = async (
@@ -44433,6 +46016,112 @@ const runTensegrityTrace = async (
   };
 };
 
+const runQuorumSyncTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runQuorumSyncCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "quorum_sync",
+    runtime_mode: TRACE_QUORUM_SYNC_RUNTIME_MODE,
+    hash: payload.hash,
+    quorum_source_pc: payload.snapshot.quorum.sourcePc,
+    quorum_peer_1_pc: payload.snapshot.quorum.peer1Pc,
+    quorum_peer_2_pc: payload.snapshot.quorum.peer2Pc,
+    quorum_outsider_pc: payload.snapshot.quorum.outsiderPc,
+    share_aggression: payload.snapshot.share.hormoneAggression,
+    share_source_energy: payload.snapshot.share.sourceEnergy,
+    share_target_energy: payload.snapshot.share.targetEnergy,
+  };
+  const invariants = {
+    quorum_sync_hash: payload.hash,
+    quorum_sync_pc_peers: [
+      payload.snapshot.quorum.peer1Pc,
+      payload.snapshot.quorum.peer2Pc,
+    ],
+    share_bonus_verified: payload.snapshot.share.targetEnergy === 600,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_QUORUM_SYNC_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      quorumPcSync: payload.snapshot.quorum.peer1Pc === 4 &&
+        payload.snapshot.quorum.peer2Pc === 4,
+      aggressiveShareAmount: payload.snapshot.share.targetEnergy,
+      hormoneIndex2: payload.snapshot.share.hormoneAggression,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForQuorumSyncCapture(trace, payload),
+  };
+};
+
+const runIntentResolutionTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runIntentResolutionCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "intent_resolution",
+    runtime_mode: TRACE_INTENT_RESOLUTION_RUNTIME_MODE,
+    hash: payload.hash,
+    role_original: payload.snapshot.role.originalRole,
+    role_final: payload.snapshot.role.finalRole,
+    role_neighbors: payload.snapshot.role.neighbors,
+    bank_original: payload.snapshot.bank.originalEnergy,
+    bank_final: payload.snapshot.bank.finalEnergy,
+    bank_pool: payload.snapshot.bank.poolBalance,
+  };
+  const invariants = {
+    intent_resolution_hash: payload.hash,
+    role_verified: payload.snapshot.role.finalRole === STATE_MATRIX.ROLE_GUARDIAN,
+    bank_quorum_verified: payload.snapshot.bank.poolBalance >= 100,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_INTENT_RESOLUTION_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      roleResolution: payload.snapshot.role.finalRole ===
+        STATE_MATRIX.ROLE_GUARDIAN,
+      bankResolution: payload.snapshot.bank.poolBalance >= 100,
+      quorumCount: payload.snapshot.role.neighbors,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForIntentResolutionCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -44465,6 +46154,10 @@ export const captureGoldenTrace = async (
     ? await runShareTransferTrace(trace)
     : trace.id === "gt19_tensegrity_kinematics"
     ? await runTensegrityTrace(trace)
+    : trace.id === "gt21_quorum_sync"
+    ? await runQuorumSyncTrace(trace)
+    : trace.id === "gt22_intent_resolution"
+    ? await runIntentResolutionTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);
@@ -45002,6 +46695,76 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_tensegrity.ts",
     ],
   },
+  {
+    id: "gt20_bind_resolution",
+    scenario: "standalone symbiotic bond resolution",
+    setup:
+      "standalone deterministic capture of OP_BIND writing a pending request into the shared buffer between two nearby atoms",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "initiatorId",
+      "targetId",
+      "requestStatus",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      initiatorId: "strict",
+      targetId: "strict",
+      requestStatus: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/bind_resolution_capture.ts",
+      "test_symbiosis.ts",
+    ],
+  },
+  {
+    id: "gt21_quorum_sync",
+    scenario: "sovereignty protocol collective sync and aggressive share",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE (quorum sync) and OP_SHARE (hormone-modulated aggression bonus)",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "quorumPcSync",
+      "aggressiveShareAmount",
+      "hormoneIndex2",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      quorumPcSync: "strict",
+      aggressiveShareAmount: "strict",
+      hormoneIndex2: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/quorum_sync_capture.ts",
+    ],
+  },
+  {
+    id: "gt22_intent_resolution",
+    scenario: "sovereignty protocol collective intent resolution (role/bank)",
+    setup:
+      "standalone deterministic capture of OP_RESOLVE for collective role shifts and energy banking via neighborhood quorum",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "roleResolution",
+      "bankResolution",
+      "quorumCount",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      roleResolution: "strict",
+      bankResolution: "strict",
+      quorumCount: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/intent_resolution_capture.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(
@@ -45058,6 +46821,7 @@ import {
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+import { GENESIS_PROGRAMS } from "../reduction_core/GENESIS_BOOT.ts";
 
 type HarnessProps = Record<number, number>;
 
@@ -45065,6 +46829,9 @@ type ShadowEffects = {
   replicateCount: number;
   signalCount: number;
   buildCount: number;
+  bondRequestCount: number;
+  sporeDriveCount: number;
+  entangleCount: number;
   roleWrites: number[];
   branchTaken: boolean;
   jumpCount: number;
@@ -45090,6 +46857,9 @@ type ShadowState = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   executed: string[];
   energySpent: number;
@@ -45114,6 +46884,9 @@ type LegacyShadowResult = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -45138,6 +46911,9 @@ type ReductionShadowResult = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -45195,6 +46971,8 @@ export type ReductionHarnessArtifact = {
     structure_intent_owner_match: boolean;
     structure_intent_value_match: boolean;
     structure_charge_intent_match: boolean;
+    bond_requests_match: boolean;
+    hive_energy_pool_match: boolean;
     replicate_count_match: boolean;
     signal_count_match: boolean;
     build_count_match: boolean;
@@ -45210,11 +46988,15 @@ const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 const OP_PLUG = 0xA4;
+const OP_RESOLVE = 0xAC;
 
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
   signalCount: 0,
   buildCount: 0,
+  bondRequestCount: 0,
+  sporeDriveCount: 0,
+  entangleCount: 0,
   roleWrites: [],
   branchTaken: false,
   jumpCount: 0,
@@ -45225,7 +47007,15 @@ const createInitialState = (
 ): ShadowState => ({
   atomIndex: definition.ownerAtomIdx ?? 0,
   pc: 0,
-  regs: new Array(8).fill(0),
+  regs: (() => {
+    const r = new Array(16).fill(0);
+    if (definition.initialRegs) {
+      for (let i = 0; i < Math.min(r.length, definition.initialRegs.length); i++) {
+        r[i] = definition.initialRegs[i];
+      }
+    }
+    return r;
+  })(),
   role: 0,
   props: Object.fromEntries(
     Object.entries(definition.initialProps).map(([key, value]) => [
@@ -45293,6 +47083,11 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+  bondRequests: {},
+  hiveEnergyPool: Object.fromEntries(
+    Object.entries(definition.initialHiveEnergyPool ?? {}).map(([k, v]) => [Number(k), Number(v)]),
+  ),
+  hormones: definition.initialHormones ? [...definition.initialHormones] : [1024, 1024, 1024, 1024, 1024, 1024],
   effects: cloneEffects(),
   executed: [],
   energySpent: 0,
@@ -45352,6 +47147,9 @@ const snapshotLegacy = (
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
   structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -45383,6 +47181,9 @@ const snapshotReduction = (
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
   structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -45469,9 +47270,23 @@ const applyShadowOpcode = (
   opcode: number,
   args: number[],
   energyCost: number,
+  isNative: boolean = false,
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
+    case 2: // Possible collision between OP_GET and Glyph-I
+      if (isNative) {
+        state.pc += 1; // Native 'I' is 1 byte/token
+        return;
+      }
+      // Fall through to legacy OP_GET if not native
+    case RISC.OP_NOP: {
+      if (opcode === RISC.OP_NOP) {
+        state.pc += 1;
+        return;
+      }
+    }
+    /* falls through */
     case RISC.OP_SET: {
       const reg = args[0] ?? 0;
       state.regs[reg] = args[1] ?? 0;
@@ -45547,7 +47362,13 @@ const applyShadowOpcode = (
     }
     case RISC.OP_SHARE: {
       const slot = (args[0] ?? 0) & 3;
-      const percentage = args[1] ?? 0;
+      let percentage = args[1] ?? 0;
+      // HORMONE 2: aggression scales the share percentage
+      const aggression = state.hormones[2] ?? 1024;
+      if (aggression > 1024) {
+        percentage += 10;
+      }
+
       const targetIdx = state.bondTargets[slot] ?? 0;
       if (targetIdx > 0) {
         const energy = state.props[RISC.PROP_ENERGY] ?? 0;
@@ -45606,6 +47427,14 @@ const applyShadowOpcode = (
             state.peerPc[peer] = state.pc + 4;
           }
         }
+      } else if (mode === 7) { // PLASMID_EMIT
+        const rx = state.props[RISC.PROP_X] ?? 0;
+        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
+        }
       }
       state.pc += 4;
       return;
@@ -45655,22 +47484,62 @@ const applyShadowOpcode = (
       return;
     }
     case OP_PLUG: {
+      const targetType = args[0] ?? 0;
+      const energyAmt = args[1] ?? 0;
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+        const cellIdx = gy * GRID_W + gx;
+        publishBuildIntent(state, cellIdx, state.atomIndex, targetType);
+      }
+      state.pc += 3;
+      return;
+    }
+    case OP_RESOLVE: {
       const mode = args[0] ?? 0;
-      const p2 = args[1] ?? 0;
-      if (mode === 1) {
-        const rx = state.props[RISC.PROP_X] ?? 0;
-        const ry = state.props[RISC.PROP_Y] ?? 0;
-        const gx = Math.floor(rx / 10);
-        const gy = Math.floor(ry / 10);
-        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-          const cellIdx = gy * GRID_W + gx;
-          const nextCharge = (state.regs[p2 & 7] ?? 0) & 0xFF;
-          const currentCharge = state.structureChargeIntent[cellIdx] ?? 0;
-          state.structureChargeIntent[cellIdx] = nextCharge > currentCharge
-            ? nextCharge
-            : currentCharge;
+      const value = args[1] ?? 0;
+
+      // Neighborhood Quorum Check (r=1)
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      let count = 0;
+
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = gx + dx;
+          const ny = gy + dy;
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            const cellIdx = ny * GRID_W + nx;
+            if (readStructureCell(state, cellIdx) !== 0) { // STR_VOID is 0
+              count++;
+            }
+          }
         }
       }
+
+      if (mode === 0) { // ROLE RESOLUTION
+        if (count >= value) {
+          const desiredRole = state.regs[0] ?? 0;
+          state.role = desiredRole;
+          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 20;
+        }
+      } else if (mode === 1) { // ENERGY BANKING
+        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        if (count >= 3 && energy >= value) {
+          // Deposit to hive energy pool
+          const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
+          const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
+          state.props[RISC.PROP_ENERGY] = energy - value;
+          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + value;
+          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 10;
+        }
+      }
+
       state.pc += 3;
       return;
     }
@@ -45697,6 +47566,69 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
+    case RISC.OP_BIND: {
+      state.effects.bondRequestCount += 1;
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      // Shadow-model nearest neighbor logic (simplistic for harness)
+      // In ground truth, this uses the spatial grid.
+      // For harness testing, we assume definition.initialCellPeers contains candidates.
+      let nearestIdx = -1;
+      let minDist = 1000000;
+      for (const peerIdx of state.cellPeers) {
+        if (peerIdx === state.atomIndex) continue;
+        // In the harness, peers are often just indices. We need their positions.
+        // We'll rely on a convention where definition targets are pre-setup.
+        const px = state.peerEnergy[peerIdx] !== undefined ? 100 : 0; // Placeholder pos
+        const py = 100;
+        const d = Math.sqrt((px - rx) ** 2 + (py - ry) ** 2);
+        if (d < 250 && d < minDist) {
+          minDist = d;
+          nearestIdx = peerIdx;
+        }
+      }
+      if (nearestIdx !== -1) {
+        state.bondRequests[state.atomIndex * 3 + 0] = state.atomIndex + 1;
+        state.bondRequests[state.atomIndex * 3 + 1] = nearestIdx + 1;
+        state.bondRequests[state.atomIndex * 3 + 2] = 1; // PENDING
+      }
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_SPORE_DRIVE: {
+      state.effects.sporeDriveCount += 1;
+      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      if (energy >= 500) {
+        state.props[RISC.PROP_ENERGY] = energy - 500;
+        // Pseudo-random jump for shadow model parity
+        // In real WASM it uses LCG. Here we just mark as "moved".
+        state.props[RISC.PROP_X] = (state.props[RISC.PROP_X] ?? 0) + 7;
+        state.props[RISC.PROP_Y] = (state.props[RISC.PROP_Y] ?? 0) + 7;
+      }
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_ENTANGLE: {
+      state.effects.entangleCount += 1;
+      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      // slot is derived from genomePoolSlot which needs logic bytes.
+      // for harness, we'll use a simplified mapping or just slot 0.
+      const slot = 0;
+      if (energy > 500) {
+        const deposit = Math.floor(energy / 10);
+        state.props[RISC.PROP_ENERGY] = energy - deposit;
+        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + deposit;
+      } else {
+        let draw = 500 - energy;
+        if (draw > 400) draw = 400;
+        const pool = state.hiveEnergyPool[slot] ?? 0;
+        const take = Math.min(pool, draw);
+        state.hiveEnergyPool[slot] = pool - take;
+        state.props[RISC.PROP_ENERGY] = energy + take;
+      }
+      state.pc += 1;
+      return;
+    }
     default:
       throw new Error(`[reduction_harness] unsupported legacy opcode 0x${opcode.toString(16)}`);
   }
@@ -45711,7 +47643,7 @@ const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResul
     state.executed.push(
       `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${decoded.args.join(",")}]`,
     );
-    applyShadowOpcode(state, decoded.opcode, decoded.args, 0);
+    applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
     stepsExecuted++;
   }
   if (definition.postStructureTick) {
@@ -45724,14 +47656,41 @@ const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResul
 const runReductionShadow = (
   definition: ReductionCaseDefinition,
 ): ReductionShadowResult => {
-  const glyphTape = scriptToGlyphTape(definition.script);
+  let glyphTape: GlyphTapeToken[] = [];
+  if (definition.nativeProgram && GENESIS_PROGRAMS[definition.nativeProgram]) {
+    const bytecode = GENESIS_PROGRAMS[definition.nativeProgram];
+    let i = 0;
+    while (i < bytecode.length) {
+      const id = bytecode[i];
+      const spec = glyphSpecById(id);
+      const arity = spec?.arity ?? 0;
+      const pc = i;
+      const args: number[] = [];
+      for (let a = 0; a < arity; a++) {
+        args.push(bytecode[i + 1 + a] ?? 0);
+      }
+      glyphTape.push({
+        glyphId: id,
+        glyphMnemonic: spec?.mnemonic ?? "UNKNOWN",
+        mapped: true,
+        opcode: spec?.legacyOpcode ?? id,
+        opcodeMnemonic: spec?.mnemonic ?? "UNKNOWN",
+        args,
+        length: 1 + arity,
+        pc,
+      });
+      i += 1 + arity;
+    }
+  } else {
+    glyphTape = scriptToGlyphTape(definition.script);
+  }
   const tokenByPc = new Map<number, GlyphTapeToken>(glyphTape.map((token) => [token.pc, token]));
   const state = createInitialState(definition);
   let stepsExecuted = 0;
 
   while (stepsExecuted < definition.maxSteps) {
     const token = tokenByPc.get(state.pc);
-    if (!token) break;
+    if (!token || token.opcode === RISC.OP_NOP || token.glyphId === 2) break;
     if (token.glyphId === null) {
       throw new Error(
         `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,
@@ -45746,7 +47705,13 @@ const runReductionShadow = (
     state.executed.push(
       `pc=${token.pc} glyph=${spec.mnemonic}[${spec.id}] rule=${spec.reductionRuleRef}`,
     );
-    applyShadowOpcode(state, token.opcode, token.args, spec.energyCost);
+    applyShadowOpcode(
+      state,
+      token.opcode,
+      token.args,
+      spec.energyCost,
+      !!definition.nativeProgram,
+    );
     stepsExecuted++;
   }
   if (definition.postStructureTick) {
@@ -45848,6 +47813,15 @@ const compareResults = (
   ) {
     reasons.push("structureChargeIntent mismatch");
   }
+  if (!equalHarnessProps(legacy.bondRequests, reduction.bondRequests)) {
+    reasons.push("bondRequests mismatch");
+  }
+  if (!equalHarnessProps(legacy.hiveEnergyPool, reduction.hiveEnergyPool)) {
+    reasons.push("hiveEnergyPool mismatch");
+  }
+  if (!equalNumberArray(legacy.hormones, reduction.hormones)) {
+    reasons.push("hormones mismatch");
+  }
   if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
     reasons.push("replicateCount mismatch");
   }
@@ -45859,6 +47833,15 @@ const compareResults = (
   }
   if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
     reasons.push("branchTaken mismatch");
+  }
+  if (legacy.effects.bondRequestCount !== reduction.effects.bondRequestCount) {
+    reasons.push("bondRequestCount mismatch");
+  }
+  if (legacy.effects.sporeDriveCount !== reduction.effects.sporeDriveCount) {
+    reasons.push("sporeDriveCount mismatch");
+  }
+  if (legacy.effects.entangleCount !== reduction.effects.entangleCount) {
+    reasons.push("entangleCount mismatch");
   }
   if (!equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)) {
     reasons.push("roleWrites mismatch");
@@ -45999,7 +47982,33 @@ const compareResults = (
       `expected branchTaken=${expected.branchTaken} got=${legacy.effects.branchTaken}`,
     );
   }
+  if (expected.finalBondRequests) {
+    for (const [key, value] of Object.entries(expected.finalBondRequests)) {
+      const idx = Number(key);
+      if ((legacy.bondRequests[idx] ?? 0) !== value) {
+        reasons.push(
+          `expected bondRequests[${idx}]=${value} got=${legacy.bondRequests[idx] ?? 0}`,
+        );
+      }
+    }
+  }
+  if (expected.finalHiveEnergyPool) {
+    for (const [key, value] of Object.entries(expected.finalHiveEnergyPool)) {
+      const slot = Number(key);
+      if ((legacy.hiveEnergyPool[slot] ?? 0) !== value) {
+        reasons.push(
+          `expected hiveEnergyPool[${slot}]=${value} got=${legacy.hiveEnergyPool[slot] ?? 0}`,
+        );
+      }
+    }
+  }
 
+  if (
+    expected.finalHormones &&
+    !equalNumberArray(legacy.hormones, expected.finalHormones)
+  ) {
+    reasons.push("expected finalHormones mismatch");
+  }
   return { ok: reasons.length === 0, reasons };
 };
 
@@ -46033,6 +48042,8 @@ const buildReductionHarnessArtifact = async (
     structureIntentOwner: result.legacy.structureIntentOwner,
     structureIntentValue: result.legacy.structureIntentValue,
     structureChargeIntent: result.legacy.structureChargeIntent,
+    bondRequests: result.legacy.bondRequests,
+    hiveEnergyPool: result.legacy.hiveEnergyPool,
     effects: result.legacy.effects,
     energySpent: result.legacy.energySpent,
   }),
@@ -46106,6 +48117,14 @@ const buildReductionHarnessArtifact = async (
     structure_charge_intent_match: equalHarnessProps(
       result.legacy.structureChargeIntent,
       result.reduction.structureChargeIntent,
+    ),
+    bond_requests_match: equalHarnessProps(
+      result.legacy.bondRequests,
+      result.reduction.bondRequests,
+    ),
+    hive_energy_pool_match: equalHarnessProps(
+      result.legacy.hiveEnergyPool,
+      result.reduction.hiveEnergyPool,
     ),
     replicate_count_match:
       result.legacy.effects.replicateCount ===

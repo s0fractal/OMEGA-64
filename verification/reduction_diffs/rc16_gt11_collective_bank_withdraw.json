@@ -2,10 +2,12 @@
   "case_id": "rc16_gt11_collective_bank_withdraw",
   "baseline_trace_id": "gt11_collective_banking",
   "baseline_runtime_mode": "standalone-collective-banking-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "ebb532a55c2be9a89850613b84252109d8035bd69c019cade387ddd079e8e9f9",
-  "reduction_digest": "b5ab21875b65c4f73af3a6d6b7dacfa53c33d4e4d15ec9656cb037a5d79e49cf",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch"
+  ],
+  "legacy_digest": "61236dac92024146e384960fcd72facc3e0b5f35308442d9190da1d7ae974dc6",
+  "reduction_digest": "f368149bf76df4473793366605ae26d9a3c37cd8f2ca460d7c82434c45547ea9",
   "executed_digest_legacy": "2aa70281362870f52dc408312c9e37ad12270a8499ddbb73af4b9d2f3becf479",
   "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
   "diff": {
@@ -25,6 +27,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

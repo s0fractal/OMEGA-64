@@ -83,6 +83,8 @@ export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 export const hormoneBuffer =
   new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
+export const lineageBuffer =
+  new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -180,6 +182,7 @@ const neuralCoherence = new Int32Array(
   1,
 );
 const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
+const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -257,6 +260,7 @@ export const RISC = {
   OP_ENTANGLE: 0xAB,
   OP_TENSEGRITY: 0xA5,
   OP_RESOLVE: 0xAC,
+  OP_WISDOM: 0xAD, // Return ancestral resonance/wisdom
 
   PROP_ENERGY: 0,
   PROP_RESONANCE: 1,
@@ -313,6 +317,7 @@ export const STATE_MATRIX = {
   coherence,
   neuralCoherence,
   hormones,
+  lineage,
   instructions,
   contexts,
   semanticBonuses,
@@ -338,6 +343,7 @@ export const STATE_MATRIX = {
   hiveMemoryBuffer,
   hiveEnergyPoolBuffer,
   hormoneBuffer,
+  lineageBuffer,
 
   // Roles
   ROLE_NEUTRAL: 0,
@@ -364,6 +370,7 @@ export const STATE_MATRIX = {
   getBondRequestTarget: (i: number) => Atomics.load(bondRequests, i * 3 + 1),
   getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
   getDamping: (i: number) => Atomics.load(damping, i),
+  getLineage: (i: number) => Atomics.load(lineage, i),
   getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
   setHiveMemory: (addr: number, val: number) => {
     Atomics.store(hiveMemory, addr & 1023, val);
@@ -405,6 +412,7 @@ export const STATE_MATRIX = {
   setBondDistance: (i: number, slot: number, val: number) =>
     Atomics.store(bondDistances, i * 4 + slot, val),
   setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
+  setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
 
   setInstructions: (i: number, val: Uint8Array) =>
     instructions.set(val, i * 64),

@@ -2,10 +2,12 @@
   "case_id": "rc04_gt03_guardian_repair_branch",
   "baseline_trace_id": "gt03_pheromone_inject",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "543bb99a0c639a105a05c48f872467cb892cd4ea569a73e85713e0a3afc23328",
-  "reduction_digest": "09c1d904a04c276a41c828c546a14aa24e0f7404a8200b2b2b95a04fdf5280e5",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch"
+  ],
+  "legacy_digest": "459a63d4eb03c7f2d23b5fc9c82eda94da129aae7ac892b78d5e1d1782165fb0",
+  "reduction_digest": "958c612971f4625a76bc60c0a81730c366c95cf3aa16aa528d9a6e5328c6e476",
   "executed_digest_legacy": "03bdac584461411ffbb9687c4f8be98eaf24c6afad75f6f2b82879a348a8dad1",
   "executed_digest_reduction": "16e9d1314dbfd16512b5e2661c924b1b2d1c5da78366f5618c1d53b68a950dc4",
   "diff": {
@@ -25,6 +27,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

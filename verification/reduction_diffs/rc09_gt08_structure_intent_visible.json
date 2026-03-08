@@ -2,10 +2,12 @@
   "case_id": "rc09_gt08_structure_intent_visible",
   "baseline_trace_id": "gt08_structure_intent_visibility",
   "baseline_runtime_mode": "standalone-structure-intent-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "d053864dd826b06028aa84c57b1d8a5a0e6edad96c14d7317f7cfd554c2a9ad3",
-  "reduction_digest": "c719033af9049b89818b22fa7bcf8adf4eedfd3d4a42bc9968263d7fde3e5538",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch"
+  ],
+  "legacy_digest": "cb74c713ee9f4f70be887e194f8068cdaf2e4cada0f89f9d23a04fc98ef39260",
+  "reduction_digest": "b1501cd0871e8f712098a644a31a20148abfbad5b47b08e0a1f8d167d32cc6da",
   "executed_digest_legacy": "1e9c033360deaa7ba37776a68bf70b228bab71d64c9d5153da8503ad6f4544d9",
   "executed_digest_reduction": "cbad30ccf4a6f174699fb3dcea2153a485514cf96eadd61c6a847aa4764ec7cb",
   "diff": {
@@ -25,6 +27,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

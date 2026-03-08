@@ -2,10 +2,12 @@
   "case_id": "rc20_gt13_sense_stale_lock_typed_miss",
   "baseline_trace_id": "gt13_structure_lock_progress",
   "baseline_runtime_mode": "standalone-structure-lock-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "4a25c5c0919afe1f32a6f909e9de150aba19430b5308fa19752ddbcb8bf54e93",
-  "reduction_digest": "6bcf31f701fbc43a3cdb68808ce6e89f778c984a16b76667ee526e91295edfbd",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch"
+  ],
+  "legacy_digest": "f1c6a7c89681a002a3eae17d086b081b433dcdc6a61f0655d820cd82a85e54fb",
+  "reduction_digest": "e6574003f68d6baa6252479491e409c5eb7d6ab43bcc8d7acafce7ec03d43624",
   "executed_digest_legacy": "34e5853f6e2c8f84e83103cd7284f5776b28ae02216ef09579e970a431557db3",
   "executed_digest_reduction": "2e5ee0d1f6816e5034e45ab88d1f5c8f58238b35ffb07330bd1a113a90d0c1e1",
   "diff": {
@@ -25,6 +27,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

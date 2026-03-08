@@ -48,6 +48,7 @@ export type ReductionCaseDefinition = {
   initialStructureChargeIntent?: Partial<Record<number, number>>;
   initialHormones?: number[];
   initialHiveEnergyPool?: Partial<Record<number, number>>;
+  nativeProgram?: string; // Key in GENESIS_PROGRAMS
   expected: ReductionCaseExpectation;
 };
 
@@ -1268,6 +1269,39 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       },
       finalHiveEnergyPool: {
         2: 100, // 0x12 % 4 = 2. No, slot logic in harness: gene0 % 4. regs[8] is gene0.
+      },
+    },
+  },
+  {
+    id: "rc36_genesis_guardian",
+    baselineTraceId: "gt01_coldstart_seeded_swarm",
+    description: "Native Genesis Guardian signaling behavior",
+    nativeProgram: "guardian_base",
+    script: new Uint8Array([RISC.OP_SIGNAL, RISC.OP_NOP]), // Matching legacy for parity check
+    maxSteps: 2,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1000,
+    },
+    expected: {
+      finalPc: 1,
+      signalCount: 1,
+    },
+  },
+  {
+    id: "rc37_genesis_architect",
+    baselineTraceId: "gt01_coldstart_seeded_swarm",
+    description: "Native Genesis Architect collective emission behavior",
+    nativeProgram: "architect_base",
+    script: new Uint8Array([RISC.OP_COLLECTIVE, 7, 100, 200, RISC.OP_NOP]),
+    maxSteps: 2,
+    initialProps: {
+      [RISC.PROP_X]: 50,
+      [RISC.PROP_Y]: 50,
+    },
+    expected: {
+      finalPc: 4,
+      finalSignalGrid: {
+        [5 * 140 + 5]: (100 << 8) | 200,
       },
     },
   },

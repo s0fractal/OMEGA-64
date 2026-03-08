@@ -12,6 +12,7 @@ import {
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+import { GENESIS_PROGRAMS } from "../reduction_core/GENESIS_BOOT.ts";
 
 type HarnessProps = Record<number, number>;
 
@@ -460,9 +461,23 @@ const applyShadowOpcode = (
   opcode: number,
   args: number[],
   energyCost: number,
+  isNative: boolean = false,
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
+    case 2: // Possible collision between OP_GET and Glyph-I
+      if (isNative) {
+        state.pc += 1; // Native 'I' is 1 byte/token
+        return;
+      }
+      // Fall through to legacy OP_GET if not native
+    case RISC.OP_NOP: {
+      if (opcode === RISC.OP_NOP) {
+        state.pc += 1;
+        return;
+      }
+    }
+    /* falls through */
     case RISC.OP_SET: {
       const reg = args[0] ?? 0;
       state.regs[reg] = args[1] ?? 0;
@@ -602,6 +617,14 @@ const applyShadowOpcode = (
           if (peer > 0) {
             state.peerPc[peer] = state.pc + 4;
           }
+        }
+      } else if (mode === 7) { // PLASMID_EMIT
+        const rx = state.props[RISC.PROP_X] ?? 0;
+        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
         }
       }
       state.pc += 4;
@@ -811,7 +834,7 @@ const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResul
     state.executed.push(
       `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${decoded.args.join(",")}]`,
     );
-    applyShadowOpcode(state, decoded.opcode, decoded.args, 0);
+    applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
     stepsExecuted++;
   }
   if (definition.postStructureTick) {
@@ -824,14 +847,41 @@ const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResul
 const runReductionShadow = (
   definition: ReductionCaseDefinition,
 ): ReductionShadowResult => {
-  const glyphTape = scriptToGlyphTape(definition.script);
+  let glyphTape: GlyphTapeToken[] = [];
+  if (definition.nativeProgram && GENESIS_PROGRAMS[definition.nativeProgram]) {
+    const bytecode = GENESIS_PROGRAMS[definition.nativeProgram];
+    let i = 0;
+    while (i < bytecode.length) {
+      const id = bytecode[i];
+      const spec = glyphSpecById(id);
+      const arity = spec?.arity ?? 0;
+      const pc = i;
+      const args: number[] = [];
+      for (let a = 0; a < arity; a++) {
+        args.push(bytecode[i + 1 + a] ?? 0);
+      }
+      glyphTape.push({
+        glyphId: id,
+        glyphMnemonic: spec?.mnemonic ?? "UNKNOWN",
+        mapped: true,
+        opcode: spec?.legacyOpcode ?? id,
+        opcodeMnemonic: spec?.mnemonic ?? "UNKNOWN",
+        args,
+        length: 1 + arity,
+        pc,
+      });
+      i += 1 + arity;
+    }
+  } else {
+    glyphTape = scriptToGlyphTape(definition.script);
+  }
   const tokenByPc = new Map<number, GlyphTapeToken>(glyphTape.map((token) => [token.pc, token]));
   const state = createInitialState(definition);
   let stepsExecuted = 0;
 
   while (stepsExecuted < definition.maxSteps) {
     const token = tokenByPc.get(state.pc);
-    if (!token) break;
+    if (!token || token.opcode === RISC.OP_NOP || token.glyphId === 2) break;
     if (token.glyphId === null) {
       throw new Error(
         `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,
@@ -846,7 +896,13 @@ const runReductionShadow = (
     state.executed.push(
       `pc=${token.pc} glyph=${spec.mnemonic}[${spec.id}] rule=${spec.reductionRuleRef}`,
     );
-    applyShadowOpcode(state, token.opcode, token.args, spec.energyCost);
+    applyShadowOpcode(
+      state,
+      token.opcode,
+      token.args,
+      spec.energyCost,
+      !!definition.nativeProgram,
+    );
     stepsExecuted++;
   }
   if (definition.postStructureTick) {

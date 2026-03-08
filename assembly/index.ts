@@ -63,10 +63,11 @@ const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
 const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
+const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 43000000;
 const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 20800000;
 const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
 const SPAWN_MAX: i32 = 1024;
-const SPAWN_SLOT: i32 = 16;
+const SPAWN_SLOT: i32 = 24;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET; 
@@ -282,6 +283,7 @@ function seed_atom(
   energy: i32,
   resonance: i32,
   genomePtr: usize,
+  lineagePtr: usize,
 ): void {
   const idPtr = IDS_OFFSET + (idx << 3) as usize;
   store<i64>(idPtr, id);
@@ -302,6 +304,13 @@ function seed_atom(
     memory.copy(logicPtr, genomePtr, 8);
   } else {
     for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
+  }
+
+  const linOff = LINEAGE_OFFSET + (idx << 3) as usize;
+  if (lineagePtr != 0) {
+    memory.copy(linOff, lineagePtr, 8);
+  } else {
+    store<i64>(linOff, 0);
   }
 
   // Clear instructions and context
@@ -368,7 +377,7 @@ export function drain_spawn_requests(tick: i32): i32 {
       const freeIdx = findNextFreeSlot(freeSearchCursor);
       if (freeIdx != -1) {
         const childId = (tick as i64) << 32 | (freeIdx as i64);
-        seed_atom(freeIdx, childId, cx, cy, energyScaled, 100, slotOff);
+        seed_atom(freeIdx, childId, cx, cy, energyScaled, 100, slotOff, slotOff + 16);
         freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
       }
     }
@@ -1273,6 +1282,11 @@ export function execute_atom(atomIndex: i32): void {
             store<i16>((slotOff + 8) as usize, childGx as i16);
             store<i16>((slotOff + 10) as usize, childGy as i16);
             store<i32>((slotOff + 12) as usize, energy >> 1);
+            
+            // --- STAGE 23: LINEAGE INHERITANCE ---
+            let parentLineage = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
+            store<u64>((slotOff + 16) as usize, parentLineage);
+
             energy = energy >> 1;
             resonance = resonance + 30;
           }
@@ -1440,6 +1454,14 @@ export function execute_atom(atomIndex: i32): void {
           role = val;
         }
         pc += 3;
+        break;
+      }
+      case 0xAD: { // OP_WISDOM reg
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let lin = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
+        // Wisdom is the lower 32 bits of the ancestral hash for now
+        setReg(atomIndex, reg & 7, lin as i32);
+        pc += 2;
         break;
       }
       case OP_SHARE: { // SHARE_ENERGY slot, percentage

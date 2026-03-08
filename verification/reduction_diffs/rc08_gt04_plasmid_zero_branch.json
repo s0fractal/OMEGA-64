@@ -2,12 +2,18 @@
   "case_id": "rc08_gt04_plasmid_zero_branch",
   "baseline_trace_id": "gt04_plasmid_inject",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "b106f7ee202e226f45264e968bc5a7fd0a6fedf6d50c5a4c6c5d976b57867546",
-  "reduction_digest": "0855e7c81076846a512d38d6c3031d13f3fbc90d20f05e9dca57479400d4bae3",
-  "executed_digest_legacy": "aa6a2b67ff0c1586de942259eaa1f13ed63b70f9dfb033d1bbe217b4951c5bdc",
-  "executed_digest_reduction": "7f95bd0be6500a98f1f2cb903dd199c03923ecdc319341e4d5a71a6db36fda68",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected finalPc=0 got=6",
+    "expected buildCount=1 got=0",
+    "expected finalRole=3 got=0",
+    "expected registers mismatch",
+    "expected branchTaken=true got=false"
+  ],
+  "legacy_digest": "98035b03703a086a2db3d6a499d048c53db6636ab22ba421623baaf82dd46c89",
+  "reduction_digest": "2eb030f7a9696931db2675d5a638bfe8df7d16555617b56a7db3bab68f608082",
+  "executed_digest_legacy": "2153b133e7a5c77811e805c4e07901583e065f67f3f20345ad698ad2471ef3e2",
+  "executed_digest_reduction": "b9cbcf748428f3a9cb2607d08229b52ba47d192543dcda8569c4c438ec55914e",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -25,12 +31,14 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 16
+    "energy_spent_delta": 10
   },
   "expectation_summary": {
     "finalPc": 0,

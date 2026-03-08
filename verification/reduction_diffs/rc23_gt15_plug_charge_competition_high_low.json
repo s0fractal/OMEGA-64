@@ -2,10 +2,13 @@
   "case_id": "rc23_gt15_plug_charge_competition_high_low",
   "baseline_trace_id": "gt15_structure_charge_competition",
   "baseline_runtime_mode": "standalone-structure-charge-competition-capture",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "176e00c93e8bbbb1bc8a7721943560dac012fdd0b14f7f82840517c9e8c15003",
-  "reduction_digest": "5a3730a9e3ab385ca4c049e9aa3602f97b8c2c20d64b19cdbfa889b92e0431d3",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch",
+    "expected structureGrid[423]=13762561 got=1"
+  ],
+  "legacy_digest": "6bc9e303b9b7db7588722a1cb4be1081858a8475a1cf372a298641c707378360",
+  "reduction_digest": "426b5f6eb8242154ca8ea8afbe205d6cf9a9c888531a97baa6b122922a506b6c",
   "executed_digest_legacy": "ccd2ff28059af801cc2c26cca4848c433e351b05933ea82c6b0ffc0c648f363d",
   "executed_digest_reduction": "588e5a93c08bf27d9a7aeaa1b1b7266145449516ca9cb303165725c4e2557035",
   "diff": {
@@ -25,6 +28,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

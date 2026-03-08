@@ -25,7 +25,9 @@
     "worker_resilience_capture.ts",
     "worker_seeded_swarm.ts",
     "worker_trend_baseline.ts",
-    "worker_trend_math.ts"
+    "worker_trend_math.ts",
+    "reduction_core/REIFICATION_ACTION.ts",
+    "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
   "experimental_files": [
     "ECOLOGY_ENGINE.ts",
@@ -84,7 +86,9 @@
     "worker_resilience_capture.ts",
     "worker_seeded_swarm.ts",
     "worker_trend_math.ts",
-    "worker_trend_baseline.ts"
+    "worker_trend_baseline.ts",
+    "reduction_core/REIFICATION_ACTION.ts",
+    "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
@@ -99,8 +103,7 @@
     "docs/migration/CAUSAL_ATLAS.md",
     "docs/migration/GOLDEN_TRACES.md",
     "docs/migration/GLYPHIR64_CONTRACT.md",
-    "docs/migration/HORMONE_LEDGER_CONTRACT.md"
-,
+    "docs/migration/HORMONE_LEDGER_CONTRACT.md",
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html"

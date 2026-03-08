@@ -2,10 +2,12 @@
   "case_id": "rc06_gt05_band_anchor_mismatch",
   "baseline_trace_id": "gt05_homeostasis_correction",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "fcae25de05e227b1a4feafc14b880dc3373ff049e491c0e4415b1598850017f6",
-  "reduction_digest": "c8f675ba18df8f1c7bbc18be6bf3c7823096f8c579fc9001a62f8296acfbf994",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected registers mismatch"
+  ],
+  "legacy_digest": "177696eeae6ef3627737f0567ff117d117d5de79d59e1971f2ebd4024daa1075",
+  "reduction_digest": "1870b1435b5e8e5aa1ec7270cd63c6877b4bd004bbe51cecc31a5483f36fc6e5",
   "executed_digest_legacy": "36a8437a4fb645a82d075bc035e52bcfe8d04924abe5dc3c2e006ee17dcb7ec7",
   "executed_digest_reduction": "fe9f44b3b8020643a4eb37085012511152cf9188fa71da6dd379e0a4c9ca3756",
   "diff": {
@@ -25,6 +27,8 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,

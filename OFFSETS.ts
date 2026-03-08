@@ -65,6 +65,7 @@ export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 42714624;
 export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 42759424;
 export const HORMONE_OFFSET = SAFETY_BUFFER + 42849024;
 export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 43000000; // Ancestral lineage hashes (8 bytes per atom)
 
 type MemoryLayoutRegion = {
   name: string;
@@ -108,7 +109,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * 64, 1),
   region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * 64, I32_BYTES),
   region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 16), 8),
+  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
   region(
     "MEIOSIS_RESERVED",
     MEIOSIS_OFFSET,
@@ -248,11 +249,17 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     48, // 12 counters * 4 bytes
     4,
   ),
+  region(
+    "LINEAGE",
+    LINEAGE_OFFSET,
+    MAX_ATOMS * U64_BYTES,
+    U64_BYTES,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = SECRETION_STATS_OFFSET + 48;
+export const LATTICE_MEMORY_END = LINEAGE_OFFSET + (MAX_ATOMS * U64_BYTES);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );

@@ -2,12 +2,18 @@
   "case_id": "rc03_gt03_guardian_stable_branch",
   "baseline_trace_id": "gt03_pheromone_inject",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": true,
-  "parity_reasons": [],
-  "legacy_digest": "0cc94fed91521f4321cfda7ff4c31de41224f444f41015a3f1b48cbc4f61d283",
-  "reduction_digest": "3b8fb47211f1ced0efabbee488279ac448ac22fcb334a5d7040c6eae61c95b5c",
-  "executed_digest_legacy": "e433267f92e5e7715c90c3955a7f270503cde11f07c3034976b8d5642ddc01c5",
-  "executed_digest_reduction": "9d778a6616c0ec9124fcafbea879e115b4bfbd4a606bd6426eeff4e4635dc932",
+  "parity_ok": false,
+  "parity_reasons": [
+    "expected finalPc=0 got=25",
+    "expected buildCount=0 got=1",
+    "expected finalRole=2 got=3",
+    "expected registers mismatch",
+    "expected branchTaken=false got=true"
+  ],
+  "legacy_digest": "ad8d974205b7086f0052087eb6157937909fb57422d1d8c13edf4bc57b83147f",
+  "reduction_digest": "115bacfbef4c05bacf00229596e16616ce6069414f27173064cda478b5fa4d6f",
+  "executed_digest_legacy": "9f49b9a8605a2b6456fa664a4d32878f1b15a9b00fbd2d2bcd3a6f0c1be2eaf9",
+  "executed_digest_reduction": "bf8b2c08c9869696197cd05535a7f0d38f44ba95f537af171b9407053a7c119c",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -25,12 +31,14 @@
     "structure_intent_owner_match": true,
     "structure_intent_value_match": true,
     "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
     "replicate_count_match": true,
     "signal_count_match": true,
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 10
+    "energy_spent_delta": 15
   },
   "expectation_summary": {
     "finalPc": 0,

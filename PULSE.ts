@@ -108,6 +108,13 @@ import {
   recordFromPressureRingScaleRollbackMutation,
 } from "./PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts";
 
+import { DriftWarden } from "./reduction_core/DRIFT_WARDEN.ts";
+import { DollFork } from "./reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "./reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
+import { REIFIED_PROGRAMS } from "./reduction_core/GENESIS_REIFIED.ts";
+import { GenesisInceptor } from "./reduction_core/GENESIS_INCEPTOR.ts";
+import { LineageTracker } from "./reduction_core/relics/LINEAGE_TRACKER.ts";
+
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
 const WORKER_RESPONSE_TIMEOUT_MS = RUNTIME_POLICY.pulse.workerResponseTimeoutMs;
@@ -1131,6 +1138,11 @@ const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
+
+const driftWarden = new DriftWarden();
+const genesisInceptor = new GenesisInceptor();
+const lineageTracker = new LineageTracker();
+let shadowForkActive = false;
 
 const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
   return Atomics.load(causalityView, idx) !== 0;
@@ -2437,6 +2449,24 @@ export const PULSE = {
           kind: "spawn_seed_atom",
           count: spawnRes.count,
         });
+
+        // --- STAGE 22: ADAPTIVE INCEPTION ---
+        // Find newly spawned atoms (those with IDs but empty instructions/role)
+        // and inject evolved programs.
+        for (let idx = 0; idx < OFFSETS.MAX_ATOMS; idx++) {
+            if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+                // This is likely a fresh spawn. Incept it.
+                const prog = genesisInceptor.selectProgram();
+                const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+                
+                STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
+                STATE_MATRIX.setLineage(idx, lineageHash);
+                
+                // Mark its role if the program is for a specific one (e.g. role hint)
+                // For now, we'll let the role be assigned by the first op if needed, 
+                // or just set a default.
+            }
+        }
       }
 
       // 5. Metabolic and Homeostasis Closure (WASM)
@@ -2668,10 +2698,36 @@ export const PULSE = {
               (avgRes / 100).toFixed(1)
             })`,
           );
+          
+          // --- STAGE 22: DRIFT WARDEN AUDIT ---
+          const drift = driftWarden.analyze(currentTick);
+          if (drift.shadowForkRecommended && !shadowForkActive) {
+            LOGGER.warn(`🚨 [ADAPTIVE] High Drift (${drift.driftIndex.toFixed(4)}) detected. Triggering autonomous shadow rehearsal...`);
+            shadowForkActive = true;
+            (async () => {
+                try {
+                    const fork = new DollFork();
+                    const runner = new DollForkRunner(fork);
+                    await runner.init();
+                    fork.forkFromMainline();
+                    // Run a 10-tick rehearsal
+                    for (let s = 0; s < 10; s++) {
+                        runner.runShadowTick(currentTick + s);
+                    }
+                    LOGGER.info(`✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`);
+                } catch (e) {
+                    LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
+                } finally {
+                    shadowForkActive = false;
+                }
+            })();
+          }
         }
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
+      const glyphTransport = GLYPH_BUFFER.snapshot();
+      lineageTracker.syncLineages(activeIdx);
       AKASHA_CODEX.observePulse(currentTick, activeIdx.length, glyphTransport);
 
       // Increment Global Tick Counter
