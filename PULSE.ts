@@ -13,6 +13,7 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
+import { IMMUNE } from "./IMMUNE.ts";
 import {
   evaluateGuardianSignalExecution,
   evaluateGuardianSignalReduction,
@@ -114,6 +115,7 @@ import { DollForkRunner } from "./reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
 import { REIFIED_PROGRAMS } from "./reduction_core/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "./reduction_core/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "./reduction_core/relics/LINEAGE_TRACKER.ts";
+import { QuorumAdvocate } from "./reduction_core/relics/QUORUM_ADVOCATE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -1136,12 +1138,36 @@ const spawnDataView = new DataView(
 );
 const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
+// Helper for drift & trend monitoring
+class RollingHistory {
+  private values: Float64Array;
+  private head = 0;
+  private count = 0;
+  constructor(private maxSize: number) {
+    this.values = new Float64Array(maxSize);
+  }
+  add(val: number) {
+    this.values[this.head] = val;
+    this.head = (this.head + 1) % this.maxSize;
+    if (this.count < this.maxSize) this.count++;
+  }
+  sum() {
+    let s = 0;
+    for (let i = 0; i < this.count; i++) s += this.values[i];
+    return s;
+  }
+  size() { return this.count || 1; }
+}
+
+const noveltyHistory = new RollingHistory(100);
+
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
 
 const driftWarden = new DriftWarden();
 const genesisInceptor = new GenesisInceptor();
 const lineageTracker = new LineageTracker();
+const quorumAdvocate = new QuorumAdvocate();
 let shadowForkActive = false;
 
 const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
@@ -1251,14 +1277,17 @@ const applyEvolutionPressureTerms = (
     }
   }
 
+  // Update history for drift monitoring
+  noveltyHistory.add(noveltyDeltaRaw);
+
   if (adjusted > 0) {
     MUTATION_TELEMETRY.record({
       lane: "internal_host",
       kind: "evolution_pressure_adjust",
       count: adjusted,
     });
-    if (tick % 20 === 0) {
-      LOGGER.debug(
+    if (tick % 200 === 0) {
+      LOGGER.info(
         `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
@@ -2292,6 +2321,7 @@ export const PULSE = {
       homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
       daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
       federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+      globalSyntropy: 0, // Will be updated if syntropy is available
     });
 
     try {
@@ -2300,6 +2330,11 @@ export const PULSE = {
       PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
+      // Stage 25: Sovereign Feedback - Syntropy-modulated tax
+      // Move evaluation earlier so it can affect metabolism and gate
+      const syntropy = quorumAdvocate.evaluateQuorum(activeIdx);
+
+      const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) / 1000.0;
       // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
       const coherencePulseId = nextPulseId();
       const coherenceRes = await postAndWait<{ coherence: number }>(
@@ -2321,6 +2356,25 @@ export const PULSE = {
         type: "SET_COHERENCE",
         coherence: guardianChannel,
         pulseId: nextPulseId(),
+      });
+
+      // Update Hormones with actual Syntropy
+      syncHormonesToLattice({
+        baseTax: homeostasisBaseTaxRuntime,
+        targetEnergy: homeostasisTargetEnergyRuntime,
+        workerCount: WORKER_COUNT,
+        egoPressure: evolutionPressureState.ego,
+        fearPressure: evolutionPressureState.fear,
+        noveltyPressure: evolutionPressureState.novelty,
+        symbiosisPressure: evolutionPressureState.symbiosis,
+        maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
+        pressureRingScale: evolutionPressureState.ring.scale,
+        homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+        homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+        homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+        daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
+        federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+        globalSyntropy: syntropy,
       });
 
       if (coherence > 1000) {
@@ -2482,7 +2536,16 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
-      const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      
+      // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
+      const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
+      const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
+      
+      if (currentTick % 20 === 0 && syntropy > 0.1) {
+        LOGGER.info(`⚖️ [SOVEREIGN] Metabolic Tax Discount: ${(taxDiscount * 100).toFixed(1)}% (Syntropy: ${syntropy.toFixed(3)})`);
+      }
+
       const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
 
       const metabolismPromises: Promise<any>[] = [];
@@ -2518,6 +2581,21 @@ export const PULSE = {
       await Promise.all(metabolismPromises);
 
       // 6. Sequential Maintenance (Sequential JS)
+
+      // --- STAGE 26: Immunological Phagocyte ---
+      {
+        const entropyPressure = STATE_MATRIX.getHormone(0); // H0: entropy_pressure
+        const purgeList = IMMUNE.phagocytePass(entropyPressure);
+        if (purgeList.length > 0) {
+          for (const idx of purgeList) {
+            STATE_MATRIX.recycleAtom(idx);
+          }
+          await AKASHA_CODEX.recordImmunologicalPurge(purgeList.length);
+          LOGGER.info(
+            `🛡️ [IMMUNE] Phagocyte Purge: ${purgeList.length} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
+          );
+        }
+      }
 
       // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
@@ -2726,10 +2804,16 @@ export const PULSE = {
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
-      const glyphTransport = GLYPH_BUFFER.snapshot();
+      const glyphSnapshot = GLYPH_BUFFER.snapshot();
       lineageTracker.syncLineages(activeIdx);
-      AKASHA_CODEX.observePulse(currentTick, activeIdx.length, glyphTransport);
-
+      
+      // --- STAGE 6: Codex evidence record ---
+      AKASHA_CODEX.observePulse(
+        currentTick,
+        activeIdx.length,
+        glyphSnapshot,
+        syntropy, // already calculated earlier in this tick
+      );
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
 

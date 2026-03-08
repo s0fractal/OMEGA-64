@@ -32,13 +32,13 @@ eliminate "Torn Reads". It stores:
 - **Instruction Memory**: 64 bytes per atom for localized RISC scripts.
 - **Execution Context**: Registers and PC for deep parallel persistence.
 
-### B. Distributed VM (`PULSE_WORKER.ts` / `LAMBDA_VM.ts`)
+### B. Distributed VM (`PULSE_WORKER.ts` / `LAMBDA_VM.ts` / `assembly/index.ts`)
 
-Each atom is a sovereign VM. The **RISC-I ISA** allows atoms to:
+Each atom is a sovereign VM running within a WebAssembly kernel. The **RISC-I ISA** allows atoms to:
 
-- **SENSE**: Read grid resonance and nearby atom properties.
-- **ACT**: Move, replicate, signal, and bind.
-- **EVOLVE**: Mutate their own instruction memory through `ISA_MUTATE`.
+- **Universal Syscall Interface (ABI)**: Atoms interact with the Sovereign Host using `SYS_CALL (0x60)` payloads (e.g., `READ_MEM`, `WRITE_MEM`, `SPAWN`, `BIND`, `SET_ROLE`).
+- **ACT**: Execute mathematical operations, jump locally, and format registers.
+- **EVOLVE**: Mutate their own instruction memory through Host-mediated mechanics.
 
 ### C. Autonomous Governance (`GATE.ts`)
 
@@ -52,9 +52,10 @@ The **Gate** acts as the system's "conscience" and "immune system":
 
 ### D. Thermodynamic Cycle (`BREATH.ts`)
 
-The system follows a strict energy budget:
+The system follows a strict energy budget and Bounded Reduction:
 
-- **Entropy Flux**: Every VM operation and mutation consumes energy.
+- **Deterministic Gas Accounting**: Every WASM opcode consumes a fixed amount of Gas (e.g., `OP_ADD = 1`, `OP_SYSCALL = 10`), directly deducting from physical matrix `Energy`. 
+- **Out of Gas (OOG)**: Atoms exceeding their energy budget implicitly halt execution, preventing infinite loops while preserving the deterministic sandbox.
 - **External Breath**: The host provides a periodic "Inhale" of energy to keep
   the civilization alive.
 

@@ -40,7 +40,7 @@ const shouldLog = (level: LogLevel): boolean => {
 
 const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
   const sink =
-    (console as Record<string, (...xs: unknown[]) => void>)[method] ??
+    (console as unknown as Record<string, (...xs: unknown[]) => void>)[method] ??
       console.log;
   sink(...args);
 };

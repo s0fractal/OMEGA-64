@@ -1,33 +1,53 @@
-// IMMUNE.ts
-// The Phagocyte of OMEGA.
-// Filters Atoms based on Structure and Mass.
-
-import type { Atom } from "./RIBOSOME.ts";
+// OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
+import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
 
 export const IMMUNE = {
-    // Recognition: Friend or Foe?
-    recognize: (atom: Atom): boolean => {
-        // Flatland Recognition: 0x...ID...SYMBOL.md
-        if (atom.id.startsWith("0x") && atom.id.endsWith(".md")) {
-            return true;
-        }
+  /**
+   * isNecrotic: Detects "dead" atoms that are consuming memory but not participating in life.
+   * Condition: zero energy AND zero resonance.
+   */
+  isNecrotic: (idx: number): boolean => {
+    const energy = STATE_MATRIX.getEnergy(idx);
+    const resonance = STATE_MATRIX.getResonance(idx);
+    const id = STATE_MATRIX.getId(idx);
+    
+    // An atom is necrotic if it has an ID but no vital signs.
+    return id !== 0n && energy <= 0 && resonance <= 0;
+  },
 
-        // Vacuum Recognition
-        if (atom.id.startsWith("v.")) {
-            return true;
-        }
+  /**
+   * isDrifting: Detects atoms that are losing coherence.
+   * Thresholds are scaled by entropy_pressure (H0).
+   */
+  isDrifting: (idx: number, entropyPressure: number): boolean => {
+    const energy = STATE_MATRIX.getEnergy(idx);
+    const resonance = STATE_MATRIX.getResonance(idx);
+    const id = STATE_MATRIX.getId(idx);
+    
+    if (id === 0n) return false;
 
-        return false;
-    },
+    // Base threshold for "weak" atoms.
+    // Entropy pressure (H0) modulates how aggressive the cleanup is.
+    // Normalized H0 is 0..1000.
+    const threshold = (entropyPressure / 1000) * 2.0; // Up to 2.0 energy
+    
+    // Atoms with very low energy and resonance are candidates for recycling
+    return energy < threshold && resonance < (threshold * 100);
+  },
 
-    // Inspection: Final Gateway
-    inspect: (lattice: Map<string, Atom>): Map<string, Atom> => {
-        const cleanLattice = new Map<string, Atom>();
-        for (const [id, atom] of lattice) {
-            if (IMMUNE.recognize(atom)) {
-                cleanLattice.set(id, atom);
-            }
+  /**
+   * phagocytePass: Scans the matrix and identifies indices for recycling.
+   * Returns a list of indices to be purged.
+   */
+  phagocytePass: (entropyPressure: number): number[] => {
+    const purgeList: number[] = [];
+
+    for (let i = 0; i < MAX_ATOMS; i++) {
+        if (IMMUNE.isNecrotic(i) || IMMUNE.isDrifting(i, entropyPressure)) {
+            purgeList.push(i);
         }
-        return cleanLattice;
     }
+
+    return purgeList;
+  }
 };

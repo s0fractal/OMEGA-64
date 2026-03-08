@@ -240,7 +240,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   region(
     "HORMONES",
     HORMONE_OFFSET,
-    12, // 6 hormones * 2 bytes (Uint16)
+    16, // 8 hormones * 2 bytes (Uint16)
     2,
   ),
   region(

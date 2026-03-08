@@ -130,8 +130,14 @@ function getPhase(idx: i32): i32 {
 function setPhase(idx: i32, val: i32): void {
   store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
 }
-// Read a global hormone value from the shared lattice (index 0..5).
-// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction
+function getLineage(idx: i32): u64 {
+  return load<u64>(LINEAGE_OFFSET + (idx << 3) as usize);
+}
+function addResonance(idx: i32, delta: i32): void {
+  setResonance(idx, getResonance(idx) + delta);
+}
+// Read a global hormone value from the shared lattice (index 0..6).
+// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction 6=global_consensus
 @inline
 function getHormone(id: i32): u16 {
   return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
@@ -440,19 +446,7 @@ const OP_SUB: u8 = 0x05; // SUB R1, R2
 const OP_JZ: u8 = 0x10; // JZ Reg, RelAddr
 const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
 const OP_JMP: u8 = 0x12; // JMP RelAddr
-const OP_REPLICATE: u8 = 0x80;
-const OP_SIGNAL: u8 = 0x81;
-const OP_BIND: u8 = 0x82;
-const OP_SHARE: u8 = 0x83;
-const OP_PLUG: u8 = 0xA4;
-const OP_TENSEGRITY: u8 = 0xA5;
-const OP_COLLECTIVE: u8 = 0xA6;
-const OP_ROLE: u8 = 0xA7;
-const OP_BUILD: u8 = 0xA8;
-const OP_SENSE: u8 = 0xA9;
-const OP_SPORE_DRIVE: u8 = 0xAA;
-const OP_ENTANGLE: u8 = 0xAB;
-const OP_RESOLVE: u8 = 0xAC;
+const OP_SYSCALL: u8 = 0x60;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -470,6 +464,7 @@ const PROP_GRID_CHARGE: u8 = 7;
 const PROP_QUORUM: u8 = 8;
 const PROP_NEURAL_COHERENCE: u8 = 9;
 const PROP_MEMORY: u8 = 10;
+const PROP_CONSENSUS: u8 = 11;
 
 function lcgNext(seed: u32): u32 {
   return seed * 1664525 + 1013904223;
@@ -494,6 +489,12 @@ function getPC(atomIdx: i32): u8 {
 }
 function setPC(atomIdx: i32, val: u8): void {
   store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize, val);
+}
+function getPendingSyscall(atomIdx: i32): u8 {
+  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize);
+}
+function setPendingSyscall(atomIdx: i32, val: u8): void {
+  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize, val);
 }
 function setBondDist(atomIdx: i32, slot: i32, dist: u8): void {
   store<u8>(BOND_DIST_OFF + (atomIdx << 2) + slot as usize, dist);
@@ -1136,15 +1137,17 @@ export function execute_atom(atomIndex: i32): void {
   let resonance = getReadResonance(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-  // Safety: Dynamic steps per tick max to prevent infinite loops (8..24 range)
-  let viscosityH: i32 = getHormone(1) as i32;
-  let maxSteps: i32 = 24 - (viscosityH >> 7); // 24..8
-  if (maxSteps < 8) maxSteps = 8;
+  // Stage 28: Bounded Reduction - Gas Accounting Economy
+  let gasUsed: i32 = 0;
+  // Hard cap to prevent WASM thread lockup, bounded by physical energy
+  let gasLimit: i32 = energy < 100 ? energy : 100;
 
-  let step: i32 = 0;
-  while (step < maxSteps) {
+  while (gasUsed < gasLimit) {
     const op = load<u8>(instr_base + (pc as usize));
-    if (op == OP_NOP) break;
+    if (op == OP_NOP) {
+      gasUsed += 1;
+      break;
+    }
 
     switch (op) {
       case OP_SET: {
@@ -1152,6 +1155,7 @@ export function execute_atom(atomIndex: i32): void {
         let imm = load<u8>(instr_base + (pc + 2) as usize);
         setReg(atomIndex, reg as i32, imm as i32);
         pc += 3;
+        gasUsed += 1;
         break;
       }
       case OP_GET: {
@@ -1189,9 +1193,12 @@ export function execute_atom(atomIndex: i32): void {
           if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
             val = load<u8>(MEMORY_GRID_OFF + ((gy * 140 + gx) << 3)) as i32;
           }
+        } else if (prop == PROP_CONSENSUS) {
+          val = getHormone(6) as i32;
         }
         setReg(atomIndex, reg as i32, val);
         pc += 3;
+        gasUsed += 2;
         break;
       }
       case OP_PUT: {
@@ -1202,6 +1209,7 @@ export function execute_atom(atomIndex: i32): void {
         else if (prop == PROP_RESONANCE) resonance = val;
         else if (prop == PROP_PHASE) setPhase(atomIndex, val);
         pc += 3;
+        gasUsed += 2;
         break;
       }
       case OP_ADD: {
@@ -1213,6 +1221,7 @@ export function execute_atom(atomIndex: i32): void {
           getReg(atomIndex, r1 as i32) + getReg(atomIndex, r2 as i32),
         );
         pc += 3;
+        gasUsed += 1;
         break;
       }
       case OP_SUB: {
@@ -1224,6 +1233,7 @@ export function execute_atom(atomIndex: i32): void {
           getReg(atomIndex, r1 as i32) - getReg(atomIndex, r2 as i32),
         );
         pc += 3;
+        gasUsed += 1;
         break;
       }
       case OP_JNZ: {
@@ -1231,428 +1241,29 @@ export function execute_atom(atomIndex: i32): void {
         let target = load<u8>(instr_base + (pc + 2) as usize);
         if (getReg(atomIndex, reg as i32) != 0) pc = target;
         else pc += 3;
+        gasUsed += 2;
         break;
       }
       case OP_JMP: {
         pc = load<u8>(instr_base + (pc + 1) as usize);
+        gasUsed += 2;
         break;
       }
-      case OP_REPLICATE: {
-        // Kernel syscall: Replicate if possible
-        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 -> up to -512 energy / -100 resonance)
-        let biasH: i32 = getHormone(3) as i32;
-        let replicateEThresh: i32 = 1500 - (biasH >> 2); // 1500..988
-        let replicateRThresh: i32 = 200 - (biasH >> 4);  // 200..72
-        if (energy > replicateEThresh && resonance > replicateRThresh) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          let gx = rx / 10;
-          let gy = ry / 10;
-          let spawnDx: i32 = (resonance % 3) - 1;
-          let spawnDy: i32 = ((resonance * 7) % 3) - 1;
-          let childGx: i32 = gx + spawnDx;
-          let childGy: i32 = gy + spawnDy;
-
-          if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
-            let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
-            let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
-            
-            // --- ERA 8.1: GENETIC MUTATION ---
-            let parentGenome = load<u64>(LOGIC_OFFSET + (atomIndex << 3) as usize);
-            let frictionH: i32 = getHormone(5) as i32; // mutation_friction
-            
-            // Deterministic seed blending: Atom ID + Tick + Resonance
-            let tick = atomic.load<i32>(TICK_COUNTER_OFF as usize);
-            let seed = (atomIndex as u32) ^ (tick as u32) ^ (resonance as u32);
-            seed = lcgNext(seed);
-            
-            // Mutation chance: if (seed % 1024) > frictionH, then mutate
-            let childGenome = parentGenome;
-            if (((seed & 1023) as i32) > (frictionH >> 1)) {
-                 // Mutate 1 bit
-                 seed = lcgNext(seed);
-                 let bitPos = seed % 64;
-                 childGenome ^= (1 as u64) << (bitPos as u64);
-                 
-                 // Apply mutation resonance tax: genetic instability cost
-                 resonance = resonance > 50 ? resonance - 50 : 0;
-            }
-
-            store<u64>(slotOff, childGenome);
-            store<i16>((slotOff + 8) as usize, childGx as i16);
-            store<i16>((slotOff + 10) as usize, childGy as i16);
-            store<i32>((slotOff + 12) as usize, energy >> 1);
-            
-            // --- STAGE 23: LINEAGE INHERITANCE ---
-            let parentLineage = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
-            store<u64>((slotOff + 16) as usize, parentLineage);
-
-            energy = energy >> 1;
-            resonance = resonance + 30;
-          }
-        }
+      case OP_SYSCALL: {
+        setPendingSyscall(atomIndex, 1);
         pc += 1;
-        break;
-      }
-      case OP_SIGNAL: {
-        // Bio-Digital Injection: Atom adds charge to the grid
-        let rx = getX(atomIndex) as i32;
-        let ry = getY(atomIndex) as i32;
-        let gx = rx / 10;
-        let gy = ry / 10;
-        if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-          let cellIdx = gy * 140 + gx;
-          let currentResonance = resonance;
-          let bonus = (currentResonance / 10) > 55
-            ? 55
-            : (currentResonance / 10);
-          let nextCharge = 200 + bonus;
-          publishChargeIntent(cellIdx, nextCharge);
-        }
-        secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
-        fireSignal(atomIndex); // Also fire biological signal to neighbors
-
-        // Vector 10: Signal aggregation into coherence field (accumulator)
-        const prevVal = atomic.add<i32>(COHERENCE_OFF as usize, 1);
-        const postVal = atomic.load<i32>(COHERENCE_OFF as usize);
-        trace_atom(atomIndex, 0x81, prevVal, postVal, 0); 
-        pc += 1;
-        break;
-      }
-      case OP_BIND: {
-        // Bio-Digital Integration: Seek neighbor to bond
-        if (energy >= 50 && resonance >= 10) {
-          energy -= 50;
-          resonance -= 10;
-          
-          let gx = curX / 10;
-          let gy = curY / 10;
-          
-          let count = getSpatialGridCount(gx, gy);
-          let nearestIdx = -1;
-          let minDist: f32 = 25.0; // Max bonding range
-          
-          for (let i = 0; i < count; i++) {
-            let neighborIdx = getSpatialGridAtom(gx, gy, i);
-            if (neighborIdx != atomIndex && neighborIdx >= 0 && neighborIdx < MAX_ATOMS) {
-              let nx = getReadX(neighborIdx) as f32;
-              let ny = getReadY(neighborIdx) as f32;
-               let dx = nx - (curX as f32);
-               let dy = ny - (curY as f32);
-               let d = Mathf.sqrt(dx*dx + dy*dy);
-              if (d < minDist) {
-                minDist = d;
-                nearestIdx = neighborIdx;
-              }
-            }
-          }
-          
-          if (nearestIdx != -1) {
-            writeBondRequest(atomIndex, nearestIdx);
-          }
-        }
-        pc += 1;
-        break;
-      }
-      case OP_PLUG: {
-        let mode = load<u8>(instr_base + (pc + 1) as usize);
-        let reg = load<u8>(instr_base + (pc + 2) as usize);
-        let gx = (getX(atomIndex) as i32) / 10;
-        let gy = (getY(atomIndex) as i32) / 10;
-        let gridIdx = (gy * 140 + gx) as usize;
-
-        if (mode == 0) { // READ CHARGE
-          let charge = readStructureCharge(gridIdx as i32);
-          setReg(atomIndex, reg as i32, charge);
-          trace_atom(atomIndex, 0xA4, gx, gy, charge);
-        } else if (mode == 1) { // WRITE CHARGE
-          let charge = getReg(atomIndex, reg as i32) & 0xFF;
-          publishChargeIntent(gridIdx as i32, charge);
-          energy -= 10;
-        }
-        pc += 3;
-        break;
-      }
-      case OP_TENSEGRITY: {
-        let mode = load<u8>(instr_base + (pc + 1) as usize);
-        let p2 = load<u8>(instr_base + (pc + 2) as usize);
-        let p3 = load<u8>(instr_base + (pc + 3) as usize);
-
-        if (mode == 0) { // SET_BOND_DIST slot, dist
-          setBondDist(atomIndex, p2 as i32, p3);
-        } else if (mode == 1) { // SET_DAMPING val
-          setDamping(atomIndex, p2);
-        }
-        pc += 4;
-        break;
-      }
-      case OP_COLLECTIVE: {
-        let mode = load<u8>(instr_base + (pc + 1) as usize);
-        let p2 = load<u8>(instr_base + (pc + 2) as usize);
-        let p3 = load<u8>(instr_base + (pc + 3) as usize);
-
-        if (mode == 0) { // HIVE_STORE addr, val
-          setHiveMemory(p2 as i32, p3);
-        } else if (mode == 1) { // HIVE_LOAD addr, reg
-          setReg(atomIndex, p3 as i32, getHiveMemory(p2 as i32) as i32);
-        } else if (mode == 2) { // PHEROMONE_EMIT intensity
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          secreteGlyph(rx, ry, 1, p2 as i32, role, atomIndex);
-        } else if (mode == 7) { // PLASMID_EMIT intensity
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          secreteGlyph(rx, ry, 2, p2 as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
-        } else if (mode == 3) { // BANK_DEPOSIT val
-          let val = p2 as i32;
-          if (energy >= val) {
-            addHiveBalance(val);
-            energy -= val;
-          }
-        } else if (mode == 4) { // BANK_WITHDRAW reg
-          let reg = p2 as i32;
-          let balance = getHiveBalance();
-          let amount = balance > 100 ? 100 : balance;
-          if (amount > 0) {
-            addHiveBalance(-amount);
-            energy += amount;
-          }
-          setReg(atomIndex, reg & 7, amount);
-        } else if (mode == 5) { // PHASE_LOCK
-          // Set all bonded neighbors to current PC
-          for (let b = 0; b < 4; b++) {
-            let target = getBondTarget(atomIndex, b);
-            if (target > 0 && target < MAX_ATOMS) {
-              setPC(target, pc + 4); // Jump them past this instruction
-            }
-          }
-        } else if (mode == 6) { // PC_SYNC_QUORUM
-          // Group Intelligence: Synchronize PC with all neighbors in cell
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          let gx = rx / 10;
-          let gy = ry / 10;
-          let count = getSpatialGridCount(gx, gy);
-          for (let i = 0; i < count; i++) {
-            let neighborIdx = getSpatialGridAtom(gx, gy, i);
-            if (
-              neighborIdx != atomIndex && neighborIdx >= 0 &&
-              neighborIdx < MAX_ATOMS
-            ) {
-              setPC(neighborIdx, pc + 4); // Set neighbor to next instruction
-            }
-          }
-        }
-        pc += 4;
-        break;
-      }
-      case OP_ROLE: {
-        let mode = load<u8>(instr_base + (pc + 1) as usize);
-        let val = load<u8>(instr_base + (pc + 2) as usize);
-        if (mode == 0) {
-          setRole(atomIndex, val);
-          role = val;
-        }
-        pc += 3;
-        break;
-      }
-      case 0xAD: { // OP_WISDOM reg
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let lin = load<u64>(LINEAGE_OFFSET + (atomIndex << 3) as usize);
-        // Wisdom is the lower 32 bits of the ancestral hash for now
-        setReg(atomIndex, reg & 7, lin as i32);
-        pc += 2;
-        break;
-      }
-      case OP_SHARE: { // SHARE_ENERGY slot, percentage
-        const slot = load<u8>(instr_base + pc as usize + 1) & 3;
-        let percentage = load<u8>(instr_base + pc as usize + 2) as i32;
-        // HORMONE 2: aggression scales the share percentage (range 0..2048; >1024 adds +10%)
-        let aggrH: i32 = getHormone(2) as i32;
-        if (aggrH > 1024) percentage += 10;
-        
-        let targetIdx = getBondTarget(atomIndex, slot);
-        if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-          let amount = (energy * percentage) / 100;
-          if (energy >= amount) {
-            energy -= amount;
-            addEnergyDelta(targetIdx, amount);
-          }
-        }
-        pc += 3;
-        break;
-      }
-      case OP_BUILD: { // BUILD type, state
-        if (role == 3) { // ROLE_ARCHITECT
-          let type = load<u8>(instr_base + (pc + 1) as usize);
-          let state = load<u8>(instr_base + (pc + 2) as usize);
-          if (energy >= 500) {
-            energy -= 500;
-            let rx = getX(atomIndex) as i32;
-            let ry = getY(atomIndex) as i32;
-
-            let dx: i32 = (resonance % 3) - 1;
-            let dy: i32 = ((resonance * 7) % 3) - 1;
-            let tx = (rx / 10) + dx;
-            let ty = (ry / 10) + dy;
-
-            if (tx >= 0 && tx < 140 && ty >= 0 && ty < 80) {
-              let cellIdx = ty * 140 + tx;
-              let newVal = ((state as i32) << 24) | ((type as i32) & 0xFF);
-              publishBuildIntent(cellIdx, atomIndex, newVal);
-            }
-          }
-        }
-        pc += 3;
-        break;
-      }
-      case OP_SENSE: {
-        // Structural Sensing: Detects neighbors of target type
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let targetType = load<u8>(instr_base + (pc + 2) as usize);
-        let rx = getX(atomIndex) as i32;
-        let ry = getY(atomIndex) as i32;
-        let gx = rx / 10;
-        let gy = ry / 10;
-        let found: i32 = 0;
-
-        for (let n = 0; n < 8; n++) {
-          let nx = gx + dir8X(n);
-          let ny = gy + dir8Y(n);
-          if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
-            let ni = ny * 140 + nx;
-            let cellVal = readStructureCell(ni);
-            if ((cellVal & 0xFF) == (targetType as i32)) {
-              found = 1;
-              break;
-            }
-          }
-        }
-        setReg(atomIndex, reg as i32, found);
-        pc += 3;
-        break;
-      }
-      case OP_SPORE_DRIVE: {
-        if (energy >= SPORE_DRIVE_COST) {
-          energy -= SPORE_DRIVE_COST;
-
-          const idPtr = IDS_OFFSET + (atomIndex << 3) as usize;
-          const idLo = load<u32>(idPtr);
-          const idHi = load<u32>(idPtr + 4);
-
-          const tick = atomic.load<i32>(TICK_COUNTER_OFF as usize) as u32;
-          const phaseBits = getPhase(atomIndex) as u32;
-          const genomeHead = ((getLogicByte(atomIndex, 0) as u32) << 8) |
-            (getLogicByte(atomIndex, 1) as u32);
-
-          let seed = idLo ^ (idHi << 1) ^ (tick * 2246822519) ^
-            (phaseBits * 3266489917) ^ genomeHead;
-          seed = lcgNext(seed);
-          const targetX = (seed % 1400) as i32;
-          seed = lcgNext(seed ^ (genomeHead << 16));
-          const targetY = (seed % 800) as i32;
-
-          const gx = targetX / 10;
-          const gy = targetY / 10;
-          const cellIdx = gy * 140 + gx;
-          const cellType = readStructureCell(cellIdx) & 0xFF;
-          if (cellType == STR_VOID) {
-            storeClampedPos(atomIndex, targetX, targetY);
-          }
-        }
-        pc += 1;
-        break;
-      }
-      case OP_ENTANGLE: {
-        const slot = genomePoolSlot(atomIndex);
-        const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
-        if (energy > ENTANGLE_LOW_ENERGY) {
-          const deposit = energy / 10;
-          if (deposit > 0) {
-            energy -= deposit;
-            atomic.add<i32>(poolPtr, deposit);
-          }
-        } else {
-          let draw = ENTANGLE_LOW_ENERGY - energy;
-          if (draw > ENTANGLE_MAX_DRAW) draw = ENTANGLE_MAX_DRAW;
-          if (draw < 1) draw = 1;
-
-          for (let spin = 0; spin < ENTANGLE_SPIN_LIMIT; spin++) {
-            const snapshot = atomic.load<i32>(poolPtr);
-            if (snapshot <= 0) break;
-            const take = snapshot < draw ? snapshot : draw;
-            const observed = atomic.cmpxchg<i32>(
-              poolPtr,
-              snapshot,
-              snapshot - take,
-            );
-            if (observed == snapshot) {
-              energy += take;
-              break;
-            }
-          }
-        }
-        pc += 1;
-        break;
-      }
-      case OP_RESOLVE: {
-        let mode = load<u8>(instr_base + (pc + 1) as usize) as i32;
-        let value = load<u8>(instr_base + (pc + 2) as usize) as i32;
-        
-        // Neighborhood Quorum Check (r=1)
-        let rx = getX(atomIndex) as i32;
-        let ry = getY(atomIndex) as i32;
-        let gx = rx / 10;
-        let gy = ry / 10;
-        let count: i32 = 0;
-        
-        for (let dy = -1; dy <= 1; dy++) {
-          for (let dx = -1; dx <= 1; dx++) {
-            if (dx == 0 && dy == 0) continue;
-            let nx = gx + dx;
-            let ny = gy + dy;
-            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
-              let ni = ny * 140 + nx;
-              if (readStructureCell(ni) != STR_VOID) {
-                count++;
-              }
-            }
-          }
-        }
-
-        trace_atom(atomIndex, 0xAC, mode, count, energy);
-
-        if (mode == 0) { // ROLE RESOLUTION
-          // If neighbor count >= value (threshold), commit role from R0
-          if (count >= value) {
-            let desiredRole = getReg(atomIndex, 0);
-            setRole(atomIndex, desiredRole as u8);
-            resonance = resonance + 20;
-          }
-        } 
-        else if (mode == 1) { // ENERGY BANKING
-          // Deposit 'value' if quorum count >= 3 (hardcoded for now)
-          let depositValue = value * 1000;
-          if (count >= 3 && energy >= depositValue) {
-            const slot = genomePoolSlot(atomIndex);
-            const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
-            energy -= depositValue;
-            atomic.add<i32>(poolPtr, depositValue);
-            resonance = resonance + 10;
-          }
-        }
-
-        pc += 3;
+        gasUsed += 10;
+        gasLimit = 0; // force yield to host
         break;
       }
       default: {
         pc = 0; // Reset or stop
-        step = 16;
+        gasUsed += 1;
+        gasLimit = 0; // stop execution on invalid opcode
         break;
       }
     }
     if (pc >= 64) pc = 0;
-    step += 1;
   }
   setPC(atomIndex, pc);
 
@@ -1670,7 +1281,8 @@ export function execute_atom(atomIndex: i32): void {
   // Coherence discount: if global coherence is high (>100 signals), reduce cost
   let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
   
-  let metabolicCost = 1 + (step >> (1 + discount)) + ((step * entropyH) >> (12 + discount)) + (frictionH >> 8);
+  let baseComputeCost = gasUsed >> discount;
+  let metabolicCost = 1 + baseComputeCost + ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
 
   // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
   if (coherenceVal > 500) {

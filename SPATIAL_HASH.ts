@@ -6,7 +6,7 @@ const GRID_ROWS = 80;  // 800 / 10
 const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
-const gridView = (STATE_MATRIX as any).spatialGrid; // Linked to WASM Memory
+const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory
 
 // ERA 55: Role-census per cell (8 role slots per cell, role=0..7)
 const quorumBuffer = new SharedArrayBuffer(TOTAL_CELLS * 8 * 4);

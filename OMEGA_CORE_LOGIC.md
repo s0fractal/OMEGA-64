@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-08T13:31:15.954Z*
-*Exported Files: 118*
+*Generated: 2026-03-08T14:23:36.909Z*
+*Exported Files: 120*
 *Runtime Roots: 7*
-*Runtime Closure Files: 70*
+*Runtime Closure Files: 72*
 *Non-Runtime Code Files: 33*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 15*
 *Manifest SHA256: a04698bc1f857c457f5044180804ff81b2eb8c53c414e569fde08ed1f58f130e*
-*Export Set SHA256: 5c8467e2b973c49407b2427791b556e45f6d1fbf28f3375a141547a42e28961f*
-*Export Content SHA256: 1b55fff25c5e7d33cb75c18b107e06c26343944be23b09459a27539bd52c3f74*
-*Git Commit: 436f5336107e*
+*Export Set SHA256: f8e4863cb39d2afea366ec751a4ffa63ecf5b66b8cc24fef33b65674446fbfe0*
+*Export Content SHA256: e67971ad7861bb71bce10f02271d00b80d93e49559bfdc4dcd1785cb35b7e084*
+*Git Commit: 33d24c590f39*
 
 ---
 
@@ -61,6 +61,7 @@
 - HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts
 - HORMONE_BUFFER_RUNTIME.ts
 - HORMONE_BUFFER.ts
+- IMMUNE.ts
 - LLM_SYNAPSE.ts
 - LOGGER.ts
 - MUTATION_TELEMETRY.ts
@@ -82,6 +83,7 @@
 - reduction_core/GENESIS_INCEPTOR.ts
 - reduction_core/GENESIS_REIFIED.ts
 - reduction_core/relics/LINEAGE_TRACKER.ts
+- reduction_core/relics/QUORUM_ADVOCATE.ts
 - REPLICATION_PROMOTION.ts
 - runtime_bridge/architect_plasmid_hybrid.ts
 - runtime_bridge/guardian_signal_hybrid.ts
@@ -188,7 +190,7 @@
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { STATE_MATRIX, OP_BUILD, OP_SENSE, OP_WISDOM, OP_RESONATE } from "./STATE_MATRIX.ts";
 import type { GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -352,6 +354,9 @@ type CodexState = {
   lastDaemonEffectSummary: string;
   lastDaemonEffectLineage: string;
   lastDaemonEffectDeltaBand: string;
+  lastSyntropy: number;
+  lastImmunePurgeTick: number;
+  lastImmunePurgeCount: number;
 };
 
 type GenomeStats = {
@@ -401,8 +406,10 @@ const OPCODE_NAMES: Record<number, string> = {
   0xA5: "TENSEGRITY",
   0xA6: "COLLECTIVE",
   0xA7: "ROLE",
-  0xA8: "BUILD",
-  0xA9: "SENSE",
+  [OP_BUILD]: "BUILD",
+  [OP_SENSE]: "SENSE",
+  [OP_WISDOM]: "WISDOM",
+  [OP_RESONATE]: "RESONATE",
 };
 
 const fallbackState = (): CodexState => ({
@@ -430,6 +437,9 @@ const fallbackState = (): CodexState => ({
   lastDaemonEffectSummary: "No daemon effect contour recorded yet.",
   lastDaemonEffectLineage: "none",
   lastDaemonEffectDeltaBand: "none",
+  lastSyntropy: 0,
+  lastImmunePurgeTick: -1,
+  lastImmunePurgeCount: 0,
 });
 
 let started = false;
@@ -947,6 +957,14 @@ const ensureStorage = async (): Promise<void> => {
           state.lastDaemonEffectDeltaBand.trim().length > 0
           ? state.lastDaemonEffectDeltaBand
           : fallbackState().lastDaemonEffectDeltaBand;
+      state.lastImmunePurgeTick = Math.max(
+        -1,
+        Math.floor(asFiniteNumber(state.lastImmunePurgeTick, -1)),
+      );
+      state.lastImmunePurgeCount = Math.max(
+        0,
+        Math.floor(asFiniteNumber(state.lastImmunePurgeCount, 0)),
+      );
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -1445,9 +1463,11 @@ export const AKASHA_CODEX = {
     tick: number,
     activePopulation: number,
     glyphTransport?: GlyphSnapshot,
+    syntropy?: number,
   ): void => {
     if (!started) return;
     state.lastPopulation = activePopulation;
+    if (syntropy !== undefined) state.lastSyntropy = syntropy;
     if (activePopulation > state.populationPeak) {
       state.populationPeak = activePopulation;
     }
@@ -1819,6 +1839,21 @@ export const AKASHA_CODEX = {
       hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
     };
+  },
+  recordImmunologicalPurge: async (count: number) => {
+    await ensureStorage();
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    state.lastImmunePurgeTick = tick;
+    state.lastImmunePurgeCount = count;
+
+    await appendChronicle(
+      tick,
+      "immunological_purge",
+      "Systemic Phagocyte Action",
+      `The immune system identified and recycled ${count} dead or drifting atoms at tick ${tick}. System coherence maintained.`,
+    );
+    
+    await persistState();
   },
 };
 
@@ -4069,8 +4104,14 @@ function getPhase(idx: i32): i32 {
 function setPhase(idx: i32, val: i32): void {
   store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
 }
-// Read a global hormone value from the shared lattice (index 0..5).
-// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction
+function getLineage(idx: i32): u64 {
+  return load<u64>(LINEAGE_OFFSET + (idx << 3) as usize);
+}
+function addResonance(idx: i32, delta: i32): void {
+  setResonance(idx, getResonance(idx) + delta);
+}
+// Read a global hormone value from the shared lattice (index 0..6).
+// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction 6=global_consensus
 @inline
 function getHormone(id: i32): u16 {
   return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
@@ -4392,6 +4433,8 @@ const OP_SENSE: u8 = 0xA9;
 const OP_SPORE_DRIVE: u8 = 0xAA;
 const OP_ENTANGLE: u8 = 0xAB;
 const OP_RESOLVE: u8 = 0xAC;
+const OP_WISDOM: u8 = 0xAD;
+const OP_RESONATE: u8 = 0xAE;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -4409,6 +4452,7 @@ const PROP_GRID_CHARGE: u8 = 7;
 const PROP_QUORUM: u8 = 8;
 const PROP_NEURAL_COHERENCE: u8 = 9;
 const PROP_MEMORY: u8 = 10;
+const PROP_CONSENSUS: u8 = 11;
 
 function lcgNext(seed: u32): u32 {
   return seed * 1664525 + 1013904223;
@@ -5128,6 +5172,8 @@ export function execute_atom(atomIndex: i32): void {
           if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
             val = load<u8>(MEMORY_GRID_OFF + ((gy * 140 + gx) << 3)) as i32;
           }
+        } else if (prop == PROP_CONSENSUS) {
+          val = getHormone(6) as i32;
         }
         setReg(atomIndex, reg as i32, val);
         pc += 3;
@@ -5425,8 +5471,13 @@ export function execute_atom(atomIndex: i32): void {
         if (role == 3) { // ROLE_ARCHITECT
           let type = load<u8>(instr_base + (pc + 1) as usize);
           let state = load<u8>(instr_base + (pc + 2) as usize);
-          if (energy >= 500) {
-            energy -= 500;
+          
+          let lineage = getLineage(atomIndex);
+          let discount = (lineage & 0x7F) as i32; // Up to 127 energy discount from wisdom
+          let cost = 500 - discount;
+
+          if (energy >= cost) {
+            energy -= cost;
             let rx = getX(atomIndex) as i32;
             let ry = getY(atomIndex) as i32;
 
@@ -5443,6 +5494,28 @@ export function execute_atom(atomIndex: i32): void {
           }
         }
         pc += 3;
+        break;
+      }
+      case OP_RESONATE: {
+        // Stigmergic Synthesis: Phase-Lock with neighbors
+        let rx = getX(atomIndex) as i32;
+        let ry = getY(atomIndex) as i32;
+        let gx = rx / 10;
+        let gy = ry / 10;
+        let count = getSpatialGridCount(gx, gy);
+        let myPhase = getPhase(atomIndex);
+
+        for (let i = 0; i < count; i++) {
+          let neighborIdx = getSpatialGridAtom(gx, gy, i);
+          if (neighborIdx != atomIndex && neighborIdx >= 0 && neighborIdx < MAX_ATOMS) {
+            // Synchronize phase if neighbor has enough resonance
+            if (getResonance(neighborIdx) > 100) {
+              setPhase(neighborIdx, myPhase);
+              addResonance(atomIndex, 10); // Reward for syncing
+            }
+          }
+        }
+        pc += 1;
         break;
       }
       case OP_SENSE: {
@@ -12672,6 +12745,7 @@ import {
 import { LOAD_LOAD as LOAD } from "./SHIMS.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { GATE_BUDGET } from "./GATE_BUDGET.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 type I16Limits = {
   max: number;
@@ -12741,11 +12815,14 @@ export const mergeGateProposals = (
   const combinedDelta = new Map<number, number>();
 
   for (const p of validProposals) {
-    if ((p as any).resonance !== undefined) {
+    if (p.resonance !== undefined) {
       LOGGER.debug(
-        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
-          (p as any).resonance
-        }`,
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
+      );
+    } else if (p.origin_atom_idx !== undefined) {
+      const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
+      LOGGER.debug(
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
     } else {
       LOGGER.debug(
@@ -12766,16 +12843,26 @@ export const mergeGateProposals = (
       physicalCost += Math.abs(d.value) + load;
     }
 
-    const atomResonance = (p as any).resonance || 0;
-    if (atomResonance > 0) {
-      const discountFactor = Math.min(0.95, atomResonance / 500);
-      physicalCost = physicalCost * (1 - discountFactor);
+    const atomResonance = p.resonance ??
+      (p.origin_atom_idx !== undefined
+        ? STATE_MATRIX.getResonance(p.origin_atom_idx)
+        : 0);
+    const globalSyntropy = config.global_syntropy || 0;
+    const localQuorum = p.quorum_strength || 0;
+
+    if (atomResonance > 0 || globalSyntropy > 0 || localQuorum > 0) {
+      // Sovereign Feedback: Successful collective organization rewards the system
+      const resonanceDiscount = Math.min(0.8, atomResonance / 600);
+      const syntropyDiscount = Math.min(0.2, globalSyntropy * 0.5); // Global systemic reward
+      const quorumDiscount = Math.min(0.4, localQuorum * 0.8);     // Local group reward
+      
+      const totalDiscount = Math.min(0.95, resonanceDiscount + syntropyDiscount + quorumDiscount);
+      
+      const oldCost = physicalCost;
+      physicalCost = physicalCost * (1 - totalDiscount);
+      
       LOGGER.debug(
-        `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
-          Math.abs(p.delta[0]?.value || 0)
-        }, Res: ${atomResonance.toFixed(1)}, Discount: ${
-          (discountFactor * 100).toFixed(1)
-        }%`,
+        `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${oldCost.toFixed(1)}, Res: ${atomResonance.toFixed(1)}, Quorum: ${localQuorum.toFixed(2)}, Syntropy: ${globalSyntropy.toFixed(2)}, Final Discount: ${(totalDiscount * 100).toFixed(1)}%`,
       );
     }
 
@@ -16953,6 +17040,7 @@ export type HormoneSyncInput = {
   homeostasisOverflowThreshold: number;
   daemonMaxActions: number;
   federationDegradeEnergyRatio: number;
+  globalSyntropy: number;
 };
 
 const clamp = (value: number, min: number, max: number): number =>
@@ -17019,6 +17107,10 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
     ),
   );
   STATE_MATRIX.setHormone(5, mutationFriction);
+
+  // 7. global_consensus (globalSyntropy)
+  const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
+  STATE_MATRIX.setHormone(6, consensus);
 };
 
 ```
@@ -17036,7 +17128,8 @@ export type HormoneId =
   | "aggression"
   | "replication_bias"
   | "repair_drive"
-  | "mutation_friction";
+  | "mutation_friction"
+  | "global_consensus";
 
 export type HormoneDomain = "systemic" | "temporal" | "conflict" | "reproduction" | "repair" | "mutation";
 
@@ -17169,6 +17262,17 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     notes:
       "How expensive it is for daemon-side symbolic ingress to cross the membrane.",
   }, 5),
+  hormone({
+    id: "global_consensus",
+    domain: "systemic",
+    min: 0,
+    max: 2048,
+    defaultValue: 0,
+    controlPlane: "pulse",
+    sourcePath: "pulse.syntropy",
+    notes:
+      "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
+  }, 6),
 ]);
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
@@ -17184,6 +17288,67 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
+
+```
+
+---
+
+## FILE: IMMUNE.ts
+
+```typescript
+// OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
+import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
+
+export const IMMUNE = {
+  /**
+   * isNecrotic: Detects "dead" atoms that are consuming memory but not participating in life.
+   * Condition: zero energy AND zero resonance.
+   */
+  isNecrotic: (idx: number): boolean => {
+    const energy = STATE_MATRIX.getEnergy(idx);
+    const resonance = STATE_MATRIX.getResonance(idx);
+    const id = STATE_MATRIX.getId(idx);
+    
+    // An atom is necrotic if it has an ID but no vital signs.
+    return id !== 0n && energy <= 0 && resonance <= 0;
+  },
+
+  /**
+   * isDrifting: Detects atoms that are losing coherence.
+   * Thresholds are scaled by entropy_pressure (H0).
+   */
+  isDrifting: (idx: number, entropyPressure: number): boolean => {
+    const energy = STATE_MATRIX.getEnergy(idx);
+    const resonance = STATE_MATRIX.getResonance(idx);
+    const id = STATE_MATRIX.getId(idx);
+    
+    if (id === 0n) return false;
+
+    // Base threshold for "weak" atoms.
+    // Entropy pressure (H0) modulates how aggressive the cleanup is.
+    // Normalized H0 is 0..1000.
+    const threshold = (entropyPressure / 1000) * 2.0; // Up to 2.0 energy
+    
+    // Atoms with very low energy and resonance are candidates for recycling
+    return energy < threshold && resonance < (threshold * 100);
+  },
+
+  /**
+   * phagocytePass: Scans the matrix and identifies indices for recycling.
+   * Returns a list of indices to be purged.
+   */
+  phagocytePass: (entropyPressure: number): number[] => {
+    const purgeList: number[] = [];
+
+    for (let i = 0; i < MAX_ATOMS; i++) {
+        if (IMMUNE.isNecrotic(i) || IMMUNE.isDrifting(i, entropyPressure)) {
+            purgeList.push(i);
+        }
+    }
+
+    return purgeList;
+  }
+};
 
 ```
 
@@ -20262,7 +20427,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   region(
     "HORMONES",
     HORMONE_OFFSET,
-    12, // 6 hormones * 2 bytes (Uint16)
+    16, // 8 hormones * 2 bytes (Uint16)
     2,
   ),
   region(
@@ -24534,6 +24699,7 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
+import { IMMUNE } from "./IMMUNE.ts";
 import {
   evaluateGuardianSignalExecution,
   evaluateGuardianSignalReduction,
@@ -24635,6 +24801,7 @@ import { DollForkRunner } from "./reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
 import { REIFIED_PROGRAMS } from "./reduction_core/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "./reduction_core/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "./reduction_core/relics/LINEAGE_TRACKER.ts";
+import { QuorumAdvocate } from "./reduction_core/relics/QUORUM_ADVOCATE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -25657,12 +25824,36 @@ const spawnDataView = new DataView(
 );
 const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 
+// Helper for drift & trend monitoring
+class RollingHistory {
+  private values: Float64Array;
+  private head = 0;
+  private count = 0;
+  constructor(private maxSize: number) {
+    this.values = new Float64Array(maxSize);
+  }
+  add(val: number) {
+    this.values[this.head] = val;
+    this.head = (this.head + 1) % this.maxSize;
+    if (this.count < this.maxSize) this.count++;
+  }
+  sum() {
+    let s = 0;
+    for (let i = 0; i < this.count; i++) s += this.values[i];
+    return s;
+  }
+  size() { return this.count || 1; }
+}
+
+const noveltyHistory = new RollingHistory(100);
+
 const nextPulseId = (): number =>
   Date.now() + Math.floor(Math.random() * 1_000_000);
 
 const driftWarden = new DriftWarden();
 const genesisInceptor = new GenesisInceptor();
 const lineageTracker = new LineageTracker();
+const quorumAdvocate = new QuorumAdvocate();
 let shadowForkActive = false;
 
 const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
@@ -25772,14 +25963,17 @@ const applyEvolutionPressureTerms = (
     }
   }
 
+  // Update history for drift monitoring
+  noveltyHistory.add(noveltyDeltaRaw);
+
   if (adjusted > 0) {
     MUTATION_TELEMETRY.record({
       lane: "internal_host",
       kind: "evolution_pressure_adjust",
       count: adjusted,
     });
-    if (tick % 20 === 0) {
-      LOGGER.debug(
+    if (tick % 200 === 0) {
+      LOGGER.info(
         `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
@@ -26813,6 +27007,7 @@ export const PULSE = {
       homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
       daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
       federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+      globalSyntropy: 0, // Will be updated if syntropy is available
     });
 
     try {
@@ -26821,6 +27016,11 @@ export const PULSE = {
       PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
+      // Stage 25: Sovereign Feedback - Syntropy-modulated tax
+      // Move evaluation earlier so it can affect metabolism and gate
+      const syntropy = quorumAdvocate.evaluateQuorum(activeIdx);
+
+      const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) / 1000.0;
       // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
       const coherencePulseId = nextPulseId();
       const coherenceRes = await postAndWait<{ coherence: number }>(
@@ -26842,6 +27042,25 @@ export const PULSE = {
         type: "SET_COHERENCE",
         coherence: guardianChannel,
         pulseId: nextPulseId(),
+      });
+
+      // Update Hormones with actual Syntropy
+      syncHormonesToLattice({
+        baseTax: homeostasisBaseTaxRuntime,
+        targetEnergy: homeostasisTargetEnergyRuntime,
+        workerCount: WORKER_COUNT,
+        egoPressure: evolutionPressureState.ego,
+        fearPressure: evolutionPressureState.fear,
+        noveltyPressure: evolutionPressureState.novelty,
+        symbiosisPressure: evolutionPressureState.symbiosis,
+        maxPlasmidCharge: DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge,
+        pressureRingScale: evolutionPressureState.ring.scale,
+        homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+        homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+        homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+        daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
+        federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+        globalSyntropy: syntropy,
       });
 
       if (coherence > 1000) {
@@ -27003,7 +27222,16 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
-      const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      
+      // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
+      const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
+      const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
+      
+      if (currentTick % 20 === 0 && syntropy > 0.1) {
+        LOGGER.info(`⚖️ [SOVEREIGN] Metabolic Tax Discount: ${(taxDiscount * 100).toFixed(1)}% (Syntropy: ${syntropy.toFixed(3)})`);
+      }
+
       const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
 
       const metabolismPromises: Promise<any>[] = [];
@@ -27039,6 +27267,21 @@ export const PULSE = {
       await Promise.all(metabolismPromises);
 
       // 6. Sequential Maintenance (Sequential JS)
+
+      // --- STAGE 26: Immunological Phagocyte ---
+      {
+        const entropyPressure = STATE_MATRIX.getHormone(0); // H0: entropy_pressure
+        const purgeList = IMMUNE.phagocytePass(entropyPressure);
+        if (purgeList.length > 0) {
+          for (const idx of purgeList) {
+            STATE_MATRIX.recycleAtom(idx);
+          }
+          await AKASHA_CODEX.recordImmunologicalPurge(purgeList.length);
+          LOGGER.info(
+            `🛡️ [IMMUNE] Phagocyte Purge: ${purgeList.length} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
+          );
+        }
+      }
 
       // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
@@ -27247,10 +27490,16 @@ export const PULSE = {
       }
 
       MUTATION_TELEMETRY.flushIfDue(currentTick);
-      const glyphTransport = GLYPH_BUFFER.snapshot();
+      const glyphSnapshot = GLYPH_BUFFER.snapshot();
       lineageTracker.syncLineages(activeIdx);
-      AKASHA_CODEX.observePulse(currentTick, activeIdx.length, glyphTransport);
-
+      
+      // --- STAGE 6: Codex evidence record ---
+      AKASHA_CODEX.observePulse(
+        currentTick,
+        activeIdx.length,
+        glyphSnapshot,
+        syntropy, // already calculated earlier in this tick
+      );
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
 
@@ -28482,6 +28731,58 @@ export class LineageTracker {
     // Placeholder: In a mature system, this queries the species registry.
     // High historical resonance = high wisdom.
     return 100; // Baseline wisdom
+  }
+}
+
+```
+
+---
+
+## FILE: reduction_core/relics/QUORUM_ADVOCATE.ts
+
+```typescript
+// OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
+import { STATE_MATRIX } from "../../STATE_MATRIX.ts";
+import { LOGGER } from "../../LOGGER.ts";
+
+/**
+ * QuorumAdvocate evaluates local group coherence and biases the GATE system.
+ * It detects "Quorum" conditions when atoms of similar lineage or phase 
+ * cluster together to perform coordinated actions.
+ */
+export class QuorumAdvocate {
+  /**
+   * Evaluates the collective "Strength" of a group of atoms.
+   * This is used to lower the energy threshold for OP_BUILD or other 
+   * collective intents.
+   */
+  public evaluateQuorum(indices: number[]): number {
+    if (indices.length < 2) return 0;
+
+    let totalResonace = 0;
+    let totalWisdom = 0;
+
+    for (const idx of indices) {
+        totalResonace += STATE_MATRIX.getResonance(idx);
+        // Wisdom will eventually be pulled from LINEAGE_TRACKER
+        totalWisdom += 100; 
+    }
+
+    const avgResonance = totalResonace / indices.length;
+    
+    // Quorum Strength is a function of density and internal coherence
+    const strength = (indices.length * avgResonance) / 1000;
+    
+    return Math.min(strength, 1.0);
+  }
+
+  /**
+   * Decides if a collective action (e.g. delegated build) should be 
+   * fast-tracked through the GATE.
+   */
+  public recommendAdmission(quorumStrength: number): boolean {
+    // High quorum strength ( > 0.7) suggests a coordinated structural intent
+    return quorumStrength > 0.7;
   }
 }
 
@@ -35174,7 +35475,7 @@ export const coherenceBuffer =
 export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 export const hormoneBuffer =
-  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
+  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8).buffer;
 export const lineageBuffer =
   new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
 
@@ -35273,7 +35574,7 @@ const neuralCoherence = new Int32Array(
   OFFSETS.NEURAL_COHERENCE_OFFSET,
   1,
 );
-const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
+const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
 const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
 
 const instructions = new Uint8Array(
@@ -35330,6 +35631,11 @@ export const SYNC = {
   HOST_LOCK: 2,
 };
 
+export const OP_BUILD = 0xA8;
+export const OP_SENSE = 0xA9;
+export const OP_WISDOM = 0xAD;
+export const OP_RESONATE = 0xAE;
+
 export const RISC = {
   OP_NOP: 0x00,
   OP_SET: 0x01,
@@ -35346,13 +35652,14 @@ export const RISC = {
   OP_SHARE: 0x83,
   OP_COLLECTIVE: 0xA6,
   OP_ROLE: 0xA7,
-  OP_BUILD: 0xA8,
-  OP_SENSE: 0xA9,
+  OP_BUILD,
+  OP_SENSE,
   OP_SPORE_DRIVE: 0xAA,
   OP_ENTANGLE: 0xAB,
   OP_TENSEGRITY: 0xA5,
   OP_RESOLVE: 0xAC,
-  OP_WISDOM: 0xAD, // Return ancestral resonance/wisdom
+  OP_WISDOM, // Return ancestral resonance/wisdom
+  OP_RESONATE, // Explicit phase-locking with neighbors
 
   PROP_ENERGY: 0,
   PROP_RESONANCE: 1,
@@ -35530,6 +35837,21 @@ export const STATE_MATRIX = {
     return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
   },
   clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
+  
+  recycleAtom: (i: number) => {
+    Atomics.store(ids, i, 0n);
+    Atomics.store(energies, i, 0);
+    Atomics.store(resonances, i, 0);
+    Atomics.store(phases, i, 0);
+    Atomics.store(roles, i, 0);
+    bonds.fill(0, i * 4, i * 4 + 4);
+    bondStiffness.fill(0, i * 4, i * 4 + 4);
+    bondDistances.fill(0, i * 4, i * 4 + 4);
+    Atomics.store(damping, i, 0);
+    Atomics.store(lineage, i, 0n);
+    instructions.fill(0, i * 64, i * 64 + 64);
+    contexts.fill(0, i * 16, i * 16 + 16);
+  },
 
   clear: () => {
     // Preserve low-memory wasm runtime segments; wipe only the lattice region.
@@ -35818,6 +36140,9 @@ export interface DeltaProposal {
   semantic_fingerprint?: string; // hex32 - Semantic drift metric
   causal_refs?: string[]; // hex32[] - Optional lineage anchors
   target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
+  quorum_strength?: number; // range [0..1] - Local group coherence factor for Stage 25
+  origin_atom_idx?: number; // index of the proposing atom in the lattice
+  resonance?: number; // resonance level of the proposing atom
   signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
   agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
   proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
@@ -35835,6 +36160,7 @@ export interface GateConfig {
   reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
   reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
   dry_run: boolean; // If true, state is NOT mutated
+  global_syntropy?: number; // range [0..1] - System-wide structural organization for Stage 25
   signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
   agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
   anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window

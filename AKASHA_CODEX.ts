@@ -1,7 +1,7 @@
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { STATE_MATRIX, RISC } from "./STATE_MATRIX.ts";
 import type { GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -165,6 +165,9 @@ type CodexState = {
   lastDaemonEffectSummary: string;
   lastDaemonEffectLineage: string;
   lastDaemonEffectDeltaBand: string;
+  lastSyntropy: number;
+  lastImmunePurgeTick: number;
+  lastImmunePurgeCount: number;
 };
 
 type GenomeStats = {
@@ -214,8 +217,10 @@ const OPCODE_NAMES: Record<number, string> = {
   0xA5: "TENSEGRITY",
   0xA6: "COLLECTIVE",
   0xA7: "ROLE",
-  0xA8: "BUILD",
-  0xA9: "SENSE",
+  [RISC.OP_BUILD]: "BUILD",
+  [RISC.OP_SENSE]: "SENSE",
+  [RISC.OP_WISDOM]: "WISDOM",
+  [RISC.OP_RESONATE]: "RESONATE",
 };
 
 const fallbackState = (): CodexState => ({
@@ -243,6 +248,9 @@ const fallbackState = (): CodexState => ({
   lastDaemonEffectSummary: "No daemon effect contour recorded yet.",
   lastDaemonEffectLineage: "none",
   lastDaemonEffectDeltaBand: "none",
+  lastSyntropy: 0,
+  lastImmunePurgeTick: -1,
+  lastImmunePurgeCount: 0,
 });
 
 let started = false;
@@ -760,6 +768,14 @@ const ensureStorage = async (): Promise<void> => {
           state.lastDaemonEffectDeltaBand.trim().length > 0
           ? state.lastDaemonEffectDeltaBand
           : fallbackState().lastDaemonEffectDeltaBand;
+      state.lastImmunePurgeTick = Math.max(
+        -1,
+        Math.floor(asFiniteNumber(state.lastImmunePurgeTick, -1)),
+      );
+      state.lastImmunePurgeCount = Math.max(
+        0,
+        Math.floor(asFiniteNumber(state.lastImmunePurgeCount, 0)),
+      );
 
       speciesIndex = asArray<SpeciesEntry>(
         await readJsonFile<SpeciesEntry[]>(SPECIES_INDEX_FILE, []),
@@ -1258,9 +1274,11 @@ export const AKASHA_CODEX = {
     tick: number,
     activePopulation: number,
     glyphTransport?: GlyphSnapshot,
+    syntropy?: number,
   ): void => {
     if (!started) return;
     state.lastPopulation = activePopulation;
+    if (syntropy !== undefined) state.lastSyntropy = syntropy;
     if (activePopulation > state.populationPeak) {
       state.populationPeak = activePopulation;
     }
@@ -1632,5 +1650,20 @@ export const AKASHA_CODEX = {
       hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
     };
+  },
+  recordImmunologicalPurge: async (count: number) => {
+    await ensureStorage();
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    state.lastImmunePurgeTick = tick;
+    state.lastImmunePurgeCount = count;
+
+    await appendChronicle(
+      tick,
+      "immunological_purge",
+      "Systemic Phagocyte Action",
+      `The immune system identified and recycled ${count} dead or drifting atoms at tick ${tick}. System coherence maintained.`,
+    );
+    
+    await persistState();
   },
 };

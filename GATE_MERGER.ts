@@ -8,6 +8,7 @@ import {
 import { LOAD_LOAD as LOAD } from "./SHIMS.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { GATE_BUDGET } from "./GATE_BUDGET.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 type I16Limits = {
   max: number;
@@ -77,11 +78,14 @@ export const mergeGateProposals = (
   const combinedDelta = new Map<number, number>();
 
   for (const p of validProposals) {
-    if ((p as any).resonance !== undefined) {
+    if (p.resonance !== undefined) {
       LOGGER.debug(
-        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${
-          (p as any).resonance
-        }`,
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
+      );
+    } else if (p.origin_atom_idx !== undefined) {
+      const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
+      LOGGER.debug(
+        `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
     } else {
       LOGGER.debug(
@@ -102,16 +106,26 @@ export const mergeGateProposals = (
       physicalCost += Math.abs(d.value) + load;
     }
 
-    const atomResonance = (p as any).resonance || 0;
-    if (atomResonance > 0) {
-      const discountFactor = Math.min(0.95, atomResonance / 500);
-      physicalCost = physicalCost * (1 - discountFactor);
+    const atomResonance = p.resonance ??
+      (p.origin_atom_idx !== undefined
+        ? STATE_MATRIX.getResonance(p.origin_atom_idx)
+        : 0);
+    const globalSyntropy = config.global_syntropy || 0;
+    const localQuorum = p.quorum_strength || 0;
+
+    if (atomResonance > 0 || globalSyntropy > 0 || localQuorum > 0) {
+      // Sovereign Feedback: Successful collective organization rewards the system
+      const resonanceDiscount = Math.min(0.8, atomResonance / 600);
+      const syntropyDiscount = Math.min(0.2, globalSyntropy * 0.5); // Global systemic reward
+      const quorumDiscount = Math.min(0.4, localQuorum * 0.8);     // Local group reward
+      
+      const totalDiscount = Math.min(0.95, resonanceDiscount + syntropyDiscount + quorumDiscount);
+      
+      const oldCost = physicalCost;
+      physicalCost = physicalCost * (1 - totalDiscount);
+      
       LOGGER.debug(
-        `      ⚖️ [PoR] Route subsidized for Atom. Base: ${
-          Math.abs(p.delta[0]?.value || 0)
-        }, Res: ${atomResonance.toFixed(1)}, Discount: ${
-          (discountFactor * 100).toFixed(1)
-        }%`,
+        `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${oldCost.toFixed(1)}, Res: ${atomResonance.toFixed(1)}, Quorum: ${localQuorum.toFixed(2)}, Syntropy: ${globalSyntropy.toFixed(2)}, Final Discount: ${(totalDiscount * 100).toFixed(1)}%`,
       );
     }
 

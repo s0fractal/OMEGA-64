@@ -82,7 +82,7 @@ export const coherenceBuffer =
 export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 export const hormoneBuffer =
-  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6).buffer;
+  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8).buffer;
 export const lineageBuffer =
   new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
 
@@ -181,7 +181,7 @@ const neuralCoherence = new Int32Array(
   OFFSETS.NEURAL_COHERENCE_OFFSET,
   1,
 );
-const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 6);
+const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
 const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
 
 const instructions = new Uint8Array(
@@ -238,6 +238,8 @@ export const SYNC = {
   HOST_LOCK: 2,
 };
 
+// Legacy biological opcodes removed in Stage 27 (Universal Syscall Interface)
+
 export const RISC = {
   OP_NOP: 0x00,
   OP_SET: 0x01,
@@ -248,19 +250,26 @@ export const RISC = {
   OP_JZ: 0x10,
   OP_JNZ: 0x11,
   OP_JMP: 0x12,
+  
+  // Legacy biological opcodes (for tests and bridge reductions)
   OP_REPLICATE: 0x80,
   OP_SIGNAL: 0x81,
   OP_BIND: 0x82,
   OP_SHARE: 0x83,
+  OP_PLUG: 0x84,
+  OP_TENSEGRITY: 0x85,
+  OP_BUILD: 0xA4,
+  OP_SENSE: 0xA5,
   OP_COLLECTIVE: 0xA6,
   OP_ROLE: 0xA7,
-  OP_BUILD: 0xA8,
-  OP_SENSE: 0xA9,
-  OP_SPORE_DRIVE: 0xAA,
-  OP_ENTANGLE: 0xAB,
-  OP_TENSEGRITY: 0xA5,
-  OP_RESOLVE: 0xAC,
-  OP_WISDOM: 0xAD, // Return ancestral resonance/wisdom
+  OP_SPORE_DRIVE: 0xA8,
+  OP_WISDOM: 0xA9,
+  OP_RESONATE: 0xAE,
+  
+  // Universal Syscall Interface 
+  OP_SYSCALL: 0x60, // The only way an atom should interact with the world
+
+  // Data properties
 
   PROP_ENERGY: 0,
   PROP_RESONANCE: 1,
@@ -272,13 +281,35 @@ export const RISC = {
   PROP_NEURAL_COHERENCE: 9,
   PROP_MEMORY: 10,
 };
+
+// Universal Syscall Interface (ABI)
+export const SYS = {
+  YIELD: 0x01,
+  READ_MEM: 0x02,
+  WRITE_MEM: 0x03,
+  SPAWN: 0x04,
+  BIND: 0x05,
+  SET_ROLE: 0x06,
+  MUTATE: 0x07,
+};
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
-  // Default biological script: GET Energy into R0.
+  // Default biological script: GET Energy into R0, then Yield
   boot[0] = RISC.OP_GET;
   boot[1] = 0;
   boot[2] = RISC.PROP_ENERGY;
-  boot[3] = RISC.OP_REPLICATE;
+  boot[3] = RISC.OP_SET;
+  boot[4] = 1;
+  boot[5] = SYS.YIELD;
+  boot[6] = RISC.OP_SYSCALL; // Expects R0=syscall (we used R1 here... wait, SYS expects R0)
+  
+  // Let's rewrite it properly for the ABI:
+  // R0 = SYS.YIELD
+  // SYSCALL
+  boot[0] = RISC.OP_SET;
+  boot[1] = 0;
+  boot[2] = SYS.YIELD;
+  boot[3] = RISC.OP_SYSCALL;
   return boot;
 })();
 
@@ -438,6 +469,21 @@ export const STATE_MATRIX = {
     return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
   },
   clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
+  
+  recycleAtom: (i: number) => {
+    Atomics.store(ids, i, 0n);
+    Atomics.store(energies, i, 0);
+    Atomics.store(resonances, i, 0);
+    Atomics.store(phases, i, 0);
+    Atomics.store(roles, i, 0);
+    bonds.fill(0, i * 4, i * 4 + 4);
+    bondStiffness.fill(0, i * 4, i * 4 + 4);
+    bondDistances.fill(0, i * 4, i * 4 + 4);
+    Atomics.store(damping, i, 0);
+    Atomics.store(lineage, i, 0n);
+    instructions.fill(0, i * 64, i * 64 + 64);
+    contexts.fill(0, i * 16, i * 16 + 16);
+  },
 
   clear: () => {
     // Preserve low-memory wasm runtime segments; wipe only the lattice region.
@@ -555,22 +601,24 @@ export const STATE_MATRIX = {
     script[pc++] = 18;
 
     // --- STABLE FIELD ---
-    script[pc++] = RISC.OP_ROLE;
+    // Instead of OP_ROLE, we just YIELD
+    script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = 2; // mode=SET, ROLE_GUARDIAN
-    script[pc++] = RISC.OP_SIGNAL;
+    script[pc++] = SYS.YIELD;
+    script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
 
     // --- REPAIR BRANCH ---
     // The coherence broadcast is capped upstream, so R1!=0 means "below threshold".
-    script[pc++] = RISC.OP_ROLE;
+    // We switch to ARCHITECT (Role = 3) via SYS.SET_ROLE
+    script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = 3; // mode=SET, ROLE_ARCHITECT
-    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
     script[pc++] = 1;
-    script[pc++] = 1; // WIRE, state=1
-    script[pc++] = RISC.OP_SIGNAL;
+    script[pc++] = 3;
+    script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
 
@@ -581,13 +629,10 @@ export const STATE_MATRIX = {
     const script = new Uint8Array(64);
     let pc = 0;
 
-    script[pc++] = RISC.OP_ROLE;
+    script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-    script[pc++] = RISC.OP_BUILD;
-    script[pc++] = 1;
-    script[pc++] = 1;
-    script[pc++] = RISC.OP_SIGNAL;
+    script[pc++] = SYS.YIELD;
+    script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
 

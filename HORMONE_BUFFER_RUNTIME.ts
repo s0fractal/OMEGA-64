@@ -18,6 +18,7 @@ export type HormoneSyncInput = {
   homeostasisOverflowThreshold: number;
   daemonMaxActions: number;
   federationDegradeEnergyRatio: number;
+  globalSyntropy: number;
 };
 
 const clamp = (value: number, min: number, max: number): number =>
@@ -84,4 +85,8 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
     ),
   );
   STATE_MATRIX.setHormone(5, mutationFriction);
+
+  // 7. global_consensus (globalSyntropy)
+  const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
+  STATE_MATRIX.setHormone(6, consensus);
 };

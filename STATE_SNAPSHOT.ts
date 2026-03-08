@@ -43,6 +43,9 @@ export interface DeltaProposal {
   semantic_fingerprint?: string; // hex32 - Semantic drift metric
   causal_refs?: string[]; // hex32[] - Optional lineage anchors
   target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
+  quorum_strength?: number; // range [0..1] - Local group coherence factor for Stage 25
+  origin_atom_idx?: number; // index of the proposing atom in the lattice
+  resonance?: number; // resonance level of the proposing atom
   signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
   agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
   proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
@@ -60,6 +63,7 @@ export interface GateConfig {
   reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
   reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
   dry_run: boolean; // If true, state is NOT mutated
+  global_syntropy?: number; // range [0..1] - System-wide structural organization for Stage 25
   signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
   agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
   anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window

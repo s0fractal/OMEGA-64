@@ -1,3 +1,4 @@
+/// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -38,6 +39,140 @@ let apply_metabolism_kernel_fn: ((
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
+let contextI32View: Int32Array | null = null;
+let contextU8View: Uint8Array | null = null;
+let structureGridView: Int32Array | null = null;
+let buildOwnerView: Int32Array | null = null;
+let buildValueView: Int32Array | null = null;
+let spawnHeadView: Int32Array | null = null;
+let spawnDataView: DataView | null = null;
+let lineageView: BigUint64Array | null = null;
+let logicView: BigUint64Array | null = null;
+let bondRequestsView: Int32Array | null = null;
+let energiesView: Int32Array | null = null;
+let instructionsView: Uint8Array | null = null;
+
+const SYS_YIELD = 1;
+const SYS_READ_MEM = 2;
+const SYS_WRITE_MEM = 3;
+const SYS_SPAWN = 4;
+const SYS_BIND = 5;
+const SYS_SET_ROLE = 6;
+const SYS_MUTATE = 7;
+
+function handle_syscall(atomIdx: number) {
+  if (!contextU8View || !contextI32View || !energiesView) return;
+  const flagIdx = (atomIdx << 6) + 33;
+  if (contextU8View[flagIdx] === 0) return;
+  contextU8View[flagIdx] = 0; // Clear pending syscall flag
+
+  const regBase = atomIdx << 4;
+  const sysId = contextI32View[regBase]; // R0
+  const r1 = contextI32View[regBase + 1];
+  const r2 = contextI32View[regBase + 2];
+  const r3 = contextI32View[regBase + 3];
+
+  console.log(`   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`);
+
+  let gasCost = 0;
+  switch(sysId) {
+    case SYS_YIELD: gasCost = 1; break;
+    case SYS_READ_MEM: gasCost = 5; break;
+    case SYS_WRITE_MEM: gasCost = 20; break;
+    case SYS_SPAWN: gasCost = 100; break;
+    case SYS_BIND: gasCost = 10; break;
+    case SYS_SET_ROLE: gasCost = 5; break;
+    case SYS_MUTATE: gasCost = 50; break;
+    default: gasCost = 1; break;
+  }
+
+  const currentEnergy = Atomics.load(energiesView, atomIdx);
+  if (currentEnergy < gasCost * 1000) {
+    // Out of Gas for this syscall
+    console.log(`   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${currentEnergy / 1000})`);
+    return;
+  }
+  
+  // Burn the gas
+  Atomics.sub(energiesView, atomIdx, gasCost * 1000); // 1000 is energy SCALE
+
+  switch(sysId) {
+    case SYS_YIELD:
+      break;
+    case SYS_READ_MEM: {
+      const gx = r1, gy = r2;
+      let val = 0;
+      if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
+        val = structureGridView[gy * 140 + gx] & 0xFF;
+      }
+      console.log(`   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`);
+      contextI32View[regBase] = val; // Return value in R0
+      break;
+    }
+    case SYS_WRITE_MEM: {
+      const gx = r1, gy = r2, newVal = r3;
+      console.log(`   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`);
+      if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView && buildValueView) {
+        const cellIdx = gy * 140 + gx;
+        Atomics.store(buildOwnerView, cellIdx, atomIdx);
+        Atomics.store(buildValueView, cellIdx, newVal);
+      }
+      break;
+    }
+    case SYS_SPAWN: {
+      const childGx = r1, childGy = r2;
+      if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80 && spawnHeadView && spawnDataView) {
+        const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;
+        const slotOff = slot * 24;
+        const parentGenome = logicView ? logicView[atomIdx] : 0n;
+        const parentLineage = lineageView ? lineageView[atomIdx] : 0n;
+        // Write spawn request struct
+        spawnDataView.setBigUint64(slotOff, parentGenome, true);
+        spawnDataView.setInt16(slotOff + 8, childGx, true);
+        spawnDataView.setInt16(slotOff + 10, childGy, true);
+        spawnDataView.setInt32(slotOff + 12, 100, true); // give 100 energy to start
+        spawnDataView.setBigUint64(slotOff + 16, parentLineage, true);
+      }
+      break;
+    }
+    case SYS_BIND: {
+      const targetIdx = r1;
+      if (targetIdx > 0 && targetIdx < MAX_ATOMS && bondRequestsView) {
+        const off = atomIdx * 3;
+        Atomics.store(bondRequestsView, off, atomIdx);
+        Atomics.store(bondRequestsView, off + 1, targetIdx);
+        Atomics.store(bondRequestsView, off + 2, 1);
+      }
+      break;
+    }
+    case SYS_SET_ROLE: {
+      const rolesView = new Uint8Array(sharedBuffer!, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+      const newRole = r1;
+      // Host validates the role
+      if (newRole >= 0 && newRole <= 8) {
+        Atomics.store(rolesView, atomIdx, newRole);
+      }
+      break;
+    }
+    case SYS_MUTATE: {
+      const offset = r1;
+      const newValue = r2;
+      // Host validates the instructions boundary (0-63 bytes)
+      if (offset >= 0 && offset < 64 && instructionsView) {
+        const globalOffset = atomIdx * 64 + offset;
+        Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
+        console.log(`   [SYSCALL] Atom ${atomIdx} MUTATED instruction at offset ${offset} to 0x${newValue.toString(16)}`);
+      } else {
+        console.log(`   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE at ${offset}`);
+      }
+      break;
+    }
+    default:
+      console.log(`   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`);
+      break;
+  }
+}
+
 let debugDelayMs = 0;
 let debugJitterMinMs = 0;
 let debugJitterMaxMs = 0;
@@ -86,8 +221,21 @@ self.onmessage = async (e) => {
   if (type === "INIT") {
     const { buffer, wasmMemory, workerIndex } = e.data;
     sharedBuffer = buffer;
-    syncStateView = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
-    idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+    const sb = sharedBuffer as SharedArrayBuffer;
+    syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
+    idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+    contextI32View = new Int32Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16);
+    contextU8View = new Uint8Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
+    structureGridView = new Int32Array(sb, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80);
+    buildOwnerView = new Int32Array(sb, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, 140 * 80);
+    buildValueView = new Int32Array(sb, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, 140 * 80);
+    spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
+    spawnDataView = new DataView(sb, OFFSETS.SPAWN_REQUESTS_OFFSET + 8, 1024 * 24);
+    lineageView = new BigUint64Array(sb, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
+    logicView = new BigUint64Array(sb, OFFSETS.LOGIC_OFFSET, MAX_ATOMS);
+    bondRequestsView = new Int32Array(sb, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
+    energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+    instructionsView = new Uint8Array(sb, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
@@ -184,6 +332,8 @@ self.onmessage = async (e) => {
 
         // Absolute WASM Coherence: The Kernel now handles Physics AND VM
         execute_atom_fn(i);
+        handle_syscall(i); // Process any syscall intent pending from the atom
+
       }
     } catch (err) {
       LOGGER.error("   [WORKER EXECUTION ERROR]", err);

@@ -6,7 +6,8 @@ export type HormoneId =
   | "aggression"
   | "replication_bias"
   | "repair_drive"
-  | "mutation_friction";
+  | "mutation_friction"
+  | "global_consensus";
 
 export type HormoneDomain = "systemic" | "temporal" | "conflict" | "reproduction" | "repair" | "mutation";
 
@@ -139,6 +140,17 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     notes:
       "How expensive it is for daemon-side symbolic ingress to cross the membrane.",
   }, 5),
+  hormone({
+    id: "global_consensus",
+    domain: "systemic",
+    min: 0,
+    max: 2048,
+    defaultValue: 0,
+    controlPlane: "pulse",
+    sourcePath: "pulse.syntropy",
+    notes:
+      "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
+  }, 6),
 ]);
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(

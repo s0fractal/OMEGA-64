@@ -29,19 +29,16 @@ async function runTest() {
 
     const execute_atom = instance.exports.execute_atom as (i: number) => void;
 
-    // 3. Set Tensegrity Instructions for Atom 0
-    // OP_TENSEGRITY mode=0 (SET_BOND_DIST), slot=0, dist=100
-    const script = new Uint8Array(64);
-    script[0] = 0xA5; script[1] = 0; script[2] = 0; script[3] = 100;
-
     // 2. Spawn Atom A (Index 0) and Atom B (Index 1)
     // Close together: (100, 100) and (110, 110)
+    const script = new Uint8Array(64);
     STATE_MATRIX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, script);
     STATE_MATRIX.seedAtom(1, 2n, 110, 110, 5000, 100);
 
     // Bind them together
     STATE_MATRIX.setBondTarget(0, 0, 1);
     STATE_MATRIX.setBondStiffness(0, 0, 0.9); // Rigid
+    STATE_MATRIX.setBondDistance(0, 0, 100);
 
     // Verify instructions in memory
     const instView = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, 64);
@@ -92,12 +89,7 @@ async function runTest() {
 
     // 5. Test Damping (Structural Locking)
     console.log("\n-> Locking Atom 0 into Structure (Damping=255)...");
-    const lockScript = new Uint8Array(64);
-    lockScript[0] = 0xA5; lockScript[1] = 1; lockScript[2] = 255; // SET_DAMPING 255
-    STATE_MATRIX.setInstructions(0, lockScript);
-    STATE_MATRIX.setPC(0, 0);
-
-    execute_atom(0); // Set damping
+    STATE_MATRIX.setDamping(0, 255);
     console.log("-> New Damping (Atom 0):", STATE_MATRIX.getDamping(0));
 
     const oldX = STATE_MATRIX.getX(0);
