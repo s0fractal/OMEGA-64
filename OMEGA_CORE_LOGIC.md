@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-08T19:47:11.957Z*
+*Generated: 2026-03-08T20:18:31.990Z*
 *Exported Files: 125*
 *Runtime Roots: 11*
 *Runtime Closure Files: 77*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 15*
 *Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
 *Export Set SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d*
-*Export Content SHA256: 9fc35c16618b1c7e45bb538aa837169f66462d033145b0a26b4fe35705ded94d*
-*Git Commit: 4a4448aed26b*
+*Export Content SHA256: 751a3b3bc5eb9d0c24b501534ba63ff34c83e1407a2798373d2547c94af7c212*
+*Git Commit: 316804c32363*
 
 ---
 
@@ -24117,14 +24117,14 @@ export const capturePhysiologySnapshot = (
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
-// 16-byte Shared Buffer:
+// 72-byte Shared Buffer:
 // [0-3]: Int32 isActive (0 or 1)
 // [4-7]: Int32 betPool (Scaled by SCALE=1000)
-// [8-15]: Uint8Array proposedLogic (8 bytes)
-export const marketBuffer = new SharedArrayBuffer(16);
+// [8-71]: Uint8Array proposedInstructions (64 bytes)
+export const marketBuffer = new SharedArrayBuffer(72);
 export const marketState = new Int32Array(marketBuffer, 0, 1);
 export const betPoolInt = new Int32Array(marketBuffer, 4, 1);
-export const proposedLogic = new Uint8Array(marketBuffer, 8, 8);
+export const proposedInstructions = new Uint8Array(marketBuffer, 8, 64);
 
 const CRISIS_THRESHOLD = 5000.0; // The energy threshold required to pass a mutation
 const SCALE = 1000;
@@ -24133,7 +24133,7 @@ export const PREDICTION_MARKET = {
   buffer: marketBuffer,
   successfulGenomes: new Map<string, number>(), // ERA 37: Track successful mutation signatures
 
-  startCrisis: (newLogic: Uint8Array) => {
+  startCrisis: (newInstructions: Uint8Array) => {
     if (Atomics.load(marketState, 0) === 1) {
       console.log("⚠️ [MARKET] A crisis is already ongoing.");
       return;
@@ -24141,7 +24141,7 @@ export const PREDICTION_MARKET = {
 
     console.log(
       `🌀 [MARKET] CRISIS INITIATED! Proposed Genome: ${
-        Array.from(newLogic).map((b) => b.toString(16).padStart(2, "0")).join(
+        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0")).join(
           "",
         )
       }`,
@@ -24151,9 +24151,9 @@ export const PREDICTION_MARKET = {
     Atomics.store(marketState, 0, 1);
     Atomics.store(betPoolInt, 0, 0);
 
-    // Store proposed logic
-    for (let i = 0; i < 8; i++) {
-      proposedLogic[i] = newLogic[i];
+    // Store proposed instructions
+    for (let i = 0; i < 64; i++) {
+      proposedInstructions[i] = newInstructions[i] || 0;
     }
   },
 
@@ -24162,7 +24162,7 @@ export const PREDICTION_MARKET = {
 
     Atomics.store(marketState, 0, 0);
     const finalBet = Atomics.load(betPoolInt, 0) / SCALE;
-    const proposalHex = Array.from(proposedLogic).map((b) =>
+    const proposalHex = Array.from(proposedInstructions).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
@@ -24172,7 +24172,7 @@ export const PREDICTION_MARKET = {
       console.log(
         `🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${
           finalBet.toFixed(2)
-        }. Signature [${winnersHex}] is now Blessed.`,
+        }. Signature [${winnersHex.substring(0, 16)}...] is now Blessed.`,
       );
 
       // ERA 37: Record success
@@ -24183,7 +24183,7 @@ export const PREDICTION_MARKET = {
       // Apply the mutation to all active atoms in the single STATE_MATRIX
       const active = STATE_MATRIX.getActiveIndices();
       for (const idx of active) {
-        STATE_MATRIX.setLogic(idx, proposedLogic);
+        STATE_MATRIX.setInstructions(idx, proposedInstructions);
 
         // Minor energy penalty for adopting the mutation (adaptability toll)
         const currentEnergy = STATE_MATRIX.getEnergy(idx);
@@ -24227,8 +24227,8 @@ export const PREDICTION_MARKET = {
 
     const active = STATE_MATRIX.getActiveIndices();
     const winners = active.filter((idx) => {
-      const logic = STATE_MATRIX.getLogic(idx);
-      const hex = Array.from(logic).map((b) => b.toString(16).padStart(2, "0"))
+      const instr = STATE_MATRIX.getInstructions(idx);
+      const hex = Array.from(instr).map((b) => b.toString(16).padStart(2, "0"))
         .join("").toUpperCase();
       return PREDICTION_MARKET.successfulGenomes.has(hex);
     });
@@ -24238,7 +24238,7 @@ export const PREDICTION_MARKET = {
     // Weight distribution by the number of historical wins
     let totalWinWeight = 0;
     const weights = winners.map((idx) => {
-      const hex = Array.from(STATE_MATRIX.getLogic(idx)).map((b) =>
+      const hex = Array.from(STATE_MATRIX.getInstructions(idx)).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
       const w = PREDICTION_MARKET.successfulGenomes.get(hex) || 1;
@@ -25296,6 +25296,8 @@ let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
 let ledgerHeadView: Int32Array | null = null;
 let ledgerDataView: Int32Array | null = null;
+let marketState: Int32Array | null = null;
+let betPoolInt: Int32Array | null = null;
 
 const SYS_YIELD = 1;
 const SYS_READ_MEM = 2;
@@ -25312,6 +25314,7 @@ const SYS_EMIT = 12;
 const SYS_SCAN = 13;
 const SYS_MOVE = 14;
 const SYS_EAT = 15;
+const SYS_BET = 16;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -25375,6 +25378,9 @@ function handle_syscall(atomIdx: number) {
       break;
     case SYS_EAT:
       gasCost = 30;
+      break;
+    case SYS_BET:
+      gasCost = 5;
       break;
     default:
       gasCost = 1;
@@ -25821,6 +25827,38 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_BET: {
+      if (!marketState || !betPoolInt) {
+        contextI32View[regBase + 1] = 0;
+        break;
+      }
+      
+      const energyBet = Math.max(0, r1);
+      if (energyBet <= 0) {
+        contextI32View[regBase + 1] = 0;
+        break;
+      }
+
+      const currentMarketState = Atomics.load(marketState, 0);
+      if (currentMarketState !== 1) {
+        // No active crisis
+        contextI32View[regBase + 1] = 0; 
+        break;
+      }
+
+      const scaledBet = energyBet * 1000;
+      const availableEnergy = Atomics.load(energiesView, atomIdx);
+      
+      // We already deducted gasCost * 1000 before reaching the switch block
+      if (availableEnergy >= scaledBet) {
+        Atomics.sub(energiesView, atomIdx, scaledBet);
+        Atomics.add(betPoolInt, 0, scaledBet);
+        contextI32View[regBase + 1] = 1; // success
+      } else {
+        contextI32View[regBase + 1] = 0; // failure
+      }
+      break;
+    }
     default:
       LOGGER.debug(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
@@ -25875,8 +25913,12 @@ self.onmessage = async (e) => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
-    const { buffer, wasmMemory, workerIndex } = e.data;
+    const { buffer, marketBuffer, wasmMemory, workerIndex } = e.data;
     sharedBuffer = buffer;
+    if (marketBuffer) {
+      marketState = new Int32Array(marketBuffer, 0, 1);
+      betPoolInt = new Int32Array(marketBuffer, 4, 1);
+    }
     const sb = sharedBuffer as SharedArrayBuffer;
     tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
@@ -26220,6 +26262,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
+import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
@@ -27919,6 +27962,7 @@ const startWorkers = async (count: number): Promise<void> => {
       type: "INIT",
       wasmMemory: STATE_MATRIX.wasmMemory,
       buffer: STATE_MATRIX.buffer,
+      marketBuffer: PREDICTION_MARKET.buffer,
       workerIndex: i,
     });
     workerPromises.push(p.then(() => undefined));
@@ -29070,6 +29114,28 @@ export const PULSE = {
               (avgRes / 100).toFixed(1)
             })`,
           );
+          // --- STAGE 43: GOVERNANCE LAB (PREDICTION MARKET) ---
+          if (currentTick > 0 && currentTick % 2000 === 0) {
+            PREDICTION_MARKET.resolveCrisis();
+            PREDICTION_MARKET.distributeDividends();
+
+            const active = STATE_MATRIX.getActiveIndices();
+            if (active.length > 0) {
+              let eliteIdx = active[0];
+              let maxEnergy = 0;
+              for (const idx of active) {
+                const energy = STATE_MATRIX.getEnergy(idx);
+                if (energy > maxEnergy) {
+                  maxEnergy = energy;
+                  eliteIdx = idx;
+                }
+              }
+              if (maxEnergy > 50000) {
+                const eliteGenome = STATE_MATRIX.getInstructions(eliteIdx);
+                PREDICTION_MARKET.startCrisis(eliteGenome);
+              }
+            }
+          }
 
           // --- STAGE 22: DRIFT WARDEN AUDIT ---
           const drift = driftWarden.analyze(currentTick);
@@ -37382,6 +37448,7 @@ export const SYS = {
   SCAN: 0x0D,
   MOVE: 0x0E,
   EAT: 0x0F,
+  BET: 0x10,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);

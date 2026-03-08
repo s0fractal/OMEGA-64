@@ -64,6 +64,8 @@ let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
 let ledgerHeadView: Int32Array | null = null;
 let ledgerDataView: Int32Array | null = null;
+let marketState: Int32Array | null = null;
+let betPoolInt: Int32Array | null = null;
 
 const SYS_YIELD = 1;
 const SYS_READ_MEM = 2;
@@ -80,6 +82,7 @@ const SYS_EMIT = 12;
 const SYS_SCAN = 13;
 const SYS_MOVE = 14;
 const SYS_EAT = 15;
+const SYS_BET = 16;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -143,6 +146,9 @@ function handle_syscall(atomIdx: number) {
       break;
     case SYS_EAT:
       gasCost = 30;
+      break;
+    case SYS_BET:
+      gasCost = 5;
       break;
     default:
       gasCost = 1;
@@ -589,6 +595,38 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_BET: {
+      if (!marketState || !betPoolInt) {
+        contextI32View[regBase + 1] = 0;
+        break;
+      }
+      
+      const energyBet = Math.max(0, r1);
+      if (energyBet <= 0) {
+        contextI32View[regBase + 1] = 0;
+        break;
+      }
+
+      const currentMarketState = Atomics.load(marketState, 0);
+      if (currentMarketState !== 1) {
+        // No active crisis
+        contextI32View[regBase + 1] = 0; 
+        break;
+      }
+
+      const scaledBet = energyBet * 1000;
+      const availableEnergy = Atomics.load(energiesView, atomIdx);
+      
+      // We already deducted gasCost * 1000 before reaching the switch block
+      if (availableEnergy >= scaledBet) {
+        Atomics.sub(energiesView, atomIdx, scaledBet);
+        Atomics.add(betPoolInt, 0, scaledBet);
+        contextI32View[regBase + 1] = 1; // success
+      } else {
+        contextI32View[regBase + 1] = 0; // failure
+      }
+      break;
+    }
     default:
       LOGGER.debug(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
@@ -643,8 +681,12 @@ self.onmessage = async (e) => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
-    const { buffer, wasmMemory, workerIndex } = e.data;
+    const { buffer, marketBuffer, wasmMemory, workerIndex } = e.data;
     sharedBuffer = buffer;
+    if (marketBuffer) {
+      marketState = new Int32Array(marketBuffer, 0, 1);
+      betPoolInt = new Int32Array(marketBuffer, 4, 1);
+    }
     const sb = sharedBuffer as SharedArrayBuffer;
     tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);

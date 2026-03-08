@@ -4,6 +4,7 @@ import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "./GATE.ts";
+import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
@@ -1703,6 +1704,7 @@ const startWorkers = async (count: number): Promise<void> => {
       type: "INIT",
       wasmMemory: STATE_MATRIX.wasmMemory,
       buffer: STATE_MATRIX.buffer,
+      marketBuffer: PREDICTION_MARKET.buffer,
       workerIndex: i,
     });
     workerPromises.push(p.then(() => undefined));
@@ -2854,6 +2856,28 @@ export const PULSE = {
               (avgRes / 100).toFixed(1)
             })`,
           );
+          // --- STAGE 43: GOVERNANCE LAB (PREDICTION MARKET) ---
+          if (currentTick > 0 && currentTick % 2000 === 0) {
+            PREDICTION_MARKET.resolveCrisis();
+            PREDICTION_MARKET.distributeDividends();
+
+            const active = STATE_MATRIX.getActiveIndices();
+            if (active.length > 0) {
+              let eliteIdx = active[0];
+              let maxEnergy = 0;
+              for (const idx of active) {
+                const energy = STATE_MATRIX.getEnergy(idx);
+                if (energy > maxEnergy) {
+                  maxEnergy = energy;
+                  eliteIdx = idx;
+                }
+              }
+              if (maxEnergy > 50000) {
+                const eliteGenome = STATE_MATRIX.getInstructions(eliteIdx);
+                PREDICTION_MARKET.startCrisis(eliteGenome);
+              }
+            }
+          }
 
           // --- STAGE 22: DRIFT WARDEN AUDIT ---
           const drift = driftWarden.analyze(currentTick);

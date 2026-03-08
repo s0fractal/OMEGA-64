@@ -4,14 +4,14 @@
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
-// 16-byte Shared Buffer:
+// 72-byte Shared Buffer:
 // [0-3]: Int32 isActive (0 or 1)
 // [4-7]: Int32 betPool (Scaled by SCALE=1000)
-// [8-15]: Uint8Array proposedLogic (8 bytes)
-export const marketBuffer = new SharedArrayBuffer(16);
+// [8-71]: Uint8Array proposedInstructions (64 bytes)
+export const marketBuffer = new SharedArrayBuffer(72);
 export const marketState = new Int32Array(marketBuffer, 0, 1);
 export const betPoolInt = new Int32Array(marketBuffer, 4, 1);
-export const proposedLogic = new Uint8Array(marketBuffer, 8, 8);
+export const proposedInstructions = new Uint8Array(marketBuffer, 8, 64);
 
 const CRISIS_THRESHOLD = 5000.0; // The energy threshold required to pass a mutation
 const SCALE = 1000;
@@ -20,7 +20,7 @@ export const PREDICTION_MARKET = {
   buffer: marketBuffer,
   successfulGenomes: new Map<string, number>(), // ERA 37: Track successful mutation signatures
 
-  startCrisis: (newLogic: Uint8Array) => {
+  startCrisis: (newInstructions: Uint8Array) => {
     if (Atomics.load(marketState, 0) === 1) {
       console.log("⚠️ [MARKET] A crisis is already ongoing.");
       return;
@@ -28,7 +28,7 @@ export const PREDICTION_MARKET = {
 
     console.log(
       `🌀 [MARKET] CRISIS INITIATED! Proposed Genome: ${
-        Array.from(newLogic).map((b) => b.toString(16).padStart(2, "0")).join(
+        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0")).join(
           "",
         )
       }`,
@@ -38,9 +38,9 @@ export const PREDICTION_MARKET = {
     Atomics.store(marketState, 0, 1);
     Atomics.store(betPoolInt, 0, 0);
 
-    // Store proposed logic
-    for (let i = 0; i < 8; i++) {
-      proposedLogic[i] = newLogic[i];
+    // Store proposed instructions
+    for (let i = 0; i < 64; i++) {
+      proposedInstructions[i] = newInstructions[i] || 0;
     }
   },
 
@@ -49,7 +49,7 @@ export const PREDICTION_MARKET = {
 
     Atomics.store(marketState, 0, 0);
     const finalBet = Atomics.load(betPoolInt, 0) / SCALE;
-    const proposalHex = Array.from(proposedLogic).map((b) =>
+    const proposalHex = Array.from(proposedInstructions).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
@@ -59,7 +59,7 @@ export const PREDICTION_MARKET = {
       console.log(
         `🌌 [MARKET] MUTATION ADOPTED! Total Energy Bet: ${
           finalBet.toFixed(2)
-        }. Signature [${winnersHex}] is now Blessed.`,
+        }. Signature [${winnersHex.substring(0, 16)}...] is now Blessed.`,
       );
 
       // ERA 37: Record success
@@ -70,7 +70,7 @@ export const PREDICTION_MARKET = {
       // Apply the mutation to all active atoms in the single STATE_MATRIX
       const active = STATE_MATRIX.getActiveIndices();
       for (const idx of active) {
-        STATE_MATRIX.setLogic(idx, proposedLogic);
+        STATE_MATRIX.setInstructions(idx, proposedInstructions);
 
         // Minor energy penalty for adopting the mutation (adaptability toll)
         const currentEnergy = STATE_MATRIX.getEnergy(idx);
@@ -114,8 +114,8 @@ export const PREDICTION_MARKET = {
 
     const active = STATE_MATRIX.getActiveIndices();
     const winners = active.filter((idx) => {
-      const logic = STATE_MATRIX.getLogic(idx);
-      const hex = Array.from(logic).map((b) => b.toString(16).padStart(2, "0"))
+      const instr = STATE_MATRIX.getInstructions(idx);
+      const hex = Array.from(instr).map((b) => b.toString(16).padStart(2, "0"))
         .join("").toUpperCase();
       return PREDICTION_MARKET.successfulGenomes.has(hex);
     });
@@ -125,7 +125,7 @@ export const PREDICTION_MARKET = {
     // Weight distribution by the number of historical wins
     let totalWinWeight = 0;
     const weights = winners.map((idx) => {
-      const hex = Array.from(STATE_MATRIX.getLogic(idx)).map((b) =>
+      const hex = Array.from(STATE_MATRIX.getInstructions(idx)).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
       const w = PREDICTION_MARKET.successfulGenomes.get(hex) || 1;

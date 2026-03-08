@@ -320,6 +320,7 @@ export const SYS = {
   SCAN: 0x0D,
   MOVE: 0x0E,
   EAT: 0x0F,
+  BET: 0x10,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
