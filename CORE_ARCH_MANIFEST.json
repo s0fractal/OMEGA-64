@@ -7,7 +7,11 @@
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "assembly/index.ts",
-    "MUTATION_TELEMETRY.ts"
+    "MUTATION_TELEMETRY.ts",
+    "TUI_DASHBOARD.ts",
+    "AGENT_PROXY.ts",
+    "llm_soul.ts",
+    "nightly_soak.ts"
   ],
   "runtime_support_files": [
     "build_wasm.ts",
@@ -53,7 +57,11 @@
     "AKASHA_SERVER.ts",
     "OMEGA_DAEMON.ts",
     "assembly/index.ts",
-    "MUTATION_TELEMETRY.ts"
+    "MUTATION_TELEMETRY.ts",
+    "TUI_DASHBOARD.ts",
+    "AGENT_PROXY.ts",
+    "llm_soul.ts",
+    "nightly_soak.ts"
   ],
   "required_additional_files": [
     "DAEMON_INGRESS_POLICY.ts",
