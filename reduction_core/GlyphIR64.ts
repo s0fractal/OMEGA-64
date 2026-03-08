@@ -187,6 +187,30 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     legacyOpcode: RISC.OP_SHARE,
     reductionRuleRef: "bridge/transport/share",
   }],
+  [19, {
+    mnemonic: "BIND",
+    kind: "transport",
+    arity: 0,
+    energyCost: 20,
+    legacyOpcode: RISC.OP_BIND,
+    reductionRuleRef: "bridge/transport/bind",
+  }],
+  [20, {
+    mnemonic: "SPORE_DRIVE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 50,
+    legacyOpcode: RISC.OP_SPORE_DRIVE,
+    reductionRuleRef: "bridge/transport/spore_drive",
+  }],
+  [21, {
+    mnemonic: "ENTANGLE",
+    kind: "transport",
+    arity: 0,
+    energyCost: 10,
+    legacyOpcode: RISC.OP_ENTANGLE,
+    reductionRuleRef: "bridge/transport/entangle",
+  }],
   [24, {
     mnemonic: "PLUG",
     kind: "structural",
@@ -234,6 +258,14 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     energyCost: 2,
     legacyOpcode: RISC.OP_ROLE,
     reductionRuleRef: "bridge/catalytic/role",
+  }],
+  [34, {
+    mnemonic: "RESOLVE",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 5,
+    legacyOpcode: RISC.OP_RESOLVE,
+    reductionRuleRef: "bridge/catalytic/resolve",
   }],
 ]);
 

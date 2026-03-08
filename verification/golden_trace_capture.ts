@@ -30,6 +30,8 @@ const SHARE_TRANSFER_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/share_transfer_capture.ts";
 const TENSEGRITY_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/tensegrity_capture.ts";
+const QUORUM_SYNC_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/quorum_sync_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
@@ -55,6 +57,8 @@ const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
   "standalone-share-transfer-capture";
 const TRACE_TENSEGRITY_RUNTIME_MODE =
   "standalone-tensegrity-capture";
+const TRACE_QUORUM_SYNC_RUNTIME_MODE =
+  "standalone-quorum-sync-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -410,6 +414,25 @@ type TensegrityCapturePayload = {
   snapshot: TensegritySnapshot;
 };
 
+type QuorumSyncSnapshot = {
+  quorum: {
+    sourcePc: number;
+    peer1Pc: number;
+    peer2Pc: number;
+    outsiderPc: number;
+  };
+  share: {
+    sourceEnergy: number;
+    targetEnergy: number;
+    hormoneAggression: number;
+  };
+};
+
+type QuorumSyncCapturePayload = {
+  hash: string;
+  snapshot: QuorumSyncSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -438,6 +461,7 @@ const COLLECTIVE_SYNCHRONY_CAPTURE_MARKER =
   "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
 const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
 const TENSEGRITY_CAPTURE_MARKER = "__OMEGA_TENSEGRITY_CAPTURE__";
+const QUORUM_SYNC_CAPTURE_MARKER = "__OMEGA_QUORUM_SYNC_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -1448,6 +1472,73 @@ const runTensegrityCaptureSubprocess = async (): Promise<
   return JSON.parse(
     line.slice(TENSEGRITY_CAPTURE_MARKER.length),
   ) as TensegrityCapturePayload;
+};
+
+const runQuorumSyncCaptureSubprocess = async (): Promise<
+  QuorumSyncCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", QUORUM_SYNC_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_PULSE_WORKERS: "1",
+      OMEGA_STRICT_DETERMINISM: "1",
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] quorum-sync subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(QUORUM_SYNC_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] quorum-sync capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(QUORUM_SYNC_CAPTURE_MARKER.length),
+  ) as QuorumSyncCapturePayload;
+};
+
+const notesForQuorumSyncCapture = async (
+  trace: GoldenTraceScenario,
+  payload: QuorumSyncCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- runtime_mode: ${TRACE_QUORUM_SYNC_RUNTIME_MODE}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Quorum PC Sync`,
+    ``,
+    `- source_pc=${payload.snapshot.quorum.sourcePc}`,
+    `- peer1_pc=${payload.snapshot.quorum.peer1Pc}`,
+    `- peer2_pc=${payload.snapshot.quorum.peer2Pc}`,
+    `- insider_sync=${
+      payload.snapshot.quorum.peer1Pc === 4 &&
+      payload.snapshot.quorum.peer2Pc === 4
+    }`,
+    `- outsider_pc=${payload.snapshot.quorum.outsiderPc} (should be 13)`,
+    ``,
+    `## Aggressive Share`,
+    ``,
+    `- hormone_aggression=${payload.snapshot.share.hormoneAggression}`,
+    `- target_energy=${payload.snapshot.share.targetEnergy} (should be 600 with bonus)`,
+  ].join("\n");
 };
 
 const notesForTensegrityCapture = async (
@@ -2536,6 +2627,61 @@ const runTensegrityTrace = async (
   };
 };
 
+const runQuorumSyncTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runQuorumSyncCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "quorum_sync",
+    runtime_mode: TRACE_QUORUM_SYNC_RUNTIME_MODE,
+    hash: payload.hash,
+    quorum_source_pc: payload.snapshot.quorum.sourcePc,
+    quorum_peer_1_pc: payload.snapshot.quorum.peer1Pc,
+    quorum_peer_2_pc: payload.snapshot.quorum.peer2Pc,
+    quorum_outsider_pc: payload.snapshot.quorum.outsiderPc,
+    share_aggression: payload.snapshot.share.hormoneAggression,
+    share_source_energy: payload.snapshot.share.sourceEnergy,
+    share_target_energy: payload.snapshot.share.targetEnergy,
+  };
+  const invariants = {
+    quorum_sync_hash: payload.hash,
+    quorum_sync_pc_peers: [
+      payload.snapshot.quorum.peer1Pc,
+      payload.snapshot.quorum.peer2Pc,
+    ],
+    share_bonus_verified: payload.snapshot.share.targetEnergy === 600,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_QUORUM_SYNC_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      quorumPcSync: payload.snapshot.quorum.peer1Pc === 4 &&
+        payload.snapshot.quorum.peer2Pc === 4,
+      aggressiveShareAmount: payload.snapshot.share.targetEnergy,
+      hormoneIndex2: payload.snapshot.share.hormoneAggression,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForQuorumSyncCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -2568,6 +2714,8 @@ export const captureGoldenTrace = async (
     ? await runShareTransferTrace(trace)
     : trace.id === "gt19_tensegrity_kinematics"
     ? await runTensegrityTrace(trace)
+    : trace.id === "gt21_quorum_sync"
+    ? await runQuorumSyncTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);

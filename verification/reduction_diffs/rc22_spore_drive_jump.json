@@ -1,0 +1,45 @@
+{
+  "case_id": "rc22_spore_drive_jump",
+  "baseline_trace_id": "gt20_bind_resolution",
+  "baseline_runtime_mode": "standalone-bind-capture",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "4a480d40d7b8abb38a8cb881f9799b5cd2684212235b25928eb7689850112e4c",
+  "reduction_digest": "967391f48c76283ad15416e938ec68fa4303940dfd9b9097ea2c94eda84c4b60",
+  "executed_digest_legacy": "4e8ab9cdec614e269b0543f5fcdca2da7b9ab348b1ea2df9450d381ef29a0bff",
+  "executed_digest_reduction": "a37982bf93118edaf62350a6c5b4743b4a8f204bbc9070b2f7536e905deaf8e2",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "props_match": true,
+    "bond_targets_match": true,
+    "bond_distances_match": true,
+    "damping_match": true,
+    "peer_energy_match": true,
+    "peer_pc_match": true,
+    "hive_memory_match": true,
+    "hive_balance_match": true,
+    "signal_grid_match": true,
+    "structure_grid_match": true,
+    "structure_intent_owner_match": true,
+    "structure_intent_value_match": true,
+    "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 50
+  },
+  "expectation_summary": {
+    "finalPc": 1,
+    "finalProps": {
+      "0": 500,
+      "2": 107,
+      "3": 107
+    }
+  }
+}

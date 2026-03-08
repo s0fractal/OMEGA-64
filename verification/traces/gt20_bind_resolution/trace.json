@@ -1,0 +1,9 @@
+{
+  "scenario": "standalone symbiotic bond resolution",
+  "runtime_mode": "standalone-bind-capture",
+  "tick_start": 0,
+  "tick_end": 1,
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "1f0f0a6d5c8b6128c295cb49f3e9d1c050b94273a16be9f180f7f6b2297abefc"
+}

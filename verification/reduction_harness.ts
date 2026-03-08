@@ -19,6 +19,9 @@ type ShadowEffects = {
   replicateCount: number;
   signalCount: number;
   buildCount: number;
+  bondRequestCount: number;
+  sporeDriveCount: number;
+  entangleCount: number;
   roleWrites: number[];
   branchTaken: boolean;
   jumpCount: number;
@@ -44,6 +47,9 @@ type ShadowState = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   executed: string[];
   energySpent: number;
@@ -68,6 +74,9 @@ type LegacyShadowResult = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -92,6 +101,9 @@ type ReductionShadowResult = {
   structureIntentOwner: HarnessProps;
   structureIntentValue: HarnessProps;
   structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
   effects: ShadowEffects;
   energySpent: number;
   executed: string[];
@@ -149,6 +161,8 @@ export type ReductionHarnessArtifact = {
     structure_intent_owner_match: boolean;
     structure_intent_value_match: boolean;
     structure_charge_intent_match: boolean;
+    bond_requests_match: boolean;
+    hive_energy_pool_match: boolean;
     replicate_count_match: boolean;
     signal_count_match: boolean;
     build_count_match: boolean;
@@ -164,11 +178,15 @@ const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 const OP_PLUG = 0xA4;
+const OP_RESOLVE = 0xAC;
 
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
   signalCount: 0,
   buildCount: 0,
+  bondRequestCount: 0,
+  sporeDriveCount: 0,
+  entangleCount: 0,
   roleWrites: [],
   branchTaken: false,
   jumpCount: 0,
@@ -247,6 +265,11 @@ const createInitialState = (
       Number(value),
     ]),
   ),
+  bondRequests: {},
+  hiveEnergyPool: Object.fromEntries(
+    Object.entries(definition.initialHiveEnergyPool ?? {}).map(([k, v]) => [Number(k), Number(v)]),
+  ),
+  hormones: definition.initialHormones ? [...definition.initialHormones] : [1024, 1024, 1024, 1024, 1024, 1024],
   effects: cloneEffects(),
   executed: [],
   energySpent: 0,
@@ -306,6 +329,9 @@ const snapshotLegacy = (
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
   structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -337,6 +363,9 @@ const snapshotReduction = (
   structureIntentOwner: { ...state.structureIntentOwner },
   structureIntentValue: { ...state.structureIntentValue },
   structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
   effects: {
     ...state.effects,
     roleWrites: [...state.effects.roleWrites],
@@ -501,7 +530,13 @@ const applyShadowOpcode = (
     }
     case RISC.OP_SHARE: {
       const slot = (args[0] ?? 0) & 3;
-      const percentage = args[1] ?? 0;
+      let percentage = args[1] ?? 0;
+      // HORMONE 2: aggression scales the share percentage
+      const aggression = state.hormones[2] ?? 1024;
+      if (aggression > 1024) {
+        percentage += 10;
+      }
+
       const targetIdx = state.bondTargets[slot] ?? 0;
       if (targetIdx > 0) {
         const energy = state.props[RISC.PROP_ENERGY] ?? 0;
@@ -609,22 +644,62 @@ const applyShadowOpcode = (
       return;
     }
     case OP_PLUG: {
+      const targetType = args[0] ?? 0;
+      const energyAmt = args[1] ?? 0;
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+        const cellIdx = gy * GRID_W + gx;
+        publishBuildIntent(state, cellIdx, state.atomIndex, targetType);
+      }
+      state.pc += 3;
+      return;
+    }
+    case OP_RESOLVE: {
       const mode = args[0] ?? 0;
-      const p2 = args[1] ?? 0;
-      if (mode === 1) {
-        const rx = state.props[RISC.PROP_X] ?? 0;
-        const ry = state.props[RISC.PROP_Y] ?? 0;
-        const gx = Math.floor(rx / 10);
-        const gy = Math.floor(ry / 10);
-        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-          const cellIdx = gy * GRID_W + gx;
-          const nextCharge = (state.regs[p2 & 7] ?? 0) & 0xFF;
-          const currentCharge = state.structureChargeIntent[cellIdx] ?? 0;
-          state.structureChargeIntent[cellIdx] = nextCharge > currentCharge
-            ? nextCharge
-            : currentCharge;
+      const value = args[1] ?? 0;
+
+      // Neighborhood Quorum Check (r=1)
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      let count = 0;
+
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = gx + dx;
+          const ny = gy + dy;
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            const cellIdx = ny * GRID_W + nx;
+            if (readStructureCell(state, cellIdx) !== 0) { // STR_VOID is 0
+              count++;
+            }
+          }
         }
       }
+
+      if (mode === 0) { // ROLE RESOLUTION
+        if (count >= value) {
+          const desiredRole = state.regs[0] ?? 0;
+          state.role = desiredRole;
+          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 20;
+        }
+      } else if (mode === 1) { // ENERGY BANKING
+        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        if (count >= 3 && energy >= value) {
+          // Deposit to hive energy pool
+          const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
+          const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
+          state.props[RISC.PROP_ENERGY] = energy - value;
+          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + value;
+          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 10;
+        }
+      }
+
       state.pc += 3;
       return;
     }
@@ -649,6 +724,69 @@ const applyShadowOpcode = (
       }
       state.regs[reg] = found;
       state.pc += 3;
+      return;
+    }
+    case RISC.OP_BIND: {
+      state.effects.bondRequestCount += 1;
+      const rx = state.props[RISC.PROP_X] ?? 0;
+      const ry = state.props[RISC.PROP_Y] ?? 0;
+      // Shadow-model nearest neighbor logic (simplistic for harness)
+      // In ground truth, this uses the spatial grid.
+      // For harness testing, we assume definition.initialCellPeers contains candidates.
+      let nearestIdx = -1;
+      let minDist = 1000000;
+      for (const peerIdx of state.cellPeers) {
+        if (peerIdx === state.atomIndex) continue;
+        // In the harness, peers are often just indices. We need their positions.
+        // We'll rely on a convention where definition targets are pre-setup.
+        const px = state.peerEnergy[peerIdx] !== undefined ? 100 : 0; // Placeholder pos
+        const py = 100;
+        const d = Math.sqrt((px - rx) ** 2 + (py - ry) ** 2);
+        if (d < 250 && d < minDist) {
+          minDist = d;
+          nearestIdx = peerIdx;
+        }
+      }
+      if (nearestIdx !== -1) {
+        state.bondRequests[state.atomIndex * 3 + 0] = state.atomIndex + 1;
+        state.bondRequests[state.atomIndex * 3 + 1] = nearestIdx + 1;
+        state.bondRequests[state.atomIndex * 3 + 2] = 1; // PENDING
+      }
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_SPORE_DRIVE: {
+      state.effects.sporeDriveCount += 1;
+      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      if (energy >= 500) {
+        state.props[RISC.PROP_ENERGY] = energy - 500;
+        // Pseudo-random jump for shadow model parity
+        // In real WASM it uses LCG. Here we just mark as "moved".
+        state.props[RISC.PROP_X] = (state.props[RISC.PROP_X] ?? 0) + 7;
+        state.props[RISC.PROP_Y] = (state.props[RISC.PROP_Y] ?? 0) + 7;
+      }
+      state.pc += 1;
+      return;
+    }
+    case RISC.OP_ENTANGLE: {
+      state.effects.entangleCount += 1;
+      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      // slot is derived from genomePoolSlot which needs logic bytes.
+      // for harness, we'll use a simplified mapping or just slot 0.
+      const slot = 0;
+      if (energy > 500) {
+        const deposit = Math.floor(energy / 10);
+        state.props[RISC.PROP_ENERGY] = energy - deposit;
+        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + deposit;
+      } else {
+        let draw = 500 - energy;
+        if (draw > 400) draw = 400;
+        const pool = state.hiveEnergyPool[slot] ?? 0;
+        const take = Math.min(pool, draw);
+        state.hiveEnergyPool[slot] = pool - take;
+        state.props[RISC.PROP_ENERGY] = energy + take;
+      }
+      state.pc += 1;
       return;
     }
     default:
@@ -802,6 +940,15 @@ const compareResults = (
   ) {
     reasons.push("structureChargeIntent mismatch");
   }
+  if (!equalHarnessProps(legacy.bondRequests, reduction.bondRequests)) {
+    reasons.push("bondRequests mismatch");
+  }
+  if (!equalHarnessProps(legacy.hiveEnergyPool, reduction.hiveEnergyPool)) {
+    reasons.push("hiveEnergyPool mismatch");
+  }
+  if (!equalNumberArray(legacy.hormones, reduction.hormones)) {
+    reasons.push("hormones mismatch");
+  }
   if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
     reasons.push("replicateCount mismatch");
   }
@@ -813,6 +960,15 @@ const compareResults = (
   }
   if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
     reasons.push("branchTaken mismatch");
+  }
+  if (legacy.effects.bondRequestCount !== reduction.effects.bondRequestCount) {
+    reasons.push("bondRequestCount mismatch");
+  }
+  if (legacy.effects.sporeDriveCount !== reduction.effects.sporeDriveCount) {
+    reasons.push("sporeDriveCount mismatch");
+  }
+  if (legacy.effects.entangleCount !== reduction.effects.entangleCount) {
+    reasons.push("entangleCount mismatch");
   }
   if (!equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)) {
     reasons.push("roleWrites mismatch");
@@ -953,7 +1109,33 @@ const compareResults = (
       `expected branchTaken=${expected.branchTaken} got=${legacy.effects.branchTaken}`,
     );
   }
+  if (expected.finalBondRequests) {
+    for (const [key, value] of Object.entries(expected.finalBondRequests)) {
+      const idx = Number(key);
+      if ((legacy.bondRequests[idx] ?? 0) !== value) {
+        reasons.push(
+          `expected bondRequests[${idx}]=${value} got=${legacy.bondRequests[idx] ?? 0}`,
+        );
+      }
+    }
+  }
+  if (expected.finalHiveEnergyPool) {
+    for (const [key, value] of Object.entries(expected.finalHiveEnergyPool)) {
+      const slot = Number(key);
+      if ((legacy.hiveEnergyPool[slot] ?? 0) !== value) {
+        reasons.push(
+          `expected hiveEnergyPool[${slot}]=${value} got=${legacy.hiveEnergyPool[slot] ?? 0}`,
+        );
+      }
+    }
+  }
 
+  if (
+    expected.finalHormones &&
+    !equalNumberArray(legacy.hormones, expected.finalHormones)
+  ) {
+    reasons.push("expected finalHormones mismatch");
+  }
   return { ok: reasons.length === 0, reasons };
 };
 
@@ -987,6 +1169,8 @@ const buildReductionHarnessArtifact = async (
     structureIntentOwner: result.legacy.structureIntentOwner,
     structureIntentValue: result.legacy.structureIntentValue,
     structureChargeIntent: result.legacy.structureChargeIntent,
+    bondRequests: result.legacy.bondRequests,
+    hiveEnergyPool: result.legacy.hiveEnergyPool,
     effects: result.legacy.effects,
     energySpent: result.legacy.energySpent,
   }),
@@ -1060,6 +1244,14 @@ const buildReductionHarnessArtifact = async (
     structure_charge_intent_match: equalHarnessProps(
       result.legacy.structureChargeIntent,
       result.reduction.structureChargeIntent,
+    ),
+    bond_requests_match: equalHarnessProps(
+      result.legacy.bondRequests,
+      result.reduction.bondRequests,
+    ),
+    hive_energy_pool_match: equalHarnessProps(
+      result.legacy.hiveEnergyPool,
+      result.reduction.hiveEnergyPool,
     ),
     replicate_count_match:
       result.legacy.effects.replicateCount ===

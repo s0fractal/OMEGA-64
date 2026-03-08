@@ -1,0 +1,21 @@
+{
+  "trace_id": "gt21_quorum_sync",
+  "scenario": "sovereignty protocol collective sync and aggressive share",
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "standalone-quorum-sync-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "quorumPcSync": true,
+    "aggressiveShareAmount": 600,
+    "hormoneIndex2": 1200,
+    "snapshotDigest": "e38039b401a6bb0e1727046914b4a09c3d9f7e483eb87de1fad3c99ed7e31bf8"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "e9fc3f81f810f4354c2ca3e60da863faf6a5aff7d0bca2973426f70722527b14",
+  "invariant_digest": "04feebf76e29e97bbecb497e6ee80fb1cc2428ac46a52a57554f72ec57c8b53f"
+}

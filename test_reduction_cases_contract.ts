@@ -10,8 +10,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    REDUCTION_CASES.length === 28,
-    "[reduction_cases] expected 28 reduction cases",
+    REDUCTION_CASES.length === 33,
+    "[reduction_cases] expected 33 reduction cases",
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
@@ -34,7 +34,9 @@ const main = () => {
         definition.baselineTraceId === "gt16_runtime_build_materialization" ||
         definition.baselineTraceId === "gt17_runtime_build_competition" ||
         definition.baselineTraceId === "gt18_runtime_build_stale_lock" ||
-        definition.baselineTraceId === "gt19_tensegrity_kinematics",
+        definition.baselineTraceId === "gt19_tensegrity_kinematics" ||
+        definition.baselineTraceId === "gt20_bind_resolution" ||
+        definition.baselineTraceId === "gt21_quorum_sync",
       `[reduction_cases] unexpected baseline anchor for ${definition.id}`,
     );
     expect(
@@ -103,6 +105,14 @@ const main = () => {
   expect(
     reductionCaseById("rc27_gt18_build_stale_lock_blocked") !== null,
     "[reduction_cases] rc27 must be addressable by id",
+  );
+  expect(
+    reductionCaseById("rc32_quorum_pc_sync") !== null,
+    "[reduction_cases] rc32 must be addressable by id",
+  );
+  expect(
+    reductionCaseById("rc33_share_percentage_drift") !== null,
+    "[reduction_cases] rc33 must be addressable by id",
   );
 
   console.log(

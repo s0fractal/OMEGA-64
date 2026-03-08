@@ -314,6 +314,7 @@ const OP_BUILD: u8 = 0xA8;
 const OP_SENSE: u8 = 0xA9;
 const OP_SPORE_DRIVE: u8 = 0xAA;
 const OP_ENTANGLE: u8 = 0xAB;
+const OP_RESOLVE: u8 = 0xAC;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -1440,6 +1441,56 @@ export function execute_atom(atomIndex: i32): void {
           }
         }
         pc += 1;
+        break;
+      }
+      case OP_RESOLVE: {
+        let mode = load<u8>(instr_base + (pc + 1) as usize) as i32;
+        let value = load<u8>(instr_base + (pc + 2) as usize) as i32;
+        
+        // Neighborhood Quorum Check (r=1)
+        let rx = getX(atomIndex) as i32;
+        let ry = getY(atomIndex) as i32;
+        let gx = rx / 10;
+        let gy = ry / 10;
+        let count: i32 = 0;
+        
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (dx == 0 && dy == 0) continue;
+            let nx = gx + dx;
+            let ny = gy + dy;
+            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+              let ni = ny * 140 + nx;
+              if (readStructureCell(ni) != STR_VOID) {
+                count++;
+              }
+            }
+          }
+        }
+
+        trace_atom(atomIndex, 0xAC, mode, count, energy);
+
+        if (mode == 0) { // ROLE RESOLUTION
+          // If neighbor count >= value (threshold), commit role from R0
+          if (count >= value) {
+            let desiredRole = getReg(atomIndex, 0);
+            setRole(atomIndex, desiredRole as u8);
+            resonance = resonance + 20;
+          }
+        } 
+        else if (mode == 1) { // ENERGY BANKING
+          // Deposit 'value' if quorum count >= 3 (hardcoded for now)
+          let depositValue = value * 1000;
+          if (count >= 3 && energy >= depositValue) {
+            const slot = genomePoolSlot(atomIndex);
+            const poolPtr = HIVE_ENERGY_POOL_OFF + (slot << 2) as usize;
+            energy -= depositValue;
+            atomic.add<i32>(poolPtr, depositValue);
+            resonance = resonance + 10;
+          }
+        }
+
+        pc += 3;
         break;
       }
       default: {

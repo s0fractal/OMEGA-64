@@ -1,0 +1,10 @@
+{
+  "control_specimen": "bind_resolution",
+  "runtime_mode": "standalone-bind-capture",
+  "worker_count": 1,
+  "strict_determinism": true,
+  "hash": "1f0f0a6d5c8b6128c295cb49f3e9d1c050b94273a16be9f180f7f6b2297abefc",
+  "initiator_id": 2,
+  "target_id": 3,
+  "request_status": 1
+}

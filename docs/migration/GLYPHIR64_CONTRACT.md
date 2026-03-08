@@ -76,21 +76,20 @@ surface.
 | `16`     | `REPLICATE`  | `0x80`        | transport / reproduction      | bridge candidate                                                                                                     |
 | `17`     | `SIGNAL`     | `0x81`        | transport / field write       | bridge candidate                                                                                                     |
 | `18`     | `SHARE`      | `0x83`        | transport / resource exchange | bridge candidate; bounded bonded-transfer parity active                                                              |
+| `19`     | `BIND`       | `0x82`        | transport / bond request      | bridge candidate                                                                                                     |
+| `20`     | `SPORE_DRIVE`| `0xAA`        | transport / relocation        | bridge candidate                                                                                                     |
+| `21`     | `ENTANGLE`   | `0xAB`        | transport / hive exchange     | bridge candidate                                                                                                     |
 | `24`     | `PLUG`       | `0xA4`        | structural IO                 | bridge candidate; bounded charge-resolve parity active, including max-intent competition semantics                   |
 | `25`     | `TENSEGRITY` | `0xA5`        | structural constraint         | bridge candidate; bounded bond-dist/damping parity active                                                            |
-| `32`     | `COLLECTIVE` | `0xA6`        | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active                                                         |
-| `33`     | `ROLE`       | `0xA7`        | catalytic / identity shift    | bridge candidate                                                                                                     |
 | `26`     | `BUILD`      | `0xA8`        | structural intent publish     | bridge candidate; bounded SOURCE materialization, owner-arbitration parity, and stale-lock fail-closed parity active |
 | `27`     | `SENSE`      | `0xA9`        | structural query              | bridge candidate; bounded stale-lock fallback parity active                                                          |
+| `32`     | `COLLECTIVE` | `0xA6`        | catalytic / group side-effect | bridge candidate; bounded mode `0/1/2/3/4/5/6` parity active                                                         |
+| `33`     | `ROLE`       | `0xA7`        | catalytic / identity shift    | bridge candidate                                                                                                     |
 
 ## Deferred opcodes
 
 The following stay outside the initial bridge subset until parity is clearer:
 
-- `OP_BIND (0x82)` because the active WASM dispatch surface does not currently
-  expose it alongside the other bridge-critical opcodes.
-- `OP_SPORE_DRIVE (0xAA)` and `OP_ENTANGLE (0xAB)` until their active runtime
-  path is confirmed end-to-end in the current kernel.
 - any future semantic-mutation glyphs in the reserve band.
 
 ## Debug and verification requirements

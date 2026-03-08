@@ -1,0 +1,46 @@
+{
+  "case_id": "rc23_entangle_hive_deposit",
+  "baseline_trace_id": "gt20_bind_resolution",
+  "baseline_runtime_mode": "standalone-bind-capture",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "0c88349d7aed3231460ab9e4e697fdd2e27ecf19be67661077378c6928c9f619",
+  "reduction_digest": "38c1763d98090a870e212bae0ff49732c2b1d64622e1e495182742469229a990",
+  "executed_digest_legacy": "31566a101124bb30a540985e0e1db4733e7a16026a758d4c9c7fec94f896303e",
+  "executed_digest_reduction": "9cca01b9317c8692a926d13a3dd1dd4c22495b41cf514a4e48f2ddd5acf048d2",
+  "diff": {
+    "final_pc_match": true,
+    "registers_match": true,
+    "role_match": true,
+    "props_match": true,
+    "bond_targets_match": true,
+    "bond_distances_match": true,
+    "damping_match": true,
+    "peer_energy_match": true,
+    "peer_pc_match": true,
+    "hive_memory_match": true,
+    "hive_balance_match": true,
+    "signal_grid_match": true,
+    "structure_grid_match": true,
+    "structure_intent_owner_match": true,
+    "structure_intent_value_match": true,
+    "structure_charge_intent_match": true,
+    "bond_requests_match": true,
+    "hive_energy_pool_match": true,
+    "replicate_count_match": true,
+    "signal_count_match": true,
+    "build_count_match": true,
+    "branch_taken_match": true,
+    "role_writes_match": true,
+    "energy_spent_delta": 11
+  },
+  "expectation_summary": {
+    "finalPc": 4,
+    "finalProps": {
+      "0": 4500
+    },
+    "finalHiveEnergyPool": {
+      "0": 500
+    }
+  }
+}

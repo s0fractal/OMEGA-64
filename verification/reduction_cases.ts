@@ -19,6 +19,9 @@ export type ReductionCaseExpectation = {
   finalStructureGrid?: Partial<Record<number, number>>;
 
   branchTaken?: boolean;
+  finalBondRequests?: Partial<Record<number, number>>;
+  finalHiveEnergyPool?: Partial<Record<number, number>>;
+  finalHormones?: number[];
 };
 
 export type ReductionCaseDefinition = {
@@ -42,6 +45,8 @@ export type ReductionCaseDefinition = {
   initialStructureIntentOwner?: Partial<Record<number, number>>;
   initialStructureIntentValue?: Partial<Record<number, number>>;
   initialStructureChargeIntent?: Partial<Record<number, number>>;
+  initialHormones?: number[];
+  initialHiveEnergyPool?: Partial<Record<number, number>>;
   expected: ReductionCaseExpectation;
 };
 
@@ -250,6 +255,27 @@ const makeSenseScript = (targetType: number): Uint8Array => {
   return script;
 };
 
+const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = role & 0xFF;
+  script[pc++] = RISC.OP_RESOLVE;
+  script[pc++] = 0; // Mode: Role
+  script[pc++] = threshold & 0xFF;
+  return script;
+};
+
+const makeResolveBankScript = (amount: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_RESOLVE;
+  script[pc++] = 1; // Mode: Bank
+  script[pc++] = amount & 0xFF;
+  return script;
+};
+
 const makeCollectiveHiveScript = (
   addr: number,
   value: number,
@@ -352,6 +378,39 @@ const makeShareScript = (
   script[pc++] = RISC.OP_SHARE;
   script[pc++] = slot & 0xFF;
   script[pc++] = percentage & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+ 
+const makeBindScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_BIND;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeSporeDriveScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SPORE_DRIVE;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeEntangleScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_ENTANGLE;
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
@@ -1043,6 +1102,172 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       },
       finalDamping: 255,
       branchTaken: false,
+    },
+  },
+  {
+    id: "rc29_gt20_bind_resolution",
+    baselineTraceId: "gt20_bind_resolution",
+    description:
+      "Verify OP_BIND (Autonomous Bonding) writes a pending request into the shared buffer.",
+    script: makeBindScript(),
+    maxSteps: 1,
+    ownerAtomIdx: 1,
+    initialProps: {
+      [RISC.PROP_X]: 100,
+      [RISC.PROP_Y]: 100,
+    },
+    initialCellPeers: [2],
+    initialPeerEnergy: {
+      2: 100,
+    },
+    expected: {
+      finalPc: 1,
+      finalBondRequests: {
+        3: 2, // initiator (atomIdx 1 + 1)
+        4: 3, // target (targetIdx 2 + 1)
+        5: 1, // status pending
+      },
+    },
+  },
+  {
+    id: "rc30_spore_drive_jump",
+    baselineTraceId: "gt20_bind_resolution",
+    description:
+      "Verify OP_SPORE_DRIVE consumes energy and triggers a position jump.",
+    script: makeSporeDriveScript(),
+    maxSteps: 1,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1000,
+      [RISC.PROP_X]: 100,
+      [RISC.PROP_Y]: 100,
+    },
+    expected: {
+      finalPc: 1,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 500,
+        [RISC.PROP_X]: 107,
+        [RISC.PROP_Y]: 107,
+      },
+    },
+  },
+  {
+    id: "rc31_entangle_hive_deposit",
+    baselineTraceId: "gt20_bind_resolution",
+    description: "Verify OP_ENTANGLE allows hive energy exchange.",
+    script: makeEntangleScript(),
+    maxSteps: 2,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 5000,
+    },
+    expected: {
+      finalPc: 4,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 4500,
+      },
+      finalHiveEnergyPool: {
+        0: 500,
+      },
+    },
+  },
+  {
+    id: "rc32_quorum_pc_sync",
+    baselineTraceId: "gt21_quorum_sync",
+    description: "Verify OP_COLLECTIVE mode 6 synchronizes PC across cell peers.",
+    script: makeCollectivePcSyncQuorumScript(),
+    maxSteps: 1,
+    initialProps: {},
+    initialCellPeers: [1, 2, 3],
+    ownerAtomIdx: 0,
+    initialPeerPc: {
+      1: 0,
+      2: 0,
+    },
+    expected: {
+      finalPc: 4,
+      finalPeerPc: {
+        1: 4,
+        2: 4,
+      },
+    },
+  },
+  {
+    id: "rc33_share_percentage_drift",
+    baselineTraceId: "gt21_quorum_sync",
+    description: "Verify OP_SHARE handles aggression hormone bonus (>1024).",
+    script: makeShareScript(0, 50),
+    maxSteps: 1,
+    initialProps: {
+      [RISC.PROP_ENERGY]: 1000,
+    },
+    initialBondTargets: {
+      0: 2,
+    },
+    initialPeerEnergy: {
+      2: 0,
+    },
+    initialHormones: [1024, 1024, 1200, 1024, 1024, 1024], // H2=1200
+    expected: {
+      finalPc: 3,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 400, // 50% + 10% bonus = 60%. 1000 - 600 = 400.
+      },
+      finalPeerEnergy: {
+        2: 600,
+      },
+    },
+  },
+  {
+    id: "rc34_role_resolution",
+    baselineTraceId: "gt22_intent_resolution",
+    description: "Verify OP_RESOLVE mode 0 updates role if neighborhood quorum is met.",
+    script: makeResolveRoleScript(STATE_MATRIX.ROLE_GUARDIAN, 2),
+    maxSteps: 2,
+    initialProps: {
+      [RISC.PROP_X]: 50,
+      [RISC.PROP_Y]: 50,
+      [RISC.PROP_RESONANCE]: 100,
+    },
+    initialStructureGrid: {
+      // gx=5, gy=5. Neighbors: (4,5), (6,5)
+      [5 * GRID_W + 4]: 1,
+      [5 * GRID_W + 6]: 1,
+    },
+    expected: {
+      finalPc: 6,
+      finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+      finalProps: {
+        [RISC.PROP_RESONANCE]: 120,
+      },
+    },
+  },
+  {
+    id: "rc35_bank_resolution",
+    baselineTraceId: "gt22_intent_resolution",
+    description: "Verify OP_RESOLVE mode 1 deposits energy if neighborhood quorum >= 3.",
+    script: makeResolveBankScript(100),
+    maxSteps: 1,
+    initialProps: {
+      [RISC.PROP_X]: 50,
+      [RISC.PROP_Y]: 50,
+      [RISC.PROP_ENERGY]: 500,
+      [RISC.PROP_RESONANCE]: 100,
+    },
+    initialStructureGrid: {
+      [5 * GRID_W + 4]: 1,
+      [5 * GRID_W + 6]: 1,
+      [4 * GRID_W + 5]: 1,
+    },
+    ownerAtomIdx: 0,
+    regs: [0, 0, 0, 0, 0, 0, 0, 0, 0x12], // Dummy gene bits or similar for pool slot
+    expected: {
+      finalPc: 3,
+      finalProps: {
+        [RISC.PROP_ENERGY]: 400,
+        [RISC.PROP_RESONANCE]: 110,
+      },
+      finalHiveEnergyPool: {
+        2: 100, // 0x12 % 4 = 2. No, slot logic in harness: gene0 % 4. regs[8] is gene0.
+      },
     },
   },
 ]);

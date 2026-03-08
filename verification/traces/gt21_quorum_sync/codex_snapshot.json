@@ -1,0 +1,12 @@
+{
+  "control_specimen": "quorum_sync",
+  "runtime_mode": "standalone-quorum-sync-capture",
+  "hash": "e38039b401a6bb0e1727046914b4a09c3d9f7e483eb87de1fad3c99ed7e31bf8",
+  "quorum_source_pc": 4,
+  "quorum_peer_1_pc": 4,
+  "quorum_peer_2_pc": 4,
+  "quorum_outsider_pc": 13,
+  "share_aggression": 1200,
+  "share_source_energy": 400,
+  "share_target_energy": 600
+}

@@ -1,0 +1,7 @@
+{
+  "invariant_digest": "bind_resolved_pending",
+  "tick": 1,
+  "initiator_id": 2,
+  "target_id": 3,
+  "request_status": 1
+}

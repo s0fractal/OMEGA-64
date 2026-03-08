@@ -498,6 +498,76 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "test_tensegrity.ts",
     ],
   },
+  {
+    id: "gt20_bind_resolution",
+    scenario: "standalone symbiotic bond resolution",
+    setup:
+      "standalone deterministic capture of OP_BIND writing a pending request into the shared buffer between two nearby atoms",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "initiatorId",
+      "targetId",
+      "requestStatus",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      initiatorId: "strict",
+      targetId: "strict",
+      requestStatus: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/bind_resolution_capture.ts",
+      "test_symbiosis.ts",
+    ],
+  },
+  {
+    id: "gt21_quorum_sync",
+    scenario: "sovereignty protocol collective sync and aggressive share",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE (quorum sync) and OP_SHARE (hormone-modulated aggression bonus)",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "quorumPcSync",
+      "aggressiveShareAmount",
+      "hormoneIndex2",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      quorumPcSync: "strict",
+      aggressiveShareAmount: "strict",
+      hormoneIndex2: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/quorum_sync_capture.ts",
+    ],
+  },
+  {
+    id: "gt22_intent_resolution",
+    scenario: "sovereignty protocol collective intent resolution (role/bank)",
+    setup:
+      "standalone deterministic capture of OP_RESOLVE for collective role shifts and energy banking via neighborhood quorum",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "roleResolution",
+      "bankResolution",
+      "quorumCount",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      roleResolution: "strict",
+      bankResolution: "strict",
+      quorumCount: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/intent_resolution_capture.ts",
+    ],
+  },
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(
