@@ -6,7 +6,9 @@ export context. It intentionally excludes historical era narratives.
 ## Runtime Topology (Active)
 
 1. Host orchestration: `PULSE.ts`
-2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`)
+2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`).
+   Requires bit-exact memory correspondence between Host and WASM kernel offsets
+   (e.g., literal `8,000,000` bytes vs binary `8MiB` alignment).
 3. Execution plane: `PULSE_WORKER.ts` + `build/release.wasm`
 4. Governance plane: `GATE.ts` + `SHIMS.ts`
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
@@ -149,6 +151,9 @@ export context. It intentionally excludes historical era narratives.
   - `safe-noop`: startup enters degraded mode with `runtimeWorkerCount=0` and
     no-op ticks.
 - Startup self-test (`OMEGA_STARTUP_SELFTEST*`) validates cold-start coherence.
+  Policy: The test is non-destructive for populated environments; if
+  `getActiveIndices()` is non-zero, the test is bypassed to preserve seeded
+  state.
 
 ## Coherence Gates (Active)
 

@@ -63,7 +63,8 @@ The system follows a strict energy budget:
 1. **Absolute Coherence**: No state mutation occurs without Gate admission and
    atomic synchronization.
 2. **Deterministic Resonance**: Every system state is a reproducible function of
-   time and seed.
+   time and seed. Requires bit-exact memory address space resonance between Host
+   and WASM kernels (e.g. alignment of `SAFETY_BUFFER` and all lattice offsets).
 3. **Genetic Autonomy**: Atoms are sovereign; their behavior is dictated by
    their localized instruction memory, not global hardcoding.
 

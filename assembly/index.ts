@@ -8,10 +8,12 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const TRACE_THRESHOLD: u64 = 20; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const STR_WIDTH: i32 = 140;
+const STR_HEIGHT: i32 = 80;
+const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 const RESOURCE_MAX: i32 = 2000000000;
 
-// EXACT UNIFIED OFFSETS
+// EXACT UNIFIED OFFSETS matching OFFSETS.ts
 const MAX_ATOMS: i32 = 100000;
 const SAFETY_BUFFER: usize = 8000000;
 const TICK_COUNTER_OFF: usize = SAFETY_BUFFER - 8;
@@ -31,7 +33,6 @@ const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 23200000;
 const ROLES_OFFSET: usize = SAFETY_BUFFER + 33200000;
 const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 34200000;
 const SIGNAL_GRID_OFF: usize = SAFETY_BUFFER + 35200000;
-const DECAY_COUNTER_OFF: usize = SAFETY_BUFFER + 35000000; // Keep separate if needed, but watch it
 const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 36200000;
 const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 37200000;
 const BOND_DIST_OFF: usize = SAFETY_BUFFER + 38200000;
@@ -41,6 +42,7 @@ const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
 const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
 const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 19600000;
+const COHERENCE_OFF: usize = SAFETY_BUFFER + 40300100;
 const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40300104;
 const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40400000;
 const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 40600000;
@@ -57,8 +59,8 @@ const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
 const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
-const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -1166,10 +1168,10 @@ export function execute_atom(atomIndex: i32): void {
         secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
         fireSignal(atomIndex); // Also fire biological signal to neighbors
 
-        // --- STAGE 11.1: NEURAL SYNTHESIS ---
-        // Aggregate signal into global coherence field
-        atomic.add<i32>(NEURAL_COHERENCE_OFF as usize, 1);
-
+        // Vector 10: Signal aggregation into coherence field (accumulator)
+        const prevVal = atomic.add<i32>(COHERENCE_OFF as usize, 1);
+        const postVal = atomic.load<i32>(COHERENCE_OFF as usize);
+        trace_atom(atomIndex, 0x81, prevVal, postVal, 0); 
         pc += 1;
         break;
       }
@@ -1641,12 +1643,6 @@ export function tick_structure_grid(): void {
 
       let type = cellVal & 0xFF;
       let currentCharge = (cellVal >> 16) & 0xFF;
-      if (type < STR_VOID || type > STR_CAPACITOR) {
-        if (currentCharge < 64) currentCharge = 64;
-        cellVal = (cellVal & ~0x00FFFF00) | (currentCharge << 16) | STR_WIRE;
-        atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), cellVal);
-        type = STR_WIRE;
-      }
 
       // --- AUTOPOIESIS: Spontaneous Crystallization ---
       if (type == STR_VOID) {
@@ -1654,9 +1650,10 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 8; n++) {
           let nx = x + dir8X(n);
           let ny = y + dir8Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
-            let ni = ny * GRID_W + nx;
-            let nCharge = readStructureCharge(ni);
+          if (nx >= 0 && nx < STR_WIDTH && ny >= 0 && ny < STR_HEIGHT) {
+            let ni = ny * STR_WIDTH + nx;
+            const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+            const nCharge = (nVal >> 16) & 0xFF;
             if (nCharge > maxNCharge) maxNCharge = nCharge;
           }
         }
@@ -1668,6 +1665,10 @@ export function tick_structure_grid(): void {
             STRUCTURE_GRID_OFF + (i << 2),
             STR_WIRE | (seedCharge << 16),
           );
+          // Trace only the first few to avoid flood
+          if (i == 5670) {
+            trace_atom(i, 0x378, maxNCharge, 1, 1);
+          }
         } else if (currentCharge > 0) {
           const decayed = currentCharge > 8 ? currentCharge - 8 : 0;
           atomic.store<i32>(
@@ -1853,9 +1854,17 @@ export function get_neural_coherence(): i32 {
   }
 
   // Coherence = average amplitude across all oscillators (capped at 2000)
-  if (oscillatorCount == 0) return 0;
-  let coherence = totalAmplitude / oscillatorCount;
-  return coherence > 2000 ? 2000 : coherence;
+  let oscCoherence: i32 = 0;
+  if (oscillatorCount > 0) {
+    oscCoherence = totalAmplitude / oscillatorCount;
+    if (oscCoherence > 2000) oscCoherence = 2000;
+  }
+
+  // Vector 10: Unify with OP_SIGNAL accumulator
+  let signalSignals = atomic.load<i32>(COHERENCE_OFF as usize);
+  trace_atom(8888, 111, signalSignals, 0, 0); 
+  
+  return oscCoherence + signalSignals;
 }
 
 // SOVEREIGN_ORACLE writes computed coherence back to shared broadcast channel
@@ -1868,5 +1877,5 @@ export function clear_secretion_stats(): void {
 }
 
 export function reset_neural_coherence(): void {
-  atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, 0);
+  atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
 }
