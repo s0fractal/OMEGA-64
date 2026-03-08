@@ -50,6 +50,7 @@ let lineageView: BigUint64Array | null = null;
 let logicView: BigUint64Array | null = null;
 let bondRequestsView: Int32Array | null = null;
 let energiesView: Int32Array | null = null;
+let resonancesView: Int32Array | null = null;
 let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
 
@@ -62,6 +63,7 @@ const SYS_SET_ROLE = 6;
 const SYS_MUTATE = 7;
 const SYS_MSG = 8;
 const SYS_READ_INBOX = 9;
+const SYS_TRANSFER = 10;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -88,6 +90,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_MUTATE: gasCost = 50; break;
     case SYS_MSG: gasCost = 20; break;
     case SYS_READ_INBOX: gasCost = 2; break;
+    case SYS_TRANSFER: gasCost = 10; break;
     default: gasCost = 1; break;
   }
 
@@ -204,6 +207,36 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_TRANSFER: {
+      const targetIdx = r1;
+      const resourceType = r2; // 0 = Energy, 1 = Resonance
+      const amount = r3;
+      
+      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && amount > 0) {
+        if (resourceType === 0 && energiesView) { // ENERGY
+          const senderEnergy = Atomics.load(energiesView, atomIdx);
+          // amount is in standard units (1 = 1 energy). We compare with scaled.
+          const scaledAmount = amount * 1000;
+          if (senderEnergy >= scaledAmount) {
+             Atomics.sub(energiesView, atomIdx, scaledAmount);
+             Atomics.add(energiesView, targetIdx, scaledAmount);
+             console.log(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`);
+          } else {
+             console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy to transfer ${amount}`);
+          }
+        } else if (resourceType === 1 && resonancesView) { // RESONANCE
+          const senderResonance = Atomics.load(resonancesView, atomIdx);
+          if (senderResonance >= amount) {
+             Atomics.sub(resonancesView, atomIdx, amount);
+             Atomics.add(resonancesView, targetIdx, amount);
+             console.log(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`);
+          } else {
+             console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`);
+          }
+        }
+      }
+      break;
+    }
     default:
       console.log(`   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`);
       break;
@@ -272,6 +305,7 @@ self.onmessage = async (e) => {
     logicView = new BigUint64Array(sb, OFFSETS.LOGIC_OFFSET, MAX_ATOMS);
     bondRequestsView = new Int32Array(sb, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+    resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(sb, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
     mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
     const idx = Number(workerIndex);

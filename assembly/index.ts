@@ -1308,8 +1308,12 @@ export function execute_atom(atomIndex: i32): void {
   // HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
   let repairH: i32 = getHormone(4) as i32;
   let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
-  if (resonance > 0) setResonance(atomIndex, resonance - resonanceDecay);
-  setEnergy(atomIndex, energy > metabolicCost ? energy - metabolicCost : 0);
+  // Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
+  let finalEnergy: i32 = getEnergy(atomIndex) as i32;
+  let finalResonance: i32 = getResonance(atomIndex) as i32;
+  
+  if (finalResonance > 0) setResonance(atomIndex, finalResonance - resonanceDecay);
+  setEnergy(atomIndex, finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0);
 }
 
 // --- VECTOR 8: THE CRYSTALLINE LATTICE ---
