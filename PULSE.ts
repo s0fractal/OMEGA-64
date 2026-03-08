@@ -2281,17 +2281,13 @@ export const PULSE = {
       federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
     });
 
-    // --- STAGE 11.1: NEURAL SYNTHESIS ---
-    // Reset global neural coherence aggregation field for the new tick.
-    Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0);
-
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
       PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
-      // Poll Coherence from Worker 0 (WASM primary)
+      // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
       const coherencePulseId = nextPulseId();
       const coherenceRes = await postAndWait<{ coherence: number }>(
         0,
@@ -2301,6 +2297,10 @@ export const PULSE = {
       );
       const coherence = coherenceRes.coherence ?? 0;
       SOVEREIGN_ORACLE.neuralCoherence = coherence;
+
+      // Reset global neural coherence aggregation field for the NEXT tick.
+      Atomics.store(STATE_MATRIX.coherence, 0, 0); // Accumulator (Vector 10)
+      Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0); // Broadcast
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));

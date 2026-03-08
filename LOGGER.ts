@@ -28,7 +28,7 @@ const normalizeLevel = (raw: string | undefined): LogLevel => {
   if (value === "silent" || value === "off" || value === "none") {
     return "silent";
   }
-  return "warn";
+  return "info";
 };
 
 let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));

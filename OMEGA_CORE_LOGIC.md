@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-07T23:23:14.148Z*
+*Generated: 2026-03-08T02:02:47.890Z*
 *Exported Files: 108*
 *Runtime Roots: 7*
 *Runtime Closure Files: 62*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 15*
 *Manifest SHA256: f5acceeb7ebb597119d1383ab5f10515ea6ed688519cc08ead450c928f943724*
 *Export Set SHA256: 3822b3f528a5622d463c661ba709f5126ee8a771bd691d1cc4dc41f5195647e7*
-*Export Content SHA256: 2d713bdfd6e9e1ad73faa531304d84143ed8271cf64012a347d23e36c6b3f3dc*
-*Git Commit: 9a9ead9abee9*
+*Export Content SHA256: c9b29fcd63b7e458f4104d1f73a0f7da982c010953c095af5179adf474d500bc*
+*Git Commit: 800f9463e150*
 
 ---
 
@@ -3739,7 +3739,9 @@ export context. It intentionally excludes historical era narratives.
 ## Runtime Topology (Active)
 
 1. Host orchestration: `PULSE.ts`
-2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`)
+2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`).
+   Requires bit-exact memory correspondence between Host and WASM kernel offsets
+   (e.g., literal `8,000,000` bytes vs binary `8MiB` alignment).
 3. Execution plane: `PULSE_WORKER.ts` + `build/release.wasm`
 4. Governance plane: `GATE.ts` + `SHIMS.ts`
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
@@ -3837,7 +3839,16 @@ export context. It intentionally excludes historical era narratives.
   - `replication_bias` (H3) shifts the `OP_REPLICATE` energy threshold.
   - `aggression` (H2) scales the `OP_SHARE` percentage.
   - `repair_drive` (H4) modulates resonance decay.
-  - `mutation_friction` (H5) adds a metabolic floor to complex operations.
+  - `mutation_friction` (H5) adds a metabolic floor to complex operations and
+    modulates genome mutation chance.
+- **Genetic Evolution (Stage 8.1)**: Atoms possess autonomous genomic mutation
+  capabilities.
+  - **Mutation Engine**: Introduced stochastic bit-flipping in the 64-bit genome
+    during replication.
+  - **Replayability**: Mutation is deterministic, derived from `atomId` and
+    `systemTicker`.
+  - **Stability Control**: `H5 (mutation_friction)` allows the global mind-field
+    to freeze or accelerate evolution.
 - **Deno-Native Architecture**: The project has fully transitioned to a
   Deno-native environment. Legacy `node_modules`, `package.json`, and
   `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
@@ -3873,6 +3884,9 @@ export context. It intentionally excludes historical era narratives.
   - `safe-noop`: startup enters degraded mode with `runtimeWorkerCount=0` and
     no-op ticks.
 - Startup self-test (`OMEGA_STARTUP_SELFTEST*`) validates cold-start coherence.
+  Policy: The test is non-destructive for populated environments; if
+  `getActiveIndices()` is non-zero, the test is bypassed to preserve seeded
+  state.
 
 ## Coherence Gates (Active)
 
@@ -3921,10 +3935,12 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const TRACE_THRESHOLD: u64 = 20; // Trace logic for atoms with ID < TRACE_THRESHOLD
+const STR_WIDTH: i32 = 140;
+const STR_HEIGHT: i32 = 80;
+const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 const RESOURCE_MAX: i32 = 2000000000;
 
-// EXACT UNIFIED OFFSETS
+// EXACT UNIFIED OFFSETS matching OFFSETS.ts
 const MAX_ATOMS: i32 = 100000;
 const SAFETY_BUFFER: usize = 8000000;
 const TICK_COUNTER_OFF: usize = SAFETY_BUFFER - 8;
@@ -3944,7 +3960,6 @@ const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 23200000;
 const ROLES_OFFSET: usize = SAFETY_BUFFER + 33200000;
 const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 34200000;
 const SIGNAL_GRID_OFF: usize = SAFETY_BUFFER + 35200000;
-const DECAY_COUNTER_OFF: usize = SAFETY_BUFFER + 35000000; // Keep separate if needed, but watch it
 const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 36200000;
 const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 37200000;
 const BOND_DIST_OFF: usize = SAFETY_BUFFER + 38200000;
@@ -3954,6 +3969,7 @@ const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
 const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
 const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 19600000;
+const COHERENCE_OFF: usize = SAFETY_BUFFER + 40300100;
 const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40300104;
 const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40400000;
 const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 40600000;
@@ -3970,8 +3986,8 @@ const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
 const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
 const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
-const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024; // 6x Uint16 physiological signals
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const SPAWN_MAX: i32 = 1024;
@@ -4147,7 +4163,8 @@ function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void {
 function writeBondRequest(initiator: i32, target: i32): void {
   let offset = BOND_REQUESTS_OFFSET + (initiator * 12);
   store<i32>(offset as usize, initiator + 1);
-  store<i32>(offset + 4 as usize, target);
+  store<i32>((offset + 4) as usize, target + 1);
+  store<i32>((offset + 8) as usize, 1); // Status: Active
 }
 
 function getSpatialGridCount(gx: i32, gy: i32): i32 {
@@ -4793,18 +4810,35 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     let dist = Mathf.sqrt(dx * dx + dy * dy);
     if (dist < 1.0) dist = 1.0;
 
+    // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
+    let myRes = getReadResonance(idx);
+    let targetRes = getReadResonance(targetIdx);
+    
+    // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
+    if (targetRes > myRes) {
+      addResonanceDelta(idx, (targetRes - myRes) / 20);
+    } else if (myRes > targetRes) {
+      addResonanceDelta(idx, -((myRes - targetRes) / 20));
+    }
+
+    // 2. Resonance-Weighted Stiffness: Bonds are stronger if atoms are synchronized
+    let sumRes: f32 = (myRes as f32) + (targetRes as f32);
+    let resonanceWeight: f32 = sumRes / 600.0;
+    if (resonanceWeight < 0.5) resonanceWeight = 0.5;
+    if (resonanceWeight > 2.0) resonanceWeight = 2.0;
+
     if (stiffness > 0.8) {
-      let force = (dist - (targetDist as f32)) * 1.5;
+      let force = (dist - (targetDist as f32)) * 1.5 * resonanceWeight;
       fx += (dx / dist) * force;
       fy += (dy / dist) * force;
     } else {
       let elasticRange: f32 = 10.0;
       if (dist > (targetDist as f32) + elasticRange) {
-        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1;
+        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 * resonanceWeight;
         fx += (dx / dist) * force;
         fy += (dy / dist) * force;
       } else if (dist < (targetDist as f32) - elasticRange) {
-        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2;
+        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 * resonanceWeight;
         fx -= (dx / dist) * force;
         fy -= (dy / dist) * force;
       }
@@ -4993,7 +5027,7 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 → up to -512 energy / -100 resonance)
+        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 -> up to -512 energy / -100 resonance)
         let biasH: i32 = getHormone(3) as i32;
         let replicateEThresh: i32 = 1500 - (biasH >> 2); // 1500..988
         let replicateRThresh: i32 = 200 - (biasH >> 4);  // 200..72
@@ -5010,10 +5044,29 @@ export function execute_atom(atomIndex: i32): void {
           if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
             let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
             let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
-            let parentGenome = load<u64>(
-              (LOGIC_OFFSET + (atomIndex << 3) as usize) as usize,
-            );
-            store<u64>(slotOff, parentGenome);
+            
+            // --- ERA 8.1: GENETIC MUTATION ---
+            let parentGenome = load<u64>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+            let frictionH: i32 = getHormone(5) as i32; // mutation_friction
+            
+            // Deterministic seed blending: Atom ID + Tick + Resonance
+            let tick = atomic.load<i32>(TICK_COUNTER_OFF as usize);
+            let seed = (atomIndex as u32) ^ (tick as u32) ^ (resonance as u32);
+            seed = lcgNext(seed);
+            
+            // Mutation chance: if (seed % 1024) > frictionH, then mutate
+            let childGenome = parentGenome;
+            if (((seed & 1023) as i32) > (frictionH >> 1)) {
+                 // Mutate 1 bit
+                 seed = lcgNext(seed);
+                 let bitPos = seed % 64;
+                 childGenome ^= (1 as u64) << (bitPos as u64);
+                 
+                 // Apply mutation resonance tax: genetic instability cost
+                 resonance = resonance > 50 ? resonance - 50 : 0;
+            }
+
+            store<u64>(slotOff, childGenome);
             store<i16>((slotOff + 8) as usize, childGx as i16);
             store<i16>((slotOff + 10) as usize, childGy as i16);
             store<i32>((slotOff + 12) as usize, energy >> 1);
@@ -5041,6 +5094,46 @@ export function execute_atom(atomIndex: i32): void {
         }
         secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
         fireSignal(atomIndex); // Also fire biological signal to neighbors
+
+        // Vector 10: Signal aggregation into coherence field (accumulator)
+        const prevVal = atomic.add<i32>(COHERENCE_OFF as usize, 1);
+        const postVal = atomic.load<i32>(COHERENCE_OFF as usize);
+        trace_atom(atomIndex, 0x81, prevVal, postVal, 0); 
+        pc += 1;
+        break;
+      }
+      case OP_BIND: {
+        // Bio-Digital Integration: Seek neighbor to bond
+        if (energy >= 50 && resonance >= 10) {
+          energy -= 50;
+          resonance -= 10;
+          
+          let gx = curX / 10;
+          let gy = curY / 10;
+          
+          let count = getSpatialGridCount(gx, gy);
+          let nearestIdx = -1;
+          let minDist: f32 = 25.0; // Max bonding range
+          
+          for (let i = 0; i < count; i++) {
+            let neighborIdx = getSpatialGridAtom(gx, gy, i);
+            if (neighborIdx != atomIndex && neighborIdx >= 0 && neighborIdx < MAX_ATOMS) {
+              let nx = getReadX(neighborIdx) as f32;
+              let ny = getReadY(neighborIdx) as f32;
+               let dx = nx - (curX as f32);
+               let dy = ny - (curY as f32);
+               let d = Mathf.sqrt(dx*dx + dy*dy);
+              if (d < minDist) {
+                minDist = d;
+                nearestIdx = neighborIdx;
+              }
+            }
+          }
+          
+          if (nearestIdx != -1) {
+            writeBondRequest(atomIndex, nearestIdx);
+          }
+        }
         pc += 1;
         break;
       }
@@ -5291,7 +5384,26 @@ export function execute_atom(atomIndex: i32): void {
   let entropyH: i32 = getHormone(0) as i32;
   // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
   let frictionH: i32 = getHormone(5) as i32;
-  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12) + (frictionH >> 8);
+
+  // --- [x] **Stage 11.1: Neural Synthesis (The Global Coherence)**
+  // - [x] Implement global signal aggregation in WASM kernel.
+  // - [x] Link `NEURAL_COHERENCE` to metabolic tax reduction.
+  // - [x] Synchronize atomic `PHASE` with global pulse harmonics.
+  // - [/] Verify systemic feedback via `test_neural_synthesis.ts`.
+  let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
+  // Coherence discount: if global coherence is high (>100 signals), reduce cost
+  let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
+  
+  let metabolicCost = 1 + (step >> (1 + discount)) + ((step * entropyH) >> (12 + discount)) + (frictionH >> 8);
+
+  // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
+  if (coherenceVal > 500) {
+    // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
+    let curPhase: i32 = getPhase(atomIndex) as i32;
+    if (curPhase < 128) curPhase += 2;
+    else if (curPhase > 128) curPhase -= 1;
+    setPhase(atomIndex, curPhase as u8);
+  }
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
@@ -5321,6 +5433,8 @@ const STR_DIODE: i32 = 3;
 const STR_SOURCE: i32 = 4;
 const STR_SINK: i32 = 5;
 const STR_CAPACITOR: i32 = 6;
+const STR_INVERTER: i32 = 7;
+const STR_LATCH: i32 = 8;
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;
 
@@ -5456,12 +5570,6 @@ export function tick_structure_grid(): void {
 
       let type = cellVal & 0xFF;
       let currentCharge = (cellVal >> 16) & 0xFF;
-      if (type < STR_VOID || type > STR_CAPACITOR) {
-        if (currentCharge < 64) currentCharge = 64;
-        cellVal = (cellVal & ~0x00FFFF00) | (currentCharge << 16) | STR_WIRE;
-        atomic.store<i32>(STRUCTURE_GRID_OFF + (i << 2), cellVal);
-        type = STR_WIRE;
-      }
 
       // --- AUTOPOIESIS: Spontaneous Crystallization ---
       if (type == STR_VOID) {
@@ -5469,9 +5577,10 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 8; n++) {
           let nx = x + dir8X(n);
           let ny = y + dir8Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
-            let ni = ny * GRID_W + nx;
-            let nCharge = readStructureCharge(ni);
+          if (nx >= 0 && nx < STR_WIDTH && ny >= 0 && ny < STR_HEIGHT) {
+            let ni = ny * STR_WIDTH + nx;
+            const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
+            const nCharge = (nVal >> 16) & 0xFF;
             if (nCharge > maxNCharge) maxNCharge = nCharge;
           }
         }
@@ -5483,6 +5592,10 @@ export function tick_structure_grid(): void {
             STRUCTURE_GRID_OFF + (i << 2),
             STR_WIRE | (seedCharge << 16),
           );
+          // Trace only the first few to avoid flood
+          if (i == 5670) {
+            trace_atom(i, 0x378, maxNCharge, 1, 1);
+          }
         } else if (currentCharge > 0) {
           const decayed = currentCharge > 8 ? currentCharge - 8 : 0;
           atomic.store<i32>(
@@ -5494,7 +5607,16 @@ export function tick_structure_grid(): void {
       }
 
       const state = (cellVal >> 24) & 0xFF;
-      let nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
+      
+      // AUTOPOIESIS: Resonance Shielding
+      // Read average phase from spatial grid average slot (slot 31)
+      let spatialIdx = y * 140 + x;
+      let avgPhase = atomic.load<i32>(SPATIAL_GRID_OFFSET + (spatialIdx << 7) + (31 << 2));
+      
+      let decay = 10;
+      if (avgPhase > 128) decay = 2; // Shielded
+      
+      let nextCharge = currentCharge > decay ? currentCharge - decay : 0;
 
       if (type == STR_SOURCE) {
         nextCharge = 255;
@@ -5543,6 +5665,38 @@ export function tick_structure_grid(): void {
           let flow = nCharge - 5;
           if (flow > nextCharge) nextCharge = flow;
         }
+      } else if (type == STR_INVERTER) {
+        let maxNeighborCharge: i32 = 0;
+        for (let n = 0; n < 4; n++) {
+           let nx = x + dir4X(n);
+           let ny = y + dir4Y(n);
+           if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+             let ni = ny * GRID_W + nx;
+             let nCharge = readStructureCharge(ni);
+             if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
+           }
+        }
+        if (maxNeighborCharge < 50) nextCharge = 255;
+        else nextCharge = 0;
+      } else if (type == STR_LATCH) {
+        let newState = state;
+        // n=0 (Left): SET
+        let setX = x + dir4X(0);
+        let setY = y + dir4Y(0);
+        if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
+          if (readStructureCharge(setY * GRID_W + setX) > 100) newState = 1;
+        }
+        // n=1 (Right): RESET
+        let rstX = x + dir4X(1);
+        let rstY = y + dir4Y(1);
+        if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
+          if (readStructureCharge(rstY * GRID_W + rstX) > 100) newState = 0;
+        }
+        if (newState != state) {
+           cellVal = (cellVal & 0x00FFFFFF) | (newState << 24);
+        }
+        if (newState == 1) nextCharge = 255;
+        else nextCharge = 0;
       }
 
       if (type != STR_SOURCE && nextCharge == 0) {
@@ -5627,9 +5781,17 @@ export function get_neural_coherence(): i32 {
   }
 
   // Coherence = average amplitude across all oscillators (capped at 2000)
-  if (oscillatorCount == 0) return 0;
-  let coherence = totalAmplitude / oscillatorCount;
-  return coherence > 2000 ? 2000 : coherence;
+  let oscCoherence: i32 = 0;
+  if (oscillatorCount > 0) {
+    oscCoherence = totalAmplitude / oscillatorCount;
+    if (oscCoherence > 2000) oscCoherence = 2000;
+  }
+
+  // Vector 10: Unify with OP_SIGNAL accumulator
+  let signalSignals = atomic.load<i32>(COHERENCE_OFF as usize);
+  trace_atom(8888, 111, signalSignals, 0, 0); 
+  
+  return oscCoherence + signalSignals;
 }
 
 // SOVEREIGN_ORACLE writes computed coherence back to shared broadcast channel
@@ -5638,7 +5800,11 @@ export function set_neural_coherence(value: i32): void {
 }
 
 export function clear_secretion_stats(): void {
-  memory.fill(SECRETION_STATS_OFF, 0, 40);
+  memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
+}
+
+export function reset_neural_coherence(): void {
+  atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
 }
 
 ```
@@ -17958,7 +18124,7 @@ const normalizeLevel = (raw: string | undefined): LogLevel => {
   if (value === "silent" || value === "off" || value === "none") {
     return "silent";
   }
-  return "warn";
+  return "info";
 };
 
 let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
@@ -23627,8 +23793,8 @@ self.onmessage = async (e) => {
         gy: number,
         target: number,
       ) => {
-        if (idx < 100) { // TRACE_THRESHOLD
-          LOGGER.debug(
+        if (idx < 10000) { // Keep threshold high for now
+          LOGGER.info(
             `   [TRACE] At ${idx} | OP: 0x${
               op.toString(16)
             } | Pos: (${gx},${gy}) | PC: ${target}`,
@@ -26070,13 +26236,14 @@ export const PULSE = {
       daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
       federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
     });
+
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
       PULSE.currentPulseId = currentTick;
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
-      // Poll Coherence from Worker 0 (WASM primary)
+      // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
       const coherencePulseId = nextPulseId();
       const coherenceRes = await postAndWait<{ coherence: number }>(
         0,
@@ -26086,6 +26253,10 @@ export const PULSE = {
       );
       const coherence = coherenceRes.coherence ?? 0;
       SOVEREIGN_ORACLE.neuralCoherence = coherence;
+
+      // Reset global neural coherence aggregation field for the NEXT tick.
+      Atomics.store(STATE_MATRIX.coherence, 0, 0); // Accumulator (Vector 10)
+      Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0); // Broadcast
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
@@ -33804,6 +33975,8 @@ export const STRUCTURE = {
   SOURCE: 4, // Constant charge
   SINK: 5, // Energy drain
   CAPACITOR: 6, // Slow decay
+  INVERTER: 7, // NOT gate
+  LATCH: 8, // SR-Latch
 };
 
 export const STATE_MATRIX = {
@@ -34411,7 +34584,16 @@ export const STRUCTURE_ENGINE = {
                     continue;
                 }
 
-                let nextCharge = Math.max(0, currentCharge - 10);
+                const state = STATE_MATRIX.getGridState(i);
+
+                // AUTOPOIESIS: Resonance Shielding
+                const spatialIdx = y * 140 + x;
+                const avgPhase = STATE_MATRIX.spatialGrid[spatialIdx * 32 + 31];
+                
+                let decay = 10;
+                if (avgPhase > 128) decay = 2; // Shielded
+
+                let nextCharge = Math.max(0, currentCharge - decay);
 
                 if (type === STRUCTURE.SOURCE) {
                     nextCharge = 255;
@@ -34432,17 +34614,16 @@ export const STRUCTURE_ENGINE = {
                     if (type === STRUCTURE.WIRE) {
                         nextCharge = Math.max(nextCharge, maxNeighborCharge - 5);
                     } else if (type === STRUCTURE.NODE) {
-                        const state = STATE_MATRIX.getGridState(i);
-                        if (state === 1) {
+                        if (state === 1) { // AND
                             nextCharge = (chargedNeighborCount >= 2) ? 255 : nextCharge;
-                        } else {
+                        } else { // OR
                             nextCharge = (chargedNeighborCount >= 1) ? 255 : nextCharge;
                         }
                     } else if (type === STRUCTURE.CAPACITOR) {
                         nextCharge = Math.max(nextCharge, maxNeighborCharge - 2);
                     }
                 } else if (type === STRUCTURE.DIODE) {
-                    const direction = STATE_MATRIX.getGridState(i);
+                    const direction = state;
                     let ni = -1;
                     if (direction === 0 && x > 0) ni = y * GRID_W + (x - 1);
                     if (direction === 1 && x < GRID_W - 1) ni = y * GRID_W + (x + 1);
@@ -34453,9 +34634,40 @@ export const STRUCTURE_ENGINE = {
                         const inputCharge = STATE_MATRIX.getGridCharge(ni);
                         nextCharge = Math.max(nextCharge, inputCharge - 5);
                     }
+                } else if (type === STRUCTURE.INVERTER) {
+                    let maxInputCharge = 0;
+                    for (const [dx, dy] of DIR4) {
+                        const nx = x + dx;
+                        const ny = y + dy;
+                        if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
+                        const nCharge = STATE_MATRIX.getGridCharge(ny * GRID_W + nx);
+                        // Only count as input if it's stronger than our own reflection
+                        if (nCharge > maxInputCharge && nCharge >= currentCharge) maxInputCharge = nCharge;
+                    }
+                    nextCharge = (maxInputCharge < 50) ? 255 : 0;
+                } else if (type === STRUCTURE.LATCH) {
+                    let newState = state;
+                    // Neighbor 0 (Left): SET
+                    const setX = x + DIR4[0][0];
+                    const setY = y + DIR4[0][1];
+                    if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
+                        const pulse = STATE_MATRIX.getGridCharge(setY * GRID_W + setX);
+                        if (pulse > 100 && pulse >= currentCharge) newState = 1;
+                    }
+                    // Neighbor 1 (Right): RESET
+                    const rstX = x + DIR4[1][0];
+                    const rstY = y + DIR4[1][1];
+                    if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
+                        const pulse = STATE_MATRIX.getGridCharge(rstY * GRID_W + rstX);
+                        if (pulse > 100 && pulse >= currentCharge) newState = 0;
+                    }
+                    if (newState !== state) {
+                        STATE_MATRIX.setGridState(i, newState);
+                    }
+                    nextCharge = (newState === 1) ? 255 : 0;
                 }
 
-                if (type !== STRUCTURE.SOURCE && nextCharge === 0) {
+                if (type !== STRUCTURE.SOURCE && type !== STRUCTURE.INVERTER && type !== STRUCTURE.LATCH && nextCharge === 0) {
                     let stabilized = false;
                     for (const [dx, dy] of DIR4) {
                         const nx = x + dx;

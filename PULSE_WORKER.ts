@@ -92,8 +92,8 @@ self.onmessage = async (e) => {
         gy: number,
         target: number,
       ) => {
-        if (idx < 100) { // TRACE_THRESHOLD
-          LOGGER.debug(
+        if (idx < 10000) { // Keep threshold high for now
+          LOGGER.info(
             `   [TRACE] At ${idx} | OP: 0x${
               op.toString(16)
             } | Pos: (${gx},${gy}) | PC: ${target}`,

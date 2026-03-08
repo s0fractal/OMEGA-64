@@ -663,5 +663,4 @@ export const STATE_MATRIX = {
   clearDamping: () => damping.fill(0),
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
-  neuralCoherence,
 };
