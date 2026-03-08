@@ -85,6 +85,8 @@ export const hormoneBuffer =
   new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8).buffer;
 export const lineageBuffer =
   new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
+export const mailboxBuffer =
+  new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
 
 // TypedArray Views (Host side)
 const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
@@ -183,6 +185,7 @@ const neuralCoherence = new Int32Array(
 );
 const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
 const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
+const mailboxes = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -291,6 +294,8 @@ export const SYS = {
   BIND: 0x05,
   SET_ROLE: 0x06,
   MUTATE: 0x07,
+  MSG: 0x08,
+  READ_INBOX: 0x09,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
@@ -402,6 +407,8 @@ export const STATE_MATRIX = {
   getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
   getDamping: (i: number) => Atomics.load(damping, i),
   getLineage: (i: number) => Atomics.load(lineage, i),
+  getMailboxMsgType: (i: number) => Atomics.load(mailboxes, i * 2),
+  getMailboxPayload: (i: number) => Atomics.load(mailboxes, i * 2 + 1),
   getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
   setHiveMemory: (addr: number, val: number) => {
     Atomics.store(hiveMemory, addr & 1023, val);
@@ -444,6 +451,8 @@ export const STATE_MATRIX = {
     Atomics.store(bondDistances, i * 4 + slot, val),
   setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
   setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
+  setMailboxMsgType: (i: number, val: number) => Atomics.store(mailboxes, i * 2, val),
+  setMailboxPayload: (i: number, val: number) => Atomics.store(mailboxes, i * 2 + 1, val),
 
   setInstructions: (i: number, val: Uint8Array) =>
     instructions.set(val, i * 64),

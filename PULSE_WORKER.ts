@@ -51,6 +51,7 @@ let logicView: BigUint64Array | null = null;
 let bondRequestsView: Int32Array | null = null;
 let energiesView: Int32Array | null = null;
 let instructionsView: Uint8Array | null = null;
+let mailboxView: Int32Array | null = null;
 
 const SYS_YIELD = 1;
 const SYS_READ_MEM = 2;
@@ -59,6 +60,8 @@ const SYS_SPAWN = 4;
 const SYS_BIND = 5;
 const SYS_SET_ROLE = 6;
 const SYS_MUTATE = 7;
+const SYS_MSG = 8;
+const SYS_READ_INBOX = 9;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -83,6 +86,8 @@ function handle_syscall(atomIdx: number) {
     case SYS_BIND: gasCost = 10; break;
     case SYS_SET_ROLE: gasCost = 5; break;
     case SYS_MUTATE: gasCost = 50; break;
+    case SYS_MSG: gasCost = 20; break;
+    case SYS_READ_INBOX: gasCost = 2; break;
     default: gasCost = 1; break;
   }
 
@@ -167,6 +172,38 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_MSG: {
+      const targetIdx = r1;
+      const msgType = r2;
+      const payload = r3;
+      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && mailboxView) {
+        // Simple 1-deep mailbox per atom
+        Atomics.store(mailboxView, targetIdx * 2, msgType);
+        Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
+        console.log(`   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`);
+      }
+      break;
+    }
+    case SYS_READ_INBOX: {
+      if (mailboxView) {
+        const msgType = Atomics.load(mailboxView, atomIdx * 2);
+        const payload = Atomics.load(mailboxView, atomIdx * 2 + 1);
+        
+        // Return type in R0
+        contextI32View[regBase] = msgType;
+        
+        // Return payload in R1 (we map R1 to contextI32View[regBase + 1])
+        contextI32View[regBase + 1] = payload;
+        
+        // Clear mailbox after reading
+        if (msgType !== 0) {
+          Atomics.store(mailboxView, atomIdx * 2, 0);
+          Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
+          console.log(`   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`);
+        }
+      }
+      break;
+    }
     default:
       console.log(`   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`);
       break;
@@ -236,6 +273,7 @@ self.onmessage = async (e) => {
     bondRequestsView = new Int32Array(sb, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(sb, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
+    mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
