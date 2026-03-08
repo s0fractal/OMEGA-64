@@ -170,15 +170,16 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     case SYS_MUTATE: {
-      const offset = r1;
-      const newValue = r2;
-      // Host validates the instructions boundary (0-63 bytes)
-      if (offset >= 0 && offset < 64 && instructionsView) {
-        const globalOffset = atomIdx * 64 + offset;
+      const targetIdx = r1;
+      const offset = r2;
+      const newValue = r3;
+      // Host validates target and instructions boundary (0-63 bytes)
+      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && offset >= 0 && offset < 64 && instructionsView) {
+        const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
-        console.log(`   [SYSCALL] Atom ${atomIdx} MUTATED instruction at offset ${offset} to 0x${newValue.toString(16)}`);
+        console.log(`   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${(newValue & 0xFF).toString(16)}`);
       } else {
-        console.log(`   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE at ${offset}`);
+        console.log(`   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`);
       }
       break;
     }
