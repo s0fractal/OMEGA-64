@@ -479,8 +479,12 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     case SYS_MOVE: {
-      const dxStr = r1 === 0 ? 0 : (r1 > 0 ? 1 : -1);
-      const dyStr = r2 === 0 ? 0 : (r2 > 0 ? 1 : -1);
+      // Decode 8-bit two's complement for dx/dy where > 127 is negative
+      const dxDecoded = r1 > 127 ? r1 - 256 : r1;
+      const dyDecoded = r2 > 127 ? r2 - 256 : r2;
+
+      const dxStr = dxDecoded === 0 ? 0 : (dxDecoded > 0 ? 1 : -1);
+      const dyStr = dyDecoded === 0 ? 0 : (dyDecoded > 0 ? 1 : -1);
       if (dxStr !== 0 || dyStr !== 0) {
         if (xsView && ysView && spatialGridView) {
           const cx = Atomics.load(xsView, atomIdx);

@@ -1,6 +1,7 @@
 import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "./GENOMES.ts";
+import { AgentProxy } from "./AGENT_PROXY.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 const STARTING_PREY = 500;
@@ -9,7 +10,7 @@ const STARTING_PRODUCERS = 1000;
 const TOTAL_STARTING = STARTING_PREY + STARTING_PREDATORS + STARTING_PRODUCERS;
 
 // Turn off logger output to avoid making the TUI messy
-LOGGER.setLevel("ERROR");
+LOGGER.setLevel("error");
 
 async function initSimulation() {
   STATE_MATRIX.clear();
@@ -52,11 +53,19 @@ async function initSimulation() {
     idx++;
   }
 
+  // Seed LLM Avatar Atom
+  const AVATAR_ID = 9999;
+  STATE_MATRIX.setId(AVATAR_ID, BigInt(AVATAR_ID));
+  STATE_MATRIX.setRole(AVATAR_ID, STATE_MATRIX.ROLE_GUARDIAN); // Avatar = Guardian
+  STATE_MATRIX.setEnergy(AVATAR_ID, 5000000); // 5 million energy buffer
+  STATE_MATRIX.setX(AVATAR_ID, 700); // Center
+  STATE_MATRIX.setY(AVATAR_ID, 400);
+
   console.log(`[TUI] Spawned ${idx - 1} atoms. Press Ctrl+C to stop.`);
 }
 
 function renderGrid(tick: number) {
-  let grid = Array(80).fill(0).map(() => Array(140).fill(" "));
+  const grid = Array(80).fill(0).map(() => Array(140).fill(" "));
   let prods = 0, preys = 0, preds = 0;
   let totalEnergy = 0;
 
@@ -79,6 +88,11 @@ function renderGrid(tick: number) {
           grid[y][x] = "\x1b[36mo\x1b[0m"; // Cyan o
           preys++;
         }
+
+        // Avatar override
+        if (i === 9999) {
+          grid[y][x] = "\x1b[1;34m@\x1b[0m"; // Bright Blue @ for Avatar
+        }
       }
     }
   }
@@ -94,6 +108,11 @@ function renderGrid(tick: number) {
 
 async function run() {
   await initSimulation();
+
+  // Start the LLM Proxy
+  const proxy = new AgentProxy(8080);
+  await proxy.start();
+
   let tick = 0;
 
   // 100 ms loop = 10 TPS
