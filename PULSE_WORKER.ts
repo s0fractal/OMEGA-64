@@ -93,7 +93,7 @@ function handle_syscall(atomIdx: number) {
   const r2 = contextI32View[regBase + 2];
   const r3 = contextI32View[regBase + 3];
 
-  console.log(
+  LOGGER.debug(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
 
@@ -152,7 +152,7 @@ function handle_syscall(atomIdx: number) {
   const currentEnergy = Atomics.load(energiesView, atomIdx);
   if (currentEnergy < gasCost * 1000) {
     // Out of Gas for this syscall
-    console.log(
+    LOGGER.debug(
       `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
         currentEnergy / 1000
       })`,
@@ -172,7 +172,7 @@ function handle_syscall(atomIdx: number) {
       if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
         val = structureGridView[gy * 140 + gx] & 0xFF;
       }
-      console.log(
+      LOGGER.debug(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
       );
       contextI32View[regBase] = val; // Return value in R0
@@ -180,7 +180,7 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_WRITE_MEM: {
       const gx = r1, gy = r2, newVal = r3;
-      console.log(
+      LOGGER.debug(
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
@@ -246,13 +246,13 @@ function handle_syscall(atomIdx: number) {
       ) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
             (newValue & 0xFF).toString(16)
           }`,
         );
       } else {
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
         );
       }
@@ -266,7 +266,7 @@ function handle_syscall(atomIdx: number) {
         // Simple 1-deep mailbox per atom
         Atomics.store(mailboxView, targetIdx * 2, msgType);
         Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
         );
       }
@@ -287,7 +287,7 @@ function handle_syscall(atomIdx: number) {
         if (msgType !== 0) {
           Atomics.store(mailboxView, atomIdx * 2, 0);
           Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          console.log(
+          LOGGER.debug(
             `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
           );
         }
@@ -307,11 +307,11 @@ function handle_syscall(atomIdx: number) {
           if (senderEnergy >= scaledAmount) {
             Atomics.sub(energiesView, atomIdx, scaledAmount);
             Atomics.add(energiesView, targetIdx, scaledAmount);
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
             );
           } else {
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy to transfer ${amount}`,
             );
           }
@@ -320,11 +320,11 @@ function handle_syscall(atomIdx: number) {
           if (senderResonance >= amount) {
             Atomics.sub(resonancesView, atomIdx, amount);
             Atomics.add(resonancesView, targetIdx, amount);
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
             );
           } else {
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`,
             );
           }
@@ -373,11 +373,11 @@ function handle_syscall(atomIdx: number) {
           idsView[targetIdx] = BigInt(targetIdx + 1);
         }
 
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
         );
       } else {
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
         );
       }
@@ -400,7 +400,7 @@ function handle_syscall(atomIdx: number) {
         Atomics.store(ledgerDataView, base + 2, r1);
         Atomics.store(ledgerDataView, base + 3, r2);
 
-        console.log(
+        LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
         );
       }
@@ -466,11 +466,11 @@ function handle_syscall(atomIdx: number) {
               }
             }
           }
-          console.log(
+          LOGGER.debug(
             `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
           );
         } else {
-          console.log(
+          LOGGER.debug(
             `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
           );
         }
@@ -519,9 +519,9 @@ function handle_syscall(atomIdx: number) {
             Atomics.store(ysView, atomIdx, ny);
             // Atom gets swept to the new spatial cell automatically in the next pulse's tick_spatial_hash.
             // In a more aggressive engine, we would move it in the spatial hash immediately.
-            console.log(`   [SYSCALL] Atom ${atomIdx} MOVED to ${nx}, ${ny}`);
+            LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} MOVED to ${nx}, ${ny}`);
           } else {
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL-FAIL] Atom ${atomIdx} MOVE collision at ${nx}, ${ny}`,
             );
           }
@@ -560,25 +560,25 @@ function handle_syscall(atomIdx: number) {
               Atomics.sub(energiesView, targetIdx, takeAmount);
               // Add to self
               Atomics.add(energiesView, atomIdx, takeAmount);
-              console.log(
+              LOGGER.debug(
                 `   [SYSCALL] Atom ${atomIdx} ATE ${
                   takeAmount / 1000
                 } Energy from Atom ${targetIdx}`,
               );
             } else {
-              console.log(
+              LOGGER.debug(
                 `   [SYSCALL-FAIL] Atom ${targetIdx} has no energy for Atom ${atomIdx} to eat`,
               );
             }
           } else {
-            console.log(
+            LOGGER.debug(
               `   [SYSCALL-FAIL] Atom ${atomIdx} at (${ox},${oy}) too far from target ${targetIdx} at (${tx},${ty}) to EAT (dist = ${
                 dist.toFixed(2)
               })`,
             );
           }
         } else {
-          console.log(
+          LOGGER.debug(
             `   [SYSCALL-FAIL] Atom ${atomIdx} tried to EAT dead Atom ${targetIdx}`,
           );
         }
@@ -586,7 +586,7 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     default:
-      console.log(
+      LOGGER.debug(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
       );
       break;
