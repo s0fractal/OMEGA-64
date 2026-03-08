@@ -68,6 +68,11 @@ export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 42849040; // 12 x I32 (5 r
 export const LINEAGE_OFFSET = SAFETY_BUFFER + 43000000; // Ancestral lineage hashes (8 bytes per atom)
 export const MAILBOX_OFFSET = SAFETY_BUFFER + 43800000; // 8 bytes per atom (Type + Payload)
 
+// Binary Event Ledger
+export const MAX_LEDGER_EVENTS = 65536; // 64K events
+export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 44600000; // 1 Int32 counter
+export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 44600004; // ~1MB data array
+
 type MemoryLayoutRegion = {
   name: string;
   offset: number;
@@ -262,11 +267,23 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     MAX_ATOMS * 8,
     I32_BYTES,
   ),
+  region(
+    "LEDGER_HEAD",
+    LEDGER_HEAD_OFFSET,
+    4, // 1 Int32 counter
+    4,
+  ),
+  region(
+    "LEDGER_DATA",
+    LEDGER_DATA_OFFSET,
+    MAX_LEDGER_EVENTS * 16, // 4 Int32 per event (tick, atom, r1, r2)
+    4,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = MAILBOX_OFFSET + (MAX_ATOMS * 8);
+export const LATTICE_MEMORY_END = LEDGER_DATA_OFFSET + (MAX_LEDGER_EVENTS * 16);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );

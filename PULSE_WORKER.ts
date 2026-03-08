@@ -37,6 +37,7 @@ let apply_metabolism_kernel_fn: ((
   subsidyEnabled: number,
 ) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
+let tickCounterView: Int32Array | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
 let contextI32View: Int32Array | null = null;
@@ -53,6 +54,8 @@ let energiesView: Int32Array | null = null;
 let resonancesView: Int32Array | null = null;
 let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
+let ledgerHeadView: Int32Array | null = null;
+let ledgerDataView: Int32Array | null = null;
 
 const SYS_YIELD = 1;
 const SYS_READ_MEM = 2;
@@ -65,6 +68,7 @@ const SYS_MSG = 8;
 const SYS_READ_INBOX = 9;
 const SYS_TRANSFER = 10;
 const SYS_REPLICATE = 11;
+const SYS_EMIT = 12;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -93,6 +97,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_READ_INBOX: gasCost = 2; break;
     case SYS_TRANSFER: gasCost = 10; break;
     case SYS_REPLICATE: gasCost = 100; break;
+    case SYS_EMIT: gasCost = 5; break;
     default: gasCost = 1; break;
   }
 
@@ -279,6 +284,24 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_EMIT: {
+      if (ledgerHeadView && ledgerDataView) {
+        // Atomic ring buffer increment
+        const cursor = Atomics.add(ledgerHeadView, 0, 1) % OFFSETS.MAX_LEDGER_EVENTS;
+        const base = cursor * 4; // 4 i32 per event
+
+        const currentTick = tickCounterView ? Atomics.load(tickCounterView, 0) : 0;
+        
+        // Emitted Event Structure -> [Tick, AtomIdx, R1, R2]
+        Atomics.store(ledgerDataView, base, currentTick);
+        Atomics.store(ledgerDataView, base + 1, atomIdx);
+        Atomics.store(ledgerDataView, base + 2, r1);
+        Atomics.store(ledgerDataView, base + 3, r2);
+
+        console.log(`   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`);
+      }
+      break;
+    }
     default:
       console.log(`   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`);
       break;
@@ -334,6 +357,7 @@ self.onmessage = async (e) => {
     const { buffer, wasmMemory, workerIndex } = e.data;
     sharedBuffer = buffer;
     const sb = sharedBuffer as SharedArrayBuffer;
+    tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
     idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
     contextI32View = new Int32Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16);
@@ -350,6 +374,9 @@ self.onmessage = async (e) => {
     resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(sb, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
     mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
+    ledgerHeadView = new Int32Array(sb, OFFSETS.LEDGER_HEAD_OFFSET, 1);
+    ledgerDataView = new Int32Array(sb, OFFSETS.LEDGER_DATA_OFFSET, OFFSETS.MAX_LEDGER_EVENTS * 4);
+    
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;

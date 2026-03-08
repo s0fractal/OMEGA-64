@@ -177,6 +177,16 @@ const glyphPayload = new Uint8Array(
   OFFSETS.GLYPH_PAYLOAD_OFFSET,
   140 * 80 * 8,
 );
+const ledgerHeadView = new Int32Array(
+  sharedBuffer,
+  OFFSETS.LEDGER_HEAD_OFFSET,
+  1,
+);
+const ledgerDataView = new Int32Array(
+  sharedBuffer,
+  OFFSETS.LEDGER_DATA_OFFSET,
+  OFFSETS.MAX_LEDGER_EVENTS * 4,
+);
 const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
 const neuralCoherence = new Int32Array(
   sharedBuffer,
@@ -298,6 +308,7 @@ export const SYS = {
   READ_INBOX: 0x09,
   TRANSFER: 0x0A,
   REPLICATE: 0x0B,
+  EMIT: 0x0C,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
@@ -357,6 +368,8 @@ export const STATE_MATRIX = {
   hormones,
   lineage,
   instructions,
+  ledgerHeadView,
+  ledgerDataView,
   contexts,
   semanticBonuses,
   RISC,
