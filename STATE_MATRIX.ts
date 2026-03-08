@@ -287,6 +287,8 @@ export const STRUCTURE = {
   SOURCE: 4, // Constant charge
   SINK: 5, // Energy drain
   CAPACITOR: 6, // Slow decay
+  INVERTER: 7, // NOT gate
+  LATCH: 8, // SR-Latch
 };
 
 export const STATE_MATRIX = {
@@ -661,4 +663,5 @@ export const STATE_MATRIX = {
   clearDamping: () => damping.fill(0),
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
+  neuralCoherence,
 };

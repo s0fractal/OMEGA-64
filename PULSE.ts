@@ -2280,6 +2280,11 @@ export const PULSE = {
       daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
       federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
     });
+
+    // --- STAGE 11.1: NEURAL SYNTHESIS ---
+    // Reset global neural coherence aggregation field for the new tick.
+    Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0);
+
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);

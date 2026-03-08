@@ -40,7 +40,16 @@ export const STRUCTURE_ENGINE = {
                     continue;
                 }
 
-                let nextCharge = Math.max(0, currentCharge - 10);
+                const state = STATE_MATRIX.getGridState(i);
+
+                // AUTOPOIESIS: Resonance Shielding
+                const spatialIdx = y * 140 + x;
+                const avgPhase = STATE_MATRIX.spatialGrid[spatialIdx * 32 + 31];
+                
+                let decay = 10;
+                if (avgPhase > 128) decay = 2; // Shielded
+
+                let nextCharge = Math.max(0, currentCharge - decay);
 
                 if (type === STRUCTURE.SOURCE) {
                     nextCharge = 255;
@@ -61,17 +70,16 @@ export const STRUCTURE_ENGINE = {
                     if (type === STRUCTURE.WIRE) {
                         nextCharge = Math.max(nextCharge, maxNeighborCharge - 5);
                     } else if (type === STRUCTURE.NODE) {
-                        const state = STATE_MATRIX.getGridState(i);
-                        if (state === 1) {
+                        if (state === 1) { // AND
                             nextCharge = (chargedNeighborCount >= 2) ? 255 : nextCharge;
-                        } else {
+                        } else { // OR
                             nextCharge = (chargedNeighborCount >= 1) ? 255 : nextCharge;
                         }
                     } else if (type === STRUCTURE.CAPACITOR) {
                         nextCharge = Math.max(nextCharge, maxNeighborCharge - 2);
                     }
                 } else if (type === STRUCTURE.DIODE) {
-                    const direction = STATE_MATRIX.getGridState(i);
+                    const direction = state;
                     let ni = -1;
                     if (direction === 0 && x > 0) ni = y * GRID_W + (x - 1);
                     if (direction === 1 && x < GRID_W - 1) ni = y * GRID_W + (x + 1);
@@ -82,9 +90,40 @@ export const STRUCTURE_ENGINE = {
                         const inputCharge = STATE_MATRIX.getGridCharge(ni);
                         nextCharge = Math.max(nextCharge, inputCharge - 5);
                     }
+                } else if (type === STRUCTURE.INVERTER) {
+                    let maxInputCharge = 0;
+                    for (const [dx, dy] of DIR4) {
+                        const nx = x + dx;
+                        const ny = y + dy;
+                        if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
+                        const nCharge = STATE_MATRIX.getGridCharge(ny * GRID_W + nx);
+                        // Only count as input if it's stronger than our own reflection
+                        if (nCharge > maxInputCharge && nCharge >= currentCharge) maxInputCharge = nCharge;
+                    }
+                    nextCharge = (maxInputCharge < 50) ? 255 : 0;
+                } else if (type === STRUCTURE.LATCH) {
+                    let newState = state;
+                    // Neighbor 0 (Left): SET
+                    const setX = x + DIR4[0][0];
+                    const setY = y + DIR4[0][1];
+                    if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
+                        const pulse = STATE_MATRIX.getGridCharge(setY * GRID_W + setX);
+                        if (pulse > 100 && pulse >= currentCharge) newState = 1;
+                    }
+                    // Neighbor 1 (Right): RESET
+                    const rstX = x + DIR4[1][0];
+                    const rstY = y + DIR4[1][1];
+                    if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
+                        const pulse = STATE_MATRIX.getGridCharge(rstY * GRID_W + rstX);
+                        if (pulse > 100 && pulse >= currentCharge) newState = 0;
+                    }
+                    if (newState !== state) {
+                        STATE_MATRIX.setGridState(i, newState);
+                    }
+                    nextCharge = (newState === 1) ? 255 : 0;
                 }
 
-                if (type !== STRUCTURE.SOURCE && nextCharge === 0) {
+                if (type !== STRUCTURE.SOURCE && type !== STRUCTURE.INVERTER && type !== STRUCTURE.LATCH && nextCharge === 0) {
                     let stabilized = false;
                     for (const [dx, dy] of DIR4) {
                         const nx = x + dx;

@@ -234,7 +234,8 @@ function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void {
 function writeBondRequest(initiator: i32, target: i32): void {
   let offset = BOND_REQUESTS_OFFSET + (initiator * 12);
   store<i32>(offset as usize, initiator + 1);
-  store<i32>(offset + 4 as usize, target);
+  store<i32>((offset + 4) as usize, target + 1);
+  store<i32>((offset + 8) as usize, 1); // Status: Active
 }
 
 function getSpatialGridCount(gx: i32, gy: i32): i32 {
@@ -880,18 +881,35 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     let dist = Mathf.sqrt(dx * dx + dy * dy);
     if (dist < 1.0) dist = 1.0;
 
+    // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
+    let myRes = getReadResonance(idx);
+    let targetRes = getReadResonance(targetIdx);
+    
+    // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
+    if (targetRes > myRes) {
+      addResonanceDelta(idx, (targetRes - myRes) / 20);
+    } else if (myRes > targetRes) {
+      addResonanceDelta(idx, -((myRes - targetRes) / 20));
+    }
+
+    // 2. Resonance-Weighted Stiffness: Bonds are stronger if atoms are synchronized
+    let sumRes: f32 = (myRes as f32) + (targetRes as f32);
+    let resonanceWeight: f32 = sumRes / 600.0;
+    if (resonanceWeight < 0.5) resonanceWeight = 0.5;
+    if (resonanceWeight > 2.0) resonanceWeight = 2.0;
+
     if (stiffness > 0.8) {
-      let force = (dist - (targetDist as f32)) * 1.5;
+      let force = (dist - (targetDist as f32)) * 1.5 * resonanceWeight;
       fx += (dx / dist) * force;
       fy += (dy / dist) * force;
     } else {
       let elasticRange: f32 = 10.0;
       if (dist > (targetDist as f32) + elasticRange) {
-        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1;
+        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 * resonanceWeight;
         fx += (dx / dist) * force;
         fy += (dy / dist) * force;
       } else if (dist < (targetDist as f32) - elasticRange) {
-        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2;
+        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 * resonanceWeight;
         fx -= (dx / dist) * force;
         fy -= (dy / dist) * force;
       }
@@ -1080,7 +1098,7 @@ export function execute_atom(atomIndex: i32): void {
       }
       case OP_REPLICATE: {
         // Kernel syscall: Replicate if possible
-        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 → up to -512 energy / -100 resonance)
+        // HORMONE 3: replication_bias lowers thresholds (range 0..2048 -> up to -512 energy / -100 resonance)
         let biasH: i32 = getHormone(3) as i32;
         let replicateEThresh: i32 = 1500 - (biasH >> 2); // 1500..988
         let replicateRThresh: i32 = 200 - (biasH >> 4);  // 200..72
@@ -1097,10 +1115,29 @@ export function execute_atom(atomIndex: i32): void {
           if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80) {
             let slot = atomic.add<i32>(SPAWN_HEAD_OFF as usize, 1) % SPAWN_MAX;
             let slotOff: usize = SPAWN_DATA_OFF + (slot * SPAWN_SLOT) as usize;
-            let parentGenome = load<u64>(
-              (LOGIC_OFFSET + (atomIndex << 3) as usize) as usize,
-            );
-            store<u64>(slotOff, parentGenome);
+            
+            // --- ERA 8.1: GENETIC MUTATION ---
+            let parentGenome = load<u64>(LOGIC_OFFSET + (atomIndex << 3) as usize);
+            let frictionH: i32 = getHormone(5) as i32; // mutation_friction
+            
+            // Deterministic seed blending: Atom ID + Tick + Resonance
+            let tick = atomic.load<i32>(TICK_COUNTER_OFF as usize);
+            let seed = (atomIndex as u32) ^ (tick as u32) ^ (resonance as u32);
+            seed = lcgNext(seed);
+            
+            // Mutation chance: if (seed % 1024) > frictionH, then mutate
+            let childGenome = parentGenome;
+            if (((seed & 1023) as i32) > (frictionH >> 1)) {
+                 // Mutate 1 bit
+                 seed = lcgNext(seed);
+                 let bitPos = seed % 64;
+                 childGenome ^= (1 as u64) << (bitPos as u64);
+                 
+                 // Apply mutation resonance tax: genetic instability cost
+                 resonance = resonance > 50 ? resonance - 50 : 0;
+            }
+
+            store<u64>(slotOff, childGenome);
             store<i16>((slotOff + 8) as usize, childGx as i16);
             store<i16>((slotOff + 10) as usize, childGy as i16);
             store<i32>((slotOff + 12) as usize, energy >> 1);
@@ -1128,6 +1165,46 @@ export function execute_atom(atomIndex: i32): void {
         }
         secreteGlyph(rx, ry, 1, 64, role, atomIndex); // OP_SIGNAL pulses Pheromones
         fireSignal(atomIndex); // Also fire biological signal to neighbors
+
+        // --- STAGE 11.1: NEURAL SYNTHESIS ---
+        // Aggregate signal into global coherence field
+        atomic.add<i32>(NEURAL_COHERENCE_OFF as usize, 1);
+
+        pc += 1;
+        break;
+      }
+      case OP_BIND: {
+        // Bio-Digital Integration: Seek neighbor to bond
+        if (energy >= 50 && resonance >= 10) {
+          energy -= 50;
+          resonance -= 10;
+          
+          let gx = curX / 10;
+          let gy = curY / 10;
+          
+          let count = getSpatialGridCount(gx, gy);
+          let nearestIdx = -1;
+          let minDist: f32 = 25.0; // Max bonding range
+          
+          for (let i = 0; i < count; i++) {
+            let neighborIdx = getSpatialGridAtom(gx, gy, i);
+            if (neighborIdx != atomIndex && neighborIdx >= 0 && neighborIdx < MAX_ATOMS) {
+              let nx = getReadX(neighborIdx) as f32;
+              let ny = getReadY(neighborIdx) as f32;
+               let dx = nx - (curX as f32);
+               let dy = ny - (curY as f32);
+               let d = Mathf.sqrt(dx*dx + dy*dy);
+              if (d < minDist) {
+                minDist = d;
+                nearestIdx = neighborIdx;
+              }
+            }
+          }
+          
+          if (nearestIdx != -1) {
+            writeBondRequest(atomIndex, nearestIdx);
+          }
+        }
         pc += 1;
         break;
       }
@@ -1378,7 +1455,26 @@ export function execute_atom(atomIndex: i32): void {
   let entropyH: i32 = getHormone(0) as i32;
   // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
   let frictionH: i32 = getHormone(5) as i32;
-  let metabolicCost = 1 + (step >> 1) + ((step * entropyH) >> 12) + (frictionH >> 8);
+
+  // --- [x] **Stage 11.1: Neural Synthesis (The Global Coherence)**
+  // - [x] Implement global signal aggregation in WASM kernel.
+  // - [x] Link `NEURAL_COHERENCE` to metabolic tax reduction.
+  // - [x] Synchronize atomic `PHASE` with global pulse harmonics.
+  // - [/] Verify systemic feedback via `test_neural_synthesis.ts`.
+  let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
+  // Coherence discount: if global coherence is high (>100 signals), reduce cost
+  let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
+  
+  let metabolicCost = 1 + (step >> (1 + discount)) + ((step * entropyH) >> (12 + discount)) + (frictionH >> 8);
+
+  // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
+  if (coherenceVal > 500) {
+    // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
+    let curPhase: i32 = getPhase(atomIndex) as i32;
+    if (curPhase < 128) curPhase += 2;
+    else if (curPhase > 128) curPhase -= 1;
+    setPhase(atomIndex, curPhase as u8);
+  }
 
   // Auto-Firing Action Potential
   if (resonance > 300) {
@@ -1408,6 +1504,8 @@ const STR_DIODE: i32 = 3;
 const STR_SOURCE: i32 = 4;
 const STR_SINK: i32 = 5;
 const STR_CAPACITOR: i32 = 6;
+const STR_INVERTER: i32 = 7;
+const STR_LATCH: i32 = 8;
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;
 
@@ -1581,7 +1679,16 @@ export function tick_structure_grid(): void {
       }
 
       const state = (cellVal >> 24) & 0xFF;
-      let nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
+      
+      // AUTOPOIESIS: Resonance Shielding
+      // Read average phase from spatial grid average slot (slot 31)
+      let spatialIdx = y * 140 + x;
+      let avgPhase = atomic.load<i32>(SPATIAL_GRID_OFFSET + (spatialIdx << 7) + (31 << 2));
+      
+      let decay = 10;
+      if (avgPhase > 128) decay = 2; // Shielded
+      
+      let nextCharge = currentCharge > decay ? currentCharge - decay : 0;
 
       if (type == STR_SOURCE) {
         nextCharge = 255;
@@ -1630,6 +1737,38 @@ export function tick_structure_grid(): void {
           let flow = nCharge - 5;
           if (flow > nextCharge) nextCharge = flow;
         }
+      } else if (type == STR_INVERTER) {
+        let maxNeighborCharge: i32 = 0;
+        for (let n = 0; n < 4; n++) {
+           let nx = x + dir4X(n);
+           let ny = y + dir4Y(n);
+           if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+             let ni = ny * GRID_W + nx;
+             let nCharge = readStructureCharge(ni);
+             if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
+           }
+        }
+        if (maxNeighborCharge < 50) nextCharge = 255;
+        else nextCharge = 0;
+      } else if (type == STR_LATCH) {
+        let newState = state;
+        // n=0 (Left): SET
+        let setX = x + dir4X(0);
+        let setY = y + dir4Y(0);
+        if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
+          if (readStructureCharge(setY * GRID_W + setX) > 100) newState = 1;
+        }
+        // n=1 (Right): RESET
+        let rstX = x + dir4X(1);
+        let rstY = y + dir4Y(1);
+        if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
+          if (readStructureCharge(rstY * GRID_W + rstX) > 100) newState = 0;
+        }
+        if (newState != state) {
+           cellVal = (cellVal & 0x00FFFFFF) | (newState << 24);
+        }
+        if (newState == 1) nextCharge = 255;
+        else nextCharge = 0;
       }
 
       if (type != STR_SOURCE && nextCharge == 0) {
@@ -1725,5 +1864,9 @@ export function set_neural_coherence(value: i32): void {
 }
 
 export function clear_secretion_stats(): void {
-  memory.fill(SECRETION_STATS_OFF, 0, 40);
+  memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
+}
+
+export function reset_neural_coherence(): void {
+  atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, 0);
 }

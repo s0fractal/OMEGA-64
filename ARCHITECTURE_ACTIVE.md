@@ -104,7 +104,16 @@ export context. It intentionally excludes historical era narratives.
   - `replication_bias` (H3) shifts the `OP_REPLICATE` energy threshold.
   - `aggression` (H2) scales the `OP_SHARE` percentage.
   - `repair_drive` (H4) modulates resonance decay.
-  - `mutation_friction` (H5) adds a metabolic floor to complex operations.
+  - `mutation_friction` (H5) adds a metabolic floor to complex operations and
+    modulates genome mutation chance.
+- **Genetic Evolution (Stage 8.1)**: Atoms possess autonomous genomic mutation
+  capabilities.
+  - **Mutation Engine**: Introduced stochastic bit-flipping in the 64-bit genome
+    during replication.
+  - **Replayability**: Mutation is deterministic, derived from `atomId` and
+    `systemTicker`.
+  - **Stability Control**: `H5 (mutation_friction)` allows the global mind-field
+    to freeze or accelerate evolution.
 - **Deno-Native Architecture**: The project has fully transitioned to a
   Deno-native environment. Legacy `node_modules`, `package.json`, and
   `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
