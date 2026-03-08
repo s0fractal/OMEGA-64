@@ -21,14 +21,14 @@
 - architectPlasmidPromotionVerdict: hold
 - replicationPromotionVerdict: hold
 
-| status | check | observed | limit |
-|---|---|---:|---:|
-| PASS | bootReady | true | true |
-| FAIL | processExitedUnexpectedly == false | true | false |
-| PASS | successRate | 1 | 0.9 |
-| PASS | p95TelemetryLatencyMs | 122.6 | 700 |
-| PASS | p95SpatialOverflowRatio | 0 | 0.05 |
-| PASS | safeModeRatio | 1 | 0.95 |
-| FAIL | guardianSignalPromotionVerdict == promote | hold | promote |
-| FAIL | architectPlasmidPromotionVerdict == promote | hold | promote |
-| FAIL | replicationPromotionVerdict == promote | hold | promote |
+| status | check                                       | observed |   limit |
+| ------ | ------------------------------------------- | -------: | ------: |
+| PASS   | bootReady                                   |     true |    true |
+| FAIL   | processExitedUnexpectedly == false          |     true |   false |
+| PASS   | successRate                                 |        1 |     0.9 |
+| PASS   | p95TelemetryLatencyMs                       |    122.6 |     700 |
+| PASS   | p95SpatialOverflowRatio                     |        0 |    0.05 |
+| PASS   | safeModeRatio                               |        1 |    0.95 |
+| FAIL   | guardianSignalPromotionVerdict == promote   |     hold | promote |
+| FAIL   | architectPlasmidPromotionVerdict == promote |     hold | promote |
+| FAIL   | replicationPromotionVerdict == promote      |     hold | promote |

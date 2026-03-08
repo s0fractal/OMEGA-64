@@ -1,10 +1,6 @@
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
 import * as OFFSETS from "../OFFSETS.ts";
-import { 
-  coherenceBuffer, 
-  energyBuffer, 
-  idBuffer 
-} from "../STATE_MATRIX.ts";
+import { coherenceBuffer, energyBuffer, idBuffer } from "../STATE_MATRIX.ts";
 import { LOGGER } from "../LOGGER.ts";
 
 export type DriftMetrics = {
@@ -22,7 +18,7 @@ export class DriftWarden {
   private energyView = new Int32Array(energyBuffer);
   private idsView = new BigUint64Array(idBuffer);
   private coherenceView = new Int32Array(coherenceBuffer);
-  
+
   private lastPopulation = 0;
   private driftThreshold = 0.65; // High drift signals instability
 
@@ -32,46 +28,58 @@ export class DriftWarden {
   public analyze(currentTick: number): DriftMetrics {
     const activeIds = [];
     let totalEnergy = 0;
-    
+
     // 1. Gather active population metrics
     for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-        if (this.idsView[i] !== 0n) {
-            activeIds.push(i);
-            totalEnergy += this.energyView[i];
-        }
+      if (this.idsView[i] !== 0n) {
+        activeIds.push(i);
+        totalEnergy += this.energyView[i];
+      }
     }
-    
+
     const population = activeIds.length;
     const avgEnergy = population > 0 ? totalEnergy / population : 0;
-    
+
     // 2. Coherence (from WASM kernel neural sync)
     // Coherence is usually 0..1000 in our standard (fixed point)
     const rawCoherence = Atomics.load(this.coherenceView, 0);
     const coherenceNormalized = rawCoherence / 1000.0;
-    
+
     // 3. Energy Variance (local stability)
     let varianceSum = 0;
     if (population > 1) {
-        for (const idx of activeIds) {
-            const diff = this.energyView[idx] - avgEnergy;
-            varianceSum += diff * diff;
-        }
+      for (const idx of activeIds) {
+        const diff = this.energyView[idx] - avgEnergy;
+        varianceSum += diff * diff;
+      }
     }
-    const energyVariance = population > 0 ? Math.sqrt(varianceSum / population) / 1000.0 : 0;
-    
+    const energyVariance = population > 0
+      ? Math.sqrt(varianceSum / population) / 1000.0
+      : 0;
+
     // 4. Population Stability (Delta from last analysis)
     const popDelta = Math.abs(population - this.lastPopulation);
-    const populationStability = population > 0 ? 1.0 - Math.min(1.0, popDelta / (population * 0.1)) : 1.0;
+    const populationStability = population > 0
+      ? 1.0 - Math.min(1.0, popDelta / (population * 0.1))
+      : 1.0;
     this.lastPopulation = population;
 
     // 5. Final Drift Index Calculation
     // High drift = Low coherence, High variance, Low stability
-    const driftIndex = ( (1.0 - coherenceNormalized) * 0.5 ) + ( Math.min(1.0, energyVariance) * 0.3 ) + ( (1.0 - populationStability) * 0.2 );
-    
+    const driftIndex = ((1.0 - coherenceNormalized) * 0.5) +
+      (Math.min(1.0, energyVariance) * 0.3) +
+      ((1.0 - populationStability) * 0.2);
+
     const shadowForkRecommended = driftIndex > this.driftThreshold;
 
     if (currentTick % 100 === 0) {
-        LOGGER.info(`[DRIFT WARDEN] Tick ${currentTick} | Drift: ${driftIndex.toFixed(4)} | Coherence: ${coherenceNormalized.toFixed(4)} | Fork: ${shadowForkRecommended}`);
+      LOGGER.info(
+        `[DRIFT WARDEN] Tick ${currentTick} | Drift: ${
+          driftIndex.toFixed(4)
+        } | Coherence: ${
+          coherenceNormalized.toFixed(4)
+        } | Fork: ${shadowForkRecommended}`,
+      );
     }
 
     return {
@@ -79,7 +87,7 @@ export class DriftWarden {
       energyVariance,
       populationStability,
       driftIndex,
-      shadowForkRecommended
+      shadowForkRecommended,
     };
   }
 }

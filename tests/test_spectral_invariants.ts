@@ -2,7 +2,10 @@
 // @noncanonical
 // OMEGA-64 | Spectral invariants sanity test
 
-import { SPECTRAL_INVARIANTS__08_00_SPECTRAL_INVARIANTS as SPECTRAL_INVARIANTS, SPECTRAL_INVARIANTS__08_00_SpectralLens as SpectralLens } from "@omega";
+import {
+  SPECTRAL_INVARIANTS__08_00_SPECTRAL_INVARIANTS as SPECTRAL_INVARIANTS,
+  SPECTRAL_INVARIANTS__08_00_SpectralLens as SpectralLens,
+} from "@omega";
 
 const sample = { value: [1, 2, 3], label: "seed" };
 
@@ -44,8 +47,8 @@ if (fail.ok) {
 }
 
 const spectralTag = (content: string): string | null => {
-  const match = content.match(/@spectral:\s*([^\n\r]+)/i)
-    ?? content.match(/SPECTRAL:\s*([^\n\r]+)/i);
+  const match = content.match(/@spectral:\s*([^\n\r]+)/i) ??
+    content.match(/SPECTRAL:\s*([^\n\r]+)/i);
   return match ? match[1].trim() : null;
 };
 
@@ -110,7 +113,9 @@ const interferencePaths = [
   "./i.L13.core.INTERFERENCE.md",
 ];
 
-const interferenceTags = await Promise.all(interferencePaths.map((p) => readTag(p)));
+const interferenceTags = await Promise.all(
+  interferencePaths.map((p) => readTag(p)),
+);
 const interferenceLenses: SpectralLens[] = interferenceTags.map((tag, idx) => ({
   id: interferencePaths[idx],
   project: () => tag,
@@ -124,7 +129,9 @@ const interferenceCheck = SPECTRAL_INVARIANTS({
 });
 
 if (!interferenceCheck.ok) {
-  throw new Error(`INTERFERENCE spectral mismatch: ${interferenceCheck.reason}`);
+  throw new Error(
+    `INTERFERENCE spectral mismatch: ${interferenceCheck.reason}`,
+  );
 }
 
 const dynamicsPaths = [

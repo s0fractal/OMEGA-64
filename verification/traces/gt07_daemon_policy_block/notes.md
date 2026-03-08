@@ -1,7 +1,8 @@
 # gt07_daemon_policy_block
 
 - scenario: daemon policy block
-- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode
+- setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked
+  opcode
 - duration: 256 ticks total
 - daemonEnabled: true
 - runtime_mode: legacy-runtime/api-observer-harness
@@ -23,4 +24,5 @@
 
 ## Actions
 
-- tick=129 kind=INJECT_PLASMID_BLOCKED responseDigest=caf24b26650a33cecdd051a60150527b8c23cb63640a1d3a32e02cd3f619928e
+- tick=129 kind=INJECT_PLASMID_BLOCKED
+  responseDigest=caf24b26650a33cecdd051a60150527b8c23cb63640a1d3a32e02cd3f619928e

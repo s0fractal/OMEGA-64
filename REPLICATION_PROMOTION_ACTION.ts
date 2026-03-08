@@ -25,7 +25,11 @@ export const evaluateReplicationPromotionAction = (
       // unless the health regression is severe. For now, we stay.
       return { verdict: "stay", targetMode: "hybrid-reduce", reasons };
     }
-    return { verdict: "stay", targetMode: "hybrid-reduce", reasons: ["already_at_target_mode"] };
+    return {
+      verdict: "stay",
+      targetMode: "hybrid-reduce",
+      reasons: ["already_at_target_mode"],
+    };
   }
 
   if (currentMode === "shadow-reduce") {
@@ -42,5 +46,9 @@ export const evaluateReplicationPromotionAction = (
     return { verdict: "promote", targetMode: "shadow-reduce", reasons };
   }
 
-  return { verdict: "stay", targetMode: currentMode, reasons: ["unknown_current_mode"] };
+  return {
+    verdict: "stay",
+    targetMode: currentMode,
+    reasons: ["unknown_current_mode"],
+  };
 };

@@ -1,7 +1,8 @@
 # gt11_collective_banking
 
 - scenario: standalone collective banking semantics
-- setup: standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and mode 4 capped withdraw through direct WASM execution
+- setup: standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and
+  mode 4 capped withdraw through direct WASM execution
 - duration: 2 execute_atom calls / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-collective-banking-capture

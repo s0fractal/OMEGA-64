@@ -1,7 +1,8 @@
 # gt16_runtime_build_materialization
 
 - scenario: runtime structure build materialization
-- setup: worker-backed deterministic subprocess capture of a single architect executing OP_BUILD SOURCE through PULSE.tick
+- setup: worker-backed deterministic subprocess capture of a single architect
+  executing OP_BUILD SOURCE through PULSE.tick
 - duration: 1 pulse tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: worker-runtime-structure-build-capture

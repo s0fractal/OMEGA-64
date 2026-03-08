@@ -96,7 +96,7 @@ const main = async () => {
   );
   requireSnippet(
     pulse,
-    "type: \"BUILD_SPATIAL_HASH\"",
+    'type: "BUILD_SPATIAL_HASH"',
     PULSE_PATH,
     "Pulse tick must gather spatial hash telemetry every build",
     violations,

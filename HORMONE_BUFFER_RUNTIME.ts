@@ -69,7 +69,8 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   // 5. repair_drive (symbiosis + degrade ratio inverse)
   const repairDrive = Math.round(
     clamp(
-      input.symbiosisPressure + ((1 - input.federationDegradeEnergyRatio) * 1024),
+      input.symbiosisPressure +
+        ((1 - input.federationDegradeEnergyRatio) * 1024),
       0,
       2048,
     ),

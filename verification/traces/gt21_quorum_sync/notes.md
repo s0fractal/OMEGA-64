@@ -1,7 +1,8 @@
 # gt21_quorum_sync
 
 - scenario: sovereignty protocol collective sync and aggressive share
-- setup: standalone deterministic capture of OP_COLLECTIVE (quorum sync) and OP_SHARE (hormone-modulated aggression bonus)
+- setup: standalone deterministic capture of OP_COLLECTIVE (quorum sync) and
+  OP_SHARE (hormone-modulated aggression bonus)
 - runtime_mode: standalone-quorum-sync-capture
 - hash: e38039b401a6bb0e1727046914b4a09c3d9f7e483eb87de1fad3c99ed7e31bf8
 

@@ -1,4 +1,7 @@
-import { geneticLedgerEntryByKey, type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
+import {
+  geneticLedgerEntryByKey,
+  type GeneticLedgerKey,
+} from "./GENETIC_LEDGER.ts";
 
 export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
   rollbackToken: string;
@@ -124,11 +127,14 @@ export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
     };
   }
 
-  const tick = update.tick === undefined ? 0 : Math.max(0, Math.floor(update.tick));
+  const tick = update.tick === undefined
+    ? 0
+    : Math.max(0, Math.floor(update.tick));
   const source = (update.source ?? "runtime").trim() || "runtime";
   const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken =
-    `${state.key}@${tick}:${String(state.seq + 1).padStart(4, "0")}`;
+  const rollbackToken = `${state.key}@${tick}:${
+    String(state.seq + 1).padStart(4, "0")
+  }`;
   const mutation: LedgerRuntimeEvent<K> = {
     rollbackToken,
     previousValue,
@@ -186,7 +192,9 @@ export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
   }
 
   const history = [...state.history];
-  const idx = history.findIndex((event) => event.rollbackToken === rollbackToken);
+  const idx = history.findIndex((event) =>
+    event.rollbackToken === rollbackToken
+  );
   if (idx === -1) {
     return {
       status: "missing",
@@ -222,7 +230,9 @@ export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
     };
   }
 
-  const tick = rollback.tick === undefined ? 0 : Math.max(0, Math.floor(rollback.tick));
+  const tick = rollback.tick === undefined
+    ? 0
+    : Math.max(0, Math.floor(rollback.tick));
   const source = (rollback.source ?? "runtime").trim() || "runtime";
   const reason = (rollback.reason ?? "ledger_rollback").trim() ||
     "ledger_rollback";

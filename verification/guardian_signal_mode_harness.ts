@@ -66,9 +66,11 @@ const stableStringify = (value: unknown): string => {
     [a],
     [b],
   ) => a.localeCompare(b));
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
 };
 
 const sha256Hex = async (value: unknown): Promise<string> => {
@@ -97,7 +99,9 @@ const loadBaselineAnchor = async (
   };
 };
 
-const scriptForCase = (definition: GuardianSignalModeCaseDefinition): Uint8Array =>
+const scriptForCase = (
+  definition: GuardianSignalModeCaseDefinition,
+): Uint8Array =>
   definition.useGuardianScript
     ? STATE_MATRIX.getGuardianScript()
     : (definition.script ? definition.script : new Uint8Array());
@@ -157,7 +161,9 @@ const artifactPathForCase = (caseId: string): string =>
 const artifactFromResult = async (
   result: GuardianSignalModeHarnessResult,
 ): Promise<GuardianSignalModeHarnessArtifact> => {
-  const legacy = result.results.find((entry) => entry.mode === "legacy-execute");
+  const legacy = result.results.find((entry) =>
+    entry.mode === "legacy-execute"
+  );
   const shadow = result.results.find((entry) => entry.mode === "shadow-reduce");
   const hybrid = result.results.find((entry) => entry.mode === "hybrid-reduce");
   if (!legacy || !shadow || !hybrid) {
@@ -175,7 +181,8 @@ const artifactFromResult = async (
     shadow_digest: await sha256Hex(shadow.decision),
     hybrid_digest: await sha256Hex(hybrid.decision),
     diffs: {
-      shadow_preserves_legacy: shadow.decision.allowed === legacy.decision.allowed,
+      shadow_preserves_legacy:
+        shadow.decision.allowed === legacy.decision.allowed,
       hybrid_narrows_legacy:
         hybrid.decision.allowed === legacy.decision.allowed ||
         (legacy.decision.allowed && !hybrid.decision.allowed),

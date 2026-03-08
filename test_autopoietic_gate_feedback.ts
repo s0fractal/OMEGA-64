@@ -4,17 +4,24 @@ import { QuorumAdvocate } from "./reduction_core/relics/QUORUM_ADVOCATE.ts";
 import { mergeGateProposals } from "./GATE_MERGER.ts";
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { type StateSnapshot, type DeltaProposal, type GateConfig, type GateDecision } from "./STATE_SNAPSHOT.ts";
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  type StateSnapshot,
+} from "./STATE_SNAPSHOT.ts";
 
 async function runTest() {
-  LOGGER.info("🧪 [TEST] Starting Sovereign Feedback (Stage 25) Verification...");
+  LOGGER.info(
+    "🧪 [TEST] Starting Sovereign Feedback (Stage 25) Verification...",
+  );
 
   const qa = new QuorumAdvocate();
-  
+
   // --- 1. Test Hormone Lattice Signaling ---
   LOGGER.info("Step 1: Testing Hormone Lattice alignment...");
   const syntropy = 0.85; // High organization
-  
+
   syncHormonesToLattice({
     baseTax: 1000,
     targetEnergy: 5000,
@@ -43,7 +50,7 @@ async function runTest() {
 
   // --- 2. Test Gate Cost Discounting ---
   LOGGER.info("Step 2: Testing Gate Cost Discounting...");
-  
+
   const mockState: StateSnapshot = {
     tick: 1,
     state_i16: new Int16Array(100),
@@ -88,7 +95,7 @@ async function runTest() {
     [mockProposal],
     mockConfig,
     decision,
-    { span: 32767, max: 32767 }
+    { span: 32767, max: 32767 },
   );
 
   const appliedCost = acceptedProposalMetrics[0]?.physical_cost ?? 1000;
@@ -100,7 +107,9 @@ async function runTest() {
     LOGGER.error(`❌ Sovereing Discount failed. Applied cost: ${appliedCost}`);
   }
 
-  LOGGER.info("✅ Sovereign Feedback (Stage 25) Verification Script Completed.");
+  LOGGER.info(
+    "✅ Sovereign Feedback (Stage 25) Verification Script Completed.",
+  );
 }
 
 if (import.meta.main) {

@@ -1,7 +1,9 @@
 # gt14_structure_charge_resolution
 
 - scenario: standalone structure charge resolution
-- setup: standalone deterministic subprocess capture of OP_PLUG publishing a charge intent and tick_structure_grid resolving it into a concrete charged structure cell
+- setup: standalone deterministic subprocess capture of OP_PLUG publishing a
+  charge intent and tick_structure_grid resolving it into a concrete charged
+  structure cell
 - duration: 1 execute phase + 1 structure tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-structure-charge-capture

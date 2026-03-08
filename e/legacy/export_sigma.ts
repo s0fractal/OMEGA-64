@@ -163,14 +163,19 @@ const main = async () => {
   }
 
   const files: { path: string; level: string; order: number }[] = [];
-  for await (const path of walk(args.root, args.includeQView, args.includeQLegacy)) {
+  for await (
+    const path of walk(args.root, args.includeQView, args.includeQLegacy)
+  ) {
     const base = path.split("/").pop() ?? path;
     const token = levelToken(base);
     if (!token) continue;
     files.push({ path, level: token, order: levelOrder(token) });
   }
 
-  files.sort((a, b) => a.order - b.order || a.level.localeCompare(b.level) || a.path.localeCompare(b.path));
+  files.sort((a, b) =>
+    a.order - b.order || a.level.localeCompare(b.level) ||
+    a.path.localeCompare(b.path)
+  );
 
   const byLevel = new Map<string, string[]>();
   for (const file of files) {
@@ -186,7 +191,11 @@ const main = async () => {
   lines.push("");
 
   const mode = args.mode.toLowerCase();
-  for (const level of Array.from(byLevel.keys()).sort((a, b) => levelOrder(a) - levelOrder(b) || a.localeCompare(b))) {
+  for (
+    const level of Array.from(byLevel.keys()).sort((a, b) =>
+      levelOrder(a) - levelOrder(b) || a.localeCompare(b)
+    )
+  ) {
     lines.push("");
     lines.push(subheader(level));
     const levelFiles = byLevel.get(level) ?? [];
@@ -213,12 +222,16 @@ const main = async () => {
       list.push(path);
       byEntity.set(base, list);
     }
-    const entities = Array.from(byEntity.keys()).sort((a, b) => a.localeCompare(b));
+    const entities = Array.from(byEntity.keys()).sort((a, b) =>
+      a.localeCompare(b)
+    );
     for (const entity of entities) {
       const label = entity.startsWith("./") ? entity.slice(2) : entity;
       lines.push("");
       lines.push(fileHeader(label));
-      const projections = (byEntity.get(entity) ?? []).sort((a, b) => a.localeCompare(b));
+      const projections = (byEntity.get(entity) ?? []).sort((a, b) =>
+        a.localeCompare(b)
+      );
       for (const path of projections) {
         const lang = langFor(path);
         const ext = path.split(".").pop() ?? "";

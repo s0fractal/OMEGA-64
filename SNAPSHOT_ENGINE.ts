@@ -25,10 +25,13 @@ export const SNAPSHOT_ENGINE = {
    */
   exportSnapshot: async (options: SnapshotExportOptions = {}) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const tick = Number.isFinite(options.tick) ? Number(options.tick) : undefined;
-    const reason = typeof options.reason === "string" && options.reason.trim().length > 0
-      ? options.reason.trim().slice(0, 96)
-      : "manual";
+    const tick = Number.isFinite(options.tick)
+      ? Number(options.tick)
+      : undefined;
+    const reason =
+      typeof options.reason === "string" && options.reason.trim().length > 0
+        ? options.reason.trim().slice(0, 96)
+        : "manual";
     const shouldPrune = Boolean(options.prune);
     const retention = normalizeRetention(options.retention);
     await Deno.mkdir(SNAPSHOT_DIR, { recursive: true });

@@ -44,33 +44,33 @@ const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
 const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
 const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
 const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 19600000;
-const COHERENCE_OFF: usize = SAFETY_BUFFER + 40300100;
-const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40300104;
-const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40400000;
-const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 40600000;
-const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 40800000;
-const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 41200000;
-const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 41600000;
-const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
-const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42400000;
-const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42444800;
-const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42489600;
-const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42534400;
-const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42579200;
-const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42580224;
-const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42625024;
-const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
-const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
-const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
-const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 43000000;
+const COHERENCE_OFF: usize = SAFETY_BUFFER + 40700100;
+const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40700104;
+const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40800000;
+const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 41000000;
+const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 41200000;
+const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 41600000;
+const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
+const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42400000;
+const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42800000;
+const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42844800;
+const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42889600;
+const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42934400;
+const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42979200;
+const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42980224;
+const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 43025024;
+const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 43114624;
+const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 43159424;
+const HORMONE_OFF: usize = SAFETY_BUFFER + 43249024;
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 43249040;
+const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 43400000;
 const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 20800000;
 const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
 const SPAWN_MAX: i32 = 1024;
 const SPAWN_SLOT: i32 = 24;
 const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
 const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
-const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET; 
+const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
 // Genomes are at the start of instructions
 
 const ISA_BIND: u8 = 0x40;
@@ -136,9 +136,10 @@ function getLineage(idx: i32): u64 {
 function addResonance(idx: i32, delta: i32): void {
   setResonance(idx, getResonance(idx) + delta);
 }
+
 // Read a global hormone value from the shared lattice (index 0..6).
 // 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction 6=global_consensus
-@inline
+
 function getHormone(id: i32): u16 {
   return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
 }
@@ -373,7 +374,8 @@ export function drain_spawn_requests(tick: i32): i32 {
   let freeSearchCursor: i32 = 0;
 
   while (cursor != writeCursor && spawned < 64) {
-    const slotOff = SPAWN_DATA_OFF + ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
+    const slotOff = SPAWN_DATA_OFF +
+      ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
     const gLo = load<i32>(slotOff);
     if (gLo != 0) {
       const cx = load<i16>(slotOff + 8) as i32;
@@ -383,7 +385,16 @@ export function drain_spawn_requests(tick: i32): i32 {
       const freeIdx = findNextFreeSlot(freeSearchCursor);
       if (freeIdx != -1) {
         const childId = (tick as i64) << 32 | (freeIdx as i64);
-        seed_atom(freeIdx, childId, cx, cy, energyScaled, 100, slotOff, slotOff + 16);
+        seed_atom(
+          freeIdx,
+          childId,
+          cx,
+          cy,
+          energyScaled,
+          100,
+          slotOff,
+          slotOff + 16,
+        );
         freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
       }
     }
@@ -626,7 +637,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           let d2 = dx * dx + dy * dy;
           if (d2 < 0.001) {
             // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
-            d2 = 0.001; 
+            d2 = 0.001;
           } else if (d2 < 1.0) {
             // Minor overlap, let it through
           }
@@ -674,6 +685,12 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
 
           let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
             (2.0 * multiplier);
+
+          // Stage 36 Bugfix: Hard cap on chemotactic force to prevent physics explosions
+          // when arbitrary massive energy pools are assigned by the test runner.
+          if (force < -20.0) force = -20.0;
+          if (force > 20.0) force = 20.0;
+
           tx += (dx / d) * force;
           ty += (dy / d) * force;
         }
@@ -747,17 +764,14 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
 
 // --- ERA 72: GLYPH INTERNALIZATION ---
 
-@inline
 function unpackGlyphKind(header: i32): i32 {
   return header & 0xFF;
 }
 
-@inline
 function unpackGlyphAmplitude(header: i32): i32 {
   return (header >>> 8) & 0x00FFFFFF;
 }
 
-@inline
 function packGlyphHeader(kind: i32, amplitude: i32): i32 {
   if (amplitude < 0) amplitude = 0;
   if (amplitude > 0x00FFFFFF) amplitude = 0x00FFFFFF;
@@ -809,7 +823,9 @@ function atomicDepositGlyphHeader(
       );
       if (observed == current) {
         if (kind == 2 && payloadPtr != 0) {
-          const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+          const payloadBase = baseOffset == GLYPH_HEADER_OFF
+            ? GLYPH_PAYLOAD_OFF
+            : GLYPH_SCRATCH_PAYLOAD_OFF;
           const dstPtr = payloadBase + (cell << 3) as usize;
           memory.copy(dstPtr, payloadPtr, 8);
         }
@@ -827,7 +843,9 @@ function atomicDepositGlyphHeader(
     );
     if (observed == current) {
       if (kind == 2 && payloadPtr != 0) {
-        const payloadBase = baseOffset == GLYPH_HEADER_OFF ? GLYPH_PAYLOAD_OFF : GLYPH_SCRATCH_PAYLOAD_OFF;
+        const payloadBase = baseOffset == GLYPH_HEADER_OFF
+          ? GLYPH_PAYLOAD_OFF
+          : GLYPH_SCRATCH_PAYLOAD_OFF;
         const dstPtr = payloadBase + (cell << 3) as usize;
         memory.copy(dstPtr, payloadPtr, 8);
       }
@@ -864,10 +882,10 @@ function secreteGlyph(
     let cost: i32 = 0;
     if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
     else if (kind == 2) cost = PLASMID_COST_BASE + (intensity >> 2);
-    
+
     if (cost > 0) {
-        const currentEnergy = getEnergy(atomIdx);
-        setEnergy(atomIdx, currentEnergy - cost);
+      const currentEnergy = getEnergy(atomIdx);
+      setEnergy(atomIdx, currentEnergy - cost);
     }
   }
 
@@ -877,19 +895,26 @@ function secreteGlyph(
   if (kind == 1) {
     const spill = intensity >> 2;
     if (spill > 16) {
-      if (gx > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
-      if (gx < 139) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 1, 1, spill);
-      if (gy > 0) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 140, 1, spill);
-      if (gy < 79) atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 140, 1, spill);
+      if (gx > 0) {
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
+      }
+      if (gx < 139) {
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 1, 1, spill);
+      }
+      if (gy > 0) {
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 140, 1, spill);
+      }
+      if (gy < 79) {
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 140, 1, spill);
+      }
     }
   }
 }
 
-
 export function tickGlyphTransport(tick: i32): void {
   // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
-  
+
   for (let cell = 0; cell < 140 * 80; cell++) {
     const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
     const kind = unpackGlyphKind(header);
@@ -901,7 +926,7 @@ export function tickGlyphTransport(tick: i32): void {
 
     const share = diffusionShareForKind(kind, decayed);
     const retained = decayed - share;
-    
+
     if (retained > 0) {
       atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
@@ -916,12 +941,12 @@ export function tickGlyphTransport(tick: i32): void {
       const gy = cell / 140;
       const selector = (tick + cell) & 3;
       let nextCell = cell;
-      
+
       if (selector == 0 && gx < 139) nextCell = cell + 1;
       else if (selector == 1 && gy < 79) nextCell = cell + 140;
       else if (selector == 2 && gx > 0) nextCell = cell - 1;
       else if (selector == 3 && gy > 0) nextCell = cell - 140;
-      
+
       atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
       if (kind == 2) { // PLASMID payload transport
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -957,7 +982,13 @@ export function tickGlyphTransport(tick: i32): void {
       let amp = charge >> 2;
       if (amp < 24) amp = 24;
       if (amp > 384) amp = 384;
-      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, 2, amp, memOffset);
+      atomicDepositGlyphHeader(
+        GLYPH_SCRATCH_HEADER_OFF,
+        cell,
+        2,
+        amp,
+        memOffset,
+      );
       // Quantification
       if ((cell % 32) == 0) {
         atomic.add<i32>(SECRETION_STATS_OFF + 44, 1); // Memory leak counter
@@ -971,37 +1002,59 @@ export function tickGlyphTransport(tick: i32): void {
 
 // --- PER-ROLE SECRETION PREDICATES ---
 
-@inline
-function guardianShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+function guardianShouldEmitPheromone(
+  tick: i32,
+  idx: i32,
+  phase: i32,
+  resonance: i32,
+): bool {
   if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
   if (((tick + idx) % 64) != 0) return false;
   return resonance > 300;
 }
 
-@inline
-function architectShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+function architectShouldEmitPlasmid(
+  tick: i32,
+  idx: i32,
+  phase: i32,
+  resonance: i32,
+  energy: i32,
+): bool {
   if (((tick + idx) % 32) != 0) return false;
   return resonance > 200;
 }
 
-@inline
-function producerShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+function producerShouldEmitPheromone(
+  tick: i32,
+  idx: i32,
+  phase: i32,
+  resonance: i32,
+  energy: i32,
+): bool {
   if (((tick + idx) % 128) != 0) return false;
   return resonance > 400;
 }
 
-@inline
-function producerShouldEmitPlasmid(tick: i32, idx: i32, phase: i32, resonance: i32, energy: i32): bool {
+function producerShouldEmitPlasmid(
+  tick: i32,
+  idx: i32,
+  phase: i32,
+  resonance: i32,
+  energy: i32,
+): bool {
   if (((tick + idx) % 128) != 0) return false;
   return energy > 800;
 }
 
-@inline
-function neutralShouldEmitPheromone(tick: i32, idx: i32, phase: i32, resonance: i32): bool {
+function neutralShouldEmitPheromone(
+  tick: i32,
+  idx: i32,
+  phase: i32,
+  resonance: i32,
+): bool {
   if (((tick + idx) % 256) != 0) return false;
   return resonance > 500;
 }
-
 
 function applyBondSprings(idx: i32, x: i32, y: i32): void {
   let fx: f32 = 0;
@@ -1026,7 +1079,7 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
     let myRes = getReadResonance(idx);
     let targetRes = getReadResonance(targetIdx);
-    
+
     // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
     if (targetRes > myRes) {
       addResonanceDelta(idx, (targetRes - myRes) / 20);
@@ -1047,11 +1100,13 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     } else {
       let elasticRange: f32 = 10.0;
       if (dist > (targetDist as f32) + elasticRange) {
-        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 * resonanceWeight;
+        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 *
+          resonanceWeight;
         fx += (dx / dist) * force;
         fy += (dy / dist) * force;
       } else if (dist < (targetDist as f32) - elasticRange) {
-        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 * resonanceWeight;
+        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 *
+          resonanceWeight;
         fx -= (dx / dist) * force;
         fy -= (dy / dist) * force;
       }
@@ -1087,7 +1142,7 @@ export function execute_atom(atomIndex: i32): void {
     // ERA 71: Reset accumulation
     accForceX = 0;
     accForceY = 0;
-    
+
     let vx = getGenomeVelocityX(atomIndex);
     let vy = getGenomeVelocityY(atomIndex);
     let energy = getEnergy(atomIndex);
@@ -1097,21 +1152,75 @@ export function execute_atom(atomIndex: i32): void {
     const cell = (curY / 10) * 140 + (curX / 10);
 
     // DECENTRALIZED SECRETION (Stage 5.2: coord-based + spill)
-    if (role == ROLE_GUARDIAN && guardianShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(curX, curY, 1, clampResource(res / 4) as i32, role, atomIndex);
-    } else if (role == ROLE_ARCHITECT && architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-      secreteGlyph(curX, curY, 2, clampResource((energy + res) / 10) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
+    if (
+      role == ROLE_GUARDIAN &&
+      guardianShouldEmitPheromone(tick, atomIndex, phase, res)
+    ) {
+      secreteGlyph(
+        curX,
+        curY,
+        1,
+        clampResource(res / 4) as i32,
+        role,
+        atomIndex,
+      );
+    } else if (
+      role == ROLE_ARCHITECT &&
+      architectShouldEmitPlasmid(tick, atomIndex, phase, res, energy)
+    ) {
+      secreteGlyph(
+        curX,
+        curY,
+        2,
+        clampResource((energy + res) / 10) as i32,
+        role,
+        atomIndex,
+        LOGIC_OFFSET + (atomIndex << 3),
+      );
     } else if (role == ROLE_PRODUCER) {
       if (producerShouldEmitPheromone(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(curX, curY, 1, clampResource((res + energy) / 10) as i32, role, atomIndex);
+        secreteGlyph(
+          curX,
+          curY,
+          1,
+          clampResource((res + energy) / 10) as i32,
+          role,
+          atomIndex,
+        );
       }
       if (producerShouldEmitPlasmid(tick, atomIndex, phase, res, energy)) {
-        secreteGlyph(curX, curY, 2, clampResource((energy + res) / 12) as i32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
+        secreteGlyph(
+          curX,
+          curY,
+          2,
+          clampResource((energy + res) / 12) as i32,
+          role,
+          atomIndex,
+          LOGIC_OFFSET + (atomIndex << 3),
+        );
       }
-    } else if (role == ROLE_NEUTRAL && neutralShouldEmitPheromone(tick, atomIndex, phase, res)) {
-      secreteGlyph(curX, curY, 1, clampResource(res / 8) as i32, role, atomIndex);
+    } else if (
+      role == ROLE_NEUTRAL &&
+      neutralShouldEmitPheromone(tick, atomIndex, phase, res)
+    ) {
+      secreteGlyph(
+        curX,
+        curY,
+        1,
+        clampResource(res / 8) as i32,
+        role,
+        atomIndex,
+      );
     } else if (role == ROLE_PARASITE && (tick % 64) == 0) {
-      secreteGlyph(curX, curY, 2, 32, role, atomIndex, LOGIC_OFFSET + (atomIndex << 3));
+      secreteGlyph(
+        curX,
+        curY,
+        2,
+        32,
+        role,
+        atomIndex,
+        LOGIC_OFFSET + (atomIndex << 3),
+      );
     }
 
     applyBondSprings(atomIndex, curX, curY);
@@ -1121,7 +1230,10 @@ export function execute_atom(atomIndex: i32): void {
     let damping = load<u8>(DAMPING_OFF + atomIndex as usize);
     // HORMONE 1: time_viscosity lowers effective dampingFactor (range 0..2048 → 0..0.15 additive)
     let viscosityH: f32 = getHormone(1) as f32 / 2048.0;
-    let dampingFactor = Mathf.max(0, 1.0 - (damping as f32) / 255.0 - viscosityH * 0.15);
+    let dampingFactor = Mathf.max(
+      0,
+      1.0 - (damping as f32) / 255.0 - viscosityH * 0.15,
+    );
 
     // Behavior velocity is added on top of force integration
     let nextX = (curX as f32) + accForceX +
@@ -1129,7 +1241,11 @@ export function execute_atom(atomIndex: i32): void {
     let nextY = (curY as f32) + accForceY +
       (vy as f32) * 2.0 * (dampingFactor as f32);
 
-    storeClampedPos(atomIndex, Math.round(nextX) as i32, Math.round(nextY) as i32);
+    storeClampedPos(
+      atomIndex,
+      Math.round(nextX) as i32,
+      Math.round(nextY) as i32,
+    );
   }
 
   let pc = getPC(atomIndex);
@@ -1280,9 +1396,10 @@ export function execute_atom(atomIndex: i32): void {
   let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
   // Coherence discount: if global coherence is high (>100 signals), reduce cost
   let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
-  
+
   let baseComputeCost = gasUsed >> discount;
-  let metabolicCost = 1 + baseComputeCost + ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
+  let metabolicCost = 1 + baseComputeCost +
+    ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
 
   // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
   if (coherenceVal > 500) {
@@ -1311,9 +1428,14 @@ export function execute_atom(atomIndex: i32): void {
   // Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
   let finalEnergy: i32 = getEnergy(atomIndex) as i32;
   let finalResonance: i32 = getResonance(atomIndex) as i32;
-  
-  if (finalResonance > 0) setResonance(atomIndex, finalResonance - resonanceDecay);
-  setEnergy(atomIndex, finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0);
+
+  if (finalResonance > 0) {
+    setResonance(atomIndex, finalResonance - resonanceDecay);
+  }
+  setEnergy(
+    atomIndex,
+    finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
+  );
 }
 
 // --- VECTOR 8: THE CRYSTALLINE LATTICE ---
@@ -1364,8 +1486,8 @@ export function build_spatial_hash(): void {
     let id = load<u64>(IDS_OFFSET + (idx << 3) as usize);
     if (id == 0) continue;
 
-    let x = getX(idx) as i32;
-    let y = getY(idx) as i32;
+    let x = (getX(idx) as i32) / 100;
+    let y = (getY(idx) as i32) / 100;
 
     // Clamp
     if (x < 0) x = 0;
@@ -1418,7 +1540,6 @@ export function build_spatial_hash(): void {
 
 // --- OMEGA-64 | Environmental Physics: Viral Diffusion ---
 
-@inline
 function prng_next(state: u32): u32 {
   return (state * 1664525 + 1013904223) | 0;
 }
@@ -1451,12 +1572,12 @@ export function diffuseViralSemantics(pulseId: i32): void {
 
         const nx = x + (v2 > 0.5 ? 1 : -1);
         const ny = y + (v3 > 0.5 ? 1 : -1);
-        
+
         if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
           const nIdx = (ny * GRID_W + nx) * 9;
           const nTargetOff = SIGNAL_GRID_OFF + (nIdx as usize);
           const nIntensity = atomic.load<u8>(nTargetOff + 8);
-          
+
           if (nIntensity < (intensity >> 1)) {
             // Copy logic and part of intensity
             for (let b: usize = 0; b < 8; b++) {
@@ -1554,28 +1675,30 @@ export function tick_structure_grid(): void {
       }
 
       const state = (cellVal >> 24) & 0xFF;
-      
+
       // AUTOPOIESIS: Resonance Shielding
       // Read average phase from spatial grid average slot (slot 31)
       let spatialIdx = y * 140 + x;
-      let avgPhase = atomic.load<i32>(SPATIAL_GRID_OFFSET + (spatialIdx << 7) + (31 << 2));
-      
+      let avgPhase = atomic.load<i32>(
+        SPATIAL_GRID_OFFSET + (spatialIdx << 7) + (31 << 2),
+      );
+
       let decay = 10;
       if (avgPhase > 128) decay = 2; // Shielded
-      
+
       let nextCharge = currentCharge > decay ? currentCharge - decay : 0;
 
       // --- ERA 34: Structural Memory Leakage ---
       // If density is low but not yet zero, leak memory logic into signal grid.
       if (nextCharge > 0 && nextCharge < 50) {
         const memoryPtr = MEMORY_GRID_OFF + (i << 3) as usize;
-        const signalPtr = SIGNAL_GRID_OFF + (i << 3) as usize; // Each cell has 8+1 bytes in signal grid? 
-        // Wait, SIGNAL_GRID cell size depends on implementation. 
-        // In OMEGA, signalGrid usually matches GRID size (140x80) but here 
+        const signalPtr = SIGNAL_GRID_OFF + (i << 3) as usize; // Each cell has 8+1 bytes in signal grid?
+        // Wait, SIGNAL_GRID cell size depends on implementation.
+        // In OMEGA, signalGrid usually matches GRID size (140x80) but here
         // we follow the JS logic: gridIdx = i * 9.
         const gridIdx = i * 9;
         const targetSignalOff = SIGNAL_GRID_OFF + (gridIdx as usize);
-        
+
         for (let b: usize = 0; b < 8; b++) {
           const logicByte = load<u8>(memoryPtr + b);
           if (logicByte != 0) {
@@ -1642,13 +1765,13 @@ export function tick_structure_grid(): void {
       } else if (type == STR_INVERTER) {
         let maxNeighborCharge: i32 = 0;
         for (let n = 0; n < 4; n++) {
-           let nx = x + dir4X(n);
-           let ny = y + dir4Y(n);
-           if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
-             let ni = ny * GRID_W + nx;
-             let nCharge = readStructureCharge(ni);
-             if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
-           }
+          let nx = x + dir4X(n);
+          let ny = y + dir4Y(n);
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            let ni = ny * GRID_W + nx;
+            let nCharge = readStructureCharge(ni);
+            if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
+          }
         }
         if (maxNeighborCharge < 50) nextCharge = 255;
         else nextCharge = 0;
@@ -1667,7 +1790,7 @@ export function tick_structure_grid(): void {
           if (readStructureCharge(rstY * GRID_W + rstX) > 100) newState = 0;
         }
         if (newState != state) {
-           cellVal = (cellVal & 0x00FFFFFF) | (newState << 24);
+          cellVal = (cellVal & 0x00FFFFFF) | (newState << 24);
         }
         if (newState == 1) nextCharge = 255;
         else nextCharge = 0;
@@ -1788,8 +1911,8 @@ export function get_neural_coherence(): i32 {
 
   // Vector 10: Unify with OP_SIGNAL accumulator
   let signalSignals = atomic.load<i32>(COHERENCE_OFF as usize);
-  trace_atom(8888, 111, signalSignals, 0, 0); 
-  
+  trace_atom(8888, 111, signalSignals, 0, 0);
+
   return oscCoherence + signalSignals;
 }
 
@@ -1854,13 +1977,16 @@ export function apply_metabolism_kernel(
     if (current <= 0) continue;
 
     const key = genomeKey16(i);
-    const sameGenomeCount = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (key << 2));
+    const sameGenomeCount = atomic.load<i32>(
+      METABOLISM_SCRATCH_OFF + (key << 2),
+    );
 
     let delta: i32 = 0;
 
     // Pass 1: Evolution Pressure (Novelty + Symbiosis)
     if (noveltySigned != 0) {
-      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) / population;
+      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) /
+        population;
       delta += noveltyTerm;
     }
 
@@ -1868,9 +1994,13 @@ export function apply_metabolism_kernel(
       const base = i * 4;
       let crossGenomeBonds = 0;
       for (let slot = 0; slot < 4; slot++) {
-        const target = atomic.load<i32>(BONDS_OFFSET + ((base + slot) << 2) as usize);
+        const target = atomic.load<i32>(
+          BONDS_OFFSET + ((base + slot) << 2) as usize,
+        );
         if (target <= 0 || target >= MAX_ATOMS) continue;
-        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) continue;
+        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) {
+          continue;
+        }
         if (genomeKey16(target) != key) crossGenomeBonds++;
       }
       delta += crossGenomeBonds > 0
@@ -1881,7 +2011,7 @@ export function apply_metabolism_kernel(
     // 2. Homeostasis
     // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
     const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
-    
+
     if (baseTax > 0 && interimEnergy > starvationFloor) {
       let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
       delta -= tax;
@@ -1889,7 +2019,7 @@ export function apply_metabolism_kernel(
 
     const deviation = interimEnergy - targetEnergy;
     const absDeviation = Math.abs(deviation);
-    
+
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
       const step = i32(Math.min(
@@ -1911,17 +2041,17 @@ export function apply_metabolism_kernel(
 
     // Starvation Floor Guard (using interim energy for sequential match)
     if (interimEnergy <= starvationFloor && delta < 0) {
-      // If we are at or below floor after evolution pressure, 
+      // If we are at or below floor after evolution pressure,
       // block any further downward delta from homeostasis/tax.
       // But we should subtract what was already added in Pass 1 if it was negative?
       // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
       // where current is energy after Pass 1.
       // This means Pass 2 delta becomes 0.
-      
+
       // To match exactly:
       const pass2Delta = delta - (interimEnergy - current);
       if (pass2Delta < 0) {
-         delta = interimEnergy - current; 
+        delta = interimEnergy - current;
       }
     }
 

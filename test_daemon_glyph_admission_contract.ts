@@ -1,9 +1,9 @@
 import {
+  type DaemonIngressMetrics,
+  type DaemonInjectEnvelope,
   evaluateInvariantAdmission,
   normalizeDaemonNarrativeContext,
   planInvariantIngress,
-  type DaemonInjectEnvelope,
-  type DaemonIngressMetrics,
 } from "./DAEMON_INGRESS_POLICY.ts";
 
 const expect = (condition: boolean, message: string): void => {
@@ -35,9 +35,18 @@ const PHEROMONE_ENVELOPE: DaemonInjectEnvelope = {
 };
 
 const main = () => {
-  const neutralContext = normalizeDaemonNarrativeContext({}, "808103862DA8E71A");
-  expect(neutralContext.glyphRegime === "dormant", "neutral context must default to dormant glyph regime");
-  expect(neutralContext.glyphDominantRole === "none", "neutral context must default to no dominant glyph role");
+  const neutralContext = normalizeDaemonNarrativeContext(
+    {},
+    "808103862DA8E71A",
+  );
+  expect(
+    neutralContext.glyphRegime === "dormant",
+    "neutral context must default to dormant glyph regime",
+  );
+  expect(
+    neutralContext.glyphDominantRole === "none",
+    "neutral context must default to no dominant glyph role",
+  );
 
   const neutralPlasmid = evaluateInvariantAdmission(
     PLASMID_ENVELOPE,
@@ -45,8 +54,14 @@ const main = () => {
     neutralContext,
     null,
   );
-  expect(neutralPlasmid.score === 0, "neutral plasmid ingress should remain low-drift");
-  expect(neutralPlasmid.severity === "LOW", "neutral plasmid ingress should remain LOW");
+  expect(
+    neutralPlasmid.score === 0,
+    "neutral plasmid ingress should remain low-drift",
+  );
+  expect(
+    neutralPlasmid.severity === "LOW",
+    "neutral plasmid ingress should remain LOW",
+  );
 
   const plasmidPressureContext = normalizeDaemonNarrativeContext(
     {
@@ -64,8 +79,14 @@ const main = () => {
     plasmidPressureContext,
     null,
   );
-  expect(pressuredPlasmid.score === 2, "glyph plasmid pressure should add two drift points");
-  expect(pressuredPlasmid.severity === "MID", "glyph plasmid pressure should escalate low-risk plasmid ingress to MID");
+  expect(
+    pressuredPlasmid.score === 2,
+    "glyph plasmid pressure should add two drift points",
+  );
+  expect(
+    pressuredPlasmid.severity === "MID",
+    "glyph plasmid pressure should escalate low-risk plasmid ingress to MID",
+  );
   expect(
     pressuredPlasmid.reasons.includes("GLYPH_REGIME_PLASMID_PRESSURE"),
     "glyph plasmid regime reason must be present",
@@ -75,7 +96,10 @@ const main = () => {
     "glyph plasmid role reason must be present",
   );
   const plasmidPlan = planInvariantIngress(PLASMID_ENVELOPE, pressuredPlasmid);
-  expect(plasmidPlan.degraded === true, "MID plasmid admission should degrade intensity");
+  expect(
+    plasmidPlan.degraded === true,
+    "MID plasmid admission should degrade intensity",
+  );
   expect(
     plasmidPlan.applied.action_type === "INJECT_PLASMID",
     "MID plasmid admission should stay in plasmid lane",
@@ -97,8 +121,14 @@ const main = () => {
     pheromonePressureContext,
     null,
   );
-  expect(pressuredPheromone.score === 2, "glyph pheromone pressure should add two drift points");
-  expect(pressuredPheromone.severity === "MID", "glyph pheromone pressure should escalate ingress to MID");
+  expect(
+    pressuredPheromone.score === 2,
+    "glyph pheromone pressure should add two drift points",
+  );
+  expect(
+    pressuredPheromone.severity === "MID",
+    "glyph pheromone pressure should escalate ingress to MID",
+  );
   expect(
     pressuredPheromone.reasons.includes("GLYPH_REGIME_PHEROMONE_PRESSURE"),
     "glyph pheromone regime reason must be present",

@@ -43,7 +43,7 @@ export class DollFork {
       shared: true,
     });
     this.shardBuffer = this.wasmMemory.buffer as SharedArrayBuffer;
-    
+
     // Initialize primary views (Host side)
     const b = this.shardBuffer;
     this.views = {
@@ -51,25 +51,73 @@ export class DollFork {
       xs: new Int16Array(b, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS),
       ys: new Int16Array(b, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS),
       energies: new Int32Array(b, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
-      resonances: new Int32Array(b, OFFSETS.RESONANCE_OFFSET, OFFSETS.MAX_ATOMS),
+      resonances: new Int32Array(
+        b,
+        OFFSETS.RESONANCE_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
       phases: new Int32Array(b, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS),
       roles: new Uint8Array(b, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS),
       logic: new Uint8Array(b, OFFSETS.LOGIC_OFFSET, OFFSETS.MAX_ATOMS * 8),
       bonds: new Uint32Array(b, OFFSETS.BONDS_OFFSET, OFFSETS.MAX_ATOMS * 4),
-      stiffness: new Float32Array(b, OFFSETS.STIFFNESS_OFFSET, OFFSETS.MAX_ATOMS * 4),
-      bondDistances: new Uint8Array(b, OFFSETS.BOND_DISTANCES_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      stiffness: new Float32Array(
+        b,
+        OFFSETS.STIFFNESS_OFFSET,
+        OFFSETS.MAX_ATOMS * 4,
+      ),
+      bondDistances: new Uint8Array(
+        b,
+        OFFSETS.BOND_DISTANCES_OFFSET,
+        OFFSETS.MAX_ATOMS * 4,
+      ),
       damping: new Uint8Array(b, OFFSETS.DAMPING_OFFSET, OFFSETS.MAX_ATOMS),
       causality: new Uint8Array(b, OFFSETS.CAUSALITY_OFFSET, OFFSETS.MAX_ATOMS),
       hormones: new Uint16Array(b, OFFSETS.HORMONE_OFFSET, 6),
-      signalGrid: new Int32Array(b, OFFSETS.SIGNAL_GRID_OFFSET, OFFSETS.GRID_CELLS),
-      memoryGrid: new Uint8Array(b, OFFSETS.MEMORY_GRID_OFFSET, OFFSETS.GRID_CELLS * 8),
-      structureGrid: new Int32Array(b, OFFSETS.STRUCTURE_GRID_OFFSET, OFFSETS.GRID_CELLS),
-      glyphHeader: new Int32Array(b, OFFSETS.GLYPH_HEADER_OFFSET, OFFSETS.GRID_CELLS),
-      glyphPayload: new Uint8Array(b, OFFSETS.GLYPH_PAYLOAD_OFFSET, OFFSETS.GRID_CELLS * 8),
-      readXs: new Int16Array(b, OFFSETS.PHYSICS_READ_XS_OFFSET, OFFSETS.MAX_ATOMS),
-      readYs: new Int16Array(b, OFFSETS.PHYSICS_READ_YS_OFFSET, OFFSETS.MAX_ATOMS),
-      readEnergies: new Int32Array(b, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
-      readResonances: new Int32Array(b, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, OFFSETS.MAX_ATOMS),
+      signalGrid: new Int32Array(
+        b,
+        OFFSETS.SIGNAL_GRID_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      memoryGrid: new Uint8Array(
+        b,
+        OFFSETS.MEMORY_GRID_OFFSET,
+        OFFSETS.GRID_CELLS * 8,
+      ),
+      structureGrid: new Int32Array(
+        b,
+        OFFSETS.STRUCTURE_GRID_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      glyphHeader: new Int32Array(
+        b,
+        OFFSETS.GLYPH_HEADER_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      glyphPayload: new Uint8Array(
+        b,
+        OFFSETS.GLYPH_PAYLOAD_OFFSET,
+        OFFSETS.GRID_CELLS * 8,
+      ),
+      readXs: new Int16Array(
+        b,
+        OFFSETS.PHYSICS_READ_XS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readYs: new Int16Array(
+        b,
+        OFFSETS.PHYSICS_READ_YS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readEnergies: new Int32Array(
+        b,
+        OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readResonances: new Int32Array(
+        b,
+        OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
     };
   }
 
@@ -102,6 +150,10 @@ export class DollFork {
         activePopulation++;
       }
     }
-    return { activePopulation, totalEnergy, avgEnergy: activePopulation > 0 ? totalEnergy / activePopulation : 0 };
+    return {
+      activePopulation,
+      totalEnergy,
+      avgEnergy: activePopulation > 0 ? totalEnergy / activePopulation : 0,
+    };
   }
 }

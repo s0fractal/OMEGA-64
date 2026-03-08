@@ -7,8 +7,7 @@ const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const STRUCTURE_INTENT_RUNTIME_MODE = "standalone-structure-intent-capture";
 const COLLECTIVE_TRANSPORT_RUNTIME_MODE =
   "standalone-collective-transport-capture";
-const COLLECTIVE_BANKING_RUNTIME_MODE =
-  "standalone-collective-banking-capture";
+const COLLECTIVE_BANKING_RUNTIME_MODE = "standalone-collective-banking-capture";
 const COLLECTIVE_SYNCHRONY_RUNTIME_MODE =
   "standalone-collective-synchrony-capture";
 const SHARE_TRANSFER_RUNTIME_MODE = "standalone-share-transfer-capture";
@@ -45,7 +44,9 @@ const main = async () => {
     ) as Record<string, unknown>;
     if (traceJson.trace_id !== trace.id) {
       throw new Error(
-        `[golden_trace_artifacts] trace id mismatch for ${trace.id}: ${String(traceJson.trace_id)}`,
+        `[golden_trace_artifacts] trace id mismatch for ${trace.id}: ${
+          String(traceJson.trace_id)
+        }`,
       );
     }
     const expectedRuntimeMode = trace.id === "gt08_structure_intent_visibility"
@@ -75,7 +76,9 @@ const main = async () => {
       : TRACE_RUNTIME_MODE;
     if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(
-        `[golden_trace_artifacts] runtime mode mismatch for ${trace.id}: ${String(traceJson.runtime_mode)}`,
+        `[golden_trace_artifacts] runtime mode mismatch for ${trace.id}: ${
+          String(traceJson.runtime_mode)
+        }`,
       );
     }
   }

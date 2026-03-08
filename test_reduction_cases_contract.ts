@@ -15,7 +15,10 @@ const main = () => {
   );
 
   const ids = new Set(REDUCTION_CASES.map((definition) => definition.id));
-  expect(ids.size === REDUCTION_CASES.length, "[reduction_cases] ids must be unique");
+  expect(
+    ids.size === REDUCTION_CASES.length,
+    "[reduction_cases] ids must be unique",
+  );
 
   for (const definition of REDUCTION_CASES) {
     expect(

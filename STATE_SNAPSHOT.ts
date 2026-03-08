@@ -21,9 +21,9 @@ export interface StateSnapshot {
  * AutonomyState: Represents the sovereignty levels of the system.
  */
 export interface AutonomyState {
-    state: number; // [0..1]
-    gov: number;   // [0..1]
-    code: number;  // [0..1]
+  state: number; // [0..1]
+  gov: number; // [0..1]
+  code: number; // [0..1]
 }
 
 /**

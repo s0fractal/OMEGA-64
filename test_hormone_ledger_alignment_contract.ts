@@ -7,7 +7,9 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   const hormoneIds = new Set(HORMONE_BUFFER_CATALOG.map((spec) => spec.id));
-  const ledgerLinked = GENETIC_LEDGER_CATALOG.filter((entry) => entry.hormoneLink !== null);
+  const ledgerLinked = GENETIC_LEDGER_CATALOG.filter((entry) =>
+    entry.hormoneLink !== null
+  );
 
   expect(
     ledgerLinked.length === GENETIC_LEDGER_CATALOG.length,
@@ -16,7 +18,9 @@ const main = () => {
 
   for (const entry of ledgerLinked) {
     expect(
-      hormoneIds.has(entry.hormoneLink as typeof HORMONE_BUFFER_CATALOG[number]["id"]),
+      hormoneIds.has(
+        entry.hormoneLink as typeof HORMONE_BUFFER_CATALOG[number]["id"],
+      ),
       `[hormone_ledger] missing hormone link target for ${entry.key}`,
     );
   }

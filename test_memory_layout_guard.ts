@@ -17,14 +17,16 @@ const main = () => {
   }
 
   const names = new Set(report.regions.map((region) => region.name));
-  for (const required of [
-    "IDS",
-    "CONTEXT",
-    "SPATIAL_GRID",
-    "STRUCTURE_GRID",
-    "ATTENTION_FIELD",
-    "HIVE_ENERGY_POOL",
-  ]) {
+  for (
+    const required of [
+      "IDS",
+      "CONTEXT",
+      "SPATIAL_GRID",
+      "STRUCTURE_GRID",
+      "ATTENTION_FIELD",
+      "HIVE_ENERGY_POOL",
+    ]
+  ) {
     if (!names.has(required)) {
       throw new Error(
         `[memory-layout-guard] missing required region: ${required}`,

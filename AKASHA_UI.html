@@ -1,388 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>OMEGA-64 // THE AKASHA UI</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: #020204;
-                color: #0ff;
-                font-family: "Courier New", Courier, monospace;
-                overflow: hidden;
-            }
-            #canvas-container {
-                width: 100vw;
-                height: 100vh;
-            }
-            #hud {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                pointer-events: none;
-                text-shadow: 0 0 5px #0ff;
-                background: rgba(0, 20, 20, 0.5);
-                padding: 15px;
-                border: 1px solid #0ff;
-                border-radius: 5px;
-                box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            }
-            h1 {
-                margin: 0 0 10px 0;
-                font-size: 20px;
-                letter-spacing: 2px;
-            }
-            .stat {
-                margin: 5px 0;
-                font-size: 14px;
-            }
-            .highlight {
-                color: #fff;
-                font-weight: bold;
-            }
+  <head>
+    <meta charset="UTF-8">
+    <title>OMEGA-64 // THE AKASHA UI</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #020204;
+        color: #0ff;
+        font-family: "Courier New", Courier, monospace;
+        overflow: hidden;
+      }
+      #canvas-container {
+        width: 100vw;
+        height: 100vh;
+      }
+      #hud {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        pointer-events: none;
+        text-shadow: 0 0 5px #0ff;
+        background: rgba(0, 20, 20, 0.5);
+        padding: 15px;
+        border: 1px solid #0ff;
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      }
+      h1 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        letter-spacing: 2px;
+      }
+      .stat {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+      .highlight {
+        color: #fff;
+        font-weight: bold;
+      }
 
-            #tooltip {
-                position: absolute;
-                display: none;
-                background: rgba(0, 0, 0, 0.8);
-                border: 1px solid #0ff;
-                padding: 10px;
-                pointer-events: none;
-                font-size: 12px;
-                z-index: 100;
-                backdrop-filter: blur(4px);
-            }
-        </style>
-        <!-- Import Three.js via CDN -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"
-        ></script>
-    </head>
-    <body>
-        <div id="hud">
-            <h1>👁️ AKASHA UI (v3.0)</h1>
-            <div class="stat">
-                Population: <span id="stat-pop" class="highlight">0</span>
-            </div>
-            <div class="stat">
-                Synapses: <span id="stat-syn" class="highlight">0</span>
-            </div>
-            <div class="stat">
-                System Energy: <span id="stat-nrg" class="highlight">0</span>
-            </div>
-            <div class="stat">
-                Status: <span id="stat-status" style="color: #0f0"
-                >SYNCING...</span>
-            </div>
-        </div>
+      #tooltip {
+        position: absolute;
+        display: none;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #0ff;
+        padding: 10px;
+        pointer-events: none;
+        font-size: 12px;
+        z-index: 100;
+        backdrop-filter: blur(4px);
+      }
+    </style>
+    <!-- Import Three.js via CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"
+    ></script>
+  </head>
+  <body>
+    <div id="hud">
+      <h1>👁️ AKASHA UI (v3.0)</h1>
+      <div class="stat">
+        Population: <span id="stat-pop" class="highlight">0</span>
+      </div>
+      <div class="stat">
+        Synapses: <span id="stat-syn" class="highlight">0</span>
+      </div>
+      <div class="stat">
+        System Energy: <span id="stat-nrg" class="highlight">0</span>
+      </div>
+      <div class="stat">
+        Status: <span id="stat-status" style="color: #0f0">SYNCING...</span>
+      </div>
+    </div>
 
-        <div id="tooltip"></div>
-        <div id="canvas-container"></div>
+    <div id="tooltip"></div>
+    <div id="canvas-container"></div>
 
-        <script>
-            // --- THREE.JS SETUP ---
-            const container = document.getElementById(
-                "canvas-container",
+    <script>
+      // --- THREE.JS SETUP ---
+      const container = document.getElementById(
+        "canvas-container",
+      );
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2("#020204", 0.001);
+
+      const camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        1,
+        10000,
+      );
+      camera.position.set(0, 500, 1500);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(
+        window.innerWidth,
+        window.innerHeight,
+      );
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      const controls = new THREE.OrbitControls(
+        camera,
+        renderer.domElement,
+      );
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      // Visual Assets
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 15,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        opacity: 0.8,
+        map: createCircleTexture(), // Soft glowing particles
+      });
+
+      let particleSystem;
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x00FFFF,
+        transparent: true,
+        opacity: 0.15,
+        blending: THREE.AdditiveBlending,
+      });
+      let lineSystem;
+
+      const atomDataMap = new Map(); // Store metadata for raycasting interaction
+
+      function createCircleTexture() {
+        const canvas = document.createElement("canvas");
+        canvas.width = 64;
+        canvas.height = 64;
+        const ctx = canvas.getContext("2d");
+        const grad = ctx.createRadialGradient(
+          32,
+          32,
+          0,
+          32,
+          32,
+          32,
+        );
+        grad.addColorStop(0, "rgba(255,255,255,1)");
+        grad.addColorStop(0.2, "rgba(0,255,255,0.8)");
+        grad.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 64, 64);
+        return new THREE.CanvasTexture(canvas);
+      }
+
+      // --- WEBSOCKET CONNECTION ---
+      const ws = new WebSocket("ws://localhost:8080");
+
+      ws.onopen = () => {
+        document.getElementById("stat-status")
+          .innerText = "CONNECTED";
+      };
+
+      ws.onclose = () => {
+        document.getElementById("stat-status")
+          .innerText = "DISCONNECTED";
+        document.getElementById("stat-status").style
+          .color = "#F00";
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          if (msg.type === "SYNC") {
+            updateUniverse(
+              msg.data.atoms,
+              msg.data.bonds,
             );
-            const scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2("#020204", 0.001);
+          }
+        } catch (e) {
+          console.error("Parse error", e);
+        }
+      };
 
-            const camera = new THREE.PerspectiveCamera(
-                60,
-                window.innerWidth / window.innerHeight,
-                1,
-                10000,
+      // --- UPDATE LOGIC ---
+      function updateUniverse(atoms, bonds) {
+        // HUD Update
+        document.getElementById("stat-pop").innerText = atoms.length;
+        document.getElementById("stat-syn").innerText = bonds.length;
+        let totalEnergy = 0;
+
+        // Clean up old visuals
+        if (particleSystem) {
+          scene.remove(particleSystem);
+        }
+        if (lineSystem) scene.remove(lineSystem);
+        atomDataMap.clear();
+
+        // 1. Rebuild Particles (Atoms)
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(
+          atoms.length * 3,
+        );
+        const colors = new Float32Array(
+          atoms.length * 3,
+        );
+        const sizes = new Float32Array(atoms.length); // For future shader use if needed
+
+        const colorCache = new THREE.Color();
+
+        // Center the universe (assuming typical coords 0-800)
+        const offsetX = -400;
+        const offsetY = -400;
+
+        for (let i = 0; i < atoms.length; i++) {
+          const atom = atoms[i];
+          totalEnergy += atom.energy;
+
+          // Map Flatland 2D to 3D.
+          // x -> x
+          // y -> z (depth instead of height for a galactic disk feel)
+          // resonance -> y (vertical height relative to resonance!)
+          const pX = (atom.x + offsetX) * 1.5;
+          const pZ = (atom.y + offsetY) * 1.5;
+          const pY = (atom.resonance * 2) - 50; // Higher resonance floats up
+
+          positions[i * 3] = pX;
+          positions[i * 3 + 1] = pY;
+          positions[i * 3 + 2] = pZ;
+
+          // Color based on logic string
+          const hue = parseInt(atom.logic.slice(0, 3), 16) %
+              360 || 0;
+          colorCache.setHSL(hue / 360, 0.8, 0.6);
+
+          colors[i * 3] = colorCache.r;
+          colors[i * 3 + 1] = colorCache.g;
+          colors[i * 3 + 2] = colorCache.b;
+
+          // Store atom spatial data for the lines and raycaster
+          atomDataMap.set(atom.id, {
+            x: pX,
+            y: pY,
+            z: pZ,
+            ...atom,
+          });
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3),
+        );
+        geometry.setAttribute(
+          "color",
+          new THREE.BufferAttribute(colors, 3),
+        );
+
+        particleSystem = new THREE.Points(
+          geometry,
+          particlesMaterial,
+        );
+        scene.add(particleSystem);
+
+        document.getElementById("stat-nrg").innerText = totalEnergy;
+
+        // 2. Rebuild Lines (Bonds)
+        const lineGeometry = new THREE.BufferGeometry();
+        const linePoints = [];
+
+        for (const bond of bonds) {
+          const source = atomDataMap.get(bond.source);
+          const target = atomDataMap.get(bond.target);
+          if (source && target) {
+            linePoints.push(
+              new THREE.Vector3(
+                source.x,
+                source.y,
+                source.z,
+              ),
+              new THREE.Vector3(
+                target.x,
+                target.y,
+                target.z,
+              ),
             );
-            camera.position.set(0, 500, 1500);
+          }
+        }
 
-            const renderer = new THREE.WebGLRenderer({
-                antialias: true,
-                alpha: true,
-            });
-            renderer.setSize(
-                window.innerWidth,
-                window.innerHeight,
-            );
-            renderer.setPixelRatio(window.devicePixelRatio);
-            container.appendChild(renderer.domElement);
+        if (linePoints.length > 0) {
+          lineGeometry.setFromPoints(linePoints);
+          lineSystem = new THREE.LineSegments(
+            lineGeometry,
+            lineMaterial,
+          );
+          scene.add(lineSystem);
+        }
+      }
 
-            const controls = new THREE.OrbitControls(
-                camera,
-                renderer.domElement,
-            );
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
+      // --- RENDER LOOP ---
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
 
-            // Visual Assets
-            const particlesMaterial = new THREE.PointsMaterial({
-                size: 15,
-                vertexColors: true,
-                blending: THREE.AdditiveBlending,
-                transparent: true,
-                opacity: 0.8,
-                map: createCircleTexture(), // Soft glowing particles
-            });
+        // Slow cosmic rotation
+        if (particleSystem) {
+          particleSystem.rotation.y += 0.0005;
+        }
+        if (lineSystem) {
+          lineSystem.rotation.y += 0.0005;
+        }
 
-            let particleSystem;
-            const lineMaterial = new THREE.LineBasicMaterial({
-                color: 0x00FFFF,
-                transparent: true,
-                opacity: 0.15,
-                blending: THREE.AdditiveBlending,
-            });
-            let lineSystem;
+        renderer.render(scene, camera);
+      }
+      animate();
 
-            const atomDataMap = new Map(); // Store metadata for raycasting interaction
+      // --- INTERACTIVITY (Raycaster for Hover) ---
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      const tooltip = document.getElementById("tooltip");
 
-            function createCircleTexture() {
-                const canvas = document.createElement("canvas");
-                canvas.width = 64;
-                canvas.height = 64;
-                const ctx = canvas.getContext("2d");
-                const grad = ctx.createRadialGradient(
-                    32,
-                    32,
-                    0,
-                    32,
-                    32,
-                    32,
-                );
-                grad.addColorStop(0, "rgba(255,255,255,1)");
-                grad.addColorStop(0.2, "rgba(0,255,255,0.8)");
-                grad.addColorStop(1, "rgba(0,0,0,0)");
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, 64, 64);
-                return new THREE.CanvasTexture(canvas);
-            }
+      window.addEventListener("mousemove", (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 +
+          1;
 
-            // --- WEBSOCKET CONNECTION ---
-            const ws = new WebSocket("ws://localhost:8080");
+        tooltip.style.left = event.clientX + 15 + "px";
+        tooltip.style.top = event.clientY + 15 + "px";
 
-            ws.onopen = () => {
-                document.getElementById("stat-status")
-                    .innerText = "CONNECTED";
-            };
+        if (!particleSystem) return;
 
-            ws.onclose = () => {
-                document.getElementById("stat-status")
-                    .innerText = "DISCONNECTED";
-                document.getElementById("stat-status").style
-                    .color = "#F00";
-            };
+        // Rotate raycaster to match system rotation
+        raycaster.setFromCamera(mouse, camera);
 
-            ws.onmessage = (event) => {
-                try {
-                    const msg = JSON.parse(event.data);
-                    if (msg.type === "SYNC") {
-                        updateUniverse(
-                            msg.data.atoms,
-                            msg.data.bonds,
-                        );
-                    }
-                } catch (e) {
-                    console.error("Parse error", e);
-                }
-            };
+        // We need a threshold for points
+        raycaster.params.Points.threshold = 10;
 
-            // --- UPDATE LOGIC ---
-            function updateUniverse(atoms, bonds) {
-                // HUD Update
-                document.getElementById("stat-pop").innerText =
-                    atoms.length;
-                document.getElementById("stat-syn").innerText =
-                    bonds.length;
-                let totalEnergy = 0;
+        const intersects = raycaster.intersectObject(
+          particleSystem,
+        );
 
-                // Clean up old visuals
-                if (particleSystem) {
-                    scene.remove(particleSystem);
-                }
-                if (lineSystem) scene.remove(lineSystem);
-                atomDataMap.clear();
+        if (intersects.length > 0) {
+          const index = intersects[0].index;
+          const atomValues = Array.from(
+            atomDataMap.values(),
+          );
+          const hoveredAtom = atomValues[index];
 
-                // 1. Rebuild Particles (Atoms)
-                const geometry = new THREE.BufferGeometry();
-                const positions = new Float32Array(
-                    atoms.length * 3,
-                );
-                const colors = new Float32Array(
-                    atoms.length * 3,
-                );
-                const sizes = new Float32Array(atoms.length); // For future shader use if needed
-
-                const colorCache = new THREE.Color();
-
-                // Center the universe (assuming typical coords 0-800)
-                const offsetX = -400;
-                const offsetY = -400;
-
-                for (let i = 0; i < atoms.length; i++) {
-                    const atom = atoms[i];
-                    totalEnergy += atom.energy;
-
-                    // Map Flatland 2D to 3D.
-                    // x -> x
-                    // y -> z (depth instead of height for a galactic disk feel)
-                    // resonance -> y (vertical height relative to resonance!)
-                    const pX = (atom.x + offsetX) * 1.5;
-                    const pZ = (atom.y + offsetY) * 1.5;
-                    const pY = (atom.resonance * 2) - 50; // Higher resonance floats up
-
-                    positions[i * 3] = pX;
-                    positions[i * 3 + 1] = pY;
-                    positions[i * 3 + 2] = pZ;
-
-                    // Color based on logic string
-                    const hue =
-                        parseInt(atom.logic.slice(0, 3), 16) %
-                            360 || 0;
-                    colorCache.setHSL(hue / 360, 0.8, 0.6);
-
-                    colors[i * 3] = colorCache.r;
-                    colors[i * 3 + 1] = colorCache.g;
-                    colors[i * 3 + 2] = colorCache.b;
-
-                    // Store atom spatial data for the lines and raycaster
-                    atomDataMap.set(atom.id, {
-                        x: pX,
-                        y: pY,
-                        z: pZ,
-                        ...atom,
-                    });
-                }
-
-                geometry.setAttribute(
-                    "position",
-                    new THREE.BufferAttribute(positions, 3),
-                );
-                geometry.setAttribute(
-                    "color",
-                    new THREE.BufferAttribute(colors, 3),
-                );
-
-                particleSystem = new THREE.Points(
-                    geometry,
-                    particlesMaterial,
-                );
-                scene.add(particleSystem);
-
-                document.getElementById("stat-nrg").innerText =
-                    totalEnergy;
-
-                // 2. Rebuild Lines (Bonds)
-                const lineGeometry = new THREE.BufferGeometry();
-                const linePoints = [];
-
-                for (const bond of bonds) {
-                    const source = atomDataMap.get(bond.source);
-                    const target = atomDataMap.get(bond.target);
-                    if (source && target) {
-                        linePoints.push(
-                            new THREE.Vector3(
-                                source.x,
-                                source.y,
-                                source.z,
-                            ),
-                            new THREE.Vector3(
-                                target.x,
-                                target.y,
-                                target.z,
-                            ),
-                        );
-                    }
-                }
-
-                if (linePoints.length > 0) {
-                    lineGeometry.setFromPoints(linePoints);
-                    lineSystem = new THREE.LineSegments(
-                        lineGeometry,
-                        lineMaterial,
-                    );
-                    scene.add(lineSystem);
-                }
-            }
-
-            // --- RENDER LOOP ---
-            function animate() {
-                requestAnimationFrame(animate);
-                controls.update();
-
-                // Slow cosmic rotation
-                if (particleSystem) {
-                    particleSystem.rotation.y += 0.0005;
-                }
-                if (lineSystem) {
-                    lineSystem.rotation.y += 0.0005;
-                }
-
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            // --- INTERACTIVITY (Raycaster for Hover) ---
-            const raycaster = new THREE.Raycaster();
-            const mouse = new THREE.Vector2();
-            const tooltip = document.getElementById("tooltip");
-
-            window.addEventListener("mousemove", (event) => {
-                mouse.x =
-                    (event.clientX / window.innerWidth) * 2 - 1;
-                mouse.y =
-                    -(event.clientY / window.innerHeight) * 2 +
-                    1;
-
-                tooltip.style.left = event.clientX + 15 + "px";
-                tooltip.style.top = event.clientY + 15 + "px";
-
-                if (!particleSystem) return;
-
-                // Rotate raycaster to match system rotation
-                raycaster.setFromCamera(mouse, camera);
-
-                // We need a threshold for points
-                raycaster.params.Points.threshold = 10;
-
-                const intersects = raycaster.intersectObject(
-                    particleSystem,
-                );
-
-                if (intersects.length > 0) {
-                    const index = intersects[0].index;
-                    const atomValues = Array.from(
-                        atomDataMap.values(),
-                    );
-                    const hoveredAtom = atomValues[index];
-
-                    if (hoveredAtom) {
-                        tooltip.style.display = "block";
-                        tooltip.innerHTML = `
+          if (hoveredAtom) {
+            tooltip.style.display = "block";
+            tooltip.innerHTML = `
                         <strong>${hoveredAtom.symbol}</strong><br>
                         ID: ${hoveredAtom.id}<br>
                         Logic: ${hoveredAtom.logic}<br>
                         Resonance: ${
-                            hoveredAtom.resonance.toFixed(1)
-                        }<br>
+              hoveredAtom.resonance.toFixed(1)
+            }<br>
                         Thought: <span style="color:#F0F">"${hoveredAtom.thought}"</span>
                     `;
-                    }
-                } else {
-                    tooltip.style.display = "none";
-                }
-            });
+          }
+        } else {
+          tooltip.style.display = "none";
+        }
+      });
 
-            window.addEventListener("resize", () => {
-                camera.aspect = window.innerWidth /
-                    window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(
-                    window.innerWidth,
-                    window.innerHeight,
-                );
-            });
-        </script>
-    </body>
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth /
+          window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(
+          window.innerWidth,
+          window.innerHeight,
+        );
+      });
+    </script>
+  </body>
 </html>

@@ -18,31 +18,39 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
-let resolve_bond_requests_fn: ((start: number, end: number) => number) | null = null;
+let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
+  null;
 let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
 let clear_metabolism_stats_fn: (() => void) | null = null;
-let accumulate_metabolism_stats_fn: ((start: number, end: number) => void) | null = null;
-let apply_metabolism_kernel_fn: ((
-  start: number,
-  end: number,
-  noveltySigned: number,
-  symbiosisSigned: number,
-  baseTax: number,
-  targetEnergy: number,
-  homeostasisBand: number,
-  homeostasisMaxDelta: number,
-  overflowThreshold: number,
-  spatialOverflowRatio: number,
-  starvationFloor: number,
-  subsidyEnabled: number,
-) => void) | null = null;
+let accumulate_metabolism_stats_fn:
+  | ((start: number, end: number) => void)
+  | null = null;
+let apply_metabolism_kernel_fn:
+  | ((
+    start: number,
+    end: number,
+    noveltySigned: number,
+    symbiosisSigned: number,
+    baseTax: number,
+    targetEnergy: number,
+    homeostasisBand: number,
+    homeostasisMaxDelta: number,
+    overflowThreshold: number,
+    spatialOverflowRatio: number,
+    starvationFloor: number,
+    subsidyEnabled: number,
+  ) => void)
+  | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let tickCounterView: Int32Array | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
+let xsView: Int16Array | null = null;
+let ysView: Int16Array | null = null;
 let contextI32View: Int32Array | null = null;
 let contextU8View: Uint8Array | null = null;
 let structureGridView: Int32Array | null = null;
+let spatialGridView: Int32Array | null = null;
 let buildOwnerView: Int32Array | null = null;
 let buildValueView: Int32Array | null = null;
 let spawnHeadView: Int32Array | null = null;
@@ -69,6 +77,9 @@ const SYS_READ_INBOX = 9;
 const SYS_TRANSFER = 10;
 const SYS_REPLICATE = 11;
 const SYS_EMIT = 12;
+const SYS_SCAN = 13;
+const SYS_MOVE = 14;
+const SYS_EAT = 15;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -82,36 +93,77 @@ function handle_syscall(atomIdx: number) {
   const r2 = contextI32View[regBase + 2];
   const r3 = contextI32View[regBase + 3];
 
-  console.log(`   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`);
+  console.log(
+    `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
+  );
 
   let gasCost = 0;
-  switch(sysId) {
-    case SYS_YIELD: gasCost = 1; break;
-    case SYS_READ_MEM: gasCost = 5; break;
-    case SYS_WRITE_MEM: gasCost = 20; break;
-    case SYS_SPAWN: gasCost = 100; break;
-    case SYS_BIND: gasCost = 10; break;
-    case SYS_SET_ROLE: gasCost = 5; break;
-    case SYS_MUTATE: gasCost = 50; break;
-    case SYS_MSG: gasCost = 20; break;
-    case SYS_READ_INBOX: gasCost = 2; break;
-    case SYS_TRANSFER: gasCost = 10; break;
-    case SYS_REPLICATE: gasCost = 100; break;
-    case SYS_EMIT: gasCost = 5; break;
-    default: gasCost = 1; break;
+  switch (sysId) {
+    case SYS_YIELD:
+      gasCost = 1;
+      break;
+    case SYS_READ_MEM:
+      gasCost = 5;
+      break;
+    case SYS_WRITE_MEM:
+      gasCost = 20;
+      break;
+    case SYS_SPAWN:
+      gasCost = 100;
+      break;
+    case SYS_BIND:
+      gasCost = 10;
+      break;
+    case SYS_SET_ROLE:
+      gasCost = 5;
+      break;
+    case SYS_MUTATE:
+      gasCost = 50;
+      break;
+    case SYS_MSG:
+      gasCost = 20;
+      break;
+    case SYS_READ_INBOX:
+      gasCost = 2;
+      break;
+    case SYS_TRANSFER:
+      gasCost = 10;
+      break;
+    case SYS_REPLICATE:
+      gasCost = 100;
+      break;
+    case SYS_EMIT:
+      gasCost = 5;
+      break;
+    case SYS_SCAN:
+      gasCost = 20;
+      break;
+    case SYS_MOVE:
+      gasCost = 10;
+      break;
+    case SYS_EAT:
+      gasCost = 30;
+      break;
+    default:
+      gasCost = 1;
+      break;
   }
 
   const currentEnergy = Atomics.load(energiesView, atomIdx);
   if (currentEnergy < gasCost * 1000) {
     // Out of Gas for this syscall
-    console.log(`   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${currentEnergy / 1000})`);
+    console.log(
+      `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
+        currentEnergy / 1000
+      })`,
+    );
     return;
   }
-  
+
   // Burn the gas
   Atomics.sub(energiesView, atomIdx, gasCost * 1000); // 1000 is energy SCALE
 
-  switch(sysId) {
+  switch (sysId) {
     case SYS_YIELD:
       break;
     case SYS_READ_MEM: {
@@ -120,14 +172,21 @@ function handle_syscall(atomIdx: number) {
       if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
         val = structureGridView[gy * 140 + gx] & 0xFF;
       }
-      console.log(`   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`);
+      console.log(
+        `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
+      );
       contextI32View[regBase] = val; // Return value in R0
       break;
     }
     case SYS_WRITE_MEM: {
       const gx = r1, gy = r2, newVal = r3;
-      console.log(`   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`);
-      if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView && buildValueView) {
+      console.log(
+        `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
+      );
+      if (
+        gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView &&
+        buildValueView
+      ) {
         const cellIdx = gy * 140 + gx;
         Atomics.store(buildOwnerView, cellIdx, atomIdx);
         Atomics.store(buildValueView, cellIdx, newVal);
@@ -136,7 +195,10 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_SPAWN: {
       const childGx = r1, childGy = r2;
-      if (childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80 && spawnHeadView && spawnDataView) {
+      if (
+        childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80 &&
+        spawnHeadView && spawnDataView
+      ) {
         const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;
         const slotOff = slot * 24;
         const parentGenome = logicView ? logicView[atomIdx] : 0n;
@@ -161,7 +223,11 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     case SYS_SET_ROLE: {
-      const rolesView = new Uint8Array(sharedBuffer!, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+      const rolesView = new Uint8Array(
+        sharedBuffer!,
+        OFFSETS.ROLES_OFFSET,
+        MAX_ATOMS,
+      );
       const newRole = r1;
       // Host validates the role
       if (newRole >= 0 && newRole <= 8) {
@@ -174,12 +240,21 @@ function handle_syscall(atomIdx: number) {
       const offset = r2;
       const newValue = r3;
       // Host validates target and instructions boundary (0-63 bytes)
-      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && offset >= 0 && offset < 64 && instructionsView) {
+      if (
+        targetIdx >= 0 && targetIdx < MAX_ATOMS && offset >= 0 && offset < 64 &&
+        instructionsView
+      ) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
-        console.log(`   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${(newValue & 0xFF).toString(16)}`);
+        console.log(
+          `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
+            (newValue & 0xFF).toString(16)
+          }`,
+        );
       } else {
-        console.log(`   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`);
+        console.log(
+          `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
+        );
       }
       break;
     }
@@ -191,7 +266,9 @@ function handle_syscall(atomIdx: number) {
         // Simple 1-deep mailbox per atom
         Atomics.store(mailboxView, targetIdx * 2, msgType);
         Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        console.log(`   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`);
+        console.log(
+          `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
+        );
       }
       break;
     }
@@ -199,18 +276,20 @@ function handle_syscall(atomIdx: number) {
       if (mailboxView) {
         const msgType = Atomics.load(mailboxView, atomIdx * 2);
         const payload = Atomics.load(mailboxView, atomIdx * 2 + 1);
-        
+
         // Return type in R0
         contextI32View[regBase] = msgType;
-        
+
         // Return payload in R1 (we map R1 to contextI32View[regBase + 1])
         contextI32View[regBase + 1] = payload;
-        
+
         // Clear mailbox after reading
         if (msgType !== 0) {
           Atomics.store(mailboxView, atomIdx * 2, 0);
           Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          console.log(`   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`);
+          console.log(
+            `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
+          );
         }
       }
       break;
@@ -219,27 +298,35 @@ function handle_syscall(atomIdx: number) {
       const targetIdx = r1;
       const resourceType = r2; // 0 = Energy, 1 = Resonance
       const amount = r3;
-      
+
       if (targetIdx >= 0 && targetIdx < MAX_ATOMS && amount > 0) {
         if (resourceType === 0 && energiesView) { // ENERGY
           const senderEnergy = Atomics.load(energiesView, atomIdx);
           // amount is in standard units (1 = 1 energy). We compare with scaled.
           const scaledAmount = amount * 1000;
           if (senderEnergy >= scaledAmount) {
-             Atomics.sub(energiesView, atomIdx, scaledAmount);
-             Atomics.add(energiesView, targetIdx, scaledAmount);
-             console.log(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`);
+            Atomics.sub(energiesView, atomIdx, scaledAmount);
+            Atomics.add(energiesView, targetIdx, scaledAmount);
+            console.log(
+              `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
+            );
           } else {
-             console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy to transfer ${amount}`);
+            console.log(
+              `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy to transfer ${amount}`,
+            );
           }
         } else if (resourceType === 1 && resonancesView) { // RESONANCE
           const senderResonance = Atomics.load(resonancesView, atomIdx);
           if (senderResonance >= amount) {
-             Atomics.sub(resonancesView, atomIdx, amount);
-             Atomics.add(resonancesView, targetIdx, amount);
-             console.log(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`);
+            Atomics.sub(resonancesView, atomIdx, amount);
+            Atomics.add(resonancesView, targetIdx, amount);
+            console.log(
+              `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
+            );
           } else {
-             console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`);
+            console.log(
+              `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`,
+            );
           }
         }
       }
@@ -247,64 +334,261 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_REPLICATE: {
       const targetIdx = r1;
-      
-      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && targetIdx !== atomIdx && instructionsView && contextU8View) {
+
+      if (
+        targetIdx >= 0 && targetIdx < MAX_ATOMS && targetIdx !== atomIdx &&
+        instructionsView && contextU8View
+      ) {
         const receiverEnergy = Atomics.load(energiesView, targetIdx);
-        // Only allow replication into dead slots or by aggressive "infection" 
+        // Only allow replication into dead slots or by aggressive "infection"
         // For now, let's keep it simple: can replicate anywhere, it overwrites the genome.
-        
+
         // Copy 64 bytes of genome
         const srcOffset = atomIdx * 64;
         const dstOffset = targetIdx * 64;
-        
+
         for (let i = 0; i < 64; i++) {
-          Atomics.store(instructionsView, dstOffset + i, Atomics.load(instructionsView, srcOffset + i));
+          Atomics.store(
+            instructionsView,
+            dstOffset + i,
+            Atomics.load(instructionsView, srcOffset + i),
+          );
         }
 
         // Reset target PC (PC is at offset 32 in contextU8View)
         const targetFlagIdx = (targetIdx << 6) + 32;
         Atomics.store(contextU8View, targetFlagIdx, 0);
-        
+
         // Give the child a starter spark of energy from the sender
         const replicationSpark = 50 * 1000; // 50 energy units
         const senderEnergy = Atomics.load(energiesView, atomIdx);
-        
+
         if (senderEnergy > replicationSpark) {
-           Atomics.sub(energiesView, atomIdx, replicationSpark);
-           Atomics.add(energiesView, targetIdx, replicationSpark);
+          Atomics.sub(energiesView, atomIdx, replicationSpark);
+          Atomics.add(energiesView, targetIdx, replicationSpark);
         }
 
         // Also "wake up" the atom by giving it ID if it doesn't have one
         if (idsView && idsView[targetIdx] === 0n) {
-           idsView[targetIdx] = BigInt(targetIdx + 1);
+          idsView[targetIdx] = BigInt(targetIdx + 1);
         }
 
-        console.log(`   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`);
+        console.log(
+          `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
+        );
       } else {
-        console.log(`   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`);
+        console.log(
+          `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
+        );
       }
       break;
     }
     case SYS_EMIT: {
       if (ledgerHeadView && ledgerDataView) {
         // Atomic ring buffer increment
-        const cursor = Atomics.add(ledgerHeadView, 0, 1) % OFFSETS.MAX_LEDGER_EVENTS;
+        const cursor = Atomics.add(ledgerHeadView, 0, 1) %
+          OFFSETS.MAX_LEDGER_EVENTS;
         const base = cursor * 4; // 4 i32 per event
 
-        const currentTick = tickCounterView ? Atomics.load(tickCounterView, 0) : 0;
-        
+        const currentTick = tickCounterView
+          ? Atomics.load(tickCounterView, 0)
+          : 0;
+
         // Emitted Event Structure -> [Tick, AtomIdx, R1, R2]
         Atomics.store(ledgerDataView, base, currentTick);
         Atomics.store(ledgerDataView, base + 1, atomIdx);
         Atomics.store(ledgerDataView, base + 2, r1);
         Atomics.store(ledgerDataView, base + 3, r2);
 
-        console.log(`   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`);
+        console.log(
+          `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
+        );
+      }
+      break;
+    }
+    case SYS_SCAN: {
+      const radius = r1;
+      let closestIdx = -1;
+      let minDstSq = Infinity;
+
+      if (
+        radius > 0 && xsView && ysView && spatialGridView && idsView &&
+        energiesView
+      ) {
+        // Deduct scan cost. Let's say 20 gas.
+        const COST = 20 * 1000;
+        const currentEnergy = Atomics.load(energiesView, atomIdx);
+        if (currentEnergy >= COST) {
+          Atomics.sub(energiesView, atomIdx, COST);
+
+          // xsView stores coordinate * 100. Unscale to match spatial hash scale (1 unit = 1 pixel).
+          const cx = xsView[atomIdx] / 100;
+          const cy = ysView[atomIdx] / 100;
+
+          const CELL_SIZE = 10;
+          const GRID_COLS = 140;
+          const GRID_ROWS = 80;
+
+          const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
+          const endX = Math.min(
+            GRID_COLS - 1,
+            Math.floor((cx + radius) / CELL_SIZE),
+          );
+          const startY = Math.max(0, Math.floor((cy - radius) / CELL_SIZE));
+          const endY = Math.min(
+            GRID_ROWS - 1,
+            Math.floor((cy + radius) / CELL_SIZE),
+          );
+
+          for (let y = startY; y <= endY; y++) {
+            for (let x = startX; x <= endX; x++) {
+              const cellIdx = y * GRID_COLS + x;
+              const cellBase = cellIdx * 32; // 32 slots per cell (1 count + 31 items)
+
+              const count = spatialGridView[cellBase];
+
+              for (let i = 1; i <= count; i++) {
+                const targetIdx = spatialGridView[cellBase + i];
+                if (targetIdx === atomIdx) continue; // Skip self
+
+                if (idsView[targetIdx] !== 0n) {
+                  const tx = xsView[targetIdx] / 100;
+                  const ty = ysView[targetIdx] / 100;
+                  const dx = tx - cx;
+                  const dy = ty - cy;
+                  const dstSq = dx * dx + dy * dy;
+
+                  if (dstSq <= radius * radius && dstSq < minDstSq) {
+                    minDstSq = dstSq;
+                    closestIdx = targetIdx;
+                  }
+                }
+              }
+            }
+          }
+          console.log(
+            `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
+          );
+        } else {
+          console.log(
+            `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
+          );
+        }
+      }
+      contextI32View![regBase] = closestIdx;
+      break;
+    }
+    case SYS_MOVE: {
+      const dxStr = r1 === 0 ? 0 : (r1 > 0 ? 1 : -1);
+      const dyStr = r2 === 0 ? 0 : (r2 > 0 ? 1 : -1);
+      if (dxStr !== 0 || dyStr !== 0) {
+        if (xsView && ysView && spatialGridView) {
+          const cx = Atomics.load(xsView, atomIdx);
+          const cy = Atomics.load(ysView, atomIdx);
+          // dxStr is roughly 1 grid cell move (factor of 10 in spatial real coordinates)
+          let nx = cx + dxStr * 10;
+          let ny = cy + dyStr * 10;
+          // Constrain to grid boundaries (0-1399, 0-799)
+          if (nx < 0) nx = 0;
+          else if (nx > 1399) nx = 1399;
+          if (ny < 0) ny = 0;
+          else if (ny > 799) ny = 799;
+
+          const nGridX = Math.floor(nx / 10);
+          const nGridY = Math.floor(ny / 10);
+          const nCellIdx = nGridY * 140 + nGridX;
+
+          // Check cell capacity
+          let capacityOk = false;
+          let emptySlotOffset = -1;
+          for (let s = 0; s < 32; s++) {
+            const currentAtomId = Atomics.load(
+              spatialGridView,
+              nCellIdx * 32 + s,
+            );
+            if (currentAtomId === 0) {
+              emptySlotOffset = s;
+              capacityOk = true;
+              break;
+            }
+          }
+
+          if (capacityOk) {
+            // Write new coordinates
+            Atomics.store(xsView, atomIdx, nx);
+            Atomics.store(ysView, atomIdx, ny);
+            // Atom gets swept to the new spatial cell automatically in the next pulse's tick_spatial_hash.
+            // In a more aggressive engine, we would move it in the spatial hash immediately.
+            console.log(`   [SYSCALL] Atom ${atomIdx} MOVED to ${nx}, ${ny}`);
+          } else {
+            console.log(
+              `   [SYSCALL-FAIL] Atom ${atomIdx} MOVE collision at ${nx}, ${ny}`,
+            );
+          }
+        }
+      }
+      break;
+    }
+    case SYS_EAT: {
+      const targetIdx = r1;
+      const amount = r2;
+
+      if (
+        targetIdx > 0 && targetIdx < MAX_ATOMS && amount > 0 && energiesView &&
+        xsView && ysView && idsView
+      ) {
+        // Must be alive
+        const targetId = Atomics.load(idsView as never, targetIdx);
+        if (targetId !== 0n) {
+          const ox = Atomics.load(xsView, atomIdx);
+          const oy = Atomics.load(ysView, atomIdx);
+          const tx = Atomics.load(xsView, targetIdx);
+          const ty = Atomics.load(ysView, targetIdx);
+
+          // Euclidean distance check (1 cell = 10 units)
+          const dx = (tx - ox) / 10.0;
+          const dy = (ty - oy) / 10.0;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          // Distance <= 1.5 cell means adjacent or diagonal
+          if (dist <= 1.5) {
+            const targetEnergy = Atomics.load(energiesView, targetIdx);
+            const takeAmount = Math.min(amount * 1000, targetEnergy); // Cap at what target has
+
+            if (takeAmount > 0) {
+              // Deduct from target
+              Atomics.sub(energiesView, targetIdx, takeAmount);
+              // Add to self
+              Atomics.add(energiesView, atomIdx, takeAmount);
+              console.log(
+                `   [SYSCALL] Atom ${atomIdx} ATE ${
+                  takeAmount / 1000
+                } Energy from Atom ${targetIdx}`,
+              );
+            } else {
+              console.log(
+                `   [SYSCALL-FAIL] Atom ${targetIdx} has no energy for Atom ${atomIdx} to eat`,
+              );
+            }
+          } else {
+            console.log(
+              `   [SYSCALL-FAIL] Atom ${atomIdx} at (${ox},${oy}) too far from target ${targetIdx} at (${tx},${ty}) to EAT (dist = ${
+                dist.toFixed(2)
+              })`,
+            );
+          }
+        } else {
+          console.log(
+            `   [SYSCALL-FAIL] Atom ${atomIdx} tried to EAT dead Atom ${targetIdx}`,
+          );
+        }
       }
       break;
     }
     default:
-      console.log(`   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`);
+      console.log(
+        `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
+      );
       break;
   }
 }
@@ -361,23 +645,58 @@ self.onmessage = async (e) => {
     tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
     idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+    xsView = new Int16Array(sb, OFFSETS.XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
+    ysView = new Int16Array(sb, OFFSETS.YS_OFFSET, MAX_ATOMS);
     contextI32View = new Int32Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16);
     contextU8View = new Uint8Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
-    structureGridView = new Int32Array(sb, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80);
-    buildOwnerView = new Int32Array(sb, OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET, 140 * 80);
-    buildValueView = new Int32Array(sb, OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET, 140 * 80);
+    structureGridView = new Int32Array(
+      sb,
+      OFFSETS.STRUCTURE_GRID_OFFSET,
+      140 * 80,
+    );
+    spatialGridView = new Int32Array(
+      sb,
+      OFFSETS.SPATIAL_GRID_OFFSET,
+      140 * 80 * 32,
+    );
+    buildOwnerView = new Int32Array(
+      sb,
+      OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+      140 * 80,
+    );
+    buildValueView = new Int32Array(
+      sb,
+      OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+      140 * 80,
+    );
     spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
-    spawnDataView = new DataView(sb, OFFSETS.SPAWN_REQUESTS_OFFSET + 8, 1024 * 24);
+    spawnDataView = new DataView(
+      sb,
+      OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+      1024 * 24,
+    );
     lineageView = new BigUint64Array(sb, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
     logicView = new BigUint64Array(sb, OFFSETS.LOGIC_OFFSET, MAX_ATOMS);
-    bondRequestsView = new Int32Array(sb, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
+    bondRequestsView = new Int32Array(
+      sb,
+      OFFSETS.BOND_REQUESTS_OFFSET,
+      MAX_ATOMS * 3,
+    );
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
     resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-    instructionsView = new Uint8Array(sb, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 64);
+    instructionsView = new Uint8Array(
+      sb,
+      OFFSETS.INSTRUCTIONS_OFFSET,
+      MAX_ATOMS * 64,
+    );
     mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
     ledgerHeadView = new Int32Array(sb, OFFSETS.LEDGER_HEAD_OFFSET, 1);
-    ledgerDataView = new Int32Array(sb, OFFSETS.LEDGER_DATA_OFFSET, OFFSETS.MAX_LEDGER_EVENTS * 4);
-    
+    ledgerDataView = new Int32Array(
+      sb,
+      OFFSETS.LEDGER_DATA_OFFSET,
+      OFFSETS.MAX_LEDGER_EVENTS * 4,
+    );
+
     const idx = Number(workerIndex);
     if (Number.isFinite(idx)) {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
@@ -433,13 +752,18 @@ self.onmessage = async (e) => {
       get_neural_coherence_fn = wasmInstance.exports
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
-          .set_neural_coherence as any;
+        .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
-      resolve_bond_requests_fn = wasmInstance.exports.resolve_bond_requests as any;
-      drain_spawn_requests_fn = wasmInstance.exports.drain_spawn_requests as any;
-      clear_metabolism_stats_fn = wasmInstance.exports.clear_metabolism_stats as any;
-      accumulate_metabolism_stats_fn = wasmInstance.exports.accumulate_metabolism_stats as any;
-      apply_metabolism_kernel_fn = wasmInstance.exports.apply_metabolism_kernel as any;
+      resolve_bond_requests_fn = wasmInstance.exports
+        .resolve_bond_requests as any;
+      drain_spawn_requests_fn = wasmInstance.exports
+        .drain_spawn_requests as any;
+      clear_metabolism_stats_fn = wasmInstance.exports
+        .clear_metabolism_stats as any;
+      accumulate_metabolism_stats_fn = wasmInstance.exports
+        .accumulate_metabolism_stats as any;
+      apply_metabolism_kernel_fn = wasmInstance.exports
+        .apply_metabolism_kernel as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
@@ -475,7 +799,6 @@ self.onmessage = async (e) => {
         // Absolute WASM Coherence: The Kernel now handles Physics AND VM
         execute_atom_fn(i);
         handle_syscall(i); // Process any syscall intent pending from the atom
-
       }
     } catch (err) {
       LOGGER.error("   [WORKER EXECUTION ERROR]", err);
@@ -526,7 +849,9 @@ self.onmessage = async (e) => {
   }
 
   if (type === "DRAIN_SPAWN") {
-    const count = drain_spawn_requests_fn ? drain_spawn_requests_fn(e.data.tick) : 0;
+    const count = drain_spawn_requests_fn
+      ? drain_spawn_requests_fn(e.data.tick)
+      : 0;
     await maybeDelay();
     self.postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
   }
@@ -540,7 +865,12 @@ self.onmessage = async (e) => {
       ? get_spatial_hash_max_cell_count_fn()
       : 0;
     await maybeDelay();
-    self.postMessage({ type: "HASH_DONE", pulseId, overflowCount, maxCellCount });
+    self.postMessage({
+      type: "HASH_DONE",
+      pulseId,
+      overflowCount,
+      maxCellCount,
+    });
   }
 
   if (type === "TICK_GLYPH_TRANSPORT") {
@@ -568,7 +898,9 @@ self.onmessage = async (e) => {
   if (type === "METABOLISM_ACCUMULATE") {
     const { startIdx, endIdx, clear } = e.data;
     if (clear && clear_metabolism_stats_fn) clear_metabolism_stats_fn();
-    if (accumulate_metabolism_stats_fn) accumulate_metabolism_stats_fn(startIdx, endIdx);
+    if (accumulate_metabolism_stats_fn) {
+      accumulate_metabolism_stats_fn(startIdx, endIdx);
+    }
     await maybeDelay();
     self.postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
   }
@@ -607,7 +939,7 @@ self.onmessage = async (e) => {
     }
     await maybeDelay();
     self.postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
-    }
+  }
 
   if (type === "SET_DEBUG_DELAY") {
     const delayRaw = Number(e.data.delayMs);

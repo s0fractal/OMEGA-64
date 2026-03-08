@@ -22,8 +22,8 @@ export type ArchitectPlasmidModeCaseDefinition = {
   >;
 };
 
-export const ARCHITECT_PLASMID_MODE_CASES: readonly ArchitectPlasmidModeCaseDefinition[] =
-  Object.freeze([
+export const ARCHITECT_PLASMID_MODE_CASES:
+  readonly ArchitectPlasmidModeCaseDefinition[] = Object.freeze([
     {
       id: "ah01_gt04_architect_emit_modes",
       baselineTraceId: "gt04_plasmid_inject",

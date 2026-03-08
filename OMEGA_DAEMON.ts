@@ -914,7 +914,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
           ? {
             enabled: parseEnvBool(
               typeof daemonHomeostasisRaw.enabled === "string" ||
-                  typeof daemonHomeostasisRaw.enabled === "boolean"
+                typeof daemonHomeostasisRaw.enabled === "boolean"
                 ? String(daemonHomeostasisRaw.enabled)
                 : undefined,
               true,
@@ -946,22 +946,28 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
             ),
             subsidy_enabled: parseEnvBool(
               typeof daemonHomeostasisRaw.subsidy_enabled === "string" ||
-                  typeof daemonHomeostasisRaw.subsidy_enabled === "boolean"
+                typeof daemonHomeostasisRaw.subsidy_enabled === "boolean"
                 ? String(daemonHomeostasisRaw.subsidy_enabled)
                 : undefined,
               false,
             ),
             base_tax_default: Math.max(
               0,
-              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_default, 0)),
+              Math.round(
+                asFiniteNumber(daemonHomeostasisRaw.base_tax_default, 0),
+              ),
             ),
             base_tax_current: Math.max(
               0,
-              Math.round(asFiniteNumber(daemonHomeostasisRaw.base_tax_current, 0)),
+              Math.round(
+                asFiniteNumber(daemonHomeostasisRaw.base_tax_current, 0),
+              ),
             ),
             last_update_tick: Math.max(
               0,
-              Math.floor(asFiniteNumber(daemonHomeostasisRaw.last_update_tick, 0)),
+              Math.floor(
+                asFiniteNumber(daemonHomeostasisRaw.last_update_tick, 0),
+              ),
             ),
             last_update_source:
               typeof daemonHomeostasisRaw.last_update_source === "string"
@@ -1654,7 +1660,11 @@ const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
       nextTarget = currentTarget + HOMEOSTASIS_TARGET_STEP;
     }
   }
-  nextTarget = clamp(nextTarget, HOMEOSTASIS_TARGET_MIN, HOMEOSTASIS_TARGET_MAX);
+  nextTarget = clamp(
+    nextTarget,
+    HOMEOSTASIS_TARGET_MIN,
+    HOMEOSTASIS_TARGET_MAX,
+  );
   targetChanged = nextTarget !== currentTarget;
   if (!taxChanged && !targetChanged) return;
 
@@ -1672,9 +1682,7 @@ const maybeControlHomeostasis = async (telemetry: Telemetry): Promise<void> => {
   logAction(
     `[HOMEOSTASIS] baseTax=${currentTax}->${nextTax} target=${currentTarget}->${nextTarget} avgEnergy=${
       telemetry.avgEnergy.toFixed(2)
-    } band=${band.toFixed(2)} overflow=${
-      overflow.toFixed(3)
-    }`,
+    } band=${band.toFixed(2)} overflow=${overflow.toFixed(3)}`,
   );
 };
 
@@ -1768,7 +1776,9 @@ const startDaemon = (): void => {
   logAction(
     `Daemon online. heartbeat=${HEARTBEAT_INTERVAL_MS}ms model=${OPENAI_MODEL} api=${API_BASE} memory=${MEMORY_PATH} invariants=${INVARIANT_PATH} phaseRing=${PHASE_SEASONS_ENABLE} step=${
       PHASE_SEASONS_STEP_RAD.toFixed(4)
-    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] targetCtl=${HOMEOSTASIS_TARGET_CONTROL_ENABLE} targetRange=[${HOMEOSTASIS_TARGET_MIN},${HOMEOSTASIS_TARGET_MAX}] targetStep=${HOMEOSTASIS_TARGET_STEP} target=${HOMEOSTASIS_TARGET_ENERGY.toFixed(2)} band=${HOMEOSTASIS_BAND.toFixed(2)}`,
+    } cooldownTicks=${PHASE_SEASONS_COOLDOWN_TICKS} homeostasis=${HOMEOSTASIS_CONTROL_ENABLE} tax=[${HOMEOSTASIS_MIN_TAX},${HOMEOSTASIS_MAX_TAX}] targetCtl=${HOMEOSTASIS_TARGET_CONTROL_ENABLE} targetRange=[${HOMEOSTASIS_TARGET_MIN},${HOMEOSTASIS_TARGET_MAX}] targetStep=${HOMEOSTASIS_TARGET_STEP} target=${
+      HOMEOSTASIS_TARGET_ENERGY.toFixed(2)
+    } band=${HOMEOSTASIS_BAND.toFixed(2)}`,
   );
 
   const heartbeat = async (): Promise<void> => {

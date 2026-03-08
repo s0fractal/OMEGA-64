@@ -1,5 +1,5 @@
 // OMEGA-64 | test_snap_rehydration.ts | Era 71: The Quantum Snap
-import { STATE_MATRIX, sharedBuffer } from "./STATE_MATRIX.ts";
+import { sharedBuffer, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { seedSeededSwarmScenario } from "./worker_seeded_swarm.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -55,13 +55,23 @@ async function main() {
   // 6. Verify Parity
   const hashC = await computeBufferHash(sharedBuffer);
   LOGGER.info(`   - Re-hydrated Hash: ${hashC}`);
-  
-  const finalActiveCount = STATE_MATRIX.getActiveIndices().length;
-  assertEquals(finalActiveCount, originalActiveCount, "Active count must match after re-hydration");
-  assertEquals(hashC, hashA, "BIT-IDENTICAL PARITY FAILED: Re-hydrated hash does not match original");
 
-  LOGGER.info("✅ [TEST] Snap Rehydration Parity Verified! Bit-identical resonance achieved.");
-  
+  const finalActiveCount = STATE_MATRIX.getActiveIndices().length;
+  assertEquals(
+    finalActiveCount,
+    originalActiveCount,
+    "Active count must match after re-hydration",
+  );
+  assertEquals(
+    hashC,
+    hashA,
+    "BIT-IDENTICAL PARITY FAILED: Re-hydrated hash does not match original",
+  );
+
+  LOGGER.info(
+    "✅ [TEST] Snap Rehydration Parity Verified! Bit-identical resonance achieved.",
+  );
+
   // Cleanup test snap
   await Deno.remove(snapPath);
 }

@@ -151,11 +151,14 @@ export const applyPressureRingScaleLedgerRuntimeUpdate = (
     };
   }
 
-  const tick = update.tick === undefined ? 0 : Math.max(0, Math.floor(update.tick));
+  const tick = update.tick === undefined
+    ? 0
+    : Math.max(0, Math.floor(update.tick));
   const source = (update.source ?? "runtime").trim() || "runtime";
   const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken =
-    `${state.key}@${tick}:${String(state.seq + 1).padStart(4, "0")}`;
+  const rollbackToken = `${state.key}@${tick}:${
+    String(state.seq + 1).padStart(4, "0")
+  }`;
   const mutation: PressureRingScaleLedgerRuntimeEvent = {
     rollbackToken,
     previousValue,
@@ -216,7 +219,9 @@ export const rollbackPressureRingScaleLedgerRuntimeUpdate = (
   }
 
   const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) => event.rollbackToken === rollbackToken);
+  const idx = history.findIndex((event) =>
+    event.rollbackToken === rollbackToken
+  );
   if (idx === -1) {
     return {
       status: "missing",
@@ -265,7 +270,8 @@ export const rollbackPressureRingScaleLedgerRuntimeUpdate = (
     ? target.tick
     : Math.max(0, Math.floor(rollback.tick));
   const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() || "ledger_rollback";
+  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
+    "ledger_rollback";
 
   history[idx] = {
     ...target,
@@ -295,7 +301,10 @@ export const resetPressureRingScaleLedgerRuntime = (
   state: PressureRingScaleLedgerRuntimeState,
   reason = "reset",
 ): PressureRingScaleLedgerRuntimeState => ({
-  ...createPressureRingScaleLedgerRuntime(state.defaultValue, state.historyLimit),
+  ...createPressureRingScaleLedgerRuntime(
+    state.defaultValue,
+    state.historyLimit,
+  ),
   lastAppliedSource: "runtime_policy",
   lastAppliedReason: reason,
   lastRollbackSource: "runtime_policy",

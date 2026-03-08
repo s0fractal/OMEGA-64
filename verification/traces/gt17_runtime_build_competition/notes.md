@@ -1,7 +1,9 @@
 # gt17_runtime_build_competition
 
 - scenario: runtime structure build competition
-- setup: worker-backed deterministic subprocess capture of two architects publishing competing OP_BUILD SOURCE intents into the same cell through PULSE.tick
+- setup: worker-backed deterministic subprocess capture of two architects
+  publishing competing OP_BUILD SOURCE intents into the same cell through
+  PULSE.tick
 - duration: 1 pulse tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: worker-runtime-structure-build-competition-capture

@@ -4,7 +4,12 @@
 import { GATE_GATE as GATE } from "@omega";
 import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
 import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@omega";
-import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type {
+  STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
+  STATE_SNAPSHOT_GateConfig as GateConfig,
+  STATE_SNAPSHOT_LedgerEvent as LedgerEvent,
+  STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
+} from "@omega";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

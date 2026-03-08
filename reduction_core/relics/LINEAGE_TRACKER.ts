@@ -14,13 +14,13 @@ export class LineageTracker {
   public syncLineages(activeIdx: number[]): void {
     // 1. Scan for newly spawned atoms that inherited parent lineages
     // Logic: If WASM replication copied the lineage hash, we correlate it here.
-    
+
     // 2. Map lineages to Akasha wisdom
-    // For now, we'll just log detections. In a full implementation, 
+    // For now, we'll just log detections. In a full implementation,
     // we would pull stability metrics from AKASHA_CODEX.
-    
+
     if (activeIdx.length > 0 && Math.random() < 0.05) {
-        LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
+      LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
     }
   }
 

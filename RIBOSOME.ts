@@ -194,7 +194,10 @@ export const RIBOSOME = {
               "",
             ).padEnd(16, "0");
             try {
-              STATE_MATRIX.setLogic(idx, decodeHexBytes(logic.substring(0, 16)));
+              STATE_MATRIX.setLogic(
+                idx,
+                decodeHexBytes(logic.substring(0, 16)),
+              );
             } catch { /* skip corrupted logic binary lift */ }
 
             ID_TO_IDX.set(fullPath, idx);

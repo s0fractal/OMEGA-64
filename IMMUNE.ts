@@ -1,5 +1,5 @@
 // OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
-import { STATE_MATRIX, MAX_ATOMS } from "./STATE_MATRIX.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 export const IMMUNE = {
   /**
@@ -10,7 +10,7 @@ export const IMMUNE = {
     const energy = STATE_MATRIX.getEnergy(idx);
     const resonance = STATE_MATRIX.getResonance(idx);
     const id = STATE_MATRIX.getId(idx);
-    
+
     // An atom is necrotic if it has an ID but no vital signs.
     return id !== 0n && energy <= 0 && resonance <= 0;
   },
@@ -23,14 +23,14 @@ export const IMMUNE = {
     const energy = STATE_MATRIX.getEnergy(idx);
     const resonance = STATE_MATRIX.getResonance(idx);
     const id = STATE_MATRIX.getId(idx);
-    
+
     if (id === 0n) return false;
 
     // Base threshold for "weak" atoms.
     // Entropy pressure (H0) modulates how aggressive the cleanup is.
     // Normalized H0 is 0..1000.
     const threshold = (entropyPressure / 1000) * 2.0; // Up to 2.0 energy
-    
+
     // Atoms with very low energy and resonance are candidates for recycling
     return energy < threshold && resonance < (threshold * 100);
   },
@@ -43,11 +43,11 @@ export const IMMUNE = {
     const purgeList: number[] = [];
 
     for (let i = 0; i < MAX_ATOMS; i++) {
-        if (IMMUNE.isNecrotic(i) || IMMUNE.isDrifting(i, entropyPressure)) {
-            purgeList.push(i);
-        }
+      if (IMMUNE.isNecrotic(i) || IMMUNE.isDrifting(i, entropyPressure)) {
+        purgeList.push(i);
+      }
     }
 
     return purgeList;
-  }
+  },
 };

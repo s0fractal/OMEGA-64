@@ -40,7 +40,9 @@ const parseVector = (vector: string) => {
 
 const main = async () => {
   const laws = await loadCodex();
-  const useSpring = laws.find((l) => l.when === "relations.use" && l.kind === "spring");
+  const useSpring = laws.find((l) =>
+    l.when === "relations.use" && l.kind === "spring"
+  );
   const springStrength = useSpring?.strength ?? 1;
   const gravityLaw = laws.find((l) => l.kind === "gravity");
   const chargeLaw = laws.find((l) => l.kind === "charge");
@@ -62,12 +64,16 @@ const main = async () => {
     if (typeof meta.vector !== "string") continue;
 
     const vector = parseVector(meta.vector);
-    const id = typeof meta.symbol === "string" ? meta.symbol : rel.replace(/\/_.yaml$/, "");
+    const id = typeof meta.symbol === "string"
+      ? meta.symbol
+      : rel.replace(/\/_.yaml$/, "");
     const self = meta?.forces?.self ?? {};
     const mass = Number(self.mass ?? meta.mass ?? 0);
     const charge = Number(self.charge ?? meta.charge ?? 0);
     const spin = Number(self.spin ?? meta.spin ?? 0);
-    const relationsUse = Array.isArray(meta?.relations?.use) ? meta.relations.use.map((t: any) => String(t)) : [];
+    const relationsUse = Array.isArray(meta?.relations?.use)
+      ? meta.relations.use.map((t: any) => String(t))
+      : [];
 
     atoms.push({
       id,
@@ -78,7 +84,7 @@ const main = async () => {
       charge,
       spin,
       relationsUse,
-      meta
+      meta,
     });
   }
 
@@ -99,8 +105,12 @@ const main = async () => {
       const uy = dy / r;
       const uz = dz / r;
 
-      const gravityMag = gravityStrength !== 0 ? (gravityStrength * a.mass * b.mass) / r2 : 0;
-      const chargeMag = chargeStrength !== 0 ? (-chargeStrength * a.charge * b.charge) / r2 : 0;
+      const gravityMag = gravityStrength !== 0
+        ? (gravityStrength * a.mass * b.mass) / r2
+        : 0;
+      const chargeMag = chargeStrength !== 0
+        ? (-chargeStrength * a.charge * b.charge) / r2
+        : 0;
       const spinMag = spinStrength !== 0 ? spinStrength * a.spin * b.spin : 0;
       const fx = (gravityMag + chargeMag) * ux;
       const fy = (gravityMag + chargeMag) * uy;
@@ -126,7 +136,7 @@ const main = async () => {
         spin: spinMag || undefined,
         fx,
         fy,
-        fz
+        fz,
       };
       const pairB = {
         target: a.id,
@@ -139,7 +149,7 @@ const main = async () => {
         spin: spinMag || undefined,
         fx: -fx,
         fy: -fy,
-        fz: -fz
+        fz: -fz,
       };
       if ((gravityMag !== 0) || (chargeMag !== 0) || (spinMag !== 0)) {
         if (!pairs.has(a.id)) pairs.set(a.id, []);
@@ -154,7 +164,11 @@ const main = async () => {
     const text = await Deno.readTextFile(atom.path);
     const meta = atom.meta;
 
-    const links = atom.relationsUse.map((t) => ({ kind: "spring", target: String(t), strength: springStrength }));
+    const links = atom.relationsUse.map((t) => ({
+      kind: "spring",
+      target: String(t),
+      strength: springStrength,
+    }));
     const netVec = net.get(atom.id) ?? { x: 0, y: 0, z: 0 };
     const magnitude = Math.sqrt(netVec.x ** 2 + netVec.y ** 2 + netVec.z ** 2);
 
@@ -164,11 +178,11 @@ const main = async () => {
         ...(meta?.forces?.self ?? {}),
         mass: atom.mass || undefined,
         charge: atom.charge || undefined,
-        spin: atom.spin || undefined
+        spin: atom.spin || undefined,
       },
       links,
       pairs: pairs.get(atom.id) ?? [],
-      net: { ...netVec, magnitude }
+      net: { ...netVec, magnitude },
     };
     const next = { ...meta, forces: nextForces };
 

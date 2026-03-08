@@ -90,18 +90,18 @@ Proposal fixture:
 
 ```json
 {
-   "proposal_id": "tv1",
-   "tick": 42,
-   "base_state_hash": "state_tv_42",
-   "agent_id": "agent_tv",
-   "intent": "vector_test",
-   "confidence": 0.875,
-   "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
-   "cost_estimate": 321,
-   "artifact_hash": "artifact_tv_42",
-   "semantic_fingerprint": "sem_tv_42",
-   "causal_refs": ["c2", "c1"],
-   "target_path": "CANON"
+  "proposal_id": "tv1",
+  "tick": 42,
+  "base_state_hash": "state_tv_42",
+  "agent_id": "agent_tv",
+  "intent": "vector_test",
+  "confidence": 0.875,
+  "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
+  "cost_estimate": 321,
+  "artifact_hash": "artifact_tv_42",
+  "semantic_fingerprint": "sem_tv_42",
+  "causal_refs": ["c2", "c1"],
+  "target_path": "CANON"
 }
 ```
 

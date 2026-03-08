@@ -5,7 +5,7 @@
 
 import { parse as parseYaml } from "jsr:@std/yaml";
 import { walk } from "jsr:@std/fs";
-import { relative, globToRegExp } from "jsr:@std/path";
+import { globToRegExp, relative } from "jsr:@std/path";
 
 const RULES_PATH = "./8/2/CODEX_RULES/_.yaml";
 
@@ -20,7 +20,11 @@ type FirewallRule = {
 };
 
 const rawText = await Deno.readTextFile(RULES_PATH);
-const raw = parseYaml(rawText) as { rules?: FirewallRule[]; vector?: string; symbol?: string };
+const raw = parseYaml(rawText) as {
+  rules?: FirewallRule[];
+  vector?: string;
+  symbol?: string;
+};
 
 const rules = Array.isArray(raw?.rules) ? raw.rules : [];
 
@@ -47,14 +51,26 @@ const warn: string[] = [];
 const fail: string[] = [];
 
 const root = Deno.cwd();
-const matchRule = (rule: FirewallRule, fileRel: string, dirRel: string): boolean => {
+const matchRule = (
+  rule: FirewallRule,
+  fileRel: string,
+  dirRel: string,
+): boolean => {
   const re = globToRegExp(rule.path, { extended: true, globstar: true });
   return re.test(fileRel);
 };
 
-const requireMdRules = rules.filter(r => r.action === "REQUIRE_MD" && (r.status === "WARNING" || r.status === "ACTIVE"));
-const denyCommentRules = rules.filter(r => r.action === "DENY_COMMENTS" && (r.status === "WARNING" || r.status === "ACTIVE"));
-const denyTokenRules = rules.filter(r => r.action === "DENY_TOKENS" && (r.status === "WARNING" || r.status === "ACTIVE"));
+const requireMdRules = rules.filter((r) =>
+  r.action === "REQUIRE_MD" && (r.status === "WARNING" || r.status === "ACTIVE")
+);
+const denyCommentRules = rules.filter((r) =>
+  r.action === "DENY_COMMENTS" &&
+  (r.status === "WARNING" || r.status === "ACTIVE")
+);
+const denyTokenRules = rules.filter((r) =>
+  r.action === "DENY_TOKENS" &&
+  (r.status === "WARNING" || r.status === "ACTIVE")
+);
 
 if (requireMdRules.length || denyCommentRules.length) {
   const atomDirs = new Set<string>();
@@ -86,11 +102,15 @@ if (requireMdRules.length || denyCommentRules.length) {
     if (!entry.isFile || entry.name !== "_.ts") continue;
     const rel = relative(root, entry.path).replaceAll("\\", "/");
     const dirRel = rel.replace(/\/_\.ts$/, "");
-    const applyComments = denyCommentRules.filter(r => matchRule(r, rel, dirRel));
-    const applyTokens = denyTokenRules.filter(r => matchRule(r, rel, dirRel));
+    const applyComments = denyCommentRules.filter((r) =>
+      matchRule(r, rel, dirRel)
+    );
+    const applyTokens = denyTokenRules.filter((r) => matchRule(r, rel, dirRel));
     if (applyComments.length === 0 && applyTokens.length === 0) continue;
     const content = await Deno.readTextFile(entry.path);
-    if (applyComments.length && (content.includes("//") || content.includes("/*"))) {
+    if (
+      applyComments.length && (content.includes("//") || content.includes("/*"))
+    ) {
       for (const rule of applyComments) {
         const line = `${dirRel}: comments present (${rule.id})`;
         if (rule.status === "ACTIVE") fail.push(line);

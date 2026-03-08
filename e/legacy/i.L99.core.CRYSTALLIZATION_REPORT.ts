@@ -197,8 +197,10 @@ export const CRYSTALLIZATION_REPORT = {
         projection_checks: input.replay_audit.checkedProjectionEvents,
         policy_checks: input.replay_audit.checkedPolicyEvents,
         canon_report_checks: input.replay_audit.checkedCanonReports,
-        gate_admission_report_checks: input.replay_audit.checkedGateAdmissionReports,
-        canon_index_chain_checked: input.replay_audit.invariantReport.index_chain_checked,
+        gate_admission_report_checks:
+          input.replay_audit.checkedGateAdmissionReports,
+        canon_index_chain_checked:
+          input.replay_audit.invariantReport.index_chain_checked,
         canon_index_chain_ok: input.replay_audit.invariantReport.index_chain_ok,
         gate_admission_index_chain_checked:
           input.replay_audit.invariantReport.gate_admission_index_chain_checked,

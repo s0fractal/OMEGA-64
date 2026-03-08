@@ -136,9 +136,21 @@
         border-color: rgba(16, 185, 129, 0.5);
         box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
       }
-      .sov-item { display: flex; align-items: center; gap: 0.5rem; }
-      .sovereignty-hud .label { color: rgba(255, 255, 255, 0.4); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; }
-      .sovereignty-hud .val { font-weight: 700; color: #fff; }
+      .sov-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .sovereignty-hud .label {
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+      .sovereignty-hud .val {
+        font-weight: 700;
+        color: #fff;
+      }
 
       /* --- STORY TICKER --- */
       #story-ticker-container {
@@ -168,8 +180,12 @@
       }
 
       @keyframes ticker {
-        0% { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
       }
 
       .ticker-word {
@@ -185,15 +201,26 @@
         opacity: 0.4;
         font-weight: 400;
       }
-      .sov-val { color: var(--accent); font-weight: bold; text-shadow: 0 0 10px var(--accent-glow); }
-      .sov-val.none { color: var(--text-dim); text-shadow: none; }
+      .sov-val {
+        color: var(--accent);
+        font-weight: bold;
+        text-shadow: 0 0 10px var(--accent-glow);
+      }
+      .sov-val.none {
+        color: var(--text-dim);
+        text-shadow: none;
+      }
 
       .arena-container {
         position: relative;
         width: 100%;
         height: 800px;
         margin: 20px auto;
-        background: radial-gradient(circle at center, rgba(30, 30, 50, 0.4) 0%, rgba(10, 10, 20, 0.8) 100%);
+        background: radial-gradient(
+          circle at center,
+          rgba(30, 30, 50, 0.4) 0%,
+          rgba(10, 10, 20, 0.8) 100%
+        );
         border: 1px solid var(--glass-border);
         border-radius: 12px;
         overflow: hidden;
@@ -210,7 +237,10 @@
         flex-direction: column;
         align-items: center;
         backdrop-filter: blur(16px);
-        transition: left 0.5s ease-out, top 0.5s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition:
+          left 0.5s ease-out,
+          top 0.5s ease-out,
+          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .atom-card:hover {
@@ -237,13 +267,23 @@
 
       .atom-card.status-alpha {
         border-color: rgba(255, 215, 0, 0.6);
-        box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.2);
+        box-shadow:
+          0 0 40px rgba(255, 215, 0, 0.3),
+          inset 0 0 20px rgba(255, 215, 0, 0.2);
         animation: alpha-pulse 4s infinite ease-in-out;
       }
 
       @keyframes alpha-pulse {
-        0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.2); }
-        50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.4); }
+        0%, 100% {
+          box-shadow:
+            0 0 40px rgba(255, 215, 0, 0.3),
+            inset 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        50% {
+          box-shadow:
+            0 0 60px rgba(255, 215, 0, 0.5),
+            inset 0 0 30px rgba(255, 215, 0, 0.4);
+        }
       }
 
       .thought-hud {
@@ -252,7 +292,7 @@
         background: rgba(0, 0, 0, 0.8);
         border: 1px solid var(--accent);
         color: var(--accent);
-        font-family: 'JetBrains Mono', monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 0.7rem;
         padding: 2px 8px;
         border-radius: 4px;
@@ -377,20 +417,20 @@
       }
 
       .atom-card.status-pulsing {
-          box-shadow: 0 0 50px #fff, inset 0 0 20px #fff !important;
-          border-color: #fff !important;
-          transition: all 0.1s ease-out;
+        box-shadow: 0 0 50px #fff, inset 0 0 20px #fff !important;
+        border-color: #fff !important;
+        transition: all 0.1s ease-out;
       }
 
       .resonance-aura {
-          position: absolute;
-          inset: -10px;
-          border-radius: 50%;
-          border: 1px solid rgba(16, 185, 129, 0.3);
-          animation: aura-expand 2s infinite ease-out;
-          pointer-events: none;
-          z-index: -1;
-          transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        animation: aura-expand 2s infinite ease-out;
+        pointer-events: none;
+        z-index: -1;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
       }
 
       /* CASTE SPECIFIC STYLING */
@@ -398,32 +438,43 @@
         border-color: rgba(6, 182, 212, 0.5);
         background: rgba(8, 145, 178, 0.05);
       }
-      .atom-card.caste-WORKER .symbol { color: #06b6d4; }
+      .atom-card.caste-WORKER .symbol {
+        color: #06b6d4;
+      }
 
       .atom-card.caste-GUARDIAN {
         border-color: rgba(249, 115, 22, 0.5);
         background: rgba(194, 65, 12, 0.05);
       }
-      .atom-card.caste-GUARDIAN .symbol { color: #f97316; }
+      .atom-card.caste-GUARDIAN .symbol {
+        color: #f97316;
+      }
 
       .atom-card.caste-ARCHIVIST {
         border-color: rgba(168, 85, 247, 0.5);
         background: rgba(126, 34, 206, 0.05);
       }
-      .atom-card.caste-ARCHIVIST .symbol { color: #a855f7; }
+      .atom-card.caste-ARCHIVIST .symbol {
+        color: #a855f7;
+      }
 
       .atom-card.caste-NUCLEUS {
         border-color: #fff;
         background: rgba(255, 255, 255, 0.1);
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
       }
-      .atom-card.caste-NUCLEUS .symbol { color: #fff; text-shadow: 0 0 10px #fff; }
+      .atom-card.caste-NUCLEUS .symbol {
+        color: #fff;
+        text-shadow: 0 0 10px #fff;
+      }
 
       .atom-card.caste-PARASITE {
         border-color: #ef4444;
         background: rgba(153, 27, 27, 0.1);
       }
-      .atom-card.caste-PARASITE .symbol { color: #ef4444; }
+      .atom-card.caste-PARASITE .symbol {
+        color: #ef4444;
+      }
 
       .caste-badge {
         font-family: "Inter", sans-serif;
@@ -437,25 +488,51 @@
         right: 8px;
         letter-spacing: 1px;
       }
-      .caste-WORKER .caste-badge { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
-      .caste-GUARDIAN .caste-badge { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
-      .caste-ARCHIVIST .caste-badge { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
-      .caste-NUCLEUS .caste-badge { background: #fff; color: #000; box-shadow: 0 0 10px #fff; }
-      .caste-PARASITE .caste-badge { background: #ef4444; color: #fff; }
-      
+      .caste-WORKER .caste-badge {
+        background: rgba(6, 182, 212, 0.2);
+        color: #22d3ee;
+      }
+      .caste-GUARDIAN .caste-badge {
+        background: rgba(249, 115, 22, 0.2);
+        color: #fb923c;
+      }
+      .caste-ARCHIVIST .caste-badge {
+        background: rgba(168, 85, 247, 0.2);
+        color: #c084fc;
+      }
+      .caste-NUCLEUS .caste-badge {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 10px #fff;
+      }
+      .caste-PARASITE .caste-badge {
+        background: #ef4444;
+        color: #fff;
+      }
+
       .signal-dot {
-          filter: blur(2px);
-          animation: move-signal 0.5s linear forwards;
+        filter: blur(2px);
+        animation: move-signal 0.5s linear forwards;
       }
 
       @keyframes aura-expand {
-          0% { transform: scale(1); opacity: 0.8; }
-          100% { transform: scale(3); opacity: 0; }
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(3);
+          opacity: 0;
+        }
       }
 
       @keyframes move-signal {
-          from { offset-distance: 0%; }
-          to { offset-distance: 100%; }
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
       }
 
       .akashic-ticker {
@@ -484,30 +561,32 @@
       .akashic-ticker span:last-child {
         border-right: none;
       }
-      body { padding-bottom: 50px; } /* Room for ticker */
+      body {
+        padding-bottom: 50px;
+      } /* Room for ticker */
 
       .forge-panel {
-          margin: 1rem 2rem;
-          padding: 1rem;
-          background: rgba(10, 15, 30, 0.8);
-          border: 1px solid var(--glass-border);
-          border-radius: 8px;
-          display: flex;
-          gap: 1rem;
-          align-items: center;
-          flex-wrap: wrap;
+        margin: 1rem 2rem;
+        padding: 1rem;
+        background: rgba(10, 15, 30, 0.8);
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
       }
       .forge-panel input {
-          background: rgba(0, 0, 0, 0.5);
-          border: 1px solid var(--glass-border);
-          color: #fff;
-          padding: 0.5rem;
-          border-radius: 4px;
-          font-family: monospace;
-          outline: none;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--glass-border);
+        color: #fff;
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-family: monospace;
+        outline: none;
       }
       .forge-panel input:focus {
-          border-color: var(--accent);
+        border-color: var(--accent);
       }
     </style>
   </head>
@@ -515,8 +594,12 @@
     <header>
       <h1>PETRI DISH // OMEGA-64</h1>
       <div class="subtitle">Live Flatland Telemetry</div>
-      <button class="pulse-button" id="zero-iops-btn" style="margin-top: 10px; padding: 6px 16px; font-size: 0.8rem;">
-          <span>🌀 TRANSMUTE (Zero-IOPS)</span>
+      <button
+        class="pulse-button"
+        id="zero-iops-btn"
+        style="margin-top: 10px; padding: 6px 16px; font-size: 0.8rem"
+      >
+        <span>🌀 TRANSMUTE (Zero-IOPS)</span>
       </button>
 
       <div class="stats-bar">
@@ -543,9 +626,14 @@
       </div>
 
       <div class="sovereignty-hud" id="sovereignty-hud">
-        <span class="label">Regent:</span> <span class="val" id="regent-val">NONE</span>
-        <span class="label">Law:</span> <span class="val" id="decree-val">DEMOCRACY</span>
-        <span class="label">Legitimacy:</span> <span class="val" id="legitimacy-val">0</span>
+        <span class="label">Regent:</span> <span class="val" id="regent-val"
+        >NONE</span>
+        <span class="label">Law:</span> <span class="val" id="decree-val"
+        >DEMOCRACY</span>
+        <span class="label">Legitimacy:</span> <span
+          class="val"
+          id="legitimacy-val"
+        >0</span>
       </div>
 
       <div id="mood-overlay"></div>
@@ -556,15 +644,45 @@
     </header>
 
     <div class="forge-panel">
-        <span style="color: var(--accent); font-weight: bold;">⚒️ NOOSPHERIC FORGE</span>
-        <input type="text" id="forge-symbol" placeholder="SYMBOL (e.g. SPARK)" value="SPARK" title="The name of the species" />
-        <input type="text" id="forge-word" placeholder="WORD (e.g. LIFE)" title="Hash natural language into DNA" />
-        <span style="color: var(--text-dim)">OR</span>
-        <input type="text" id="forge-logic" placeholder="HEX DNA" value="88880000" maxlength="8" style="width: 100px;" title="Specific 8-hex DNA sequence" />
-        <input type="number" id="forge-energy" placeholder="NRG" value="100" style="width: 60px;" />
-        <button class="pulse-button" id="forge-btn" style="padding: 0.5rem 1rem; width: auto; font-size: 0.8rem;">
-            <span>SYNTHESIZE ATOM</span>
-        </button>
+      <span style="color: var(--accent); font-weight: bold"
+      >⚒️ NOOSPHERIC FORGE</span>
+      <input
+        type="text"
+        id="forge-symbol"
+        placeholder="SYMBOL (e.g. SPARK)"
+        value="SPARK"
+        title="The name of the species"
+      />
+      <input
+        type="text"
+        id="forge-word"
+        placeholder="WORD (e.g. LIFE)"
+        title="Hash natural language into DNA"
+      />
+      <span style="color: var(--text-dim)">OR</span>
+      <input
+        type="text"
+        id="forge-logic"
+        placeholder="HEX DNA"
+        value="88880000"
+        maxlength="8"
+        style="width: 100px"
+        title="Specific 8-hex DNA sequence"
+      />
+      <input
+        type="number"
+        id="forge-energy"
+        placeholder="NRG"
+        value="100"
+        style="width: 60px"
+      />
+      <button
+        class="pulse-button"
+        id="forge-btn"
+        style="padding: 0.5rem 1rem; width: auto; font-size: 0.8rem"
+      >
+        <span>SYNTHESIZE ATOM</span>
+      </button>
     </div>
 
     <div class="arena-container" id="arena">
@@ -606,17 +724,22 @@
           let totalEnergy = 0;
 
           // Create a Set of current atom filenames fetched
-         function getMoodColor(mood) {
-        switch(mood) {
-            case 'AGGRESSIVE': return '#ef4444';
-            case 'HARMONIC': return '#10b981';
-            case 'CREATIVE': return '#8b5cf6';
-            case 'DEFENSIVE': return '#3b82f6';
-            default: return '#10b981';
-        }
-    }
+          function getMoodColor(mood) {
+            switch (mood) {
+              case "AGGRESSIVE":
+                return "#ef4444";
+              case "HARMONIC":
+                return "#10b981";
+              case "CREATIVE":
+                return "#8b5cf6";
+              case "DEFENSIVE":
+                return "#3b82f6";
+              default:
+                return "#10b981";
+            }
+          }
 
-    // Initial fetch
+          // Initial fetch
           const fetchedFilenames = new Set(
             atoms.map((a) => a.filename),
           );
@@ -650,7 +773,8 @@
             if (!card) {
               // Create new card
               card = document.createElement("div");
-              card.className = `atom-card status-alive caste-${atom.caste}`;
+              card.className =
+                `atom-card status-alive caste-${atom.caste}`;
               card.id = `atom-${atom.eigenvalue}`;
               card.setAttribute("data-filename", atom.filename);
               card.style.cursor = "pointer";
@@ -658,7 +782,9 @@
               card.style.top = `${atom.y / 800 * 100}%`;
 
               card.innerHTML = `
-                            <div class="resonance-aura" style="opacity: ${Math.min(1, atom.resonance / 100)}"></div>
+                            <div class="resonance-aura" style="opacity: ${
+                Math.min(1, atom.resonance / 100)
+              }"></div>
                             <div class="thought-hud" style="display: none;"></div>
                             <div class="caste-badge">${atom.caste}</div>
                             <div class="svg-container">${
@@ -667,18 +793,25 @@
               }</div>
                             <div class="meta">
                                 <h3 class="symbol">${atom.symbol}</h3>
-                                ${atom.retroEigen ? `<div class="retro-badge"><strong style="color:var(--accent)">FUTURE-LINK:</strong> _${atom.retroEigen}</div>` : ''}
+                                ${
+                atom.retroEigen
+                  ? `<div class="retro-badge"><strong style="color:var(--accent)">FUTURE-LINK:</strong> _${atom.retroEigen}</div>`
+                  : ""
+              }
                                 <div class="eigenvalue">${
-                atom.eigenvalue.length > 18 ? 
-                  atom.eigenvalue.substring(0,18) + '<br/>_' + atom.eigenvalue.substring(19) : 
-                  atom.eigenvalue.substring(0, 18)
+                atom.eigenvalue.length > 18
+                  ? atom.eigenvalue.substring(0, 18) + "<br/>_" +
+                    atom.eigenvalue.substring(19)
+                  : atom.eigenvalue.substring(0, 18)
               }</div>
                                 <div class="energy-bar-container">
                                     <div class="energy-bar" style="width: ${ePct}%; background-color: ${eColor};"></div>
                                 </div>
                                 <div class="energy-text">${
                 Math.floor(atom.energy)
-              } NRG | <span style="color:var(--accent)">RES: ${atom.resonance ? atom.resonance.toFixed(1) : "0"}</span></div>
+              } NRG | <span style="color:var(--accent)">RES: ${
+                atom.resonance ? atom.resonance.toFixed(1) : "0"
+              }</span></div>
                             </div>
                         `;
 
@@ -688,12 +821,15 @@
               // Update existing card data
               card.className = `atom-card ${
                 isAlive ? "status-alive" : "status-dust"
-              } ${atom.symbol.startsWith("ALPHA_") ? "status-alpha" : ""}`;
+              } ${
+                atom.symbol.startsWith("ALPHA_") ? "status-alpha" : ""
+              }`;
 
               // We only update the SVG if the eigenvalue changed (which implies file renamed, so new card usually, but just in case)
               // The energy block is what needs frequent updating
               // Update dynamic properties
-              card.className = `atom-card status-alive caste-${atom.caste}`;
+              card.className =
+                `atom-card status-alive caste-${atom.caste}`;
               const eBar = card.querySelector(".energy-bar");
               const eText = card.querySelector(".energy-text");
               const thoughtHud = card.querySelector(".thought-hud");
@@ -701,34 +837,48 @@
 
               eBar.style.width = `${ePct}%`;
               eBar.style.backgroundColor = eColor;
-              eText.innerHTML = `${Math.floor(atom.energy)} NRG | <span style="color:var(--accent)">RES: ${atom.resonance ? atom.resonance.toFixed(1) : "0"}</span>`;
-              card.querySelector('.energy-bar').style.width = `${Math.min(100, (atom.energy / 500) * 100)}%`;
-              card.querySelector('.energy-text').textContent = Math.floor(atom.energy);
-              card.querySelector('.caste-badge').textContent = atom.caste;
-              
+              eText.innerHTML = `${
+                Math.floor(atom.energy)
+              } NRG | <span style="color:var(--accent)">RES: ${
+                atom.resonance ? atom.resonance.toFixed(1) : "0"
+              }</span>`;
+              card.querySelector(".energy-bar").style.width = `${
+                Math.min(100, (atom.energy / 500) * 100)
+              }%`;
+              card.querySelector(".energy-text").textContent = Math
+                .floor(atom.energy);
+              card.querySelector(".caste-badge").textContent =
+                atom.caste;
+
               // Handle Resonance Aura
               let aura = card.querySelector(".resonance-aura");
               if (!aura && isAlive) {
-                  aura = document.createElement("div");
-                  aura.className = "resonance-aura";
-                  card.appendChild(aura);
+                aura = document.createElement("div");
+                aura.className = "resonance-aura";
+                card.appendChild(aura);
               }
               if (aura) {
-                  const resScale = 1 + (atom.resonance || 0) / 100;
-                  aura.style.transform = `scale(${resScale})`;
-                  aura.style.opacity = Math.min((atom.resonance || 0) / 50, 0.8);
-                  if (!isAlive) aura.style.display = "none";
-                  else aura.style.display = "block";
+                const resScale = 1 + (atom.resonance || 0) / 100;
+                aura.style.transform = `scale(${resScale})`;
+                aura.style.opacity = Math.min(
+                  (atom.resonance || 0) / 50,
+                  0.8,
+                );
+                if (!isAlive) aura.style.display = "none";
+                else aura.style.display = "block";
               }
-              
+
               // Apply physical position
               card.style.left = `${atom.x}px`;
               card.style.top = `${atom.y}px`;
 
               // Trigger pulse effect if signals present
               if (atom.signals && atom.signals.length > 0) {
-                  card.classList.add("status-pulsing");
-                  setTimeout(() => card.classList.remove("status-pulsing"), 300);
+                card.classList.add("status-pulsing");
+                setTimeout(
+                  () => card.classList.remove("status-pulsing"),
+                  300,
+                );
               }
             }
           });
@@ -743,57 +893,85 @@
           // Draw the synaptic bonds between atoms
           const mycelium = document.getElementById("mycelial-layer");
           mycelium.innerHTML = ""; // Clear old lines
-          
-          atoms.forEach(atom => {
-             if (atom.bonds && atom.bonds.length > 0) {
-                 atom.bonds.forEach(bondedEigen => {
-                     const partner = atoms.find(a => a.filename.includes(bondedEigen));
-                     if (partner) {
-                         // Line path
-                         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                         path.setAttribute("d", `M ${atom.x} ${atom.y} L ${partner.x} ${partner.y}`);
-                         const strength = (atom.bondStrengths && atom.bondStrengths[bondedEigen]) || 1.0;
-                         path.setAttribute("stroke", `rgba(16, 185, 129, ${0.1 + (Math.min(strength, 5) / 10)})`);
-                         path.setAttribute("stroke-width", Math.max(strength, 0.5));
-                         path.setAttribute("fill", "none");
-                         mycelium.appendChild(path);
-                     }
-                 });
-             }
 
-             // Render Neural Pulses
-             if (atom.signals && atom.signals.length > 0) {
-                 atom.signals.forEach(sig => {
-                     const origin = atoms.find(a => a.eigenvalue === sig.origin);
-                     if (origin) {
-                         const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                         dot.setAttribute("r", "4");
-                         let color = "#fff";
-                         if (sig.type === "ENERGY") color = "#10b981";
-                         else if (sig.type === "SHOCK") color = "#ef4444";
-                         
-                         dot.setAttribute("fill", color);
-                         dot.classList.add("signal-dot");
-                         
-                         // Animate along the path from origin to current atom
-                         const pathId = `path-${Math.random()}`;
-                         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                         path.setAttribute("id", pathId);
-                         path.setAttribute("d", `M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}`);
-                         path.style.display = "none";
-                         mycelium.appendChild(path);
-                         
-                         dot.style.offsetPath = `path('M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}')`;
-                         mycelium.appendChild(dot);
-                         
-                         // Cleanup dot after animation
-                         setTimeout(() => dot.remove(), 500);
-                     }
-                 });
-             }
+          atoms.forEach((atom) => {
+            if (atom.bonds && atom.bonds.length > 0) {
+              atom.bonds.forEach((bondedEigen) => {
+                const partner = atoms.find((a) =>
+                  a.filename.includes(bondedEigen)
+                );
+                if (partner) {
+                  // Line path
+                  const path = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "path",
+                  );
+                  path.setAttribute(
+                    "d",
+                    `M ${atom.x} ${atom.y} L ${partner.x} ${partner.y}`,
+                  );
+                  const strength = (atom.bondStrengths &&
+                    atom.bondStrengths[bondedEigen]) || 1.0;
+                  path.setAttribute(
+                    "stroke",
+                    `rgba(16, 185, 129, ${
+                      0.1 + (Math.min(strength, 5) / 10)
+                    })`,
+                  );
+                  path.setAttribute(
+                    "stroke-width",
+                    Math.max(strength, 0.5),
+                  );
+                  path.setAttribute("fill", "none");
+                  mycelium.appendChild(path);
+                }
+              });
+            }
+
+            // Render Neural Pulses
+            if (atom.signals && atom.signals.length > 0) {
+              atom.signals.forEach((sig) => {
+                const origin = atoms.find((a) =>
+                  a.eigenvalue === sig.origin
+                );
+                if (origin) {
+                  const dot = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "circle",
+                  );
+                  dot.setAttribute("r", "4");
+                  let color = "#fff";
+                  if (sig.type === "ENERGY") color = "#10b981";
+                  else if (sig.type === "SHOCK") color = "#ef4444";
+
+                  dot.setAttribute("fill", color);
+                  dot.classList.add("signal-dot");
+
+                  // Animate along the path from origin to current atom
+                  const pathId = `path-${Math.random()}`;
+                  const path = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "path",
+                  );
+                  path.setAttribute("id", pathId);
+                  path.setAttribute(
+                    "d",
+                    `M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}`,
+                  );
+                  path.style.display = "none";
+                  mycelium.appendChild(path);
+
+                  dot.style.offsetPath =
+                    `path('M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}')`;
+                  mycelium.appendChild(dot);
+
+                  // Cleanup dot after animation
+                  setTimeout(() => dot.remove(), 500);
+                }
+              });
+            }
           });
           // --------------------------------------------------------------------------
-
         } catch (error) {
           console.error("Failed to fetch atoms:", error);
         }
@@ -804,27 +982,33 @@
         const card = e.target.closest(".atom-card");
         if (!card) return;
         const filename = card.getAttribute("data-filename");
-        
+
         if (e.shiftKey) {
-            // BLESS
-            card.style.transform = "scale(1.2)";
-            card.style.boxShadow = "inset 0 0 50px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.8)";
-            setTimeout(() => {
-                card.style.transform = "";
-                card.style.boxShadow = "";
-            }, 300);
-            await fetch(`/api/bless/${encodeURIComponent(filename)}`, { method: "POST" });
+          // BLESS
+          card.style.transform = "scale(1.2)";
+          card.style.boxShadow =
+            "inset 0 0 50px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.8)";
+          setTimeout(() => {
+            card.style.transform = "";
+            card.style.boxShadow = "";
+          }, 300);
+          await fetch(`/api/bless/${encodeURIComponent(filename)}`, {
+            method: "POST",
+          });
         } else {
-            // FEED
-            card.style.transform = "scale(1.1)";
-            card.style.boxShadow = "inset 0 0 30px rgba(255, 255, 255, 0.5)";
-            setTimeout(() => {
-                card.style.transform = "";
-                card.style.boxShadow = "";
-            }, 200);
-            await fetch(`/api/feed/${encodeURIComponent(filename)}`, { method: "POST" });
+          // FEED
+          card.style.transform = "scale(1.1)";
+          card.style.boxShadow =
+            "inset 0 0 30px rgba(255, 255, 255, 0.5)";
+          setTimeout(() => {
+            card.style.transform = "";
+            card.style.boxShadow = "";
+          }, 200);
+          await fetch(`/api/feed/${encodeURIComponent(filename)}`, {
+            method: "POST",
+          });
         }
-        
+
         fetchAtoms();
       });
 
@@ -833,131 +1017,155 @@
         const card = e.target.closest(".atom-card");
         if (!card) return;
         const filename = card.getAttribute("data-filename");
-        
+
         card.style.transform = "scale(0.9)";
         card.style.boxShadow = "inset 0 0 40px rgba(239,68,68,0.6)";
         setTimeout(() => {
-            card.style.transform = "";
-            card.style.boxShadow = "";
+          card.style.transform = "";
+          card.style.boxShadow = "";
         }, 200);
 
-        await fetch(`/api/zap/${encodeURIComponent(filename)}`, { method: "POST" });
+        await fetch(`/api/zap/${encodeURIComponent(filename)}`, {
+          method: "POST",
+        });
         fetchAtoms();
       });
 
       // Fetch Akasha Logs
       async function fetchAkasha() {
         try {
-            const res = await fetch("/api/akasha");
-            const data = await res.json();
-            const ticker = document.getElementById("akasha-log");
-            
-            let html = "";
-            if (data.utterances && data.utterances.length > 0) {
-          const tickerElement = document.getElementById('story-ticker');
-          const lastIndex = data.utterances.length - 1;
-          const latest = data.utterances[lastIndex];
-          
-          // Update ticker
-          if (tickerElement) {
-              document.getElementById('story-ticker-container').style.display = 'block';
-              
-              const tickerHTML = data.utterances.map(u => `
-                  <div class="ticker-word" style="color: ${getMoodColor(u.mood)}">
+          const res = await fetch("/api/akasha");
+          const data = await res.json();
+          const ticker = document.getElementById("akasha-log");
+
+          let html = "";
+          if (data.utterances && data.utterances.length > 0) {
+            const tickerElement = document.getElementById(
+              "story-ticker",
+            );
+            const lastIndex = data.utterances.length - 1;
+            const latest = data.utterances[lastIndex];
+
+            // Update ticker
+            if (tickerElement) {
+              document.getElementById("story-ticker-container").style
+                .display = "block";
+
+              const tickerHTML = data.utterances.map((u) => `
+                  <div class="ticker-word" style="color: ${
+                getMoodColor(u.mood)
+              }">
                       <span>${u.text}</span>
                       <span class="ticker-origin">${u.origin}</span>
                   </div>
-              `).join('');
-              
+              `).join("");
+
               if (tickerElement.innerHTML !== tickerHTML) {
-                  tickerElement.innerHTML = tickerHTML;
+                tickerElement.innerHTML = tickerHTML;
               }
+            }
+
+            // Update mood visualizer
+            if (latest.mood) {
+              const overlay = document.getElementById("mood-overlay");
+              overlay.style.background =
+                `radial-gradient(circle at center, ${
+                  getMoodColor(latest.mood)
+                }, transparent 70%)`;
+            }
+          }
+          if (data.logs && data.logs.length > 0) {
+            html += data.logs.map((log) => `<span>${log}</span>`).join(
+              "",
+            );
           }
 
-          // Update mood visualizer
-          if (latest.mood) {
-              const overlay = document.getElementById('mood-overlay');
-              overlay.style.background = `radial-gradient(circle at center, ${getMoodColor(latest.mood)}, transparent 70%)`;
+          if (html) {
+            ticker.innerHTML = html;
+            ticker.scrollLeft = ticker.scrollWidth;
           }
-        }
-            if (data.logs && data.logs.length > 0) {
-                html += data.logs.map((log) => `<span>${log}</span>`).join("");
-            }
-            
-            if (html) {
-                ticker.innerHTML = html;
-                ticker.scrollLeft = ticker.scrollWidth;
-            }
 
-            // Update Sovereignty HUD
-            const sov = data.sovereignty || { activeDecree: "NONE", regent: "NONE", legitimacy: 0 };
-            const regentEl = document.getElementById("regent-id");
-            const decreeEl = document.getElementById("active-decree");
-            const legitimacyEl = document.getElementById("legitimacy-val");
-            const hud = document.getElementById("sov-hud");
+          // Update Sovereignty HUD
+          const sov = data.sovereignty ||
+            { activeDecree: "NONE", regent: "NONE", legitimacy: 0 };
+          const regentEl = document.getElementById("regent-id");
+          const decreeEl = document.getElementById("active-decree");
+          const legitimacyEl = document.getElementById(
+            "legitimacy-val",
+          );
+          const hud = document.getElementById("sov-hud");
 
-            regentEl.textContent = sov.regent || "NONE";
-            regentEl.className = sov.regent === "NONE" ? "sov-val none" : "sov-val";
-            
-            decreeEl.textContent = sov.label || "DEMOCRACY";
-            decreeEl.className = sov.activeDecree === "NONE" ? "sov-val none" : "sov-val";
-            
-            legitimacyEl.textContent = `${Math.floor(sov.legitimacy || 0)}%`;
-            legitimacyEl.className = sov.legitimacy > 0 ? "sov-val" : "sov-val none";
+          regentEl.textContent = sov.regent || "NONE";
+          regentEl.className = sov.regent === "NONE"
+            ? "sov-val none"
+            : "sov-val";
 
-            if (sov.regent !== "NONE") {
-              hud.classList.add("active");
-            } else {
-              hud.classList.remove("active");
-            }
-        } catch { }
+          decreeEl.textContent = sov.label || "DEMOCRACY";
+          decreeEl.className = sov.activeDecree === "NONE"
+            ? "sov-val none"
+            : "sov-val";
+
+          legitimacyEl.textContent = `${
+            Math.floor(sov.legitimacy || 0)
+          }%`;
+          legitimacyEl.className = sov.legitimacy > 0
+            ? "sov-val"
+            : "sov-val none";
+
+          if (sov.regent !== "NONE") {
+            hud.classList.add("active");
+          } else {
+            hud.classList.remove("active");
+          }
+        } catch {}
       }
 
       // Zero-IOPS Execution
       const zeroIopsBtn = document.getElementById("zero-iops-btn");
       zeroIopsBtn.addEventListener("click", async () => {
-          zeroIopsBtn.style.transform = "scale(0.95)";
-          zeroIopsBtn.style.boxShadow = "0 0 40px rgba(100, 100, 255, 0.8)";
-          
-          try {
-              await fetch("/api/transmute", { method: "POST" });
-              fetchAtoms();
-          } catch (e) {}
+        zeroIopsBtn.style.transform = "scale(0.95)";
+        zeroIopsBtn.style.boxShadow =
+          "0 0 40px rgba(100, 100, 255, 0.8)";
 
-          setTimeout(() => {
-              zeroIopsBtn.style.transform = "";
-              zeroIopsBtn.style.boxShadow = "";
-          }, 500);
+        try {
+          await fetch("/api/transmute", { method: "POST" });
+          fetchAtoms();
+        } catch (e) {}
+
+        setTimeout(() => {
+          zeroIopsBtn.style.transform = "";
+          zeroIopsBtn.style.boxShadow = "";
+        }, 500);
       });
 
       // Noospheric Forge Execution
       const forgeBtn = document.getElementById("forge-btn");
       forgeBtn.addEventListener("click", async () => {
-          const symbol = document.getElementById("forge-symbol").value;
-          const word = document.getElementById("forge-word").value;
-          const logic = document.getElementById("forge-logic").value;
-          const energy = document.getElementById("forge-energy").value;
+        const symbol = document.getElementById("forge-symbol").value;
+        const word = document.getElementById("forge-word").value;
+        const logic = document.getElementById("forge-logic").value;
+        const energy = document.getElementById("forge-energy").value;
 
-          forgeBtn.style.transform = "scale(0.95)";
-          forgeBtn.innerText = "SYNTHESIZING...";
+        forgeBtn.style.transform = "scale(0.95)";
+        forgeBtn.innerText = "SYNTHESIZING...";
 
-          try {
-              const payload = { symbol, energy };
-              if (word) payload.word = word;
-              else payload.logic = logic;
+        try {
+          const payload = { symbol, energy };
+          if (word) payload.word = word;
+          else payload.logic = logic;
 
-              await fetch("/api/forge", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload)
-              });
-              fetchAtoms();
-          } catch (e) {}
+          await fetch("/api/forge", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          fetchAtoms();
+        } catch (e) {}
 
-          setTimeout(() => {
-              forgeBtn.style.transform = "";
-              forgeBtn.innerText = "SYNTHESIZE ATOM";
-          }, 500);
+        setTimeout(() => {
+          forgeBtn.style.transform = "";
+          forgeBtn.innerText = "SYNTHESIZE ATOM";
+        }, 500);
       });
 
       // Fetch immediately, then poll

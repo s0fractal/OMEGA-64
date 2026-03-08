@@ -106,7 +106,8 @@ const main = async () => {
   if (normalizeArchitectPlasmidExecutionMode(undefined) !== "shadow-reduce") {
     violations.push({
       file: BRIDGE_PATH,
-      reason: "Default architect plasmid mode must be shadow-reduce for safe rollout",
+      reason:
+        "Default architect plasmid mode must be shadow-reduce for safe rollout",
     });
   }
 
@@ -114,8 +115,10 @@ const main = async () => {
     script: STATE_MATRIX.getArchitectScript(),
     neuralCoherence: 200,
   });
-  if (emit.status !== "ok" || emit.branch !== "emit" ||
-    emit.plasmidAllowed !== true || emit.buildCount < 1) {
+  if (
+    emit.status !== "ok" || emit.branch !== "emit" ||
+    emit.plasmidAllowed !== true || emit.buildCount < 1
+  ) {
     violations.push({
       file: BRIDGE_PATH,
       reason:
@@ -127,8 +130,10 @@ const main = async () => {
     script: STATE_MATRIX.getGuardianScript(),
     neuralCoherence: 200,
   });
-  if (suppress.status !== "ok" || suppress.branch !== "suppress" ||
-    suppress.plasmidAllowed !== false || suppress.buildCount !== 0) {
+  if (
+    suppress.status !== "ok" || suppress.branch !== "suppress" ||
+    suppress.plasmidAllowed !== false || suppress.buildCount !== 0
+  ) {
     violations.push({
       file: BRIDGE_PATH,
       reason:
@@ -143,7 +148,8 @@ const main = async () => {
   if (fallback.status !== "fallback") {
     violations.push({
       file: BRIDGE_PATH,
-      reason: "Unmapped architect scripts must fail open through explicit fallback",
+      reason:
+        "Unmapped architect scripts must fail open through explicit fallback",
     });
   }
 

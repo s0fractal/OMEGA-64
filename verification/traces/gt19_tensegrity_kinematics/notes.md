@@ -1,7 +1,8 @@
 # gt19_tensegrity_kinematics
 
 - scenario: standalone tensegrity kinematics and bonding
-- setup: standalone deterministic capture of OP_TENSEGRITY setting bond distances and damping, executing physics to resolve forces
+- setup: standalone deterministic capture of OP_TENSEGRITY setting bond
+  distances and damping, executing physics to resolve forces
 - duration: 100 physics ticks execution / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-tensegrity-capture

@@ -64,7 +64,9 @@ const parseArgs = (args: string[]) => {
 
 const parseAnnotation = (source: string, file: string): AnnotationEntry => {
   const entry: AnnotationEntry = { file };
-  const vectorMatch = source.match(/@omega\.vector\s+([0-9]+(?:\.[0-9]+){0,2})/);
+  const vectorMatch = source.match(
+    /@omega\.vector\s+([0-9]+(?:\.[0-9]+){0,2})/,
+  );
   if (vectorMatch) entry.vector = vectorMatch[1];
 
   if (/@omega\.readonly/.test(source)) entry.readonly = true;
@@ -121,7 +123,10 @@ const main = async () => {
     for (const rule of RULES) {
       const err = rule(entry);
       if (err) {
-        if (err.startsWith("DOMAIN_PHASE") || err.startsWith("SYMBOL") || err.startsWith("ORIGIN") || err.startsWith("REDIRECT")) report.notes.push(err);
+        if (
+          err.startsWith("DOMAIN_PHASE") || err.startsWith("SYMBOL") ||
+          err.startsWith("ORIGIN") || err.startsWith("REDIRECT")
+        ) report.notes.push(err);
         else report.errors.push(err);
       }
     }

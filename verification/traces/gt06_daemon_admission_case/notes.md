@@ -1,7 +1,8 @@
 # gt06_daemon_admission_case
 
 - scenario: daemon admission / rejection
-- setup: one accepted ingress case and one degraded/rejected case with daemon governance on
+- setup: one accepted ingress case and one degraded/rejected case with daemon
+  governance on
 - duration: event-bounded
 - daemonEnabled: true
 - runtime_mode: legacy-runtime/api-observer-harness
@@ -23,5 +24,7 @@
 
 ## Actions
 
-- tick=128 kind=DROP_PHEROMONE_ACCEPT responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
-- tick=192 kind=INJECT_PLASMID_DEGRADED responseDigest=6fa126b7c01f359bd42a6e787c80820493e36eeb0ffcf44e7ebbea351764ef7b
+- tick=128 kind=DROP_PHEROMONE_ACCEPT
+  responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
+- tick=192 kind=INJECT_PLASMID_DEGRADED
+  responseDigest=6fa126b7c01f359bd42a6e787c80820493e36eeb0ffcf44e7ebbea351764ef7b

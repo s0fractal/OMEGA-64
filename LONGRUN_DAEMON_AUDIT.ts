@@ -657,7 +657,7 @@ const terminateChild = async (
   }
 };
 
-const createLcg = (seed: number): (() => number) => {
+const createLcg = (seed: number): () => number => {
   let state = seed >>> 0;
   return () => {
     state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
@@ -695,7 +695,14 @@ const postJson = async (
   body: Record<string, unknown>,
   timeoutMs: number,
   headers: HeadersInit,
-): Promise<{ ok: boolean; status: number; payload: Record<string, unknown> | null; text: string }> => {
+): Promise<
+  {
+    ok: boolean;
+    status: number;
+    payload: Record<string, unknown> | null;
+    text: string;
+  }
+> => {
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -929,9 +936,9 @@ const renderMarkdown = (
     .map(([eventType, count]) => `| ${eventType} | ${count} |`)
     .join("\n");
   const perturbRows = perturbationsTail.slice(-16).map((entry) =>
-    `| ${entry.sequence} | ${entry.kind} | ${entry.ok ? "ok" : "fail"} | ${
-      entry.httpStatus
-    } | ${entry.reason} | ${
+    `| ${entry.sequence} | ${entry.kind} | ${
+      entry.ok ? "ok" : "fail"
+    } | ${entry.httpStatus} | ${entry.reason} | ${
       entry.degraded ? "yes" : "no"
     } | ${entry.admissionSeverity} | ${entry.admissionScore} |`
   ).join("\n");
@@ -1369,9 +1376,7 @@ const main = async () => {
           last.avgEnergy.toFixed(2)
         } latency=${
           last.telemetryLatencyMs.toFixed(1)
-        }ms perturb=${perturbAttempts} daemonReject=${daemonRejectCount} budget=${
-          last.daemonActionsUsedInWindow
-        }/${last.daemonActionsDynamicMaxInWindow}`,
+        }ms perturb=${perturbAttempts} daemonReject=${daemonRejectCount} budget=${last.daemonActionsUsedInWindow}/${last.daemonActionsDynamicMaxInWindow}`,
       );
     }
 
@@ -1414,7 +1419,9 @@ const main = async () => {
 
   const elapsedMs = Math.round(performance.now() - startedAt);
   const sampleCount = samples.length;
-  const successRate = telemetryAttempts > 0 ? successCount / telemetryAttempts : 0;
+  const successRate = telemetryAttempts > 0
+    ? successCount / telemetryAttempts
+    : 0;
   const tickStart = sampleCount > 0 ? samples[0].tick : 0;
   const tickEnd = sampleCount > 0 ? samples[sampleCount - 1].tick : 0;
   const tickAdvance = tickEnd - tickStart;
@@ -1434,8 +1441,8 @@ const main = async () => {
   const federationRejectRatio = federationActionSamples > 0
     ? federationRejectSamples / federationActionSamples
     : 0;
-  const daemonAdmissionEvents =
-    daemonAcceptCount + daemonRejectCount + daemonDegradedCount;
+  const daemonAdmissionEvents = daemonAcceptCount + daemonRejectCount +
+    daemonDegradedCount;
   const daemonRejectRatio = daemonAdmissionEvents > 0
     ? daemonRejectCount / daemonAdmissionEvents
     : 0;
@@ -1447,43 +1454,43 @@ const main = async () => {
     : 0;
   const enforceActionQualityGate = config.requireDaemonAccepts ||
     daemonAcceptCount > 0;
-  const guardianSignalPromotionDecision = evaluateGuardianSignalPromotionDecision(
-    {
-      promotion: {
-        latestReady: guardianSignalPromotionLatest?.guardianPromotionReady ??
-          false,
-        readyRatio: guardianSignalPromotionReadyRatio,
-        recommendedMode:
-          guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
-            "shadow-reduce",
-        fallbackRatioP95: guardianSignalFallbackRatioP95,
-        status: guardianSignalPromotionLatest?.guardianPromotionStatus ??
-          "unknown",
+  const guardianSignalPromotionDecision =
+    evaluateGuardianSignalPromotionDecision(
+      {
+        promotion: {
+          latestReady: guardianSignalPromotionLatest?.guardianPromotionReady ??
+            false,
+          readyRatio: guardianSignalPromotionReadyRatio,
+          recommendedMode:
+            guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+              "shadow-reduce",
+          fallbackRatioP95: guardianSignalFallbackRatioP95,
+          status: guardianSignalPromotionLatest?.guardianPromotionStatus ??
+            "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly: coreUnexpectedExitDuringRun ||
+            (config.spawnDaemon && daemonUnexpectedExitDuringRun),
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          daemonRejectRatio,
+          maxDaemonRejectRatio: config.maxDaemonRejectRatio,
+          effectEvalCoverage,
+          minEffectEvalCoverage: config.minEffectEvalCoverage,
+          enforceActionQualityGate,
+        },
       },
-      health: {
-        bootReady,
-        processExitedUnexpectedly: coreUnexpectedExitDuringRun ||
-          (config.spawnDaemon && daemonUnexpectedExitDuringRun),
-        successRate,
-        minSuccessRate: config.minSuccessRate,
-        p95TelemetryLatencyMs,
-        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
-        p95SpatialOverflowRatio,
-        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
-        safeModeRatio,
-        maxSafeModeRatio: config.maxSafeModeRatio,
-        daemonRejectRatio,
-        maxDaemonRejectRatio: config.maxDaemonRejectRatio,
-        effectEvalCoverage,
-        minEffectEvalCoverage: config.minEffectEvalCoverage,
-        enforceActionQualityGate,
-      },
-    },
-  );
+    );
   const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
-    currentMode:
-      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
-        "shadow-reduce",
+    currentMode: guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+      "shadow-reduce",
     decision: guardianSignalPromotionDecision,
   });
 
@@ -1620,7 +1627,9 @@ const main = async () => {
     spawnDaemon: config.spawnDaemon,
     coldstartEnable: config.coldstartEnable,
     coldstartCount: config.coldstartCount,
-    coldstartReplicatorRatio: Number(config.coldstartReplicatorRatio.toFixed(3)),
+    coldstartReplicatorRatio: Number(
+      config.coldstartReplicatorRatio.toFixed(3),
+    ),
     daemonHeartbeatMs: config.daemonHeartbeatMs,
     sampleCount,
     telemetryAttempts,

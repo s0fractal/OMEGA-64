@@ -140,7 +140,7 @@ const main = async () => {
   );
   requireSnippet(
     system,
-    "key: \"pulse.pressureRing.scale\"",
+    'key: "pulse.pressureRing.scale"',
     SYSTEM_START_PATH,
     "System runtime must target the pressure-ring scale ledger key",
     violations,

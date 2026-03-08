@@ -129,7 +129,9 @@ type AtomEntry = {
   projections: Projection[];
 };
 
-const readYamlMeta = async (path: string): Promise<Record<string, unknown> | null> => {
+const readYamlMeta = async (
+  path: string,
+): Promise<Record<string, unknown> | null> => {
   try {
     const content = await Deno.readTextFile(path);
     const raw = parseYaml(content) as Record<string, unknown>;
@@ -152,7 +154,10 @@ const projectionSort = (a: Projection, b: Projection): number => {
   return a.path.localeCompare(b.path);
 };
 
-const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]> => {
+const collectAtoms = async (
+  root: string,
+  segment?: string,
+): Promise<AtomEntry[]> => {
   const entries: AtomEntry[] = [];
   const filterSector = segment ? Number.parseInt(segment[0], 10) : null;
   const filterOrbit = segment ? Number.parseInt(segment[1], 10) : null;
@@ -160,41 +165,70 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
   // --- Phase 1: Scan Root for Flatland Crystalline Atoms ---
   try {
     for await (const entry of Deno.readDir(root)) {
-      if (entry.isFile && /^0x[0-9A-F]{8,16}\.[A-Z0-9_]+\.md$/i.test(entry.name)) {
+      if (
+        entry.isFile && /^0x[0-9A-F]{8,16}\.[A-Z0-9_]+\.md$/i.test(entry.name)
+      ) {
         // ... (existing crystal logic)
         const path = `${root}/${entry.name}`;
         const content = await Deno.readTextFile(path);
         const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-        const alpha = frontmatterMatch ? parseYaml(frontmatterMatch[1]) as any : {};
+        const alpha = frontmatterMatch
+          ? parseYaml(frontmatterMatch[1]) as any
+          : {};
         const symbol = entry.name.split(".")[1];
         const digest = entry.name.split(".")[0].slice(2);
-        
-        const projections: Projection[] = [{ path, label: "md", lang: "md" }];
-        if (content.includes("## RED (R)")) projections.push({ path, label: "rs", lang: "rs" });
-        if (content.includes("## BLUE (B)")) projections.push({ path, label: "ts", lang: "ts" });
-        if (content.includes("---")) projections.push({ path, label: "yaml", lang: "yaml" });
 
-      } else if (entry.isFile && ["RIBOSOME.ts", "GATE.ts", "IMMUNE.ts", "RIBOSOME_TICK.ts", "PULSE.ts", "mod.ts", "SHIMS.ts", "STATE_SNAPSHOT.ts"].includes(entry.name)) {
+        const projections: Projection[] = [{ path, label: "md", lang: "md" }];
+        if (content.includes("## RED (R)")) {
+          projections.push({ path, label: "rs", lang: "rs" });
+        }
+        if (content.includes("## BLUE (B)")) {
+          projections.push({ path, label: "ts", lang: "ts" });
+        }
+        if (content.includes("---")) {
+          projections.push({ path, label: "yaml", lang: "yaml" });
+        }
+      } else if (
+        entry.isFile &&
+        [
+          "RIBOSOME.ts",
+          "GATE.ts",
+          "IMMUNE.ts",
+          "RIBOSOME_TICK.ts",
+          "PULSE.ts",
+          "mod.ts",
+          "SHIMS.ts",
+          "STATE_SNAPSHOT.ts",
+        ].includes(entry.name)
+      ) {
         // --- Special Handling for Organs ---
         const path = `${root}/${entry.name}`;
         entries.push({
           sector: 8,
           orbit: 0,
           name: entry.name.replace(".ts", ""),
-          vector: `0xFFFFFFFF${entry.name.length.toString(16).padStart(8, '0')}`, // Zone F: Meta (Synthetic)
+          vector: `0xFFFFFFFF${
+            entry.name.length.toString(16).padStart(8, "0")
+          }`, // Zone F: Meta (Synthetic)
           symbol: entry.name,
           desc: `Core System Organ: ${entry.name}`,
           level: 63,
           projections: [{ path, label: "ts", lang: "ts" }],
         });
-      } else if (entry.isFile && ["AGENTS.md", "OMEGA_GEOMETRY.md", "OMEGA_MANIFEST.md", "README.md"].includes(entry.name)) {
+      } else if (
+        entry.isFile &&
+        ["AGENTS.md", "OMEGA_GEOMETRY.md", "OMEGA_MANIFEST.md", "README.md"]
+          .includes(entry.name)
+      ) {
         // --- Special Handling for Protocols (Axioms) ---
         const path = `${root}/${entry.name}`;
         entries.push({
           sector: 0,
           orbit: 0,
           name: entry.name.replace(".md", ""),
-          vector: `0x00000000${entry.name.length.toString(16).padStart(8, '0')}`, // Zone 0: Primordial
+          vector: `0x00000000${
+            entry.name.length.toString(16).padStart(8, "0")
+          }`, // Zone 0: Primordial
           symbol: entry.name,
           desc: `System Protocol: ${entry.name}`,
           level: 0,
@@ -203,7 +237,12 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
       }
     }
     // Phase 1.1: Explicitly include key engine scripts from e/
-    const engineScripts = ["e/CRYSTAL_DIGEST.ts", "e/EXPORT_SIGMA_CANON.ts", "e/GENERATE_MOD_TS.ts", "e/RIBOSOME_ZERO.ts"];
+    const engineScripts = [
+      "e/CRYSTAL_DIGEST.ts",
+      "e/EXPORT_SIGMA_CANON.ts",
+      "e/GENERATE_MOD_TS.ts",
+      "e/RIBOSOME_ZERO.ts",
+    ];
     for (const script of engineScripts) {
       try {
         const info = await Deno.stat(script);
@@ -212,7 +251,7 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
             sector: 8,
             orbit: 1,
             name: script.split("/").pop()!.replace(".ts", ""),
-            vector: `0xEEEEEEEE${script.length.toString(16).padStart(8, '0')}`, // Zone E: Engine Logic
+            vector: `0xEEEEEEEE${script.length.toString(16).padStart(8, "0")}`, // Zone E: Engine Logic
             symbol: script,
             desc: `System Engine Logic: ${script}`,
             level: 63,
@@ -295,22 +334,22 @@ const levelToken = (level: number, eigenvalue?: string): string => {
   if (eigenvalue) {
     const zone = eigenvalue.slice(2, 3).toUpperCase();
     const mapping: Record<string, string> = {
-      '0': 'Zone 0: Primordial Potential (0)',
-      '1': 'Zone 1: Singularity & Origin (1)',
-      '2': 'Zone 2: Bilateral Symmetry (2)',
-      '3': 'Zone 3: Trinitary Flux (3)',
-      '4': 'Zone 4: Quaternary Structure (4)',
-      '5': 'Zone 5: Pentatonic Resonance (5)',
-      '6': 'Zone 6: Hexagonal Lattice (6)',
-      '7': 'Zone 7: Septenary Bridge (7)',
-      '8': 'Zone 8: Identity & Perception (I)',
-      '9': 'Zone 9: Constancy & State (K)',
-      'A': 'Zone A: Substitution & Action (S)',
-      'B': 'Zone B: Recursion & Life (Y)',
-      'C': 'Zone C: Rotation & Phase (ROT)',
-      'D': 'Zone D: Synchronization & Consensus (SYNC)',
-      'E': 'Zone E: Flow & Application (->)',
-      'F': 'Zone F: Meta & Escape (ESC)'
+      "0": "Zone 0: Primordial Potential (0)",
+      "1": "Zone 1: Singularity & Origin (1)",
+      "2": "Zone 2: Bilateral Symmetry (2)",
+      "3": "Zone 3: Trinitary Flux (3)",
+      "4": "Zone 4: Quaternary Structure (4)",
+      "5": "Zone 5: Pentatonic Resonance (5)",
+      "6": "Zone 6: Hexagonal Lattice (6)",
+      "7": "Zone 7: Septenary Bridge (7)",
+      "8": "Zone 8: Identity & Perception (I)",
+      "9": "Zone 9: Constancy & State (K)",
+      "A": "Zone A: Substitution & Action (S)",
+      "B": "Zone B: Recursion & Life (Y)",
+      "C": "Zone C: Rotation & Phase (ROT)",
+      "D": "Zone D: Synchronization & Consensus (SYNC)",
+      "E": "Zone E: Flow & Application (->)",
+      "F": "Zone F: Meta & Escape (ESC)",
     };
     return mapping[zone] ?? `Zone ${zone}: Unknown Spectral Band`;
   }
@@ -325,7 +364,7 @@ const main = async () => {
   }
 
   const atoms = await collectAtoms(args.root, args.segment);
-  
+
   // Sort by Zone (eigenvalue prefix) then by Symbol
   atoms.sort((a, b) => {
     const vA = a.vector ?? "";
@@ -335,7 +374,10 @@ const main = async () => {
 
   const byGroup = new Map<string, AtomEntry[]>();
   for (const atom of atoms) {
-    const group = levelToken(atom.level, atom.vector?.startsWith("0x") ? atom.vector : undefined);
+    const group = levelToken(
+      atom.level,
+      atom.vector?.startsWith("0x") ? atom.vector : undefined,
+    );
     const list = byGroup.get(group) ?? [];
     list.push(atom);
     byGroup.set(group, list);
@@ -351,7 +393,7 @@ const main = async () => {
   lines.push("");
 
   const mode = args.mode.toLowerCase();
-  
+
   // Custom sorting for Spectral Zones
   const groups = Array.from(byGroup.keys()).sort((a, b) => {
     if (a.startsWith("Zone") && b.startsWith("Zone")) return a.localeCompare(b);
@@ -368,7 +410,9 @@ const main = async () => {
     if (mode === "level") {
       for (const atom of groupAtoms) {
         for (const proj of atom.projections) {
-          const label = proj.path.startsWith("./") ? proj.path.slice(2) : proj.path;
+          const label = proj.path.startsWith("./")
+            ? proj.path.slice(2)
+            : proj.path;
           const content = await Deno.readTextFile(proj.path);
           lines.push("");
           lines.push(fileHeader(label));
@@ -387,13 +431,21 @@ const main = async () => {
 
       lines.push("");
       lines.push(fileHeader(entityLabel));
-      
-      const digest = vectorLabel.startsWith("0x") ? vectorLabel.slice(2) : vectorLabel;
+
+      const digest = vectorLabel.startsWith("0x")
+        ? vectorLabel.slice(2)
+        : vectorLabel;
       if (digest.length === 16) {
         const decoded = CRYSTAL.decode64(digest);
-        const spatialStr = typeof decoded.spatial === "string" ? decoded.spatial : JSON.stringify(decoded.spatial);
-        const quantumStr = typeof decoded.quantum === "string" ? decoded.quantum : JSON.stringify(decoded.quantum);
-        lines.push(`> **Logic**: \`${decoded.logic}\` | **Spatial**: \`${spatialStr}\` | **Quantum**: \`${quantumStr}\``);
+        const spatialStr = typeof decoded.spatial === "string"
+          ? decoded.spatial
+          : JSON.stringify(decoded.spatial);
+        const quantumStr = typeof decoded.quantum === "string"
+          ? decoded.quantum
+          : JSON.stringify(decoded.quantum);
+        lines.push(
+          `> **Logic**: \`${decoded.logic}\` | **Spatial**: \`${spatialStr}\` | **Quantum**: \`${quantumStr}\``,
+        );
       }
 
       if (atom.desc) {

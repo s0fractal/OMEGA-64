@@ -26,12 +26,13 @@ type Level = {
 };
 
 const parseArgs = (args: string[]) => {
-  const out: { input: string; output: string; verify: boolean; help: boolean } = {
-    input: DEFAULT_INPUT,
-    output: DEFAULT_OUTPUT,
-    verify: false,
-    help: false,
-  };
+  const out: { input: string; output: string; verify: boolean; help: boolean } =
+    {
+      input: DEFAULT_INPUT,
+      output: DEFAULT_OUTPUT,
+      verify: false,
+      help: false,
+    };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "--help" || arg === "-h") {
@@ -70,9 +71,12 @@ const isLevelHeader = (line: string): boolean => line.startsWith("## ");
 const isEntityHeader = (line: string): boolean => line.startsWith("### ");
 const isProjectionHeader = (line: string): boolean => line.startsWith("#### ");
 
-const stripPrefix = (line: string, prefix: string): string => line.slice(prefix.length).trim();
+const stripPrefix = (line: string, prefix: string): string =>
+  line.slice(prefix.length).trim();
 
-const parseSigma = (lines: string[]): { preamble: string[]; levels: Level[] } => {
+const parseSigma = (
+  lines: string[],
+): { preamble: string[]; levels: Level[] } => {
   const preamble: string[] = [];
   const levels: Level[] = [];
   let i = 0;
@@ -109,7 +113,11 @@ const parseSigma = (lines: string[]): { preamble: string[]; levels: Level[] } =>
     }
     if (isEntityHeader(line)) {
       pushEntity();
-      currentEntity = { id: stripPrefix(line, "### "), contentLines: [], projections: [] };
+      currentEntity = {
+        id: stripPrefix(line, "### "),
+        contentLines: [],
+        projections: [],
+      };
       i += 1;
       continue;
     }
@@ -122,7 +130,10 @@ const parseSigma = (lines: string[]): { preamble: string[]; levels: Level[] } =>
       i += 1;
       const prefaceLines: string[] = [];
       while (i < lines.length && !lines[i].startsWith("```")) {
-        if (isProjectionHeader(lines[i]) || isEntityHeader(lines[i]) || isLevelHeader(lines[i])) break;
+        if (
+          isProjectionHeader(lines[i]) || isEntityHeader(lines[i]) ||
+          isLevelHeader(lines[i])
+        ) break;
         prefaceLines.push(lines[i]);
         i += 1;
       }
@@ -139,7 +150,12 @@ const parseSigma = (lines: string[]): { preamble: string[]; levels: Level[] } =>
       if (i < lines.length && lines[i].startsWith("```")) {
         i += 1;
       }
-      currentEntity.projections.push({ label, fenceLang, prefaceLines, codeLines });
+      currentEntity.projections.push({
+        label,
+        fenceLang,
+        prefaceLines,
+        codeLines,
+      });
       continue;
     }
 

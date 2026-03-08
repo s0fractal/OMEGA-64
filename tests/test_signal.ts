@@ -8,10 +8,10 @@ console.log("📡 TEST SIGNAL: Initializing...");
 
 // Mock Lattice
 const mockLattice: Atom[] = Array.from({ length: 100 }, (_, i) => ({
-    id: `atom_${i}.ts`,
-    level: i % 64,
-    content: "// mock",
-    hash: "mock_hash"
+  id: `atom_${i}.ts`,
+  level: i % 64,
+  content: "// mock",
+  hash: "mock_hash",
 }));
 
 // Force KAIROS to trigger (run multiple times until threshold hit)
@@ -20,7 +20,7 @@ const mockLattice: Atom[] = Array.from({ length: 100 }, (_, i) => ({
 console.log("⏳ TEST SIGNAL: Burning cycles to trigger KAIROS...");
 
 for (let i = 0; i < 50; i++) {
-    await KAIROS.ignite(mockLattice);
+  await KAIROS.ignite(mockLattice);
 }
 
 console.log("✅ TEST SIGNAL: Finished cycles. Check OMEGA_SIGNAL.md.");

@@ -98,10 +98,22 @@ console.log("\n── Section 3: Signature Determinism ──");
 
 // Band boundaries: 0..511=A, 512..1023=B, 1024..1535=C, 1536..2048=D
 assert(makeSig([0, 0, 0, 0, 0, 0]) === "AAAAAA", "all-zero sig = AAAAAA");
-assert(makeSig([512, 512, 512, 512, 512, 512]) === "BBBBBB", "all-512 sig = BBBBBB");
-assert(makeSig([1024, 1024, 1024, 1024, 1024, 1024]) === "CCCCCC", "all-1024 sig = CCCCCC");
-assert(makeSig([2048, 2048, 2048, 2048, 2048, 2048]) === "DDDDDD", "all-2048 sig = DDDDDD");
-assert(makeSig([511, 512, 1023, 1024, 1535, 1536]) === "ABBCCD", "mixed band sig: 511=A,512=B,1023=B,1024=C,1535=C,1536=D");
+assert(
+  makeSig([512, 512, 512, 512, 512, 512]) === "BBBBBB",
+  "all-512 sig = BBBBBB",
+);
+assert(
+  makeSig([1024, 1024, 1024, 1024, 1024, 1024]) === "CCCCCC",
+  "all-1024 sig = CCCCCC",
+);
+assert(
+  makeSig([2048, 2048, 2048, 2048, 2048, 2048]) === "DDDDDD",
+  "all-2048 sig = DDDDDD",
+);
+assert(
+  makeSig([511, 512, 1023, 1024, 1535, 1536]) === "ABBCCD",
+  "mixed band sig: 511=A,512=B,1023=B,1024=C,1535=C,1536=D",
+);
 
 // ---
 // Section 4: SharedArrayBuffer roundtrip for all 6 hormones
@@ -114,7 +126,10 @@ for (let i = 0; i < 6; i++) {
 }
 const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
 for (let i = 0; i < 6; i++) {
-  assert(h[i] === testVals[i], `Hormone[${i}] write=${testVals[i]} read=${h[i]}`);
+  assert(
+    h[i] === testVals[i],
+    `Hormone[${i}] write=${testVals[i]} read=${h[i]}`,
+  );
 }
 
 // h = [1234, 512, 2048, 0, 1600, 777]
@@ -123,7 +138,9 @@ for (let i = 0; i < 6; i++) {
 const regime = hormoneRegimeLabel(h);
 assert(
   regime === "aggressive_bloom",
-  `Regime after aggression=${h[2]} (entropy=${h[0]}) should be aggressive_bloom, got '${regime}'`,
+  `Regime after aggression=${h[2]} (entropy=${
+    h[0]
+  }) should be aggressive_bloom, got '${regime}'`,
 );
 
 // ---
@@ -131,9 +148,16 @@ assert(
 // ---
 console.log("\n── Section 5: Signature Transition on Threshold Cross ──");
 
-const sigBelow = `${hormoneRegimeLabel([1500, 0, 0, 0, 0, 0])}|${makeSig([1500, 0, 0, 0, 0, 0])}`;
-const sigAbove = `${hormoneRegimeLabel([1501, 0, 0, 0, 0, 0])}|${makeSig([1501, 0, 0, 0, 0, 0])}`;
-assert(sigBelow !== sigAbove, `Signature changes when entropy crosses 1500 threshold`);
+const sigBelow = `${hormoneRegimeLabel([1500, 0, 0, 0, 0, 0])}|${
+  makeSig([1500, 0, 0, 0, 0, 0])
+}`;
+const sigAbove = `${hormoneRegimeLabel([1501, 0, 0, 0, 0, 0])}|${
+  makeSig([1501, 0, 0, 0, 0, 0])
+}`;
+assert(
+  sigBelow !== sigAbove,
+  `Signature changes when entropy crosses 1500 threshold`,
+);
 assert(
   sigAbove.startsWith("high_entropy"),
   `Regime above 1500 is high_entropy, got: ${sigAbove}`,
@@ -144,9 +168,9 @@ assert(
 // ---
 console.log(`\n${"─".repeat(50)}`);
 console.log(
-  `🧬 HORMONE REGIME CHRONICLE CONTRACT: ${failed === 0 ? "✅ PASS" : "❌ FAIL"} (${passed}/${
-    passed + failed
-  })`,
+  `🧬 HORMONE REGIME CHRONICLE CONTRACT: ${
+    failed === 0 ? "✅ PASS" : "❌ FAIL"
+  } (${passed}/${passed + failed})`,
 );
 if (failed > 0) {
   console.error(`Failed: ${failed}`);

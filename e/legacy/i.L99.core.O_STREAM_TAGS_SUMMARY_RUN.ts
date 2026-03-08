@@ -11,8 +11,14 @@ const usage = (): string =>
     "  deno run -A i.L99.core.O_STREAM_TAGS_SUMMARY_RUN.ts --input <stream.jsonl> [--pretty]",
   ].join("\n");
 
-export const O_STREAM_TAGS_SUMMARY_RUN = async (args: string[]): Promise<void> => {
-  const parsed = { input: undefined as string | undefined, pretty: false, help: false };
+export const O_STREAM_TAGS_SUMMARY_RUN = async (
+  args: string[],
+): Promise<void> => {
+  const parsed = {
+    input: undefined as string | undefined,
+    pretty: false,
+    help: false,
+  };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {

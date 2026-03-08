@@ -57,7 +57,9 @@ function getResonance(idx: number): number {
 
 console.log("\n⚛️  [HORMONE WASM INFLUENCE CONTRACT] Starting...\n");
 console.log("NOTE: WASM execute_atom reads hormones from SharedArrayBuffer.");
-console.log("      We verify influence by comparing pre/post hormone states.\n");
+console.log(
+  "      We verify influence by comparing pre/post hormone states.\n",
+);
 
 // ---
 // Section 1: Baseline — all hormones zero should still run
@@ -86,8 +88,14 @@ const entropyZero = 0;
 const entropyMax = 2048;
 const costAtZero = 1 + (step >> 1) + ((step * entropyZero) >> 12);
 const costAtMax = 1 + (step >> 1) + ((step * entropyMax) >> 12);
-assert(costAtZero === 9, `metabolicCost at entropy=0, step=16 should be 9, got ${costAtZero}`);
-assert(costAtMax === 17, `metabolicCost at entropy=2048, step=16 should be 17, got ${costAtMax}`);
+assert(
+  costAtZero === 9,
+  `metabolicCost at entropy=0, step=16 should be 9, got ${costAtZero}`,
+);
+assert(
+  costAtMax === 17,
+  `metabolicCost at entropy=2048, step=16 should be 17, got ${costAtMax}`,
+);
 assert(costAtMax > costAtZero, "entropy_pressure raises metabolic burden");
 
 // ---
@@ -95,7 +103,9 @@ assert(costAtMax > costAtZero, "entropy_pressure raises metabolic burden");
 // ---
 console.log("\n── Section 3: aggression → replication threshold ──");
 
-function replicateThresholds(aggr: number): { eThresh: number; rThresh: number } {
+function replicateThresholds(
+  aggr: number,
+): { eThresh: number; rThresh: number } {
   return {
     eThresh: 1500 - (aggr >> 3),
     rThresh: 200 - (aggr >> 5),
@@ -120,8 +130,14 @@ assert(
   maxAggrThresh.rThresh === 136,
   `replicateRThresh at aggr=2048 should be 136, got ${maxAggrThresh.rThresh}`,
 );
-assert(maxAggrThresh.eThresh < baseThresh.eThresh, "aggression lowers energy threshold");
-assert(maxAggrThresh.rThresh < baseThresh.rThresh, "aggression lowers resonance threshold");
+assert(
+  maxAggrThresh.eThresh < baseThresh.eThresh,
+  "aggression lowers energy threshold",
+);
+assert(
+  maxAggrThresh.rThresh < baseThresh.rThresh,
+  "aggression lowers resonance threshold",
+);
 
 // ---
 // Section 4: repair_drive → resonance decay rate
@@ -129,8 +145,14 @@ assert(maxAggrThresh.rThresh < baseThresh.rThresh, "aggression lowers resonance 
 console.log("\n── Section 4: repair_drive → resonance decay ──");
 // Formula: repairH > 1024 ? 1 : 2
 assert(2 === (0 > 1024 ? 1 : 2), "decay=2 at repair_drive=0");
-assert(2 === (1024 > 1024 ? 1 : 2), "decay=2 at repair_drive=1024 (boundary, not strictly above)");
-assert(1 === (1025 > 1024 ? 1 : 2), "decay=1 at repair_drive=1025 (above boundary)");
+assert(
+  2 === (1024 > 1024 ? 1 : 2),
+  "decay=2 at repair_drive=1024 (boundary, not strictly above)",
+);
+assert(
+  1 === (1025 > 1024 ? 1 : 2),
+  "decay=1 at repair_drive=1025 (above boundary)",
+);
 assert(1 === (2048 > 1024 ? 1 : 2), "decay=1 at repair_drive=2048");
 
 // ---
@@ -142,8 +164,14 @@ console.log("\n── Section 5: time_viscosity → dampingFactor ──");
 // At damping=0, viscosity=2048: 1.0 - 0 - 1.0*0.15 = 0.85
 const dampBase = Math.max(0, 1.0 - 0 / 255.0 - 0 * 0.15);
 const dampHigh = Math.max(0, 1.0 - 0 / 255.0 - (2048 / 2048) * 0.15);
-assert(Math.abs(dampBase - 1.0) < 0.001, `dampingFactor at viscosity=0 should be ~1.0, got ${dampBase}`);
-assert(Math.abs(dampHigh - 0.85) < 0.001, `dampingFactor at viscosity=2048 should be ~0.85, got ${dampHigh}`);
+assert(
+  Math.abs(dampBase - 1.0) < 0.001,
+  `dampingFactor at viscosity=0 should be ~1.0, got ${dampBase}`,
+);
+assert(
+  Math.abs(dampHigh - 0.85) < 0.001,
+  `dampingFactor at viscosity=2048 should be ~0.85, got ${dampHigh}`,
+);
 assert(dampHigh < dampBase, "time_viscosity reduces effective dampingFactor");
 
 // ---
@@ -163,9 +191,9 @@ assert(STATE_MATRIX.getHormone(2) === 0, "hormones cleared");
 // ---
 console.log(`\n${"─".repeat(50)}`);
 console.log(
-  `⚛️  HORMONE WASM INFLUENCE CONTRACT: ${failed === 0 ? "✅ PASS" : "❌ FAIL"} (${passed}/${
-    passed + failed
-  })`,
+  `⚛️  HORMONE WASM INFLUENCE CONTRACT: ${
+    failed === 0 ? "✅ PASS" : "❌ FAIL"
+  } (${passed}/${passed + failed})`,
 );
 if (failed > 0) {
   console.error(`\nFailed: ${failed}`);

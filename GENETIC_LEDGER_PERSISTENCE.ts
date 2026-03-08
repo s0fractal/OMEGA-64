@@ -1,11 +1,11 @@
 import {
   applyBaseTaxLedgerRuntimeUpdate,
-  createBaseTaxLedgerRuntime,
-  rollbackBaseTaxLedgerRuntimeUpdate,
-  snapshotBaseTaxLedgerRuntime,
   type BaseTaxLedgerRuntimeEvent,
   type BaseTaxLedgerRuntimeSnapshot,
   type BaseTaxLedgerRuntimeState,
+  createBaseTaxLedgerRuntime,
+  rollbackBaseTaxLedgerRuntimeUpdate,
+  snapshotBaseTaxLedgerRuntime,
 } from "./GENETIC_LEDGER_RUNTIME.ts";
 
 export const BASE_TAX_LEDGER_LOG_PATH = ".omega/ledger/base_tax_ledger.jsonl";
@@ -335,7 +335,9 @@ export const readBaseTaxLedgerRecords = async (
 ): Promise<BaseTaxLedgerRecord[]> => {
   try {
     const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((x): x is BaseTaxLedgerRecord => x !== null);
+    return raw.split(/\r?\n/u).map(parseRecord).filter((
+      x,
+    ): x is BaseTaxLedgerRecord => x !== null);
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) return [];
     throw err;
@@ -461,12 +463,11 @@ export const compactBaseTaxLedgerPersistence = async (
   const nextSnapshotRecord: BaseTaxLedgerSnapshotRecord = {
     version: 1,
     key: "pulse.homeostasis.baseTax",
-    representedRecordCount:
-      (snapshotRecord?.representedRecordCount ?? 0) + compactedRecords.length,
-    representedApplyCount:
-      (snapshotRecord?.representedApplyCount ?? 0) + compactedCounts.applyCount,
-    representedRollbackCount:
-      (snapshotRecord?.representedRollbackCount ?? 0) +
+    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
+      compactedRecords.length,
+    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
+      compactedCounts.applyCount,
+    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
       compactedCounts.rollbackCount,
     compactedAt: new Date().toISOString(),
     compactedTick: deriveCompactedTick(state),
@@ -487,7 +488,12 @@ export const compactBaseTaxLedgerPersistence = async (
   );
 
   return {
-    ...buildPersistenceSummary(tailRecords, nextSnapshotRecord, path, snapshotPath),
+    ...buildPersistenceSummary(
+      tailRecords,
+      nextSnapshotRecord,
+      path,
+      snapshotPath,
+    ),
     compactionThreshold: threshold,
     compactionKeepTail: keepTailRecords,
   };
@@ -534,7 +540,12 @@ export const hydrateBaseTaxLedgerRuntime = async (
     hydrationError = String(err);
   }
 
-  let persistence = buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
+  let persistence = buildPersistenceSummary(
+    records,
+    snapshotRecord,
+    path,
+    snapshotPath,
+  );
   if (
     hydrationError === null &&
     persistence.tailRecordCount > persistence.compactionKeepTail &&

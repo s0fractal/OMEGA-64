@@ -106,7 +106,8 @@ const main = async () => {
   if (normalizeGuardianSignalExecutionMode(undefined) !== "shadow-reduce") {
     violations.push({
       file: BRIDGE_PATH,
-      reason: "Default guardian signal mode must be shadow-reduce for safe rollout",
+      reason:
+        "Default guardian signal mode must be shadow-reduce for safe rollout",
     });
   }
 
@@ -114,8 +115,10 @@ const main = async () => {
     script: STATE_MATRIX.getGuardianScript(),
     neuralCoherence: 200,
   });
-  if (stable.status !== "ok" || stable.branch !== "stable" ||
-    stable.signalAllowed !== true || stable.buildCount !== 0) {
+  if (
+    stable.status !== "ok" || stable.branch !== "stable" ||
+    stable.signalAllowed !== true || stable.buildCount !== 0
+  ) {
     violations.push({
       file: BRIDGE_PATH,
       reason:
@@ -127,8 +130,10 @@ const main = async () => {
     script: STATE_MATRIX.getGuardianScript(),
     neuralCoherence: 0,
   });
-  if (repair.status !== "ok" || repair.branch !== "repair" ||
-    repair.signalAllowed !== false || repair.buildCount < 1) {
+  if (
+    repair.status !== "ok" || repair.branch !== "repair" ||
+    repair.signalAllowed !== false || repair.buildCount < 1
+  ) {
     violations.push({
       file: BRIDGE_PATH,
       reason:
@@ -143,7 +148,8 @@ const main = async () => {
   if (fallback.status !== "fallback") {
     violations.push({
       file: BRIDGE_PATH,
-      reason: "Unmapped guardian scripts must fail closed into explicit fallback",
+      reason:
+        "Unmapped guardian scripts must fail closed into explicit fallback",
     });
   }
 

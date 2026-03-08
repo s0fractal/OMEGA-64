@@ -1,7 +1,8 @@
 # gt15_structure_charge_competition
 
 - scenario: standalone structure charge competition
-- setup: standalone deterministic subprocess capture of two OP_PLUG publications hitting the same cell in both low->high and high->low orderings
+- setup: standalone deterministic subprocess capture of two OP_PLUG publications
+  hitting the same cell in both low->high and high->low orderings
 - duration: 4 execute_atom calls + 1 structure tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-structure-charge-competition-capture

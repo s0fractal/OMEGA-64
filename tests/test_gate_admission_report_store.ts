@@ -1,7 +1,10 @@
 // test_gate_admission_report_store.ts
 // Verifies content-addressed materialization and index-chain integrity for gate admission reports.
 
-import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT, type GATE_ADMISSION_REPORT_GateAdmissionReport as GateAdmissionReport } from "@omega";
+import {
+  GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT,
+  type GATE_ADMISSION_REPORT_GateAdmissionReport as GateAdmissionReport,
+} from "@omega";
 
 const mkReport = (): GateAdmissionReport => ({
   version: GATE_ADMISSION_REPORT.VERSION,

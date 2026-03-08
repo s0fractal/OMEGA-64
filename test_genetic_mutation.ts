@@ -1,6 +1,6 @@
 // OMEGA-64 | test_genetic_mutation.ts | Stage 34 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, RISC, SYS } from "./STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
@@ -8,8 +8,8 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   LOGGER.info("--- STAGE 34: GENETIC MUTATION TEST ---");
 
   STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0); 
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 100); 
+  Atomics.store(STATE_MATRIX.syncState, 0, 0);
+  Atomics.store(STATE_MATRIX.tickCounter, 0, 100);
   await PULSE.initWorkers(1);
 
   const atomA = 50; // Mutator
@@ -23,42 +23,67 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
 
   // Atom B starts with a benign script: SET R0 = SYS.YIELD (0x01), SYSCALL
   const scriptB = new Uint8Array(64);
-  scriptB[0] = RISC.OP_SET; 
-  scriptB[1] = 0; 
+  scriptB[0] = RISC.OP_SET;
+  scriptB[1] = 0;
   scriptB[2] = SYS.YIELD;
-  scriptB[3] = RISC.OP_SYSCALL; 
+  scriptB[3] = RISC.OP_SYSCALL;
   scriptB[4] = 0;
   STATE_MATRIX.setInstructions(atomB, scriptB);
 
   // Atom A will mutate Atom B: Replace the first instruction with OP_NOP (0x00)
   const scriptA = new Uint8Array(64);
-  scriptA[0] = RISC.OP_SET; scriptA[1] = 0; scriptA[2] = SYS.MUTATE; // R0 = SysId
-  scriptA[3] = RISC.OP_SET; scriptA[4] = 1; scriptA[5] = atomB;      // R1 = targetIdx
-  scriptA[6] = RISC.OP_SET; scriptA[7] = 2; scriptA[8] = 0;          // R2 = offset
-  scriptA[9] = RISC.OP_SET; scriptA[10] = 3; scriptA[11] = RISC.OP_NOP; // R3 = newValue (0)
-  scriptA[12] = RISC.OP_SYSCALL; scriptA[13] = 0;
+  scriptA[0] = RISC.OP_SET;
+  scriptA[1] = 0;
+  scriptA[2] = SYS.MUTATE; // R0 = SysId
+  scriptA[3] = RISC.OP_SET;
+  scriptA[4] = 1;
+  scriptA[5] = atomB; // R1 = targetIdx
+  scriptA[6] = RISC.OP_SET;
+  scriptA[7] = 2;
+  scriptA[8] = 0; // R2 = offset
+  scriptA[9] = RISC.OP_SET;
+  scriptA[10] = 3;
+  scriptA[11] = RISC.OP_NOP; // R3 = newValue (0)
+  scriptA[12] = RISC.OP_SYSCALL;
+  scriptA[13] = 0;
   STATE_MATRIX.setInstructions(atomA, scriptA);
 
   // Verify before state
-  assertEquals(STATE_MATRIX.getInstructions(atomB)[0], RISC.OP_SET, "Atom B should start with OP_SET");
+  assertEquals(
+    STATE_MATRIX.getInstructions(atomB)[0],
+    RISC.OP_SET,
+    "Atom B should start with OP_SET",
+  );
 
   LOGGER.info("Executing mutation pulse...");
   await PULSE.tick();
 
   // Verify after state
   const mutatedScriptB = STATE_MATRIX.getInstructions(atomB);
-  assertEquals(mutatedScriptB[0], RISC.OP_NOP, "Atom B's first instruction should be mutated to OP_NOP");
-  assertEquals(mutatedScriptB[2], SYS.YIELD, "Atom B's third instruction should be untouched");
+  assertEquals(
+    mutatedScriptB[0],
+    RISC.OP_NOP,
+    "Atom B's first instruction should be mutated to OP_NOP",
+  );
+  assertEquals(
+    mutatedScriptB[2],
+    SYS.YIELD,
+    "Atom B's third instruction should be untouched",
+  );
 
   // Verify cost deduction
   const energyA = STATE_MATRIX.getEnergy(atomA);
-  // Initial 5000. Mutate costs 50 gas -> 50,000 scaled. Wait, 50 gas * 1000 = 50000 scaled. 
+  // Initial 5000. Mutate costs 50 gas -> 50,000 scaled. Wait, 50 gas * 1000 = 50000 scaled.
   // Initial energy was 5000 unscaled (5,000,000 scaled).
   // Cost is 50 * 1000 = 50,000. Base tax is 100.
   // 5000 - 50 = 4950.
   // Metabolism might deduct 0.1 unscaled.
   LOGGER.info(`Atom A remaining energy: ${energyA / 1000} (Expect ~4949.9)`);
-  assertEquals(energyA < 5000 * 1000, true, "Atom A should have spent energy on mutation");
+  assertEquals(
+    energyA < 5000 * 1000,
+    true,
+    "Atom A should have spent energy on mutation",
+  );
 
   LOGGER.info("--- STAGE 34: SUCCESS ---");
   PULSE.stopWorkers();

@@ -8,7 +8,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");
-  
+
   // 1. Seed the world in the SAME process memory
   const seedResult = COLDSTART_BOOTSTRAP.seed({
     ...RUNTIME_POLICY.coldstart,
@@ -25,7 +25,9 @@ async function run() {
     await PULSE.tick();
     if (i % 10 === 0) {
       const state = PULSE.getGuardianSignalHybridState();
-      console.log(`Tick ${i}: shadowRuns=${state.shadowRuns}, stable=${state.stableBranchCount}, repair=${state.repairBranchCount}, fallback=${state.fallbackRuns} (last: ${state.lastFallbackReason})`);
+      console.log(
+        `Tick ${i}: shadowRuns=${state.shadowRuns}, stable=${state.stableBranchCount}, repair=${state.repairBranchCount}, fallback=${state.fallbackRuns} (last: ${state.lastFallbackReason})`,
+      );
     }
   }
 
@@ -40,7 +42,7 @@ async function run() {
   Deno.exit(0);
 }
 
-run().catch(err => {
+run().catch((err) => {
   console.error("Verification failed:", err);
   Deno.exit(1);
 });

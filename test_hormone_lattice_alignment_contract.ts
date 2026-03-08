@@ -78,7 +78,9 @@ const expectedEntropy = Math.round(
 );
 assert(
   STATE_MATRIX.getHormone(0) === expectedEntropy,
-  `entropy_pressure (index 0) should be ${expectedEntropy}, got ${STATE_MATRIX.getHormone(0)}`,
+  `entropy_pressure (index 0) should be ${expectedEntropy}, got ${
+    STATE_MATRIX.getHormone(0)
+  }`,
 );
 
 // time_viscosity: clamp((16 / 32) * 2048, 0, 2048) = 1024
@@ -87,14 +89,18 @@ const expectedViscosity = Math.round(
 );
 assert(
   STATE_MATRIX.getHormone(1) === expectedViscosity,
-  `time_viscosity (index 1) should be ${expectedViscosity}, got ${STATE_MATRIX.getHormone(1)}`,
+  `time_viscosity (index 1) should be ${expectedViscosity}, got ${
+    STATE_MATRIX.getHormone(1)
+  }`,
 );
 
 // aggression: clamp(150, 0, 2048) = 150
 const expectedAggression = Math.round(Math.max(0, Math.min(2048, 100 + 50)));
 assert(
   STATE_MATRIX.getHormone(2) === expectedAggression,
-  `aggression (index 2) should be ${expectedAggression}, got ${STATE_MATRIX.getHormone(2)}`,
+  `aggression (index 2) should be ${expectedAggression}, got ${
+    STATE_MATRIX.getHormone(2)
+  }`,
 );
 
 // replication_bias
@@ -109,7 +115,9 @@ const expectedReplication = Math.round(
 );
 assert(
   STATE_MATRIX.getHormone(3) === expectedReplication,
-  `replication_bias (index 3) should be ${expectedReplication}, got ${STATE_MATRIX.getHormone(3)}`,
+  `replication_bias (index 3) should be ${expectedReplication}, got ${
+    STATE_MATRIX.getHormone(3)
+  }`,
 );
 
 // repair_drive
@@ -118,13 +126,16 @@ const expectedRepair = Math.round(
     0,
     Math.min(
       2048,
-      80 + ((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+      80 +
+        ((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
     ),
   ),
 );
 assert(
   STATE_MATRIX.getHormone(4) === expectedRepair,
-  `repair_drive (index 4) should be ${expectedRepair}, got ${STATE_MATRIX.getHormone(4)}`,
+  `repair_drive (index 4) should be ${expectedRepair}, got ${
+    STATE_MATRIX.getHormone(4)
+  }`,
 );
 
 // ---
@@ -165,9 +176,9 @@ assert(
 // ---
 console.log(`\n${"─".repeat(50)}`);
 console.log(
-  `💉 HORMONE LATTICE ALIGNMENT CONTRACT: ${failed === 0 ? "✅ PASS" : "❌ FAIL"} (${passed}/${
-    passed + failed
-  })`,
+  `💉 HORMONE LATTICE ALIGNMENT CONTRACT: ${
+    failed === 0 ? "✅ PASS" : "❌ FAIL"
+  } (${passed}/${passed + failed})`,
 );
 if (failed > 0) {
   console.error(`\nFailed checks: ${failed}`);

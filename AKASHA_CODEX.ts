@@ -1,7 +1,7 @@
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { STATE_MATRIX, RISC } from "./STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import type { GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -381,11 +381,16 @@ type GlyphTransportEvidence = {
 
 const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
   const counters = {
-    neutral: snapshot.atomRolePheromone.neutral + snapshot.atomRolePlasmid.neutral,
-    producer: snapshot.atomRolePheromone.producer + snapshot.atomRolePlasmid.producer,
-    guardian: snapshot.atomRolePheromone.guardian + snapshot.atomRolePlasmid.guardian,
-    architect: snapshot.atomRolePheromone.architect + snapshot.atomRolePlasmid.architect,
-    parasite: snapshot.atomRolePheromone.parasite + snapshot.atomRolePlasmid.parasite,
+    neutral: snapshot.atomRolePheromone.neutral +
+      snapshot.atomRolePlasmid.neutral,
+    producer: snapshot.atomRolePheromone.producer +
+      snapshot.atomRolePlasmid.producer,
+    guardian: snapshot.atomRolePheromone.guardian +
+      snapshot.atomRolePlasmid.guardian,
+    architect: snapshot.atomRolePheromone.architect +
+      snapshot.atomRolePlasmid.architect,
+    parasite: snapshot.atomRolePheromone.parasite +
+      snapshot.atomRolePlasmid.parasite,
   };
   const entries = Object.entries(counters).sort((a, b) => b[1] - a[1]);
   return entries[0]?.[1] && entries[0][1] > 0 ? entries[0][0] : "none";
@@ -405,7 +410,8 @@ const glyphAmplitudeBand = (snapshot: GlyphSnapshot): string => {
 const glyphSourceMode = (snapshot: GlyphSnapshot): string => {
   const atomSeeds = snapshot.internalAtomPheromoneSeeds +
     snapshot.internalAtomPlasmidSeeds;
-  const substrateSeeds = snapshot.internalSignalSeeds + snapshot.internalMemorySeeds;
+  const substrateSeeds = snapshot.internalSignalSeeds +
+    snapshot.internalMemorySeeds;
   if (atomSeeds > 0 && substrateSeeds > 0) return "hybrid";
   if (atomSeeds > 0) return "actor_secretion";
   if (substrateSeeds > 0) return "substrate_leak";
@@ -413,8 +419,11 @@ const glyphSourceMode = (snapshot: GlyphSnapshot): string => {
 };
 
 const glyphRegime = (snapshot: GlyphSnapshot): string => {
-  if (snapshot.activeCells <= 0 || snapshot.totalAmplitude <= 0) return "dormant";
-  const pheromoneBias = snapshot.pheromoneCells + snapshot.internalAtomPheromoneSeeds;
+  if (snapshot.activeCells <= 0 || snapshot.totalAmplitude <= 0) {
+    return "dormant";
+  }
+  const pheromoneBias = snapshot.pheromoneCells +
+    snapshot.internalAtomPheromoneSeeds;
   const plasmidBias = snapshot.plasmidCells + snapshot.internalAtomPlasmidSeeds;
   if (pheromoneBias >= plasmidBias * 2 && pheromoneBias > 0) {
     return "pheromone_canopy";
@@ -422,7 +431,10 @@ const glyphRegime = (snapshot: GlyphSnapshot): string => {
   if (plasmidBias >= pheromoneBias * 2 && plasmidBias > 0) {
     return "plasmid_surge";
   }
-  if (snapshot.internalAtomPheromoneSeeds > 0 || snapshot.internalAtomPlasmidSeeds > 0) {
+  if (
+    snapshot.internalAtomPheromoneSeeds > 0 ||
+    snapshot.internalAtomPlasmidSeeds > 0
+  ) {
     return "agent_flux";
   }
   return "hybrid_field";
@@ -438,10 +450,15 @@ const daemonEffectDeltaBand = (
   deltaAvgEnergy: number,
   deltaNeuralCoherence: number,
 ): string => {
-  if (deltaPopulation >= 2 || deltaAvgEnergy >= 6 || deltaNeuralCoherence >= 0.12) {
+  if (
+    deltaPopulation >= 2 || deltaAvgEnergy >= 6 || deltaNeuralCoherence >= 0.12
+  ) {
     return "amplifying";
   }
-  if (deltaPopulation <= -2 || deltaAvgEnergy <= -6 || deltaNeuralCoherence <= -0.12) {
+  if (
+    deltaPopulation <= -2 || deltaAvgEnergy <= -6 ||
+    deltaNeuralCoherence <= -0.12
+  ) {
     return "dissipative";
   }
   return "stabilizing";
@@ -464,13 +481,17 @@ const buildGlyphTransportEvidence = (
   const metabolicPressure = clamp(snapshot.totalAmplitude / 16384, 0, 1);
   const title = `Glyph Transport Regime: ${titleCase(regime)}`;
   const body =
-    `Tick ${tick} registered ${titleCase(regime)} with dominant role ${titleCase(dominantRole)} ` +
+    `Tick ${tick} registered ${titleCase(regime)} with dominant role ${
+      titleCase(dominantRole)
+    } ` +
     `via ${titleCase(sourceMode)}. Active cells=${snapshot.activeCells}, ` +
     `pheromone=${snapshot.pheromoneCells}, plasmid=${snapshot.plasmidCells}, ` +
     `totalAmplitude=${snapshot.totalAmplitude}, maxAmplitude=${snapshot.maxAmplitude}, ` +
     `atomPheromone=${snapshot.internalAtomPheromoneSeeds}, atomPlasmid=${snapshot.internalAtomPlasmidSeeds}.`;
   const summary =
-    `Glyph regime ${titleCase(regime)} | dominant role ${titleCase(dominantRole)} | ` +
+    `Glyph regime ${titleCase(regime)} | dominant role ${
+      titleCase(dominantRole)
+    } | ` +
     `source ${titleCase(sourceMode)} | amplitude ${amplitudeBand} | pressure ${
       metabolicPressure.toFixed(3)
     }.`;
@@ -514,7 +535,9 @@ const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
   const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
   const regime = hormoneRegimeLabel(h);
   // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
-  const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join("");
+  const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join(
+    "",
+  );
   const signature = `${regime}|${sig}`;
   const [ep, tv, ag, rb, rd, mf] = h;
   const title = `Hormone Regime: ${titleCase(regime)}`;
@@ -522,7 +545,9 @@ const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
     `Tick ${tick} | entropy_pressure=${ep} time_viscosity=${tv} aggression=${ag} ` +
     `replication_bias=${rb} repair_drive=${rd} mutation_friction=${mf}. ` +
     `Regime: '${regime}'.`;
-  const summary = `Hormone regime ${titleCase(regime)} | entropy=${ep} aggr=${ag} repair=${rd}.`;
+  const summary = `Hormone regime ${
+    titleCase(regime)
+  } | entropy=${ep} aggr=${ag} repair=${rd}.`;
   return { signature, title, body, summary };
 };
 
@@ -1290,10 +1315,12 @@ export const AKASHA_CODEX = {
       state.lastGlyphTransportDominantRole = glyphEvidence.dominantRole;
       state.lastGlyphTransportSourceMode = glyphEvidence.sourceMode;
 
-      const recordDue = glyphEvidence.signature !== state.lastGlyphTransportSignature &&
+      const recordDue =
+        glyphEvidence.signature !== state.lastGlyphTransportSignature &&
         glyphEvidence.active &&
         (state.lastGlyphTransportTick < 0 ||
-          tick - state.lastGlyphTransportTick >= GLYPH_TRANSPORT_RECORD_INTERVAL);
+          tick - state.lastGlyphTransportTick >=
+            GLYPH_TRANSPORT_RECORD_INTERVAL);
       if (recordDue) {
         state.lastGlyphTransportSignature = glyphEvidence.signature;
         state.lastGlyphTransportTick = tick;
@@ -1431,9 +1458,7 @@ export const AKASHA_CODEX = {
         : state.lastGlyphTransportSummary.length > 0
         ? ` Glyph transport context: ${state.lastGlyphTransportSummary}`
         : "";
-      const actionDisposition = severity === "BLOCKED"
-        ? "blocked"
-        : "degraded";
+      const actionDisposition = severity === "BLOCKED" ? "blocked" : "degraded";
       const title =
         `Daemon Admission ${severity}: ${requestedAction} -> ${appliedAction}`;
       const body =
@@ -1480,18 +1505,36 @@ export const AKASHA_CODEX = {
       state.lastDaemonEffectLineage = lineage.label;
       state.lastDaemonEffectDeltaBand = deltaBand;
       state.lastDaemonEffectSummary =
-        `Daemon effect ${titleCase(deltaBand)} via ${appliedAction.toLowerCase()} on ${lineage.label}. ` +
-        `Population delta ${deltaPopulation >= 0 ? "+" : ""}${deltaPopulation}, ` +
-        `energy delta ${deltaAvgEnergy >= 0 ? "+" : ""}${deltaAvgEnergy.toFixed(3)}, ` +
-        `coherence delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${deltaNeuralCoherence.toFixed(3)}.`;
+        `Daemon effect ${
+          titleCase(deltaBand)
+        } via ${appliedAction.toLowerCase()} on ${lineage.label}. ` +
+        `Population delta ${
+          deltaPopulation >= 0 ? "+" : ""
+        }${deltaPopulation}, ` +
+        `energy delta ${deltaAvgEnergy >= 0 ? "+" : ""}${
+          deltaAvgEnergy.toFixed(3)
+        }, ` +
+        `coherence delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${
+          deltaNeuralCoherence.toFixed(3)
+        }.`;
       const title = `Daemon Effect ${appliedAction}: ${auditId}`;
       const body =
         `Deferred effect audit for ${requestedAction} -> ${appliedAction}. ` +
         `Shared center: ${sharedCenter}. Dominant invariant vector: ${dominantVector}. ` +
-        `Population ${baselinePopulation} -> ${outcomePopulation} (delta ${deltaPopulation >= 0 ? "+" : ""}${deltaPopulation}), ` +
-        `avgEnergy ${baselineAvgEnergy.toFixed(3)} -> ${outcomeAvgEnergy.toFixed(3)} (delta ${deltaAvgEnergy >= 0 ? "+" : ""}${deltaAvgEnergy.toFixed(3)}), ` +
-        `neuralCoherence ${baselineNeuralCoherence.toFixed(3)} -> ${outcomeNeuralCoherence.toFixed(3)} ` +
-        `(delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${deltaNeuralCoherence.toFixed(3)}). ` +
+        `Population ${baselinePopulation} -> ${outcomePopulation} (delta ${
+          deltaPopulation >= 0 ? "+" : ""
+        }${deltaPopulation}), ` +
+        `avgEnergy ${baselineAvgEnergy.toFixed(3)} -> ${
+          outcomeAvgEnergy.toFixed(3)
+        } (delta ${deltaAvgEnergy >= 0 ? "+" : ""}${
+          deltaAvgEnergy.toFixed(3)
+        }), ` +
+        `neuralCoherence ${baselineNeuralCoherence.toFixed(3)} -> ${
+          outcomeNeuralCoherence.toFixed(3)
+        } ` +
+        `(delta ${deltaNeuralCoherence >= 0 ? "+" : ""}${
+          deltaNeuralCoherence.toFixed(3)
+        }). ` +
         `Observed lineage: ${lineage.label}.${glyphContext}`;
       await appendChronicle(tick, "daemon_effect", title, body);
     });
@@ -1525,7 +1568,8 @@ export const AKASHA_CODEX = {
         sourceMode: state.lastGlyphTransportSourceMode,
         lastRecordedTick: state.lastGlyphTransportTick,
         signature: state.lastGlyphTransportSignature,
-        metabolicPressure: (await AKASHA_CODEX.getNarrative()).metabolicPressure,
+        metabolicPressure:
+          (await AKASHA_CODEX.getNarrative()).metabolicPressure,
       },
       daemonEffect: {
         summary: state.lastDaemonEffectSummary,
@@ -1663,7 +1707,7 @@ export const AKASHA_CODEX = {
       "Systemic Phagocyte Action",
       `The immune system identified and recycled ${count} dead or drifting atoms at tick ${tick}. System coherence maintained.`,
     );
-    
+
     await persistState();
   },
 };

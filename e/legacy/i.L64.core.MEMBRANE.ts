@@ -5,19 +5,19 @@
  * L64: Kairos / Interface.
  */
 
-import { QWave } from './i.L13.core.WAVE_PACKET.ts';
-import { FIELD } from './i.L00.core.FIELD.ts';
+import { QWave } from "./i.L13.core.WAVE_PACKET.ts";
+import { FIELD } from "./i.L00.core.FIELD.ts";
 
 /**
  * Дія, яку експонує сервіс.
  * Це не кнопка, а "можливість" з ціною.
  */
 export interface ServiceAction {
-  id: string;               // Унікальний ID дії
-  label: string;            // Людська назва (для рендеру)
-  potential: number;        // Енергетична вартість (ціна кроку)
-  prerequisites: string[];  // Необхідні стани (tags/history)
-  consequences: string[];   // Що зміниться в стані
+  id: string; // Унікальний ID дії
+  label: string; // Людська назва (для рендеру)
+  potential: number; // Енергетична вартість (ціна кроку)
+  prerequisites: string[]; // Необхідні стани (tags/history)
+  consequences: string[]; // Що зміниться в стані
   resonance_tags: string[]; // Семантичні теги для матчингу
 }
 
@@ -27,7 +27,7 @@ export interface ServiceAction {
  */
 export interface ServiceField {
   service_id: string;
-  base_potential: number;   // Загальний рівень входу (бар'єр)
+  base_potential: number; // Загальний рівень входу (бар'єр)
   actions: Map<string, ServiceAction>;
 }
 
@@ -37,14 +37,14 @@ export interface ServiceField {
  */
 export interface RenderedTrajectory {
   action: ServiceAction;
-  match_score: number;      // 0..1 (Резонанс)
-  is_affordable: boolean;   // Чи вистачає енергії
-  suggested_ui: 'BUTTON' | 'GESTURE' | 'THOUGHT'; // Метафора взаємодії
+  match_score: number; // 0..1 (Резонанс)
+  is_affordable: boolean; // Чи вистачає енергії
+  suggested_ui: "BUTTON" | "GESTURE" | "THOUGHT"; // Метафора взаємодії
 }
 
 export class PersonalInterface {
-  user_topology: QWave;     // Поточний стан (форма) користувача
-  history: Set<string>;     // Накопичені теги/досягнення
+  user_topology: QWave; // Поточний стан (форма) користувача
+  history: Set<string>; // Накопичені теги/досягнення
 
   constructor(topology: QWave, history: string[] = []) {
     this.user_topology = topology;
@@ -60,7 +60,7 @@ export class PersonalInterface {
 
     for (const action of service.actions.values()) {
       // 1. Check Prerequisites (Can I conceptually do this?)
-      const hasPrereqs = action.prerequisites.every(p => this.history.has(p));
+      const hasPrereqs = action.prerequisites.every((p) => this.history.has(p));
       if (!hasPrereqs) continue;
 
       // 2. Check Affordability (Can I pay for this?)
@@ -71,14 +71,16 @@ export class PersonalInterface {
       // 3. Calculate Resonance (Do I want to do this?)
       // Порівняння фаз та амплітуд (спрощено)
       // Чим ближче ціна дії до поточного рівня користувача, тим вищий резонанс (Zone of Proximal Development)
-      const potential_diff = Math.abs(FIELD.compress(action.potential) - FIELD.compress(this.user_topology.r));
+      const potential_diff = Math.abs(
+        FIELD.compress(action.potential) - FIELD.compress(this.user_topology.r),
+      );
       const match_score = Math.exp(-potential_diff / 500);
 
       trajectories.push({
         action,
         match_score,
         is_affordable,
-        suggested_ui: this.determineMetaphor(cost, match_score)
+        suggested_ui: this.determineMetaphor(cost, match_score),
       });
     }
 
@@ -92,9 +94,12 @@ export class PersonalInterface {
   /**
    * Вибір метафори взаємодії залежно від ціни та резонансу.
    */
-  private determineMetaphor(cost: number, resonance: number): 'BUTTON' | 'GESTURE' | 'THOUGHT' {
-    if (resonance > 0.9 && cost < 100) return 'THOUGHT'; // Майже без зусиль, "прочитати думку"
-    if (cost < 1000) return 'GESTURE'; // Легкий рух
-    return 'BUTTON'; // Свідоме, важке рішення (треба натиснути)
+  private determineMetaphor(
+    cost: number,
+    resonance: number,
+  ): "BUTTON" | "GESTURE" | "THOUGHT" {
+    if (resonance > 0.9 && cost < 100) return "THOUGHT"; // Майже без зусиль, "прочитати думку"
+    if (cost < 1000) return "GESTURE"; // Легкий рух
+    return "BUTTON"; // Свідоме, важке рішення (треба натиснути)
   }
 }

@@ -147,7 +147,9 @@ const buildHistogram = (
 };
 
 export const TELEMETRY_STREAM = {
-  emit: (sample: Partial<TelemetrySample> & { tick: number }): TelemetrySample => {
+  emit: (
+    sample: Partial<TelemetrySample> & { tick: number },
+  ): TelemetrySample => {
     const normalized = normalizeSample(sample);
     history.push(normalized);
     if (history.length > HISTORY_LIMIT) {
@@ -160,7 +162,11 @@ export const TELEMETRY_STREAM = {
     return normalized;
   },
   history: (limit = 128): TelemetrySample[] => {
-    const take = clamp(Math.floor(toFiniteNumber(limit, 128)), 1, HISTORY_LIMIT);
+    const take = clamp(
+      Math.floor(toFiniteNumber(limit, 128)),
+      1,
+      HISTORY_LIMIT,
+    );
     return history.slice(-take);
   },
   histogram: (

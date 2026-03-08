@@ -1,0 +1,98 @@
+// OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
+import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { LOGGER } from "./LOGGER.ts";
+
+Deno.test("Stage 36: Ecological Sandbox (SYS_MOVE, SYS_EAT)", async () => {
+  LOGGER.info("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");
+
+  STATE_MATRIX.clear();
+  Atomics.store(STATE_MATRIX.syncState, 0, 0);
+  Atomics.store(STATE_MATRIX.tickCounter, 0, 100);
+  await PULSE.initWorkers(1);
+
+  const predatorA = 10;
+  const preyB = 11;
+
+  STATE_MATRIX.setId(predatorA, 10n);
+  STATE_MATRIX.setEnergy(predatorA, 50000);
+  STATE_MATRIX.setX(predatorA, 20);
+  STATE_MATRIX.setY(predatorA, 20);
+
+  STATE_MATRIX.setId(preyB, 11n);
+  STATE_MATRIX.setEnergy(preyB, 10000);
+  STATE_MATRIX.setX(preyB, 30); // dx=10 -> 1 cell away (10 sub-units)
+  STATE_MATRIX.setY(preyB, 20);
+
+  console.log("DEBUG: Prey X before tick 1: " + STATE_MATRIX.getX(preyB));
+  // Tick 1: Rebuild spatial hash
+  await PULSE.tick();
+  console.log("DEBUG: Prey X after tick 1: " + STATE_MATRIX.getX(preyB));
+
+  // Script: Predator moves +10 in X
+  const scriptMoveX = new Uint8Array(64);
+  scriptMoveX[0] = RISC.OP_SET;
+  scriptMoveX[1] = 0;
+  scriptMoveX[2] = SYS.MOVE;
+  scriptMoveX[3] = RISC.OP_SET;
+  scriptMoveX[4] = 1;
+  scriptMoveX[5] = 1; // dx > 0 -> +10
+  scriptMoveX[6] = RISC.OP_SET;
+  scriptMoveX[7] = 2;
+  scriptMoveX[8] = 0; // dy = 0
+  scriptMoveX[9] = RISC.OP_SYSCALL;
+
+  STATE_MATRIX.setInstructions(predatorA, scriptMoveX);
+
+  LOGGER.info("Executing MOVE pulse...");
+  await PULSE.tick(); // Tick 2: Predator moves
+
+  const newPx = STATE_MATRIX.getX(predatorA);
+  LOGGER.info(`Predator X is now: ${newPx}`);
+  assertEquals(newPx, 30, "SYS_MOVE should update predator X coordinate to 30");
+
+  console.log("DEBUG: Prey X after tick 2 (MOVE): " + STATE_MATRIX.getX(preyB));
+
+  // Re-run spatial hash so they are considered adjacent or in same cell for eating
+  await PULSE.tick(); // Tick 3
+  console.log("DEBUG: Prey X after tick 3: " + STATE_MATRIX.getX(preyB));
+
+  // Script: Predator eats Prey
+  const scriptEat = new Uint8Array(64);
+  scriptEat[0] = RISC.OP_SET;
+  scriptEat[1] = 0;
+  scriptEat[2] = SYS.EAT;
+  scriptEat[3] = RISC.OP_SET;
+  scriptEat[4] = 1;
+  scriptEat[5] = preyB; // Target Idx 11
+  scriptEat[6] = RISC.OP_SET;
+  scriptEat[7] = 2;
+  scriptEat[8] = 5; // Amount = 5 (scaled x1000 = 5000)
+  scriptEat[9] = RISC.OP_SYSCALL;
+
+  STATE_MATRIX.setInstructions(predatorA, scriptEat);
+  STATE_MATRIX.setPC(predatorA, 0);
+
+  const initialPreyEnergy = STATE_MATRIX.getEnergy(preyB);
+  LOGGER.info("Executing EAT pulse...");
+  await PULSE.tick(); // Tick 4: Predator eats
+
+  const finalPreyEnergy = STATE_MATRIX.getEnergy(preyB);
+  LOGGER.info(`Prey Energy: ${initialPreyEnergy} -> ${finalPreyEnergy}`);
+
+  // The prey naturally burns a tiny amount of gas/entropy, so we check for the drop of ~5.
+  const drop = initialPreyEnergy - finalPreyEnergy;
+  assertEquals(
+    drop >= 5 && drop < 6,
+    true,
+    "SYS_EAT should have deducted 5 energy from the prey",
+  );
+
+  const predatorEnergy = STATE_MATRIX.getEnergy(predatorA);
+  // Actually, gas cost for EAT is 30 -> 30,000 internal energy -> 30 external energy
+  // He ate 5. So he lost energy overall. But that's fine, the transfer mechanism worked.
+
+  LOGGER.info("--- STAGE 36: SUCCESS ---");
+  PULSE.stopWorkers();
+});

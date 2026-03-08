@@ -1,14 +1,18 @@
 // OMEGA-64 | test_immune_maturity.ts | Stage 26: Immune System Maturity Verification
-import { STATE_MATRIX, MAX_ATOMS, SCALE } from "./STATE_MATRIX.ts";
+import { MAX_ATOMS, SCALE, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { IMMUNE } from "./IMMUNE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 async function runTest() {
-  LOGGER.info("🧪 [TEST] Starting Immune System Maturity (Stage 26) Verification...");
+  LOGGER.info(
+    "🧪 [TEST] Starting Immune System Maturity (Stage 26) Verification...",
+  );
 
   // --- 1. Setup Test Environment ---
-  LOGGER.info("Step 1: Seeding matrix with healthy, necrotic, and drifting atoms...");
-  
+  LOGGER.info(
+    "Step 1: Seeding matrix with healthy, necrotic, and drifting atoms...",
+  );
+
   // Clear matrix first
   STATE_MATRIX.clear();
 
@@ -16,7 +20,7 @@ async function runTest() {
   STATE_MATRIX.setId(10, 100n);
   STATE_MATRIX.setEnergy(10, 50.0);
   STATE_MATRIX.setResonance(10, 10000); // 100.0 resonance
-  
+
   // 2. Necrotic Atom (Index 20) - Energy = 0, Resonance = 0
   STATE_MATRIX.setId(20, 200n);
   STATE_MATRIX.setEnergy(20, 0);
@@ -37,7 +41,9 @@ async function runTest() {
   if (IMMUNE.isNecrotic(20) && !IMMUNE.isNecrotic(10)) {
     LOGGER.info("✅ isNecrotic correctly identified necrotic atom.");
   } else {
-    LOGGER.error("❌ isNecrotic failed to identify necrotic atom or returned false positive.");
+    LOGGER.error(
+      "❌ isNecrotic failed to identify necrotic atom or returned false positive.",
+    );
   }
 
   // --- 3. Test Phagocyte Pass (Low Entropy) ---
@@ -48,7 +54,9 @@ async function runTest() {
   const purgeList1 = IMMUNE.phagocytePass(100);
   LOGGER.info(`Purge list (H0=100): [${purgeList1.join(", ")}]`);
   if (purgeList1.includes(20) && !purgeList1.includes(30)) {
-    LOGGER.info("✅ Phagocyte pass correctly identifies only necrotic atoms at low entropy.");
+    LOGGER.info(
+      "✅ Phagocyte pass correctly identifies only necrotic atoms at low entropy.",
+    );
   } else {
     LOGGER.error("❌ Phagocyte pass failed at low entropy.");
   }
@@ -61,7 +69,10 @@ async function runTest() {
   // Stable (40) has energy 3.0, should remain.
   const purgeList2 = IMMUNE.phagocytePass(900);
   LOGGER.info(`Purge list (H0=900): [${purgeList2.join(", ")}]`);
-  if (purgeList2.includes(20) && purgeList2.includes(30) && !purgeList2.includes(40)) {
+  if (
+    purgeList2.includes(20) && purgeList2.includes(30) &&
+    !purgeList2.includes(40)
+  ) {
     LOGGER.info("✅ Phagocyte pass correctly scales with entropy pressure.");
   } else {
     LOGGER.error("❌ Phagocyte pass failed to scale correctly with entropy.");
@@ -76,7 +87,9 @@ async function runTest() {
     LOGGER.error("❌ recycleAtom failed to clear atom data.");
   }
 
-  LOGGER.info("✅ Immune System Maturity (Stage 26) Verification Script Completed.");
+  LOGGER.info(
+    "✅ Immune System Maturity (Stage 26) Verification Script Completed.",
+  );
 }
 
 if (import.meta.main) {

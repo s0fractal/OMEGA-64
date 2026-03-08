@@ -1,6 +1,4 @@
-import {
-  capturePhysiologySnapshot,
-} from "./PHYSIOLOGY_SNAPSHOT.ts";
+import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
@@ -50,7 +48,9 @@ const main = () => {
   );
 
   console.log(
-    `[physiology_snapshot] contract guard passed. hormones=${Object.keys(snapshot.hormones).length} ledger=${Object.keys(snapshot.ledger).length}`,
+    `[physiology_snapshot] contract guard passed. hormones=${
+      Object.keys(snapshot.hormones).length
+    } ledger=${Object.keys(snapshot.ledger).length}`,
   );
 };
 

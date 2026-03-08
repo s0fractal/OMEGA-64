@@ -4,9 +4,20 @@
 
 import { GLIDER_LITE } from "./i.L99.core.GLIDER_LITE.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
-import type { GateRunnerTickInput, GateRunnerTickOutput } from "./i.L32.core.GATE_RUNNER.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
-import type { ReplayAuditOptions, ReplayGenesis, ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+import type {
+  GateRunnerTickInput,
+  GateRunnerTickOutput,
+} from "./i.L32.core.GATE_RUNNER.ts";
+import type {
+  DeltaProposal,
+  GateConfig,
+  StateSnapshot,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import type {
+  ReplayAuditOptions,
+  ReplayGenesis,
+  ReplayInvariantReport,
+} from "./i.L99.core.REPLAY_AUDIT.ts";
 
 type JsonStateSnapshot = {
   tick: number;
@@ -23,24 +34,26 @@ type JsonReplayGenesis = {
   state_hash: string;
 };
 
-type JsonGateConfig = Omit<GateConfig, "reliability_weight" | "agent_signature_keys"> & {
-  reliability_weight: Record<string, number> | Array<[string, number]>;
-  agent_signature_keys?:
-    | Record<
-      string,
-      | { scheme: "ed25519/v1"; public_key_b64: string }
-      | { scheme: "hmac-sha256/v1"; secret: string }
-    >
-    | Array<
-      [
+type JsonGateConfig =
+  & Omit<GateConfig, "reliability_weight" | "agent_signature_keys">
+  & {
+    reliability_weight: Record<string, number> | Array<[string, number]>;
+    agent_signature_keys?:
+      | Record<
         string,
-        { scheme: "ed25519/v1"; public_key_b64: string } | {
-          scheme: "hmac-sha256/v1";
-          secret: string;
-        },
-      ]
-    >;
-};
+        | { scheme: "ed25519/v1"; public_key_b64: string }
+        | { scheme: "hmac-sha256/v1"; secret: string }
+      >
+      | Array<
+        [
+          string,
+          { scheme: "ed25519/v1"; public_key_b64: string } | {
+            scheme: "hmac-sha256/v1";
+            secret: string;
+          },
+        ]
+      >;
+  };
 
 type JsonInput = {
   state: JsonStateSnapshot;
@@ -133,13 +146,15 @@ export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
     tick: src.tick,
     state_hash: src.state_hash,
     state_i16: Int16Array.from(src.state_i16.map(clampI16)),
-    phase_u16: src.phase_u16 ? Uint16Array.from(src.phase_u16.map((value) => {
-      if (!Number.isFinite(value)) return 0;
-      const v = Math.round(value);
-      if (v < 0) return 0;
-      if (v > 65535) return 65535;
-      return v;
-    })) : undefined,
+    phase_u16: src.phase_u16
+      ? Uint16Array.from(src.phase_u16.map((value) => {
+        if (!Number.isFinite(value)) return 0;
+        const v = Math.round(value);
+        if (v < 0) return 0;
+        if (v > 65535) return 65535;
+        return v;
+      }))
+      : undefined,
     stability_q15: src.stability_q15
       ? Float32Array.from(src.stability_q15.map((value) => {
         if (!Number.isFinite(value)) return 0;
@@ -148,10 +163,14 @@ export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
         return value;
       }))
       : undefined,
-    entropy_i16: src.entropy_i16 ? Int16Array.from(src.entropy_i16.map(clampI16)) : undefined,
+    entropy_i16: src.entropy_i16
+      ? Int16Array.from(src.entropy_i16.map(clampI16))
+      : undefined,
   });
 
-  const toReplayGenesis = (src?: JsonReplayGenesis): ReplayGenesis | undefined =>
+  const toReplayGenesis = (
+    src?: JsonReplayGenesis,
+  ): ReplayGenesis | undefined =>
     src
       ? {
         tick: src.tick,

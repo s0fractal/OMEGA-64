@@ -75,7 +75,9 @@ export const evaluateReplicationPromotionDecision = (
   }
   if (input.health.successRate < input.health.minSuccessRate) {
     blockers.push(
-      `success_rate_${input.health.successRate.toFixed(3)}_lt_${input.health.minSuccessRate.toFixed(3)}`,
+      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
+        input.health.minSuccessRate.toFixed(3)
+      }`,
     );
     healthPass = false;
   }
@@ -83,7 +85,9 @@ export const evaluateReplicationPromotionDecision = (
     input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
   ) {
     blockers.push(
-      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${input.health.maxP95TelemetryLatencyMs.toFixed(3)}`,
+      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
+        input.health.maxP95TelemetryLatencyMs.toFixed(3)
+      }`,
     );
     healthPass = false;
   }
@@ -92,7 +96,9 @@ export const evaluateReplicationPromotionDecision = (
       input.health.maxSpatialOverflowRatioP95
   ) {
     blockers.push(
-      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${input.health.maxSpatialOverflowRatioP95.toFixed(6)}`,
+      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
+        input.health.maxSpatialOverflowRatioP95.toFixed(6)
+      }`,
     );
     healthPass = false;
   }
@@ -102,7 +108,9 @@ export const evaluateReplicationPromotionDecision = (
   }
   if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
     blockers.push(
-      `promotion_ready_ratio_${clampRatio(input.promotion.readyRatio).toFixed(3)}_lt_${thresholds.minReadyRatio.toFixed(3)}`,
+      `promotion_ready_ratio_${
+        clampRatio(input.promotion.readyRatio).toFixed(3)
+      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
     );
   }
   if (input.promotion.recommendedMode !== "hybrid-reduce") {
@@ -115,7 +123,9 @@ export const evaluateReplicationPromotionDecision = (
       thresholds.maxFallbackRatioP95
   ) {
     blockers.push(
-      `promotion_fallback_ratio_p95_${clampRatio(input.promotion.fallbackRatioP95).toFixed(6)}_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
+      `promotion_fallback_ratio_p95_${
+        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
+      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
     );
   }
 
@@ -127,7 +137,9 @@ export const evaluateReplicationPromotionDecision = (
         clampRatio(input.health.maxSafeModeRatio)
     ) {
       blockers.push(
-        `safe_mode_ratio_${clampRatio(input.health.safeModeRatio).toFixed(3)}_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
+        `safe_mode_ratio_${
+          clampRatio(input.health.safeModeRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
       );
       healthPass = false;
     }

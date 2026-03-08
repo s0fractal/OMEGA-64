@@ -4,8 +4,15 @@
 import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@omega";
 import { CRYSTALLIZATION_CRYSTALLIZATION as CRYSTALLIZATION } from "@omega";
 import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
-import { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
-import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY } from "@omega";
+import {
+  STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
+  STATE_SNAPSHOT_GateConfig as GateConfig,
+  STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
+} from "@omega";
+import {
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
+} from "@omega";
 import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@omega";
 import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@omega";
 import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT } from "@omega";
@@ -172,7 +179,7 @@ export async function runTest() {
     }
     if (
       typeof crystallizationReport.verification_summary
-          .gate_admission_report_checks !== "number"
+        .gate_admission_report_checks !== "number"
     ) {
       throw new Error(
         "crystallization report must expose gate admission report checks",
@@ -296,7 +303,9 @@ export async function runTest() {
     ) {
       throw new Error(
         `post-audit gate admission index must be green: ${
-          postAudit.invariantReport.gate_admission_index_chain_failures.join(",")
+          postAudit.invariantReport.gate_admission_index_chain_failures.join(
+            ",",
+          )
         }`,
       );
     }

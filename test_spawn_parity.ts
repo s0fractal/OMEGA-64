@@ -12,12 +12,26 @@ async function testSpawnParity() {
   // 1. Clear state
   STATE_MATRIX.STATE_MATRIX.clear();
   // Clear spawn queue (header + data)
-  new Uint8Array(sharedBuffer).fill(0, OFFSETS.SPAWN_REQUESTS_OFFSET, OFFSETS.SPAWN_REQUESTS_OFFSET + 8 + 1024 * 16);
+  new Uint8Array(sharedBuffer).fill(
+    0,
+    OFFSETS.SPAWN_REQUESTS_OFFSET,
+    OFFSETS.SPAWN_REQUESTS_OFFSET + 8 + 1024 * 16,
+  );
 
   console.log(`   [DEBUG] sharedBuffer.byteLength=${sharedBuffer.byteLength}`);
-  console.log(`   [DEBUG] SPAWN_REQUESTS_OFFSET=${OFFSETS.SPAWN_REQUESTS_OFFSET}`);
-  const spawnHead = new Int32Array(sharedBuffer, OFFSETS.SPAWN_REQUESTS_OFFSET, 2);
-  const spawnData = new Uint8Array(sharedBuffer, OFFSETS.SPAWN_REQUESTS_OFFSET + 8, 1024 * 16);
+  console.log(
+    `   [DEBUG] SPAWN_REQUESTS_OFFSET=${OFFSETS.SPAWN_REQUESTS_OFFSET}`,
+  );
+  const spawnHead = new Int32Array(
+    sharedBuffer,
+    OFFSETS.SPAWN_REQUESTS_OFFSET,
+    2,
+  );
+  const spawnData = new Uint8Array(
+    sharedBuffer,
+    OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+    1024 * 16,
+  );
   console.log(`   [DEBUG] spawnData.byteLength=${spawnData.byteLength}`);
 
   // 2. Setup Reference State
@@ -31,12 +45,16 @@ async function testSpawnParity() {
   // 3. Add Spawn Requests
   const genome = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
   const addRequest = (idx: number, gx: number, gy: number, energy: number) => {
-      const slotOff = idx * 16;
-      spawnData.set(genome, slotOff);
-      const view = new DataView(spawnData.buffer, spawnData.byteOffset + slotOff, 16);
-      view.setInt16(8, gx, true);
-      view.setInt16(10, gy, true);
-      view.setInt32(12, energy, true);
+    const slotOff = idx * 16;
+    spawnData.set(genome, slotOff);
+    const view = new DataView(
+      spawnData.buffer,
+      spawnData.byteOffset + slotOff,
+      16,
+    );
+    view.setInt16(8, gx, true);
+    view.setInt16(10, gy, true);
+    view.setInt32(12, energy, true);
   };
 
   addRequest(0, 50, 60, 500);
@@ -46,7 +64,7 @@ async function testSpawnParity() {
 
   // Clone ids for host reference
   const refIds = new BigUint64Array(MAX_ATOMS);
-  for (let i=0; i<MAX_ATOMS; i++) {
+  for (let i = 0; i < MAX_ATOMS; i++) {
     refIds[i] = STATE_MATRIX.STATE_MATRIX.getId(i);
   }
 
@@ -57,27 +75,31 @@ async function testSpawnParity() {
   let hostCursor = 0;
   const hostWriteCursor = 2;
   let hostFreeSearch = 0;
-  
+
   while (hostCursor < hostWriteCursor && hostSpawnCount < 64) {
-      const slotOff = (hostCursor % 1024) * 16;
-      const dView = new DataView(spawnData.buffer, spawnData.byteOffset + slotOff, 16);
-      // findFreeSlot
-      let found = -1;
-      for (let i=0; i<MAX_ATOMS; i++) {
-          const idx = (hostFreeSearch + i) % MAX_ATOMS;
-          if (refIds[idx] === 0n) {
-              found = idx;
-              break;
-          }
+    const slotOff = (hostCursor % 1024) * 16;
+    const dView = new DataView(
+      spawnData.buffer,
+      spawnData.byteOffset + slotOff,
+      16,
+    );
+    // findFreeSlot
+    let found = -1;
+    for (let i = 0; i < MAX_ATOMS; i++) {
+      const idx = (hostFreeSearch + i) % MAX_ATOMS;
+      if (refIds[idx] === 0n) {
+        found = idx;
+        break;
       }
-      
-      if (found !== -1) {
-          const id = (BigInt(tick) << 32n) | BigInt(found);
-          refIds[found] = id;
-          hostFreeSearch = (found + 1) % MAX_ATOMS;
-          hostSpawnCount++;
-      }
-      hostCursor++;
+    }
+
+    if (found !== -1) {
+      const id = (BigInt(tick) << 32n) | BigInt(found);
+      refIds[found] = id;
+      hostFreeSearch = (found + 1) % MAX_ATOMS;
+      hostSpawnCount++;
+    }
+    hostCursor++;
   }
 
   // --- RUN WASM LOGIC ---
@@ -85,11 +107,11 @@ async function testSpawnParity() {
   // Disable self-test for test run
   // (We'll use the env var anyway, but good to check)
   if (!(PULSE as any).workers || (PULSE as any).workers.length === 0) {
-      await PULSE.initWorkers();
+    await PULSE.initWorkers();
   }
   const worker0 = (PULSE as any).getWorker(0);
   const pulseId = Date.now();
-  
+
   await new Promise<void>((resolve) => {
     const handler = (e: MessageEvent) => {
       if (e.data.type === "DRAIN_SPAWN_DONE" && e.data.pulseId === pulseId) {
@@ -109,7 +131,9 @@ async function testSpawnParity() {
     const hostId = refIds[i];
     if (wasmId !== hostId) {
       if (errors < 10) {
-          console.error(`❌ Spawn Mismatch @ atom=${i}: WASM=${wasmId} HOST=${hostId}`);
+        console.error(
+          `❌ Spawn Mismatch @ atom=${i}: WASM=${wasmId} HOST=${hostId}`,
+        );
       }
       errors++;
     }
@@ -123,7 +147,7 @@ async function testSpawnParity() {
   }
 }
 
-testSpawnParity().catch(err => {
+testSpawnParity().catch((err) => {
   console.error(err);
   Deno.exit(1);
 });

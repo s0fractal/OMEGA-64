@@ -9,9 +9,12 @@ for await (const entry of walk(root, { includeDirs: false })) {
   const rel = entry.path.replaceAll("\\", "/");
   if (!/(?:^|\/)[0-8]\/[0-7]\/[^/]+\/_.yaml$/.test(rel)) continue;
   const text = await Deno.readTextFile(entry.path);
-  const next = text.replace(/vector:\s*['"]?(\d{1,2})\.(\d{1,2})\.(\d{1,2})['"]?/, (_m, a, b, c) => {
-    return `vector: ${pad2(a)}.${pad2(b)}.${pad2(c)}`;
-  });
+  const next = text.replace(
+    /vector:\s*['"]?(\d{1,2})\.(\d{1,2})\.(\d{1,2})['"]?/,
+    (_m, a, b, c) => {
+      return `vector: ${pad2(a)}.${pad2(b)}.${pad2(c)}`;
+    },
+  );
   if (next !== text) {
     await Deno.writeTextFile(entry.path, next);
     touched++;

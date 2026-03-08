@@ -17,7 +17,8 @@ The report binds:
 4. policy anchor (`policy_version`, `policy_hash`),
 5. gate admission diagnostics (optional).
 6. thresholds used for the decision,
-7. compact `verification_summary` for fast gate inspection, including gate admission and index-chain checks.
+7. compact `verification_summary` for fast gate inspection, including gate
+   admission and index-chain checks.
 
 ## 2. Runtime
 

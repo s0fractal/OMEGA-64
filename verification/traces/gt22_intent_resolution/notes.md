@@ -1,7 +1,8 @@
 # gt22_intent_resolution
 
 - scenario: sovereignty protocol collective intent resolution (role/bank)
-- setup: standalone deterministic capture of OP_RESOLVE for collective role shifts and energy banking via neighborhood quorum
+- setup: standalone deterministic capture of OP_RESOLVE for collective role
+  shifts and energy banking via neighborhood quorum
 - duration: 1 execute phase / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-intent-resolution-capture

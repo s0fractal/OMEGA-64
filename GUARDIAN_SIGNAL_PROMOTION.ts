@@ -168,7 +168,9 @@ export const evaluateGuardianSignalPromotion = (
   }
   if (fallbackRatio > thresholds.maxFallbackRatio) {
     reasons.push(
-      `fallback_ratio_${fallbackRatio.toFixed(6)}_gt_${thresholds.maxFallbackRatio.toFixed(6)}`,
+      `fallback_ratio_${fallbackRatio.toFixed(6)}_gt_${
+        thresholds.maxFallbackRatio.toFixed(6)
+      }`,
     );
   }
   if (stableBranchCount < thresholds.minStableBranchCount) {

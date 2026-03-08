@@ -66,7 +66,9 @@ const main = async () => {
     }
   }
 
-  const missingRootMentions = runtimeRoots.filter((f) => !doc.includes(`\`${f}\``));
+  const missingRootMentions = runtimeRoots.filter((f) =>
+    !doc.includes(`\`${f}\``)
+  );
   if (missingRootMentions.length > 0) {
     throw new Error(
       `[architecture-active] runtime roots not surfaced in active doc:\n${

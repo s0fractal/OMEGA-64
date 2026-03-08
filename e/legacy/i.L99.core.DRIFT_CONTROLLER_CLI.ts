@@ -77,7 +77,9 @@ if (import.meta.main) {
   ]);
 
   const report = DRIFT_CONTROLLER.audit(oldSource, newSource, {
-    criticalImportPatterns: args.patterns.length > 0 ? args.patterns : undefined,
+    criticalImportPatterns: args.patterns.length > 0
+      ? args.patterns
+      : undefined,
     allowTypeRemovals: args.allowTypeRemovals,
   });
 
@@ -85,9 +87,7 @@ if (import.meta.main) {
     console.log(JSON.stringify(report, null, 2));
   } else {
     console.log(
-      report.ok
-        ? "DRIFT_OK"
-        : `DRIFT_FAIL: ${report.reasons.join(", ")}`,
+      report.ok ? "DRIFT_OK" : `DRIFT_FAIL: ${report.reasons.join(", ")}`,
     );
   }
 

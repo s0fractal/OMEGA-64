@@ -49,7 +49,8 @@ export const GENOME_AUDIT = (paths: string[]): GenomeAuditReport => {
     const triplet = genome.triplet_of(level);
     const expected = genome.projections_for(triplet).sort();
     const observed = Array.from(byLevel.get(level) ?? []).sort();
-    const same = expected.length === observed.length && expected.every((v, i) => v === observed[i]);
+    const same = expected.length === observed.length &&
+      expected.every((v, i) => v === observed[i]);
     if (!same) {
       items.push({ level, triplet, expected, observed });
     }

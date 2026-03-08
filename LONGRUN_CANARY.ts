@@ -397,7 +397,10 @@ const deriveArchitectPromotion = (
         toFiniteNumber(telemetry.architect_plasmid_hybrid.emitBranchCount, 0),
       ),
       suppressBranchCount: Math.floor(
-        toFiniteNumber(telemetry.architect_plasmid_hybrid.suppressBranchCount, 0),
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.suppressBranchCount,
+          0,
+        ),
       ),
       allowedArchitectPlasmids: Math.floor(
         toFiniteNumber(
@@ -954,27 +957,32 @@ const main = async () => {
       guardian_signal_promotion_current_mode: guardianPromotion.currentMode,
       guardian_signal_promotion_ready: guardianPromotion.ready,
       guardian_signal_promotion_status: guardianPromotion.status,
-      guardian_signal_promotion_recommended_mode: guardianPromotion.recommendedMode,
+      guardian_signal_promotion_recommended_mode:
+        guardianPromotion.recommendedMode,
       guardian_signal_promotion_fallback_ratio: Number(
         guardianPromotion.fallbackRatio.toFixed(6),
       ),
       architect_plasmid_promotion_current_mode: architectPromotion.currentMode,
       architect_plasmid_promotion_ready: architectPromotion.ready,
       architect_plasmid_promotion_status: architectPromotion.status,
-      architect_plasmid_promotion_recommended_mode: architectPromotion.recommendedMode,
+      architect_plasmid_promotion_recommended_mode:
+        architectPromotion.recommendedMode,
       architect_plasmid_promotion_fallback_ratio: Number(
         architectPromotion.fallbackRatio.toFixed(6),
       ),
       replication_promotion_current_mode: replicationPromotion.currentMode,
       replication_promotion_ready: replicationPromotion.ready,
       replication_promotion_status: replicationPromotion.status,
-      replication_promotion_recommended_mode: replicationPromotion.recommendedMode,
+      replication_promotion_recommended_mode:
+        replicationPromotion.recommendedMode,
       replication_promotion_fallback_ratio: Number(
         replicationPromotion.fallbackRatio.toFixed(6),
       ),
       population_current: populationCurrent,
       population_peak: populationPeak,
-      replication_hybrid: telemetryResult.ok ? telemetryResult.data.replication_hybrid : undefined,
+      replication_hybrid: telemetryResult.ok
+        ? telemetryResult.data.replication_hybrid
+        : undefined,
     });
 
     if (samples.length % 5 === 0) {
@@ -1006,7 +1014,7 @@ const main = async () => {
   const p05AvgEnergy = percentile(avgEnergySamples, 5);
   const p95SpatialOverflowRatio = percentile(spatialOverflowRatios, 95);
   const safeModeRatio = mean(safeModeSamples);
-  
+
   const guardianSignalPromotionReadyRatio = mean(guardianPromotionReadySamples);
   const guardianSignalFallbackRatioP95 = percentile(
     guardianPromotionFallbackRatios,
@@ -1016,7 +1024,9 @@ const main = async () => {
     ? samples[sampleCount - 1]
     : null;
 
-  const architectSignalPromotionReadyRatio = mean(architectPromotionReadySamples);
+  const architectSignalPromotionReadyRatio = mean(
+    architectPromotionReadySamples,
+  );
   const architectSignalFallbackRatioP95 = percentile(
     architectPromotionFallbackRatios,
     95,
@@ -1025,7 +1035,9 @@ const main = async () => {
     ? samples[sampleCount - 1]
     : null;
 
-  const replicationSignalPromotionReadyRatio = mean(replicationPromotionReadySamples);
+  const replicationSignalPromotionReadyRatio = mean(
+    replicationPromotionReadySamples,
+  );
   const replicationSignalFallbackRatioP95 = percentile(
     replicationPromotionFallbackRatios,
     95,
@@ -1040,34 +1052,37 @@ const main = async () => {
   const processExitedUnexpectedly = unexpectedExitDuringRun;
   const enforceSafeModeGate = federationActionSamples > 0;
 
-  const guardianSignalPromotionDecision = evaluateGuardianSignalPromotionDecision(
-    {
-      promotion: {
-        latestReady: guardianSignalPromotionLatest?.guardian_signal_promotion_ready ??
-          false,
-        readyRatio: guardianSignalPromotionReadyRatio,
-        recommendedMode:
-          guardianSignalPromotionLatest?.guardian_signal_promotion_recommended_mode ??
+  const guardianSignalPromotionDecision =
+    evaluateGuardianSignalPromotionDecision(
+      {
+        promotion: {
+          latestReady:
+            guardianSignalPromotionLatest?.guardian_signal_promotion_ready ??
+              false,
+          readyRatio: guardianSignalPromotionReadyRatio,
+          recommendedMode: guardianSignalPromotionLatest
+            ?.guardian_signal_promotion_recommended_mode ??
             "shadow-reduce",
-        fallbackRatioP95: guardianSignalFallbackRatioP95,
-        status: guardianSignalPromotionLatest?.guardian_signal_promotion_status ??
-          "unknown",
+          fallbackRatioP95: guardianSignalFallbackRatioP95,
+          status:
+            guardianSignalPromotionLatest?.guardian_signal_promotion_status ??
+              "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly,
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          enforceActionQualityGate: enforceSafeModeGate,
+        },
       },
-      health: {
-        bootReady,
-        processExitedUnexpectedly,
-        successRate,
-        minSuccessRate: config.minSuccessRate,
-        p95TelemetryLatencyMs,
-        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
-        p95SpatialOverflowRatio,
-        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
-        safeModeRatio,
-        maxSafeModeRatio: config.maxSafeModeRatio,
-        enforceActionQualityGate: enforceSafeModeGate,
-      },
-    },
-  );
+    );
   const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
     currentMode:
       guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
@@ -1075,52 +1090,58 @@ const main = async () => {
     decision: guardianSignalPromotionDecision,
   });
 
-  const architectPlasmidPromotionDecision = evaluateArchitectPlasmidPromotionDecision(
-    {
-      promotion: {
-        latestReady: architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
-          false,
-        readyRatio: architectSignalPromotionReadyRatio,
-        recommendedMode:
-          architectSignalPromotionLatest?.architect_plasmid_promotion_recommended_mode ??
+  const architectPlasmidPromotionDecision =
+    evaluateArchitectPlasmidPromotionDecision(
+      {
+        promotion: {
+          latestReady:
+            architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
+              false,
+          readyRatio: architectSignalPromotionReadyRatio,
+          recommendedMode: architectSignalPromotionLatest
+            ?.architect_plasmid_promotion_recommended_mode ??
             "shadow-reduce",
-        fallbackRatioP95: architectSignalFallbackRatioP95,
-        status: architectSignalPromotionLatest?.architect_plasmid_promotion_status ??
-          "unknown",
+          fallbackRatioP95: architectSignalFallbackRatioP95,
+          status: architectSignalPromotionLatest
+            ?.architect_plasmid_promotion_status ??
+            "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly,
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          enforceActionQualityGate: enforceSafeModeGate,
+        },
       },
-      health: {
-        bootReady,
-        processExitedUnexpectedly,
-        successRate,
-        minSuccessRate: config.minSuccessRate,
-        p95TelemetryLatencyMs,
-        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
-        p95SpatialOverflowRatio,
-        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
-        safeModeRatio,
-        maxSafeModeRatio: config.maxSafeModeRatio,
-        enforceActionQualityGate: enforceSafeModeGate,
-      },
-    },
-  );
-  const architectPlasmidPromotionAction = evaluateArchitectPlasmidPromotionAction({
-    currentMode:
-      architectSignalPromotionLatest?.architect_plasmid_promotion_current_mode ??
+    );
+  const architectPlasmidPromotionAction =
+    evaluateArchitectPlasmidPromotionAction({
+      currentMode: architectSignalPromotionLatest
+        ?.architect_plasmid_promotion_current_mode ??
         "shadow-reduce",
-    decision: architectPlasmidPromotionDecision,
-  });
+      decision: architectPlasmidPromotionDecision,
+    });
   const replicationPromotionDecision = evaluateReplicationPromotionDecision(
     {
       promotion: {
-        latestReady: replicationSignalPromotionLatest?.replication_promotion_ready ??
-          false,
+        latestReady:
+          replicationSignalPromotionLatest?.replication_promotion_ready ??
+            false,
         readyRatio: replicationSignalPromotionReadyRatio,
-        recommendedMode:
-          replicationSignalPromotionLatest?.replication_promotion_recommended_mode ??
-            "shadow-reduce",
+        recommendedMode: replicationSignalPromotionLatest
+          ?.replication_promotion_recommended_mode ??
+          "shadow-reduce",
         fallbackRatioP95: replicationSignalFallbackRatioP95,
-        status: replicationSignalPromotionLatest?.replication_promotion_status ??
-          "unknown",
+        status:
+          replicationSignalPromotionLatest?.replication_promotion_status ??
+            "unknown",
       },
       health: {
         bootReady,
@@ -1221,7 +1242,7 @@ const main = async () => {
     p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
     safeModeRatio: Number(safeModeRatio.toFixed(3)),
     federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
-    
+
     guardianSignalPromotionCurrentMode:
       guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
         "shadow-reduce",
@@ -1230,38 +1251,44 @@ const main = async () => {
     guardianSignalPromotionReadyRatio: Number(
       guardianSignalPromotionReadyRatio.toFixed(3),
     ),
-    guardianSignalPromotionRecommendedMode:
-      guardianSignalPromotionLatest?.guardian_signal_promotion_recommended_mode ??
-        "shadow-reduce",
+    guardianSignalPromotionRecommendedMode: guardianSignalPromotionLatest
+      ?.guardian_signal_promotion_recommended_mode ??
+      "shadow-reduce",
     guardianSignalFallbackRatioP95: Number(
       guardianSignalFallbackRatioP95.toFixed(6),
     ),
     guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
-    guardianSignalPromotionBlockers: guardianSignalPromotionDecision.blockers.join("|") || "none",
+    guardianSignalPromotionBlockers:
+      guardianSignalPromotionDecision.blockers.join("|") || "none",
     guardianSignalPromotionAction: guardianSignalPromotionAction.verdict,
     guardianSignalPromotionTargetMode: guardianSignalPromotionAction.targetMode,
-    guardianSignalPromotionActionReasons: guardianSignalPromotionAction.reasons.join("|") || "none",
+    guardianSignalPromotionActionReasons:
+      guardianSignalPromotionAction.reasons.join("|") || "none",
 
-    architectPlasmidPromotionCurrentMode:
-      architectSignalPromotionLatest?.architect_plasmid_promotion_current_mode ??
-        "shadow-reduce",
+    architectPlasmidPromotionCurrentMode: architectSignalPromotionLatest
+      ?.architect_plasmid_promotion_current_mode ??
+      "shadow-reduce",
     architectPlasmidPromotionReadyLatest:
-      architectSignalPromotionLatest?.architect_plasmid_promotion_ready ?? false,
+      architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
+        false,
     architectPlasmidPromotionReadyRatio: Number(
       architectSignalPromotionReadyRatio.toFixed(3),
     ),
-    architectPlasmidPromotionRecommendedMode:
-      architectSignalPromotionLatest?.architect_plasmid_promotion_recommended_mode ??
-        "shadow-reduce",
+    architectPlasmidPromotionRecommendedMode: architectSignalPromotionLatest
+      ?.architect_plasmid_promotion_recommended_mode ??
+      "shadow-reduce",
     architectPlasmidPromotionFallbackRatioP95: Number(
       architectSignalFallbackRatioP95.toFixed(6),
     ),
     architectPlasmidPromotionVerdict: architectPlasmidPromotionDecision.verdict,
-    architectPlasmidPromotionBlockers: architectPlasmidPromotionDecision.blockers.join("|") || "none",
+    architectPlasmidPromotionBlockers:
+      architectPlasmidPromotionDecision.blockers.join("|") || "none",
     architectPlasmidPromotionAction: architectPlasmidPromotionAction.verdict,
-    architectPlasmidPromotionTargetMode: architectPlasmidPromotionAction.targetMode,
-    architectPlasmidPromotionActionReasons: architectPlasmidPromotionAction.reasons.join("|") || "none",
-    
+    architectPlasmidPromotionTargetMode:
+      architectPlasmidPromotionAction.targetMode,
+    architectPlasmidPromotionActionReasons:
+      architectPlasmidPromotionAction.reasons.join("|") || "none",
+
     replicationPromotionCurrentMode:
       replicationSignalPromotionLatest?.replication_promotion_current_mode ??
         "shadow-reduce",
@@ -1270,23 +1297,32 @@ const main = async () => {
     replicationPromotionReadyRatio: Number(
       replicationSignalPromotionReadyRatio.toFixed(3),
     ),
-    replicationPromotionRecommendedMode:
-      replicationSignalPromotionLatest?.replication_promotion_recommended_mode ??
-        "shadow-reduce",
+    replicationPromotionRecommendedMode: replicationSignalPromotionLatest
+      ?.replication_promotion_recommended_mode ??
+      "shadow-reduce",
     replicationSignalFallbackRatioP95: Number(
       replicationSignalFallbackRatioP95.toFixed(6),
     ),
     replicationPromotionVerdict: replicationPromotionDecision.verdict,
-    replicationPromotionBlockers: replicationPromotionDecision.blockers.join("|") || "none",
+    replicationPromotionBlockers:
+      replicationPromotionDecision.blockers.join("|") || "none",
     replicationPromotionAction: replicationPromotionAction.verdict,
     replicationPromotionTargetMode: replicationPromotionAction.targetMode,
-    replicationPromotionActionReasons: replicationPromotionAction.reasons.join("|") || "none",
-    
-    replicationShadowRuns: replicationSignalPromotionLatest?.replication_hybrid?.shadowRuns ?? 0,
-    replicationEmitBranchCount: replicationSignalPromotionLatest?.replication_hybrid?.emitBranchCount ?? 0,
-    replicationSuppressBranchCount: replicationSignalPromotionLatest?.replication_hybrid?.suppressBranchCount ?? 0,
-    replicationShadowSuppressed: replicationSignalPromotionLatest?.replication_hybrid?.shadowSuppressedReplications ?? 0,
-    
+    replicationPromotionActionReasons:
+      replicationPromotionAction.reasons.join("|") || "none",
+
+    replicationShadowRuns:
+      replicationSignalPromotionLatest?.replication_hybrid?.shadowRuns ?? 0,
+    replicationEmitBranchCount:
+      replicationSignalPromotionLatest?.replication_hybrid?.emitBranchCount ??
+        0,
+    replicationSuppressBranchCount:
+      replicationSignalPromotionLatest?.replication_hybrid
+        ?.suppressBranchCount ?? 0,
+    replicationShadowSuppressed:
+      replicationSignalPromotionLatest?.replication_hybrid
+        ?.shadowSuppressedReplications ?? 0,
+
     maxConsecutiveFailures,
     processExitedUnexpectedly,
     childExitCode,
@@ -1319,7 +1355,9 @@ const main = async () => {
     renderMarkdown(generatedAt, summary, checks),
   );
 
-  console.log(`\n📊 [AUDIT] Done. verdict_g=${summary.guardianSignalPromotionVerdict} verdict_a=${summary.architectPlasmidPromotionVerdict} verdict_r=${summary.replicationPromotionVerdict}`);
+  console.log(
+    `\n📊 [AUDIT] Done. verdict_g=${summary.guardianSignalPromotionVerdict} verdict_a=${summary.architectPlasmidPromotionVerdict} verdict_r=${summary.replicationPromotionVerdict}`,
+  );
   if (failedChecks.length > 0) {
     console.warn("      ⚠️ [AUDIT] Some health or promotion checks failed.");
   }

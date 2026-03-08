@@ -9,7 +9,7 @@ console.log("🔮 TEST ORACLE: Initializing...");
 
 // Mock Signal
 SIGNAL.emit = (type: string, payload: any) => {
-    console.log(`📡 SIGNAL MOCKED: [${type}] ${JSON.stringify(payload)}`);
+  console.log(`📡 SIGNAL MOCKED: [${type}] ${JSON.stringify(payload)}`);
 };
 
 // Mock Atoms to trigger KAIROS threshold
@@ -23,11 +23,11 @@ const originalRandom = Math.random;
 Math.random = () => 0.99; // Always high resonance
 
 const mockLattice: Atom[] = Array.from({ length: 10 }, (_, i) => ({
-    id: `atom_${i}`,
-    type: "TEST",
-    content: "entropy",
-    hash: "test",
-    topo: { r: 0 }
+  id: `atom_${i}`,
+  type: "TEST",
+  content: "entropy",
+  hash: "test",
+  topo: { r: 0 },
 }));
 
 console.log("🔥 Triggering KAIROS ignition (Forced High Entropy)...");

@@ -22,22 +22,23 @@ export class GenesisInceptor {
    */
   public selectProgram(roleId?: number): InceptiveProgram {
     const reifiedKeys = Object.keys(REIFIED_PROGRAMS);
-    
+
     // 1. Check for reified programs first (Evolutionary priority)
     if (reifiedKeys.length > 0) {
-        // Simple heuristic: pick a random reified program or one matching role hint
-        const pickedKey = reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
-        LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
-        return { 
-            bytecode: REIFIED_PROGRAMS[pickedKey],
-            metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) } // Pseudo-hash
-        };
+      // Simple heuristic: pick a random reified program or one matching role hint
+      const pickedKey =
+        reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
+      LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
+      return {
+        bytecode: REIFIED_PROGRAMS[pickedKey],
+        metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) }, // Pseudo-hash
+      };
     }
 
     // 2. Fallback to canonical genesis programs
     if (roleId === 1) return { bytecode: GENESIS_PROGRAMS["guardian_base"] };
     if (roleId === 2) return { bytecode: GENESIS_PROGRAMS["architect_base"] };
-    
+
     // Default replicator
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }

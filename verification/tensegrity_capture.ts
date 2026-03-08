@@ -59,8 +59,14 @@ const runCapture = async (): Promise<CapturePayload> => {
 
   // OP_TENSEGRITY mode=0 (SET_BOND_DIST), slot=0, dist=100
   const script = new Uint8Array(64);
-  script[0] = 0xA5; script[1] = 0; script[2] = 0; script[3] = 100;
-  script[4] = 0xA5; script[5] = 1; script[6] = 255; script[7] = 0; // SET_DAMPING 255
+  script[0] = 0xA5;
+  script[1] = 0;
+  script[2] = 0;
+  script[3] = 100;
+  script[4] = 0xA5;
+  script[5] = 1;
+  script[6] = 255;
+  script[7] = 0; // SET_DAMPING 255
 
   STATE_MATRIX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, script);
   STATE_MATRIX.seedAtom(1, 2n, 110, 110, 5000, 100);
@@ -70,7 +76,7 @@ const runCapture = async (): Promise<CapturePayload> => {
 
   const initialDistance = Math.hypot(
     STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
-    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0)  
+    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
   );
 
   for (let t = 0; t < 100; t++) {
@@ -105,7 +111,7 @@ const runCapture = async (): Promise<CapturePayload> => {
 
   const finalDistance = Math.hypot(
     STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
-    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0)  
+    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
   );
 
   const snapshot: Snapshot = {
@@ -135,7 +141,11 @@ const main = async () => {
   }
 
   console.log(
-    `[tensegrity_capture] ok hash=${payload.hash} initDist=${payload.snapshot.initialDistance.toFixed(2)} finalDist=${payload.snapshot.finalDistance.toFixed(2)} damping=${payload.snapshot.finalDamping}`,
+    `[tensegrity_capture] ok hash=${payload.hash} initDist=${
+      payload.snapshot.initialDistance.toFixed(2)
+    } finalDist=${
+      payload.snapshot.finalDistance.toFixed(2)
+    } damping=${payload.snapshot.finalDamping}`,
   );
 };
 

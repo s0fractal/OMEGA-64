@@ -186,21 +186,31 @@ const main = async () => {
   }
   if (Math.abs((depositor?.energy ?? 0) - 4999.92) > 0.0011) {
     throw new Error(
-      `[collective_banking_capture] depositor energy mismatch: ${depositor?.energy ?? -1}`,
+      `[collective_banking_capture] depositor energy mismatch: ${
+        depositor?.energy ?? -1
+      }`,
     );
   }
   if (Math.abs((withdrawer?.energy ?? 0) - 5000.1) > 0.0011) {
     throw new Error(
-      `[collective_banking_capture] withdrawer energy mismatch: ${withdrawer?.energy ?? -1}`,
+      `[collective_banking_capture] withdrawer energy mismatch: ${
+        withdrawer?.energy ?? -1
+      }`,
     );
   }
   if ((withdrawer?.reg0 ?? -1) !== WITHDRAW_CAP) {
     throw new Error(
-      `[collective_banking_capture] withdraw reg0 mismatch: ${withdrawer?.reg0 ?? -1}`,
+      `[collective_banking_capture] withdraw reg0 mismatch: ${
+        withdrawer?.reg0 ?? -1
+      }`,
     );
   }
   console.log(
-    `[collective_banking_capture] ok hash=${payload.hash} hive=${payload.snapshot.finalHiveBalance} deposit_energy=${depositor?.energy ?? -1} withdraw_energy=${withdrawer?.energy ?? -1} reg0=${withdrawer?.reg0 ?? -1}`,
+    `[collective_banking_capture] ok hash=${payload.hash} hive=${payload.snapshot.finalHiveBalance} deposit_energy=${
+      depositor?.energy ?? -1
+    } withdraw_energy=${withdrawer?.energy ?? -1} reg0=${
+      withdrawer?.reg0 ?? -1
+    }`,
   );
 };
 

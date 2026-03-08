@@ -6,8 +6,10 @@ self.onmessage = (e) => {
 };
 `;
 Deno.writeTextFileSync("worker_test.js", workerCode);
-const worker = new Worker(import.meta.resolve("./worker_test.js"), { type: "module" });
+const worker = new Worker(import.meta.resolve("./worker_test.js"), {
+  type: "module",
+});
 worker.postMessage(memory);
 worker.onmessage = () => {
-    Deno.exit(0);
+  Deno.exit(0);
 };

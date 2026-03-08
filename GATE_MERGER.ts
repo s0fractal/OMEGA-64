@@ -117,15 +117,24 @@ export const mergeGateProposals = (
       // Sovereign Feedback: Successful collective organization rewards the system
       const resonanceDiscount = Math.min(0.8, atomResonance / 600);
       const syntropyDiscount = Math.min(0.2, globalSyntropy * 0.5); // Global systemic reward
-      const quorumDiscount = Math.min(0.4, localQuorum * 0.8);     // Local group reward
-      
-      const totalDiscount = Math.min(0.95, resonanceDiscount + syntropyDiscount + quorumDiscount);
-      
+      const quorumDiscount = Math.min(0.4, localQuorum * 0.8); // Local group reward
+
+      const totalDiscount = Math.min(
+        0.95,
+        resonanceDiscount + syntropyDiscount + quorumDiscount,
+      );
+
       const oldCost = physicalCost;
       physicalCost = physicalCost * (1 - totalDiscount);
-      
+
       LOGGER.debug(
-        `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${oldCost.toFixed(1)}, Res: ${atomResonance.toFixed(1)}, Quorum: ${localQuorum.toFixed(2)}, Syntropy: ${globalSyntropy.toFixed(2)}, Final Discount: ${(totalDiscount * 100).toFixed(1)}%`,
+        `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${
+          oldCost.toFixed(1)
+        }, Res: ${atomResonance.toFixed(1)}, Quorum: ${
+          localQuorum.toFixed(2)
+        }, Syntropy: ${globalSyntropy.toFixed(2)}, Final Discount: ${
+          (totalDiscount * 100).toFixed(1)
+        }%`,
       );
     }
 

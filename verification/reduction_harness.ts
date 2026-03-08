@@ -1,8 +1,8 @@
 import { glyphTapeToPrettyText } from "../runtime_bridge/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
-  scriptToGlyphTape,
   type GlyphTapeToken,
+  scriptToGlyphTape,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
 import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
@@ -201,7 +201,11 @@ const createInitialState = (
   regs: (() => {
     const r = new Array(16).fill(0);
     if (definition.initialRegs) {
-      for (let i = 0; i < Math.min(r.length, definition.initialRegs.length); i++) {
+      for (
+        let i = 0;
+        i < Math.min(r.length, definition.initialRegs.length);
+        i++
+      ) {
         r[i] = definition.initialRegs[i];
       }
     }
@@ -222,7 +226,9 @@ const createInitialState = (
   ),
 
   bondDistances: Object.fromEntries(
-    Object.entries(definition.initialBondDistances ?? {}).map(([key, value]) => [
+    Object.entries(definition.initialBondDistances ?? {}).map((
+      [key, value],
+    ) => [
       Number(key),
       Number(value),
     ]),
@@ -245,7 +251,9 @@ const createInitialState = (
   hiveBalance: definition.initialHiveBalance ?? 0,
   signalGrid: {},
   structureGrid: Object.fromEntries(
-    Object.entries(definition.initialStructureGrid ?? {}).map(([key, value]) => [
+    Object.entries(definition.initialStructureGrid ?? {}).map((
+      [key, value],
+    ) => [
       Number(key),
       Number(value),
     ]),
@@ -276,15 +284,22 @@ const createInitialState = (
   ),
   bondRequests: {},
   hiveEnergyPool: Object.fromEntries(
-    Object.entries(definition.initialHiveEnergyPool ?? {}).map(([k, v]) => [Number(k), Number(v)]),
+    Object.entries(definition.initialHiveEnergyPool ?? {}).map((
+      [k, v],
+    ) => [Number(k), Number(v)]),
   ),
-  hormones: definition.initialHormones ? [...definition.initialHormones] : [1024, 1024, 1024, 1024, 1024, 1024],
+  hormones: definition.initialHormones
+    ? [...definition.initialHormones]
+    : [1024, 1024, 1024, 1024, 1024, 1024],
   effects: cloneEffects(),
   executed: [],
   energySpent: 0,
 });
 
-const equalNumberArray = (a: readonly number[], b: readonly number[]): boolean =>
+const equalNumberArray = (
+  a: readonly number[],
+  b: readonly number[],
+): boolean =>
   a.length === b.length && a.every((value, index) => value === b[index]);
 
 const equalHarnessProps = (a: HarnessProps, b: HarnessProps): boolean => {
@@ -303,9 +318,11 @@ const stableStringify = (value: unknown): string => {
   }
   const entries = Object.entries(value as Record<string, unknown>)
     .sort(([a], [b]) => a.localeCompare(b));
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
 };
 
 const sha256Hex = async (value: unknown): Promise<string> => {
@@ -566,7 +583,8 @@ const applyShadowOpcode = (
         const amount = Math.trunc((energy * percentage) / 100);
         if (energy >= amount) {
           state.props[RISC.PROP_ENERGY] = energy - amount;
-          state.peerEnergy[targetIdx] = (state.peerEnergy[targetIdx] ?? 0) + amount;
+          state.peerEnergy[targetIdx] = (state.peerEnergy[targetIdx] ?? 0) +
+            amount;
         }
       }
       state.pc += 3;
@@ -717,7 +735,8 @@ const applyShadowOpcode = (
         if (count >= value) {
           const desiredRole = state.regs[0] ?? 0;
           state.role = desiredRole;
-          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 20;
+          state.props[RISC.PROP_RESONANCE] =
+            (state.props[RISC.PROP_RESONANCE] ?? 0) + 20;
         }
       } else if (mode === 1) { // ENERGY BANKING
         const energy = state.props[RISC.PROP_ENERGY] ?? 0;
@@ -726,8 +745,10 @@ const applyShadowOpcode = (
           const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
           const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
           state.props[RISC.PROP_ENERGY] = energy - value;
-          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + value;
-          state.props[RISC.PROP_RESONANCE] = (state.props[RISC.PROP_RESONANCE] ?? 0) + 10;
+          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
+            value;
+          state.props[RISC.PROP_RESONANCE] =
+            (state.props[RISC.PROP_RESONANCE] ?? 0) + 10;
         }
       }
 
@@ -808,7 +829,8 @@ const applyShadowOpcode = (
       if (energy > 500) {
         const deposit = Math.floor(energy / 10);
         state.props[RISC.PROP_ENERGY] = energy - deposit;
-        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) + deposit;
+        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
+          deposit;
       } else {
         let draw = 500 - energy;
         if (draw > 400) draw = 400;
@@ -821,18 +843,26 @@ const applyShadowOpcode = (
       return;
     }
     default:
-      throw new Error(`[reduction_harness] unsupported legacy opcode 0x${opcode.toString(16)}`);
+      throw new Error(
+        `[reduction_harness] unsupported legacy opcode 0x${
+          opcode.toString(16)
+        }`,
+      );
   }
 };
 
-const runLegacyShadow = (definition: ReductionCaseDefinition): LegacyShadowResult => {
+const runLegacyShadow = (
+  definition: ReductionCaseDefinition,
+): LegacyShadowResult => {
   const state = createInitialState(definition);
   let stepsExecuted = 0;
   while (stepsExecuted < definition.maxSteps) {
     const decoded = decodeLegacyInstruction(definition.script, state.pc);
     if (!decoded || decoded.opcode === RISC.OP_NOP) break;
     state.executed.push(
-      `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${decoded.args.join(",")}]`,
+      `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
+        decoded.args.join(",")
+      }]`,
     );
     applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
     stepsExecuted++;
@@ -875,7 +905,9 @@ const runReductionShadow = (
   } else {
     glyphTape = scriptToGlyphTape(definition.script);
   }
-  const tokenByPc = new Map<number, GlyphTapeToken>(glyphTape.map((token) => [token.pc, token]));
+  const tokenByPc = new Map<number, GlyphTapeToken>(
+    glyphTape.map((token) => [token.pc, token]),
+  );
   const state = createInitialState(definition);
   let stepsExecuted = 0;
 
@@ -939,13 +971,17 @@ const compareResults = (
   const reasons: string[] = [];
 
   if (legacy.finalPc !== reduction.finalPc) {
-    reasons.push(`finalPc mismatch legacy=${legacy.finalPc} reduction=${reduction.finalPc}`);
+    reasons.push(
+      `finalPc mismatch legacy=${legacy.finalPc} reduction=${reduction.finalPc}`,
+    );
   }
   if (!equalNumberArray(legacy.regs, reduction.regs)) {
     reasons.push("register vector mismatch");
   }
   if (legacy.role !== reduction.role) {
-    reasons.push(`role mismatch legacy=${legacy.role} reduction=${reduction.role}`);
+    reasons.push(
+      `role mismatch legacy=${legacy.role} reduction=${reduction.role}`,
+    );
   }
   if (!equalHarnessProps(legacy.props, reduction.props)) {
     reasons.push("props mismatch");
@@ -960,7 +996,9 @@ const compareResults = (
     reasons.push("bondDistances mismatch");
   }
   if (legacy.damping !== reduction.damping) {
-    reasons.push(`damping mismatch legacy=${legacy.damping} reduction=${reduction.damping}`);
+    reasons.push(
+      `damping mismatch legacy=${legacy.damping} reduction=${reduction.damping}`,
+    );
   }
   if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
     reasons.push("peerEnergy mismatch");
@@ -1034,12 +1072,16 @@ const compareResults = (
   if (legacy.effects.entangleCount !== reduction.effects.entangleCount) {
     reasons.push("entangleCount mismatch");
   }
-  if (!equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)) {
+  if (
+    !equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)
+  ) {
     reasons.push("roleWrites mismatch");
   }
 
   const expected = definition.expected;
-  if (typeof expected.finalPc === "number" && legacy.finalPc !== expected.finalPc) {
+  if (
+    typeof expected.finalPc === "number" && legacy.finalPc !== expected.finalPc
+  ) {
     reasons.push(`expected finalPc=${expected.finalPc} got=${legacy.finalPc}`);
   }
   if (
@@ -1093,7 +1135,9 @@ const compareResults = (
       const addr = Number(key);
       if ((legacy.hiveMemory[addr] ?? 0) !== value) {
         reasons.push(
-          `expected hiveMemory[${addr}]=${value} got=${legacy.hiveMemory[addr] ?? 0}`,
+          `expected hiveMemory[${addr}]=${value} got=${
+            legacy.hiveMemory[addr] ?? 0
+          }`,
         );
       }
     }
@@ -1111,7 +1155,9 @@ const compareResults = (
       const cell = Number(key);
       if ((legacy.signalGrid[cell] ?? 0) !== value) {
         reasons.push(
-          `expected signalGrid[${cell}]=${value} got=${legacy.signalGrid[cell] ?? 0}`,
+          `expected signalGrid[${cell}]=${value} got=${
+            legacy.signalGrid[cell] ?? 0
+          }`,
         );
       }
     }
@@ -1122,7 +1168,9 @@ const compareResults = (
       const slot = Number(key);
       if ((legacy.bondDistances[slot] ?? 0) !== value) {
         reasons.push(
-          `expected bondDistances[${slot}]=${value} got=${legacy.bondDistances[slot] ?? 0}`,
+          `expected bondDistances[${slot}]=${value} got=${
+            legacy.bondDistances[slot] ?? 0
+          }`,
         );
       }
     }
@@ -1140,7 +1188,9 @@ const compareResults = (
       const peer = Number(key);
       if ((legacy.peerEnergy[peer] ?? 0) !== value) {
         reasons.push(
-          `expected peerEnergy[${peer}]=${value} got=${legacy.peerEnergy[peer] ?? 0}`,
+          `expected peerEnergy[${peer}]=${value} got=${
+            legacy.peerEnergy[peer] ?? 0
+          }`,
         );
       }
     }
@@ -1160,7 +1210,9 @@ const compareResults = (
       const cell = Number(key);
       if ((legacy.structureGrid[cell] ?? 0) !== value) {
         reasons.push(
-          `expected structureGrid[${cell}]=${value} got=${legacy.structureGrid[cell] ?? 0}`,
+          `expected structureGrid[${cell}]=${value} got=${
+            legacy.structureGrid[cell] ?? 0
+          }`,
         );
       }
     }
@@ -1178,7 +1230,9 @@ const compareResults = (
       const idx = Number(key);
       if ((legacy.bondRequests[idx] ?? 0) !== value) {
         reasons.push(
-          `expected bondRequests[${idx}]=${value} got=${legacy.bondRequests[idx] ?? 0}`,
+          `expected bondRequests[${idx}]=${value} got=${
+            legacy.bondRequests[idx] ?? 0
+          }`,
         );
       }
     }
@@ -1188,7 +1242,9 @@ const compareResults = (
       const slot = Number(key);
       if ((legacy.hiveEnergyPool[slot] ?? 0) !== value) {
         reasons.push(
-          `expected hiveEnergyPool[${slot}]=${value} got=${legacy.hiveEnergyPool[slot] ?? 0}`,
+          `expected hiveEnergyPool[${slot}]=${value} got=${
+            legacy.hiveEnergyPool[slot] ?? 0
+          }`,
         );
       }
     }
@@ -1263,7 +1319,10 @@ const buildReductionHarnessArtifact = async (
   executed_digest_reduction: await sha256Hex(result.reduction.executed),
   diff: {
     final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
-    registers_match: equalNumberArray(result.legacy.regs, result.reduction.regs),
+    registers_match: equalNumberArray(
+      result.legacy.regs,
+      result.reduction.regs,
+    ),
     role_match: result.legacy.role === result.reduction.role,
     props_match: equalHarnessProps(result.legacy.props, result.reduction.props),
     bond_targets_match: equalHarnessProps(
@@ -1288,7 +1347,8 @@ const buildReductionHarnessArtifact = async (
       result.legacy.hiveMemory,
       result.reduction.hiveMemory,
     ),
-    hive_balance_match: result.legacy.hiveBalance === result.reduction.hiveBalance,
+    hive_balance_match:
+      result.legacy.hiveBalance === result.reduction.hiveBalance,
     signal_grid_match: equalHarnessProps(
       result.legacy.signalGrid,
       result.reduction.signalGrid,
@@ -1317,20 +1377,20 @@ const buildReductionHarnessArtifact = async (
       result.legacy.hiveEnergyPool,
       result.reduction.hiveEnergyPool,
     ),
-    replicate_count_match:
-      result.legacy.effects.replicateCount ===
-        result.reduction.effects.replicateCount,
-    signal_count_match:
-      result.legacy.effects.signalCount === result.reduction.effects.signalCount,
+    replicate_count_match: result.legacy.effects.replicateCount ===
+      result.reduction.effects.replicateCount,
+    signal_count_match: result.legacy.effects.signalCount ===
+      result.reduction.effects.signalCount,
     build_count_match:
       result.legacy.effects.buildCount === result.reduction.effects.buildCount,
-    branch_taken_match:
-      result.legacy.effects.branchTaken === result.reduction.effects.branchTaken,
+    branch_taken_match: result.legacy.effects.branchTaken ===
+      result.reduction.effects.branchTaken,
     role_writes_match: equalNumberArray(
       result.legacy.effects.roleWrites,
       result.reduction.effects.roleWrites,
     ),
-    energy_spent_delta: result.reduction.energySpent - result.legacy.energySpent,
+    energy_spent_delta: result.reduction.energySpent -
+      result.legacy.energySpent,
   },
   expectation_summary: definition.expected,
 });
@@ -1389,7 +1449,9 @@ export const runReductionHarness = async (
 };
 
 if (import.meta.main) {
-  const caseIds = Deno.args.length > 0 ? Deno.args : REDUCTION_CASES.map((caseDef) => caseDef.id);
+  const caseIds = Deno.args.length > 0
+    ? Deno.args
+    : REDUCTION_CASES.map((caseDef) => caseDef.id);
   const results = await runReductionHarness(caseIds);
   await writeReductionHarnessArtifacts(results);
   for (const result of results) {

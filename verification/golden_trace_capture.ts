@@ -56,12 +56,9 @@ const TRACE_COLLECTIVE_BANKING_RUNTIME_MODE =
   "standalone-collective-banking-capture";
 const TRACE_COLLECTIVE_SYNCHRONY_RUNTIME_MODE =
   "standalone-collective-synchrony-capture";
-const TRACE_SHARE_TRANSFER_RUNTIME_MODE =
-  "standalone-share-transfer-capture";
-const TRACE_TENSEGRITY_RUNTIME_MODE =
-  "standalone-tensegrity-capture";
-const TRACE_QUORUM_SYNC_RUNTIME_MODE =
-  "standalone-quorum-sync-capture";
+const TRACE_SHARE_TRANSFER_RUNTIME_MODE = "standalone-share-transfer-capture";
+const TRACE_TENSEGRITY_RUNTIME_MODE = "standalone-tensegrity-capture";
+const TRACE_QUORUM_SYNC_RUNTIME_MODE = "standalone-quorum-sync-capture";
 const TRACE_INTENT_RESOLUTION_RUNTIME_MODE =
   "standalone-intent-resolution-capture";
 const TRACE_SEED = 424242;
@@ -499,9 +496,11 @@ const stableStringify = (value: unknown): string => {
   const entries = Object.entries(value as Record<string, unknown>)
     .filter(([key]) => !VOLATILE_KEYS.has(key))
     .sort(([a], [b]) => a.localeCompare(b));
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
 };
 
 const sha256Hex = async (value: unknown): Promise<string> => {
@@ -607,7 +606,9 @@ const fetchJson = async <T>(
   });
   const raw = await response.text();
   if (!response.ok) {
-    throw new Error(`[golden_trace_capture] ${url} failed ${response.status}: ${raw}`);
+    throw new Error(
+      `[golden_trace_capture] ${url} failed ${response.status}: ${raw}`,
+    );
   }
   return JSON.parse(raw) as T;
 };
@@ -647,12 +648,16 @@ const postJsonWithStatus = async (
   return root;
 };
 
-const waitForTelemetryReady = async (baseUrl: string): Promise<TraceTelemetry> => {
+const waitForTelemetryReady = async (
+  baseUrl: string,
+): Promise<TraceTelemetry> => {
   const started = Date.now();
   let lastError = "not_started";
   while (Date.now() - started < TRACE_READY_TIMEOUT_MS) {
     try {
-      const telemetry = await fetchJson<TraceTelemetry>(`${baseUrl}/api/telemetry`);
+      const telemetry = await fetchJson<TraceTelemetry>(
+        `${baseUrl}/api/telemetry`,
+      );
       if (typeof telemetry.tick === "number" && telemetry.tick >= 0) {
         return telemetry;
       }
@@ -673,13 +678,17 @@ const waitForTick = async (
   const started = Date.now();
   let latest: TraceTelemetry | null = null;
   while (Date.now() - started < TRACE_TICK_TIMEOUT_MS) {
-    const telemetry = await fetchJson<TraceTelemetry>(`${baseUrl}/api/telemetry`);
+    const telemetry = await fetchJson<TraceTelemetry>(
+      `${baseUrl}/api/telemetry`,
+    );
     latest = telemetry;
     if (telemetry.tick >= minTick) return telemetry;
     await sleep(TRACE_POLL_MS);
   }
   throw new Error(
-    `[golden_trace_capture] tick wait timeout target=${minTick} latest=${latest?.tick ?? -1}`,
+    `[golden_trace_capture] tick wait timeout target=${minTick} latest=${
+      latest?.tick ?? -1
+    }`,
   );
 };
 
@@ -701,7 +710,10 @@ const fetchInvariants = async (baseUrl: string): Promise<unknown> =>
 const fetchHomeostasis = async (baseUrl: string): Promise<unknown> =>
   await fetchJson(`${baseUrl}/api/homeostasis`);
 
-const fetchTelemetryWindow = async (baseUrl: string, limit: number): Promise<unknown> =>
+const fetchTelemetryWindow = async (
+  baseUrl: string,
+  limit: number,
+): Promise<unknown> =>
   await fetchJson(`${baseUrl}/api/telemetry/stream?limit=${limit}`);
 
 const fetchLatestTelemetrySample = async (
@@ -724,9 +736,9 @@ const notesForCapture = async (
   const actionLines = actions.length === 0
     ? "- none"
     : (await Promise.all(actions.map(async (entry) =>
-      `- tick=${entry.tick} kind=${entry.kind} responseDigest=${
-        await sha256Hex(sanitizeForDigest(entry.response))
-      }`
+      `- tick=${entry.tick} kind=${entry.kind} responseDigest=${await sha256Hex(
+        sanitizeForDigest(entry.response),
+      )}`
     ))).join("\n");
   return [
     `# ${trace.id}`,
@@ -1325,36 +1337,37 @@ const runCollectiveSynchronyCaptureSubprocess = async (): Promise<
   ) as CollectiveSynchronyCapturePayload;
 };
 
-const runIntentResolutionCaptureSubprocess =
-  async (): Promise<IntentResolutionCapturePayload> => {
-    const cmd = new Deno.Command(Deno.execPath(), {
-      args: ["run", "-A", INTENT_RESOLUTION_CAPTURE_PATH, "--capture"],
-      cwd: "/Users/s0fractal/OMEGA",
-      stdout: "piped",
-      stderr: "piped",
-    });
-    const result = await cmd.output();
-    const stdout = decoder.decode(result.stdout);
-    const stderr = decoder.decode(result.stderr);
-    const merged = `${stdout}\n${stderr}`;
-    if (result.code !== 0) {
-      throw new Error(
-        `[golden_trace_capture] intent-resolution subprocess failed\n${merged}`,
-      );
-    }
-    const line = merged
-      .split("\n")
-      .map((item) => item.trim())
-      .find((item) => item.startsWith(INTENT_RESOLUTION_CAPTURE_MARKER));
-    if (!line) {
-      throw new Error(
-        `[golden_trace_capture] intent-resolution capture marker missing\n${merged}`,
-      );
-    }
-    return JSON.parse(
-      line.slice(INTENT_RESOLUTION_CAPTURE_MARKER.length),
-    ) as IntentResolutionCapturePayload;
-  };
+const runIntentResolutionCaptureSubprocess = async (): Promise<
+  IntentResolutionCapturePayload
+> => {
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", INTENT_RESOLUTION_CAPTURE_PATH, "--capture"],
+    cwd: "/Users/s0fractal/OMEGA",
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const result = await cmd.output();
+  const stdout = decoder.decode(result.stdout);
+  const stderr = decoder.decode(result.stderr);
+  const merged = `${stdout}\n${stderr}`;
+  if (result.code !== 0) {
+    throw new Error(
+      `[golden_trace_capture] intent-resolution subprocess failed\n${merged}`,
+    );
+  }
+  const line = merged
+    .split("\n")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(INTENT_RESOLUTION_CAPTURE_MARKER));
+  if (!line) {
+    throw new Error(
+      `[golden_trace_capture] intent-resolution capture marker missing\n${merged}`,
+    );
+  }
+  return JSON.parse(
+    line.slice(INTENT_RESOLUTION_CAPTURE_MARKER.length),
+  ) as IntentResolutionCapturePayload;
+};
 
 const notesForCollectiveTransportCapture = async (
   trace: GoldenTraceScenario,
@@ -1375,7 +1388,9 @@ const notesForCollectiveTransportCapture = async (
     `## Collective capture`,
     ``,
     `- hive_value=${payload.snapshot.hiveValue}`,
-    `- loaded_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
+    `- loaded_reg0=${
+      payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1
+    }`,
     `- pheromone_word=0x${payload.snapshot.pheromoneWord.toString(16)}`,
   ].join("\n");
 };
@@ -1400,9 +1415,15 @@ const notesForCollectiveBankingCapture = async (
     ``,
     `- initial_hive_balance=${payload.snapshot.initialHiveBalance}`,
     `- final_hive_balance=${payload.snapshot.finalHiveBalance}`,
-    `- depositor_energy=${payload.snapshot.atoms.find((atom) => atom.idx === 0)?.energy ?? -1}`,
-    `- withdrawer_energy=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.energy ?? -1}`,
-    `- withdraw_reg0=${payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1}`,
+    `- depositor_energy=${
+      payload.snapshot.atoms.find((atom) => atom.idx === 0)?.energy ?? -1
+    }`,
+    `- withdrawer_energy=${
+      payload.snapshot.atoms.find((atom) => atom.idx === 1)?.energy ?? -1
+    }`,
+    `- withdraw_reg0=${
+      payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1
+    }`,
   ].join("\n");
 };
 
@@ -1702,8 +1723,8 @@ const captureScenario = async (
     traceMetrics = {
       population: endSample?.population ?? 0,
       avgEnergy: endTelemetry.avgEnergy,
-      spatialOverflowRatio:
-        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      spatialOverflowRatio: endTelemetry.spatial_hash_guard?.overflow_ratio ??
+        0,
       mutationCounts: await fetchMutationTelemetry(baseUrl),
       invariantDigestSource: endTelemetry.behavior_invariant ?? "none",
     };
@@ -1713,8 +1734,8 @@ const captureScenario = async (
     traceMetrics = {
       population: endSample?.population ?? 0,
       avgEnergy: endTelemetry.avgEnergy,
-      spatialOverflowRatio:
-        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      spatialOverflowRatio: endTelemetry.spatial_hash_guard?.overflow_ratio ??
+        0,
       decreeShifts:
         endTelemetry.daemon_governance?.last_pressure_ring_history ?? [],
       mutationCounts: await fetchMutationTelemetry(baseUrl),
@@ -1740,8 +1761,8 @@ const captureScenario = async (
       localResponseWindow: await fetchTelemetryWindow(baseUrl, 8),
       population: endSample?.population ?? 0,
       avgEnergy: endTelemetry.avgEnergy,
-      spatialOverflowRatio:
-        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      spatialOverflowRatio: endTelemetry.spatial_hash_guard?.overflow_ratio ??
+        0,
       injectResponse: response,
     };
   } else if (trace.id === "gt04_plasmid_inject") {
@@ -1796,8 +1817,8 @@ const captureScenario = async (
       avgEnergySlope: Number(
         ((endTelemetry.avgEnergy - warm.avgEnergy) / tickDelta).toFixed(6),
       ),
-      spatialOverflowRatio:
-        endTelemetry.spatial_hash_guard?.overflow_ratio ?? 0,
+      spatialOverflowRatio: endTelemetry.spatial_hash_guard?.overflow_ratio ??
+        0,
       mutationCounts: await fetchMutationTelemetry(baseUrl),
       updateResponse: response,
     };
@@ -1856,13 +1877,15 @@ const captureScenario = async (
       },
     });
     const afterBlock = await waitForTick(baseUrl, warm.tick + 1);
-    const latestAdmission = afterBlock.daemon_governance?.last_admission ?? null;
+    const latestAdmission = afterBlock.daemon_governance?.last_admission ??
+      null;
     const blockedAnnotated = {
       ...blocked,
       latest_admission: latestAdmission,
       applied_action: latestAdmission && typeof latestAdmission === "object"
-          ? (latestAdmission as Record<string, unknown>).appliedAction ?? "BLOCKED"
-          : "BLOCKED",
+        ? (latestAdmission as Record<string, unknown>).appliedAction ??
+          "BLOCKED"
+        : "BLOCKED",
     };
     actions.push({
       kind: "INJECT_PLASMID_BLOCKED",
@@ -1872,13 +1895,17 @@ const captureScenario = async (
     endTelemetry = await waitForTick(baseUrl, warm.tick + 128);
     traceMetrics = {
       httpStatus: blocked.http_status ?? 0,
-      responseReason: typeof blocked.reason === "string" ? blocked.reason : "UNKNOWN",
-      latestAdmissionStatus: latestAdmission && typeof latestAdmission === "object"
-        ? (latestAdmission as Record<string, unknown>).status ?? "unknown"
-        : "missing",
-      latestAdmissionReason: latestAdmission && typeof latestAdmission === "object"
-        ? (latestAdmission as Record<string, unknown>).reason ?? "unknown"
-        : "missing",
+      responseReason: typeof blocked.reason === "string"
+        ? blocked.reason
+        : "UNKNOWN",
+      latestAdmissionStatus:
+        latestAdmission && typeof latestAdmission === "object"
+          ? (latestAdmission as Record<string, unknown>).status ?? "unknown"
+          : "missing",
+      latestAdmissionReason:
+        latestAdmission && typeof latestAdmission === "object"
+          ? (latestAdmission as Record<string, unknown>).reason ?? "unknown"
+          : "missing",
       blockedResponse: blockedAnnotated,
       mutationCounts: await fetchMutationTelemetry(baseUrl),
     };
@@ -1953,7 +1980,9 @@ const runTraceServer = async (
   } catch (err) {
     const [stdout, stderr] = await Promise.all([stdoutPromise, stderrPromise]);
     throw new Error(
-      `[golden_trace_capture] ${trace.id} failed: ${String(err)}\n--- stdout ---\n${stdout}\n--- stderr ---\n${stderr}`,
+      `[golden_trace_capture] ${trace.id} failed: ${
+        String(err)
+      }\n--- stdout ---\n${stdout}\n--- stderr ---\n${stderr}`,
     );
   } finally {
     try {
@@ -2003,8 +2032,12 @@ const runStructureIntentTrace = async (
     structure_intent_hash_1w: oneWorker.hash,
     structure_intent_hash_4w: fourWorker.hash,
     hash_match: hashMatch,
-    conflict_neighborhood_digest_1w: await sha256Hex(oneWorker.snapshot.neighborhood),
-    conflict_neighborhood_digest_4w: await sha256Hex(fourWorker.snapshot.neighborhood),
+    conflict_neighborhood_digest_1w: await sha256Hex(
+      oneWorker.snapshot.neighborhood,
+    ),
+    conflict_neighborhood_digest_4w: await sha256Hex(
+      fourWorker.snapshot.neighborhood,
+    ),
     sense_register_digest_1w: await sha256Hex(
       oneWorker.snapshot.atoms.map((atom) => atom.senseReg),
     ),
@@ -2174,21 +2207,27 @@ const runStructureChargeCompetitionTrace = async (
     worker_count: payload.workerCount,
     strict_determinism: payload.strictDeterminism,
     hash: payload.hash,
-    low_then_high_charge_intent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+    low_then_high_charge_intent:
+      payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
     low_then_high_resolved_charge: payload.snapshot.lowThenHigh.resolvedCharge,
-    high_then_low_charge_intent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+    high_then_low_charge_intent:
+      payload.snapshot.highThenLow.chargeIntentBeforeTick,
     high_then_low_resolved_charge: payload.snapshot.highThenLow.resolvedCharge,
   };
   const invariants = {
     structure_charge_competition_hash: payload.hash,
     low_then_high_cell: payload.snapshot.lowThenHigh.targetCellIdx,
-    low_then_high_charge_intent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+    low_then_high_charge_intent:
+      payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
     low_then_high_resolved_charge: payload.snapshot.lowThenHigh.resolvedCharge,
-    low_then_high_charge_after_tick: payload.snapshot.lowThenHigh.chargeIntentAfterTick,
+    low_then_high_charge_after_tick:
+      payload.snapshot.lowThenHigh.chargeIntentAfterTick,
     high_then_low_cell: payload.snapshot.highThenLow.targetCellIdx,
-    high_then_low_charge_intent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+    high_then_low_charge_intent:
+      payload.snapshot.highThenLow.chargeIntentBeforeTick,
     high_then_low_resolved_charge: payload.snapshot.highThenLow.resolvedCharge,
-    high_then_low_charge_after_tick: payload.snapshot.highThenLow.chargeIntentAfterTick,
+    high_then_low_charge_after_tick:
+      payload.snapshot.highThenLow.chargeIntentAfterTick,
   };
   const tracePayload: JsonRecord = {
     trace_id: trace.id,
@@ -2198,8 +2237,10 @@ const runStructureChargeCompetitionTrace = async (
     runtime_mode: TRACE_STRUCTURE_CHARGE_COMPETITION_RUNTIME_MODE,
     daemon_enabled: trace.daemonEnabled,
     metrics: {
-      lowThenHighChargeIntent: payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
-      highThenLowChargeIntent: payload.snapshot.highThenLow.chargeIntentBeforeTick,
+      lowThenHighChargeIntent:
+        payload.snapshot.lowThenHigh.chargeIntentBeforeTick,
+      highThenLowChargeIntent:
+        payload.snapshot.highThenLow.chargeIntentBeforeTick,
       lowThenHighResolvedCharge: payload.snapshot.lowThenHigh.resolvedCharge,
       highThenLowResolvedCharge: payload.snapshot.highThenLow.resolvedCharge,
       snapshotDigest: payload.hash,
@@ -2415,7 +2456,8 @@ const runCollectiveTransportTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
   const payload = await runCollectiveTransportCaptureSubprocess();
-  const loadedReg0 = payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1;
+  const loadedReg0 =
+    payload.snapshot.atoms.find((atom) => atom.idx === 1)?.reg0 ?? -1;
   const codexSnapshot = {
     control_specimen: "collective_transport",
     runtime_mode: TRACE_COLLECTIVE_TRANSPORT_RUNTIME_MODE,
@@ -2470,7 +2512,8 @@ const runCollectiveBankingTrace = async (
   trace: GoldenTraceScenario,
 ): Promise<GoldenTraceCaptureResult> => {
   const payload = await runCollectiveBankingCaptureSubprocess();
-  const depositor = payload.snapshot.atoms.find((atom) => atom.idx === 0) ?? null;
+  const depositor = payload.snapshot.atoms.find((atom) => atom.idx === 0) ??
+    null;
   const withdrawer = payload.snapshot.atoms.find((atom) => atom.idx === 1) ??
     null;
   const codexSnapshot = {
@@ -2778,7 +2821,8 @@ const runIntentResolutionTrace = async (
   };
   const invariants = {
     intent_resolution_hash: payload.hash,
-    role_verified: payload.snapshot.role.finalRole === STATE_MATRIX.ROLE_GUARDIAN,
+    role_verified:
+      payload.snapshot.role.finalRole === STATE_MATRIX.ROLE_GUARDIAN,
     bank_quorum_verified: payload.snapshot.bank.poolBalance >= 100,
   };
   const tracePayload: JsonRecord = {
@@ -2871,9 +2915,13 @@ export const SUPPORTED_GOLDEN_TRACE_IDS = GOLDEN_TRACE_CATALOG.map((trace) =>
 );
 
 if (import.meta.main) {
-  const traceIds = Deno.args.length > 0 ? Deno.args : SUPPORTED_GOLDEN_TRACE_IDS;
+  const traceIds = Deno.args.length > 0
+    ? Deno.args
+    : SUPPORTED_GOLDEN_TRACE_IDS;
   await captureGoldenTraces(traceIds, { writeArtifacts: true });
   console.log(
-    `[golden_trace_capture] captured ${traceIds.length} trace(s): ${traceIds.join(", ")}`,
+    `[golden_trace_capture] captured ${traceIds.length} trace(s): ${
+      traceIds.join(", ")
+    }`,
   );
 }

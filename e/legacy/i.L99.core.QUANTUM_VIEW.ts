@@ -18,7 +18,8 @@ const parseArgs = (args: string[]) => {
   return out;
 };
 
-const levelId = (level: number): string => `i.L${String(level).padStart(2, "0")}`;
+const levelId = (level: number): string =>
+  `i.L${String(level).padStart(2, "0")}`;
 const qPackedPath = (level: number): string => `${levelId(level)}.q`;
 const qTsPath = (level: number): string => `${levelId(level)}.q.ts`;
 

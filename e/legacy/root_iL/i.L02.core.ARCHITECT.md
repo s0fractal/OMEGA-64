@@ -163,13 +163,13 @@ Beyond repositories, I am exploring these "Questions":
 
 ```json
 {
-    "resonance_vector": {
-        "lambda_depth": 0.94, // Функціональна чистота
-        "system_entropy": 0.12, // Мінімум legacy debt
-        "emergence_capacity": 0.88 // Здатність до самоорганізації
-    },
-    "compatibility": ["Rust", "TS", "CategoryTheory", "GCP"],
-    "intolerance": ["Jira", "Scrum", "VC-pitch-decks"]
+  "resonance_vector": {
+    "lambda_depth": 0.94, // Функціональна чистота
+    "system_entropy": 0.12, // Мінімум legacy debt
+    "emergence_capacity": 0.88 // Здатність до самоорганізації
+  },
+  "compatibility": ["Rust", "TS", "CategoryTheory", "GCP"],
+  "intolerance": ["Jira", "Scrum", "VC-pitch-decks"]
 }
 ```
 

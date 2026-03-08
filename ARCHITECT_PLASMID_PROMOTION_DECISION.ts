@@ -79,7 +79,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
   }
   if (input.health.successRate < input.health.minSuccessRate) {
     blockers.push(
-      `success_rate_${input.health.successRate.toFixed(3)}_lt_${input.health.minSuccessRate.toFixed(3)}`,
+      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
+        input.health.minSuccessRate.toFixed(3)
+      }`,
     );
     healthPass = false;
   }
@@ -87,7 +89,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
     input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
   ) {
     blockers.push(
-      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${input.health.maxP95TelemetryLatencyMs.toFixed(3)}`,
+      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
+        input.health.maxP95TelemetryLatencyMs.toFixed(3)
+      }`,
     );
     healthPass = false;
   }
@@ -96,7 +100,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
       input.health.maxSpatialOverflowRatioP95
   ) {
     blockers.push(
-      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${input.health.maxSpatialOverflowRatioP95.toFixed(6)}`,
+      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
+        input.health.maxSpatialOverflowRatioP95.toFixed(6)
+      }`,
     );
     healthPass = false;
   }
@@ -106,7 +112,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
   }
   if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
     blockers.push(
-      `promotion_ready_ratio_${clampRatio(input.promotion.readyRatio).toFixed(3)}_lt_${thresholds.minReadyRatio.toFixed(3)}`,
+      `promotion_ready_ratio_${
+        clampRatio(input.promotion.readyRatio).toFixed(3)
+      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
     );
   }
   if (input.promotion.recommendedMode !== "hybrid-reduce") {
@@ -119,7 +127,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
       thresholds.maxFallbackRatioP95
   ) {
     blockers.push(
-      `promotion_fallback_ratio_p95_${clampRatio(input.promotion.fallbackRatioP95).toFixed(6)}_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
+      `promotion_fallback_ratio_p95_${
+        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
+      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
     );
   }
 
@@ -131,7 +141,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
         clampRatio(input.health.maxSafeModeRatio)
     ) {
       blockers.push(
-        `safe_mode_ratio_${clampRatio(input.health.safeModeRatio).toFixed(3)}_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
+        `safe_mode_ratio_${
+          clampRatio(input.health.safeModeRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
       );
       healthPass = false;
     }
@@ -142,7 +154,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
         clampRatio(input.health.maxDaemonRejectRatio)
     ) {
       blockers.push(
-        `daemon_reject_ratio_${clampRatio(input.health.daemonRejectRatio).toFixed(3)}_gt_${clampRatio(input.health.maxDaemonRejectRatio).toFixed(3)}`,
+        `daemon_reject_ratio_${
+          clampRatio(input.health.daemonRejectRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxDaemonRejectRatio).toFixed(3)}`,
       );
       healthPass = false;
     }
@@ -153,7 +167,9 @@ export const evaluateArchitectPlasmidPromotionDecision = (
         clampRatio(input.health.minEffectEvalCoverage)
     ) {
       blockers.push(
-        `effect_eval_coverage_${clampRatio(input.health.effectEvalCoverage).toFixed(3)}_lt_${clampRatio(input.health.minEffectEvalCoverage).toFixed(3)}`,
+        `effect_eval_coverage_${
+          clampRatio(input.health.effectEvalCoverage).toFixed(3)
+        }_lt_${clampRatio(input.health.minEffectEvalCoverage).toFixed(3)}`,
       );
       healthPass = false;
     }

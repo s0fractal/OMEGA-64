@@ -10,7 +10,10 @@ import { Atom } from "../4/0/SCHEMA/_.ts";
 
 const jsonSchema = zodToJsonSchema(Atom, "OmegaAtom");
 
-await Deno.writeTextFile("omega.schema.json", JSON.stringify(jsonSchema, null, 2));
+await Deno.writeTextFile(
+  "omega.schema.json",
+  JSON.stringify(jsonSchema, null, 2),
+);
 
 console.log("Generated omega.schema.json");
 console.log("Add this to .vscode/settings.json:");

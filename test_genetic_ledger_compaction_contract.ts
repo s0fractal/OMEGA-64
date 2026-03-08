@@ -1,9 +1,9 @@
 import {
   appendBaseTaxLedgerRecordAndMaybeCompact,
   hydrateBaseTaxLedgerRuntime,
+  readBaseTaxLedgerPersistenceSummary,
   recordFromApplyMutation,
   recordFromRollbackMutation,
-  readBaseTaxLedgerPersistenceSummary,
 } from "./GENETIC_LEDGER_PERSISTENCE.ts";
 import {
   applyBaseTaxLedgerRuntimeUpdate,

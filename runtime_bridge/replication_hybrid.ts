@@ -57,7 +57,6 @@ export type ReplicationHybridState = {
   lastMode?: ReplicationExecutionMode;
 };
 
-
 type ReplicationShadowState = {
   pc: number;
   regs: number[];
@@ -130,7 +129,9 @@ const decodeReplicationTape = (
     if (opcode === RISC.OP_NOP) break;
     const length = SUPPORTED_REPLICATION_OPCODE_LENGTHS.get(opcode);
     if (!length) {
-      throw new Error(`unsupported_replication_opcode_0x${opcode.toString(16)}`);
+      throw new Error(
+        `unsupported_replication_opcode_0x${opcode.toString(16)}`,
+      );
     }
     out.push({
       pc,
@@ -217,7 +218,7 @@ const applyReplicationOpcode = (
     case RISC.OP_REPLICATE: {
       const aggrH = state.aggression;
       const eThresh = 150 - (aggrH >> 3); // Lowered from 1500 for audit
-      const rThresh = 20 - (aggrH >> 5);  // Lowered from 200 for audit
+      const rThresh = 20 - (aggrH >> 5); // Lowered from 200 for audit
       if (state.energy > eThresh && state.resonance > rThresh) {
         state.replicationCount++;
         state.energy = state.energy >> 1;
@@ -265,7 +266,11 @@ export const evaluateReplicationReduction = (
     const tokenByPc = new Map<number, ReplicationToken>(
       replicationTape.map((token) => [token.pc, token]),
     );
-    const state = createInitialState(input.energy, input.resonance, input.aggression);
+    const state = createInitialState(
+      input.energy,
+      input.resonance,
+      input.aggression,
+    );
     let stepsExecuted = 0;
 
     while (stepsExecuted < maxSteps) {
@@ -275,7 +280,9 @@ export const evaluateReplicationReduction = (
       stepsExecuted++;
     }
 
-    const branch: ReplicationBranch = state.replicationCount > 0 ? "emit" : "suppress";
+    const branch: ReplicationBranch = state.replicationCount > 0
+      ? "emit"
+      : "suppress";
     return {
       status: "ok",
       branch,

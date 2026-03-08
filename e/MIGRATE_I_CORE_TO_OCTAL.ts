@@ -10,7 +10,9 @@ const pad2 = (n: number): string => n.toString().padStart(2, "0");
 
 const minorForSymbol = (symbol: string): number => {
   let acc = 0;
-  for (let i = 0; i < symbol.length; i++) acc = (acc + symbol.charCodeAt(i)) % 8;
+  for (let i = 0; i < symbol.length; i++) {
+    acc = (acc + symbol.charCodeAt(i)) % 8;
+  }
   return acc;
 };
 
@@ -37,7 +39,9 @@ const nextVariant = (major: number, minor: number): number => {
 };
 
 // 1) Load existing vectors + symbol locations from octal YAML
-for await (const entry of walk(ROOT, { includeDirs: false, match: [/\/_.yaml$/] })) {
+for await (
+  const entry of walk(ROOT, { includeDirs: false, match: [/\/_.yaml$/] })
+) {
   const rel = entry.path.replace(`${ROOT}/`, "");
   const match = rel.match(/^(\d)\/(\d)\/([^/]+)\/_.yaml$/);
   if (!match) continue;
@@ -50,14 +54,20 @@ for await (const entry of walk(ROOT, { includeDirs: false, match: [/\/_.yaml$/] 
     }
   }
   try {
-    const raw = parseYaml(await Deno.readTextFile(entry.path)) as Record<string, unknown>;
+    const raw = parseYaml(await Deno.readTextFile(entry.path)) as Record<
+      string,
+      unknown
+    >;
     const vector = typeof raw?.vector === "string" ? raw.vector : "";
     const parts = vector.split(".");
     if (parts.length !== 3) continue;
     const major = Number(parts[0]);
     const minor = Number(parts[1]);
     const variant = Number(parts[2]);
-    if (Number.isFinite(major) && Number.isFinite(minor) && Number.isFinite(variant)) {
+    if (
+      Number.isFinite(major) && Number.isFinite(minor) &&
+      Number.isFinite(variant)
+    ) {
       registerVariant(major, minor, variant);
     }
   } catch {
@@ -121,7 +131,9 @@ for await (const entry of walk(I_DIR, { includeDirs: false, maxDepth: 1 })) {
       }
     }
     if (variant === -1) {
-      throw new Error(`No free variants left for major ${major} (all minors exhausted)`);
+      throw new Error(
+        `No free variants left for major ${major} (all minors exhausted)`,
+      );
     }
     registerVariant(major, minor, variant);
     const meta = {

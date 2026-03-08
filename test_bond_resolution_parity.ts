@@ -8,16 +8,42 @@ async function testBondParity() {
 
   // 1. Setup Bond Requests
   const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-  
-  // Clear buffers
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(0, OFFSETS.BONDS_OFFSET, OFFSETS.BONDS_OFFSET + MAX_ATOMS * 4 * 4);
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(0, OFFSETS.STIFFNESS_OFFSET, OFFSETS.STIFFNESS_OFFSET + MAX_ATOMS * 4 * 4);
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(0, OFFSETS.BOND_REQUESTS_OFFSET, OFFSETS.BOND_REQUESTS_OFFSET + MAX_ATOMS * 3 * 4);
 
-  console.log(`   [OFFSETS] BONDS_OFFSET=${OFFSETS.BONDS_OFFSET} BOND_REQUESTS_OFFSET=${OFFSETS.BOND_REQUESTS_OFFSET} MAX_ATOMS=${MAX_ATOMS}`);
-  const bondRequests = new Int32Array(STATE_MATRIX.sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
-  const bonds = new Uint32Array(STATE_MATRIX.sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
-  const stiffness = new Float32Array(STATE_MATRIX.sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
+  // Clear buffers
+  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+    0,
+    OFFSETS.BONDS_OFFSET,
+    OFFSETS.BONDS_OFFSET + MAX_ATOMS * 4 * 4,
+  );
+  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+    0,
+    OFFSETS.STIFFNESS_OFFSET,
+    OFFSETS.STIFFNESS_OFFSET + MAX_ATOMS * 4 * 4,
+  );
+  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+    0,
+    OFFSETS.BOND_REQUESTS_OFFSET,
+    OFFSETS.BOND_REQUESTS_OFFSET + MAX_ATOMS * 3 * 4,
+  );
+
+  console.log(
+    `   [OFFSETS] BONDS_OFFSET=${OFFSETS.BONDS_OFFSET} BOND_REQUESTS_OFFSET=${OFFSETS.BOND_REQUESTS_OFFSET} MAX_ATOMS=${MAX_ATOMS}`,
+  );
+  const bondRequests = new Int32Array(
+    STATE_MATRIX.sharedBuffer,
+    OFFSETS.BOND_REQUESTS_OFFSET,
+    MAX_ATOMS * 3,
+  );
+  const bonds = new Uint32Array(
+    STATE_MATRIX.sharedBuffer,
+    OFFSETS.BONDS_OFFSET,
+    MAX_ATOMS * 4,
+  );
+  const stiffness = new Float32Array(
+    STATE_MATRIX.sharedBuffer,
+    OFFSETS.STIFFNESS_OFFSET,
+    MAX_ATOMS * 4,
+  );
 
   // Scenario 1: Simple bond request
   // Atom 10 requests bond with Atom 20
@@ -58,29 +84,46 @@ async function testBondParity() {
   }
 
   // --- RUN WASM LOGIC ---
-  console.log("   [DEBUG] Request @10:", bondRequests[10 * 3], bondRequests[10 * 3 + 1], bondRequests[10 * 3 + 2]);
-  
+  console.log(
+    "   [DEBUG] Request @10:",
+    bondRequests[10 * 3],
+    bondRequests[10 * 3 + 1],
+    bondRequests[10 * 3 + 2],
+  );
+
   console.log("   [WASM] Running kernel resolution logic...");
   // We need to wait for workers to be ready
   if (!(PULSE as any).workers || (PULSE as any).workers.length === 0) {
-      await PULSE.initWorkers();
+    await PULSE.initWorkers();
   }
   const worker0 = (PULSE as any).getWorker(0);
-  
+
   const pulseId = Date.now();
   await new Promise<void>((resolve) => {
     const handler = (e: MessageEvent) => {
       if (e.data.type === "RESOLVE_BONDS_DONE" && e.data.pulseId === pulseId) {
         worker0.removeEventListener("message", handler);
-        console.log(`   [WASM] Resolution done, pulseId=${e.data.pulseId}, count=${e.data.count}`);
+        console.log(
+          `   [WASM] Resolution done, pulseId=${e.data.pulseId}, count=${e.data.count}`,
+        );
         resolve();
       }
     };
     worker0.addEventListener("message", handler);
-    worker0.postMessage({ type: "RESOLVE_BONDS", pulseId, startIdx: 0, endIdx: MAX_ATOMS });
+    worker0.postMessage({
+      type: "RESOLVE_BONDS",
+      pulseId,
+      startIdx: 0,
+      endIdx: MAX_ATOMS,
+    });
   });
 
-  console.log("   [DEBUG] Request @10 AFTER:", bondRequests[10 * 3], bondRequests[10 * 3 + 1], bondRequests[10 * 3 + 2]);
+  console.log(
+    "   [DEBUG] Request @10 AFTER:",
+    bondRequests[10 * 3],
+    bondRequests[10 * 3 + 1],
+    bondRequests[10 * 3 + 2],
+  );
   console.log("   [DEBUG] Bond @10 AFTER:", bonds[10 * 4], stiffness[10 * 4]);
 
   // --- COMPARISON ---
@@ -91,21 +134,25 @@ async function testBondParity() {
       const wasmB = Atomics.load(bonds, idx);
       const hostB = refBonds[idx];
       if (wasmB !== hostB) {
-        console.error(`❌ Bond Mismatch @ atom=${i} slot=${s}: WASM=${wasmB} HOST=${hostB}`);
+        console.error(
+          `❌ Bond Mismatch @ atom=${i} slot=${s}: WASM=${wasmB} HOST=${hostB}`,
+        );
         errors++;
       }
-      
+
       const wasmS = stiffness[idx];
       const hostS = refStiffness[idx];
       if (Math.abs(wasmS - hostS) > 0.0001) {
-        console.error(`❌ Stiffness Mismatch @ atom=${i} slot=${s}: WASM=${wasmS} HOST=${hostS}`);
+        console.error(
+          `❌ Stiffness Mismatch @ atom=${i} slot=${s}: WASM=${wasmS} HOST=${hostS}`,
+        );
         errors++;
       }
     }
     // Check if requests were cleared
     if (bondRequests[i * 3] !== 0 || bondRequests[i * 3 + 2] !== 0) {
-        console.error(`❌ Bond Request NOT cleared @ atom=${i}`);
-        errors++;
+      console.error(`❌ Bond Request NOT cleared @ atom=${i}`);
+      errors++;
     }
   }
 
@@ -117,7 +164,7 @@ async function testBondParity() {
   }
 }
 
-testBondParity().catch(err => {
+testBondParity().catch((err) => {
   console.error(err);
   Deno.exit(1);
 });

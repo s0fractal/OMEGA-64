@@ -139,7 +139,8 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   {
     id: "gt06_daemon_admission_case",
     scenario: "daemon admission / rejection",
-    setup: "one accepted ingress case and one degraded/rejected case with daemon governance on",
+    setup:
+      "one accepted ingress case and one degraded/rejected case with daemon governance on",
     duration: "event-bounded",
     daemonEnabled: true,
     metrics: [
@@ -161,7 +162,8 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   {
     id: "gt07_daemon_policy_block",
     scenario: "daemon policy block",
-    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
+    setup:
+      "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
     duration: "256 ticks total",
     daemonEnabled: true,
     metrics: [
@@ -570,16 +572,17 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   },
 ];
 
-export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object.freeze(
-  GOLDEN_TRACE_CATALOG_DATA.map((trace) =>
-    Object.freeze({
-      ...trace,
-      metrics: Object.freeze([...trace.metrics]),
-      driftPolicy: Object.freeze({ ...trace.driftPolicy }),
-      supportFiles: Object.freeze([...trace.supportFiles]),
-    })
-  ),
-);
+export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object
+  .freeze(
+    GOLDEN_TRACE_CATALOG_DATA.map((trace) =>
+      Object.freeze({
+        ...trace,
+        metrics: Object.freeze([...trace.metrics]),
+        driftPolicy: Object.freeze({ ...trace.driftPolicy }),
+        supportFiles: Object.freeze([...trace.supportFiles]),
+      })
+    ),
+  );
 
 const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(
   GOLDEN_TRACE_CATALOG.map((trace) => [trace.id, trace]),

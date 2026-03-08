@@ -18,22 +18,35 @@ const main = () => {
 
   const tape = scriptToGlyphTape(script);
   expect(tape.length === 3, "[opcode_to_glyph] expected 3 mapped tokens");
-  expect(tape[0]?.glyphMnemonic === "GET", "[opcode_to_glyph] first token must be GET");
+  expect(
+    tape[0]?.glyphMnemonic === "GET",
+    "[opcode_to_glyph] first token must be GET",
+  );
   expect(
     tape[1]?.glyphMnemonic === "SIGNAL",
     "[opcode_to_glyph] second token must be SIGNAL",
   );
-  expect(tape[2]?.glyphMnemonic === "JMP", "[opcode_to_glyph] third token must be JMP");
+  expect(
+    tape[2]?.glyphMnemonic === "JMP",
+    "[opcode_to_glyph] third token must be JMP",
+  );
 
   const pretty = glyphTapeToPrettyText(tape);
-  expect(pretty.includes("pc=0"), "[opcode_to_glyph] pretty output must include pc");
-  expect(pretty.includes("GET[9]"), "[opcode_to_glyph] pretty output must mention GET glyph");
+  expect(
+    pretty.includes("pc=0"),
+    "[opcode_to_glyph] pretty output must include pc",
+  );
+  expect(
+    pretty.includes("GET[9]"),
+    "[opcode_to_glyph] pretty output must mention GET glyph",
+  );
   expect(
     pretty.includes("SIGNAL[17]"),
     "[opcode_to_glyph] pretty output must mention SIGNAL glyph",
   );
   expect(
-    scriptToGlyphTape(new Uint8Array([RISC.OP_JZ, 0, 0]))[0]?.glyphMnemonic === "JZ",
+    scriptToGlyphTape(new Uint8Array([RISC.OP_JZ, 0, 0]))[0]?.glyphMnemonic ===
+      "JZ",
     "[opcode_to_glyph] OP_JZ must now map into the control glyph band",
   );
 

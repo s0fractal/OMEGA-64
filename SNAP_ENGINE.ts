@@ -18,15 +18,20 @@ export const SNAP_ENGINE = {
   async save(tick: number): Promise<string | null> {
     try {
       await Deno.mkdir(SNAP_DIR, { recursive: true });
-      const snapPath = join(SNAP_DIR, `tick_${tick.toString().padStart(10, "0")}.bin`);
-      
+      const snapPath = join(
+        SNAP_DIR,
+        `tick_${tick.toString().padStart(10, "0")}.bin`,
+      );
+
       // We capture a snapshot of the buffer to avoid data races during async write.
       // Although SharedArrayBuffer is shared, Deno.writeFile will read from it.
       // To be safe and non-blocking, we slice the relevant portion.
-      const data = new Uint8Array(sharedBuffer.slice(0, OFFSETS.LATTICE_MEMORY_END));
-      
+      const data = new Uint8Array(
+        sharedBuffer.slice(0, OFFSETS.LATTICE_MEMORY_END),
+      );
+
       await Deno.writeFile(snapPath, data);
-      
+
       LOGGER.info(`📸 [SNAP] Matrix fixed at tick ${tick} -> ${snapPath}`);
       return snapPath;
     } catch (err) {
@@ -42,13 +47,15 @@ export const SNAP_ENGINE = {
     try {
       const data = await Deno.readFile(snapPath);
       if (data.length > sharedBuffer.byteLength) {
-        throw new Error(`Snap file size (${data.length}) exceeds allocated buffer (${sharedBuffer.byteLength})`);
+        throw new Error(
+          `Snap file size (${data.length}) exceeds allocated buffer (${sharedBuffer.byteLength})`,
+        );
       }
-      
+
       // Copy data back into the shared buffer
       const view = new Uint8Array(sharedBuffer);
       view.set(data);
-      
+
       LOGGER.info(`💎 [SNAP] Matrix re-hydrated from ${snapPath}`);
       return true;
     } catch (err) {
@@ -69,21 +76,21 @@ export const SNAP_ENGINE = {
           entries.push(entry.name);
         }
       }
-      
+
       if (entries.length <= keepCount) return;
-      
+
       entries.sort();
       const toDelete = entries.slice(0, entries.length - keepCount);
-      
+
       for (const filename of toDelete) {
         await Deno.remove(join(SNAP_DIR, filename));
       }
-      
+
       if (toDelete.length > 0) {
         LOGGER.info(`🧹 [SNAP] Cleaned up ${toDelete.length} old snaps.`);
       }
     } catch (err) {
       LOGGER.warn(`⚠️ [SNAP] Cleanup failed:`, err);
     }
-  }
+  },
 };

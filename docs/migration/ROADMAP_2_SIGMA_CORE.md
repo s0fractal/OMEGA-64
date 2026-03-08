@@ -1,19 +1,19 @@
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
-This document fixes an adjacent future-vector for OMEGA-64. It is not the
-active migration contract and does not supersede
+This document fixes an adjacent future-vector for OMEGA-64. It is not the active
+migration contract and does not supersede
 [REDUCTION_METABOLISM_ROADMAP.md](/Users/s0fractal/OMEGA/REDUCTION_METABOLISM_ROADMAP.md)
 or
 [OMEGA_TRANSITION_PLAN.md](/Users/s0fractal/OMEGA/docs/migration/OMEGA_TRANSITION_PLAN.md).
 
-It exists so the export surface preserves a second-order architectural line:
-the transition from code that imitates life toward substrate where life,
-memory, consensus, and autonomy can emerge as protocol.
+It exists so the export surface preserves a second-order architectural line: the
+transition from code that imitates life toward substrate where life, memory,
+consensus, and autonomy can emerge as protocol.
 
 ## 1. Траєкторія: "Sovereignty Protocol" (Governance)
 
-**Суть:** Створення "Цифрового Левіафана". Система як інструмент
-соціального та економічного консенсусу.
+**Суть:** Створення "Цифрового Левіафана". Система як інструмент соціального та
+економічного консенсусу.
 
 - **Ядро:** Криптографічний шлюз `GATE.ts`, транзакційна цілісність.
 - **Механіка:**
@@ -29,11 +29,10 @@ memory, consensus, and autonomy can emerge as protocol.
 
 - **Ядро:** Binary Quantization (64-bit logic) + Просторові хеші.
 - **Механіка:**
-  - `HEBB / FIRE` — вузли, що часто запитуються, зміцнюють зв'язки
-    (синапси).
+  - `HEBB / FIRE` — вузли, що часто запитуються, зміцнюють зв'язки (синапси).
   - `DECAY` — втрата енергії (забування) неактуальних даних.
-- **Мета:** Створення "Сяйва" (Prime Radiant) — бази знань, що еволюціонує
-  разом із запитами ШІ.
+- **Мета:** Створення "Сяйва" (Prime Radiant) — бази знань, що еволюціонує разом
+  із запитами ШІ.
 
 ## 3. Траєкторія: "Responsible Autonomy" (AI Sandbox)
 
@@ -45,18 +44,18 @@ memory, consensus, and autonomy can emerge as protocol.
 - **Механіка:**
   - `SYS_CALL` — єдиний шлях взаємодії агента із зовнішнім світом.
   - `ENERGY_CAP` — обмеження обчислювальної складності (Gas).
-- **Мета:** Протокол, де агенти можуть торгувати та діяти, не порушуючи
-  законів "фізики" системи.
+- **Мета:** Протокол, де агенти можуть торгувати та діяти, не порушуючи законів
+  "фізики" системи.
 
 ## 4. Траєкторія: "Alife Engine" (Emergent Complexity)
 
-**Суть:** Справжня еволюція. Тут захардкоджена біологія прибирається, а її
-місце займає нижчий математичний субстрат.
+**Суть:** Справжня еволюція. Тут захардкоджена біологія прибирається, а її місце
+займає нижчий математичний субстрат.
 
 ### 🦀 Пропозиція базових Rust-функцій (Low-level Substrate)
 
-Щоб реалізувати ідею "холодного субстрату", базові доменні дії на кшталт
-`EAT` та `MOVE` замінюються низькорівневими примітивами в `LAMBDA_VM_v2.rs`:
+Щоб реалізувати ідею "холодного субстрату", базові доменні дії на кшталт `EAT`
+та `MOVE` замінюються низькорівневими примітивами в `LAMBDA_VM_v2.rs`:
 
 ```rust
 pub enum SigmaOp {
@@ -88,8 +87,8 @@ pub enum SigmaOp {
    копіювання спрацював `Mutate`, виникає еволюційне відхилення.
 2. **Податки через Transfer:** У гілці "Sovereignty" скрипт просто викликає
    `Transfer` до адреси Скарбниці.
-3. **Сенс через Attract:** Атоми не просто плавають на екрані, а
-   притягуються до вузлів зі схожим вектором знань.
+3. **Сенс через Attract:** Атоми не просто плавають на екрані, а притягуються до
+   вузлів зі схожим вектором знань.
 
 ## Roadmap 2.0 "Деструкції"
 

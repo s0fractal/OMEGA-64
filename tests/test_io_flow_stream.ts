@@ -8,7 +8,11 @@ import { IO_FLOW_IO_FLOW as IO_FLOW } from "@omega";
 import { O_STREAM_STORE_O_STREAM_STORE as O_STREAM_STORE } from "@omega";
 import { O_STREAM_ADAPTER_O_STREAM_ADAPTER as O_STREAM_ADAPTER } from "@omega";
 import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
-import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type {
+  STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
+  STATE_SNAPSHOT_GateConfig as GateConfig,
+  STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
+} from "@omega";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,
@@ -50,7 +54,10 @@ Deno.test("io flow reads O stream and collapses via gate", async () => {
 
   await Deno.remove(tempStream).catch(() => {});
   try {
-    await O_STREAM_APPEND(proposal(genesis.tick, genesis.state_hash), tempStream);
+    await O_STREAM_APPEND(
+      proposal(genesis.tick, genesis.state_hash),
+      tempStream,
+    );
     const stream = await O_STREAM_STORE.read(tempStream);
     const output = await IO_FLOW({
       state: genesis,

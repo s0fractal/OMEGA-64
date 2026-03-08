@@ -148,7 +148,11 @@ const currentLedgerValue = (
       };
     case "pulse.homeostasis.baseTax":
       return {
-        currentValue: clamp(input.homeostasis.baseTaxCurrent, entry.min, entry.max),
+        currentValue: clamp(
+          input.homeostasis.baseTaxCurrent,
+          entry.min,
+          entry.max,
+        ),
         currentSource: "runtime",
       };
     case "pulse.pressureRing.scale":

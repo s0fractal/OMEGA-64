@@ -6,15 +6,35 @@
 
 export const GLYPH = {
   // Core
-  S: 0, K: 1, I: 2, Y: 3,
+  S: 0,
+  K: 1,
+  I: 2,
+  Y: 3,
   // Control
-  SET: 8, GET: 9, PUT: 10, ADD: 11, SUB: 12, JNZ: 13, JMP: 14, JZ: 15,
+  SET: 8,
+  GET: 9,
+  PUT: 10,
+  ADD: 11,
+  SUB: 12,
+  JNZ: 13,
+  JMP: 14,
+  JZ: 15,
   // Transport
-  REPLICATE: 16, SIGNAL: 17, SHARE: 18, BIND: 19, SPORE_DRIVE: 20, ENTANGLE: 21,
+  REPLICATE: 16,
+  SIGNAL: 17,
+  SHARE: 18,
+  BIND: 19,
+  SPORE_DRIVE: 20,
+  ENTANGLE: 21,
   // Structural
-  PLUG: 24, TENSEGRITY: 25, BUILD: 26, SENSE: 27,
+  PLUG: 24,
+  TENSEGRITY: 25,
+  BUILD: 26,
+  SENSE: 27,
   // Catalytic
-  COLLECTIVE: 32, ROLE: 33, RESOLVE: 34,
+  COLLECTIVE: 32,
+  ROLE: 33,
+  RESOLVE: 34,
 };
 
 export type RolePreamble = {
@@ -33,7 +53,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    */
   "guardian_base": [
     GLYPH.SIGNAL, // Emit pheromone (Legacy OP_SIGNAL)
-    GLYPH.I       // No-op return
+    GLYPH.I, // No-op return
   ],
 
   /**
@@ -41,8 +61,11 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [
-    GLYPH.COLLECTIVE, 7, 100, 200, // Mode 7 (PLASMID_EMIT), intensity=100, type=200
-    GLYPH.I
+    GLYPH.COLLECTIVE,
+    7,
+    100,
+    200, // Mode 7 (PLASMID_EMIT), intensity=100, type=200
+    GLYPH.I,
   ],
 
   /**
@@ -51,7 +74,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    */
   "replicator_base": [
     GLYPH.REPLICATE,
-    GLYPH.I
+    GLYPH.I,
   ],
 
   /**
@@ -59,11 +82,17 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * A program demonstrating control flow via JNZ.
    */
   "stability_loop": [
-    GLYPH.SET, 0, 10,   // R0 = 10 (Counter)
+    GLYPH.SET,
+    0,
+    10, // R0 = 10 (Counter)
     // Label 0x03
-    GLYPH.SIGNAL,       // Pulse
-    GLYPH.SUB, 0, 1,    // R0--
-    GLYPH.JNZ, 0, 3,    // If R0 != 0, jump back to signaling
-    GLYPH.I
-  ]
+    GLYPH.SIGNAL, // Pulse
+    GLYPH.SUB,
+    0,
+    1, // R0--
+    GLYPH.JNZ,
+    0,
+    3, // If R0 != 0, jump back to signaling
+    GLYPH.I,
+  ],
 };

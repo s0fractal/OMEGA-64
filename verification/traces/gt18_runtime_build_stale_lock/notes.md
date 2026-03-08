@@ -1,7 +1,9 @@
 # gt18_runtime_build_stale_lock
 
 - scenario: runtime structure build stale-lock fallback
-- setup: worker-backed deterministic subprocess capture of a single architect attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent through PULSE.tick
+- setup: worker-backed deterministic subprocess capture of a single architect
+  attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent
+  through PULSE.tick
 - duration: 1 pulse tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: worker-runtime-structure-build-stale-lock-capture

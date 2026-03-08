@@ -60,7 +60,10 @@ export const IO_FLOW_SIGNAL_WATCH = async (args: string[]): Promise<void> => {
   };
 
   await runOnce();
-  setInterval(runOnce, Number.isFinite(parsed.interval) ? parsed.interval : 3000);
+  setInterval(
+    runOnce,
+    Number.isFinite(parsed.interval) ? parsed.interval : 3000,
+  );
 };
 
 if (import.meta.main) {

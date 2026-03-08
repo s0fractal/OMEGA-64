@@ -9,9 +9,13 @@ const DEFAULT_ALLOWED = ["_.ts", "_.yaml"];
 async function loadAllowedFromFirewall(): Promise<string[]> {
   try {
     const rawText = await Deno.readTextFile(`${ROOT}/8/2/CODEX_RULES/_.yaml`);
-    const raw = parseYaml(rawText) as { rules?: Array<Record<string, unknown>> };
+    const raw = parseYaml(rawText) as {
+      rules?: Array<Record<string, unknown>>;
+    };
     const rules = Array.isArray(raw?.rules) ? raw.rules : [];
-    const canonRule = rules.find((r) => r?.id === "CANON_FILENAMES" && r?.status === "ACTIVE");
+    const canonRule = rules.find((r) =>
+      r?.id === "CANON_FILENAMES" && r?.status === "ACTIVE"
+    );
     if (canonRule && Array.isArray((canonRule as { allow?: unknown }).allow)) {
       const allow = (canonRule as { allow?: unknown }).allow as unknown[];
       const filtered = allow.filter((v): v is string => typeof v === "string");

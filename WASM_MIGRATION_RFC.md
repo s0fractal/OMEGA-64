@@ -4,8 +4,9 @@
 
 Currently, OMEGA-64's `LAMBDA_VM.ts` executes in the V8 JS engine using
 TypeScript. While Deno is fast, executing complex 16-register bytecode for
->50,000 atoms per pulse (`PULSE_WORKER.ts`) creates a significant CPU
-bottleneck.
+
+> 50,000 atoms per pulse (`PULSE_WORKER.ts`) creates a significant CPU
+> bottleneck.
 
 This RFC proposes migrating the core `LAMBDA_VM` and potentially physics
 calculations to a **WebAssembly (Wasm) module written in Rust**. This will

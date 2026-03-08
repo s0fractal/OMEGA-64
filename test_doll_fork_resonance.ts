@@ -19,7 +19,9 @@ async function testDollForkResonance() {
   // 2. Fork from Mainline
   fork.forkFromMainline();
   const initialMetrics = fork.getMetrics();
-  LOGGER.info(`[TEST] Forked from mainline. Population: ${initialMetrics.activePopulation}`);
+  LOGGER.info(
+    `[TEST] Forked from mainline. Population: ${initialMetrics.activePopulation}`,
+  );
 
   // 3. Seed some shadow content if mainline is empty (for testing)
   if (initialMetrics.activePopulation === 0) {
@@ -35,18 +37,28 @@ async function testDollForkResonance() {
   LOGGER.info("[TEST] Running 5 shadow ticks...");
   for (let i = 1; i <= 5; i++) {
     await runner.runShadowTick(i);
-    LOGGER.info(`[TEST] Shadow Tick ${i} complete. Atom 0 Energy: ${fork.views.energies[0]}, Resonance: ${fork.views.resonances[0]}`);
+    LOGGER.info(
+      `[TEST] Shadow Tick ${i} complete. Atom 0 Energy: ${
+        fork.views.energies[0]
+      }, Resonance: ${fork.views.resonances[0]}`,
+    );
   }
 
   const finalMetrics = fork.getMetrics();
-  LOGGER.info(`[TEST] Shadow ticks complete. Final population: ${finalMetrics.activePopulation}`);
+  LOGGER.info(
+    `[TEST] Shadow ticks complete. Final population: ${finalMetrics.activePopulation}`,
+  );
 
   // 5. Cultivate Relics
   const relics = cultivator.cultivateRelics(5);
   LOGGER.info(`[TEST] Cultivated ${relics.length} relics.`);
 
   // 6. Verification
-  assertEquals(relics.length > 0, true, "Should have cultivated at least one relic from seeded data");
+  assertEquals(
+    relics.length > 0,
+    true,
+    "Should have cultivated at least one relic from seeded data",
+  );
   LOGGER.info("[TEST] Relic extraction verified.");
 
   // 7. Cleanup/Persist (optional for test)

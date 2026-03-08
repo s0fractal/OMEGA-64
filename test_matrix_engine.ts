@@ -9,12 +9,12 @@ const structureGrid = new Int32Array(GRID_W * GRID_H);
 
 // Helper to set structure
 function setStructure(x: number, y: number, type: number, density: number) {
-    structureGrid[y * GRID_W + x] = (density << 8) | type;
+  structureGrid[y * GRID_W + x] = (density << 8) | type;
 }
 
 // Helper to get signal
 function getSignal(x: number, y: number) {
-    return signalGrid[y * GRID_W + x];
+  return signalGrid[y * GRID_W + x];
 }
 
 console.log("💎 Testing MATRIX_ENGINE...");
@@ -44,21 +44,27 @@ console.log("✅ Conduction test passed.");
 
 // Test 2: AND Gate (Density 52 % 3 == 1)
 // Center at (20, 20), AND gate.
-setStructure(20, 20, 1, 52); 
+setStructure(20, 20, 1, 52);
 // Inputs at (19, 20) and (20, 19). Both OR wires (51).
 setStructure(19, 20, 1, 51);
 setStructure(20, 19, 1, 51);
 
 MATRIX_ENGINE.injectSpark(signalGrid, 19, 20); // Only 1 input fires
 MATRIX_ENGINE.tick(signalGrid, structureGrid);
-console.assert(getSignal(20, 20) === 0, "AND gate fired incorrectly with 1 input");
+console.assert(
+  getSignal(20, 20) === 0,
+  "AND gate fired incorrectly with 1 input",
+);
 
 // Refractory period resets... Let's just manually clear signalGrid around there
 signalGrid.fill(0);
 MATRIX_ENGINE.injectSpark(signalGrid, 19, 20);
 MATRIX_ENGINE.injectSpark(signalGrid, 20, 19); // Both inputs fire
 MATRIX_ENGINE.tick(signalGrid, structureGrid);
-console.assert(getSignal(20, 20) === 255, "AND gate failed to fire with 2 inputs");
+console.assert(
+  getSignal(20, 20) === 255,
+  "AND gate failed to fire with 2 inputs",
+);
 
 console.log("✅ AND Gate test passed.");
 
@@ -70,13 +76,19 @@ setStructure(30, 29, 1, 51);
 signalGrid.fill(0);
 MATRIX_ENGINE.injectSpark(signalGrid, 29, 30); // 1 input
 MATRIX_ENGINE.tick(signalGrid, structureGrid);
-console.assert(getSignal(30, 30) === 255, "XOR gate failed to fire with 1 input");
+console.assert(
+  getSignal(30, 30) === 255,
+  "XOR gate failed to fire with 1 input",
+);
 
 signalGrid.fill(0);
 MATRIX_ENGINE.injectSpark(signalGrid, 29, 30); // 2 inputs
 MATRIX_ENGINE.injectSpark(signalGrid, 30, 29);
 MATRIX_ENGINE.tick(signalGrid, structureGrid);
-console.assert(getSignal(30, 30) === 0, "XOR gate fired incorrectly with 2 inputs");
+console.assert(
+  getSignal(30, 30) === 0,
+  "XOR gate fired incorrectly with 2 inputs",
+);
 
 console.log("✅ XOR Gate test passed.");
 

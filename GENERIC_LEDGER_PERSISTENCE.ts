@@ -1,11 +1,11 @@
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
   type LedgerRuntimeEvent,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 import { type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
 
@@ -167,7 +167,8 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
     if (!(err instanceof Deno.errors.NotFound)) throw err;
   }
 
-  let state = snapshotRecord?.state ?? createLedgerRuntime(key, options.initialValue, options.historyLimit);
+  let state = snapshotRecord?.state ??
+    createLedgerRuntime(key, options.initialValue, options.historyLimit);
   let hydrationError: string | null = null;
   try {
     for (const record of records) {
@@ -187,7 +188,8 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
     snapshotExists: snapshotRecord !== null,
     recordCount: (snapshotRecord?.representedRecordCount ?? 0) + records.length,
     applyCount: (snapshotRecord?.representedApplyCount ?? 0) + applyCount,
-    rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) + rollbackCount,
+    rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
+      rollbackCount,
     tailRecordCount: records.length,
     tailApplyCount: applyCount,
     tailRollbackCount: rollbackCount,

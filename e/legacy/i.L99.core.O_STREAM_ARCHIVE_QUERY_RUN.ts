@@ -11,7 +11,9 @@ const usage = (): string =>
     "  deno run -A i.L99.core.O_STREAM_ARCHIVE_QUERY_RUN.ts --archive <archive.jsonl> --index <index.json> --id <proposal_id> [--pretty]",
   ].join("\n");
 
-export const O_STREAM_ARCHIVE_QUERY_RUN = async (args: string[]): Promise<void> => {
+export const O_STREAM_ARCHIVE_QUERY_RUN = async (
+  args: string[],
+): Promise<void> => {
   const parsed = {
     archive: undefined as string | undefined,
     index: undefined as string | undefined,

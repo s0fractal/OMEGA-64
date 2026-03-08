@@ -100,7 +100,9 @@ const main = () => {
     "[golden_trace_catalog] gt17 must be daemon-off",
   );
 
-  const runtimeBuildStaleLock = goldenTraceById("gt18_runtime_build_stale_lock");
+  const runtimeBuildStaleLock = goldenTraceById(
+    "gt18_runtime_build_stale_lock",
+  );
   expect(
     runtimeBuildStaleLock?.daemonEnabled === false,
     "[golden_trace_catalog] gt18 must be daemon-off",

@@ -1,4 +1,7 @@
-import { ADMISSION_SHADOW_CASES, admissionShadowCaseById } from "./verification/admission_shadow_cases.ts";
+import {
+  ADMISSION_SHADOW_CASES,
+  admissionShadowCaseById,
+} from "./verification/admission_shadow_cases.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
@@ -10,7 +13,9 @@ const main = () => {
     "[admission_shadow_cases] expected 4 initial admission shadow cases",
   );
 
-  const ids = new Set(ADMISSION_SHADOW_CASES.map((definition) => definition.id));
+  const ids = new Set(
+    ADMISSION_SHADOW_CASES.map((definition) => definition.id),
+  );
   expect(
     ids.size === ADMISSION_SHADOW_CASES.length,
     "[admission_shadow_cases] ids must be unique",
@@ -28,7 +33,8 @@ const main = () => {
       `[admission_shadow_cases] population must be positive for ${definition.id}`,
     );
     expect(
-      Number.isFinite(definition.metrics.avgEnergy) && definition.metrics.avgEnergy > 0,
+      Number.isFinite(definition.metrics.avgEnergy) &&
+        definition.metrics.avgEnergy > 0,
       `[admission_shadow_cases] avgEnergy must be positive for ${definition.id}`,
     );
     if (definition.envelope.action_type === "INJECT_PLASMID") {

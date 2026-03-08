@@ -12,10 +12,10 @@
  */
 
 import {
+  type DaemonInjectEnvelope,
+  type DaemonNarrativeContext,
   evaluateInvariantAdmission,
   normalizeDaemonNarrativeContext,
-  type DaemonNarrativeContext,
-  type DaemonInjectEnvelope,
 } from "/Users/s0fractal/OMEGA/DAEMON_INGRESS_POLICY.ts";
 
 let passed = 0;
@@ -51,7 +51,12 @@ const baseMetrics = { population: 200, avgEnergy: 50 };
 
 const plasmidEnvelope: DaemonInjectEnvelope = {
   action_type: "INJECT_PLASMID",
-  payload: { target_x: 50, target_y: 50, intensity: 10, hex_code: "0102030405060708" },
+  payload: {
+    target_x: 50,
+    target_y: 50,
+    intensity: 10,
+    hex_code: "0102030405060708",
+  },
 };
 const pheromoneEnvelope: DaemonInjectEnvelope = {
   action_type: "DROP_PHEROMONE",
@@ -86,17 +91,35 @@ assert(
 // Section 2: dormant_baseline — no hormone effect
 // ---
 console.log("\n── Section 2: dormant_baseline Has No Hormone Effect ──");
-const baseResult = evaluateInvariantAdmission(plasmidEnvelope, baseMetrics, baseContext);
-const hasHormoneReason = baseResult.reasons.some((r) => r.startsWith("HORMONE_"));
-assert(!hasHormoneReason, `dormant_baseline produces no HORMONE_ reason, got: ${JSON.stringify(baseResult.reasons)}`);
+const baseResult = evaluateInvariantAdmission(
+  plasmidEnvelope,
+  baseMetrics,
+  baseContext,
+);
+const hasHormoneReason = baseResult.reasons.some((r) =>
+  r.startsWith("HORMONE_")
+);
+assert(
+  !hasHormoneReason,
+  `dormant_baseline produces no HORMONE_ reason, got: ${
+    JSON.stringify(baseResult.reasons)
+  }`,
+);
 
 // ---
 // Section 3: high_entropy adds +1 risk
 // ---
 console.log("\n── Section 3: high_entropy → HORMONE_HIGH_ENTROPY_RISK (+1) ──");
-const highEntropyCtx: DaemonNarrativeContext = { ...baseContext, hormoneRegime: "high_entropy" };
+const highEntropyCtx: DaemonNarrativeContext = {
+  ...baseContext,
+  hormoneRegime: "high_entropy",
+};
 
-const entropyPlasmidResult = evaluateInvariantAdmission(plasmidEnvelope, baseMetrics, highEntropyCtx);
+const entropyPlasmidResult = evaluateInvariantAdmission(
+  plasmidEnvelope,
+  baseMetrics,
+  highEntropyCtx,
+);
 assert(
   entropyPlasmidResult.reasons.includes("HORMONE_HIGH_ENTROPY_RISK"),
   "INJECT_PLASMID + high_entropy includes HORMONE_HIGH_ENTROPY_RISK",
@@ -106,7 +129,11 @@ assert(
   `high_entropy raises score (base=${baseResult.score} → entropy=${entropyPlasmidResult.score})`,
 );
 
-const entropyPheromoneResult = evaluateInvariantAdmission(pheromoneEnvelope, baseMetrics, highEntropyCtx);
+const entropyPheromoneResult = evaluateInvariantAdmission(
+  pheromoneEnvelope,
+  baseMetrics,
+  highEntropyCtx,
+);
 assert(
   entropyPheromoneResult.reasons.includes("HORMONE_HIGH_ENTROPY_RISK"),
   "DROP_PHEROMONE + high_entropy also includes HORMONE_HIGH_ENTROPY_RISK",
@@ -116,16 +143,30 @@ assert(
 // Section 4: aggressive_bloom + INJECT_PLASMID adds +1
 // ---
 console.log("\n── Section 4: aggressive_bloom + INJECT_PLASMID → +1 ──");
-const aggrCtx: DaemonNarrativeContext = { ...baseContext, hormoneRegime: "aggressive_bloom" };
+const aggrCtx: DaemonNarrativeContext = {
+  ...baseContext,
+  hormoneRegime: "aggressive_bloom",
+};
 
-const aggrPlasmidResult = evaluateInvariantAdmission(plasmidEnvelope, baseMetrics, aggrCtx);
+const aggrPlasmidResult = evaluateInvariantAdmission(
+  plasmidEnvelope,
+  baseMetrics,
+  aggrCtx,
+);
 assert(
   aggrPlasmidResult.reasons.includes("HORMONE_AGGRESSIVE_BLOOM_PLASMID"),
   "INJECT_PLASMID + aggressive_bloom includes HORMONE_AGGRESSIVE_BLOOM_PLASMID",
 );
-assert(aggrPlasmidResult.score > baseResult.score, "aggressive_bloom raises plasmid injection score");
+assert(
+  aggrPlasmidResult.score > baseResult.score,
+  "aggressive_bloom raises plasmid injection score",
+);
 
-const aggrPheromoneResult = evaluateInvariantAdmission(pheromoneEnvelope, baseMetrics, aggrCtx);
+const aggrPheromoneResult = evaluateInvariantAdmission(
+  pheromoneEnvelope,
+  baseMetrics,
+  aggrCtx,
+);
 assert(
   !aggrPheromoneResult.reasons.includes("HORMONE_AGGRESSIVE_BLOOM_PLASMID"),
   "DROP_PHEROMONE + aggressive_bloom does NOT trigger HORMONE_AGGRESSIVE_BLOOM_PLASMID",
@@ -134,11 +175,24 @@ assert(
 // ---
 // Section 5: repair_surge + DROP_PHEROMONE gives -1 accept
 // ---
-console.log("\n── Section 5: repair_surge + DROP_PHEROMONE → -1 (accept bonus) ──");
-const repairCtx: DaemonNarrativeContext = { ...baseContext, hormoneRegime: "repair_surge" };
+console.log(
+  "\n── Section 5: repair_surge + DROP_PHEROMONE → -1 (accept bonus) ──",
+);
+const repairCtx: DaemonNarrativeContext = {
+  ...baseContext,
+  hormoneRegime: "repair_surge",
+};
 
-const basePheroResult = evaluateInvariantAdmission(pheromoneEnvelope, baseMetrics, baseContext);
-const repairPheroResult = evaluateInvariantAdmission(pheromoneEnvelope, baseMetrics, repairCtx);
+const basePheroResult = evaluateInvariantAdmission(
+  pheromoneEnvelope,
+  baseMetrics,
+  baseContext,
+);
+const repairPheroResult = evaluateInvariantAdmission(
+  pheromoneEnvelope,
+  baseMetrics,
+  repairCtx,
+);
 assert(
   repairPheroResult.reasons.includes("HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT"),
   "DROP_PHEROMONE + repair_surge includes HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT",
@@ -148,9 +202,15 @@ assert(
   `repair_surge lowers or keeps pheromone score (base=${basePheroResult.score} → repair=${repairPheroResult.score})`,
 );
 
-const repairPlasmidResult = evaluateInvariantAdmission(plasmidEnvelope, baseMetrics, repairCtx);
+const repairPlasmidResult = evaluateInvariantAdmission(
+  plasmidEnvelope,
+  baseMetrics,
+  repairCtx,
+);
 assert(
-  !repairPlasmidResult.reasons.includes("HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT"),
+  !repairPlasmidResult.reasons.includes(
+    "HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT",
+  ),
   "INJECT_PLASMID + repair_surge does NOT trigger HORMONE_REPAIR_SURGE_PHEROMONE_ACCEPT",
 );
 
@@ -159,9 +219,9 @@ assert(
 // ---
 console.log(`\n${"─".repeat(50)}`);
 console.log(
-  `💉 HORMONE DAEMON ADMISSION CONTRACT: ${failed === 0 ? "✅ PASS" : "❌ FAIL"} (${passed}/${
-    passed + failed
-  })`,
+  `💉 HORMONE DAEMON ADMISSION CONTRACT: ${
+    failed === 0 ? "✅ PASS" : "❌ FAIL"
+  } (${passed}/${passed + failed})`,
 );
 if (failed > 0) {
   Deno.exit(1);

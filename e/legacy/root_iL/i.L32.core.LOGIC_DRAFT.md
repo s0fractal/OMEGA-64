@@ -1,12 +1,16 @@
 # i.L32.core.LOGIC_DRAFT.md
+
 # OMEGA-64 | Logic Kernel Draft (Prompt Artifact)
+
 # Status: Noncanonical draft for Deep Think grooming.
 
 Purpose:
+
 - Preserve a high-level prompt for Deep Think optimization.
 - This is not runtime code and must not be executed as canon.
 
 Draft:
+
 ```ts
 /**
  * --- OMEGA-64 | i.L98.core.LOGIC.ts ---
@@ -24,8 +28,8 @@ export type Signature = string;
 export type Timestamp = number;
 
 export interface LatticeState {
-  vector_sum: number;      // Sigma (Σ)
-  entropy: number;         // H
+  vector_sum: number; // Sigma (Σ)
+  entropy: number; // H
   ledger_height: number;
   merkle_root: Hash;
   active_nodes: number;
@@ -52,10 +56,11 @@ export const LATTICE_AXIOMS: Axiom[] = [
   {
     id: "AXIOM_01_ARROW_OF_TIME",
     priority: 0,
-    statement: "Ентропія леджера незворотна. Висота блоку може тільки зростати.",
+    statement:
+      "Ентропія леджера незворотна. Висота блоку може тільки зростати.",
     validate: (prev, next) => {
       return next.ledger_height >= prev.ledger_height;
-    }
+    },
   },
   {
     id: "AXIOM_02_HASH_INTEGRITY",
@@ -65,27 +70,29 @@ export const LATTICE_AXIOMS: Axiom[] = [
       // Тут Deep Think має реалізувати перевірку дерева Меркла
       // Поки що - заглушка, яка вимагає наявності хешу
       return next.merkle_root.length > 0 && next.merkle_root !== "0x00";
-    }
+    },
   },
   {
     id: "AXIOM_03_CONSERVATION_OF_IDENTITY",
     priority: 1,
-    statement: "Вузол не може змінити свій Public Key без повного перезавантаження (Rebirth).",
+    statement:
+      "Вузол не може змінити свій Public Key без повного перезавантаження (Rebirth).",
     validate: (prev, next) => {
       // Логіка перевірки незмінності ідентичності
       return true; // Placeholder
-    }
+    },
   },
   {
     id: "AXIOM_04_CENSORSHIP_RESISTANCE",
     priority: 1,
-    statement: "Валідний пакет (підписаний і оплачений PoW) повинен бути включений в блок за T < MAX_LATENCY.",
+    statement:
+      "Валідний пакет (підписаний і оплачений PoW) повинен бути включений в блок за T < MAX_LATENCY.",
     validate: (prev, next) => {
       // Це аксіома для моніторингу, а не блокування.
       // Якщо вона False -> система сигналізує про атаку.
       return true;
-    }
-  }
+    },
+  },
 ];
 
 // --- 2. THE LOGIC KERNEL (Runtime Enforcement) ---
@@ -101,7 +108,10 @@ export class LogicKernel {
    * Головний метод шлюзу.
    * Deep Think буде оптимізувати саме цей прохід, щоб він був O(1).
    */
-  public attemptMutation(mutation: MutationRequest, predictedState: LatticeState): boolean {
+  public attemptMutation(
+    mutation: MutationRequest,
+    predictedState: LatticeState,
+  ): boolean {
     console.log(`[LOGIC] Verifying Mutation: ${mutation.target_id}`);
 
     // 1. Check Cryptography (Signatures)
@@ -139,6 +149,6 @@ export class LogicKernel {
 export const ORBITAL_CONFIG = {
   version: "0.9.0-Alpha",
   axiom_count: LATTICE_AXIOMS.length,
-  ready_for_deep_think: true
+  ready_for_deep_think: true,
 };
 ```

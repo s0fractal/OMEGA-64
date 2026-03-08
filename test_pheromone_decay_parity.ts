@@ -17,31 +17,41 @@ async function runTest() {
       trace_atom: () => {},
     },
   });
-  
-  const tick_environment = instantiated.instance.exports.tick_environment as (tick: number) => void;
+
+  const tick_environment = instantiated.instance.exports.tick_environment as (
+    tick: number,
+  ) => void;
 
   // 2. Setup initial state in Attention Field (Float32)
   const cellIdx = 1234;
   const initialValue = 100.0;
-  
+
   STATE_MATRIX.clear();
   STATE_MATRIX.attentionField[cellIdx] = initialValue;
 
-  LOGGER.info(`   [PHASE 1] Attention Field before Host Decay: ${STATE_MATRIX.attentionField[cellIdx]}`);
+  LOGGER.info(
+    `   [PHASE 1] Attention Field before Host Decay: ${
+      STATE_MATRIX.attentionField[cellIdx]
+    }`,
+  );
 
   // 3. Perform Host Decay (Legacy)
   const expectedValue = initialValue * 0.90;
   PHYSICS_ENGINE.decayPheromones();
-  
+
   const hostResult = STATE_MATRIX.attentionField[cellIdx];
-  LOGGER.info(`   [PHASE 2] Host Decay Result: ${hostResult} (Expected: ${expectedValue})`);
-  
+  LOGGER.info(
+    `   [PHASE 2] Host Decay Result: ${hostResult} (Expected: ${expectedValue})`,
+  );
+
   // Verify host logic itself works as expected in this test
   assertEquals(hostResult, expectedValue, "Host decay logic mismatch");
 
   // 4. Reset and Perform WASM Decay
   STATE_MATRIX.attentionField[cellIdx] = initialValue;
-  LOGGER.info(`   [PHASE 3] Resetting to ${initialValue} for WASM verification.`);
+  LOGGER.info(
+    `   [PHASE 3] Resetting to ${initialValue} for WASM verification.`,
+  );
 
   // Trigger TICK_ENVIRONMENT directly
   tick_environment(1);
@@ -53,20 +63,30 @@ async function runTest() {
   // We use a small epsilon for float comparison
   const diff = Math.abs(wasmResult - expectedValue);
   if (diff < 0.0001) {
-    LOGGER.info("✅ [SUCCESS] Pheromone Decay Parity Confirmed (Float Precision).");
+    LOGGER.info(
+      "✅ [SUCCESS] Pheromone Decay Parity Confirmed (Float Precision).",
+    );
   } else {
-    LOGGER.error(`❌ [FAILURE] Parity Mismatch! WASM=${wasmResult} Expected=${expectedValue} Diff=${diff}`);
+    LOGGER.error(
+      `❌ [FAILURE] Parity Mismatch! WASM=${wasmResult} Expected=${expectedValue} Diff=${diff}`,
+    );
     throw new Error("Parity Mismatch");
   }
 
   // 6. Test Zeroing logic
   // Our WASM logic has a threshold: if (val < 0.001) val = 0;
-  STATE_MATRIX.attentionField[cellIdx] = 0.0005; 
+  STATE_MATRIX.attentionField[cellIdx] = 0.0005;
   tick_environment(2);
 
   const zeroedResult = STATE_MATRIX.attentionField[cellIdx];
-  LOGGER.info(`   [PHASE 5] Zeroing Test: Input=0.0005 WASM Result=${zeroedResult}`);
-  assertEquals(zeroedResult, 0, "WASM failed to zero out negligible pheromones");
+  LOGGER.info(
+    `   [PHASE 5] Zeroing Test: Input=0.0005 WASM Result=${zeroedResult}`,
+  );
+  assertEquals(
+    zeroedResult,
+    0,
+    "WASM failed to zero out negligible pheromones",
+  );
 
   LOGGER.info("✅ [TEST COMPLETE] All parity checks passed.");
 }

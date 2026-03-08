@@ -168,7 +168,9 @@ const main = async () => {
   }
   if (payload.snapshot.atoms[1]?.reg0 !== HIVE_VALUE) {
     throw new Error(
-      `[collective_transport_capture] load reg0 mismatch: ${payload.snapshot.atoms[1]?.reg0 ?? -1}`,
+      `[collective_transport_capture] load reg0 mismatch: ${
+        payload.snapshot.atoms[1]?.reg0 ?? -1
+      }`,
     );
   }
   if ((payload.snapshot.pheromoneWord & 0xFFFF) !== expectedWord) {

@@ -1,12 +1,12 @@
 import {
+  type DaemonIngressPlan,
+  type DaemonInvariantAdmission,
+  type DaemonNarrativeContext,
   evaluateInvariantAdmission,
   evaluatePlasmidPolicy,
   evaluatePlasmidRisk,
   normalizeDaemonNarrativeContext,
   planInvariantIngress,
-  type DaemonInvariantAdmission,
-  type DaemonIngressPlan,
-  type DaemonNarrativeContext,
   type PlasmidRiskProfile,
 } from "../DAEMON_INGRESS_POLICY.ts";
 import {
@@ -71,7 +71,10 @@ export type AdmissionShadowArtifact = {
 
 const ADMISSION_DIFF_ROOT = "verification/admission_diffs";
 
-const equalStringArray = (a: readonly string[], b: readonly string[]): boolean =>
+const equalStringArray = (
+  a: readonly string[],
+  b: readonly string[],
+): boolean =>
   a.length === b.length && a.every((value, index) => value === b[index]);
 
 const stableStringify = (value: unknown): string => {
@@ -81,12 +84,15 @@ const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
     return `[${value.map((item) => stableStringify(item)).join(",")}]`;
   }
-  const entries = Object.entries(value as Record<string, unknown>).sort(([a], [b]) =>
-    a.localeCompare(b)
-  );
-  return `{${entries.map(([key, item]) =>
-    `${JSON.stringify(key)}:${stableStringify(item)}`
-  ).join(",")}}`;
+  const entries = Object.entries(value as Record<string, unknown>).sort((
+    [a],
+    [b],
+  ) => a.localeCompare(b));
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
 };
 
 const sha256Hex = async (value: unknown): Promise<string> => {
@@ -124,9 +130,10 @@ const normalizeResponse = (
   degraded: boolean;
   degradeReason: string | null;
 } => {
-  const admissionRoot = response.admission && typeof response.admission === "object"
-    ? response.admission as Record<string, unknown>
-    : {};
+  const admissionRoot =
+    response.admission && typeof response.admission === "object"
+      ? response.admission as Record<string, unknown>
+      : {};
   const latestAdmissionRoot =
     response.latest_admission && typeof response.latest_admission === "object"
       ? response.latest_admission as Record<string, unknown>
@@ -134,12 +141,14 @@ const normalizeResponse = (
   const admissionLike = Object.keys(admissionRoot).length > 0
     ? admissionRoot
     : latestAdmissionRoot;
-  const contextRoot = admissionLike.context && typeof admissionLike.context === "object"
-    ? admissionLike.context as Record<string, unknown>
-    : {};
-  const plasmidRisk = response.plasmid_risk && typeof response.plasmid_risk === "object"
-    ? response.plasmid_risk as Record<string, unknown>
-    : null;
+  const contextRoot =
+    admissionLike.context && typeof admissionLike.context === "object"
+      ? admissionLike.context as Record<string, unknown>
+      : {};
+  const plasmidRisk =
+    response.plasmid_risk && typeof response.plasmid_risk === "object"
+      ? response.plasmid_risk as Record<string, unknown>
+      : null;
   return {
     policyOk: typeof response.ok === "boolean" ? response.ok : null,
     policyReason: typeof response.reason === "string" ? response.reason : null,
@@ -160,10 +169,14 @@ const normalizeResponse = (
         : "UNKNOWN",
       score: typeof admissionLike.score === "number" ? admissionLike.score : -1,
       reasons: Array.isArray(admissionLike.reasons)
-        ? admissionLike.reasons.filter((item): item is string => typeof item === "string")
+        ? admissionLike.reasons.filter((item): item is string =>
+          typeof item === "string"
+        )
         : [],
       context: {
-        mood: typeof contextRoot.mood === "string" ? contextRoot.mood : "UNKNOWN",
+        mood: typeof contextRoot.mood === "string"
+          ? contextRoot.mood
+          : "UNKNOWN",
         sharedCenter: typeof contextRoot.sharedCenter === "string"
           ? contextRoot.sharedCenter
           : "unknown",
@@ -180,9 +193,9 @@ const normalizeResponse = (
             : -1,
         codexLineageGuardReasons:
           Array.isArray(contextRoot.codexLineageGuardReasons)
-            ? contextRoot.codexLineageGuardReasons.filter((item): item is string =>
-              typeof item === "string"
-            )
+            ? contextRoot.codexLineageGuardReasons.filter((
+              item,
+            ): item is string => typeof item === "string")
             : [],
       },
     },
@@ -191,7 +204,8 @@ const normalizeResponse = (
       : typeof latestAdmissionRoot.appliedAction === "string"
       ? latestAdmissionRoot.appliedAction
       : "UNKNOWN",
-    degraded: response.degraded === true || latestAdmissionRoot.degraded === true,
+    degraded: response.degraded === true ||
+      latestAdmissionRoot.degraded === true,
     degradeReason: typeof response.degrade_reason === "string"
       ? response.degrade_reason
       : typeof latestAdmissionRoot.reason === "string" &&
@@ -316,41 +330,63 @@ const compareToBaseline = (
     );
   }
   if (riskLevel !== expected.plasmidRiskLevel) {
-    reasons.push(`expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`);
+    reasons.push(
+      `expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`,
+    );
   }
   if (riskScore !== expected.plasmidRiskScore) {
-    reasons.push(`expected riskScore=${expected.plasmidRiskScore} got=${riskScore}`);
+    reasons.push(
+      `expected riskScore=${expected.plasmidRiskScore} got=${riskScore}`,
+    );
   }
   if (riskOpcode !== expected.plasmidRiskOpcode) {
-    reasons.push(`expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`);
+    reasons.push(
+      `expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`,
+    );
   }
   if ((shadow.admission?.severity ?? null) !== expected.severity) {
     reasons.push(
-      `expected severity=${expected.severity} got=${shadow.admission?.severity ?? null}`,
+      `expected severity=${expected.severity} got=${
+        shadow.admission?.severity ?? null
+      }`,
     );
   }
   if ((shadow.admission?.score ?? null) !== expected.score) {
-    reasons.push(`expected score=${expected.score} got=${shadow.admission?.score ?? null}`);
+    reasons.push(
+      `expected score=${expected.score} got=${shadow.admission?.score ?? null}`,
+    );
   }
   if (!equalStringArray(shadow.admission?.reasons ?? [], expected.reasons)) {
     reasons.push("expected reasons mismatch");
   }
-  if ((shadow.plan?.applied.action_type ?? "BLOCKED") !== expected.appliedAction) {
+  if (
+    (shadow.plan?.applied.action_type ?? "BLOCKED") !== expected.appliedAction
+  ) {
     reasons.push(
-      `expected appliedAction=${expected.appliedAction} got=${shadow.plan?.applied.action_type ?? "BLOCKED"}`,
+      `expected appliedAction=${expected.appliedAction} got=${
+        shadow.plan?.applied.action_type ?? "BLOCKED"
+      }`,
     );
   }
   if ((shadow.plan?.degraded ?? null) !== expected.degraded) {
-    reasons.push(`expected degraded=${expected.degraded} got=${shadow.plan?.degraded ?? null}`);
+    reasons.push(
+      `expected degraded=${expected.degraded} got=${
+        shadow.plan?.degraded ?? null
+      }`,
+    );
   }
   if ((shadow.plan?.degradeReason ?? null) !== expected.degradeReason) {
     reasons.push(
-      `expected degradeReason=${expected.degradeReason} got=${shadow.plan?.degradeReason ?? null}`,
+      `expected degradeReason=${expected.degradeReason} got=${
+        shadow.plan?.degradeReason ?? null
+      }`,
     );
   }
   if (shadow.blocked) {
     if (baselineResponse.policyOk !== policyOk) {
-      reasons.push(`baseline policyOk=${baselineResponse.policyOk} shadow=${policyOk}`);
+      reasons.push(
+        `baseline policyOk=${baselineResponse.policyOk} shadow=${policyOk}`,
+      );
     }
     if (baselineResponse.policyReason !== policyReason) {
       reasons.push(
@@ -365,10 +401,14 @@ const compareToBaseline = (
     return { ok: reasons.length === 0, reasons };
   }
   if (baselineResponse.risk.level !== riskLevel) {
-    reasons.push(`baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`);
+    reasons.push(
+      `baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`,
+    );
   }
   if (baselineResponse.risk.score !== riskScore) {
-    reasons.push(`baseline riskScore=${baselineResponse.risk.score} shadow=${riskScore}`);
+    reasons.push(
+      `baseline riskScore=${baselineResponse.risk.score} shadow=${riskScore}`,
+    );
   }
   if (baselineResponse.risk.opcode !== riskOpcode) {
     reasons.push(
@@ -385,7 +425,12 @@ const compareToBaseline = (
       `baseline score=${baselineResponse.admission.score} shadow=${shadow.admission.score}`,
     );
   }
-  if (!equalStringArray(baselineResponse.admission.reasons, shadow.admission.reasons)) {
+  if (
+    !equalStringArray(
+      baselineResponse.admission.reasons,
+      shadow.admission.reasons,
+    )
+  ) {
     reasons.push("baseline reasons mismatch");
   }
   if (baselineResponse.appliedAction !== shadow.plan.applied.action_type) {
@@ -403,7 +448,10 @@ const compareToBaseline = (
       `baseline degradeReason=${baselineResponse.degradeReason} shadow=${shadow.plan.degradeReason}`,
     );
   }
-  if (baselineResponse.admission.context.sharedCenter !== shadow.context.sharedCenter) {
+  if (
+    baselineResponse.admission.context.sharedCenter !==
+      shadow.context.sharedCenter
+  ) {
     reasons.push("baseline sharedCenter mismatch");
   }
   if (
@@ -412,7 +460,10 @@ const compareToBaseline = (
   ) {
     reasons.push("baseline dominantInvariantVector mismatch");
   }
-  if (baselineResponse.admission.context.codexLineageLabel !== shadow.context.codexLineageLabel) {
+  if (
+    baselineResponse.admission.context.codexLineageLabel !==
+      shadow.context.codexLineageLabel
+  ) {
     reasons.push("baseline codexLineageLabel mismatch");
   }
   if (
@@ -466,34 +517,36 @@ const artifactForResult = async (
         ? definition.expected.plasmidRiskLevel === null &&
           definition.expected.plasmidRiskScore === null &&
           definition.expected.plasmidRiskOpcode === null
-        :
-        normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
-        normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
-        normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
+        : normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
+          normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
+          normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
       severity_match: blocked
         ? definition.expected.severity === null
-        : normalizedBaseline.admission.severity === (shadow.admission?.severity ?? "UNKNOWN"),
+        : normalizedBaseline.admission.severity ===
+          (shadow.admission?.severity ?? "UNKNOWN"),
       score_match: blocked
         ? definition.expected.score === null
-        : normalizedBaseline.admission.score === (shadow.admission?.score ?? -1),
+        : normalizedBaseline.admission.score ===
+          (shadow.admission?.score ?? -1),
       reasons_match: blocked
         ? equalStringArray(definition.expected.reasons, [])
         : equalStringArray(
           normalizedBaseline.admission.reasons,
           shadow.admission?.reasons ?? [],
         ),
-      applied_action_match:
-        normalizedBaseline.appliedAction === (shadow.plan?.applied.action_type ?? "BLOCKED"),
+      applied_action_match: normalizedBaseline.appliedAction ===
+        (shadow.plan?.applied.action_type ?? "BLOCKED"),
       degraded_match: blocked
         ? definition.expected.degraded === null
         : normalizedBaseline.degraded === (shadow.plan?.degraded ?? false),
-      degrade_reason_match:
-        blocked
-          ? definition.expected.degradeReason === null
-          : normalizedBaseline.degradeReason === (shadow.plan?.degradeReason ?? null),
+      degrade_reason_match: blocked
+        ? definition.expected.degradeReason === null
+        : normalizedBaseline.degradeReason ===
+          (shadow.plan?.degradeReason ?? null),
       context_match: blocked
         ? true
-        : normalizedBaseline.admission.context.sharedCenter === shadow.context.sharedCenter &&
+        : normalizedBaseline.admission.context.sharedCenter ===
+            shadow.context.sharedCenter &&
           normalizedBaseline.admission.context.dominantInvariantVector ===
             shadow.context.dominantInvariantVector &&
           normalizedBaseline.admission.context.codexLineageLabel ===
@@ -514,9 +567,13 @@ export const writeAdmissionHarnessArtifacts = async (
 ): Promise<void> => {
   await Deno.mkdir(ADMISSION_DIFF_ROOT, { recursive: true });
   for (const result of results) {
-    const definition = ADMISSION_SHADOW_CASES.find((item) => item.id === result.caseId);
+    const definition = ADMISSION_SHADOW_CASES.find((item) =>
+      item.id === result.caseId
+    );
     if (!definition) {
-      throw new Error(`[admission_shadow] missing case definition for ${result.caseId}`);
+      throw new Error(
+        `[admission_shadow] missing case definition for ${result.caseId}`,
+      );
     }
     const baseline = await loadBaselineAnchor(definition);
     const artifact = await artifactForResult(
@@ -531,7 +588,9 @@ export const writeAdmissionHarnessArtifacts = async (
   }
 };
 
-export const runAdmissionShadowHarness = async (): Promise<AdmissionShadowResult[]> => {
+export const runAdmissionShadowHarness = async (): Promise<
+  AdmissionShadowResult[]
+> => {
   const results: AdmissionShadowResult[] = [];
   for (const definition of ADMISSION_SHADOW_CASES) {
     const baseline = await loadBaselineAnchor(definition);

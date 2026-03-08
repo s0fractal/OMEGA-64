@@ -1,4 +1,9 @@
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "./OFFSETS.ts";
+import {
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
+  SECRETION_STATS_OFFSET,
+} from "./OFFSETS.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const GLYPH_KIND_MASK = 0xFF;
@@ -13,7 +18,9 @@ export const GLYPH_KIND = {
   PLASMID: 2,
 } as const;
 
-console.log(`[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`);
+console.log(
+  `[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`,
+);
 const secretionStatsView = new Int32Array(
   STATE_MATRIX.buffer,
   SECRETION_STATS_OFFSET,
@@ -76,7 +83,10 @@ const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
 const lastAtomRolePheromone = createRoleCounters();
 const lastAtomRolePlasmid = createRoleCounters();
 
-const incrementRoleCounter = (counters: GlyphRoleCounters, role: number): void => {
+const incrementRoleCounter = (
+  counters: GlyphRoleCounters,
+  role: number,
+): void => {
   if (role === STATE_MATRIX.ROLE_PRODUCER) {
     counters.producer++;
     return;
@@ -232,8 +242,10 @@ export const GLYPH_BUFFER = {
     const mArchitect = Atomics.load(secretionStatsView, 8);
     const mParasite = Atomics.load(secretionStatsView, 9);
 
-    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
-    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect +
+      pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect +
+      mParasite;
 
     const signalLeak = Atomics.load(secretionStatsView, 10);
     const memoryLeak = Atomics.load(secretionStatsView, 11);

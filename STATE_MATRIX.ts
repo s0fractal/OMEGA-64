@@ -194,8 +194,16 @@ const neuralCoherence = new Int32Array(
   1,
 );
 const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
-const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
-const mailboxes = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
+const lineage = new BigUint64Array(
+  sharedBuffer,
+  OFFSETS.LINEAGE_OFFSET,
+  MAX_ATOMS,
+);
+const mailboxes = new Int32Array(
+  sharedBuffer,
+  OFFSETS.MAILBOX_OFFSET,
+  MAX_ATOMS * 2,
+);
 
 const instructions = new Uint8Array(
   sharedBuffer,
@@ -263,7 +271,7 @@ export const RISC = {
   OP_JZ: 0x10,
   OP_JNZ: 0x11,
   OP_JMP: 0x12,
-  
+
   // Legacy biological opcodes (for tests and bridge reductions)
   OP_REPLICATE: 0x80,
   OP_SIGNAL: 0x81,
@@ -278,8 +286,8 @@ export const RISC = {
   OP_SPORE_DRIVE: 0xA8,
   OP_WISDOM: 0xA9,
   OP_RESONATE: 0xAE,
-  
-  // Universal Syscall Interface 
+
+  // Universal Syscall Interface
   OP_SYSCALL: 0x60, // The only way an atom should interact with the world
 
   // Data properties
@@ -309,6 +317,9 @@ export const SYS = {
   TRANSFER: 0x0A,
   REPLICATE: 0x0B,
   EMIT: 0x0C,
+  SCAN: 0x0D,
+  MOVE: 0x0E,
+  EAT: 0x0F,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
@@ -320,7 +331,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
   boot[4] = 1;
   boot[5] = SYS.YIELD;
   boot[6] = RISC.OP_SYSCALL; // Expects R0=syscall (we used R1 here... wait, SYS expects R0)
-  
+
   // Let's rewrite it properly for the ABI:
   // R0 = SYS.YIELD
   // SYSCALL
@@ -466,8 +477,10 @@ export const STATE_MATRIX = {
     Atomics.store(bondDistances, i * 4 + slot, val),
   setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
   setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
-  setMailboxMsgType: (i: number, val: number) => Atomics.store(mailboxes, i * 2, val),
-  setMailboxPayload: (i: number, val: number) => Atomics.store(mailboxes, i * 2 + 1, val),
+  setMailboxMsgType: (i: number, val: number) =>
+    Atomics.store(mailboxes, i * 2, val),
+  setMailboxPayload: (i: number, val: number) =>
+    Atomics.store(mailboxes, i * 2 + 1, val),
 
   setInstructions: (i: number, val: Uint8Array) =>
     instructions.set(val, i * 64),
@@ -493,7 +506,7 @@ export const STATE_MATRIX = {
     return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
   },
   clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
-  
+
   recycleAtom: (i: number) => {
     Atomics.store(ids, i, 0n);
     Atomics.store(energies, i, 0);
@@ -737,7 +750,8 @@ export const STATE_MATRIX = {
     Atomics.or(structureGrid, i, (val & 0xFF) << 24);
   },
   getCausality: (idx: number) => Atomics.load(causality, idx),
-  setCausality: (idx: number, val: number) => Atomics.store(causality, idx, val),
+  setCausality: (idx: number, val: number) =>
+    Atomics.store(causality, idx, val),
   clearDamping: () => damping.fill(0),
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),

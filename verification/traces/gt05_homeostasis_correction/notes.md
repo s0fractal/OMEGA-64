@@ -23,4 +23,5 @@
 
 ## Actions
 
-- tick=256 kind=HOMEOSTASIS_UPDATE responseDigest=97b4528315c05e7f1bb9ffdd270a30ffe8bb76e2eff12e5d0b6eb778d764ef5c
+- tick=256 kind=HOMEOSTASIS_UPDATE
+  responseDigest=97b4528315c05e7f1bb9ffdd270a30ffe8bb76e2eff12e5d0b6eb778d764ef5c

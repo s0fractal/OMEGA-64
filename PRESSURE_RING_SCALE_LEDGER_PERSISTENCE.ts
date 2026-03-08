@@ -1,11 +1,11 @@
 import {
   applyPressureRingScaleLedgerRuntimeUpdate,
   createPressureRingScaleLedgerRuntime,
-  rollbackPressureRingScaleLedgerRuntimeUpdate,
-  snapshotPressureRingScaleLedgerRuntime,
   type PressureRingScaleLedgerRuntimeEvent,
   type PressureRingScaleLedgerRuntimeSnapshot,
   type PressureRingScaleLedgerRuntimeState,
+  rollbackPressureRingScaleLedgerRuntimeUpdate,
+  snapshotPressureRingScaleLedgerRuntime,
 } from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
 
 export const PRESSURE_RING_SCALE_LEDGER_LOG_PATH =
@@ -106,7 +106,9 @@ const countKinds = (records: readonly PressureRingScaleLedgerRecord[]) => ({
   applyCount: records.filter((record) => record.kind === "apply").length,
   rollbackCount: records.filter((record) => record.kind === "rollback").length,
 });
-const deriveCompactedTick = (state: PressureRingScaleLedgerRuntimeState): number =>
+const deriveCompactedTick = (
+  state: PressureRingScaleLedgerRuntimeState,
+): number =>
   state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
 
 const parseRecord = (line: string): PressureRingScaleLedgerRecord | null => {
@@ -430,7 +432,9 @@ export const compactPressureRingScaleLedgerPersistence = async (
   const historyLimit = options.historyLimit ?? 32;
   const threshold = Math.max(
     1,
-    Math.floor(options.threshold ?? PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD),
+    Math.floor(
+      options.threshold ?? PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
+    ),
   );
   const keepTailRecords = Math.max(
     1,
@@ -475,12 +479,11 @@ export const compactPressureRingScaleLedgerPersistence = async (
   const nextSnapshotRecord: PressureRingScaleLedgerSnapshotRecord = {
     version: 1,
     key: "pulse.pressureRing.scale",
-    representedRecordCount:
-      (snapshotRecord?.representedRecordCount ?? 0) + compactedRecords.length,
-    representedApplyCount:
-      (snapshotRecord?.representedApplyCount ?? 0) + compactedCounts.applyCount,
-    representedRollbackCount:
-      (snapshotRecord?.representedRollbackCount ?? 0) +
+    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
+      compactedRecords.length,
+    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
+      compactedCounts.applyCount,
+    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
       compactedCounts.rollbackCount,
     compactedAt: new Date().toISOString(),
     compactedTick: deriveCompactedTick(state),
@@ -501,7 +504,12 @@ export const compactPressureRingScaleLedgerPersistence = async (
   );
 
   return {
-    ...buildPersistenceSummary(tailRecords, nextSnapshotRecord, path, snapshotPath),
+    ...buildPersistenceSummary(
+      tailRecords,
+      nextSnapshotRecord,
+      path,
+      snapshotPath,
+    ),
     compactionThreshold: threshold,
     compactionKeepTail: keepTailRecords,
   };
@@ -548,7 +556,12 @@ export const hydratePressureRingScaleLedgerRuntime = async (
     hydrationError = String(err);
   }
 
-  let persistence = buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
+  let persistence = buildPersistenceSummary(
+    records,
+    snapshotRecord,
+    path,
+    snapshotPath,
+  );
   if (
     hydrationError === null &&
     persistence.tailRecordCount > persistence.compactionKeepTail &&

@@ -9,7 +9,13 @@ export type HormoneId =
   | "mutation_friction"
   | "global_consensus";
 
-export type HormoneDomain = "systemic" | "temporal" | "conflict" | "reproduction" | "repair" | "mutation";
+export type HormoneDomain =
+  | "systemic"
+  | "temporal"
+  | "conflict"
+  | "reproduction"
+  | "repair"
+  | "mutation";
 
 export type HormoneSpec = {
   id: HormoneId;
@@ -113,12 +119,15 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     max: 2048,
     defaultValue: clamp(
       RUNTIME_POLICY.pulse.symbiosisPressure +
-        Math.round((1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024),
+        Math.round(
+          (1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) * 1024,
+        ),
       0,
       2048,
     ),
     controlPlane: "mixed",
-    sourcePath: "pulse.symbiosisPressure + federation.admission.degradeEnergyRatio",
+    sourcePath:
+      "pulse.symbiosisPressure + federation.admission.degradeEnergyRatio",
     notes:
       "World tendency to preserve/repair structure instead of letting mutations land at full energy.",
   }, 4),

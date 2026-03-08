@@ -51,7 +51,9 @@ const main = async () => {
     );
   }
 
-  const missingRuntimeRoots = runtimeRoots.filter((file) => !exportSet.has(file));
+  const missingRuntimeRoots = runtimeRoots.filter((file) =>
+    !exportSet.has(file)
+  );
   if (missingRuntimeRoots.length > 0) {
     throw new Error(
       `[export-runtime-topology] runtime roots missing from export set:\n${
@@ -93,7 +95,9 @@ const main = async () => {
     );
   }
 
-  const leakedRoots = nonRuntimeCodeFiles.filter((f) => runtimeRoots.includes(f));
+  const leakedRoots = nonRuntimeCodeFiles.filter((f) =>
+    runtimeRoots.includes(f)
+  );
   if (leakedRoots.length > 0) {
     throw new Error(
       `[export-runtime-topology] runtime roots cannot be classified as non-runtime code:\n${

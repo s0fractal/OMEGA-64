@@ -20,8 +20,8 @@ import {
   type GuardianSignalExecutionMode,
 } from "./runtime_bridge/guardian_signal_hybrid.ts";
 import {
-  evaluateArchitectPlasmidExecution,
   type ArchitectPlasmidExecutionMode,
+  evaluateArchitectPlasmidExecution,
 } from "./runtime_bridge/architect_plasmid_hybrid.ts";
 import {
   evaluateReplicationExecution,
@@ -42,10 +42,10 @@ import {
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 import {
   getLogPath,
@@ -158,7 +158,8 @@ const GUARDIAN_SIGNAL_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.guardianSignalExecutionMode;
 const ARCHITECT_PLASMID_EXECUTION_MODE =
   RUNTIME_POLICY.pulse.architectPlasmidExecutionMode;
-const REPLICATION_EXECUTION_MODE = RUNTIME_POLICY.pulse.replicationExecutionMode;
+const REPLICATION_EXECUTION_MODE =
+  RUNTIME_POLICY.pulse.replicationExecutionMode;
 const HOMEOSTASIS_SUBSIDY_ENABLED = HOMEOSTASIS_POLICY.subsidyEnabled === true;
 const HOMEOSTASIS_BASE_TAX_MIN = 0;
 const HOMEOSTASIS_BASE_TAX_MAX = 1024;
@@ -216,11 +217,15 @@ type GeneticLedgerRuntimeState = {
   homeostasisBandPersistence: LedgerPersistenceSummary;
   homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
   homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
-  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<"pulse.homeostasis.overflowThreshold">;
+  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<
+    "pulse.homeostasis.overflowThreshold"
+  >;
   homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
   daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
   daemonMaxActionsPersistence: LedgerPersistenceSummary;
-  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<"federation.admission.degradeEnergyRatio">;
+  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<
+    "federation.admission.degradeEnergyRatio"
+  >;
   federationDegradeEnergyRatioPersistence: LedgerPersistenceSummary;
 };
 type GuardianSignalHybridState = {
@@ -234,7 +239,14 @@ type GuardianSignalHybridState = {
   suppressedGuardianSignals: number;
   shadowSuppressedGuardianSignals: number;
   lastTick: number;
-  lastStatus: "legacy" | "stable" | "repair" | "fallback" | "shadow" | "hybrid" | "legacy-blocked";
+  lastStatus:
+    | "legacy"
+    | "stable"
+    | "repair"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
   lastBranch: "stable" | "repair" | "unknown";
   lastFallbackReason: string;
   lastMode?: GuardianSignalExecutionMode;
@@ -390,9 +402,10 @@ const createArchitectPlasmidHybridState = (
   lastBranch: "unknown",
   lastFallbackReason: "",
 });
-const snapshotArchitectPlasmidHybridState = (): ArchitectPlasmidHybridState => ({
-  ...architectPlasmidHybridState,
-});
+const snapshotArchitectPlasmidHybridState =
+  (): ArchitectPlasmidHybridState => ({
+    ...architectPlasmidHybridState,
+  });
 const createReplicationHybridState = (
   mode: ReplicationExecutionMode,
 ): ReplicationHybridState => ({
@@ -468,11 +481,21 @@ let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
 };
 
 // GENERIC LEDGER REGISTRY (Stage 7.2)
-let homeostasisBandLedgerRuntime = createLedgerRuntime("pulse.homeostasis.band");
-let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime("pulse.homeostasis.maxDelta");
-let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime("pulse.homeostasis.overflowThreshold");
-let daemonMaxActionsLedgerRuntime = createLedgerRuntime("daemon.maxActionsPerWindow");
-let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime("federation.admission.degradeEnergyRatio");
+let homeostasisBandLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.band",
+);
+let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.maxDelta",
+);
+let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.overflowThreshold",
+);
+let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
+  "daemon.maxActionsPerWindow",
+);
+let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
+  "federation.admission.degradeEnergyRatio",
+);
 
 const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   path: getLogPath(key),
@@ -498,11 +521,21 @@ const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   lastHydrationError: null,
 });
 
-let homeostasisBandLedgerPersistence = createLedgerPersistence("pulse.homeostasis.band");
-let homeostasisMaxDeltaLedgerPersistence = createLedgerPersistence("pulse.homeostasis.maxDelta");
-let homeostasisOverflowThresholdLedgerPersistence = createLedgerPersistence("pulse.homeostasis.overflowThreshold");
-let daemonMaxActionsLedgerPersistence = createLedgerPersistence("daemon.maxActionsPerWindow");
-let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence("federation.admission.degradeEnergyRatio");
+let homeostasisBandLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.band",
+);
+let homeostasisMaxDeltaLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.maxDelta",
+);
+let homeostasisOverflowThresholdLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.overflowThreshold",
+);
+let daemonMaxActionsLedgerPersistence = createLedgerPersistence(
+  "daemon.maxActionsPerWindow",
+);
+let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence(
+  "federation.admission.degradeEnergyRatio",
+);
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
@@ -1089,8 +1122,16 @@ const causalityView = new Uint8Array(
   OFFSETS.CAUSALITY_OFFSET,
   MAX_ATOMS,
 );
-export const phasesView = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-export const rolesView = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+export const phasesView = new Int32Array(
+  sharedBuffer,
+  OFFSETS.PHASE_OFFSET,
+  MAX_ATOMS,
+);
+export const rolesView = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.ROLES_OFFSET,
+  MAX_ATOMS,
+);
 export const logicView = new Uint8Array(
   sharedBuffer,
   OFFSETS.LOGIC_OFFSET,
@@ -1156,7 +1197,9 @@ class RollingHistory {
     for (let i = 0; i < this.count; i++) s += this.values[i];
     return s;
   }
-  size() { return this.count || 1; }
+  size() {
+    return this.count || 1;
+  }
 }
 
 const noveltyHistory = new RollingHistory(100);
@@ -2318,9 +2361,11 @@ export const PULSE = {
       // Generic Ledger inputs (Stage 7.2)
       homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
       homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-      homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+      homeostasisOverflowThreshold:
+        homeostasisOverflowThresholdLedgerRuntime.currentValue,
       daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
-      federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+      federationDegradeEnergyRatio:
+        federationDegradeEnergyRatioLedgerRuntime.currentValue,
       globalSyntropy: 0, // Will be updated if syntropy is available
     });
 
@@ -2334,7 +2379,8 @@ export const PULSE = {
       // Move evaluation earlier so it can affect metabolism and gate
       const syntropy = quorumAdvocate.evaluateQuorum(activeIdx);
 
-      const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) / 1000.0;
+      const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) /
+        1000.0;
       // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
       const coherencePulseId = nextPulseId();
       const coherenceRes = await postAndWait<{ coherence: number }>(
@@ -2371,9 +2417,11 @@ export const PULSE = {
         pressureRingScale: evolutionPressureState.ring.scale,
         homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
         homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-        homeostasisOverflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+        homeostasisOverflowThreshold:
+          homeostasisOverflowThresholdLedgerRuntime.currentValue,
         daemonMaxActions: daemonMaxActionsLedgerRuntime.currentValue,
-        federationDegradeEnergyRatio: federationDegradeEnergyRatioLedgerRuntime.currentValue,
+        federationDegradeEnergyRatio:
+          federationDegradeEnergyRatioLedgerRuntime.currentValue,
         globalSyntropy: syntropy,
       });
 
@@ -2458,6 +2506,13 @@ export const PULSE = {
         readYsView.set(ysView);
         readEnergiesView.set(energiesView);
         readResonancesView.set(resonancesView);
+        if (currentTick <= 104) {
+          LOGGER.info(
+            `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
+              xsView[11]
+            }, readXsView[11]=${readXsView[11]}`,
+          );
+        }
       }
       // 2b. Execute Physics (WASM)
       // Transition to WASM_TICKING (1) to unblock workers
@@ -2508,18 +2563,18 @@ export const PULSE = {
         // Find newly spawned atoms (those with IDs but empty instructions/role)
         // and inject evolved programs.
         for (let idx = 0; idx < OFFSETS.MAX_ATOMS; idx++) {
-            if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
-                // This is likely a fresh spawn. Incept it.
-                const prog = genesisInceptor.selectProgram();
-                const lineageHash = prog.metadata?.ancestorHash ?? 0n;
-                
-                STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
-                STATE_MATRIX.setLineage(idx, lineageHash);
-                
-                // Mark its role if the program is for a specific one (e.g. role hint)
-                // For now, we'll let the role be assigned by the first op if needed, 
-                // or just set a default.
-            }
+          if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+            // This is likely a fresh spawn. Incept it.
+            const prog = genesisInceptor.selectProgram();
+            const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+
+            STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
+            STATE_MATRIX.setLineage(idx, lineageHash);
+
+            // Mark its role if the program is for a specific one (e.g. role hint)
+            // For now, we'll let the role be assigned by the first op if needed,
+            // or just set a default.
+          }
         }
       }
 
@@ -2536,17 +2591,23 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
-      
+
       // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
       const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
       const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
       const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
-      
+
       if (currentTick % 20 === 0 && syntropy > 0.1) {
-        LOGGER.info(`⚖️ [SOVEREIGN] Metabolic Tax Discount: ${(taxDiscount * 100).toFixed(1)}% (Syntropy: ${syntropy.toFixed(3)})`);
+        LOGGER.info(
+          `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
+            (taxDiscount * 100).toFixed(1)
+          }% (Syntropy: ${syntropy.toFixed(3)})`,
+        );
       }
 
-      const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
+      const targetEnergy = clampHomeostasisTargetEnergy(
+        homeostasisTargetEnergyRuntime,
+      );
 
       const metabolismPromises: Promise<any>[] = [];
       const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
@@ -2570,7 +2631,8 @@ export const PULSE = {
             targetEnergy,
             homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
             homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-            overflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+            overflowThreshold:
+              homeostasisOverflowThresholdLedgerRuntime.currentValue,
             spatialOverflowRatio: spatialHashState.overflowRatio,
             starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
             subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
@@ -2634,18 +2696,24 @@ export const PULSE = {
 
             if (decision.status === "fallback") {
               guardianSignalHybridState.fallbackRuns++;
-              guardianSignalHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+              guardianSignalHybridState.lastFallbackReason =
+                decision.fallbackReason || "unknown_error";
             }
 
-            if (decision.branch === "stable") guardianSignalHybridState.stableBranchCount++;
-            if (decision.branch === "repair") guardianSignalHybridState.repairBranchCount++;
+            if (decision.branch === "stable") {
+              guardianSignalHybridState.stableBranchCount++;
+            }
+            if (decision.branch === "repair") {
+              guardianSignalHybridState.repairBranchCount++;
+            }
 
             guardianSignalHybridState.lastTick = currentTick;
             guardianSignalHybridState.lastStatus = decision.status;
             guardianSignalHybridState.lastBranch = decision.branch;
 
             // Apply Causality Suppression
-            const allowed = decision.allowed && guardianPheromoneAllowedByExecutionMode(idx);
+            const allowed = decision.allowed &&
+              guardianPheromoneAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else if (role === STATE_MATRIX.ROLE_ARCHITECT) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
@@ -2673,18 +2741,23 @@ export const PULSE = {
 
             if (decision.status === "fallback") {
               architectPlasmidHybridState.fallbackRuns++;
-              architectPlasmidHybridState.lastFallbackReason = decision.fallbackReason || "unknown_error";
+              architectPlasmidHybridState.lastFallbackReason =
+                decision.fallbackReason || "unknown_error";
             }
 
-            if (decision.branch === "emit") architectPlasmidHybridState.emitBranchCount++;
-            if (decision.branch === "suppress") architectPlasmidHybridState.suppressBranchCount++;
+            if (decision.branch === "emit") {
+              architectPlasmidHybridState.emitBranchCount++;
+            }
+            if (decision.branch === "suppress") {
+              architectPlasmidHybridState.suppressBranchCount++;
+            }
 
             architectPlasmidHybridState.lastTick = currentTick;
             architectPlasmidHybridState.lastStatus = decision.status;
             architectPlasmidHybridState.lastBranch = decision.branch;
 
             // Apply Causality Suppression for Plasmids
-            const allowed = decision.allowed; 
+            const allowed = decision.allowed;
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else {
             // Non-governed roles are always allowed
@@ -2720,18 +2793,23 @@ export const PULSE = {
 
           if (replicationDecision.status === "fallback") {
             replicationHybridState.fallbackRuns++;
-            replicationHybridState.lastFallbackReason = replicationDecision.fallbackReason || "unknown_error";
+            replicationHybridState.lastFallbackReason =
+              replicationDecision.fallbackReason || "unknown_error";
           }
 
-          if (replicationDecision.branch === "emit") replicationHybridState.emitBranchCount++;
-          if (replicationDecision.branch === "suppress") replicationHybridState.suppressBranchCount++;
+          if (replicationDecision.branch === "emit") {
+            replicationHybridState.emitBranchCount++;
+          }
+          if (replicationDecision.branch === "suppress") {
+            replicationHybridState.suppressBranchCount++;
+          }
 
           replicationHybridState.lastTick = currentTick;
           replicationHybridState.lastStatus = replicationDecision.status;
           replicationHybridState.lastBranch = replicationDecision.branch;
 
           // Universal Replication Causality Integration
-          // If replication is suppressed by hybrid mode, we must ensure causality is 0 
+          // If replication is suppressed by hybrid mode, we must ensure causality is 0
           // (Wait, this is tricky: causality=0 suppresses EVERYTHING secretion/replication etc.)
           // If role-based logic said 'allowed', but replication said 'suppressed', should we block the whole atom?
           // For now, we only block if BOTH are in hybrid mode and say no, or if we want to be strict.
@@ -2776,28 +2854,34 @@ export const PULSE = {
               (avgRes / 100).toFixed(1)
             })`,
           );
-          
+
           // --- STAGE 22: DRIFT WARDEN AUDIT ---
           const drift = driftWarden.analyze(currentTick);
           if (drift.shadowForkRecommended && !shadowForkActive) {
-            LOGGER.warn(`🚨 [ADAPTIVE] High Drift (${drift.driftIndex.toFixed(4)}) detected. Triggering autonomous shadow rehearsal...`);
+            LOGGER.warn(
+              `🚨 [ADAPTIVE] High Drift (${
+                drift.driftIndex.toFixed(4)
+              }) detected. Triggering autonomous shadow rehearsal...`,
+            );
             shadowForkActive = true;
             (async () => {
-                try {
-                    const fork = new DollFork();
-                    const runner = new DollForkRunner(fork);
-                    await runner.init();
-                    fork.forkFromMainline();
-                    // Run a 10-tick rehearsal
-                    for (let s = 0; s < 10; s++) {
-                        runner.runShadowTick(currentTick + s);
-                    }
-                    LOGGER.info(`✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`);
-                } catch (e) {
-                    LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
-                } finally {
-                    shadowForkActive = false;
+              try {
+                const fork = new DollFork();
+                const runner = new DollForkRunner(fork);
+                await runner.init();
+                fork.forkFromMainline();
+                // Run a 10-tick rehearsal
+                for (let s = 0; s < 10; s++) {
+                  runner.runShadowTick(currentTick + s);
                 }
+                LOGGER.info(
+                  `✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`,
+                );
+              } catch (e) {
+                LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
+              } finally {
+                shadowForkActive = false;
+              }
             })();
           }
         }
@@ -2806,7 +2890,7 @@ export const PULSE = {
       MUTATION_TELEMETRY.flushIfDue(currentTick);
       const glyphSnapshot = GLYPH_BUFFER.snapshot();
       lineageTracker.syncLineages(activeIdx);
-      
+
       // --- STAGE 6: Codex evidence record ---
       AKASHA_CODEX.observePulse(
         currentTick,

@@ -17,7 +17,10 @@ const main = () => {
     source: "test",
     reason: "raise_tax",
   });
-  expect(applied.status === "applied", "[genetic_ledger_runtime] apply must succeed");
+  expect(
+    applied.status === "applied",
+    "[genetic_ledger_runtime] apply must succeed",
+  );
   expect(applied.changed, "[genetic_ledger_runtime] apply must change state");
   expect(
     applied.mutation?.rollbackToken?.includes("pulse.homeostasis.baseTax@120:"),
@@ -30,7 +33,10 @@ const main = () => {
     source: "test",
     reason: "raise_more",
   });
-  expect(stale.status === "applied", "[genetic_ledger_runtime] second apply must succeed");
+  expect(
+    stale.status === "applied",
+    "[genetic_ledger_runtime] second apply must succeed",
+  );
   const staleRollback = rollbackBaseTaxLedgerRuntimeUpdate(stale.state, {
     rollbackToken: applied.mutation!.rollbackToken,
     tick: 122,

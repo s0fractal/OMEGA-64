@@ -25,13 +25,13 @@ All must be true:
    Projection replay report MUST have `failCount = 0` for the same window.
    Projection drift gate MUST pass:
    `max(driftByLevelP95) <= projectionDriftMaxP95` and
-   `max(driftSlopeByLevelP95) <= projectionDriftSlopeMaxP95`. Default runtime values are
-   defined in: `i.L99.core.CRYSTALLIZATION_CONFIG.ts`. Ledger hash-chain
-   verification MUST be enabled according to policy (`verifyLedgerChain`) during
-   crystallization replay audit. Policy version MUST be persisted in emitted
-   events as `policy_version`. Policy hash MUST be persisted in emitted events
-   as `policy_hash`. Policy change is valid only via explicit
-   `POLICY_TRANSITION_EVENT`. Canonization MUST persist
+   `max(driftSlopeByLevelP95) <= projectionDriftSlopeMaxP95`. Default runtime
+   values are defined in: `i.L99.core.CRYSTALLIZATION_CONFIG.ts`. Ledger
+   hash-chain verification MUST be enabled according to policy
+   (`verifyLedgerChain`) during crystallization replay audit. Policy version
+   MUST be persisted in emitted events as `policy_version`. Policy hash MUST be
+   persisted in emitted events as `policy_hash`. Policy change is valid only via
+   explicit `POLICY_TRANSITION_EVENT`. Canonization MUST persist
    `crystallization_report_hash` and `crystallization_report_version`.
    Canonization SHOULD persist `crystallization_report_uri` to materialized
    report. Canonization SHOULD persist gate admission report anchors when
@@ -56,9 +56,9 @@ Metrics:
 
 1. Budget pressure: `p95(budget_used / max_total_abs_delta_per_tick) <= 0.70`
 
-2. Drift slope: `p95(abs(delta_level_per_tick)) <= 8` (i16 units/tick)
-   Optional projection slope: `max(driftSlopeByLevelP95) <= driftSlopeMaxP95`
-   from `PROJECTION_DRIFT_ANALYTICS` when policy enables it.
+2. Drift slope: `p95(abs(delta_level_per_tick)) <= 8` (i16 units/tick) Optional
+   projection slope: `max(driftSlopeByLevelP95) <= driftSlopeMaxP95` from
+   `PROJECTION_DRIFT_ANALYTICS` when policy enables it.
 
 3. Sign-flip rate: for active levels, `flip_rate <= 0.25`
 

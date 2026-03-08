@@ -10,7 +10,8 @@ type QState = { hue: number; phi: number; evt: number };
 
 const LEVELS = Array.from({ length: 64 }, (_, idx) => idx);
 
-const levelId = (level: number): string => `i.L${String(level).padStart(2, "0")}`;
+const levelId = (level: number): string =>
+  `i.L${String(level).padStart(2, "0")}`;
 const qTsPath = (level: number): string => `${levelId(level)}.q.ts`;
 const qPackedPath = (level: number): string => `${levelId(level)}.q`;
 
@@ -57,7 +58,9 @@ const main = async () => {
       const state = parseLegacyQTs(legacy, id);
       const expected = pack(state);
       if (packed && packed !== expected) {
-        errors.push(`${id}: packed q mismatch (expected ${expected}, got ${packed}).`);
+        errors.push(
+          `${id}: packed q mismatch (expected ${expected}, got ${packed}).`,
+        );
       }
     } catch (error) {
       errors.push(`${id}: missing or invalid legacy q.ts (${String(error)}).`);
@@ -68,7 +71,9 @@ const main = async () => {
     const aggregate = await readPacked("i.q");
     const expected = packedLines.join("");
     if (aggregate.replace(/\s+/g, "") !== expected) {
-      errors.push("i.q aggregate mismatch (expected concatenation of L00..L63).");
+      errors.push(
+        "i.q aggregate mismatch (expected concatenation of L00..L63).",
+      );
     }
   } catch (error) {
     errors.push(`i.q missing or invalid (${String(error)}).`);

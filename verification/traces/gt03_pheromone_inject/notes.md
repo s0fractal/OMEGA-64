@@ -23,4 +23,5 @@
 
 ## Actions
 
-- tick=128 kind=DROP_PHEROMONE responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4
+- tick=128 kind=DROP_PHEROMONE
+  responseDigest=ee45bb285e72ba3d04a7d34550781a26c9f5693f7dd8265d707686a6bca2fab4

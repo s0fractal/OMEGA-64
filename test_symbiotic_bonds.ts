@@ -1,23 +1,42 @@
-import { assertEquals, assertNotEquals } from "https://deno.land/std/testing/asserts.ts";
+import {
+  assertEquals,
+  assertNotEquals,
+} from "https://deno.land/std/testing/asserts.ts";
 import { STATE_MATRIX, wasmMemory } from "./STATE_MATRIX.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 
 const WASM_PATH = "./build/release.wasm";
 const wasmModule = await Deno.readFile(WASM_PATH);
 const { instance } = await WebAssembly.instantiate(wasmModule, {
-        index: { 
-        trace_atom: (idx: number, op: number, res: number, tick: number, role: number) => {
-             console.log(`[Trace] Atom ${idx}: op=0x${op.toString(16)}, param1=${res}, param2=${tick}, param3=${role}`);
-        }
+  index: {
+    trace_atom: (
+      idx: number,
+      op: number,
+      res: number,
+      tick: number,
+      role: number,
+    ) => {
+      console.log(
+        `[Trace] Atom ${idx}: op=0x${
+          op.toString(16)
+        }, param1=${res}, param2=${tick}, param3=${role}`,
+      );
     },
-    env: {
-        memory: wasmMemory,
-        abort: (msg: any) => console.error("WASM ABORT:", msg),
-        trace_atom: (idx: number, op: number, res: number, tick: number, role: number) => {},
-        lcgNext: (seed: number) => (seed * 1664525 + 1013904223) >>> 0,
-        Mathf_sqrt: Math.sqrt,
-        "Math.round": Math.round
-    }
+  },
+  env: {
+    memory: wasmMemory,
+    abort: (msg: any) => console.error("WASM ABORT:", msg),
+    trace_atom: (
+      idx: number,
+      op: number,
+      res: number,
+      tick: number,
+      role: number,
+    ) => {},
+    lcgNext: (seed: number) => (seed * 1664525 + 1013904223) >>> 0,
+    Mathf_sqrt: Math.sqrt,
+    "Math.round": Math.round,
+  },
 });
 
 const kernel = instance.exports as any;
@@ -26,13 +45,13 @@ const kernel = instance.exports as any;
  * Setup a clean state for testing
  */
 function setupTestState() {
-    new Uint8Array(STATE_MATRIX.buffer).fill(0);
-    STATE_MATRIX.setHormone(0, 512); // entropy_pressure
-    STATE_MATRIX.setHormone(1, 512); // time_viscosity
-    STATE_MATRIX.setHormone(2, 512); // aggression
-    STATE_MATRIX.setHormone(3, 512); // replication_bias
-    STATE_MATRIX.setHormone(4, 512); // repair_drive
-    STATE_MATRIX.setHormone(5, 512); // mutation_friction
+  new Uint8Array(STATE_MATRIX.buffer).fill(0);
+  STATE_MATRIX.setHormone(0, 512); // entropy_pressure
+  STATE_MATRIX.setHormone(1, 512); // time_viscosity
+  STATE_MATRIX.setHormone(2, 512); // aggression
+  STATE_MATRIX.setHormone(3, 512); // replication_bias
+  STATE_MATRIX.setHormone(4, 512); // repair_drive
+  STATE_MATRIX.setHormone(5, 512); // mutation_friction
 }
 
 // 1. Verify OP_BIND (Autonomous Bonding)
@@ -47,10 +66,26 @@ STATE_MATRIX.setEnergy(1, 400);
 STATE_MATRIX.setResonance(1, 200);
 
 // Population of read buffers for spatial grid and proximity
-const readXs = new Int16Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_XS_OFFSET, OFFSETS.MAX_ATOMS);
-const readYs = new Int16Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_YS_OFFSET, OFFSETS.MAX_ATOMS);
-const readEnergy = new Int32Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-const readResonance = new Int32Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, OFFSETS.MAX_ATOMS);
+const readXs = new Int16Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_XS_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readYs = new Int16Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_YS_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readEnergy = new Int32Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readResonance = new Int32Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
 
 readXs[1] = 100;
 readYs[1] = 100;
@@ -85,7 +120,11 @@ kernel.execute_atom(1);
 // Check bond requests
 const reqOff = OFFSETS.BOND_REQUESTS_OFFSET + (1 * 12);
 const reqView = new Int32Array(STATE_MATRIX.buffer, reqOff, 3);
-console.log(`Bond Request: Initiator=${reqView[0]}, Target=${reqView[1]}, Status=${reqView[2]}`);
+console.log(
+  `Bond Request: Initiator=${reqView[0]}, Target=${reqView[1]}, Status=${
+    reqView[2]
+  }`,
+);
 
 assertEquals(reqView[0], 2, "Initiator should be Atom 1 (idx 1 + 1)");
 assertEquals(reqView[1], 3, "Target should be Atom 2 (idx 2 + 1)");

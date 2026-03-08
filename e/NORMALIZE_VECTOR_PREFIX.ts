@@ -12,7 +12,9 @@ for await (const entry of walk(root, { includeDirs: false })) {
   const sector = Number(match[1]);
   const orbit = Number(match[2]);
   const text = await Deno.readTextFile(entry.path);
-  const vecMatch = text.match(/vector:\s*['"]?(\d{1,2})\.(\d{1,2})\.(\d{1,2})['"]?/);
+  const vecMatch = text.match(
+    /vector:\s*['"]?(\d{1,2})\.(\d{1,2})\.(\d{1,2})['"]?/,
+  );
   const v = vecMatch ? Number(vecMatch[3]) : 0;
   const newVector = `vector: ${pad2(sector)}.${pad2(orbit)}.${pad2(v)}`;
   const next = vecMatch

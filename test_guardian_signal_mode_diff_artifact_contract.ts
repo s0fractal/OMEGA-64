@@ -35,7 +35,9 @@ const main = async () => {
   }
 
   if (missing.length > 0) {
-    console.error("[guardian-signal-mode-diff-artifacts] missing or invalid artifacts.");
+    console.error(
+      "[guardian-signal-mode-diff-artifacts] missing or invalid artifacts.",
+    );
     for (const entry of missing) console.error(` - ${entry}`);
     Deno.exit(1);
   }

@@ -36,24 +36,28 @@ export class RelicCultivator {
       const atomId = views.ids[i];
 
       if (atomId !== 0n && energy > 500 && resonance > 200) {
-        const bytecode = Array.from(views.logic.slice(i * 8, (i + 1) * 8)) as number[];
-        
+        const bytecode = Array.from(
+          views.logic.slice(i * 8, (i + 1) * 8),
+        ) as number[];
+
         // Basic check: is bytecode non-zero?
-        if (bytecode.some(b => b !== 0)) {
+        if (bytecode.some((b) => b !== 0)) {
           relics.push({
             id: `relic_${tick}_${i}_${atomId}`,
             bytecode,
             role: views.roles[i],
             resonance,
             energy,
-            extractedAtTick: tick
+            extractedAtTick: tick,
           });
         }
       }
     }
 
     if (relics.length > 0) {
-      LOGGER.info(`[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`);
+      LOGGER.info(
+        `[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`,
+      );
     }
 
     return relics;

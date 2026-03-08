@@ -143,11 +143,29 @@ const runCapture = async (): Promise<CapturePayload> => {
     STATE_MATRIX.MAX_ATOMS,
   );
 
-  STATE_MATRIX.seedAtom(0, 1n, 100, 100, 1000, 0, undefined, shareScript(0, SHARE_PERCENT));
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    100,
+    100,
+    1000,
+    0,
+    undefined,
+    shareScript(0, SHARE_PERCENT),
+  );
   STATE_MATRIX.seedAtom(1, 2n, 110, 100, 100, 0, undefined, new Uint8Array(64));
   STATE_MATRIX.setBondTarget(0, 0, 1);
 
-  STATE_MATRIX.seedAtom(2, 3n, 120, 100, 1000, 0, undefined, shareScript(0, SHARE_PERCENT));
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    120,
+    100,
+    1000,
+    0,
+    undefined,
+    shareScript(0, SHARE_PERCENT),
+  );
   STATE_MATRIX.seedAtom(3, 4n, 130, 100, 100, 0, undefined, new Uint8Array(64));
 
   readXs.set(xs);

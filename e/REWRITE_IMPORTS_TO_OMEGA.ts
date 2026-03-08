@@ -1,6 +1,6 @@
 /// <reference lib="deno.window" />
 import { walk } from "jsr:@std/fs";
-import { resolve, dirname, relative } from "jsr:@std/path";
+import { dirname, relative, resolve } from "jsr:@std/path";
 
 const ROOT = Deno.cwd();
 const CANON_ROOTS = Array.from({ length: 9 }, (_, i) => `${ROOT}/${i}`);
@@ -10,7 +10,8 @@ type ExportMap = Map<string, Map<string, string>>;
 
 function loadModMap(): ExportMap {
   const text = Deno.readTextFileSync(MOD_PATH);
-  const re = /export\s+\{\s*([A-Za-z0-9_]+)\s+as\s+([A-Za-z0-9_]+)\s*\}\s+from\s+["']\.\/([^"']+)["']\s*;?/g;
+  const re =
+    /export\s+\{\s*([A-Za-z0-9_]+)\s+as\s+([A-Za-z0-9_]+)\s*\}\s+from\s+["']\.\/([^"']+)["']\s*;?/g;
   const map: ExportMap = new Map();
   let m: RegExpExecArray | null;
   while ((m = re.exec(text))) {
@@ -74,7 +75,9 @@ for (const root of CANON_ROOTS) {
             return full;
           }
 
-          const specs = specList.split(",").map((s) => s.trim()).filter(Boolean);
+          const specs = specList.split(",").map((s) => s.trim()).filter(
+            Boolean,
+          );
           const nextSpecs: string[] = [];
 
           for (const spec of specs) {
@@ -100,7 +103,9 @@ for (const root of CANON_ROOTS) {
 
           touched = true;
           rewriteCount += 1;
-          return `import ${typeKw ?? ""}{ ${nextSpecs.join(", ")} } from "@omega";`;
+          return `import ${typeKw ?? ""}{ ${
+            nextSpecs.join(", ")
+          } } from "@omega";`;
         },
       );
 

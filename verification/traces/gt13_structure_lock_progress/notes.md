@@ -1,7 +1,8 @@
 # gt13_structure_lock_progress
 
 - scenario: standalone structure stale-lock progress
-- setup: standalone deterministic subprocess capture of OP_SENSE visibility through a stale structure lock plus tick_structure_grid intent clearing
+- setup: standalone deterministic subprocess capture of OP_SENSE visibility
+  through a stale structure lock plus tick_structure_grid intent clearing
 - duration: 2 execute phases + 1 structure tick / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-structure-lock-capture

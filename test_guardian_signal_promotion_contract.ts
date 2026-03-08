@@ -50,7 +50,9 @@ const fallbackHeavy = evaluateGuardianSignalPromotion({
 });
 expect(
   fallbackHeavy.ready === false &&
-    fallbackHeavy.reasons.some((reason) => reason.startsWith("fallback_ratio_")),
+    fallbackHeavy.reasons.some((reason) =>
+      reason.startsWith("fallback_ratio_")
+    ),
   "fallback-heavy",
   "Excess fallback ratio must block promotion to hybrid mode.",
 );

@@ -7,7 +7,11 @@
 import { GLIDER_LITE } from "./i.L99.core.GLIDER_LITE.ts";
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import type {
+  DeltaProposal,
+  GateConfig,
+  StateSnapshot,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
 
 type PersistedState = {
   tick: number;
@@ -236,12 +240,22 @@ const breatheOnce = async (
 const main = async () => {
   const args = parseArgs(Deno.args);
   if (args.once) {
-    await breatheOnce(args.statePath, args.configPath, args.proposalsPath, args.mutate);
+    await breatheOnce(
+      args.statePath,
+      args.configPath,
+      args.proposalsPath,
+      args.mutate,
+    );
     return;
   }
 
   while (true) {
-    await breatheOnce(args.statePath, args.configPath, args.proposalsPath, args.mutate);
+    await breatheOnce(
+      args.statePath,
+      args.configPath,
+      args.proposalsPath,
+      args.mutate,
+    );
     await new Promise((resolve) => setTimeout(resolve, args.interval));
   }
 };

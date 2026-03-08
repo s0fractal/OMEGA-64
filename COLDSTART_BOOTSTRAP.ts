@@ -29,7 +29,7 @@ const MARGIN = 20;
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
-const createLcg = (seed: number): (() => number) => {
+const createLcg = (seed: number): () => number => {
   let state = seed >>> 0;
   return () => {
     state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
@@ -70,7 +70,7 @@ const makeArchitectScript = (emit: boolean): Uint8Array => {
 
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
-  
+
   return script;
 };
 
@@ -245,11 +245,9 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
     const pos = seedPosition(i, config.count, nextU32);
     const energy = variedResource(config.energy, nextU32, 0.18);
     const resonance = variedResource(config.resonance, nextU32, 0.22);
-    const id = (
-      (BigInt(config.seed >>> 0) << 32n) ^
+    const id = (BigInt(config.seed >>> 0) << 32n) ^
       BigInt(i + 11) ^
-      0xA17EA17En
-    );
+      0xA17EA17En;
 
     let script: Uint8Array;
     let role: number;
@@ -259,11 +257,15 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
       role = STATE_MATRIX.ROLE_PRODUCER;
       replicators++;
     } else if (mode === "guardian") {
-      script = guardians % 2 === 0 ? guardianStableScript : guardianRepairScript;
+      script = guardians % 2 === 0
+        ? guardianStableScript
+        : guardianRepairScript;
       role = STATE_MATRIX.ROLE_GUARDIAN;
       guardians++;
     } else {
-      script = architects % 2 === 0 ? architectEmitScript : architectSuppressScript;
+      script = architects % 2 === 0
+        ? architectEmitScript
+        : architectSuppressScript;
       role = STATE_MATRIX.ROLE_ARCHITECT;
       architects++;
     }

@@ -1,6 +1,6 @@
 import type {
-  DaemonInjectEnvelope,
   DaemonIngressMetrics,
+  DaemonInjectEnvelope,
 } from "../DAEMON_INGRESS_POLICY.ts";
 
 export type AdmissionShadowExpectation = {
@@ -182,7 +182,10 @@ export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
     },
   ]);
 
-const ADMISSION_SHADOW_CASE_BY_ID = new Map<string, AdmissionShadowCaseDefinition>(
+const ADMISSION_SHADOW_CASE_BY_ID = new Map<
+  string,
+  AdmissionShadowCaseDefinition
+>(
   ADMISSION_SHADOW_CASES.map((definition) => [definition.id, definition]),
 );
 

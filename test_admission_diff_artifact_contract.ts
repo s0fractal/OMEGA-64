@@ -37,29 +37,63 @@ const main = async () => {
   for (const path of ARTIFACTS) {
     const raw = await Deno.readTextFile(path);
     const parsed = JSON.parse(raw) as AdmissionShadowArtifact;
-    expect(parsed.parity_ok === true, `[admission_diff] parity must hold for ${path}`);
     expect(
-      Array.isArray(parsed.parity_reasons) && parsed.parity_reasons.length === 0,
+      parsed.parity_ok === true,
+      `[admission_diff] parity must hold for ${path}`,
+    );
+    expect(
+      Array.isArray(parsed.parity_reasons) &&
+        parsed.parity_reasons.length === 0,
       `[admission_diff] parity reasons must be empty for ${path}`,
     );
-    expect(isSha256(parsed.baseline_digest), `[admission_diff] baseline digest invalid for ${path}`);
-    expect(isSha256(parsed.shadow_digest), `[admission_diff] shadow digest invalid for ${path}`);
-    expect(parsed.diff.policy_match, `[admission_diff] policy mismatch for ${path}`);
-    expect(parsed.diff.policy_reason_match, `[admission_diff] policy reason mismatch for ${path}`);
-    expect(parsed.diff.risk_match, `[admission_diff] risk mismatch for ${path}`);
-    expect(parsed.diff.severity_match, `[admission_diff] severity mismatch for ${path}`);
-    expect(parsed.diff.score_match, `[admission_diff] score mismatch for ${path}`);
-    expect(parsed.diff.reasons_match, `[admission_diff] reasons mismatch for ${path}`);
+    expect(
+      isSha256(parsed.baseline_digest),
+      `[admission_diff] baseline digest invalid for ${path}`,
+    );
+    expect(
+      isSha256(parsed.shadow_digest),
+      `[admission_diff] shadow digest invalid for ${path}`,
+    );
+    expect(
+      parsed.diff.policy_match,
+      `[admission_diff] policy mismatch for ${path}`,
+    );
+    expect(
+      parsed.diff.policy_reason_match,
+      `[admission_diff] policy reason mismatch for ${path}`,
+    );
+    expect(
+      parsed.diff.risk_match,
+      `[admission_diff] risk mismatch for ${path}`,
+    );
+    expect(
+      parsed.diff.severity_match,
+      `[admission_diff] severity mismatch for ${path}`,
+    );
+    expect(
+      parsed.diff.score_match,
+      `[admission_diff] score mismatch for ${path}`,
+    );
+    expect(
+      parsed.diff.reasons_match,
+      `[admission_diff] reasons mismatch for ${path}`,
+    );
     expect(
       parsed.diff.applied_action_match,
       `[admission_diff] applied action mismatch for ${path}`,
     );
-    expect(parsed.diff.degraded_match, `[admission_diff] degraded mismatch for ${path}`);
+    expect(
+      parsed.diff.degraded_match,
+      `[admission_diff] degraded mismatch for ${path}`,
+    );
     expect(
       parsed.diff.degrade_reason_match,
       `[admission_diff] degrade reason mismatch for ${path}`,
     );
-    expect(parsed.diff.context_match, `[admission_diff] context mismatch for ${path}`);
+    expect(
+      parsed.diff.context_match,
+      `[admission_diff] context mismatch for ${path}`,
+    );
   }
 
   console.log(

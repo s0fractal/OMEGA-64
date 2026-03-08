@@ -15,10 +15,18 @@ export class DollForkRunner {
    * Initializes a private WebAssembly instance for the shadow matrix.
    */
   public async init(): Promise<void> {
-    const wasmRes = await fetch(new URL("../../build/release.wasm", import.meta.url).href);
+    const wasmRes = await fetch(
+      new URL("../../build/release.wasm", import.meta.url).href,
+    );
     const wasmBytes = await wasmRes.arrayBuffer();
-    
-    const traceAtom = (idx: number, op: number, gx: number, gy: number, target: number) => {
+
+    const traceAtom = (
+      idx: number,
+      op: number,
+      gx: number,
+      gy: number,
+      target: number,
+    ) => {
       // Shadow traces are suppressed
     };
 
@@ -39,43 +47,46 @@ export class DollForkRunner {
    */
   public runShadowTick(tickCount: number): void {
     if (!this.wasmInstance) throw new Error("DollForkRunner not initialized");
-    
+
     // 0. Sync Read Views (Double Buffering)
     this.fork.syncReadViews();
 
     const exports = this.wasmInstance.exports as any;
-    
+
     try {
       // 1. Build Spatial Hash
       exports.build_spatial_hash();
-      
+
       // 2. Execute Atoms (Physics + VM)
       for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
         if (this.fork.views.ids[i] !== 0n) {
           exports.execute_atom(i);
         }
       }
-      
+
       // 3. Resolve Bonds & Spawns
       exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
       exports.drain_spawn_requests(tickCount);
-      
+
       // 4. Tick Environment (Glyph Transport, Decay)
       exports.tickGlyphTransport(tickCount);
       exports.tick_environment(tickCount);
-      
+
       // 5. Apply Metabolism
       exports.apply_metabolism_kernel(
-        0, OFFSETS.MAX_ATOMS,
-        0, 0, // Novelty/Symbiosis
+        0,
+        OFFSETS.MAX_ATOMS,
+        0,
+        0, // Novelty/Symbiosis
         10, // Base Tax
         1000, // Target Energy
-        10, 10, 10, // Band, MaxDelta, Overflow
+        10,
+        10,
+        10, // Band, MaxDelta, Overflow
         0, // Spatial Overflow
         1, // Starvation Floor
-        0 // Subsidy
+        0, // Subsidy
       );
-
     } catch (err) {
       LOGGER.error("[SHADOW TICK ERROR]", err);
       throw err;

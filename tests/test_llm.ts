@@ -1,7 +1,7 @@
 // test_llm.ts
 // Verification of Era 3.4: Semantic Bridge
 
-import { VOID__04_06 as VOID, VOID__04_06 as injectSecrets } from "@omega";
+import { VOID__04_06 as injectSecrets, VOID__04_06 as VOID } from "@omega";
 import { LLM_ADAPTER as MockAdapter } from "@omega";
 
 console.log("🌉 TEST: Semantic Bridge");
@@ -12,16 +12,16 @@ const response1 = await VOID.ask("Is this a virus?");
 console.log(`Query: "Is this a virus?" -> Response: ${response1}`);
 
 if (response1 === "PURGE") {
-    console.log("✅ Mock Adapter logic working (Virus -> PURGE)");
+  console.log("✅ Mock Adapter logic working (Virus -> PURGE)");
 } else {
-    console.warn("⚠️ Mock Adapter logic unexpected (Should be PURGE)");
+  console.warn("⚠️ Mock Adapter logic unexpected (Should be PURGE)");
 }
 
 // 2. Test Injection
 console.log("\n2. Testing Secret Injection...");
 injectSecrets({ OPENAI_API_KEY: "chk_test_key_123" });
 
-// We can't easily spy on the adapter without re-exporting it, 
+// We can't easily spy on the adapter without re-exporting it,
 // but we can trust the log message "VOID: OpenAI Adapter Activated."
 
 // 3. Test Failover (Invalid Key -> Error -> Fallback)
@@ -32,9 +32,9 @@ const response2 = await VOID.ask("Hello World");
 console.log(`Query: "Hello World" -> Response: ${response2}`);
 
 if (response2 === "ALLOW (Error Fallback)" || response2 === "ALLOW") {
-    console.log("✅ Error handling working.");
+  console.log("✅ Error handling working.");
 } else {
-    console.log("❓ Result:", response2);
+  console.log("❓ Result:", response2);
 }
 
 console.log("\n✅ TEST LLM: Finished.");

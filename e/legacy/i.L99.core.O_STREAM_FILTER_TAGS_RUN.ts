@@ -17,7 +17,9 @@ const parseLines = (raw: string): DeltaProposal[] =>
     .filter((line) => line.trim().length > 0)
     .map((line) => JSON.parse(line) as DeltaProposal);
 
-export const O_STREAM_FILTER_TAGS_RUN = async (args: string[]): Promise<void> => {
+export const O_STREAM_FILTER_TAGS_RUN = async (
+  args: string[],
+): Promise<void> => {
   const parsed = {
     input: undefined as string | undefined,
     tags: [] as string[],

@@ -6,9 +6,7 @@ export const describeGlyphToken = (token: GlyphTapeToken): string => {
   const glyphLabel = token.mapped && spec
     ? `${spec.mnemonic}[${spec.id}]`
     : `UNMAPPED(${token.opcodeMnemonic})`;
-  const args = token.args.length > 0
-    ? ` args=[${token.args.join(",")}]`
-    : "";
+  const args = token.args.length > 0 ? ` args=[${token.args.join(",")}]` : "";
   const reductionRule = spec ? ` rule=${spec.reductionRuleRef}` : "";
   const energy = spec ? ` energy=${spec.energyCost}` : "";
   return `pc=${token.pc} opcode=${token.opcodeMnemonic} -> ${glyphLabel}${args}${energy}${reductionRule}`;

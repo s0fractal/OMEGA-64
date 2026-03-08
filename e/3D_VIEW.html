@@ -1,199 +1,296 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Q-Space Visualizer</title>
-        <style>
-            body { margin: 0; overflow: hidden; background-color: #000; color: #0f0; font-family: monospace; }
-            #info { position: absolute; top: 10px; left: 10px; pointer-events: none; }
-            #status { position: absolute; top: 55px; left: 10px; pointer-events: none; color: #9f9; }
-            #tooltip {
-                position: absolute;
-                background: rgba(0, 20, 0, 0.9);
-                border: 1px solid #0f0;
-                padding: 10px;
-                display: none;
-                pointer-events: none;
-                font-size: 12px;
-                white-space: pre;
-                z-index: 100;
-                box-shadow: 0 0 10px #0f0;
+  <head>
+    <title>Q-Space Visualizer</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+      }
+      #info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        pointer-events: none;
+      }
+      #status {
+        position: absolute;
+        top: 55px;
+        left: 10px;
+        pointer-events: none;
+        color: #9f9;
+      }
+      #tooltip {
+        position: absolute;
+        background: rgba(0, 20, 0, 0.9);
+        border: 1px solid #0f0;
+        padding: 10px;
+        display: none;
+        pointer-events: none;
+        font-size: 12px;
+        white-space: pre;
+        z-index: 100;
+        box-shadow: 0 0 10px #0f0;
+      }
+      .force-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .val {
+        color: #fff;
+      }
+    </style>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"
+    ></script>
+  </head>
+  <body>
+    <div id="info">
+      Q-SPACE VISUALIZER (OCTAL MODE)<br>
+      Sector (Angle) | Orbit (Radius) | Variant (Height)<br>
+      Hover over atoms to see Octal Context.
+    </div>
+    <div id="status">Loading q_data.json...</div>
+    <div id="tooltip"></div>
+    <script>
+      let scene, camera, renderer, controls, raycaster, mouse;
+      let atoms = [];
+      let cloud;
+      let atomMap = new Map();
+      let linkLines;
+      let lastUpdated = 0;
+
+      async function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000,
+        );
+        camera.position.z = 100;
+
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        raycaster = new THREE.Raycaster();
+        raycaster.params.Points.threshold = 1.0;
+        mouse = new THREE.Vector2();
+
+        // Axes & Rings
+        scene.add(new THREE.AxesHelper(10));
+        const ringStep = 6;
+        for (let r = ringStep; r <= ringStep * 8; r += ringStep) {
+          const ring = new THREE.Mesh(
+            new THREE.RingGeometry(r - 0.1, r + 0.1, 64),
+            new THREE.MeshBasicMaterial({
+              color: 0x333333,
+              side: THREE.DoubleSide,
+            }),
+          );
+          scene.add(ring);
+        }
+
+        await loadData();
+
+        window.addEventListener("mousemove", onMouseMove, false);
+        window.addEventListener("resize", onResize);
+        animate();
+      }
+
+      async function loadData() {
+        const status = document.getElementById("status");
+        try {
+          const response = await fetch("./q_data.json", {
+            cache: "no-store",
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const data = await response.json();
+          applyData(data);
+          lastUpdated = Date.now();
+          status.textContent = `Loaded ${data.nodes.length} atoms @ ${
+            new Date(lastUpdated).toLocaleTimeString()
+          }`;
+        } catch (err) {
+          status.textContent =
+            `q_data.json not reachable (serve this folder): ${err}`;
+        }
+      }
+
+      function applyData(data) {
+        const geometry = new THREE.BufferGeometry();
+        const positions = [];
+        const colors = [];
+        atomMap.clear();
+
+        const colorAligned = new THREE.Color(0x00ff00);
+        const colorTension = new THREE.Color(0xff0000);
+        const ringStep = 6;
+
+        data.nodes.forEach((atom) => {
+          const sector = Number.isFinite(atom.sector)
+            ? atom.sector
+            : Math.floor((atom.level || 0) / 8);
+          const orbit = Number.isFinite(atom.orbit)
+            ? atom.orbit
+            : ((atom.level || 0) % 8);
+          const variant = Number.isFinite(atom.variant)
+            ? atom.variant
+            : (atom.V || 0);
+
+          const theta = ((sector % 8) / 8) * Math.PI * 2;
+          const r = sector === 8
+            ? 1.5 + orbit * 0.2
+            : (orbit + 1) * ringStep;
+          const x = r * Math.cos(theta);
+          const y = r * Math.sin(theta);
+          const z = variant * 2 - 16;
+
+          positions.push(x, y, z);
+          atomMap.set(atom.id, {
+            ...atom,
+            x,
+            y,
+            z,
+            sector,
+            orbit,
+            variant,
+          });
+
+          const tension = atom.tension || 0;
+          let color = new THREE.Color();
+
+          if (atom.isMirror) {
+            color.setHex(0x00ffff);
+          } else if (atom.level > 60) {
+            color.setHex(0xffd700);
+          } else {
+            color.lerpColors(colorAligned, colorTension, tension / 20);
+          }
+          colors.push(color.r, color.g, color.b);
+        });
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3),
+        );
+        geometry.setAttribute(
+          "color",
+          new THREE.Float32BufferAttribute(colors, 3),
+        );
+
+        if (cloud) scene.remove(cloud);
+        const material = new THREE.PointsMaterial({
+          size: 1.2,
+          vertexColors: true,
+          opacity: 0.9,
+          transparent: true,
+        });
+        cloud = new THREE.Points(geometry, material);
+        scene.add(cloud);
+
+        if (linkLines) scene.remove(linkLines);
+        if (data.links) {
+          const linkGeo = new THREE.BufferGeometry();
+          const linkPos = [];
+          data.links.forEach((link) => {
+            const p1 = atomMap.get(link.source);
+            const p2 = atomMap.get(link.target);
+            if (p1 && p2) {
+              linkPos.push(p1.x, p1.y, p1.z);
+              linkPos.push(p2.x, p2.y, p2.z);
             }
-            .force-row { display: flex; justify-content: space-between; gap: 10px; }
-            .val { color: #fff; }
-        </style>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    </head>
-    <body>
-        <div id="info">
-            Q-SPACE VISUALIZER (OCTAL MODE)<br>
-            Sector (Angle) | Orbit (Radius) | Variant (Height)<br>
-            Hover over atoms to see Octal Context.
-        </div>
-        <div id="status">Loading q_data.json...</div>
-        <div id="tooltip"></div>
-        <script>
-            let scene, camera, renderer, controls, raycaster, mouse;
-            let atoms = [];
-            let cloud;
-            let atomMap = new Map();
-            let linkLines;
-            let lastUpdated = 0;
+          });
+          linkGeo.setAttribute(
+            "position",
+            new THREE.Float32BufferAttribute(linkPos, 3),
+          );
+          const linkMat = new THREE.LineBasicMaterial({
+            color: 0x444444,
+            opacity: 0.3,
+            transparent: true,
+          });
+          linkLines = new THREE.LineSegments(linkGeo, linkMat);
+          scene.add(linkLines);
+        }
+      }
 
-            async function init() {
-                scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                camera.position.z = 100;
+      function onMouseMove(event) {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-                renderer = new THREE.WebGLRenderer({ antialias: true });
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                document.body.appendChild(renderer.domElement);
+        checkIntersection(event.clientX, event.clientY);
+      }
 
-                controls = new THREE.OrbitControls(camera, renderer.domElement);
-                
-                raycaster = new THREE.Raycaster();
-                raycaster.params.Points.threshold = 1.0;
-                mouse = new THREE.Vector2();
+      function checkIntersection(mx, my) {
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObject(cloud);
+        const tooltip = document.getElementById("tooltip");
 
-                // Axes & Rings
-                scene.add(new THREE.AxesHelper(10));
-                const ringStep = 6;
-                for (let r = ringStep; r <= ringStep * 8; r += ringStep) {
-                    const ring = new THREE.Mesh(
-                        new THREE.RingGeometry(r - 0.1, r + 0.1, 64),
-                        new THREE.MeshBasicMaterial({ color: 0x333333, side: THREE.DoubleSide })
-                    );
-                    scene.add(ring);
-                }
+        if (intersects.length > 0) {
+          const index = intersects[0].index;
+          // Find atom by index (iterating Map is slow, but we need data)
+          // We pushed positions in order, so Array.from(atomMap.values())[index] works
+          const atom = Array.from(atomMap.values())[index];
 
-                await loadData();
+          if (atom) {
+            const name = atom.id.replace(/i\.L\d+\.core\./, "").replace(
+              ".ts",
+              "",
+            ).replace("mirror.", "M::");
+            let debugHtml = "";
 
-                window.addEventListener('mousemove', onMouseMove, false);
-                window.addEventListener("resize", onResize);
-                animate();
+            if (atom.debug) {
+              const f = (v) => v ? v.toFixed(3) : "0";
+              const vec = (o) => `(${f(o.x)}, ${f(o.y)})`;
+              debugHtml = `
+<div class="force-row"><span>Attr:</span><span class="val">${
+                vec(atom.debug.attraction)
+              }</span></div>
+<div class="force-row"><span>Repul:</span><span class="val">${
+                vec(atom.debug.repulsion)
+              }</span></div>
+<div class="force-row"><span>Orbit:</span><span class="val">${
+                vec(atom.debug.orbital)
+              }</span></div>
+<div class="force-row"><span>Spring:</span><span class="val">${
+                vec(atom.debug.spring)
+              }</span></div>`;
             }
 
-            async function loadData() {
-                const status = document.getElementById('status');
-                try {
-                    const response = await fetch("./q_data.json", { cache: "no-store" });
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    const data = await response.json();
-                    applyData(data);
-                    lastUpdated = Date.now();
-                    status.textContent = `Loaded ${data.nodes.length} atoms @ ${new Date(lastUpdated).toLocaleTimeString()}`;
-                } catch (err) {
-                    status.textContent = `q_data.json not reachable (serve this folder): ${err}`;
-                }
+            const f = atom.forces || {};
+            const fSelf = f.self || {};
+            const fLines = [];
+            if (typeof fSelf.charge === "number") {
+              fLines.push(`charge: ${fSelf.charge}`);
             }
-
-            function applyData(data) {
-                const geometry = new THREE.BufferGeometry();
-                const positions = [];
-                const colors = [];
-                atomMap.clear();
-
-                const colorAligned = new THREE.Color(0x00ff00);
-                const colorTension = new THREE.Color(0xff0000);
-                const ringStep = 6;
-
-                data.nodes.forEach((atom) => {
-                    const sector = Number.isFinite(atom.sector) ? atom.sector : Math.floor((atom.level || 0) / 8);
-                    const orbit = Number.isFinite(atom.orbit) ? atom.orbit : ((atom.level || 0) % 8);
-                    const variant = Number.isFinite(atom.variant) ? atom.variant : (atom.V || 0);
-
-                    const theta = ((sector % 8) / 8) * Math.PI * 2;
-                    const r = sector === 8 ? 1.5 + orbit * 0.2 : (orbit + 1) * ringStep;
-                    const x = r * Math.cos(theta);
-                    const y = r * Math.sin(theta);
-                    const z = variant * 2 - 16;
-
-                    positions.push(x, y, z);
-                    atomMap.set(atom.id, { ...atom, x, y, z, sector, orbit, variant });
-
-                    const tension = atom.tension || 0;
-                    let color = new THREE.Color();
-
-                    if (atom.isMirror) {
-                        color.setHex(0x00ffff);
-                    } else if (atom.level > 60) {
-                        color.setHex(0xffd700);
-                    } else {
-                        color.lerpColors(colorAligned, colorTension, tension / 20);
-                    }
-                    colors.push(color.r, color.g, color.b);
-                });
-
-                geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-                geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-
-                if (cloud) scene.remove(cloud);
-                const material = new THREE.PointsMaterial({ size: 1.2, vertexColors: true, opacity: 0.9, transparent: true });
-                cloud = new THREE.Points(geometry, material);
-                scene.add(cloud);
-
-                if (linkLines) scene.remove(linkLines);
-                if (data.links) {
-                    const linkGeo = new THREE.BufferGeometry();
-                    const linkPos = [];
-                    data.links.forEach(link => {
-                        const p1 = atomMap.get(link.source);
-                        const p2 = atomMap.get(link.target);
-                        if (p1 && p2) {
-                            linkPos.push(p1.x, p1.y, p1.z);
-                            linkPos.push(p2.x, p2.y, p2.z);
-                        }
-                    });
-                    linkGeo.setAttribute('position', new THREE.Float32BufferAttribute(linkPos, 3));
-                    const linkMat = new THREE.LineBasicMaterial({ color: 0x444444, opacity: 0.3, transparent: true });
-                    linkLines = new THREE.LineSegments(linkGeo, linkMat);
-                    scene.add(linkLines);
-                }
+            if (typeof fSelf.gravity === "number") {
+              fLines.push(`gravity: ${fSelf.gravity}`);
             }
-
-            function onMouseMove(event) {
-                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-                
-                checkIntersection(event.clientX, event.clientY);
+            if (typeof fSelf.damping === "number") {
+              fLines.push(`damping: ${fSelf.damping}`);
             }
+            if (typeof f.tension === "number") {
+              fLines.push(`tension: ${f.tension}`);
+            }
+            const forceText = fLines.length
+              ? `Forces: <span class="val">${
+                fLines.join(", ")
+              }</span>\n`
+              : "";
 
-            function checkIntersection(mx, my) {
-                raycaster.setFromCamera(mouse, camera);
-                const intersects = raycaster.intersectObject(cloud);
-                const tooltip = document.getElementById('tooltip');
-
-                if (intersects.length > 0) {
-                    const index = intersects[0].index;
-                    // Find atom by index (iterating Map is slow, but we need data)
-                    // We pushed positions in order, so Array.from(atomMap.values())[index] works
-                    const atom = Array.from(atomMap.values())[index];
-                    
-                    if (atom) {
-                        const name = atom.id.replace(/i\.L\d+\.core\./, '').replace('.ts', '').replace('mirror.', 'M::');
-                        let debugHtml = '';
-                        
-                        if (atom.debug) {
-                            const f = (v) => v ? v.toFixed(3) : '0';
-                            const vec = (o) => `(${f(o.x)}, ${f(o.y)})`;
-                            debugHtml = `
-<div class="force-row"><span>Attr:</span><span class="val">${vec(atom.debug.attraction)}</span></div>
-<div class="force-row"><span>Repul:</span><span class="val">${vec(atom.debug.repulsion)}</span></div>
-<div class="force-row"><span>Orbit:</span><span class="val">${vec(atom.debug.orbital)}</span></div>
-<div class="force-row"><span>Spring:</span><span class="val">${vec(atom.debug.spring)}</span></div>`;
-                        }
-
-                        const f = atom.forces || {};
-                        const fSelf = f.self || {};
-                        const fLines = [];
-                        if (typeof fSelf.charge === 'number') fLines.push(`charge: ${fSelf.charge}`);
-                        if (typeof fSelf.gravity === 'number') fLines.push(`gravity: ${fSelf.gravity}`);
-                        if (typeof fSelf.damping === 'number') fLines.push(`damping: ${fSelf.damping}`);
-                        if (typeof f.tension === 'number') fLines.push(`tension: ${f.tension}`);
-                        const forceText = fLines.length ? `Forces: <span class="val">${fLines.join(', ')}</span>\n` : '';
-
-                        tooltip.innerHTML = `<strong>${name}</strong>
-Vector: <span class="val">${atom.vector || 'N/A'}</span>
+            tooltip.innerHTML = `<strong>${name}</strong>
+Vector: <span class="val">${atom.vector || "N/A"}</span>
 Sector: <span class="val">${sector}</span>
 Orbit: <span class="val">${orbit}</span>
 Variant: <span class="val">${variant}</span>
@@ -201,30 +298,30 @@ Level: <span class="val">${(atom.level ?? 0).toFixed(1)}</span>
 ${forceText}Mass/Deps: <span class="val">${atom.tension}</span>
 <hr style="border:0; border-top:1px solid #336633">
 ${debugHtml}`;
-                        
-                        tooltip.style.display = 'block';
-                        tooltip.style.left = mx + 15 + 'px';
-                        tooltip.style.top = my + 15 + 'px';
-                    }
-                } else {
-                    tooltip.style.display = 'none';
-                }
-            }
 
-            function onResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            }
+            tooltip.style.display = "block";
+            tooltip.style.left = mx + 15 + "px";
+            tooltip.style.top = my + 15 + "px";
+          }
+        } else {
+          tooltip.style.display = "none";
+        }
+      }
 
-            function animate() {
-                requestAnimationFrame(animate);
-                controls.update();
-                renderer.render(scene, camera);
-            }
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
 
-            init();
-            setInterval(loadData, 2000);
-        </script>
-    </body>
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      init();
+      setInterval(loadData, 2000);
+    </script>
+  </body>
 </html>

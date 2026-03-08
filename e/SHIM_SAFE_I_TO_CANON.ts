@@ -9,12 +9,17 @@ const LEGACY_DIR = `${ROOT}/o/legacy/i`;
 const symbolToPath = new Map<string, string>();
 
 // Build map from _.yaml
-for await (const entry of walk(ROOT, { includeDirs: false, match: [/\/_.yaml$/] })) {
+for await (
+  const entry of walk(ROOT, { includeDirs: false, match: [/\/_.yaml$/] })
+) {
   const rel = entry.path.replace(`${ROOT}/`, "");
   const match = rel.match(/^(\d)\/(\d)\/([^/]+)\/_.yaml$/);
   if (!match) continue;
   try {
-    const raw = parseYaml(await Deno.readTextFile(entry.path)) as Record<string, unknown>;
+    const raw = parseYaml(await Deno.readTextFile(entry.path)) as Record<
+      string,
+      unknown
+    >;
     const symbol = typeof raw?.symbol === "string" ? raw.symbol : match[3];
     if (!symbolToPath.has(symbol)) {
       symbolToPath.set(symbol, `${match[1]}/${match[2]}/${symbol}/_.ts`);
@@ -69,10 +74,12 @@ for await (const entry of walk(I_DIR, { includeDirs: false, maxDepth: 1 })) {
   await Deno.writeTextFile(`${LEGACY_DIR}/${name}`, content);
 
   const shim = `// AUTO-SHIM: canonical at ${canonRel}\n` +
-               `// Legacy: ${name}\n` +
-               `export * from "../${canonRel}";\n`;
+    `// Legacy: ${name}\n` +
+    `export * from "../${canonRel}";\n`;
   await Deno.writeTextFile(filePath, shim);
   shimmed++;
 }
 
-console.log(`[SHIM_SAFE] shimmed=${shimmed} skipped=${skipped} missing=${missing}`);
+console.log(
+  `[SHIM_SAFE] shimmed=${shimmed} skipped=${skipped} missing=${missing}`,
+);

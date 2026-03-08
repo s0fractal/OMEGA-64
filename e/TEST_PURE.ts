@@ -7,13 +7,12 @@ import { parse } from "jsr:@std/yaml";
 
 // 1. Define the Universe (Available Atoms)
 const UNIVERSE = {
-    // L0 Utility
-    LOG: (msg: string) => console.log(`[LOG] ${msg}`),
-    
-    // L1 Math
-    ADD: (a: number, b: number) => a + b,
-    
-    // L2 ... etc
+  // L0 Utility
+  LOG: (msg: string) => console.log(`[LOG] ${msg}`),
+
+  // L1 Math
+  ADD: (a: number, b: number) => a + b,
+  // L2 ... etc
 };
 
 // 2. Load the Atom
@@ -33,16 +32,16 @@ const atomLogic = module.ATOM;
 
 // 3. Construct Context (Injection)
 const CTX = {
-    siblings: {} as any
+  siblings: {} as any,
 };
 
 // Resolve Dependencies
 for (const dep of meta.relations.use) {
-    if ((UNIVERSE as any)[dep]) {
-        CTX.siblings[dep] = (UNIVERSE as any)[dep];
-    } else {
-        console.error(`Missing Dependency: ${dep}`);
-    }
+  if ((UNIVERSE as any)[dep]) {
+    CTX.siblings[dep] = (UNIVERSE as any)[dep];
+  } else {
+    console.error(`Missing Dependency: ${dep}`);
+  }
 }
 
 // 4. Execute

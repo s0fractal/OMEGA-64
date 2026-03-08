@@ -15,8 +15,14 @@ const usage = (): string =>
     "  deno run -A i.L99.core.O_STREAM_HEALTH_SIGNAL_WRITE.ts [--input <stream.jsonl>] [--output <path>]",
   ].join("\n");
 
-export const O_STREAM_HEALTH_SIGNAL_WRITE = async (args: string[]): Promise<void> => {
-  const parsed = { input: undefined as string | undefined, output: undefined as string | undefined, help: false };
+export const O_STREAM_HEALTH_SIGNAL_WRITE = async (
+  args: string[],
+): Promise<void> => {
+  const parsed = {
+    input: undefined as string | undefined,
+    output: undefined as string | undefined,
+    help: false,
+  };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {

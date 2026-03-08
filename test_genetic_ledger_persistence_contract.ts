@@ -25,8 +25,14 @@ const main = async () => {
     source: "test",
     reason: "apply_first",
   });
-  expect(first.mutation !== null, "[genetic_ledger_persistence] first apply must mint mutation");
-  await appendBaseTaxLedgerRecord(recordFromApplyMutation(first.mutation!), path);
+  expect(
+    first.mutation !== null,
+    "[genetic_ledger_persistence] first apply must mint mutation",
+  );
+  await appendBaseTaxLedgerRecord(
+    recordFromApplyMutation(first.mutation!),
+    path,
+  );
 
   const second = applyBaseTaxLedgerRuntimeUpdate(first.state, {
     value: 7,
@@ -38,7 +44,10 @@ const main = async () => {
     second.mutation !== null,
     "[genetic_ledger_persistence] second apply must mint mutation",
   );
-  await appendBaseTaxLedgerRecord(recordFromApplyMutation(second.mutation!), path);
+  await appendBaseTaxLedgerRecord(
+    recordFromApplyMutation(second.mutation!),
+    path,
+  );
 
   const rollback = rollbackBaseTaxLedgerRuntimeUpdate(second.state, {
     rollbackToken: second.mutation!.rollbackToken,
@@ -50,7 +59,10 @@ const main = async () => {
     rollback.status === "rolled_back" && rollback.mutation !== null,
     "[genetic_ledger_persistence] rollback must succeed",
   );
-  await appendBaseTaxLedgerRecord(recordFromRollbackMutation(rollback.mutation!), path);
+  await appendBaseTaxLedgerRecord(
+    recordFromRollbackMutation(rollback.mutation!),
+    path,
+  );
 
   const hydrated = await hydrateBaseTaxLedgerRuntime(2, 8, path);
   expect(

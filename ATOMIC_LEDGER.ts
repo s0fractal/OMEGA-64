@@ -42,18 +42,26 @@ export const ATOMIC_LEDGER = {
     // 4 bytes for head, plus MAX_EVENTS * 16 bytes for data
     const size = 4 + (OFFSETS.MAX_LEDGER_EVENTS * 16);
     const dump = new Uint8Array(size);
-    
+
     // Copy Head
-    const headBytes = new Uint8Array(STATE_MATRIX.ledgerHeadView.buffer, OFFSETS.LEDGER_HEAD_OFFSET, 4);
+    const headBytes = new Uint8Array(
+      STATE_MATRIX.ledgerHeadView.buffer,
+      OFFSETS.LEDGER_HEAD_OFFSET,
+      4,
+    );
     dump.set(headBytes, 0);
 
     // Copy Data
-    const dataBytes = new Uint8Array(STATE_MATRIX.ledgerDataView.buffer, OFFSETS.LEDGER_DATA_OFFSET, OFFSETS.MAX_LEDGER_EVENTS * 16);
+    const dataBytes = new Uint8Array(
+      STATE_MATRIX.ledgerDataView.buffer,
+      OFFSETS.LEDGER_DATA_OFFSET,
+      OFFSETS.MAX_LEDGER_EVENTS * 16,
+    );
     dump.set(dataBytes, 4);
 
     return dump;
   },
-  
+
   /**
    * Reads all events from `startSequence` to `endSequence` strictly.
    */
@@ -62,8 +70,8 @@ export const ATOMIC_LEDGER = {
     // Ensure we don't try to read more than the buffer can hold
     const safeStart = Math.max(startSeq, endSeq - OFFSETS.MAX_LEDGER_EVENTS);
     for (let i = safeStart; i < endSeq; i++) {
-        events.push(this.getEvent(i));
+      events.push(this.getEvent(i));
     }
     return events;
-  }
+  },
 };

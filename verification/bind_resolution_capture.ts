@@ -30,8 +30,14 @@ const hashHex = async (payload: string): Promise<string> => {
 
 const loadWasm = async (): Promise<WasmExports> => {
   const wasmBytes = await Deno.readFile("./build/release.wasm");
-  const trace_atom = (idx: number, op: number, p1: number, p2: number, p3: number) => {
-     // console.log(`[WASM TRACE] atom=${idx} op=0x${op.toString(16)} p1=${p1} p2=${p2} p3=${p3}`);
+  const trace_atom = (
+    idx: number,
+    op: number,
+    p1: number,
+    p2: number,
+    p3: number,
+  ) => {
+    // console.log(`[WASM TRACE] atom=${idx} op=0x${op.toString(16)} p1=${p1} p2=${p2} p3=${p3}`);
   };
   const { instance } = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom },
@@ -59,13 +65,31 @@ const runCapture = async (): Promise<CapturePayload> => {
   STATE_MATRIX.setInstructions(1, script);
 
   // Sync READ buffers (used by execute_atom)
-  const readXs = new Int16Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_XS_OFFSET, OFFSETS.MAX_ATOMS);
-  const readYs = new Int16Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_YS_OFFSET, OFFSETS.MAX_ATOMS);
-  const readEnergy = new Int32Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-  const readResonance = new Int32Array(STATE_MATRIX.buffer, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, OFFSETS.MAX_ATOMS);
+  const readXs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readYs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_YS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readEnergy = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readResonance = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
 
-  readXs[1] = 100; readYs[1] = 100;
-  readXs[2] = 105; readYs[2] = 105;
+  readXs[1] = 100;
+  readYs[1] = 100;
+  readXs[2] = 105;
+  readYs[2] = 105;
   readEnergy[1] = 5000 * 1000; // Energy with scale
   readResonance[1] = 100;
 

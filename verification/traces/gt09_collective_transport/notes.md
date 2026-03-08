@@ -1,7 +1,8 @@
 # gt09_collective_transport
 
 - scenario: standalone collective hive and pheromone semantics
-- setup: standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive store-load and mode 2 pheromone emit through direct WASM execution
+- setup: standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive
+  store-load and mode 2 pheromone emit through direct WASM execution
 - duration: 3 execute_atom calls / subprocess capture
 - daemonEnabled: false
 - runtime_mode: standalone-collective-transport-capture

@@ -248,7 +248,10 @@ export const normalizeDaemonNarrativeContext = (
   );
   const glyphSourceMode = normalizeGlyphValue(root.glyphSourceMode, "none");
   // Stage 7.3: hormone regime from Codex narrative (written by Stage 7.2)
-  const hormoneRegime = normalizeGlyphValue(root.hormoneRegime, "dormant_baseline");
+  const hormoneRegime = normalizeGlyphValue(
+    root.hormoneRegime,
+    "dormant_baseline",
+  );
   const dominantInvariantVector = typeof invariantHighlights[0] === "object" &&
       invariantHighlights[0] !== null &&
       typeof (invariantHighlights[0] as Record<string, unknown>)

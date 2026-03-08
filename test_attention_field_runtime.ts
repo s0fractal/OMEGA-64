@@ -38,7 +38,9 @@ const main = () => {
   );
 
   console.log(
-    `[attention-field] runtime guard passed. center=${afterCenter.toFixed(2)} -> ${decayedCenter.toFixed(2)}`,
+    `[attention-field] runtime guard passed. center=${
+      afterCenter.toFixed(2)
+    } -> ${decayedCenter.toFixed(2)}`,
   );
 };
 

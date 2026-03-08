@@ -16,7 +16,11 @@ const main = () => {
     }
     ids.add(definition.id);
     for (
-      const mode of ["legacy-execute", "shadow-reduce", "hybrid-reduce"] as const
+      const mode of [
+        "legacy-execute",
+        "shadow-reduce",
+        "hybrid-reduce",
+      ] as const
     ) {
       if (!definition.expected[mode]) {
         throw new Error(

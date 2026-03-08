@@ -63,7 +63,8 @@ const usage = (): string =>
 const isLevelHeader = (line: string): boolean => line.startsWith("## ");
 const isEntityHeader = (line: string): boolean => line.startsWith("### ");
 const isProjectionHeader = (line: string): boolean => line.startsWith("#### ");
-const stripPrefix = (line: string, prefix: string): string => line.slice(prefix.length).trim();
+const stripPrefix = (line: string, prefix: string): string =>
+  line.slice(prefix.length).trim();
 
 const parseSigma = (lines: string[]): Level[] => {
   const levels: Level[] = [];
@@ -98,7 +99,11 @@ const parseSigma = (lines: string[]): Level[] => {
     }
     if (isEntityHeader(line)) {
       pushEntity();
-      currentEntity = { id: stripPrefix(line, "### "), contentLines: [], projections: [] };
+      currentEntity = {
+        id: stripPrefix(line, "### "),
+        contentLines: [],
+        projections: [],
+      };
       i += 1;
       continue;
     }
@@ -110,7 +115,10 @@ const parseSigma = (lines: string[]): Level[] => {
       const label = stripPrefix(line, "#### ");
       i += 1;
       while (i < lines.length && !lines[i].startsWith("```")) {
-        if (isProjectionHeader(lines[i]) || isEntityHeader(lines[i]) || isLevelHeader(lines[i])) break;
+        if (
+          isProjectionHeader(lines[i]) || isEntityHeader(lines[i]) ||
+          isLevelHeader(lines[i])
+        ) break;
         i += 1;
       }
       let fenceLang = "";
@@ -141,7 +149,8 @@ const parseSigma = (lines: string[]): Level[] => {
 };
 
 const toHex = (buffer: ArrayBuffer): string =>
-  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 
 const sha256Hex = async (input: string): Promise<string> => {
   const data = new TextEncoder().encode(input);
@@ -172,7 +181,9 @@ const hueFor = (label: string): number => {
   return hash;
 };
 
-const mixHue = (hues: Array<{ hue: number; weight: number }>): number | null => {
+const mixHue = (
+  hues: Array<{ hue: number; weight: number }>,
+): number | null => {
   let x = 0;
   let y = 0;
   let total = 0;
@@ -221,13 +232,17 @@ const main = async () => {
         projectionSet.add(proj.label);
       }
     }
-    const projectionList = Array.from(projectionSet.values()).sort((a, b) => a.localeCompare(b));
+    const projectionList = Array.from(projectionSet.values()).sort((a, b) =>
+      a.localeCompare(b)
+    );
 
     const entities: Record<string, unknown> = {};
     for (const entity of level.entities) {
       const projectionMap: Record<string, unknown> = {};
       const present = new Set<string>();
-      const spectralWeights: Array<{ label: string; weight: number; hue: number }> = [];
+      const spectralWeights: Array<
+        { label: string; weight: number; hue: number }
+      > = [];
       for (const proj of entity.projections) {
         present.add(proj.label);
         const payload = proj.codeLines.join("\n").trimEnd();
@@ -247,22 +262,26 @@ const main = async () => {
         };
       }
       const missing = projectionList.filter((label) => !present.has(label));
-      const coverage = projectionList.length === 0 ? 0 : present.size / projectionList.length;
-      const hue = mixHue(spectralWeights.map(({ hue, weight }) => ({ hue, weight })));
-      const entropy = entropyFromWeights(spectralWeights.map((entry) => entry.weight));
+      const coverage = projectionList.length === 0
+        ? 0
+        : present.size / projectionList.length;
+      const hue = mixHue(
+        spectralWeights.map(({ hue, weight }) => ({ hue, weight })),
+      );
+      const entropy = entropyFromWeights(
+        spectralWeights.map((entry) => entry.weight),
+      );
       const saturation = Math.round(clamp(100 - entropy * 50, 0, 100));
       const lightness = Math.round(clamp(30 + coverage * 40, 0, 100));
-      const spectralMix = hue === null
-        ? null
-        : {
-          hue: Math.round(hue),
-          saturation,
-          lightness,
-          hsl: `hsl(${Math.round(hue)}, ${saturation}%, ${lightness}%)`,
-          coverage,
-          entropy,
-          weights: spectralWeights,
-        };
+      const spectralMix = hue === null ? null : {
+        hue: Math.round(hue),
+        saturation,
+        lightness,
+        hsl: `hsl(${Math.round(hue)}, ${saturation}%, ${lightness}%)`,
+        coverage,
+        entropy,
+        weights: spectralWeights,
+      };
       entities[entity.id] = {
         projections: projectionMap,
         missing,

@@ -22,8 +22,8 @@ export type GuardianSignalModeCaseDefinition = {
   >;
 };
 
-export const GUARDIAN_SIGNAL_MODE_CASES: readonly GuardianSignalModeCaseDefinition[] =
-  Object.freeze([
+export const GUARDIAN_SIGNAL_MODE_CASES:
+  readonly GuardianSignalModeCaseDefinition[] = Object.freeze([
     {
       id: "gh01_gt03_guardian_stable_modes",
       baselineTraceId: "gt03_pheromone_inject",

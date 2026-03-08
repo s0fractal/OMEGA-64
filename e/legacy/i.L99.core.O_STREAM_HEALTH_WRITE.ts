@@ -56,7 +56,9 @@ export const O_STREAM_HEALTH_WRITE = async (args: string[]): Promise<void> => {
   const outputPath = parsed.output ?? DEFAULT_OUTPUT;
 
   const proposals = await O_STREAM_READ(streamPath);
-  const health = await O_STREAM_HEALTH(proposals, undefined, { include_safe_window: parsed.safeWindow });
+  const health = await O_STREAM_HEALTH(proposals, undefined, {
+    include_safe_window: parsed.safeWindow,
+  });
   const body = parsed.pretty
     ? `${JSON.stringify(health, null, 2)}\n`
     : `${JSON.stringify(health)}\n`;

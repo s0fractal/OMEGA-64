@@ -1,6 +1,6 @@
 /// <reference lib="deno.window" />
 import { walk } from "jsr:@std/fs";
-import { dirname, resolve, relative } from "jsr:@std/path";
+import { dirname, relative, resolve } from "jsr:@std/path";
 
 const ROOT = Deno.cwd();
 const MOD_PATH = `${ROOT}/mod.ts`;
@@ -40,7 +40,10 @@ function loadShimMap(): ShimMap {
       const match = content.match(shimRe);
       if (!match) continue;
       const relTarget = match[1].replaceAll("\\", "/");
-      const canon = relative(ROOT, resolve(SHIM_ROOT, relTarget)).replaceAll("\\", "/");
+      const canon = relative(ROOT, resolve(SHIM_ROOT, relTarget)).replaceAll(
+        "\\",
+        "/",
+      );
       map.set(`e/legacy/${entry.name}`, canon);
     }
 
@@ -53,7 +56,8 @@ function loadShimMap(): ShimMap {
       const match = content.match(shimRe);
       if (!match) continue;
       const relTarget = match[1].replaceAll("\\", "/");
-      const canon = relative(ROOT, resolve(dirname(entry.path), relTarget)).replaceAll("\\", "/");
+      const canon = relative(ROOT, resolve(dirname(entry.path), relTarget))
+        .replaceAll("\\", "/");
       map.set(rel, canon);
     }
   } catch {
@@ -62,7 +66,9 @@ function loadShimMap(): ShimMap {
   return map;
 }
 
-function* walkSync(root: string): IterableIterator<Deno.DirEntry & { path: string }> {
+function* walkSync(
+  root: string,
+): IterableIterator<Deno.DirEntry & { path: string }> {
   const stack: string[] = [root];
   while (stack.length) {
     const dir = stack.pop()!;
@@ -104,7 +110,9 @@ try {
   // no tests dir
 }
 try {
-  for await (const entry of walk(`${ROOT}/SINGULARITY`, { includeDirs: false })) {
+  for await (
+    const entry of walk(`${ROOT}/SINGULARITY`, { includeDirs: false })
+  ) {
     if (entry.path.endsWith(".ts")) targets.push(entry.path);
   }
 } catch {

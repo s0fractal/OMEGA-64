@@ -15,7 +15,9 @@ export type SemanticProposal = {
 
 async function loadProposals(): Promise<SemanticProposal[]> {
   try {
-    const data = await Deno.readTextFile("./reduction_core/sandbox/PROPOSALS.json");
+    const data = await Deno.readTextFile(
+      "./reduction_core/sandbox/PROPOSALS.json",
+    );
     const json = JSON.parse(data);
     return json.proposals || [];
   } catch {
@@ -29,17 +31,21 @@ async function runShadowValidation() {
 
   for (const proposal of proposals) {
     console.log(`[shadow_runner] validating proposal: ${proposal.id}...`);
-    
+
     // In a real implementation, this would temporarily override GENESIS_PROGRAMS
     // or pass the proposed bytecode directly to the harness.
-    
+
     // For now, we simulate the gate logic.
     const pass = Math.random() > 0.1; // Placeholder for harness execution
-    
+
     if (pass) {
-      console.log(`[shadow_runner] proposal ${proposal.id} PASSED drift budget.`);
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} PASSED drift budget.`,
+      );
     } else {
-      console.log(`[shadow_runner] proposal ${proposal.id} REJECTED: drift exceeds budget.`);
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} REJECTED: drift exceeds budget.`,
+      );
     }
   }
 }

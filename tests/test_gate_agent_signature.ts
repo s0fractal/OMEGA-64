@@ -1,10 +1,20 @@
 // test_gate_agent_signature.ts
 // Validates L32 signature policy admission behavior (Ed25519 primary, HMAC legacy).
 
-import { AGENT_SIGNATURE, type AGENT_SIGNATURE as AgentSigningKey } from "@omega";
+import {
+  AGENT_SIGNATURE,
+  type AGENT_SIGNATURE as AgentSigningKey,
+} from "@omega";
 import { GATE_GATE as GATE } from "@omega";
 import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
-import { type STATE_SNAPSHOT_AgentSignatureKey as AgentSignatureKey, type STATE_SNAPSHOT_DeltaProposal as DeltaProposal, type STATE_SNAPSHOT_GateConfig as GateConfig, type STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_REJECTION as REJECTION, type STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import {
+  type STATE_SNAPSHOT_AgentSignatureKey as AgentSignatureKey,
+  type STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
+  type STATE_SNAPSHOT_GateConfig as GateConfig,
+  type STATE_SNAPSHOT_LedgerEvent as LedgerEvent,
+  STATE_SNAPSHOT_REJECTION as REJECTION,
+  type STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
+} from "@omega";
 
 const baseProposal = (
   id: string,
