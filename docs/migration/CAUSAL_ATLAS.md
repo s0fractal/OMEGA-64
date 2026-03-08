@@ -1,6 +1,6 @@
 # Causal Atlas
 
-> Stage 1 working draft. Owner classification started on 2026-03-06. This is a migration control document, not an implementation artifact.
+> Stage 1 COMPLETED. Owner classification finalized on 2026-03-08. This is a migration control document, not an implementation artifact.
 
 ## Purpose
 
@@ -25,10 +25,10 @@ Stage 1 minimum atlas coverage:
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Owner classification | in progress | top-20 critical mutations mapped below |
-| Determinism risk classification | in progress | low/medium/high/critical scale applied |
-| Future disposition tagging | in progress | keep / wrap / move to ledger / move to reduction |
-| Residual file notes | pending | lower-risk observer and helper surfaces still need secondary pass |
+| Owner classification | complete | top-20 critical mutations mapped and verified |
+| Determinism risk classification | complete | low/medium/high/critical scale applied |
+| Future disposition tagging | complete | keep / wrap / move to ledger / move to reduction |
+| Residual file notes | complete | verified against `reduction_harness.ts` parity results |
 
 ## Mutation types
 

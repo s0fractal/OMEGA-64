@@ -32,6 +32,7 @@ export type ReductionCaseDefinition = {
   maxSteps: number;
   ownerAtomIdx?: number;
   postStructureTick?: boolean;
+  initialRegs?: number[];
 
   initialProps: Partial<Record<number, number>>;
   initialBondTargets?: Partial<Record<number, number>>;
@@ -1258,7 +1259,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object.freeze
       [4 * GRID_W + 5]: 1,
     },
     ownerAtomIdx: 0,
-    regs: [0, 0, 0, 0, 0, 0, 0, 0, 0x12], // Dummy gene bits or similar for pool slot
+    initialRegs: [0, 0, 0, 0, 0, 0, 0, 0, 0x12], // Dummy gene bits or similar for pool slot
     expected: {
       finalPc: 3,
       finalProps: {

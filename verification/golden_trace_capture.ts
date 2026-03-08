@@ -4,6 +4,7 @@ import {
   goldenTraceById,
   type GoldenTraceScenario,
 } from "./golden_trace_catalog.ts";
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 const SYSTEM_START_PATH = "/Users/s0fractal/OMEGA/SYSTEM_START.ts";
 const STRUCTURE_INTENT_CAPTURE_PATH =
@@ -32,6 +33,8 @@ const TENSEGRITY_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/tensegrity_capture.ts";
 const QUORUM_SYNC_CAPTURE_PATH =
   "/Users/s0fractal/OMEGA/verification/quorum_sync_capture.ts";
+const INTENT_RESOLUTION_CAPTURE_PATH =
+  "/Users/s0fractal/OMEGA/verification/intent_resolution_capture.ts";
 const TRACE_CONTROL_TOKEN = "omega-golden-trace";
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const TRACE_STRUCTURE_INTENT_RUNTIME_MODE =
@@ -59,6 +62,8 @@ const TRACE_TENSEGRITY_RUNTIME_MODE =
   "standalone-tensegrity-capture";
 const TRACE_QUORUM_SYNC_RUNTIME_MODE =
   "standalone-quorum-sync-capture";
+const TRACE_INTENT_RESOLUTION_RUNTIME_MODE =
+  "standalone-intent-resolution-capture";
 const TRACE_SEED = 424242;
 const TRACE_STRUCTURE_INTENT_SEED = 404;
 const TRACE_STRUCTURE_INTENT_TICKS = 1;
@@ -433,6 +438,26 @@ type QuorumSyncCapturePayload = {
   snapshot: QuorumSyncSnapshot;
 };
 
+type IntentResolutionSnapshot = {
+  role: {
+    originalRole: number;
+    finalRole: number;
+    resonance: number;
+    neighbors: number;
+  };
+  bank: {
+    originalEnergy: number;
+    finalEnergy: number;
+    poolBalance: number;
+    resonance: number;
+  };
+};
+
+type IntentResolutionCapturePayload = {
+  hash: string;
+  snapshot: IntentResolutionSnapshot;
+};
+
 export type GoldenTraceCaptureResult = {
   traceId: string;
   trace: JsonRecord;
@@ -462,6 +487,7 @@ const COLLECTIVE_SYNCHRONY_CAPTURE_MARKER =
 const SHARE_TRANSFER_CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
 const TENSEGRITY_CAPTURE_MARKER = "__OMEGA_TENSEGRITY_CAPTURE__";
 const QUORUM_SYNC_CAPTURE_MARKER = "__OMEGA_QUORUM_SYNC_CAPTURE__";
+const INTENT_RESOLUTION_CAPTURE_MARKER = "__OMEGA_INTENT_RESOLUTION_CAPTURE__";
 
 const stableStringify = (value: unknown): string => {
   if (value === null || typeof value !== "object") {
@@ -1299,6 +1325,37 @@ const runCollectiveSynchronyCaptureSubprocess = async (): Promise<
   ) as CollectiveSynchronyCapturePayload;
 };
 
+const runIntentResolutionCaptureSubprocess =
+  async (): Promise<IntentResolutionCapturePayload> => {
+    const cmd = new Deno.Command(Deno.execPath(), {
+      args: ["run", "-A", INTENT_RESOLUTION_CAPTURE_PATH, "--capture"],
+      cwd: "/Users/s0fractal/OMEGA",
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const result = await cmd.output();
+    const stdout = decoder.decode(result.stdout);
+    const stderr = decoder.decode(result.stderr);
+    const merged = `${stdout}\n${stderr}`;
+    if (result.code !== 0) {
+      throw new Error(
+        `[golden_trace_capture] intent-resolution subprocess failed\n${merged}`,
+      );
+    }
+    const line = merged
+      .split("\n")
+      .map((item) => item.trim())
+      .find((item) => item.startsWith(INTENT_RESOLUTION_CAPTURE_MARKER));
+    if (!line) {
+      throw new Error(
+        `[golden_trace_capture] intent-resolution capture marker missing\n${merged}`,
+      );
+    }
+    return JSON.parse(
+      line.slice(INTENT_RESOLUTION_CAPTURE_MARKER.length),
+    ) as IntentResolutionCapturePayload;
+  };
+
 const notesForCollectiveTransportCapture = async (
   trace: GoldenTraceScenario,
   payload: CollectiveTransportCapturePayload,
@@ -1372,6 +1429,28 @@ const notesForCollectiveSynchronyCapture = async (
     `- quorum_peer_1_pc=${payload.snapshot.quorum.peer1Pc}`,
     `- quorum_peer_2_pc=${payload.snapshot.quorum.peer2Pc}`,
     `- quorum_outsider_pc=${payload.snapshot.quorum.outsiderPc}`,
+  ].join("\n");
+};
+
+const notesForIntentResolutionCapture = async (
+  trace: GoldenTraceScenario,
+  payload: IntentResolutionCapturePayload,
+): Promise<string> => {
+  return [
+    `# ${trace.id}`,
+    ``,
+    `- scenario: ${trace.scenario}`,
+    `- setup: ${trace.setup}`,
+    `- duration: ${trace.duration}`,
+    `- daemonEnabled: ${trace.daemonEnabled}`,
+    `- runtime_mode: ${TRACE_INTENT_RESOLUTION_RUNTIME_MODE}`,
+    `- hash: ${payload.hash}`,
+    ``,
+    `## Intent resolution capture`,
+    ``,
+    `- role_final=${payload.snapshot.role.finalRole}`,
+    `- bank_final_energy=${payload.snapshot.bank.finalEnergy}`,
+    `- bank_pool_balance=${payload.snapshot.bank.poolBalance}`,
   ].join("\n");
 };
 
@@ -2682,6 +2761,57 @@ const runQuorumSyncTrace = async (
   };
 };
 
+const runIntentResolutionTrace = async (
+  trace: GoldenTraceScenario,
+): Promise<GoldenTraceCaptureResult> => {
+  const payload = await runIntentResolutionCaptureSubprocess();
+  const codexSnapshot = {
+    control_specimen: "intent_resolution",
+    runtime_mode: TRACE_INTENT_RESOLUTION_RUNTIME_MODE,
+    hash: payload.hash,
+    role_original: payload.snapshot.role.originalRole,
+    role_final: payload.snapshot.role.finalRole,
+    role_neighbors: payload.snapshot.role.neighbors,
+    bank_original: payload.snapshot.bank.originalEnergy,
+    bank_final: payload.snapshot.bank.finalEnergy,
+    bank_pool: payload.snapshot.bank.poolBalance,
+  };
+  const invariants = {
+    intent_resolution_hash: payload.hash,
+    role_verified: payload.snapshot.role.finalRole === STATE_MATRIX.ROLE_GUARDIAN,
+    bank_quorum_verified: payload.snapshot.bank.poolBalance >= 100,
+  };
+  const tracePayload: JsonRecord = {
+    trace_id: trace.id,
+    scenario: trace.scenario,
+    tick_start: 0,
+    tick_end: 1,
+    runtime_mode: TRACE_INTENT_RESOLUTION_RUNTIME_MODE,
+    daemon_enabled: trace.daemonEnabled,
+    metrics: {
+      roleResolution: payload.snapshot.role.finalRole ===
+        STATE_MATRIX.ROLE_GUARDIAN,
+      bankResolution: payload.snapshot.bank.poolBalance >= 100,
+      quorumCount: payload.snapshot.role.neighbors,
+      snapshotDigest: payload.hash,
+    },
+    event_log: [],
+    event_log_digest: await sha256Hex([]),
+    mutation_telemetry_before: {},
+    mutation_telemetry_after: {},
+    mutation_telemetry_digest: await sha256Hex({}),
+    codex_snapshot_digest: await sha256Hex(codexSnapshot),
+    invariant_digest: await sha256Hex(invariants),
+  };
+  return {
+    traceId: trace.id,
+    trace: tracePayload,
+    codexSnapshot,
+    invariants,
+    notes: await notesForIntentResolutionCapture(trace, payload),
+  };
+};
+
 export const captureGoldenTrace = async (
   traceId: string,
   options: { writeArtifacts?: boolean } = {},
@@ -2716,6 +2846,8 @@ export const captureGoldenTrace = async (
     ? await runTensegrityTrace(trace)
     : trace.id === "gt21_quorum_sync"
     ? await runQuorumSyncTrace(trace)
+    : trace.id === "gt22_intent_resolution"
+    ? await runIntentResolutionTrace(trace)
     : await runTraceServer(trace);
   if (options.writeArtifacts ?? true) {
     await persistCapture(traceId, result);

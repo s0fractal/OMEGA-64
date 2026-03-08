@@ -197,7 +197,15 @@ const createInitialState = (
 ): ShadowState => ({
   atomIndex: definition.ownerAtomIdx ?? 0,
   pc: 0,
-  regs: new Array(8).fill(0),
+  regs: (() => {
+    const r = new Array(16).fill(0);
+    if (definition.initialRegs) {
+      for (let i = 0; i < Math.min(r.length, definition.initialRegs.length); i++) {
+        r[i] = definition.initialRegs[i];
+      }
+    }
+    return r;
+  })(),
   role: 0,
   props: Object.fromEntries(
     Object.entries(definition.initialProps).map(([key, value]) => [

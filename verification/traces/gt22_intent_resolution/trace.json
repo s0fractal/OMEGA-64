@@ -1,0 +1,21 @@
+{
+  "trace_id": "gt22_intent_resolution",
+  "scenario": "sovereignty protocol collective intent resolution (role/bank)",
+  "tick_start": 0,
+  "tick_end": 1,
+  "runtime_mode": "standalone-intent-resolution-capture",
+  "daemon_enabled": false,
+  "metrics": {
+    "roleResolution": true,
+    "bankResolution": true,
+    "quorumCount": 2,
+    "snapshotDigest": "f4daaaa8667451364f39533c275d7edc7024055fd441d3f24e7e2a74a835cb8c"
+  },
+  "event_log": [],
+  "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "mutation_telemetry_before": {},
+  "mutation_telemetry_after": {},
+  "mutation_telemetry_digest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "codex_snapshot_digest": "150707953ee10bef6a720f92d28338b4c3e661a687725baf4d041e27f1245f14",
+  "invariant_digest": "d3f6451754aafd944f72d7c8e4084f4a1cc825b671b23743731d22cf76ab89b3"
+}

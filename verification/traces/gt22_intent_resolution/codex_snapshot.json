@@ -1,0 +1,11 @@
+{
+  "control_specimen": "intent_resolution",
+  "runtime_mode": "standalone-intent-resolution-capture",
+  "hash": "f4daaaa8667451364f39533c275d7edc7024055fd441d3f24e7e2a74a835cb8c",
+  "role_original": 0,
+  "role_final": 2,
+  "role_neighbors": 2,
+  "bank_original": 1000,
+  "bank_final": 899.498,
+  "bank_pool": 6400000
+}
