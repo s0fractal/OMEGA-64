@@ -5,7 +5,8 @@ import { LOGGER } from "./LOGGER.ts";
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
-let execute_atom_fn: (idx: number) => void;
+let execute_atom_fn: ((idx: number) => void) | null = null;
+let tick_environment_fn: ((tick: number) => void) | null = null;
 let tick_matrix_fn: (() => void) | null = null;
 let tick_structure_grid_fn: (() => void) | null = null;
 let build_spatial_hash_fn: (() => void) | null = null;
@@ -16,6 +17,24 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
+let resolve_bond_requests_fn: ((start: number, end: number) => number) | null = null;
+let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
+let clear_metabolism_stats_fn: (() => void) | null = null;
+let accumulate_metabolism_stats_fn: ((start: number, end: number) => void) | null = null;
+let apply_metabolism_kernel_fn: ((
+  start: number,
+  end: number,
+  noveltySigned: number,
+  symbiosisSigned: number,
+  baseTax: number,
+  targetEnergy: number,
+  homeostasisBand: number,
+  homeostasisMaxDelta: number,
+  overflowThreshold: number,
+  spatialOverflowRatio: number,
+  starvationFloor: number,
+  subsidyEnabled: number,
+) => void) | null = null;
 let sharedBuffer: SharedArrayBuffer | null = null;
 let syncStateView: Int32Array | null = null;
 let idsView: BigUint64Array | null = null;
@@ -112,6 +131,7 @@ self.onmessage = async (e) => {
       });
       wasmInstance = instantiated.instance;
       execute_atom_fn = wasmInstance.exports.execute_atom as any;
+      tick_environment_fn = wasmInstance.exports.tick_environment as any;
       tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
       tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
       build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
@@ -123,8 +143,13 @@ self.onmessage = async (e) => {
       get_neural_coherence_fn = wasmInstance.exports
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
-        .set_neural_coherence as any;
+          .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
+      resolve_bond_requests_fn = wasmInstance.exports.resolve_bond_requests as any;
+      drain_spawn_requests_fn = wasmInstance.exports.drain_spawn_requests as any;
+      clear_metabolism_stats_fn = wasmInstance.exports.clear_metabolism_stats as any;
+      accumulate_metabolism_stats_fn = wasmInstance.exports.accumulate_metabolism_stats as any;
+      apply_metabolism_kernel_fn = wasmInstance.exports.apply_metabolism_kernel as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
@@ -178,10 +203,40 @@ self.onmessage = async (e) => {
   }
 
   if (type === "TICK_MATRIX") {
-    if (tick_structure_grid_fn) tick_structure_grid_fn();
+    if (tick_environment_fn) tick_environment_fn(e.data.tick || e.data.pulseId);
+    else if (tick_structure_grid_fn) tick_structure_grid_fn();
     else if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
     self.postMessage({ type: "MATRIX_DONE", pulseId });
+  }
+
+  if (type === "TICK_ENVIRONMENT") {
+    if (tick_environment_fn) tick_environment_fn(e.data.tick);
+    await maybeDelay();
+    self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+  }
+
+  if (type === "RESOLVE_BONDS") {
+    try {
+      if (!resolve_bond_requests_fn) {
+        throw new Error("resolve_bond_requests_fn is not initialized.");
+      }
+      const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
+      LOGGER.info(`[DEBUG-WORKER] WASM resolve returned ${count}`);
+      self.postMessage({
+        type: "RESOLVE_BONDS_DONE",
+        count,
+        pulseId: e.data.pulseId,
+      });
+    } catch (err) {
+      LOGGER.error(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
+    }
+  }
+
+  if (type === "DRAIN_SPAWN") {
+    const count = drain_spawn_requests_fn ? drain_spawn_requests_fn(e.data.tick) : 0;
+    await maybeDelay();
+    self.postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -213,8 +268,54 @@ self.onmessage = async (e) => {
   if (type === "SET_COHERENCE") {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
+      await maybeDelay();
+      self.postMessage({ type: "COHERENCE_SET_DONE", pulseId });
     }
   }
+
+  if (type === "METABOLISM_ACCUMULATE") {
+    const { startIdx, endIdx, clear } = e.data;
+    if (clear && clear_metabolism_stats_fn) clear_metabolism_stats_fn();
+    if (accumulate_metabolism_stats_fn) accumulate_metabolism_stats_fn(startIdx, endIdx);
+    await maybeDelay();
+    self.postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+  }
+
+  if (type === "METABOLISM_APPLY") {
+    const {
+      startIdx,
+      endIdx,
+      noveltySigned,
+      symbiosisSigned,
+      baseTax,
+      targetEnergy,
+      homeostasisBand,
+      homeostasisMaxDelta,
+      overflowThreshold,
+      spatialOverflowRatio,
+      starvationFloor,
+      subsidyEnabled,
+    } = e.data;
+
+    if (apply_metabolism_kernel_fn) {
+      apply_metabolism_kernel_fn(
+        startIdx,
+        endIdx,
+        noveltySigned,
+        symbiosisSigned,
+        baseTax,
+        targetEnergy,
+        homeostasisBand,
+        homeostasisMaxDelta,
+        Math.floor(overflowThreshold * 1024),
+        Math.floor(spatialOverflowRatio * 1024),
+        starvationFloor,
+        subsidyEnabled ? 1 : 0,
+      );
+    }
+    await maybeDelay();
+    self.postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    }
 
   if (type === "SET_DEBUG_DELAY") {
     const delayRaw = Number(e.data.delayMs);

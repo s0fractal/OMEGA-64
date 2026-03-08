@@ -4,6 +4,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 type MutationLane =
   | "internal_oracle"
   | "internal_host"
+  | "internal_wasm"
   | "canonical_gate"
   | "external_ingress"
   | "external_daemon";

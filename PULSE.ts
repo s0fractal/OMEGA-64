@@ -11,6 +11,7 @@ import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import {
   evaluateGuardianSignalExecution,
@@ -2326,35 +2327,29 @@ export const PULSE = {
         }
       }
 
-      // 1. Resolve Sequential Logic
-      let clearedBondRequests = 0;
-      let resolvedBondPairs = 0;
-      for (const i of activeIdx) {
-        if (STATE_MATRIX.hasBondRequest(i)) {
-          const targetIdx = STATE_MATRIX.getBondRequestTarget(i);
-          if (targetIdx > 0 && targetIdx < MAX_ATOMS) {
-            STATE_MATRIX.setBondTarget(i, 0, targetIdx);
-            STATE_MATRIX.setBondStiffness(i, 0, 0.1);
-            STATE_MATRIX.setBondTarget(targetIdx, 1, i);
-            STATE_MATRIX.setBondStiffness(targetIdx, 1, 0.1);
-            resolvedBondPairs++;
-          }
-          STATE_MATRIX.clearBondRequest(i);
-          clearedBondRequests++;
-        }
-      }
-      if (resolvedBondPairs > 0) {
+      // 1. Resolve Sequential Logic (WASM)
+      const bondPulseId = nextPulseId();
+      const bondRes = await postAndWait<{ count: number }>(
+        0,
+        workers[0],
+        {
+          type: "RESOLVE_BONDS",
+          pulseId: bondPulseId,
+          startIdx: 0,
+          endIdx: OFFSETS.MAX_ATOMS,
+        },
+        "RESOLVE_BONDS_DONE",
+      );
+      if (bondRes.count > 0) {
         MUTATION_TELEMETRY.record({
-          lane: "internal_host",
+          lane: "internal_wasm",
           kind: "bond_pair_resolution",
-          count: resolvedBondPairs,
+          count: bondRes.count,
         });
-      }
-      if (clearedBondRequests > 0) {
         MUTATION_TELEMETRY.record({
-          lane: "internal_host",
+          lane: "internal_wasm",
           kind: "bond_request_clear",
-          count: clearedBondRequests,
+          count: bondRes.count,
         });
       }
 
@@ -2407,122 +2402,92 @@ export const PULSE = {
       // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
       await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
 
-      // 3. Matrix Engine (WASM)
-      const matrixPulseId = nextPulseId();
+      // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
+      // worker.ts message handler for 'TICK_ENVIRONMENT'.
+      const environmentPulseId = nextPulseId();
       await postAndWait(0, workers[0], {
-        type: "TICK_MATRIX",
-        pulseId: matrixPulseId,
-      }, "MATRIX_DONE");
+        type: "TICK_ENVIRONMENT",
+        tick: currentTick,
+        pulseId: environmentPulseId,
+      }, "ENVIRONMENT_DONE");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
 
-      // 4. Drain Spawn Queue
-      {
-        const readHead = Atomics.load(spawnHeadView, 1);
-        const writeHead = Atomics.load(spawnHeadView, 0);
-        const writeCursor = writeHead % SPAWN_RING_CAPACITY;
-
-        let spawned = 0;
-        let cursor = readHead;
-        let freeSearchCursor = 0;
-        let freeSlotsExhausted = false;
-        const genome = new Uint8Array(8);
-        const genomeWords = new Uint32Array(genome.buffer);
-
-        while (cursor !== writeCursor && spawned < 64) {
-          const slotOff = cursor * SPAWN_SLOT_BYTES;
-          const genomeLo = spawnDataView.getUint32(slotOff, true);
-
-          if (genomeLo !== 0) {
-            const genomeHi = spawnDataView.getUint32(slotOff + 4, true);
-            const cx = spawnDataView.getInt16(slotOff + 8, true);
-            const cy = spawnDataView.getInt16(slotOff + 10, true);
-            const childEnergy = spawnDataView.getInt32(slotOff + 12, true);
-
-            let freeIdx = -1;
-            if (!freeSlotsExhausted) {
-              freeIdx = findNextFreeSlot(freeSearchCursor);
-              if (freeIdx >= 0) {
-                freeSearchCursor = freeIdx + 1;
-              } else {
-                freeSlotsExhausted = true;
-              }
-            }
-
-            if (freeIdx >= 0 && freeIdx < MAX_ATOMS) {
-              const childId = deriveChildId(
-                currentTick,
-                freeIdx,
-                genomeLo,
-                genomeHi,
-                cx,
-                cy,
-              );
-              genomeWords[0] = genomeLo;
-              genomeWords[1] = genomeHi;
-
-              // Seed atom with standard biological script and genome
-              STATE_MATRIX.seedAtom(
-                freeIdx,
-                childId,
-                cx * 10 + 5,
-                cy * 10 + 5,
-                Math.max(childEnergy, 500) / STATE_MATRIX.SCALE,
-                0,
-                genome,
-              );
-              activeIdx.push(freeIdx);
-              spawned++;
-            }
-            spawnDataView.setUint32(slotOff, 0, true);
-          }
-          cursor = (cursor + 1) % SPAWN_RING_CAPACITY;
-        }
-        Atomics.store(spawnHeadView, 1, cursor);
-        if (spawned > 0) {
-          LOGGER.debug(
-            `🌱 [PULSE] Spawned ${spawned} atoms with RISC boot scripts.`,
-          );
-          MUTATION_TELEMETRY.record({
-            lane: "internal_host",
-            kind: "spawn_seed_atom",
-            count: spawned,
-          });
-        }
-      }
-
-      // 5. Sequential Maintenance (Sequential JS)
-      // (WASM handled spatial and structure grid propagation during the parallel/matrix phases)
-      const oracleDrain = SOVEREIGN_ORACLE.drainPendingMutations();
-      if (oracleDrain.applied > 0 || oracleDrain.dropped > 0) {
-        LOGGER.debug(
-          `👁️ [ORACLE] Host-lock drain applied=${oracleDrain.applied} skipped=${oracleDrain.skipped} dropped=${oracleDrain.dropped}`,
-        );
-      }
-      const controlDrain = await CONTROL_INTENT_QUEUE.applyHostLockBudget();
-      if (controlDrain.drained > 0 || controlDrain.failed > 0) {
-        LOGGER.debug(
-          `🎛️ [CONTROL] Host-lock drain drained=${controlDrain.drained} applied=${controlDrain.applied} failed=${controlDrain.failed} remaining=${controlDrain.remaining}`,
-        );
-      }
-      // WASM handled glyph transport (diffusion/decay/reflection) during parallel transition or here:
-      await postAndWait(0, workers[0], {
-        type: "TICK_GLYPH_TRANSPORT",
-        tick: currentTick,
-        pulseId: nextPulseId(),
-      }, "GLYPH_TRANSPORT_DONE");
-
-      const glyphTransport = GLYPH_BUFFER.snapshot();
-
-      applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(
-        currentTick,
-        activeIdx,
-        spatialHashState.overflowRatio,
+      // 4. Drain Spawn Queue (WASM)
+      const spawnPulseId = nextPulseId();
+      const spawnRes = await postAndWait<{ count: number }>(
+        0,
+        workers[0],
+        {
+          type: "DRAIN_SPAWN",
+          tick: currentTick,
+          pulseId: spawnPulseId,
+        },
+        "DRAIN_SPAWN_DONE",
       );
+      if (spawnRes.count > 0) {
+        LOGGER.debug(
+          `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+        );
+        MUTATION_TELEMETRY.record({
+          lane: "internal_wasm",
+          kind: "spawn_seed_atom",
+          count: spawnRes.count,
+        });
+      }
+
+      // 5. Metabolic and Homeostasis Closure (WASM)
+      // Pass 1: Accumulate genome frequencies (Scratch Space)
+      const clearStatsPulseId = nextPulseId();
+      await postAndWait(0, workers[0], {
+        type: "METABOLISM_ACCUMULATE",
+        startIdx: 0,
+        endIdx: OFFSETS.MAX_ATOMS,
+        clear: true,
+        pulseId: clearStatsPulseId,
+      }, "METABOLISM_ACCUMULATE_DONE");
+
+      // Pass 2: Apply Metabolism (Parallel)
+      const pressureState = snapshotEvolutionPressureState();
+      const baseTax = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+      const targetEnergy = clampHomeostasisTargetEnergy(homeostasisTargetEnergyRuntime);
+
+      const metabolismPromises: Promise<any>[] = [];
+      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+      for (let i = 0; i < runtimeWorkerCount; i++) {
+        const startIdx = i * chunkSize;
+        const endIdx = i === runtimeWorkerCount - 1
+          ? MAX_ATOMS
+          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+        metabolismPromises.push(postAndWait(
+          i,
+          workers[i],
+          {
+            type: "METABOLISM_APPLY",
+            pulseId: nextPulseId(),
+            startIdx,
+            endIdx,
+            noveltySigned: pressureState.noveltySigned,
+            symbiosisSigned: pressureState.symbiosisSigned,
+            baseTax,
+            targetEnergy,
+            homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+            homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+            overflowThreshold: homeostasisOverflowThresholdLedgerRuntime.currentValue,
+            spatialOverflowRatio: spatialHashState.overflowRatio,
+            starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+            subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+          },
+          "METABOLISM_APPLY_DONE",
+        ));
+      }
+      await Promise.all(metabolismPromises);
+
+      // 6. Sequential Maintenance (Sequential JS)
 
       // --- STAGE 8: Hybrid Promotion Bridge (Guardians & Architects) ---
       {
@@ -2669,8 +2634,8 @@ export const PULSE = {
         }
       }
 
-      // Decay host pheromone fields (including observer attention).
-      PHYSICS_ENGINE.decayPheromones();
+      // Decay host pheromone fields (DEPRECATED: Now handled in WASM tick_environment)
+      // PHYSICS_ENGINE.decayPheromones();
 
       // 7. Autonomous Systemic Audit (Every 5 ticks)
       if (currentTick % 5 === 0) {
@@ -2711,9 +2676,22 @@ export const PULSE = {
 
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
+
+      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
+      if (
+        RUNTIME_POLICY.snapshot.enabled &&
+        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
+      ) {
+        // We trigger save but don't await it to avoid blocking the heartbeat.
+        // It will complete in the background.
+        SNAP_ENGINE.save(currentTick).then(() => {
+          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
+        });
+      }
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
     }
   },
+  getWorker: (idx: number): any => workers[idx],
 };

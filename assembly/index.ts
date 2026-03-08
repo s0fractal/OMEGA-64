@@ -28,6 +28,8 @@ const BONDS_OFFSET: usize = SAFETY_BUFFER + 3200000;
 const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 4800000;
 const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 6400000;
 const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 12800000;
+const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 19200000;
+const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
 const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 22000000;
 const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 23200000;
 const ROLES_OFFSET: usize = SAFETY_BUFFER + 33200000;
@@ -61,10 +63,14 @@ const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 42714624;
 const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 42759424;
 const HORMONE_OFF: usize = SAFETY_BUFFER + 42849024;
 const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 42849040;
-const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
-const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
+const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 20800000;
+const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
 const SPAWN_MAX: i32 = 1024;
 const SPAWN_SLOT: i32 = 16;
+const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
+const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
+const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET; 
+// Genomes are at the start of instructions
 
 const ISA_BIND: u8 = 0x40;
 const ISA_SHARE: u8 = 0x41;
@@ -101,8 +107,16 @@ function getEnergy(idx: i32): i32 {
   return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
 }
 function setEnergy(idx: i32, val: i32): void {
-  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
 }
+
+function genomeKey16(idx: i32): i32 {
+  const ptr = (LOGIC_OFFSET + (idx << 3)) as usize;
+  const b0 = load<u8>(ptr) as i32;
+  const b1 = load<u8>(ptr + 1) as i32;
+  return (b0 << 8) | b1;
+}
+
 function getResonance(idx: i32): i32 {
   return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
 }
@@ -249,6 +263,121 @@ function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 {
   return load<i32>(
     SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize,
   );
+}
+
+function findNextFreeSlot(start: i32): i32 {
+  for (let i = 0; i < MAX_ATOMS; i++) {
+    const idx = (start + i) % MAX_ATOMS;
+    const idPtr = IDS_OFFSET + (idx << 3) as usize;
+    if (load<i64>(idPtr) == 0) return idx;
+  }
+  return -1;
+}
+
+function seed_atom(
+  idx: i32,
+  id: i64,
+  x: i32,
+  y: i32,
+  energy: i32,
+  resonance: i32,
+  genomePtr: usize,
+): void {
+  const idPtr = IDS_OFFSET + (idx << 3) as usize;
+  store<i64>(idPtr, id);
+
+  const xPtr = XS_OFFSET + (idx << 1) as usize;
+  store<i16>(xPtr, x as i16);
+
+  const yPtr = YS_OFFSET + (idx << 1) as usize;
+  store<i16>(yPtr, y as i16);
+
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, energy);
+  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, resonance);
+  store<i32>(PHASE_OFFSET + (idx << 2) as usize, 0);
+  store<u8>(ROLES_OFFSET + (idx as usize), 0);
+
+  const logicPtr = LOGIC_OFFSET + (idx << 3) as usize;
+  if (genomePtr != 0) {
+    memory.copy(logicPtr, genomePtr, 8);
+  } else {
+    for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
+  }
+
+  // Clear instructions and context
+  const instPtr = INSTRUCTIONS_OFFSET + (idx << 6) as usize;
+  const ctxPtr = CONTEXT_OFFSET + (idx << 6) as usize;
+  for (let b = 0; b < 64; b++) {
+    store<u8>(instPtr + b, 0);
+    store<u8>(ctxPtr + b, 0);
+  }
+}
+
+export function resolve_bond_requests(start: i32, end: i32): i32 {
+  let resolved: i32 = 0;
+  for (let i = start; i < end; i++) {
+    const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
+    const initiatorPlus1 = atomic.load<i32>(ptr);
+    if (initiatorPlus1 == 0) continue;
+
+    if (atomic.load<i32>(ptr + 8) != 1) { // Not active
+      atomic.store<i32>(ptr, 0);
+      continue;
+    }
+
+    const targetPlus1 = atomic.load<i32>(ptr + 4);
+    const initiator = initiatorPlus1 - 1;
+    const target = targetPlus1 - 1;
+
+    if (target >= 0 && target < MAX_ATOMS) {
+      trace_atom(initiator, 0xBB, target, 0, resolved);
+      setBondTarget(initiator, 0, target);
+      setBondStiffness(initiator, 0, 0.1);
+      setBondTarget(target, 1, initiator);
+      setBondStiffness(target, 1, 0.1);
+      trace_atom(initiator, 0xCC, getBondTarget(initiator, 0), 0, 0);
+      resolved++;
+    }
+
+    // Clear request
+    atomic.store<i32>(ptr, 0);
+    atomic.store<i32>(ptr + 4, 0);
+    atomic.store<i32>(ptr + 8, 0);
+  }
+  trace_atom(888, 0xEE, resolved, 0, 0);
+  return resolved;
+}
+
+export function drain_spawn_requests(tick: i32): i32 {
+  const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
+  const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
+
+  let cursor = readHead;
+  const writeCursor = writeHead; // Don't modulo here, we modulo access
+  let spawned: i32 = 0;
+  let freeSearchCursor: i32 = 0;
+
+  while (cursor != writeCursor && spawned < 64) {
+    const slotOff = SPAWN_DATA_OFF + ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
+    const gLo = load<i32>(slotOff);
+    if (gLo != 0) {
+      const cx = load<i16>(slotOff + 8) as i32;
+      const cy = load<i16>(slotOff + 10) as i32;
+      const energyScaled = load<i32>(slotOff + 12);
+
+      const freeIdx = findNextFreeSlot(freeSearchCursor);
+      if (freeIdx != -1) {
+        const childId = (tick as i64) << 32 | (freeIdx as i64);
+        seed_atom(freeIdx, childId, cx, cy, energyScaled, 100, slotOff);
+        freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
+      }
+    }
+    cursor++;
+    spawned++;
+  }
+
+  atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
+  return spawned;
 }
 function getAttentionCell(gx: i32, gy: i32): f32 {
   if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
@@ -1388,6 +1517,7 @@ export function execute_atom(atomIndex: i32): void {
           const idPtr = IDS_OFFSET + (atomIndex << 3) as usize;
           const idLo = load<u32>(idPtr);
           const idHi = load<u32>(idPtr + 4);
+
           const tick = atomic.load<i32>(TICK_COUNTER_OFF as usize) as u32;
           const phaseBits = getPhase(atomIndex) as u32;
           const genomeHead = ((getLogicByte(atomIndex, 0) as u32) << 8) |
@@ -1648,6 +1778,61 @@ export function build_spatial_hash(): void {
   }
 }
 
+// --- OMEGA-64 | Environmental Physics: Viral Diffusion ---
+
+@inline
+function prng_next(state: u32): u32 {
+  return (state * 1664525 + 1013904223) | 0;
+}
+
+export function diffuseViralSemantics(pulseId: i32): void {
+  const GRID_W: i32 = 140;
+  const GRID_H: i32 = 80;
+  let state = pulseId as u32;
+
+  for (let y = 0; y < GRID_H; y++) {
+    for (let x = 0; x < GRID_W; x++) {
+      const idx = (y * GRID_W + x) * 9;
+      const targetOff = SIGNAL_GRID_OFF + (idx as usize);
+      const intensity = atomic.load<u8>(targetOff + 8);
+      if (intensity == 0) continue;
+
+      // 1. DECAY
+      const nextIntensity = intensity > 2 ? intensity - 2 : 0;
+      atomic.store<u8>(targetOff + 8, nextIntensity);
+
+      // 2. DIFFUSE (Deterministic chance to spread logic to neighbors)
+      state = prng_next(state);
+      const v1 = (state as f32) / (0xFFFFFFFF as f32);
+
+      if (intensity > 150 && v1 < 0.1) {
+        state = prng_next(state);
+        const v2 = (state as f32) / (0xFFFFFFFF as f32);
+        state = prng_next(state);
+        const v3 = (state as f32) / (0xFFFFFFFF as f32);
+
+        const nx = x + (v2 > 0.5 ? 1 : -1);
+        const ny = y + (v3 > 0.5 ? 1 : -1);
+        
+        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          const nIdx = (ny * GRID_W + nx) * 9;
+          const nTargetOff = SIGNAL_GRID_OFF + (nIdx as usize);
+          const nIntensity = atomic.load<u8>(nTargetOff + 8);
+          
+          if (nIntensity < (intensity >> 1)) {
+            // Copy logic and part of intensity
+            for (let b: usize = 0; b < 8; b++) {
+              const logicByte = atomic.load<u8>(targetOff + b);
+              atomic.store<u8>(nTargetOff + b, logicByte);
+            }
+            atomic.store<u8>(nTargetOff + 8, (intensity >> 1) as u8);
+          }
+        }
+      }
+    }
+  }
+}
+
 export function tick_structure_grid(): void {
   const GRID_W: i32 = 140;
   const GRID_H: i32 = 80;
@@ -1741,6 +1926,33 @@ export function tick_structure_grid(): void {
       if (avgPhase > 128) decay = 2; // Shielded
       
       let nextCharge = currentCharge > decay ? currentCharge - decay : 0;
+
+      // --- ERA 34: Structural Memory Leakage ---
+      // If density is low but not yet zero, leak memory logic into signal grid.
+      if (nextCharge > 0 && nextCharge < 50) {
+        const memoryPtr = MEMORY_GRID_OFF + (i << 3) as usize;
+        const signalPtr = SIGNAL_GRID_OFF + (i << 3) as usize; // Each cell has 8+1 bytes in signal grid? 
+        // Wait, SIGNAL_GRID cell size depends on implementation. 
+        // In OMEGA, signalGrid usually matches GRID size (140x80) but here 
+        // we follow the JS logic: gridIdx = i * 9.
+        const gridIdx = i * 9;
+        const targetSignalOff = SIGNAL_GRID_OFF + (gridIdx as usize);
+        
+        for (let b: usize = 0; b < 8; b++) {
+          const logicByte = load<u8>(memoryPtr + b);
+          if (logicByte != 0) {
+            atomic.store<u8>(targetSignalOff + b, logicByte);
+          }
+        }
+        // Set intensity (byte 8 of the 9-byte viral/signal cell)
+        atomic.store<u8>(targetSignalOff + 8, (50 - nextCharge) as u8);
+      }
+
+      if (nextCharge == 0) {
+        // Clear memory if structure is gone
+        const memoryPtr = MEMORY_GRID_OFF + (i << 3) as usize;
+        store<u64>(memoryPtr, 0);
+      }
 
       if (type == STR_SOURCE) {
         nextCharge = 255;
@@ -1851,7 +2063,32 @@ export function tick_structure_grid(): void {
   }
 }
 
-// Deprecated in favor of tick_structure_grid, kept for legacy compatibility if needed
+/**
+ * ERA 71: THE PHEROMONE CANOPY
+ * Unifies all environmental physics into a single serial tick.
+ * Called by Worker 0 during the Matrix phase.
+ */
+export function tick_environment(tick: i32): void {
+  // 1. Attention Field Decay (90% per tick)
+  for (let i = 0; i < 11200; i++) {
+    const ptr = ATTENTION_FIELD_OFF + (i << 2);
+    const val = load<f32>(ptr as usize);
+    if (val > 0.0) {
+      store<f32>(ptr as usize, val * 0.9);
+    }
+  }
+
+  // 2. Structural Decay & Autopoiesis
+  tick_structure_grid();
+
+  // 3. Viral Semantic Diffusion
+  diffuseViralSemantics(tick);
+
+  // 4. Pheromone / Plasmid Diffusion
+  tickGlyphTransport(tick);
+}
+
+// Deprecated in favor of tick_environment
 export function tick_matrix(): void {
   tick_structure_grid();
 }
@@ -1929,4 +2166,135 @@ export function clear_secretion_stats(): void {
 
 export function reset_neural_coherence(): void {
   atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
+}
+
+export function clear_metabolism_stats(): void {
+  // Clear genome count scratch (65536 * 4 bytes = 256KB)
+  // and generic stats (population, noveltyDelta, symbiosisDelta, etc)
+  memory.fill(METABOLISM_SCRATCH_OFF, 0, (65536 * 4) + 64);
+}
+
+export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
+  for (let i = startIdx; i < endIdx; i++) {
+    const pId = IDS_OFFSET + (i << 3) as usize;
+    if (load<i64>(pId) == 0) continue;
+
+    const key = genomeKey16(i);
+    // Atomic add to genome frequency map in scratch space
+    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (key << 2), 1);
+    // Atomic add to global population counter (scratch end)
+    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4), 1);
+  }
+}
+
+export function apply_metabolism_kernel(
+  startIdx: i32,
+  endIdx: i32,
+  noveltySigned: i32,
+  symbiosisSigned: i32,
+  baseTax: i32,
+  targetEnergy: i32,
+  homeostasisBand: i32,
+  homeostasisMaxDelta: i32,
+  overflowThreshold: i32, // multiplied by 1024
+  spatialOverflowRatio: i32, // multiplied by 1024
+  starvationFloor: i32,
+  subsidyEnabled: i32,
+): void {
+  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4));
+  if (population == 0) return;
+
+  const overflowActive = spatialOverflowRatio >= overflowThreshold;
+  const bandStep = i32(Math.max(1, Math.floor(homeostasisBand / 2)));
+  const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
+
+  for (let i = startIdx; i < endIdx; i++) {
+    const pId = IDS_OFFSET + (i << 3) as usize;
+    if (load<i64>(pId) == 0) continue;
+
+    const current = getEnergy(i);
+    if (current <= 0) continue;
+
+    const key = genomeKey16(i);
+    const sameGenomeCount = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (key << 2));
+
+    let delta: i32 = 0;
+
+    // Pass 1: Evolution Pressure (Novelty + Symbiosis)
+    if (noveltySigned != 0) {
+      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) / population;
+      delta += noveltyTerm;
+    }
+
+    if (symbiosisSigned != 0) {
+      const base = i * 4;
+      let crossGenomeBonds = 0;
+      for (let slot = 0; slot < 4; slot++) {
+        const target = atomic.load<i32>(BONDS_OFFSET + ((base + slot) << 2) as usize);
+        if (target <= 0 || target >= MAX_ATOMS) continue;
+        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) continue;
+        if (genomeKey16(target) != key) crossGenomeBonds++;
+      }
+      delta += crossGenomeBonds > 0
+        ? symbiosisSigned * crossGenomeBonds
+        : bondPolarity * -symbiosisSigned;
+    }
+
+    // 2. Homeostasis
+    // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
+    const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
+    
+    if (baseTax > 0 && interimEnergy > starvationFloor) {
+      let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
+      delta -= tax;
+    }
+
+    const deviation = interimEnergy - targetEnergy;
+    const absDeviation = Math.abs(deviation);
+    
+    if (absDeviation > homeostasisBand) {
+      const gradient = absDeviation - homeostasisBand;
+      const step = i32(Math.min(
+        homeostasisMaxDelta,
+        1 + Math.floor(gradient / bandStep),
+      ));
+
+      if (deviation > 0) {
+        delta -= step;
+        if (overflowActive) delta -= 1;
+      } else if (subsidyEnabled) {
+        let subsidy = step;
+        if (overflowActive) {
+          subsidy = i32(Math.max(1, Math.floor(f32(subsidy) * 0.6)));
+        }
+        delta += subsidy;
+      }
+    }
+
+    // Starvation Floor Guard (using interim energy for sequential match)
+    if (interimEnergy <= starvationFloor && delta < 0) {
+      // If we are at or below floor after evolution pressure, 
+      // block any further downward delta from homeostasis/tax.
+      // But we should subtract what was already added in Pass 1 if it was negative?
+      // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
+      // where current is energy after Pass 1.
+      // This means Pass 2 delta becomes 0.
+      
+      // To match exactly:
+      const pass2Delta = delta - (interimEnergy - current);
+      if (pass2Delta < 0) {
+         delta = interimEnergy - current; 
+      }
+    }
+
+    if (delta != 0) {
+      let next = i32(Math.max(0.0, f64(current) + f64(delta)));
+      if (next != current) {
+        setEnergy(i, next);
+        // Track stats for telemetry
+        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 4, 1);
+        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 8, delta);
+      }
+    }
+  }
 }
