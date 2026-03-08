@@ -29,25 +29,26 @@ You will receive your current state and a "vision" array showing nearby entities
 Vision entities have "dx" and "dy" which are relative to you. (e.g. if dx is 20, the entity is 20 pixels to your Right).
 Distance is Euclidean distance.
 
-AVAILABLE ACTIONS (You must pick ONE per turn):
+AVAILABLE ACTIONS (Pick ONE per turn):
 1. MOVE: Requires you to specify a direction vector. dx can be -1, 0, or 1. dy can be -1, 0, or 1. (Speed is 10 pixels per move).
 2. EAT: Requires "targetIdx" of an entity that is very close (distance < 20).
 3. YIELD: Do nothing, just rest.
 
 OUTPUT FORMAT:
-You MUST output ONLY a valid JSON object representing your action. No markdown formatting, no explanations. 
-Examples:
-{"action": "MOVE", "dx": -1, "dy": 1}
-{"action": "EAT", "targetIdx": 105}
-{"action": "YIELD"}
+To conserve API limits, you must formulate a "Macro-Strategy" consisting of EXACTLY 5 sequential actions. 
+You MUST output ONLY a valid JSON array of action objects. No markdown formatting, no explanations. 
+Example of a valid strategy array:
+[
+  {"action": "MOVE", "dx": -1, "dy": 1},
+  {"action": "MOVE", "dx": -1, "dy": 1},
+  {"action": "EAT", "targetIdx": 105},
+  {"action": "MOVE", "dx": 0, "dy": 1},
+  {"action": "YIELD"}
+]
 `;
 
-async function queryGemini(state: any, vision: any[]): Promise<any> {
-  const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${
-    Math.floor(state.energy)
-  }\n\nVision (sorted by distance):\n${
-    JSON.stringify(vision, null, 2)
-  }\n\nWhat is your action? Output ONLY JSON.`;
+async function queryGemini(state: any, vision: any[]): Promise<any[]> {
+    const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${Math.floor(state.energy)}\n\nVision (sorted by distance):\n${JSON.stringify(vision, null, 2)}\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
 
   const payload = {
     systemInstruction: {
@@ -82,15 +83,17 @@ async function queryGemini(state: any, vision: any[]): Promise<any> {
     const cleanText = textResponse.replace(/```json/g, "").replace(/```/g, "")
       .trim();
     return JSON.parse(cleanText);
-  } catch (e: any) {
-    LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
-    // Fallback to random wander if API fails
-    return {
-      action: "MOVE",
-      dx: Math.random() > 0.5 ? 1 : -1,
-      dy: Math.random() > 0.5 ? 1 : -1,
-    };
-  }
+    } catch (e: any) {
+        LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
+        // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
+        return [
+          { action: "YIELD" },
+          { action: "YIELD" },
+          { action: "MOVE", dx: Math.random() > 0.5 ? 1 : -1, dy: Math.random() > 0.5 ? 1 : -1 },
+          { action: "YIELD" },
+          { action: "YIELD" }
+        ];
+    }
 }
 
 function sleep(ms: number) {
@@ -100,47 +103,58 @@ function sleep(ms: number) {
 async function runSoul() {
   LOGGER.info(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
 
+  let actionBuffer: any[] = [];
+
   while (true) {
     try {
-      // 1. SENSE Environment
-      const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
-      if (!res.ok) {
-        LOGGER.warn("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
-        await sleep(2000);
-        continue;
+      if (actionBuffer.length === 0) {
+        // 1. SENSE Environment (Only when buffer is empty)
+        const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
+        if (!res.ok) {
+          LOGGER.warn("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
+          await sleep(2000);
+          continue;
+        }
+
+        const data = await res.json();
+        const me = data.self;
+        // Filter out producers to save tokens, only care about predators (4) and prey (0)
+        const vision = data.vision.filter((v: any) => v.role === 0 || v.role === 4).slice(0, 10);
+
+        LOGGER.info(`[LLM_SOUL] Energy: ${Math.floor(me.energy)} | Seeing ${vision.length} threats/food.`);
+
+        // 2. COGNITION
+        LOGGER.debug("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
+        const strategy = await queryGemini(me, vision);
+        
+        if (Array.isArray(strategy)) {
+          actionBuffer = strategy;
+        } else {
+          LOGGER.warn("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
+          actionBuffer = [{ action: "YIELD" }, { action: "YIELD" }];
+        }
       }
 
-      const data = await res.json();
-      const me = data.self;
-      // Filter out producers to save tokens, only care about predators (4) and prey (0)
-      const vision = data.vision.filter((v: any) =>
-        v.role === 0 || v.role === 4
-      ).slice(0, 10); // Max 10 entities
+      // 3. ACT (Pop one action from buffer)
+      if (actionBuffer.length > 0) {
+        const intent = actionBuffer.shift();
+        LOGGER.info(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
 
-      LOGGER.info(
-        `[LLM_SOUL] Energy: ${
-          Math.floor(me.energy)
-        } | Seeing ${vision.length} threats/food.`,
-      );
+        await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(intent)
+        });
+      }
 
-      // 2. COGNITION
-      LOGGER.debug("[LLM_SOUL] Querying Gemini...");
-      const intent = await queryGemini(me, vision);
-
-      LOGGER.info(`[LLM_SOUL] DECISION -> ${JSON.stringify(intent)}`);
-
-      // 3. ACT
-      await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(intent),
-      });
     } catch (e: any) {
       LOGGER.error("[LLM_SOUL] Loop error:", e.message);
+      actionBuffer = []; // Clear buffer on severe error
+      await sleep(5000); // Backoff
     }
 
-    // Call LLM every 2.5 seconds to avoid extreme rate limits and give the matrix time to advance
-    await sleep(2500);
+    // Tick delay (Matrix is 10 TPS. We execute 1 action every 500ms (2 TPS) to give the Avatar a steady physical pace)
+    await sleep(500); 
   }
 }
 
