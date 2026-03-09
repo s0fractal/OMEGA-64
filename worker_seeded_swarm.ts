@@ -52,7 +52,7 @@ const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
   script[pc++] = 4; // SYS_SPAWN
   // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
   script[pc++] = stateMatrix.RISC.OP_SYSCALL;
-  
+
   script[pc++] = stateMatrix.RISC.OP_JMP;
   script[pc++] = 0;
   return script;

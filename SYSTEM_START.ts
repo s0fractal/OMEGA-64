@@ -3181,14 +3181,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
-    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(CONTROL_INTENT_QUEUE);
+    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
+      CONTROL_INTENT_QUEUE,
+    );
     const denied = requireControlAuth(req);
     if (denied) return denied;
     try {
       const arrayBuffer = await req.arrayBuffer();
       const packet = new Uint8Array(arrayBuffer);
       const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
-      
+
       let peerRuleGenome = null;
       let peerBehaviorProfile = null;
       let peerCodexProfile = null;
@@ -3203,20 +3205,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const cStr = req.headers.get("x-omega-codex-profile");
         if (cStr) peerCodexProfile = JSON.parse(cStr);
       } catch (e) {
-        LOGGER.warn(`🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`);
+        LOGGER.warn(
+          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
+        );
       }
 
       const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
       const queued = qCall(
-        packet, 
+        packet,
         sourceNode,
         peerRuleGenome,
         peerBehaviorProfile,
         localContext.behavior,
         peerCodexProfile,
-        localContext.codex
+        localContext.codex,
       );
-      
+
       LOGGER.info(
         `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
       );

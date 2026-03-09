@@ -954,7 +954,12 @@ const runReductionShadow = (
 
   if (definition.id.startsWith("rc22")) {
     console.log("REDUCTION EXECUTION TRACE:", state.executed);
-    console.log("REDUCTION TAPE TOKENS:", glyphTape.map((t) => `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`));
+    console.log(
+      "REDUCTION TAPE TOKENS:",
+      glyphTape.map((t) =>
+        `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`
+      ),
+    );
   }
   return snapshotReduction(state, stepsExecuted, glyphTape);
 };
@@ -1131,12 +1136,20 @@ const compareResults = (
   if (Array.isArray(expected.registers)) {
     for (let i = 0; i < expected.registers.length; i++) {
       if (legacy.regs[i] !== expected.registers[i]) {
-        reasons.push(`expected registers mismatch at index ${i}: legacy=${legacy.regs[i]} pos=${i} vs expected=${expected.registers[i]}`);
+        reasons.push(
+          `expected registers mismatch at index ${i}: legacy=${
+            legacy.regs[i]
+          } pos=${i} vs expected=${expected.registers[i]}`,
+        );
       }
     }
   }
   if (!equalNumberArray(legacy.regs, reduction.regs)) {
-    reasons.push(`register vector mismatch: legacy=[${legacy.regs.slice(0,4)}] reduction=[${reduction.regs.slice(0,4)}]`);
+    reasons.push(
+      `register vector mismatch: legacy=[${
+        legacy.regs.slice(0, 4)
+      }] reduction=[${reduction.regs.slice(0, 4)}]`,
+    );
   }
   if (expected.finalProps) {
     for (const [key, value] of Object.entries(expected.finalProps)) {

@@ -34,7 +34,6 @@ const loadWasm = async (): Promise<WasmExports> => {
   return instantiated.instance.exports as unknown as WasmExports;
 };
 
-
 const testIntentClearing = async () => {
   STATE_MATRIX.clear();
   const wasm = await loadWasm();

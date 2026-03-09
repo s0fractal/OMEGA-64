@@ -42,8 +42,8 @@ export context. It intentionally excludes historical era narratives.
 - `runtime_root_files`: executable entry roots that define active runtime
   closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
   `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`,
-  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`,
-  `llm_soul.ts`, `nightly_soak.ts`.
+  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`, `llm_soul.ts`,
+  `nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
 - `experimental_files`: explicitly exported experimental surfaces that must not

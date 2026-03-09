@@ -45,7 +45,10 @@ export const P2P_CODEC = {
     view.setBigUint64(36, STATE_MATRIX.getLineage(idx), true);
 
     const context = STATE_MATRIX.getContext(idx);
-    u8.set(new Uint8Array(context.buffer, context.byteOffset, context.byteLength), 44);
+    u8.set(
+      new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
+      44,
+    );
 
     const instructions = STATE_MATRIX.getInstructions(idx);
     u8.set(instructions, 108);
@@ -63,7 +66,11 @@ export const P2P_CODEC = {
     const idx = STATE_MATRIX.findEmptySlot();
     if (idx === -1) return -1; // Lattice full
 
-    const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+    const view = new DataView(
+      buffer.buffer,
+      buffer.byteOffset,
+      buffer.byteLength,
+    );
 
     const id = view.getBigUint64(0, true);
     const x = view.getInt16(8, true);
@@ -71,14 +78,22 @@ export const P2P_CODEC = {
     const energy = view.getFloat32(12, true);
     const resonance = view.getInt32(16, true);
     const phase = view.getInt32(20, true);
-    
+
     const logic = buffer.subarray(24, 32);
     const role = view.getUint8(32);
     const damping = view.getUint8(33);
     const lineage = view.getBigUint64(36, true);
-    
+
     // Seed core fields
-    STATE_MATRIX.seedAtom(idx, id, x, y, Math.max(0, energy), Math.max(0, resonance), logic);
+    STATE_MATRIX.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      Math.max(0, energy),
+      Math.max(0, resonance),
+      logic,
+    );
     STATE_MATRIX.setPhase(idx, phase);
     STATE_MATRIX.setRole(idx, role);
     STATE_MATRIX.setDamping(idx, damping);
@@ -86,7 +101,11 @@ export const P2P_CODEC = {
 
     // Restore execution context (registers and PC)
     const contextSrc = buffer.subarray(44, 108);
-    const contextDst = new Uint8Array(STATE_MATRIX.getContext(idx).buffer, STATE_MATRIX.getContext(idx).byteOffset, 64);
+    const contextDst = new Uint8Array(
+      STATE_MATRIX.getContext(idx).buffer,
+      STATE_MATRIX.getContext(idx).byteOffset,
+      64,
+    );
     contextDst.set(contextSrc);
 
     // Restore instructions
@@ -94,5 +113,5 @@ export const P2P_CODEC = {
     STATE_MATRIX.setInstructions(idx, instSrc);
 
     return idx;
-  }
+  },
 };

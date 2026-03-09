@@ -1173,7 +1173,11 @@ export const CONTROL_INTENT_QUEUE = {
     localCodexContext: unknown = null,
   ): QueueDecision => {
     const logicBytes = packet.subarray(24, 32);
-    const view = new DataView(packet.buffer, packet.byteOffset, packet.byteLength);
+    const view = new DataView(
+      packet.buffer,
+      packet.byteOffset,
+      packet.byteLength,
+    );
     const energy = view.getFloat32(12, true);
     const resonance = view.getInt32(16, true);
     const atomId = view.getBigUint64(0, true).toString();
@@ -1222,7 +1226,12 @@ export const CONTROL_INTENT_QUEUE = {
           admissionResult.admission.reasons.join("|")
         }`,
       );
-      return decision(false, 409, "FEDERATION_ADMISSION_REJECTED", admissionResult.admission);
+      return decision(
+        false,
+        409,
+        "FEDERATION_ADMISSION_REJECTED",
+        admissionResult.admission,
+      );
     }
 
     if (queue.length >= MAX_PENDING) {

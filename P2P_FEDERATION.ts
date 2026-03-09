@@ -179,7 +179,9 @@ export const P2P_FEDERATION = {
 
       const lineage = STATE_MATRIX.getLineage(idx);
       const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
-      const codexProfile = AKASHA_CODEX.lookupLineageProfile(lineage.toString());
+      const codexProfile = AKASHA_CODEX.lookupLineageProfile(
+        lineage.toString(),
+      );
 
       const headers: Record<string, string> = {
         "Content-Type": "application/octet-stream",
@@ -236,6 +238,5 @@ export const P2P_FEDERATION = {
       setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
     }
   },
-
   // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };

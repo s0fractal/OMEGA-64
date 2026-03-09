@@ -1,4 +1,4 @@
-import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -229,7 +229,9 @@ const applyGuardianOpcode = (
       } else if (sysId === SYS.SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
-        throw new Error(`unsupported guardian bridge syscall=0x${sysId.toString(16)}`);
+        throw new Error(
+          `unsupported guardian bridge syscall=0x${sysId.toString(16)}`,
+        );
       }
       state.pc += token.length;
       return;

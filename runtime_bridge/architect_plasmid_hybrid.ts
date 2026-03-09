@@ -1,4 +1,4 @@
-import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -206,7 +206,9 @@ const applyArchitectOpcode = (
       } else if (sysId === SYS.SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
-        throw new Error(`unsupported architect bridge syscall=0x${sysId.toString(16)}`);
+        throw new Error(
+          `unsupported architect bridge syscall=0x${sysId.toString(16)}`,
+        );
       }
       state.pc += token.length;
       return;

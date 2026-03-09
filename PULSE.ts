@@ -1671,7 +1671,13 @@ const dispatchRangePhase = async (
     workerPromises.push(postAndWait(
       0,
       workers[0],
-      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId, theta: evolutionPressureState.ring.theta },
+      {
+        type,
+        startIdx: 0,
+        endIdx: MAX_ATOMS,
+        pulseId,
+        theta: evolutionPressureState.ring.theta,
+      },
       doneType,
     ));
   } else {
@@ -1686,7 +1692,13 @@ const dispatchRangePhase = async (
       workerPromises.push(postAndWait(
         i,
         workers[i],
-        { type, startIdx, endIdx, pulseId, theta: evolutionPressureState.ring.theta },
+        {
+          type,
+          startIdx,
+          endIdx,
+          pulseId,
+          theta: evolutionPressureState.ring.theta,
+        },
         doneType,
       ));
     }
@@ -1710,7 +1722,9 @@ const startWorkers = async (count: number): Promise<void> => {
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
           P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
-          LOGGER.debug(`🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`);
+          LOGGER.debug(
+            `🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`,
+          );
           STATE_MATRIX.recycleAtom(idx);
         }
       }
@@ -2558,7 +2572,7 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
-      
+
       SOVEREIGN_ORACLE.drainPendingMutations();
       await CONTROL_INTENT_QUEUE.applyHostLockBudget();
 
@@ -2569,17 +2583,17 @@ export const PULSE = {
         tick: currentTick,
         pulseId: transportPulseId,
       }, "GLYPH_TRANSPORT_DONE");
-      
+
       // 3.5 Sort Spawn Requests Deterministically
       const writeHead = Atomics.load(spawnHeadView, 0);
       const readHead = Atomics.load(spawnHeadView, 1);
       const pendingCount = writeHead - readHead;
-      
+
       if (pendingCount > 1) {
         const SPAWN_MAX = 1024;
         const SPAWN_SLOT = 24;
         const requests = [];
-        
+
         for (let i = 0; i < pendingCount; i++) {
           const cursor = readHead + i;
           const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
@@ -2589,7 +2603,7 @@ export const PULSE = {
           }
           requests.push(reqBytes);
         }
-        
+
         // Lexicographical sort
         requests.sort((a, b) => {
           for (let i = 0; i < 24; i++) {
@@ -2597,7 +2611,7 @@ export const PULSE = {
           }
           return 0;
         });
-        
+
         for (let i = 0; i < pendingCount; i++) {
           const cursor = readHead + i;
           const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
@@ -2661,9 +2675,13 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
-      
+
       applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(currentTick, activeIdx, spatialHashState.overflowRatio);
+      applyEnergyHomeostasisTerms(
+        currentTick,
+        activeIdx,
+        spatialHashState.overflowRatio,
+      );
 
       // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
       const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);

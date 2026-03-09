@@ -1,4 +1,6 @@
 // OMEGA-64 | test_quantum_shift.ts | Obsolete
 // This test has been superseded by verification/golden_traces/gt*.
-console.log("💎 [TEST] test_quantum_shift bypassed (verified in reduction traces).");
+console.log(
+  "💎 [TEST] test_quantum_shift bypassed (verified in reduction traces).",
+);
 Deno.exit(0);
