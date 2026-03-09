@@ -1,5 +1,5 @@
-import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
-import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 
 type AuditConfig = {

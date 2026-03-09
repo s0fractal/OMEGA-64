@@ -1,4 +1,4 @@
-import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 
 type Failure = {
   name: string;

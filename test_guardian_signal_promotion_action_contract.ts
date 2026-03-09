@@ -1,4 +1,4 @@
-import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 
 type Failure = {
   name: string;

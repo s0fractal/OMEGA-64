@@ -19,8 +19,8 @@ import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import { GLYPH_BUFFER, type GlyphSnapshot } from "./GLYPH_BUFFER.ts";
-import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
-import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";
 import type {
   ReplicationHybridSnapshot,
@@ -29,11 +29,11 @@ import type {
 import type {
   GuardianSignalHybridSnapshot,
   GuardianSignalPromotionSnapshot,
-} from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+} from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 import type {
   ArchitectPlasmidHybridSnapshot,
   ArchitectPlasmidPromotionSnapshot,
-} from "./ARCHITECT_PLASMID_PROMOTION.ts";
+} from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 import type { ReplicationHybridState } from "./runtime_bridge/replication_hybrid.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,

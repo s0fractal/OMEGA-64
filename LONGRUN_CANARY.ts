@@ -1,8 +1,8 @@
-import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
-import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
-import { evaluateArchitectPlasmidPromotionAction } from "./ARCHITECT_PLASMID_PROMOTION_ACTION.ts";
-import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateArchitectPlasmidPromotionAction } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 import { evaluateArchitectPlasmidPromotionDecision } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 import { evaluateReplicationPromotionAction } from "./REPLICATION_PROMOTION_ACTION.ts";
 import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";

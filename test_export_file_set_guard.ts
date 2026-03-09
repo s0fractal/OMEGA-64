@@ -43,7 +43,6 @@ const REQUIRED_RUNTIME_SURFACE = [
   "HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts",
   "PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts",
   "PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts",
-  "GUARDIAN_SIGNAL_PROMOTION.ts",
   "runtime_bridge/architect_plasmid_hybrid.ts",
   "runtime_bridge/guardian_signal_hybrid.ts",
   "GATE.ts",
