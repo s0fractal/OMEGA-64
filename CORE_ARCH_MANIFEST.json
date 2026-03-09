@@ -66,8 +66,6 @@
     "GENERIC_LEDGER_PERSISTENCE.ts",
     "GENERIC_LEDGER_SYSTEM.ts",
     "HORMONE_BUFFER_RUNTIME.ts",
-    "runtime_bridge/architect_plasmid_hybrid.ts",
-    "runtime_bridge/guardian_signal_hybrid.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",

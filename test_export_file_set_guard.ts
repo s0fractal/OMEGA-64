@@ -33,8 +33,6 @@ const REQUIRED_RUNTIME_SURFACE = [
   "RUNTIME_POLICY.ts",
   "DAEMON_INGRESS_POLICY.ts",
   "GLYPH_BUFFER.ts",
-  "runtime_bridge/architect_plasmid_hybrid.ts",
-  "runtime_bridge/guardian_signal_hybrid.ts",
   "GATE.ts",
   "AKASHA_CODEX.ts",
   "GATE_VALIDATOR.ts",

@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T19:26:27.208Z*
-*Exported Files: 132*
+*Generated: 2026-03-09T19:37:13.585Z*
+*Exported Files: 129*
 *Runtime Roots: 11*
-*Runtime Closure Files: 68*
+*Runtime Closure Files: 65*
 *Non-Runtime Code Files: 49*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 31*
-*Manifest SHA256: 1b81ad68e4c9ad1d717bdb0d7d48eda5f3a2902034d4f121f93c089e8cf878b8*
-*Export Set SHA256: c8cc151446e4002ac9c852393feb858f21809f674b82c5ec842f06082beb28bb*
-*Export Content SHA256: 6196cac2b0cd2294e891e2293b7eef73bb53c95f785db034d70330d6c7a42bf0*
-*Git Commit: 40ba84e6a843*
+*Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
+*Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
+*Export Content SHA256: c88e498a69cee37cce27535c654982a8f5d7b23d39adbb6a8d0a47e04486f6d8*
+*Git Commit: 23452e6382ee*
 
 ---
 
@@ -84,9 +84,6 @@
 - reduction_core/relics/LINEAGE_TRACKER.ts
 - reduction_core/relics/QUORUM_ADVOCATE.ts
 - REPLICATION_PROMOTION.ts
-- runtime_bridge/architect_plasmid_hybrid.ts
-- runtime_bridge/guardian_signal_hybrid.ts
-- runtime_bridge/replication_hybrid.ts
 - RUNTIME_POLICY.ts
 - SEMANTIC_MEMBRANE.ts
 - SHIMS.ts
@@ -9248,8 +9245,6 @@ export const CONTROL_INTENT_QUEUE = {
     "GENERIC_LEDGER_PERSISTENCE.ts",
     "GENERIC_LEDGER_SYSTEM.ts",
     "HORMONE_BUFFER_RUNTIME.ts",
-    "runtime_bridge/architect_plasmid_hybrid.ts",
-    "runtime_bridge/guardian_signal_hybrid.ts",
     "build_wasm.ts",
     "wasm_layout_guard.ts",
     "worker_gate_thresholds.ts",
@@ -25603,7 +25598,7 @@ self.onmessage = async (e) => {
 
 ```typescript
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, sharedBuffer, STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, RISC, SYS } from "./STATE_MATRIX.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
@@ -25620,19 +25615,7 @@ import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import { SNAP_ENGINE } from "./SNAP_ENGINE.ts";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import { IMMUNE } from "./IMMUNE.ts";
-import {
-  evaluateGuardianSignalExecution,
-  evaluateGuardianSignalReduction,
-  type GuardianSignalExecutionMode,
-} from "./runtime_bridge/guardian_signal_hybrid.ts";
-import {
-  type ArchitectPlasmidExecutionMode,
-  evaluateArchitectPlasmidExecution,
-} from "./runtime_bridge/architect_plasmid_hybrid.ts";
-import {
-  evaluateReplicationExecution,
-  type ReplicationExecutionMode,
-} from "./runtime_bridge/replication_hybrid.ts";
+
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
   applyLedgerUpdate,
@@ -28546,6 +28529,1173 @@ export const PULSE = {
   },
   getWorker: (idx: number): any => workers[idx],
 };
+
+// --- INLINED FROM runtime_bridge/architect_plasmid_hybrid.ts ---
+
+export type ArchitectPlasmidExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type ArchitectPlasmidBranch = "emit" | "suppress" | "unknown";
+
+export type ArchitectPlasmidReductionDecision = {
+  status: "ok" | "fallback";
+  branch: ArchitectPlasmidBranch;
+  plasmidAllowed: boolean;
+  finalRole: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+  glyphCount: number;
+  stepsExecuted: number;
+  fallbackReason?: string;
+};
+
+export type ArchitectPlasmidExecutionDecision = {
+  mode: ArchitectPlasmidExecutionMode;
+  legacyAllowed: boolean;
+  allowed: boolean;
+  status:
+    | "legacy-blocked"
+    | "legacy"
+    | "shadow"
+    | "hybrid"
+    | "fallback";
+  branch: ArchitectPlasmidBranch;
+  finalRole: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+  glyphCount: number;
+  stepsExecuted: number;
+  shadowSuppressed: boolean;
+  hybridSuppressed: boolean;
+  fallbackReason?: string;
+};
+
+type ArchitectShadowState = {
+  pc: number;
+  regs: number[];
+  role: number;
+  neuralCoherence: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+};
+
+type ArchitectToken = {
+  pc: number;
+  opcode: number;
+  length: number;
+  args: number[];
+};
+
+const DEFAULT_ARCHITECT_MAX_STEPS = 8;
+const SUPPORTED_ARCHITECT_PROPS = {
+  [RISC.PROP_NEURAL_COHERENCE]: true,
+} as const;
+const SUPPORTED_ARCHITECT_OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_SIGNAL, 1],
+  [RISC.OP_ROLE, 3],
+  [RISC.OP_BUILD, 3],
+  [RISC.OP_SYSCALL, 1],
+]);
+
+export const normalizeArchitectPlasmidExecutionMode = (
+  raw: string | undefined,
+): ArchitectPlasmidExecutionMode => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "legacy-execute" || value === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const createArchitectInitialState = (neuralCoherence: number): ArchitectShadowState => ({
+  pc: 0,
+  regs: new Array(8).fill(0),
+  role: 0,
+  neuralCoherence: Math.max(0, Math.floor(neuralCoherence)),
+  signalCount: 0,
+  buildCount: 0,
+  branchTaken: false,
+});
+
+const decodeArchitectTape = (
+  script: Uint8Array,
+  maxTokens: number,
+): ArchitectToken[] => {
+  const out: ArchitectToken[] = [];
+  let pc = 0;
+  let steps = 0;
+  while (pc >= 0 && pc < script.length && steps < maxTokens) {
+    const opcode = script[pc] ?? RISC.OP_NOP;
+    if (opcode === RISC.OP_NOP) break;
+    const length = SUPPORTED_ARCHITECT_OPCODE_LENGTHS.get(opcode);
+    if (!length) {
+      throw new Error(`unsupported_architect_opcode_0x${opcode.toString(16)}`);
+    }
+    out.push({
+      pc,
+      opcode,
+      length,
+      args: Array.from(script.slice(pc + 1, pc + length)),
+    });
+    pc += length;
+    steps++;
+  }
+  return out;
+};
+
+const classifyArchitectBranch = (
+  state: ArchitectShadowState,
+): ArchitectPlasmidBranch => {
+  if (
+    state.buildCount > 0 &&
+    state.role === STATE_MATRIX.ROLE_ARCHITECT
+  ) {
+    return "emit";
+  }
+  if (state.signalCount > 0 && state.buildCount === 0) {
+    return "suppress";
+  }
+  return "unknown";
+};
+
+const applyArchitectOpcode = (
+  state: ArchitectShadowState,
+  token: ArchitectToken,
+): void => {
+  switch (token.opcode) {
+    case RISC.OP_GET: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      if (!(prop in SUPPORTED_ARCHITECT_PROPS)) {
+        throw new Error(`unsupported GET prop=${prop}`);
+      }
+      state.regs[reg] = state.neuralCoherence;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SET: {
+      const reg = token.args[0] ?? 0;
+      state.regs[reg] = token.args[1] ?? 0;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SUB: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_JNZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.branchTaken = true;
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JMP: {
+      state.pc = token.args[0] ?? 0;
+      return;
+    }
+    case RISC.OP_ROLE: {
+      const mode = token.args[0] ?? 0;
+      const role = token.args[1] ?? 0;
+      if (mode === 0) state.role = role;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SIGNAL: {
+      state.signalCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_BUILD: {
+      state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(
+          `unsupported architect bridge syscall=0x${sysId.toString(16)}`,
+        );
+      }
+      state.pc += token.length;
+      return;
+    }
+    default:
+      throw new Error(
+        `unsupported architect bridge opcode=0x${token.opcode.toString(16)}`,
+      );
+  }
+};
+
+const architectFallbackDecision = (
+  glyphCount: number,
+  stepsExecuted: number,
+  reason: string,
+): ArchitectPlasmidReductionDecision => ({
+  status: "fallback",
+  branch: "unknown",
+  plasmidAllowed: false,
+  finalRole: 0,
+  signalCount: 0,
+  buildCount: 0,
+  branchTaken: false,
+  glyphCount,
+  stepsExecuted,
+  fallbackReason: reason,
+});
+
+export const evaluateArchitectPlasmidReduction = (
+  input: {
+    script: Uint8Array;
+    neuralCoherence: number;
+    maxSteps?: number;
+  },
+): ArchitectPlasmidReductionDecision => {
+  const maxSteps = Math.max(
+    1,
+    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_ARCHITECT_MAX_STEPS)),
+  );
+
+  try {
+    const tokenBudget = Math.max(16, maxSteps * 2);
+    const architectTape = decodeArchitectTape(input.script, tokenBudget);
+    const tokenByPc = new Map<number, ArchitectToken>(
+      architectTape.map((token) => [token.pc, token]),
+    );
+    const state = createArchitectInitialState(input.neuralCoherence);
+    let stepsExecuted = 0;
+
+    while (stepsExecuted < maxSteps) {
+      const token = tokenByPc.get(state.pc);
+      if (!token) break;
+      applyArchitectOpcode(state, token);
+      stepsExecuted++;
+    }
+
+    const branch = classifyArchitectBranch(state);
+    return {
+      status: "ok",
+      branch,
+      plasmidAllowed: branch === "emit",
+      finalRole: state.role,
+      signalCount: state.signalCount,
+      buildCount: state.buildCount,
+      branchTaken: state.branchTaken,
+      glyphCount: architectTape.length,
+      stepsExecuted,
+    };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    return architectFallbackDecision(0, 0, message);
+  }
+};
+
+export const evaluateArchitectPlasmidExecution = (
+  input: {
+    mode: ArchitectPlasmidExecutionMode;
+    script: Uint8Array;
+    neuralCoherence: number;
+    legacyAllowed: boolean;
+  },
+): ArchitectPlasmidExecutionDecision => {
+  if (!input.legacyAllowed) {
+    return {
+      mode: input.mode,
+      legacyAllowed: false,
+      allowed: false,
+      status: "legacy-blocked",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  if (input.mode === "legacy-execute") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "legacy",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  const reduction = evaluateArchitectPlasmidReduction({
+    script: input.script,
+    neuralCoherence: input.neuralCoherence,
+  });
+
+  if (reduction.status === "fallback") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "fallback",
+      branch: reduction.branch,
+      finalRole: reduction.finalRole,
+      signalCount: reduction.signalCount,
+      buildCount: reduction.buildCount,
+      branchTaken: reduction.branchTaken,
+      glyphCount: reduction.glyphCount,
+      stepsExecuted: reduction.stepsExecuted,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+      fallbackReason: reduction.fallbackReason,
+    };
+  }
+
+  const suppress = reduction.plasmidAllowed !== true;
+  return {
+    mode: input.mode,
+    legacyAllowed: true,
+    allowed: input.mode === "shadow-reduce" ? true : !suppress,
+    status: input.mode === "shadow-reduce" ? "shadow" : "hybrid",
+    branch: reduction.branch,
+    finalRole: reduction.finalRole,
+    signalCount: reduction.signalCount,
+    buildCount: reduction.buildCount,
+    branchTaken: reduction.branchTaken,
+    glyphCount: reduction.glyphCount,
+    stepsExecuted: reduction.stepsExecuted,
+    shadowSuppressed: input.mode === "shadow-reduce" && suppress,
+    hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
+  };
+};
+
+
+// --- INLINED FROM runtime_bridge/guardian_signal_hybrid.ts ---
+
+export type GuardianSignalExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type GuardianSignalBranch = "stable" | "repair" | "unknown";
+
+export type GuardianSignalReductionDecision = {
+  status: "ok" | "fallback";
+  branch: GuardianSignalBranch;
+  signalAllowed: boolean;
+  finalRole: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+  glyphCount: number;
+  stepsExecuted: number;
+  fallbackReason?: string;
+};
+
+export type GuardianSignalExecutionDecision = {
+  mode: GuardianSignalExecutionMode;
+  legacyAllowed: boolean;
+  allowed: boolean;
+  status:
+    | "legacy-blocked"
+    | "legacy"
+    | "shadow"
+    | "hybrid"
+    | "fallback";
+  branch: GuardianSignalBranch;
+  finalRole: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+  glyphCount: number;
+  stepsExecuted: number;
+  shadowSuppressed: boolean;
+  hybridSuppressed: boolean;
+  fallbackReason?: string;
+};
+
+type GuardianShadowState = {
+  pc: number;
+  regs: number[];
+  role: number;
+  neuralCoherence: number;
+  signalCount: number;
+  buildCount: number;
+  branchTaken: boolean;
+};
+
+type GuardianToken = {
+  pc: number;
+  opcode: number;
+  length: number;
+  args: number[];
+};
+
+const DEFAULT_GUARDIAN_MAX_STEPS = 8;
+const GUARDIAN_PROP_MAP = {
+  [RISC.PROP_NEURAL_COHERENCE]: true,
+} as const;
+const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_SIGNAL, 1],
+  [RISC.OP_ROLE, 3],
+  [RISC.OP_BUILD, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_SPORE_DRIVE, 1],
+  [RISC.OP_SYSCALL, 1],
+]);
+
+export const normalizeGuardianSignalExecutionMode = (
+  raw: string | undefined,
+): GuardianSignalExecutionMode => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "legacy-execute" || value === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const createGuardianInitialState = (neuralCoherence: number): GuardianShadowState => ({
+  pc: 0,
+  regs: new Array(8).fill(0),
+  role: 0,
+  neuralCoherence: Math.max(0, Math.floor(neuralCoherence)),
+  signalCount: 0,
+  buildCount: 0,
+  branchTaken: false,
+});
+
+const decodeGuardianTape = (
+  script: Uint8Array,
+  maxTokens: number,
+): GuardianToken[] => {
+  const out: GuardianToken[] = [];
+  let pc = 0;
+  let steps = 0;
+  while (pc >= 0 && pc < script.length && steps < maxTokens) {
+    const opcode = script[pc] ?? RISC.OP_NOP;
+    if (opcode === RISC.OP_NOP) break;
+    const length = SUPPORTED_GUARDIAN_OPCODE_LENGTHS.get(opcode);
+    if (!length) {
+      throw new Error(`unsupported_guardian_opcode_0x${opcode.toString(16)}`);
+    }
+    out.push({
+      pc,
+      opcode,
+      length,
+      args: Array.from(script.slice(pc + 1, pc + length)),
+    });
+    pc += length;
+    steps++;
+  }
+  return out;
+};
+
+const classifyGuardianBranch = (
+  state: GuardianShadowState,
+): GuardianSignalBranch => {
+  if (
+    state.buildCount > 0 ||
+    state.role === STATE_MATRIX.ROLE_ARCHITECT ||
+    state.branchTaken
+  ) {
+    return "repair";
+  }
+  if (
+    state.signalCount > 0 &&
+    state.role === STATE_MATRIX.ROLE_GUARDIAN &&
+    !state.branchTaken
+  ) {
+    return "stable";
+  }
+  return "unknown";
+};
+
+const applyGuardianOpcode = (
+  state: GuardianShadowState,
+  token: GuardianToken,
+): void => {
+  switch (token.opcode) {
+    case RISC.OP_GET: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      if (!(prop in GUARDIAN_PROP_MAP)) {
+        throw new Error(`unsupported GET prop=${prop}`);
+      }
+      state.regs[reg] = state.neuralCoherence;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SET: {
+      const reg = token.args[0] ?? 0;
+      state.regs[reg] = token.args[1] ?? 0;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SUB: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_JNZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.branchTaken = true;
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.branchTaken = true;
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JMP: {
+      state.pc = token.args[0] ?? 0;
+      return;
+    }
+    case RISC.OP_ROLE: {
+      const mode = token.args[0] ?? 0;
+      const role = token.args[1] ?? 0;
+      if (mode === 0) state.role = role;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SIGNAL: {
+      state.signalCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_BUILD: {
+      state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SPORE_DRIVE: {
+      // Movement is no-op in bridge reduction
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(
+          `unsupported guardian bridge syscall=0x${sysId.toString(16)}`,
+        );
+      }
+      state.pc += token.length;
+      return;
+    }
+    default:
+      throw new Error(
+        `unsupported guardian bridge opcode=0x${token.opcode.toString(16)}`,
+      );
+  }
+};
+
+const guardianFallbackDecision = (
+  glyphCount: number,
+  stepsExecuted: number,
+  reason: string,
+): GuardianSignalReductionDecision => ({
+  status: "fallback",
+  branch: "unknown",
+  signalAllowed: false,
+  finalRole: 0,
+  signalCount: 0,
+  buildCount: 0,
+  branchTaken: false,
+  glyphCount,
+  stepsExecuted,
+  fallbackReason: reason,
+});
+
+export const evaluateGuardianSignalReduction = (
+  input: {
+    script: Uint8Array;
+    neuralCoherence: number;
+    maxSteps?: number;
+  },
+): GuardianSignalReductionDecision => {
+  const maxSteps = Math.max(
+    1,
+    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_GUARDIAN_MAX_STEPS)),
+  );
+
+  try {
+    const tokenBudget = Math.max(16, maxSteps * 2);
+    const guardianTape = decodeGuardianTape(input.script, tokenBudget);
+    const tokenByPc = new Map<number, GuardianToken>(
+      guardianTape.map((token) => [token.pc, token]),
+    );
+    const state = createGuardianInitialState(input.neuralCoherence);
+    let stepsExecuted = 0;
+
+    while (stepsExecuted < maxSteps) {
+      const token = tokenByPc.get(state.pc);
+      if (!token) break;
+      applyGuardianOpcode(state, token);
+      stepsExecuted++;
+    }
+
+    const branch = classifyGuardianBranch(state);
+    return {
+      status: "ok",
+      branch,
+      signalAllowed: branch === "stable",
+      finalRole: state.role,
+      signalCount: state.signalCount,
+      buildCount: state.buildCount,
+      branchTaken: state.branchTaken,
+      glyphCount: guardianTape.length,
+      stepsExecuted,
+    };
+  } catch (err) {
+    return guardianFallbackDecision(0, 0, String(err));
+  }
+};
+
+export const evaluateGuardianSignalExecution = (
+  input: {
+    mode: GuardianSignalExecutionMode;
+    script: Uint8Array;
+    neuralCoherence: number;
+    legacyAllowed: boolean;
+    maxSteps?: number;
+  },
+): GuardianSignalExecutionDecision => {
+  if (!input.legacyAllowed) {
+    return {
+      mode: input.mode,
+      legacyAllowed: false,
+      allowed: false,
+      status: "legacy-blocked",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  if (input.mode === "legacy-execute") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "legacy",
+      branch: "unknown",
+      finalRole: 0,
+      signalCount: 0,
+      buildCount: 0,
+      branchTaken: false,
+      glyphCount: 0,
+      stepsExecuted: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  const reduction = evaluateGuardianSignalReduction({
+    script: input.script,
+    neuralCoherence: input.neuralCoherence,
+    maxSteps: input.maxSteps,
+  });
+
+  if (reduction.status === "fallback") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "fallback",
+      branch: reduction.branch,
+      finalRole: reduction.finalRole,
+      signalCount: reduction.signalCount,
+      buildCount: reduction.buildCount,
+      branchTaken: reduction.branchTaken,
+      glyphCount: reduction.glyphCount,
+      stepsExecuted: reduction.stepsExecuted,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+      fallbackReason: reduction.fallbackReason,
+    };
+  }
+
+  if (input.mode === "shadow-reduce") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "shadow",
+      branch: reduction.branch,
+      finalRole: reduction.finalRole,
+      signalCount: reduction.signalCount,
+      buildCount: reduction.buildCount,
+      branchTaken: reduction.branchTaken,
+      glyphCount: reduction.glyphCount,
+      stepsExecuted: reduction.stepsExecuted,
+      shadowSuppressed: !reduction.signalAllowed,
+      hybridSuppressed: false,
+    };
+  }
+
+  return {
+    mode: input.mode,
+    legacyAllowed: true,
+    allowed: reduction.signalAllowed,
+    status: "hybrid",
+    branch: reduction.branch,
+    finalRole: reduction.finalRole,
+    signalCount: reduction.signalCount,
+    buildCount: reduction.buildCount,
+    branchTaken: reduction.branchTaken,
+    glyphCount: reduction.glyphCount,
+    stepsExecuted: reduction.stepsExecuted,
+    shadowSuppressed: false,
+    hybridSuppressed: !reduction.signalAllowed,
+  };
+};
+
+
+// --- INLINED FROM runtime_bridge/replication_hybrid.ts ---
+
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type ReplicationBranch = "emit" | "suppress" | "unknown";
+
+export type ReplicationReductionDecision = {
+  status: "ok" | "fallback";
+  branch: ReplicationBranch;
+  replicationAllowed: boolean;
+  replicationCount: number;
+  stepsExecuted: number;
+  fallbackReason?: string;
+};
+
+export type ReplicationExecutionDecision = {
+  mode: ReplicationExecutionMode;
+  legacyAllowed: boolean;
+  allowed: boolean;
+  status:
+    | "legacy-blocked"
+    | "legacy"
+    | "shadow"
+    | "hybrid"
+    | "fallback";
+  branch: ReplicationBranch;
+  replicationCount: number;
+  shadowSuppressed: boolean;
+  hybridSuppressed: boolean;
+  fallbackReason?: string;
+};
+
+export type ReplicationHybridState = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: ReplicationBranch;
+  lastFallbackReason: string;
+  lastMode?: ReplicationExecutionMode;
+};
+
+type ReplicationShadowState = {
+  pc: number;
+  regs: number[];
+  energy: number;
+  resonance: number;
+  aggression: number;
+  replicationCount: number;
+};
+
+type ReplicationToken = {
+  pc: number;
+  opcode: number;
+  length: number;
+  args: number[];
+};
+
+const DEFAULT_REPLICATION_MAX_STEPS = 16;
+const REPLICATION_PROP_MAP = {
+  [RISC.PROP_ENERGY]: true,
+  [RISC.PROP_RESONANCE]: true,
+} as const;
+
+const SUPPORTED_REPLICATION_OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_ADD, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_REPLICATE, 1],
+  [RISC.OP_PUT, 3],
+]);
+
+export const normalizeReplicationExecutionMode = (
+  raw: string | undefined,
+): ReplicationExecutionMode => {
+  const value = (raw ?? "").trim().toLowerCase();
+  if (value === "legacy-execute" || value === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const createReplicationInitialState = (
+  energy: number,
+  resonance: number,
+  aggression: number,
+): ReplicationShadowState => ({
+  pc: 0,
+  regs: new Array(8).fill(0),
+  energy,
+  resonance,
+  aggression,
+  replicationCount: 0,
+});
+
+const decodeReplicationTape = (
+  script: Uint8Array,
+  maxTokens: number,
+): ReplicationToken[] => {
+  const out: ReplicationToken[] = [];
+  let pc = 0;
+  let steps = 0;
+  while (pc >= 0 && pc < script.length && steps < maxTokens) {
+    const opcode = script[pc] ?? RISC.OP_NOP;
+    if (opcode === RISC.OP_NOP) break;
+    const length = SUPPORTED_REPLICATION_OPCODE_LENGTHS.get(opcode);
+    if (!length) {
+      throw new Error(
+        `unsupported_replication_opcode_0x${opcode.toString(16)}`,
+      );
+    }
+    out.push({
+      pc,
+      opcode,
+      length,
+      args: Array.from(script.slice(pc + 1, pc + length)),
+    });
+    pc += length;
+    steps++;
+  }
+  return out;
+};
+
+const applyReplicationOpcode = (
+  state: ReplicationShadowState,
+  token: ReplicationToken,
+): void => {
+  switch (token.opcode) {
+    case RISC.OP_GET: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      if (prop === RISC.PROP_ENERGY) state.regs[reg] = state.energy;
+      else if (prop === RISC.PROP_RESONANCE) state.regs[reg] = state.resonance;
+      else if (!(prop in REPLICATION_PROP_MAP)) {
+        // We only allow energy and resonance in this slit for now
+        throw new Error(`unsupported GET prop=${prop}`);
+      }
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SET: {
+      const reg = token.args[0] ?? 0;
+      state.regs[reg] = token.args[1] ?? 0;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SUB: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_ADD: {
+      const dst = token.args[0] ?? 0;
+      const src = token.args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_PUT: {
+      const reg = token.args[0] ?? 0;
+      const prop = token.args[1] ?? 0;
+      const val = state.regs[reg] ?? 0;
+      if (prop === RISC.PROP_ENERGY) state.energy = val;
+      else if (prop === RISC.PROP_RESONANCE) state.resonance = val;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_JNZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JZ: {
+      const reg = token.args[0] ?? 0;
+      const target = token.args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.pc = target;
+      } else {
+        state.pc += token.length;
+      }
+      return;
+    }
+    case RISC.OP_JMP: {
+      state.pc = token.args[0] ?? 0;
+      return;
+    }
+    case RISC.OP_REPLICATE: {
+      const aggrH = state.aggression;
+      const eThresh = 50 - (aggrH >> 3);
+      const rThresh = 10 - (aggrH >> 5);
+      if (state.energy > eThresh && state.resonance > rThresh) {
+        state.replicationCount++;
+        state.energy = state.energy >> 1;
+        state.resonance = state.resonance + 30;
+      }
+      state.pc += token.length;
+      return;
+    }
+    default:
+      throw new Error(
+        `unsupported replication bridge opcode=0x${token.opcode.toString(16)}`,
+      );
+  }
+};
+
+const replicationFallbackDecision = (
+  stepsExecuted: number,
+  reason: string,
+): ReplicationReductionDecision => ({
+  status: "fallback",
+  branch: "unknown",
+  replicationAllowed: true, // Fail-open for replication safety
+  replicationCount: 0,
+  stepsExecuted,
+  fallbackReason: reason,
+});
+
+export const evaluateReplicationReduction = (
+  input: {
+    script: Uint8Array;
+    energy: number;
+    resonance: number;
+    aggression: number;
+    maxSteps?: number;
+  },
+): ReplicationReductionDecision => {
+  const maxSteps = Math.max(
+    1,
+    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_REPLICATION_MAX_STEPS)),
+  );
+
+  try {
+    const tokenBudget = Math.max(16, maxSteps * 2);
+    const replicationTape = decodeReplicationTape(input.script, tokenBudget);
+    const tokenByPc = new Map<number, ReplicationToken>(
+      replicationTape.map((token) => [token.pc, token]),
+    );
+    const state = createReplicationInitialState(
+      input.energy,
+      input.resonance,
+      input.aggression,
+    );
+    let stepsExecuted = 0;
+
+    while (stepsExecuted < maxSteps) {
+      const token = tokenByPc.get(state.pc);
+      if (!token) break;
+      applyReplicationOpcode(state, token);
+      stepsExecuted++;
+    }
+
+    const branch: ReplicationBranch = state.replicationCount > 0
+      ? "emit"
+      : "suppress";
+    return {
+      status: "ok",
+      branch,
+      replicationAllowed: branch === "emit",
+      replicationCount: state.replicationCount,
+      stepsExecuted,
+    };
+  } catch (err) {
+    return replicationFallbackDecision(0, String(err));
+  }
+};
+
+export const evaluateReplicationExecution = (
+  input: {
+    mode: ReplicationExecutionMode;
+    script: Uint8Array;
+    energy: number;
+    resonance: number;
+    aggression: number;
+    legacyAllowed: boolean;
+    maxSteps?: number;
+  },
+): ReplicationExecutionDecision => {
+  if (!input.legacyAllowed) {
+    return {
+      mode: input.mode,
+      legacyAllowed: false,
+      allowed: false,
+      status: "legacy-blocked",
+      branch: "unknown",
+      replicationCount: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  if (input.mode === "legacy-execute") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "legacy",
+      branch: "unknown",
+      replicationCount: 0,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+    };
+  }
+
+  const reduction = evaluateReplicationReduction({
+    script: input.script,
+    energy: input.energy,
+    resonance: input.resonance,
+    aggression: input.aggression,
+    maxSteps: input.maxSteps,
+  });
+
+  if (reduction.status === "fallback") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "fallback",
+      branch: reduction.branch,
+      replicationCount: reduction.replicationCount,
+      shadowSuppressed: false,
+      hybridSuppressed: false,
+      fallbackReason: reduction.fallbackReason,
+    };
+  }
+
+  if (input.mode === "shadow-reduce") {
+    return {
+      mode: input.mode,
+      legacyAllowed: true,
+      allowed: true,
+      status: "shadow",
+      branch: reduction.branch,
+      replicationCount: reduction.replicationCount,
+      shadowSuppressed: !reduction.replicationAllowed,
+      hybridSuppressed: false,
+    };
+  }
+
+  return {
+    mode: input.mode,
+    legacyAllowed: true,
+    allowed: reduction.replicationAllowed,
+    status: "hybrid",
+    branch: reduction.branch,
+    replicationCount: reduction.replicationCount,
+    shadowSuppressed: false,
+    hybridSuppressed: !reduction.replicationAllowed,
+  };
+};
+
 
 ```
 
@@ -31617,384 +32767,6 @@ run().catch((err) => {
 
 ---
 
-## FILE: runtime_bridge/architect_plasmid_hybrid.ts
-
-```typescript
-import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
-
-export type ArchitectPlasmidExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-
-export type ArchitectPlasmidBranch = "emit" | "suppress" | "unknown";
-
-export type ArchitectPlasmidReductionDecision = {
-  status: "ok" | "fallback";
-  branch: ArchitectPlasmidBranch;
-  plasmidAllowed: boolean;
-  finalRole: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-  glyphCount: number;
-  stepsExecuted: number;
-  fallbackReason?: string;
-};
-
-export type ArchitectPlasmidExecutionDecision = {
-  mode: ArchitectPlasmidExecutionMode;
-  legacyAllowed: boolean;
-  allowed: boolean;
-  status:
-    | "legacy-blocked"
-    | "legacy"
-    | "shadow"
-    | "hybrid"
-    | "fallback";
-  branch: ArchitectPlasmidBranch;
-  finalRole: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-  glyphCount: number;
-  stepsExecuted: number;
-  shadowSuppressed: boolean;
-  hybridSuppressed: boolean;
-  fallbackReason?: string;
-};
-
-type ArchitectShadowState = {
-  pc: number;
-  regs: number[];
-  role: number;
-  neuralCoherence: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-};
-
-type ArchitectToken = {
-  pc: number;
-  opcode: number;
-  length: number;
-  args: number[];
-};
-
-const DEFAULT_MAX_STEPS = 8;
-const SUPPORTED_ARCHITECT_PROPS = {
-  [RISC.PROP_NEURAL_COHERENCE]: true,
-} as const;
-const SUPPORTED_ARCHITECT_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_SYSCALL, 1],
-]);
-
-export const normalizeArchitectPlasmidExecutionMode = (
-  raw: string | undefined,
-): ArchitectPlasmidExecutionMode => {
-  const value = (raw ?? "").trim().toLowerCase();
-  if (value === "legacy-execute" || value === "legacy_execute") {
-    return "legacy-execute";
-  }
-  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
-    return "hybrid-reduce";
-  }
-  return "shadow-reduce";
-};
-
-const createInitialState = (neuralCoherence: number): ArchitectShadowState => ({
-  pc: 0,
-  regs: new Array(8).fill(0),
-  role: 0,
-  neuralCoherence: Math.max(0, Math.floor(neuralCoherence)),
-  signalCount: 0,
-  buildCount: 0,
-  branchTaken: false,
-});
-
-const decodeArchitectTape = (
-  script: Uint8Array,
-  maxTokens: number,
-): ArchitectToken[] => {
-  const out: ArchitectToken[] = [];
-  let pc = 0;
-  let steps = 0;
-  while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
-    const length = SUPPORTED_ARCHITECT_OPCODE_LENGTHS.get(opcode);
-    if (!length) {
-      throw new Error(`unsupported_architect_opcode_0x${opcode.toString(16)}`);
-    }
-    out.push({
-      pc,
-      opcode,
-      length,
-      args: Array.from(script.slice(pc + 1, pc + length)),
-    });
-    pc += length;
-    steps++;
-  }
-  return out;
-};
-
-const classifyBranch = (
-  state: ArchitectShadowState,
-): ArchitectPlasmidBranch => {
-  if (
-    state.buildCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_ARCHITECT
-  ) {
-    return "emit";
-  }
-  if (state.signalCount > 0 && state.buildCount === 0) {
-    return "suppress";
-  }
-  return "unknown";
-};
-
-const applyArchitectOpcode = (
-  state: ArchitectShadowState,
-  token: ArchitectToken,
-): void => {
-  switch (token.opcode) {
-    case RISC.OP_GET: {
-      const reg = token.args[0] ?? 0;
-      const prop = token.args[1] ?? 0;
-      if (!(prop in SUPPORTED_ARCHITECT_PROPS)) {
-        throw new Error(`unsupported GET prop=${prop}`);
-      }
-      state.regs[reg] = state.neuralCoherence;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SET: {
-      const reg = token.args[0] ?? 0;
-      state.regs[reg] = token.args[1] ?? 0;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SUB: {
-      const dst = token.args[0] ?? 0;
-      const src = token.args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_JNZ: {
-      const reg = token.args[0] ?? 0;
-      const target = token.args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) !== 0) {
-        state.branchTaken = true;
-        state.pc = target;
-      } else {
-        state.pc += token.length;
-      }
-      return;
-    }
-    case RISC.OP_JMP: {
-      state.pc = token.args[0] ?? 0;
-      return;
-    }
-    case RISC.OP_ROLE: {
-      const mode = token.args[0] ?? 0;
-      const role = token.args[1] ?? 0;
-      if (mode === 0) state.role = role;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SIGNAL: {
-      state.signalCount++;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_BUILD: {
-      state.buildCount++;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SYSCALL: {
-      const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS.YIELD) {
-        // no-op
-      } else if (sysId === SYS.SET_ROLE) {
-        state.role = state.regs[1] ?? 0;
-      } else {
-        throw new Error(
-          `unsupported architect bridge syscall=0x${sysId.toString(16)}`,
-        );
-      }
-      state.pc += token.length;
-      return;
-    }
-    default:
-      throw new Error(
-        `unsupported architect bridge opcode=0x${token.opcode.toString(16)}`,
-      );
-  }
-};
-
-const fallbackDecision = (
-  glyphCount: number,
-  stepsExecuted: number,
-  reason: string,
-): ArchitectPlasmidReductionDecision => ({
-  status: "fallback",
-  branch: "unknown",
-  plasmidAllowed: false,
-  finalRole: 0,
-  signalCount: 0,
-  buildCount: 0,
-  branchTaken: false,
-  glyphCount,
-  stepsExecuted,
-  fallbackReason: reason,
-});
-
-export const evaluateArchitectPlasmidReduction = (
-  input: {
-    script: Uint8Array;
-    neuralCoherence: number;
-    maxSteps?: number;
-  },
-): ArchitectPlasmidReductionDecision => {
-  const maxSteps = Math.max(
-    1,
-    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_MAX_STEPS)),
-  );
-
-  try {
-    const tokenBudget = Math.max(16, maxSteps * 2);
-    const architectTape = decodeArchitectTape(input.script, tokenBudget);
-    const tokenByPc = new Map<number, ArchitectToken>(
-      architectTape.map((token) => [token.pc, token]),
-    );
-    const state = createInitialState(input.neuralCoherence);
-    let stepsExecuted = 0;
-
-    while (stepsExecuted < maxSteps) {
-      const token = tokenByPc.get(state.pc);
-      if (!token) break;
-      applyArchitectOpcode(state, token);
-      stepsExecuted++;
-    }
-
-    const branch = classifyBranch(state);
-    return {
-      status: "ok",
-      branch,
-      plasmidAllowed: branch === "emit",
-      finalRole: state.role,
-      signalCount: state.signalCount,
-      buildCount: state.buildCount,
-      branchTaken: state.branchTaken,
-      glyphCount: architectTape.length,
-      stepsExecuted,
-    };
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    return fallbackDecision(0, 0, message);
-  }
-};
-
-export const evaluateArchitectPlasmidExecution = (
-  input: {
-    mode: ArchitectPlasmidExecutionMode;
-    script: Uint8Array;
-    neuralCoherence: number;
-    legacyAllowed: boolean;
-  },
-): ArchitectPlasmidExecutionDecision => {
-  if (!input.legacyAllowed) {
-    return {
-      mode: input.mode,
-      legacyAllowed: false,
-      allowed: false,
-      status: "legacy-blocked",
-      branch: "unknown",
-      finalRole: 0,
-      signalCount: 0,
-      buildCount: 0,
-      branchTaken: false,
-      glyphCount: 0,
-      stepsExecuted: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  if (input.mode === "legacy-execute") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "legacy",
-      branch: "unknown",
-      finalRole: 0,
-      signalCount: 0,
-      buildCount: 0,
-      branchTaken: false,
-      glyphCount: 0,
-      stepsExecuted: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  const reduction = evaluateArchitectPlasmidReduction({
-    script: input.script,
-    neuralCoherence: input.neuralCoherence,
-  });
-
-  if (reduction.status === "fallback") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "fallback",
-      branch: reduction.branch,
-      finalRole: reduction.finalRole,
-      signalCount: reduction.signalCount,
-      buildCount: reduction.buildCount,
-      branchTaken: reduction.branchTaken,
-      glyphCount: reduction.glyphCount,
-      stepsExecuted: reduction.stepsExecuted,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-      fallbackReason: reduction.fallbackReason,
-    };
-  }
-
-  const suppress = reduction.plasmidAllowed !== true;
-  return {
-    mode: input.mode,
-    legacyAllowed: true,
-    allowed: input.mode === "shadow-reduce" ? true : !suppress,
-    status: input.mode === "shadow-reduce" ? "shadow" : "hybrid",
-    branch: reduction.branch,
-    finalRole: reduction.finalRole,
-    signalCount: reduction.signalCount,
-    buildCount: reduction.buildCount,
-    branchTaken: reduction.branchTaken,
-    glyphCount: reduction.glyphCount,
-    stepsExecuted: reduction.stepsExecuted,
-    shadowSuppressed: input.mode === "shadow-reduce" && suppress,
-    hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
-  };
-};
-
-```
-
----
-
 ## FILE: runtime_bridge/glyph_pretty.ts
 
 ```typescript
@@ -32018,425 +32790,6 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
-
-```
-
----
-
-## FILE: runtime_bridge/guardian_signal_hybrid.ts
-
-```typescript
-import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
-
-export type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-
-export type GuardianSignalBranch = "stable" | "repair" | "unknown";
-
-export type GuardianSignalReductionDecision = {
-  status: "ok" | "fallback";
-  branch: GuardianSignalBranch;
-  signalAllowed: boolean;
-  finalRole: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-  glyphCount: number;
-  stepsExecuted: number;
-  fallbackReason?: string;
-};
-
-export type GuardianSignalExecutionDecision = {
-  mode: GuardianSignalExecutionMode;
-  legacyAllowed: boolean;
-  allowed: boolean;
-  status:
-    | "legacy-blocked"
-    | "legacy"
-    | "shadow"
-    | "hybrid"
-    | "fallback";
-  branch: GuardianSignalBranch;
-  finalRole: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-  glyphCount: number;
-  stepsExecuted: number;
-  shadowSuppressed: boolean;
-  hybridSuppressed: boolean;
-  fallbackReason?: string;
-};
-
-type GuardianShadowState = {
-  pc: number;
-  regs: number[];
-  role: number;
-  neuralCoherence: number;
-  signalCount: number;
-  buildCount: number;
-  branchTaken: boolean;
-};
-
-type GuardianToken = {
-  pc: number;
-  opcode: number;
-  length: number;
-  args: number[];
-};
-
-const DEFAULT_MAX_STEPS = 8;
-const GUARDIAN_PROP_MAP = {
-  [RISC.PROP_NEURAL_COHERENCE]: true,
-} as const;
-const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_SPORE_DRIVE, 1],
-  [RISC.OP_SYSCALL, 1],
-]);
-
-export const normalizeGuardianSignalExecutionMode = (
-  raw: string | undefined,
-): GuardianSignalExecutionMode => {
-  const value = (raw ?? "").trim().toLowerCase();
-  if (value === "legacy-execute" || value === "legacy_execute") {
-    return "legacy-execute";
-  }
-  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
-    return "hybrid-reduce";
-  }
-  return "shadow-reduce";
-};
-
-const createInitialState = (neuralCoherence: number): GuardianShadowState => ({
-  pc: 0,
-  regs: new Array(8).fill(0),
-  role: 0,
-  neuralCoherence: Math.max(0, Math.floor(neuralCoherence)),
-  signalCount: 0,
-  buildCount: 0,
-  branchTaken: false,
-});
-
-const decodeGuardianTape = (
-  script: Uint8Array,
-  maxTokens: number,
-): GuardianToken[] => {
-  const out: GuardianToken[] = [];
-  let pc = 0;
-  let steps = 0;
-  while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
-    const length = SUPPORTED_GUARDIAN_OPCODE_LENGTHS.get(opcode);
-    if (!length) {
-      throw new Error(`unsupported_guardian_opcode_0x${opcode.toString(16)}`);
-    }
-    out.push({
-      pc,
-      opcode,
-      length,
-      args: Array.from(script.slice(pc + 1, pc + length)),
-    });
-    pc += length;
-    steps++;
-  }
-  return out;
-};
-
-const classifyBranch = (
-  state: GuardianShadowState,
-): GuardianSignalBranch => {
-  if (
-    state.buildCount > 0 ||
-    state.role === STATE_MATRIX.ROLE_ARCHITECT ||
-    state.branchTaken
-  ) {
-    return "repair";
-  }
-  if (
-    state.signalCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_GUARDIAN &&
-    !state.branchTaken
-  ) {
-    return "stable";
-  }
-  return "unknown";
-};
-
-const applyGuardianOpcode = (
-  state: GuardianShadowState,
-  token: GuardianToken,
-): void => {
-  switch (token.opcode) {
-    case RISC.OP_GET: {
-      const reg = token.args[0] ?? 0;
-      const prop = token.args[1] ?? 0;
-      if (!(prop in GUARDIAN_PROP_MAP)) {
-        throw new Error(`unsupported GET prop=${prop}`);
-      }
-      state.regs[reg] = state.neuralCoherence;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SET: {
-      const reg = token.args[0] ?? 0;
-      state.regs[reg] = token.args[1] ?? 0;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SUB: {
-      const dst = token.args[0] ?? 0;
-      const src = token.args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_JNZ: {
-      const reg = token.args[0] ?? 0;
-      const target = token.args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) !== 0) {
-        state.branchTaken = true;
-        state.pc = target;
-      } else {
-        state.pc += token.length;
-      }
-      return;
-    }
-    case RISC.OP_JZ: {
-      const reg = token.args[0] ?? 0;
-      const target = token.args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) === 0) {
-        state.branchTaken = true;
-        state.pc = target;
-      } else {
-        state.pc += token.length;
-      }
-      return;
-    }
-    case RISC.OP_JMP: {
-      state.pc = token.args[0] ?? 0;
-      return;
-    }
-    case RISC.OP_ROLE: {
-      const mode = token.args[0] ?? 0;
-      const role = token.args[1] ?? 0;
-      if (mode === 0) state.role = role;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SIGNAL: {
-      state.signalCount++;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_BUILD: {
-      state.buildCount++;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SPORE_DRIVE: {
-      // Movement is no-op in bridge reduction
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SYSCALL: {
-      const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS.YIELD) {
-        // no-op
-      } else if (sysId === SYS.SET_ROLE) {
-        state.role = state.regs[1] ?? 0;
-      } else {
-        throw new Error(
-          `unsupported guardian bridge syscall=0x${sysId.toString(16)}`,
-        );
-      }
-      state.pc += token.length;
-      return;
-    }
-    default:
-      throw new Error(
-        `unsupported guardian bridge opcode=0x${token.opcode.toString(16)}`,
-      );
-  }
-};
-
-const fallbackDecision = (
-  glyphCount: number,
-  stepsExecuted: number,
-  reason: string,
-): GuardianSignalReductionDecision => ({
-  status: "fallback",
-  branch: "unknown",
-  signalAllowed: false,
-  finalRole: 0,
-  signalCount: 0,
-  buildCount: 0,
-  branchTaken: false,
-  glyphCount,
-  stepsExecuted,
-  fallbackReason: reason,
-});
-
-export const evaluateGuardianSignalReduction = (
-  input: {
-    script: Uint8Array;
-    neuralCoherence: number;
-    maxSteps?: number;
-  },
-): GuardianSignalReductionDecision => {
-  const maxSteps = Math.max(
-    1,
-    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_MAX_STEPS)),
-  );
-
-  try {
-    const tokenBudget = Math.max(16, maxSteps * 2);
-    const guardianTape = decodeGuardianTape(input.script, tokenBudget);
-    const tokenByPc = new Map<number, GuardianToken>(
-      guardianTape.map((token) => [token.pc, token]),
-    );
-    const state = createInitialState(input.neuralCoherence);
-    let stepsExecuted = 0;
-
-    while (stepsExecuted < maxSteps) {
-      const token = tokenByPc.get(state.pc);
-      if (!token) break;
-      applyGuardianOpcode(state, token);
-      stepsExecuted++;
-    }
-
-    const branch = classifyBranch(state);
-    return {
-      status: "ok",
-      branch,
-      signalAllowed: branch === "stable",
-      finalRole: state.role,
-      signalCount: state.signalCount,
-      buildCount: state.buildCount,
-      branchTaken: state.branchTaken,
-      glyphCount: guardianTape.length,
-      stepsExecuted,
-    };
-  } catch (err) {
-    return fallbackDecision(0, 0, String(err));
-  }
-};
-
-export const evaluateGuardianSignalExecution = (
-  input: {
-    mode: GuardianSignalExecutionMode;
-    script: Uint8Array;
-    neuralCoherence: number;
-    legacyAllowed: boolean;
-    maxSteps?: number;
-  },
-): GuardianSignalExecutionDecision => {
-  if (!input.legacyAllowed) {
-    return {
-      mode: input.mode,
-      legacyAllowed: false,
-      allowed: false,
-      status: "legacy-blocked",
-      branch: "unknown",
-      finalRole: 0,
-      signalCount: 0,
-      buildCount: 0,
-      branchTaken: false,
-      glyphCount: 0,
-      stepsExecuted: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  if (input.mode === "legacy-execute") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "legacy",
-      branch: "unknown",
-      finalRole: 0,
-      signalCount: 0,
-      buildCount: 0,
-      branchTaken: false,
-      glyphCount: 0,
-      stepsExecuted: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  const reduction = evaluateGuardianSignalReduction({
-    script: input.script,
-    neuralCoherence: input.neuralCoherence,
-    maxSteps: input.maxSteps,
-  });
-
-  if (reduction.status === "fallback") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "fallback",
-      branch: reduction.branch,
-      finalRole: reduction.finalRole,
-      signalCount: reduction.signalCount,
-      buildCount: reduction.buildCount,
-      branchTaken: reduction.branchTaken,
-      glyphCount: reduction.glyphCount,
-      stepsExecuted: reduction.stepsExecuted,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-      fallbackReason: reduction.fallbackReason,
-    };
-  }
-
-  if (input.mode === "shadow-reduce") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "shadow",
-      branch: reduction.branch,
-      finalRole: reduction.finalRole,
-      signalCount: reduction.signalCount,
-      buildCount: reduction.buildCount,
-      branchTaken: reduction.branchTaken,
-      glyphCount: reduction.glyphCount,
-      stepsExecuted: reduction.stepsExecuted,
-      shadowSuppressed: !reduction.signalAllowed,
-      hybridSuppressed: false,
-    };
-  }
-
-  return {
-    mode: input.mode,
-    legacyAllowed: true,
-    allowed: reduction.signalAllowed,
-    status: "hybrid",
-    branch: reduction.branch,
-    finalRole: reduction.finalRole,
-    signalCount: reduction.signalCount,
-    buildCount: reduction.buildCount,
-    branchTaken: reduction.branchTaken,
-    glyphCount: reduction.glyphCount,
-    stepsExecuted: reduction.stepsExecuted,
-    shadowSuppressed: false,
-    hybridSuppressed: !reduction.signalAllowed,
-  };
-};
 
 ```
 
@@ -32576,394 +32929,6 @@ export const scriptToGlyphTape = (
   }
 
   return out;
-};
-
-```
-
----
-
-## FILE: runtime_bridge/replication_hybrid.ts
-
-```typescript
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
-
-export type ReplicationExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-
-export type ReplicationBranch = "emit" | "suppress" | "unknown";
-
-export type ReplicationReductionDecision = {
-  status: "ok" | "fallback";
-  branch: ReplicationBranch;
-  replicationAllowed: boolean;
-  replicationCount: number;
-  stepsExecuted: number;
-  fallbackReason?: string;
-};
-
-export type ReplicationExecutionDecision = {
-  mode: ReplicationExecutionMode;
-  legacyAllowed: boolean;
-  allowed: boolean;
-  status:
-    | "legacy-blocked"
-    | "legacy"
-    | "shadow"
-    | "hybrid"
-    | "fallback";
-  branch: ReplicationBranch;
-  replicationCount: number;
-  shadowSuppressed: boolean;
-  hybridSuppressed: boolean;
-  fallbackReason?: string;
-};
-
-export type ReplicationHybridState = {
-  mode: ReplicationExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  allowedReplications: number;
-  suppressedReplications: number;
-  shadowSuppressedReplications: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "emit"
-    | "suppress"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: ReplicationBranch;
-  lastFallbackReason: string;
-  lastMode?: ReplicationExecutionMode;
-};
-
-type ReplicationShadowState = {
-  pc: number;
-  regs: number[];
-  energy: number;
-  resonance: number;
-  aggression: number;
-  replicationCount: number;
-};
-
-type ReplicationToken = {
-  pc: number;
-  opcode: number;
-  length: number;
-  args: number[];
-};
-
-const DEFAULT_MAX_STEPS = 16;
-const REPLICATION_PROP_MAP = {
-  [RISC.PROP_ENERGY]: true,
-  [RISC.PROP_RESONANCE]: true,
-} as const;
-
-const SUPPORTED_REPLICATION_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_ADD, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_REPLICATE, 1],
-  [RISC.OP_PUT, 3],
-]);
-
-export const normalizeReplicationExecutionMode = (
-  raw: string | undefined,
-): ReplicationExecutionMode => {
-  const value = (raw ?? "").trim().toLowerCase();
-  if (value === "legacy-execute" || value === "legacy_execute") {
-    return "legacy-execute";
-  }
-  if (value === "hybrid-reduce" || value === "hybrid_reduce") {
-    return "hybrid-reduce";
-  }
-  return "shadow-reduce";
-};
-
-const createInitialState = (
-  energy: number,
-  resonance: number,
-  aggression: number,
-): ReplicationShadowState => ({
-  pc: 0,
-  regs: new Array(8).fill(0),
-  energy,
-  resonance,
-  aggression,
-  replicationCount: 0,
-});
-
-const decodeReplicationTape = (
-  script: Uint8Array,
-  maxTokens: number,
-): ReplicationToken[] => {
-  const out: ReplicationToken[] = [];
-  let pc = 0;
-  let steps = 0;
-  while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
-    const length = SUPPORTED_REPLICATION_OPCODE_LENGTHS.get(opcode);
-    if (!length) {
-      throw new Error(
-        `unsupported_replication_opcode_0x${opcode.toString(16)}`,
-      );
-    }
-    out.push({
-      pc,
-      opcode,
-      length,
-      args: Array.from(script.slice(pc + 1, pc + length)),
-    });
-    pc += length;
-    steps++;
-  }
-  return out;
-};
-
-const applyReplicationOpcode = (
-  state: ReplicationShadowState,
-  token: ReplicationToken,
-): void => {
-  switch (token.opcode) {
-    case RISC.OP_GET: {
-      const reg = token.args[0] ?? 0;
-      const prop = token.args[1] ?? 0;
-      if (prop === RISC.PROP_ENERGY) state.regs[reg] = state.energy;
-      else if (prop === RISC.PROP_RESONANCE) state.regs[reg] = state.resonance;
-      else if (!(prop in REPLICATION_PROP_MAP)) {
-        // We only allow energy and resonance in this slit for now
-        throw new Error(`unsupported GET prop=${prop}`);
-      }
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SET: {
-      const reg = token.args[0] ?? 0;
-      state.regs[reg] = token.args[1] ?? 0;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_SUB: {
-      const dst = token.args[0] ?? 0;
-      const src = token.args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_ADD: {
-      const dst = token.args[0] ?? 0;
-      const src = token.args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_PUT: {
-      const reg = token.args[0] ?? 0;
-      const prop = token.args[1] ?? 0;
-      const val = state.regs[reg] ?? 0;
-      if (prop === RISC.PROP_ENERGY) state.energy = val;
-      else if (prop === RISC.PROP_RESONANCE) state.resonance = val;
-      state.pc += token.length;
-      return;
-    }
-    case RISC.OP_JNZ: {
-      const reg = token.args[0] ?? 0;
-      const target = token.args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) !== 0) {
-        state.pc = target;
-      } else {
-        state.pc += token.length;
-      }
-      return;
-    }
-    case RISC.OP_JZ: {
-      const reg = token.args[0] ?? 0;
-      const target = token.args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) === 0) {
-        state.pc = target;
-      } else {
-        state.pc += token.length;
-      }
-      return;
-    }
-    case RISC.OP_JMP: {
-      state.pc = token.args[0] ?? 0;
-      return;
-    }
-    case RISC.OP_REPLICATE: {
-      const aggrH = state.aggression;
-      const eThresh = 50 - (aggrH >> 3);
-      const rThresh = 10 - (aggrH >> 5);
-      if (state.energy > eThresh && state.resonance > rThresh) {
-        state.replicationCount++;
-        state.energy = state.energy >> 1;
-        state.resonance = state.resonance + 30;
-      }
-      state.pc += token.length;
-      return;
-    }
-    default:
-      throw new Error(
-        `unsupported replication bridge opcode=0x${token.opcode.toString(16)}`,
-      );
-  }
-};
-
-const fallbackDecision = (
-  stepsExecuted: number,
-  reason: string,
-): ReplicationReductionDecision => ({
-  status: "fallback",
-  branch: "unknown",
-  replicationAllowed: true, // Fail-open for replication safety
-  replicationCount: 0,
-  stepsExecuted,
-  fallbackReason: reason,
-});
-
-export const evaluateReplicationReduction = (
-  input: {
-    script: Uint8Array;
-    energy: number;
-    resonance: number;
-    aggression: number;
-    maxSteps?: number;
-  },
-): ReplicationReductionDecision => {
-  const maxSteps = Math.max(
-    1,
-    Math.min(16, Math.floor(input.maxSteps ?? DEFAULT_MAX_STEPS)),
-  );
-
-  try {
-    const tokenBudget = Math.max(16, maxSteps * 2);
-    const replicationTape = decodeReplicationTape(input.script, tokenBudget);
-    const tokenByPc = new Map<number, ReplicationToken>(
-      replicationTape.map((token) => [token.pc, token]),
-    );
-    const state = createInitialState(
-      input.energy,
-      input.resonance,
-      input.aggression,
-    );
-    let stepsExecuted = 0;
-
-    while (stepsExecuted < maxSteps) {
-      const token = tokenByPc.get(state.pc);
-      if (!token) break;
-      applyReplicationOpcode(state, token);
-      stepsExecuted++;
-    }
-
-    const branch: ReplicationBranch = state.replicationCount > 0
-      ? "emit"
-      : "suppress";
-    return {
-      status: "ok",
-      branch,
-      replicationAllowed: branch === "emit",
-      replicationCount: state.replicationCount,
-      stepsExecuted,
-    };
-  } catch (err) {
-    return fallbackDecision(0, String(err));
-  }
-};
-
-export const evaluateReplicationExecution = (
-  input: {
-    mode: ReplicationExecutionMode;
-    script: Uint8Array;
-    energy: number;
-    resonance: number;
-    aggression: number;
-    legacyAllowed: boolean;
-    maxSteps?: number;
-  },
-): ReplicationExecutionDecision => {
-  if (!input.legacyAllowed) {
-    return {
-      mode: input.mode,
-      legacyAllowed: false,
-      allowed: false,
-      status: "legacy-blocked",
-      branch: "unknown",
-      replicationCount: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  if (input.mode === "legacy-execute") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "legacy",
-      branch: "unknown",
-      replicationCount: 0,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-    };
-  }
-
-  const reduction = evaluateReplicationReduction({
-    script: input.script,
-    energy: input.energy,
-    resonance: input.resonance,
-    aggression: input.aggression,
-    maxSteps: input.maxSteps,
-  });
-
-  if (reduction.status === "fallback") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "fallback",
-      branch: reduction.branch,
-      replicationCount: reduction.replicationCount,
-      shadowSuppressed: false,
-      hybridSuppressed: false,
-      fallbackReason: reduction.fallbackReason,
-    };
-  }
-
-  if (input.mode === "shadow-reduce") {
-    return {
-      mode: input.mode,
-      legacyAllowed: true,
-      allowed: true,
-      status: "shadow",
-      branch: reduction.branch,
-      replicationCount: reduction.replicationCount,
-      shadowSuppressed: !reduction.replicationAllowed,
-      hybridSuppressed: false,
-    };
-  }
-
-  return {
-    mode: input.mode,
-    legacyAllowed: true,
-    allowed: reduction.replicationAllowed,
-    status: "hybrid",
-    branch: reduction.branch,
-    replicationCount: reduction.replicationCount,
-    shadowSuppressed: false,
-    hybridSuppressed: !reduction.replicationAllowed,
-  };
 };
 
 ```

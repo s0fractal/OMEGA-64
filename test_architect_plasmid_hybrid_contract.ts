@@ -1,7 +1,7 @@
 import {
   evaluateArchitectPlasmidReduction,
   normalizeArchitectPlasmidExecutionMode,
-} from "./runtime_bridge/architect_plasmid_hybrid.ts";
+} from "./PULSE.ts";
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 
 const RUNTIME_POLICY_PATH = "RUNTIME_POLICY.ts";
@@ -9,7 +9,7 @@ const PULSE_PATH = "PULSE.ts";
 const SYSTEM_START_PATH = "SYSTEM_START.ts";
 const ROADMAP_PATH = "REDUCTION_METABOLISM_ROADMAP.md";
 const TRANSITION_PATH = "docs/migration/OMEGA_TRANSITION_PLAN.md";
-const BRIDGE_PATH = "runtime_bridge/architect_plasmid_hybrid.ts";
+const BRIDGE_PATH = "PULSE.ts";
 
 type Violation = {
   file: string;
