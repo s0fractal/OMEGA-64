@@ -306,3 +306,20 @@ export const resetBaseTaxLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
+export const resolveWithPhase = (
+  baseValue: number,
+  modifiers: Array<{phase: number, weight: number}>
+): number => {
+  let real = baseValue;
+  let imag = 0;
+  
+  for (const mod of modifiers) {
+    const rad = mod.phase * Math.PI / 128; // 0-255 → radians
+    real += mod.weight * Math.cos(rad);
+    imag += mod.weight * Math.sin(rad);
+  }
+  
+  // Return "intensity" = |z|
+  return Math.floor(Math.sqrt(real*real + imag*imag));
+};

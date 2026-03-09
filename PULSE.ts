@@ -1671,7 +1671,7 @@ const dispatchRangePhase = async (
     workerPromises.push(postAndWait(
       0,
       workers[0],
-      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId },
+      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId, theta: evolutionPressureState.ring.theta },
       doneType,
     ));
   } else {
@@ -1686,7 +1686,7 @@ const dispatchRangePhase = async (
       workerPromises.push(postAndWait(
         i,
         workers[i],
-        { type, startIdx, endIdx, pulseId },
+        { type, startIdx, endIdx, pulseId, theta: evolutionPressureState.ring.theta },
         doneType,
       ));
     }

@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T16:56:17.533Z*
+*Generated: 2026-03-09T17:14:41.004Z*
 *Exported Files: 126*
 *Runtime Roots: 11*
 *Runtime Closure Files: 78*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 15*
 *Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
 *Export Set SHA256: 9325af3808235a837cff8008e59cd82a44619c3c3b62365a5732e8af3b70fb9b*
-*Export Content SHA256: 13c7eb86c816b5a22880aee175797c9714e770eba907afb01555fc7995dc3dda*
-*Git Commit: 0b215c92e0dc*
+*Export Content SHA256: 2721be4e394a793c7aa0fb518e38d492fae96b96a09eeabf8c5911dab51e1491*
+*Git Commit: c54c47b925f9*
 
 ---
 
@@ -5287,7 +5287,6 @@ const OP_SYSCALL: u8 = 0x60;
 const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const OP_SPORE_DRIVE: u8 = 0xA8;
-const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
 const ENTANGLE_SPIN_LIMIT: i32 = 16;
@@ -15750,6 +15749,23 @@ export const resetBaseTaxLedgerRuntime = (
   lastRollbackReason: reason,
 });
 
+export const resolveWithPhase = (
+  baseValue: number,
+  modifiers: Array<{phase: number, weight: number}>
+): number => {
+  let real = baseValue;
+  let imag = 0;
+  
+  for (const mod of modifiers) {
+    const rad = mod.phase * Math.PI / 128; // 0-255 → radians
+    real += mod.weight * Math.cos(rad);
+    imag += mod.weight * Math.sin(rad);
+  }
+  
+  // Return "intensity" = |z|
+  return Math.floor(Math.sqrt(real*real + imag*imag));
+};
+
 ```
 
 ---
@@ -24985,6 +25001,7 @@ export class PRNG {
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { resolveWithPhase } from "./GENETIC_LEDGER_RUNTIME.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
@@ -25042,6 +25059,10 @@ let lineageView: BigUint64Array | null = null;
 let logicView: BigUint64Array | null = null;
 let bondRequestsView: Int32Array | null = null;
 let energiesView: Int32Array | null = null;
+let phaseView: Int32Array | null = null;
+
+let currentPulseId = 0;
+let currentTheta = 0;
 let resonancesView: Int32Array | null = null;
 let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
@@ -25615,16 +25636,26 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     case SYS_SPORE_DRIVE: {
-      const energy = Atomics.load(energiesView, atomIdx);
-      if (energy >= 500000) {
-        Atomics.sub(energiesView, atomIdx, 500000);
+      const energy = Atomics.load(energiesView!, atomIdx);
+      const atomPhase = Atomics.load(phaseView!, atomIdx);
+      const epochPhase = (currentPulseId * 4) % 256;
+      
+      const sporeCost = resolveWithPhase(500, [
+        { phase: epochPhase, weight: 50 },
+        { phase: currentTheta, weight: 30 },
+        { phase: atomPhase, weight: 20 }
+      ]);
+      const energyBet = sporeCost * 1000;
+
+      if (energy >= energyBet) {
+        Atomics.sub(energiesView!, atomIdx, energyBet);
         self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by 500).`,
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${Math.floor(currentTheta)}, AtomPhase=${atomPhase}).`,
         );
       } else {
-        contextI32View[(atomIdx << 4) + 1] = 0; // failure in register
+        contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
       }
       break;
     }
@@ -25731,6 +25762,7 @@ self.onmessage = async (e) => {
     );
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
     resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+    phaseView = new Int32Array(sb, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(
       sb,
       OFFSETS.INSTRUCTIONS_OFFSET,
@@ -25825,7 +25857,9 @@ self.onmessage = async (e) => {
   }
 
   if (type === "PULSE") {
-    const { startIdx, endIdx } = e.data;
+    const { startIdx, endIdx, pulseId, theta } = e.data;
+    currentPulseId = pulseId ?? 0;
+    currentTheta = theta ?? 0;
     if (!wasmInstance || !execute_atom_fn || !syncStateView || !idsView) return;
 
     // Wait for WASM_TICKING state (1)
@@ -27698,7 +27732,7 @@ const dispatchRangePhase = async (
     workerPromises.push(postAndWait(
       0,
       workers[0],
-      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId },
+      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId, theta: evolutionPressureState.ring.theta },
       doneType,
     ));
   } else {
@@ -27713,7 +27747,7 @@ const dispatchRangePhase = async (
       workerPromises.push(postAndWait(
         i,
         workers[i],
-        { type, startIdx, endIdx, pulseId },
+        { type, startIdx, endIdx, pulseId, theta: evolutionPressureState.ring.theta },
         doneType,
       ));
     }

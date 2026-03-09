@@ -2,6 +2,7 @@
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { resolveWithPhase } from "./GENETIC_LEDGER_RUNTIME.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
@@ -59,6 +60,10 @@ let lineageView: BigUint64Array | null = null;
 let logicView: BigUint64Array | null = null;
 let bondRequestsView: Int32Array | null = null;
 let energiesView: Int32Array | null = null;
+let phaseView: Int32Array | null = null;
+
+let currentPulseId = 0;
+let currentTheta = 0;
 let resonancesView: Int32Array | null = null;
 let instructionsView: Uint8Array | null = null;
 let mailboxView: Int32Array | null = null;
@@ -632,16 +637,26 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     case SYS_SPORE_DRIVE: {
-      const energy = Atomics.load(energiesView, atomIdx);
-      if (energy >= 500000) {
-        Atomics.sub(energiesView, atomIdx, 500000);
+      const energy = Atomics.load(energiesView!, atomIdx);
+      const atomPhase = Atomics.load(phaseView!, atomIdx);
+      const epochPhase = (currentPulseId * 4) % 256;
+      
+      const sporeCost = resolveWithPhase(500, [
+        { phase: epochPhase, weight: 50 },
+        { phase: currentTheta, weight: 30 },
+        { phase: atomPhase, weight: 20 }
+      ]);
+      const energyBet = sporeCost * 1000;
+
+      if (energy >= energyBet) {
+        Atomics.sub(energiesView!, atomIdx, energyBet);
         self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by 500).`,
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${Math.floor(currentTheta)}, AtomPhase=${atomPhase}).`,
         );
       } else {
-        contextI32View[(atomIdx << 4) + 1] = 0; // failure in register
+        contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
       }
       break;
     }
@@ -748,6 +763,7 @@ self.onmessage = async (e) => {
     );
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
     resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+    phaseView = new Int32Array(sb, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(
       sb,
       OFFSETS.INSTRUCTIONS_OFFSET,
@@ -842,7 +858,9 @@ self.onmessage = async (e) => {
   }
 
   if (type === "PULSE") {
-    const { startIdx, endIdx } = e.data;
+    const { startIdx, endIdx, pulseId, theta } = e.data;
+    currentPulseId = pulseId ?? 0;
+    currentTheta = theta ?? 0;
     if (!wasmInstance || !execute_atom_fn || !syncStateView || !idsView) return;
 
     // Wait for WASM_TICKING state (1)
