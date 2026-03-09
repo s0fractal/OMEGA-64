@@ -1,7 +1,8 @@
 //! LambdaVM Execution Engine
 
 use crate::isa::{GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE};
-use crate::memory::SigmaState;
+use crate::math::{math_cos, math_sin};
+use crate::memory::{SigmaState, MAX_ATOMS};
 
 pub struct LambdaVM {}
 
@@ -132,11 +133,99 @@ impl LambdaVM {
                     pc = state.matrix.instructions[atom_idx][(pc + 1) as usize];
                     gas_used += 2;
                 }
-                GlyphOp::Syscall
-                | GlyphOp::SporeDrive
-                | GlyphOp::Sense
-                | GlyphOp::Resolve
-                | GlyphOp::ResonateKuramoto => {
+                GlyphOp::Resolve => {
+                    let dest_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let angle_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let mode_reg = state.matrix.instructions[atom_idx][(pc + 3) as usize];
+
+                    let angle = if angle_reg < 8 {
+                        state.matrix.context[atom_idx][angle_reg as usize]
+                    } else {
+                        0
+                    };
+                    let mode_val = if mode_reg < 8 {
+                        state.matrix.context[atom_idx][mode_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    let mut high_res = 0;
+                    let mut cost = 1;
+
+                    if mode_val == 1 || mode_val == 3 {
+                        high_res = 1;
+                        cost = 5;
+                    } else if mode_val == 4 || mode_val == 5 {
+                        high_res = 2; // Reserved for Taylor2
+                        cost = 10;
+                    }
+
+                    let val = if mode_val == 0 || mode_val == 1 || mode_val == 4 {
+                        math_sin(angle, high_res)
+                    } else {
+                        math_cos(angle, high_res)
+                    };
+
+                    if dest_reg < 8 {
+                        state.matrix.context[atom_idx][dest_reg as usize] = val;
+                    }
+
+                    pc += 4;
+                    gas_used += cost;
+                }
+                GlyphOp::ResonateKuramoto => {
+                    let gx = (state.matrix.xs[atom_idx] as i32) / 1000;
+                    let gy = (state.matrix.ys[atom_idx] as i32) / 1000;
+
+                    // Note: Deno physics clamp / 1000 logic is actually (xs / 10) / 100 -> xs / 1000.
+                    // Let's use grid coordinates as mapped by build_spatial_hash (which are units of 10)
+                    let current_phase = state.matrix.phase[atom_idx] as i32;
+                    let mut sum_sin = 0;
+                    let mut neighbor_count = 0;
+
+                    let grid_cx = gx;
+                    let grid_cy = gy;
+
+                    for dy in -1..=1 {
+                        for dx in -1..=1 {
+                            let nx = grid_cx + dx;
+                            let ny = grid_cy + dy;
+
+                            if nx >= 0 && nx < 140 && ny >= 0 && ny < 80 {
+                                let count = state.get_spatial_grid_count(nx, ny);
+                                for i in 0..count {
+                                    let neighbor_id =
+                                        state.get_spatial_grid_atom(nx, ny, i) as usize;
+                                    if neighbor_id > 0
+                                        && neighbor_id != atom_idx
+                                        && neighbor_id < MAX_ATOMS
+                                    {
+                                        let neighbor_phase = state.matrix.phase[neighbor_id] as i32;
+                                        let diff = (neighbor_phase - current_phase) & 255;
+                                        sum_sin += math_sin(diff, 0); // Direct lookup density mapping
+                                        neighbor_count += 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    let coh = state.matrix.neural_coherence as i32;
+                    let mut k_bond = 5 + (coh / 100);
+                    if k_bond > 128 {
+                        k_bond = 128;
+                    }
+
+                    if neighbor_count > 0 {
+                        let d_theta = (k_bond * sum_sin) >> 15;
+                        let theta_next = (current_phase + d_theta) & 255;
+                        state.matrix.phase[atom_idx] = theta_next as i32;
+                    }
+
+                    pc += 1;
+                    gas_used += 5 + (neighbor_count * 2);
+                }
+                GlyphOp::Syscall | GlyphOp::SporeDrive | GlyphOp::Sense => {
                     // Syscalls yield unconditionally
                     pc += 1; // Basic jump over opcode for next resume if applicable
                     gas_used += 10;
