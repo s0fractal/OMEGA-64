@@ -1,6 +1,7 @@
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
@@ -343,7 +344,7 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime = createLedgerRuntime(
+let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxPheromoneIntensity",
   DAEMON_POLICY.maxPheromoneIntensity,
   128,
@@ -371,7 +372,7 @@ let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
-let daemonPlasmidLedgerRuntime = createLedgerRuntime(
+let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxPlasmidCharge",
   DAEMON_POLICY.maxPlasmidCharge,
   128,
@@ -1804,27 +1805,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/api/physiology" && req.method === "GET") {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    const homeostasis = PULSE.getHomeostasisState();
-    const pressure = PULSE.getEvolutionPressureState();
-    const geneticLedger = PULSE.getGeneticLedgerState();
+    const hormones = PULSE.getPhysiologicalLedgerState();
+    const generic = PULSE.getGenericLedgerSnapshots();
+    
+    const ledger = {
+      ...generic,
+      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(daemonPheromoneLedgerRuntime),
+      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(daemonPlasmidLedgerRuntime),
+    };
+
     const physiology = capturePhysiologySnapshot({
       tick,
-      homeostasis: {
-        targetEnergyCurrent: homeostasis.targetEnergyCurrent,
-        band: homeostasis.band,
-        maxDelta: homeostasis.maxDelta,
-        overflowThreshold: homeostasis.overflowThreshold,
-        baseTaxCurrent: homeostasis.baseTaxCurrent,
-      },
-      pressure: {
-        novelty: pressure.novelty,
-        fear: pressure.fear,
-        symbiosis: pressure.symbiosis,
-        ego: pressure.ego,
-        ring: {
-          scale: pressure.ring.scale,
-        },
-      },
+      hormones,
+      ledger,
     });
     const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
     const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();

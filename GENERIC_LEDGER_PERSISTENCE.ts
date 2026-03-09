@@ -1,6 +1,7 @@
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   type LedgerRuntimeEvent,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
@@ -168,7 +169,7 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
   }
 
   let state = snapshotRecord?.state ??
-    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+    createGeneticLedgerRuntime(key, options.initialValue, options.historyLimit);
   let hydrationError: string | null = null;
   try {
     for (const record of records) {
@@ -342,7 +343,7 @@ export const compactLedgerPersistence = async <K extends GeneticLedgerKey>(
 
   const compactCount = Math.max(0, records.length - keepTail);
   let state = snapshotRecord?.state ??
-    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+    createGeneticLedgerRuntime(key, options.initialValue, options.historyLimit);
   const compactedRecords = records.slice(0, compactCount);
   for (const record of compactedRecords) {
     state = applyRecordToState(state, record);

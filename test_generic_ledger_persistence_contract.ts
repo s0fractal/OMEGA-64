@@ -7,6 +7,7 @@ import {
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   rollbackLedgerUpdate,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 
@@ -29,7 +30,7 @@ const main = async () => {
   const path = getLogPath(key);
 
   await cleanup(path);
-  const initial = createLedgerRuntime(key, 2, 8);
+  const initial = createGeneticLedgerRuntime(key, 2, 8);
   const first = applyLedgerUpdate(initial, {
     value: 5,
     tick: 10,

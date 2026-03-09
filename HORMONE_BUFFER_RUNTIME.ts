@@ -1,5 +1,4 @@
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { HORMONE_BUFFER_CATALOG } from "./HORMONE_BUFFER.ts";
+import { HORMONE_BUFFER_CATALOG, type HormoneId } from "./HORMONE_BUFFER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 export type HormoneSyncInput = {
@@ -28,67 +27,48 @@ const clamp = (value: number, min: number, max: number): number =>
  * Synchronizes physiological signals from host runtimes into the shared memory lattice.
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
-export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
-  // 1. entropy_pressure (derived from baseTax / maxDelta / band)
-  const entropyPressure = Math.round(
-    clamp(
-      (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
-        (1024 / Math.max(1, input.homeostasisBand)),
-      0,
-      2048,
+export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId, number> => {
+  return {
+    entropy_pressure: Math.round(
+      clamp(
+        (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
+          (1024 / Math.max(1, input.homeostasisBand)),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(0, entropyPressure);
-
-  // 2. time_viscosity (derived from daemonMaxActions)
-  // Note: removing workerCount so that physics remains deterministic regardless of hardware execution threads
-  const timeViscosity = Math.round(
-    clamp(
-      (input.daemonMaxActions / 128) * 1024,
-      0,
-      2048,
+    time_viscosity: Math.round(
+      clamp(
+        (input.daemonMaxActions / 128) * 1024,
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(1, timeViscosity);
-
-  // 3. aggression (ego + fear)
-  const aggression = Math.round(
-    clamp(input.egoPressure + input.fearPressure, 0, 2048),
-  );
-  STATE_MATRIX.setHormone(2, aggression);
-
-  // 4. replication_bias (novelty + overflowThreshold inverse)
-  const replicationBias = Math.round(
-    clamp(
-      input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
-      0,
-      2048,
+    aggression: Math.round(
+      clamp(input.egoPressure + input.fearPressure, 0, 2048),
     ),
-  );
-  STATE_MATRIX.setHormone(3, replicationBias);
-
-  // 5. repair_drive (symbiosis + degrade ratio inverse)
-  const repairDrive = Math.round(
-    clamp(
-      input.symbiosisPressure +
-        ((1 - input.federationDegradeEnergyRatio) * 1024),
-      0,
-      2048,
+    replication_bias: Math.round(
+      clamp(
+        input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(4, repairDrive);
-
-  // 6. mutation_friction (maxPlasmidCharge / ringScale)
-  const mutationFriction = Math.round(
-    clamp(
-      (input.maxPlasmidCharge / Math.max(1, input.pressureRingScale)) * 256,
-      0,
-      2048,
+    repair_drive: Math.round(
+      clamp(
+        input.symbiosisPressure +
+          ((1 - input.federationDegradeEnergyRatio) * 1024),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(5, mutationFriction);
-
-  // 7. global_consensus (globalSyntropy)
-  const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
-  STATE_MATRIX.setHormone(6, consensus);
+    mutation_friction: Math.round(
+      clamp(
+        (input.maxPlasmidCharge / Math.max(1, input.pressureRingScale)) * 256,
+        0,
+        2048,
+      ),
+    ),
+    global_consensus: Math.round(clamp(input.globalSyntropy * 1024, 0, 2048)),
+  };
 };

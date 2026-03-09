@@ -12,7 +12,7 @@ const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 
-// --- STAGE 44: DISCRETE TRIGONOMETRY (LUT) ---
+
 // Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
 const SIN_LUT: StaticArray<i16> = [
   0,
@@ -636,17 +636,6 @@ const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
 // Genomes are at the start of instructions
 
-const ISA_BIND: u8 = 0x40;
-const ISA_SHARE: u8 = 0x41;
-const ISA_SIGNAL: u8 = 0x42;
-const ISA_READ_MATRIX: u8 = 0x43;
-const ISA_INJECT: u8 = 0x44;
-const ISA_BROADCAST: u8 = 0x45;
-const ISA_ANNEX: u8 = 0x46;
-const ISA_MUTATE: u8 = 0x47;
-const ISA_RESONATE: u8 = 0x48;
-const ISA_SENSE: u8 = 0x49; // Atom senses global neural coherence field
-const ISA_ASCEND: u8 = 0xFF;
 
 // Crystal type constants
 const CRYSTAL_OSCILLATOR: i32 = 5;
@@ -657,7 +646,7 @@ const MAX_ASCENSIONS: i32 = 64;
 const PHEROMONE_COST_BASE: i32 = 10;
 const PLASMID_COST_BASE: i32 = 25;
 
-// --- ERA 71: FORCE ACCUMULATION ---
+
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
 let accForceX: f32 = 0;
 let accForceY: f32 = 0;
@@ -1017,7 +1006,6 @@ const OP_GET: u8 = 0x02; // GET Reg, Prop
 const OP_PUT: u8 = 0x03; // PUT Reg, Prop
 const OP_ADD: u8 = 0x04; // ADD R1, R2
 const OP_SUB: u8 = 0x05; // SUB R1, R2
-const OP_JZ: u8 = 0x10; // JZ Reg, RelAddr
 const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
 const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
@@ -1025,11 +1013,8 @@ const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
-const ENTANGLE_LOW_ENERGY: i32 = 500;
-const ENTANGLE_MAX_DRAW: i32 = 400;
-const ENTANGLE_SPIN_LIMIT: i32 = 16;
 
-// Role constants moved to Vector 7 section
+
 
 // Property IDs for GET/PUT
 const PROP_ENERGY: u8 = 0;
@@ -1098,7 +1083,7 @@ function addHiveBalance(val: i32): i32 {
   return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 }
 
-// --- VECTOR 7: THE QUANTUM SHIFT ---
+
 
 const ROLE_NEUTRAL: u8 = 0;
 const ROLE_PRODUCER: u8 = 1;
@@ -1252,7 +1237,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
             (2.0 * multiplier);
 
-          // Stage 36 Bugfix: Hard cap on chemotactic force to prevent physics explosions
+          // Hard cap on chemotactic force to prevent physics explosions
           // when arbitrary massive energy pools are assigned by the test runner.
           if (force < -20.0) force = -20.0;
           if (force > 20.0) force = 20.0;
@@ -1323,12 +1308,12 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
     }
   }
 
-  // ERA 71: ACCUMULATE instead of immediate store
+  // ACCUMULATE instead of immediate store
   accForceX += tx;
   accForceY += ty;
 }
 
-// --- ERA 72: GLYPH INTERNALIZATION ---
+
 
 function unpackGlyphKind(header: i32): i32 {
   return header & 0xFF;
@@ -1443,7 +1428,7 @@ function secreteGlyph(
     atomic.add<i32>(statPtr, 1);
   }
 
-  // Energy Cost (Stage 5.3)
+  // Energy Cost
   if (atomIdx >= 0) {
     let cost: i32 = 0;
     if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
@@ -1685,7 +1670,7 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     fy *= dampingFactor;
   }
 
-  // ERA 71: ACCUMULATE instead of immediate store
+  // ACCUMULATE instead of immediate store
   accForceX += fx;
   accForceY += fy;
 }
@@ -1699,7 +1684,7 @@ export function execute_atom(atomIndex: i32): void {
   // --- VECTOR 7: THE QUANTUM SHIFT ---
   // If id > 10, calculate physics (matching JS neural verification)
   if (id > 10) {
-    // ERA 71: Reset accumulation
+    // Reset accumulation
     accForceX = 0;
     accForceY = 0;
 
@@ -1711,7 +1696,7 @@ export function execute_atom(atomIndex: i32): void {
     const tick = load<i32>(TICK_COUNTER_OFF);
     const cell = (curY / 10) * 140 + (curX / 10);
 
-    // DECENTRALIZED SECRETION (Stage 5.2: coord-based + spill)
+    // DECENTRALIZED SECRETION
     if (
       role == ROLE_GUARDIAN &&
       guardianShouldEmitPheromone(tick, atomIndex, phase, res)
@@ -1819,7 +1804,7 @@ export function execute_atom(atomIndex: i32): void {
   let resonance = getReadResonance(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-  // Stage 28: Bounded Reduction - Gas Accounting Economy
+  // Bounded Reduction - Gas Accounting Economy
   let gasUsed: i32 = 0;
   // Hard cap to prevent WASM thread lockup, bounded by physical energy
   let gasLimit: i32 = energy < 100 ? energy : 100;
@@ -2099,7 +2084,7 @@ export function execute_atom(atomIndex: i32): void {
   );
 }
 
-// --- VECTOR 8: THE CRYSTALLINE LATTICE ---
+
 
 const STR_VOID: i32 = 0;
 const STR_WIRE: i32 = 1;

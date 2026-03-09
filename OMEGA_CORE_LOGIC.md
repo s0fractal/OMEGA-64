@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T19:37:13.585Z*
+*Generated: 2026-03-09T20:09:39.973Z*
 *Exported Files: 129*
 *Runtime Roots: 11*
 *Runtime Closure Files: 65*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 31*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
 *Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
-*Export Content SHA256: c88e498a69cee37cce27535c654982a8f5d7b23d39adbb6a8d0a47e04486f6d8*
-*Git Commit: 23452e6382ee*
+*Export Content SHA256: 68b2d303e6e39f9775e112c47bcb63bf09d29d7745dd3d8c605b723e5770ab0f*
+*Git Commit: 655146da9609*
 
 ---
 
@@ -4271,7 +4271,7 @@ const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 
-// --- STAGE 44: DISCRETE TRIGONOMETRY (LUT) ---
+
 // Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
 const SIN_LUT: StaticArray<i16> = [
   0,
@@ -4895,17 +4895,6 @@ const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
 // Genomes are at the start of instructions
 
-const ISA_BIND: u8 = 0x40;
-const ISA_SHARE: u8 = 0x41;
-const ISA_SIGNAL: u8 = 0x42;
-const ISA_READ_MATRIX: u8 = 0x43;
-const ISA_INJECT: u8 = 0x44;
-const ISA_BROADCAST: u8 = 0x45;
-const ISA_ANNEX: u8 = 0x46;
-const ISA_MUTATE: u8 = 0x47;
-const ISA_RESONATE: u8 = 0x48;
-const ISA_SENSE: u8 = 0x49; // Atom senses global neural coherence field
-const ISA_ASCEND: u8 = 0xFF;
 
 // Crystal type constants
 const CRYSTAL_OSCILLATOR: i32 = 5;
@@ -4916,7 +4905,7 @@ const MAX_ASCENSIONS: i32 = 64;
 const PHEROMONE_COST_BASE: i32 = 10;
 const PLASMID_COST_BASE: i32 = 25;
 
-// --- ERA 71: FORCE ACCUMULATION ---
+
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
 let accForceX: f32 = 0;
 let accForceY: f32 = 0;
@@ -5276,7 +5265,6 @@ const OP_GET: u8 = 0x02; // GET Reg, Prop
 const OP_PUT: u8 = 0x03; // PUT Reg, Prop
 const OP_ADD: u8 = 0x04; // ADD R1, R2
 const OP_SUB: u8 = 0x05; // SUB R1, R2
-const OP_JZ: u8 = 0x10; // JZ Reg, RelAddr
 const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
 const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
@@ -5284,11 +5272,8 @@ const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
-const ENTANGLE_LOW_ENERGY: i32 = 500;
-const ENTANGLE_MAX_DRAW: i32 = 400;
-const ENTANGLE_SPIN_LIMIT: i32 = 16;
 
-// Role constants moved to Vector 7 section
+
 
 // Property IDs for GET/PUT
 const PROP_ENERGY: u8 = 0;
@@ -5357,7 +5342,7 @@ function addHiveBalance(val: i32): i32 {
   return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 }
 
-// --- VECTOR 7: THE QUANTUM SHIFT ---
+
 
 const ROLE_NEUTRAL: u8 = 0;
 const ROLE_PRODUCER: u8 = 1;
@@ -5511,7 +5496,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
             (2.0 * multiplier);
 
-          // Stage 36 Bugfix: Hard cap on chemotactic force to prevent physics explosions
+          // Hard cap on chemotactic force to prevent physics explosions
           // when arbitrary massive energy pools are assigned by the test runner.
           if (force < -20.0) force = -20.0;
           if (force > 20.0) force = 20.0;
@@ -5582,12 +5567,12 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
     }
   }
 
-  // ERA 71: ACCUMULATE instead of immediate store
+  // ACCUMULATE instead of immediate store
   accForceX += tx;
   accForceY += ty;
 }
 
-// --- ERA 72: GLYPH INTERNALIZATION ---
+
 
 function unpackGlyphKind(header: i32): i32 {
   return header & 0xFF;
@@ -5702,7 +5687,7 @@ function secreteGlyph(
     atomic.add<i32>(statPtr, 1);
   }
 
-  // Energy Cost (Stage 5.3)
+  // Energy Cost
   if (atomIdx >= 0) {
     let cost: i32 = 0;
     if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
@@ -5944,7 +5929,7 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     fy *= dampingFactor;
   }
 
-  // ERA 71: ACCUMULATE instead of immediate store
+  // ACCUMULATE instead of immediate store
   accForceX += fx;
   accForceY += fy;
 }
@@ -5958,7 +5943,7 @@ export function execute_atom(atomIndex: i32): void {
   // --- VECTOR 7: THE QUANTUM SHIFT ---
   // If id > 10, calculate physics (matching JS neural verification)
   if (id > 10) {
-    // ERA 71: Reset accumulation
+    // Reset accumulation
     accForceX = 0;
     accForceY = 0;
 
@@ -5970,7 +5955,7 @@ export function execute_atom(atomIndex: i32): void {
     const tick = load<i32>(TICK_COUNTER_OFF);
     const cell = (curY / 10) * 140 + (curX / 10);
 
-    // DECENTRALIZED SECRETION (Stage 5.2: coord-based + spill)
+    // DECENTRALIZED SECRETION
     if (
       role == ROLE_GUARDIAN &&
       guardianShouldEmitPheromone(tick, atomIndex, phase, res)
@@ -6078,7 +6063,7 @@ export function execute_atom(atomIndex: i32): void {
   let resonance = getReadResonance(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-  // Stage 28: Bounded Reduction - Gas Accounting Economy
+  // Bounded Reduction - Gas Accounting Economy
   let gasUsed: i32 = 0;
   // Hard cap to prevent WASM thread lockup, bounded by physical energy
   let gasLimit: i32 = energy < 100 ? energy : 100;
@@ -6358,7 +6343,7 @@ export function execute_atom(atomIndex: i32): void {
   );
 }
 
-// --- VECTOR 8: THE CRYSTALLINE LATTICE ---
+
 
 const STR_VOID: i32 = 0;
 const STR_WIRE: i32 = 1;
@@ -12933,6 +12918,7 @@ export const GATE = {
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   type LedgerRuntimeEvent,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
@@ -13100,7 +13086,7 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
   }
 
   let state = snapshotRecord?.state ??
-    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+    createGeneticLedgerRuntime(key, options.initialValue, options.historyLimit);
   let hydrationError: string | null = null;
   try {
     for (const record of records) {
@@ -13274,7 +13260,7 @@ export const compactLedgerPersistence = async <K extends GeneticLedgerKey>(
 
   const compactCount = Math.max(0, records.length - keepTail);
   let state = snapshotRecord?.state ??
-    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+    createGeneticLedgerRuntime(key, options.initialValue, options.historyLimit);
   const compactedRecords = records.slice(0, compactCount);
   for (const record of compactedRecords) {
     state = applyRecordToState(state, record);
@@ -13367,7 +13353,7 @@ import {
   type GeneticLedgerKey,
 } from "./GENETIC_LEDGER.ts";
 
-export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;
   previousValue: number;
   nextValue: number;
@@ -13379,7 +13365,7 @@ export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
   rolledBackReason: string | null;
 };
 
-export type LedgerRuntimeState<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeState<K extends string> = {
   key: K;
   currentValue: number;
   defaultValue: number;
@@ -13399,7 +13385,7 @@ export type LedgerRuntimeState<K extends GeneticLedgerKey> = {
   lastRollbackToken: string | null;
 };
 
-export type LedgerRuntimeSnapshot<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeSnapshot<K extends string> = {
   key: K;
   currentValue: number;
   defaultValue: number;
@@ -13417,7 +13403,7 @@ export type LedgerRuntimeSnapshot<K extends GeneticLedgerKey> = {
   lastRollbackToken: string | null;
 };
 
-export type LedgerApplyResult<K extends GeneticLedgerKey> = {
+export type LedgerApplyResult<K extends string> = {
   status: "applied" | "noop";
   changed: boolean;
   previousValue: number;
@@ -13426,7 +13412,7 @@ export type LedgerApplyResult<K extends GeneticLedgerKey> = {
   state: LedgerRuntimeState<K>;
 };
 
-export type LedgerRollbackResult<K extends GeneticLedgerKey> = {
+export type LedgerRollbackResult<K extends string> = {
   status: "rolled_back" | "missing" | "consumed" | "stale";
   changed: boolean;
   previousValue: number;
@@ -13438,23 +13424,27 @@ export type LedgerRollbackResult<K extends GeneticLedgerKey> = {
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
-export const createLedgerRuntime = <K extends GeneticLedgerKey>(
-  key: K,
+export type LedgerRuntimeConfig<K extends string> = {
+  key: K;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+};
+
+export const createLedgerRuntime = <K extends string>(
+  config: LedgerRuntimeConfig<K>,
   initialValue?: number,
   historyLimit = 32,
 ): LedgerRuntimeState<K> => {
-  const entry = geneticLedgerEntryByKey(key);
-  if (!entry) {
-    throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
-  }
-  const val = initialValue === undefined ? entry.defaultValue : initialValue;
+  const val = initialValue === undefined ? config.defaultValue : initialValue;
   return {
-    key,
-    currentValue: clamp(val, entry.min, entry.max),
-    defaultValue: entry.defaultValue,
-    min: entry.min,
-    max: entry.max,
-    rollbackClass: entry.rollbackClass,
+    key: config.key,
+    currentValue: clamp(val, config.min, config.max),
+    defaultValue: config.defaultValue,
+    min: config.min,
+    max: config.max,
+    rollbackClass: config.rollbackClass,
     seq: 0,
     historyLimit: Math.max(1, Math.floor(historyLimit)),
     history: [],
@@ -13469,7 +13459,7 @@ export const createLedgerRuntime = <K extends GeneticLedgerKey>(
   };
 };
 
-export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
+export const applyLedgerUpdate = <K extends string>(
   state: LedgerRuntimeState<K>,
   update: {
     value: number;
@@ -13533,7 +13523,7 @@ export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
   };
 };
 
-export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
+export const rollbackLedgerUpdate = <K extends string>(
   state: LedgerRuntimeState<K>,
   rollback: {
     rollbackToken: string;
@@ -13627,7 +13617,7 @@ export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
   };
 };
 
-export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
+export const snapshotLedgerRuntime = <K extends string>(
   state: LedgerRuntimeState<K>,
 ): LedgerRuntimeSnapshot<K> => ({
   key: state.key,
@@ -13646,6 +13636,19 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
+
+export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
+  key: K,
+  initialValue?: number,
+  historyLimit = 32,
+): LedgerRuntimeState<K> => {
+  const entry = geneticLedgerEntryByKey(key);
+  if (!entry) {
+    throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
+  }
+  return createLedgerRuntime(entry as unknown as LedgerRuntimeConfig<K>, initialValue, historyLimit);
+};
+
 
 ```
 
@@ -14911,8 +14914,7 @@ export function injectHologram(
 ## FILE: HORMONE_BUFFER_RUNTIME.ts
 
 ```typescript
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { HORMONE_BUFFER_CATALOG } from "./HORMONE_BUFFER.ts";
+import { HORMONE_BUFFER_CATALOG, type HormoneId } from "./HORMONE_BUFFER.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 
 export type HormoneSyncInput = {
@@ -14941,69 +14943,50 @@ const clamp = (value: number, min: number, max: number): number =>
  * Synchronizes physiological signals from host runtimes into the shared memory lattice.
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
-export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
-  // 1. entropy_pressure (derived from baseTax / maxDelta / band)
-  const entropyPressure = Math.round(
-    clamp(
-      (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
-        (1024 / Math.max(1, input.homeostasisBand)),
-      0,
-      2048,
+export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId, number> => {
+  return {
+    entropy_pressure: Math.round(
+      clamp(
+        (input.baseTax / Math.max(1, input.homeostasisMaxDelta)) * 1024 +
+          (1024 / Math.max(1, input.homeostasisBand)),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(0, entropyPressure);
-
-  // 2. time_viscosity (derived from daemonMaxActions)
-  // Note: removing workerCount so that physics remains deterministic regardless of hardware execution threads
-  const timeViscosity = Math.round(
-    clamp(
-      (input.daemonMaxActions / 128) * 1024,
-      0,
-      2048,
+    time_viscosity: Math.round(
+      clamp(
+        (input.daemonMaxActions / 128) * 1024,
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(1, timeViscosity);
-
-  // 3. aggression (ego + fear)
-  const aggression = Math.round(
-    clamp(input.egoPressure + input.fearPressure, 0, 2048),
-  );
-  STATE_MATRIX.setHormone(2, aggression);
-
-  // 4. replication_bias (novelty + overflowThreshold inverse)
-  const replicationBias = Math.round(
-    clamp(
-      input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
-      0,
-      2048,
+    aggression: Math.round(
+      clamp(input.egoPressure + input.fearPressure, 0, 2048),
     ),
-  );
-  STATE_MATRIX.setHormone(3, replicationBias);
-
-  // 5. repair_drive (symbiosis + degrade ratio inverse)
-  const repairDrive = Math.round(
-    clamp(
-      input.symbiosisPressure +
-        ((1 - input.federationDegradeEnergyRatio) * 1024),
-      0,
-      2048,
+    replication_bias: Math.round(
+      clamp(
+        input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(4, repairDrive);
-
-  // 6. mutation_friction (maxPlasmidCharge / ringScale)
-  const mutationFriction = Math.round(
-    clamp(
-      (input.maxPlasmidCharge / Math.max(1, input.pressureRingScale)) * 256,
-      0,
-      2048,
+    repair_drive: Math.round(
+      clamp(
+        input.symbiosisPressure +
+          ((1 - input.federationDegradeEnergyRatio) * 1024),
+        0,
+        2048,
+      ),
     ),
-  );
-  STATE_MATRIX.setHormone(5, mutationFriction);
-
-  // 7. global_consensus (globalSyntropy)
-  const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
-  STATE_MATRIX.setHormone(6, consensus);
+    mutation_friction: Math.round(
+      clamp(
+        (input.maxPlasmidCharge / Math.max(1, input.pressureRingScale)) * 256,
+        0,
+        2048,
+      ),
+    ),
+    global_consensus: Math.round(clamp(input.globalSyntropy * 1024, 0, 2048)),
+  };
 };
 
 ```
@@ -15014,6 +14997,7 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
 
 ```typescript
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { type LedgerRuntimeState, type LedgerRuntimeConfig, createLedgerRuntime } from "./GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -15190,6 +15174,24 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
+
+export const createPhysiologicalLedgerRuntime = (
+  id: HormoneId,
+  initialValue?: number,
+  historyLimit = 32,
+): LedgerRuntimeState<HormoneId> => {
+  const spec = hormoneSpecById(id);
+  if (!spec) throw new Error(`[HORMONE_BUFFER] missing ${id} spec`);
+  const config: LedgerRuntimeConfig<HormoneId> = {
+    key: spec.id,
+    defaultValue: spec.defaultValue,
+    min: spec.min,
+    max: spec.max,
+    rollbackClass: "immediate", // Physiologies adapt instantly
+  };
+  return createLedgerRuntime(config, initialValue, historyLimit);
+};
+
 
 ```
 
@@ -24101,30 +24103,12 @@ import {
   type HormoneId,
   type HormoneSpec,
 } from "./HORMONE_BUFFER.ts";
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
-
-export type PhysiologyHomeostasisInput = {
-  targetEnergyCurrent: number;
-  band: number;
-  maxDelta: number;
-  overflowThreshold: number;
-  baseTaxCurrent: number;
-};
-
-export type PhysiologyPressureInput = {
-  novelty: number;
-  fear: number;
-  symbiosis: number;
-  ego: number;
-  ring: {
-    scale: number;
-  };
-};
+import type { LedgerRuntimeSnapshot } from "./GENERIC_LEDGER_SYSTEM.ts";
 
 export type PhysiologySnapshotInput = {
   tick: number;
-  homeostasis: PhysiologyHomeostasisInput;
-  pressure: PhysiologyPressureInput;
+  hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
+  ledger: Partial<Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>>;
 };
 
 export type HormoneSnapshot = HormoneSpec & {
@@ -24144,145 +24128,31 @@ export type PhysiologySnapshot = {
   ledger: Record<GeneticLedgerKey, LedgerSnapshot>;
 };
 
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-const currentHormoneValue = (
-  spec: HormoneSpec,
-  input: PhysiologySnapshotInput,
-): number => {
-  switch (spec.id) {
-    case "entropy_pressure":
-      return Math.round(
-        clamp(
-          (input.homeostasis.baseTaxCurrent /
-            Math.max(1, input.homeostasis.maxDelta)) * 1024,
-          spec.min,
-          spec.max,
-        ),
-      );
-    case "time_viscosity":
-      return Math.round(
-        clamp(
-          (RUNTIME_POLICY.pulse.workerCount / 32) * 2048,
-          spec.min,
-          spec.max,
-        ),
-      );
-    case "aggression":
-      return Math.round(
-        clamp(input.pressure.fear + input.pressure.ego, spec.min, spec.max),
-      );
-    case "replication_bias":
-      return Math.round(
-        clamp(
-          input.pressure.novelty +
-            Math.round(RUNTIME_POLICY.coldstart.replicatorRatio * 256),
-          spec.min,
-          spec.max,
-        ),
-      );
-    case "repair_drive":
-      return Math.round(
-        clamp(
-          input.pressure.symbiosis +
-            Math.round(
-              (1 - RUNTIME_POLICY.federation.admission.degradeEnergyRatio) *
-                1024,
-            ),
-          spec.min,
-          spec.max,
-        ),
-      );
-    case "mutation_friction":
-      return Math.round(
-        clamp(
-          (RUNTIME_POLICY.daemon.maxPlasmidCharge /
-            Math.max(1, input.pressure.ring.scale)) * 256,
-          spec.min,
-          spec.max,
-        ),
-      );
-  }
-};
-
-const currentLedgerValue = (
-  entry: GeneticLedgerEntry,
-  input: PhysiologySnapshotInput,
-): { currentValue: number; currentSource: "runtime" | "policy" } => {
-  switch (entry.key) {
-    case "pulse.homeostasis.targetEnergy":
-      return {
-        currentValue: clamp(
-          input.homeostasis.targetEnergyCurrent,
-          entry.min,
-          entry.max,
-        ),
-        currentSource: "runtime",
-      };
-    case "pulse.homeostasis.band":
-      return {
-        currentValue: clamp(input.homeostasis.band, entry.min, entry.max),
-        currentSource: "runtime",
-      };
-    case "pulse.homeostasis.maxDelta":
-      return {
-        currentValue: clamp(input.homeostasis.maxDelta, entry.min, entry.max),
-        currentSource: "runtime",
-      };
-    case "pulse.homeostasis.overflowThreshold":
-      return {
-        currentValue: clamp(
-          input.homeostasis.overflowThreshold,
-          entry.min,
-          entry.max,
-        ),
-        currentSource: "runtime",
-      };
-    case "pulse.homeostasis.baseTax":
-      return {
-        currentValue: clamp(
-          input.homeostasis.baseTaxCurrent,
-          entry.min,
-          entry.max,
-        ),
-        currentSource: "runtime",
-      };
-    case "pulse.pressureRing.scale":
-      return {
-        currentValue: clamp(input.pressure.ring.scale, entry.min, entry.max),
-        currentSource: "runtime",
-      };
-    default:
-      return {
-        currentValue: entry.defaultValue,
-        currentSource: "policy",
-      };
-  }
-};
-
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,
 ): PhysiologySnapshot => {
   const hormones = Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => {
-      const currentValue = currentHormoneValue(spec, input);
+      const snap = input.hormones[spec.id];
+      const val = snap ? snap.currentValue : spec.defaultValue;
       return [spec.id, {
         ...spec,
-        currentValue,
-        deltaFromDefault: currentValue - spec.defaultValue,
+        currentValue: val,
+        deltaFromDefault: val - spec.defaultValue,
       }];
     }),
   ) as Record<HormoneId, HormoneSnapshot>;
 
   const ledger = Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => {
-      const live = currentLedgerValue(entry, input);
+      const snap = input.ledger[entry.key];
+      const val = snap ? snap.currentValue : entry.defaultValue;
+      const src = snap ? "runtime" : "policy";
       return [entry.key, {
         ...entry,
-        currentValue: live.currentValue,
-        currentSource: live.currentSource,
-        deltaFromDefault: live.currentValue - entry.defaultValue,
+        currentValue: val,
+        currentSource: src,
+        deltaFromDefault: val - entry.defaultValue,
       }];
     }),
   ) as Record<GeneticLedgerKey, LedgerSnapshot>;
@@ -25617,9 +25487,11 @@ import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import { IMMUNE } from "./IMMUNE.ts";
 
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
+import { type HormoneId, HORMONE_BUFFER_CATALOG, createPhysiologicalLedgerRuntime } from "./HORMONE_BUFFER.ts";
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
@@ -26005,7 +25877,7 @@ let spatialHashState: SpatialHashState = {
   overflowRatio: 0,
 };
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+let homeostasisBaseTaxLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.baseTax",
 );
 let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
@@ -26013,19 +25885,19 @@ let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
 );
 
 // GENERIC LEDGER REGISTRY (Stage 7.2)
-let homeostasisBandLedgerRuntime = createLedgerRuntime(
+let homeostasisBandLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.band",
 );
-let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
+let homeostasisMaxDeltaLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.maxDelta",
 );
-let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
+let homeostasisOverflowThresholdLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.overflowThreshold",
 );
-let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
+let daemonMaxActionsLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxActionsPerWindow",
 );
-let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
+let federationDegradeEnergyRatioLedgerRuntime = createGeneticLedgerRuntime(
   "federation.admission.degradeEnergyRatio",
 );
 
@@ -26047,18 +25919,26 @@ let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence(
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
-let homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+let homeostasisTargetEnergyLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.targetEnergy",
 );
 let homeostasisTargetEnergyLedgerPersistence = createLedgerPersistence(
   "pulse.homeostasis.targetEnergy",
 );
-let pressureRingScaleLedgerRuntime = createLedgerRuntime(
+let pressureRingScaleLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.pressureRing.scale",
 );
 let pressureRingScaleLedgerPersistence = createLedgerPersistence(
   "pulse.pressureRing.scale",
 );
+
+let physiologicalLedgers = Object.fromEntries(
+  HORMONE_BUFFER_CATALOG.map((spec) => [
+    spec.id,
+    createPhysiologicalLedgerRuntime(spec.id),
+  ]),
+) as Record<HormoneId, LedgerRuntimeState<HormoneId>>;
+
 let homeostasisLastUpdateTick = -1;
 let homeostasisLastUpdateSource = "runtime_policy";
 let homeostasisLastUpdateReason = "bootstrap";
@@ -26072,6 +25952,9 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+  for (const spec of HORMONE_BUFFER_CATALOG) {
+    physiologicalLedgers[spec.id] = createPhysiologicalLedgerRuntime(spec.id);
+  }
 };
 const resetSpatialHashStateForColdStart = (): void => {
   spatialHashState = {
@@ -26082,7 +25965,7 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+  homeostasisBaseTaxLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.homeostasis.baseTax",
     HOMEOSTASIS_BASE_TAX,
     homeostasisBaseTaxLedgerRuntime.historyLimit,
@@ -26111,7 +25994,7 @@ const resetHomeostasisStateForColdStart = (): void => {
     lastHydratedAt: null,
     lastHydrationError: null,
   };
-  homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+  homeostasisTargetEnergyLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.homeostasis.targetEnergy",
     HOMEOSTASIS_TARGET_ENERGY,
     homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -26145,7 +26028,7 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisLastUpdateReason = "coldstart_reset";
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
-  pressureRingScaleLedgerRuntime = createLedgerRuntime(
+  pressureRingScaleLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.pressureRing.scale",
     PRESSURE_RING_BASELINE.scale,
     pressureRingScaleLedgerRuntime.historyLimit,
@@ -27814,6 +27697,26 @@ export const PULSE = {
     }
     return result;
   },
+  getPhysiologicalLedgerState: (): Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>> => {
+    return Object.fromEntries(
+      HORMONE_BUFFER_CATALOG.map((spec) => [
+        spec.id,
+        snapshotLedgerRuntime(physiologicalLedgers[spec.id]),
+      ]),
+    ) as Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
+  },
+  getGenericLedgerSnapshots: (): Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>> => {
+    return {
+      "pulse.homeostasis.baseTax": snapshotLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
+      "pulse.homeostasis.band": snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
+      "pulse.homeostasis.maxDelta": snapshotLedgerRuntime(homeostasisMaxDeltaLedgerRuntime),
+      "pulse.homeostasis.overflowThreshold": snapshotLedgerRuntime(homeostasisOverflowThresholdLedgerRuntime),
+      "pulse.homeostasis.targetEnergy": snapshotLedgerRuntime(homeostasisTargetEnergyLedgerRuntime),
+      "pulse.pressureRing.scale": snapshotLedgerRuntime(pressureRingScaleLedgerRuntime),
+      "daemon.maxActionsPerWindow": snapshotLedgerRuntime(daemonMaxActionsLedgerRuntime),
+      "federation.admission.degradeEnergyRatio": snapshotLedgerRuntime(federationDegradeEnergyRatioLedgerRuntime),
+    } as Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>;
+  },
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
   updateHomeostasisPolicy: (
     update: {
@@ -27880,7 +27783,7 @@ export const PULSE = {
 
     const { syncState, tickCounter, SYNC } = STATE_MATRIX;
     // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
-    syncHormonesToLattice({
+    const computedHormones = syncHormonesToLattice({
       baseTax: homeostasisBaseTaxRuntime,
       targetEnergy: homeostasisTargetEnergyRuntime,
       workerCount: WORKER_COUNT,
@@ -27900,6 +27803,18 @@ export const PULSE = {
         federationDegradeEnergyRatioLedgerRuntime.currentValue,
       globalSyntropy: 0, // Will be updated if syntropy is available
     });
+
+    for (const spec of HORMONE_BUFFER_CATALOG) {
+      const liveVal = computedHormones[spec.id];
+      const res = applyLedgerUpdate(physiologicalLedgers[spec.id], {
+        value: liveVal,
+        tick: -1,
+        source: "pulse",
+        reason: "physiological_sync",
+      });
+      physiologicalLedgers[spec.id] = res.state;
+      STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+    }
 
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
@@ -27937,7 +27852,7 @@ export const PULSE = {
       });
 
       // Update Hormones with actual Syntropy
-      syncHormonesToLattice({
+      const finalHormones = syncHormonesToLattice({
         baseTax: homeostasisBaseTaxRuntime,
         targetEnergy: homeostasisTargetEnergyRuntime,
         workerCount: WORKER_COUNT,
@@ -27956,6 +27871,18 @@ export const PULSE = {
           federationDegradeEnergyRatioLedgerRuntime.currentValue,
         globalSyntropy: syntropy,
       });
+
+      for (const spec of HORMONE_BUFFER_CATALOG) {
+        const liveVal = finalHormones[spec.id];
+        const res = applyLedgerUpdate(physiologicalLedgers[spec.id], {
+          value: liveVal,
+          tick: currentTick,
+          source: "pulse",
+          reason: "physiological_sync",
+        });
+        physiologicalLedgers[spec.id] = res.state;
+        STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+      }
 
       if (coherence > 1000) {
         LOGGER.debug(
@@ -38785,6 +38712,7 @@ export const STRUCTURE_ENGINE = {
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
@@ -39127,7 +39055,7 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime = createLedgerRuntime(
+let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxPheromoneIntensity",
   DAEMON_POLICY.maxPheromoneIntensity,
   128,
@@ -39155,7 +39083,7 @@ let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
-let daemonPlasmidLedgerRuntime = createLedgerRuntime(
+let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxPlasmidCharge",
   DAEMON_POLICY.maxPlasmidCharge,
   128,
@@ -40588,27 +40516,19 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/api/physiology" && req.method === "GET") {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    const homeostasis = PULSE.getHomeostasisState();
-    const pressure = PULSE.getEvolutionPressureState();
-    const geneticLedger = PULSE.getGeneticLedgerState();
+    const hormones = PULSE.getPhysiologicalLedgerState();
+    const generic = PULSE.getGenericLedgerSnapshots();
+    
+    const ledger = {
+      ...generic,
+      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(daemonPheromoneLedgerRuntime),
+      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(daemonPlasmidLedgerRuntime),
+    };
+
     const physiology = capturePhysiologySnapshot({
       tick,
-      homeostasis: {
-        targetEnergyCurrent: homeostasis.targetEnergyCurrent,
-        band: homeostasis.band,
-        maxDelta: homeostasis.maxDelta,
-        overflowThreshold: homeostasis.overflowThreshold,
-        baseTaxCurrent: homeostasis.baseTaxCurrent,
-      },
-      pressure: {
-        novelty: pressure.novelty,
-        fear: pressure.fear,
-        symbiosis: pressure.symbiosis,
-        ego: pressure.ego,
-        ring: {
-          scale: pressure.ring.scale,
-        },
-      },
+      hormones,
+      ledger,
     });
     const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
     const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();

@@ -1,4 +1,5 @@
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { type LedgerRuntimeState, type LedgerRuntimeConfig, createLedgerRuntime } from "./GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -175,3 +176,21 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
+
+export const createPhysiologicalLedgerRuntime = (
+  id: HormoneId,
+  initialValue?: number,
+  historyLimit = 32,
+): LedgerRuntimeState<HormoneId> => {
+  const spec = hormoneSpecById(id);
+  if (!spec) throw new Error(`[HORMONE_BUFFER] missing ${id} spec`);
+  const config: LedgerRuntimeConfig<HormoneId> = {
+    key: spec.id,
+    defaultValue: spec.defaultValue,
+    min: spec.min,
+    max: spec.max,
+    rollbackClass: "immediate", // Physiologies adapt instantly
+  };
+  return createLedgerRuntime(config, initialValue, historyLimit);
+};
+

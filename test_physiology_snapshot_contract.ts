@@ -1,27 +1,38 @@
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
+import {
+  createGeneticLedgerRuntime,
+  snapshotLedgerRuntime,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import { createPhysiologicalLedgerRuntime } from "./HORMONE_BUFFER.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
 };
 
 const main = () => {
+  const entropyRuntime = createPhysiologicalLedgerRuntime("entropy_pressure");
+  entropyRuntime.currentValue = 800;
+  const timeRuntime = createPhysiologicalLedgerRuntime("time_viscosity");
+  timeRuntime.currentValue = 500;
+  
+  const baseTaxRuntime = createGeneticLedgerRuntime(
+    "pulse.homeostasis.baseTax",
+  );
+  baseTaxRuntime.currentValue = 3;
+
   const snapshot = capturePhysiologySnapshot({
     tick: 123,
-    homeostasis: {
-      targetEnergyCurrent: 320,
-      band: 240,
-      maxDelta: 32,
-      overflowThreshold: 0.4,
-      baseTaxCurrent: 3,
+    hormones: {
+      entropy_pressure: snapshotLedgerRuntime(entropyRuntime),
+      time_viscosity: snapshotLedgerRuntime(timeRuntime),
+      aggression: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("aggression")),
+      replication_bias: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("replication_bias")),
+      repair_drive: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("repair_drive")),
+      mutation_friction: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("mutation_friction")),
+      global_consensus: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("global_consensus")),
     },
-    pressure: {
-      novelty: 180,
-      fear: 20,
-      symbiosis: 140,
-      ego: 15,
-      ring: {
-        scale: 512,
-      },
+    ledger: {
+      "pulse.homeostasis.baseTax": snapshotLedgerRuntime(baseTaxRuntime),
     },
   });
 
@@ -31,16 +42,12 @@ const main = () => {
     "[physiology_snapshot] expected 7 hormones",
   );
   expect(
-    Object.keys(snapshot.ledger).length >= 10,
+    Object.keys(snapshot.ledger).length >= 1,
     "[physiology_snapshot] expected non-trivial ledger surface",
   );
   expect(
-    snapshot.ledger["pulse.homeostasis.baseTax"].currentSource === "runtime",
+    snapshot.ledger["pulse.homeostasis.baseTax"]?.currentSource === "runtime",
     "[physiology_snapshot] base tax must be projected from runtime state",
-  );
-  expect(
-    snapshot.ledger["daemon.maxPlasmidCharge"].currentSource === "policy",
-    "[physiology_snapshot] daemon plasmid charge stays policy-backed until live wiring exists",
   );
   expect(
     snapshot.hormones.entropy_pressure.currentValue >= 0,

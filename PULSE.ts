@@ -18,9 +18,11 @@ import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import { IMMUNE } from "./IMMUNE.ts";
 
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
+import { type HormoneId, HORMONE_BUFFER_CATALOG, createPhysiologicalLedgerRuntime } from "./HORMONE_BUFFER.ts";
 import {
   applyLedgerUpdate,
   createLedgerRuntime,
+  createGeneticLedgerRuntime,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
@@ -406,7 +408,7 @@ let spatialHashState: SpatialHashState = {
   overflowRatio: 0,
 };
 let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+let homeostasisBaseTaxLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.baseTax",
 );
 let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
@@ -414,19 +416,19 @@ let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
 );
 
 // GENERIC LEDGER REGISTRY (Stage 7.2)
-let homeostasisBandLedgerRuntime = createLedgerRuntime(
+let homeostasisBandLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.band",
 );
-let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
+let homeostasisMaxDeltaLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.maxDelta",
 );
-let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
+let homeostasisOverflowThresholdLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.overflowThreshold",
 );
-let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
+let daemonMaxActionsLedgerRuntime = createGeneticLedgerRuntime(
   "daemon.maxActionsPerWindow",
 );
-let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
+let federationDegradeEnergyRatioLedgerRuntime = createGeneticLedgerRuntime(
   "federation.admission.degradeEnergyRatio",
 );
 
@@ -448,18 +450,26 @@ let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence(
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
-let homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+let homeostasisTargetEnergyLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.homeostasis.targetEnergy",
 );
 let homeostasisTargetEnergyLedgerPersistence = createLedgerPersistence(
   "pulse.homeostasis.targetEnergy",
 );
-let pressureRingScaleLedgerRuntime = createLedgerRuntime(
+let pressureRingScaleLedgerRuntime = createGeneticLedgerRuntime(
   "pulse.pressureRing.scale",
 );
 let pressureRingScaleLedgerPersistence = createLedgerPersistence(
   "pulse.pressureRing.scale",
 );
+
+let physiologicalLedgers = Object.fromEntries(
+  HORMONE_BUFFER_CATALOG.map((spec) => [
+    spec.id,
+    createPhysiologicalLedgerRuntime(spec.id),
+  ]),
+) as Record<HormoneId, LedgerRuntimeState<HormoneId>>;
+
 let homeostasisLastUpdateTick = -1;
 let homeostasisLastUpdateSource = "runtime_policy";
 let homeostasisLastUpdateReason = "bootstrap";
@@ -473,6 +483,9 @@ const resetStartupSelfTestStateForColdStart = (): void => {
   wasmBootReason = "";
   wasmBootArtifactBytes = 0;
   wasmBootPrecheckCompleted = false;
+  for (const spec of HORMONE_BUFFER_CATALOG) {
+    physiologicalLedgers[spec.id] = createPhysiologicalLedgerRuntime(spec.id);
+  }
 };
 const resetSpatialHashStateForColdStart = (): void => {
   spatialHashState = {
@@ -483,7 +496,7 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+  homeostasisBaseTaxLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.homeostasis.baseTax",
     HOMEOSTASIS_BASE_TAX,
     homeostasisBaseTaxLedgerRuntime.historyLimit,
@@ -512,7 +525,7 @@ const resetHomeostasisStateForColdStart = (): void => {
     lastHydratedAt: null,
     lastHydrationError: null,
   };
-  homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+  homeostasisTargetEnergyLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.homeostasis.targetEnergy",
     HOMEOSTASIS_TARGET_ENERGY,
     homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -546,7 +559,7 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisLastUpdateReason = "coldstart_reset";
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
-  pressureRingScaleLedgerRuntime = createLedgerRuntime(
+  pressureRingScaleLedgerRuntime = createGeneticLedgerRuntime(
     "pulse.pressureRing.scale",
     PRESSURE_RING_BASELINE.scale,
     pressureRingScaleLedgerRuntime.historyLimit,
@@ -2215,6 +2228,26 @@ export const PULSE = {
     }
     return result;
   },
+  getPhysiologicalLedgerState: (): Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>> => {
+    return Object.fromEntries(
+      HORMONE_BUFFER_CATALOG.map((spec) => [
+        spec.id,
+        snapshotLedgerRuntime(physiologicalLedgers[spec.id]),
+      ]),
+    ) as Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
+  },
+  getGenericLedgerSnapshots: (): Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>> => {
+    return {
+      "pulse.homeostasis.baseTax": snapshotLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
+      "pulse.homeostasis.band": snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
+      "pulse.homeostasis.maxDelta": snapshotLedgerRuntime(homeostasisMaxDeltaLedgerRuntime),
+      "pulse.homeostasis.overflowThreshold": snapshotLedgerRuntime(homeostasisOverflowThresholdLedgerRuntime),
+      "pulse.homeostasis.targetEnergy": snapshotLedgerRuntime(homeostasisTargetEnergyLedgerRuntime),
+      "pulse.pressureRing.scale": snapshotLedgerRuntime(pressureRingScaleLedgerRuntime),
+      "daemon.maxActionsPerWindow": snapshotLedgerRuntime(daemonMaxActionsLedgerRuntime),
+      "federation.admission.degradeEnergyRatio": snapshotLedgerRuntime(federationDegradeEnergyRatioLedgerRuntime),
+    } as Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>;
+  },
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
   updateHomeostasisPolicy: (
     update: {
@@ -2281,7 +2314,7 @@ export const PULSE = {
 
     const { syncState, tickCounter, SYNC } = STATE_MATRIX;
     // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
-    syncHormonesToLattice({
+    const computedHormones = syncHormonesToLattice({
       baseTax: homeostasisBaseTaxRuntime,
       targetEnergy: homeostasisTargetEnergyRuntime,
       workerCount: WORKER_COUNT,
@@ -2301,6 +2334,18 @@ export const PULSE = {
         federationDegradeEnergyRatioLedgerRuntime.currentValue,
       globalSyntropy: 0, // Will be updated if syntropy is available
     });
+
+    for (const spec of HORMONE_BUFFER_CATALOG) {
+      const liveVal = computedHormones[spec.id];
+      const res = applyLedgerUpdate(physiologicalLedgers[spec.id], {
+        value: liveVal,
+        tick: -1,
+        source: "pulse",
+        reason: "physiological_sync",
+      });
+      physiologicalLedgers[spec.id] = res.state;
+      STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+    }
 
     try {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
@@ -2338,7 +2383,7 @@ export const PULSE = {
       });
 
       // Update Hormones with actual Syntropy
-      syncHormonesToLattice({
+      const finalHormones = syncHormonesToLattice({
         baseTax: homeostasisBaseTaxRuntime,
         targetEnergy: homeostasisTargetEnergyRuntime,
         workerCount: WORKER_COUNT,
@@ -2357,6 +2402,18 @@ export const PULSE = {
           federationDegradeEnergyRatioLedgerRuntime.currentValue,
         globalSyntropy: syntropy,
       });
+
+      for (const spec of HORMONE_BUFFER_CATALOG) {
+        const liveVal = finalHormones[spec.id];
+        const res = applyLedgerUpdate(physiologicalLedgers[spec.id], {
+          value: liveVal,
+          tick: currentTick,
+          source: "pulse",
+          reason: "physiological_sync",
+        });
+        physiologicalLedgers[spec.id] = res.state;
+        STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+      }
 
       if (coherence > 1000) {
         LOGGER.debug(

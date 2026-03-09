@@ -3,7 +3,7 @@ import {
   type GeneticLedgerKey,
 } from "./GENETIC_LEDGER.ts";
 
-export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;
   previousValue: number;
   nextValue: number;
@@ -15,7 +15,7 @@ export type LedgerRuntimeEvent<K extends GeneticLedgerKey> = {
   rolledBackReason: string | null;
 };
 
-export type LedgerRuntimeState<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeState<K extends string> = {
   key: K;
   currentValue: number;
   defaultValue: number;
@@ -35,7 +35,7 @@ export type LedgerRuntimeState<K extends GeneticLedgerKey> = {
   lastRollbackToken: string | null;
 };
 
-export type LedgerRuntimeSnapshot<K extends GeneticLedgerKey> = {
+export type LedgerRuntimeSnapshot<K extends string> = {
   key: K;
   currentValue: number;
   defaultValue: number;
@@ -53,7 +53,7 @@ export type LedgerRuntimeSnapshot<K extends GeneticLedgerKey> = {
   lastRollbackToken: string | null;
 };
 
-export type LedgerApplyResult<K extends GeneticLedgerKey> = {
+export type LedgerApplyResult<K extends string> = {
   status: "applied" | "noop";
   changed: boolean;
   previousValue: number;
@@ -62,7 +62,7 @@ export type LedgerApplyResult<K extends GeneticLedgerKey> = {
   state: LedgerRuntimeState<K>;
 };
 
-export type LedgerRollbackResult<K extends GeneticLedgerKey> = {
+export type LedgerRollbackResult<K extends string> = {
   status: "rolled_back" | "missing" | "consumed" | "stale";
   changed: boolean;
   previousValue: number;
@@ -74,23 +74,27 @@ export type LedgerRollbackResult<K extends GeneticLedgerKey> = {
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
-export const createLedgerRuntime = <K extends GeneticLedgerKey>(
-  key: K,
+export type LedgerRuntimeConfig<K extends string> = {
+  key: K;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+};
+
+export const createLedgerRuntime = <K extends string>(
+  config: LedgerRuntimeConfig<K>,
   initialValue?: number,
   historyLimit = 32,
 ): LedgerRuntimeState<K> => {
-  const entry = geneticLedgerEntryByKey(key);
-  if (!entry) {
-    throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
-  }
-  const val = initialValue === undefined ? entry.defaultValue : initialValue;
+  const val = initialValue === undefined ? config.defaultValue : initialValue;
   return {
-    key,
-    currentValue: clamp(val, entry.min, entry.max),
-    defaultValue: entry.defaultValue,
-    min: entry.min,
-    max: entry.max,
-    rollbackClass: entry.rollbackClass,
+    key: config.key,
+    currentValue: clamp(val, config.min, config.max),
+    defaultValue: config.defaultValue,
+    min: config.min,
+    max: config.max,
+    rollbackClass: config.rollbackClass,
     seq: 0,
     historyLimit: Math.max(1, Math.floor(historyLimit)),
     history: [],
@@ -105,7 +109,7 @@ export const createLedgerRuntime = <K extends GeneticLedgerKey>(
   };
 };
 
-export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
+export const applyLedgerUpdate = <K extends string>(
   state: LedgerRuntimeState<K>,
   update: {
     value: number;
@@ -169,7 +173,7 @@ export const applyLedgerUpdate = <K extends GeneticLedgerKey>(
   };
 };
 
-export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
+export const rollbackLedgerUpdate = <K extends string>(
   state: LedgerRuntimeState<K>,
   rollback: {
     rollbackToken: string;
@@ -263,7 +267,7 @@ export const rollbackLedgerUpdate = <K extends GeneticLedgerKey>(
   };
 };
 
-export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
+export const snapshotLedgerRuntime = <K extends string>(
   state: LedgerRuntimeState<K>,
 ): LedgerRuntimeSnapshot<K> => ({
   key: state.key,
@@ -282,3 +286,16 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
+
+export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
+  key: K,
+  initialValue?: number,
+  historyLimit = 32,
+): LedgerRuntimeState<K> => {
+  const entry = geneticLedgerEntryByKey(key);
+  if (!entry) {
+    throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
+  }
+  return createLedgerRuntime(entry as unknown as LedgerRuntimeConfig<K>, initialValue, historyLimit);
+};
+
