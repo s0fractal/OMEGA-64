@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T06:31:00.709Z*
-*Exported Files: 125*
+*Generated: 2026-03-09T16:56:17.533Z*
+*Exported Files: 126*
 *Runtime Roots: 11*
-*Runtime Closure Files: 77*
+*Runtime Closure Files: 78*
 *Non-Runtime Code Files: 33*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 15*
 *Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
-*Export Set SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d*
-*Export Content SHA256: 4ff225b67d79c8fd377ddf2a8ae21390fb47efae2d2d4ee1f0b896db06a1c64e*
-*Git Commit: da61fcdd0f15*
+*Export Set SHA256: 9325af3808235a837cff8008e59cd82a44619c3c3b62365a5732e8af3b70fb9b*
+*Export Content SHA256: 13c7eb86c816b5a22880aee175797c9714e770eba907afb01555fc7995dc3dda*
+*Git Commit: 0b215c92e0dc*
 
 ---
 
@@ -75,6 +75,7 @@
 - nightly_soak.ts
 - OFFSETS.ts
 - OMEGA_DAEMON.ts
+- P2P_CODEC.ts
 - P2P_FEDERATION.ts
 - PHYSICS_ENGINE.ts
 - PHYSIOLOGY_SNAPSHOT.ts
@@ -5285,6 +5286,7 @@ const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
 const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
+const OP_SPORE_DRIVE: u8 = 0xA8;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -6278,6 +6280,13 @@ export function execute_atom(atomIndex: i32): void {
 
         pc += 1;
         gasUsed += 5 + neighborCount * 2;
+        break;
+      }
+      case OP_SPORE_DRIVE: {
+        setPendingSyscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
+        pc += 1;
+        gasUsed += 10;
+        gasLimit = 0; // force yield to host
         break;
       }
       default: {
@@ -7583,6 +7592,7 @@ import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { P2P_CODEC } from "./P2P_CODEC.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -7591,20 +7601,8 @@ type CrisisIntent = {
 
 type FederateIntent = {
   kind: "federate";
-  packet: {
-    id: string;
-    logicBytes: Uint8Array;
-    energy: number;
-    resonance: number;
-    sourceNode: string;
-    pulseId: number;
-    admission: FederationAdmissionSnapshot;
-    peerBehaviorProfile: FederationBehaviorProfile | null;
-    localBehaviorContext: FederationLocalBehaviorContext | null;
-    peerCodexProfile: FederationCodexProfile | null;
-    localCodexContext: FederationLocalCodexContext | null;
-  };
-  seedPulseId: number;
+  packet: Uint8Array;
+  sourceNode: string;
 };
 
 type FederationAdmissionSeverity = "LOW" | "MID" | "HIGH";
@@ -8636,28 +8634,17 @@ const writeMemoryCell = (
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
-  const idx = STATE_MATRIX.findFreeSlot();
+  const idx = P2P_CODEC.unpackAtom(intent.packet);
   if (idx < 0) {
     LOGGER.warn(
-      `🛸 [FEDERATION] Queue apply skipped for ${intent.packet.id}: matrix full.`,
+      `🛸 [FEDERATION] Queue apply skipped for binary ingress from ${intent.sourceNode}: matrix full or invalid packet.`,
     );
     return false;
   }
 
-  const prng = new PRNG(PRNG.seedFrom(intent.seedPulseId, intent.packet.id));
-  const { value: vId, next: n1 } = prng.next();
-  const { value: vX, next: n2 } = n1.next();
-  const { value: vY } = n2.next();
-
-  STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
-  STATE_MATRIX.setEnergy(idx, intent.packet.energy);
-  STATE_MATRIX.setResonance(idx, intent.packet.resonance);
-  STATE_MATRIX.setLogic(idx, intent.packet.logicBytes);
-  STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
-  STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
-
+  const idStr = STATE_MATRIX.getId(idx).toString();
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel} fragments=${intent.packet.admission.policyFragments.length}`,
+    `🛸 [FEDERATION] Applied queued binary migration from ${intent.sourceNode}: ${idStr}`,
   );
   return true;
 };
@@ -8762,47 +8749,33 @@ export const CONTROL_INTENT_QUEUE = {
     return enqueueInternal({ kind: "crisis", logicBytes });
   },
   enqueueFederate: (
-    packet: unknown,
-    seedPulseId: number,
+    packet: Uint8Array,
+    sourceNode: string,
+    peerRuleGenome: unknown = null,
+    peerBehaviorProfile: unknown = null,
     localBehaviorContext: unknown = null,
+    peerCodexProfile: unknown = null,
     localCodexContext: unknown = null,
   ): QueueDecision => {
-    if (!packet || typeof packet !== "object") {
-      return decision(false, 400, "INVALID_FEDERATE_PACKET");
-    }
-    const p = packet as Record<string, unknown>;
-    const id = typeof p.id === "string" ? p.id.trim() : "";
-    const sourceNode = typeof p.sourceNode === "string"
-      ? p.sourceNode
-      : "unknown";
-    const logicBytes = parseHex8(p.logic);
-    const energy = parseFiniteNumber(p.energy);
-    const resonance = parseFiniteNumber(p.resonance);
-    const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
-    const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
-    const peerCodexProfile = parseCodexProfile(p.codexProfile);
-    const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
-    const localCodex = parseLocalCodexContext(localCodexContext);
-    const pulseId = Number.isInteger(p.pulseId)
-      ? Number(p.pulseId)
-      : Math.max(0, Math.floor(seedPulseId));
+    const logicBytes = packet.subarray(24, 32);
+    const view = new DataView(packet.buffer, packet.byteOffset, packet.byteLength);
+    const energy = view.getFloat32(12, true);
+    const resonance = view.getInt32(16, true);
+    const atomId = view.getBigUint64(0, true).toString();
 
-    if (!id || !logicBytes || energy === null || resonance === null) {
-      return decision(false, 400, "INVALID_FEDERATE_PACKET");
-    }
-
-    const admissionResult = evaluateFederateAdmission(id, sourceNode, {
+    const admissionResult = evaluateFederateAdmission(atomId, sourceNode, {
       logicBytes,
       energy,
       resonance,
-      pulseId,
-      ruleGenome,
-      peerBehaviorProfile,
-      localBehaviorContext: localBehavior,
-      peerCodexProfile,
-      localCodexContext: localCodex,
+      pulseId: 0,
+      ruleGenome: peerRuleGenome as any,
+      peerBehaviorProfile: peerBehaviorProfile as any,
+      localBehaviorContext: localBehaviorContext as any,
+      peerCodexProfile: peerCodexProfile as any,
+      localCodexContext: localCodexContext as any,
     });
     setLatestFederationAdmission(admissionResult.admission);
+
     const admissionKind = admissionResult.action === "reject"
       ? "federation_admission_reject"
       : admissionResult.action === "degrade"
@@ -8810,11 +8783,13 @@ export const CONTROL_INTENT_QUEUE = {
       : admissionResult.action === "hybridize"
       ? "federation_admission_hybridize"
       : "federation_admission_accept";
+
     MUTATION_TELEMETRY.record({
       lane: "external_ingress",
       kind: admissionKind,
       count: 1,
     });
+
     if (
       Array.isArray(admissionResult.admission.policyFragments) &&
       admissionResult.admission.policyFragments.length > 0
@@ -8828,34 +8803,26 @@ export const CONTROL_INTENT_QUEUE = {
 
     if (admissionResult.action === "reject") {
       LOGGER.warn(
-        `🛸 [FEDERATION] Rejected ingress ${sourceNode}:${id} score=${admissionResult.admission.score} reasons=${
+        `🛸 [FEDERATION] Rejected binary ingress ${sourceNode}:${atomId} score=${admissionResult.admission.score} reasons=${
           admissionResult.admission.reasons.join("|")
         }`,
       );
-      return decision(
-        false,
-        409,
-        "FEDERATION_ADMISSION_REJECTED",
-        admissionResult.admission,
-      );
+      return decision(false, 409, "FEDERATION_ADMISSION_REJECTED", admissionResult.admission);
+    }
+
+    if (queue.length >= MAX_PENDING) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_ingress",
+        kind: "control_intent_reject_full",
+        count: 1,
+      });
+      return decision(false, 503, "CONTROL_INTENT_QUEUE_FULL");
     }
 
     const queued = enqueueInternal({
       kind: "federate",
-      packet: {
-        id,
-        logicBytes: admissionResult.packet.logicBytes,
-        energy: admissionResult.packet.energy,
-        resonance: admissionResult.packet.resonance,
-        sourceNode,
-        pulseId,
-        admission: admissionResult.admission,
-        peerBehaviorProfile,
-        localBehaviorContext: localBehavior,
-        peerCodexProfile,
-        localCodexContext: localCodex,
-      },
-      seedPulseId: Math.max(0, Math.floor(seedPulseId)),
+      packet,
+      sourceNode,
     });
     return {
       ...queued,
@@ -22866,6 +22833,112 @@ if (import.meta.main) {
 
 ---
 
+## FILE: P2P_CODEC.ts
+
+```typescript
+// OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
+// Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+
+export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
+
+export const P2P_CODEC = {
+  /**
+   * Serializes an atom from STATE_MATRIX into a strict Uint8Array binary format.
+   * Format:
+   * 0-7:   ID (BigUint64)
+   * 8-9:   X (Int16)
+   * 10-11: Y (Int16)
+   * 12-15: Energy (Float32 - converted back from Float/SCALE internals to preserve fidelity)
+   * 16-19: Resonance (Int32)
+   * 20-23: Phase (Int32)
+   * 24-31: Logic/Genome (Uint8Array x 8)
+   * 32:    Role (Uint8)
+   * 33:    Damping (Uint8)
+   * 34-35: Padding/Reserved (Uint16)
+   * 36-43: Lineage (BigUint64)
+   * 44-107: Context / Registers (Int32Array x 16 -> 64 bytes)
+   * 108-171: Instructions (Uint8Array x 64 -> 64 bytes)
+   * 172-191: Padding (20 bytes)
+   */
+  packAtom: (idx: number): Uint8Array => {
+    const buffer = new ArrayBuffer(PACKET_SIZE);
+    const view = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+
+    view.setBigUint64(0, STATE_MATRIX.getId(idx), true);
+    view.setInt16(8, STATE_MATRIX.getX(idx), true);
+    view.setInt16(10, STATE_MATRIX.getY(idx), true);
+    view.setFloat32(12, STATE_MATRIX.getEnergy(idx), true);
+    view.setInt32(16, STATE_MATRIX.getResonance(idx), true);
+    view.setInt32(20, STATE_MATRIX.getPhase(idx), true);
+
+    const logic = STATE_MATRIX.getLogic(idx);
+    u8.set(logic, 24);
+
+    view.setUint8(32, STATE_MATRIX.getRole(idx));
+    view.setUint8(33, STATE_MATRIX.getDamping(idx));
+    // 34-35 reserved padding
+    view.setBigUint64(36, STATE_MATRIX.getLineage(idx), true);
+
+    const context = STATE_MATRIX.getContext(idx);
+    u8.set(new Uint8Array(context.buffer, context.byteOffset, context.byteLength), 44);
+
+    const instructions = STATE_MATRIX.getInstructions(idx);
+    u8.set(instructions, 108);
+
+    return u8;
+  },
+
+  /**
+   * Unpacks a binary Uint8Array into a free STATE_MATRIX atom slot.
+   * Returns the new index `idx` if successful, or -1 if the matrix is full.
+   */
+  unpackAtom: (buffer: Uint8Array): number => {
+    if (buffer.length < PACKET_SIZE) return -1; // Invalid packet size
+
+    const idx = STATE_MATRIX.findEmptySlot();
+    if (idx === -1) return -1; // Lattice full
+
+    const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+
+    const id = view.getBigUint64(0, true);
+    const x = view.getInt16(8, true);
+    const y = view.getInt16(10, true);
+    const energy = view.getFloat32(12, true);
+    const resonance = view.getInt32(16, true);
+    const phase = view.getInt32(20, true);
+    
+    const logic = buffer.subarray(24, 32);
+    const role = view.getUint8(32);
+    const damping = view.getUint8(33);
+    const lineage = view.getBigUint64(36, true);
+    
+    // Seed core fields
+    STATE_MATRIX.seedAtom(idx, id, x, y, Math.max(0, energy), Math.max(0, resonance), logic);
+    STATE_MATRIX.setPhase(idx, phase);
+    STATE_MATRIX.setRole(idx, role);
+    STATE_MATRIX.setDamping(idx, damping);
+    STATE_MATRIX.setLineage(idx, lineage);
+
+    // Restore execution context (registers and PC)
+    const contextSrc = buffer.subarray(44, 108);
+    const contextDst = new Uint8Array(STATE_MATRIX.getContext(idx).buffer, STATE_MATRIX.getContext(idx).byteOffset, 64);
+    contextDst.set(contextSrc);
+
+    // Restore instructions
+    const instSrc = buffer.subarray(108, 172);
+    STATE_MATRIX.setInstructions(idx, instSrc);
+
+    return idx;
+  }
+};
+
+```
+
+---
+
 ## FILE: P2P_FEDERATION.ts
 
 ```typescript
@@ -22880,6 +22953,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { P2P_CODEC } from "./P2P_CODEC.ts";
 
 export interface AtomPacket {
   id: string;
@@ -23000,46 +23074,10 @@ export const P2P_FEDERATION = {
   enabled: FEDERATION_ENABLED,
   localRuleGenome: LOCAL_RULE_GENOME,
 
-  serialize: (idx: number, pulseId: number = 0): AtomPacket | null => {
-    const id = IDX_TO_ID.get(idx);
+  serialize: (idx: number, pulseId: number = 0): Uint8Array | null => {
+    const id = STATE_MATRIX.getId(idx);
     if (!id) return null;
-
-    const logicBytes = STATE_MATRIX.getLogic(idx);
-    let logicStr = "";
-    for (let i = 0; i < 8; i++) {
-      logicStr += logicBytes[i].toString(16).padStart(2, "0");
-    }
-
-    const behaviorFrame = SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024);
-    const dominantBehavior = behaviorFrame[0];
-    const behaviorProfile: BehaviorProfile = dominantBehavior
-      ? {
-        invariant: dominantBehavior.behaviorSignature,
-        dominantRole: dominantBehavior.dominantRole,
-        memberCount: dominantBehavior.memberCount,
-        generatedAt: new Date().toISOString(),
-      }
-      : {
-        invariant: "none",
-        dominantRole: -1,
-        memberCount: 0,
-        generatedAt: new Date().toISOString(),
-      };
-    const codexProfile: CodexProfile = AKASHA_CODEX.lookupLineageProfile(
-      logicStr,
-    );
-
-    return {
-      id,
-      logic: logicStr,
-      energy: STATE_MATRIX.getEnergy(idx),
-      resonance: STATE_MATRIX.getResonance(idx),
-      sourceNode: P2P_FEDERATION.nodeId,
-      pulseId,
-      ruleGenome: LOCAL_RULE_GENOME,
-      behaviorProfile,
-      codexProfile,
-    };
+    return P2P_CODEC.packAtom(idx);
   },
 
   observePeerRuleGenome: (sourceNode: string, rawProfile: unknown) => {
@@ -23074,7 +23112,7 @@ export const P2P_FEDERATION = {
     const packet = P2P_FEDERATION.serialize(idx, pulseId);
 
     if (packet && atomIdAtStart !== 0n) {
-      const prng = new PRNG(PRNG.seedFrom(pulseId, packet.id));
+      const prng = new PRNG(PRNG.seedFrom(pulseId, atomIdAtStart.toString()));
       const { value: pSelector } = prng.next();
       const peerList = Array.from(P2P_FEDERATION.peers);
       if (peerList.length === 0) {
@@ -23082,8 +23120,17 @@ export const P2P_FEDERATION = {
         return;
       }
       const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
+
+      const lineage = STATE_MATRIX.getLineage(idx);
+      const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
+      const codexProfile = AKASHA_CODEX.lookupLineageProfile(lineage.toString());
+
       const headers: Record<string, string> = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/octet-stream",
+        "x-omega-source-node": P2P_FEDERATION.nodeId,
+        "x-omega-rule-genome": JSON.stringify(LOCAL_RULE_GENOME), // ruleGenome: LOCAL_RULE_GENOME
+        "x-omega-behavior-profile": JSON.stringify(behaviorProfile),
+        "x-omega-codex-profile": JSON.stringify(codexProfile),
       };
       if (CONTROL_TOKEN.length > 0) {
         headers["x-omega-control-token"] = CONTROL_TOKEN;
@@ -23093,7 +23140,7 @@ export const P2P_FEDERATION = {
         const res = await fetch(`${targetPeer}/federate`, {
           method: "POST",
           headers,
-          body: JSON.stringify(packet),
+          body: packet,
           signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
         });
 
@@ -23107,21 +23154,21 @@ export const P2P_FEDERATION = {
               count: 1,
             });
             LOGGER.info(
-              `🛸 [FEDERATION] ${packet.id} migrated to ${targetPeer}`,
+              `🛸 [FEDERATION] ${atomIdAtStart} migrated to ${targetPeer}`,
             );
           } else {
             LOGGER.warn(
-              `🛸 [FEDERATION] Transit collision for ${packet.id}. Local mutation kept.`,
+              `🛸 [FEDERATION] Transit collision for ${atomIdAtStart}. Local mutation kept.`,
             );
           }
         } else {
           LOGGER.warn(
-            `🛸 [FEDERATION] Migration rejected for ${packet.id}: status=${res.status}`,
+            `🛸 [FEDERATION] Migration rejected for ${atomIdAtStart}: status=${res.status}`,
           );
         }
       } catch (e: any) {
         LOGGER.error(
-          `🛸 [FEDERATION] Migration failed for ${packet.id}: ${
+          `🛸 [FEDERATION] Migration failed for atom ${atomIdAtStart}: ${
             e?.message ?? String(e)
           }`,
         );
@@ -23134,22 +23181,7 @@ export const P2P_FEDERATION = {
     }
   },
 
-  checkWanderlust: (idx: number, pulseId: number): boolean => {
-    if (!FEDERATION_ENABLED) return false;
-    const id = STATE_MATRIX.getId(idx);
-    if (id === 0n) return false;
-
-    const energy = STATE_MATRIX.getEnergy(idx);
-    const resonance = STATE_MATRIX.getResonance(idx);
-
-    // Atoms only migrate if they have high potential but are in a low resonance environment
-    if (resonance < 5 && energy > 150) {
-      const prng = new PRNG(PRNG.seedFrom(pulseId, id.toString()));
-      const { value: v1 } = prng.next();
-      return v1 < 0.005;
-    }
-    return false;
-  },
+  // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
 
 ```
@@ -25034,6 +25066,7 @@ const SYS_SCAN = 13;
 const SYS_MOVE = 14;
 const SYS_EAT = 15;
 const SYS_BET = 16;
+const SYS_SPORE_DRIVE = 20;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -25099,7 +25132,10 @@ function handle_syscall(atomIdx: number) {
       gasCost = 30;
       break;
     case SYS_BET:
-      gasCost = 5;
+      gasCost = 10;
+      break;
+    case SYS_SPORE_DRIVE:
+      gasCost = 500;
       break;
     default:
       gasCost = 1;
@@ -25578,6 +25614,20 @@ function handle_syscall(atomIdx: number) {
       }
       break;
     }
+    case SYS_SPORE_DRIVE: {
+      const energy = Atomics.load(energiesView, atomIdx);
+      if (energy >= 500000) {
+        Atomics.sub(energiesView, atomIdx, 500000);
+        self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        // Syscall intercept verification
+        LOGGER.debug(
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by 500).`,
+        );
+      } else {
+        contextI32View[(atomIdx << 4) + 1] = 0; // failure in register
+      }
+      break;
+    }
     default:
       LOGGER.debug(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
@@ -25985,6 +26035,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
@@ -27677,6 +27728,21 @@ const startWorkers = async (count: number): Promise<void> => {
       new URL("./PULSE_WORKER.ts", import.meta.url).href,
       { type: "module" },
     );
+
+    worker.addEventListener("message", (e) => {
+      const data = e.data;
+      if (data && data.type === "SPORE_DRIVE_REQUEST") {
+        const idx = data.atomIdx;
+        const atomIdAtStart = STATE_MATRIX.getId(idx);
+        if (atomIdAtStart !== 0n) {
+          // Immediately pack and schedule for migration to clear memory bounds
+          P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
+          LOGGER.debug(`🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`);
+          STATE_MATRIX.recycleAtom(idx);
+        }
+      }
+    });
+
     workers.push(worker);
     workerFaultStats.push(makeWorkerFaultStat(i));
 
@@ -41305,55 +41371,44 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
+    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(CONTROL_INTENT_QUEUE);
     const denied = requireControlAuth(req);
     if (denied) return denied;
     try {
-      const packet = await req.json();
-      const localContext = buildFederateLocalContext(
-        packet as Record<string, unknown>,
-        PULSE.currentPulseId,
-      );
-      const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
-        packet,
-        PULSE.currentPulseId,
+      const arrayBuffer = await req.arrayBuffer();
+      const packet = new Uint8Array(arrayBuffer);
+      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
+      
+      let peerRuleGenome = null;
+      let peerBehaviorProfile = null;
+      let peerCodexProfile = null;
+      try {
+        const rStr = req.headers.get("x-omega-rule-genome");
+        if (rStr) {
+          peerRuleGenome = JSON.parse(rStr);
+          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
+        }
+        const bStr = req.headers.get("x-omega-behavior-profile");
+        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
+        const cStr = req.headers.get("x-omega-codex-profile");
+        if (cStr) peerCodexProfile = JSON.parse(cStr);
+      } catch (e) {
+        LOGGER.warn(`🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`);
+      }
+
+      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
+      const queued = qCall(
+        packet, 
+        sourceNode,
+        peerRuleGenome,
+        peerBehaviorProfile,
         localContext.behavior,
-        localContext.codex,
+        peerCodexProfile,
+        localContext.codex
       );
-      P2P_FEDERATION.observePeerRuleGenome(
-        packet?.sourceNode,
-        packet?.ruleGenome,
-      );
-      const admissionSummary = queued.admission &&
-          typeof queued.admission === "object"
-        ? ` action=${
-          String(
-            (queued.admission as Record<string, unknown>).action ?? "accept",
-          )
-        } score=${
-          String((queued.admission as Record<string, unknown>).score ?? 0)
-        } codex=${
-          String(
-            (queued.admission as Record<string, unknown>).localCodexLabel ??
-              "unknown-lineage",
-          )
-        }->${
-          String(
-            (queued.admission as Record<string, unknown>).peerCodexLabel ??
-              "unknown-lineage",
-          )
-        } fragments=${
-          Array.isArray(
-              (queued.admission as Record<string, unknown>).policyFragments,
-            )
-            ? (
-              (queued.admission as Record<string, unknown>)
-                .policyFragments as unknown[]
-            ).length
-            : 0
-        }`
-        : "";
+      
       LOGGER.info(
-        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}${admissionSummary}`,
+        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
       );
       return new Response(JSON.stringify(queued), {
         status: queued.status,

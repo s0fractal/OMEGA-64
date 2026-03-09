@@ -3181,55 +3181,44 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
+    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(CONTROL_INTENT_QUEUE);
     const denied = requireControlAuth(req);
     if (denied) return denied;
     try {
-      const packet = await req.json();
-      const localContext = buildFederateLocalContext(
-        packet as Record<string, unknown>,
-        PULSE.currentPulseId,
-      );
-      const queued = CONTROL_INTENT_QUEUE.enqueueFederate(
-        packet,
-        PULSE.currentPulseId,
+      const arrayBuffer = await req.arrayBuffer();
+      const packet = new Uint8Array(arrayBuffer);
+      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
+      
+      let peerRuleGenome = null;
+      let peerBehaviorProfile = null;
+      let peerCodexProfile = null;
+      try {
+        const rStr = req.headers.get("x-omega-rule-genome");
+        if (rStr) {
+          peerRuleGenome = JSON.parse(rStr);
+          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
+        }
+        const bStr = req.headers.get("x-omega-behavior-profile");
+        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
+        const cStr = req.headers.get("x-omega-codex-profile");
+        if (cStr) peerCodexProfile = JSON.parse(cStr);
+      } catch (e) {
+        LOGGER.warn(`🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`);
+      }
+
+      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
+      const queued = qCall(
+        packet, 
+        sourceNode,
+        peerRuleGenome,
+        peerBehaviorProfile,
         localContext.behavior,
-        localContext.codex,
+        peerCodexProfile,
+        localContext.codex
       );
-      P2P_FEDERATION.observePeerRuleGenome(
-        packet?.sourceNode,
-        packet?.ruleGenome,
-      );
-      const admissionSummary = queued.admission &&
-          typeof queued.admission === "object"
-        ? ` action=${
-          String(
-            (queued.admission as Record<string, unknown>).action ?? "accept",
-          )
-        } score=${
-          String((queued.admission as Record<string, unknown>).score ?? 0)
-        } codex=${
-          String(
-            (queued.admission as Record<string, unknown>).localCodexLabel ??
-              "unknown-lineage",
-          )
-        }->${
-          String(
-            (queued.admission as Record<string, unknown>).peerCodexLabel ??
-              "unknown-lineage",
-          )
-        } fragments=${
-          Array.isArray(
-              (queued.admission as Record<string, unknown>).policyFragments,
-            )
-            ? (
-              (queued.admission as Record<string, unknown>)
-                .policyFragments as unknown[]
-            ).length
-            : 0
-        }`
-        : "";
+      
       LOGGER.info(
-        `🛸 [FEDERATION] Incoming migration from ${packet.sourceNode}: ${packet.id}${admissionSummary}`,
+        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
       );
       return new Response(JSON.stringify(queued), {
         status: queued.status,

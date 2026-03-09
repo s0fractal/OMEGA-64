@@ -8,6 +8,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
@@ -1700,6 +1701,21 @@ const startWorkers = async (count: number): Promise<void> => {
       new URL("./PULSE_WORKER.ts", import.meta.url).href,
       { type: "module" },
     );
+
+    worker.addEventListener("message", (e) => {
+      const data = e.data;
+      if (data && data.type === "SPORE_DRIVE_REQUEST") {
+        const idx = data.atomIdx;
+        const atomIdAtStart = STATE_MATRIX.getId(idx);
+        if (atomIdAtStart !== 0n) {
+          // Immediately pack and schedule for migration to clear memory bounds
+          P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
+          LOGGER.debug(`🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`);
+          STATE_MATRIX.recycleAtom(idx);
+        }
+      }
+    });
+
     workers.push(worker);
     workerFaultStats.push(makeWorkerFaultStat(i));
 

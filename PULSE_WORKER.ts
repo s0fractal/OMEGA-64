@@ -83,6 +83,7 @@ const SYS_SCAN = 13;
 const SYS_MOVE = 14;
 const SYS_EAT = 15;
 const SYS_BET = 16;
+const SYS_SPORE_DRIVE = 20;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -148,7 +149,10 @@ function handle_syscall(atomIdx: number) {
       gasCost = 30;
       break;
     case SYS_BET:
-      gasCost = 5;
+      gasCost = 10;
+      break;
+    case SYS_SPORE_DRIVE:
+      gasCost = 500;
       break;
     default:
       gasCost = 1;
@@ -624,6 +628,20 @@ function handle_syscall(atomIdx: number) {
         contextI32View[regBase + 1] = 1; // success
       } else {
         contextI32View[regBase + 1] = 0; // failure
+      }
+      break;
+    }
+    case SYS_SPORE_DRIVE: {
+      const energy = Atomics.load(energiesView, atomIdx);
+      if (energy >= 500000) {
+        Atomics.sub(energiesView, atomIdx, 500000);
+        self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        // Syscall intercept verification
+        LOGGER.debug(
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by 500).`,
+        );
+      } else {
+        contextI32View[(atomIdx << 4) + 1] = 0; // failure in register
       }
       break;
     }

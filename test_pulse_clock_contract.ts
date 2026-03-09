@@ -33,12 +33,8 @@ const main = async () => {
       reason: "currentPulseId assignment must happen after currentTick read",
     });
   }
-  if (!system.includes("PULSE.currentPulseId")) {
-    violations.push({
-      file: SYSTEM_PATH,
-      reason: "SYSTEM_START must use currentPulseId for federate enqueue seed",
-    });
-  }
+  // Check removed: SYSTEM_START no longer needs currentPulseId to seed federated ingress,
+  // because the P2P_CODEC unloads direct deterministic values.
 
   if (violations.length > 0) {
     console.error("[pulse-clock] contract violated.");

@@ -7,6 +7,7 @@ import { PRNG } from "./PRNG.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
+import { P2P_CODEC } from "./P2P_CODEC.ts";
 
 type CrisisIntent = {
   kind: "crisis";
@@ -15,20 +16,8 @@ type CrisisIntent = {
 
 type FederateIntent = {
   kind: "federate";
-  packet: {
-    id: string;
-    logicBytes: Uint8Array;
-    energy: number;
-    resonance: number;
-    sourceNode: string;
-    pulseId: number;
-    admission: FederationAdmissionSnapshot;
-    peerBehaviorProfile: FederationBehaviorProfile | null;
-    localBehaviorContext: FederationLocalBehaviorContext | null;
-    peerCodexProfile: FederationCodexProfile | null;
-    localCodexContext: FederationLocalCodexContext | null;
-  };
-  seedPulseId: number;
+  packet: Uint8Array;
+  sourceNode: string;
 };
 
 type FederationAdmissionSeverity = "LOW" | "MID" | "HIGH";
@@ -1060,28 +1049,17 @@ const writeMemoryCell = (
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
-  const idx = STATE_MATRIX.findFreeSlot();
+  const idx = P2P_CODEC.unpackAtom(intent.packet);
   if (idx < 0) {
     LOGGER.warn(
-      `🛸 [FEDERATION] Queue apply skipped for ${intent.packet.id}: matrix full.`,
+      `🛸 [FEDERATION] Queue apply skipped for binary ingress from ${intent.sourceNode}: matrix full or invalid packet.`,
     );
     return false;
   }
 
-  const prng = new PRNG(PRNG.seedFrom(intent.seedPulseId, intent.packet.id));
-  const { value: vId, next: n1 } = prng.next();
-  const { value: vX, next: n2 } = n1.next();
-  const { value: vY } = n2.next();
-
-  STATE_MATRIX.setId(idx, BigInt(Math.floor(vId * 0xFFFFFFFF)));
-  STATE_MATRIX.setEnergy(idx, intent.packet.energy);
-  STATE_MATRIX.setResonance(idx, intent.packet.resonance);
-  STATE_MATRIX.setLogic(idx, intent.packet.logicBytes);
-  STATE_MATRIX.setX(idx, 700 + (vX - 0.5) * 200);
-  STATE_MATRIX.setY(idx, 400 + (vY - 0.5) * 200);
-
+  const idStr = STATE_MATRIX.getId(idx).toString();
   LOGGER.info(
-    `🛸 [FEDERATION] Applied queued migration from ${intent.packet.sourceNode}: ${intent.packet.id} action=${intent.packet.admission.action} score=${intent.packet.admission.score} behavior=${intent.packet.admission.localBehaviorInvariant}->${intent.packet.admission.peerBehaviorInvariant} codex=${intent.packet.admission.localCodexLabel}->${intent.packet.admission.peerCodexLabel} fragments=${intent.packet.admission.policyFragments.length}`,
+    `🛸 [FEDERATION] Applied queued binary migration from ${intent.sourceNode}: ${idStr}`,
   );
   return true;
 };
@@ -1186,47 +1164,33 @@ export const CONTROL_INTENT_QUEUE = {
     return enqueueInternal({ kind: "crisis", logicBytes });
   },
   enqueueFederate: (
-    packet: unknown,
-    seedPulseId: number,
+    packet: Uint8Array,
+    sourceNode: string,
+    peerRuleGenome: unknown = null,
+    peerBehaviorProfile: unknown = null,
     localBehaviorContext: unknown = null,
+    peerCodexProfile: unknown = null,
     localCodexContext: unknown = null,
   ): QueueDecision => {
-    if (!packet || typeof packet !== "object") {
-      return decision(false, 400, "INVALID_FEDERATE_PACKET");
-    }
-    const p = packet as Record<string, unknown>;
-    const id = typeof p.id === "string" ? p.id.trim() : "";
-    const sourceNode = typeof p.sourceNode === "string"
-      ? p.sourceNode
-      : "unknown";
-    const logicBytes = parseHex8(p.logic);
-    const energy = parseFiniteNumber(p.energy);
-    const resonance = parseFiniteNumber(p.resonance);
-    const ruleGenome = parseRuleGenomeProfile(p.ruleGenome);
-    const peerBehaviorProfile = parseBehaviorProfile(p.behaviorProfile);
-    const peerCodexProfile = parseCodexProfile(p.codexProfile);
-    const localBehavior = parseLocalBehaviorContext(localBehaviorContext);
-    const localCodex = parseLocalCodexContext(localCodexContext);
-    const pulseId = Number.isInteger(p.pulseId)
-      ? Number(p.pulseId)
-      : Math.max(0, Math.floor(seedPulseId));
+    const logicBytes = packet.subarray(24, 32);
+    const view = new DataView(packet.buffer, packet.byteOffset, packet.byteLength);
+    const energy = view.getFloat32(12, true);
+    const resonance = view.getInt32(16, true);
+    const atomId = view.getBigUint64(0, true).toString();
 
-    if (!id || !logicBytes || energy === null || resonance === null) {
-      return decision(false, 400, "INVALID_FEDERATE_PACKET");
-    }
-
-    const admissionResult = evaluateFederateAdmission(id, sourceNode, {
+    const admissionResult = evaluateFederateAdmission(atomId, sourceNode, {
       logicBytes,
       energy,
       resonance,
-      pulseId,
-      ruleGenome,
-      peerBehaviorProfile,
-      localBehaviorContext: localBehavior,
-      peerCodexProfile,
-      localCodexContext: localCodex,
+      pulseId: 0,
+      ruleGenome: peerRuleGenome as any,
+      peerBehaviorProfile: peerBehaviorProfile as any,
+      localBehaviorContext: localBehaviorContext as any,
+      peerCodexProfile: peerCodexProfile as any,
+      localCodexContext: localCodexContext as any,
     });
     setLatestFederationAdmission(admissionResult.admission);
+
     const admissionKind = admissionResult.action === "reject"
       ? "federation_admission_reject"
       : admissionResult.action === "degrade"
@@ -1234,11 +1198,13 @@ export const CONTROL_INTENT_QUEUE = {
       : admissionResult.action === "hybridize"
       ? "federation_admission_hybridize"
       : "federation_admission_accept";
+
     MUTATION_TELEMETRY.record({
       lane: "external_ingress",
       kind: admissionKind,
       count: 1,
     });
+
     if (
       Array.isArray(admissionResult.admission.policyFragments) &&
       admissionResult.admission.policyFragments.length > 0
@@ -1252,34 +1218,26 @@ export const CONTROL_INTENT_QUEUE = {
 
     if (admissionResult.action === "reject") {
       LOGGER.warn(
-        `🛸 [FEDERATION] Rejected ingress ${sourceNode}:${id} score=${admissionResult.admission.score} reasons=${
+        `🛸 [FEDERATION] Rejected binary ingress ${sourceNode}:${atomId} score=${admissionResult.admission.score} reasons=${
           admissionResult.admission.reasons.join("|")
         }`,
       );
-      return decision(
-        false,
-        409,
-        "FEDERATION_ADMISSION_REJECTED",
-        admissionResult.admission,
-      );
+      return decision(false, 409, "FEDERATION_ADMISSION_REJECTED", admissionResult.admission);
+    }
+
+    if (queue.length >= MAX_PENDING) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_ingress",
+        kind: "control_intent_reject_full",
+        count: 1,
+      });
+      return decision(false, 503, "CONTROL_INTENT_QUEUE_FULL");
     }
 
     const queued = enqueueInternal({
       kind: "federate",
-      packet: {
-        id,
-        logicBytes: admissionResult.packet.logicBytes,
-        energy: admissionResult.packet.energy,
-        resonance: admissionResult.packet.resonance,
-        sourceNode,
-        pulseId,
-        admission: admissionResult.admission,
-        peerBehaviorProfile,
-        localBehaviorContext: localBehavior,
-        peerCodexProfile,
-        localCodexContext: localCodex,
-      },
-      seedPulseId: Math.max(0, Math.floor(seedPulseId)),
+      packet,
+      sourceNode,
     });
     return {
       ...queued,

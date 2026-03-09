@@ -73,9 +73,9 @@ const main = async () => {
   );
   requireSnippet(
     queue,
-    "STATE_MATRIX.setId(",
+    "P2P_CODEC.unpackAtom(",
     QUEUE_PATH,
-    "Queue apply path must own federate state writes",
+    "Queue apply path must own federate state writes (via unpackAtom)",
     violations,
   );
   requireSnippet(
