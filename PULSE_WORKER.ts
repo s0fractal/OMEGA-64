@@ -2,8 +2,22 @@
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { resolveWithPhase } from "./GENETIC_LEDGER_RUNTIME.ts";
+const resolveWithPhase = (
+  baseValue: number,
+  modifiers: Array<{ phase: number; weight: number }>,
+): number => {
+  let real = baseValue;
+  let imag = 0;
 
+  for (const mod of modifiers) {
+    const rad = (mod.phase * Math.PI) / 128; // 0-255 → radians
+    real += mod.weight * Math.cos(rad);
+    imag += mod.weight * Math.sin(rad);
+  }
+
+  // Return "intensity" = |z|
+  return Math.floor(Math.sqrt(real * real + imag * imag));
+};
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;

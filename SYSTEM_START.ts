@@ -1,3 +1,18 @@
+import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
+} from "./GENERIC_LEDGER_PERSISTENCE.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
@@ -49,48 +64,6 @@ import {
   syncDaemonIngressMaxPheromoneIntensity,
   syncDaemonIngressMaxPlasmidCharge,
 } from "./DAEMON_INGRESS_POLICY.ts";
-import {
-  applyDaemonPheromoneLedgerRuntimeUpdate,
-  createDaemonPheromoneLedgerRuntime,
-  type DaemonPheromoneLedgerApplyResult,
-  type DaemonPheromoneLedgerRollbackResult,
-  type DaemonPheromoneLedgerRuntimeSnapshot,
-  type DaemonPheromoneLedgerRuntimeState,
-  rollbackDaemonPheromoneLedgerRuntimeUpdate,
-  snapshotDaemonPheromoneLedgerRuntime,
-} from "./DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
-import {
-  appendDaemonPheromoneLedgerRecordAndMaybeCompact,
-  DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-  DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
-  DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-  DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-  type DaemonPheromoneLedgerPersistenceSummary,
-  hydrateDaemonPheromoneLedgerRuntime,
-  recordFromDaemonPheromoneApplyMutation,
-  recordFromDaemonPheromoneRollbackMutation,
-} from "./DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts";
-import {
-  applyDaemonPlasmidLedgerRuntimeUpdate,
-  createDaemonPlasmidLedgerRuntime,
-  type DaemonPlasmidLedgerApplyResult,
-  type DaemonPlasmidLedgerRollbackResult,
-  type DaemonPlasmidLedgerRuntimeSnapshot,
-  type DaemonPlasmidLedgerRuntimeState,
-  rollbackDaemonPlasmidLedgerRuntimeUpdate,
-  snapshotDaemonPlasmidLedgerRuntime,
-} from "./DAEMON_PLASMID_LEDGER_RUNTIME.ts";
-import {
-  appendDaemonPlasmidLedgerRecordAndMaybeCompact,
-  DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
-  DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
-  DAEMON_PLASMID_LEDGER_LOG_PATH,
-  DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
-  type DaemonPlasmidLedgerPersistenceSummary,
-  hydrateDaemonPlasmidLedgerRuntime,
-  recordFromDaemonPlasmidApplyMutation,
-  recordFromDaemonPlasmidRollbackMutation,
-} from "./DAEMON_PLASMID_LEDGER_PERSISTENCE.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -370,37 +343,14 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime: DaemonPheromoneLedgerRuntimeState =
-  createDaemonPheromoneLedgerRuntime(currentDaemonMaxPheromoneIntensity());
-let daemonPheromoneLedgerPersistence: DaemonPheromoneLedgerPersistenceSummary =
-  {
-    path: DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-    snapshotPath: DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-let daemonPlasmidLedgerRuntime: DaemonPlasmidLedgerRuntimeState =
-  createDaemonPlasmidLedgerRuntime(currentDaemonMaxPlasmidCharge());
-let daemonPlasmidLedgerPersistence: DaemonPlasmidLedgerPersistenceSummary = {
-  path: DAEMON_PLASMID_LEDGER_LOG_PATH,
-  snapshotPath: DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
+let daemonPheromoneLedgerRuntime = createLedgerRuntime(
+  "daemon.maxPheromoneIntensity",
+  DAEMON_POLICY.maxPheromoneIntensity,
+  128,
+);
+let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPheromoneIntensity"),
+  snapshotPath: getSnapshotPath("daemon.maxPheromoneIntensity"),
   exists: false,
   snapshotExists: false,
   recordCount: 0,
@@ -413,8 +363,36 @@ let daemonPlasmidLedgerPersistence: DaemonPlasmidLedgerPersistenceSummary = {
   snapshotApplyCount: 0,
   snapshotRollbackCount: 0,
   compactionEnabled: true,
-  compactionThreshold: DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
-  compactionKeepTail: DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
+let daemonPlasmidLedgerRuntime = createLedgerRuntime(
+  "daemon.maxPlasmidCharge",
+  DAEMON_POLICY.maxPlasmidCharge,
+  128,
+);
+let daemonPlasmidLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPlasmidCharge"),
+  snapshotPath: getSnapshotPath("daemon.maxPlasmidCharge"),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
   lastCompactedAt: null,
   lastCompactedTick: -1,
   hydrated: false,
@@ -700,7 +678,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       autoSnapshotLastTick = tick;
       autoSnapshotLastResult = {
         tick,
-        timestamp: result.timestamp,
+        timestamp: result.timestamp ?? new Date().toISOString(),
         success: true,
         reason,
         pruned: result.pruned ?? 0,
@@ -812,12 +790,12 @@ const buildTelemetry = async () => {
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
       max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
-      ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+      ledger_max_pheromone_intensity: snapshotLedgerRuntime(
         daemonPheromoneLedgerRuntime,
       ),
       ledger_max_pheromone_intensity_persistence:
         daemonPheromoneLedgerPersistence,
-      ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+      ledger_max_plasmid_charge: snapshotLedgerRuntime(
         daemonPlasmidLedgerRuntime,
       ),
       ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
@@ -1205,11 +1183,10 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPheromoneLedgerApplyResult => {
-  const result = applyDaemonPheromoneLedgerRuntimeUpdate(
-    daemonPheromoneLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
   daemonPheromoneLedgerRuntime = result.state;
   syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
   return result;
@@ -1222,21 +1199,20 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPheromoneLedgerRollbackResult => {
-  const result = rollbackDaemonPheromoneLedgerRuntimeUpdate(
-    daemonPheromoneLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
   daemonPheromoneLedgerRuntime = result.state;
   syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
   return result;
 };
 
 const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateDaemonPheromoneLedgerRuntime(
-    currentDaemonMaxPheromoneIntensity(),
-    daemonPheromoneLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPheromoneIntensity", {
+    initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+    historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+  });
   daemonPheromoneLedgerRuntime = hydrated.state;
   daemonPheromoneLedgerPersistence = hydrated.persistence;
   syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
@@ -1249,11 +1225,10 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPlasmidLedgerApplyResult => {
-  const result = applyDaemonPlasmidLedgerRuntimeUpdate(
-    daemonPlasmidLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
   daemonPlasmidLedgerRuntime = result.state;
   syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
   return result;
@@ -1266,21 +1241,20 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPlasmidLedgerRollbackResult => {
-  const result = rollbackDaemonPlasmidLedgerRuntimeUpdate(
-    daemonPlasmidLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
   daemonPlasmidLedgerRuntime = result.state;
   syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
   return result;
 };
 
 const syncDaemonPlasmidPolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateDaemonPlasmidLedgerRuntime(
-    currentDaemonMaxPlasmidCharge(),
-    daemonPlasmidLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPlasmidCharge", {
+    initialValue: DAEMON_POLICY.maxPlasmidCharge,
+    historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+  });
   daemonPlasmidLedgerRuntime = hydrated.state;
   daemonPlasmidLedgerPersistence = hydrated.persistence;
   syncDaemonIngressMaxPlasmidCharge(hydrated.state.currentValue);
@@ -1297,12 +1271,12 @@ const serializeDaemonPolicyState = () => {
     max_plasmid_charge_current: daemonPlasmidLedgerRuntime.currentValue,
     safe_min_population: liveLimits.safeMinPopulation,
     safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
-    ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+    ledger_max_pheromone_intensity: snapshotLedgerRuntime(
       daemonPheromoneLedgerRuntime,
     ),
     ledger_max_pheromone_intensity_persistence:
       daemonPheromoneLedgerPersistence,
-    ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+    ledger_max_plasmid_charge: snapshotLedgerRuntime(
       daemonPlasmidLedgerRuntime,
     ),
     ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
@@ -2317,14 +2291,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         if (rollback.mutation) {
           if (rollbackKey === "daemon.maxPheromoneIntensity") {
-            const persisted =
-              await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-                recordFromDaemonPheromoneRollbackMutation(rollback.mutation),
-                {
-                  initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-                  historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-                },
-              );
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPheromoneIntensity",
+              recordFromRollback(
+                rollback.mutation,
+                "daemon.maxPheromoneIntensity",
+              ),
+              {
+                initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+              },
+            );
             daemonPheromoneLedgerPersistence = {
               ...persisted,
               hydrated: daemonPheromoneLedgerPersistence.hydrated,
@@ -2333,14 +2310,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 daemonPheromoneLedgerPersistence.lastHydrationError,
             };
           } else {
-            const persisted =
-              await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
-                recordFromDaemonPlasmidRollbackMutation(rollback.mutation),
-                {
-                  initialValue: daemonPlasmidLedgerRuntime.defaultValue,
-                  historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-                },
-              );
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPlasmidCharge",
+              recordFromRollback(rollback.mutation, "daemon.maxPlasmidCharge"),
+              {
+                initialValue: DAEMON_POLICY.maxPlasmidCharge,
+                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+              },
+            );
             daemonPlasmidLedgerPersistence = {
               ...persisted,
               hydrated: daemonPlasmidLedgerPersistence.hydrated,
@@ -2423,14 +2400,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         });
       if (result.mutation) {
         if (updateKey === "daemon.maxPheromoneIntensity") {
-          const persisted =
-            await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-              recordFromDaemonPheromoneApplyMutation(result.mutation),
-              {
-                initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPheromoneIntensity",
+            recordFromApply(result.mutation, "daemon.maxPheromoneIntensity"),
+            {
+              initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+            },
+          );
           daemonPheromoneLedgerPersistence = {
             ...persisted,
             hydrated: daemonPheromoneLedgerPersistence.hydrated,
@@ -2439,14 +2416,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               daemonPheromoneLedgerPersistence.lastHydrationError,
           };
         } else {
-          const persisted =
-            await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
-              recordFromDaemonPlasmidApplyMutation(result.mutation),
-              {
-                initialValue: daemonPlasmidLedgerRuntime.defaultValue,
-                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPlasmidCharge",
+            recordFromApply(result.mutation, "daemon.maxPlasmidCharge"),
+            {
+              initialValue: DAEMON_POLICY.maxPlasmidCharge,
+              historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+            },
+          );
           daemonPlasmidLedgerPersistence = {
             ...persisted,
             hydrated: daemonPlasmidLedgerPersistence.hydrated,

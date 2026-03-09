@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T18:20:06.339Z*
-*Exported Files: 142*
+*Generated: 2026-03-09T19:26:27.208Z*
+*Exported Files: 132*
 *Runtime Roots: 11*
-*Runtime Closure Files: 78*
+*Runtime Closure Files: 68*
 *Non-Runtime Code Files: 49*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 31*
-*Manifest SHA256: b9d409f70ff29fcbf73764326c4c86d26049cd0891d2929388568b20bfa8f8f6*
-*Export Set SHA256: 11131f588751afa5e9f0e73bfc94ddc0c49f6548ff3076be67a28b1740daf4d5*
-*Export Content SHA256: 3b28e9b7c9995bc71244a337b203e82a9e04d1378aaba1cc9e3111e16cf5f616*
-*Git Commit: 846c9c1234d5*
+*Manifest SHA256: 1b81ad68e4c9ad1d717bdb0d7d48eda5f3a2902034d4f121f93c089e8cf878b8*
+*Export Set SHA256: c8cc151446e4002ac9c852393feb858f21809f674b82c5ec842f06082beb28bb*
+*Export Content SHA256: 6196cac2b0cd2294e891e2293b7eef73bb53c95f785db034d70330d6c7a42bf0*
+*Git Commit: 40ba84e6a843*
 
 ---
 
@@ -45,10 +45,6 @@
 - COLDSTART_BOOTSTRAP.ts
 - CONTROL_INTENT_QUEUE.ts
 - DAEMON_INGRESS_POLICY.ts
-- DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts
-- DAEMON_PHEROMONE_LEDGER_RUNTIME.ts
-- DAEMON_PLASMID_LEDGER_PERSISTENCE.ts
-- DAEMON_PLASMID_LEDGER_RUNTIME.ts
 - ENV_PARSE.ts
 - GATE_BUDGET.ts
 - GATE_LEDGER.ts
@@ -57,14 +53,10 @@
 - GATE.ts
 - GENERIC_LEDGER_PERSISTENCE.ts
 - GENERIC_LEDGER_SYSTEM.ts
-- GENETIC_LEDGER_PERSISTENCE.ts
-- GENETIC_LEDGER_RUNTIME.ts
 - GENETIC_LEDGER.ts
 - GENOMES.ts
 - GLYPH_BUFFER.ts
 - GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
-- HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts
-- HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts
 - HORMONE_BUFFER_RUNTIME.ts
 - HORMONE_BUFFER.ts
 - IMMUNE.ts
@@ -80,8 +72,6 @@
 - PHYSICS_ENGINE.ts
 - PHYSIOLOGY_SNAPSHOT.ts
 - PREDICTION_MARKET.ts
-- PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts
-- PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts
 - PRNG.ts
 - PULSE_WORKER.ts
 - PULSE.ts
@@ -9252,19 +9242,9 @@ export const CONTROL_INTENT_QUEUE = {
   ],
   "required_additional_files": [
     "DAEMON_INGRESS_POLICY.ts",
-    "DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts",
-    "DAEMON_PHEROMONE_LEDGER_RUNTIME.ts",
-    "DAEMON_PLASMID_LEDGER_PERSISTENCE.ts",
-    "DAEMON_PLASMID_LEDGER_RUNTIME.ts",
     "GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
     "ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
     "GLYPH_BUFFER.ts",
-    "GENETIC_LEDGER_PERSISTENCE.ts",
-    "GENETIC_LEDGER_RUNTIME.ts",
-    "HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts",
-    "HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts",
-    "PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts",
-    "PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts",
     "GENERIC_LEDGER_PERSISTENCE.ts",
     "GENERIC_LEDGER_SYSTEM.ts",
     "HORMONE_BUFFER_RUNTIME.ts",
@@ -9906,1842 +9886,6 @@ export const planInvariantIngress = (
     admission,
   };
 };
-
-```
-
----
-
-## FILE: DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts
-
-```typescript
-import {
-  applyDaemonPheromoneLedgerRuntimeUpdate,
-  createDaemonPheromoneLedgerRuntime,
-  type DaemonPheromoneLedgerRuntimeEvent,
-  type DaemonPheromoneLedgerRuntimeSnapshot,
-  type DaemonPheromoneLedgerRuntimeState,
-  rollbackDaemonPheromoneLedgerRuntimeUpdate,
-  snapshotDaemonPheromoneLedgerRuntime,
-} from "./DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
-
-export const DAEMON_PHEROMONE_LEDGER_LOG_PATH =
-  ".omega/ledger/daemon_pheromone_ledger.jsonl";
-export const DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH =
-  ".omega/ledger/daemon_pheromone_ledger.snapshot.json";
-export const DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD = Math.max(
-  8,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD") ?? "64",
-    ),
-  ),
-);
-export const DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL = Math.max(
-  1,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL") ?? "16",
-    ),
-  ),
-);
-
-export type DaemonPheromoneLedgerRecord =
-  | {
-    kind: "apply";
-    key: "daemon.maxPheromoneIntensity";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: "daemon.maxPheromoneIntensity";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type DaemonPheromoneLedgerSnapshotRecord = {
-  version: 1;
-  key: "daemon.maxPheromoneIntensity";
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: DaemonPheromoneLedgerRuntimeState;
-};
-
-export type DaemonPheromoneLedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type DaemonPheromoneLedgerHydrationResult = {
-  state: DaemonPheromoneLedgerRuntimeState;
-  snapshot: DaemonPheromoneLedgerRuntimeSnapshot;
-  persistence: DaemonPheromoneLedgerPersistenceSummary;
-};
-
-const ensureDir = async (): Promise<void> => {
-  await Deno.mkdir(".omega/ledger", { recursive: true });
-};
-
-const isFiniteNumber = (value: unknown): value is number =>
-  typeof value === "number" && Number.isFinite(value);
-const isLedgerKey = (
-  value: unknown,
-): value is "daemon.maxPheromoneIntensity" =>
-  value === "daemon.maxPheromoneIntensity";
-const countKinds = (records: readonly DaemonPheromoneLedgerRecord[]) => ({
-  applyCount: records.filter((record) => record.kind === "apply").length,
-  rollbackCount: records.filter((record) => record.kind === "rollback").length,
-});
-const deriveCompactedTick = (
-  state: DaemonPheromoneLedgerRuntimeState,
-): number =>
-  state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
-
-const parseRecord = (line: string): DaemonPheromoneLedgerRecord | null => {
-  if (line.trim().length === 0) return null;
-  try {
-    const raw = JSON.parse(line) as Record<string, unknown>;
-    if (raw.key !== "daemon.maxPheromoneIntensity") return null;
-    if (raw.kind === "apply") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.previous_value !== "number" ||
-        typeof raw.next_value !== "number" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as DaemonPheromoneLedgerRecord;
-    }
-    if (raw.kind === "rollback") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as DaemonPheromoneLedgerRecord;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
-
-const parseRuntimeEvent = (
-  raw: unknown,
-): DaemonPheromoneLedgerRuntimeEvent | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const event = raw as Record<string, unknown>;
-  if (
-    typeof event.rollbackToken !== "string" ||
-    !isFiniteNumber(event.previousValue) ||
-    !isFiniteNumber(event.nextValue) ||
-    !isFiniteNumber(event.tick) ||
-    typeof event.source !== "string" ||
-    typeof event.reason !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackAtTick !== null && !isFiniteNumber(event.rolledBackAtTick)
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackSource !== null &&
-    typeof event.rolledBackSource !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackReason !== null &&
-    typeof event.rolledBackReason !== "string"
-  ) {
-    return null;
-  }
-  return {
-    rollbackToken: event.rollbackToken,
-    previousValue: event.previousValue,
-    nextValue: event.nextValue,
-    tick: event.tick,
-    source: event.source,
-    reason: event.reason,
-    rolledBackAtTick: event.rolledBackAtTick,
-    rolledBackSource: event.rolledBackSource,
-    rolledBackReason: event.rolledBackReason,
-  };
-};
-
-const parseRuntimeState = (
-  raw: unknown,
-): DaemonPheromoneLedgerRuntimeState | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const state = raw as Record<string, unknown>;
-  if (
-    !isLedgerKey(state.key) ||
-    !isFiniteNumber(state.currentValue) ||
-    !isFiniteNumber(state.defaultValue) ||
-    !isFiniteNumber(state.min) ||
-    !isFiniteNumber(state.max) ||
-    state.rollbackClass !== "immediate" ||
-    !isFiniteNumber(state.seq) ||
-    !isFiniteNumber(state.historyLimit) ||
-    !Array.isArray(state.history) ||
-    !isFiniteNumber(state.lastAppliedTick) ||
-    typeof state.lastAppliedSource !== "string" ||
-    typeof state.lastAppliedReason !== "string" ||
-    (
-      state.lastAppliedRollbackToken !== null &&
-      typeof state.lastAppliedRollbackToken !== "string"
-    ) ||
-    !isFiniteNumber(state.lastRollbackTick) ||
-    typeof state.lastRollbackSource !== "string" ||
-    typeof state.lastRollbackReason !== "string" ||
-    (
-      state.lastRollbackToken !== null &&
-      typeof state.lastRollbackToken !== "string"
-    )
-  ) {
-    return null;
-  }
-  const history = state.history
-    .map(parseRuntimeEvent)
-    .filter((event): event is DaemonPheromoneLedgerRuntimeEvent =>
-      event !== null
-    );
-  if (history.length !== state.history.length) return null;
-  return {
-    key: state.key,
-    currentValue: state.currentValue,
-    defaultValue: state.defaultValue,
-    min: state.min,
-    max: state.max,
-    rollbackClass: state.rollbackClass,
-    seq: state.seq,
-    historyLimit: state.historyLimit,
-    history,
-    lastAppliedTick: state.lastAppliedTick,
-    lastAppliedSource: state.lastAppliedSource,
-    lastAppliedReason: state.lastAppliedReason,
-    lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-    lastRollbackTick: state.lastRollbackTick,
-    lastRollbackSource: state.lastRollbackSource,
-    lastRollbackReason: state.lastRollbackReason,
-    lastRollbackToken: state.lastRollbackToken,
-  };
-};
-
-const parseSnapshotRecord = (
-  raw: string,
-): DaemonPheromoneLedgerSnapshotRecord | null => {
-  if (raw.trim().length === 0) return null;
-  try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (
-      parsed.version !== 1 ||
-      !isLedgerKey(parsed.key) ||
-      !isFiniteNumber(parsed.representedRecordCount) ||
-      !isFiniteNumber(parsed.representedApplyCount) ||
-      !isFiniteNumber(parsed.representedRollbackCount) ||
-      typeof parsed.compactedAt !== "string" ||
-      !isFiniteNumber(parsed.compactedTick)
-    ) {
-      return null;
-    }
-    const state = parseRuntimeState(parsed.state);
-    if (!state) return null;
-    return {
-      version: 1,
-      key: "daemon.maxPheromoneIntensity",
-      representedRecordCount: parsed.representedRecordCount,
-      representedApplyCount: parsed.representedApplyCount,
-      representedRollbackCount: parsed.representedRollbackCount,
-      compactedAt: parsed.compactedAt,
-      compactedTick: parsed.compactedTick,
-      state,
-    };
-  } catch {
-    return null;
-  }
-};
-
-const applyRecordToRuntimeState = (
-  state: DaemonPheromoneLedgerRuntimeState,
-  record: DaemonPheromoneLedgerRecord,
-): DaemonPheromoneLedgerRuntimeState => {
-  if (record.kind === "apply") {
-    return applyDaemonPheromoneLedgerRuntimeUpdate(state, {
-      value: record.next_value,
-      tick: record.tick,
-      source: record.source,
-      reason: record.reason,
-    }).state;
-  }
-  return rollbackDaemonPheromoneLedgerRuntimeUpdate(state, {
-    rollbackToken: record.rollback_token,
-    tick: record.tick,
-    source: record.source,
-    reason: record.reason,
-  }).state;
-};
-
-const buildPersistenceSummary = (
-  tailRecords: readonly DaemonPheromoneLedgerRecord[],
-  snapshotRecord: DaemonPheromoneLedgerSnapshotRecord | null,
-  path: string,
-  snapshotPath: string,
-): DaemonPheromoneLedgerPersistenceSummary => {
-  const tailCounts = countKinds(tailRecords);
-  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
-  const snapshotApplyCount = snapshotRecord?.representedApplyCount ?? 0;
-  const snapshotRollbackCount = snapshotRecord?.representedRollbackCount ?? 0;
-  return {
-    path,
-    snapshotPath,
-    exists: snapshotRecord !== null || tailRecords.length > 0,
-    snapshotExists: snapshotRecord !== null,
-    recordCount: snapshotRecordCount + tailRecords.length,
-    applyCount: snapshotApplyCount + tailCounts.applyCount,
-    rollbackCount: snapshotRollbackCount + tailCounts.rollbackCount,
-    tailRecordCount: tailRecords.length,
-    tailApplyCount: tailCounts.applyCount,
-    tailRollbackCount: tailCounts.rollbackCount,
-    snapshotRecordCount,
-    snapshotApplyCount,
-    snapshotRollbackCount,
-    compactionEnabled: true,
-    compactionThreshold: DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
-    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-};
-
-export const readDaemonPheromoneLedgerRecords = async (
-  path = DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-): Promise<DaemonPheromoneLedgerRecord[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((
-      x,
-    ): x is DaemonPheromoneLedgerRecord => x !== null);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return [];
-    throw err;
-  }
-};
-
-export const readDaemonPheromoneLedgerSnapshot = async (
-  path = DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPheromoneLedgerSnapshotRecord | null> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return parseSnapshotRecord(raw);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return null;
-    throw err;
-  }
-};
-
-export const readDaemonPheromoneLedgerPersistenceSummary = async (
-  path = DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-  snapshotPath = DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPheromoneLedgerPersistenceSummary> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPheromoneLedgerRecords(path),
-    readDaemonPheromoneLedgerSnapshot(snapshotPath),
-  ]);
-  return buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
-};
-
-export const appendDaemonPheromoneLedgerRecord = async (
-  record: DaemonPheromoneLedgerRecord,
-  path = DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-): Promise<void> => {
-  await ensureDir();
-  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-export const recordFromDaemonPheromoneApplyMutation = (
-  mutation: DaemonPheromoneLedgerRuntimeEvent,
-): DaemonPheromoneLedgerRecord => ({
-  kind: "apply",
-  key: "daemon.maxPheromoneIntensity",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.tick,
-  source: mutation.source,
-  reason: mutation.reason,
-  previous_value: mutation.previousValue,
-  next_value: mutation.nextValue,
-  recorded_at: new Date().toISOString(),
-});
-
-export const recordFromDaemonPheromoneRollbackMutation = (
-  mutation: DaemonPheromoneLedgerRuntimeEvent,
-): DaemonPheromoneLedgerRecord => ({
-  kind: "rollback",
-  key: "daemon.maxPheromoneIntensity",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.rolledBackAtTick ?? mutation.tick,
-  source: mutation.rolledBackSource ?? mutation.source,
-  reason: mutation.rolledBackReason ?? mutation.reason,
-  recorded_at: new Date().toISOString(),
-});
-
-export const compactDaemonPheromoneLedgerPersistence = async (
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<DaemonPheromoneLedgerPersistenceSummary> => {
-  const path = options.path ?? DAEMON_PHEROMONE_LEDGER_LOG_PATH;
-  const snapshotPath = options.snapshotPath ??
-    DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH;
-  const initialValue = options.initialValue ?? 0;
-  const historyLimit = options.historyLimit ?? 32;
-  const threshold = Math.max(
-    1,
-    Math.floor(options.threshold ?? DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD),
-  );
-  const keepTailRecords = Math.max(
-    1,
-    Math.floor(
-      options.keepTailRecords ?? DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-    ),
-  );
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPheromoneLedgerRecords(path),
-    readDaemonPheromoneLedgerSnapshot(snapshotPath),
-  ]);
-  if (
-    records.length <= keepTailRecords ||
-    snapshotRecord !== null && records.length === 0 ||
-    snapshotRecord === null && records.length < threshold ||
-    snapshotRecord !== null &&
-      snapshotRecord.representedRecordCount + records.length < threshold
-  ) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  const compactCount = Math.max(0, records.length - keepTailRecords);
-  if (compactCount === 0) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  let state = snapshotRecord?.state ??
-    createDaemonPheromoneLedgerRuntime(initialValue, historyLimit);
-  const compactedRecords = records.slice(0, compactCount);
-  for (const record of compactedRecords) {
-    state = applyRecordToRuntimeState(state, record);
-  }
-  const compactedCounts = countKinds(compactedRecords);
-  const nextSnapshotRecord: DaemonPheromoneLedgerSnapshotRecord = {
-    version: 1,
-    key: "daemon.maxPheromoneIntensity",
-    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
-      compactedRecords.length,
-    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
-      compactedCounts.applyCount,
-    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
-      compactedCounts.rollbackCount,
-    compactedAt: new Date().toISOString(),
-    compactedTick: deriveCompactedTick(state),
-    state,
-  };
-  const tailRecords = records.slice(compactCount);
-
-  await ensureDir();
-  await Deno.writeTextFile(
-    snapshotPath,
-    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
-  );
-  await Deno.writeTextFile(
-    path,
-    tailRecords.map((record) => JSON.stringify(record)).join("\n") +
-      (tailRecords.length > 0 ? "\n" : ""),
-    { create: true },
-  );
-
-  return {
-    ...buildPersistenceSummary(
-      tailRecords,
-      nextSnapshotRecord,
-      path,
-      snapshotPath,
-    ),
-    compactionThreshold: threshold,
-    compactionKeepTail: keepTailRecords,
-  };
-};
-
-export const appendDaemonPheromoneLedgerRecordAndMaybeCompact = async (
-  record: DaemonPheromoneLedgerRecord,
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<DaemonPheromoneLedgerPersistenceSummary> => {
-  const path = options.path ?? DAEMON_PHEROMONE_LEDGER_LOG_PATH;
-  await appendDaemonPheromoneLedgerRecord(record, path);
-  return await compactDaemonPheromoneLedgerPersistence({
-    ...options,
-    path,
-  });
-};
-
-export const hydrateDaemonPheromoneLedgerRuntime = async (
-  initialValue: number,
-  historyLimit = 32,
-  path = DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-  snapshotPath = DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPheromoneLedgerHydrationResult> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPheromoneLedgerRecords(path),
-    readDaemonPheromoneLedgerSnapshot(snapshotPath),
-  ]);
-  let state = snapshotRecord?.state ??
-    createDaemonPheromoneLedgerRuntime(initialValue, historyLimit);
-  let hydrationError: string | null = null;
-
-  try {
-    for (const record of records) {
-      state = applyRecordToRuntimeState(state, record);
-    }
-  } catch (err) {
-    hydrationError = String(err);
-  }
-
-  let persistence = buildPersistenceSummary(
-    records,
-    snapshotRecord,
-    path,
-    snapshotPath,
-  );
-  if (
-    hydrationError === null &&
-    persistence.tailRecordCount > persistence.compactionKeepTail &&
-    persistence.recordCount >= persistence.compactionThreshold
-  ) {
-    persistence = await compactDaemonPheromoneLedgerPersistence({
-      initialValue,
-      historyLimit,
-      path,
-      snapshotPath,
-      threshold: persistence.compactionThreshold,
-      keepTailRecords: persistence.compactionKeepTail,
-    });
-  }
-
-  return {
-    state,
-    snapshot: snapshotDaemonPheromoneLedgerRuntime(state),
-    persistence: {
-      ...persistence,
-      hydrated: hydrationError === null,
-      lastHydratedAt: new Date().toISOString(),
-      lastHydrationError: hydrationError,
-    },
-  };
-};
-
-```
-
----
-
-## FILE: DAEMON_PHEROMONE_LEDGER_RUNTIME.ts
-
-```typescript
-import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
-
-const DAEMON_PHEROMONE_ENTRY = geneticLedgerEntryByKey(
-  "daemon.maxPheromoneIntensity",
-);
-if (!DAEMON_PHEROMONE_ENTRY) {
-  throw new Error(
-    "[DAEMON_PHEROMONE_LEDGER_RUNTIME] missing daemon.maxPheromoneIntensity entry",
-  );
-}
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-export type DaemonPheromoneLedgerRuntimeEvent = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
-
-export type DaemonPheromoneLedgerRuntimeState = {
-  key: "daemon.maxPheromoneIntensity";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  seq: number;
-  historyLimit: number;
-  history: readonly DaemonPheromoneLedgerRuntimeEvent[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type DaemonPheromoneLedgerRuntimeSnapshot = {
-  key: "daemon.maxPheromoneIntensity";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type DaemonPheromoneLedgerApplyResult = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: DaemonPheromoneLedgerRuntimeEvent | null;
-  state: DaemonPheromoneLedgerRuntimeState;
-};
-
-export type DaemonPheromoneLedgerRollbackResult = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: DaemonPheromoneLedgerRuntimeEvent | null;
-  state: DaemonPheromoneLedgerRuntimeState;
-};
-
-const cloneHistory = (
-  history: readonly DaemonPheromoneLedgerRuntimeEvent[],
-): DaemonPheromoneLedgerRuntimeEvent[] =>
-  history.map((event) => ({ ...event }));
-
-export const createDaemonPheromoneLedgerRuntime = (
-  initialValue = DAEMON_PHEROMONE_ENTRY.defaultValue,
-  historyLimit = 32,
-): DaemonPheromoneLedgerRuntimeState => ({
-  key: "daemon.maxPheromoneIntensity",
-  currentValue: clamp(
-    initialValue,
-    DAEMON_PHEROMONE_ENTRY.min,
-    DAEMON_PHEROMONE_ENTRY.max,
-  ),
-  defaultValue: DAEMON_PHEROMONE_ENTRY.defaultValue,
-  min: DAEMON_PHEROMONE_ENTRY.min,
-  max: DAEMON_PHEROMONE_ENTRY.max,
-  rollbackClass: "immediate",
-  seq: 0,
-  historyLimit: Math.max(1, Math.floor(historyLimit)),
-  history: [],
-  lastAppliedTick: -1,
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: "bootstrap",
-  lastAppliedRollbackToken: null,
-  lastRollbackTick: -1,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: "bootstrap",
-  lastRollbackToken: null,
-});
-
-export const snapshotDaemonPheromoneLedgerRuntime = (
-  state: DaemonPheromoneLedgerRuntimeState,
-): DaemonPheromoneLedgerRuntimeSnapshot => ({
-  key: state.key,
-  currentValue: state.currentValue,
-  defaultValue: state.defaultValue,
-  min: state.min,
-  max: state.max,
-  rollbackClass: state.rollbackClass,
-  historyDepth: state.history.length,
-  lastAppliedTick: state.lastAppliedTick,
-  lastAppliedSource: state.lastAppliedSource,
-  lastAppliedReason: state.lastAppliedReason,
-  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-  lastRollbackTick: state.lastRollbackTick,
-  lastRollbackSource: state.lastRollbackSource,
-  lastRollbackReason: state.lastRollbackReason,
-  lastRollbackToken: state.lastRollbackToken,
-});
-
-export const applyDaemonPheromoneLedgerRuntimeUpdate = (
-  state: DaemonPheromoneLedgerRuntimeState,
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): DaemonPheromoneLedgerApplyResult => {
-  const previousValue = state.currentValue;
-  const nextValue = clamp(update.value, state.min, state.max);
-  if (nextValue === previousValue) {
-    return {
-      status: "noop",
-      changed: false,
-      previousValue,
-      nextValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const tick = update.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(update.tick));
-  const source = (update.source ?? "runtime").trim() || "runtime";
-  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken = `${state.key}@${tick}:${
-    String(state.seq + 1).padStart(4, "0")
-  }`;
-  const mutation: DaemonPheromoneLedgerRuntimeEvent = {
-    rollbackToken,
-    previousValue,
-    nextValue,
-    tick,
-    source,
-    reason,
-    rolledBackAtTick: null,
-    rolledBackSource: null,
-    rolledBackReason: null,
-  };
-  const history = [mutation, ...cloneHistory(state.history)].slice(
-    0,
-    state.historyLimit,
-  );
-  return {
-    status: "applied",
-    changed: true,
-    previousValue,
-    nextValue,
-    mutation,
-    state: {
-      ...state,
-      currentValue: nextValue,
-      seq: state.seq + 1,
-      history,
-      lastAppliedTick: tick,
-      lastAppliedSource: source,
-      lastAppliedReason: reason,
-      lastAppliedRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const rollbackDaemonPheromoneLedgerRuntimeUpdate = (
-  state: DaemonPheromoneLedgerRuntimeState,
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): DaemonPheromoneLedgerRollbackResult => {
-  const rollbackToken = rollback.rollbackToken.trim();
-  const previousValue = state.currentValue;
-  if (rollbackToken.length === 0) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) =>
-    event.rollbackToken === rollbackToken
-  );
-  if (idx === -1) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const target = history[idx];
-  if (target.rolledBackAtTick !== null) {
-    return {
-      status: "consumed",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const latestActive = history.find((event) => event.rolledBackAtTick === null);
-  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
-    return {
-      status: "stale",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const tick = rollback.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(rollback.tick));
-  const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
-    "ledger_rollback";
-  const nextValue = clamp(target.previousValue, state.min, state.max);
-  const updatedMutation: DaemonPheromoneLedgerRuntimeEvent = {
-    ...target,
-    rolledBackAtTick: tick,
-    rolledBackSource: source,
-    rolledBackReason: reason,
-  };
-  history[idx] = updatedMutation;
-
-  return {
-    status: "rolled_back",
-    changed: nextValue !== previousValue,
-    previousValue,
-    nextValue,
-    mutation: { ...updatedMutation },
-    state: {
-      ...state,
-      currentValue: nextValue,
-      history,
-      lastRollbackTick: tick,
-      lastRollbackSource: source,
-      lastRollbackReason: reason,
-      lastRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const resetDaemonPheromoneLedgerRuntime = (
-  state: DaemonPheromoneLedgerRuntimeState,
-  reason = "reset",
-): DaemonPheromoneLedgerRuntimeState => ({
-  ...createDaemonPheromoneLedgerRuntime(state.defaultValue, state.historyLimit),
-  lastAppliedReason: reason,
-  lastRollbackReason: reason,
-});
-
-```
-
----
-
-## FILE: DAEMON_PLASMID_LEDGER_PERSISTENCE.ts
-
-```typescript
-import {
-  applyDaemonPlasmidLedgerRuntimeUpdate,
-  createDaemonPlasmidLedgerRuntime,
-  type DaemonPlasmidLedgerRuntimeEvent,
-  type DaemonPlasmidLedgerRuntimeSnapshot,
-  type DaemonPlasmidLedgerRuntimeState,
-  rollbackDaemonPlasmidLedgerRuntimeUpdate,
-  snapshotDaemonPlasmidLedgerRuntime,
-} from "./DAEMON_PLASMID_LEDGER_RUNTIME.ts";
-
-export const DAEMON_PLASMID_LEDGER_LOG_PATH =
-  ".omega/ledger/daemon_plasmid_ledger.jsonl";
-export const DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH =
-  ".omega/ledger/daemon_plasmid_ledger.snapshot.json";
-export const DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD = Math.max(
-  8,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD") ?? "64",
-    ),
-  ),
-);
-export const DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL = Math.max(
-  1,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL") ?? "16",
-    ),
-  ),
-);
-
-export type DaemonPlasmidLedgerRecord =
-  | {
-    kind: "apply";
-    key: "daemon.maxPlasmidCharge";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: "daemon.maxPlasmidCharge";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type DaemonPlasmidLedgerSnapshotRecord = {
-  version: 1;
-  key: "daemon.maxPlasmidCharge";
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: DaemonPlasmidLedgerRuntimeState;
-};
-
-export type DaemonPlasmidLedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type DaemonPlasmidLedgerHydrationResult = {
-  state: DaemonPlasmidLedgerRuntimeState;
-  snapshot: DaemonPlasmidLedgerRuntimeSnapshot;
-  persistence: DaemonPlasmidLedgerPersistenceSummary;
-};
-
-const ensureDir = async (): Promise<void> => {
-  await Deno.mkdir(".omega/ledger", { recursive: true });
-};
-
-const isFiniteNumber = (value: unknown): value is number =>
-  typeof value === "number" && Number.isFinite(value);
-const isLedgerKey = (
-  value: unknown,
-): value is "daemon.maxPlasmidCharge" => value === "daemon.maxPlasmidCharge";
-const countKinds = (records: readonly DaemonPlasmidLedgerRecord[]) => ({
-  applyCount: records.filter((record) => record.kind === "apply").length,
-  rollbackCount: records.filter((record) => record.kind === "rollback").length,
-});
-const deriveCompactedTick = (
-  state: DaemonPlasmidLedgerRuntimeState,
-): number =>
-  state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
-
-const parseRecord = (line: string): DaemonPlasmidLedgerRecord | null => {
-  if (line.trim().length === 0) return null;
-  try {
-    const raw = JSON.parse(line) as Record<string, unknown>;
-    if (raw.key !== "daemon.maxPlasmidCharge") return null;
-    if (raw.kind === "apply") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.previous_value !== "number" ||
-        typeof raw.next_value !== "number" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as DaemonPlasmidLedgerRecord;
-    }
-    if (raw.kind === "rollback") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as DaemonPlasmidLedgerRecord;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
-
-const parseRuntimeEvent = (
-  raw: unknown,
-): DaemonPlasmidLedgerRuntimeEvent | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const event = raw as Record<string, unknown>;
-  if (
-    typeof event.rollbackToken !== "string" ||
-    !isFiniteNumber(event.previousValue) ||
-    !isFiniteNumber(event.nextValue) ||
-    !isFiniteNumber(event.tick) ||
-    typeof event.source !== "string" ||
-    typeof event.reason !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackAtTick !== null && !isFiniteNumber(event.rolledBackAtTick)
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackSource !== null &&
-    typeof event.rolledBackSource !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackReason !== null &&
-    typeof event.rolledBackReason !== "string"
-  ) {
-    return null;
-  }
-  return {
-    rollbackToken: event.rollbackToken,
-    previousValue: event.previousValue,
-    nextValue: event.nextValue,
-    tick: event.tick,
-    source: event.source,
-    reason: event.reason,
-    rolledBackAtTick: event.rolledBackAtTick,
-    rolledBackSource: event.rolledBackSource,
-    rolledBackReason: event.rolledBackReason,
-  };
-};
-
-const parseRuntimeState = (
-  raw: unknown,
-): DaemonPlasmidLedgerRuntimeState | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const state = raw as Record<string, unknown>;
-  if (
-    !isLedgerKey(state.key) ||
-    !isFiniteNumber(state.currentValue) ||
-    !isFiniteNumber(state.defaultValue) ||
-    !isFiniteNumber(state.min) ||
-    !isFiniteNumber(state.max) ||
-    state.rollbackClass !== "immediate" ||
-    !isFiniteNumber(state.seq) ||
-    !isFiniteNumber(state.historyLimit) ||
-    !Array.isArray(state.history) ||
-    !isFiniteNumber(state.lastAppliedTick) ||
-    typeof state.lastAppliedSource !== "string" ||
-    typeof state.lastAppliedReason !== "string" ||
-    (
-      state.lastAppliedRollbackToken !== null &&
-      typeof state.lastAppliedRollbackToken !== "string"
-    ) ||
-    !isFiniteNumber(state.lastRollbackTick) ||
-    typeof state.lastRollbackSource !== "string" ||
-    typeof state.lastRollbackReason !== "string" ||
-    (
-      state.lastRollbackToken !== null &&
-      typeof state.lastRollbackToken !== "string"
-    )
-  ) {
-    return null;
-  }
-  const history = state.history
-    .map(parseRuntimeEvent)
-    .filter((event): event is DaemonPlasmidLedgerRuntimeEvent =>
-      event !== null
-    );
-  if (history.length !== state.history.length) return null;
-  return {
-    key: state.key,
-    currentValue: state.currentValue,
-    defaultValue: state.defaultValue,
-    min: state.min,
-    max: state.max,
-    rollbackClass: state.rollbackClass,
-    seq: state.seq,
-    historyLimit: state.historyLimit,
-    history,
-    lastAppliedTick: state.lastAppliedTick,
-    lastAppliedSource: state.lastAppliedSource,
-    lastAppliedReason: state.lastAppliedReason,
-    lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-    lastRollbackTick: state.lastRollbackTick,
-    lastRollbackSource: state.lastRollbackSource,
-    lastRollbackReason: state.lastRollbackReason,
-    lastRollbackToken: state.lastRollbackToken,
-  };
-};
-
-const parseSnapshotRecord = (
-  raw: string,
-): DaemonPlasmidLedgerSnapshotRecord | null => {
-  if (raw.trim().length === 0) return null;
-  try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (
-      parsed.version !== 1 ||
-      !isLedgerKey(parsed.key) ||
-      !isFiniteNumber(parsed.representedRecordCount) ||
-      !isFiniteNumber(parsed.representedApplyCount) ||
-      !isFiniteNumber(parsed.representedRollbackCount) ||
-      typeof parsed.compactedAt !== "string" ||
-      !isFiniteNumber(parsed.compactedTick)
-    ) {
-      return null;
-    }
-    const state = parseRuntimeState(parsed.state);
-    if (!state) return null;
-    return {
-      version: 1,
-      key: "daemon.maxPlasmidCharge",
-      representedRecordCount: parsed.representedRecordCount,
-      representedApplyCount: parsed.representedApplyCount,
-      representedRollbackCount: parsed.representedRollbackCount,
-      compactedAt: parsed.compactedAt,
-      compactedTick: parsed.compactedTick,
-      state,
-    };
-  } catch {
-    return null;
-  }
-};
-
-const applyRecordToRuntimeState = (
-  state: DaemonPlasmidLedgerRuntimeState,
-  record: DaemonPlasmidLedgerRecord,
-): DaemonPlasmidLedgerRuntimeState => {
-  if (record.kind === "apply") {
-    return applyDaemonPlasmidLedgerRuntimeUpdate(state, {
-      value: record.next_value,
-      tick: record.tick,
-      source: record.source,
-      reason: record.reason,
-    }).state;
-  }
-  return rollbackDaemonPlasmidLedgerRuntimeUpdate(state, {
-    rollbackToken: record.rollback_token,
-    tick: record.tick,
-    source: record.source,
-    reason: record.reason,
-  }).state;
-};
-
-const buildPersistenceSummary = (
-  tailRecords: readonly DaemonPlasmidLedgerRecord[],
-  snapshotRecord: DaemonPlasmidLedgerSnapshotRecord | null,
-  path: string,
-  snapshotPath: string,
-): DaemonPlasmidLedgerPersistenceSummary => {
-  const tailCounts = countKinds(tailRecords);
-  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
-  const snapshotApplyCount = snapshotRecord?.representedApplyCount ?? 0;
-  const snapshotRollbackCount = snapshotRecord?.representedRollbackCount ?? 0;
-  return {
-    path,
-    snapshotPath,
-    exists: snapshotRecord !== null || tailRecords.length > 0,
-    snapshotExists: snapshotRecord !== null,
-    recordCount: snapshotRecordCount + tailRecords.length,
-    applyCount: snapshotApplyCount + tailCounts.applyCount,
-    rollbackCount: snapshotRollbackCount + tailCounts.rollbackCount,
-    tailRecordCount: tailRecords.length,
-    tailApplyCount: tailCounts.applyCount,
-    tailRollbackCount: tailCounts.rollbackCount,
-    snapshotRecordCount,
-    snapshotApplyCount,
-    snapshotRollbackCount,
-    compactionEnabled: true,
-    compactionThreshold: DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
-    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-};
-
-export const readDaemonPlasmidLedgerRecords = async (
-  path = DAEMON_PLASMID_LEDGER_LOG_PATH,
-): Promise<DaemonPlasmidLedgerRecord[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((
-      x,
-    ): x is DaemonPlasmidLedgerRecord => x !== null);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return [];
-    throw err;
-  }
-};
-
-export const readDaemonPlasmidLedgerSnapshot = async (
-  path = DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPlasmidLedgerSnapshotRecord | null> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return parseSnapshotRecord(raw);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return null;
-    throw err;
-  }
-};
-
-export const readDaemonPlasmidLedgerPersistenceSummary = async (
-  path = DAEMON_PLASMID_LEDGER_LOG_PATH,
-  snapshotPath = DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPlasmidLedgerPersistenceSummary> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPlasmidLedgerRecords(path),
-    readDaemonPlasmidLedgerSnapshot(snapshotPath),
-  ]);
-  return buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
-};
-
-export const appendDaemonPlasmidLedgerRecord = async (
-  record: DaemonPlasmidLedgerRecord,
-  path = DAEMON_PLASMID_LEDGER_LOG_PATH,
-): Promise<void> => {
-  await ensureDir();
-  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-export const recordFromDaemonPlasmidApplyMutation = (
-  mutation: DaemonPlasmidLedgerRuntimeEvent,
-): DaemonPlasmidLedgerRecord => ({
-  kind: "apply",
-  key: "daemon.maxPlasmidCharge",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.tick,
-  source: mutation.source,
-  reason: mutation.reason,
-  previous_value: mutation.previousValue,
-  next_value: mutation.nextValue,
-  recorded_at: new Date().toISOString(),
-});
-
-export const recordFromDaemonPlasmidRollbackMutation = (
-  mutation: DaemonPlasmidLedgerRuntimeEvent,
-): DaemonPlasmidLedgerRecord => ({
-  kind: "rollback",
-  key: "daemon.maxPlasmidCharge",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.rolledBackAtTick ?? mutation.tick,
-  source: mutation.rolledBackSource ?? mutation.source,
-  reason: mutation.rolledBackReason ?? mutation.reason,
-  recorded_at: new Date().toISOString(),
-});
-
-export const compactDaemonPlasmidLedgerPersistence = async (
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<DaemonPlasmidLedgerPersistenceSummary> => {
-  const path = options.path ?? DAEMON_PLASMID_LEDGER_LOG_PATH;
-  const snapshotPath = options.snapshotPath ??
-    DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH;
-  const initialValue = options.initialValue ?? 0;
-  const historyLimit = options.historyLimit ?? 32;
-  const threshold = Math.max(
-    1,
-    Math.floor(options.threshold ?? DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD),
-  );
-  const keepTailRecords = Math.max(
-    1,
-    Math.floor(
-      options.keepTailRecords ?? DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
-    ),
-  );
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPlasmidLedgerRecords(path),
-    readDaemonPlasmidLedgerSnapshot(snapshotPath),
-  ]);
-  if (
-    records.length <= keepTailRecords ||
-    snapshotRecord !== null && records.length === 0 ||
-    snapshotRecord === null && records.length < threshold ||
-    snapshotRecord !== null &&
-      snapshotRecord.representedRecordCount + records.length < threshold
-  ) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  const compactCount = Math.max(0, records.length - keepTailRecords);
-  if (compactCount === 0) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  let state = snapshotRecord?.state ??
-    createDaemonPlasmidLedgerRuntime(initialValue, historyLimit);
-  const compactedRecords = records.slice(0, compactCount);
-  for (const record of compactedRecords) {
-    state = applyRecordToRuntimeState(state, record);
-  }
-  const compactedCounts = countKinds(compactedRecords);
-  const nextSnapshotRecord: DaemonPlasmidLedgerSnapshotRecord = {
-    version: 1,
-    key: "daemon.maxPlasmidCharge",
-    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
-      compactedRecords.length,
-    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
-      compactedCounts.applyCount,
-    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
-      compactedCounts.rollbackCount,
-    compactedAt: new Date().toISOString(),
-    compactedTick: deriveCompactedTick(state),
-    state,
-  };
-  const tailRecords = records.slice(compactCount);
-
-  await ensureDir();
-  await Deno.writeTextFile(
-    snapshotPath,
-    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
-  );
-  await Deno.writeTextFile(
-    path,
-    tailRecords.map((record) => JSON.stringify(record)).join("\n") +
-      (tailRecords.length > 0 ? "\n" : ""),
-    { create: true },
-  );
-
-  return {
-    ...buildPersistenceSummary(
-      tailRecords,
-      nextSnapshotRecord,
-      path,
-      snapshotPath,
-    ),
-    compactionThreshold: threshold,
-    compactionKeepTail: keepTailRecords,
-  };
-};
-
-export const appendDaemonPlasmidLedgerRecordAndMaybeCompact = async (
-  record: DaemonPlasmidLedgerRecord,
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<DaemonPlasmidLedgerPersistenceSummary> => {
-  const path = options.path ?? DAEMON_PLASMID_LEDGER_LOG_PATH;
-  await appendDaemonPlasmidLedgerRecord(record, path);
-  return await compactDaemonPlasmidLedgerPersistence({
-    ...options,
-    path,
-  });
-};
-
-export const hydrateDaemonPlasmidLedgerRuntime = async (
-  initialValue: number,
-  historyLimit = 32,
-  path = DAEMON_PLASMID_LEDGER_LOG_PATH,
-  snapshotPath = DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
-): Promise<DaemonPlasmidLedgerHydrationResult> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readDaemonPlasmidLedgerRecords(path),
-    readDaemonPlasmidLedgerSnapshot(snapshotPath),
-  ]);
-  let state = snapshotRecord?.state ??
-    createDaemonPlasmidLedgerRuntime(initialValue, historyLimit);
-  let hydrationError: string | null = null;
-
-  try {
-    for (const record of records) {
-      state = applyRecordToRuntimeState(state, record);
-    }
-  } catch (err) {
-    hydrationError = String(err);
-  }
-
-  let persistence = buildPersistenceSummary(
-    records,
-    snapshotRecord,
-    path,
-    snapshotPath,
-  );
-  if (
-    hydrationError === null &&
-    persistence.tailRecordCount > persistence.compactionKeepTail &&
-    persistence.recordCount >= persistence.compactionThreshold
-  ) {
-    persistence = await compactDaemonPlasmidLedgerPersistence({
-      initialValue,
-      historyLimit,
-      path,
-      snapshotPath,
-      threshold: persistence.compactionThreshold,
-      keepTailRecords: persistence.compactionKeepTail,
-    });
-  }
-
-  return {
-    state,
-    snapshot: snapshotDaemonPlasmidLedgerRuntime(state),
-    persistence: {
-      ...persistence,
-      hydrated: hydrationError === null,
-      lastHydratedAt: new Date().toISOString(),
-      lastHydrationError: hydrationError,
-    },
-  };
-};
-
-```
-
----
-
-## FILE: DAEMON_PLASMID_LEDGER_RUNTIME.ts
-
-```typescript
-import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
-
-const DAEMON_PLASMID_ENTRY = geneticLedgerEntryByKey(
-  "daemon.maxPlasmidCharge",
-);
-if (!DAEMON_PLASMID_ENTRY) {
-  throw new Error(
-    "[DAEMON_PLASMID_LEDGER_RUNTIME] missing daemon.maxPlasmidCharge entry",
-  );
-}
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-export type DaemonPlasmidLedgerRuntimeEvent = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
-
-export type DaemonPlasmidLedgerRuntimeState = {
-  key: "daemon.maxPlasmidCharge";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  seq: number;
-  historyLimit: number;
-  history: readonly DaemonPlasmidLedgerRuntimeEvent[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type DaemonPlasmidLedgerRuntimeSnapshot = {
-  key: "daemon.maxPlasmidCharge";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type DaemonPlasmidLedgerApplyResult = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: DaemonPlasmidLedgerRuntimeEvent | null;
-  state: DaemonPlasmidLedgerRuntimeState;
-};
-
-export type DaemonPlasmidLedgerRollbackResult = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: DaemonPlasmidLedgerRuntimeEvent | null;
-  state: DaemonPlasmidLedgerRuntimeState;
-};
-
-const cloneHistory = (
-  history: readonly DaemonPlasmidLedgerRuntimeEvent[],
-): DaemonPlasmidLedgerRuntimeEvent[] => history.map((event) => ({ ...event }));
-
-export const createDaemonPlasmidLedgerRuntime = (
-  initialValue = DAEMON_PLASMID_ENTRY.defaultValue,
-  historyLimit = 32,
-): DaemonPlasmidLedgerRuntimeState => ({
-  key: "daemon.maxPlasmidCharge",
-  currentValue: clamp(
-    initialValue,
-    DAEMON_PLASMID_ENTRY.min,
-    DAEMON_PLASMID_ENTRY.max,
-  ),
-  defaultValue: DAEMON_PLASMID_ENTRY.defaultValue,
-  min: DAEMON_PLASMID_ENTRY.min,
-  max: DAEMON_PLASMID_ENTRY.max,
-  rollbackClass: "immediate",
-  seq: 0,
-  historyLimit: Math.max(1, Math.floor(historyLimit)),
-  history: [],
-  lastAppliedTick: -1,
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: "bootstrap",
-  lastAppliedRollbackToken: null,
-  lastRollbackTick: -1,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: "bootstrap",
-  lastRollbackToken: null,
-});
-
-export const snapshotDaemonPlasmidLedgerRuntime = (
-  state: DaemonPlasmidLedgerRuntimeState,
-): DaemonPlasmidLedgerRuntimeSnapshot => ({
-  key: state.key,
-  currentValue: state.currentValue,
-  defaultValue: state.defaultValue,
-  min: state.min,
-  max: state.max,
-  rollbackClass: state.rollbackClass,
-  historyDepth: state.history.length,
-  lastAppliedTick: state.lastAppliedTick,
-  lastAppliedSource: state.lastAppliedSource,
-  lastAppliedReason: state.lastAppliedReason,
-  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-  lastRollbackTick: state.lastRollbackTick,
-  lastRollbackSource: state.lastRollbackSource,
-  lastRollbackReason: state.lastRollbackReason,
-  lastRollbackToken: state.lastRollbackToken,
-});
-
-export const applyDaemonPlasmidLedgerRuntimeUpdate = (
-  state: DaemonPlasmidLedgerRuntimeState,
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): DaemonPlasmidLedgerApplyResult => {
-  const previousValue = state.currentValue;
-  const nextValue = clamp(update.value, state.min, state.max);
-  if (nextValue === previousValue) {
-    return {
-      status: "noop",
-      changed: false,
-      previousValue,
-      nextValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const tick = update.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(update.tick));
-  const source = (update.source ?? "runtime").trim() || "runtime";
-  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken = `${state.key}@${tick}:${
-    String(state.seq + 1).padStart(4, "0")
-  }`;
-  const mutation: DaemonPlasmidLedgerRuntimeEvent = {
-    rollbackToken,
-    previousValue,
-    nextValue,
-    tick,
-    source,
-    reason,
-    rolledBackAtTick: null,
-    rolledBackSource: null,
-    rolledBackReason: null,
-  };
-  const history = [mutation, ...cloneHistory(state.history)].slice(
-    0,
-    state.historyLimit,
-  );
-  return {
-    status: "applied",
-    changed: true,
-    previousValue,
-    nextValue,
-    mutation,
-    state: {
-      ...state,
-      currentValue: nextValue,
-      seq: state.seq + 1,
-      history,
-      lastAppliedTick: tick,
-      lastAppliedSource: source,
-      lastAppliedReason: reason,
-      lastAppliedRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const rollbackDaemonPlasmidLedgerRuntimeUpdate = (
-  state: DaemonPlasmidLedgerRuntimeState,
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): DaemonPlasmidLedgerRollbackResult => {
-  const rollbackToken = rollback.rollbackToken.trim();
-  const previousValue = state.currentValue;
-  if (rollbackToken.length === 0) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) =>
-    event.rollbackToken === rollbackToken
-  );
-  if (idx === -1) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const target = history[idx];
-  if (target.rolledBackAtTick !== null) {
-    return {
-      status: "consumed",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const latestActive = history.find((event) => event.rolledBackAtTick === null);
-  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
-    return {
-      status: "stale",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const tick = rollback.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(rollback.tick));
-  const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
-    "ledger_rollback";
-  const nextValue = clamp(target.previousValue, state.min, state.max);
-  const updatedMutation: DaemonPlasmidLedgerRuntimeEvent = {
-    ...target,
-    rolledBackAtTick: tick,
-    rolledBackSource: source,
-    rolledBackReason: reason,
-  };
-  history[idx] = updatedMutation;
-
-  return {
-    status: "rolled_back",
-    changed: nextValue !== previousValue,
-    previousValue,
-    nextValue,
-    mutation: { ...updatedMutation },
-    state: {
-      ...state,
-      currentValue: nextValue,
-      history,
-      lastRollbackTick: tick,
-      lastRollbackSource: source,
-      lastRollbackReason: reason,
-      lastRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const resetDaemonPlasmidLedgerRuntime = (
-  state: DaemonPlasmidLedgerRuntimeState,
-  reason = "reset",
-): DaemonPlasmidLedgerRuntimeState => ({
-  ...createDaemonPlasmidLedgerRuntime(state.defaultValue, state.historyLimit),
-  lastAppliedReason: reason,
-  lastRollbackReason: reason,
-});
 
 ```
 
@@ -14974,7 +13118,7 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
   const applyCount = records.filter((r) => r.kind === "apply").length;
   const rollbackCount = records.length - applyCount;
 
-  const persistence: LedgerPersistenceSummary = {
+  let persistence: LedgerPersistenceSummary = {
     path: logPath,
     snapshotPath,
     exists: records.length > 0 || snapshotRecord !== null,
@@ -14998,6 +13142,22 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
     lastHydratedAt: new Date().toISOString(),
     lastHydrationError: hydrationError,
   };
+
+  if (
+    hydrationError === null &&
+    persistence.tailRecordCount > persistence.compactionKeepTail &&
+    persistence.recordCount >= persistence.compactionThreshold
+  ) {
+    persistence = await compactLedgerPersistence(key, {
+      initialValue: options.initialValue,
+      historyLimit: options.historyLimit,
+      threshold: persistence.compactionThreshold,
+      keepTail: persistence.compactionKeepTail,
+    });
+    // the hydrated values need explicit set
+    persistence.hydrated = true;
+    persistence.lastHydratedAt = new Date().toISOString();
+  }
 
   return {
     state,
@@ -15044,6 +13204,161 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
+
+export const compactLedgerPersistence = async <K extends GeneticLedgerKey>(
+  key: K,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerPersistenceSummary> => {
+  const logPath = getLogPath(key);
+  const snapshotPath = getSnapshotPath(key);
+  const threshold = Math.max(
+    1,
+    Math.floor(options.threshold ?? DEFAULT_THRESHOLD),
+  );
+  const keepTail = Math.max(
+    1,
+    Math.floor(options.keepTail ?? DEFAULT_KEEP_TAIL),
+  );
+
+  let records: LedgerRecord<K>[] = [];
+  let snapshotRecord: LedgerSnapshotRecord<K> | null = null;
+  try {
+    const raw = await Deno.readTextFile(logPath);
+    records = raw.split(/\r?\n/u).map((l) => parseRecord(key, l)).filter((
+      x,
+    ): x is LedgerRecord<K> => x !== null);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+  try {
+    const raw = await Deno.readTextFile(snapshotPath);
+    snapshotRecord = parseSnapshot(key, raw);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
+  if (
+    records.length <= keepTail ||
+    (snapshotRecord !== null && records.length === 0) ||
+    (snapshotRecord === null && records.length < threshold) ||
+    (snapshotRecord !== null &&
+      snapshotRecordCount + records.length < threshold)
+  ) {
+    const applyCount = records.filter((r) => r.kind === "apply").length;
+    return {
+      path: logPath,
+      snapshotPath,
+      exists: snapshotRecord !== null || records.length > 0,
+      snapshotExists: snapshotRecord !== null,
+      recordCount: snapshotRecordCount + records.length,
+      applyCount: (snapshotRecord?.representedApplyCount ?? 0) + applyCount,
+      rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
+        (records.length - applyCount),
+      tailRecordCount: records.length,
+      tailApplyCount: applyCount,
+      tailRollbackCount: records.length - applyCount,
+      snapshotRecordCount,
+      snapshotApplyCount: snapshotRecord?.representedApplyCount ?? 0,
+      snapshotRollbackCount: snapshotRecord?.representedRollbackCount ?? 0,
+      compactionEnabled: true,
+      compactionThreshold: threshold,
+      compactionKeepTail: keepTail,
+      lastCompactedAt: snapshotRecord?.compactedAt ?? null,
+      lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
+      hydrated: false,
+      lastHydratedAt: null,
+      lastHydrationError: null,
+    };
+  }
+
+  const compactCount = Math.max(0, records.length - keepTail);
+  let state = snapshotRecord?.state ??
+    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+  const compactedRecords = records.slice(0, compactCount);
+  for (const record of compactedRecords) {
+    state = applyRecordToState(state, record);
+  }
+  const compactedApplyCount =
+    compactedRecords.filter((r) => r.kind === "apply").length;
+  const compactedRollbackCount = compactedRecords.length - compactedApplyCount;
+
+  const nextSnapshotRecord: LedgerSnapshotRecord<K> = {
+    version: 1,
+    key,
+    representedRecordCount: snapshotRecordCount + compactedRecords.length,
+    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
+      compactedApplyCount,
+    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
+      compactedRollbackCount,
+    compactedAt: new Date().toISOString(),
+    compactedTick: state.lastRollbackTick >= 0
+      ? state.lastRollbackTick
+      : state.lastAppliedTick,
+    state,
+  };
+  const tailRecords = records.slice(compactCount);
+  const tailApplyCount = tailRecords.filter((r) => r.kind === "apply").length;
+  const tailRollbackCount = tailRecords.length - tailApplyCount;
+
+  await ensureDir();
+  await Deno.writeTextFile(
+    snapshotPath,
+    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
+  );
+  await Deno.writeTextFile(
+    logPath,
+    tailRecords.map((r) => JSON.stringify(r)).join("\n") +
+      (tailRecords.length > 0 ? "\n" : ""),
+    { create: true },
+  );
+
+  return {
+    path: logPath,
+    snapshotPath,
+    exists: true,
+    snapshotExists: true,
+    recordCount: nextSnapshotRecord.representedRecordCount + tailRecords.length,
+    applyCount: nextSnapshotRecord.representedApplyCount + tailApplyCount,
+    rollbackCount: nextSnapshotRecord.representedRollbackCount +
+      tailRollbackCount,
+    tailRecordCount: tailRecords.length,
+    tailApplyCount,
+    tailRollbackCount,
+    snapshotRecordCount: nextSnapshotRecord.representedRecordCount,
+    snapshotApplyCount: nextSnapshotRecord.representedApplyCount,
+    snapshotRollbackCount: nextSnapshotRecord.representedRollbackCount,
+    compactionEnabled: true,
+    compactionThreshold: threshold,
+    compactionKeepTail: keepTail,
+    lastCompactedAt: nextSnapshotRecord.compactedAt,
+    lastCompactedTick: nextSnapshotRecord.compactedTick,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
+};
+
+export const appendLedgerRecordAndMaybeCompact = async <
+  K extends GeneticLedgerKey,
+>(
+  key: K,
+  record: LedgerRecord<K>,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerPersistenceSummary> => {
+  await appendLedgerRecord(record);
+  return await compactLedgerPersistence(key, options);
+};
 
 ```
 
@@ -15336,921 +13651,6 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
-
-```
-
----
-
-## FILE: GENETIC_LEDGER_PERSISTENCE.ts
-
-```typescript
-import {
-  applyBaseTaxLedgerRuntimeUpdate,
-  type BaseTaxLedgerRuntimeEvent,
-  type BaseTaxLedgerRuntimeSnapshot,
-  type BaseTaxLedgerRuntimeState,
-  createBaseTaxLedgerRuntime,
-  rollbackBaseTaxLedgerRuntimeUpdate,
-  snapshotBaseTaxLedgerRuntime,
-} from "./GENETIC_LEDGER_RUNTIME.ts";
-
-export const BASE_TAX_LEDGER_LOG_PATH = ".omega/ledger/base_tax_ledger.jsonl";
-export const BASE_TAX_LEDGER_SNAPSHOT_PATH =
-  ".omega/ledger/base_tax_ledger.snapshot.json";
-export const BASE_TAX_LEDGER_COMPACT_THRESHOLD = Math.max(
-  8,
-  Math.floor(
-    Number(Deno.env.get("OMEGA_BASE_TAX_LEDGER_COMPACT_THRESHOLD") ?? "64"),
-  ),
-);
-export const BASE_TAX_LEDGER_COMPACT_KEEP_TAIL = Math.max(
-  1,
-  Math.floor(
-    Number(Deno.env.get("OMEGA_BASE_TAX_LEDGER_COMPACT_KEEP_TAIL") ?? "16"),
-  ),
-);
-
-export type BaseTaxLedgerRecord =
-  | {
-    kind: "apply";
-    key: "pulse.homeostasis.baseTax";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: "pulse.homeostasis.baseTax";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type BaseTaxLedgerSnapshotRecord = {
-  version: 1;
-  key: "pulse.homeostasis.baseTax";
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: BaseTaxLedgerRuntimeState;
-};
-
-export type BaseTaxLedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type BaseTaxLedgerHydrationResult = {
-  state: BaseTaxLedgerRuntimeState;
-  snapshot: BaseTaxLedgerRuntimeSnapshot;
-  persistence: BaseTaxLedgerPersistenceSummary;
-};
-
-const ensureDir = async (): Promise<void> => {
-  await Deno.mkdir(".omega/ledger", { recursive: true });
-};
-
-const isFiniteNumber = (value: unknown): value is number =>
-  typeof value === "number" && Number.isFinite(value);
-const isLedgerKey = (value: unknown): value is "pulse.homeostasis.baseTax" =>
-  value === "pulse.homeostasis.baseTax";
-const countKinds = (records: readonly BaseTaxLedgerRecord[]) => ({
-  applyCount: records.filter((record) => record.kind === "apply").length,
-  rollbackCount: records.filter((record) => record.kind === "rollback").length,
-});
-const deriveCompactedTick = (state: BaseTaxLedgerRuntimeState): number =>
-  state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
-
-const parseRecord = (line: string): BaseTaxLedgerRecord | null => {
-  if (line.trim().length === 0) return null;
-  try {
-    const raw = JSON.parse(line) as Record<string, unknown>;
-    if (raw.key !== "pulse.homeostasis.baseTax") return null;
-    if (raw.kind === "apply") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.previous_value !== "number" ||
-        typeof raw.next_value !== "number" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as BaseTaxLedgerRecord;
-    }
-    if (raw.kind === "rollback") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as BaseTaxLedgerRecord;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
-
-const parseRuntimeEvent = (
-  raw: unknown,
-): BaseTaxLedgerRuntimeEvent | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const event = raw as Record<string, unknown>;
-  if (
-    typeof event.rollbackToken !== "string" ||
-    !isFiniteNumber(event.previousValue) ||
-    !isFiniteNumber(event.nextValue) ||
-    !isFiniteNumber(event.tick) ||
-    typeof event.source !== "string" ||
-    typeof event.reason !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackAtTick !== null && !isFiniteNumber(event.rolledBackAtTick)
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackSource !== null &&
-    typeof event.rolledBackSource !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackReason !== null &&
-    typeof event.rolledBackReason !== "string"
-  ) {
-    return null;
-  }
-  return {
-    rollbackToken: event.rollbackToken,
-    previousValue: event.previousValue,
-    nextValue: event.nextValue,
-    tick: event.tick,
-    source: event.source,
-    reason: event.reason,
-    rolledBackAtTick: event.rolledBackAtTick,
-    rolledBackSource: event.rolledBackSource,
-    rolledBackReason: event.rolledBackReason,
-  };
-};
-
-const parseRuntimeState = (
-  raw: unknown,
-): BaseTaxLedgerRuntimeState | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const state = raw as Record<string, unknown>;
-  if (
-    !isLedgerKey(state.key) ||
-    !isFiniteNumber(state.currentValue) ||
-    !isFiniteNumber(state.defaultValue) ||
-    !isFiniteNumber(state.min) ||
-    !isFiniteNumber(state.max) ||
-    state.rollbackClass !== "immediate" ||
-    !isFiniteNumber(state.seq) ||
-    !isFiniteNumber(state.historyLimit) ||
-    !Array.isArray(state.history) ||
-    !isFiniteNumber(state.lastAppliedTick) ||
-    typeof state.lastAppliedSource !== "string" ||
-    typeof state.lastAppliedReason !== "string" ||
-    (
-      state.lastAppliedRollbackToken !== null &&
-      typeof state.lastAppliedRollbackToken !== "string"
-    ) ||
-    !isFiniteNumber(state.lastRollbackTick) ||
-    typeof state.lastRollbackSource !== "string" ||
-    typeof state.lastRollbackReason !== "string" ||
-    (
-      state.lastRollbackToken !== null &&
-      typeof state.lastRollbackToken !== "string"
-    )
-  ) {
-    return null;
-  }
-  const history = state.history
-    .map(parseRuntimeEvent)
-    .filter((event): event is BaseTaxLedgerRuntimeEvent => event !== null);
-  if (history.length !== state.history.length) return null;
-  return {
-    key: state.key,
-    currentValue: state.currentValue,
-    defaultValue: state.defaultValue,
-    min: state.min,
-    max: state.max,
-    rollbackClass: state.rollbackClass,
-    seq: state.seq,
-    historyLimit: state.historyLimit,
-    history,
-    lastAppliedTick: state.lastAppliedTick,
-    lastAppliedSource: state.lastAppliedSource,
-    lastAppliedReason: state.lastAppliedReason,
-    lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-    lastRollbackTick: state.lastRollbackTick,
-    lastRollbackSource: state.lastRollbackSource,
-    lastRollbackReason: state.lastRollbackReason,
-    lastRollbackToken: state.lastRollbackToken,
-  };
-};
-
-const parseSnapshotRecord = (
-  raw: string,
-): BaseTaxLedgerSnapshotRecord | null => {
-  if (raw.trim().length === 0) return null;
-  try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (
-      parsed.version !== 1 ||
-      !isLedgerKey(parsed.key) ||
-      !isFiniteNumber(parsed.representedRecordCount) ||
-      !isFiniteNumber(parsed.representedApplyCount) ||
-      !isFiniteNumber(parsed.representedRollbackCount) ||
-      typeof parsed.compactedAt !== "string" ||
-      !isFiniteNumber(parsed.compactedTick)
-    ) {
-      return null;
-    }
-    const state = parseRuntimeState(parsed.state);
-    if (!state) return null;
-    return {
-      version: 1,
-      key: "pulse.homeostasis.baseTax",
-      representedRecordCount: parsed.representedRecordCount,
-      representedApplyCount: parsed.representedApplyCount,
-      representedRollbackCount: parsed.representedRollbackCount,
-      compactedAt: parsed.compactedAt,
-      compactedTick: parsed.compactedTick,
-      state,
-    };
-  } catch {
-    return null;
-  }
-};
-
-const applyRecordToRuntimeState = (
-  state: BaseTaxLedgerRuntimeState,
-  record: BaseTaxLedgerRecord,
-): BaseTaxLedgerRuntimeState => {
-  if (record.kind === "apply") {
-    return applyBaseTaxLedgerRuntimeUpdate(state, {
-      value: record.next_value,
-      tick: record.tick,
-      source: record.source,
-      reason: record.reason,
-    }).state;
-  }
-  return rollbackBaseTaxLedgerRuntimeUpdate(state, {
-    rollbackToken: record.rollback_token,
-    tick: record.tick,
-    source: record.source,
-    reason: record.reason,
-  }).state;
-};
-
-const buildPersistenceSummary = (
-  tailRecords: readonly BaseTaxLedgerRecord[],
-  snapshotRecord: BaseTaxLedgerSnapshotRecord | null,
-  path: string,
-  snapshotPath: string,
-): BaseTaxLedgerPersistenceSummary => {
-  const tailCounts = countKinds(tailRecords);
-  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
-  const snapshotApplyCount = snapshotRecord?.representedApplyCount ?? 0;
-  const snapshotRollbackCount = snapshotRecord?.representedRollbackCount ?? 0;
-  return {
-    path,
-    snapshotPath,
-    exists: snapshotRecord !== null || tailRecords.length > 0,
-    snapshotExists: snapshotRecord !== null,
-    recordCount: snapshotRecordCount + tailRecords.length,
-    applyCount: snapshotApplyCount + tailCounts.applyCount,
-    rollbackCount: snapshotRollbackCount + tailCounts.rollbackCount,
-    tailRecordCount: tailRecords.length,
-    tailApplyCount: tailCounts.applyCount,
-    tailRollbackCount: tailCounts.rollbackCount,
-    snapshotRecordCount,
-    snapshotApplyCount,
-    snapshotRollbackCount,
-    compactionEnabled: true,
-    compactionThreshold: BASE_TAX_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
-    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-};
-
-export const readBaseTaxLedgerRecords = async (
-  path = BASE_TAX_LEDGER_LOG_PATH,
-): Promise<BaseTaxLedgerRecord[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((
-      x,
-    ): x is BaseTaxLedgerRecord => x !== null);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return [];
-    throw err;
-  }
-};
-
-export const readBaseTaxLedgerSnapshot = async (
-  path = BASE_TAX_LEDGER_SNAPSHOT_PATH,
-): Promise<BaseTaxLedgerSnapshotRecord | null> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return parseSnapshotRecord(raw);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return null;
-    throw err;
-  }
-};
-
-export const readBaseTaxLedgerPersistenceSummary = async (
-  path = BASE_TAX_LEDGER_LOG_PATH,
-  snapshotPath = BASE_TAX_LEDGER_SNAPSHOT_PATH,
-): Promise<BaseTaxLedgerPersistenceSummary> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readBaseTaxLedgerRecords(path),
-    readBaseTaxLedgerSnapshot(snapshotPath),
-  ]);
-  return buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
-};
-
-export const appendBaseTaxLedgerRecord = async (
-  record: BaseTaxLedgerRecord,
-  path = BASE_TAX_LEDGER_LOG_PATH,
-): Promise<void> => {
-  await ensureDir();
-  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-export const recordFromApplyMutation = (
-  mutation: BaseTaxLedgerRuntimeEvent,
-): BaseTaxLedgerRecord => ({
-  kind: "apply",
-  key: "pulse.homeostasis.baseTax",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.tick,
-  source: mutation.source,
-  reason: mutation.reason,
-  previous_value: mutation.previousValue,
-  next_value: mutation.nextValue,
-  recorded_at: new Date().toISOString(),
-});
-
-export const recordFromRollbackMutation = (
-  mutation: BaseTaxLedgerRuntimeEvent,
-): BaseTaxLedgerRecord => ({
-  kind: "rollback",
-  key: "pulse.homeostasis.baseTax",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.rolledBackAtTick ?? mutation.tick,
-  source: mutation.rolledBackSource ?? mutation.source,
-  reason: mutation.rolledBackReason ?? mutation.reason,
-  recorded_at: new Date().toISOString(),
-});
-
-export const compactBaseTaxLedgerPersistence = async (
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<BaseTaxLedgerPersistenceSummary> => {
-  const path = options.path ?? BASE_TAX_LEDGER_LOG_PATH;
-  const snapshotPath = options.snapshotPath ?? BASE_TAX_LEDGER_SNAPSHOT_PATH;
-  const initialValue = options.initialValue ?? 0;
-  const historyLimit = options.historyLimit ?? 32;
-  const threshold = Math.max(
-    1,
-    Math.floor(options.threshold ?? BASE_TAX_LEDGER_COMPACT_THRESHOLD),
-  );
-  const keepTailRecords = Math.max(
-    1,
-    Math.floor(options.keepTailRecords ?? BASE_TAX_LEDGER_COMPACT_KEEP_TAIL),
-  );
-  const [records, snapshotRecord] = await Promise.all([
-    readBaseTaxLedgerRecords(path),
-    readBaseTaxLedgerSnapshot(snapshotPath),
-  ]);
-  if (
-    records.length <= keepTailRecords ||
-    snapshotRecord !== null && records.length === 0 ||
-    snapshotRecord === null && records.length < threshold ||
-    snapshotRecord !== null &&
-      snapshotRecord.representedRecordCount + records.length < threshold
-  ) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  const compactCount = Math.max(0, records.length - keepTailRecords);
-  if (compactCount === 0) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  let state = snapshotRecord?.state ??
-    createBaseTaxLedgerRuntime(initialValue, historyLimit);
-  const compactedRecords = records.slice(0, compactCount);
-  for (const record of compactedRecords) {
-    state = applyRecordToRuntimeState(state, record);
-  }
-  const compactedCounts = countKinds(compactedRecords);
-  const nextSnapshotRecord: BaseTaxLedgerSnapshotRecord = {
-    version: 1,
-    key: "pulse.homeostasis.baseTax",
-    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
-      compactedRecords.length,
-    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
-      compactedCounts.applyCount,
-    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
-      compactedCounts.rollbackCount,
-    compactedAt: new Date().toISOString(),
-    compactedTick: deriveCompactedTick(state),
-    state,
-  };
-  const tailRecords = records.slice(compactCount);
-
-  await ensureDir();
-  await Deno.writeTextFile(
-    snapshotPath,
-    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
-  );
-  await Deno.writeTextFile(
-    path,
-    tailRecords.map((record) => JSON.stringify(record)).join("\n") +
-      (tailRecords.length > 0 ? "\n" : ""),
-    { create: true },
-  );
-
-  return {
-    ...buildPersistenceSummary(
-      tailRecords,
-      nextSnapshotRecord,
-      path,
-      snapshotPath,
-    ),
-    compactionThreshold: threshold,
-    compactionKeepTail: keepTailRecords,
-  };
-};
-
-export const appendBaseTaxLedgerRecordAndMaybeCompact = async (
-  record: BaseTaxLedgerRecord,
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<BaseTaxLedgerPersistenceSummary> => {
-  const path = options.path ?? BASE_TAX_LEDGER_LOG_PATH;
-  await appendBaseTaxLedgerRecord(record, path);
-  return await compactBaseTaxLedgerPersistence({
-    ...options,
-    path,
-  });
-};
-
-export const hydrateBaseTaxLedgerRuntime = async (
-  initialValue: number,
-  historyLimit = 32,
-  path = BASE_TAX_LEDGER_LOG_PATH,
-  snapshotPath = BASE_TAX_LEDGER_SNAPSHOT_PATH,
-): Promise<BaseTaxLedgerHydrationResult> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readBaseTaxLedgerRecords(path),
-    readBaseTaxLedgerSnapshot(snapshotPath),
-  ]);
-  let state = snapshotRecord?.state ??
-    createBaseTaxLedgerRuntime(initialValue, historyLimit);
-  let hydrationError: string | null = null;
-
-  try {
-    for (const record of records) {
-      state = applyRecordToRuntimeState(state, record);
-    }
-  } catch (err) {
-    hydrationError = String(err);
-  }
-
-  let persistence = buildPersistenceSummary(
-    records,
-    snapshotRecord,
-    path,
-    snapshotPath,
-  );
-  if (
-    hydrationError === null &&
-    persistence.tailRecordCount > persistence.compactionKeepTail &&
-    persistence.recordCount >= persistence.compactionThreshold
-  ) {
-    persistence = await compactBaseTaxLedgerPersistence({
-      initialValue,
-      historyLimit,
-      path,
-      snapshotPath,
-      threshold: persistence.compactionThreshold,
-      keepTailRecords: persistence.compactionKeepTail,
-    });
-  }
-
-  return {
-    state,
-    snapshot: snapshotBaseTaxLedgerRuntime(state),
-    persistence: {
-      ...persistence,
-      hydrated: hydrationError === null,
-      lastHydratedAt: new Date().toISOString(),
-      lastHydrationError: hydrationError,
-    },
-  };
-};
-
-```
-
----
-
-## FILE: GENETIC_LEDGER_RUNTIME.ts
-
-```typescript
-import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
-
-const BASE_TAX_ENTRY = geneticLedgerEntryByKey("pulse.homeostasis.baseTax");
-if (!BASE_TAX_ENTRY) {
-  throw new Error(
-    "[GENETIC_LEDGER_RUNTIME] missing pulse.homeostasis.baseTax entry",
-  );
-}
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-export type BaseTaxLedgerRuntimeEvent = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
-
-export type BaseTaxLedgerRuntimeState = {
-  key: "pulse.homeostasis.baseTax";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  seq: number;
-  historyLimit: number;
-  history: readonly BaseTaxLedgerRuntimeEvent[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type BaseTaxLedgerRuntimeSnapshot = {
-  key: "pulse.homeostasis.baseTax";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type BaseTaxLedgerApplyResult = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: BaseTaxLedgerRuntimeEvent | null;
-  state: BaseTaxLedgerRuntimeState;
-};
-
-export type BaseTaxLedgerRollbackResult = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: BaseTaxLedgerRuntimeEvent | null;
-  state: BaseTaxLedgerRuntimeState;
-};
-
-const cloneHistory = (
-  history: readonly BaseTaxLedgerRuntimeEvent[],
-): BaseTaxLedgerRuntimeEvent[] => history.map((event) => ({ ...event }));
-
-export const createBaseTaxLedgerRuntime = (
-  initialValue = BASE_TAX_ENTRY.defaultValue,
-  historyLimit = 32,
-): BaseTaxLedgerRuntimeState => ({
-  key: "pulse.homeostasis.baseTax",
-  currentValue: clamp(initialValue, BASE_TAX_ENTRY.min, BASE_TAX_ENTRY.max),
-  defaultValue: BASE_TAX_ENTRY.defaultValue,
-  min: BASE_TAX_ENTRY.min,
-  max: BASE_TAX_ENTRY.max,
-  rollbackClass: "immediate",
-  seq: 0,
-  historyLimit: Math.max(1, Math.floor(historyLimit)),
-  history: [],
-  lastAppliedTick: -1,
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: "bootstrap",
-  lastAppliedRollbackToken: null,
-  lastRollbackTick: -1,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: "bootstrap",
-  lastRollbackToken: null,
-});
-
-export const snapshotBaseTaxLedgerRuntime = (
-  state: BaseTaxLedgerRuntimeState,
-): BaseTaxLedgerRuntimeSnapshot => ({
-  key: state.key,
-  currentValue: state.currentValue,
-  defaultValue: state.defaultValue,
-  min: state.min,
-  max: state.max,
-  rollbackClass: state.rollbackClass,
-  historyDepth: state.history.length,
-  lastAppliedTick: state.lastAppliedTick,
-  lastAppliedSource: state.lastAppliedSource,
-  lastAppliedReason: state.lastAppliedReason,
-  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-  lastRollbackTick: state.lastRollbackTick,
-  lastRollbackSource: state.lastRollbackSource,
-  lastRollbackReason: state.lastRollbackReason,
-  lastRollbackToken: state.lastRollbackToken,
-});
-
-export const applyBaseTaxLedgerRuntimeUpdate = (
-  state: BaseTaxLedgerRuntimeState,
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): BaseTaxLedgerApplyResult => {
-  const previousValue = state.currentValue;
-  const nextValue = clamp(update.value, state.min, state.max);
-  if (nextValue === previousValue) {
-    return {
-      status: "noop",
-      changed: false,
-      previousValue,
-      nextValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const tick = update.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(update.tick));
-  const source = (update.source ?? "runtime").trim() || "runtime";
-  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken = `${state.key}@${tick}:${
-    String(state.seq + 1).padStart(4, "0")
-  }`;
-  const mutation: BaseTaxLedgerRuntimeEvent = {
-    rollbackToken,
-    previousValue,
-    nextValue,
-    tick,
-    source,
-    reason,
-    rolledBackAtTick: null,
-    rolledBackSource: null,
-    rolledBackReason: null,
-  };
-  const history = [mutation, ...cloneHistory(state.history)].slice(
-    0,
-    state.historyLimit,
-  );
-  return {
-    status: "applied",
-    changed: true,
-    previousValue,
-    nextValue,
-    mutation,
-    state: {
-      ...state,
-      currentValue: nextValue,
-      seq: state.seq + 1,
-      history,
-      lastAppliedTick: tick,
-      lastAppliedSource: source,
-      lastAppliedReason: reason,
-      lastAppliedRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const rollbackBaseTaxLedgerRuntimeUpdate = (
-  state: BaseTaxLedgerRuntimeState,
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): BaseTaxLedgerRollbackResult => {
-  const rollbackToken = rollback.rollbackToken.trim();
-  const previousValue = state.currentValue;
-  if (rollbackToken.length === 0) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) =>
-    event.rollbackToken === rollbackToken
-  );
-  if (idx === -1) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const target = history[idx];
-  if (target.rolledBackAtTick !== null) {
-    return {
-      status: "consumed",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const latestActive = history.find((event) => event.rolledBackAtTick === null);
-  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
-    return {
-      status: "stale",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const tick = rollback.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(rollback.tick));
-  const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
-    "ledger_rollback";
-  const nextValue = clamp(target.previousValue, state.min, state.max);
-  const updatedMutation: BaseTaxLedgerRuntimeEvent = {
-    ...target,
-    rolledBackAtTick: tick,
-    rolledBackSource: source,
-    rolledBackReason: reason,
-  };
-  history[idx] = updatedMutation;
-
-  return {
-    status: "rolled_back",
-    changed: nextValue !== previousValue,
-    previousValue,
-    nextValue,
-    mutation: { ...updatedMutation },
-    state: {
-      ...state,
-      currentValue: nextValue,
-      history,
-      lastRollbackTick: tick,
-      lastRollbackSource: source,
-      lastRollbackReason: reason,
-      lastRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const resetBaseTaxLedgerRuntime = (
-  state: BaseTaxLedgerRuntimeState,
-  reason = "reset",
-): BaseTaxLedgerRuntimeState => ({
-  ...createBaseTaxLedgerRuntime(state.defaultValue, state.historyLimit),
-  lastAppliedReason: reason,
-  lastRollbackReason: reason,
-});
-
-export const resolveWithPhase = (
-  baseValue: number,
-  modifiers: Array<{ phase: number; weight: number }>,
-): number => {
-  let real = baseValue;
-  let imag = 0;
-
-  for (const mod of modifiers) {
-    const rad = mod.phase * Math.PI / 128; // 0-255 → radians
-    real += mod.weight * Math.cos(rad);
-    imag += mod.weight * Math.sin(rad);
-  }
-
-  // Return "intensity" = |z|
-  return Math.floor(Math.sqrt(real * real + imag * imag));
-};
 
 ```
 
@@ -17508,920 +14908,6 @@ export function injectHologram(
   }
   return newContent;
 }
-
-```
-
----
-
-## FILE: HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts
-
-```typescript
-import {
-  applyTargetEnergyLedgerRuntimeUpdate,
-  createTargetEnergyLedgerRuntime,
-  rollbackTargetEnergyLedgerRuntimeUpdate,
-  snapshotTargetEnergyLedgerRuntime,
-  type TargetEnergyLedgerRuntimeEvent,
-  type TargetEnergyLedgerRuntimeSnapshot,
-  type TargetEnergyLedgerRuntimeState,
-} from "./HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
-
-export const TARGET_ENERGY_LEDGER_LOG_PATH =
-  ".omega/ledger/target_energy_ledger.jsonl";
-export const TARGET_ENERGY_LEDGER_SNAPSHOT_PATH =
-  ".omega/ledger/target_energy_ledger.snapshot.json";
-export const TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD = Math.max(
-  8,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD") ?? "64",
-    ),
-  ),
-);
-export const TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL = Math.max(
-  1,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL") ?? "16",
-    ),
-  ),
-);
-
-export type TargetEnergyLedgerRecord =
-  | {
-    kind: "apply";
-    key: "pulse.homeostasis.targetEnergy";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: "pulse.homeostasis.targetEnergy";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type TargetEnergyLedgerSnapshotRecord = {
-  version: 1;
-  key: "pulse.homeostasis.targetEnergy";
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: TargetEnergyLedgerRuntimeState;
-};
-
-export type TargetEnergyLedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type TargetEnergyLedgerHydrationResult = {
-  state: TargetEnergyLedgerRuntimeState;
-  snapshot: TargetEnergyLedgerRuntimeSnapshot;
-  persistence: TargetEnergyLedgerPersistenceSummary;
-};
-
-const ensureDir = async (): Promise<void> => {
-  await Deno.mkdir(".omega/ledger", { recursive: true });
-};
-
-const isFiniteNumber = (value: unknown): value is number =>
-  typeof value === "number" && Number.isFinite(value);
-const isLedgerKey = (
-  value: unknown,
-): value is "pulse.homeostasis.targetEnergy" =>
-  value === "pulse.homeostasis.targetEnergy";
-const countKinds = (records: readonly TargetEnergyLedgerRecord[]) => ({
-  applyCount: records.filter((record) => record.kind === "apply").length,
-  rollbackCount: records.filter((record) => record.kind === "rollback").length,
-});
-const deriveCompactedTick = (state: TargetEnergyLedgerRuntimeState): number =>
-  state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
-
-const parseRecord = (line: string): TargetEnergyLedgerRecord | null => {
-  if (line.trim().length === 0) return null;
-  try {
-    const raw = JSON.parse(line) as Record<string, unknown>;
-    if (raw.key !== "pulse.homeostasis.targetEnergy") return null;
-    if (raw.kind === "apply") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.previous_value !== "number" ||
-        typeof raw.next_value !== "number" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as TargetEnergyLedgerRecord;
-    }
-    if (raw.kind === "rollback") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as TargetEnergyLedgerRecord;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
-
-const parseRuntimeEvent = (
-  raw: unknown,
-): TargetEnergyLedgerRuntimeEvent | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const event = raw as Record<string, unknown>;
-  if (
-    typeof event.rollbackToken !== "string" ||
-    !isFiniteNumber(event.previousValue) ||
-    !isFiniteNumber(event.nextValue) ||
-    !isFiniteNumber(event.tick) ||
-    typeof event.source !== "string" ||
-    typeof event.reason !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackAtTick !== null && !isFiniteNumber(event.rolledBackAtTick)
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackSource !== null &&
-    typeof event.rolledBackSource !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackReason !== null &&
-    typeof event.rolledBackReason !== "string"
-  ) {
-    return null;
-  }
-  return {
-    rollbackToken: event.rollbackToken,
-    previousValue: event.previousValue,
-    nextValue: event.nextValue,
-    tick: event.tick,
-    source: event.source,
-    reason: event.reason,
-    rolledBackAtTick: event.rolledBackAtTick,
-    rolledBackSource: event.rolledBackSource,
-    rolledBackReason: event.rolledBackReason,
-  };
-};
-
-const parseRuntimeState = (
-  raw: unknown,
-): TargetEnergyLedgerRuntimeState | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const state = raw as Record<string, unknown>;
-  if (
-    !isLedgerKey(state.key) ||
-    !isFiniteNumber(state.currentValue) ||
-    !isFiniteNumber(state.defaultValue) ||
-    !isFiniteNumber(state.min) ||
-    !isFiniteNumber(state.max) ||
-    state.rollbackClass !== "immediate" ||
-    !isFiniteNumber(state.seq) ||
-    !isFiniteNumber(state.historyLimit) ||
-    !Array.isArray(state.history) ||
-    !isFiniteNumber(state.lastAppliedTick) ||
-    typeof state.lastAppliedSource !== "string" ||
-    typeof state.lastAppliedReason !== "string" ||
-    (
-      state.lastAppliedRollbackToken !== null &&
-      typeof state.lastAppliedRollbackToken !== "string"
-    ) ||
-    !isFiniteNumber(state.lastRollbackTick) ||
-    typeof state.lastRollbackSource !== "string" ||
-    typeof state.lastRollbackReason !== "string" ||
-    (
-      state.lastRollbackToken !== null &&
-      typeof state.lastRollbackToken !== "string"
-    )
-  ) {
-    return null;
-  }
-  const history = state.history
-    .map(parseRuntimeEvent)
-    .filter((event): event is TargetEnergyLedgerRuntimeEvent => event !== null);
-  if (history.length !== state.history.length) return null;
-  return {
-    key: state.key,
-    currentValue: state.currentValue,
-    defaultValue: state.defaultValue,
-    min: state.min,
-    max: state.max,
-    rollbackClass: state.rollbackClass,
-    seq: state.seq,
-    historyLimit: state.historyLimit,
-    history,
-    lastAppliedTick: state.lastAppliedTick,
-    lastAppliedSource: state.lastAppliedSource,
-    lastAppliedReason: state.lastAppliedReason,
-    lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-    lastRollbackTick: state.lastRollbackTick,
-    lastRollbackSource: state.lastRollbackSource,
-    lastRollbackReason: state.lastRollbackReason,
-    lastRollbackToken: state.lastRollbackToken,
-  };
-};
-
-const parseSnapshotRecord = (
-  raw: string,
-): TargetEnergyLedgerSnapshotRecord | null => {
-  if (raw.trim().length === 0) return null;
-  try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (
-      parsed.version !== 1 ||
-      !isLedgerKey(parsed.key) ||
-      !isFiniteNumber(parsed.representedRecordCount) ||
-      !isFiniteNumber(parsed.representedApplyCount) ||
-      !isFiniteNumber(parsed.representedRollbackCount) ||
-      typeof parsed.compactedAt !== "string" ||
-      !isFiniteNumber(parsed.compactedTick)
-    ) {
-      return null;
-    }
-    const state = parseRuntimeState(parsed.state);
-    if (!state) return null;
-    return {
-      version: 1,
-      key: "pulse.homeostasis.targetEnergy",
-      representedRecordCount: parsed.representedRecordCount,
-      representedApplyCount: parsed.representedApplyCount,
-      representedRollbackCount: parsed.representedRollbackCount,
-      compactedAt: parsed.compactedAt,
-      compactedTick: parsed.compactedTick,
-      state,
-    };
-  } catch {
-    return null;
-  }
-};
-
-const applyRecordToRuntimeState = (
-  state: TargetEnergyLedgerRuntimeState,
-  record: TargetEnergyLedgerRecord,
-): TargetEnergyLedgerRuntimeState => {
-  if (record.kind === "apply") {
-    return applyTargetEnergyLedgerRuntimeUpdate(state, {
-      value: record.next_value,
-      tick: record.tick,
-      source: record.source,
-      reason: record.reason,
-    }).state;
-  }
-  return rollbackTargetEnergyLedgerRuntimeUpdate(state, {
-    rollbackToken: record.rollback_token,
-    tick: record.tick,
-    source: record.source,
-    reason: record.reason,
-  }).state;
-};
-
-const buildPersistenceSummary = (
-  tailRecords: readonly TargetEnergyLedgerRecord[],
-  snapshotRecord: TargetEnergyLedgerSnapshotRecord | null,
-  path: string,
-  snapshotPath: string,
-): TargetEnergyLedgerPersistenceSummary => {
-  const tailCounts = countKinds(tailRecords);
-  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
-  const snapshotApplyCount = snapshotRecord?.representedApplyCount ?? 0;
-  const snapshotRollbackCount = snapshotRecord?.representedRollbackCount ?? 0;
-  return {
-    path,
-    snapshotPath,
-    exists: snapshotRecord !== null || tailRecords.length > 0,
-    snapshotExists: snapshotRecord !== null,
-    recordCount: snapshotRecordCount + tailRecords.length,
-    applyCount: snapshotApplyCount + tailCounts.applyCount,
-    rollbackCount: snapshotRollbackCount + tailCounts.rollbackCount,
-    tailRecordCount: tailRecords.length,
-    tailApplyCount: tailCounts.applyCount,
-    tailRollbackCount: tailCounts.rollbackCount,
-    snapshotRecordCount,
-    snapshotApplyCount,
-    snapshotRollbackCount,
-    compactionEnabled: true,
-    compactionThreshold: TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
-    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-};
-
-export const readTargetEnergyLedgerRecords = async (
-  path = TARGET_ENERGY_LEDGER_LOG_PATH,
-): Promise<TargetEnergyLedgerRecord[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((
-      x,
-    ): x is TargetEnergyLedgerRecord => x !== null);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return [];
-    throw err;
-  }
-};
-
-export const readTargetEnergyLedgerSnapshot = async (
-  path = TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-): Promise<TargetEnergyLedgerSnapshotRecord | null> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return parseSnapshotRecord(raw);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return null;
-    throw err;
-  }
-};
-
-export const readTargetEnergyLedgerPersistenceSummary = async (
-  path = TARGET_ENERGY_LEDGER_LOG_PATH,
-  snapshotPath = TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-): Promise<TargetEnergyLedgerPersistenceSummary> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readTargetEnergyLedgerRecords(path),
-    readTargetEnergyLedgerSnapshot(snapshotPath),
-  ]);
-  return buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
-};
-
-export const appendTargetEnergyLedgerRecord = async (
-  record: TargetEnergyLedgerRecord,
-  path = TARGET_ENERGY_LEDGER_LOG_PATH,
-): Promise<void> => {
-  await ensureDir();
-  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-export const recordFromTargetEnergyApplyMutation = (
-  mutation: TargetEnergyLedgerRuntimeEvent,
-): TargetEnergyLedgerRecord => ({
-  kind: "apply",
-  key: "pulse.homeostasis.targetEnergy",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.tick,
-  source: mutation.source,
-  reason: mutation.reason,
-  previous_value: mutation.previousValue,
-  next_value: mutation.nextValue,
-  recorded_at: new Date().toISOString(),
-});
-
-export const recordFromTargetEnergyRollbackMutation = (
-  mutation: TargetEnergyLedgerRuntimeEvent,
-): TargetEnergyLedgerRecord => ({
-  kind: "rollback",
-  key: "pulse.homeostasis.targetEnergy",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.rolledBackAtTick ?? mutation.tick,
-  source: mutation.rolledBackSource ?? mutation.source,
-  reason: mutation.rolledBackReason ?? mutation.reason,
-  recorded_at: new Date().toISOString(),
-});
-
-export const compactTargetEnergyLedgerPersistence = async (
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<TargetEnergyLedgerPersistenceSummary> => {
-  const path = options.path ?? TARGET_ENERGY_LEDGER_LOG_PATH;
-  const snapshotPath = options.snapshotPath ??
-    TARGET_ENERGY_LEDGER_SNAPSHOT_PATH;
-  const initialValue = options.initialValue ?? 0;
-  const historyLimit = options.historyLimit ?? 32;
-  const threshold = Math.max(
-    1,
-    Math.floor(options.threshold ?? TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD),
-  );
-  const keepTailRecords = Math.max(
-    1,
-    Math.floor(
-      options.keepTailRecords ?? TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-    ),
-  );
-  const [records, snapshotRecord] = await Promise.all([
-    readTargetEnergyLedgerRecords(path),
-    readTargetEnergyLedgerSnapshot(snapshotPath),
-  ]);
-  if (
-    records.length <= keepTailRecords ||
-    snapshotRecord !== null && records.length === 0 ||
-    snapshotRecord === null && records.length < threshold ||
-    snapshotRecord !== null &&
-      snapshotRecord.representedRecordCount + records.length < threshold
-  ) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  const compactCount = Math.max(0, records.length - keepTailRecords);
-  if (compactCount === 0) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  let state = snapshotRecord?.state ??
-    createTargetEnergyLedgerRuntime(initialValue, historyLimit);
-  const compactedRecords = records.slice(0, compactCount);
-  for (const record of compactedRecords) {
-    state = applyRecordToRuntimeState(state, record);
-  }
-  const compactedCounts = countKinds(compactedRecords);
-  const nextSnapshotRecord: TargetEnergyLedgerSnapshotRecord = {
-    version: 1,
-    key: "pulse.homeostasis.targetEnergy",
-    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
-      compactedRecords.length,
-    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
-      compactedCounts.applyCount,
-    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
-      compactedCounts.rollbackCount,
-    compactedAt: new Date().toISOString(),
-    compactedTick: deriveCompactedTick(state),
-    state,
-  };
-  const tailRecords = records.slice(compactCount);
-
-  await ensureDir();
-  await Deno.writeTextFile(
-    snapshotPath,
-    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
-  );
-  await Deno.writeTextFile(
-    path,
-    tailRecords.map((record) => JSON.stringify(record)).join("\n") +
-      (tailRecords.length > 0 ? "\n" : ""),
-    { create: true },
-  );
-
-  return {
-    ...buildPersistenceSummary(
-      tailRecords,
-      nextSnapshotRecord,
-      path,
-      snapshotPath,
-    ),
-    compactionThreshold: threshold,
-    compactionKeepTail: keepTailRecords,
-  };
-};
-
-export const appendTargetEnergyLedgerRecordAndMaybeCompact = async (
-  record: TargetEnergyLedgerRecord,
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<TargetEnergyLedgerPersistenceSummary> => {
-  const path = options.path ?? TARGET_ENERGY_LEDGER_LOG_PATH;
-  await appendTargetEnergyLedgerRecord(record, path);
-  return await compactTargetEnergyLedgerPersistence({
-    ...options,
-    path,
-  });
-};
-
-export const hydrateTargetEnergyLedgerRuntime = async (
-  initialValue: number,
-  historyLimit = 32,
-  path = TARGET_ENERGY_LEDGER_LOG_PATH,
-  snapshotPath = TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-): Promise<TargetEnergyLedgerHydrationResult> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readTargetEnergyLedgerRecords(path),
-    readTargetEnergyLedgerSnapshot(snapshotPath),
-  ]);
-  let state = snapshotRecord?.state ??
-    createTargetEnergyLedgerRuntime(initialValue, historyLimit);
-  let hydrationError: string | null = null;
-
-  try {
-    for (const record of records) {
-      state = applyRecordToRuntimeState(state, record);
-    }
-  } catch (err) {
-    hydrationError = String(err);
-  }
-
-  let persistence = buildPersistenceSummary(
-    records,
-    snapshotRecord,
-    path,
-    snapshotPath,
-  );
-  if (
-    hydrationError === null &&
-    persistence.tailRecordCount > persistence.compactionKeepTail &&
-    persistence.recordCount >= persistence.compactionThreshold
-  ) {
-    persistence = await compactTargetEnergyLedgerPersistence({
-      initialValue,
-      historyLimit,
-      path,
-      snapshotPath,
-      threshold: persistence.compactionThreshold,
-      keepTailRecords: persistence.compactionKeepTail,
-    });
-  }
-
-  return {
-    state,
-    snapshot: snapshotTargetEnergyLedgerRuntime(state),
-    persistence: {
-      ...persistence,
-      hydrated: hydrationError === null,
-      lastHydratedAt: new Date().toISOString(),
-      lastHydrationError: hydrationError,
-    },
-  };
-};
-
-```
-
----
-
-## FILE: HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts
-
-```typescript
-import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
-
-const TARGET_ENERGY_ENTRY = geneticLedgerEntryByKey(
-  "pulse.homeostasis.targetEnergy",
-);
-if (!TARGET_ENERGY_ENTRY) {
-  throw new Error(
-    "[HOMEOSTASIS_TARGET_LEDGER_RUNTIME] missing pulse.homeostasis.targetEnergy entry",
-  );
-}
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-export type TargetEnergyLedgerRuntimeEvent = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
-
-export type TargetEnergyLedgerRuntimeState = {
-  key: "pulse.homeostasis.targetEnergy";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  seq: number;
-  historyLimit: number;
-  history: readonly TargetEnergyLedgerRuntimeEvent[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type TargetEnergyLedgerRuntimeSnapshot = {
-  key: "pulse.homeostasis.targetEnergy";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type TargetEnergyLedgerApplyResult = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: TargetEnergyLedgerRuntimeEvent | null;
-  state: TargetEnergyLedgerRuntimeState;
-};
-
-export type TargetEnergyLedgerRollbackResult = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: TargetEnergyLedgerRuntimeEvent | null;
-  state: TargetEnergyLedgerRuntimeState;
-};
-
-const cloneHistory = (
-  history: readonly TargetEnergyLedgerRuntimeEvent[],
-): TargetEnergyLedgerRuntimeEvent[] => history.map((event) => ({ ...event }));
-
-export const createTargetEnergyLedgerRuntime = (
-  initialValue = TARGET_ENERGY_ENTRY.defaultValue,
-  historyLimit = 32,
-): TargetEnergyLedgerRuntimeState => ({
-  key: "pulse.homeostasis.targetEnergy",
-  currentValue: clamp(
-    initialValue,
-    TARGET_ENERGY_ENTRY.min,
-    TARGET_ENERGY_ENTRY.max,
-  ),
-  defaultValue: TARGET_ENERGY_ENTRY.defaultValue,
-  min: TARGET_ENERGY_ENTRY.min,
-  max: TARGET_ENERGY_ENTRY.max,
-  rollbackClass: "immediate",
-  seq: 0,
-  historyLimit: Math.max(1, Math.floor(historyLimit)),
-  history: [],
-  lastAppliedTick: -1,
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: "bootstrap",
-  lastAppliedRollbackToken: null,
-  lastRollbackTick: -1,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: "bootstrap",
-  lastRollbackToken: null,
-});
-
-export const snapshotTargetEnergyLedgerRuntime = (
-  state: TargetEnergyLedgerRuntimeState,
-): TargetEnergyLedgerRuntimeSnapshot => ({
-  key: state.key,
-  currentValue: state.currentValue,
-  defaultValue: state.defaultValue,
-  min: state.min,
-  max: state.max,
-  rollbackClass: state.rollbackClass,
-  historyDepth: state.history.length,
-  lastAppliedTick: state.lastAppliedTick,
-  lastAppliedSource: state.lastAppliedSource,
-  lastAppliedReason: state.lastAppliedReason,
-  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-  lastRollbackTick: state.lastRollbackTick,
-  lastRollbackSource: state.lastRollbackSource,
-  lastRollbackReason: state.lastRollbackReason,
-  lastRollbackToken: state.lastRollbackToken,
-});
-
-export const applyTargetEnergyLedgerRuntimeUpdate = (
-  state: TargetEnergyLedgerRuntimeState,
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): TargetEnergyLedgerApplyResult => {
-  const previousValue = state.currentValue;
-  const nextValue = clamp(update.value, state.min, state.max);
-  if (nextValue === previousValue) {
-    return {
-      status: "noop",
-      changed: false,
-      previousValue,
-      nextValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const tick = update.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(update.tick));
-  const source = (update.source ?? "runtime").trim() || "runtime";
-  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken = `${state.key}@${tick}:${
-    String(state.seq + 1).padStart(4, "0")
-  }`;
-  const mutation: TargetEnergyLedgerRuntimeEvent = {
-    rollbackToken,
-    previousValue,
-    nextValue,
-    tick,
-    source,
-    reason,
-    rolledBackAtTick: null,
-    rolledBackSource: null,
-    rolledBackReason: null,
-  };
-  const history = [mutation, ...cloneHistory(state.history)].slice(
-    0,
-    state.historyLimit,
-  );
-  return {
-    status: "applied",
-    changed: true,
-    previousValue,
-    nextValue,
-    mutation,
-    state: {
-      ...state,
-      currentValue: nextValue,
-      seq: state.seq + 1,
-      history,
-      lastAppliedTick: tick,
-      lastAppliedSource: source,
-      lastAppliedReason: reason,
-      lastAppliedRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const rollbackTargetEnergyLedgerRuntimeUpdate = (
-  state: TargetEnergyLedgerRuntimeState,
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): TargetEnergyLedgerRollbackResult => {
-  const rollbackToken = rollback.rollbackToken.trim();
-  const previousValue = state.currentValue;
-  if (rollbackToken.length === 0) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) =>
-    event.rollbackToken === rollbackToken
-  );
-  if (idx === -1) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const target = history[idx];
-  if (target.rolledBackAtTick !== null) {
-    return {
-      status: "consumed",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const latestActive = history.find((event) => event.rolledBackAtTick === null);
-  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
-    return {
-      status: "stale",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const tick = rollback.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(rollback.tick));
-  const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
-    "ledger_rollback";
-  const nextValue = clamp(target.previousValue, state.min, state.max);
-  const updatedMutation: TargetEnergyLedgerRuntimeEvent = {
-    ...target,
-    rolledBackAtTick: tick,
-    rolledBackSource: source,
-    rolledBackReason: reason,
-  };
-  history[idx] = updatedMutation;
-
-  return {
-    status: "rolled_back",
-    changed: nextValue !== previousValue,
-    previousValue,
-    nextValue,
-    mutation: { ...updatedMutation },
-    state: {
-      ...state,
-      currentValue: nextValue,
-      history,
-      lastRollbackTick: tick,
-      lastRollbackSource: source,
-      lastRollbackReason: reason,
-      lastRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const resetTargetEnergyLedgerRuntime = (
-  state: TargetEnergyLedgerRuntimeState,
-  reason = "reset",
-): TargetEnergyLedgerRuntimeState => ({
-  ...createTargetEnergyLedgerRuntime(state.defaultValue, state.historyLimit),
-  lastAppliedReason: reason,
-  lastRollbackReason: reason,
-});
 
 ```
 
@@ -27975,924 +24461,6 @@ export const PREDICTION_MARKET = {
 
 ---
 
-## FILE: PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts
-
-```typescript
-import {
-  applyPressureRingScaleLedgerRuntimeUpdate,
-  createPressureRingScaleLedgerRuntime,
-  type PressureRingScaleLedgerRuntimeEvent,
-  type PressureRingScaleLedgerRuntimeSnapshot,
-  type PressureRingScaleLedgerRuntimeState,
-  rollbackPressureRingScaleLedgerRuntimeUpdate,
-  snapshotPressureRingScaleLedgerRuntime,
-} from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
-
-export const PRESSURE_RING_SCALE_LEDGER_LOG_PATH =
-  ".omega/ledger/pressure_ring_scale_ledger.jsonl";
-export const PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH =
-  ".omega/ledger/pressure_ring_scale_ledger.snapshot.json";
-export const PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD = Math.max(
-  8,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD") ??
-        "64",
-    ),
-  ),
-);
-export const PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL = Math.max(
-  1,
-  Math.floor(
-    Number(
-      Deno.env.get("OMEGA_PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL") ??
-        "16",
-    ),
-  ),
-);
-
-export type PressureRingScaleLedgerRecord =
-  | {
-    kind: "apply";
-    key: "pulse.pressureRing.scale";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: "pulse.pressureRing.scale";
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type PressureRingScaleLedgerSnapshotRecord = {
-  version: 1;
-  key: "pulse.pressureRing.scale";
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: PressureRingScaleLedgerRuntimeState;
-};
-
-export type PressureRingScaleLedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type PressureRingScaleLedgerHydrationResult = {
-  state: PressureRingScaleLedgerRuntimeState;
-  snapshot: PressureRingScaleLedgerRuntimeSnapshot;
-  persistence: PressureRingScaleLedgerPersistenceSummary;
-};
-
-const ensureDir = async (): Promise<void> => {
-  await Deno.mkdir(".omega/ledger", { recursive: true });
-};
-
-const isFiniteNumber = (value: unknown): value is number =>
-  typeof value === "number" && Number.isFinite(value);
-const isLedgerKey = (value: unknown): value is "pulse.pressureRing.scale" =>
-  value === "pulse.pressureRing.scale";
-const countKinds = (records: readonly PressureRingScaleLedgerRecord[]) => ({
-  applyCount: records.filter((record) => record.kind === "apply").length,
-  rollbackCount: records.filter((record) => record.kind === "rollback").length,
-});
-const deriveCompactedTick = (
-  state: PressureRingScaleLedgerRuntimeState,
-): number =>
-  state.lastRollbackTick >= 0 ? state.lastRollbackTick : state.lastAppliedTick;
-
-const parseRecord = (line: string): PressureRingScaleLedgerRecord | null => {
-  if (line.trim().length === 0) return null;
-  try {
-    const raw = JSON.parse(line) as Record<string, unknown>;
-    if (raw.key !== "pulse.pressureRing.scale") return null;
-    if (raw.kind === "apply") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.previous_value !== "number" ||
-        typeof raw.next_value !== "number" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as PressureRingScaleLedgerRecord;
-    }
-    if (raw.kind === "rollback") {
-      if (
-        typeof raw.rollback_token !== "string" ||
-        typeof raw.tick !== "number" ||
-        typeof raw.source !== "string" ||
-        typeof raw.reason !== "string" ||
-        typeof raw.recorded_at !== "string"
-      ) {
-        return null;
-      }
-      return raw as PressureRingScaleLedgerRecord;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
-
-const parseRuntimeEvent = (
-  raw: unknown,
-): PressureRingScaleLedgerRuntimeEvent | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const event = raw as Record<string, unknown>;
-  if (
-    typeof event.rollbackToken !== "string" ||
-    !isFiniteNumber(event.previousValue) ||
-    !isFiniteNumber(event.nextValue) ||
-    !isFiniteNumber(event.tick) ||
-    typeof event.source !== "string" ||
-    typeof event.reason !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackAtTick !== null && !isFiniteNumber(event.rolledBackAtTick)
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackSource !== null &&
-    typeof event.rolledBackSource !== "string"
-  ) {
-    return null;
-  }
-  if (
-    event.rolledBackReason !== null &&
-    typeof event.rolledBackReason !== "string"
-  ) {
-    return null;
-  }
-  return {
-    rollbackToken: event.rollbackToken,
-    previousValue: event.previousValue,
-    nextValue: event.nextValue,
-    tick: event.tick,
-    source: event.source,
-    reason: event.reason,
-    rolledBackAtTick: event.rolledBackAtTick,
-    rolledBackSource: event.rolledBackSource,
-    rolledBackReason: event.rolledBackReason,
-  };
-};
-
-const parseRuntimeState = (
-  raw: unknown,
-): PressureRingScaleLedgerRuntimeState | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const state = raw as Record<string, unknown>;
-  if (
-    !isLedgerKey(state.key) ||
-    !isFiniteNumber(state.currentValue) ||
-    !isFiniteNumber(state.defaultValue) ||
-    !isFiniteNumber(state.min) ||
-    !isFiniteNumber(state.max) ||
-    state.rollbackClass !== "immediate" ||
-    !isFiniteNumber(state.seq) ||
-    !isFiniteNumber(state.historyLimit) ||
-    !Array.isArray(state.history) ||
-    !isFiniteNumber(state.lastAppliedTick) ||
-    typeof state.lastAppliedSource !== "string" ||
-    typeof state.lastAppliedReason !== "string" ||
-    (
-      state.lastAppliedRollbackToken !== null &&
-      typeof state.lastAppliedRollbackToken !== "string"
-    ) ||
-    !isFiniteNumber(state.lastRollbackTick) ||
-    typeof state.lastRollbackSource !== "string" ||
-    typeof state.lastRollbackReason !== "string" ||
-    (
-      state.lastRollbackToken !== null &&
-      typeof state.lastRollbackToken !== "string"
-    )
-  ) {
-    return null;
-  }
-  const history = state.history
-    .map(parseRuntimeEvent)
-    .filter((event): event is PressureRingScaleLedgerRuntimeEvent =>
-      event !== null
-    );
-  if (history.length !== state.history.length) return null;
-  return {
-    key: state.key,
-    currentValue: state.currentValue,
-    defaultValue: state.defaultValue,
-    min: state.min,
-    max: state.max,
-    rollbackClass: state.rollbackClass,
-    seq: state.seq,
-    historyLimit: state.historyLimit,
-    history,
-    lastAppliedTick: state.lastAppliedTick,
-    lastAppliedSource: state.lastAppliedSource,
-    lastAppliedReason: state.lastAppliedReason,
-    lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-    lastRollbackTick: state.lastRollbackTick,
-    lastRollbackSource: state.lastRollbackSource,
-    lastRollbackReason: state.lastRollbackReason,
-    lastRollbackToken: state.lastRollbackToken,
-  };
-};
-
-const parseSnapshotRecord = (
-  raw: string,
-): PressureRingScaleLedgerSnapshotRecord | null => {
-  if (raw.trim().length === 0) return null;
-  try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (
-      parsed.version !== 1 ||
-      !isLedgerKey(parsed.key) ||
-      !isFiniteNumber(parsed.representedRecordCount) ||
-      !isFiniteNumber(parsed.representedApplyCount) ||
-      !isFiniteNumber(parsed.representedRollbackCount) ||
-      typeof parsed.compactedAt !== "string" ||
-      !isFiniteNumber(parsed.compactedTick)
-    ) {
-      return null;
-    }
-    const state = parseRuntimeState(parsed.state);
-    if (!state) return null;
-    return {
-      version: 1,
-      key: "pulse.pressureRing.scale",
-      representedRecordCount: parsed.representedRecordCount,
-      representedApplyCount: parsed.representedApplyCount,
-      representedRollbackCount: parsed.representedRollbackCount,
-      compactedAt: parsed.compactedAt,
-      compactedTick: parsed.compactedTick,
-      state,
-    };
-  } catch {
-    return null;
-  }
-};
-
-const applyRecordToRuntimeState = (
-  state: PressureRingScaleLedgerRuntimeState,
-  record: PressureRingScaleLedgerRecord,
-): PressureRingScaleLedgerRuntimeState => {
-  if (record.kind === "apply") {
-    return applyPressureRingScaleLedgerRuntimeUpdate(state, {
-      value: record.next_value,
-      tick: record.tick,
-      source: record.source,
-      reason: record.reason,
-    }).state;
-  }
-  return rollbackPressureRingScaleLedgerRuntimeUpdate(state, {
-    rollbackToken: record.rollback_token,
-    tick: record.tick,
-    source: record.source,
-    reason: record.reason,
-  }).state;
-};
-
-const buildPersistenceSummary = (
-  tailRecords: readonly PressureRingScaleLedgerRecord[],
-  snapshotRecord: PressureRingScaleLedgerSnapshotRecord | null,
-  path: string,
-  snapshotPath: string,
-): PressureRingScaleLedgerPersistenceSummary => {
-  const tailCounts = countKinds(tailRecords);
-  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
-  const snapshotApplyCount = snapshotRecord?.representedApplyCount ?? 0;
-  const snapshotRollbackCount = snapshotRecord?.representedRollbackCount ?? 0;
-  return {
-    path,
-    snapshotPath,
-    exists: snapshotRecord !== null || tailRecords.length > 0,
-    snapshotExists: snapshotRecord !== null,
-    recordCount: snapshotRecordCount + tailRecords.length,
-    applyCount: snapshotApplyCount + tailCounts.applyCount,
-    rollbackCount: snapshotRollbackCount + tailCounts.rollbackCount,
-    tailRecordCount: tailRecords.length,
-    tailApplyCount: tailCounts.applyCount,
-    tailRollbackCount: tailCounts.rollbackCount,
-    snapshotRecordCount,
-    snapshotApplyCount,
-    snapshotRollbackCount,
-    compactionEnabled: true,
-    compactionThreshold: PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: snapshotRecord?.compactedAt ?? null,
-    lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-};
-
-export const readPressureRingScaleLedgerRecords = async (
-  path = PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-): Promise<PressureRingScaleLedgerRecord[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split(/\r?\n/u).map(parseRecord).filter((
-      x,
-    ): x is PressureRingScaleLedgerRecord => x !== null);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return [];
-    throw err;
-  }
-};
-
-export const readPressureRingScaleLedgerSnapshot = async (
-  path = PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-): Promise<PressureRingScaleLedgerSnapshotRecord | null> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return parseSnapshotRecord(raw);
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) return null;
-    throw err;
-  }
-};
-
-export const readPressureRingScaleLedgerPersistenceSummary = async (
-  path = PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-  snapshotPath = PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-): Promise<PressureRingScaleLedgerPersistenceSummary> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readPressureRingScaleLedgerRecords(path),
-    readPressureRingScaleLedgerSnapshot(snapshotPath),
-  ]);
-  return buildPersistenceSummary(records, snapshotRecord, path, snapshotPath);
-};
-
-export const appendPressureRingScaleLedgerRecord = async (
-  record: PressureRingScaleLedgerRecord,
-  path = PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-): Promise<void> => {
-  await ensureDir();
-  await Deno.writeTextFile(path, `${JSON.stringify(record)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-export const recordFromPressureRingScaleApplyMutation = (
-  mutation: PressureRingScaleLedgerRuntimeEvent,
-): PressureRingScaleLedgerRecord => ({
-  kind: "apply",
-  key: "pulse.pressureRing.scale",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.tick,
-  source: mutation.source,
-  reason: mutation.reason,
-  previous_value: mutation.previousValue,
-  next_value: mutation.nextValue,
-  recorded_at: new Date().toISOString(),
-});
-
-export const recordFromPressureRingScaleRollbackMutation = (
-  mutation: PressureRingScaleLedgerRuntimeEvent,
-): PressureRingScaleLedgerRecord => ({
-  kind: "rollback",
-  key: "pulse.pressureRing.scale",
-  rollback_token: mutation.rollbackToken,
-  tick: mutation.rolledBackAtTick ?? mutation.tick,
-  source: mutation.rolledBackSource ?? mutation.source,
-  reason: mutation.rolledBackReason ?? mutation.reason,
-  recorded_at: new Date().toISOString(),
-});
-
-export const compactPressureRingScaleLedgerPersistence = async (
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<PressureRingScaleLedgerPersistenceSummary> => {
-  const path = options.path ?? PRESSURE_RING_SCALE_LEDGER_LOG_PATH;
-  const snapshotPath = options.snapshotPath ??
-    PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH;
-  const initialValue = options.initialValue ?? 0;
-  const historyLimit = options.historyLimit ?? 32;
-  const threshold = Math.max(
-    1,
-    Math.floor(
-      options.threshold ?? PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-    ),
-  );
-  const keepTailRecords = Math.max(
-    1,
-    Math.floor(
-      options.keepTailRecords ?? PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-    ),
-  );
-  const [records, snapshotRecord] = await Promise.all([
-    readPressureRingScaleLedgerRecords(path),
-    readPressureRingScaleLedgerSnapshot(snapshotPath),
-  ]);
-  if (
-    records.length <= keepTailRecords ||
-    snapshotRecord !== null && records.length === 0 ||
-    snapshotRecord === null && records.length < threshold ||
-    snapshotRecord !== null &&
-      snapshotRecord.representedRecordCount + records.length < threshold
-  ) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  const compactCount = Math.max(0, records.length - keepTailRecords);
-  if (compactCount === 0) {
-    return {
-      ...buildPersistenceSummary(records, snapshotRecord, path, snapshotPath),
-      compactionThreshold: threshold,
-      compactionKeepTail: keepTailRecords,
-    };
-  }
-
-  let state = snapshotRecord?.state ??
-    createPressureRingScaleLedgerRuntime(initialValue, historyLimit);
-  const compactedRecords = records.slice(0, compactCount);
-  for (const record of compactedRecords) {
-    state = applyRecordToRuntimeState(state, record);
-  }
-  const compactedCounts = countKinds(compactedRecords);
-  const nextSnapshotRecord: PressureRingScaleLedgerSnapshotRecord = {
-    version: 1,
-    key: "pulse.pressureRing.scale",
-    representedRecordCount: (snapshotRecord?.representedRecordCount ?? 0) +
-      compactedRecords.length,
-    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
-      compactedCounts.applyCount,
-    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
-      compactedCounts.rollbackCount,
-    compactedAt: new Date().toISOString(),
-    compactedTick: deriveCompactedTick(state),
-    state,
-  };
-  const tailRecords = records.slice(compactCount);
-
-  await ensureDir();
-  await Deno.writeTextFile(
-    snapshotPath,
-    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
-  );
-  await Deno.writeTextFile(
-    path,
-    tailRecords.map((record) => JSON.stringify(record)).join("\n") +
-      (tailRecords.length > 0 ? "\n" : ""),
-    { create: true },
-  );
-
-  return {
-    ...buildPersistenceSummary(
-      tailRecords,
-      nextSnapshotRecord,
-      path,
-      snapshotPath,
-    ),
-    compactionThreshold: threshold,
-    compactionKeepTail: keepTailRecords,
-  };
-};
-
-export const appendPressureRingScaleLedgerRecordAndMaybeCompact = async (
-  record: PressureRingScaleLedgerRecord,
-  options: {
-    initialValue?: number;
-    historyLimit?: number;
-    path?: string;
-    snapshotPath?: string;
-    threshold?: number;
-    keepTailRecords?: number;
-  } = {},
-): Promise<PressureRingScaleLedgerPersistenceSummary> => {
-  const path = options.path ?? PRESSURE_RING_SCALE_LEDGER_LOG_PATH;
-  await appendPressureRingScaleLedgerRecord(record, path);
-  return await compactPressureRingScaleLedgerPersistence({
-    ...options,
-    path,
-  });
-};
-
-export const hydratePressureRingScaleLedgerRuntime = async (
-  initialValue: number,
-  historyLimit = 32,
-  path = PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-  snapshotPath = PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-): Promise<PressureRingScaleLedgerHydrationResult> => {
-  const [records, snapshotRecord] = await Promise.all([
-    readPressureRingScaleLedgerRecords(path),
-    readPressureRingScaleLedgerSnapshot(snapshotPath),
-  ]);
-  let state = snapshotRecord?.state ??
-    createPressureRingScaleLedgerRuntime(initialValue, historyLimit);
-  let hydrationError: string | null = null;
-
-  try {
-    for (const record of records) {
-      state = applyRecordToRuntimeState(state, record);
-    }
-  } catch (err) {
-    hydrationError = String(err);
-  }
-
-  let persistence = buildPersistenceSummary(
-    records,
-    snapshotRecord,
-    path,
-    snapshotPath,
-  );
-  if (
-    hydrationError === null &&
-    persistence.tailRecordCount > persistence.compactionKeepTail &&
-    persistence.recordCount >= persistence.compactionThreshold
-  ) {
-    persistence = await compactPressureRingScaleLedgerPersistence({
-      initialValue,
-      historyLimit,
-      path,
-      snapshotPath,
-      threshold: persistence.compactionThreshold,
-      keepTailRecords: persistence.compactionKeepTail,
-    });
-  }
-
-  return {
-    state,
-    snapshot: snapshotPressureRingScaleLedgerRuntime(state),
-    persistence: {
-      ...persistence,
-      hydrated: hydrationError === null,
-      lastHydratedAt: new Date().toISOString(),
-      lastHydrationError: hydrationError,
-    },
-  };
-};
-
-```
-
----
-
-## FILE: PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts
-
-```typescript
-import { geneticLedgerEntryByKey } from "./GENETIC_LEDGER.ts";
-
-const ENTRY = geneticLedgerEntryByKey("pulse.pressureRing.scale");
-if (!ENTRY) {
-  throw new Error(
-    "[PRESSURE_RING_SCALE_LEDGER_RUNTIME] missing pulse.pressureRing.scale entry",
-  );
-}
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-export type PressureRingScaleLedgerRuntimeEvent = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
-
-export type PressureRingScaleLedgerRuntimeState = {
-  key: "pulse.pressureRing.scale";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  seq: number;
-  historyLimit: number;
-  history: readonly PressureRingScaleLedgerRuntimeEvent[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type PressureRingScaleLedgerRuntimeSnapshot = {
-  key: "pulse.pressureRing.scale";
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
-
-export type PressureRingScaleLedgerApplyResult = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: PressureRingScaleLedgerRuntimeEvent | null;
-  state: PressureRingScaleLedgerRuntimeState;
-};
-
-export type PressureRingScaleLedgerRollbackResult = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: PressureRingScaleLedgerRuntimeEvent | null;
-  state: PressureRingScaleLedgerRuntimeState;
-};
-
-const cloneHistory = (
-  history: readonly PressureRingScaleLedgerRuntimeEvent[],
-): PressureRingScaleLedgerRuntimeEvent[] =>
-  history.map((event) => ({ ...event }));
-
-export const createPressureRingScaleLedgerRuntime = (
-  initialValue = ENTRY.defaultValue,
-  historyLimit = 32,
-): PressureRingScaleLedgerRuntimeState => ({
-  key: "pulse.pressureRing.scale",
-  currentValue: clamp(initialValue, ENTRY.min, ENTRY.max),
-  defaultValue: ENTRY.defaultValue,
-  min: ENTRY.min,
-  max: ENTRY.max,
-  rollbackClass: "immediate",
-  seq: 0,
-  historyLimit: Math.max(1, Math.floor(historyLimit)),
-  history: [],
-  lastAppliedTick: -1,
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: "bootstrap",
-  lastAppliedRollbackToken: null,
-  lastRollbackTick: -1,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: "bootstrap",
-  lastRollbackToken: null,
-});
-
-export const snapshotPressureRingScaleLedgerRuntime = (
-  state: PressureRingScaleLedgerRuntimeState,
-): PressureRingScaleLedgerRuntimeSnapshot => ({
-  key: state.key,
-  currentValue: state.currentValue,
-  defaultValue: state.defaultValue,
-  min: state.min,
-  max: state.max,
-  rollbackClass: state.rollbackClass,
-  historyDepth: state.history.length,
-  lastAppliedTick: state.lastAppliedTick,
-  lastAppliedSource: state.lastAppliedSource,
-  lastAppliedReason: state.lastAppliedReason,
-  lastAppliedRollbackToken: state.lastAppliedRollbackToken,
-  lastRollbackTick: state.lastRollbackTick,
-  lastRollbackSource: state.lastRollbackSource,
-  lastRollbackReason: state.lastRollbackReason,
-  lastRollbackToken: state.lastRollbackToken,
-});
-
-export const applyPressureRingScaleLedgerRuntimeUpdate = (
-  state: PressureRingScaleLedgerRuntimeState,
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): PressureRingScaleLedgerApplyResult => {
-  const previousValue = state.currentValue;
-  const nextValue = clamp(update.value, state.min, state.max);
-  if (nextValue === previousValue) {
-    return {
-      status: "noop",
-      changed: false,
-      previousValue,
-      nextValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const tick = update.tick === undefined
-    ? 0
-    : Math.max(0, Math.floor(update.tick));
-  const source = (update.source ?? "runtime").trim() || "runtime";
-  const reason = (update.reason ?? "ledger_apply").trim() || "ledger_apply";
-  const rollbackToken = `${state.key}@${tick}:${
-    String(state.seq + 1).padStart(4, "0")
-  }`;
-  const mutation: PressureRingScaleLedgerRuntimeEvent = {
-    rollbackToken,
-    previousValue,
-    nextValue,
-    tick,
-    source,
-    reason,
-    rolledBackAtTick: null,
-    rolledBackSource: null,
-    rolledBackReason: null,
-  };
-  const history = [mutation, ...cloneHistory(state.history)].slice(
-    0,
-    state.historyLimit,
-  );
-  return {
-    status: "applied",
-    changed: true,
-    previousValue,
-    nextValue,
-    mutation,
-    state: {
-      ...state,
-      currentValue: nextValue,
-      seq: state.seq + 1,
-      history,
-      lastAppliedTick: tick,
-      lastAppliedSource: source,
-      lastAppliedReason: reason,
-      lastAppliedRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const rollbackPressureRingScaleLedgerRuntimeUpdate = (
-  state: PressureRingScaleLedgerRuntimeState,
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): PressureRingScaleLedgerRollbackResult => {
-  const rollbackToken = rollback.rollbackToken.trim();
-  const previousValue = state.currentValue;
-  if (rollbackToken.length === 0) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history: cloneHistory(state.history),
-      },
-    };
-  }
-
-  const history = cloneHistory(state.history);
-  const idx = history.findIndex((event) =>
-    event.rollbackToken === rollbackToken
-  );
-  if (idx === -1) {
-    return {
-      status: "missing",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: null,
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const target = history[idx];
-  if (target.rolledBackAtTick !== null) {
-    return {
-      status: "consumed",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const latestActive = history.find((event) => event.rolledBackAtTick === null);
-  if (!latestActive || latestActive.rollbackToken !== rollbackToken) {
-    return {
-      status: "stale",
-      changed: false,
-      previousValue,
-      nextValue: previousValue,
-      mutation: { ...target },
-      state: {
-        ...state,
-        history,
-      },
-    };
-  }
-
-  const tick = rollback.tick === undefined
-    ? target.tick
-    : Math.max(0, Math.floor(rollback.tick));
-  const source = (rollback.source ?? "runtime").trim() || "runtime";
-  const reason = (rollback.reason ?? "ledger_rollback").trim() ||
-    "ledger_rollback";
-
-  history[idx] = {
-    ...target,
-    rolledBackAtTick: tick,
-    rolledBackSource: source,
-    rolledBackReason: reason,
-  };
-  return {
-    status: "rolled_back",
-    changed: true,
-    previousValue,
-    nextValue: target.previousValue,
-    mutation: { ...history[idx] },
-    state: {
-      ...state,
-      currentValue: target.previousValue,
-      history,
-      lastRollbackTick: tick,
-      lastRollbackSource: source,
-      lastRollbackReason: reason,
-      lastRollbackToken: rollbackToken,
-    },
-  };
-};
-
-export const resetPressureRingScaleLedgerRuntime = (
-  state: PressureRingScaleLedgerRuntimeState,
-  reason = "reset",
-): PressureRingScaleLedgerRuntimeState => ({
-  ...createPressureRingScaleLedgerRuntime(
-    state.defaultValue,
-    state.historyLimit,
-  ),
-  lastAppliedSource: "runtime_policy",
-  lastAppliedReason: reason,
-  lastRollbackSource: "runtime_policy",
-  lastRollbackReason: reason,
-});
-
-```
-
----
-
 ## FILE: PRNG.ts
 
 ```typescript
@@ -28944,8 +24512,22 @@ export class PRNG {
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { resolveWithPhase } from "./GENETIC_LEDGER_RUNTIME.ts";
+const resolveWithPhase = (
+  baseValue: number,
+  modifiers: Array<{ phase: number; weight: number }>,
+): number => {
+  let real = baseValue;
+  let imag = 0;
 
+  for (const mod of modifiers) {
+    const rad = (mod.phase * Math.PI) / 128; // 0-255 → radians
+    real += mod.weight * Math.cos(rad);
+    imag += mod.weight * Math.sin(rad);
+  }
+
+  // Return "intensity" = |z|
+  return Math.floor(Math.sqrt(real * real + imag * imag));
+};
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 
 let wasmInstance: WebAssembly.Instance | null = null;
@@ -30053,17 +25635,6 @@ import {
 } from "./runtime_bridge/replication_hybrid.ts";
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
-  applyBaseTaxLedgerRuntimeUpdate,
-  type BaseTaxLedgerApplyResult,
-  type BaseTaxLedgerRollbackResult,
-  type BaseTaxLedgerRuntimeSnapshot,
-  type BaseTaxLedgerRuntimeState,
-  createBaseTaxLedgerRuntime,
-  resetBaseTaxLedgerRuntime,
-  rollbackBaseTaxLedgerRuntimeUpdate,
-  snapshotBaseTaxLedgerRuntime,
-} from "./GENETIC_LEDGER_RUNTIME.ts";
-import {
   applyLedgerUpdate,
   createLedgerRuntime,
   type LedgerRuntimeSnapshot,
@@ -30072,66 +25643,14 @@ import {
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 import {
+  appendLedgerRecordAndMaybeCompact,
   getLogPath,
   getSnapshotPath,
   hydrateLedgerRuntime,
   type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
 } from "./GENERIC_LEDGER_PERSISTENCE.ts";
-import {
-  appendBaseTaxLedgerRecordAndMaybeCompact,
-  BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
-  BASE_TAX_LEDGER_COMPACT_THRESHOLD,
-  BASE_TAX_LEDGER_LOG_PATH,
-  BASE_TAX_LEDGER_SNAPSHOT_PATH,
-  type BaseTaxLedgerPersistenceSummary,
-  hydrateBaseTaxLedgerRuntime,
-  recordFromApplyMutation,
-  recordFromRollbackMutation,
-} from "./GENETIC_LEDGER_PERSISTENCE.ts";
-import {
-  applyTargetEnergyLedgerRuntimeUpdate,
-  createTargetEnergyLedgerRuntime,
-  resetTargetEnergyLedgerRuntime,
-  rollbackTargetEnergyLedgerRuntimeUpdate,
-  snapshotTargetEnergyLedgerRuntime,
-  type TargetEnergyLedgerApplyResult,
-  type TargetEnergyLedgerRollbackResult,
-  type TargetEnergyLedgerRuntimeSnapshot,
-  type TargetEnergyLedgerRuntimeState,
-} from "./HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
-import {
-  appendTargetEnergyLedgerRecordAndMaybeCompact,
-  hydrateTargetEnergyLedgerRuntime,
-  recordFromTargetEnergyApplyMutation,
-  recordFromTargetEnergyRollbackMutation,
-  TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-  TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD,
-  TARGET_ENERGY_LEDGER_LOG_PATH,
-  TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-  type TargetEnergyLedgerPersistenceSummary,
-} from "./HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
-import {
-  applyPressureRingScaleLedgerRuntimeUpdate,
-  createPressureRingScaleLedgerRuntime,
-  type PressureRingScaleLedgerApplyResult,
-  type PressureRingScaleLedgerRollbackResult,
-  type PressureRingScaleLedgerRuntimeSnapshot,
-  type PressureRingScaleLedgerRuntimeState,
-  resetPressureRingScaleLedgerRuntime,
-  rollbackPressureRingScaleLedgerRuntimeUpdate,
-  snapshotPressureRingScaleLedgerRuntime,
-} from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
-import {
-  appendPressureRingScaleLedgerRecordAndMaybeCompact,
-  hydratePressureRingScaleLedgerRuntime,
-  PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-  PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-  PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-  PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-  type PressureRingScaleLedgerPersistenceSummary,
-  recordFromPressureRingScaleApplyMutation,
-  recordFromPressureRingScaleRollbackMutation,
-} from "./PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "./reduction_core/DRIFT_WARDEN.ts";
 import { DollFork } from "./reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
@@ -30231,12 +25750,14 @@ type HomeostasisState = {
   lastUpdateReason: string;
 };
 type GeneticLedgerRuntimeState = {
-  homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
-  homeostasisBaseTaxPersistence: BaseTaxLedgerPersistenceSummary;
-  homeostasisTargetEnergy: TargetEnergyLedgerRuntimeSnapshot;
-  homeostasisTargetEnergyPersistence: TargetEnergyLedgerPersistenceSummary;
-  pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
-  pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
+  homeostasisBaseTax: LedgerRuntimeSnapshot<"pulse.homeostasis.baseTax">;
+  homeostasisBaseTaxPersistence: LedgerPersistenceSummary;
+  homeostasisTargetEnergy: LedgerRuntimeSnapshot<
+    "pulse.homeostasis.targetEnergy"
+  >;
+  homeostasisTargetEnergyPersistence: LedgerPersistenceSummary;
+  pressureRingScale: LedgerRuntimeSnapshot<"pulse.pressureRing.scale">;
+  pressureRingScalePersistence: LedgerPersistenceSummary;
   homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
   homeostasisBandPersistence: LedgerPersistenceSummary;
   homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
@@ -30460,67 +25981,6 @@ const replicationHybridState = createReplicationHybridState(
   REPLICATION_EXECUTION_MODE,
 );
 
-let runtimeWorkerCount = WORKER_COUNT;
-let startupSelfTestDone = false;
-let startupSelfTestInProgress = false;
-let startupSelfTestFallbackActivated = false;
-let startupSelfTestLastBreachTick = -1;
-let initFallbackActivated = false;
-let initFallbackReason = "";
-let wasmBootDegraded = false;
-let wasmBootReason = "";
-let wasmBootArtifactBytes = 0;
-let wasmBootPrecheckCompleted = false;
-let spatialHashState: SpatialHashState = {
-  tick: -1,
-  overflowCount: 0,
-  maxCellCount: 0,
-  overflowRatio: 0,
-};
-let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
-  createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
-  path: BASE_TAX_LEDGER_LOG_PATH,
-  snapshotPath: BASE_TAX_LEDGER_SNAPSHOT_PATH,
-  exists: false,
-  snapshotExists: false,
-  recordCount: 0,
-  applyCount: 0,
-  rollbackCount: 0,
-  tailRecordCount: 0,
-  tailApplyCount: 0,
-  tailRollbackCount: 0,
-  snapshotRecordCount: 0,
-  snapshotApplyCount: 0,
-  snapshotRollbackCount: 0,
-  compactionEnabled: true,
-  compactionThreshold: BASE_TAX_LEDGER_COMPACT_THRESHOLD,
-  compactionKeepTail: BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
-  lastCompactedAt: null,
-  lastCompactedTick: -1,
-  hydrated: false,
-  lastHydratedAt: null,
-  lastHydrationError: null,
-};
-
-// GENERIC LEDGER REGISTRY (Stage 7.2)
-let homeostasisBandLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.band",
-);
-let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.maxDelta",
-);
-let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.overflowThreshold",
-);
-let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
-  "daemon.maxActionsPerWindow",
-);
-let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
-  "federation.admission.degradeEnergyRatio",
-);
-
 const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   path: getLogPath(key),
   snapshotPath: getSnapshotPath(key),
@@ -30544,6 +26004,47 @@ const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   lastHydratedAt: null,
   lastHydrationError: null,
 });
+let runtimeWorkerCount = WORKER_COUNT;
+let startupSelfTestDone = false;
+let startupSelfTestInProgress = false;
+let startupSelfTestFallbackActivated = false;
+let startupSelfTestLastBreachTick = -1;
+let initFallbackActivated = false;
+let initFallbackReason = "";
+let wasmBootDegraded = false;
+let wasmBootReason = "";
+let wasmBootArtifactBytes = 0;
+let wasmBootPrecheckCompleted = false;
+let spatialHashState: SpatialHashState = {
+  tick: -1,
+  overflowCount: 0,
+  maxCellCount: 0,
+  overflowRatio: 0,
+};
+let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.baseTax",
+);
+let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.baseTax",
+);
+
+// GENERIC LEDGER REGISTRY (Stage 7.2)
+let homeostasisBandLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.band",
+);
+let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.maxDelta",
+);
+let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.overflowThreshold",
+);
+let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
+  "daemon.maxActionsPerWindow",
+);
+let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
+  "federation.admission.degradeEnergyRatio",
+);
 
 let homeostasisBandLedgerPersistence = createLedgerPersistence(
   "pulse.homeostasis.band",
@@ -30563,58 +26064,18 @@ let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence(
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
-let homeostasisTargetEnergyLedgerRuntime: TargetEnergyLedgerRuntimeState =
-  createTargetEnergyLedgerRuntime(HOMEOSTASIS_TARGET_ENERGY);
-let homeostasisTargetEnergyLedgerPersistence:
-  TargetEnergyLedgerPersistenceSummary = {
-    path: TARGET_ENERGY_LEDGER_LOG_PATH,
-    snapshotPath: TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-let pressureRingScaleLedgerRuntime: PressureRingScaleLedgerRuntimeState =
-  createPressureRingScaleLedgerRuntime(PRESSURE_RING_BASELINE.scale);
-let pressureRingScaleLedgerPersistence:
-  PressureRingScaleLedgerPersistenceSummary = {
-    path: PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-    snapshotPath: PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
+let homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.targetEnergy",
+);
+let homeostasisTargetEnergyLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.targetEnergy",
+);
+let pressureRingScaleLedgerRuntime = createLedgerRuntime(
+  "pulse.pressureRing.scale",
+);
+let pressureRingScaleLedgerPersistence = createLedgerPersistence(
+  "pulse.pressureRing.scale",
+);
 let homeostasisLastUpdateTick = -1;
 let homeostasisLastUpdateSource = "runtime_policy";
 let homeostasisLastUpdateReason = "bootstrap";
@@ -30638,10 +26099,13 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxLedgerRuntime = resetBaseTaxLedgerRuntime(
-    homeostasisBaseTaxLedgerRuntime,
-    "coldstart_reset",
+  homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+    "pulse.homeostasis.baseTax",
+    HOMEOSTASIS_BASE_TAX,
+    homeostasisBaseTaxLedgerRuntime.historyLimit,
   );
+  homeostasisBaseTaxLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  homeostasisBaseTaxLedgerRuntime.lastRollbackReason = "coldstart_reset";
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
   );
@@ -30664,10 +26128,13 @@ const resetHomeostasisStateForColdStart = (): void => {
     lastHydratedAt: null,
     lastHydrationError: null,
   };
-  homeostasisTargetEnergyLedgerRuntime = resetTargetEnergyLedgerRuntime(
-    homeostasisTargetEnergyLedgerRuntime,
-    "coldstart_reset",
+  homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+    "pulse.homeostasis.targetEnergy",
+    HOMEOSTASIS_TARGET_ENERGY,
+    homeostasisTargetEnergyLedgerRuntime.historyLimit,
   );
+  homeostasisTargetEnergyLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  homeostasisTargetEnergyLedgerRuntime.lastRollbackReason = "coldstart_reset";
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
     homeostasisTargetEnergyLedgerRuntime.currentValue,
   );
@@ -30695,10 +26162,13 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisLastUpdateReason = "coldstart_reset";
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
-  pressureRingScaleLedgerRuntime = resetPressureRingScaleLedgerRuntime(
-    pressureRingScaleLedgerRuntime,
-    "coldstart_reset",
+  pressureRingScaleLedgerRuntime = createLedgerRuntime(
+    "pulse.pressureRing.scale",
+    PRESSURE_RING_BASELINE.scale,
+    pressureRingScaleLedgerRuntime.historyLimit,
   );
+  pressureRingScaleLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  pressureRingScaleLedgerRuntime.lastRollbackReason = "coldstart_reset";
   pressureRingScaleLedgerPersistence = {
     ...pressureRingScaleLedgerPersistence,
     exists: false,
@@ -30745,19 +26215,15 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   lastUpdateReason: homeostasisLastUpdateReason,
 });
 const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
-  homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(
-    homeostasisBaseTaxLedgerRuntime,
-  ),
+  homeostasisBaseTax: snapshotLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
   homeostasisBaseTaxPersistence: { ...homeostasisBaseTaxLedgerPersistence },
-  homeostasisTargetEnergy: snapshotTargetEnergyLedgerRuntime(
+  homeostasisTargetEnergy: snapshotLedgerRuntime(
     homeostasisTargetEnergyLedgerRuntime,
   ),
   homeostasisTargetEnergyPersistence: {
     ...homeostasisTargetEnergyLedgerPersistence,
   },
-  pressureRingScale: snapshotPressureRingScaleLedgerRuntime(
-    pressureRingScaleLedgerRuntime,
-  ),
+  pressureRingScale: snapshotLedgerRuntime(pressureRingScaleLedgerRuntime),
   pressureRingScalePersistence: { ...pressureRingScaleLedgerPersistence },
   homeostasisBand: snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
   homeostasisBandPersistence: { ...homeostasisBandLedgerPersistence },
@@ -30800,11 +26266,10 @@ const applyHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): BaseTaxLedgerApplyResult => {
-  const result = applyBaseTaxLedgerRuntimeUpdate(
-    homeostasisBaseTaxLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.homeostasis.baseTax"
+> => {
+  const result = applyLedgerUpdate(homeostasisBaseTaxLedgerRuntime, update);
   homeostasisBaseTaxLedgerRuntime = result.state;
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
@@ -30823,8 +26288,10 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): BaseTaxLedgerRollbackResult => {
-  const result = rollbackBaseTaxLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.homeostasis.baseTax"
+> => {
+  const result = rollbackLedgerUpdate(
     homeostasisBaseTaxLedgerRuntime,
     rollback,
   );
@@ -30840,10 +26307,10 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
   return result;
 };
 const syncHomeostasisBaseTaxLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateBaseTaxLedgerRuntime(
-    HOMEOSTASIS_BASE_TAX,
-    homeostasisBaseTaxLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("pulse.homeostasis.baseTax", {
+    initialValue: HOMEOSTASIS_BASE_TAX,
+    historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
+  });
   homeostasisBaseTaxLedgerRuntime = hydrated.state;
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
@@ -30868,8 +26335,10 @@ const applyHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): TargetEnergyLedgerApplyResult => {
-  const result = applyTargetEnergyLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.homeostasis.targetEnergy"
+> => {
+  const result = applyLedgerUpdate(
     homeostasisTargetEnergyLedgerRuntime,
     update,
   );
@@ -30891,8 +26360,10 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): TargetEnergyLedgerRollbackResult => {
-  const result = rollbackTargetEnergyLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.homeostasis.targetEnergy"
+> => {
+  const result = rollbackLedgerUpdate(
     homeostasisTargetEnergyLedgerRuntime,
     rollback,
   );
@@ -30908,9 +26379,12 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
   return result;
 };
 const syncHomeostasisTargetEnergyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateTargetEnergyLedgerRuntime(
-    HOMEOSTASIS_TARGET_ENERGY,
-    homeostasisTargetEnergyLedgerRuntime.historyLimit,
+  const hydrated = await hydrateLedgerRuntime(
+    "pulse.homeostasis.targetEnergy",
+    {
+      initialValue: HOMEOSTASIS_TARGET_ENERGY,
+      historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
+    },
   );
   homeostasisTargetEnergyLedgerRuntime = hydrated.state;
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
@@ -30936,11 +26410,10 @@ const applyPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): PressureRingScaleLedgerApplyResult => {
-  const result = applyPressureRingScaleLedgerRuntimeUpdate(
-    pressureRingScaleLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.pressureRing.scale"
+> => {
+  const result = applyLedgerUpdate(pressureRingScaleLedgerRuntime, update);
   pressureRingScaleLedgerRuntime = result.state;
   if (result.changed) {
     applyEvolutionPressureRing({
@@ -30959,11 +26432,10 @@ const rollbackPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): PressureRingScaleLedgerRollbackResult => {
-  const result = rollbackPressureRingScaleLedgerRuntimeUpdate(
-    pressureRingScaleLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.pressureRing.scale"
+> => {
+  const result = rollbackLedgerUpdate(pressureRingScaleLedgerRuntime, rollback);
   pressureRingScaleLedgerRuntime = result.state;
   if (result.status === "rolled_back") {
     applyEvolutionPressureRing({
@@ -30976,10 +26448,10 @@ const rollbackPressureRingScaleLedgerUpdate = (
   return result;
 };
 const syncPressureRingScaleLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydratePressureRingScaleLedgerRuntime(
-    PRESSURE_RING_BASELINE.scale,
-    pressureRingScaleLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("pulse.pressureRing.scale", {
+    initialValue: PRESSURE_RING_BASELINE.scale,
+    historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+  });
   pressureRingScaleLedgerRuntime = hydrated.state;
   pressureRingScaleLedgerPersistence = hydrated.persistence;
   applyEvolutionPressureRing({
@@ -32104,9 +27576,15 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | BaseTaxLedgerApplyResult
-    | TargetEnergyLedgerApplyResult
-    | PressureRingScaleLedgerApplyResult
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.homeostasis.baseTax"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.homeostasis.targetEnergy"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.pressureRing.scale"
+    >
   > => {
     if (update.key === "pulse.pressureRing.scale") {
       const result = applyPressureRingScaleLedgerUpdate({
@@ -32117,14 +27595,14 @@ export const PULSE = {
       });
       if (result.changed) {
         if (result.mutation) {
-          const persisted =
-            await appendPressureRingScaleLedgerRecordAndMaybeCompact(
-              recordFromPressureRingScaleApplyMutation(result.mutation),
-              {
-                initialValue: pressureRingScaleLedgerRuntime.defaultValue,
-                historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.pressureRing.scale",
+            recordFromApply(result.mutation, "pulse.pressureRing.scale"),
+            {
+              initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+              historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+            },
+          );
           pressureRingScaleLedgerPersistence = {
             ...persisted,
             hydrated: pressureRingScaleLedgerPersistence.hydrated,
@@ -32154,8 +27632,9 @@ export const PULSE = {
       });
       if (result.changed) {
         if (result.mutation) {
-          const persisted = await appendTargetEnergyLedgerRecordAndMaybeCompact(
-            recordFromTargetEnergyApplyMutation(result.mutation),
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.homeostasis.targetEnergy",
+            recordFromApply(result.mutation, "pulse.homeostasis.targetEnergy"),
             {
               initialValue: homeostasisTargetEnergyLedgerRuntime.defaultValue,
               historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -32190,8 +27669,9 @@ export const PULSE = {
     });
     if (result.changed) {
       if (result.mutation) {
-        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
-          recordFromApplyMutation(result.mutation),
+        const persisted = await appendLedgerRecordAndMaybeCompact(
+          "pulse.homeostasis.baseTax",
+          recordFromApply(result.mutation, "pulse.homeostasis.baseTax"),
           {
             initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
             historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
@@ -32228,9 +27708,15 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | BaseTaxLedgerRollbackResult
-    | TargetEnergyLedgerRollbackResult
-    | PressureRingScaleLedgerRollbackResult
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.homeostasis.baseTax"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.homeostasis.targetEnergy"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.pressureRing.scale"
+    >
   > => {
     if (rollback.key === "pulse.pressureRing.scale") {
       const result = rollbackPressureRingScaleLedgerUpdate({
@@ -32241,14 +27727,14 @@ export const PULSE = {
       });
       if (result.status === "rolled_back") {
         if (result.mutation) {
-          const persisted =
-            await appendPressureRingScaleLedgerRecordAndMaybeCompact(
-              recordFromPressureRingScaleRollbackMutation(result.mutation),
-              {
-                initialValue: pressureRingScaleLedgerRuntime.defaultValue,
-                historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.pressureRing.scale",
+            recordFromRollback(result.mutation, "pulse.pressureRing.scale"),
+            {
+              initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+              historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+            },
+          );
           pressureRingScaleLedgerPersistence = {
             ...persisted,
             hydrated: pressureRingScaleLedgerPersistence.hydrated,
@@ -32278,8 +27764,12 @@ export const PULSE = {
       });
       if (result.status === "rolled_back") {
         if (result.mutation) {
-          const persisted = await appendTargetEnergyLedgerRecordAndMaybeCompact(
-            recordFromTargetEnergyRollbackMutation(result.mutation),
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.homeostasis.targetEnergy",
+            recordFromRollback(
+              result.mutation,
+              "pulse.homeostasis.targetEnergy",
+            ),
             {
               initialValue: homeostasisTargetEnergyLedgerRuntime.defaultValue,
               historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -32314,8 +27804,9 @@ export const PULSE = {
     });
     if (result.status === "rolled_back") {
       if (result.mutation) {
-        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
-          recordFromRollbackMutation(result.mutation),
+        const persisted = await appendLedgerRecordAndMaybeCompact(
+          "pulse.homeostasis.baseTax",
+          recordFromRollback(result.mutation, "pulse.homeostasis.baseTax"),
           {
             initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
             historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
@@ -43326,6 +38817,21 @@ export const STRUCTURE_ENGINE = {
 ## FILE: SYSTEM_START.ts
 
 ```typescript
+import {
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
+} from "./GENERIC_LEDGER_PERSISTENCE.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
@@ -43377,48 +38883,6 @@ import {
   syncDaemonIngressMaxPheromoneIntensity,
   syncDaemonIngressMaxPlasmidCharge,
 } from "./DAEMON_INGRESS_POLICY.ts";
-import {
-  applyDaemonPheromoneLedgerRuntimeUpdate,
-  createDaemonPheromoneLedgerRuntime,
-  type DaemonPheromoneLedgerApplyResult,
-  type DaemonPheromoneLedgerRollbackResult,
-  type DaemonPheromoneLedgerRuntimeSnapshot,
-  type DaemonPheromoneLedgerRuntimeState,
-  rollbackDaemonPheromoneLedgerRuntimeUpdate,
-  snapshotDaemonPheromoneLedgerRuntime,
-} from "./DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
-import {
-  appendDaemonPheromoneLedgerRecordAndMaybeCompact,
-  DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-  DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
-  DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-  DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-  type DaemonPheromoneLedgerPersistenceSummary,
-  hydrateDaemonPheromoneLedgerRuntime,
-  recordFromDaemonPheromoneApplyMutation,
-  recordFromDaemonPheromoneRollbackMutation,
-} from "./DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts";
-import {
-  applyDaemonPlasmidLedgerRuntimeUpdate,
-  createDaemonPlasmidLedgerRuntime,
-  type DaemonPlasmidLedgerApplyResult,
-  type DaemonPlasmidLedgerRollbackResult,
-  type DaemonPlasmidLedgerRuntimeSnapshot,
-  type DaemonPlasmidLedgerRuntimeState,
-  rollbackDaemonPlasmidLedgerRuntimeUpdate,
-  snapshotDaemonPlasmidLedgerRuntime,
-} from "./DAEMON_PLASMID_LEDGER_RUNTIME.ts";
-import {
-  appendDaemonPlasmidLedgerRecordAndMaybeCompact,
-  DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
-  DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
-  DAEMON_PLASMID_LEDGER_LOG_PATH,
-  DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
-  type DaemonPlasmidLedgerPersistenceSummary,
-  hydrateDaemonPlasmidLedgerRuntime,
-  recordFromDaemonPlasmidApplyMutation,
-  recordFromDaemonPlasmidRollbackMutation,
-} from "./DAEMON_PLASMID_LEDGER_PERSISTENCE.ts";
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -43698,37 +39162,14 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime: DaemonPheromoneLedgerRuntimeState =
-  createDaemonPheromoneLedgerRuntime(currentDaemonMaxPheromoneIntensity());
-let daemonPheromoneLedgerPersistence: DaemonPheromoneLedgerPersistenceSummary =
-  {
-    path: DAEMON_PHEROMONE_LEDGER_LOG_PATH,
-    snapshotPath: DAEMON_PHEROMONE_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: DAEMON_PHEROMONE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: DAEMON_PHEROMONE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-let daemonPlasmidLedgerRuntime: DaemonPlasmidLedgerRuntimeState =
-  createDaemonPlasmidLedgerRuntime(currentDaemonMaxPlasmidCharge());
-let daemonPlasmidLedgerPersistence: DaemonPlasmidLedgerPersistenceSummary = {
-  path: DAEMON_PLASMID_LEDGER_LOG_PATH,
-  snapshotPath: DAEMON_PLASMID_LEDGER_SNAPSHOT_PATH,
+let daemonPheromoneLedgerRuntime = createLedgerRuntime(
+  "daemon.maxPheromoneIntensity",
+  DAEMON_POLICY.maxPheromoneIntensity,
+  128,
+);
+let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPheromoneIntensity"),
+  snapshotPath: getSnapshotPath("daemon.maxPheromoneIntensity"),
   exists: false,
   snapshotExists: false,
   recordCount: 0,
@@ -43741,8 +39182,36 @@ let daemonPlasmidLedgerPersistence: DaemonPlasmidLedgerPersistenceSummary = {
   snapshotApplyCount: 0,
   snapshotRollbackCount: 0,
   compactionEnabled: true,
-  compactionThreshold: DAEMON_PLASMID_LEDGER_COMPACT_THRESHOLD,
-  compactionKeepTail: DAEMON_PLASMID_LEDGER_COMPACT_KEEP_TAIL,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
+let daemonPlasmidLedgerRuntime = createLedgerRuntime(
+  "daemon.maxPlasmidCharge",
+  DAEMON_POLICY.maxPlasmidCharge,
+  128,
+);
+let daemonPlasmidLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPlasmidCharge"),
+  snapshotPath: getSnapshotPath("daemon.maxPlasmidCharge"),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
   lastCompactedAt: null,
   lastCompactedTick: -1,
   hydrated: false,
@@ -44028,7 +39497,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       autoSnapshotLastTick = tick;
       autoSnapshotLastResult = {
         tick,
-        timestamp: result.timestamp,
+        timestamp: result.timestamp ?? new Date().toISOString(),
         success: true,
         reason,
         pruned: result.pruned ?? 0,
@@ -44140,12 +39609,12 @@ const buildTelemetry = async () => {
       window_reset_in_ms: resetInMs,
       max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
       max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
-      ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+      ledger_max_pheromone_intensity: snapshotLedgerRuntime(
         daemonPheromoneLedgerRuntime,
       ),
       ledger_max_pheromone_intensity_persistence:
         daemonPheromoneLedgerPersistence,
-      ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+      ledger_max_plasmid_charge: snapshotLedgerRuntime(
         daemonPlasmidLedgerRuntime,
       ),
       ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
@@ -44533,11 +40002,10 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPheromoneLedgerApplyResult => {
-  const result = applyDaemonPheromoneLedgerRuntimeUpdate(
-    daemonPheromoneLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
   daemonPheromoneLedgerRuntime = result.state;
   syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
   return result;
@@ -44550,21 +40018,20 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPheromoneLedgerRollbackResult => {
-  const result = rollbackDaemonPheromoneLedgerRuntimeUpdate(
-    daemonPheromoneLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
   daemonPheromoneLedgerRuntime = result.state;
   syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
   return result;
 };
 
 const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateDaemonPheromoneLedgerRuntime(
-    currentDaemonMaxPheromoneIntensity(),
-    daemonPheromoneLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPheromoneIntensity", {
+    initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+    historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+  });
   daemonPheromoneLedgerRuntime = hydrated.state;
   daemonPheromoneLedgerPersistence = hydrated.persistence;
   syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
@@ -44577,11 +40044,10 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPlasmidLedgerApplyResult => {
-  const result = applyDaemonPlasmidLedgerRuntimeUpdate(
-    daemonPlasmidLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
   daemonPlasmidLedgerRuntime = result.state;
   syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
   return result;
@@ -44594,21 +40060,20 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): DaemonPlasmidLedgerRollbackResult => {
-  const result = rollbackDaemonPlasmidLedgerRuntimeUpdate(
-    daemonPlasmidLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
   daemonPlasmidLedgerRuntime = result.state;
   syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
   return result;
 };
 
 const syncDaemonPlasmidPolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateDaemonPlasmidLedgerRuntime(
-    currentDaemonMaxPlasmidCharge(),
-    daemonPlasmidLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPlasmidCharge", {
+    initialValue: DAEMON_POLICY.maxPlasmidCharge,
+    historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+  });
   daemonPlasmidLedgerRuntime = hydrated.state;
   daemonPlasmidLedgerPersistence = hydrated.persistence;
   syncDaemonIngressMaxPlasmidCharge(hydrated.state.currentValue);
@@ -44625,12 +40090,12 @@ const serializeDaemonPolicyState = () => {
     max_plasmid_charge_current: daemonPlasmidLedgerRuntime.currentValue,
     safe_min_population: liveLimits.safeMinPopulation,
     safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
-    ledger_max_pheromone_intensity: snapshotDaemonPheromoneLedgerRuntime(
+    ledger_max_pheromone_intensity: snapshotLedgerRuntime(
       daemonPheromoneLedgerRuntime,
     ),
     ledger_max_pheromone_intensity_persistence:
       daemonPheromoneLedgerPersistence,
-    ledger_max_plasmid_charge: snapshotDaemonPlasmidLedgerRuntime(
+    ledger_max_plasmid_charge: snapshotLedgerRuntime(
       daemonPlasmidLedgerRuntime,
     ),
     ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
@@ -45645,14 +41110,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
         if (rollback.mutation) {
           if (rollbackKey === "daemon.maxPheromoneIntensity") {
-            const persisted =
-              await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-                recordFromDaemonPheromoneRollbackMutation(rollback.mutation),
-                {
-                  initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-                  historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-                },
-              );
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPheromoneIntensity",
+              recordFromRollback(
+                rollback.mutation,
+                "daemon.maxPheromoneIntensity",
+              ),
+              {
+                initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+              },
+            );
             daemonPheromoneLedgerPersistence = {
               ...persisted,
               hydrated: daemonPheromoneLedgerPersistence.hydrated,
@@ -45661,14 +41129,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
                 daemonPheromoneLedgerPersistence.lastHydrationError,
             };
           } else {
-            const persisted =
-              await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
-                recordFromDaemonPlasmidRollbackMutation(rollback.mutation),
-                {
-                  initialValue: daemonPlasmidLedgerRuntime.defaultValue,
-                  historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-                },
-              );
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPlasmidCharge",
+              recordFromRollback(rollback.mutation, "daemon.maxPlasmidCharge"),
+              {
+                initialValue: DAEMON_POLICY.maxPlasmidCharge,
+                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+              },
+            );
             daemonPlasmidLedgerPersistence = {
               ...persisted,
               hydrated: daemonPlasmidLedgerPersistence.hydrated,
@@ -45751,14 +41219,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         });
       if (result.mutation) {
         if (updateKey === "daemon.maxPheromoneIntensity") {
-          const persisted =
-            await appendDaemonPheromoneLedgerRecordAndMaybeCompact(
-              recordFromDaemonPheromoneApplyMutation(result.mutation),
-              {
-                initialValue: daemonPheromoneLedgerRuntime.defaultValue,
-                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPheromoneIntensity",
+            recordFromApply(result.mutation, "daemon.maxPheromoneIntensity"),
+            {
+              initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+            },
+          );
           daemonPheromoneLedgerPersistence = {
             ...persisted,
             hydrated: daemonPheromoneLedgerPersistence.hydrated,
@@ -45767,14 +41235,14 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
               daemonPheromoneLedgerPersistence.lastHydrationError,
           };
         } else {
-          const persisted =
-            await appendDaemonPlasmidLedgerRecordAndMaybeCompact(
-              recordFromDaemonPlasmidApplyMutation(result.mutation),
-              {
-                initialValue: daemonPlasmidLedgerRuntime.defaultValue,
-                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPlasmidCharge",
+            recordFromApply(result.mutation, "daemon.maxPlasmidCharge"),
+            {
+              initialValue: DAEMON_POLICY.maxPlasmidCharge,
+              historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+            },
+          );
           daemonPlasmidLedgerPersistence = {
             ...persisted,
             hydrated: daemonPlasmidLedgerPersistence.hydrated,

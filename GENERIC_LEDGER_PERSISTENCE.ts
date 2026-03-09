@@ -181,7 +181,7 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
   const applyCount = records.filter((r) => r.kind === "apply").length;
   const rollbackCount = records.length - applyCount;
 
-  const persistence: LedgerPersistenceSummary = {
+  let persistence: LedgerPersistenceSummary = {
     path: logPath,
     snapshotPath,
     exists: records.length > 0 || snapshotRecord !== null,
@@ -205,6 +205,22 @@ export const hydrateLedgerRuntime = async <K extends GeneticLedgerKey>(
     lastHydratedAt: new Date().toISOString(),
     lastHydrationError: hydrationError,
   };
+
+  if (
+    hydrationError === null &&
+    persistence.tailRecordCount > persistence.compactionKeepTail &&
+    persistence.recordCount >= persistence.compactionThreshold
+  ) {
+    persistence = await compactLedgerPersistence(key, {
+      initialValue: options.initialValue,
+      historyLimit: options.historyLimit,
+      threshold: persistence.compactionThreshold,
+      keepTail: persistence.compactionKeepTail,
+    });
+    // the hydrated values need explicit set
+    persistence.hydrated = true;
+    persistence.lastHydratedAt = new Date().toISOString();
+  }
 
   return {
     state,
@@ -251,3 +267,158 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
+
+export const compactLedgerPersistence = async <K extends GeneticLedgerKey>(
+  key: K,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerPersistenceSummary> => {
+  const logPath = getLogPath(key);
+  const snapshotPath = getSnapshotPath(key);
+  const threshold = Math.max(
+    1,
+    Math.floor(options.threshold ?? DEFAULT_THRESHOLD),
+  );
+  const keepTail = Math.max(
+    1,
+    Math.floor(options.keepTail ?? DEFAULT_KEEP_TAIL),
+  );
+
+  let records: LedgerRecord<K>[] = [];
+  let snapshotRecord: LedgerSnapshotRecord<K> | null = null;
+  try {
+    const raw = await Deno.readTextFile(logPath);
+    records = raw.split(/\r?\n/u).map((l) => parseRecord(key, l)).filter((
+      x,
+    ): x is LedgerRecord<K> => x !== null);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+  try {
+    const raw = await Deno.readTextFile(snapshotPath);
+    snapshotRecord = parseSnapshot(key, raw);
+  } catch (err) {
+    if (!(err instanceof Deno.errors.NotFound)) throw err;
+  }
+
+  const snapshotRecordCount = snapshotRecord?.representedRecordCount ?? 0;
+  if (
+    records.length <= keepTail ||
+    (snapshotRecord !== null && records.length === 0) ||
+    (snapshotRecord === null && records.length < threshold) ||
+    (snapshotRecord !== null &&
+      snapshotRecordCount + records.length < threshold)
+  ) {
+    const applyCount = records.filter((r) => r.kind === "apply").length;
+    return {
+      path: logPath,
+      snapshotPath,
+      exists: snapshotRecord !== null || records.length > 0,
+      snapshotExists: snapshotRecord !== null,
+      recordCount: snapshotRecordCount + records.length,
+      applyCount: (snapshotRecord?.representedApplyCount ?? 0) + applyCount,
+      rollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
+        (records.length - applyCount),
+      tailRecordCount: records.length,
+      tailApplyCount: applyCount,
+      tailRollbackCount: records.length - applyCount,
+      snapshotRecordCount,
+      snapshotApplyCount: snapshotRecord?.representedApplyCount ?? 0,
+      snapshotRollbackCount: snapshotRecord?.representedRollbackCount ?? 0,
+      compactionEnabled: true,
+      compactionThreshold: threshold,
+      compactionKeepTail: keepTail,
+      lastCompactedAt: snapshotRecord?.compactedAt ?? null,
+      lastCompactedTick: snapshotRecord?.compactedTick ?? -1,
+      hydrated: false,
+      lastHydratedAt: null,
+      lastHydrationError: null,
+    };
+  }
+
+  const compactCount = Math.max(0, records.length - keepTail);
+  let state = snapshotRecord?.state ??
+    createLedgerRuntime(key, options.initialValue, options.historyLimit);
+  const compactedRecords = records.slice(0, compactCount);
+  for (const record of compactedRecords) {
+    state = applyRecordToState(state, record);
+  }
+  const compactedApplyCount =
+    compactedRecords.filter((r) => r.kind === "apply").length;
+  const compactedRollbackCount = compactedRecords.length - compactedApplyCount;
+
+  const nextSnapshotRecord: LedgerSnapshotRecord<K> = {
+    version: 1,
+    key,
+    representedRecordCount: snapshotRecordCount + compactedRecords.length,
+    representedApplyCount: (snapshotRecord?.representedApplyCount ?? 0) +
+      compactedApplyCount,
+    representedRollbackCount: (snapshotRecord?.representedRollbackCount ?? 0) +
+      compactedRollbackCount,
+    compactedAt: new Date().toISOString(),
+    compactedTick: state.lastRollbackTick >= 0
+      ? state.lastRollbackTick
+      : state.lastAppliedTick,
+    state,
+  };
+  const tailRecords = records.slice(compactCount);
+  const tailApplyCount = tailRecords.filter((r) => r.kind === "apply").length;
+  const tailRollbackCount = tailRecords.length - tailApplyCount;
+
+  await ensureDir();
+  await Deno.writeTextFile(
+    snapshotPath,
+    `${JSON.stringify(nextSnapshotRecord, null, 2)}\n`,
+  );
+  await Deno.writeTextFile(
+    logPath,
+    tailRecords.map((r) => JSON.stringify(r)).join("\n") +
+      (tailRecords.length > 0 ? "\n" : ""),
+    { create: true },
+  );
+
+  return {
+    path: logPath,
+    snapshotPath,
+    exists: true,
+    snapshotExists: true,
+    recordCount: nextSnapshotRecord.representedRecordCount + tailRecords.length,
+    applyCount: nextSnapshotRecord.representedApplyCount + tailApplyCount,
+    rollbackCount: nextSnapshotRecord.representedRollbackCount +
+      tailRollbackCount,
+    tailRecordCount: tailRecords.length,
+    tailApplyCount,
+    tailRollbackCount,
+    snapshotRecordCount: nextSnapshotRecord.representedRecordCount,
+    snapshotApplyCount: nextSnapshotRecord.representedApplyCount,
+    snapshotRollbackCount: nextSnapshotRecord.representedRollbackCount,
+    compactionEnabled: true,
+    compactionThreshold: threshold,
+    compactionKeepTail: keepTail,
+    lastCompactedAt: nextSnapshotRecord.compactedAt,
+    lastCompactedTick: nextSnapshotRecord.compactedTick,
+    hydrated: false,
+    lastHydratedAt: null,
+    lastHydrationError: null,
+  };
+};
+
+export const appendLedgerRecordAndMaybeCompact = async <
+  K extends GeneticLedgerKey,
+>(
+  key: K,
+  record: LedgerRecord<K>,
+  options: {
+    initialValue?: number;
+    historyLimit?: number;
+    threshold?: number;
+    keepTail?: number;
+  } = {},
+): Promise<LedgerPersistenceSummary> => {
+  await appendLedgerRecord(record);
+  return await compactLedgerPersistence(key, options);
+};

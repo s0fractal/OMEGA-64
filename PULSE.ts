@@ -31,17 +31,6 @@ import {
 } from "./runtime_bridge/replication_hybrid.ts";
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
 import {
-  applyBaseTaxLedgerRuntimeUpdate,
-  type BaseTaxLedgerApplyResult,
-  type BaseTaxLedgerRollbackResult,
-  type BaseTaxLedgerRuntimeSnapshot,
-  type BaseTaxLedgerRuntimeState,
-  createBaseTaxLedgerRuntime,
-  resetBaseTaxLedgerRuntime,
-  rollbackBaseTaxLedgerRuntimeUpdate,
-  snapshotBaseTaxLedgerRuntime,
-} from "./GENETIC_LEDGER_RUNTIME.ts";
-import {
   applyLedgerUpdate,
   createLedgerRuntime,
   type LedgerRuntimeSnapshot,
@@ -50,66 +39,14 @@ import {
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 import {
+  appendLedgerRecordAndMaybeCompact,
   getLogPath,
   getSnapshotPath,
   hydrateLedgerRuntime,
   type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
 } from "./GENERIC_LEDGER_PERSISTENCE.ts";
-import {
-  appendBaseTaxLedgerRecordAndMaybeCompact,
-  BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
-  BASE_TAX_LEDGER_COMPACT_THRESHOLD,
-  BASE_TAX_LEDGER_LOG_PATH,
-  BASE_TAX_LEDGER_SNAPSHOT_PATH,
-  type BaseTaxLedgerPersistenceSummary,
-  hydrateBaseTaxLedgerRuntime,
-  recordFromApplyMutation,
-  recordFromRollbackMutation,
-} from "./GENETIC_LEDGER_PERSISTENCE.ts";
-import {
-  applyTargetEnergyLedgerRuntimeUpdate,
-  createTargetEnergyLedgerRuntime,
-  resetTargetEnergyLedgerRuntime,
-  rollbackTargetEnergyLedgerRuntimeUpdate,
-  snapshotTargetEnergyLedgerRuntime,
-  type TargetEnergyLedgerApplyResult,
-  type TargetEnergyLedgerRollbackResult,
-  type TargetEnergyLedgerRuntimeSnapshot,
-  type TargetEnergyLedgerRuntimeState,
-} from "./HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
-import {
-  appendTargetEnergyLedgerRecordAndMaybeCompact,
-  hydrateTargetEnergyLedgerRuntime,
-  recordFromTargetEnergyApplyMutation,
-  recordFromTargetEnergyRollbackMutation,
-  TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-  TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD,
-  TARGET_ENERGY_LEDGER_LOG_PATH,
-  TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-  type TargetEnergyLedgerPersistenceSummary,
-} from "./HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
-import {
-  applyPressureRingScaleLedgerRuntimeUpdate,
-  createPressureRingScaleLedgerRuntime,
-  type PressureRingScaleLedgerApplyResult,
-  type PressureRingScaleLedgerRollbackResult,
-  type PressureRingScaleLedgerRuntimeSnapshot,
-  type PressureRingScaleLedgerRuntimeState,
-  resetPressureRingScaleLedgerRuntime,
-  rollbackPressureRingScaleLedgerRuntimeUpdate,
-  snapshotPressureRingScaleLedgerRuntime,
-} from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
-import {
-  appendPressureRingScaleLedgerRecordAndMaybeCompact,
-  hydratePressureRingScaleLedgerRuntime,
-  PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-  PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-  PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-  PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-  type PressureRingScaleLedgerPersistenceSummary,
-  recordFromPressureRingScaleApplyMutation,
-  recordFromPressureRingScaleRollbackMutation,
-} from "./PRESSURE_RING_SCALE_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "./reduction_core/DRIFT_WARDEN.ts";
 import { DollFork } from "./reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
@@ -209,12 +146,14 @@ type HomeostasisState = {
   lastUpdateReason: string;
 };
 type GeneticLedgerRuntimeState = {
-  homeostasisBaseTax: BaseTaxLedgerRuntimeSnapshot;
-  homeostasisBaseTaxPersistence: BaseTaxLedgerPersistenceSummary;
-  homeostasisTargetEnergy: TargetEnergyLedgerRuntimeSnapshot;
-  homeostasisTargetEnergyPersistence: TargetEnergyLedgerPersistenceSummary;
-  pressureRingScale: PressureRingScaleLedgerRuntimeSnapshot;
-  pressureRingScalePersistence: PressureRingScaleLedgerPersistenceSummary;
+  homeostasisBaseTax: LedgerRuntimeSnapshot<"pulse.homeostasis.baseTax">;
+  homeostasisBaseTaxPersistence: LedgerPersistenceSummary;
+  homeostasisTargetEnergy: LedgerRuntimeSnapshot<
+    "pulse.homeostasis.targetEnergy"
+  >;
+  homeostasisTargetEnergyPersistence: LedgerPersistenceSummary;
+  pressureRingScale: LedgerRuntimeSnapshot<"pulse.pressureRing.scale">;
+  pressureRingScalePersistence: LedgerPersistenceSummary;
   homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
   homeostasisBandPersistence: LedgerPersistenceSummary;
   homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
@@ -438,67 +377,6 @@ const replicationHybridState = createReplicationHybridState(
   REPLICATION_EXECUTION_MODE,
 );
 
-let runtimeWorkerCount = WORKER_COUNT;
-let startupSelfTestDone = false;
-let startupSelfTestInProgress = false;
-let startupSelfTestFallbackActivated = false;
-let startupSelfTestLastBreachTick = -1;
-let initFallbackActivated = false;
-let initFallbackReason = "";
-let wasmBootDegraded = false;
-let wasmBootReason = "";
-let wasmBootArtifactBytes = 0;
-let wasmBootPrecheckCompleted = false;
-let spatialHashState: SpatialHashState = {
-  tick: -1,
-  overflowCount: 0,
-  maxCellCount: 0,
-  overflowRatio: 0,
-};
-let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerRuntime: BaseTaxLedgerRuntimeState =
-  createBaseTaxLedgerRuntime(HOMEOSTASIS_BASE_TAX);
-let homeostasisBaseTaxLedgerPersistence: BaseTaxLedgerPersistenceSummary = {
-  path: BASE_TAX_LEDGER_LOG_PATH,
-  snapshotPath: BASE_TAX_LEDGER_SNAPSHOT_PATH,
-  exists: false,
-  snapshotExists: false,
-  recordCount: 0,
-  applyCount: 0,
-  rollbackCount: 0,
-  tailRecordCount: 0,
-  tailApplyCount: 0,
-  tailRollbackCount: 0,
-  snapshotRecordCount: 0,
-  snapshotApplyCount: 0,
-  snapshotRollbackCount: 0,
-  compactionEnabled: true,
-  compactionThreshold: BASE_TAX_LEDGER_COMPACT_THRESHOLD,
-  compactionKeepTail: BASE_TAX_LEDGER_COMPACT_KEEP_TAIL,
-  lastCompactedAt: null,
-  lastCompactedTick: -1,
-  hydrated: false,
-  lastHydratedAt: null,
-  lastHydrationError: null,
-};
-
-// GENERIC LEDGER REGISTRY (Stage 7.2)
-let homeostasisBandLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.band",
-);
-let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.maxDelta",
-);
-let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
-  "pulse.homeostasis.overflowThreshold",
-);
-let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
-  "daemon.maxActionsPerWindow",
-);
-let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
-  "federation.admission.degradeEnergyRatio",
-);
-
 const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   path: getLogPath(key),
   snapshotPath: getSnapshotPath(key),
@@ -522,6 +400,47 @@ const createLedgerPersistence = (key: any): LedgerPersistenceSummary => ({
   lastHydratedAt: null,
   lastHydrationError: null,
 });
+let runtimeWorkerCount = WORKER_COUNT;
+let startupSelfTestDone = false;
+let startupSelfTestInProgress = false;
+let startupSelfTestFallbackActivated = false;
+let startupSelfTestLastBreachTick = -1;
+let initFallbackActivated = false;
+let initFallbackReason = "";
+let wasmBootDegraded = false;
+let wasmBootReason = "";
+let wasmBootArtifactBytes = 0;
+let wasmBootPrecheckCompleted = false;
+let spatialHashState: SpatialHashState = {
+  tick: -1,
+  overflowCount: 0,
+  maxCellCount: 0,
+  overflowRatio: 0,
+};
+let homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(HOMEOSTASIS_BASE_TAX);
+let homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.baseTax",
+);
+let homeostasisBaseTaxLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.baseTax",
+);
+
+// GENERIC LEDGER REGISTRY (Stage 7.2)
+let homeostasisBandLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.band",
+);
+let homeostasisMaxDeltaLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.maxDelta",
+);
+let homeostasisOverflowThresholdLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.overflowThreshold",
+);
+let daemonMaxActionsLedgerRuntime = createLedgerRuntime(
+  "daemon.maxActionsPerWindow",
+);
+let federationDegradeEnergyRatioLedgerRuntime = createLedgerRuntime(
+  "federation.admission.degradeEnergyRatio",
+);
 
 let homeostasisBandLedgerPersistence = createLedgerPersistence(
   "pulse.homeostasis.band",
@@ -541,58 +460,18 @@ let federationDegradeEnergyRatioLedgerPersistence = createLedgerPersistence(
 let homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
   HOMEOSTASIS_TARGET_ENERGY,
 );
-let homeostasisTargetEnergyLedgerRuntime: TargetEnergyLedgerRuntimeState =
-  createTargetEnergyLedgerRuntime(HOMEOSTASIS_TARGET_ENERGY);
-let homeostasisTargetEnergyLedgerPersistence:
-  TargetEnergyLedgerPersistenceSummary = {
-    path: TARGET_ENERGY_LEDGER_LOG_PATH,
-    snapshotPath: TARGET_ENERGY_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: TARGET_ENERGY_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: TARGET_ENERGY_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
-let pressureRingScaleLedgerRuntime: PressureRingScaleLedgerRuntimeState =
-  createPressureRingScaleLedgerRuntime(PRESSURE_RING_BASELINE.scale);
-let pressureRingScaleLedgerPersistence:
-  PressureRingScaleLedgerPersistenceSummary = {
-    path: PRESSURE_RING_SCALE_LEDGER_LOG_PATH,
-    snapshotPath: PRESSURE_RING_SCALE_LEDGER_SNAPSHOT_PATH,
-    exists: false,
-    snapshotExists: false,
-    recordCount: 0,
-    applyCount: 0,
-    rollbackCount: 0,
-    tailRecordCount: 0,
-    tailApplyCount: 0,
-    tailRollbackCount: 0,
-    snapshotRecordCount: 0,
-    snapshotApplyCount: 0,
-    snapshotRollbackCount: 0,
-    compactionEnabled: true,
-    compactionThreshold: PRESSURE_RING_SCALE_LEDGER_COMPACT_THRESHOLD,
-    compactionKeepTail: PRESSURE_RING_SCALE_LEDGER_COMPACT_KEEP_TAIL,
-    lastCompactedAt: null,
-    lastCompactedTick: -1,
-    hydrated: false,
-    lastHydratedAt: null,
-    lastHydrationError: null,
-  };
+let homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+  "pulse.homeostasis.targetEnergy",
+);
+let homeostasisTargetEnergyLedgerPersistence = createLedgerPersistence(
+  "pulse.homeostasis.targetEnergy",
+);
+let pressureRingScaleLedgerRuntime = createLedgerRuntime(
+  "pulse.pressureRing.scale",
+);
+let pressureRingScaleLedgerPersistence = createLedgerPersistence(
+  "pulse.pressureRing.scale",
+);
 let homeostasisLastUpdateTick = -1;
 let homeostasisLastUpdateSource = "runtime_policy";
 let homeostasisLastUpdateReason = "bootstrap";
@@ -616,10 +495,13 @@ const resetSpatialHashStateForColdStart = (): void => {
   };
 };
 const resetHomeostasisStateForColdStart = (): void => {
-  homeostasisBaseTaxLedgerRuntime = resetBaseTaxLedgerRuntime(
-    homeostasisBaseTaxLedgerRuntime,
-    "coldstart_reset",
+  homeostasisBaseTaxLedgerRuntime = createLedgerRuntime(
+    "pulse.homeostasis.baseTax",
+    HOMEOSTASIS_BASE_TAX,
+    homeostasisBaseTaxLedgerRuntime.historyLimit,
   );
+  homeostasisBaseTaxLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  homeostasisBaseTaxLedgerRuntime.lastRollbackReason = "coldstart_reset";
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
   );
@@ -642,10 +524,13 @@ const resetHomeostasisStateForColdStart = (): void => {
     lastHydratedAt: null,
     lastHydrationError: null,
   };
-  homeostasisTargetEnergyLedgerRuntime = resetTargetEnergyLedgerRuntime(
-    homeostasisTargetEnergyLedgerRuntime,
-    "coldstart_reset",
+  homeostasisTargetEnergyLedgerRuntime = createLedgerRuntime(
+    "pulse.homeostasis.targetEnergy",
+    HOMEOSTASIS_TARGET_ENERGY,
+    homeostasisTargetEnergyLedgerRuntime.historyLimit,
   );
+  homeostasisTargetEnergyLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  homeostasisTargetEnergyLedgerRuntime.lastRollbackReason = "coldstart_reset";
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
     homeostasisTargetEnergyLedgerRuntime.currentValue,
   );
@@ -673,10 +558,13 @@ const resetHomeostasisStateForColdStart = (): void => {
   homeostasisLastUpdateReason = "coldstart_reset";
 };
 const resetEvolutionPressureStateForColdStart = (): void => {
-  pressureRingScaleLedgerRuntime = resetPressureRingScaleLedgerRuntime(
-    pressureRingScaleLedgerRuntime,
-    "coldstart_reset",
+  pressureRingScaleLedgerRuntime = createLedgerRuntime(
+    "pulse.pressureRing.scale",
+    PRESSURE_RING_BASELINE.scale,
+    pressureRingScaleLedgerRuntime.historyLimit,
   );
+  pressureRingScaleLedgerRuntime.lastAppliedReason = "coldstart_reset";
+  pressureRingScaleLedgerRuntime.lastRollbackReason = "coldstart_reset";
   pressureRingScaleLedgerPersistence = {
     ...pressureRingScaleLedgerPersistence,
     exists: false,
@@ -723,19 +611,15 @@ const snapshotHomeostasisState = (): HomeostasisState => ({
   lastUpdateReason: homeostasisLastUpdateReason,
 });
 const snapshotGeneticLedgerRuntimeState = (): GeneticLedgerRuntimeState => ({
-  homeostasisBaseTax: snapshotBaseTaxLedgerRuntime(
-    homeostasisBaseTaxLedgerRuntime,
-  ),
+  homeostasisBaseTax: snapshotLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
   homeostasisBaseTaxPersistence: { ...homeostasisBaseTaxLedgerPersistence },
-  homeostasisTargetEnergy: snapshotTargetEnergyLedgerRuntime(
+  homeostasisTargetEnergy: snapshotLedgerRuntime(
     homeostasisTargetEnergyLedgerRuntime,
   ),
   homeostasisTargetEnergyPersistence: {
     ...homeostasisTargetEnergyLedgerPersistence,
   },
-  pressureRingScale: snapshotPressureRingScaleLedgerRuntime(
-    pressureRingScaleLedgerRuntime,
-  ),
+  pressureRingScale: snapshotLedgerRuntime(pressureRingScaleLedgerRuntime),
   pressureRingScalePersistence: { ...pressureRingScaleLedgerPersistence },
   homeostasisBand: snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
   homeostasisBandPersistence: { ...homeostasisBandLedgerPersistence },
@@ -778,11 +662,10 @@ const applyHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): BaseTaxLedgerApplyResult => {
-  const result = applyBaseTaxLedgerRuntimeUpdate(
-    homeostasisBaseTaxLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.homeostasis.baseTax"
+> => {
+  const result = applyLedgerUpdate(homeostasisBaseTaxLedgerRuntime, update);
   homeostasisBaseTaxLedgerRuntime = result.state;
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
@@ -801,8 +684,10 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): BaseTaxLedgerRollbackResult => {
-  const result = rollbackBaseTaxLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.homeostasis.baseTax"
+> => {
+  const result = rollbackLedgerUpdate(
     homeostasisBaseTaxLedgerRuntime,
     rollback,
   );
@@ -818,10 +703,10 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
   return result;
 };
 const syncHomeostasisBaseTaxLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateBaseTaxLedgerRuntime(
-    HOMEOSTASIS_BASE_TAX,
-    homeostasisBaseTaxLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("pulse.homeostasis.baseTax", {
+    initialValue: HOMEOSTASIS_BASE_TAX,
+    historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
+  });
   homeostasisBaseTaxLedgerRuntime = hydrated.state;
   homeostasisBaseTaxRuntime = clampHomeostasisBaseTax(
     homeostasisBaseTaxLedgerRuntime.currentValue,
@@ -846,8 +731,10 @@ const applyHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): TargetEnergyLedgerApplyResult => {
-  const result = applyTargetEnergyLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.homeostasis.targetEnergy"
+> => {
+  const result = applyLedgerUpdate(
     homeostasisTargetEnergyLedgerRuntime,
     update,
   );
@@ -869,8 +756,10 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): TargetEnergyLedgerRollbackResult => {
-  const result = rollbackTargetEnergyLedgerRuntimeUpdate(
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.homeostasis.targetEnergy"
+> => {
+  const result = rollbackLedgerUpdate(
     homeostasisTargetEnergyLedgerRuntime,
     rollback,
   );
@@ -886,9 +775,12 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
   return result;
 };
 const syncHomeostasisTargetEnergyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateTargetEnergyLedgerRuntime(
-    HOMEOSTASIS_TARGET_ENERGY,
-    homeostasisTargetEnergyLedgerRuntime.historyLimit,
+  const hydrated = await hydrateLedgerRuntime(
+    "pulse.homeostasis.targetEnergy",
+    {
+      initialValue: HOMEOSTASIS_TARGET_ENERGY,
+      historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
+    },
   );
   homeostasisTargetEnergyLedgerRuntime = hydrated.state;
   homeostasisTargetEnergyRuntime = clampHomeostasisTargetEnergy(
@@ -914,11 +806,10 @@ const applyPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): PressureRingScaleLedgerApplyResult => {
-  const result = applyPressureRingScaleLedgerRuntimeUpdate(
-    pressureRingScaleLedgerRuntime,
-    update,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+  "pulse.pressureRing.scale"
+> => {
+  const result = applyLedgerUpdate(pressureRingScaleLedgerRuntime, update);
   pressureRingScaleLedgerRuntime = result.state;
   if (result.changed) {
     applyEvolutionPressureRing({
@@ -937,11 +828,10 @@ const rollbackPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): PressureRingScaleLedgerRollbackResult => {
-  const result = rollbackPressureRingScaleLedgerRuntimeUpdate(
-    pressureRingScaleLedgerRuntime,
-    rollback,
-  );
+): import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+  "pulse.pressureRing.scale"
+> => {
+  const result = rollbackLedgerUpdate(pressureRingScaleLedgerRuntime, rollback);
   pressureRingScaleLedgerRuntime = result.state;
   if (result.status === "rolled_back") {
     applyEvolutionPressureRing({
@@ -954,10 +844,10 @@ const rollbackPressureRingScaleLedgerUpdate = (
   return result;
 };
 const syncPressureRingScaleLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydratePressureRingScaleLedgerRuntime(
-    PRESSURE_RING_BASELINE.scale,
-    pressureRingScaleLedgerRuntime.historyLimit,
-  );
+  const hydrated = await hydrateLedgerRuntime("pulse.pressureRing.scale", {
+    initialValue: PRESSURE_RING_BASELINE.scale,
+    historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+  });
   pressureRingScaleLedgerRuntime = hydrated.state;
   pressureRingScaleLedgerPersistence = hydrated.persistence;
   applyEvolutionPressureRing({
@@ -2082,9 +1972,15 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | BaseTaxLedgerApplyResult
-    | TargetEnergyLedgerApplyResult
-    | PressureRingScaleLedgerApplyResult
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.homeostasis.baseTax"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.homeostasis.targetEnergy"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
+      "pulse.pressureRing.scale"
+    >
   > => {
     if (update.key === "pulse.pressureRing.scale") {
       const result = applyPressureRingScaleLedgerUpdate({
@@ -2095,14 +1991,14 @@ export const PULSE = {
       });
       if (result.changed) {
         if (result.mutation) {
-          const persisted =
-            await appendPressureRingScaleLedgerRecordAndMaybeCompact(
-              recordFromPressureRingScaleApplyMutation(result.mutation),
-              {
-                initialValue: pressureRingScaleLedgerRuntime.defaultValue,
-                historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.pressureRing.scale",
+            recordFromApply(result.mutation, "pulse.pressureRing.scale"),
+            {
+              initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+              historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+            },
+          );
           pressureRingScaleLedgerPersistence = {
             ...persisted,
             hydrated: pressureRingScaleLedgerPersistence.hydrated,
@@ -2132,8 +2028,9 @@ export const PULSE = {
       });
       if (result.changed) {
         if (result.mutation) {
-          const persisted = await appendTargetEnergyLedgerRecordAndMaybeCompact(
-            recordFromTargetEnergyApplyMutation(result.mutation),
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.homeostasis.targetEnergy",
+            recordFromApply(result.mutation, "pulse.homeostasis.targetEnergy"),
             {
               initialValue: homeostasisTargetEnergyLedgerRuntime.defaultValue,
               historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -2168,8 +2065,9 @@ export const PULSE = {
     });
     if (result.changed) {
       if (result.mutation) {
-        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
-          recordFromApplyMutation(result.mutation),
+        const persisted = await appendLedgerRecordAndMaybeCompact(
+          "pulse.homeostasis.baseTax",
+          recordFromApply(result.mutation, "pulse.homeostasis.baseTax"),
           {
             initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
             historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
@@ -2206,9 +2104,15 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | BaseTaxLedgerRollbackResult
-    | TargetEnergyLedgerRollbackResult
-    | PressureRingScaleLedgerRollbackResult
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.homeostasis.baseTax"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.homeostasis.targetEnergy"
+    >
+    | import("./GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
+      "pulse.pressureRing.scale"
+    >
   > => {
     if (rollback.key === "pulse.pressureRing.scale") {
       const result = rollbackPressureRingScaleLedgerUpdate({
@@ -2219,14 +2123,14 @@ export const PULSE = {
       });
       if (result.status === "rolled_back") {
         if (result.mutation) {
-          const persisted =
-            await appendPressureRingScaleLedgerRecordAndMaybeCompact(
-              recordFromPressureRingScaleRollbackMutation(result.mutation),
-              {
-                initialValue: pressureRingScaleLedgerRuntime.defaultValue,
-                historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
-              },
-            );
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.pressureRing.scale",
+            recordFromRollback(result.mutation, "pulse.pressureRing.scale"),
+            {
+              initialValue: pressureRingScaleLedgerRuntime.defaultValue,
+              historyLimit: pressureRingScaleLedgerRuntime.historyLimit,
+            },
+          );
           pressureRingScaleLedgerPersistence = {
             ...persisted,
             hydrated: pressureRingScaleLedgerPersistence.hydrated,
@@ -2256,8 +2160,12 @@ export const PULSE = {
       });
       if (result.status === "rolled_back") {
         if (result.mutation) {
-          const persisted = await appendTargetEnergyLedgerRecordAndMaybeCompact(
-            recordFromTargetEnergyRollbackMutation(result.mutation),
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "pulse.homeostasis.targetEnergy",
+            recordFromRollback(
+              result.mutation,
+              "pulse.homeostasis.targetEnergy",
+            ),
             {
               initialValue: homeostasisTargetEnergyLedgerRuntime.defaultValue,
               historyLimit: homeostasisTargetEnergyLedgerRuntime.historyLimit,
@@ -2292,8 +2200,9 @@ export const PULSE = {
     });
     if (result.status === "rolled_back") {
       if (result.mutation) {
-        const persisted = await appendBaseTaxLedgerRecordAndMaybeCompact(
-          recordFromRollbackMutation(result.mutation),
+        const persisted = await appendLedgerRecordAndMaybeCompact(
+          "pulse.homeostasis.baseTax",
+          recordFromRollback(result.mutation, "pulse.homeostasis.baseTax"),
           {
             initialValue: homeostasisBaseTaxLedgerRuntime.defaultValue,
             historyLimit: homeostasisBaseTaxLedgerRuntime.historyLimit,
