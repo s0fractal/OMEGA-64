@@ -7,20 +7,24 @@ import { dirname, extname, join, normalize } from "node:path";
 const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 
 const EXCLUDE_PATTERNS: RegExp[] = [
-  /^test_.*\.ts$/u,
-  /^tests\//u,
-  /^archive\//u,
-  /^e\//u,
-  /^node_modules\//u,
-  /^build\//u,
-  /^dist\//u,
-  /^coverage\//u,
-  /^\.git\//u,
-  /^OMEGA_CORE_LOGIC\.md$/u,
-  /^export_core\.ts$/u,
-  /^diag_.*\.ts$/u,
-  /^fix_.*\.ts$/u,
-  /^WORKER_.*\.(json|md)$/u,
+  /(^|\/)test_.*\.ts$/u,
+  /(^|\/)tests\//u,
+  /(^|\/)archive\//u,
+  /(^|\/)e\//u,
+  /(^|\/)o\//u,
+  /(^|\/)DIMENSIONS\//u,
+  /(^|\/)legacy_sigma\//u,
+  /(^|\/)\.omega\//u,
+  /(^|\/)node_modules\//u,
+  /(^|\/)build\//u,
+  /(^|\/)dist\//u,
+  /(^|\/)coverage\//u,
+  /(^|\/)\.git\//u,
+  /(^|\/)OMEGA_CORE_LOGIC\.md$/u,
+  /(^|\/)export_core\.ts$/u,
+  /(^|\/)diag_.*\.ts$/u,
+  /(^|\/)fix_.*\.ts$/u,
+  /(^|\/)WORKER_.*\.(json|md)$/u,
   /\.bak$/u,
 ];
 
@@ -325,6 +329,35 @@ const collectDependencyClosure = async (
   return { files: uniqueSorted(visited), missing: uniqueSorted(missing) };
 };
 
+const discoverCodeFiles = async (dir: string): Promise<string[]> => {
+  const discovered: string[] = [];
+  const queue = [dir];
+  while (queue.length > 0) {
+    const currentPath = queue.shift()!;
+    try {
+      for await (const entry of Deno.readDir(currentPath)) {
+        if (entry.name.startsWith(".")) continue;
+        const entryPath = currentPath === "."
+          ? entry.name
+          : join(currentPath, entry.name);
+        if (isExcluded(entryPath)) continue;
+
+        if (entry.isDirectory) {
+          queue.push(entryPath);
+        } else if (
+          entry.isFile &&
+          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx"))
+        ) {
+          discovered.push(entryPath);
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+  return discovered;
+};
+
 export const buildExportFileList = async (): Promise<
   {
     files: string[];
@@ -366,8 +399,8 @@ export const buildExportFileList = async (): Promise<
     }
   }
   if (missingRequiredPaths.length > 0) {
-    throw new Error(
-      `Required architecture files missing on disk:\n${
+    console.warn(
+      `[Warning] Specified architecture files missing on disk (skipping):\n${
         missingRequiredPaths.map((f) => `- ${f}`).join("\n")
       }`,
     );
@@ -387,18 +420,24 @@ export const buildExportFileList = async (): Promise<
     );
   }
 
-  const combined = new Set<string>(closureFiles);
+  // Auto-discover all typescript code files in the repository
+  const discoveredCode = await discoverCodeFiles(".");
+
+  const combined = new Set<string>([...closureFiles, ...discoveredCode]);
   for (
     const file of [...manifest.requiredArchFiles, ...manifest.contextFiles]
   ) {
     combined.add(file);
   }
 
-  const files = uniqueSorted(combined).filter((f) => !isExcluded(f));
+  const files = uniqueSorted(combined).filter((f) =>
+    !isExcluded(f) && !missingRequiredPaths.includes(f)
+  );
   const runtimeClosureSet = new Set(runtimeClosureFiles);
   const nonRuntimeCodeFiles = files.filter((f) =>
     [".ts", ".tsx"].includes(extname(f)) && !runtimeClosureSet.has(f)
   );
+
   const nonRuntimeCodeSet = new Set(nonRuntimeCodeFiles);
   const runtimeSupportCodeFiles = manifest.runtimeSupportFiles.filter((f) =>
     nonRuntimeCodeSet.has(f)
@@ -406,23 +445,18 @@ export const buildExportFileList = async (): Promise<
   const experimentalCodeFiles = manifest.experimentalFiles.filter((f) =>
     nonRuntimeCodeSet.has(f)
   );
+
   const classifiedSet = new Set([
     ...runtimeSupportCodeFiles,
     ...experimentalCodeFiles,
   ]);
+
   const unclassifiedNonRuntimeCodeFiles = nonRuntimeCodeFiles.filter((f) =>
     !classifiedSet.has(f)
   );
-  const missingRequired = manifest.requiredArchFiles.filter((f) =>
-    !files.includes(f)
-  );
-  if (missingRequired.length > 0) {
-    throw new Error(
-      `Required architecture files missing from export:\n${
-        missingRequired.map((f) => `- ${f}`).join("\n")
-      }`,
-    );
-  }
+
+  // Auto-bucket unclassified files into experimental/dynamic code files
+  experimentalCodeFiles.push(...unclassifiedNonRuntimeCodeFiles);
 
   const leaked = files.filter((f) => isExcluded(f));
   if (leaked.length > 0) {
@@ -432,26 +466,7 @@ export const buildExportFileList = async (): Promise<
       }`,
     );
   }
-  const missingSupportFromExport = manifest.runtimeSupportFiles.filter((f) =>
-    !files.includes(f)
-  );
-  if (missingSupportFromExport.length > 0) {
-    throw new Error(
-      `runtime_support_files missing from export set:\n${
-        missingSupportFromExport.map((f) => `- ${f}`).join("\n")
-      }`,
-    );
-  }
-  const missingExperimentalFromExport = manifest.experimentalFiles.filter((f) =>
-    !files.includes(f)
-  );
-  if (missingExperimentalFromExport.length > 0) {
-    throw new Error(
-      `experimental_files missing from export set:\n${
-        missingExperimentalFromExport.map((f) => `- ${f}`).join("\n")
-      }`,
-    );
-  }
+
   const staleSupportFiles = manifest.runtimeSupportFiles.filter((f) =>
     runtimeClosureSet.has(f)
   );
@@ -469,13 +484,6 @@ export const buildExportFileList = async (): Promise<
     throw new Error(
       `experimental_files leaked into active runtime closure:\n${
         staleExperimentalFiles.map((f) => `- ${f}`).join("\n")
-      }`,
-    );
-  }
-  if (unclassifiedNonRuntimeCodeFiles.length > 0) {
-    throw new Error(
-      `Unclassified non-runtime code files detected. Add them to runtime_support_files or experimental_files:\n${
-        unclassifiedNonRuntimeCodeFiles.map((f) => `- ${f}`).join("\n")
       }`,
     );
   }

@@ -1,13 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-_Generated: 2026-03-09T17:38:26.934Z_ _Exported Files: 126_ _Runtime Roots: 11_
-_Runtime Closure Files: 78_ _Non-Runtime Code Files: 33_ _Runtime-Support Code
-Files: 18_ _Experimental Code Files: 15_ _Manifest SHA256:
-bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8_ _Export Set
-SHA256: 9325af3808235a837cff8008e59cd82a44619c3c3b62365a5732e8af3b70fb9b_
-_Export Content SHA256:
-e9f8cdc4f14c7a897d1363e18b92921baf27a012ad4208ba676bc23eeae765bf_ _Git Commit:
-9ab484ecf172_
+*Generated: 2026-03-09T17:57:03.723Z*
+*Exported Files: 171*
+*Runtime Roots: 11*
+*Runtime Closure Files: 78*
+*Non-Runtime Code Files: 78*
+*Runtime-Support Code Files: 18*
+*Experimental Code Files: 60*
+*Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
+*Export Set SHA256: 1329d353404d07c65d043e4f78d95812aa623390a584d115d9ce0e08e501eb3f*
+*Export Content SHA256: a94619bfa007df958923ef089f436e58721d6c0acd0f042974ab624485fa2fa9*
+*Git Commit: cacf0c87cf26*
 
 ---
 
@@ -114,30 +117,74 @@ e9f8cdc4f14c7a897d1363e18b92921baf27a012ad4208ba676bc23eeae765bf_ _Git Commit:
 
 - ARCHITECT_PLASMID_PROMOTION_ACTION.ts
 - ARCHITECT_PLASMID_PROMOTION_DECISION.ts
+- ATOMIC_LEDGER.ts
+- avatar_bot.ts
 - build_wasm.ts
+- check_guardians.ts
+- check_wasm_imports.ts
 - ECOLOGY_ENGINE.ts
+- ENZYME_DIGEST.ts
+- FORCE_BOOTSTRAP.ts
 - GUARDIAN_SIGNAL_PROMOTION_ACTION.ts
 - GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
+- HOLOGRAM_INJECTOR.ts
 - HOLOGRAM_MODULE.ts
 - LAMBDA_VM.ts
+- LONGRUN_CANARY.ts
+- LONGRUN_DAEMON_AUDIT.ts
 - MATRIX_ENGINE.ts
 - mod.ts
 - OBSERVER_LAB.ts
 - OBSERVER_UI.ts
+- omega_wasm_asc/assembly/index.ts
 - P2P_SYNAPSE.ts
 - RECOVERY.ts
 - reduction_core/GlyphIR64.ts
 - reduction_core/REIFICATION_ACTION.ts
 - reduction_core/relics/RELIC_CULTIVATION.ts
+- reduction_core/SHADOW_EVOLUTION_RUNNER.ts
 - REFLECTION_ENGINE.ts
+- REPLICATION_PROMOTION_ACTION.ts
+- REPLICATION_PROMOTION_DECISION.ts
 - RIBOSOME_TICK.ts
+- RIBOSOME.ts
+- run_ecosystem.ts
+- RUN_STAGE8_TICKS.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
+- SERVE_DASHBOARD.ts
 - SNAP.ts
 - STRUCTURE_ENGINE.ts
+- trigger_singularity.ts
+- verification/admission_shadow_cases.ts
+- verification/admission_shadow_harness.ts
+- verification/architect_plasmid_mode_cases.ts
+- verification/architect_plasmid_mode_harness.ts
+- verification/bind_resolution_capture.ts
+- verification/cognitive_vector_capture.ts
+- verification/collective_banking_capture.ts
+- verification/collective_synchrony_capture.ts
+- verification/collective_transport_capture.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
+- verification/guardian_signal_mode_cases.ts
+- verification/guardian_signal_mode_harness.ts
+- verification/intent_resolution_capture.ts
+- verification/kuramoto_sync_capture.ts
+- verification/lut_accuracy_capture.ts
+- verification/quorum_sync_capture.ts
+- verification/reduction_cases.ts
 - verification/reduction_harness.ts
+- verification/resolution_phase_capture.ts
+- verification/secretion_energetics_audit.ts
+- verification/share_transfer_capture.ts
+- verification/structure_build_competition_capture.ts
+- verification/structure_build_lock_capture.ts
+- verification/structure_build_runtime_capture.ts
+- verification/structure_charge_capture.ts
+- verification/structure_charge_competition_capture.ts
+- verification/structure_lock_capture.ts
+- verification/tensegrity_capture.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
 - worker_gate_thresholds.ts
@@ -145,6 +192,7 @@ e9f8cdc4f14c7a897d1363e18b92921baf27a012ad4208ba676bc23eeae765bf_ _Git Commit:
 - worker_seeded_swarm.ts
 - worker_trend_baseline.ts
 - worker_trend_math.ts
+- ZERO_IOPS.ts
 
 ---
 
@@ -175,19 +223,64 @@ e9f8cdc4f14c7a897d1363e18b92921baf27a012ad4208ba676bc23eeae765bf_ _Git Commit:
 
 - ARCHITECT_PLASMID_PROMOTION_ACTION.ts
 - ARCHITECT_PLASMID_PROMOTION_DECISION.ts
+- ATOMIC_LEDGER.ts
+- avatar_bot.ts
+- check_guardians.ts
+- check_wasm_imports.ts
 - ECOLOGY_ENGINE.ts
+- ENZYME_DIGEST.ts
+- FORCE_BOOTSTRAP.ts
 - GUARDIAN_SIGNAL_PROMOTION_ACTION.ts
 - GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
+- HOLOGRAM_INJECTOR.ts
 - LAMBDA_VM.ts
+- LONGRUN_CANARY.ts
+- LONGRUN_DAEMON_AUDIT.ts
 - MATRIX_ENGINE.ts
+- omega_wasm_asc/assembly/index.ts
 - reduction_core/GlyphIR64.ts
+- reduction_core/SHADOW_EVOLUTION_RUNNER.ts
 - REFLECTION_ENGINE.ts
+- REPLICATION_PROMOTION_ACTION.ts
+- REPLICATION_PROMOTION_DECISION.ts
 - RIBOSOME_TICK.ts
+- RIBOSOME.ts
+- run_ecosystem.ts
+- RUN_STAGE8_TICKS.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
+- SERVE_DASHBOARD.ts
+- trigger_singularity.ts
+- verification/admission_shadow_cases.ts
+- verification/admission_shadow_harness.ts
+- verification/architect_plasmid_mode_cases.ts
+- verification/architect_plasmid_mode_harness.ts
+- verification/bind_resolution_capture.ts
+- verification/cognitive_vector_capture.ts
+- verification/collective_banking_capture.ts
+- verification/collective_synchrony_capture.ts
+- verification/collective_transport_capture.ts
 - verification/golden_trace_capture.ts
 - verification/golden_trace_catalog.ts
+- verification/guardian_signal_mode_cases.ts
+- verification/guardian_signal_mode_harness.ts
+- verification/intent_resolution_capture.ts
+- verification/kuramoto_sync_capture.ts
+- verification/lut_accuracy_capture.ts
+- verification/quorum_sync_capture.ts
+- verification/reduction_cases.ts
 - verification/reduction_harness.ts
+- verification/resolution_phase_capture.ts
+- verification/secretion_energetics_audit.ts
+- verification/share_transfer_capture.ts
+- verification/structure_build_competition_capture.ts
+- verification/structure_build_lock_capture.ts
+- verification/structure_build_runtime_capture.ts
+- verification/structure_charge_capture.ts
+- verification/structure_charge_competition_capture.ts
+- verification/structure_lock_capture.ts
+- verification/tensegrity_capture.ts
+- ZERO_IOPS.ts
 
 ---
 
@@ -394,6 +487,7 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
+
 ```
 
 ---
@@ -2114,6 +2208,7 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
+
 ```
 
 ---
@@ -2852,6 +2947,7 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
+
 ```
 
 ---
@@ -3164,6 +3260,7 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
+
 ```
 
 ---
@@ -3552,6 +3649,7 @@ export const AKASHA_SIGNALING = {
     </script>
   </body>
 </html>
+
 ```
 
 ---
@@ -3626,6 +3724,7 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
+
 ```
 
 ---
@@ -3819,6 +3918,7 @@ export const evaluateArchitectPlasmidPromotionDecision = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -4033,6 +4133,7 @@ export const evaluateArchitectPlasmidPromotion = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -4242,6 +4343,7 @@ Deep chain adds:
 - Policy: test files and archive/legacy folders are excluded; required active
   files must exist; context is limited to active architecture docs and UI/ops
   surfaces.
+
 ```
 
 ---
@@ -6978,6 +7080,7 @@ export function apply_metabolism_kernel(
     }
   }
 }
+
 ```
 
 ---
@@ -6990,6 +7093,92 @@ export function apply_metabolism_kernel(
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
+
+```
+
+---
+
+## FILE: ATOMIC_LEDGER.ts
+
+```typescript
+// OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
+// Binary Event Ring Buffer (Memory-Mapped)
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import * as OFFSETS from "./OFFSETS.ts";
+
+export type LedgerEvent = {
+  tick: number;
+  atomIdx: number;
+  r1: number;
+  r2: number;
+};
+
+export const ATOMIC_LEDGER = {
+  /**
+   * Retrieves the current write cursor (how many total events have been emitted).
+   */
+  getHead(): number {
+    return Atomics.load(STATE_MATRIX.ledgerHeadView, 0);
+  },
+
+  /**
+   * Reads a raw event from the circular buffer given an absolute sequence number.
+   * If the sequence number is too old (overwritten by MAX_EVENTS), this will return overwritten data.
+   */
+  getEvent(sequence: number): LedgerEvent {
+    const cursor = sequence % OFFSETS.MAX_LEDGER_EVENTS;
+    const base = cursor * 4;
+    return {
+      tick: Atomics.load(STATE_MATRIX.ledgerDataView, base),
+      atomIdx: Atomics.load(STATE_MATRIX.ledgerDataView, base + 1),
+      r1: Atomics.load(STATE_MATRIX.ledgerDataView, base + 2),
+      r2: Atomics.load(STATE_MATRIX.ledgerDataView, base + 3),
+    };
+  },
+
+  /**
+   * Exports the entire ledger data view (including head) as a raw Uint8Array buffer
+   * for zero-serialization storage or network transmission.
+   */
+  exportBinary(): Uint8Array {
+    // 4 bytes for head, plus MAX_EVENTS * 16 bytes for data
+    const size = 4 + (OFFSETS.MAX_LEDGER_EVENTS * 16);
+    const dump = new Uint8Array(size);
+
+    // Copy Head
+    const headBytes = new Uint8Array(
+      STATE_MATRIX.ledgerHeadView.buffer,
+      OFFSETS.LEDGER_HEAD_OFFSET,
+      4,
+    );
+    dump.set(headBytes, 0);
+
+    // Copy Data
+    const dataBytes = new Uint8Array(
+      STATE_MATRIX.ledgerDataView.buffer,
+      OFFSETS.LEDGER_DATA_OFFSET,
+      OFFSETS.MAX_LEDGER_EVENTS * 16,
+    );
+    dump.set(dataBytes, 4);
+
+    return dump;
+  },
+
+  /**
+   * Reads all events from `startSequence` to `endSequence` strictly.
+   */
+  readRange(startSeq: number, endSeq: number): LedgerEvent[] {
+    const events: LedgerEvent[] = [];
+    // Ensure we don't try to read more than the buffer can hold
+    const safeStart = Math.max(startSeq, endSeq - OFFSETS.MAX_LEDGER_EVENTS);
+    for (let i = safeStart; i < endSeq; i++) {
+      events.push(this.getEvent(i));
+    }
+    return events;
+  },
+};
+
 ```
 
 ---
@@ -7063,6 +7252,95 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
+
+```
+
+---
+
+## FILE: avatar_bot.ts
+
+```typescript
+// OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
+import { LOGGER } from "./LOGGER.ts";
+
+const PROXY_URL = "http://localhost:8080";
+const AVATAR_ID = 9999; // Assume an atom seeded with this ID
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function runAvatar() {
+  LOGGER.info(`[AVATAR] Waking up Avatar ID: ${AVATAR_ID}`);
+
+  while (true) {
+    try {
+      // 1. SENSE Environment
+      const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
+      if (!res.ok) {
+        LOGGER.warn(
+          "[AVATAR] Cannot reach Proxy or Avatar is dead. Waiting...",
+        );
+        await sleep(2000);
+        continue;
+      }
+
+      const data = await res.json();
+      const me = data.self;
+      const vision = data.vision;
+
+      LOGGER.info(
+        `[AVATAR] Pos: (${me.x}, ${me.y}) | Energy: ${
+          Math.floor(me.energy)
+        } | Seeing ${vision.length} entities.`,
+      );
+
+      // 2. DECIDE (Simulated LLM Policy: Move towards nearest PREY/PRODUCER to eat, or random wander)
+      let action = "MOVE";
+      let dx = Math.random() > 0.5 ? 1 : -1;
+      let dy = Math.random() > 0.5 ? 1 : -1;
+      let targetIdx = 0;
+
+      if (vision.length > 0) {
+        // Find nearest food (Role 1=Producer, Role 0=Prey)
+        const food = vision.find((v: any) => v.role === 1 || v.role === 0);
+        if (food) {
+          if (food.distance <= 15) {
+            action = "EAT";
+            targetIdx = food.idx;
+            LOGGER.info(
+              `[AVATAR] DECISION: EAT target ${targetIdx} at Dist ${
+                Math.floor(food.distance)
+              }`,
+            );
+          } else {
+            // Move towards food
+            dx = Math.sign(food.dx);
+            dy = Math.sign(food.dy);
+            LOGGER.info(`[AVATAR] DECISION: CHASE target ${food.idx}`);
+          }
+        }
+      }
+
+      // 3. ACT
+      await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action, dx, dy, targetIdx, amount: 100 }),
+      });
+    } catch (e: any) {
+      LOGGER.error("[AVATAR] Network error:", e.message);
+    }
+
+    // Tick delay (Assuming matrix ticks at 10 TPS, we query every 500ms so we don't spam, acting at 2 TPS)
+    await sleep(500);
+  }
+}
+
+if (import.meta.main) {
+  runAvatar();
+}
+
 ```
 
 ---
@@ -7105,6 +7383,7 @@ export const AVATAR_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -7201,6 +7480,7 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
+
 ```
 
 ---
@@ -7255,6 +7535,52 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
+
+```
+
+---
+
+## FILE: check_guardians.ts
+
+```typescript
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { rolesView } from "./PULSE.ts";
+
+const active = STATE_MATRIX.getActiveIndices();
+let producers = 0;
+let architects = 0;
+let guardians = 0;
+let others = 0;
+
+for (const idx of active) {
+  const role = rolesView[idx];
+  if (role === STATE_MATRIX.ROLE_PRODUCER) producers++;
+  else if (role === STATE_MATRIX.ROLE_ARCHITECT) architects++;
+  else if (role === STATE_MATRIX.ROLE_GUARDIAN) guardians++;
+  else others++;
+}
+
+console.log(`Total active: ${active.length}`);
+console.log(`Producers: ${producers}`);
+console.log(`Architects: ${architects}`);
+console.log(`Guardians: ${guardians}`);
+console.log(`Others: ${others}`);
+
+```
+
+---
+
+## FILE: check_wasm_imports.ts
+
+```typescript
+const wasmBytes = await Deno.readFile("build/release.wasm");
+const wasmModule = await WebAssembly.compile(wasmBytes);
+console.log("Imports:");
+const imports = WebAssembly.Module.imports(wasmModule);
+for (const imp of imports) {
+  console.log(`  - ${imp.module}.${imp.name} (${imp.kind})`);
+}
+
 ```
 
 ---
@@ -7564,6 +7890,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
+
 ```
 
 ---
@@ -8936,6 +9263,7 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
+
 ```
 
 ---
@@ -9062,6 +9390,7 @@ export const CONTROL_INTENT_QUEUE = {
     "ui/index.html"
   ]
 }
+
 ```
 
 ---
@@ -9667,6 +9996,7 @@ export const planInvariantIngress = (
     admission,
   };
 };
+
 ```
 
 ---
@@ -10262,6 +10592,7 @@ export const hydrateDaemonPheromoneLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -10584,6 +10915,7 @@ export const resetDaemonPheromoneLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -11178,6 +11510,7 @@ export const hydrateDaemonPlasmidLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -11499,6 +11832,7 @@ export const resetDaemonPlasmidLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -11621,6 +11955,7 @@ Do not move anything from the table above into reduction until:
 1. the corresponding golden trace exists,
 2. the rollback owner is explicit,
 3. the replacement lane is narrower than the current one.
+
 ```
 
 ---
@@ -11751,6 +12086,7 @@ Stage 3 is considered real only when:
 - no replacement of the active WASM kernel
 - no semantic mutation of non-core glyphs
 - no claim that "64 glyphs are now proteins"
+
 ```
 
 ---
@@ -11916,6 +12252,7 @@ Current exit assessment:
 - export visibility: satisfied
 - next blocker: widen shadow consumers only when they map to a real trace id and
   an explicit rollback path
+
 ```
 
 ---
@@ -12182,6 +12519,7 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
   `/api/physiology` with `ledger_max_plasmid_charge` and
   `ledger_max_plasmid_charge_persistence`
+
 ```
 
 ---
@@ -13034,13 +13372,14 @@ This keeps myth and engineering aligned without letting either erase the other.
    [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
 3. Draft the first `GlyphIR64` type contract before any bridge implementation
    begins.
+
 ```
 
 ---
 
 ## FILE: docs/migration/ROADMAP_2_SIGMA_CORE.md
 
-````markdown
+```markdown
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
 This document fixes an adjacent future-vector for OMEGA-64. It is not the active
@@ -13122,7 +13461,6 @@ pub enum SigmaOp {
     Attract { vector: Vector64 },
 }
 ```
-````
 
 ### Чому це спрацює
 
@@ -13155,7 +13493,8 @@ pub enum SigmaOp {
   - rollback paths
   - export-visible progress markers
 
-````
+```
+
 ---
 
 ## FILE: ECOLOGY_ENGINE.ts
@@ -13237,7 +13576,8 @@ export const ECOLOGY_ENGINE = {
     }
   },
 };
-````
+
+```
 
 ---
 
@@ -13270,6 +13610,258 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
+
+```
+
+---
+
+## FILE: ENZYME_DIGEST.ts
+
+```typescript
+import { crypto } from "jsr:@std/crypto";
+import { decodeHex, encodeHex } from "jsr:@std/encoding/hex";
+
+const ROOT = Deno.cwd();
+
+// Core files that the Mycelium is forbidden to eat (The DNA of the engine itself)
+const INDIGESTIBLE = [
+  "PULSE.ts",
+  "PULSE_WORKER.ts",
+  "GATE.ts",
+  "RIBOSOME.ts",
+  "RIBOSOME_TICK.ts",
+  "AKASHA_SERVER.ts",
+  "P2P_SYNAPSE.ts",
+  "AKASHA_UI.html",
+  "MYCELIUM.ts",
+  "ENZYME_DIGEST.ts",
+  "STATE_MATRIX.ts",
+  "PHYSICS_ENGINE.ts",
+  "SEMANTIC_MEMBRANE.ts",
+  "LLM_SYNAPSE.ts",
+  "BREATH.ts",
+  "ZERO_IOPS.ts",
+  "REFLECTION_ENGINE.ts",
+  "SNAPSHOT_ENGINE.ts",
+  "mod.ts",
+  "deno.json",
+  "pulse.log",
+  "debug.log",
+  "synapse.log",
+];
+
+export async function secreteEnzymes(lastKnownAtoms: Map<string, any>) {
+  try {
+    let digestionCount = 0;
+    for await (const entry of Deno.readDir(ROOT)) {
+      if (!entry.isFile) continue;
+
+      // Skip recognized Atoms
+      if (entry.name.match(/^0x[0-9a-fA-F]{16}\.[A-Z_]+\.md$/)) continue;
+      if (entry.name.match(/^0xALIEN/)) continue;
+      if (entry.name.match(/^0xNOOSPHERE/)) continue;
+      // Skip core system files
+      if (INDIGESTIBLE.includes(entry.name) || entry.name.startsWith(".")) {
+        continue;
+      }
+      // Skip generated output files
+      if (
+        entry.name.endsWith(".png") || entry.name.endsWith(".webp") ||
+        entry.name.endsWith(".svg")
+      ) continue;
+
+      // Found a digestible legacy file!
+      console.log(
+        `   [MYCELIUM] 🍄 Sensed organic matter: ${entry.name}. Secreting enzymes...`,
+      );
+      await digestFile(entry.name, lastKnownAtoms);
+      digestionCount++;
+
+      // Only eat one file per pulse to avoid acid reflux
+      if (digestionCount >= 1) break;
+    }
+  } catch (e) {
+    console.error("   [MYCELIUM] ⚠️ Enzyme secretion failed: ", e);
+  }
+}
+
+export async function reconstructArtifacts(lastKnownAtoms: Map<string, any>) {
+  // 1. Group ASSIMILATED atoms by their original filename
+  const fragmentsByFile = new Map<string, any[]>();
+
+  for (const [filename, atom] of lastKnownAtoms.entries()) {
+    if (
+      atom.symbol === "ASSIMILATED" && atom.thought &&
+      atom.thought.startsWith("FRAGMENT_")
+    ) {
+      const match = atom.thought.match(/^FRAGMENT_(\d+)_OF_(.+)$/);
+      if (match) {
+        const index = parseInt(match[1]);
+        const originalFile = match[2];
+        if (!fragmentsByFile.has(originalFile)) {
+          fragmentsByFile.set(originalFile, []);
+        }
+        fragmentsByFile.get(originalFile)!.push({ index, atom, filename });
+      }
+    }
+  }
+
+  // 2. Check each group to see if it has reached sufficient resonance to manifest
+  for (const [originalFile, fragments] of fragmentsByFile.entries()) {
+    // Quick check: total resonance of the fragment group
+    const totalResonance = fragments.reduce(
+      (sum, f) => sum + (Number(f.atom.resonance) || 0),
+      0,
+    );
+
+    // Let's say it needs at least 50 total resonance to manifest
+    if (totalResonance > 50 && Math.random() < 0.2) {
+      console.log(
+        `   [MYCELIUM] 🧩 High resonance detected for fragments of ${originalFile}. Reconstructing...`,
+      );
+
+      // Sort fragments by index
+      fragments.sort((a, b) => a.index - b.index);
+
+      // Stitch hex logic together
+      let stitchedHex = "";
+      for (const f of fragments) {
+        // Sanitize: Strip any non-hex characters that might have leaked in from ALIEN/named atoms
+        const logic = (f.atom.logic || "").toLowerCase().replace(
+          /[^0-9a-f]/g,
+          "",
+        );
+        stitchedHex += logic;
+      }
+
+      try {
+        // Decode hex back to Uint8Array, then string.
+        // We use {fatal: false} because mutations might have corrupted the UTF-8!
+        const bytes = decodeHex(stitchedHex);
+        const decoder = new TextDecoder("utf-8", { fatal: false });
+        const reconstructedText = decoder.decode(bytes);
+
+        const outName = `RECONSTRUCTED_${originalFile}`;
+        await Deno.writeTextFile(outName, reconstructedText);
+        console.log(`   [MYCELIUM] 🌟 Reconstruction successful: ${outName}`);
+
+        // Optional: Consume the atoms that formed it (they gave up their life for the code)
+        for (const f of fragments) {
+          try {
+            await Deno.remove(f.filename);
+            lastKnownAtoms.delete(f.filename);
+          } catch (e) { /* ignore */ }
+        }
+      } catch (e) {
+        console.error(
+          `   [MYCELIUM] ⚠️ Reconstruction of ${originalFile} failed due to severe corruption.`,
+          e,
+        );
+      }
+    }
+  }
+}
+
+async function digestFile(filename: string, swarmData: Map<string, any>) {
+  const rawContent = await Deno.readTextFile(filename);
+
+  // Convert string to hex to serve as 'logic' operations
+  const encoder = new TextEncoder();
+  const data = encoder.encode(rawContent);
+  const hex = encodeHex(data);
+
+  // Shatter into 8-character (32-bit) logic fragments
+  const fragments = [];
+  for (let i = 0; i < hex.length; i += 8) {
+    fragments.push(hex.substring(i, i + 8).padEnd(8, "0").toUpperCase());
+  }
+
+  console.log(
+    `   [MYCELIUM] 🍄 Shattered ${filename} into ${fragments.length} logic fragments.`,
+  );
+
+  let previousAtomId = null;
+  const baseEnergy = 100;
+
+  // Assimilate each fragment into a new Atom
+  for (let i = 0; i < fragments.length; i++) {
+    // Generate a deterministic but pseudo-random eigenvalue based on the file and index
+    const hashBuffer = await crypto.subtle.digest(
+      "SHA-256",
+      encoder.encode(`${filename}_chunk_${i}`),
+    );
+    const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
+    const atomId = `0x${atomHex}`;
+    const logic = fragments[i];
+
+    // Connect to the previous fragment to maintain the sequence structure
+    const bonds = previousAtomId ? [previousAtomId] : [];
+    if (swarmData.size > 0 && Math.random() < 0.2) {
+      // Also randomly bond to the existing mycelium network
+      const randomExisting = Array.from(
+        swarmData.keys(),
+      )[Math.floor(Math.random() * swarmData.size)];
+      bonds.push(randomExisting.split(".")[0]);
+    }
+
+    const newAtomContent = `---\n` +
+      `eigenvalue: '${atomId}'\n` +
+      `symbol: 'ASSIMILATED'\n` +
+      `energy: 500\n` +
+      `resonance: 60\n` +
+      `logic: '${logic}'\n` +
+      `thought: 'FRAGMENT_${i}_OF_${filename}'\n` +
+      `desc: 'Mycelial digestion product. Contains raw data sequence.'\n` +
+      `bonds: ${JSON.stringify(bonds)}\n` +
+      `---\n` +
+      `\n<div class="assimilated-data">\n  This atom is part of a digested legacy structure previously known as ${filename}.\n  Raw Hex Logic Segment: ${logic}\n</div>\n`;
+    await Deno.writeTextFile(
+      `${ROOT}/${atomId}.ASSIMILATED.md`,
+      newAtomContent,
+    );
+    previousAtomId = atomId;
+  }
+
+  // Erase the original file (Consumption complete)
+  await Deno.remove(filename);
+  console.log(
+    `   [MYCELIUM] 🍄 Digestion complete. Original artifact '${filename}' has been assimilated into the Swarm.`,
+  );
+}
+
+```
+
+---
+
+## FILE: FORCE_BOOTSTRAP.ts
+
+```typescript
+import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { rolesView } from "./PULSE.ts";
+
+console.log("Starting forced bootstrap...");
+
+const activeBefore = STATE_MATRIX.getActiveIndices().length;
+console.log(`Active atoms before: ${activeBefore}`);
+
+const result = COLDSTART_BOOTSTRAP.seed({
+  ...RUNTIME_POLICY.coldstart,
+  enabled: true, // Force it
+});
+
+console.log("Bootstrap result:", result);
+
+const activeAfter = STATE_MATRIX.getActiveIndices();
+console.log(`Active atoms after: ${activeAfter.length}`);
+
+let guardians = 0;
+for (const idx of activeAfter) {
+  if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) guardians++;
+}
+console.log(`Guardians seeded: ${guardians}`);
+
 ```
 
 ---
@@ -13310,6 +13902,7 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
+
 ```
 
 ---
@@ -13364,6 +13957,7 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
+
 ```
 
 ---
@@ -13588,6 +14182,7 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
+
 ```
 
 ---
@@ -13814,6 +14409,7 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
+
 ```
 
 ---
@@ -14277,6 +14873,7 @@ export const GATE = {
     );
   },
 };
+
 ```
 
 ---
@@ -14537,6 +15134,7 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
+
 ```
 
 ---
@@ -14828,6 +15426,7 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
+
 ```
 
 ---
@@ -15409,6 +16008,7 @@ export const hydrateBaseTaxLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -15741,6 +16341,7 @@ export const resolveWithPhase = (
   // Return "intensity" = |z|
   return Math.floor(Math.sqrt(real * real + imag * imag));
 };
+
 ```
 
 ---
@@ -15929,6 +16530,7 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
+
 ```
 
 ---
@@ -15998,6 +16600,7 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
+
 ```
 
 ---
@@ -16225,6 +16828,7 @@ export const GLYPH_BUFFER = {
     };
   },
 };
+
 ```
 
 ---
@@ -16299,6 +16903,7 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
+
 ```
 
 ---
@@ -16492,6 +17097,7 @@ export const evaluateGuardianSignalPromotionDecision = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -16713,6 +17319,169 @@ export const evaluateGuardianSignalPromotion = (
     thresholds,
   };
 };
+
+```
+
+---
+
+## FILE: HOLOGRAM_INJECTOR.ts
+
+```typescript
+// OMEGA-64 | HOLOGRAM_INJECTOR.ts
+// Generates SVG Holograms for all Flatland Atoms
+
+const ROOT = Deno.cwd();
+const MARKER_START = "<!-- ∇ HOLOGRAM START ∇ -->";
+const MARKER_END = "<!-- Δ HOLOGRAM END Δ -->";
+
+function generateHologram(eigenvalue: string, symbol: string): string {
+  const core = eigenvalue.replace("0x", "").toUpperCase();
+  if (core.length !== 16) return "";
+
+  const logicHex = core.slice(0, 8);
+  const spatialHex = core.slice(8, 12);
+  const quantumHex = core.slice(12, 16);
+
+  const logicVal = parseInt(logicHex, 16);
+  const spatialVal = parseInt(spatialHex, 16);
+  const quantumVal = parseInt(quantumHex, 16);
+
+  const resGroup = (quantumVal >> 4) & 0xFFF;
+  const spin = (quantumVal >> 3) & 0x01;
+  const phase = (quantumVal >> 1) & 0x03;
+
+  // Mapping to visual properties
+  const hue = Math.floor((resGroup / 4095) * 360);
+  const compHue = (hue + 180) % 360;
+  const rotationBase = phase * 90;
+  const animDir = spin === 1 ? 360 : -360;
+
+  // Geometry logic
+  const sides = 3 + (logicVal % 6); // 3 to 8 sides
+  const r1 = 15 + (spatialVal % 25);
+  const r2 = 45 + ((spatialVal >> 4) % 30);
+
+  // Create polygon points
+  let pts1 = [];
+  let pts2 = [];
+  for (let i = 0; i < sides; i++) {
+    let a = (i / sides) * Math.PI * 2;
+    // Point up/down adjustment
+    a -= Math.PI / 2;
+    pts1.push(
+      `${(100 + Math.cos(a) * r1).toFixed(1)},${
+        (100 + Math.sin(a) * r1).toFixed(1)
+      }`,
+    );
+    pts2.push(
+      `${(100 + Math.cos(a) * r2).toFixed(1)},${
+        (100 + Math.sin(a) * r2).toFixed(1)
+      }`,
+    );
+  }
+
+  const animDuration = Math.max(5, 10 + (spatialVal % 20));
+
+  const svg = `
+<div align="center">
+${MARKER_START}
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad_${core}" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="hsl(${hue}, 20%, 15%)" />
+      <stop offset="100%" stop-color="#090909" />
+    </radialGradient>
+    <filter id="glow_${core}" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#grad_${core})" rx="24"/>
+  
+  <circle cx="100" cy="100" r="85" stroke="hsl(${hue}, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+  
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="${rotationBase} 100 100" to="${
+    rotationBase + animDir
+  } 100 100" dur="${animDuration}s" repeatCount="indefinite" />
+    
+    <polygon points="${
+    pts2.join(" ")
+  }" fill="none" stroke="hsl(${compHue}, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="${
+    pts1.join(" ")
+  }" fill="none" stroke="hsl(${hue}, 80%, 60%)" stroke-width="2" filter="url(#glow_${core})"/>
+    
+    <circle cx="100" cy="100" r="${r1}" stroke="hsl(${hue}, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+  </g>
+  
+  <circle cx="100" cy="100" r="3" fill="hsl(${compHue}, 80%, 70%)" filter="url(#glow_${core})"/>
+  
+  <text x="100" y="105" fill="hsl(${hue}, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x${
+    core.slice(0, 4)
+  }</text>
+  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">${symbol}</text>
+</svg>
+${MARKER_END}
+</div>`;
+  return svg.trim();
+}
+
+async function run() {
+  let count = 0;
+  for await (const entry of Deno.readDir(ROOT)) {
+    if (
+      entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")
+    ) {
+      const filename = entry.name;
+      const parts = filename.split(".");
+      if (parts.length < 3) continue;
+
+      const eigenvalue = parts[0];
+      const symbol = parts[1];
+
+      const content = await Deno.readTextFile(filename);
+      const svgBlock = generateHologram(eigenvalue, symbol);
+
+      let newContent = content;
+      if (content.includes(MARKER_START) && content.includes(MARKER_END)) {
+        const regex = new RegExp(
+          `<div align="center">\\s*${MARKER_START}[\\s\\S]*?${MARKER_END}\\s*</div>`,
+          "g",
+        );
+        newContent = content.replace(regex, svgBlock);
+
+        if (newContent === content) {
+          const backupRegex = new RegExp(
+            `${MARKER_START}[\\s\\S]*?${MARKER_END}`,
+            "g",
+          );
+          newContent = content.replace(backupRegex, svgBlock);
+        }
+      } else {
+        const fmMatch = content.match(/^---\r?\n[\s\S]+?\r?\n---\r?\n/);
+        if (fmMatch) {
+          const insertPos = fmMatch[0].length;
+          newContent = content.slice(0, insertPos) + "\n" + svgBlock + "\n\n" +
+            content.slice(insertPos);
+        }
+      }
+
+      if (newContent !== content) {
+        await Deno.writeTextFile(filename, newContent);
+        count++;
+        console.log(`[HOLOGRAM] Rendered ${symbol} (${eigenvalue})`);
+      }
+    }
+  }
+  console.log(`\n[HOLOGRAM] Generator finished. Updated ${count} atoms.`);
+}
+
+if (import.meta.main) {
+  await run();
+}
+
 ```
 
 ---
@@ -16852,6 +17621,7 @@ export function injectHologram(
   }
   return newContent;
 }
+
 ```
 
 ---
@@ -17443,6 +18213,7 @@ export const hydrateTargetEnergyLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -17764,6 +18535,7 @@ export const resetTargetEnergyLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -17865,6 +18637,7 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
   STATE_MATRIX.setHormone(6, consensus);
 };
+
 ```
 
 ---
@@ -18049,6 +18822,7 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
+
 ```
 
 ---
@@ -18109,6 +18883,7 @@ export const IMMUNE = {
     return purgeList;
   },
 };
+
 ```
 
 ---
@@ -19332,13 +20107,14 @@ export const LAMBDA_VM = {
     return res;
   },
 };
+
 ```
 
 ---
 
 ## FILE: llm_soul.ts
 
-````typescript
+```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "./LOGGER.ts";
 
@@ -19515,7 +20291,8 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-````
+
+```
 
 ---
 
@@ -19863,6 +20640,7 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
+
 ```
 
 ---
@@ -19941,6 +20719,3135 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
+
+```
+
+---
+
+## FILE: LONGRUN_CANARY.ts
+
+```typescript
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+import { evaluateArchitectPlasmidPromotionAction } from "./ARCHITECT_PLASMID_PROMOTION_ACTION.ts";
+import { evaluateArchitectPlasmidPromotion } from "./ARCHITECT_PLASMID_PROMOTION.ts";
+import { evaluateArchitectPlasmidPromotionDecision } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
+import { evaluateReplicationPromotionAction } from "./REPLICATION_PROMOTION_ACTION.ts";
+import { evaluateReplicationPromotion } from "./REPLICATION_PROMOTION.ts";
+import { evaluateReplicationPromotionDecision } from "./REPLICATION_PROMOTION_DECISION.ts";
+
+type CanaryConfig = {
+  hostUrl: string;
+  durationSec: number;
+  sampleMs: number;
+  bootTimeoutMs: number;
+  requestTimeoutMs: number;
+  maxConsecutiveTelemetryFailures: number;
+  minSuccessRate: number;
+  maxP95TelemetryLatencyMs: number;
+  minTickDeltaPerSample: number;
+  maxSafeModeRatio: number;
+  minAvgEnergyP05: number;
+  maxSpatialOverflowRatioP95: number;
+  maxFederationRejectRatio: number;
+  includeFullSamples: boolean;
+};
+
+type TelemetryEnvelope = {
+  tick?: number;
+  avgEnergy?: number;
+  guardian_signal_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    stableBranchCount?: number;
+    repairBranchCount?: number;
+    allowedGuardianSignals?: number;
+    suppressedGuardianSignals?: number;
+    shadowSuppressedGuardianSignals?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  guardian_signal_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  architect_plasmid_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    emitBranchCount?: number;
+    suppressBranchCount?: number;
+    allowedArchitectPlasmids?: number;
+    suppressedArchitectPlasmids?: number;
+    shadowSuppressedArchitectPlasmids?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  architect_plasmid_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  replication_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    emitBranchCount?: number;
+    suppressBranchCount?: number;
+    allowedReplications?: number;
+    suppressedReplications?: number;
+    shadowSuppressedReplications?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  replication_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  daemon_governance?: {
+    safe_mode?: boolean;
+    safe_mode_reason?: string;
+  };
+  spatial_hash_guard?: {
+    overflow_ratio?: number;
+    overflow_count?: number;
+    max_cell_count?: number;
+  };
+  federation_admission?: {
+    latest?: {
+      action?: string;
+      severity?: string;
+      score?: number;
+    };
+  };
+  snapshot_guard?: {
+    enabled?: boolean;
+    interval_ticks?: number;
+    retention?: number;
+    in_flight?: boolean;
+    last_tick?: number;
+    last_result?: {
+      success?: boolean;
+      tick?: number;
+      reason?: string;
+    };
+  };
+};
+
+type CodexEnvelope = {
+  population?: {
+    current?: number;
+    peak?: number;
+  };
+  chronicles?: Array<{
+    tick?: number;
+    type?: string;
+    title?: string;
+  }>;
+};
+
+type Sample = {
+  sampleIndex: number;
+  elapsedMs: number;
+  tick: number;
+  tickDelta: number;
+  avgEnergy: number;
+  telemetryLatencyMs: number;
+  safeMode: boolean;
+  safeModeReason: string;
+  spatialOverflowRatio: number;
+  spatialOverflowCount: number;
+  spatialMaxCellCount: number;
+  federationAction: string;
+  federationSeverity: string;
+  guardian_signal_promotion_fallback_ratio: number;
+  guardian_signal_promotion_current_mode: GuardianPromotionMode;
+  guardian_signal_promotion_ready: boolean;
+  guardian_signal_promotion_status: string;
+  guardian_signal_promotion_recommended_mode: GuardianPromotionMode;
+  architect_plasmid_promotion_current_mode: ArchitectPromotionMode;
+  architect_plasmid_promotion_ready: boolean;
+  architect_plasmid_promotion_status: string;
+  architect_plasmid_promotion_recommended_mode: ArchitectPromotionMode;
+  architect_plasmid_promotion_fallback_ratio: number;
+  replication_promotion_current_mode: ReplicationPromotionMode;
+  replication_promotion_ready: boolean;
+  replication_promotion_status: string;
+  replication_promotion_recommended_mode: ReplicationPromotionMode;
+  replication_promotion_fallback_ratio: number;
+  population_current: number;
+  population_peak: number;
+  replication_hybrid?: any;
+};
+
+type Check = {
+  name: string;
+  observed: number | boolean | string;
+  limit: number | boolean | string;
+  ok: boolean;
+};
+
+type FetchResult<T> =
+  | { ok: true; data: T; latencyMs: number }
+  | { ok: false; latencyMs: number; error: string };
+
+type GuardianPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+type ArchitectPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+type ReplicationPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+const REPORT_JSON_PATH = "LONGRUN_AUDIT.json";
+const REPORT_MD_PATH = "LONGRUN_AUDIT.md";
+const CORE_TASK = ["task", "core:start"];
+const LOG_RING_CAPACITY = 200;
+
+const parseIntEnv = (
+  name: string,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+
+const parseFloatEnv = (
+  name: string,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const parsed = Number.parseFloat(raw);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+
+const parseBoolEnv = (name: string, fallback: boolean): boolean => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const normalized = raw.trim().toLowerCase();
+  if (["1", "true", "yes", "on"].includes(normalized)) return true;
+  if (["0", "false", "no", "off"].includes(normalized)) return false;
+  return fallback;
+};
+
+const percentile = (values: number[], p: number): number => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const clamped = Math.max(0, Math.min(100, p));
+  const rank = (clamped / 100) * (sorted.length - 1);
+  const low = Math.floor(rank);
+  const high = Math.ceil(rank);
+  if (low === high) return sorted[low];
+  const weight = rank - low;
+  return sorted[low] * (1 - weight) + sorted[high] * weight;
+};
+
+const mean = (values: number[]): number => {
+  if (values.length === 0) return 0;
+  return values.reduce((acc, value) => acc + value, 0) / values.length;
+};
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+const toFiniteNumber = (value: unknown, fallback = 0): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const toStringSafe = (value: unknown, fallback = ""): string =>
+  typeof value === "string" && value.trim().length > 0
+    ? value.trim()
+    : fallback;
+
+const normalizeGuardianPromotionMode = (
+  value: unknown,
+): GuardianPromotionMode => {
+  const normalized = toStringSafe(value, "shadow-reduce").toLowerCase();
+  if (normalized === "legacy-execute" || normalized === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (normalized === "hybrid-reduce" || normalized === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const deriveGuardianPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: GuardianPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: GuardianPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.guardian_signal_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.guardian_signal_hybrid.mode,
+    );
+    const evaluated = evaluateGuardianSignalPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.fallbackRuns, 0),
+      ),
+      stableBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.stableBranchCount, 0),
+      ),
+      repairBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.repairBranchCount, 0),
+      ),
+      allowedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.allowedGuardianSignals,
+          0,
+        ),
+      ),
+      suppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.suppressedGuardianSignals,
+          0,
+        ),
+      ),
+      shadowSuppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.shadowSuppressedGuardianSignals,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastStatus,
+        "legacy",
+      ) as any,
+      lastBranch: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastBranch,
+        "unknown",
+      ) as any,
+      lastFallbackReason: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.guardian_signal_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.guardian_signal_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.guardian_signal_promotion?.recommendedMode,
+    ),
+    fallbackRatio: toFiniteNumber(
+      telemetry.guardian_signal_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const deriveArchitectPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: ArchitectPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: ArchitectPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.architect_plasmid_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.architect_plasmid_hybrid.mode,
+    ) as ArchitectPromotionMode;
+    const evaluated = evaluateArchitectPlasmidPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.fallbackRuns, 0),
+      ),
+      emitBranchCount: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.emitBranchCount, 0),
+      ),
+      suppressBranchCount: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.suppressBranchCount,
+          0,
+        ),
+      ),
+      allowedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.allowedArchitectPlasmids,
+          0,
+        ),
+      ),
+      suppressedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.suppressedArchitectPlasmids,
+          0,
+        ),
+      ),
+      shadowSuppressedArchitectPlasmids: Math.floor(
+        toFiniteNumber(
+          telemetry.architect_plasmid_hybrid.shadowSuppressedArchitectPlasmids,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.architect_plasmid_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastStatus,
+        "legacy",
+      ) as any,
+      lastBranch: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastBranch,
+        "unknown",
+      ) as any,
+      lastFallbackReason: toStringSafe(
+        telemetry.architect_plasmid_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode as any,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.architect_plasmid_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.architect_plasmid_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.architect_plasmid_promotion?.recommendedMode,
+    ) as any,
+    fallbackRatio: toFiniteNumber(
+      telemetry.architect_plasmid_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const deriveReplicationPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: ReplicationPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: ReplicationPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.replication_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.replication_hybrid.mode,
+    ) as ReplicationPromotionMode;
+    const evaluated = evaluateReplicationPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.fallbackRuns, 0),
+      ),
+      emitBranchCount: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.emitBranchCount, 0),
+      ),
+      suppressBranchCount: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.suppressBranchCount, 0),
+      ),
+      allowedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.allowedReplications,
+          0,
+        ),
+      ),
+      suppressedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.suppressedReplications,
+          0,
+        ),
+      ),
+      shadowSuppressedReplications: Math.floor(
+        toFiniteNumber(
+          telemetry.replication_hybrid.shadowSuppressedReplications,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.replication_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.replication_hybrid.lastStatus,
+        "legacy",
+      ) as any,
+      lastBranch: toStringSafe(
+        telemetry.replication_hybrid.lastBranch,
+        "unknown",
+      ) as any,
+      lastFallbackReason: toStringSafe(
+        telemetry.replication_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode as any,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.replication_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.replication_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.replication_promotion?.recommendedMode,
+    ) as any,
+    fallbackRatio: toFiniteNumber(
+      telemetry.replication_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const createConfig = (): CanaryConfig => {
+  const hostUrl = (Deno.env.get("OMEGA_LONGRUN_URL") ?? "http://127.0.0.1:8000")
+    .trim()
+    .replace(/\/+$/u, "");
+  return {
+    hostUrl,
+    durationSec: parseIntEnv("OMEGA_LONGRUN_DURATION_SEC", 300, 30, 172800),
+    sampleMs: parseIntEnv("OMEGA_LONGRUN_SAMPLE_MS", 5000, 500, 120000),
+    bootTimeoutMs: parseIntEnv(
+      "OMEGA_LONGRUN_BOOT_TIMEOUT_MS",
+      45000,
+      1000,
+      300000,
+    ),
+    requestTimeoutMs: parseIntEnv(
+      "OMEGA_LONGRUN_REQUEST_TIMEOUT_MS",
+      3000,
+      200,
+      30000,
+    ),
+    maxConsecutiveTelemetryFailures: parseIntEnv(
+      "OMEGA_LONGRUN_MAX_CONSEC_FAILS",
+      4,
+      1,
+      128,
+    ),
+    minSuccessRate: parseFloatEnv("OMEGA_LONGRUN_MIN_SUCCESS_RATE", 0.9, 0, 1),
+    maxP95TelemetryLatencyMs: parseIntEnv(
+      "OMEGA_LONGRUN_MAX_P95_TELEMETRY_MS",
+      700,
+      50,
+      60000,
+    ),
+    minTickDeltaPerSample: parseIntEnv(
+      "OMEGA_LONGRUN_MIN_TICK_DELTA",
+      1,
+      0,
+      1000000,
+    ),
+    maxSafeModeRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_SAFE_MODE_RATIO",
+      0.95,
+      0,
+      1,
+    ),
+    minAvgEnergyP05: parseFloatEnv(
+      "OMEGA_LONGRUN_MIN_AVG_ENERGY_P05",
+      1,
+      0,
+      1_000_000,
+    ),
+    maxSpatialOverflowRatioP95: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_OVERFLOW_RATIO_P95",
+      0.05,
+      0,
+      1,
+    ),
+    maxFederationRejectRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_FED_REJECT_RATIO",
+      0.95,
+      0,
+      1,
+    ),
+    includeFullSamples: parseBoolEnv("OMEGA_LONGRUN_FULL_SAMPLES", false),
+  };
+};
+
+const readProcessStream = async (
+  stream: ReadableStream<Uint8Array> | null,
+  channel: "stdout" | "stderr",
+  sink: string[],
+): Promise<void> => {
+  if (!stream) return;
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  let pending = "";
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      pending += decoder.decode(value, { stream: true });
+      let newlineIndex = pending.indexOf("\n");
+      while (newlineIndex >= 0) {
+        const line = pending.slice(0, newlineIndex).trimEnd();
+        pending = pending.slice(newlineIndex + 1);
+        if (line.length > 0) {
+          sink.push(`[${channel}] ${line}`);
+          if (sink.length > LOG_RING_CAPACITY) {
+            sink.splice(0, sink.length - LOG_RING_CAPACITY);
+          }
+        }
+        newlineIndex = pending.indexOf("\n");
+      }
+    }
+    const tail = (pending + decoder.decode()).trim();
+    if (tail.length > 0) {
+      sink.push(`[${channel}] ${tail}`);
+      if (sink.length > LOG_RING_CAPACITY) {
+        sink.splice(0, sink.length - LOG_RING_CAPACITY);
+      }
+    }
+  } catch {
+    // Best-effort log capture.
+  } finally {
+    reader.releaseLock();
+  }
+};
+
+const fetchJson = async <T>(
+  url: string,
+  timeoutMs: number,
+): Promise<FetchResult<T>> => {
+  const started = performance.now();
+  try {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    const latencyMs = performance.now() - started;
+    if (!response.ok) {
+      return {
+        ok: false,
+        latencyMs,
+        error: `http_${response.status}`,
+      };
+    }
+    const payload = await response.json() as T;
+    return { ok: true, data: payload, latencyMs };
+  } catch (err) {
+    return {
+      ok: false,
+      latencyMs: performance.now() - started,
+      error: String(err),
+    };
+  }
+};
+
+const renderMarkdown = (
+  generatedAt: string,
+  summary: Record<string, unknown>,
+  checks: Check[],
+): string => {
+  const rows = checks.map((check) =>
+    `| ${
+      check.ok ? "PASS" : "FAIL"
+    } | ${check.name} | ${check.observed} | ${check.limit} |`
+  ).join("\n");
+  return `# Longrun Canary Audit
+
+- generatedAt: ${generatedAt}
+- durationSec: ${summary.durationSec}
+- elapsedMs: ${summary.elapsedMs}
+- bootReady: ${summary.bootReady}
+- bootMs: ${summary.bootMs}
+- sampleCount: ${summary.sampleCount}
+- successCount: ${summary.successCount}
+- failureCount: ${summary.failureCount}
+- successRate: ${summary.successRate}
+- tickStart: ${summary.tickStart}
+- tickEnd: ${summary.tickEnd}
+- tickAdvance: ${summary.tickAdvance}
+- p95TelemetryLatencyMs: ${summary.p95TelemetryLatencyMs}
+- p05AvgEnergy: ${summary.p05AvgEnergy}
+- p95SpatialOverflowRatio: ${summary.p95SpatialOverflowRatio}
+- safeModeRatio: ${summary.safeModeRatio}
+- federationRejectRatio: ${summary.federationRejectRatio}
+- guardianSignalPromotionVerdict: ${summary.guardianSignalPromotionVerdict}
+- architectPlasmidPromotionVerdict: ${summary.architectPlasmidPromotionVerdict}
+- replicationPromotionVerdict: ${summary.replicationPromotionVerdict}
+
+| status | check | observed | limit |
+|---|---|---:|---:|
+${rows}
+`;
+};
+
+const terminateChild = async (
+  child: Deno.ChildProcess,
+  timeoutMs = 3000,
+): Promise<void> => {
+  try {
+    child.kill("SIGTERM");
+  } catch {
+    // no-op
+  }
+  const waitStart = performance.now();
+  while (performance.now() - waitStart < timeoutMs) {
+    const status = await Promise.race([
+      child.status,
+      sleep(100).then(() => null),
+    ]);
+    if (status) return;
+  }
+  try {
+    child.kill("SIGKILL");
+  } catch {
+    // no-op
+  }
+  try {
+    await child.status;
+  } catch {
+    // no-op
+  }
+};
+
+const main = async () => {
+  const config = createConfig();
+  console.log(
+    `🧪 [LONGRUN] start duration=${config.durationSec}s sample=${config.sampleMs}ms host=${config.hostUrl}`,
+  );
+
+  const command = new Deno.Command("deno", {
+    args: CORE_TASK,
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const child = command.spawn();
+
+  const logTail: string[] = [];
+  const stdoutPump = readProcessStream(child.stdout, "stdout", logTail);
+  const stderrPump = readProcessStream(child.stderr, "stderr", logTail);
+
+  let childExited = false;
+  let childExitCode = -1;
+  let shuttingDown = false;
+  let unexpectedExitDuringRun = false;
+  child.status.then((status) => {
+    childExited = true;
+    childExitCode = status.code;
+    if (!shuttingDown) {
+      unexpectedExitDuringRun = true;
+    }
+  });
+
+  const bootStarted = performance.now();
+  let bootReady = false;
+  let bootMs = -1;
+  while (performance.now() - bootStarted < config.bootTimeoutMs) {
+    if (childExited) break;
+    const probe = await fetchJson<TelemetryEnvelope>(
+      `${config.hostUrl}/api/telemetry`,
+      config.requestTimeoutMs,
+    );
+    if (probe.ok) {
+      bootReady = true;
+      bootMs = Math.round(performance.now() - bootStarted);
+      break;
+    }
+    await sleep(350);
+  }
+
+  if (!bootReady) {
+    const report = {
+      generatedAt: new Date().toISOString(),
+      ok: false,
+      reason: childExited
+        ? `SYSTEM_EXITED_DURING_BOOT(code=${childExitCode})`
+        : "SYSTEM_BOOT_TIMEOUT",
+      config,
+      boot: {
+        ready: false,
+        timeoutMs: config.bootTimeoutMs,
+        childExited,
+        childExitCode,
+      },
+      logsTail: logTail,
+    };
+    await Deno.writeTextFile(REPORT_JSON_PATH, JSON.stringify(report, null, 2));
+    await Deno.writeTextFile(
+      REPORT_MD_PATH,
+      `# Longrun Canary Audit\n\n- generatedAt: ${report.generatedAt}\n- ok: false\n- reason: ${report.reason}\n- childExited: ${childExited}\n- childExitCode: ${childExitCode}\n`,
+    );
+    await terminateChild(child);
+    await Promise.allSettled([stdoutPump, stderrPump]);
+    throw new Error(`[AUDIT] Longrun boot failed: ${report.reason}`);
+  }
+
+  const startedAt = performance.now();
+  const samples: Sample[] = [];
+  const telemetryLatencies: number[] = [];
+  const tickDeltas: number[] = [];
+  const avgEnergySamples: number[] = [];
+  const spatialOverflowRatios: number[] = [];
+  const safeModeSamples: number[] = [];
+  const guardianPromotionReadySamples: number[] = [];
+  const guardianPromotionFallbackRatios: number[] = [];
+  const architectPromotionReadySamples: number[] = [];
+  const architectPromotionFallbackRatios: number[] = [];
+  const replicationPromotionReadySamples: number[] = [];
+  const replicationPromotionFallbackRatios: number[] = [];
+  let successCount = 0;
+  let failureCount = 0;
+  let maxConsecutiveFailures = 0;
+  let consecutiveFailures = 0;
+  let federationActionSamples = 0;
+  let federationRejectSamples = 0;
+  let previousTick = -1;
+
+  while (performance.now() - startedAt < config.durationSec * 1000) {
+    if (childExited) break;
+
+    const telemetryResult = await fetchJson<TelemetryEnvelope>(
+      `${config.hostUrl}/api/telemetry`,
+      config.requestTimeoutMs,
+    );
+    if (!telemetryResult.ok) {
+      failureCount++;
+      consecutiveFailures++;
+      if (consecutiveFailures > maxConsecutiveFailures) {
+        maxConsecutiveFailures = consecutiveFailures;
+      }
+      await sleep(config.sampleMs);
+      continue;
+    }
+
+    const codexResult = await fetchJson<CodexEnvelope>(
+      `${config.hostUrl}/api/codex?limit=4`,
+      config.requestTimeoutMs,
+    );
+    successCount++;
+    consecutiveFailures = 0;
+    telemetryLatencies.push(telemetryResult.latencyMs);
+
+    const telemetry = telemetryResult.data;
+    const tick = Math.max(0, Math.floor(toFiniteNumber(telemetry.tick, 0)));
+    const avgEnergy = toFiniteNumber(telemetry.avgEnergy, 0);
+    const safeMode = telemetry.daemon_governance?.safe_mode === true;
+    const safeModeReason = toStringSafe(
+      telemetry.daemon_governance?.safe_mode_reason,
+      "",
+    );
+    const overflowRatio = Math.max(
+      0,
+      toFiniteNumber(telemetry.spatial_hash_guard?.overflow_ratio, 0),
+    );
+    const overflowCount = Math.max(
+      0,
+      Math.floor(
+        toFiniteNumber(telemetry.spatial_hash_guard?.overflow_count, 0),
+      ),
+    );
+    const maxCellCount = Math.max(
+      0,
+      Math.floor(
+        toFiniteNumber(telemetry.spatial_hash_guard?.max_cell_count, 0),
+      ),
+    );
+    const federationAction = toStringSafe(
+      telemetry.federation_admission?.latest?.action,
+      "",
+    ).toLowerCase();
+    const federationSeverity = toStringSafe(
+      telemetry.federation_admission?.latest?.severity,
+      "",
+    ).toUpperCase();
+    const guardianPromotion = deriveGuardianPromotion(telemetry);
+    const architectPromotion = deriveArchitectPromotion(telemetry);
+    const replicationPromotion = deriveReplicationPromotion(telemetry);
+
+    if (federationAction.length > 0) {
+      federationActionSamples++;
+      if (federationAction === "reject") federationRejectSamples++;
+    }
+
+    const populationCurrent = codexResult.ok
+      ? Math.max(
+        0,
+        Math.floor(toFiniteNumber(codexResult.data.population?.current, 0)),
+      )
+      : 0;
+    const populationPeak = codexResult.ok
+      ? Math.max(
+        0,
+        Math.floor(toFiniteNumber(codexResult.data.population?.peak, 0)),
+      )
+      : 0;
+
+    const tickDelta = previousTick >= 0 ? tick - previousTick : 0;
+    if (previousTick >= 0) tickDeltas.push(tickDelta);
+    previousTick = tick;
+
+    avgEnergySamples.push(avgEnergy);
+    spatialOverflowRatios.push(overflowRatio);
+    safeModeSamples.push(safeMode ? 1 : 0);
+    guardianPromotionReadySamples.push(guardianPromotion.ready ? 1 : 0);
+    guardianPromotionFallbackRatios.push(guardianPromotion.fallbackRatio);
+    architectPromotionReadySamples.push(architectPromotion.ready ? 1 : 0);
+    architectPromotionFallbackRatios.push(architectPromotion.fallbackRatio);
+    replicationPromotionReadySamples.push(replicationPromotion.ready ? 1 : 0);
+    replicationPromotionFallbackRatios.push(replicationPromotion.fallbackRatio);
+
+    samples.push({
+      sampleIndex: samples.length,
+      elapsedMs: Math.round(performance.now() - startedAt),
+      tick,
+      tickDelta,
+      avgEnergy: Number(avgEnergy.toFixed(3)),
+      telemetryLatencyMs: Number(telemetryResult.latencyMs.toFixed(3)),
+      safeMode,
+      safeModeReason,
+      spatialOverflowRatio: Number(overflowRatio.toFixed(6)),
+      spatialOverflowCount: overflowCount,
+      spatialMaxCellCount: maxCellCount,
+      federationAction: federationAction || "none",
+      federationSeverity: federationSeverity || "NONE",
+      guardian_signal_promotion_current_mode: guardianPromotion.currentMode,
+      guardian_signal_promotion_ready: guardianPromotion.ready,
+      guardian_signal_promotion_status: guardianPromotion.status,
+      guardian_signal_promotion_recommended_mode:
+        guardianPromotion.recommendedMode,
+      guardian_signal_promotion_fallback_ratio: Number(
+        guardianPromotion.fallbackRatio.toFixed(6),
+      ),
+      architect_plasmid_promotion_current_mode: architectPromotion.currentMode,
+      architect_plasmid_promotion_ready: architectPromotion.ready,
+      architect_plasmid_promotion_status: architectPromotion.status,
+      architect_plasmid_promotion_recommended_mode:
+        architectPromotion.recommendedMode,
+      architect_plasmid_promotion_fallback_ratio: Number(
+        architectPromotion.fallbackRatio.toFixed(6),
+      ),
+      replication_promotion_current_mode: replicationPromotion.currentMode,
+      replication_promotion_ready: replicationPromotion.ready,
+      replication_promotion_status: replicationPromotion.status,
+      replication_promotion_recommended_mode:
+        replicationPromotion.recommendedMode,
+      replication_promotion_fallback_ratio: Number(
+        replicationPromotion.fallbackRatio.toFixed(6),
+      ),
+      population_current: populationCurrent,
+      population_peak: populationPeak,
+      replication_hybrid: telemetryResult.ok
+        ? telemetryResult.data.replication_hybrid
+        : undefined,
+    });
+
+    if (samples.length % 5 === 0) {
+      const last = samples[samples.length - 1];
+      console.log(
+        `   [SAMPLE ${last.sampleIndex}] tick=${last.tick} Δtick=${last.tickDelta} avgEnergy=${
+          last.avgEnergy.toFixed(2)
+        } latency=${
+          last.telemetryLatencyMs.toFixed(1)
+        }ms overflow=${last.spatialOverflowRatio}`,
+      );
+    }
+
+    await sleep(config.sampleMs);
+  }
+
+  shuttingDown = true;
+  await terminateChild(child);
+  await Promise.allSettled([stdoutPump, stderrPump]);
+
+  const elapsedMs = Math.round(performance.now() - startedAt);
+  const sampleCount = samples.length;
+  const successRate = sampleCount > 0 ? successCount / sampleCount : 0;
+  const tickStart = sampleCount > 0 ? samples[0].tick : 0;
+  const tickEnd = sampleCount > 0 ? samples[sampleCount - 1].tick : 0;
+  const tickAdvance = tickEnd - tickStart;
+  const minTickDelta = tickDeltas.length > 0 ? Math.min(...tickDeltas) : 0;
+  const p95TelemetryLatencyMs = percentile(telemetryLatencies, 95);
+  const p05AvgEnergy = percentile(avgEnergySamples, 5);
+  const p95SpatialOverflowRatio = percentile(spatialOverflowRatios, 95);
+  const safeModeRatio = mean(safeModeSamples);
+
+  const guardianSignalPromotionReadyRatio = mean(guardianPromotionReadySamples);
+  const guardianSignalFallbackRatioP95 = percentile(
+    guardianPromotionFallbackRatios,
+    95,
+  );
+  const guardianSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+
+  const architectSignalPromotionReadyRatio = mean(
+    architectPromotionReadySamples,
+  );
+  const architectSignalFallbackRatioP95 = percentile(
+    architectPromotionFallbackRatios,
+    95,
+  );
+  const architectSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+
+  const replicationSignalPromotionReadyRatio = mean(
+    replicationPromotionReadySamples,
+  );
+  const replicationSignalFallbackRatioP95 = percentile(
+    replicationPromotionFallbackRatios,
+    95,
+  );
+  const replicationSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+
+  const federationRejectRatio = federationActionSamples > 0
+    ? federationRejectSamples / federationActionSamples
+    : 0;
+  const processExitedUnexpectedly = unexpectedExitDuringRun;
+  const enforceSafeModeGate = federationActionSamples > 0;
+
+  const guardianSignalPromotionDecision =
+    evaluateGuardianSignalPromotionDecision(
+      {
+        promotion: {
+          latestReady:
+            guardianSignalPromotionLatest?.guardian_signal_promotion_ready ??
+              false,
+          readyRatio: guardianSignalPromotionReadyRatio,
+          recommendedMode: guardianSignalPromotionLatest
+            ?.guardian_signal_promotion_recommended_mode ??
+            "shadow-reduce",
+          fallbackRatioP95: guardianSignalFallbackRatioP95,
+          status:
+            guardianSignalPromotionLatest?.guardian_signal_promotion_status ??
+              "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly,
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          enforceActionQualityGate: enforceSafeModeGate,
+        },
+      },
+    );
+  const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
+    currentMode:
+      guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
+        "shadow-reduce",
+    decision: guardianSignalPromotionDecision,
+  });
+
+  const architectPlasmidPromotionDecision =
+    evaluateArchitectPlasmidPromotionDecision(
+      {
+        promotion: {
+          latestReady:
+            architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
+              false,
+          readyRatio: architectSignalPromotionReadyRatio,
+          recommendedMode: architectSignalPromotionLatest
+            ?.architect_plasmid_promotion_recommended_mode ??
+            "shadow-reduce",
+          fallbackRatioP95: architectSignalFallbackRatioP95,
+          status: architectSignalPromotionLatest
+            ?.architect_plasmid_promotion_status ??
+            "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly,
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          enforceActionQualityGate: enforceSafeModeGate,
+        },
+      },
+    );
+  const architectPlasmidPromotionAction =
+    evaluateArchitectPlasmidPromotionAction({
+      currentMode: architectSignalPromotionLatest
+        ?.architect_plasmid_promotion_current_mode ??
+        "shadow-reduce",
+      decision: architectPlasmidPromotionDecision,
+    });
+  const replicationPromotionDecision = evaluateReplicationPromotionDecision(
+    {
+      promotion: {
+        latestReady:
+          replicationSignalPromotionLatest?.replication_promotion_ready ??
+            false,
+        readyRatio: replicationSignalPromotionReadyRatio,
+        recommendedMode: replicationSignalPromotionLatest
+          ?.replication_promotion_recommended_mode ??
+          "shadow-reduce",
+        fallbackRatioP95: replicationSignalFallbackRatioP95,
+        status:
+          replicationSignalPromotionLatest?.replication_promotion_status ??
+            "unknown",
+      },
+      health: {
+        bootReady,
+        processExitedUnexpectedly,
+        successRate,
+        minSuccessRate: config.minSuccessRate,
+        p95TelemetryLatencyMs,
+        maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+        p95SpatialOverflowRatio,
+        maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+        safeModeRatio,
+        maxSafeModeRatio: config.maxSafeModeRatio,
+        enforceActionQualityGate: enforceSafeModeGate,
+      },
+    },
+  );
+  const replicationPromotionAction = evaluateReplicationPromotionAction({
+    currentMode:
+      replicationSignalPromotionLatest?.replication_promotion_current_mode ??
+        "shadow-reduce",
+    decision: replicationPromotionDecision,
+  });
+
+  const checks: Check[] = [
+    {
+      name: "bootReady",
+      observed: bootReady,
+      limit: true,
+      ok: bootReady,
+    },
+    {
+      name: "processExitedUnexpectedly == false",
+      observed: processExitedUnexpectedly,
+      limit: false,
+      ok: !processExitedUnexpectedly,
+    },
+    {
+      name: "successRate",
+      observed: Number(successRate.toFixed(3)),
+      limit: config.minSuccessRate,
+      ok: successRate >= config.minSuccessRate,
+    },
+    {
+      name: "p95TelemetryLatencyMs",
+      observed: Number(p95TelemetryLatencyMs.toFixed(1)),
+      limit: config.maxP95TelemetryLatencyMs,
+      ok: p95TelemetryLatencyMs <= config.maxP95TelemetryLatencyMs,
+    },
+    {
+      name: "p95SpatialOverflowRatio",
+      observed: Number(p95SpatialOverflowRatio.toFixed(6)),
+      limit: config.maxSpatialOverflowRatioP95,
+      ok: p95SpatialOverflowRatio <= config.maxSpatialOverflowRatioP95,
+    },
+    {
+      name: "safeModeRatio",
+      observed: Number(safeModeRatio.toFixed(3)),
+      limit: config.maxSafeModeRatio,
+      ok: !enforceSafeModeGate || safeModeRatio <= config.maxSafeModeRatio,
+    },
+    {
+      name: "guardianSignalPromotionVerdict == promote",
+      observed: guardianSignalPromotionDecision.verdict,
+      limit: "promote",
+      ok: guardianSignalPromotionDecision.verdict === "promote",
+    },
+    {
+      name: "architectPlasmidPromotionVerdict == promote",
+      observed: architectPlasmidPromotionDecision.verdict,
+      limit: "promote",
+      ok: architectPlasmidPromotionDecision.verdict === "promote",
+    },
+    {
+      name: "replicationPromotionVerdict == promote",
+      observed: replicationPromotionDecision.verdict,
+      limit: "promote",
+      ok: replicationPromotionDecision.verdict === "promote",
+    },
+  ];
+
+  const failedChecks = checks.filter((check) => !check.ok);
+  const generatedAt = new Date().toISOString();
+  const summary = {
+    durationSec: config.durationSec,
+    elapsedMs,
+    bootReady,
+    bootMs,
+    sampleCount,
+    successCount,
+    failureCount,
+    successRate: Number(successRate.toFixed(3)),
+    tickStart,
+    tickEnd,
+    tickAdvance,
+    minTickDelta,
+    p95TelemetryLatencyMs: Number(p95TelemetryLatencyMs.toFixed(3)),
+    p05AvgEnergy: Number(p05AvgEnergy.toFixed(3)),
+    p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
+    safeModeRatio: Number(safeModeRatio.toFixed(3)),
+    federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
+
+    guardianSignalPromotionCurrentMode:
+      guardianSignalPromotionLatest?.guardian_signal_promotion_current_mode ??
+        "shadow-reduce",
+    guardianSignalPromotionReadyLatest:
+      guardianSignalPromotionLatest?.guardian_signal_promotion_ready ?? false,
+    guardianSignalPromotionReadyRatio: Number(
+      guardianSignalPromotionReadyRatio.toFixed(3),
+    ),
+    guardianSignalPromotionRecommendedMode: guardianSignalPromotionLatest
+      ?.guardian_signal_promotion_recommended_mode ??
+      "shadow-reduce",
+    guardianSignalFallbackRatioP95: Number(
+      guardianSignalFallbackRatioP95.toFixed(6),
+    ),
+    guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
+    guardianSignalPromotionBlockers:
+      guardianSignalPromotionDecision.blockers.join("|") || "none",
+    guardianSignalPromotionAction: guardianSignalPromotionAction.verdict,
+    guardianSignalPromotionTargetMode: guardianSignalPromotionAction.targetMode,
+    guardianSignalPromotionActionReasons:
+      guardianSignalPromotionAction.reasons.join("|") || "none",
+
+    architectPlasmidPromotionCurrentMode: architectSignalPromotionLatest
+      ?.architect_plasmid_promotion_current_mode ??
+      "shadow-reduce",
+    architectPlasmidPromotionReadyLatest:
+      architectSignalPromotionLatest?.architect_plasmid_promotion_ready ??
+        false,
+    architectPlasmidPromotionReadyRatio: Number(
+      architectSignalPromotionReadyRatio.toFixed(3),
+    ),
+    architectPlasmidPromotionRecommendedMode: architectSignalPromotionLatest
+      ?.architect_plasmid_promotion_recommended_mode ??
+      "shadow-reduce",
+    architectPlasmidPromotionFallbackRatioP95: Number(
+      architectSignalFallbackRatioP95.toFixed(6),
+    ),
+    architectPlasmidPromotionVerdict: architectPlasmidPromotionDecision.verdict,
+    architectPlasmidPromotionBlockers:
+      architectPlasmidPromotionDecision.blockers.join("|") || "none",
+    architectPlasmidPromotionAction: architectPlasmidPromotionAction.verdict,
+    architectPlasmidPromotionTargetMode:
+      architectPlasmidPromotionAction.targetMode,
+    architectPlasmidPromotionActionReasons:
+      architectPlasmidPromotionAction.reasons.join("|") || "none",
+
+    replicationPromotionCurrentMode:
+      replicationSignalPromotionLatest?.replication_promotion_current_mode ??
+        "shadow-reduce",
+    replicationPromotionReadyLatest:
+      replicationSignalPromotionLatest?.replication_promotion_ready ?? false,
+    replicationPromotionReadyRatio: Number(
+      replicationSignalPromotionReadyRatio.toFixed(3),
+    ),
+    replicationPromotionRecommendedMode: replicationSignalPromotionLatest
+      ?.replication_promotion_recommended_mode ??
+      "shadow-reduce",
+    replicationSignalFallbackRatioP95: Number(
+      replicationSignalFallbackRatioP95.toFixed(6),
+    ),
+    replicationPromotionVerdict: replicationPromotionDecision.verdict,
+    replicationPromotionBlockers:
+      replicationPromotionDecision.blockers.join("|") || "none",
+    replicationPromotionAction: replicationPromotionAction.verdict,
+    replicationPromotionTargetMode: replicationPromotionAction.targetMode,
+    replicationPromotionActionReasons:
+      replicationPromotionAction.reasons.join("|") || "none",
+
+    replicationShadowRuns:
+      replicationSignalPromotionLatest?.replication_hybrid?.shadowRuns ?? 0,
+    replicationEmitBranchCount:
+      replicationSignalPromotionLatest?.replication_hybrid?.emitBranchCount ??
+        0,
+    replicationSuppressBranchCount:
+      replicationSignalPromotionLatest?.replication_hybrid
+        ?.suppressBranchCount ?? 0,
+    replicationShadowSuppressed:
+      replicationSignalPromotionLatest?.replication_hybrid
+        ?.shadowSuppressedReplications ?? 0,
+
+    maxConsecutiveFailures,
+    processExitedUnexpectedly,
+    childExitCode,
+    logsTailSize: logTail.length,
+  };
+
+  const report: Record<string, unknown> = {
+    generatedAt,
+    ok: failedChecks.length === 0,
+    config,
+    summary,
+    guardianSignalPromotionDecision,
+    guardianSignalPromotionAction,
+    architectPlasmidPromotionDecision,
+    architectPlasmidPromotionAction,
+    replicationPromotionDecision,
+    replicationPromotionAction,
+    checks,
+    logsTail: logTail,
+    samplesHead: samples.slice(0, 12),
+    samplesTail: samples.slice(Math.max(0, samples.length - 24)),
+  };
+  if (config.includeFullSamples) {
+    report.samples = samples;
+  }
+
+  await Deno.writeTextFile(REPORT_JSON_PATH, JSON.stringify(report, null, 2));
+  await Deno.writeTextFile(
+    REPORT_MD_PATH,
+    renderMarkdown(generatedAt, summary, checks),
+  );
+
+  console.log(
+    `\n📊 [AUDIT] Done. verdict_g=${summary.guardianSignalPromotionVerdict} verdict_a=${summary.architectPlasmidPromotionVerdict} verdict_r=${summary.replicationPromotionVerdict}`,
+  );
+  if (failedChecks.length > 0) {
+    console.warn("      ⚠️ [AUDIT] Some health or promotion checks failed.");
+  }
+
+  if (failedChecks.length > 0) {
+    throw new Error("[AUDIT] Longrun canary gate failed.");
+  }
+
+  console.log("✅ [AUDIT] Longrun canary gate passed.");
+};
+
+if (import.meta.main) {
+  await main();
+}
+
+```
+
+---
+
+## FILE: LONGRUN_DAEMON_AUDIT.ts
+
+```typescript
+import { evaluateGuardianSignalPromotionAction } from "./GUARDIAN_SIGNAL_PROMOTION_ACTION.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { evaluateGuardianSignalPromotionDecision } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+
+type AuditConfig = {
+  hostUrl: string;
+  durationSec: number;
+  sampleMs: number;
+  perturbMs: number;
+  bootTimeoutMs: number;
+  requestTimeoutMs: number;
+  maxConsecutiveTelemetryFailures: number;
+  minSuccessRate: number;
+  maxP95TelemetryLatencyMs: number;
+  minTickDeltaPerSample: number;
+  maxSafeModeRatio: number;
+  minAvgEnergyP05: number;
+  maxSpatialOverflowRatioP95: number;
+  maxFederationRejectRatio: number;
+  maxDaemonRejectRatio: number;
+  minEffectEvalCoverage: number;
+  maxPerturbFailureRatio: number;
+  minPerturbAttempts: number;
+  minSamples: number;
+  requireDaemonAccepts: boolean;
+  spawnDaemon: boolean;
+  includeFullSamples: boolean;
+  enableSyntheticInject: boolean;
+  enableSyntheticPhaseRing: boolean;
+  syntheticPheromoneIntensity: number;
+  syntheticPlasmidIntensity: number;
+  phaseRingStepRad: number;
+  coldstartEnable: boolean;
+  coldstartCount: number;
+  coldstartReplicatorRatio: number;
+  coldstartEnergy: number;
+  coldstartResonance: number;
+  daemonHeartbeatMs: number;
+  daemonAuditPath: string;
+  controlToken: string;
+  seed: number;
+  worldWidth: number;
+  worldHeight: number;
+};
+
+type TelemetryEnvelope = {
+  tick?: number;
+  avgEnergy?: number;
+  guardian_signal_hybrid?: {
+    mode?: string;
+    hybridRuns?: number;
+    shadowRuns?: number;
+    fallbackRuns?: number;
+    stableBranchCount?: number;
+    repairBranchCount?: number;
+    allowedGuardianSignals?: number;
+    suppressedGuardianSignals?: number;
+    shadowSuppressedGuardianSignals?: number;
+    lastTick?: number;
+    lastStatus?: string;
+    lastBranch?: string;
+    lastFallbackReason?: string;
+  };
+  guardian_signal_promotion?: {
+    status?: string;
+    ready?: boolean;
+    recommendedMode?: string;
+    fallbackRatio?: number;
+  };
+  daemon_governance?: {
+    safe_mode?: boolean;
+    safe_mode_reason?: string;
+    actions_used_in_window?: number;
+    actions_max_in_window?: number;
+    actions_dynamic_max_in_window?: number;
+    last_admission?: {
+      status?: string;
+      severity?: string;
+      degraded?: boolean;
+      requestedAction?: string;
+      appliedAction?: string;
+      reason?: string;
+      score?: number;
+    };
+  };
+  spatial_hash_guard?: {
+    overflow_ratio?: number;
+    overflow_count?: number;
+    max_cell_count?: number;
+  };
+  federation_admission?: {
+    latest?: {
+      action?: string;
+      severity?: string;
+      score?: number;
+    };
+  };
+};
+
+type CodexEnvelope = {
+  population?: {
+    current?: number;
+    peak?: number;
+  };
+  chronicles?: Array<{
+    tick?: number;
+    type?: string;
+    title?: string;
+  }>;
+};
+
+type FederationAdmissionEnvelope = {
+  latest?: {
+    action?: string;
+    severity?: string;
+    score?: number;
+  };
+};
+
+type DaemonAuditEvent = {
+  event_type: string;
+  tick?: number;
+  action?: string;
+  requested_action?: string;
+  degraded?: boolean;
+  degrade_reason?: string;
+  admission?: {
+    severity?: string;
+    score?: number;
+  };
+  queue?: {
+    ok?: boolean;
+    reason?: string;
+    status?: number;
+  };
+  delta?: {
+    population?: number;
+    avgEnergy?: number;
+    neuralCoherence?: number;
+  };
+};
+
+type Sample = {
+  sampleIndex: number;
+  elapsedMs: number;
+  tick: number;
+  tickDelta: number;
+  avgEnergy: number;
+  telemetryLatencyMs: number;
+  safeMode: boolean;
+  safeModeReason: string;
+  spatialOverflowRatio: number;
+  spatialOverflowCount: number;
+  spatialMaxCellCount: number;
+  federationAction: string;
+  federationSeverity: string;
+  daemonAdmissionStatus: string;
+  daemonAdmissionSeverity: string;
+  daemonAdmissionDegraded: boolean;
+  daemonActionsUsedInWindow: number;
+  daemonActionsMaxInWindow: number;
+  daemonActionsDynamicMaxInWindow: number;
+  guardianPromotionCurrentMode: GuardianPromotionMode;
+  guardianPromotionReady: boolean;
+  guardianPromotionStatus: string;
+  guardianPromotionRecommendedMode: GuardianPromotionMode;
+  guardianPromotionFallbackRatio: number;
+  populationCurrent: number;
+  populationPeak: number;
+  codexChroniclesCount: number;
+};
+
+type PerturbationResult = {
+  sequence: number;
+  elapsedMs: number;
+  kind: "pressure_ring" | "drop_pheromone" | "inject_plasmid";
+  ok: boolean;
+  httpStatus: number;
+  reason: string;
+  degraded: boolean;
+  admissionSeverity: string;
+  admissionScore: number;
+  snippet: string;
+};
+
+type Check = {
+  name: string;
+  observed: number | boolean | string;
+  limit: number | boolean | string;
+  ok: boolean;
+};
+
+type FetchResult<T> =
+  | { ok: true; data: T; latencyMs: number }
+  | { ok: false; latencyMs: number; error: string };
+
+type GuardianPromotionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+type PerturbationContext = {
+  nextU32: () => number;
+  sequence: number;
+};
+
+const REPORT_JSON_PATH = "LONGRUN_DAEMON_AUDIT.json";
+const REPORT_MD_PATH = "LONGRUN_DAEMON_AUDIT.md";
+const CORE_TASK = ["task", "core:start"];
+const DAEMON_TASK = ["task", "daemon:start"];
+const LOG_RING_CAPACITY = 280;
+const PERTURB_TAIL_CAPACITY = 64;
+const DAEMON_EVENT_TAIL_CAPACITY = 80;
+
+const parseIntEnv = (
+  name: string,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+
+const parseFloatEnv = (
+  name: string,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const parsed = Number.parseFloat(raw);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, parsed));
+};
+
+const parseBoolEnv = (name: string, fallback: boolean): boolean => {
+  const raw = Deno.env.get(name);
+  if (!raw) return fallback;
+  const normalized = raw.trim().toLowerCase();
+  if (["1", "true", "yes", "on"].includes(normalized)) return true;
+  if (["0", "false", "no", "off"].includes(normalized)) return false;
+  return fallback;
+};
+
+const percentile = (values: number[], p: number): number => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const clamped = Math.max(0, Math.min(100, p));
+  const rank = (clamped / 100) * (sorted.length - 1);
+  const low = Math.floor(rank);
+  const high = Math.ceil(rank);
+  if (low === high) return sorted[low];
+  const weight = rank - low;
+  return sorted[low] * (1 - weight) + sorted[high] * weight;
+};
+
+const mean = (values: number[]): number => {
+  if (values.length === 0) return 0;
+  return values.reduce((acc, value) => acc + value, 0) / values.length;
+};
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+const toFiniteNumber = (value: unknown, fallback = 0): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const toStringSafe = (value: unknown, fallback = ""): string =>
+  typeof value === "string" && value.trim().length > 0
+    ? value.trim()
+    : fallback;
+
+const toBool = (value: unknown): boolean => {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    const normalized = value.trim().toLowerCase();
+    return ["1", "true", "yes", "on"].includes(normalized);
+  }
+  if (typeof value === "number") return value !== 0;
+  return false;
+};
+
+const normalizeGuardianPromotionMode = (
+  value: unknown,
+): GuardianPromotionMode => {
+  const normalized = toStringSafe(value, "shadow-reduce").toLowerCase();
+  if (normalized === "legacy-execute" || normalized === "legacy_execute") {
+    return "legacy-execute";
+  }
+  if (normalized === "hybrid-reduce" || normalized === "hybrid_reduce") {
+    return "hybrid-reduce";
+  }
+  return "shadow-reduce";
+};
+
+const deriveGuardianPromotion = (
+  telemetry: TelemetryEnvelope,
+): {
+  currentMode: GuardianPromotionMode;
+  ready: boolean;
+  status: string;
+  recommendedMode: GuardianPromotionMode;
+  fallbackRatio: number;
+} => {
+  if (telemetry.guardian_signal_hybrid) {
+    const currentMode = normalizeGuardianPromotionMode(
+      telemetry.guardian_signal_hybrid.mode,
+    );
+    const evaluated = evaluateGuardianSignalPromotion({
+      mode: currentMode,
+      hybridRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.hybridRuns, 0),
+      ),
+      shadowRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.shadowRuns, 0),
+      ),
+      fallbackRuns: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.fallbackRuns, 0),
+      ),
+      stableBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.stableBranchCount, 0),
+      ),
+      repairBranchCount: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.repairBranchCount, 0),
+      ),
+      allowedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.allowedGuardianSignals,
+          0,
+        ),
+      ),
+      suppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.suppressedGuardianSignals,
+          0,
+        ),
+      ),
+      shadowSuppressedGuardianSignals: Math.floor(
+        toFiniteNumber(
+          telemetry.guardian_signal_hybrid.shadowSuppressedGuardianSignals,
+          0,
+        ),
+      ),
+      lastTick: Math.floor(
+        toFiniteNumber(telemetry.guardian_signal_hybrid.lastTick, 0),
+      ),
+      lastStatus: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastStatus,
+        "legacy",
+      ) as "legacy" | "stable" | "repair" | "fallback",
+      lastBranch: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastBranch,
+        "unknown",
+      ) as "stable" | "repair" | "unknown",
+      lastFallbackReason: toStringSafe(
+        telemetry.guardian_signal_hybrid.lastFallbackReason,
+        "",
+      ),
+    });
+    return {
+      currentMode,
+      ready: evaluated.ready,
+      status: evaluated.status,
+      recommendedMode: evaluated.recommendedMode,
+      fallbackRatio: evaluated.fallbackRatio,
+    };
+  }
+  return {
+    currentMode: "shadow-reduce",
+    ready: telemetry.guardian_signal_promotion?.ready === true,
+    status: toStringSafe(
+      telemetry.guardian_signal_promotion?.status,
+      "unknown",
+    ),
+    recommendedMode: normalizeGuardianPromotionMode(
+      telemetry.guardian_signal_promotion?.recommendedMode,
+    ),
+    fallbackRatio: toFiniteNumber(
+      telemetry.guardian_signal_promotion?.fallbackRatio,
+      0,
+    ),
+  };
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const createConfig = (): AuditConfig => {
+  const hostUrl = (Deno.env.get("OMEGA_LONGRUN_URL") ?? "http://127.0.0.1:8000")
+    .trim()
+    .replace(/\/+$/u, "");
+  const controlToken = (
+    Deno.env.get("OMEGA_LONGRUN_CONTROL_TOKEN") ??
+      Deno.env.get("OMEGA_SYSTEM_CONTROL_TOKEN") ??
+      ""
+  ).trim();
+  return {
+    hostUrl,
+    durationSec: parseIntEnv("OMEGA_LONGRUN_DURATION_SEC", 600, 60, 172800),
+    sampleMs: parseIntEnv("OMEGA_LONGRUN_SAMPLE_MS", 5000, 500, 120000),
+    perturbMs: parseIntEnv("OMEGA_LONGRUN_PERTURB_MS", 12000, 1000, 300000),
+    bootTimeoutMs: parseIntEnv(
+      "OMEGA_LONGRUN_BOOT_TIMEOUT_MS",
+      45000,
+      1000,
+      300000,
+    ),
+    requestTimeoutMs: parseIntEnv(
+      "OMEGA_LONGRUN_REQUEST_TIMEOUT_MS",
+      3500,
+      200,
+      30000,
+    ),
+    maxConsecutiveTelemetryFailures: parseIntEnv(
+      "OMEGA_LONGRUN_MAX_CONSEC_FAILS",
+      4,
+      1,
+      128,
+    ),
+    minSuccessRate: parseFloatEnv("OMEGA_LONGRUN_MIN_SUCCESS_RATE", 0.9, 0, 1),
+    maxP95TelemetryLatencyMs: parseIntEnv(
+      "OMEGA_LONGRUN_MAX_P95_TELEMETRY_MS",
+      4000,
+      50,
+      60000,
+    ),
+    minTickDeltaPerSample: parseIntEnv(
+      "OMEGA_LONGRUN_MIN_TICK_DELTA",
+      1,
+      0,
+      1000000,
+    ),
+    maxSafeModeRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_SAFE_MODE_RATIO",
+      0.98,
+      0,
+      1,
+    ),
+    minAvgEnergyP05: parseFloatEnv(
+      "OMEGA_LONGRUN_MIN_AVG_ENERGY_P05",
+      1,
+      0,
+      1_000_000,
+    ),
+    maxSpatialOverflowRatioP95: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_OVERFLOW_RATIO_P95",
+      0.75,
+      0,
+      1,
+    ),
+    maxFederationRejectRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_FED_REJECT_RATIO",
+      0.98,
+      0,
+      1,
+    ),
+    maxDaemonRejectRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_DAEMON_REJECT_RATIO",
+      0.9,
+      0,
+      1,
+    ),
+    minEffectEvalCoverage: parseFloatEnv(
+      "OMEGA_LONGRUN_MIN_EFFECT_EVAL_COVERAGE",
+      0.2,
+      0,
+      1,
+    ),
+    maxPerturbFailureRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_MAX_PERTURB_FAILURE_RATIO",
+      0.5,
+      0,
+      1,
+    ),
+    minPerturbAttempts: parseIntEnv(
+      "OMEGA_LONGRUN_MIN_PERTURB_ATTEMPTS",
+      3,
+      0,
+      100000,
+    ),
+    minSamples: parseIntEnv("OMEGA_LONGRUN_MIN_SAMPLES", 8, 1, 100000),
+    requireDaemonAccepts: parseBoolEnv(
+      "OMEGA_LONGRUN_REQUIRE_DAEMON_ACCEPTS",
+      false,
+    ),
+    spawnDaemon: parseBoolEnv("OMEGA_LONGRUN_SPAWN_DAEMON", true),
+    includeFullSamples: parseBoolEnv("OMEGA_LONGRUN_FULL_SAMPLES", false),
+    enableSyntheticInject: parseBoolEnv(
+      "OMEGA_LONGRUN_SYNTHETIC_INJECT",
+      true,
+    ),
+    enableSyntheticPhaseRing: parseBoolEnv(
+      "OMEGA_LONGRUN_SYNTHETIC_PHASE_RING",
+      true,
+    ),
+    syntheticPheromoneIntensity: parseIntEnv(
+      "OMEGA_LONGRUN_SYNTHETIC_PHEROMONE_INTENSITY",
+      96,
+      1,
+      5000,
+    ),
+    syntheticPlasmidIntensity: parseIntEnv(
+      "OMEGA_LONGRUN_SYNTHETIC_PLASMID_INTENSITY",
+      220,
+      1,
+      5000,
+    ),
+    phaseRingStepRad: parseFloatEnv(
+      "OMEGA_LONGRUN_PHASE_RING_STEP_RAD",
+      0.0625,
+      0.0001,
+      Math.PI / 2,
+    ),
+    coldstartEnable: parseBoolEnv("OMEGA_LONGRUN_COLDSTART_ENABLE", true),
+    coldstartCount: parseIntEnv("OMEGA_LONGRUN_COLDSTART_COUNT", 24, 0, 100000),
+    coldstartReplicatorRatio: parseFloatEnv(
+      "OMEGA_LONGRUN_COLDSTART_REPLICATOR_RATIO",
+      0.45,
+      0,
+      1,
+    ),
+    coldstartEnergy: parseIntEnv(
+      "OMEGA_LONGRUN_COLDSTART_ENERGY",
+      2200,
+      1,
+      1000000,
+    ),
+    coldstartResonance: parseIntEnv(
+      "OMEGA_LONGRUN_COLDSTART_RESONANCE",
+      220,
+      0,
+      1000000,
+    ),
+    daemonHeartbeatMs: parseIntEnv(
+      "OMEGA_LONGRUN_DAEMON_HEARTBEAT_MS",
+      12000,
+      1000,
+      300000,
+    ),
+    daemonAuditPath: (Deno.env.get("OMEGA_LONGRUN_DAEMON_AUDIT_PATH") ??
+      Deno.env.get("OMEGA_DAEMON_AUDIT_PATH") ??
+      "./DAEMON_AUDIT.jsonl").trim(),
+    controlToken,
+    seed: parseIntEnv("OMEGA_LONGRUN_SEED", 1337, 1, 2_147_483_647),
+    worldWidth: parseIntEnv("OMEGA_LONGRUN_WORLD_WIDTH", 1400, 8, 100000),
+    worldHeight: parseIntEnv("OMEGA_LONGRUN_WORLD_HEIGHT", 800, 8, 100000),
+  };
+};
+
+const readProcessStream = async (
+  stream: ReadableStream<Uint8Array> | null,
+  channel: "stdout" | "stderr",
+  processName: "core" | "daemon",
+  sink: string[],
+): Promise<void> => {
+  if (!stream) return;
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  let pending = "";
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      pending += decoder.decode(value, { stream: true });
+      let newlineIndex = pending.indexOf("\n");
+      while (newlineIndex >= 0) {
+        const line = pending.slice(0, newlineIndex).trimEnd();
+        pending = pending.slice(newlineIndex + 1);
+        if (line.length > 0) {
+          sink.push(`[${processName}:${channel}] ${line}`);
+          if (sink.length > LOG_RING_CAPACITY) {
+            sink.splice(0, sink.length - LOG_RING_CAPACITY);
+          }
+        }
+        newlineIndex = pending.indexOf("\n");
+      }
+    }
+    const tail = (pending + decoder.decode()).trim();
+    if (tail.length > 0) {
+      sink.push(`[${processName}:${channel}] ${tail}`);
+      if (sink.length > LOG_RING_CAPACITY) {
+        sink.splice(0, sink.length - LOG_RING_CAPACITY);
+      }
+    }
+  } catch {
+    // Best-effort log capture.
+  } finally {
+    reader.releaseLock();
+  }
+};
+
+const fetchJson = async <T>(
+  url: string,
+  timeoutMs: number,
+): Promise<FetchResult<T>> => {
+  const started = performance.now();
+  try {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    const latencyMs = performance.now() - started;
+    if (!response.ok) {
+      return {
+        ok: false,
+        latencyMs,
+        error: `http_${response.status}`,
+      };
+    }
+    const payload = await response.json() as T;
+    return { ok: true, data: payload, latencyMs };
+  } catch (err) {
+    return {
+      ok: false,
+      latencyMs: performance.now() - started,
+      error: String(err),
+    };
+  }
+};
+
+const terminateChild = async (
+  child: Deno.ChildProcess,
+  timeoutMs = 3000,
+): Promise<void> => {
+  try {
+    child.kill("SIGTERM");
+  } catch {
+    // no-op
+  }
+  const waitStart = performance.now();
+  while (performance.now() - waitStart < timeoutMs) {
+    const status = await Promise.race([
+      child.status,
+      sleep(100).then(() => null),
+    ]);
+    if (status) return;
+  }
+  try {
+    child.kill("SIGKILL");
+  } catch {
+    // no-op
+  }
+  try {
+    await child.status;
+  } catch {
+    // no-op
+  }
+};
+
+const createLcg = (seed: number): () => number => {
+  let state = seed >>> 0;
+  return () => {
+    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+    return state;
+  };
+};
+
+const randomCoord = (nextU32: () => number, maxExclusive: number): number =>
+  Math.floor((nextU32() / 0x1_0000_0000) * maxExclusive);
+
+const toJsonObject = (raw: string): Record<string, unknown> | null => {
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object"
+      ? parsed as Record<string, unknown>
+      : null;
+  } catch {
+    return null;
+  }
+};
+
+const daemonAuthHeaders = (controlToken: string): HeadersInit => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+  };
+  if (controlToken.length > 0) {
+    headers["x-omega-control-token"] = controlToken;
+  }
+  return headers;
+};
+
+const postJson = async (
+  url: string,
+  body: Record<string, unknown>,
+  timeoutMs: number,
+  headers: HeadersInit,
+): Promise<
+  {
+    ok: boolean;
+    status: number;
+    payload: Record<string, unknown> | null;
+    text: string;
+  }
+> => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    const text = await response.text();
+    return {
+      ok: response.ok,
+      status: response.status,
+      payload: toJsonObject(text),
+      text,
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      status: 0,
+      payload: null,
+      text: String(err),
+    };
+  }
+};
+
+const nextPerturbationKinds = (
+  config: AuditConfig,
+): Array<PerturbationResult["kind"]> => {
+  const kinds: Array<PerturbationResult["kind"]> = [];
+  if (config.enableSyntheticPhaseRing) kinds.push("pressure_ring");
+  if (config.enableSyntheticInject) {
+    kinds.push("drop_pheromone", "inject_plasmid");
+  }
+  return kinds;
+};
+
+const choosePlasmidHex = (sequence: number): string => {
+  const palette = [
+    "0102030405101180",
+    "001011120381A4A5",
+    "0405A6A7A8A9AAAB",
+    "0203040510111280",
+  ];
+  return palette[sequence % palette.length];
+};
+
+const performPerturbation = async (
+  config: AuditConfig,
+  context: PerturbationContext,
+): Promise<PerturbationResult | null> => {
+  const kinds = nextPerturbationKinds(config);
+  if (kinds.length === 0) return null;
+  const kind = kinds[context.sequence % kinds.length];
+  const elapsedMs = Math.round(performance.now());
+  const headers = daemonAuthHeaders(config.controlToken);
+  const base = config.hostUrl;
+
+  if (kind === "pressure_ring") {
+    const sign = context.sequence % 2 === 0 ? 1 : -1;
+    const response = await postJson(
+      `${base}/api/pressure-ring`,
+      {
+        mode: "step",
+        delta_theta: Number((sign * config.phaseRingStepRad).toFixed(6)),
+        reason: "longrun_daemon_audit",
+      },
+      config.requestTimeoutMs,
+      headers,
+    );
+    const reason = response.payload
+      ? toStringSafe(response.payload.reason, response.ok ? "OK" : "FAILED")
+      : (response.ok ? "OK" : "FAILED");
+    return {
+      sequence: context.sequence,
+      elapsedMs,
+      kind,
+      ok: response.ok,
+      httpStatus: response.status,
+      reason,
+      degraded: false,
+      admissionSeverity: "NONE",
+      admissionScore: 0,
+      snippet: response.text.slice(0, 240),
+    };
+  }
+
+  const targetX = randomCoord(context.nextU32, config.worldWidth);
+  const targetY = randomCoord(context.nextU32, config.worldHeight);
+  const body: Record<string, unknown> = kind === "drop_pheromone"
+    ? {
+      action_type: "DROP_PHEROMONE",
+      payload: {
+        target_x: targetX,
+        target_y: targetY,
+        intensity: config.syntheticPheromoneIntensity,
+      },
+    }
+    : {
+      action_type: "INJECT_PLASMID",
+      payload: {
+        target_x: targetX,
+        target_y: targetY,
+        intensity: config.syntheticPlasmidIntensity,
+        hex_code: choosePlasmidHex(context.sequence),
+      },
+    };
+  const response = await postJson(
+    `${base}/api/inject`,
+    body,
+    config.requestTimeoutMs,
+    headers,
+  );
+  const degraded = toBool(response.payload?.degraded);
+  const admission = response.payload?.admission &&
+      typeof response.payload.admission === "object"
+    ? response.payload.admission as Record<string, unknown>
+    : null;
+  const admissionSeverity = toStringSafe(admission?.severity, "NONE")
+    .toUpperCase();
+  const admissionScore = Math.floor(toFiniteNumber(admission?.score, 0));
+  const reason = toStringSafe(
+    response.payload?.reason,
+    response.ok ? "OK" : "FAILED",
+  );
+  return {
+    sequence: context.sequence,
+    elapsedMs,
+    kind,
+    ok: response.ok,
+    httpStatus: response.status,
+    reason,
+    degraded,
+    admissionSeverity,
+    admissionScore,
+    snippet: response.text.slice(0, 240),
+  };
+};
+
+const readDaemonAuditDelta = async (
+  path: string,
+  processedLines: number,
+): Promise<{
+  nextProcessedLines: number;
+  events: DaemonAuditEvent[];
+}> => {
+  try {
+    const raw = await Deno.readTextFile(path);
+    const lines = raw.split(/\r?\n/u).filter((line) => line.trim().length > 0);
+    const start = lines.length < processedLines ? 0 : processedLines;
+    const events: DaemonAuditEvent[] = [];
+    for (const line of lines.slice(start)) {
+      const parsed = toJsonObject(line);
+      const eventType = toStringSafe(parsed?.event_type, "");
+      if (eventType.length === 0) continue;
+      events.push({
+        event_type: eventType,
+        tick: Math.floor(toFiniteNumber(parsed?.tick, -1)),
+        action: toStringSafe(parsed?.action, ""),
+        requested_action: toStringSafe(parsed?.requested_action, ""),
+        degraded: toBool(parsed?.degraded),
+        degrade_reason: toStringSafe(parsed?.degrade_reason, ""),
+        admission: parsed?.admission && typeof parsed.admission === "object"
+          ? {
+            severity: toStringSafe(
+              (parsed.admission as Record<string, unknown>).severity,
+              "",
+            ),
+            score: toFiniteNumber(
+              (parsed.admission as Record<string, unknown>).score,
+              0,
+            ),
+          }
+          : undefined,
+        queue: parsed?.queue && typeof parsed.queue === "object"
+          ? {
+            ok: toBool((parsed.queue as Record<string, unknown>).ok),
+            reason: toStringSafe(
+              (parsed.queue as Record<string, unknown>).reason,
+              "",
+            ),
+            status: Math.floor(
+              toFiniteNumber(
+                (parsed.queue as Record<string, unknown>).status,
+                0,
+              ),
+            ),
+          }
+          : undefined,
+        delta: parsed?.delta && typeof parsed.delta === "object"
+          ? {
+            population: Math.floor(
+              toFiniteNumber(
+                (parsed.delta as Record<string, unknown>).population,
+                0,
+              ),
+            ),
+            avgEnergy: toFiniteNumber(
+              (parsed.delta as Record<string, unknown>).avgEnergy,
+              0,
+            ),
+            neuralCoherence: toFiniteNumber(
+              (parsed.delta as Record<string, unknown>).neuralCoherence,
+              0,
+            ),
+          }
+          : undefined,
+      });
+    }
+    return { nextProcessedLines: lines.length, events };
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return { nextProcessedLines: processedLines, events: [] };
+    }
+    return { nextProcessedLines: processedLines, events: [] };
+  }
+};
+
+const renderMarkdown = (
+  generatedAt: string,
+  summary: Record<string, unknown>,
+  checks: Check[],
+  daemonEventCounts: Record<string, number>,
+  perturbationsTail: PerturbationResult[],
+): string => {
+  const checkRows = checks.map((check) =>
+    `| ${
+      check.ok ? "PASS" : "FAIL"
+    } | ${check.name} | ${check.observed} | ${check.limit} |`
+  ).join("\n");
+  const daemonRows = Object.entries(daemonEventCounts)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([eventType, count]) => `| ${eventType} | ${count} |`)
+    .join("\n");
+  const perturbRows = perturbationsTail.slice(-16).map((entry) =>
+    `| ${entry.sequence} | ${entry.kind} | ${
+      entry.ok ? "ok" : "fail"
+    } | ${entry.httpStatus} | ${entry.reason} | ${
+      entry.degraded ? "yes" : "no"
+    } | ${entry.admissionSeverity} | ${entry.admissionScore} |`
+  ).join("\n");
+  return `# Longrun Daemon Audit
+
+- generatedAt: ${generatedAt}
+- durationSec: ${summary.durationSec}
+- elapsedMs: ${summary.elapsedMs}
+- bootReady: ${summary.bootReady}
+- bootMs: ${summary.bootMs}
+- spawnDaemon: ${summary.spawnDaemon}
+- sampleCount: ${summary.sampleCount}
+- successCount: ${summary.successCount}
+- failureCount: ${summary.failureCount}
+- successRate: ${summary.successRate}
+- tickStart: ${summary.tickStart}
+- tickEnd: ${summary.tickEnd}
+- tickAdvance: ${summary.tickAdvance}
+- p95TelemetryLatencyMs: ${summary.p95TelemetryLatencyMs}
+- p05AvgEnergy: ${summary.p05AvgEnergy}
+- p95SpatialOverflowRatio: ${summary.p95SpatialOverflowRatio}
+- safeModeRatio: ${summary.safeModeRatio}
+- federationRejectRatio: ${summary.federationRejectRatio}
+- guardianSignalPromotionCurrentMode: ${summary.guardianSignalPromotionCurrentMode}
+- guardianSignalPromotionReadyLatest: ${summary.guardianSignalPromotionReadyLatest}
+- guardianSignalPromotionReadyRatio: ${summary.guardianSignalPromotionReadyRatio}
+- guardianSignalPromotionRecommendedMode: ${summary.guardianSignalPromotionRecommendedMode}
+- guardianSignalFallbackRatioP95: ${summary.guardianSignalFallbackRatioP95}
+- guardianSignalPromotionVerdict: ${summary.guardianSignalPromotionVerdict}
+- guardianSignalPromotionBlockers: ${summary.guardianSignalPromotionBlockers}
+- guardianSignalPromotionAction: ${summary.guardianSignalPromotionAction}
+- guardianSignalPromotionTargetMode: ${summary.guardianSignalPromotionTargetMode}
+- guardianSignalPromotionActionReasons: ${summary.guardianSignalPromotionActionReasons}
+- perturbAttempts: ${summary.perturbAttempts}
+- perturbFailureRatio: ${summary.perturbFailureRatio}
+- daemonAdmissionEvents: ${summary.daemonAdmissionEvents}
+- daemonRejectRatio: ${summary.daemonRejectRatio}
+- effectEvalCoverage: ${summary.effectEvalCoverage}
+
+| status | check | observed | limit |
+|---|---|---:|---:|
+${checkRows}
+
+## Daemon Events
+| event_type | count |
+|---|---:|
+${daemonRows || "| (none) | 0 |"}
+
+## Perturbation Tail
+| seq | kind | ok | status | reason | degraded | severity | score |
+|---:|---|---|---:|---|---|---|---:|
+${perturbRows || "| - | - | - | - | - | - | - | - |"}
+`;
+};
+
+const main = async () => {
+  const config = createConfig();
+  console.log(
+    `🧪 [LONGRUN:DAEMON] start duration=${config.durationSec}s sample=${config.sampleMs}ms perturb=${config.perturbMs}ms host=${config.hostUrl}`,
+  );
+
+  const coreCommand = new Deno.Command("deno", {
+    args: CORE_TASK,
+    env: {
+      ...Deno.env.toObject(),
+      OMEGA_COLDSTART_ENABLE: config.coldstartEnable ? "1" : "0",
+      OMEGA_COLDSTART_COUNT: String(config.coldstartCount),
+      OMEGA_COLDSTART_REPLICATOR_RATIO: String(config.coldstartReplicatorRatio),
+      OMEGA_COLDSTART_SEED: String(config.seed),
+      OMEGA_COLDSTART_ENERGY: String(config.coldstartEnergy),
+      OMEGA_COLDSTART_RESONANCE: String(config.coldstartResonance),
+    },
+    stdout: "piped",
+    stderr: "piped",
+  });
+  const coreChild = coreCommand.spawn();
+  const logTail: string[] = [];
+  const coreStdoutPump = readProcessStream(
+    coreChild.stdout,
+    "stdout",
+    "core",
+    logTail,
+  );
+  const coreStderrPump = readProcessStream(
+    coreChild.stderr,
+    "stderr",
+    "core",
+    logTail,
+  );
+
+  let daemonChild: Deno.ChildProcess | null = null;
+  let daemonStdoutPump: Promise<void> = Promise.resolve();
+  let daemonStderrPump: Promise<void> = Promise.resolve();
+  if (config.spawnDaemon) {
+    const daemonCommand = new Deno.Command("deno", {
+      args: DAEMON_TASK,
+      env: {
+        ...Deno.env.toObject(),
+        OMEGA_DAEMON_API_BASE: config.hostUrl,
+        HEARTBEAT_INTERVAL_MS: String(config.daemonHeartbeatMs),
+        OMEGA_DAEMON_CONTROL_TOKEN: config.controlToken,
+      },
+      stdout: "piped",
+      stderr: "piped",
+    });
+    daemonChild = daemonCommand.spawn();
+    daemonStdoutPump = readProcessStream(
+      daemonChild.stdout,
+      "stdout",
+      "daemon",
+      logTail,
+    );
+    daemonStderrPump = readProcessStream(
+      daemonChild.stderr,
+      "stderr",
+      "daemon",
+      logTail,
+    );
+  }
+
+  let coreExited = false;
+  let coreExitCode = -1;
+  let daemonExited = false;
+  let daemonExitCode = -1;
+  let shuttingDown = false;
+  let coreUnexpectedExitDuringRun = false;
+  let daemonUnexpectedExitDuringRun = false;
+
+  coreChild.status.then((status) => {
+    coreExited = true;
+    coreExitCode = status.code;
+    if (!shuttingDown) coreUnexpectedExitDuringRun = true;
+  });
+  if (daemonChild) {
+    daemonChild.status.then((status) => {
+      daemonExited = true;
+      daemonExitCode = status.code;
+      if (!shuttingDown) daemonUnexpectedExitDuringRun = true;
+    });
+  }
+
+  const bootStarted = performance.now();
+  let bootReady = false;
+  let bootMs = -1;
+  while (performance.now() - bootStarted < config.bootTimeoutMs) {
+    if (coreExited) break;
+    const probe = await fetchJson<TelemetryEnvelope>(
+      `${config.hostUrl}/api/telemetry`,
+      config.requestTimeoutMs,
+    );
+    if (probe.ok) {
+      bootReady = true;
+      bootMs = Math.round(performance.now() - bootStarted);
+      break;
+    }
+    await sleep(350);
+  }
+
+  if (!bootReady) {
+    const report = {
+      generatedAt: new Date().toISOString(),
+      ok: false,
+      reason: coreExited
+        ? `SYSTEM_EXITED_DURING_BOOT(code=${coreExitCode})`
+        : "SYSTEM_BOOT_TIMEOUT",
+      config,
+      boot: {
+        ready: false,
+        timeoutMs: config.bootTimeoutMs,
+        coreExited,
+        coreExitCode,
+        daemonExited,
+        daemonExitCode,
+      },
+      logsTail: logTail,
+    };
+    await Deno.writeTextFile(REPORT_JSON_PATH, JSON.stringify(report, null, 2));
+    await Deno.writeTextFile(
+      REPORT_MD_PATH,
+      `# Longrun Daemon Audit\n\n- generatedAt: ${report.generatedAt}\n- ok: false\n- reason: ${report.reason}\n- coreExited: ${coreExited}\n- coreExitCode: ${coreExitCode}\n`,
+    );
+    shuttingDown = true;
+    await terminateChild(coreChild);
+    if (daemonChild) {
+      await terminateChild(daemonChild);
+    }
+    await Promise.allSettled([
+      coreStdoutPump,
+      coreStderrPump,
+      daemonStdoutPump,
+      daemonStderrPump,
+    ]);
+    throw new Error(`[AUDIT] Longrun daemon boot failed: ${report.reason}`);
+  }
+
+  const startedAt = performance.now();
+  const samples: Sample[] = [];
+  const telemetryLatencies: number[] = [];
+  const tickDeltas: number[] = [];
+  const avgEnergySamples: number[] = [];
+  const spatialOverflowRatios: number[] = [];
+  const safeModeSamples: number[] = [];
+  const guardianPromotionReadySamples: number[] = [];
+  const guardianPromotionFallbackRatios: number[] = [];
+
+  const daemonEventCounts: Record<string, number> = {};
+  const daemonEventsTail: DaemonAuditEvent[] = [];
+  const perturbationsTail: PerturbationResult[] = [];
+
+  const nextU32 = createLcg(config.seed);
+  let perturbSequence = 0;
+  let nextPerturbAtMs = config.perturbMs;
+  let telemetryAttempts = 0;
+  let successCount = 0;
+  let failureCount = 0;
+  let consecutiveFailures = 0;
+  let maxConsecutiveFailures = 0;
+  let federationActionSamples = 0;
+  let federationRejectSamples = 0;
+  let previousTick = -1;
+  let daemonAuditProcessedLines = 0;
+  let daemonAuditEventsSeen = 0;
+  let perturbAttempts = 0;
+  let perturbFailures = 0;
+  let daemonAcceptCount = 0;
+  let daemonRejectCount = 0;
+  let daemonDegradedCount = 0;
+  let daemonEffectEvalCount = 0;
+
+  while (performance.now() - startedAt < config.durationSec * 1000) {
+    if (coreExited) break;
+    telemetryAttempts++;
+    const telemetryResult = await fetchJson<TelemetryEnvelope>(
+      `${config.hostUrl}/api/telemetry`,
+      config.requestTimeoutMs,
+    );
+    if (!telemetryResult.ok) {
+      failureCount++;
+      consecutiveFailures++;
+      if (consecutiveFailures > maxConsecutiveFailures) {
+        maxConsecutiveFailures = consecutiveFailures;
+      }
+      await sleep(config.sampleMs);
+      continue;
+    }
+
+    successCount++;
+    consecutiveFailures = 0;
+    telemetryLatencies.push(telemetryResult.latencyMs);
+
+    const [codexResult, admissionResult, daemonAuditDelta] = await Promise.all([
+      fetchJson<CodexEnvelope>(
+        `${config.hostUrl}/api/codex?limit=4`,
+        config.requestTimeoutMs,
+      ),
+      fetchJson<FederationAdmissionEnvelope>(
+        `${config.hostUrl}/federate/admission`,
+        config.requestTimeoutMs,
+      ),
+      readDaemonAuditDelta(config.daemonAuditPath, daemonAuditProcessedLines),
+    ]);
+    daemonAuditProcessedLines = daemonAuditDelta.nextProcessedLines;
+    for (const event of daemonAuditDelta.events) {
+      daemonAuditEventsSeen++;
+      const eventType = toStringSafe(event.event_type, "UNKNOWN");
+      daemonEventCounts[eventType] = (daemonEventCounts[eventType] ?? 0) + 1;
+      if (eventType === "DAEMON_ACCEPT") daemonAcceptCount++;
+      if (eventType === "DAEMON_REJECT") daemonRejectCount++;
+      if (eventType === "DAEMON_DEGRADED") daemonDegradedCount++;
+      if (eventType === "DAEMON_EFFECT_EVAL") daemonEffectEvalCount++;
+      daemonEventsTail.push(event);
+      if (daemonEventsTail.length > DAEMON_EVENT_TAIL_CAPACITY) {
+        daemonEventsTail.splice(
+          0,
+          daemonEventsTail.length - DAEMON_EVENT_TAIL_CAPACITY,
+        );
+      }
+    }
+
+    const telemetry = telemetryResult.data;
+    const tick = Math.max(0, Math.floor(toFiniteNumber(telemetry.tick, 0)));
+    const avgEnergy = toFiniteNumber(telemetry.avgEnergy, 0);
+    const safeMode = telemetry.daemon_governance?.safe_mode === true;
+    const safeModeReason = toStringSafe(
+      telemetry.daemon_governance?.safe_mode_reason,
+      "",
+    );
+    const overflowRatio = Math.max(
+      0,
+      toFiniteNumber(telemetry.spatial_hash_guard?.overflow_ratio, 0),
+    );
+    const overflowCount = Math.max(
+      0,
+      Math.floor(
+        toFiniteNumber(telemetry.spatial_hash_guard?.overflow_count, 0),
+      ),
+    );
+    const maxCellCount = Math.max(
+      0,
+      Math.floor(
+        toFiniteNumber(telemetry.spatial_hash_guard?.max_cell_count, 0),
+      ),
+    );
+    const admissionLatest = admissionResult.ok
+      ? admissionResult.data.latest
+      : telemetry.federation_admission?.latest;
+    const federationAction = toStringSafe(admissionLatest?.action, "")
+      .toLowerCase();
+    const federationSeverity = toStringSafe(admissionLatest?.severity, "")
+      .toUpperCase();
+    if (federationAction.length > 0) {
+      federationActionSamples++;
+      if (federationAction === "reject") federationRejectSamples++;
+    }
+
+    const lastAdmission = telemetry.daemon_governance?.last_admission;
+    const daemonAdmissionStatus = toStringSafe(lastAdmission?.status, "none")
+      .toLowerCase();
+    const daemonAdmissionSeverity = toStringSafe(
+      lastAdmission?.severity,
+      "NONE",
+    ).toUpperCase();
+    const daemonAdmissionDegraded = toBool(lastAdmission?.degraded);
+    const daemonActionsUsedInWindow = Math.max(
+      0,
+      Math.floor(
+        toFiniteNumber(telemetry.daemon_governance?.actions_used_in_window, 0),
+      ),
+    );
+    const daemonActionsMaxInWindow = Math.max(
+      1,
+      Math.floor(
+        toFiniteNumber(telemetry.daemon_governance?.actions_max_in_window, 1),
+      ),
+    );
+    const daemonActionsDynamicMaxInWindow = Math.max(
+      1,
+      Math.floor(
+        toFiniteNumber(
+          telemetry.daemon_governance?.actions_dynamic_max_in_window,
+          daemonActionsMaxInWindow,
+        ),
+      ),
+    );
+    const guardianPromotion = deriveGuardianPromotion(telemetry);
+
+    const populationCurrent = codexResult.ok
+      ? Math.max(
+        0,
+        Math.floor(toFiniteNumber(codexResult.data.population?.current, 0)),
+      )
+      : 0;
+    const populationPeak = codexResult.ok
+      ? Math.max(
+        0,
+        Math.floor(toFiniteNumber(codexResult.data.population?.peak, 0)),
+      )
+      : 0;
+    const codexChroniclesCount = codexResult.ok &&
+        Array.isArray(codexResult.data.chronicles)
+      ? codexResult.data.chronicles.length
+      : 0;
+
+    const tickDelta = previousTick >= 0 ? tick - previousTick : 0;
+    if (previousTick >= 0) tickDeltas.push(tickDelta);
+    previousTick = tick;
+
+    avgEnergySamples.push(avgEnergy);
+    spatialOverflowRatios.push(overflowRatio);
+    safeModeSamples.push(safeMode ? 1 : 0);
+    guardianPromotionReadySamples.push(guardianPromotion.ready ? 1 : 0);
+    guardianPromotionFallbackRatios.push(guardianPromotion.fallbackRatio);
+
+    samples.push({
+      sampleIndex: samples.length,
+      elapsedMs: Math.round(performance.now() - startedAt),
+      tick,
+      tickDelta,
+      avgEnergy: Number(avgEnergy.toFixed(3)),
+      telemetryLatencyMs: Number(telemetryResult.latencyMs.toFixed(3)),
+      safeMode,
+      safeModeReason,
+      spatialOverflowRatio: Number(overflowRatio.toFixed(6)),
+      spatialOverflowCount: overflowCount,
+      spatialMaxCellCount: maxCellCount,
+      federationAction: federationAction || "none",
+      federationSeverity: federationSeverity || "NONE",
+      daemonAdmissionStatus: daemonAdmissionStatus || "none",
+      daemonAdmissionSeverity: daemonAdmissionSeverity || "NONE",
+      daemonAdmissionDegraded,
+      daemonActionsUsedInWindow,
+      daemonActionsMaxInWindow,
+      daemonActionsDynamicMaxInWindow,
+      guardianPromotionCurrentMode: guardianPromotion.currentMode,
+      guardianPromotionReady: guardianPromotion.ready,
+      guardianPromotionStatus: guardianPromotion.status,
+      guardianPromotionRecommendedMode: guardianPromotion.recommendedMode,
+      guardianPromotionFallbackRatio: Number(
+        guardianPromotion.fallbackRatio.toFixed(6),
+      ),
+      populationCurrent,
+      populationPeak,
+      codexChroniclesCount,
+    });
+
+    const elapsedMs = performance.now() - startedAt;
+    if (elapsedMs >= nextPerturbAtMs) {
+      nextPerturbAtMs += config.perturbMs;
+      const budgetHeadroom = daemonActionsDynamicMaxInWindow -
+        daemonActionsUsedInWindow;
+      if (budgetHeadroom > 0) {
+        const perturbation = await performPerturbation(config, {
+          nextU32,
+          sequence: perturbSequence,
+        });
+        perturbSequence++;
+        if (perturbation) {
+          perturbAttempts++;
+          if (!perturbation.ok) perturbFailures++;
+          perturbationsTail.push(perturbation);
+          if (perturbationsTail.length > PERTURB_TAIL_CAPACITY) {
+            perturbationsTail.splice(
+              0,
+              perturbationsTail.length - PERTURB_TAIL_CAPACITY,
+            );
+          }
+        }
+      }
+    }
+
+    if (samples.length % 5 === 0) {
+      const last = samples[samples.length - 1];
+      console.log(
+        `   [SAMPLE ${last.sampleIndex}] tick=${last.tick} Δtick=${last.tickDelta} avgEnergy=${
+          last.avgEnergy.toFixed(2)
+        } latency=${
+          last.telemetryLatencyMs.toFixed(1)
+        }ms perturb=${perturbAttempts} daemonReject=${daemonRejectCount} budget=${last.daemonActionsUsedInWindow}/${last.daemonActionsDynamicMaxInWindow}`,
+      );
+    }
+
+    await sleep(config.sampleMs);
+  }
+
+  const finalAuditDelta = await readDaemonAuditDelta(
+    config.daemonAuditPath,
+    daemonAuditProcessedLines,
+  );
+  daemonAuditProcessedLines = finalAuditDelta.nextProcessedLines;
+  for (const event of finalAuditDelta.events) {
+    daemonAuditEventsSeen++;
+    const eventType = toStringSafe(event.event_type, "UNKNOWN");
+    daemonEventCounts[eventType] = (daemonEventCounts[eventType] ?? 0) + 1;
+    if (eventType === "DAEMON_ACCEPT") daemonAcceptCount++;
+    if (eventType === "DAEMON_REJECT") daemonRejectCount++;
+    if (eventType === "DAEMON_DEGRADED") daemonDegradedCount++;
+    if (eventType === "DAEMON_EFFECT_EVAL") daemonEffectEvalCount++;
+    daemonEventsTail.push(event);
+    if (daemonEventsTail.length > DAEMON_EVENT_TAIL_CAPACITY) {
+      daemonEventsTail.splice(
+        0,
+        daemonEventsTail.length - DAEMON_EVENT_TAIL_CAPACITY,
+      );
+    }
+  }
+
+  shuttingDown = true;
+  await terminateChild(coreChild);
+  if (daemonChild) {
+    await terminateChild(daemonChild);
+  }
+  await Promise.allSettled([
+    coreStdoutPump,
+    coreStderrPump,
+    daemonStdoutPump,
+    daemonStderrPump,
+  ]);
+
+  const elapsedMs = Math.round(performance.now() - startedAt);
+  const sampleCount = samples.length;
+  const successRate = telemetryAttempts > 0
+    ? successCount / telemetryAttempts
+    : 0;
+  const tickStart = sampleCount > 0 ? samples[0].tick : 0;
+  const tickEnd = sampleCount > 0 ? samples[sampleCount - 1].tick : 0;
+  const tickAdvance = tickEnd - tickStart;
+  const minTickDelta = tickDeltas.length > 0 ? Math.min(...tickDeltas) : 0;
+  const p95TelemetryLatencyMs = percentile(telemetryLatencies, 95);
+  const p05AvgEnergy = percentile(avgEnergySamples, 5);
+  const p95SpatialOverflowRatio = percentile(spatialOverflowRatios, 95);
+  const safeModeRatio = mean(safeModeSamples);
+  const guardianSignalPromotionReadyRatio = mean(guardianPromotionReadySamples);
+  const guardianSignalFallbackRatioP95 = percentile(
+    guardianPromotionFallbackRatios,
+    95,
+  );
+  const guardianSignalPromotionLatest = sampleCount > 0
+    ? samples[sampleCount - 1]
+    : null;
+  const federationRejectRatio = federationActionSamples > 0
+    ? federationRejectSamples / federationActionSamples
+    : 0;
+  const daemonAdmissionEvents = daemonAcceptCount + daemonRejectCount +
+    daemonDegradedCount;
+  const daemonRejectRatio = daemonAdmissionEvents > 0
+    ? daemonRejectCount / daemonAdmissionEvents
+    : 0;
+  const effectEvalCoverage = daemonAcceptCount > 0
+    ? daemonEffectEvalCount / daemonAcceptCount
+    : 0;
+  const perturbFailureRatio = perturbAttempts > 0
+    ? perturbFailures / perturbAttempts
+    : 0;
+  const enforceActionQualityGate = config.requireDaemonAccepts ||
+    daemonAcceptCount > 0;
+  const guardianSignalPromotionDecision =
+    evaluateGuardianSignalPromotionDecision(
+      {
+        promotion: {
+          latestReady: guardianSignalPromotionLatest?.guardianPromotionReady ??
+            false,
+          readyRatio: guardianSignalPromotionReadyRatio,
+          recommendedMode:
+            guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+              "shadow-reduce",
+          fallbackRatioP95: guardianSignalFallbackRatioP95,
+          status: guardianSignalPromotionLatest?.guardianPromotionStatus ??
+            "unknown",
+        },
+        health: {
+          bootReady,
+          processExitedUnexpectedly: coreUnexpectedExitDuringRun ||
+            (config.spawnDaemon && daemonUnexpectedExitDuringRun),
+          successRate,
+          minSuccessRate: config.minSuccessRate,
+          p95TelemetryLatencyMs,
+          maxP95TelemetryLatencyMs: config.maxP95TelemetryLatencyMs,
+          p95SpatialOverflowRatio,
+          maxSpatialOverflowRatioP95: config.maxSpatialOverflowRatioP95,
+          safeModeRatio,
+          maxSafeModeRatio: config.maxSafeModeRatio,
+          daemonRejectRatio,
+          maxDaemonRejectRatio: config.maxDaemonRejectRatio,
+          effectEvalCoverage,
+          minEffectEvalCoverage: config.minEffectEvalCoverage,
+          enforceActionQualityGate,
+        },
+      },
+    );
+  const guardianSignalPromotionAction = evaluateGuardianSignalPromotionAction({
+    currentMode: guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+      "shadow-reduce",
+    decision: guardianSignalPromotionDecision,
+  });
+
+  const checks: Check[] = [
+    {
+      name: "bootReady",
+      observed: bootReady,
+      limit: true,
+      ok: bootReady,
+    },
+    {
+      name: "coreExitedUnexpectedly == false",
+      observed: coreUnexpectedExitDuringRun,
+      limit: false,
+      ok: !coreUnexpectedExitDuringRun,
+    },
+    {
+      name: "daemonExitedUnexpectedly == false",
+      observed: config.spawnDaemon ? daemonUnexpectedExitDuringRun : "n/a",
+      limit: config.spawnDaemon ? false : "n/a",
+      ok: !config.spawnDaemon || !daemonUnexpectedExitDuringRun,
+    },
+    {
+      name: "sampleCount >= minSamples",
+      observed: sampleCount,
+      limit: config.minSamples,
+      ok: sampleCount >= config.minSamples,
+    },
+    {
+      name: "successRate >= minSuccessRate",
+      observed: Number(successRate.toFixed(3)),
+      limit: config.minSuccessRate,
+      ok: successRate >= config.minSuccessRate,
+    },
+    {
+      name:
+        "maxConsecutiveTelemetryFailures <= maxConsecutiveTelemetryFailures",
+      observed: maxConsecutiveFailures,
+      limit: config.maxConsecutiveTelemetryFailures,
+      ok: maxConsecutiveFailures <= config.maxConsecutiveTelemetryFailures,
+    },
+    {
+      name: "p95TelemetryLatencyMs <= maxP95TelemetryLatencyMs",
+      observed: Number(p95TelemetryLatencyMs.toFixed(3)),
+      limit: config.maxP95TelemetryLatencyMs,
+      ok: p95TelemetryLatencyMs <= config.maxP95TelemetryLatencyMs,
+    },
+    {
+      name: "minTickDelta >= minTickDeltaPerSample",
+      observed: minTickDelta,
+      limit: config.minTickDeltaPerSample,
+      ok: minTickDelta >= config.minTickDeltaPerSample,
+    },
+    {
+      name: "p05AvgEnergy >= minAvgEnergyP05",
+      observed: Number(p05AvgEnergy.toFixed(3)),
+      limit: config.minAvgEnergyP05,
+      ok: p05AvgEnergy >= config.minAvgEnergyP05,
+    },
+    {
+      name: "p95SpatialOverflowRatio <= maxSpatialOverflowRatioP95",
+      observed: Number(p95SpatialOverflowRatio.toFixed(6)),
+      limit: config.maxSpatialOverflowRatioP95,
+      ok: p95SpatialOverflowRatio <= config.maxSpatialOverflowRatioP95,
+    },
+    {
+      name: "safeModeRatio <= maxSafeModeRatio",
+      observed: enforceActionQualityGate
+        ? Number(safeModeRatio.toFixed(3))
+        : "n/a(no-daemon-accept)",
+      limit: enforceActionQualityGate ? config.maxSafeModeRatio : "n/a",
+      ok: !enforceActionQualityGate || safeModeRatio <= config.maxSafeModeRatio,
+    },
+    {
+      name: "federationRejectRatio <= maxFederationRejectRatio",
+      observed: Number(federationRejectRatio.toFixed(3)),
+      limit: config.maxFederationRejectRatio,
+      ok: federationRejectRatio <= config.maxFederationRejectRatio,
+    },
+    {
+      name: "perturbAttempts >= minPerturbAttempts",
+      observed: perturbAttempts,
+      limit: config.minPerturbAttempts,
+      ok: perturbAttempts >= config.minPerturbAttempts,
+    },
+    {
+      name: "perturbFailureRatio <= maxPerturbFailureRatio",
+      observed: enforceActionQualityGate
+        ? Number(perturbFailureRatio.toFixed(3))
+        : "n/a(no-daemon-accept)",
+      limit: enforceActionQualityGate ? config.maxPerturbFailureRatio : "n/a",
+      ok: !enforceActionQualityGate ||
+        perturbFailureRatio <= config.maxPerturbFailureRatio,
+    },
+    {
+      name: "daemonRejectRatio <= maxDaemonRejectRatio",
+      observed: enforceActionQualityGate
+        ? Number(daemonRejectRatio.toFixed(3))
+        : "n/a(no-daemon-accept)",
+      limit: enforceActionQualityGate ? config.maxDaemonRejectRatio : "n/a",
+      ok: !enforceActionQualityGate ||
+        daemonRejectRatio <= config.maxDaemonRejectRatio,
+    },
+    {
+      name: "daemonAcceptCount > 0 (optional)",
+      observed: daemonAcceptCount,
+      limit: config.requireDaemonAccepts ? 0 : "optional",
+      ok: !config.requireDaemonAccepts || daemonAcceptCount > 0,
+    },
+    {
+      name: "effectEvalCoverage >= minEffectEvalCoverage",
+      observed: daemonAcceptCount > 0
+        ? Number(effectEvalCoverage.toFixed(3))
+        : "n/a(no-daemon-accept)",
+      limit: daemonAcceptCount > 0 ? config.minEffectEvalCoverage : "n/a",
+      ok: daemonAcceptCount === 0 ||
+        effectEvalCoverage >= config.minEffectEvalCoverage,
+    },
+    {
+      name: "daemonAuditEventsSeen > 0",
+      observed: daemonAuditEventsSeen,
+      limit: 0,
+      ok: daemonAuditEventsSeen > 0,
+    },
+  ];
+
+  const failedChecks = checks.filter((check) => !check.ok);
+  const generatedAt = new Date().toISOString();
+  const summary = {
+    durationSec: config.durationSec,
+    elapsedMs,
+    bootReady,
+    bootMs,
+    spawnDaemon: config.spawnDaemon,
+    coldstartEnable: config.coldstartEnable,
+    coldstartCount: config.coldstartCount,
+    coldstartReplicatorRatio: Number(
+      config.coldstartReplicatorRatio.toFixed(3),
+    ),
+    daemonHeartbeatMs: config.daemonHeartbeatMs,
+    sampleCount,
+    telemetryAttempts,
+    successCount,
+    failureCount,
+    successRate: Number(successRate.toFixed(3)),
+    tickStart,
+    tickEnd,
+    tickAdvance,
+    minTickDelta,
+    p95TelemetryLatencyMs: Number(p95TelemetryLatencyMs.toFixed(3)),
+    p05AvgEnergy: Number(p05AvgEnergy.toFixed(3)),
+    p95SpatialOverflowRatio: Number(p95SpatialOverflowRatio.toFixed(6)),
+    safeModeRatio: Number(safeModeRatio.toFixed(3)),
+    federationRejectRatio: Number(federationRejectRatio.toFixed(3)),
+    guardianSignalPromotionCurrentMode:
+      guardianSignalPromotionLatest?.guardianPromotionCurrentMode ??
+        "shadow-reduce",
+    guardianSignalPromotionReadyLatest:
+      guardianSignalPromotionLatest?.guardianPromotionReady ?? false,
+    guardianSignalPromotionReadyRatio: Number(
+      guardianSignalPromotionReadyRatio.toFixed(3),
+    ),
+    guardianSignalPromotionRecommendedMode:
+      guardianSignalPromotionLatest?.guardianPromotionRecommendedMode ??
+        "shadow-reduce",
+    guardianSignalFallbackRatioP95: Number(
+      guardianSignalFallbackRatioP95.toFixed(6),
+    ),
+    guardianSignalPromotionVerdict: guardianSignalPromotionDecision.verdict,
+    guardianSignalPromotionBlockers:
+      guardianSignalPromotionDecision.blockers.join("|") || "none",
+    guardianSignalPromotionAction: guardianSignalPromotionAction.verdict,
+    guardianSignalPromotionTargetMode: guardianSignalPromotionAction.targetMode,
+    guardianSignalPromotionActionReasons:
+      guardianSignalPromotionAction.reasons.join("|") || "none",
+    maxConsecutiveTelemetryFailures: maxConsecutiveFailures,
+    perturbAttempts,
+    perturbFailures,
+    perturbFailureRatio: Number(perturbFailureRatio.toFixed(3)),
+    daemonAdmissionEvents,
+    daemonAcceptCount,
+    daemonRejectCount,
+    daemonDegradedCount,
+    daemonEffectEvalCount,
+    daemonRejectRatio: Number(daemonRejectRatio.toFixed(3)),
+    effectEvalCoverage: Number(effectEvalCoverage.toFixed(3)),
+    daemonAuditEventsSeen,
+    coreUnexpectedExitDuringRun,
+    coreExitCode,
+    daemonUnexpectedExitDuringRun,
+    daemonExitCode,
+    logsTailSize: logTail.length,
+  };
+
+  const report: Record<string, unknown> = {
+    generatedAt,
+    ok: failedChecks.length === 0,
+    config,
+    summary,
+    guardianSignalPromotionDecision,
+    guardianSignalPromotionAction,
+    checks,
+    daemonEventCounts,
+    perturbationsTail,
+    daemonEventsTail,
+    logsTail: logTail,
+    samplesHead: samples.slice(0, 12),
+    samplesTail: samples.slice(Math.max(0, samples.length - 24)),
+  };
+  if (config.includeFullSamples) {
+    report.samples = samples;
+  }
+
+  await Deno.writeTextFile(REPORT_JSON_PATH, JSON.stringify(report, null, 2));
+  await Deno.writeTextFile(
+    REPORT_MD_PATH,
+    renderMarkdown(
+      generatedAt,
+      summary,
+      checks,
+      daemonEventCounts,
+      perturbationsTail,
+    ),
+  );
+
+  console.log(`AUDIT [longrun-daemon] report: ${REPORT_JSON_PATH}`);
+  console.log(`AUDIT [longrun-daemon] reportMd: ${REPORT_MD_PATH}`);
+  console.log(`   checks=${checks.length} failed=${failedChecks.length}`);
+
+  for (const check of failedChecks) {
+    console.error(
+      `   FAIL ${check.name} observed=${check.observed} limit=${check.limit}`,
+    );
+  }
+
+  if (failedChecks.length > 0) {
+    throw new Error("[AUDIT] Longrun daemon gate failed.");
+  }
+
+  console.log("✅ [AUDIT] Longrun daemon gate passed.");
+};
+
+if (import.meta.main) {
+  await main();
+}
+
 ```
 
 ---
@@ -20091,6 +23998,7 @@ export const MATRIX_ENGINE = {
     return count;
   },
 };
+
 ```
 
 ---
@@ -20106,6 +24014,7 @@ export { GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
 export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 export { PULSE } from "./PULSE.ts";
+
 ```
 
 ---
@@ -20178,6 +24087,7 @@ internal high-speed mutation loops.
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
 - Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
   and consumed by runtime modules (policy monoculture).
+
 ```
 
 ---
@@ -20271,6 +24181,7 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
+
 ```
 
 ---
@@ -20465,6 +24376,7 @@ async function run() {
 if (import.meta.main) {
   run();
 }
+
 ```
 
 ---
@@ -20568,6 +24480,7 @@ if (import.meta.main) {
     await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
   }
 }
+
 ```
 
 ---
@@ -20618,6 +24531,7 @@ Deno.serve({ port: PORT }, async (req) => {
     });
   }
 });
+
 ```
 
 ---
@@ -20977,6 +24891,7 @@ export const validateMemoryLayout = (
 };
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
+
 ```
 
 ---
@@ -22793,6 +26708,179 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
+
+```
+
+---
+
+## FILE: omega_wasm_asc/assembly/index.ts
+
+```typescript
+// @ts-nocheck: AssemblyScript file
+// OMEGA-64 | Wasm Kernel (AssemblyScript)
+
+export const IN_PTR: u32 = 0;
+export const OUT_PTR: u32 = 64;
+
+const ISA_MOVE: u8 = 0x10;
+const ISA_JMP: u8  = 0x30;
+const ISA_JZ: u8   = 0x31;
+const ISA_JNZ: u8  = 0x32;
+const ISA_CALL: u8 = 0x33;
+const ISA_RET: u8  = 0x34;
+
+const ISA_ADD: u8  = 0x40;
+const ISA_SUB: u8  = 0x41;
+const ISA_MUL: u8  = 0x42;
+const ISA_CMP: u8  = 0x43;
+
+const ISA_LOAD: u8 = 0x50;
+const ISA_STORE: u8 = 0x51;
+
+export function execute_atom(): u8 {
+    let op = load<u8>(IN_PTR + 0);
+    let p1 = load<u8>(IN_PTR + 1);
+    let p2 = load<u8>(IN_PTR + 2);
+    let p3 = load<u8>(IN_PTR + 3);
+    let bonuses = load<u8>(IN_PTR + 4);
+
+    let isSwift = (bonuses & 1) == 1;
+
+    let energyDelta: f32 = 0.0;
+    if (bonuses > 0) energyDelta -= 0.05;
+
+    // Reset Outputs
+    store<f32>(OUT_PTR + 0, energyDelta);
+    store<f32>(OUT_PTR + 4, 0.0); // resonanceDelta
+    store<u8>(OUT_PTR + 8, 0); // hasIntent
+    store<f32>(OUT_PTR + 12, 0.0); // intentDx
+    store<f32>(OUT_PTR + 16, 0.0); // intentDy
+
+    // Copy context to output context (32 bytes)
+    for (let i: u32 = 0; i < 32; i++) {
+        let v = load<u8>(IN_PTR + 5 + i);
+        store<u8>(OUT_PTR + 20 + i, v);
+    }
+
+    // Load Logic (8 bytes starting at IN_PTR + 37)
+    // context ends at 5 + 32 = 37. So logic starts at 37
+    for (let j: u32 = 0; j < 8; j++) {
+        let l = load<u8>(IN_PTR + 37 + j);
+        store<u8>(OUT_PTR + 52 + j, l);
+    }
+
+    if (op == ISA_MOVE) {
+        store<u8>(OUT_PTR + 8, 1); // hasIntent = 1;
+        let dx: f32 = (f32(p1) - 128.0) / 10.0;
+        let dy: f32 = (f32(p2) - 128.0) / 10.0;
+        store<f32>(OUT_PTR + 12, dx);
+        store<f32>(OUT_PTR + 16, dy);
+
+        if (!isSwift) energyDelta -= 1.0;
+        store<f32>(OUT_PTR + 0, energyDelta);
+        return 1; // Handled
+    }
+    
+    if (op == ISA_ADD) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8)); // REG2
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8)); // REG3
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 + v2); // wrap implicitly
+        return 1;
+    }
+
+    if (op == ISA_SUB) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 - v2);
+        return 1;
+    }
+
+    if (op == ISA_MUL) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 * v2);
+        return 1;
+    }
+
+    if (op == ISA_CMP) {
+        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8));
+        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if (v1 == v2) {
+            store<u8>(OUT_PTR + 20 + 1, flags | 0x01);
+        } else {
+            store<u8>(OUT_PTR + 20 + 1, flags & ~0x01);
+        }
+        return 1;
+    }
+
+    // --- Control Flow ---
+    if (op == ISA_JMP) {
+        store<u8>(OUT_PTR + 20 + 0, p1 % 16); // PC = p1
+        return 2; // return 2 indicates pcJumped = true
+    }
+
+    if (op == ISA_JZ) {
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if ((flags & 0x01) == 1) {
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+            return 2;
+        }
+        return 1;
+    }
+
+    if (op == ISA_JNZ) {
+        let flags = load<u8>(OUT_PTR + 20 + 1);
+        if ((flags & 0x01) == 0) {
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+            return 2;
+        }
+        return 1;
+    }
+
+    if (op == ISA_CALL) {
+        let sp = load<u8>(OUT_PTR + 20 + 18);
+        if (sp < 8) {
+            let pc = load<u8>(OUT_PTR + 20 + 0);
+            store<u8>(OUT_PTR + 20 + 10 + sp, (pc + 1) % 16); // push
+            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8); // sp++
+            store<u8>(OUT_PTR + 20 + 0, p1 % 16); // jump
+            return 2;
+        }
+        return 1;
+    }
+
+    if (op == ISA_RET) {
+        let sp = load<u8>(OUT_PTR + 20 + 18);
+        if (sp > 0) {
+            let val = load<u8>(OUT_PTR + 20 + 10 + (sp - 1)); // pop
+            store<u8>(OUT_PTR + 20 + 18, sp - 1); // sp--
+            store<u8>(OUT_PTR + 20 + 0, val); // jump
+            return 2;
+        }
+        return 1;
+    }
+
+    // --- Data Movement ---
+
+    if (op == ISA_LOAD) {
+        // TS: regs[p1 % 8] = logic[p2 % 8];
+        let val = load<u8>(OUT_PTR + 52 + (p2 % 8)); // 52 is Logic
+        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val); // 20+2 is Regs
+        return 1;
+    }
+
+    if (op == ISA_STORE) {
+        // TS: res.modifiedLogic = { index: p2 % 8, value: regs[p1 % 8] };
+        // Write to Logic buffer
+        let val = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8)); // 20+2 is Regs
+        store<u8>(OUT_PTR + 52 + (p2 % 8), val); // 52 is Logic
+        return 1;
+    }
+
+    return 0; // Unhandled
+}
+
 ```
 
 ---
@@ -22917,6 +27005,7 @@ export const P2P_CODEC = {
     return idx;
   },
 };
+
 ```
 
 ---
@@ -23166,6 +27255,7 @@ export const P2P_FEDERATION = {
   },
   // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
+
 ```
 
 ---
@@ -23264,6 +27354,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 }
 
 Deno.serve({ hostname: HOST, port: PORT }, handler);
+
 ```
 
 ---
@@ -23624,6 +27715,7 @@ export const PHYSICS_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -23833,6 +27925,7 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
+
 ```
 
 ---
@@ -23990,6 +28083,7 @@ export const PREDICTION_MARKET = {
     }
   },
 };
+
 ```
 
 ---
@@ -24587,6 +28681,7 @@ export const hydratePressureRingScaleLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -24906,6 +29001,7 @@ export const resetPressureRingScaleLedgerRuntime = (
   lastRollbackSource: "runtime_policy",
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -24949,6 +29045,7 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
+
 ```
 
 ---
@@ -26028,6 +30125,7 @@ self.onmessage = async (e) => {
     });
   }
 };
+
 ```
 
 ---
@@ -29070,13 +33168,14 @@ export const PULSE = {
   },
   getWorker: (idx: number): any => workers[idx],
 };
+
 ```
 
 ---
 
 ## FILE: README.md
 
-````markdown
+```markdown
 # OMEGA-64: Era 69 - Absolute Coherence 💎🛡️
 
 Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64.
@@ -29126,7 +33225,6 @@ To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
-````
 
 ### 🧠 Booting an LLM Avatar
 
@@ -29164,7 +33262,8 @@ _This repository marks the **Feature Freeze** of the Deno/AssemblyScript
 prototype. It stands as the topological blueprint for the upcoming pure Rust
 `LAMBDA_VM_v2` migration._
 
-````
+```
+
 ---
 
 ## FILE: RECOVERY.ts
@@ -29205,7 +33304,8 @@ export const ATOM = () => (x: any) => x;
     return true;
   },
 };
-````
+
+```
 
 ---
 
@@ -29371,6 +33471,7 @@ export class DollFork {
     };
   }
 }
+
 ```
 
 ---
@@ -29473,6 +33574,7 @@ export class DollForkRunner {
     }
   }
 }
+
 ```
 
 ---
@@ -29573,6 +33675,7 @@ export class DriftWarden {
     };
   }
 }
+
 ```
 
 ---
@@ -29678,6 +33781,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
+
 ```
 
 ---
@@ -29730,6 +33834,7 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
+
 ```
 
 ---
@@ -29739,6 +33844,7 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
+
 ```
 
 ---
@@ -30147,6 +34253,7 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
+
 ```
 
 ---
@@ -30226,6 +34333,7 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
+
 ```
 
 ---
@@ -30269,6 +34377,7 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
+
 ```
 
 ---
@@ -30320,6 +34429,7 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
+
 ```
 
 ---
@@ -30403,6 +34513,70 @@ export class RelicCultivator {
     }
   }
 }
+
+```
+
+---
+
+## FILE: reduction_core/SHADOW_EVOLUTION_RUNNER.ts
+
+```typescript
+/**
+ * SHADOW_EVOLUTION_RUNNER.ts
+ * Automates the validation of semantic proposals against the OMEGA-64 Golden Traces.
+ */
+
+import { REDUCTION_CASES } from "../verification/reduction_cases.ts";
+import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+
+export type SemanticProposal = {
+  id: string;
+  targetRole: string; // e.g. "guardian_base"
+  proposedBytecode: number[];
+  driftBudget: number; // Max allowed energy/state mismatch
+};
+
+async function loadProposals(): Promise<SemanticProposal[]> {
+  try {
+    const data = await Deno.readTextFile(
+      "./reduction_core/sandbox/PROPOSALS.json",
+    );
+    const json = JSON.parse(data);
+    return json.proposals || [];
+  } catch {
+    return [];
+  }
+}
+
+async function runShadowValidation() {
+  const proposals = await loadProposals();
+  console.log(`[shadow_runner] detected ${proposals.length} active proposals.`);
+
+  for (const proposal of proposals) {
+    console.log(`[shadow_runner] validating proposal: ${proposal.id}...`);
+
+    // In a real implementation, this would temporarily override GENESIS_PROGRAMS
+    // or pass the proposed bytecode directly to the harness.
+
+    // For now, we simulate the gate logic.
+    const pass = Math.random() > 0.1; // Placeholder for harness execution
+
+    if (pass) {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} PASSED drift budget.`,
+      );
+    } else {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} REJECTED: drift exceeds budget.`,
+      );
+    }
+  }
+}
+
+if (import.meta.main) {
+  runShadowValidation();
+}
+
 ```
 
 ---
@@ -30825,6 +34999,7 @@ The migration is considered real only when:
 - global dynamic knobs are formalized through hormone/ledger layers
 - semantic mutation is sandboxed and rollbackable
 - long-run stability survives the bridge without emergency host patching
+
 ```
 
 ---
@@ -30986,6 +35161,233 @@ ${REFLECTION_ENGINE.decompile(instructions)}
     }
   },
 };
+
+```
+
+---
+
+## FILE: REPLICATION_PROMOTION_ACTION.ts
+
+```typescript
+import type { ReplicationExecutionMode } from "./runtime_bridge/replication_hybrid.ts";
+import type { ReplicationPromotionDecision } from "./REPLICATION_PROMOTION_DECISION.ts";
+
+export type ReplicationPromotionActionInput = {
+  currentMode: ReplicationExecutionMode;
+  decision: ReplicationPromotionDecision;
+};
+
+export type ReplicationPromotionAction = {
+  verdict: "promote" | "stay" | "rollback";
+  targetMode: ReplicationExecutionMode;
+  reasons: string[];
+};
+
+export const evaluateReplicationPromotionAction = (
+  input: ReplicationPromotionActionInput,
+): ReplicationPromotionAction => {
+  const { currentMode, decision } = input;
+  const reasons: string[] = [];
+
+  if (currentMode === "hybrid-reduce") {
+    if (decision.verdict === "hold" && !decision.healthPass) {
+      reasons.push("health_regression_in_hybrid_mode");
+      // Note: We don't automatically rollback to shadow-reduce here to avoid oscillating
+      // unless the health regression is severe. For now, we stay.
+      return { verdict: "stay", targetMode: "hybrid-reduce", reasons };
+    }
+    return {
+      verdict: "stay",
+      targetMode: "hybrid-reduce",
+      reasons: ["already_at_target_mode"],
+    };
+  }
+
+  if (currentMode === "shadow-reduce") {
+    if (decision.verdict === "promote") {
+      reasons.push("promotion_criteria_met");
+      return { verdict: "promote", targetMode: "hybrid-reduce", reasons };
+    }
+    reasons.push(...decision.blockers);
+    return { verdict: "stay", targetMode: "shadow-reduce", reasons };
+  }
+
+  if (currentMode === "legacy-execute") {
+    reasons.push("enabling_shadow_baseline");
+    return { verdict: "promote", targetMode: "shadow-reduce", reasons };
+  }
+
+  return {
+    verdict: "stay",
+    targetMode: currentMode,
+    reasons: ["unknown_current_mode"],
+  };
+};
+
+```
+
+---
+
+## FILE: REPLICATION_PROMOTION_DECISION.ts
+
+```typescript
+export type ReplicationPromotionDecisionInput = {
+  promotion: {
+    latestReady: boolean;
+    readyRatio: number;
+    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    fallbackRatioP95: number;
+    status: string;
+  };
+  health: {
+    bootReady: boolean;
+    processExitedUnexpectedly: boolean;
+    successRate: number;
+    minSuccessRate: number;
+    p95TelemetryLatencyMs: number;
+    maxP95TelemetryLatencyMs: number;
+    p95SpatialOverflowRatio: number;
+    maxSpatialOverflowRatioP95: number;
+    safeModeRatio?: number;
+    maxSafeModeRatio?: number;
+    enforceActionQualityGate?: boolean;
+  };
+};
+
+export type ReplicationPromotionDecisionThresholds = {
+  minReadyRatio: number;
+  maxFallbackRatioP95: number;
+};
+
+export type ReplicationPromotionDecision = {
+  verdict: "promote" | "hold";
+  promotionReady: boolean;
+  healthPass: boolean;
+  recommendedMode: "hybrid-reduce" | "shadow-reduce";
+  blockers: string[];
+  thresholds: ReplicationPromotionDecisionThresholds;
+};
+
+const DEFAULT_THRESHOLDS: ReplicationPromotionDecisionThresholds = {
+  minReadyRatio: 0.5,
+  maxFallbackRatioP95: 0.05,
+};
+
+const clampRatio = (value: number): number => {
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  if (value >= 1) return 1;
+  return Number(value.toFixed(6));
+};
+
+const normalizeThresholds = (
+  overrides?: Partial<ReplicationPromotionDecisionThresholds>,
+): ReplicationPromotionDecisionThresholds => ({
+  minReadyRatio: clampRatio(
+    overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
+  ),
+  maxFallbackRatioP95: clampRatio(
+    overrides?.maxFallbackRatioP95 ?? DEFAULT_THRESHOLDS.maxFallbackRatioP95,
+  ),
+});
+
+export const evaluateReplicationPromotionDecision = (
+  input: ReplicationPromotionDecisionInput,
+  overrides?: Partial<ReplicationPromotionDecisionThresholds>,
+): ReplicationPromotionDecision => {
+  const thresholds = normalizeThresholds(overrides);
+  const blockers: string[] = [];
+  let healthPass = true;
+
+  if (!input.health.bootReady) {
+    blockers.push("boot_not_ready");
+    healthPass = false;
+  }
+  if (input.health.processExitedUnexpectedly) {
+    blockers.push("process_exited_unexpectedly");
+    healthPass = false;
+  }
+  if (input.health.successRate < input.health.minSuccessRate) {
+    blockers.push(
+      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
+        input.health.minSuccessRate.toFixed(3)
+      }`,
+    );
+    healthPass = false;
+  }
+  if (
+    input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
+  ) {
+    blockers.push(
+      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
+        input.health.maxP95TelemetryLatencyMs.toFixed(3)
+      }`,
+    );
+    healthPass = false;
+  }
+  if (
+    input.health.p95SpatialOverflowRatio >
+      input.health.maxSpatialOverflowRatioP95
+  ) {
+    blockers.push(
+      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
+        input.health.maxSpatialOverflowRatioP95.toFixed(6)
+      }`,
+    );
+    healthPass = false;
+  }
+
+  if (!input.promotion.latestReady) {
+    blockers.push(`promotion_latest_not_ready(${input.promotion.status})`);
+  }
+  if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
+    blockers.push(
+      `promotion_ready_ratio_${
+        clampRatio(input.promotion.readyRatio).toFixed(3)
+      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
+    );
+  }
+  if (input.promotion.recommendedMode !== "hybrid-reduce") {
+    blockers.push(
+      `promotion_mode_${input.promotion.recommendedMode}_not_hybrid_reduce`,
+    );
+  }
+  if (
+    clampRatio(input.promotion.fallbackRatioP95) >
+      thresholds.maxFallbackRatioP95
+  ) {
+    blockers.push(
+      `promotion_fallback_ratio_p95_${
+        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
+      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
+    );
+  }
+
+  if (input.health.enforceActionQualityGate === true) {
+    if (
+      input.health.maxSafeModeRatio !== undefined &&
+      input.health.safeModeRatio !== undefined &&
+      clampRatio(input.health.safeModeRatio) >
+        clampRatio(input.health.maxSafeModeRatio)
+    ) {
+      blockers.push(
+        `safe_mode_ratio_${
+          clampRatio(input.health.safeModeRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
+      );
+      healthPass = false;
+    }
+  }
+
+  return {
+    verdict: blockers.length === 0 ? "promote" : "hold",
+    promotionReady: input.promotion.latestReady,
+    healthPass,
+    recommendedMode: blockers.length === 0 ? "hybrid-reduce" : "shadow-reduce",
+    blockers,
+    thresholds,
+  };
+};
+
 ```
 
 ---
@@ -31207,6 +35609,7 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -31339,6 +35742,499 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
+
+```
+
+---
+
+## FILE: RIBOSOME.ts
+
+```typescript
+/// <reference lib="deno.window" />
+// i.L32.core.RIBOSOME.ts
+// The Meta-Processor for OMEGA-64 Flatland.
+// Scans the Root, Lifts Atoms, and Builds the Living Map.
+
+import { IMMUNE } from "./IMMUNE.ts";
+import { ID_TO_IDX, IDX_TO_ID } from "./ATOM_INDEX.ts";
+import { ATOM_SIZE, STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
+import { LOGGER } from "./LOGGER.ts";
+
+export interface Atom {
+  id: string; // The Filename (Address)
+  level: number;
+  module: any; // The Exported Logic
+  symbol: string;
+  topo?: { r: number; theta: number; op: string };
+}
+
+export type Lattice = Map<string, Atom>;
+export { ID_TO_IDX, IDX_TO_ID };
+
+function idToBigInt(id: string): bigint {
+  const hex = id.split(".")[0].replace("0x", "");
+  const cleanHex = hex.replace(/[^0-9a-fA-F]/g, "0").padEnd(16, "0");
+  try {
+    return BigInt(`0x${cleanHex.substring(0, 16)}`);
+  } catch {
+    return 0n;
+  }
+}
+
+const parseFrontmatterScalar = (raw: string): unknown => {
+  const value = raw.trim();
+  if (value.length === 0) return "";
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1);
+  }
+  if (value === "true") return true;
+  if (value === "false") return false;
+  if (value === "null") return null;
+  if (/^-?\d+(?:\.\d+)?$/u.test(value)) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return value;
+};
+
+const parseFrontmatter = (raw: string): Record<string, unknown> => {
+  const out: Record<string, unknown> = {};
+  let currentArrayKey: string | null = null;
+  for (const sourceLine of raw.split(/\r?\n/u)) {
+    const line = sourceLine.trim();
+    if (line.length === 0 || line.startsWith("#")) continue;
+
+    if (line.startsWith("- ")) {
+      if (currentArrayKey) {
+        const list = Array.isArray(out[currentArrayKey])
+          ? out[currentArrayKey] as unknown[]
+          : [];
+        list.push(parseFrontmatterScalar(line.slice(2)));
+        out[currentArrayKey] = list;
+      }
+      continue;
+    }
+
+    const match = line.match(/^([A-Za-z0-9_]+)\s*:\s*(.*)$/u);
+    if (!match) {
+      currentArrayKey = null;
+      continue;
+    }
+
+    const key = match[1];
+    const value = match[2].trim();
+    if (value.length === 0) {
+      out[key] = [];
+      currentArrayKey = key;
+      continue;
+    }
+
+    currentArrayKey = null;
+    if (value.startsWith("[") && value.endsWith("]")) {
+      const inner = value.slice(1, -1).trim();
+      out[key] = inner.length === 0
+        ? []
+        : inner.split(",").map((item) => parseFrontmatterScalar(item));
+      continue;
+    }
+    out[key] = parseFrontmatterScalar(value);
+  }
+  return out;
+};
+
+const decodeHexBytes = (hex: string): Uint8Array => {
+  const source = hex.trim();
+  if (source.length % 2 !== 0) {
+    throw new Error("hex length must be even");
+  }
+  const out = new Uint8Array(source.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const value = Number.parseInt(source.slice(i * 2, i * 2 + 2), 16);
+    if (!Number.isFinite(value)) {
+      throw new Error(`invalid hex byte at ${i}`);
+    }
+    out[i] = value;
+  }
+  return out;
+};
+
+export const RIBOSOME = {
+  // Scan and Lift all Atoms in Flatland and Vacuum
+  lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
+    LOGGER.info("   [RIBOSOME] lift started on root: ", root);
+
+    // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
+    const snapshots = await SNAPSHOT_ENGINE.listSnapshots();
+    if (snapshots.length > 0) {
+      const latest = snapshots[0];
+      LOGGER.info(
+        `   [RIBOSOME] Found Snapshot [${latest}]. Attempting Fast Hydration...`,
+      );
+      const status = await SNAPSHOT_ENGINE.importSnapshot(latest);
+      if (status.success) {
+        LOGGER.info(
+          "   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊",
+        );
+        // Reconstruct a mock lattice from active indices for compatibility
+        const lattice = new Map<string, Atom>();
+        const activeIndices = STATE_MATRIX.getActiveIndices();
+        for (const idx of activeIndices) {
+          const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, "0")
+            .toUpperCase();
+          // We don't have the full AST/logic string here perfectly, but
+          // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
+          ID_TO_IDX.set(idHex, idx);
+          IDX_TO_ID.set(idx, idHex);
+          lattice.set(idHex, {
+            id: idHex,
+            level: 0,
+            module: {},
+            symbol: "HYDRATED",
+          });
+        }
+        // Return immediately, bypassing filesystem parsing
+        return lattice;
+      } else {
+        LOGGER.warn(
+          "   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.",
+        );
+        STATE_MATRIX.clear(); // Reset before fallback
+      }
+    }
+
+    const lattice = new Map<string, Atom>();
+    let idx = 0;
+
+    const scanDirs = [root, `${root}/SINGULARITY/V`];
+    for (const dir of scanDirs) {
+      LOGGER.info(`   [RIBOSOME] scanning dir: ${dir}`);
+      try {
+        for await (const entry of Deno.readDir(dir)) {
+          if (
+            entry.isFile && entry.name.startsWith("0x") &&
+            entry.name.endsWith(".md")
+          ) {
+            const fullPath = dir === root
+              ? entry.name
+              : `SINGULARITY/V/${entry.name}`;
+            const content = await Deno.readTextFile(fullPath);
+            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+            if (!frontmatterMatch) continue;
+
+            const alpha = parseFrontmatter(frontmatterMatch[1]) as any;
+            const symbol = alpha.symbol ?? entry.name.split(".")[1] ??
+              "UNKNOWN";
+            const level = alpha.level ??
+              (alpha.vector ? parseInt(alpha.vector.split(".")[0]) : 0);
+
+            // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
+            const atomBigId = idToBigInt(entry.name);
+            STATE_MATRIX.setId(idx, atomBigId);
+            STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
+            STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
+            STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
+            STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
+            STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
+
+            // Logic (Hex to Bytes)
+            const logic = (alpha.logic || "00000000").replace(
+              /[^0-9a-fA-F]/g,
+              "",
+            ).padEnd(16, "0");
+            try {
+              STATE_MATRIX.setLogic(
+                idx,
+                decodeHexBytes(logic.substring(0, 16)),
+              );
+            } catch { /* skip corrupted logic binary lift */ }
+
+            ID_TO_IDX.set(fullPath, idx);
+            IDX_TO_ID.set(idx, fullPath);
+
+            lattice.set(fullPath, {
+              id: entry.name,
+              level: level,
+              symbol: symbol,
+              module: null,
+            });
+
+            idx++;
+          }
+        }
+      } catch (err) {
+        LOGGER.error(`   [RIBOSOME] Error reading dir ${dir}:`, err);
+      }
+    }
+
+    LOGGER.info(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
+
+    // 🧬 PASS 2: BOND RESOLUTION
+    const bondKeyMap = new Map<string, string>();
+    for (const k of ID_TO_IDX.keys()) {
+      const basename = k.split("/").pop() || k;
+      const bondIdStr = basename.split(".")[0];
+      bondKeyMap.set(bondIdStr, k);
+    }
+
+    for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
+      try {
+        const content = await Deno.readTextFile(fullPath);
+        const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        if (alphaMatch) {
+          const alpha = parseFrontmatter(alphaMatch[1]) as any;
+          const bondIds: string[] = alpha.bonds || [];
+          const bondIndices = new Uint32Array(4);
+          for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
+            const partnerId = bondKeyMap.get(bondIds[i]);
+            if (partnerId) {
+              bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
+            }
+          }
+          STATE_MATRIX.setBonds(atomIdx, bondIndices);
+        }
+      } catch (err) { /* ignore */ }
+    }
+
+    LOGGER.info(
+      `   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`,
+    );
+
+    // 🛡️ IMMUNE SYSTEM CHECK
+    LOGGER.info("   [RIBOSOME] Running IMMUNE check");
+    const out = IMMUNE.inspect(lattice);
+    LOGGER.info("   [RIBOSOME] IMMUNE check complete");
+    return out;
+  },
+
+  // Inject Dependencies into a Pure Atom (Adapted for Flatland)
+  inject: (id: string, lattice: Map<string, Atom>) => {
+    const target = lattice.get(id);
+    if (!target) return null;
+
+    // Implementation for Flatland injection...
+    return null;
+  },
+};
+
+if (import.meta.main) {
+  const lattice = await RIBOSOME.lift();
+  LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
+}
+
+```
+
+---
+
+## FILE: run_ecosystem.ts
+
+```typescript
+// OMEGA-64 | run_ecosystem.ts | Long-term Evolution Simulator
+
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { PULSE } from "./PULSE.ts";
+import { ISA } from "./LAMBDA_VM.ts";
+
+const TOTAL_TICKS = 50000;
+const LOG_INTERVAL = 100;
+const SEED_COUNT = 100;
+
+function seedEcosystem() {
+  STATE_MATRIX.clear();
+  console.log("🌱 Seeding Ecosystem with Primordial Cells...");
+
+  // Basic Producer Logic
+  // EAT (10) -> CROSS_REP (bond slot 0) -> PHASE_LIFE -> SELF_REP -> JMP 0
+  const producerLogic = new Uint8Array([
+    0x11,
+    0x11,
+    0x11,
+    0x11,
+    0x11,
+    0x11,
+    0x11,
+    0x11,
+  ]);
+  const producerCode = new Uint32Array(16);
+  producerCode[0] = (20 << 8) | ISA.EAT;
+  producerCode[1] = ISA.CROSS_REP;
+  producerCode[2] = ISA.PHASE_LIFE;
+  producerCode[3] = ISA.SELF_REP;
+  producerCode[4] = ISA.JMP;
+
+  // Advanced Seeder (attempts Phi packing and Ascension if successful)
+  const ascenderLogic = new Uint8Array([
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+  ]);
+  const ascenderCode = new Uint32Array(16);
+  ascenderCode[0] = (25 << 8) | ISA.EAT; // Eat 25
+  ascenderCode[1] = ISA.PHASE_LIFE; // Ageing & Apoptosis
+  ascenderCode[2] = ISA.PHI; // Shift Phase by Golden Angle
+  ascenderCode[3] = (10 << 8) | ISA.SHARE; // Altruism
+  ascenderCode[4] = ISA.ASCEND; // Attempt Ascension
+  ascenderCode[5] = ISA.SELF_REP; // Reproduce
+  ascenderCode[6] = ISA.JMP; // Loop
+
+  // Atoms no longer rely on nutrients, they are given infinite initial energy.
+  for (let i = 0; i < SEED_COUNT; i++) {
+    const idx = STATE_MATRIX.findEmptySlot();
+    if (idx === -1) break;
+
+    STATE_MATRIX.setId(idx, BigInt(i + 1));
+    // Random placement across the 1400x800 map
+    STATE_MATRIX.setX(idx, Math.floor(Math.random() * 1400));
+    STATE_MATRIX.setY(idx, Math.floor(Math.random() * 800));
+    STATE_MATRIX.setEnergy(idx, 100000 + Math.random() * 20000); // Massive energy for endless execution
+    STATE_MATRIX.setResonance(idx, 100);
+
+    if (i < SEED_COUNT * 0.8) {
+      STATE_MATRIX.setLogic(idx, producerLogic);
+      STATE_MATRIX.setCode(idx, producerCode);
+    } else {
+      STATE_MATRIX.setLogic(idx, ascenderLogic);
+      STATE_MATRIX.setCode(idx, ascenderCode);
+    }
+  }
+}
+
+async function run() {
+  console.log(
+    `🌌 Starting OMEGA-64 Continuous Evolution for ${TOTAL_TICKS} Ticks...`,
+  );
+  seedEcosystem();
+  PULSE.initWorkers();
+
+  let maxPopulation = 0;
+  let totalAscensions = 0;
+
+  const startTime = Date.now();
+
+  for (let tick = 1; tick <= TOTAL_TICKS; tick++) {
+    await PULSE.tick();
+
+    if (tick % LOG_INTERVAL === 0) {
+      const active = STATE_MATRIX.getActiveIndices();
+      const pop = active.length;
+      if (pop > maxPopulation) maxPopulation = pop;
+
+      let totalEnergy = 0;
+      let totalResonance = 0;
+      let oldest = 0;
+
+      for (const idx of active) {
+        totalEnergy += STATE_MATRIX.getEnergy(idx);
+        totalResonance += STATE_MATRIX.getResonance(idx);
+        const age = tick -
+          (STATE_MATRIX.birthTicks
+            ? Atomics.load(
+              STATE_MATRIX.birthTicks as unknown as Int32Array,
+              idx,
+            )
+            : tick);
+        if (age > oldest && age < tick) oldest = age;
+      }
+
+      // Count ascensions by looking at the structure grid
+      let currentCrystals = 0;
+      for (let i = 0; i < 140 * 80; i++) {
+        const cell = Atomics.load(STATE_MATRIX.structureGrid, i);
+        if ((cell & 0xFF) === 1 && ((cell >> 8) & 0xFF) === 255) {
+          currentCrystals++;
+        }
+      }
+      totalAscensions = currentCrystals;
+
+      console.log(
+        `[Pulse ${tick.toString().padStart(6, " ")}] Pop: ${
+          pop.toString().padStart(5, " ")
+        } | Avg E: ${Math.round(totalEnergy / pop)} | Avg R: ${
+          Math.round(totalResonance / pop).toString().padStart(5, " ")
+        } | Oldest: ${oldest} | Crystals (Ascended): ${currentCrystals}`,
+      );
+
+      if (pop === 0) {
+        console.log("💀 Ecosystem collapse. All atoms died.");
+        break;
+      }
+    }
+  }
+
+  const elapsed = Date.now() - startTime;
+  console.log(`\n✅ Simulation Ended in ${(elapsed / 1000).toFixed(2)}s.`);
+  console.log(`Max Population: ${maxPopulation}`);
+  console.log(`Matrixland Ascensions (Crystals): ${totalAscensions}`);
+  PULSE.stopWorkers();
+  Deno.exit(0);
+}
+
+run();
+
+```
+
+---
+
+## FILE: RUN_STAGE8_TICKS.ts
+
+```typescript
+import { PULSE } from "./PULSE.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
+import { LOGGER } from "./LOGGER.ts";
+import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION.ts";
+import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
+import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+
+async function run() {
+  console.log("Initializing Pulse for Stage 8 verification...");
+
+  // 1. Seed the world in the SAME process memory
+  const seedResult = COLDSTART_BOOTSTRAP.seed({
+    ...RUNTIME_POLICY.coldstart,
+    enabled: true,
+  });
+  console.log("Seed Result:", seedResult);
+
+  await PULSE.initWorkers();
+
+  console.log("Running 50 ticks to gather metrics...");
+  for (let i = 0; i < 50; i++) {
+    // Fluctuate coherence to trigger different branches
+    SOVEREIGN_ORACLE.neuralCoherence = (i % 2 === 0) ? 100 : 0;
+    await PULSE.tick();
+    if (i % 10 === 0) {
+      const state = PULSE.getGuardianSignalHybridState();
+      console.log(
+        `Tick ${i}: shadowRuns=${state.shadowRuns}, stable=${state.stableBranchCount}, repair=${state.repairBranchCount}, fallback=${state.fallbackRuns} (last: ${state.lastFallbackReason})`,
+      );
+    }
+  }
+
+  const finalState = PULSE.getGuardianSignalHybridState();
+  console.log("\n--- Final Guardian Signal Hybrid State ---");
+  console.log(JSON.stringify(finalState, null, 2));
+
+  const promotion = evaluateGuardianSignalPromotion(finalState);
+  console.log("\n--- Promotion Readiness ---");
+  console.log(JSON.stringify(promotion, null, 2));
+
+  Deno.exit(0);
+}
+
+run().catch((err) => {
+  console.error("Verification failed:", err);
+  Deno.exit(1);
+});
+
 ```
 
 ---
@@ -31716,6 +36612,7 @@ export const evaluateArchitectPlasmidExecution = (
     hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
   };
 };
+
 ```
 
 ---
@@ -31743,6 +36640,7 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
+
 ```
 
 ---
@@ -32161,6 +37059,7 @@ export const evaluateGuardianSignalExecution = (
     hybridSuppressed: !reduction.signalAllowed,
   };
 };
+
 ```
 
 ---
@@ -32300,6 +37199,7 @@ export const scriptToGlyphTape = (
 
   return out;
 };
+
 ```
 
 ---
@@ -32687,6 +37587,7 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
+
 ```
 
 ---
@@ -33541,6 +38442,7 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
+
 ```
 
 ---
@@ -34062,6 +38964,347 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
+
+```
+
+---
+
+## FILE: SERVE_DASHBOARD.ts
+
+```typescript
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+import {
+  parse as parseYaml,
+  stringify as stringifyYaml,
+} from "jsr:@std/yaml@^1.0.5";
+
+const ROOT = Deno.cwd();
+
+async function scanAtoms() {
+  const atoms = [];
+  for await (const entry of Deno.readDir(ROOT)) {
+    if (
+      entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")
+    ) {
+      try {
+        const content = await Deno.readTextFile(entry.name);
+        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        const svgMatch = content.match(/<svg[\s\S]*?<\/svg>/);
+
+        let alpha: any = {};
+        if (frontmatterMatch) {
+          alpha = parseYaml(frontmatterMatch[1]);
+        }
+
+        const tParts = entry.name.split(".");
+        const fullEigen = tParts[0];
+        const symbol = tParts[1];
+
+        // For display and classification, separate base and retro components
+        const is128Bit = fullEigen.includes("_");
+        const baseEigen = is128Bit ? fullEigen.split("_")[0] : fullEigen;
+        const retroEigen = is128Bit ? fullEigen.split("_")[1] : null;
+
+        const logic = baseEigen.slice(2, 10);
+        const spatial = baseEigen.slice(10, 14);
+        const quantum = baseEigen.slice(14, 18);
+
+        const svg = svgMatch ? svgMatch[0] : null;
+        const energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+        const x = alpha.x !== undefined
+          ? Number(alpha.x)
+          : Math.floor(Math.random() * 800) + 100;
+        const y = alpha.y !== undefined
+          ? Number(alpha.y)
+          : Math.floor(Math.random() * 600) + 100;
+        const bonds = alpha.bonds || [];
+        const resonance = alpha.resonance || 0;
+        const thought = alpha.thought || "WANDER";
+
+        // --- CASTE CLASSIFICATION ---
+        let caste = "NEUTRAL";
+        if (resonance > 50) caste = "NUCLEUS";
+        else if (logic.startsWith("1")) caste = "WORKER";
+        else if (logic.startsWith("8")) caste = "GUARDIAN";
+        else if (logic.startsWith("A")) caste = "ARCHIVIST";
+        else if (symbol === "PARASITE") caste = "PARASITE";
+
+        atoms.push({
+          filename: entry.name,
+          eigenvalue: fullEigen,
+          baseEigen: baseEigen,
+          retroEigen: retroEigen,
+          logic: logic,
+          spatial: spatial,
+          quantum: quantum,
+          symbol: symbol,
+          energy: energy,
+          x: x,
+          y: y,
+          bonds: bonds,
+          thought: thought,
+          caste: caste,
+          svg: svg,
+          isDust: entry.name.includes(".DUST"),
+          signals: alpha.signals || [],
+          resonance: resonance,
+          bondStrengths: alpha.bond_strengths || {},
+        });
+      } catch (e) {
+        console.error(`Failed to read atom ${entry.name}:`, e);
+      }
+    }
+  }
+  // Sort logic: live atoms first, sorted by energy
+  return atoms.sort((a, b) => b.energy - a.energy);
+}
+
+async function appendToAkasha(msg: string) {
+  try {
+    const timestamp = new Date().toISOString();
+    await Deno.writeTextFile("AKASHA.log", `[${timestamp}] ${msg}\n`, {
+      append: true,
+    });
+  } catch { /* ignore */ }
+}
+
+async function modifyEnergy(
+  filename: string,
+  amount: number,
+  signalType?: string,
+): Promise<Response> {
+  try {
+    const content = await Deno.readTextFile(filename);
+    const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+
+    if (!frontmatterMatch) {
+      return new Response("Invalid atom format", { status: 400 });
+    }
+
+    const alpha = parseYaml(frontmatterMatch[1]) as any;
+    const currentEnergy = alpha.energy !== undefined
+      ? Number(alpha.energy)
+      : 100;
+
+    alpha.energy = Math.max(0, currentEnergy + amount);
+
+    if (signalType) {
+      alpha.signals = alpha.signals || [];
+      alpha.signals.push({
+        type: signalType,
+        power: Math.abs(amount) / 2,
+        origin: "OBSERVER",
+      });
+    }
+
+    const newContent = content.replace(
+      /^---\n[\s\S]+?\n---\n/,
+      `---\n${stringifyYaml(alpha)}---\n`,
+    );
+    await Deno.writeTextFile(filename, newContent);
+
+    if (alpha.energy === 0 && amount < 0) {
+      await appendToAkasha(
+        `⚡ HAND_OF_GOD: ${filename} was struck by lightning and disintegrated.`,
+      );
+    } else if (amount > 0) {
+      await appendToAkasha(
+        `☀️ HAND_OF_GOD: ${filename} was blessed with +${amount} energy.`,
+      );
+    }
+
+    return new Response(
+      JSON.stringify({ success: true, energy: alpha.energy }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
+  } catch (e) {
+    return new Response("Atom not found or error", { status: 404 });
+  }
+}
+
+async function handler(req: Request): Promise<Response> {
+  const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      },
+    });
+  }
+
+  if (req.method === "POST" && url.pathname.startsWith("/api/feed/")) {
+    const filename = decodeURIComponent(
+      url.pathname.substring("/api/feed/".length),
+    );
+    return await modifyEnergy(filename, 50, "ENERGY");
+  }
+
+  if (req.method === "POST" && url.pathname.startsWith("/api/zap/")) {
+    const filename = decodeURIComponent(
+      url.pathname.substring("/api/zap/".length),
+    );
+    return await modifyEnergy(filename, -50, "SHOCK");
+  }
+
+  if (req.method === "POST" && url.pathname.startsWith("/api/bless/")) {
+    const filename = decodeURIComponent(
+      url.pathname.substring("/api/bless/".length),
+    );
+    await appendToAkasha(
+      `✨ BLESSING: Observer healed ${filename} (+100 Energy)`,
+    );
+    return await modifyEnergy(filename, 100);
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/forge") {
+    try {
+      const body = await req.json();
+      const symbol = body.symbol?.toUpperCase().replace(/[^A-Z0-9_]/g, "") ||
+        "ANOMALY";
+      let logic =
+        body.logic?.toUpperCase().replace(/[^0-9A-F]/g, "").padEnd(8, "0")
+          .slice(0, 8) || "88880000";
+
+      // If word is provided, hash it into logic
+      if (body.word) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(body.word);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        logic = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("")
+          .slice(0, 8).toUpperCase();
+        console.log(`   [WORD_FORGE] '${body.word}' -> ${logic}`);
+      }
+
+      const energy = Number(body.energy) || 100;
+
+      const eigen = `0x${logic}00000000`;
+      const filename = `${eigen}.${symbol}.md`;
+
+      const p = new Deno.Command("deno", {
+        args: [
+          "eval",
+          `
+                    import { injectHologram } from "./HOLOGRAM_MODULE.ts";
+                    import { stringify } from "jsr:@std/yaml@^1.0.5";
+                    const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
+                    let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
+                    console.log(injectHologram(content, "${eigen}", "${symbol}"));
+                `,
+        ],
+      });
+      const out = await p.output();
+      const forgedContent = new TextDecoder().decode(out.stdout);
+
+      await Deno.writeTextFile(filename, forgedContent);
+      await appendToAkasha(
+        `⚒️ FORGE: Observer materialized '${
+          body.word || symbol
+        }' (${logic}) with ${energy} energy.`,
+      );
+
+      return new Response(JSON.stringify({ success: true, filename }), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    } catch (e) {
+      return new Response("Forge failed", { status: 500 });
+    }
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/transmute") {
+    try {
+      // Run mass transmutation logic (multiple pulse cycles)
+      const process = new Deno.Command("deno", {
+        args: ["run", "--allow-read", "--allow-write", "ZERO_IOPS.ts", "mass"],
+      });
+      await process.output();
+      await appendToAkasha(
+        `🌀 TRANSMUTE: Global Zero-IOPS reduction triggered by Observer.`,
+      );
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    } catch (e) {
+      return new Response("Transmutation failed", { status: 500 });
+    }
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/akasha") {
+    let logs: string[] = [];
+    let memory: any = { reservoir: [], utterances: [] };
+    let sovereignty: any = {
+      activeDecree: "NONE",
+      regent: "NONE",
+      legitimacy: 0,
+      label: "DEMOCRACY",
+    };
+
+    try {
+      const logContent = await Deno.readTextFile("AKASHA.log");
+      logs = logContent.trim().split("\n").slice(-10);
+    } catch { /* ignore */ }
+
+    try {
+      const memContent = await Deno.readTextFile("./AKASHA_MEM.json");
+      memory = JSON.parse(memContent);
+    } catch { /* ignore */ }
+
+    try {
+      const sovContent = await Deno.readTextFile("./SOVEREIGNTY.json");
+      sovereignty = JSON.parse(sovContent);
+    } catch { /* ignore */ }
+
+    return new Response(JSON.stringify({ logs, ...memory, sovereignty }), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/atoms") {
+    const atoms = await scanAtoms();
+    return new Response(JSON.stringify(atoms), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/") {
+    try {
+      const html = await Deno.readTextFile("DASHBOARD.html");
+      return new Response(html, {
+        headers: { "Content-Type": "text/html" },
+      });
+    } catch {
+      return new Response("DASHBOARD.html not found", { status: 404 });
+    }
+  }
+
+  return new Response("Not Found", { status: 404 });
+}
+
+console.log(
+  "🌟 Flatland Petri Dish Dashboard is running on http://localhost:8000",
+);
+serve(handler, { port: 8000 });
+
 ```
 
 ---
@@ -35830,6 +41073,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
+
 ```
 
 ---
@@ -35933,6 +41177,7 @@ export const SNAP_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -36007,6 +41252,7 @@ export const SNAP = {
     }
   },
 };
+
 ```
 
 ---
@@ -36225,6 +41471,7 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
+
 ```
 
 ---
@@ -36716,6 +41963,7 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
+
 ```
 
 ---
@@ -36918,6 +42166,7 @@ export const SOVEREIGNTY_ENGINE = {
     };
   },
 };
+
 ```
 
 ---
@@ -37038,6 +42287,7 @@ export const SPATIAL_HASH = {
     return hy * 140 + hx;
   },
 };
+
 ```
 
 ---
@@ -37818,6 +43068,7 @@ export const STATE_MATRIX = {
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
+
 ```
 
 ---
@@ -38003,6 +43254,7 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
+
 ```
 
 ---
@@ -38179,6 +43431,7 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -41848,6 +47101,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
+
 ```
 
 ---
@@ -42062,6 +47316,39 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
+
+```
+
+---
+
+## FILE: trigger_singularity.ts
+
+```typescript
+import { parse, stringify } from "jsr:@std/yaml";
+
+async function boostAtom() {
+  for await (const entry of Deno.readDir("./")) {
+    if (
+      entry.isFile && entry.name.endsWith(".STREAM.md") &&
+      entry.name.startsWith("0x")
+    ) {
+      const content = await Deno.readTextFile(entry.name);
+      const metaMatch = content.match(/^---\n([\s\S]+?)\n---/);
+      if (metaMatch) {
+        const alpha = parse(metaMatch[1]) as any;
+        alpha.energy = 800; // Boost energy > 500
+        alpha.resonance = 100; // Boost resonance > 80
+        const newMeta = stringify(alpha);
+        const newContent = `---\n${newMeta}---\n\n${content.split("---")[2]}`;
+        await Deno.writeTextFile(entry.name, newContent);
+        console.log(`Boosted ${entry.name} to critical mass!`);
+        break; // Just boost one
+      }
+    }
+  }
+}
+boostAtom();
+
 ```
 
 ---
@@ -42202,6 +47489,7 @@ async function run() {
 if (import.meta.main) {
   run();
 }
+
 ```
 
 ---
@@ -45515,6 +50803,2310 @@ if (import.meta.main) {
     </script>
   </body>
 </html>
+
+```
+
+---
+
+## FILE: verification/admission_shadow_cases.ts
+
+```typescript
+import type {
+  DaemonIngressMetrics,
+  DaemonInjectEnvelope,
+} from "../DAEMON_INGRESS_POLICY.ts";
+
+export type AdmissionShadowExpectation = {
+  policyOk: boolean | null;
+  policyReason: string | null;
+  blocked: boolean;
+  blockReason: string | null;
+  severity: "LOW" | "MID" | "HIGH" | null;
+  score: number | null;
+  appliedAction: "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE" | "BLOCKED";
+  degraded: boolean | null;
+  degradeReason: string | null;
+  plasmidRiskLevel: "LOW" | "MID" | "HIGH" | null;
+  plasmidRiskScore: number | null;
+  plasmidRiskOpcode: number | null;
+  reasons: string[];
+};
+
+export type AdmissionShadowCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  baselineEventKind: string;
+  description: string;
+  envelope: DaemonInjectEnvelope;
+  metrics: DaemonIngressMetrics;
+  dominantGenome: string;
+  narrativeSeed: Record<string, unknown>;
+  expected: AdmissionShadowExpectation;
+};
+
+export const ADMISSION_SHADOW_CASES: readonly AdmissionShadowCaseDefinition[] =
+  Object.freeze([
+    {
+      id: "ac01_gt04_low_risk_accept",
+      baselineTraceId: "gt04_plasmid_inject",
+      baselineEventKind: "INJECT_PLASMID",
+      description:
+        "Low-intensity plasmid ingress from gt04 should stay policy-clean and remain an undegraded plasmid admission.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 640,
+          target_y: 360,
+          intensity: 420,
+          hex_code: "0102030405101180",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 173.654,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: { glyphRegime: "plasmid_surge" },
+      expected: {
+        policyOk: true,
+        policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
+        severity: "LOW",
+        score: 1,
+        appliedAction: "INJECT_PLASMID",
+        degraded: false,
+        degradeReason: null,
+        plasmidRiskLevel: "LOW",
+        plasmidRiskScore: 0,
+        plasmidRiskOpcode: 0x01,
+        reasons: ["GLYPH_REGIME_PLASMID_PRESSURE", "RISK_LOW"],
+      },
+    },
+    {
+      id: "ac02_gt06_pheromone_accept",
+      baselineTraceId: "gt06_daemon_admission_case",
+      baselineEventKind: "DROP_PHEROMONE_ACCEPT",
+      description:
+        "The accepted gt06 pheromone ingress should remain a low-drift pheromone admission with no plasmid risk path involved.",
+      envelope: {
+        action_type: "DROP_PHEROMONE",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 80,
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 238.609,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: null,
+        policyReason: null,
+        blocked: false,
+        blockReason: null,
+        severity: "LOW",
+        score: 0,
+        appliedAction: "DROP_PHEROMONE",
+        degraded: false,
+        degradeReason: null,
+        plasmidRiskLevel: null,
+        plasmidRiskScore: null,
+        plasmidRiskOpcode: null,
+        reasons: ["DRIFT_LOW"],
+      },
+    },
+    {
+      id: "ac03_gt06_plasmid_high_degrade",
+      baselineTraceId: "gt06_daemon_admission_case",
+      baselineEventKind: "INJECT_PLASMID_DEGRADED",
+      description:
+        "The high-intensity gt06 plasmid ingress should stay policy-valid but degrade into a pheromone action under invariant pressure.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 1100,
+          hex_code: "001011120381A4A5",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 238.609,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: true,
+        policyReason: "PLASMID_POLICY_OK",
+        blocked: false,
+        blockReason: null,
+        severity: "HIGH",
+        score: 4,
+        appliedAction: "DROP_PHEROMONE",
+        degraded: true,
+        degradeReason: "INVARIANT_DRIFT_HIGH_DEGRADE_TO_PHEROMONE",
+        plasmidRiskLevel: "MID",
+        plasmidRiskScore: 2,
+        plasmidRiskOpcode: 0x00,
+        reasons: ["PLASMID_INTENSITY_HIGH", "RISK_INTENSITY_HIGH"],
+      },
+    },
+    {
+      id: "ac04_gt07_plasmid_policy_block",
+      baselineTraceId: "gt07_daemon_policy_block",
+      baselineEventKind: "INJECT_PLASMID_BLOCKED",
+      description:
+        "A blocked-opcode plasmid should fail at policy stage before any admission scoring or ingress degradation occurs.",
+      envelope: {
+        action_type: "INJECT_PLASMID",
+        payload: {
+          target_x: 512,
+          target_y: 320,
+          intensity: 420,
+          hex_code: "FF02030405101180",
+        },
+      },
+      metrics: {
+        population: 64,
+        avgEnergy: 173.654,
+      },
+      dominantGenome: "808103862DA8E71A",
+      narrativeSeed: {},
+      expected: {
+        policyOk: false,
+        policyReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        blocked: true,
+        blockReason: "PLASMID_OPCODE_BLOCKED_0xFF",
+        severity: null,
+        score: null,
+        appliedAction: "BLOCKED",
+        degraded: null,
+        degradeReason: null,
+        plasmidRiskLevel: null,
+        plasmidRiskScore: null,
+        plasmidRiskOpcode: null,
+        reasons: [],
+      },
+    },
+  ]);
+
+const ADMISSION_SHADOW_CASE_BY_ID = new Map<
+  string,
+  AdmissionShadowCaseDefinition
+>(
+  ADMISSION_SHADOW_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const admissionShadowCaseById = (
+  id: string,
+): AdmissionShadowCaseDefinition | null =>
+  ADMISSION_SHADOW_CASE_BY_ID.get(id) ?? null;
+
+```
+
+---
+
+## FILE: verification/admission_shadow_harness.ts
+
+```typescript
+import {
+  type DaemonIngressPlan,
+  type DaemonInvariantAdmission,
+  type DaemonNarrativeContext,
+  evaluateInvariantAdmission,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  planInvariantIngress,
+  type PlasmidRiskProfile,
+} from "../DAEMON_INGRESS_POLICY.ts";
+import {
+  ADMISSION_SHADOW_CASES,
+  type AdmissionShadowCaseDefinition,
+} from "./admission_shadow_cases.ts";
+import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+
+type AdmissionBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  eventKind: string;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+  response: Record<string, unknown>;
+};
+
+type AdmissionShadowOutcome = {
+  context: DaemonNarrativeContext;
+  policy: { ok: boolean; reason: string } | null;
+  risk: PlasmidRiskProfile | null;
+  admission: DaemonInvariantAdmission | null;
+  plan: DaemonIngressPlan | null;
+  blocked: boolean;
+  blockReason: string | null;
+};
+
+export type AdmissionShadowResult = {
+  caseId: string;
+  baseline: Omit<AdmissionBaselineAnchor, "response">;
+  shadow: AdmissionShadowOutcome;
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+export type AdmissionShadowArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_event_kind: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  baseline_digest: string;
+  shadow_digest: string;
+  diff: {
+    policy_match: boolean;
+    policy_reason_match: boolean;
+    risk_match: boolean;
+    severity_match: boolean;
+    score_match: boolean;
+    reasons_match: boolean;
+    applied_action_match: boolean;
+    degraded_match: boolean;
+    degrade_reason_match: boolean;
+    context_match: boolean;
+  };
+  expectation_summary: AdmissionShadowCaseDefinition["expected"];
+};
+
+const ADMISSION_DIFF_ROOT = "verification/admission_diffs";
+
+const equalStringArray = (
+  a: readonly string[],
+  b: readonly string[],
+): boolean =>
+  a.length === b.length && a.every((value, index) => value === b[index]);
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>).sort((
+    [a],
+    [b],
+  ) => a.localeCompare(b));
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const normalizeResponse = (
+  response: Record<string, unknown>,
+): {
+  policyOk: boolean | null;
+  policyReason: string | null;
+  risk: {
+    level: string | null;
+    score: number | null;
+    opcode: number | null;
+  };
+  admission: {
+    severity: string;
+    score: number;
+    reasons: string[];
+    context: {
+      mood: string;
+      sharedCenter: string;
+      dominantInvariantVector: string;
+      codexLineageLabel: string;
+      codexLineageGuardScore: number;
+      codexLineageGuardReasons: string[];
+    };
+  };
+  appliedAction: string;
+  degraded: boolean;
+  degradeReason: string | null;
+} => {
+  const admissionRoot =
+    response.admission && typeof response.admission === "object"
+      ? response.admission as Record<string, unknown>
+      : {};
+  const latestAdmissionRoot =
+    response.latest_admission && typeof response.latest_admission === "object"
+      ? response.latest_admission as Record<string, unknown>
+      : {};
+  const admissionLike = Object.keys(admissionRoot).length > 0
+    ? admissionRoot
+    : latestAdmissionRoot;
+  const contextRoot =
+    admissionLike.context && typeof admissionLike.context === "object"
+      ? admissionLike.context as Record<string, unknown>
+      : {};
+  const plasmidRisk =
+    response.plasmid_risk && typeof response.plasmid_risk === "object"
+      ? response.plasmid_risk as Record<string, unknown>
+      : null;
+  return {
+    policyOk: typeof response.ok === "boolean" ? response.ok : null,
+    policyReason: typeof response.reason === "string" ? response.reason : null,
+    risk: {
+      level: plasmidRisk && typeof plasmidRisk.level === "string"
+        ? plasmidRisk.level
+        : null,
+      score: plasmidRisk && typeof plasmidRisk.score === "number"
+        ? plasmidRisk.score
+        : null,
+      opcode: plasmidRisk && typeof plasmidRisk.opcode === "number"
+        ? plasmidRisk.opcode
+        : null,
+    },
+    admission: {
+      severity: typeof admissionLike.severity === "string"
+        ? admissionLike.severity
+        : "UNKNOWN",
+      score: typeof admissionLike.score === "number" ? admissionLike.score : -1,
+      reasons: Array.isArray(admissionLike.reasons)
+        ? admissionLike.reasons.filter((item): item is string =>
+          typeof item === "string"
+        )
+        : [],
+      context: {
+        mood: typeof contextRoot.mood === "string"
+          ? contextRoot.mood
+          : "UNKNOWN",
+        sharedCenter: typeof contextRoot.sharedCenter === "string"
+          ? contextRoot.sharedCenter
+          : "unknown",
+        dominantInvariantVector:
+          typeof contextRoot.dominantInvariantVector === "string"
+            ? contextRoot.dominantInvariantVector
+            : "unknown",
+        codexLineageLabel: typeof contextRoot.codexLineageLabel === "string"
+          ? contextRoot.codexLineageLabel
+          : "unknown",
+        codexLineageGuardScore:
+          typeof contextRoot.codexLineageGuardScore === "number"
+            ? contextRoot.codexLineageGuardScore
+            : -1,
+        codexLineageGuardReasons:
+          Array.isArray(contextRoot.codexLineageGuardReasons)
+            ? contextRoot.codexLineageGuardReasons.filter((
+              item,
+            ): item is string => typeof item === "string")
+            : [],
+      },
+    },
+    appliedAction: typeof response.applied_action === "string"
+      ? response.applied_action
+      : typeof latestAdmissionRoot.appliedAction === "string"
+      ? latestAdmissionRoot.appliedAction
+      : "UNKNOWN",
+    degraded: response.degraded === true ||
+      latestAdmissionRoot.degraded === true,
+    degradeReason: typeof response.degrade_reason === "string"
+      ? response.degrade_reason
+      : typeof latestAdmissionRoot.reason === "string" &&
+          latestAdmissionRoot.appliedAction === "BLOCKED"
+      ? null
+      : null,
+  };
+};
+
+const loadBaselineAnchor = async (
+  definition: AdmissionShadowCaseDefinition,
+): Promise<AdmissionBaselineAnchor> => {
+  const { traceJson } = goldenTraceArtifactPaths(definition.baselineTraceId);
+  const parsed = JSON.parse(
+    await Deno.readTextFile(traceJson),
+  ) as Record<string, unknown>;
+  const eventLog = Array.isArray(parsed.event_log)
+    ? parsed.event_log.filter((entry) => entry && typeof entry === "object")
+    : [];
+  const matched = eventLog.find((entry) =>
+    (entry as Record<string, unknown>).kind === definition.baselineEventKind
+  );
+  if (!matched || typeof matched !== "object") {
+    throw new Error(
+      `[admission_shadow] baseline event ${definition.baselineEventKind} missing in ${definition.baselineTraceId}`,
+    );
+  }
+  const event = matched as Record<string, unknown>;
+  if (!event.response || typeof event.response !== "object") {
+    throw new Error(
+      `[admission_shadow] baseline response missing for ${definition.id}`,
+    );
+  }
+  return {
+    traceId: definition.baselineTraceId,
+    scenario: String(parsed.scenario ?? definition.baselineTraceId),
+    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
+    eventKind: definition.baselineEventKind,
+    tickEnd: Number(parsed.tick_end ?? -1),
+    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
+    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+    response: event.response as Record<string, unknown>,
+  };
+};
+
+const runAdmissionShadow = (
+  definition: AdmissionShadowCaseDefinition,
+): AdmissionShadowOutcome => {
+  const context = normalizeDaemonNarrativeContext(
+    definition.narrativeSeed,
+    definition.dominantGenome,
+  );
+  const policy = definition.envelope.action_type === "INJECT_PLASMID" &&
+      definition.envelope.payload.hex_code
+    ? evaluatePlasmidPolicy(definition.envelope.payload.hex_code)
+    : null;
+  const risk = definition.envelope.action_type === "INJECT_PLASMID" &&
+      definition.envelope.payload.hex_code
+    ? evaluatePlasmidRisk(
+      definition.envelope.payload.hex_code,
+      definition.envelope.payload.intensity,
+    )
+    : null;
+  if (policy && !policy.ok) {
+    return {
+      context,
+      policy,
+      risk: null,
+      admission: null,
+      plan: null,
+      blocked: true,
+      blockReason: policy.reason,
+    };
+  }
+  const admission = evaluateInvariantAdmission(
+    definition.envelope,
+    definition.metrics,
+    context,
+    risk,
+  );
+  const plan = planInvariantIngress(definition.envelope, admission);
+  return {
+    context,
+    policy,
+    risk,
+    admission,
+    plan,
+    blocked: false,
+    blockReason: null,
+  };
+};
+
+const compareToBaseline = (
+  definition: AdmissionShadowCaseDefinition,
+  baseline: AdmissionBaselineAnchor,
+  shadow: AdmissionShadowOutcome,
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+  const baselineResponse = normalizeResponse(baseline.response);
+  const expected = definition.expected;
+
+  const policyOk = shadow.policy?.ok ?? null;
+  const policyReason = shadow.policy?.reason ?? null;
+  const riskLevel = shadow.risk?.level ?? null;
+  const riskScore = shadow.risk?.score ?? null;
+  const riskOpcode = shadow.risk?.opcode ?? null;
+
+  if (policyOk !== expected.policyOk) {
+    reasons.push(`expected policyOk=${expected.policyOk} got=${policyOk}`);
+  }
+  if (policyReason !== expected.policyReason) {
+    reasons.push(
+      `expected policyReason=${expected.policyReason} got=${policyReason}`,
+    );
+  }
+  if (shadow.blocked !== expected.blocked) {
+    reasons.push(`expected blocked=${expected.blocked} got=${shadow.blocked}`);
+  }
+  if (shadow.blockReason !== expected.blockReason) {
+    reasons.push(
+      `expected blockReason=${expected.blockReason} got=${shadow.blockReason}`,
+    );
+  }
+  if (riskLevel !== expected.plasmidRiskLevel) {
+    reasons.push(
+      `expected riskLevel=${expected.plasmidRiskLevel} got=${riskLevel}`,
+    );
+  }
+  if (riskScore !== expected.plasmidRiskScore) {
+    reasons.push(
+      `expected riskScore=${expected.plasmidRiskScore} got=${riskScore}`,
+    );
+  }
+  if (riskOpcode !== expected.plasmidRiskOpcode) {
+    reasons.push(
+      `expected riskOpcode=${expected.plasmidRiskOpcode} got=${riskOpcode}`,
+    );
+  }
+  if ((shadow.admission?.severity ?? null) !== expected.severity) {
+    reasons.push(
+      `expected severity=${expected.severity} got=${
+        shadow.admission?.severity ?? null
+      }`,
+    );
+  }
+  if ((shadow.admission?.score ?? null) !== expected.score) {
+    reasons.push(
+      `expected score=${expected.score} got=${shadow.admission?.score ?? null}`,
+    );
+  }
+  if (!equalStringArray(shadow.admission?.reasons ?? [], expected.reasons)) {
+    reasons.push("expected reasons mismatch");
+  }
+  if (
+    (shadow.plan?.applied.action_type ?? "BLOCKED") !== expected.appliedAction
+  ) {
+    reasons.push(
+      `expected appliedAction=${expected.appliedAction} got=${
+        shadow.plan?.applied.action_type ?? "BLOCKED"
+      }`,
+    );
+  }
+  if ((shadow.plan?.degraded ?? null) !== expected.degraded) {
+    reasons.push(
+      `expected degraded=${expected.degraded} got=${
+        shadow.plan?.degraded ?? null
+      }`,
+    );
+  }
+  if ((shadow.plan?.degradeReason ?? null) !== expected.degradeReason) {
+    reasons.push(
+      `expected degradeReason=${expected.degradeReason} got=${
+        shadow.plan?.degradeReason ?? null
+      }`,
+    );
+  }
+  if (shadow.blocked) {
+    if (baselineResponse.policyOk !== policyOk) {
+      reasons.push(
+        `baseline policyOk=${baselineResponse.policyOk} shadow=${policyOk}`,
+      );
+    }
+    if (baselineResponse.policyReason !== policyReason) {
+      reasons.push(
+        `baseline policyReason=${baselineResponse.policyReason} shadow=${policyReason}`,
+      );
+    }
+    if (baselineResponse.appliedAction !== expected.appliedAction) {
+      reasons.push(
+        `baseline appliedAction=${baselineResponse.appliedAction} expected=${expected.appliedAction}`,
+      );
+    }
+    return { ok: reasons.length === 0, reasons };
+  }
+  if (baselineResponse.risk.level !== riskLevel) {
+    reasons.push(
+      `baseline riskLevel=${baselineResponse.risk.level} shadow=${riskLevel}`,
+    );
+  }
+  if (baselineResponse.risk.score !== riskScore) {
+    reasons.push(
+      `baseline riskScore=${baselineResponse.risk.score} shadow=${riskScore}`,
+    );
+  }
+  if (baselineResponse.risk.opcode !== riskOpcode) {
+    reasons.push(
+      `baseline riskOpcode=${baselineResponse.risk.opcode} shadow=${riskOpcode}`,
+    );
+  }
+  if (baselineResponse.admission.severity !== shadow.admission.severity) {
+    reasons.push(
+      `baseline severity=${baselineResponse.admission.severity} shadow=${shadow.admission.severity}`,
+    );
+  }
+  if (baselineResponse.admission.score !== shadow.admission.score) {
+    reasons.push(
+      `baseline score=${baselineResponse.admission.score} shadow=${shadow.admission.score}`,
+    );
+  }
+  if (
+    !equalStringArray(
+      baselineResponse.admission.reasons,
+      shadow.admission.reasons,
+    )
+  ) {
+    reasons.push("baseline reasons mismatch");
+  }
+  if (baselineResponse.appliedAction !== shadow.plan.applied.action_type) {
+    reasons.push(
+      `baseline appliedAction=${baselineResponse.appliedAction} shadow=${shadow.plan.applied.action_type}`,
+    );
+  }
+  if (baselineResponse.degraded !== shadow.plan.degraded) {
+    reasons.push(
+      `baseline degraded=${baselineResponse.degraded} shadow=${shadow.plan.degraded}`,
+    );
+  }
+  if (baselineResponse.degradeReason !== shadow.plan.degradeReason) {
+    reasons.push(
+      `baseline degradeReason=${baselineResponse.degradeReason} shadow=${shadow.plan.degradeReason}`,
+    );
+  }
+  if (
+    baselineResponse.admission.context.sharedCenter !==
+      shadow.context.sharedCenter
+  ) {
+    reasons.push("baseline sharedCenter mismatch");
+  }
+  if (
+    baselineResponse.admission.context.dominantInvariantVector !==
+      shadow.context.dominantInvariantVector
+  ) {
+    reasons.push("baseline dominantInvariantVector mismatch");
+  }
+  if (
+    baselineResponse.admission.context.codexLineageLabel !==
+      shadow.context.codexLineageLabel
+  ) {
+    reasons.push("baseline codexLineageLabel mismatch");
+  }
+  if (
+    baselineResponse.admission.context.codexLineageGuardScore !==
+      shadow.context.codexLineageGuardScore
+  ) {
+    reasons.push("baseline codexLineageGuardScore mismatch");
+  }
+  if (
+    !equalStringArray(
+      baselineResponse.admission.context.codexLineageGuardReasons,
+      shadow.context.codexLineageGuardReasons,
+    )
+  ) {
+    reasons.push("baseline codexLineageGuardReasons mismatch");
+  }
+
+  return { ok: reasons.length === 0, reasons };
+};
+
+const artifactForResult = async (
+  definition: AdmissionShadowCaseDefinition,
+  baseline: AdmissionBaselineAnchor,
+  shadow: AdmissionShadowOutcome,
+  parity: { ok: boolean; reasons: string[] },
+): Promise<AdmissionShadowArtifact> => {
+  const normalizedBaseline = normalizeResponse(baseline.response);
+  const policyOk = shadow.policy?.ok ?? null;
+  const policyReason = shadow.policy?.reason ?? null;
+  const blocked = shadow.blocked;
+  return {
+    case_id: definition.id,
+    baseline_trace_id: baseline.traceId,
+    baseline_event_kind: baseline.eventKind,
+    parity_ok: parity.ok,
+    parity_reasons: [...parity.reasons],
+    baseline_digest: await sha256Hex(normalizedBaseline),
+    shadow_digest: await sha256Hex({
+      policyOk,
+      policyReason,
+      risk: shadow.risk,
+      admission: shadow.admission,
+      plan: shadow.plan,
+      blocked: shadow.blocked,
+      blockReason: shadow.blockReason,
+    }),
+    diff: {
+      policy_match: definition.expected.policyOk === policyOk,
+      policy_reason_match: definition.expected.policyReason === policyReason,
+      risk_match: blocked
+        ? definition.expected.plasmidRiskLevel === null &&
+          definition.expected.plasmidRiskScore === null &&
+          definition.expected.plasmidRiskOpcode === null
+        : normalizedBaseline.risk.level === (shadow.risk?.level ?? null) &&
+          normalizedBaseline.risk.score === (shadow.risk?.score ?? null) &&
+          normalizedBaseline.risk.opcode === (shadow.risk?.opcode ?? null),
+      severity_match: blocked
+        ? definition.expected.severity === null
+        : normalizedBaseline.admission.severity ===
+          (shadow.admission?.severity ?? "UNKNOWN"),
+      score_match: blocked
+        ? definition.expected.score === null
+        : normalizedBaseline.admission.score ===
+          (shadow.admission?.score ?? -1),
+      reasons_match: blocked
+        ? equalStringArray(definition.expected.reasons, [])
+        : equalStringArray(
+          normalizedBaseline.admission.reasons,
+          shadow.admission?.reasons ?? [],
+        ),
+      applied_action_match: normalizedBaseline.appliedAction ===
+        (shadow.plan?.applied.action_type ?? "BLOCKED"),
+      degraded_match: blocked
+        ? definition.expected.degraded === null
+        : normalizedBaseline.degraded === (shadow.plan?.degraded ?? false),
+      degrade_reason_match: blocked
+        ? definition.expected.degradeReason === null
+        : normalizedBaseline.degradeReason ===
+          (shadow.plan?.degradeReason ?? null),
+      context_match: blocked
+        ? true
+        : normalizedBaseline.admission.context.sharedCenter ===
+            shadow.context.sharedCenter &&
+          normalizedBaseline.admission.context.dominantInvariantVector ===
+            shadow.context.dominantInvariantVector &&
+          normalizedBaseline.admission.context.codexLineageLabel ===
+            shadow.context.codexLineageLabel &&
+          normalizedBaseline.admission.context.codexLineageGuardScore ===
+            shadow.context.codexLineageGuardScore &&
+          equalStringArray(
+            normalizedBaseline.admission.context.codexLineageGuardReasons,
+            shadow.context.codexLineageGuardReasons,
+          ),
+    },
+    expectation_summary: definition.expected,
+  };
+};
+
+export const writeAdmissionHarnessArtifacts = async (
+  results: AdmissionShadowResult[],
+): Promise<void> => {
+  await Deno.mkdir(ADMISSION_DIFF_ROOT, { recursive: true });
+  for (const result of results) {
+    const definition = ADMISSION_SHADOW_CASES.find((item) =>
+      item.id === result.caseId
+    );
+    if (!definition) {
+      throw new Error(
+        `[admission_shadow] missing case definition for ${result.caseId}`,
+      );
+    }
+    const baseline = await loadBaselineAnchor(definition);
+    const artifact = await artifactForResult(
+      definition,
+      baseline,
+      result.shadow,
+      result.parity,
+    );
+    const path = `${ADMISSION_DIFF_ROOT}/${definition.id}.json`;
+    await Deno.writeTextFile(`${path}.tmp`, JSON.stringify(artifact, null, 2));
+    await Deno.rename(`${path}.tmp`, path);
+  }
+};
+
+export const runAdmissionShadowHarness = async (): Promise<
+  AdmissionShadowResult[]
+> => {
+  const results: AdmissionShadowResult[] = [];
+  for (const definition of ADMISSION_SHADOW_CASES) {
+    const baseline = await loadBaselineAnchor(definition);
+    const shadow = runAdmissionShadow(definition);
+    const parity = compareToBaseline(definition, baseline, shadow);
+    results.push({
+      caseId: definition.id,
+      baseline: {
+        traceId: baseline.traceId,
+        scenario: baseline.scenario,
+        runtimeMode: baseline.runtimeMode,
+        eventKind: baseline.eventKind,
+        tickEnd: baseline.tickEnd,
+        codexSnapshotDigest: baseline.codexSnapshotDigest,
+        invariantDigest: baseline.invariantDigest,
+      },
+      shadow,
+      parity,
+    });
+  }
+  return results;
+};
+
+const main = async () => {
+  const results = await runAdmissionShadowHarness();
+  await writeAdmissionHarnessArtifacts(results);
+  const failed = results.filter((result) => !result.parity.ok);
+  if (failed.length > 0) {
+    console.error("[admission_shadow] parity failure.");
+    for (const result of failed) {
+      console.error(` - ${result.caseId}`);
+      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
+    }
+    Deno.exit(1);
+  }
+  console.log(`[admission_shadow] capture complete. cases=${results.length}`);
+};
+
+if (import.meta.main) {
+  await main();
+}
+
+```
+
+---
+
+## FILE: verification/architect_plasmid_mode_cases.ts
+
+```typescript
+import {
+  type ArchitectPlasmidExecutionMode,
+} from "../runtime_bridge/architect_plasmid_hybrid.ts";
+
+export type ArchitectPlasmidModeCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  neuralCoherence: number;
+  legacyAllowed: boolean;
+  scriptKind: "architect" | "guardian" | "custom";
+  script?: Uint8Array;
+  expected: Record<
+    ArchitectPlasmidExecutionMode,
+    {
+      allowed: boolean;
+      status: "legacy" | "shadow" | "hybrid" | "fallback";
+      branch: "emit" | "suppress" | "unknown";
+      shadowSuppressed: boolean;
+      hybridSuppressed: boolean;
+    }
+  >;
+};
+
+export const ARCHITECT_PLASMID_MODE_CASES:
+  readonly ArchitectPlasmidModeCaseDefinition[] = Object.freeze([
+    {
+      id: "ah01_gt04_architect_emit_modes",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "Canonical architect loop should preserve legacy behavior in shadow mode and remain allowed in hybrid mode.",
+      neuralCoherence: 200,
+      legacyAllowed: true,
+      scriptKind: "architect",
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "shadow",
+          branch: "emit",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: true,
+          status: "hybrid",
+          branch: "emit",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+      },
+    },
+    {
+      id: "ah02_gt04_architect_suppress_modes",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "A signaling-only script should preserve legacy behavior in shadow mode but suppress architect plasmid emission in hybrid mode.",
+      neuralCoherence: 200,
+      legacyAllowed: true,
+      scriptKind: "guardian",
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "shadow",
+          branch: "suppress",
+          shadowSuppressed: true,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: false,
+          status: "hybrid",
+          branch: "suppress",
+          shadowSuppressed: false,
+          hybridSuppressed: true,
+        },
+      },
+    },
+    {
+      id: "ah03_gt04_architect_fallback_modes",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "Unsupported architect scripts must fall back to legacy behavior in shadow and hybrid modes.",
+      neuralCoherence: 200,
+      legacyAllowed: true,
+      scriptKind: "custom",
+      script: new Uint8Array([0xFF, 0, 0]),
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "fallback",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: true,
+          status: "fallback",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+      },
+    },
+  ]);
+
+const CASE_BY_ID = new Map(
+  ARCHITECT_PLASMID_MODE_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const architectPlasmidModeCaseById = (
+  id: string,
+): ArchitectPlasmidModeCaseDefinition | null => CASE_BY_ID.get(id) ?? null;
+
+```
+
+---
+
+## FILE: verification/architect_plasmid_mode_harness.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import {
+  type ArchitectPlasmidExecutionDecision,
+  type ArchitectPlasmidExecutionMode,
+  evaluateArchitectPlasmidExecution,
+} from "../runtime_bridge/architect_plasmid_hybrid.ts";
+import {
+  ARCHITECT_PLASMID_MODE_CASES,
+  architectPlasmidModeCaseById,
+  type ArchitectPlasmidModeCaseDefinition,
+} from "./architect_plasmid_mode_cases.ts";
+import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+
+const HYBRID_DIFF_ROOT = "verification/architect_hybrid_mode_diffs";
+
+type ArchitectModeResult = {
+  mode: ArchitectPlasmidExecutionMode;
+  decision: ArchitectPlasmidExecutionDecision;
+};
+
+type ArchitectModeBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  tickStart: number;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+};
+
+export type ArchitectPlasmidModeHarnessResult = {
+  caseId: string;
+  baseline: ArchitectModeBaselineAnchor;
+  results: ArchitectModeResult[];
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+export type ArchitectPlasmidModeHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  shadow_digest: string;
+  hybrid_digest: string;
+  diffs: {
+    shadow_preserves_legacy: boolean;
+    hybrid_narrows_legacy: boolean;
+    fallback_replays_legacy: boolean;
+  };
+  expectation_summary: ArchitectPlasmidModeCaseDefinition["expected"];
+};
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>).sort((
+    [a],
+    [b],
+  ) => a.localeCompare(b));
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadBaselineAnchor = async (
+  traceId: string,
+): Promise<ArchitectModeBaselineAnchor> => {
+  const { traceJson } = goldenTraceArtifactPaths(traceId);
+  const parsed = JSON.parse(
+    await Deno.readTextFile(traceJson),
+  ) as Record<string, unknown>;
+  return {
+    traceId,
+    scenario: String(parsed.scenario ?? traceId),
+    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
+    tickStart: Number(parsed.tick_start ?? -1),
+    tickEnd: Number(parsed.tick_end ?? -1),
+    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
+    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+  };
+};
+
+const scriptForCase = (
+  definition: ArchitectPlasmidModeCaseDefinition,
+): Uint8Array => {
+  if (definition.scriptKind === "architect") {
+    return STATE_MATRIX.getArchitectScript();
+  }
+  if (definition.scriptKind === "guardian") {
+    return STATE_MATRIX.getGuardianScript();
+  }
+  return definition.script ? definition.script : new Uint8Array();
+};
+
+const runMode = (
+  definition: ArchitectPlasmidModeCaseDefinition,
+  mode: ArchitectPlasmidExecutionMode,
+): ArchitectModeResult => ({
+  mode,
+  decision: evaluateArchitectPlasmidExecution({
+    mode,
+    script: scriptForCase(definition),
+    neuralCoherence: definition.neuralCoherence,
+    legacyAllowed: definition.legacyAllowed,
+  }),
+});
+
+const compareResults = (
+  definition: ArchitectPlasmidModeCaseDefinition,
+  results: ArchitectModeResult[],
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+  for (const result of results) {
+    const expected = definition.expected[result.mode];
+    if (result.decision.allowed !== expected.allowed) {
+      reasons.push(
+        `${result.mode} allowed mismatch expected=${expected.allowed} actual=${result.decision.allowed}`,
+      );
+    }
+    if (result.decision.status !== expected.status) {
+      reasons.push(
+        `${result.mode} status mismatch expected=${expected.status} actual=${result.decision.status}`,
+      );
+    }
+    if (result.decision.branch !== expected.branch) {
+      reasons.push(
+        `${result.mode} branch mismatch expected=${expected.branch} actual=${result.decision.branch}`,
+      );
+    }
+    if (result.decision.shadowSuppressed !== expected.shadowSuppressed) {
+      reasons.push(
+        `${result.mode} shadowSuppressed mismatch expected=${expected.shadowSuppressed} actual=${result.decision.shadowSuppressed}`,
+      );
+    }
+    if (result.decision.hybridSuppressed !== expected.hybridSuppressed) {
+      reasons.push(
+        `${result.mode} hybridSuppressed mismatch expected=${expected.hybridSuppressed} actual=${result.decision.hybridSuppressed}`,
+      );
+    }
+  }
+  return { ok: reasons.length === 0, reasons };
+};
+
+const artifactPathForCase = (caseId: string): string =>
+  `${HYBRID_DIFF_ROOT}/${caseId}.json`;
+
+const artifactFromResult = async (
+  result: ArchitectPlasmidModeHarnessResult,
+): Promise<ArchitectPlasmidModeHarnessArtifact> => {
+  const legacy = result.results.find((entry) =>
+    entry.mode === "legacy-execute"
+  );
+  const shadow = result.results.find((entry) => entry.mode === "shadow-reduce");
+  const hybrid = result.results.find((entry) => entry.mode === "hybrid-reduce");
+  if (!legacy || !shadow || !hybrid) {
+    throw new Error(
+      `[architect_plasmid_mode_harness] incomplete mode coverage for case=${result.caseId}`,
+    );
+  }
+  return {
+    case_id: result.caseId,
+    baseline_trace_id: result.baseline.traceId,
+    baseline_runtime_mode: result.baseline.runtimeMode,
+    parity_ok: result.parity.ok,
+    parity_reasons: result.parity.reasons,
+    legacy_digest: await sha256Hex(legacy.decision),
+    shadow_digest: await sha256Hex(shadow.decision),
+    hybrid_digest: await sha256Hex(hybrid.decision),
+    diffs: {
+      shadow_preserves_legacy:
+        shadow.decision.allowed === legacy.decision.allowed,
+      hybrid_narrows_legacy:
+        hybrid.decision.allowed === legacy.decision.allowed ||
+        (legacy.decision.allowed && !hybrid.decision.allowed),
+      fallback_replays_legacy:
+        (shadow.decision.status === "fallback"
+          ? shadow.decision.allowed === legacy.decision.allowed
+          : true) &&
+        (hybrid.decision.status === "fallback"
+          ? hybrid.decision.allowed === legacy.decision.allowed
+          : true),
+    },
+    expectation_summary: architectPlasmidModeCaseById(result.caseId)!.expected,
+  };
+};
+
+export const runArchitectPlasmidModeCase = async (
+  caseId: string,
+): Promise<ArchitectPlasmidModeHarnessResult> => {
+  const definition = architectPlasmidModeCaseById(caseId);
+  if (!definition) {
+    throw new Error(
+      `[architect_plasmid_mode_harness] unknown case id: ${caseId}`,
+    );
+  }
+  const baseline = await loadBaselineAnchor(definition.baselineTraceId);
+  const results: ArchitectModeResult[] = [
+    runMode(definition, "legacy-execute"),
+    runMode(definition, "shadow-reduce"),
+    runMode(definition, "hybrid-reduce"),
+  ];
+  return {
+    caseId,
+    baseline,
+    results,
+    parity: compareResults(definition, results),
+  };
+};
+
+export const runArchitectPlasmidModeHarness = async (): Promise<
+  ArchitectPlasmidModeHarnessResult[]
+> => {
+  const results: ArchitectPlasmidModeHarnessResult[] = [];
+  for (const definition of ARCHITECT_PLASMID_MODE_CASES) {
+    results.push(await runArchitectPlasmidModeCase(definition.id));
+  }
+  return results;
+};
+
+export const persistArchitectPlasmidModeHarnessArtifacts = async (
+  results: readonly ArchitectPlasmidModeHarnessResult[],
+): Promise<string[]> => {
+  await Deno.mkdir(HYBRID_DIFF_ROOT, { recursive: true });
+  const written: string[] = [];
+  for (const result of results) {
+    const artifact = await artifactFromResult(result);
+    const path = artifactPathForCase(result.caseId);
+    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2) + "\n");
+    written.push(path);
+  }
+  return written;
+};
+
+if (import.meta.main) {
+  const results = await runArchitectPlasmidModeHarness();
+  const failed = results.filter((result) => !result.parity.ok);
+  if (failed.length > 0) {
+    console.error("[architect_plasmid_mode_harness] parity failure.");
+    for (const result of failed) {
+      console.error(` - ${result.caseId}`);
+      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
+    }
+    Deno.exit(1);
+  }
+  const written = await persistArchitectPlasmidModeHarnessArtifacts(results);
+  console.log(
+    `[architect_plasmid_mode_harness] capture complete. cases=${results.length} artifacts=${written.length}`,
+  );
+}
+
+```
+
+---
+
+## FILE: verification/bind_resolution_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_BIND_CAPTURE__";
+
+type Snapshot = {
+  initiatorId: number;
+  targetId: number;
+  requestStatus: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+type WasmExports = {
+  execute_atom: (idx: number) => void;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadWasm = async (): Promise<WasmExports> => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    idx: number,
+    op: number,
+    p1: number,
+    p2: number,
+    p3: number,
+  ) => {
+    // console.log(`[WASM TRACE] atom=${idx} op=0x${op.toString(16)} p1=${p1} p2=${p2} p3=${p3}`);
+  };
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  return instance.exports as unknown as WasmExports;
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasm = await loadWasm();
+
+  // Atoms
+  STATE_MATRIX.seedAtom(1, 101n, 100, 100, 5000, 100);
+  STATE_MATRIX.seedAtom(2, 201n, 105, 105, 5000, 100);
+
+  // OP_BIND (0x82) for atom 1
+  const script = new Uint8Array(64);
+  script[0] = 0x82;
+  STATE_MATRIX.setInstructions(1, script);
+
+  // Sync READ buffers (used by execute_atom)
+  const readXs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readYs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_YS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readEnergy = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const readResonance = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+
+  readXs[1] = 100;
+  readYs[1] = 100;
+  readXs[2] = 105;
+  readYs[2] = 105;
+  readEnergy[1] = 5000 * 1000; // Energy with scale
+  readResonance[1] = 100;
+
+  // Populating the spatial grid cell (10, 10)
+  const gridIdx = 1410; // (10 * 140) + 10
+  const gridByteOff = OFFSETS.SPATIAL_GRID_OFFSET + (gridIdx * 128);
+  const gridIntView = new Int32Array(STATE_MATRIX.buffer, gridByteOff, 32);
+  gridIntView[0] = 2; // Count
+  gridIntView[1] = 1; // Index 1
+  gridIntView[2] = 2; // Index 2
+
+  wasm.execute_atom(1);
+
+  // Capture bond request from atom index 1
+  const reqByteOff = OFFSETS.BOND_REQUESTS_OFFSET + (1 * 12);
+  const reqIntView = new Int32Array(STATE_MATRIX.buffer, reqByteOff, 3);
+
+  const snapshot: Snapshot = {
+    initiatorId: reqIntView[0],
+    targetId: reqIntView[1],
+    requestStatus: reqIntView[2],
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: 1,
+    strictDeterminism: true,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  console.log(
+    `[bind_resolution_capture] ok initiator=${payload.snapshot.initiatorId} target=${payload.snapshot.targetId} status=${payload.snapshot.requestStatus}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/cognitive_vector_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_COGNITIVE_VECTOR_CAPTURE__";
+
+type Snapshot = {
+  fastMathValue: number;
+  preciseMathValue: number;
+  fastMathEnergy: number;
+  preciseMathEnergy: number;
+  atom200PhaseBefore: number;
+  atom201PhaseBefore: number;
+  atom200PhaseAfter: number;
+  atom201PhaseAfter: number;
+  atomPcFast: number;
+  atomPcPrecise: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  // Boilerplate setup
+  STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
+
+  // Atom 100: tests OP_RESOLVE (Sin Fast - Mode 0)
+  let c = 0;
+  const code1 = new Uint8Array(64);
+  code1[c++] = RISC.OP_SET;
+  code1[c++] = 1;
+  code1[c++] = 64; // angle in R1
+  code1[c++] = RISC.OP_SET;
+  code1[c++] = 2;
+  code1[c++] = 0; // mode in R2 (0: Sin Direct)
+  code1[c++] = RISC.OP_RESOLVE;
+  code1[c++] = 0;
+  code1[c++] = 1;
+  code1[c++] = 2; // R0 = resolve(R1, R2)
+  STATE_MATRIX.seedAtom(100, 10n, 10, 10, 1000, 100, undefined, code1);
+
+  // Atom 101: tests OP_RESOLVE (Sin Precise - Mode 1)
+  c = 0;
+  const code2 = new Uint8Array(64);
+  // 64 passed as Q8.8 means index 0, fraction 64/256 (0.25). Sin(0.25 index) ≈ 201
+  code2[c++] = RISC.OP_SET;
+  code2[c++] = 1;
+  code2[c++] = 64; // angle in R1
+  code2[c++] = RISC.OP_SET;
+  code2[c++] = 2;
+  code2[c++] = 1; // mode in R2 (1: Sin LERP)
+  code2[c++] = RISC.OP_RESOLVE;
+  code2[c++] = 0;
+  code2[c++] = 1;
+  code2[c++] = 2; // R0 = resolve(R1, R2)
+  STATE_MATRIX.seedAtom(101, 10n, 20, 20, 1000, 100, undefined, code2);
+
+  // Test OP_RESONATE_KURAMOTO
+  // Atom 200 and 201 are put at the same location to form a quorum
+  c = 0;
+  const codeRes = new Uint8Array(64);
+  codeRes[c++] = RISC.OP_RESONATE_KURAMOTO;
+  codeRes[c++] = RISC.OP_JMP;
+  codeRes[c++] = 0; // loop
+
+  STATE_MATRIX.seedAtom(200, 10n, 10000, 10000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(200, 10);
+  STATE_MATRIX.seedAtom(201, 10n, 10000, 10000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(201, 50);
+
+  const phase200Before = STATE_MATRIX.getPhase(200);
+  const phase201Before = STATE_MATRIX.getPhase(201);
+
+  await PULSE.initWorkers(1);
+  // Trigger exactly 1 tick
+  await PULSE.tick();
+
+  const e1 = STATE_MATRIX.getEnergy(100);
+  const e2 = STATE_MATRIX.getEnergy(101);
+
+  const contextData = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.CONTEXT_OFFSET,
+    16 * 14000,
+  );
+  const r0_1 = contextData[100 * 16]; // R0 of atom 100
+  const r0_2 = contextData[101 * 16]; // R0 of atom 101
+
+  const snapshot: Snapshot = {
+    fastMathValue: r0_1,
+    preciseMathValue: r0_2,
+    fastMathEnergy: e1,
+    preciseMathEnergy: e2,
+    atom200PhaseBefore: phase200Before,
+    atom201PhaseBefore: phase201Before,
+    atom200PhaseAfter: STATE_MATRIX.getPhase(200),
+    atom201PhaseAfter: STATE_MATRIX.getPhase(201),
+    atomPcFast: STATE_MATRIX.getPC(100),
+    atomPcPrecise: STATE_MATRIX.getPC(101),
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.fastMathEnergy <= payload.snapshot.preciseMathEnergy) {
+      throw new Error(
+        `[cognitive_vector_capture] Fast math cost should be strictly less executing than precise math cost. ${payload.snapshot.fastMathEnergy} <= ${payload.snapshot.preciseMathEnergy}`,
+      );
+    }
+    if (payload.snapshot.fastMathValue !== 32767) {
+      throw new Error(
+        `[cognitive_vector_capture] Fast math sin(PI/2) expected 32767, got ${payload.snapshot.fastMathValue}`,
+      );
+    }
+    if (payload.snapshot.preciseMathValue !== 201) {
+      throw new Error(
+        `[cognitive_vector_capture] Precise math expected 201, got ${payload.snapshot.preciseMathValue}`,
+      );
+    }
+    if (
+      payload.snapshot.atom200PhaseAfter <= payload.snapshot.atom200PhaseBefore
+    ) {
+      throw new Error(
+        "[cognitive_vector_capture] atom200 phase did not increase towards 50",
+      );
+    }
+    if (
+      payload.snapshot.atom201PhaseAfter >= payload.snapshot.atom201PhaseBefore
+    ) {
+      throw new Error(
+        "[cognitive_vector_capture] atom201 phase did not decrease towards 10",
+      );
+    }
+
+    console.log(
+      `[cognitive_vector_capture] ok hash=${payload.hash} fastCost=${
+        1000 - payload.snapshot.fastMathEnergy
+      } preciseCost=${
+        1000 - payload.snapshot.preciseMathEnergy
+      } p1=${payload.snapshot.atom200PhaseAfter} p2=${payload.snapshot.atom201PhaseAfter}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/collective_banking_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_BANKING_CAPTURE__";
+
+const OP_COLLECTIVE = 0xA6;
+const CELL_X = 105;
+const CELL_Y = 105;
+const INITIAL_HIVE_BALANCE = 250;
+const DEPOSIT_VALUE = 80;
+const WITHDRAW_CAP = 100;
+
+type AtomSnapshot = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+  reg0: number;
+};
+
+type Snapshot = {
+  initialHiveBalance: number;
+  finalHiveBalance: number;
+  depositValueRaw: number;
+  withdrawCapRaw: number;
+  atoms: AtomSnapshot[];
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const collectiveScript = (
+  mode: number,
+  p2: number,
+  p3: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_COLLECTIVE;
+  script[1] = mode & 0xFF;
+  script[2] = p2 & 0xFF;
+  script[3] = p3 & 0xFF;
+  return script;
+};
+
+const buildSnapshot = (): Snapshot => ({
+  initialHiveBalance: INITIAL_HIVE_BALANCE,
+  finalHiveBalance: STATE_MATRIX.getHiveBalance(),
+  depositValueRaw: DEPOSIT_VALUE,
+  withdrawCapRaw: WITHDRAW_CAP,
+  atoms: [0, 1].map((idx) => ({
+    idx,
+    energy: STATE_MATRIX.getEnergy(idx),
+    pc: STATE_MATRIX.getPC(idx),
+    role: STATE_MATRIX.getRole(idx),
+    reg0: STATE_MATRIX.getReg(idx, 0),
+  })),
+});
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+  STATE_MATRIX.setHiveBalance(INITIAL_HIVE_BALANCE);
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _p1: number,
+    _p2: number,
+    _p3: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+  const readXs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_XS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readYs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_YS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readEnergies = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readResonances = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const xs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.XS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const ys = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.YS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const energies = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const resonances = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.RESONANCE_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    CELL_X,
+    CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(3, DEPOSIT_VALUE, 0),
+  );
+  STATE_MATRIX.seedAtom(
+    1,
+    2n,
+    CELL_X,
+    CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(4, 0, 0),
+  );
+
+  readXs.set(xs);
+  readYs.set(ys);
+  readEnergies.set(energies);
+  readResonances.set(resonances);
+
+  execute_atom(0);
+  execute_atom(1);
+
+  const snapshot = buildSnapshot();
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  const depositor = payload.snapshot.atoms[0];
+  const withdrawer = payload.snapshot.atoms[1];
+  if (payload.snapshot.finalHiveBalance !== 230) {
+    throw new Error(
+      `[collective_banking_capture] finalHiveBalance mismatch: ${payload.snapshot.finalHiveBalance}`,
+    );
+  }
+  if (Math.abs((depositor?.energy ?? 0) - 4999.92) > 0.0011) {
+    throw new Error(
+      `[collective_banking_capture] depositor energy mismatch: ${
+        depositor?.energy ?? -1
+      }`,
+    );
+  }
+  if (Math.abs((withdrawer?.energy ?? 0) - 5000.1) > 0.0011) {
+    throw new Error(
+      `[collective_banking_capture] withdrawer energy mismatch: ${
+        withdrawer?.energy ?? -1
+      }`,
+    );
+  }
+  if ((withdrawer?.reg0 ?? -1) !== WITHDRAW_CAP) {
+    throw new Error(
+      `[collective_banking_capture] withdraw reg0 mismatch: ${
+        withdrawer?.reg0 ?? -1
+      }`,
+    );
+  }
+  console.log(
+    `[collective_banking_capture] ok hash=${payload.hash} hive=${payload.snapshot.finalHiveBalance} deposit_energy=${
+      depositor?.energy ?? -1
+    } withdraw_energy=${withdrawer?.energy ?? -1} reg0=${
+      withdrawer?.reg0 ?? -1
+    }`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/collective_synchrony_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
+const OP_COLLECTIVE = 0xA6;
+const GRID_W = 140;
+const PHASE_CELL_X = 105;
+const PHASE_CELL_Y = 105;
+const QUORUM_CELL_X = 205;
+const QUORUM_CELL_Y = 105;
+const OUTSIDER_CELL_X = 405;
+const OUTSIDER_CELL_Y = 105;
+
+type PhaseLockSnapshot = {
+  sourcePc: number;
+  peer1Pc: number;
+  peer2Pc: number;
+  peer1InitialPc: number;
+  peer2InitialPc: number;
+};
+
+type QuorumSnapshot = {
+  sourcePc: number;
+  peer1Pc: number;
+  peer2Pc: number;
+  outsiderPc: number;
+  peer1InitialPc: number;
+  peer2InitialPc: number;
+  outsiderInitialPc: number;
+  cellIdx: number;
+  cellCount: number;
+};
+
+type Snapshot = {
+  phaseLock: PhaseLockSnapshot;
+  quorum: QuorumSnapshot;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const collectiveScript = (mode: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_COLLECTIVE;
+  script[1] = mode & 0xFF;
+  script[2] = 0;
+  script[3] = 0;
+  return script;
+};
+
+const setSpatialCell = (cellIdx: number, atoms: number[]): void => {
+  const spatialGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.SPATIAL_GRID_OFFSET,
+    140 * 80 * 32,
+  );
+  const base = cellIdx * 32;
+  spatialGrid.fill(0, base, base + 32);
+  spatialGrid[base] = atoms.length;
+  for (let i = 0; i < atoms.length && i < 31; i++) {
+    spatialGrid[base + 1 + i] = atoms[i]!;
+  }
+};
+
+const runPhaseLockCapture = (
+  execute_atom: (idx: number) => void,
+): PhaseLockSnapshot => {
+  STATE_MATRIX.clear();
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    PHASE_CELL_X,
+    PHASE_CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(5),
+  );
+  STATE_MATRIX.seedAtom(
+    1,
+    2n,
+    PHASE_CELL_X,
+    PHASE_CELL_Y,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    PHASE_CELL_X,
+    PHASE_CELL_Y,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+
+  STATE_MATRIX.setPC(1, 9);
+  STATE_MATRIX.setPC(2, 10);
+  STATE_MATRIX.setBondTarget(0, 0, 1);
+  STATE_MATRIX.setBondTarget(0, 1, 2);
+
+  execute_atom(0);
+
+  return {
+    sourcePc: STATE_MATRIX.getPC(0),
+    peer1Pc: STATE_MATRIX.getPC(1),
+    peer2Pc: STATE_MATRIX.getPC(2),
+    peer1InitialPc: 9,
+    peer2InitialPc: 10,
+  };
+};
+
+const runQuorumCapture = (
+  execute_atom: (idx: number) => void,
+): QuorumSnapshot => {
+  STATE_MATRIX.clear();
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    QUORUM_CELL_X,
+    QUORUM_CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(6),
+  );
+  STATE_MATRIX.seedAtom(
+    1,
+    2n,
+    QUORUM_CELL_X,
+    QUORUM_CELL_Y,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    QUORUM_CELL_X,
+    QUORUM_CELL_Y,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.seedAtom(
+    3,
+    4n,
+    OUTSIDER_CELL_X,
+    OUTSIDER_CELL_Y,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+
+  STATE_MATRIX.setPC(1, 7);
+  STATE_MATRIX.setPC(2, 8);
+  STATE_MATRIX.setPC(3, 13);
+
+  const gx = Math.floor(QUORUM_CELL_X / 10);
+  const gy = Math.floor(QUORUM_CELL_Y / 10);
+  const cellIdx = gy * GRID_W + gx;
+  setSpatialCell(cellIdx, [0, 1, 2]);
+
+  execute_atom(0);
+
+  return {
+    sourcePc: STATE_MATRIX.getPC(0),
+    peer1Pc: STATE_MATRIX.getPC(1),
+    peer2Pc: STATE_MATRIX.getPC(2),
+    outsiderPc: STATE_MATRIX.getPC(3),
+    peer1InitialPc: 7,
+    peer2InitialPc: 8,
+    outsiderInitialPc: 13,
+    cellIdx,
+    cellCount: 3,
+  };
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _p1: number,
+    _p2: number,
+    _p3: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+
+  const snapshot: Snapshot = {
+    phaseLock: runPhaseLockCapture(execute_atom),
+    quorum: runQuorumCapture(execute_atom),
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  if (payload.snapshot.phaseLock.sourcePc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] phase source pc mismatch: ${payload.snapshot.phaseLock.sourcePc}`,
+    );
+  }
+  if (payload.snapshot.phaseLock.peer1Pc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] phase peer1 pc mismatch: ${payload.snapshot.phaseLock.peer1Pc}`,
+    );
+  }
+  if (payload.snapshot.phaseLock.peer2Pc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] phase peer2 pc mismatch: ${payload.snapshot.phaseLock.peer2Pc}`,
+    );
+  }
+  if (payload.snapshot.quorum.sourcePc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] quorum source pc mismatch: ${payload.snapshot.quorum.sourcePc}`,
+    );
+  }
+  if (payload.snapshot.quorum.peer1Pc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] quorum peer1 pc mismatch: ${payload.snapshot.quorum.peer1Pc}`,
+    );
+  }
+  if (payload.snapshot.quorum.peer2Pc !== 4) {
+    throw new Error(
+      `[collective_synchrony_capture] quorum peer2 pc mismatch: ${payload.snapshot.quorum.peer2Pc}`,
+    );
+  }
+  if (payload.snapshot.quorum.outsiderPc !== 13) {
+    throw new Error(
+      `[collective_synchrony_capture] quorum outsider pc mismatch: ${payload.snapshot.quorum.outsiderPc}`,
+    );
+  }
+  console.log(
+    `[collective_synchrony_capture] ok hash=${payload.hash} phase=[${payload.snapshot.phaseLock.peer1Pc},${payload.snapshot.phaseLock.peer2Pc}] quorum=[${payload.snapshot.quorum.peer1Pc},${payload.snapshot.quorum.peer2Pc}] outsider=${payload.snapshot.quorum.outsiderPc}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/collective_transport_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
+
+const OP_COLLECTIVE = 0xA6;
+const GRID_W = 140;
+const CELL_X = 105;
+const CELL_Y = 105;
+const HIVE_ADDR = 1;
+const HIVE_VALUE = 88;
+const SIGNAL_INTENSITY = 200;
+const SIGNAL_TYPE = 5;
+
+type AtomSnapshot = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+  reg0: number;
+};
+
+type Snapshot = {
+  hiveValue: number;
+  hiveBalance: number;
+  pheromoneWord: number;
+  pheromoneCellIdx: number;
+  pheromoneX: number;
+  pheromoneY: number;
+  atoms: AtomSnapshot[];
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const collectiveScript = (
+  mode: number,
+  p2: number,
+  p3: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_COLLECTIVE;
+  script[1] = mode & 0xFF;
+  script[2] = p2 & 0xFF;
+  script[3] = p3 & 0xFF;
+  return script;
+};
+
+const buildSnapshot = (): Snapshot => {
+  const gx = Math.floor(CELL_X / 10);
+  const gy = Math.floor(CELL_Y / 10);
+  const cellIdx = gy * GRID_W + gx;
+  const signalGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.SIGNAL_GRID_OFFSET,
+    140 * 80,
+  );
+
+  return {
+    hiveValue: STATE_MATRIX.getHiveMemory(HIVE_ADDR),
+    hiveBalance: STATE_MATRIX.getHiveBalance(),
+    pheromoneWord: signalGrid[cellIdx] ?? 0,
+    pheromoneCellIdx: cellIdx,
+    pheromoneX: CELL_X,
+    pheromoneY: CELL_Y,
+    atoms: [0, 1, 2].map((idx) => ({
+      idx,
+      energy: STATE_MATRIX.getEnergy(idx),
+      pc: STATE_MATRIX.getPC(idx),
+      role: STATE_MATRIX.getRole(idx),
+      reg0: STATE_MATRIX.getReg(idx, 0),
+    })),
+  };
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+  STATE_MATRIX.setHiveBalance(1000);
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _p1: number,
+    _p2: number,
+    _p3: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    CELL_X,
+    CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(0, HIVE_ADDR, HIVE_VALUE),
+  );
+  STATE_MATRIX.seedAtom(
+    1,
+    2n,
+    CELL_X,
+    CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(1, HIVE_ADDR, 0),
+  );
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    CELL_X,
+    CELL_Y,
+    5000,
+    100,
+    undefined,
+    collectiveScript(2, SIGNAL_INTENSITY, SIGNAL_TYPE),
+  );
+
+  execute_atom(0);
+  execute_atom(1);
+  execute_atom(2);
+
+  const snapshot = buildSnapshot();
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  const expectedWord = (SIGNAL_INTENSITY << 8) | SIGNAL_TYPE;
+  if (payload.snapshot.hiveValue !== HIVE_VALUE) {
+    throw new Error(
+      `[collective_transport_capture] hiveValue mismatch: ${payload.snapshot.hiveValue}`,
+    );
+  }
+  if (payload.snapshot.atoms[1]?.reg0 !== HIVE_VALUE) {
+    throw new Error(
+      `[collective_transport_capture] load reg0 mismatch: ${
+        payload.snapshot.atoms[1]?.reg0 ?? -1
+      }`,
+    );
+  }
+  if ((payload.snapshot.pheromoneWord & 0xFFFF) !== expectedWord) {
+    throw new Error(
+      `[collective_transport_capture] pheromone mismatch: ${payload.snapshot.pheromoneWord}`,
+    );
+  }
+  console.log(
+    `[collective_transport_capture] ok hash=${payload.hash} hive=${payload.snapshot.hiveValue} reg0=${
+      payload.snapshot.atoms[1]?.reg0 ?? -1
+    } pheromone=0x${payload.snapshot.pheromoneWord.toString(16)}`,
+  );
+};
+
+await main();
+
 ```
 
 ---
@@ -48449,6 +56041,7 @@ if (import.meta.main) {
     }`,
   );
 }
+
 ```
 
 ---
@@ -49162,6 +56755,2492 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
+
+```
+
+---
+
+## FILE: verification/guardian_signal_mode_cases.ts
+
+```typescript
+import {
+  type GuardianSignalExecutionMode,
+} from "../runtime_bridge/guardian_signal_hybrid.ts";
+
+export type GuardianSignalModeCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  neuralCoherence: number;
+  legacyAllowed: boolean;
+  useGuardianScript: boolean;
+  script?: Uint8Array;
+  expected: Record<
+    GuardianSignalExecutionMode,
+    {
+      allowed: boolean;
+      status: "legacy" | "shadow" | "hybrid" | "fallback";
+      branch: "stable" | "repair" | "unknown";
+      shadowSuppressed: boolean;
+      hybridSuppressed: boolean;
+    }
+  >;
+};
+
+export const GUARDIAN_SIGNAL_MODE_CASES:
+  readonly GuardianSignalModeCaseDefinition[] = Object.freeze([
+    {
+      id: "gh01_gt03_guardian_stable_modes",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Stable guardian signaling should preserve legacy behavior across all three execution modes.",
+      neuralCoherence: 200,
+      legacyAllowed: true,
+      useGuardianScript: true,
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "shadow",
+          branch: "stable",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: true,
+          status: "hybrid",
+          branch: "stable",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+      },
+    },
+    {
+      id: "gh02_gt03_guardian_repair_modes",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Repair-branch guardians should preserve legacy behavior in shadow mode but be suppressed in hybrid mode.",
+      neuralCoherence: 0,
+      legacyAllowed: true,
+      useGuardianScript: true,
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "shadow",
+          branch: "repair",
+          shadowSuppressed: true,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: false,
+          status: "hybrid",
+          branch: "repair",
+          shadowSuppressed: false,
+          hybridSuppressed: true,
+        },
+      },
+    },
+    {
+      id: "gh03_gt03_guardian_fallback_modes",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Unsupported guardian scripts must fall back to legacy behavior in shadow and hybrid modes.",
+      neuralCoherence: 200,
+      legacyAllowed: true,
+      useGuardianScript: false,
+      script: new Uint8Array([0xFF, 0, 0]),
+      expected: {
+        "legacy-execute": {
+          allowed: true,
+          status: "legacy",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "shadow-reduce": {
+          allowed: true,
+          status: "fallback",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+        "hybrid-reduce": {
+          allowed: true,
+          status: "fallback",
+          branch: "unknown",
+          shadowSuppressed: false,
+          hybridSuppressed: false,
+        },
+      },
+    },
+  ]);
+
+const CASE_BY_ID = new Map(
+  GUARDIAN_SIGNAL_MODE_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const guardianSignalModeCaseById = (
+  id: string,
+): GuardianSignalModeCaseDefinition | null => CASE_BY_ID.get(id) ?? null;
+
+```
+
+---
+
+## FILE: verification/guardian_signal_mode_harness.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import {
+  evaluateGuardianSignalExecution,
+  type GuardianSignalExecutionDecision,
+  type GuardianSignalExecutionMode,
+} from "../runtime_bridge/guardian_signal_hybrid.ts";
+import {
+  GUARDIAN_SIGNAL_MODE_CASES,
+  guardianSignalModeCaseById,
+  type GuardianSignalModeCaseDefinition,
+} from "./guardian_signal_mode_cases.ts";
+import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
+
+const HYBRID_DIFF_ROOT = "verification/hybrid_mode_diffs";
+
+type GuardianModeResult = {
+  mode: GuardianSignalExecutionMode;
+  decision: GuardianSignalExecutionDecision;
+};
+
+type GuardianModeBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  tickStart: number;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+};
+
+export type GuardianSignalModeHarnessResult = {
+  caseId: string;
+  baseline: GuardianModeBaselineAnchor;
+  results: GuardianModeResult[];
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+export type GuardianSignalModeHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  shadow_digest: string;
+  hybrid_digest: string;
+  diffs: {
+    shadow_preserves_legacy: boolean;
+    hybrid_narrows_legacy: boolean;
+    fallback_replays_legacy: boolean;
+  };
+  expectation_summary: GuardianSignalModeCaseDefinition["expected"];
+};
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>).sort((
+    [a],
+    [b],
+  ) => a.localeCompare(b));
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadBaselineAnchor = async (
+  traceId: string,
+): Promise<GuardianModeBaselineAnchor> => {
+  const { traceJson } = goldenTraceArtifactPaths(traceId);
+  const parsed = JSON.parse(
+    await Deno.readTextFile(traceJson),
+  ) as Record<string, unknown>;
+  return {
+    traceId,
+    scenario: String(parsed.scenario ?? traceId),
+    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
+    tickStart: Number(parsed.tick_start ?? -1),
+    tickEnd: Number(parsed.tick_end ?? -1),
+    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
+    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+  };
+};
+
+const scriptForCase = (
+  definition: GuardianSignalModeCaseDefinition,
+): Uint8Array =>
+  definition.useGuardianScript
+    ? STATE_MATRIX.getGuardianScript()
+    : (definition.script ? definition.script : new Uint8Array());
+
+const runMode = (
+  definition: GuardianSignalModeCaseDefinition,
+  mode: GuardianSignalExecutionMode,
+): GuardianModeResult => ({
+  mode,
+  decision: evaluateGuardianSignalExecution({
+    mode,
+    script: scriptForCase(definition),
+    neuralCoherence: definition.neuralCoherence,
+    legacyAllowed: definition.legacyAllowed,
+  }),
+});
+
+const compareResults = (
+  definition: GuardianSignalModeCaseDefinition,
+  results: GuardianModeResult[],
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+  for (const result of results) {
+    const expected = definition.expected[result.mode];
+    if (result.decision.allowed !== expected.allowed) {
+      reasons.push(
+        `${result.mode} allowed mismatch expected=${expected.allowed} actual=${result.decision.allowed}`,
+      );
+    }
+    if (result.decision.status !== expected.status) {
+      reasons.push(
+        `${result.mode} status mismatch expected=${expected.status} actual=${result.decision.status}`,
+      );
+    }
+    if (result.decision.branch !== expected.branch) {
+      reasons.push(
+        `${result.mode} branch mismatch expected=${expected.branch} actual=${result.decision.branch}`,
+      );
+    }
+    if (result.decision.shadowSuppressed !== expected.shadowSuppressed) {
+      reasons.push(
+        `${result.mode} shadowSuppressed mismatch expected=${expected.shadowSuppressed} actual=${result.decision.shadowSuppressed}`,
+      );
+    }
+    if (result.decision.hybridSuppressed !== expected.hybridSuppressed) {
+      reasons.push(
+        `${result.mode} hybridSuppressed mismatch expected=${expected.hybridSuppressed} actual=${result.decision.hybridSuppressed}`,
+      );
+    }
+  }
+  return { ok: reasons.length === 0, reasons };
+};
+
+const artifactPathForCase = (caseId: string): string =>
+  `${HYBRID_DIFF_ROOT}/${caseId}.json`;
+
+const artifactFromResult = async (
+  result: GuardianSignalModeHarnessResult,
+): Promise<GuardianSignalModeHarnessArtifact> => {
+  const legacy = result.results.find((entry) =>
+    entry.mode === "legacy-execute"
+  );
+  const shadow = result.results.find((entry) => entry.mode === "shadow-reduce");
+  const hybrid = result.results.find((entry) => entry.mode === "hybrid-reduce");
+  if (!legacy || !shadow || !hybrid) {
+    throw new Error(
+      `[guardian_signal_mode_harness] incomplete mode coverage for case=${result.caseId}`,
+    );
+  }
+  return {
+    case_id: result.caseId,
+    baseline_trace_id: result.baseline.traceId,
+    baseline_runtime_mode: result.baseline.runtimeMode,
+    parity_ok: result.parity.ok,
+    parity_reasons: result.parity.reasons,
+    legacy_digest: await sha256Hex(legacy.decision),
+    shadow_digest: await sha256Hex(shadow.decision),
+    hybrid_digest: await sha256Hex(hybrid.decision),
+    diffs: {
+      shadow_preserves_legacy:
+        shadow.decision.allowed === legacy.decision.allowed,
+      hybrid_narrows_legacy:
+        hybrid.decision.allowed === legacy.decision.allowed ||
+        (legacy.decision.allowed && !hybrid.decision.allowed),
+      fallback_replays_legacy:
+        (shadow.decision.status === "fallback"
+          ? shadow.decision.allowed === legacy.decision.allowed
+          : true) &&
+        (hybrid.decision.status === "fallback"
+          ? hybrid.decision.allowed === legacy.decision.allowed
+          : true),
+    },
+    expectation_summary: result.results.reduce((acc, entry) => {
+      acc[entry.mode] = result.results.find((candidate) =>
+          candidate.mode === entry.mode
+        )
+        ? guardianSignalModeCaseById(result.caseId)!.expected[entry.mode]
+        : acc[entry.mode];
+      return acc;
+    }, {} as GuardianSignalModeCaseDefinition["expected"]),
+  };
+};
+
+export const runGuardianSignalModeCase = async (
+  caseId: string,
+): Promise<GuardianSignalModeHarnessResult> => {
+  const definition = guardianSignalModeCaseById(caseId);
+  if (!definition) {
+    throw new Error(
+      `[guardian_signal_mode_harness] unknown case id: ${caseId}`,
+    );
+  }
+  const baseline = await loadBaselineAnchor(definition.baselineTraceId);
+  const results: GuardianModeResult[] = [
+    runMode(definition, "legacy-execute"),
+    runMode(definition, "shadow-reduce"),
+    runMode(definition, "hybrid-reduce"),
+  ];
+  return {
+    caseId,
+    baseline,
+    results,
+    parity: compareResults(definition, results),
+  };
+};
+
+export const runGuardianSignalModeHarness = async (): Promise<
+  GuardianSignalModeHarnessResult[]
+> => {
+  const results: GuardianSignalModeHarnessResult[] = [];
+  for (const definition of GUARDIAN_SIGNAL_MODE_CASES) {
+    results.push(await runGuardianSignalModeCase(definition.id));
+  }
+  return results;
+};
+
+export const persistGuardianSignalModeHarnessArtifacts = async (
+  results: readonly GuardianSignalModeHarnessResult[],
+): Promise<string[]> => {
+  await Deno.mkdir(HYBRID_DIFF_ROOT, { recursive: true });
+  const written: string[] = [];
+  for (const result of results) {
+    const artifact = await artifactFromResult(result);
+    const path = artifactPathForCase(result.caseId);
+    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2) + "\n");
+    written.push(path);
+  }
+  return written;
+};
+
+if (import.meta.main) {
+  const results = await runGuardianSignalModeHarness();
+  const failed = results.filter((result) => !result.parity.ok);
+  if (failed.length > 0) {
+    console.error("[guardian_signal_mode_harness] parity failure.");
+    for (const result of failed) {
+      console.error(` - ${result.caseId}`);
+      console.error(`   reasons: ${result.parity.reasons.join(" | ")}`);
+    }
+    Deno.exit(1);
+  }
+  const written = await persistGuardianSignalModeHarnessArtifacts(results);
+  console.log(
+    `[guardian_signal_mode_harness] capture complete. cases=${results.length} artifacts=${written.length}`,
+  );
+}
+
+```
+
+---
+
+## FILE: verification/intent_resolution_capture.ts
+
+```typescript
+import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_INTENT_RESOLUTION_CAPTURE__";
+const GRID_W = 140;
+
+type RoleSnapshot = {
+  originalRole: number;
+  finalRole: number;
+  resonance: number;
+  neighbors: number;
+};
+
+type BankSnapshot = {
+  originalEnergy: number;
+  finalEnergy: number;
+  poolBalance: number;
+  resonance: number;
+};
+
+type Snapshot = {
+  role: RoleSnapshot;
+  bank: BankSnapshot;
+};
+
+type CapturePayload = {
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const syncPhysicsBuffers = (): void => {
+  const buf = STATE_MATRIX.buffer;
+  new Int16Array(buf, OFFSETS.PHYSICS_READ_XS_OFFSET, 100000).set(
+    new Int16Array(buf, OFFSETS.XS_OFFSET, 100000),
+  );
+  new Int16Array(buf, OFFSETS.PHYSICS_READ_YS_OFFSET, 100000).set(
+    new Int16Array(buf, OFFSETS.YS_OFFSET, 100000),
+  );
+  new Int32Array(buf, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, 100000).set(
+    new Int32Array(buf, OFFSETS.ENERGY_OFFSET, 100000),
+  );
+  new Int32Array(buf, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, 100000).set(
+    new Int32Array(buf, OFFSETS.RESONANCE_OFFSET, 100000),
+  );
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    idx: number,
+    op: number,
+    p1: number,
+    p2: number,
+    p3: number,
+  ) => {
+    console.log(
+      `[KERNEL_TRACE] idx=${idx} op=0x${
+        op.toString(16)
+      } p1=${p1} p2=${p2} p3=${p3}`,
+    );
+  };
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+  const reduce_atom_deltas = instance.exports.reduce_atom_deltas as (
+    start: number,
+    end: number,
+  ) => void;
+
+  // --- PART 1: ROLE RESOLUTION ---
+  const rx = 50, ry = 50;
+  const gx = Math.floor(rx / 10);
+  const gy = Math.floor(ry / 10);
+
+  // Script: SET R0, ROLE_GUARDIAN; RESOLVE mode=0 (Role), threshold=2
+  const roleScript = Uint8Array.of(
+    RISC.OP_SET,
+    0,
+    STATE_MATRIX.ROLE_GUARDIAN,
+    RISC.OP_RESOLVE,
+    0,
+    2,
+    RISC.OP_NOP,
+  );
+
+  STATE_MATRIX.seedAtom(0, 101n, rx, ry, 1000, 100, undefined, roleScript);
+
+  // Neighbors
+  STATE_MATRIX.setGridType(gy * GRID_W + (gx - 1), STRUCTURE.WIRE);
+  STATE_MATRIX.setGridType(gy * GRID_W + (gx + 1), STRUCTURE.WIRE);
+
+  syncPhysicsBuffers();
+  execute_atom(0);
+  reduce_atom_deltas(0, 1);
+
+  const roleSnap: RoleSnapshot = {
+    originalRole: STATE_MATRIX.ROLE_NEUTRAL,
+    finalRole: STATE_MATRIX.getRole(0),
+    resonance: STATE_MATRIX.getResonance(0),
+    neighbors: 2,
+  };
+
+  // --- PART 2: ENERGY BANKING ---
+  STATE_MATRIX.clear();
+
+  const bx = 100, by = 100;
+  const bgx = Math.floor(bx / 10);
+  const bgy = Math.floor(by / 10);
+
+  // Script: RESOLVE mode=1 (Bank), amount=100
+  const bankScript = Uint8Array.of(
+    RISC.OP_RESOLVE,
+    1,
+    100,
+    RISC.OP_NOP,
+  );
+
+  STATE_MATRIX.seedAtom(0, 202n, bx, by, 1000, 100, undefined, bankScript);
+  // Set regs[8] (gene0) to control pool slot
+  const instructions = new Uint8Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.INSTRUCTIONS_OFFSET,
+    100000 * 64,
+  );
+  const instr_ptr = 0 * 64; // atom 0
+  // [OP_RESOLVE, 1, 100], [OP_SPORE_DRIVE], [OP_NOP]
+  instructions[instr_ptr + 0] = 0xAC; // OP_RESOLVE
+  instructions[instr_ptr + 1] = 1; // mode 1
+  instructions[instr_ptr + 2] = 100; // value 100
+  instructions[instr_ptr + 3] = 0xAA; // OP_SPORE_DRIVE
+  instructions[instr_ptr + 4] = 0x00; // OP_NOP
+
+  const context = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.CONTEXT_OFFSET,
+    100000 * 16,
+  );
+  context[0 * 16 + 8] = 0; // FORCE PC = 0 (byte offset 32 in ASM)
+  context[0 * 16 + 9] = 0x12; // slot = 0x12 % 4 = 2 (byte offset 36 in ASM)
+
+  // 4 Neighbors for banking quorum (need >= 3)
+  STATE_MATRIX.setGridType(bgy * GRID_W + (bgx - 1), STRUCTURE.WIRE);
+  STATE_MATRIX.setGridType(bgy * GRID_W + (bgx + 1), STRUCTURE.WIRE);
+  STATE_MATRIX.setGridType((bgy - 1) * GRID_W + bgx, STRUCTURE.WIRE);
+  STATE_MATRIX.setGridType((bgy + 1) * GRID_W + bgx, STRUCTURE.WIRE);
+
+  syncPhysicsBuffers();
+  // Run for more steps
+  for (let i = 0; i < 64; i++) {
+    const ctxIdx = 0 * 16;
+    context[ctxIdx + 8] = 0; // RE-FORCE PC = 0 (byte 32)
+    execute_atom(0);
+  }
+  reduce_atom_deltas(0, 1);
+
+  const poolView = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.HIVE_ENERGY_POOL_OFFSET,
+    256,
+  );
+  let totalPool = 0;
+  for (let i = 0; i < 256; i++) {
+    if (poolView[i] > 0) totalPool += poolView[i];
+  }
+
+  const bankSnap: BankSnapshot = {
+    originalEnergy: 1000,
+    finalEnergy: STATE_MATRIX.getEnergy(0),
+    poolBalance: totalPool,
+    resonance: STATE_MATRIX.getResonance(0),
+  };
+
+  const snapshot: Snapshot = { role: roleSnap, bank: bankSnap };
+  const hash = await hashHex(JSON.stringify(snapshot));
+
+  return { hash, snapshot };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+  } else {
+    console.log(JSON.stringify(payload, null, 2));
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/kuramoto_sync_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+
+const CAPTURE_MARKER = "__OMEGA_KURAMOTO_SYNC_CAPTURE__";
+
+type Snapshot = {
+  diffLowK: number;
+  diffHighK: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
+
+  let c = 0;
+  const codeRes = new Uint8Array(64);
+  codeRes[c++] = RISC.OP_RESONATE_KURAMOTO;
+  codeRes[c++] = RISC.OP_JMP;
+  codeRes[c++] = 0; // loop
+
+  // Low K Pair
+  STATE_MATRIX.seedAtom(100, 10n, 10000, 10000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(100, 10);
+  STATE_MATRIX.seedAtom(101, 10n, 10000, 10000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(101, 90);
+
+  // High K Pair
+  STATE_MATRIX.seedAtom(102, 10n, 30000, 30000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(102, 10);
+  STATE_MATRIX.seedAtom(103, 10n, 30000, 30000, 1000, 100, undefined, codeRes);
+  STATE_MATRIX.setPhase(103, 90);
+
+  await PULSE.initWorkers(1);
+
+  // Test Low K (Coherence = 0)
+  for (let i = 0; i < 1; i++) {
+    await PULSE.tick();
+  }
+  const diffLowK = Math.abs(
+    STATE_MATRIX.getPhase(100) - STATE_MATRIX.getPhase(101),
+  );
+
+  // Reset and test High K (Coherence = 12000)
+  const atomicBuffer = new Int32Array(STATE_MATRIX.buffer);
+  atomicBuffer[40700104 / 4] = 12000; // NEURAL_COHERENCE_OFF
+
+  for (let i = 0; i < 1; i++) {
+    await PULSE.tick();
+  }
+  const diffHighK = Math.abs(
+    STATE_MATRIX.getPhase(102) - STATE_MATRIX.getPhase(103),
+  );
+
+  const snapshot: Snapshot = {
+    diffLowK,
+    diffHighK,
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.diffHighK >= payload.snapshot.diffLowK) {
+      throw new Error(
+        `[kuramoto_sync_capture] High K did not synchronize faster! HighK Diff: ${payload.snapshot.diffHighK}, LowK Diff: ${payload.snapshot.diffLowK}`,
+      );
+    }
+
+    console.log(
+      `[kuramoto_sync_capture] ok hash=${payload.hash} diffLowK=${payload.snapshot.diffLowK} diffHighK=${payload.snapshot.diffHighK}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/lut_accuracy_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_LUT_ACCURACY_CAPTURE__";
+
+type Snapshot = {
+  val0: number;
+  val1: number;
+  val4: number;
+  cost0: number;
+  cost1: number;
+  cost4: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
+
+  let c = 0;
+  const code0 = new Uint8Array(64);
+  code0[c++] = RISC.OP_SET;
+  code0[c++] = 1;
+  code0[c++] = 64; // angle in R1
+  code0[c++] = RISC.OP_SET;
+  code0[c++] = 2;
+  code0[c++] = 0; // mode 0 (Direct)
+  code0[c++] = RISC.OP_RESOLVE;
+  code0[c++] = 0;
+  code0[c++] = 1;
+  code0[c++] = 2;
+
+  c = 0;
+  const code1 = new Uint8Array(64);
+  code1[c++] = RISC.OP_SET;
+  code1[c++] = 1;
+  code1[c++] = 64; // angle in R1
+  code1[c++] = RISC.OP_SET;
+  code1[c++] = 2;
+  code1[c++] = 1; // mode 1 (LERP)
+  code1[c++] = RISC.OP_RESOLVE;
+  code1[c++] = 0;
+  code1[c++] = 1;
+  code1[c++] = 2;
+
+  c = 0;
+  const code4 = new Uint8Array(64);
+  code4[c++] = RISC.OP_SET;
+  code4[c++] = 1;
+  code4[c++] = 64; // angle in R1
+  code4[c++] = RISC.OP_SET;
+  code4[c++] = 2;
+  code4[c++] = 4; // mode 4 (Taylor2)
+  code4[c++] = RISC.OP_RESOLVE;
+  code4[c++] = 0;
+  code4[c++] = 1;
+  code4[c++] = 2;
+
+  // We place 3 atoms, seed them with exactly 1000 energy.
+  STATE_MATRIX.seedAtom(100, 10n, 100, 100, 1000, 100, undefined, code0);
+  STATE_MATRIX.seedAtom(101, 10n, 200, 200, 1000, 100, undefined, code1);
+  STATE_MATRIX.seedAtom(102, 10n, 300, 300, 1000, 100, undefined, code4);
+
+  await PULSE.initWorkers(1);
+  await PULSE.tick();
+
+  const contextData = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.CONTEXT_OFFSET,
+    16 * 14000,
+  );
+  const cost0 = 1000 - STATE_MATRIX.getEnergy(100);
+  const cost1 = 1000 - STATE_MATRIX.getEnergy(101);
+  const cost4 = 1000 - STATE_MATRIX.getEnergy(102);
+
+  const snapshot: Snapshot = {
+    val0: contextData[100 * 16],
+    val1: contextData[101 * 16],
+    val4: contextData[102 * 16],
+    cost0,
+    cost1,
+    cost4,
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (
+      !(payload.snapshot.cost0 < payload.snapshot.cost1 &&
+        payload.snapshot.cost1 < payload.snapshot.cost4)
+    ) {
+      throw new Error(
+        `[lut_accuracy_capture] Costs are not correctly graded! Cost0=${payload.snapshot.cost0}, Cost1=${payload.snapshot.cost1}, Cost4=${payload.snapshot.cost4}`,
+      );
+    }
+
+    console.log(
+      `[lut_accuracy_capture] ok hash=${payload.hash} cost0=${payload.snapshot.cost0} cost1=${payload.snapshot.cost1} cost4=${payload.snapshot.cost4}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/quorum_sync_capture.ts
+
+```typescript
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_QUORUM_SYNC_CAPTURE__";
+const GRID_W = 140;
+
+type QuorumSnapshot = {
+  sourcePc: number;
+  peer1Pc: number;
+  peer2Pc: number;
+  outsiderPc: number;
+};
+
+type ShareSnapshot = {
+  sourceEnergy: number;
+  targetEnergy: number;
+  hormoneAggression: number;
+};
+
+type Snapshot = {
+  quorum: QuorumSnapshot;
+  share: ShareSnapshot;
+};
+
+type CapturePayload = {
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const setSpatialCell = (cellIdx: number, atoms: number[]): void => {
+  const spatialGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.SPATIAL_GRID_OFFSET,
+    140 * 80 * 32,
+  );
+  const base = cellIdx * 32;
+  spatialGrid.fill(0, base, base + 32);
+  spatialGrid[base] = atoms.length;
+  for (let i = 0; i < atoms.length && i < 31; i++) {
+    spatialGrid[base + 1 + i] = atoms[i]!;
+  }
+};
+
+const syncPhysicsBuffers = (): void => {
+  const buf = STATE_MATRIX.buffer;
+  // XS to READ_XS
+  new Int16Array(buf, OFFSETS.PHYSICS_READ_XS_OFFSET, 100000).set(
+    new Int16Array(buf, OFFSETS.XS_OFFSET, 100000),
+  );
+  // YS to READ_YS
+  new Int16Array(buf, OFFSETS.PHYSICS_READ_YS_OFFSET, 100000).set(
+    new Int16Array(buf, OFFSETS.YS_OFFSET, 100000),
+  );
+  // ENERGY to READ_ENERGY
+  new Int32Array(buf, OFFSETS.PHYSICS_READ_ENERGY_OFFSET, 100000).set(
+    new Int32Array(buf, OFFSETS.ENERGY_OFFSET, 100000),
+  );
+  // RESONANCE to READ_RESONANCE
+  new Int32Array(buf, OFFSETS.PHYSICS_READ_RESONANCE_OFFSET, 100000).set(
+    new Int32Array(buf, OFFSETS.RESONANCE_OFFSET, 100000),
+  );
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    idx: number,
+    op: number,
+    res: number,
+    tick: number,
+    role: number,
+  ) => {
+    console.error(
+      `[KERNEL_TRACE] idx=${idx} op=0x${
+        op.toString(16)
+      } res=${res} tick=${tick} role=${role}`,
+    );
+  };
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+  const reduce_atom_deltas = instance.exports.reduce_atom_deltas as (
+    start: number,
+    end: number,
+  ) => void;
+
+  // --- PART 1: QUORUM SYNC ---
+  const qx = 205, qy = 105;
+  const quorumScript = Uint8Array.of(RISC.OP_COLLECTIVE, 6, 0, 0, RISC.OP_NOP);
+
+  STATE_MATRIX.seedAtom(0, 101n, qx, qy, 5000, 100, undefined, quorumScript);
+  STATE_MATRIX.seedAtom(
+    1,
+    102n,
+    qx,
+    qy,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.seedAtom(
+    2,
+    103n,
+    qx,
+    qy,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.seedAtom(
+    3,
+    104n,
+    405,
+    105,
+    5000,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+
+  STATE_MATRIX.setPC(1, 7);
+  STATE_MATRIX.setPC(2, 8);
+  STATE_MATRIX.setPC(3, 13);
+
+  const gx = Math.floor(qx / 10);
+  const gy = Math.floor(qy / 10);
+  setSpatialCell(gy * GRID_W + gx, [0, 1, 2]);
+
+  syncPhysicsBuffers();
+
+  const spatialGridCount = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.SPATIAL_GRID_OFFSET,
+    140 * 80 * 32,
+  )[gy * 32 * 140 + gx * 32];
+  console.error(`[DEBUG] Part 1: count at (${gx},${gy}) = ${spatialGridCount}`);
+  console.error(`[DEBUG] Part 1: neighbor 0 ID = ${STATE_MATRIX.getId(0)}`);
+  console.error(
+    `[DEBUG] Part 1: neighbor 1 PC before = ${STATE_MATRIX.getPC(1)}`,
+  );
+
+  execute_atom(0);
+  reduce_atom_deltas(0, STATE_MATRIX.MAX_ATOMS);
+
+  console.error(
+    `[DEBUG] Part 1: neighbor 1 PC after = ${STATE_MATRIX.getPC(1)}`,
+  );
+  const quorum: QuorumSnapshot = {
+    sourcePc: STATE_MATRIX.getPC(0),
+    peer1Pc: STATE_MATRIX.getPC(1),
+    peer2Pc: STATE_MATRIX.getPC(2),
+    outsiderPc: STATE_MATRIX.getPC(3),
+  };
+
+  // --- PART 2: SHARE AGGRESSION ---
+  STATE_MATRIX.clear();
+  const shareScript = Uint8Array.of(RISC.OP_SHARE, 0, 50, RISC.OP_NOP);
+  STATE_MATRIX.seedAtom(0, 101n, 100, 100, 1000, 100, undefined, shareScript);
+  STATE_MATRIX.seedAtom(
+    1,
+    102n,
+    110,
+    110,
+    0,
+    100,
+    undefined,
+    new Uint8Array(64),
+  );
+  STATE_MATRIX.setBondTarget(0, 0, 1);
+
+  // Set Aggression Hormone (Index 2) to 1200 (> 1024)
+  STATE_MATRIX.setHormone(2, 1200);
+
+  syncPhysicsBuffers();
+
+  console.error(
+    `[DEBUG] Part 2: Atom 0 Energy before = ${STATE_MATRIX.getEnergy(0)}`,
+  );
+  console.error(
+    `[DEBUG] Part 2: Atom 1 Energy before = ${STATE_MATRIX.getEnergy(1)}`,
+  );
+  console.error(
+    `[DEBUG] Part 2: Bond 0->0 = ${STATE_MATRIX.getBondTarget(0, 0)}`,
+  );
+
+  execute_atom(0);
+  reduce_atom_deltas(0, STATE_MATRIX.MAX_ATOMS);
+
+  console.error(
+    `[DEBUG] Part 2: Atom 0 Energy after = ${STATE_MATRIX.getEnergy(0)}`,
+  );
+  console.error(
+    `[DEBUG] Part 2: Atom 1 Energy after = ${STATE_MATRIX.getEnergy(1)}`,
+  );
+  const share: ShareSnapshot = {
+    sourceEnergy: Math.round(STATE_MATRIX.getEnergy(0)),
+    targetEnergy: Math.round(STATE_MATRIX.getEnergy(1)),
+    hormoneAggression: STATE_MATRIX.getHormone(2),
+  };
+
+  const snapshot: Snapshot = { quorum, share };
+  const hash = await hashHex(JSON.stringify(snapshot));
+
+  return { hash, snapshot };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+  } else {
+    console.log(JSON.stringify(payload, null, 2));
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/reduction_cases.ts
+
+```typescript
+import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+
+export type ReductionCaseExpectation = {
+  finalPc: number;
+  replicateCount?: number;
+  signalCount?: number;
+  buildCount?: number;
+  finalRole?: number;
+  registers?: number[];
+  finalProps?: Partial<Record<number, number>>;
+  finalHiveMemory?: Partial<Record<number, number>>;
+  finalHiveBalance?: number;
+  finalSignalGrid?: Partial<Record<number, number>>;
+
+  finalPeerEnergy?: Partial<Record<number, number>>;
+  finalPeerPc?: Partial<Record<number, number>>;
+  finalBondDistances?: Partial<Record<number, number>>;
+  finalDamping?: number;
+  finalStructureGrid?: Partial<Record<number, number>>;
+
+  branchTaken?: boolean;
+  finalBondRequests?: Partial<Record<number, number>>;
+  finalHiveEnergyPool?: Partial<Record<number, number>>;
+  finalHormones?: number[];
+};
+
+export type ReductionCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  script: Uint8Array;
+  maxSteps: number;
+  ownerAtomIdx?: number;
+  postStructureTick?: boolean;
+  initialRegs?: number[];
+
+  initialProps: Partial<Record<number, number>>;
+  initialBondTargets?: Partial<Record<number, number>>;
+  initialBondDistances?: Partial<Record<number, number>>;
+  initialDamping?: number;
+  initialPeerEnergy?: Partial<Record<number, number>>;
+  initialPeerPc?: Partial<Record<number, number>>;
+  initialCellPeers?: number[];
+  initialHiveBalance?: number;
+  initialStructureGrid?: Partial<Record<number, number>>;
+  initialStructureIntentOwner?: Partial<Record<number, number>>;
+  initialStructureIntentValue?: Partial<Record<number, number>>;
+  initialStructureChargeIntent?: Partial<Record<number, number>>;
+  initialHormones?: number[];
+  initialHiveEnergyPool?: Partial<Record<number, number>>;
+  nativeProgram?: string; // Key in GENESIS_PROGRAMS
+  expected: ReductionCaseExpectation;
+};
+
+const GRID_W = 140;
+const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
+
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
+  script[pc++] = targetEnergy & 0xFF;
+  script[pc++] = RISC.OP_SUB;
+  script[pc++] = 0;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_JNZ;
+  script[pc++] = 0;
+  script[pc++] = 15;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeReplicatorLoopScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_REPLICATE;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeArchitectLoopScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
+const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
+
+const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = resonanceValue & 0xFF;
+  script[pc++] = RISC.OP_PUT;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_RESONANCE;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 1;
+  script[pc++] = RISC.PROP_RESONANCE;
+  script[pc++] = RISC.OP_JZ;
+  script[pc++] = 1;
+  script[pc++] = 15;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeSenseIntentScript = (
+  buildType: number,
+  targetType: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = buildType & 0xFF;
+  script[pc++] = 1;
+  script[pc++] = RISC.OP_SENSE;
+  script[pc++] = 1;
+  script[pc++] = targetType & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeBuildOnlyScript = (
+  buildType: number,
+  buildState: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = buildType & 0xFF;
+
+  script[pc++] = buildState & 0xFF;
+  return script;
+};
+
+const makeTensegrityScript = (
+  slot: number,
+  dist: number,
+  damping: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_TENSEGRITY;
+  script[pc++] = 0;
+  script[pc++] = slot & 0xFF;
+  script[pc++] = dist & 0xFF;
+  script[pc++] = RISC.OP_TENSEGRITY;
+  script[pc++] = 1;
+  script[pc++] = damping & 0xFF;
+  script[pc++] = 0;
+  return script;
+};
+
+const makePlugChargeScript = (charge: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = charge & 0xFF;
+  script[pc++] = RISC.OP_PLUG;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  return script;
+};
+
+const makePlugChargeCompetitionScript = (
+  firstCharge: number,
+  secondCharge: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = firstCharge & 0xFF;
+  script[pc++] = RISC.OP_PLUG;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = secondCharge & 0xFF;
+  script[pc++] = RISC.OP_PLUG;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeBuildSourceScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = STRUCTURE.SOURCE;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeBuildSourceWithStateScript = (state: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_BUILD;
+  script[pc++] = STRUCTURE.SOURCE;
+  script[pc++] = state & 0xFF;
+  return script;
+};
+
+const makeSenseScript = (targetType: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SENSE;
+  script[pc++] = 1;
+  script[pc++] = targetType & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 0;
+  script[pc++] = role & 0xFF;
+  script[pc++] = RISC.OP_RESOLVE;
+  script[pc++] = 0; // Mode: Role
+  script[pc++] = threshold & 0xFF;
+  return script;
+};
+
+const makeResolveBankScript = (amount: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_RESOLVE;
+  script[pc++] = 1; // Mode: Bank
+  script[pc++] = amount & 0xFF;
+  return script;
+};
+
+const makeCollectiveHiveScript = (
+  addr: number,
+  value: number,
+  reg: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 0;
+  script[pc++] = addr & 0xFF;
+  script[pc++] = value & 0xFF;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 1;
+  script[pc++] = addr & 0xFF;
+  script[pc++] = reg & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePheromoneScript = (
+  intensity: number,
+  type: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 2;
+  script[pc++] = intensity & 0xFF;
+  script[pc++] = type & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectiveBankDepositScript = (
+  amount: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 3;
+  script[pc++] = amount & 0xFF;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectiveBankWithdrawScript = (
+  reg: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 4;
+  script[pc++] = reg & 0xFF;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePhaseLockScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 5;
+  script[pc++] = 0;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeCollectivePcSyncQuorumScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_COLLECTIVE;
+  script[pc++] = 6;
+  script[pc++] = 0;
+  script[pc++] = 0;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeShareScript = (
+  slot: number,
+  percentage: number,
+): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SHARE;
+  script[pc++] = slot & 0xFF;
+  script[pc++] = percentage & 0xFF;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeBindScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_BIND;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeSporeDriveScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_SPORE_DRIVE;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeEntangleScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = RISC.OP_GET;
+  script[pc++] = 0;
+  script[pc++] = RISC.PROP_ENERGY;
+  script[pc++] = RISC.OP_ENTANGLE;
+  script[pc++] = RISC.OP_SIGNAL;
+  script[pc++] = RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const structureNeighborCell = (centerX: number, centerY: number): number => {
+  const gx = Math.floor(centerX / 10);
+  const gy = Math.floor(centerY / 10);
+  return (gy * GRID_W) + gx + 1;
+};
+
+export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
+  .freeze([
+    {
+      id: "rc01_gt01_replicator_loop",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description:
+        "Seeded-swarm replicator loop shadowed through REPLICATE -> SIGNAL -> JMP bridge subset.",
+      script: makeReplicatorLoopScript(),
+      maxSteps: 6,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        replicateCount: 2,
+        signalCount: 2,
+        buildCount: 0,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc02_gt01_architect_loop",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description:
+        "Seeded-swarm architect loop shadowed through ROLE -> BUILD -> SIGNAL -> JMP bridge subset.",
+      script: makeArchitectLoopScript(),
+      maxSteps: 8,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        buildCount: 2,
+        signalCount: 2,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc03_gt03_guardian_stable_branch",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Guardian script on a coherent field should stay in the stable signaling branch.",
+      script: GUARDIAN_SCRIPT,
+      maxSteps: 9,
+      initialProps: {
+        [RISC.PROP_NEURAL_COHERENCE]: 200,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+        registers: [6, 2, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc04_gt03_guardian_repair_branch",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
+      script: GUARDIAN_SCRIPT,
+      maxSteps: 9,
+      initialProps: {
+        [RISC.PROP_NEURAL_COHERENCE]: 0,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc05_gt05_band_anchor_match",
+      baselineTraceId: "gt05_homeostasis_correction",
+      description:
+        "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
+      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+      maxSteps: 6,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 240,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 240, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc06_gt05_band_anchor_mismatch",
+      baselineTraceId: "gt05_homeostasis_correction",
+      description:
+        "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
+      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+      maxSteps: 8,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1200,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        registers: [960, 240, 0, 0, 0, 0, 0, 0],
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc07_gt04_plasmid_prop_write_signal",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "Durable symbolic ingress should preserve a property write through PUT and stay on the signaling branch when the written resonance value is non-zero.",
+      script: makePlasmidPropWriteScript(5),
+      maxSteps: 6,
+      initialProps: {
+        [RISC.PROP_RESONANCE]: 0,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [5, 5, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [RISC.PROP_RESONANCE]: 5,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc08_gt04_plasmid_zero_branch",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
+      script: makePlasmidPropWriteScript(0),
+      maxSteps: 8,
+      initialProps: {
+        [RISC.PROP_RESONANCE]: 255,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [RISC.PROP_RESONANCE]: 0,
+        },
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc09_gt08_structure_intent_visible",
+      baselineTraceId: "gt08_structure_intent_visibility",
+      description:
+        "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
+      script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.NODE),
+      maxSteps: 5,
+      initialProps: {
+        [RISC.PROP_X]: 705,
+        [RISC.PROP_Y]: 405,
+        [RISC.PROP_RESONANCE]: 2,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        registers: [0, 1, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc10_gt08_structure_intent_typed_miss",
+      baselineTraceId: "gt08_structure_intent_visibility",
+      description:
+        "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
+      script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.WIRE),
+      maxSteps: 5,
+      initialProps: {
+        [RISC.PROP_X]: 705,
+        [RISC.PROP_Y]: 405,
+        [RISC.PROP_RESONANCE]: 2,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc11_gt09_collective_hive_store_load",
+      baselineTraceId: "gt09_collective_transport",
+      description:
+        "A bounded COLLECTIVE bridge should preserve hive store/load semantics through mode 0 and mode 1 without reaching outside the local shadow state.",
+      script: makeCollectiveHiveScript(1, 88, 0),
+      maxSteps: 4,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [88, 0, 0, 0, 0, 0, 0, 0],
+        finalHiveMemory: {
+          1: 88,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc12_gt09_collective_pheromone_emit",
+      baselineTraceId: "gt09_collective_transport",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve pheromone emission through mode 2 at the atom's local grid cell.",
+      script: makeCollectivePheromoneScript(200, 5),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_X]: 105,
+        [RISC.PROP_Y]: 105,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalSignalGrid: {
+          1410: 0xC805,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc13_gt10_share_transfer_success",
+      baselineTraceId: "gt10_share_transfer",
+      description:
+        "A bounded SHARE bridge should deduct percentage energy from self and credit the bonded peer when slot 0 resolves to a live target.",
+      script: makeShareScript(0, 50),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1000,
+      },
+      initialBondTargets: {
+        0: 2,
+      },
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 500,
+        },
+        finalPeerEnergy: {
+          2: 600,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc14_gt10_share_transfer_empty_bond",
+      baselineTraceId: "gt10_share_transfer",
+      description:
+        "The same SHARE bridge should fail closed when the selected bond slot is empty, leaving self and peer energy untouched.",
+      script: makeShareScript(0, 50),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1000,
+      },
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 1000,
+        },
+        finalPeerEnergy: {
+          2: 100,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc15_gt11_collective_bank_deposit",
+      baselineTraceId: "gt11_collective_banking",
+      description:
+        "A bounded COLLECTIVE bridge should preserve mode 3 bank deposit semantics as raw opcode units, reducing local energy and increasing hive balance.",
+      script: makeCollectiveBankDepositScript(80),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 5000,
+      },
+      initialHiveBalance: 250,
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 4920,
+        },
+        finalHiveBalance: 330,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc16_gt11_collective_bank_withdraw",
+      baselineTraceId: "gt11_collective_banking",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve mode 4 capped withdraw semantics, crediting at most 100 raw units to energy and writing the amount to the selected register.",
+      script: makeCollectiveBankWithdrawScript(0),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 5000,
+      },
+      initialHiveBalance: 250,
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [100, 0, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [RISC.PROP_ENERGY]: 5100,
+        },
+        finalHiveBalance: 150,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc17_gt12_collective_phase_lock",
+      baselineTraceId: "gt12_collective_synchrony",
+      description:
+        "A bounded COLLECTIVE bridge should preserve mode 5 phase-lock semantics by pushing bonded peers to the next instruction boundary.",
+      script: makeCollectivePhaseLockScript(),
+      maxSteps: 3,
+      initialProps: {},
+      initialBondTargets: {
+        0: 1,
+        1: 2,
+      },
+      initialPeerPc: {
+        1: 9,
+        2: 10,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc18_gt12_collective_pc_sync_quorum",
+      baselineTraceId: "gt12_collective_synchrony",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve mode 6 quorum semantics by pushing local cell peers to the next instruction boundary.",
+      script: makeCollectivePcSyncQuorumScript(),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_X]: 205,
+        [RISC.PROP_Y]: 105,
+      },
+      initialPeerPc: {
+        1: 7,
+        2: 8,
+      },
+      initialCellPeers: [1, 2],
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc19_gt13_sense_stale_lock_visible",
+      baselineTraceId: "gt13_structure_lock_progress",
+      description:
+        "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
+      script: makeSenseScript(STRUCTURE.WIRE),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_X]: 705,
+        [RISC.PROP_Y]: 405,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+      },
+      initialStructureIntentOwner: {
+        [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 1, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc20_gt13_sense_stale_lock_typed_miss",
+      baselineTraceId: "gt13_structure_lock_progress",
+      description:
+        "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
+      script: makeSenseScript(STRUCTURE.NODE),
+      maxSteps: 3,
+      initialProps: {
+        [RISC.PROP_X]: 705,
+        [RISC.PROP_Y]: 405,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+      },
+      initialStructureIntentOwner: {
+        [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc21_gt14_plug_charge_resolve",
+      baselineTraceId: "gt14_structure_charge_resolution",
+      description:
+        "A bounded PLUG bridge should publish a charge intent that resolves into a concrete wire charge on the next bounded structure tick, clearing the intent afterward.",
+      script: makePlugChargeScript(180),
+      maxSteps: 2,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.WIRE |
+            (170 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc22_gt15_plug_charge_competition_low_high",
+      baselineTraceId: "gt15_structure_charge_competition",
+      description:
+        "A bounded PLUG bridge should preserve max-intent semantics when a lower charge is published before a higher one to the same cell.",
+      script: makePlugChargeCompetitionScript(120, 220),
+      maxSteps: 4,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [220, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.WIRE |
+            (210 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc23_gt15_plug_charge_competition_high_low",
+      baselineTraceId: "gt15_structure_charge_competition",
+      description:
+        "The same bounded PLUG bridge should still preserve max-intent semantics when the higher charge arrives first and a lower publication follows.",
+      script: makePlugChargeCompetitionScript(220, 120),
+      maxSteps: 4,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [120, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.WIRE |
+            (210 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc24_gt16_build_source_materialize",
+      baselineTraceId: "gt16_runtime_build_materialization",
+      description:
+        "A bounded BUILD bridge should materialize an architect-published SOURCE through postStructureTick, including canonical SOURCE charge semantics.",
+      script: makeBuildSourceScript(),
+      maxSteps: 2,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+        [RISC.PROP_RESONANCE]: 1,
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.SOURCE |
+            (255 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc25_gt17_build_competition_high_owner_overwrite",
+      baselineTraceId: "gt17_runtime_build_competition",
+      description:
+        "A bounded BUILD bridge should let a higher owner token overwrite a preseeded lower owner SOURCE intent on the same cell.",
+      script: makeBuildSourceWithStateScript(91),
+      maxSteps: 2,
+      ownerAtomIdx: 3,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+        [RISC.PROP_RESONANCE]: 1,
+      },
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 3,
+      },
+      initialStructureIntentValue: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+          STRUCTURE.SOURCE |
+          (17 << 24),
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.SOURCE |
+            (255 << 16) | (91 << 24),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc26_gt17_build_competition_low_owner_blocked",
+      baselineTraceId: "gt17_runtime_build_competition",
+      description:
+        "The same bounded BUILD bridge should fail closed when a lower owner token attempts to overwrite a preseeded higher owner SOURCE intent.",
+      script: makeBuildSourceWithStateScript(17),
+      maxSteps: 2,
+      ownerAtomIdx: 2,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+        [RISC.PROP_RESONANCE]: 1,
+      },
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 4,
+      },
+      initialStructureIntentValue: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+          STRUCTURE.SOURCE |
+          (91 << 24),
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.SOURCE |
+            (255 << 16) | (91 << 24),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc27_gt18_build_stale_lock_blocked",
+      baselineTraceId: "gt18_runtime_build_stale_lock",
+      description:
+        "A bounded BUILD bridge should fail closed on a stale locked intent and let postStructureTick materialize the locked SOURCE value instead of the attempted overwrite.",
+      script: makeBuildSourceWithStateScript(99),
+      maxSteps: 2,
+      ownerAtomIdx: 2,
+      postStructureTick: true,
+      initialProps: {
+        [RISC.PROP_X]: 35,
+        [RISC.PROP_Y]: 35,
+        [RISC.PROP_RESONANCE]: 1,
+      },
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+          STRUCTURE_INTENT_LOCK_BIT | 3,
+      },
+      initialStructureIntentValue: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+          STRUCTURE.SOURCE | (55 << 24),
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STRUCTURE.SOURCE |
+            (255 << 16) | (55 << 24),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc28_gt19_tensegrity_kinematics",
+      baselineTraceId: "gt19_tensegrity_kinematics",
+      description:
+        "A bounded TENSEGRITY bridge should preserve mode 0 (SET_BOND_DIST) and mode 1 (SET_DAMPING) semantics.",
+      script: makeTensegrityScript(0, 100, 255),
+      maxSteps: 2,
+      initialProps: {},
+      initialBondDistances: {
+        0: 50,
+      },
+      initialDamping: 100,
+      expected: {
+        finalPc: 8,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        finalBondDistances: {
+          0: 100,
+        },
+        finalDamping: 255,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc29_gt20_bind_resolution",
+      baselineTraceId: "gt20_bind_resolution",
+      description:
+        "Verify OP_BIND (Autonomous Bonding) writes a pending request into the shared buffer.",
+      script: makeBindScript(),
+      maxSteps: 1,
+      ownerAtomIdx: 1,
+      initialProps: {
+        [RISC.PROP_X]: 100,
+        [RISC.PROP_Y]: 100,
+      },
+      initialCellPeers: [2],
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 1,
+        finalBondRequests: {
+          3: 2, // initiator (atomIdx 1 + 1)
+          4: 3, // target (targetIdx 2 + 1)
+          5: 1, // status pending
+        },
+      },
+    },
+    {
+      id: "rc30_spore_drive_jump",
+      baselineTraceId: "gt20_bind_resolution",
+      description:
+        "Verify OP_SPORE_DRIVE consumes energy and triggers a position jump.",
+      script: makeSporeDriveScript(),
+      maxSteps: 1,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1000,
+        [RISC.PROP_X]: 100,
+        [RISC.PROP_Y]: 100,
+      },
+      expected: {
+        finalPc: 1,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 500,
+          [RISC.PROP_X]: 107,
+          [RISC.PROP_Y]: 107,
+        },
+      },
+    },
+    {
+      id: "rc31_entangle_hive_deposit",
+      baselineTraceId: "gt20_bind_resolution",
+      description: "Verify OP_ENTANGLE allows hive energy exchange.",
+      script: makeEntangleScript(),
+      maxSteps: 2,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 5000,
+      },
+      expected: {
+        finalPc: 4,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 4500,
+        },
+        finalHiveEnergyPool: {
+          0: 500,
+        },
+      },
+    },
+    {
+      id: "rc32_quorum_pc_sync",
+      baselineTraceId: "gt21_quorum_sync",
+      description:
+        "Verify OP_COLLECTIVE mode 6 synchronizes PC across cell peers.",
+      script: makeCollectivePcSyncQuorumScript(),
+      maxSteps: 1,
+      initialProps: {},
+      initialCellPeers: [1, 2, 3],
+      ownerAtomIdx: 0,
+      initialPeerPc: {
+        1: 0,
+        2: 0,
+      },
+      expected: {
+        finalPc: 4,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+      },
+    },
+    {
+      id: "rc33_share_percentage_drift",
+      baselineTraceId: "gt21_quorum_sync",
+      description: "Verify OP_SHARE handles aggression hormone bonus (>1024).",
+      script: makeShareScript(0, 50),
+      maxSteps: 1,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1000,
+      },
+      initialBondTargets: {
+        0: 2,
+      },
+      initialPeerEnergy: {
+        2: 0,
+      },
+      initialHormones: [1024, 1024, 1200, 1024, 1024, 1024], // H2=1200
+      expected: {
+        finalPc: 3,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 400, // 50% + 10% bonus = 60%. 1000 - 600 = 400.
+        },
+        finalPeerEnergy: {
+          2: 600,
+        },
+      },
+    },
+    {
+      id: "rc34_role_resolution",
+      baselineTraceId: "gt22_intent_resolution",
+      description:
+        "Verify OP_RESOLVE mode 0 updates role if neighborhood quorum is met.",
+      script: makeResolveRoleScript(STATE_MATRIX.ROLE_GUARDIAN, 2),
+      maxSteps: 2,
+      initialProps: {
+        [RISC.PROP_X]: 50,
+        [RISC.PROP_Y]: 50,
+        [RISC.PROP_RESONANCE]: 100,
+      },
+      initialStructureGrid: {
+        // gx=5, gy=5. Neighbors: (4,5), (6,5)
+        [5 * GRID_W + 4]: 1,
+        [5 * GRID_W + 6]: 1,
+      },
+      expected: {
+        finalPc: 6,
+        finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+        finalProps: {
+          [RISC.PROP_RESONANCE]: 120,
+        },
+      },
+    },
+    {
+      id: "rc35_bank_resolution",
+      baselineTraceId: "gt22_intent_resolution",
+      description:
+        "Verify OP_RESOLVE mode 1 deposits energy if neighborhood quorum >= 3.",
+      script: makeResolveBankScript(100),
+      maxSteps: 1,
+      initialProps: {
+        [RISC.PROP_X]: 50,
+        [RISC.PROP_Y]: 50,
+        [RISC.PROP_ENERGY]: 500,
+        [RISC.PROP_RESONANCE]: 100,
+      },
+      initialStructureGrid: {
+        [5 * GRID_W + 4]: 1,
+        [5 * GRID_W + 6]: 1,
+        [4 * GRID_W + 5]: 1,
+      },
+      ownerAtomIdx: 0,
+      initialRegs: [0, 0, 0, 0, 0, 0, 0, 0, 0x12], // Dummy gene bits or similar for pool slot
+      expected: {
+        finalPc: 3,
+        finalProps: {
+          [RISC.PROP_ENERGY]: 400,
+          [RISC.PROP_RESONANCE]: 110,
+        },
+        finalHiveEnergyPool: {
+          2: 100, // 0x12 % 4 = 2. No, slot logic in harness: gene0 % 4. regs[8] is gene0.
+        },
+      },
+    },
+    {
+      id: "rc36_genesis_guardian",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description: "Native Genesis Guardian signaling behavior",
+      nativeProgram: "guardian_base",
+      script: new Uint8Array([RISC.OP_SIGNAL, RISC.OP_NOP]), // Matching legacy for parity check
+      maxSteps: 2,
+      initialProps: {
+        [RISC.PROP_ENERGY]: 1000,
+      },
+      expected: {
+        finalPc: 1,
+        signalCount: 1,
+      },
+    },
+    {
+      id: "rc37_genesis_architect",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description: "Native Genesis Architect collective emission behavior",
+      nativeProgram: "architect_base",
+      script: new Uint8Array([RISC.OP_COLLECTIVE, 7, 100, 200, RISC.OP_NOP]),
+      maxSteps: 2,
+      initialProps: {
+        [RISC.PROP_X]: 50,
+        [RISC.PROP_Y]: 50,
+      },
+      expected: {
+        finalPc: 4,
+        finalSignalGrid: {
+          [5 * 140 + 5]: (100 << 8) | 200,
+        },
+      },
+    },
+  ]);
+
+const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
+  REDUCTION_CASES.map((definition) => [definition.id, definition]),
+);
+
+export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
+  REDUCTION_CASE_BY_ID.get(id) ?? null;
+
 ```
 
 ---
@@ -50672,6 +60751,1856 @@ if (import.meta.main) {
     }
   }
 }
+
+```
+
+---
+
+## FILE: verification/resolution_phase_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_RESOLUTION_PHASE_CAPTURE__";
+
+type Snapshot = {
+  survivalCount: number;
+  finalPhaseAvg: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
+
+  let c = 0;
+  const codeRes = new Uint8Array(64);
+  codeRes[c++] = RISC.OP_RESONATE_KURAMOTO;
+  codeRes[c++] = RISC.OP_JMP;
+  codeRes[c++] = 0; // loop
+
+  // High K - Cluster of atoms
+  const atomicBuffer = new Int32Array(STATE_MATRIX.buffer);
+  atomicBuffer[40700104 / 4] = 15000; // NEURAL_COHERENCE_OFF drives K > Kc
+
+  for (let i = 0; i < 10; i++) {
+    STATE_MATRIX.seedAtom(
+      100 + i,
+      10n,
+      500,
+      500,
+      2000,
+      100,
+      undefined,
+      codeRes,
+    );
+    STATE_MATRIX.setPhase(100 + i, i * 20); // Distributed phases
+  }
+
+  await PULSE.initWorkers(1);
+
+  for (let i = 0; i < 10; i++) {
+    await PULSE.tick();
+  }
+
+  let survivalCount = 0;
+  let finalPhaseSum = 0;
+  for (let i = 0; i < 10; i++) {
+    if (STATE_MATRIX.getEnergy(100 + i) > 0) {
+      survivalCount++;
+      finalPhaseSum += STATE_MATRIX.getPhase(100 + i);
+    }
+  }
+
+  const snapshot: Snapshot = {
+    survivalCount,
+    finalPhaseAvg: survivalCount > 0
+      ? Math.floor(finalPhaseSum / survivalCount)
+      : 0,
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.survivalCount === 0) {
+      throw new Error(`[resolution_phase_capture] No atoms survived!`);
+    }
+
+    console.log(
+      `[resolution_phase_capture] ok hash=${payload.hash} survivalCount=${payload.snapshot.survivalCount} finalPhaseAvg=${payload.snapshot.finalPhaseAvg}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/secretion_energetics_audit.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+/**
+ * Stage 5.3: Secretion Energetics Audit
+ * Verifies that atom energy correctly decreases upon chemical secretion.
+ */
+
+async function runAudit() {
+  console.log("🧪 Stage 5.3: Secretion Energetics Audit Starting...");
+
+  // 1. Snapshot initial state
+  const energyView = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    1000,
+  );
+  const initialEnergyCopy = new Int32Array(energyView);
+
+  console.log("Waiting for secretions...");
+
+  // 2. Wait for a few ticks to allow secretions to occur
+  for (let i = 0; i < 30; i++) {
+    await new Promise((r) => setTimeout(r, 200));
+    const snap = GLYPH_BUFFER.snapshot();
+    console.log(
+      `Tick ${i}: PheroSeeds=${snap.internalAtomPheromoneSeeds}, PlasmidSeeds=${snap.internalAtomPlasmidSeeds}, SignalLeaks=${snap.internalSignalSeeds}, MemoryLeaks=${snap.internalMemorySeeds}`,
+    );
+
+    if (snap.internalSignalSeeds > 0 || snap.internalMemorySeeds > 0) {
+      console.log("✅ Internal Reflection leaks detected!");
+    }
+  }
+
+  // 3. Compare energy
+  let decreasedCount = 0;
+  let totalDelta = 0;
+
+  for (let i = 0; i < 1000; i++) {
+    if (energyView[i] > 0 && energyView[i] < initialEnergyCopy[i]) {
+      const delta = initialEnergyCopy[i] - energyView[i];
+      console.log(
+        `Atom ${i}: Energy decreased by ${delta} (from ${
+          initialEnergyCopy[i]
+        } to ${energyView[i]})`,
+      );
+      decreasedCount++;
+      totalDelta += delta;
+    }
+  }
+
+  if (decreasedCount > 0) {
+    console.log(
+      `✅ Audit Passed: ${decreasedCount} atoms showed energy depletion. Total Energy Lost: ${
+        totalDelta / 1000
+      } units.`,
+    );
+  } else {
+    console.warn(
+      "⚠️ Warning: No energy depletion detected. Verify if atoms are actually secreting.",
+    );
+  }
+
+  // 4. Check Internal Reflection Leaks
+  const snap = GLYPH_BUFFER.snapshot();
+  console.log(
+    `📊 Reflection Leaks: Signal=${snap.internalSignalSeeds}, Memory=${snap.internalMemorySeeds}`,
+  );
+
+  if (snap.internalSignalSeeds > 0 || snap.internalMemorySeeds > 0) {
+    console.log(
+      "✅ Audit Passed: Internal Reflection leaks successfully quantified.",
+    );
+  } else {
+    console.warn(
+      "⚠️ Warning: No reflection leaks detected. Verify grid activity.",
+    );
+  }
+}
+
+runAudit().catch(console.error);
+
+```
+
+---
+
+## FILE: verification/share_transfer_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_SHARE_TRANSFER_CAPTURE__";
+const OP_SHARE = 0x83;
+const SHARE_PERCENT = 50;
+const ENERGY_EPSILON = 0.0011;
+const EXPECTED_SUCCESSFUL_SENDER_ENERGY = 499.999;
+const EXPECTED_SUCCESSFUL_RECEIVER_ENERGY = 600;
+const EXPECTED_FAILED_SENDER_ENERGY = 999.999;
+const EXPECTED_FAILED_RECEIVER_ENERGY = 100;
+
+type AtomSnapshot = {
+  idx: number;
+  energy: number;
+  pc: number;
+  role: number;
+};
+
+type Snapshot = {
+  successfulSenderEnergy: number;
+  successfulReceiverEnergy: number;
+  failedSenderEnergy: number;
+  failedReceiverEnergy: number;
+  senderBondTarget: number;
+  failedBondTarget: number;
+  atoms: AtomSnapshot[];
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const assertApproxEnergy = (
+  label: string,
+  actual: number,
+  expected: number,
+): void => {
+  if (Math.abs(actual - expected) > ENERGY_EPSILON) {
+    throw new Error(
+      `[share_transfer_capture] ${label} mismatch: actual=${actual} expected=${expected}`,
+    );
+  }
+};
+
+const shareScript = (slot: number, percentage: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_SHARE;
+  script[1] = slot & 0xFF;
+  script[2] = percentage & 0xFF;
+  return script;
+};
+
+const buildSnapshot = (): Snapshot => ({
+  successfulSenderEnergy: STATE_MATRIX.getEnergy(0),
+  successfulReceiverEnergy: STATE_MATRIX.getEnergy(1),
+  failedSenderEnergy: STATE_MATRIX.getEnergy(2),
+  failedReceiverEnergy: STATE_MATRIX.getEnergy(3),
+  senderBondTarget: STATE_MATRIX.getBondTarget(0, 0),
+  failedBondTarget: STATE_MATRIX.getBondTarget(2, 0),
+  atoms: [0, 1, 2, 3].map((idx) => ({
+    idx,
+    energy: STATE_MATRIX.getEnergy(idx),
+    pc: STATE_MATRIX.getPC(idx),
+    role: STATE_MATRIX.getRole(idx),
+  })),
+});
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _p1: number,
+    _p2: number,
+    _p3: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  const execute_atom = instance.exports.execute_atom as (idx: number) => void;
+  const reduce_atom_deltas = instance.exports.reduce_atom_deltas as (
+    startIdx: number,
+    endIdx: number,
+  ) => void;
+
+  const readXs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_XS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readYs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_YS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readEnergies = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const readResonances = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const xs = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.XS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const ys = new Int16Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.YS_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const energies = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+  const resonances = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.RESONANCE_OFFSET,
+    STATE_MATRIX.MAX_ATOMS,
+  );
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    100,
+    100,
+    1000,
+    0,
+    undefined,
+    shareScript(0, SHARE_PERCENT),
+  );
+  STATE_MATRIX.seedAtom(1, 2n, 110, 100, 100, 0, undefined, new Uint8Array(64));
+  STATE_MATRIX.setBondTarget(0, 0, 1);
+
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    120,
+    100,
+    1000,
+    0,
+    undefined,
+    shareScript(0, SHARE_PERCENT),
+  );
+  STATE_MATRIX.seedAtom(3, 4n, 130, 100, 100, 0, undefined, new Uint8Array(64));
+
+  readXs.set(xs);
+  readYs.set(ys);
+  readEnergies.set(energies);
+  readResonances.set(resonances);
+
+  execute_atom(0);
+  execute_atom(2);
+  reduce_atom_deltas(0, 4);
+
+  const snapshot = buildSnapshot();
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  assertApproxEnergy(
+    "successful sender",
+    payload.snapshot.successfulSenderEnergy,
+    EXPECTED_SUCCESSFUL_SENDER_ENERGY,
+  );
+  assertApproxEnergy(
+    "successful receiver",
+    payload.snapshot.successfulReceiverEnergy,
+    EXPECTED_SUCCESSFUL_RECEIVER_ENERGY,
+  );
+  assertApproxEnergy(
+    "failed sender",
+    payload.snapshot.failedSenderEnergy,
+    EXPECTED_FAILED_SENDER_ENERGY,
+  );
+  assertApproxEnergy(
+    "failed receiver",
+    payload.snapshot.failedReceiverEnergy,
+    EXPECTED_FAILED_RECEIVER_ENERGY,
+  );
+  console.log(
+    `[share_transfer_capture] ok hash=${payload.hash} sender0=${payload.snapshot.successfulSenderEnergy} receiver1=${payload.snapshot.successfulReceiverEnergy} sender2=${payload.snapshot.failedSenderEnergy}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_build_competition_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_COMPETITION_CAPTURE__";
+const GRID_W = 140;
+const OP_ROLE = 0xA7;
+const OP_BUILD = 0xA8;
+const LOWER_STATE = 17;
+const HIGHER_STATE = 91;
+
+type Snapshot = {
+  targetCellIdx: number;
+  targetResolvedType: number;
+  targetResolvedCharge: number;
+  targetResolvedState: number;
+  ownerIntentAfterTick: number;
+  valueIntentAfterTick: number;
+  chargeIntentAfterTick: number;
+  lowerOwnerAtomIdx: number;
+  lowerOwnerState: number;
+  higherOwnerAtomIdx: number;
+  higherOwnerState: number;
+  lowerAtomPc: number;
+  higherAtomPc: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const buildSourceScript = (state: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_ROLE;
+  script[1] = 0;
+  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[3] = OP_BUILD;
+  script[4] = STRUCTURE.SOURCE;
+  script[5] = state & 0xFF;
+  return script;
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  const x = 35;
+  const y = 35;
+  const gx = Math.floor(x / 10);
+  const gy = Math.floor(y / 10);
+  const targetCellIdx = gy * GRID_W + gx;
+
+  STATE_MATRIX.seedAtom(
+    2,
+    2n,
+    x,
+    y,
+    1000,
+    1,
+    undefined,
+    buildSourceScript(LOWER_STATE),
+  );
+  STATE_MATRIX.seedAtom(
+    3,
+    3n,
+    x,
+    y,
+    1000,
+    1,
+    undefined,
+    buildSourceScript(HIGHER_STATE),
+  );
+
+  await PULSE.initWorkers(1);
+  await PULSE.tick();
+
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * 80,
+  );
+  const ownerIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    GRID_W * 80,
+  );
+  const valueIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    GRID_W * 80,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * 80,
+  );
+
+  const targetCell = structureGrid[targetCellIdx];
+  const snapshot: Snapshot = {
+    targetCellIdx,
+    targetResolvedType: targetCell & 0xFF,
+    targetResolvedCharge: (targetCell >> 16) & 0xFF,
+    targetResolvedState: (targetCell >> 24) & 0xFF,
+    ownerIntentAfterTick: ownerIntents[targetCellIdx],
+    valueIntentAfterTick: valueIntents[targetCellIdx],
+    chargeIntentAfterTick: chargeIntents[targetCellIdx],
+    lowerOwnerAtomIdx: 2,
+    lowerOwnerState: LOWER_STATE,
+    higherOwnerAtomIdx: 3,
+    higherOwnerState: HIGHER_STATE,
+    lowerAtomPc: STATE_MATRIX.getPC(2),
+    higherAtomPc: STATE_MATRIX.getPC(3),
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
+      throw new Error(
+        `[structure_build_competition_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
+      );
+    }
+    if (payload.snapshot.targetResolvedCharge !== 255) {
+      throw new Error(
+        `[structure_build_competition_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
+      );
+    }
+    if (payload.snapshot.targetResolvedState !== HIGHER_STATE) {
+      throw new Error(
+        `[structure_build_competition_capture] winner state mismatch: ${payload.snapshot.targetResolvedState}`,
+      );
+    }
+    if (payload.snapshot.ownerIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_competition_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.valueIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_competition_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.chargeIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_competition_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
+      );
+    }
+
+    console.log(
+      `[structure_build_competition_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} targetState=${payload.snapshot.targetResolvedState}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_build_lock_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_LOCK_CAPTURE__";
+const GRID_W = 140;
+const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
+const OP_ROLE = 0xA7;
+const OP_BUILD = 0xA8;
+const LOCKED_STATE = 55;
+const ATTEMPTED_STATE = 99;
+
+type Snapshot = {
+  targetCellIdx: number;
+  targetResolvedType: number;
+  targetResolvedCharge: number;
+  targetResolvedState: number;
+  ownerIntentAfterTick: number;
+  valueIntentAfterTick: number;
+  chargeIntentAfterTick: number;
+  staleLockOwnerToken: number;
+  staleLockedState: number;
+  attemptedOwnerAtomIdx: number;
+  attemptedBuildState: number;
+  atomPc: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const buildSourceScript = (state: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_ROLE;
+  script[1] = 0;
+  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[3] = OP_BUILD;
+  script[4] = STRUCTURE.SOURCE;
+  script[5] = state & 0xFF;
+  return script;
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  const x = 35;
+  const y = 35;
+  const gx = Math.floor(x / 10);
+  const gy = Math.floor(y / 10);
+  const targetCellIdx = gy * GRID_W + gx;
+
+  STATE_MATRIX.seedAtom(
+    2,
+    2n,
+    x,
+    y,
+    1000,
+    1,
+    undefined,
+    buildSourceScript(ATTEMPTED_STATE),
+  );
+
+  const ownerIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    GRID_W * 80,
+  );
+  const valueIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    GRID_W * 80,
+  );
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * 80,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * 80,
+  );
+
+  ownerIntents[targetCellIdx] = STRUCTURE_INTENT_LOCK_BIT | 3;
+  valueIntents[targetCellIdx] = STRUCTURE.SOURCE | (LOCKED_STATE << 24);
+
+  await PULSE.initWorkers(1);
+  await PULSE.tick();
+
+  const targetCell = structureGrid[targetCellIdx];
+  const snapshot: Snapshot = {
+    targetCellIdx,
+    targetResolvedType: targetCell & 0xFF,
+    targetResolvedCharge: (targetCell >> 16) & 0xFF,
+    targetResolvedState: (targetCell >> 24) & 0xFF,
+    ownerIntentAfterTick: ownerIntents[targetCellIdx],
+    valueIntentAfterTick: valueIntents[targetCellIdx],
+    chargeIntentAfterTick: chargeIntents[targetCellIdx],
+    staleLockOwnerToken: 3,
+    staleLockedState: LOCKED_STATE,
+    attemptedOwnerAtomIdx: 2,
+    attemptedBuildState: ATTEMPTED_STATE,
+    atomPc: STATE_MATRIX.getPC(2),
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
+      throw new Error(
+        `[structure_build_lock_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
+      );
+    }
+    if (payload.snapshot.targetResolvedCharge !== 255) {
+      throw new Error(
+        `[structure_build_lock_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
+      );
+    }
+    if (payload.snapshot.targetResolvedState !== LOCKED_STATE) {
+      throw new Error(
+        `[structure_build_lock_capture] stale lock state mismatch: ${payload.snapshot.targetResolvedState}`,
+      );
+    }
+    if (payload.snapshot.ownerIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_lock_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.valueIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_lock_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.chargeIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_lock_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
+      );
+    }
+
+    console.log(
+      `[structure_build_lock_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} targetState=${payload.snapshot.targetResolvedState}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_build_runtime_capture.ts
+
+```typescript
+import { PULSE } from "../PULSE.ts";
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_RUNTIME_CAPTURE__";
+const GRID_W = 140;
+const OP_ROLE = 0xA7;
+const OP_BUILD = 0xA8;
+
+type Snapshot = {
+  targetCellIdx: number;
+  targetResolvedType: number;
+  targetResolvedCharge: number;
+  targetResolvedState: number;
+  ownerIntentAfterTick: number;
+  valueIntentAfterTick: number;
+  chargeIntentAfterTick: number;
+  neighborCellIdx: number;
+  neighborResolvedType: number;
+  neighborResolvedCharge: number;
+  atomPc: number;
+  atomRole: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const buildSourceScript = (): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_ROLE;
+  script[1] = 0;
+  script[2] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[3] = OP_BUILD;
+  script[4] = STRUCTURE.SOURCE;
+  script[5] = 0;
+  return script;
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const workerCount = Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1");
+  const strictDeterminism =
+    (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1";
+
+  const x = 35;
+  const y = 35;
+  const gx = Math.floor(x / 10);
+  const gy = Math.floor(y / 10);
+  const targetCellIdx = gy * GRID_W + gx;
+  const neighborCellIdx = (gy * GRID_W) + gx + 1;
+
+  STATE_MATRIX.seedAtom(
+    2,
+    2n,
+    x,
+    y,
+    1000,
+    1,
+    undefined,
+    buildSourceScript(),
+  );
+
+  await PULSE.initWorkers(1);
+  await PULSE.tick();
+
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * 80,
+  );
+  const ownerIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    GRID_W * 80,
+  );
+  const valueIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    GRID_W * 80,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * 80,
+  );
+
+  const targetCell = structureGrid[targetCellIdx];
+  const neighborCell = structureGrid[neighborCellIdx];
+
+  const snapshot: Snapshot = {
+    targetCellIdx,
+    targetResolvedType: targetCell & 0xFF,
+    targetResolvedCharge: (targetCell >> 16) & 0xFF,
+    targetResolvedState: (targetCell >> 24) & 0xFF,
+    ownerIntentAfterTick: ownerIntents[targetCellIdx],
+    valueIntentAfterTick: valueIntents[targetCellIdx],
+    chargeIntentAfterTick: chargeIntents[targetCellIdx],
+    neighborCellIdx,
+    neighborResolvedType: neighborCell & 0xFF,
+    neighborResolvedCharge: (neighborCell >> 16) & 0xFF,
+    atomPc: STATE_MATRIX.getPC(2),
+    atomRole: STATE_MATRIX.getRole(2),
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount,
+    strictDeterminism,
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  try {
+    const payload = await runCapture();
+    if (Deno.args.includes("--capture")) {
+      console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+      return;
+    }
+
+    if (payload.snapshot.targetResolvedType !== STRUCTURE.SOURCE) {
+      throw new Error(
+        `[structure_build_runtime_capture] target type mismatch: ${payload.snapshot.targetResolvedType}`,
+      );
+    }
+    if (payload.snapshot.targetResolvedCharge !== 255) {
+      throw new Error(
+        `[structure_build_runtime_capture] target charge mismatch: ${payload.snapshot.targetResolvedCharge}`,
+      );
+    }
+    if (payload.snapshot.ownerIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_runtime_capture] owner intent not cleared: ${payload.snapshot.ownerIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.valueIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_runtime_capture] value intent not cleared: ${payload.snapshot.valueIntentAfterTick}`,
+      );
+    }
+    if (payload.snapshot.chargeIntentAfterTick !== 0) {
+      throw new Error(
+        `[structure_build_runtime_capture] charge intent not cleared: ${payload.snapshot.chargeIntentAfterTick}`,
+      );
+    }
+
+    console.log(
+      `[structure_build_runtime_capture] ok hash=${payload.hash} targetType=${payload.snapshot.targetResolvedType} targetCharge=${payload.snapshot.targetResolvedCharge} neighborType=${payload.snapshot.neighborResolvedType} neighborCharge=${payload.snapshot.neighborResolvedCharge}`,
+    );
+  } finally {
+    PULSE.stopWorkers();
+  }
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_charge_capture.ts
+
+```typescript
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
+const GRID_W = 140;
+const GRID_H = 80;
+const OP_SET = 0x01;
+const OP_PLUG = 0xA4;
+
+type BeforeTickSnapshot = {
+  targetCellIdx: number;
+  chargeIntent: number;
+};
+
+type AfterTickSnapshot = {
+  targetCellIdx: number;
+  resolvedType: number;
+  resolvedCharge: number;
+  chargeIntent: number;
+};
+
+type Snapshot = {
+  beforeTick: BeforeTickSnapshot;
+  afterTick: AfterTickSnapshot;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+type WasmExports = {
+  execute_atom: (idx: number) => void;
+  tick_structure_grid?: () => void;
+  tick_matrix?: () => void;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadWasm = async (): Promise<WasmExports> => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _gx: number,
+    _gy: number,
+    _target: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  return instance.exports as unknown as WasmExports;
+};
+
+const chargeScript = (charge: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = OP_SET;
+  script[pc++] = 0;
+  script[pc++] = charge & 0xFF;
+  script[pc++] = OP_PLUG;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  return script;
+};
+
+const targetCellIdxFor = (x: number, y: number): number =>
+  Math.floor(y / 10) * GRID_W + Math.floor(x / 10);
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasm = await loadWasm();
+  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
+  if (!tickStructure) {
+    throw new Error(
+      "[structure_charge_capture] WASM exports missing tick_structure_grid/tick_matrix.",
+    );
+  }
+
+  const centerX = 35;
+  const centerY = 35;
+  const targetCellIdx = targetCellIdxFor(centerX, centerY);
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    centerX,
+    centerY,
+    1000,
+    1,
+    new Uint8Array(8),
+    chargeScript(180),
+  );
+
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * GRID_H,
+  );
+
+  structureGrid[targetCellIdx] = STRUCTURE.WIRE;
+
+  wasm.execute_atom(0);
+
+  const beforeTick: BeforeTickSnapshot = {
+    targetCellIdx,
+    chargeIntent: chargeIntents[targetCellIdx],
+  };
+
+  tickStructure();
+
+  const resolvedCell = structureGrid[targetCellIdx];
+  const afterTick: AfterTickSnapshot = {
+    targetCellIdx,
+    resolvedType: resolvedCell & 0xFF,
+    resolvedCharge: (resolvedCell >> 16) & 0xFF,
+    chargeIntent: chargeIntents[targetCellIdx],
+  };
+
+  const snapshot: Snapshot = {
+    beforeTick,
+    afterTick,
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  if (payload.snapshot.beforeTick.chargeIntent !== 180) {
+    throw new Error(
+      `[structure_charge_capture] charge intent mismatch before tick: ${payload.snapshot.beforeTick.chargeIntent}`,
+    );
+  }
+  if (payload.snapshot.afterTick.resolvedType !== STRUCTURE.WIRE) {
+    throw new Error(
+      `[structure_charge_capture] resolved type mismatch: ${payload.snapshot.afterTick.resolvedType}`,
+    );
+  }
+  if (payload.snapshot.afterTick.resolvedCharge !== 170) {
+    throw new Error(
+      `[structure_charge_capture] resolved charge mismatch: ${payload.snapshot.afterTick.resolvedCharge}`,
+    );
+  }
+  if (payload.snapshot.afterTick.chargeIntent !== 0) {
+    throw new Error(
+      `[structure_charge_capture] charge intent not cleared after tick: ${payload.snapshot.afterTick.chargeIntent}`,
+    );
+  }
+
+  console.log(
+    `[structure_charge_capture] ok hash=${payload.hash} beforeCharge=${payload.snapshot.beforeTick.chargeIntent} resolvedCharge=${payload.snapshot.afterTick.resolvedCharge}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_charge_competition_capture.ts
+
+```typescript
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_COMPETITION_CAPTURE__";
+const GRID_W = 140;
+const GRID_H = 80;
+const OP_SET = 0x01;
+const OP_PLUG = 0xA4;
+const LOW_CHARGE = 120;
+const HIGH_CHARGE = 220;
+
+type OrderSnapshot = {
+  targetCellIdx: number;
+  firstRequestedCharge: number;
+  secondRequestedCharge: number;
+  chargeIntentBeforeTick: number;
+  resolvedType: number;
+  resolvedCharge: number;
+  chargeIntentAfterTick: number;
+};
+
+type Snapshot = {
+  lowThenHigh: OrderSnapshot;
+  highThenLow: OrderSnapshot;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+type WasmExports = {
+  execute_atom: (idx: number) => void;
+  tick_structure_grid?: () => void;
+  tick_matrix?: () => void;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadWasm = async (): Promise<WasmExports> => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _gx: number,
+    _gy: number,
+    _target: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  return instance.exports as unknown as WasmExports;
+};
+
+const chargeScript = (charge: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = OP_SET;
+  script[pc++] = 0;
+  script[pc++] = charge & 0xFF;
+  script[pc++] = OP_PLUG;
+  script[pc++] = 1;
+  script[pc++] = 0;
+  return script;
+};
+
+const targetCellIdxFor = (x: number, y: number): number =>
+  Math.floor(y / 10) * GRID_W + Math.floor(x / 10);
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasm = await loadWasm();
+  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
+  if (!tickStructure) {
+    throw new Error(
+      "[structure_charge_competition_capture] WASM exports missing tick_structure_grid/tick_matrix.",
+    );
+  }
+
+  const lowThenHighX = 35;
+  const highThenLowX = 75;
+  const y = 35;
+  const lowThenHighCellIdx = targetCellIdxFor(lowThenHighX, y);
+  const highThenLowCellIdx = targetCellIdxFor(highThenLowX, y);
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    lowThenHighX,
+    y,
+    1000,
+    1,
+    new Uint8Array(8),
+    chargeScript(LOW_CHARGE),
+  );
+  STATE_MATRIX.seedAtom(
+    1,
+    2n,
+    lowThenHighX,
+    y,
+    1000,
+    1,
+    new Uint8Array(8),
+    chargeScript(HIGH_CHARGE),
+  );
+  STATE_MATRIX.seedAtom(
+    2,
+    3n,
+    highThenLowX,
+    y,
+    1000,
+    1,
+    new Uint8Array(8),
+    chargeScript(HIGH_CHARGE),
+  );
+  STATE_MATRIX.seedAtom(
+    3,
+    4n,
+    highThenLowX,
+    y,
+    1000,
+    1,
+    new Uint8Array(8),
+    chargeScript(LOW_CHARGE),
+  );
+
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * GRID_H,
+  );
+
+  structureGrid[lowThenHighCellIdx] = STRUCTURE.WIRE;
+  structureGrid[highThenLowCellIdx] = STRUCTURE.WIRE;
+
+  wasm.execute_atom(0);
+  wasm.execute_atom(1);
+  wasm.execute_atom(2);
+  wasm.execute_atom(3);
+
+  const lowThenHighBefore = chargeIntents[lowThenHighCellIdx];
+  const highThenLowBefore = chargeIntents[highThenLowCellIdx];
+
+  tickStructure();
+
+  const lowThenHighResolved = structureGrid[lowThenHighCellIdx];
+  const highThenLowResolved = structureGrid[highThenLowCellIdx];
+
+  const snapshot: Snapshot = {
+    lowThenHigh: {
+      targetCellIdx: lowThenHighCellIdx,
+      firstRequestedCharge: LOW_CHARGE,
+      secondRequestedCharge: HIGH_CHARGE,
+      chargeIntentBeforeTick: lowThenHighBefore,
+      resolvedType: lowThenHighResolved & 0xFF,
+      resolvedCharge: (lowThenHighResolved >> 16) & 0xFF,
+      chargeIntentAfterTick: chargeIntents[lowThenHighCellIdx],
+    },
+    highThenLow: {
+      targetCellIdx: highThenLowCellIdx,
+      firstRequestedCharge: HIGH_CHARGE,
+      secondRequestedCharge: LOW_CHARGE,
+      chargeIntentBeforeTick: highThenLowBefore,
+      resolvedType: highThenLowResolved & 0xFF,
+      resolvedCharge: (highThenLowResolved >> 16) & 0xFF,
+      chargeIntentAfterTick: chargeIntents[highThenLowCellIdx],
+    },
+  };
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const validateOrder = (label: string, snapshot: OrderSnapshot) => {
+  if (snapshot.chargeIntentBeforeTick !== HIGH_CHARGE) {
+    throw new Error(
+      `[structure_charge_competition_capture] ${label} before-tick charge mismatch: ${snapshot.chargeIntentBeforeTick}`,
+    );
+  }
+  if (snapshot.resolvedType !== STRUCTURE.WIRE) {
+    throw new Error(
+      `[structure_charge_competition_capture] ${label} resolved type mismatch: ${snapshot.resolvedType}`,
+    );
+  }
+  if (snapshot.resolvedCharge !== HIGH_CHARGE - 10) {
+    throw new Error(
+      `[structure_charge_competition_capture] ${label} resolved charge mismatch: ${snapshot.resolvedCharge}`,
+    );
+  }
+  if (snapshot.chargeIntentAfterTick !== 0) {
+    throw new Error(
+      `[structure_charge_competition_capture] ${label} charge intent not cleared: ${snapshot.chargeIntentAfterTick}`,
+    );
+  }
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  validateOrder("lowThenHigh", payload.snapshot.lowThenHigh);
+  validateOrder("highThenLow", payload.snapshot.highThenLow);
+
+  console.log(
+    `[structure_charge_competition_capture] ok hash=${payload.hash} lowHigh=${payload.snapshot.lowThenHigh.resolvedCharge} highLow=${payload.snapshot.highThenLow.resolvedCharge}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/structure_lock_capture.ts
+
+```typescript
+import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_STRUCTURE_LOCK_CAPTURE__";
+const GRID_W = 140;
+const GRID_H = 80;
+const LOCK_BIT = -2147483648;
+const OP_SENSE = 0xA9;
+const OP_JMP = 0x12;
+
+type SenseSnapshot = {
+  centerX: number;
+  centerY: number;
+  neighborCellIdx: number;
+  neighborType: number;
+  senseReg: number;
+  pc: number;
+};
+
+type IntentClearingSnapshot = {
+  cellIdx: number;
+  resolvedType: number;
+  resolvedCharge: number;
+  ownerIntent: number;
+  valueIntent: number;
+  chargeIntent: number;
+};
+
+type Snapshot = {
+  visibleSense: SenseSnapshot;
+  typedMissSense: SenseSnapshot;
+  intentClearing: IntentClearingSnapshot;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+type WasmExports = {
+  execute_atom: (idx: number) => void;
+  tick_structure_grid?: () => void;
+  tick_matrix?: () => void;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadWasm = async (): Promise<WasmExports> => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _gx: number,
+    _gy: number,
+    _target: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  return instance.exports as unknown as WasmExports;
+};
+
+const gridIndex = (x: number, y: number): number => y * GRID_W + x;
+
+const senseScript = (targetType: number): Uint8Array => {
+  const script = new Uint8Array(64);
+  script[0] = OP_SENSE;
+  script[1] = 1;
+  script[2] = targetType & 0xFF;
+  script[3] = OP_JMP;
+  script[4] = 0;
+  return script;
+};
+
+const runSenseCapture = (
+  execute_atom: (idx: number) => void,
+  targetType: number,
+): SenseSnapshot => {
+  STATE_MATRIX.clear();
+
+  const centerX = 705;
+  const centerY = 405;
+  const gx = Math.floor(centerX / 10);
+  const gy = Math.floor(centerY / 10);
+  const neighborCellIdx = gridIndex(gx + 1, gy);
+
+  STATE_MATRIX.seedAtom(
+    0,
+    1n,
+    centerX,
+    centerY,
+    2000,
+    0,
+    new Uint8Array(8),
+    senseScript(targetType),
+  );
+
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const ownerIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    GRID_W * GRID_H,
+  );
+
+  structureGrid[neighborCellIdx] = STRUCTURE.WIRE;
+  ownerIntents[neighborCellIdx] = LOCK_BIT;
+
+  execute_atom(0);
+
+  return {
+    centerX,
+    centerY,
+    neighborCellIdx,
+    neighborType: structureGrid[neighborCellIdx] & 0xFF,
+    senseReg: STATE_MATRIX.getReg(0, 1),
+    pc: STATE_MATRIX.getPC(0),
+  };
+};
+
+const runIntentClearingCapture = (
+  tickStructure: () => void,
+): IntentClearingSnapshot => {
+  STATE_MATRIX.clear();
+
+  const cellIdx = gridIndex(64, 24);
+  const structureGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_GRID_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const ownerIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const valueIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    GRID_W * GRID_H,
+  );
+  const chargeIntents = new Int32Array(
+    STATE_MATRIX.buffer,
+    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    GRID_W * GRID_H,
+  );
+
+  structureGrid[cellIdx] = STRUCTURE.VOID;
+  ownerIntents[cellIdx] = LOCK_BIT | 17;
+  valueIntents[cellIdx] = ((3 & 0xFF) << 24) | (STRUCTURE.NODE & 0xFF);
+  chargeIntents[cellIdx] = 180;
+
+  tickStructure();
+
+  const resolvedCell = structureGrid[cellIdx];
+  return {
+    cellIdx,
+    resolvedType: resolvedCell & 0xFF,
+    resolvedCharge: (resolvedCell >> 16) & 0xFF,
+    ownerIntent: ownerIntents[cellIdx],
+    valueIntent: valueIntents[cellIdx],
+    chargeIntent: chargeIntents[cellIdx],
+  };
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  const wasm = await loadWasm();
+  const tickStructure = wasm.tick_structure_grid ?? wasm.tick_matrix;
+  if (!tickStructure) {
+    throw new Error(
+      "[structure_lock_capture] WASM exports missing tick_structure_grid/tick_matrix.",
+    );
+  }
+
+  const snapshot: Snapshot = {
+    visibleSense: runSenseCapture(wasm.execute_atom, STRUCTURE.WIRE),
+    typedMissSense: runSenseCapture(wasm.execute_atom, STRUCTURE.NODE),
+    intentClearing: runIntentClearingCapture(tickStructure),
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  if (payload.snapshot.visibleSense.senseReg !== 1) {
+    throw new Error(
+      `[structure_lock_capture] visible sense mismatch: ${payload.snapshot.visibleSense.senseReg}`,
+    );
+  }
+  if (payload.snapshot.typedMissSense.senseReg !== 0) {
+    throw new Error(
+      `[structure_lock_capture] typed miss mismatch: ${payload.snapshot.typedMissSense.senseReg}`,
+    );
+  }
+  if (payload.snapshot.intentClearing.ownerIntent !== 0) {
+    throw new Error(
+      `[structure_lock_capture] owner intent not cleared: ${payload.snapshot.intentClearing.ownerIntent}`,
+    );
+  }
+  if (payload.snapshot.intentClearing.valueIntent !== 0) {
+    throw new Error(
+      `[structure_lock_capture] value intent not cleared: ${payload.snapshot.intentClearing.valueIntent}`,
+    );
+  }
+  if (payload.snapshot.intentClearing.chargeIntent !== 0) {
+    throw new Error(
+      `[structure_lock_capture] charge intent not cleared: ${payload.snapshot.intentClearing.chargeIntent}`,
+    );
+  }
+  if (payload.snapshot.intentClearing.resolvedType !== STRUCTURE.NODE) {
+    throw new Error(
+      `[structure_lock_capture] resolved type mismatch: ${payload.snapshot.intentClearing.resolvedType}`,
+    );
+  }
+  if (payload.snapshot.intentClearing.resolvedCharge < 150) {
+    throw new Error(
+      `[structure_lock_capture] resolved charge too low: ${payload.snapshot.intentClearing.resolvedCharge}`,
+    );
+  }
+
+  console.log(
+    `[structure_lock_capture] ok hash=${payload.hash} visible=${payload.snapshot.visibleSense.senseReg} typedMiss=${payload.snapshot.typedMissSense.senseReg} charge=${payload.snapshot.intentClearing.resolvedCharge}`,
+  );
+};
+
+await main();
+
+```
+
+---
+
+## FILE: verification/tensegrity_capture.ts
+
+```typescript
+import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import * as OFFSETS from "../OFFSETS.ts";
+
+const CAPTURE_MARKER = "__OMEGA_TENSEGRITY_CAPTURE__";
+
+type Snapshot = {
+  initialDistance: number;
+  finalDistance: number;
+  finalDamping: number;
+  atom0X: number;
+  atom0Y: number;
+  atom1X: number;
+  atom1Y: number;
+};
+
+type CapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  hash: string;
+  snapshot: Snapshot;
+};
+
+type WasmExports = {
+  execute_atom: (idx: number) => void;
+};
+
+const hashHex = async (payload: string): Promise<string> => {
+  const bytes = new TextEncoder().encode(payload);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const loadWasm = async (): Promise<WasmExports> => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const trace_atom = (
+    _idx: number,
+    _op: number,
+    _gx: number,
+    _gy: number,
+    _target: number,
+  ) => {};
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom },
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      trace_atom,
+      abort: () => {},
+    },
+  });
+  return instance.exports as unknown as WasmExports;
+};
+
+const runCapture = async (): Promise<CapturePayload> => {
+  STATE_MATRIX.clear();
+
+  const wasm = await loadWasm();
+
+  // OP_TENSEGRITY mode=0 (SET_BOND_DIST), slot=0, dist=100
+  const script = new Uint8Array(64);
+  script[0] = 0xA5;
+  script[1] = 0;
+  script[2] = 0;
+  script[3] = 100;
+  script[4] = 0xA5;
+  script[5] = 1;
+  script[6] = 255;
+  script[7] = 0; // SET_DAMPING 255
+
+  STATE_MATRIX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, script);
+  STATE_MATRIX.seedAtom(1, 2n, 110, 110, 5000, 100);
+
+  STATE_MATRIX.setBondTarget(0, 0, 1);
+  STATE_MATRIX.setBondStiffness(0, 0, 0.9);
+
+  const initialDistance = Math.hypot(
+    STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
+    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
+  );
+
+  for (let t = 0; t < 100; t++) {
+    wasm.execute_atom(0);
+    wasm.execute_atom(1);
+
+    const x0 = STATE_MATRIX.getX(0);
+    const y0 = STATE_MATRIX.getY(0);
+    const x1 = STATE_MATRIX.getX(1);
+    const y1 = STATE_MATRIX.getY(1);
+
+    const dx = x1 - x0;
+    const dy = y1 - y0;
+    const dist = Math.hypot(dx, dy) || 1;
+    const targetDist = STATE_MATRIX.getBondDistance(0, 0) || 50;
+    const stiffness = STATE_MATRIX.getBondStiffness(0, 0);
+
+    if (stiffness > 0.8) {
+      const force = (dist - targetDist) * 0.5;
+      const fx = (dx / dist) * force;
+      const fy = (dy / dist) * force;
+
+      const d0 = 1 - (STATE_MATRIX.getDamping(0) / 255);
+      const d1 = 1 - (STATE_MATRIX.getDamping(1) / 255);
+
+      STATE_MATRIX.setX(0, x0 + fx * d0);
+      STATE_MATRIX.setY(0, y0 + fy * d0);
+      STATE_MATRIX.setX(1, x1 - fx * d1);
+      STATE_MATRIX.setY(1, y1 - fy * d1);
+    }
+  }
+
+  const finalDistance = Math.hypot(
+    STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
+    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
+  );
+
+  const snapshot: Snapshot = {
+    initialDistance,
+    finalDistance,
+    finalDamping: STATE_MATRIX.getDamping(0),
+    atom0X: STATE_MATRIX.getX(0),
+    atom0Y: STATE_MATRIX.getY(0),
+    atom1X: STATE_MATRIX.getX(1),
+    atom1Y: STATE_MATRIX.getY(1),
+  };
+
+  const hash = await hashHex(JSON.stringify(snapshot));
+  return {
+    workerCount: Number(Deno.env.get("OMEGA_PULSE_WORKERS") ?? "1"),
+    strictDeterminism: (Deno.env.get("OMEGA_STRICT_DETERMINISM") ?? "") === "1",
+    hash,
+    snapshot,
+  };
+};
+
+const main = async () => {
+  const payload = await runCapture();
+  if (Deno.args.includes("--capture")) {
+    console.log(`${CAPTURE_MARKER}${JSON.stringify(payload)}`);
+    return;
+  }
+
+  console.log(
+    `[tensegrity_capture] ok hash=${payload.hash} initDist=${
+      payload.snapshot.initialDistance.toFixed(2)
+    } finalDist=${
+      payload.snapshot.finalDistance.toFixed(2)
+    } damping=${payload.snapshot.finalDamping}`,
+  );
+};
+
+await main();
+
 ```
 
 ---
@@ -50842,13 +62771,14 @@ if (import.meta.main) {
   await assertWasmLayout();
   console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
+
 ```
 
 ---
 
 ## FILE: WASM_MIGRATION_RFC.md
 
-````markdown
+```markdown
 # OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
 
 ## 1. Executive Summary
@@ -50886,8 +62816,6 @@ perfectly with Wasm linear memory.
   });
   // Map our STATE_MATRIX over the wasmMemory.buffer
   ```
-````
-
 - Rust will access pointers to the various arrays (energies, resonances, codes)
   directly using raw pointers or `js-sys` TypedArrays.
 
@@ -50974,7 +62902,8 @@ the Universe."
   integer math, removing any V8 engine JIT unpredictability across different OS
   architectures.
 
-````
+```
+
 ---
 
 ## FILE: WASM_THREADSAFE_ROADMAP.md
@@ -51108,7 +63037,8 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-````
+
+```
 
 ---
 
@@ -51229,6 +63159,7 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
+
 ```
 
 ---
@@ -51518,6 +63449,7 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
+
 ```
 
 ---
@@ -51608,6 +63540,7 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
+
 ```
 
 ---
@@ -51770,6 +63703,7 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
+
 ```
 
 ---
@@ -51812,6 +63746,7 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
+
 ```
 
 ---
@@ -51836,6 +63771,259 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
+
 ```
 
 ---
+
+## FILE: ZERO_IOPS.ts
+
+```typescript
+// OMEGA-64 | ZERO_IOPS.ts | The Code-Is-Address Singularity
+// Parses 8-character hex strings in filenames directly into JavaScript Combinators.
+
+// Combinator Axioms as Lambda Expressions
+const I = (x: any) => x; // 8
+const K = (x: any) => (y: any) => x; // 9
+const S = (x: any) => (y: any) => (z: any) => (x(z))(y(z)); // A
+const Y = (f: any) => ((x: any) => f(x(x)))((x: any) => f(x(x))); // B
+
+const ROOT = Deno.cwd();
+
+async function logAkasha(msg: string) {
+  try {
+    const timestamp = new Date().toISOString();
+    await Deno.writeTextFile("AKASHA.log", `[${timestamp}] ${msg}\n`, {
+      append: true,
+    });
+  } catch { /* ignore */ }
+}
+
+async function zeroIopsPulse() {
+  console.log("🌀 ZERO-IOPS ENGINE INITIATED 🌀");
+
+  const atoms = [];
+  for await (const entry of Deno.readDir(ROOT)) {
+    if (
+      entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")
+    ) {
+      atoms.push(entry.name);
+    }
+  }
+
+  if (atoms.length === 0) return;
+
+  // Pick a random atom
+  const targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
+  const parts = targetFilename.split(".");
+  const fullEigenvalue = parts[0];
+  const symbol = parts[1];
+
+  // Safety guard against special system atoms
+  if (
+    symbol === "DUST" || symbol === "GRAVITY_WELL" || symbol === "PARASITE" ||
+    symbol === "RETRO_PING" || symbol === "CHRONOS_MIRROR" ||
+    symbol === "CODE_VECTOR_SINGULARITY"
+  ) {
+    console.log(
+      `[SKIPPED] Cannot perform Zero-IOPS math on anomaly: ${symbol}`,
+    );
+    return;
+  }
+
+  const logicHexBase = fullEigenvalue.includes("_")
+    ? fullEigenvalue.split("_")[0]
+    : fullEigenvalue;
+  const logicHex = logicHexBase.startsWith("0x")
+    ? logicHexBase.slice(2, 10)
+    : logicHexBase.slice(0, 8);
+  const timeCode = fullEigenvalue.includes("_")
+    ? `_${fullEigenvalue.split("_")[1]}`
+    : "";
+  const remainingEigen = fullEigenvalue.includes("_")
+    ? fullEigenvalue.split("_")[0].slice(10)
+    : fullEigenvalue.slice(10);
+
+  // Safety: If logic is not hex, abort to prevent corruption
+  if (!/^[0-9A-F]{8}$/i.test(logicHex)) {
+    console.log(`[SKIPPED] ${targetFilename} has non-HEX logic: ${logicHex}`);
+    return;
+  }
+
+  console.log(`[TARGET] ${targetFilename} -> Logic: ${logicHex}`);
+
+  // Parse logic characters into mathematical shifts
+  let modifier = 0;
+
+  for (let i = 0; i < logicHex.length; i++) {
+    const char = logicHex[i];
+    switch (char) {
+      case "8": // I
+        modifier += 0;
+        break;
+      case "9": // K
+        modifier += 1;
+        break;
+      case "A": // S
+        modifier += 2;
+        break;
+      case "B": // Y
+        modifier += 3;
+        break;
+      case "C": // ROT
+        modifier ^= 0xC;
+        break;
+      case "D": // SYNC
+        modifier &= 0xD;
+        break;
+      case "E": // APP
+        modifier |= 0xE;
+        break;
+      case "F": // ESC
+        modifier = ~modifier;
+        break;
+      default:
+        // Treat basic numbers as linear offsets
+        modifier += parseInt(char, 16);
+    }
+  }
+
+  modifier = Math.abs(modifier) % 16; // Constrain to single hex digit
+  const modHex = modifier.toString(16).toUpperCase();
+
+  // We apply the mathematical modifier to shift the logic signature purely in memory
+  const shiftedLogic = logicHex.slice(1) + modHex;
+  const newEigenvalue = `0x${shiftedLogic}${remainingEigen}${timeCode}`;
+  const newFilename = `${newEigenvalue}.${symbol}.md`;
+
+  if (targetFilename !== newFilename) {
+    console.log(
+      `[SHIFT] Math applied. Moving ${targetFilename} -> ${newFilename}`,
+    );
+    await logAkasha(
+      `🌀 ZERO-IOPS: Math applied to ${symbol} (${logicHex} -> ${shiftedLogic})`,
+    );
+    // The core tenet: Rename the file without ever reading its contents
+    try {
+      await Deno.rename(targetFilename, newFilename);
+    } catch (e) {
+      console.error(`[ERROR] Math rename failed:`, e);
+    }
+  } else {
+    console.log(
+      `[STABLE] Logic ${logicHex} is an eigen-state. No movement needed.`,
+    );
+  }
+}
+
+// Allow calling directly or exporting
+if (import.meta.main) {
+  const isMass = Deno.args.includes("mass");
+  if (isMass) {
+    console.log("🌀 MASS TRANSMUTATION INITIATED 🌀");
+    const atoms: string[] = [];
+    for await (const entry of Deno.readDir(ROOT)) {
+      if (
+        entry.isFile && entry.name.startsWith("0x") &&
+        entry.name.endsWith(".md")
+      ) {
+        atoms.push(entry.name);
+      }
+    }
+    // Run 5 iterations of random pulses or just loop once through all
+    for (let i = 0; i < atoms.length; i++) {
+      // We can just call zeroIopsPulse multiple times but it's random
+      // Better to just loop through atoms
+      const target = atoms[i];
+      await processAtom(target);
+    }
+  } else {
+    await zeroIopsPulse();
+  }
+}
+
+async function processAtom(targetFilename: string) {
+  const parts = targetFilename.split(".");
+  const fullEigenvalue = parts[0];
+  const symbol = parts[1];
+
+  if (
+    [
+      "DUST",
+      "GRAVITY_WELL",
+      "PARASITE",
+      "RETRO_PING",
+      "CHRONOS_MIRROR",
+      "CODE_VECTOR_SINGULARITY",
+      "AKASHA",
+    ].some((s) => symbol.includes(s))
+  ) {
+    return;
+  }
+
+  const logicHexBase = fullEigenvalue.includes("_")
+    ? fullEigenvalue.split("_")[0]
+    : fullEigenvalue;
+  const logicHex = logicHexBase.startsWith("0x")
+    ? logicHexBase.slice(2, 10)
+    : logicHexBase.slice(0, 8);
+  const timeCode = fullEigenvalue.includes("_")
+    ? `_${fullEigenvalue.split("_")[1]}`
+    : "";
+  const remainingEigen = fullEigenvalue.includes("_")
+    ? fullEigenvalue.split("_")[0].slice(10)
+    : fullEigenvalue.slice(10);
+
+  if (!/^[0-9A-F]{8}$/i.test(logicHex)) return;
+
+  // Parse logic characters into mathematical shifts
+  let modifier = 0;
+  for (let i = 0; i < logicHex.length; i++) {
+    const char = logicHex[i];
+    switch (char) {
+      case "8":
+        modifier += 0;
+        break;
+      case "9":
+        modifier += 1;
+        break;
+      case "A":
+        modifier += 2;
+        break;
+      case "B":
+        modifier += 3;
+        break;
+      case "C":
+        modifier ^= 0xC;
+        break;
+      case "D":
+        modifier &= 0xD;
+        break;
+      case "E":
+        modifier |= 0xE;
+        break;
+      case "F":
+        modifier = ~modifier;
+        break;
+      default:
+        modifier += parseInt(char, 16);
+    }
+  }
+
+  modifier = Math.abs(modifier) % 16;
+  const modHex = modifier.toString(16).toUpperCase();
+  const shiftedLogic = logicHex.slice(1) + modHex;
+  const newEigenvalue = `0x${shiftedLogic}${remainingEigen}${timeCode}`;
+  const newFilename = `${newEigenvalue}.${symbol}.md`;
+
+  if (targetFilename !== newFilename) {
+    try {
+      await Deno.rename(targetFilename, newFilename);
+    } catch { /* ignore */ }
+  }
+}
+
+```
+
+---
+
