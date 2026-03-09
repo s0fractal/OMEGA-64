@@ -1,6 +1,8 @@
 //! LambdaVM Execution Engine
 
-use crate::isa::{GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE};
+use crate::isa::{
+    GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SYS_EAT, SYS_MOVE, SYS_TRANSFER,
+};
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
 
@@ -225,11 +227,165 @@ impl LambdaVM {
                     pc += 1;
                     gas_used += 5 + (neighbor_count * 2);
                 }
-                GlyphOp::Syscall | GlyphOp::SporeDrive | GlyphOp::Sense => {
-                    // Syscalls yield unconditionally
-                    pc += 1; // Basic jump over opcode for next resume if applicable
+                GlyphOp::Share => {
+                    let target_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let amount_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+
+                    let target_idx = if target_reg < 8 {
+                        state.matrix.context[atom_idx][target_reg as usize]
+                    } else {
+                        0
+                    };
+                    let mut amount = if amount_reg < 8 {
+                        state.matrix.context[atom_idx][amount_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    if target_idx > 0 && (target_idx as usize) < MAX_ATOMS && amount > 0 {
+                        let aggression = state.matrix.hormones[2] as i32;
+                        if aggression > 1024 {
+                            amount += (amount * (aggression - 1024)) / 2048;
+                        }
+
+                        let sender_energy = state.matrix.energy[atom_idx];
+                        let scaled_amount = amount * 1000;
+
+                        if sender_energy >= scaled_amount {
+                            state.matrix.energy[atom_idx] -= scaled_amount;
+                            energy -= scaled_amount;
+                            state.matrix.energy[target_idx as usize] += scaled_amount;
+                        }
+                    }
+
+                    pc += 3;
                     gas_used += 10;
-                    gas_limit = 0;
+                }
+                GlyphOp::Syscall | GlyphOp::SporeDrive | GlyphOp::Sense => {
+                    if op == GlyphOp::Syscall {
+                        let sys_id = state.matrix.context[atom_idx][0]; // R0
+                        let r1 = state.matrix.context[atom_idx][1];
+                        let r2 = state.matrix.context[atom_idx][2];
+                        let r3 = state.matrix.context[atom_idx][3];
+
+                        match sys_id {
+                            SYS_MOVE => {
+                                let dx_decoded = if r1 > 127 { r1 - 256 } else { r1 };
+                                let dy_decoded = if r2 > 127 { r2 - 256 } else { r2 };
+
+                                let dx_str = if dx_decoded == 0 {
+                                    0
+                                } else if dx_decoded > 0 {
+                                    1
+                                } else {
+                                    -1
+                                };
+                                let dy_str = if dy_decoded == 0 {
+                                    0
+                                } else if dy_decoded > 0 {
+                                    1
+                                } else {
+                                    -1
+                                };
+
+                                if dx_str != 0 || dy_str != 0 {
+                                    let cx = state.matrix.xs[atom_idx] as i32;
+                                    let cy = state.matrix.ys[atom_idx] as i32;
+
+                                    let mut nx = cx + (dx_str * 10);
+                                    let mut ny = cy + (dy_str * 10);
+
+                                    if nx < 0 {
+                                        nx = 0;
+                                    } else if nx > 1399 {
+                                        nx = 1399;
+                                    }
+                                    if ny < 0 {
+                                        ny = 0;
+                                    } else if ny > 799 {
+                                        ny = 799;
+                                    }
+
+                                    let n_grid_x = nx / 10;
+                                    let n_grid_y = ny / 10;
+
+                                    let count_in_cell =
+                                        state.get_spatial_grid_count(n_grid_x, n_grid_y);
+
+                                    if count_in_cell < 31 {
+                                        state.matrix.xs[atom_idx] = nx as i16;
+                                        state.matrix.ys[atom_idx] = ny as i16;
+                                    }
+                                }
+                                gas_used += 10;
+                            }
+                            SYS_EAT => {
+                                let target_idx = r1 as usize;
+                                let amount = r2;
+
+                                if target_idx > 0 && target_idx < MAX_ATOMS && amount > 0 {
+                                    if state.matrix.ids[target_idx] != 0 {
+                                        let ox = state.matrix.xs[atom_idx] as f32;
+                                        let oy = state.matrix.ys[atom_idx] as f32;
+                                        let tx = state.matrix.xs[target_idx] as f32;
+                                        let ty = state.matrix.ys[target_idx] as f32;
+
+                                        let dx = (tx - ox) / 10.0;
+                                        let dy = (ty - oy) / 10.0;
+                                        // Equivalent to dist <= 1.5 (dist_sq <= 2.25)
+                                        let dist_sq = dx * dx + dy * dy;
+
+                                        if dist_sq <= 2.25 {
+                                            let target_energy = state.matrix.energy[target_idx];
+                                            let take_amount =
+                                                std::cmp::min(amount * 1000, target_energy);
+
+                                            if take_amount > 0 {
+                                                state.matrix.energy[target_idx] -= take_amount;
+                                                state.matrix.energy[atom_idx] += take_amount;
+                                                energy += take_amount;
+                                            }
+                                        }
+                                    }
+                                }
+                                gas_used += 30;
+                            }
+                            SYS_TRANSFER => {
+                                let target_idx = r1 as usize;
+                                let resource_type = r2;
+                                let amount = r3;
+
+                                if target_idx > 0 && target_idx < MAX_ATOMS && amount > 0 {
+                                    if resource_type == 0 {
+                                        // Energy
+                                        let scaled_amount = amount * 1000;
+                                        if state.matrix.energy[atom_idx] >= scaled_amount {
+                                            state.matrix.energy[atom_idx] -= scaled_amount;
+                                            energy -= scaled_amount;
+                                            state.matrix.energy[target_idx] += scaled_amount;
+                                        }
+                                    } else if resource_type == 1 {
+                                        // Resonance
+                                        if state.matrix.resonance[atom_idx] >= amount {
+                                            state.matrix.resonance[atom_idx] -= amount;
+                                            resonance -= amount;
+                                            state.matrix.resonance[target_idx] += amount;
+                                        }
+                                    }
+                                }
+                                gas_used += 10;
+                            }
+                            _ => {
+                                gas_used += 10;
+                            }
+                        }
+                    }
+
+                    pc += 1; // Basic jump over opcode for next resume if applicable
+                    if op != GlyphOp::Syscall {
+                        gas_used += 10;
+                    } // Fallback for SporeDrive/Sense
+                    gas_limit = 0; // Yield to host
                 }
                 GlyphOp::Unknown => {
                     // Stop execution on invalid opcode
@@ -249,23 +405,25 @@ impl LambdaVM {
 
         // Metabolics
         let entropy_h = state.matrix.hormones[0] as i32;
+        let repair_h = state.matrix.hormones[4] as i32;
         let friction_h = state.matrix.hormones[5] as i32;
-        let coherence_val = state.matrix.neural_coherence;
 
-        let mut discount = 0;
-        if coherence_val > 1000 {
-            discount = 2;
+        let coherence_val = state.matrix.neural_coherence;
+        let discount = if coherence_val > 1000 {
+            2
         } else if coherence_val > 100 {
-            discount = 1;
-        }
+            1
+        } else {
+            0
+        };
 
         let base_compute_cost = gas_used >> discount;
         let metabolic_cost =
             1 + base_compute_cost + ((gas_used * entropy_h) >> (12 + discount)) + (friction_h >> 8);
 
-        // OMEGA-64 specific phase integration via neural coherence
+        // Phase Synchronization
         if coherence_val > 500 {
-            let mut cur_phase = state.matrix.phase[atom_idx];
+            let mut cur_phase = state.matrix.phase[atom_idx] as i32;
             if cur_phase < 128 {
                 cur_phase += 2;
             } else if cur_phase > 128 {
@@ -286,19 +444,22 @@ impl LambdaVM {
             }
         }
 
-        let repair_h = state.matrix.hormones[4] as i32;
         let resonance_decay = if repair_h > 1024 { 1 } else { 2 };
 
         if resonance > 0 {
-            state.matrix.resonance[atom_idx] = resonance - resonance_decay;
-        } else {
-            state.matrix.resonance[atom_idx] = resonance; // Preserve negative or zero
+            state.matrix.resonance[atom_idx] = std::cmp::max(0, resonance - resonance_decay);
         }
 
-        state.matrix.energy[atom_idx] = if energy > metabolic_cost {
+        let final_energy = if energy > metabolic_cost {
             energy - metabolic_cost
         } else {
             0
         };
+
+        state.matrix.energy[atom_idx] = final_energy;
+
+        if final_energy == 0 {
+            state.matrix.ids[atom_idx] = 0;
+        }
     }
 }

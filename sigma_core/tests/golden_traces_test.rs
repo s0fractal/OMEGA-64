@@ -136,3 +136,106 @@ fn test_kuramoto_sync_parity() {
         "Energy confirms 2 neighbors processed inside Kuramoto"
     );
 }
+
+#[test]
+fn test_gt10_share_transfer_parity() {
+    let mut state = SigmaState::new();
+
+    // Atom 1: Aggressor/Sharer (High Aggression Hormone)
+    state.matrix.ids[1] = 1;
+    state.matrix.energy[1] = 5000;
+
+    // Atom 2: Receiver
+    state.matrix.ids[2] = 2;
+    state.matrix.energy[2] = 1000;
+
+    // Set Hormones
+    state.matrix.hormones[0] = 0; // No entropy
+    state.matrix.hormones[5] = 0; // No friction
+    state.matrix.hormones[2] = 1536; // Aggression = 1536 (> 1024 triggers boost)
+
+    // Program Atom 1
+    // R0 = 2 (Target ID), R1 = 5 (Amount)
+    // OP_SET R0, 2
+    state.matrix.instructions[1][0] = 0x01;
+    state.matrix.instructions[1][1] = 0;
+    state.matrix.instructions[1][2] = 2;
+
+    // OP_SET R1, 5
+    state.matrix.instructions[1][3] = 0x01;
+    state.matrix.instructions[1][4] = 1;
+    state.matrix.instructions[1][5] = 5;
+
+    // OP_SHARE R0, R1
+    state.matrix.instructions[1][6] = 0x83;
+    state.matrix.instructions[1][7] = 0;
+    state.matrix.instructions[1][8] = 1;
+
+    let mut vm = LambdaVM::new();
+    vm.step(&mut state, 1);
+
+    // Initial instruction execution:
+    // SET R0, 2 -> 1 gas
+    // SET R1, 5 -> 1 gas
+    // SHARE R0, R1 -> 10 gas
+    // Total Gas = 12
+    // Metabolic Cost: 1 + 12 = 13
+
+    // OP_SHARE logic: Base amount = 5
+    // Aggression = 1536 => Diff = 512
+    // Bonus = (5 * 512) / 2048 = 2560 / 2048 = 1 integer division.
+    // Total Amount Shared = 5 + 1 = 6 units (scaled to 6000)
+
+    // Sender Energy: 5000 - 6000 = -1000, BUT wait!
+    // OP_SHARE check: `if sender_energy >= scaled_amount` -> 5000 >= 6000 is FALSE.
+    // Thus transfer should ABORT. Sender just pays 14 metabolic tax (12 gas + 1 NOP break).
+    assert_eq!(state.matrix.energy[1], 5000 - 14);
+    assert_eq!(state.matrix.energy[2], 1000);
+
+    // Let's give Atom 1 more energy to succeed
+    state.matrix.energy[1] = 10000;
+    state.matrix.context[1][8] = 6; // Reset PC to OP_SHARE (offset 6)
+
+    vm.step(&mut state, 1);
+
+    // SHARE R0, R1 -> 10 gas. NOP break -> 1 gas. Total 11 gas. Metabolic = 12 (1 + 11).
+    // Transferred = 6000.
+    // New Atom 1 Energy: 10000 - 6000 - 12 = 3988
+    // New Atom 2 Energy: 10000 + 6000 = 7000.
+
+    assert_eq!(state.matrix.energy[1], 3988);
+    assert_eq!(state.matrix.energy[2], 7000);
+}
+
+#[test]
+fn test_metabolic_tax_parity() {
+    let mut state = SigmaState::new();
+
+    // Standard setup
+    state.matrix.ids[1] = 1;
+    state.matrix.energy[1] = 1000;
+
+    // Hormones
+    state.matrix.hormones[0] = 500; // Entropy H0
+    state.matrix.hormones[5] = 2000; // Friction H5
+
+    // Program: 15 NOPs. Wait, NOP instruction BREAKS the loop immediately!
+    // So only 1 gas is consumed.
+    for i in 0..15 {
+        state.matrix.instructions[1][i] = 0x00;
+    }
+
+    let mut vm = LambdaVM::new();
+    vm.step(&mut state, 1);
+
+    // Calculation:
+    // Gas Used = 1 (due to NOP break)
+    // Coherence = 0 (Discount = 0)
+    // Base Compute = 1 >> 0 = 1
+    // Entropy term = (1 * 500) >> 12 = 0
+    // Friction term = 2000 >> 8 = 7
+    // Total Metabolic Cost = 1 (base) + 1 (compute) + 0 (entropy) + 7 (friction) = 9
+
+    // Final Energy = 1000 - 9 = 991
+    assert_eq!(state.matrix.energy[1], 991);
+}

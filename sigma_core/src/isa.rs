@@ -14,6 +14,7 @@ pub enum GlyphOp {
     Jmp = 0x12,
     // Future syscalls
     Syscall = 0x60,
+    Share = 0x83,
     Resolve = 0xB0,
     ResonateKuramoto = 0xB1,
     Sense = 0xB2,
@@ -34,6 +35,7 @@ impl From<u8> for GlyphOp {
             0x11 => GlyphOp::Jnz,
             0x12 => GlyphOp::Jmp,
             0x60 => GlyphOp::Syscall,
+            0x83 => GlyphOp::Share,
             0xB0 => GlyphOp::Resolve,
             0xB1 => GlyphOp::ResonateKuramoto,
             0xB2 => GlyphOp::Sense,
@@ -53,3 +55,7 @@ pub const PROP_QUORUM: u8 = 8;
 pub const PROP_NEURAL_COHERENCE: u8 = 9;
 pub const PROP_MEMORY: u8 = 10;
 pub const PROP_CONSENSUS: u8 = 11;
+
+pub const SYS_TRANSFER: i32 = 10;
+pub const SYS_MOVE: i32 = 14;
+pub const SYS_EAT: i32 = 15;
