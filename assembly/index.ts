@@ -1320,33 +1320,37 @@ function unpackGlyphKind(header: i32): i32 {
 }
 
 function unpackGlyphAmplitude(header: i32): i32 {
-  return (header >>> 8) & 0x00FFFFFF;
+  return header >> 8; // Signed arithmetic shift (top 24 bits)
 }
 
 function packGlyphHeader(kind: i32, amplitude: i32): i32 {
-  if (amplitude < 0) amplitude = 0;
-  if (amplitude > 0x00FFFFFF) amplitude = 0x00FFFFFF;
+  if (amplitude < -8388608) amplitude = -8388608;
+  if (amplitude > 8388607) amplitude = 8388607;
   return (amplitude << 8) | (kind & 0xFF);
 }
 
 function decayForKind(kind: i32, amplitude: i32): i32 {
+  const absAmp = Math.abs(amplitude) as i32;
+  let decayAmt = 0;
   if (kind == 2) { // PLASMID
-    return amplitude > 256 ? 3 : 1;
+    decayAmt = absAmp > 256 ? 3 : 1;
+  } else if (kind == 1) { // PHEROMONE
+    decayAmt = absAmp > 64 ? 8 : 4;
+  } else {
+    decayAmt = absAmp; // Fallback
   }
-  if (kind == 1) { // PHEROMONE
-    return amplitude > 64 ? 8 : 4;
-  }
-  return amplitude;
+  return amplitude > 0 ? decayAmt : -decayAmt;
 }
 
 function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
+  const absAmp = Math.abs(amplitude) as i32;
+  let shareAmt = 0;
   if (kind == 2) { // PLASMID
-    return amplitude >= 96 ? (amplitude >> 3) : 0; // amplitude * 0.125
+    shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
+  } else if (kind == 1) { // PHEROMONE
+    shareAmt = absAmp >= 24 ? (absAmp >> 2) : 0; // * 0.25
   }
-  if (kind == 1) { // PHEROMONE
-    return amplitude >= 24 ? (amplitude >> 2) : 0; // amplitude * 0.25
-  }
-  return 0;
+  return amplitude > 0 ? shareAmt : -shareAmt;
 }
 
 function atomicDepositGlyphHeader(
@@ -1356,7 +1360,8 @@ function atomicDepositGlyphHeader(
   amplitude: i32,
   payloadPtr: usize = 0,
 ): void {
-  if (amplitude <= 0 || cell < 0 || cell >= 140 * 80) return;
+  // 0 amplitude wave has no effect
+  if (amplitude == 0 || cell < 0 || cell >= 140 * 80) return;
 
   const ptr = (baseOffset + (cell << 2)) as usize;
 
@@ -1365,8 +1370,9 @@ function atomicDepositGlyphHeader(
     const currentKind = unpackGlyphKind(current);
     const currentAmplitude = unpackGlyphAmplitude(current);
 
+    // Mismatched kind: standard replacement strategy but with absolute power checks
     if (currentKind != 0 && currentKind != kind) {
-      if (amplitude <= currentAmplitude) return;
+      if (Math.abs(amplitude) <= Math.abs(currentAmplitude)) return;
       const observed = atomic.cmpxchg<i32>(
         ptr,
         current,
@@ -1385,15 +1391,22 @@ function atomicDepositGlyphHeader(
       continue;
     }
 
+    // Matching kind: Optical Wave Interference (Additive)
     let nextAmplitude = currentAmplitude + amplitude;
-    if (nextAmplitude > 0x00FFFFFF) nextAmplitude = 0x00FFFFFF;
+    if (nextAmplitude > 8388607) nextAmplitude = 8388607;
+    if (nextAmplitude < -8388608) nextAmplitude = -8388608;
+    
+    // If waves perfectly annihilate, clear the glyph entirely
+    const nextKind = nextAmplitude == 0 ? 0 : kind;
+
     const observed = atomic.cmpxchg<i32>(
       ptr,
       current,
-      packGlyphHeader(kind, nextAmplitude),
+      packGlyphHeader(nextKind, nextAmplitude),
     );
     if (observed == current) {
       if (kind == 2 && payloadPtr != 0) {
+        // Technically if nextAmplitude is 0, payload is orphaned, but acceptable
         const payloadBase = baseOffset == GLYPH_HEADER_OFF
           ? GLYPH_PAYLOAD_OFF
           : GLYPH_SCRATCH_PAYLOAD_OFF;
@@ -1440,12 +1453,16 @@ function secreteGlyph(
     }
   }
 
-  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, intensity, payloadPtr);
+  // Role-based Phase Imprinting (Parasite = Destructive, Sys/Prod = Constructive)
+  const isDestructive = role == 4;
+  const phaseIntensity = isDestructive ? -intensity : intensity;
+
+  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, phaseIntensity, payloadPtr);
 
   // Halo spill for Pheromones (kind=1)
   if (kind == 1) {
-    const spill = intensity >> 2;
-    if (spill > 16) {
+    const spill = phaseIntensity >> 2;
+    if (Math.abs(spill) > 0) {
       if (gx > 0) {
         atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
       }
@@ -1466,19 +1483,30 @@ export function tickGlyphTransport(tick: i32): void {
   // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
 
+  const dx = [-1, 1, 0, 0];
+  const dy = [0, 0, -1, 1];
+
   for (let cell = 0; cell < 140 * 80; cell++) {
     const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
+    if (header == 0) continue;
+
     const kind = unpackGlyphKind(header);
-    const amplitude = unpackGlyphAmplitude(header);
-    if (kind == 0 || amplitude <= 0) continue;
+    const amp = unpackGlyphAmplitude(header);
+    if (amp == 0) continue;
 
-    const decayed = amplitude - decayForKind(kind, amplitude);
-    if (decayed <= 0) continue;
+    const decay = decayForKind(kind, amp);
+    
+    // Bidirectional Decay (pull towards zero)
+    let retained = 0;
+    if (amp > 0) {
+        retained = amp - decay;
+        if (retained < 0) retained = 0;
+    } else {
+        retained = amp - decay; // decay is negative when amp is negative
+        if (retained > 0) retained = 0;
+    }
 
-    const share = diffusionShareForKind(kind, decayed);
-    const retained = decayed - share;
-
-    if (retained > 0) {
+    if (Math.abs(retained) > 0) {
       atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -1487,22 +1515,24 @@ export function tickGlyphTransport(tick: i32): void {
       }
     }
 
-    if (share > 0) {
+    const share = diffusionShareForKind(kind, amp);
+    if (Math.abs(share) > 0) {
       const gx = cell % 140;
       const gy = cell / 140;
-      const selector = (tick + cell) & 3;
-      let nextCell = cell;
 
-      if (selector == 0 && gx < 139) nextCell = cell + 1;
-      else if (selector == 1 && gy < 79) nextCell = cell + 140;
-      else if (selector == 2 && gx > 0) nextCell = cell - 1;
-      else if (selector == 3 && gy > 0) nextCell = cell - 140;
+      for (let i = 0; i < 4; i++) {
+        let nx = gx + dx[i];
+        let ny = gy + dy[i];
+        if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+          const nextCell = ny * 140 + nx;
+          atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
 
-      atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
-      if (kind == 2) { // PLASMID payload transport
-        const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
-        const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
-        memory.copy(dstPtr, srcPtr, 8);
+          if (share >= 128 || share <= -128) {
+            const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
+            const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
+            memory.copy(dstPtr, srcPtr, 8);
+          }
+        }
       }
     }
   }
