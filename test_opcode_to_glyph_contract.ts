@@ -50,7 +50,7 @@ const main = () => {
     "[opcode_to_glyph] OP_JZ must now map into the control glyph band",
   );
 
-  const unmapped = new Uint8Array([RISC.OP_BIND, 0, 0]);
+  const unmapped = new Uint8Array([0xFF, 0, 0]);
   let failedClosed = false;
   try {
     scriptToGlyphTape(unmapped);

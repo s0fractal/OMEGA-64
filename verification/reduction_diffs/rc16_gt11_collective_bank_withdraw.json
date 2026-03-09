@@ -2,13 +2,11 @@
   "case_id": "rc16_gt11_collective_bank_withdraw",
   "baseline_trace_id": "gt11_collective_banking",
   "baseline_runtime_mode": "standalone-collective-banking-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
+  "parity_ok": true,
+  "parity_reasons": [],
   "legacy_digest": "61236dac92024146e384960fcd72facc3e0b5f35308442d9190da1d7ae974dc6",
   "reduction_digest": "f368149bf76df4473793366605ae26d9a3c37cd8f2ca460d7c82434c45547ea9",
-  "executed_digest_legacy": "2aa70281362870f52dc408312c9e37ad12270a8499ddbb73af4b9d2f3becf479",
+  "executed_digest_legacy": "efd92e3d55875f8eeb7f828bc59eecd1c6b2e7b245cdcadb838d958ff11ffc0c",
   "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
   "diff": {
     "final_pc_match": true,

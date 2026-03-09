@@ -40,10 +40,11 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   );
   STATE_MATRIX.setHormone(0, entropyPressure);
 
-  // 2. time_viscosity (derived from workerCount / maxActions)
+  // 2. time_viscosity (derived from daemonMaxActions)
+  // Note: removing workerCount so that physics remains deterministic regardless of hardware execution threads
   const timeViscosity = Math.round(
     clamp(
-      (input.workerCount / 32) * 1024 + (input.daemonMaxActions / 128) * 1024,
+      (input.daemonMaxActions / 128) * 1024,
       0,
       2048,
     ),

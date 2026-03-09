@@ -1218,6 +1218,10 @@ const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
   return Atomics.load(causalityView, idx) !== 0;
 };
 
+const architectPlasmidAllowedByExecutionMode = (idx: number): boolean => {
+  return Atomics.load(causalityView, idx) !== 0;
+};
+
 const CHILD_ID_SALT = 0x9E3779B97F4A7C15n;
 const deriveChildId = (
   tick: number,
@@ -2538,6 +2542,54 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
+      
+      SOVEREIGN_ORACLE.drainPendingMutations();
+      await CONTROL_INTENT_QUEUE.applyHostLockBudget();
+
+      // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
+      const transportPulseId = nextPulseId();
+      await postAndWait(0, workers[0], {
+        type: "TICK_GLYPH_TRANSPORT",
+        tick: currentTick,
+        pulseId: transportPulseId,
+      }, "GLYPH_TRANSPORT_DONE");
+      
+      // 3.5 Sort Spawn Requests Deterministically
+      const writeHead = Atomics.load(spawnHeadView, 0);
+      const readHead = Atomics.load(spawnHeadView, 1);
+      const pendingCount = writeHead - readHead;
+      
+      if (pendingCount > 1) {
+        const SPAWN_MAX = 1024;
+        const SPAWN_SLOT = 24;
+        const requests = [];
+        
+        for (let i = 0; i < pendingCount; i++) {
+          const cursor = readHead + i;
+          const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
+          const reqBytes = new Uint8Array(24);
+          for (let b = 0; b < 24; b++) {
+            reqBytes[b] = spawnDataView.getUint8(slotOff + b);
+          }
+          requests.push(reqBytes);
+        }
+        
+        // Lexicographical sort
+        requests.sort((a, b) => {
+          for (let i = 0; i < 24; i++) {
+            if (a[i] !== b[i]) return a[i] - b[i];
+          }
+          return 0;
+        });
+        
+        for (let i = 0; i < pendingCount; i++) {
+          const cursor = readHead + i;
+          const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
+          for (let b = 0; b < 24; b++) {
+            spawnDataView.setUint8(slotOff + b, requests[i][b]);
+          }
+        }
+      }
 
       // 4. Drain Spawn Queue (WASM)
       const spawnPulseId = nextPulseId();
@@ -2593,6 +2645,9 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
+      
+      applyEvolutionPressureTerms(currentTick, activeIdx);
+      applyEnergyHomeostasisTerms(currentTick, activeIdx, spatialHashState.overflowRatio);
 
       // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
       const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
@@ -2759,7 +2814,8 @@ export const PULSE = {
             architectPlasmidHybridState.lastBranch = decision.branch;
 
             // Apply Causality Suppression for Plasmids
-            const allowed = decision.allowed;
+            const allowed = decision.allowed &&
+              architectPlasmidAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else {
             // Non-governed roles are always allowed

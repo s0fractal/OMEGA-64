@@ -2,13 +2,11 @@
   "case_id": "rc07_gt04_plasmid_prop_write_signal",
   "baseline_trace_id": "gt04_plasmid_inject",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
-  "legacy_digest": "6e59197b7196d90d44c9cca243c056043fdb491212e674d90495014e6e4e40b5",
-  "reduction_digest": "d6fa3dabe287a9a41aa4d5f61f17141cc7a8a098a1f4a58055a31dafd63a2a96",
-  "executed_digest_legacy": "4b13ae17527ba14cb748298ab5e36a74f86455416109806ee93e6d14ac142a73",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "ee7f20d1264d3774bbb2d9c3aab1f8dc317d1da47d5993563dedee38d03293b1",
+  "reduction_digest": "042a14b93fb8ca488ff7486fbcacd1bba752b15a62840326cf5184d6e0778bc7",
+  "executed_digest_legacy": "a8453f5e8923a2256517dbb80fd8b2bada7bbfa320f57537bce3389973384cdd",
   "executed_digest_reduction": "762a425854ff53dd0ff55bad366707de329ab725e70f6c1782a28c1962546810",
   "diff": {
     "final_pc_match": true,

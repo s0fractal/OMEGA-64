@@ -2,13 +2,11 @@
   "case_id": "rc10_gt08_structure_intent_typed_miss",
   "baseline_trace_id": "gt08_structure_intent_visibility",
   "baseline_runtime_mode": "standalone-structure-intent-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
+  "parity_ok": true,
+  "parity_reasons": [],
   "legacy_digest": "45fc97b29c6dfbf5591ec2cfec899526e8a4f92bf618ec36550288cba8f23bf7",
   "reduction_digest": "8c9169d3a2a1f087f67145b774ce6a11c1b911c96745bb6f604a0f9b7a5e9313",
-  "executed_digest_legacy": "da58a5f119ea0b4ed351de034b1a6fcca3ae0321ff37b11b9c04a8e386b7e954",
+  "executed_digest_legacy": "f33a7e28df4dfcb8223458fb0bc71058945d7a1c691fa7cd2e4f5daf45ab0c60",
   "executed_digest_reduction": "cbad30ccf4a6f174699fb3dcea2153a485514cf96eadd61c6a847aa4764ec7cb",
   "diff": {
     "final_pc_match": true,

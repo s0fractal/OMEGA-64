@@ -1,4 +1,4 @@
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -74,6 +74,7 @@ const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_BUILD, 3],
   [RISC.OP_JZ, 3],
   [RISC.OP_SPORE_DRIVE, 1],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 export const normalizeGuardianSignalExecutionMode = (
@@ -218,6 +219,18 @@ const applyGuardianOpcode = (
     }
     case RISC.OP_SPORE_DRIVE: {
       // Movement is no-op in bridge reduction
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(`unsupported guardian bridge syscall=0x${sysId.toString(16)}`);
+      }
       state.pc += token.length;
       return;
     }

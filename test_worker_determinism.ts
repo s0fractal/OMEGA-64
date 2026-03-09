@@ -60,7 +60,7 @@ const buildAtomIndices = (count: number): number[] => {
   const out: number[] = [];
   const perBand = Math.ceil(count / 4);
   for (let band = 0; band < 4 && out.length < count; band++) {
-    const base = band * 25_000 + 100;
+    const base = band * 2500 + 100;
     for (let k = 0; k < perBand && out.length < count; k++) {
       out.push(base + k * 137);
     }

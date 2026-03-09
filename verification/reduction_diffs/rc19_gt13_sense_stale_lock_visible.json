@@ -2,13 +2,11 @@
   "case_id": "rc19_gt13_sense_stale_lock_visible",
   "baseline_trace_id": "gt13_structure_lock_progress",
   "baseline_runtime_mode": "standalone-structure-lock-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
+  "parity_ok": true,
+  "parity_reasons": [],
   "legacy_digest": "9d12d1848a60f0251c69a78ba97cfbf22ab279fe83146cb79195053f60bd5a24",
   "reduction_digest": "7e1686e38e44e51f24346c90ae470efdb816292e1bfcfe4d745856733e28392b",
-  "executed_digest_legacy": "fac35fabcb5c9db9277962fbc316cb3ce071615693a59817a2d47a63923abdeb",
+  "executed_digest_legacy": "a67b8446c98966a83226320f3a576d2ce0a6e52673137bbb7ac58e5e8a1c40ae",
   "executed_digest_reduction": "2e5ee0d1f6816e5034e45ab88d1f5c8f58238b35ffb07330bd1a113a90d0c1e1",
   "diff": {
     "final_pc_match": true,

@@ -2,13 +2,11 @@
   "case_id": "rc06_gt05_band_anchor_mismatch",
   "baseline_trace_id": "gt05_homeostasis_correction",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
-  "legacy_digest": "177696eeae6ef3627737f0567ff117d117d5de79d59e1971f2ebd4024daa1075",
-  "reduction_digest": "1870b1435b5e8e5aa1ec7270cd63c6877b4bd004bbe51cecc31a5483f36fc6e5",
-  "executed_digest_legacy": "36a8437a4fb645a82d075bc035e52bcfe8d04924abe5dc3c2e006ee17dcb7ec7",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "860416f11d955fd1a48766d00c4e1b9f6ef3ab24ae0305711fb1b283f1b8f9bc",
+  "reduction_digest": "cfc80ece75bbca194a97a9187cc6b3388dff056fd329bd29686efc849ef42497",
+  "executed_digest_legacy": "7fea6101191aedb7a0de70b477196adee9602df599c35d501b71db167abfbb3b",
   "executed_digest_reduction": "fe9f44b3b8020643a4eb37085012511152cf9188fa71da6dd379e0a4c9ca3756",
   "diff": {
     "final_pc_match": true,

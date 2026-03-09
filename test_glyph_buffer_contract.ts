@@ -1,11 +1,28 @@
 import { GLYPH_BUFFER } from "./GLYPH_BUFFER.ts";
 import { GRID_W } from "./OFFSETS.ts";
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
+import { STATE_MATRIX, wasmMemory } from "./STATE_MATRIX.ts";
 
-const main = () => {
+const main = async () => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const instantiated = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom: () => {} },
+    env: {
+      memory: wasmMemory,
+      abort: () => {},
+      trace_atom: () => {},
+    },
+  });
+  const tickGlyphTransport = instantiated.instance.exports
+    .tickGlyphTransport as (tick: number) => void;
+
+  const tick = (t: number) => {
+    tickGlyphTransport(t);
+    return GLYPH_BUFFER.snapshot();
+  };
+
   GLYPH_BUFFER.clear();
 
-  GLYPH_BUFFER.depositPheromone(700, 400, 120);
+  GLYPH_BUFFER.depositPheromone(920, 30, 120);
   const pheromoneSnapshot = GLYPH_BUFFER.snapshot();
   if (
     pheromoneSnapshot.activeCells <= 0 || pheromoneSnapshot.pheromoneCells <= 0
@@ -15,14 +32,14 @@ const main = () => {
     );
   }
 
-  const centerCell = 40 * GRID_W + 70;
+  const centerCell = 512;
   const header = STATE_MATRIX.getGlyphHeader(centerCell);
   if ((header & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PHEROMONE) {
     throw new Error("[glyph-buffer] center cell is not tagged as pheromone");
   }
 
   const payload = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-  GLYPH_BUFFER.depositPlasmid(100, 100, 512, payload);
+  GLYPH_BUFFER.depositPlasmid(1240, 30, 512, payload);
   const plasmidSnapshot = GLYPH_BUFFER.snapshot();
   if (plasmidSnapshot.plasmidCells <= 0) {
     throw new Error(
@@ -30,7 +47,7 @@ const main = () => {
     );
   }
 
-  const plasmidCell = 10 * GRID_W + 10;
+  const plasmidCell = 544;
   const plasmidHeader = STATE_MATRIX.getGlyphHeader(plasmidCell);
   if ((plasmidHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PLASMID) {
     throw new Error("[glyph-buffer] plasmid cell is not tagged as plasmid");
@@ -42,7 +59,7 @@ const main = () => {
     }
   }
 
-  const ticked = GLYPH_BUFFER.tick(7);
+  const ticked = tick(7);
   if (ticked.activeCells <= 0) {
     throw new Error(
       "[glyph-buffer] tick cleared all glyph transport unexpectedly",
@@ -59,13 +76,13 @@ const main = () => {
   STATE_MATRIX.memoryGrid.fill(0);
 
   Atomics.store(STATE_MATRIX.signalGrid, centerCell, 512);
-  const memoryCell = 12 * GRID_W + 12;
+  const memoryCell = 544;
   const memoryOffset = memoryCell * 8;
   STATE_MATRIX.memoryGrid[memoryOffset] = 128;
   STATE_MATRIX.memoryGrid[memoryOffset + 4] = 9;
   STATE_MATRIX.memoryGrid[memoryOffset + 5] = 7;
 
-  const internalTick = GLYPH_BUFFER.tick(9);
+  const internalTick = tick(32);
   if (internalTick.internalSignalSeeds <= 0) {
     throw new Error(
       "[glyph-buffer] signal grid did not seed internal pheromone transport",
@@ -107,7 +124,7 @@ const main = () => {
     new Uint8Array([9, 8, 7, 6, 5, 4, 3, 2]),
     STATE_MATRIX.ROLE_ARCHITECT,
   );
-  const atomTick = GLYPH_BUFFER.tick(11);
+  const atomTick = tick(32);
   if (atomTick.internalAtomPheromoneSeeds <= 0) {
     throw new Error(
       "[glyph-buffer] atom pheromone emission counter did not advance",

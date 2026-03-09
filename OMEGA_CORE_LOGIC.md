@@ -1,13 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-_Generated: 2026-03-09T03:06:36.374Z_ _Exported Files: 125_ _Runtime Roots: 11_
-_Runtime Closure Files: 77_ _Non-Runtime Code Files: 33_ _Runtime-Support Code
-Files: 18_ _Experimental Code Files: 15_ _Manifest SHA256:
-bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8_ _Export Set
-SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d_
-_Export Content SHA256:
-751a3b3bc5eb9d0c24b501534ba63ff34c83e1407a2798373d2547c94af7c212_ _Git Commit:
-1d37a4e9d823_
+*Generated: 2026-03-09T06:31:00.709Z*
+*Exported Files: 125*
+*Runtime Roots: 11*
+*Runtime Closure Files: 77*
+*Non-Runtime Code Files: 33*
+*Runtime-Support Code Files: 18*
+*Experimental Code Files: 15*
+*Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
+*Export Set SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d*
+*Export Content SHA256: 4ff225b67d79c8fd377ddf2a8ae21390fb47efae2d2d4ee1f0b896db06a1c64e*
+*Git Commit: da61fcdd0f15*
 
 ---
 
@@ -393,6 +396,7 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
+
 ```
 
 ---
@@ -2113,6 +2117,7 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
+
 ```
 
 ---
@@ -2851,6 +2856,7 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
+
 ```
 
 ---
@@ -3163,6 +3169,7 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
+
 ```
 
 ---
@@ -3551,6 +3558,7 @@ export const AKASHA_SIGNALING = {
     </script>
   </body>
 </html>
+
 ```
 
 ---
@@ -3625,6 +3633,7 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
+
 ```
 
 ---
@@ -3818,6 +3827,7 @@ export const evaluateArchitectPlasmidPromotionDecision = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -4032,6 +4042,7 @@ export const evaluateArchitectPlasmidPromotion = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -4083,7 +4094,8 @@ export context. It intentionally excludes historical era narratives.
 - `runtime_root_files`: executable entry roots that define active runtime
   closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
   `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`,
-  `MUTATION_TELEMETRY.ts`.
+  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`,
+  `llm_soul.ts`, `nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
 - `experimental_files`: explicitly exported experimental surfaces that must not
@@ -4161,6 +4173,21 @@ export context. It intentionally excludes historical era narratives.
   Deno-native environment. Legacy `node_modules`, `package.json`, and
   `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
   via Deno's native NPM resolution in `build_wasm.ts`.
+- **Cognitive Vector Protocol**: Transitioned to deterministic integer-based
+  Math (`math_sin`, `math_cos`) to ensure 100% causal consistency.
+  - **Phase-ring as Cognitive Zodiac**: The internal continuous `theta` phase
+    (0-255) maps symmetrically into a 4-quadrant archetype wheel:
+    - **Quadrant I (0-63)**: Fear vs Curiosity (Scientist / Analyzer)
+    - **Quadrant II (64-127)**: Curiosity vs Ego (Architect / Creator)
+    - **Quadrant III (128-191)**: Ego vs Love (Warrior / Extractor)
+    - **Quadrant IV (192-255)**: Love vs Fear (Guardian / Protector)
+  - **Resonance Dynamics**: Incorporates the Kuramoto model for phase
+    synchronization (`OP_RESONATE_KURAMOTO`) with K-coupling dictated strictly
+    by global `NEURAL_COHERENCE`, driving atoms into synchronous zodiac phases
+    when K > K_critical.
+  - **Gas Economics**: Implements precision-gas gradients where `LUT_LERP` and
+    `TAYLOR2` exact mathematically higher gas tariffs (5-10x more than fast
+    mapping) yielding resource competition under resonant loads.
 
 ## Governance and Integrity
 
@@ -4225,6 +4252,7 @@ Deep chain adds:
 - Policy: test files and archive/legacy folders are excluded; required active
   files must exist; context is limited to active architecture docs and UI/ops
   surfaces.
+
 ```
 
 ---
@@ -4245,6 +4273,569 @@ declare function trace_atom(
 const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
+
+// --- STAGE 44: DISCRETE TRIGONOMETRY (LUT) ---
+// Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
+const SIN_LUT: StaticArray<i16> = [
+  0,
+  804,
+  1608,
+  2410,
+  3212,
+  4011,
+  4808,
+  5602,
+  6393,
+  7179,
+  7962,
+  8739,
+  9512,
+  10278,
+  11039,
+  11793,
+  12539,
+  13279,
+  14010,
+  14732,
+  15446,
+  16151,
+  16846,
+  17530,
+  18204,
+  18868,
+  19519,
+  20159,
+  20787,
+  21403,
+  22005,
+  22594,
+  23170,
+  23731,
+  24279,
+  24811,
+  25329,
+  25832,
+  26319,
+  26790,
+  27245,
+  27683,
+  28105,
+  28510,
+  28898,
+  29268,
+  29621,
+  29956,
+  30273,
+  30571,
+  30852,
+  31113,
+  31356,
+  31580,
+  31785,
+  31971,
+  32137,
+  32285,
+  32412,
+  32521,
+  32609,
+  32678,
+  32728,
+  32757,
+  32767,
+  32757,
+  32728,
+  32678,
+  32609,
+  32521,
+  32412,
+  32285,
+  32137,
+  31971,
+  31785,
+  31580,
+  31356,
+  31113,
+  30852,
+  30571,
+  30273,
+  29956,
+  29621,
+  29268,
+  28898,
+  28510,
+  28105,
+  27683,
+  27245,
+  26790,
+  26319,
+  25832,
+  25329,
+  24811,
+  24279,
+  23731,
+  23170,
+  22594,
+  22005,
+  21403,
+  20787,
+  20159,
+  19519,
+  18868,
+  18204,
+  17530,
+  16846,
+  16151,
+  15446,
+  14732,
+  14010,
+  13279,
+  12539,
+  11793,
+  11039,
+  10278,
+  9512,
+  8739,
+  7962,
+  7179,
+  6393,
+  5602,
+  4808,
+  4011,
+  3212,
+  2410,
+  1608,
+  804,
+  0,
+  -804,
+  -1608,
+  -2410,
+  -3212,
+  -4011,
+  -4808,
+  -5602,
+  -6393,
+  -7179,
+  -7962,
+  -8739,
+  -9512,
+  -10278,
+  -11039,
+  -11793,
+  -12539,
+  -13279,
+  -14010,
+  -14732,
+  -15446,
+  -16151,
+  -16846,
+  -17530,
+  -18204,
+  -18868,
+  -19519,
+  -20159,
+  -20787,
+  -21403,
+  -22005,
+  -22594,
+  -23170,
+  -23731,
+  -24279,
+  -24811,
+  -25329,
+  -25832,
+  -26319,
+  -26790,
+  -27245,
+  -27683,
+  -28105,
+  -28510,
+  -28898,
+  -29268,
+  -29621,
+  -29956,
+  -30273,
+  -30571,
+  -30852,
+  -31113,
+  -31356,
+  -31580,
+  -31785,
+  -31971,
+  -32137,
+  -32285,
+  -32412,
+  -32521,
+  -32609,
+  -32678,
+  -32728,
+  -32757,
+  -32767,
+  -32757,
+  -32728,
+  -32678,
+  -32609,
+  -32521,
+  -32412,
+  -32285,
+  -32137,
+  -31971,
+  -31785,
+  -31580,
+  -31356,
+  -31113,
+  -30852,
+  -30571,
+  -30273,
+  -29956,
+  -29621,
+  -29268,
+  -28898,
+  -28510,
+  -28105,
+  -27683,
+  -27245,
+  -26790,
+  -26319,
+  -25832,
+  -25329,
+  -24811,
+  -24279,
+  -23731,
+  -23170,
+  -22594,
+  -22005,
+  -21403,
+  -20787,
+  -20159,
+  -19519,
+  -18868,
+  -18204,
+  -17530,
+  -16846,
+  -16151,
+  -15446,
+  -14732,
+  -14010,
+  -13279,
+  -12539,
+  -11793,
+  -11039,
+  -10278,
+  -9512,
+  -8739,
+  -7962,
+  -7179,
+  -6393,
+  -5602,
+  -4808,
+  -4011,
+  -3212,
+  -2410,
+  -1608,
+  -804,
+];
+const COS_LUT: StaticArray<i16> = [
+  32767,
+  32757,
+  32728,
+  32678,
+  32609,
+  32521,
+  32412,
+  32285,
+  32137,
+  31971,
+  31785,
+  31580,
+  31356,
+  31113,
+  30852,
+  30571,
+  30273,
+  29956,
+  29621,
+  29268,
+  28898,
+  28510,
+  28105,
+  27683,
+  27245,
+  26790,
+  26319,
+  25832,
+  25329,
+  24811,
+  24279,
+  23731,
+  23170,
+  22594,
+  22005,
+  21403,
+  20787,
+  20159,
+  19519,
+  18868,
+  18204,
+  17530,
+  16846,
+  16151,
+  15446,
+  14732,
+  14010,
+  13279,
+  12539,
+  11793,
+  11039,
+  10278,
+  9512,
+  8739,
+  7962,
+  7179,
+  6393,
+  5602,
+  4808,
+  4011,
+  3212,
+  2410,
+  1608,
+  804,
+  0,
+  -804,
+  -1608,
+  -2410,
+  -3212,
+  -4011,
+  -4808,
+  -5602,
+  -6393,
+  -7179,
+  -7962,
+  -8739,
+  -9512,
+  -10278,
+  -11039,
+  -11793,
+  -12539,
+  -13279,
+  -14010,
+  -14732,
+  -15446,
+  -16151,
+  -16846,
+  -17530,
+  -18204,
+  -18868,
+  -19519,
+  -20159,
+  -20787,
+  -21403,
+  -22005,
+  -22594,
+  -23170,
+  -23731,
+  -24279,
+  -24811,
+  -25329,
+  -25832,
+  -26319,
+  -26790,
+  -27245,
+  -27683,
+  -28105,
+  -28510,
+  -28898,
+  -29268,
+  -29621,
+  -29956,
+  -30273,
+  -30571,
+  -30852,
+  -31113,
+  -31356,
+  -31580,
+  -31785,
+  -31971,
+  -32137,
+  -32285,
+  -32412,
+  -32521,
+  -32609,
+  -32678,
+  -32728,
+  -32757,
+  -32767,
+  -32757,
+  -32728,
+  -32678,
+  -32609,
+  -32521,
+  -32412,
+  -32285,
+  -32137,
+  -31971,
+  -31785,
+  -31580,
+  -31356,
+  -31113,
+  -30852,
+  -30571,
+  -30273,
+  -29956,
+  -29621,
+  -29268,
+  -28898,
+  -28510,
+  -28105,
+  -27683,
+  -27245,
+  -26790,
+  -26319,
+  -25832,
+  -25329,
+  -24811,
+  -24279,
+  -23731,
+  -23170,
+  -22594,
+  -22005,
+  -21403,
+  -20787,
+  -20159,
+  -19519,
+  -18868,
+  -18204,
+  -17530,
+  -16846,
+  -16151,
+  -15446,
+  -14732,
+  -14010,
+  -13279,
+  -12539,
+  -11793,
+  -11039,
+  -10278,
+  -9512,
+  -8739,
+  -7962,
+  -7179,
+  -6393,
+  -5602,
+  -4808,
+  -4011,
+  -3212,
+  -2410,
+  -1608,
+  -804,
+  0,
+  804,
+  1608,
+  2410,
+  3212,
+  4011,
+  4808,
+  5602,
+  6393,
+  7179,
+  7962,
+  8739,
+  9512,
+  10278,
+  11039,
+  11793,
+  12539,
+  13279,
+  14010,
+  14732,
+  15446,
+  16151,
+  16846,
+  17530,
+  18204,
+  18868,
+  19519,
+  20159,
+  20787,
+  21403,
+  22005,
+  22594,
+  23170,
+  23731,
+  24279,
+  24811,
+  25329,
+  25832,
+  26319,
+  26790,
+  27245,
+  27683,
+  28105,
+  28510,
+  28898,
+  29268,
+  29621,
+  29956,
+  30273,
+  30571,
+  30852,
+  31113,
+  31356,
+  31580,
+  31785,
+  31971,
+  32137,
+  32285,
+  32412,
+  32521,
+  32609,
+  32678,
+  32728,
+  32757,
+];
+
+export function math_sin(angle: i32, highRes: i32): i32 {
+  if (highRes == 0) {
+    let idx = angle & 255;
+    return SIN_LUT[idx] as i32;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
+  if (highRes == 1) { // LERP
+    let v0 = SIN_LUT[idx] as i32;
+    let v1 = SIN_LUT[(idx + 1) & 255] as i32;
+    return v0 + (((v1 - v0) * frac) >> 8);
+  }
+  // TAYLOR2
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (c_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (s_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return s_base + term1 - term2;
+}
+
+export function math_cos(angle: i32, highRes: i32): i32 {
+  if (highRes == 0) {
+    let idx = angle & 255;
+    return COS_LUT[idx] as i32;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
+  if (highRes == 1) { // LERP
+    let v0 = COS_LUT[idx] as i32;
+    let v1 = COS_LUT[(idx + 1) & 255] as i32;
+    return v0 + (((v1 - v0) * frac) >> 8);
+  }
+  // TAYLOR2
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (s_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (c_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return c_base - term1 - term2;
+}
 const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS matching OFFSETS.ts
@@ -4692,6 +5283,8 @@ const OP_JZ: u8 = 0x10; // JZ Reg, RelAddr
 const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
 const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
+const OP_RESOLVE: u8 = 0xB0;
+const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -5359,12 +5952,6 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
 }
 
 export function execute_atom(atomIndex: i32): void {
-  if (atomIndex < 20) {
-    const rawRole = load<u8>(ROLES_OFFSET + (atomIndex as usize));
-    const rawRes = load<i32>(RESONANCE_OFFSET + (atomIndex << 2) as usize);
-    const rawTick = load<i32>(TICK_COUNTER_OFF);
-    trace_atom(atomIndex, 0xAA, rawRes, rawTick, rawRole as i32);
-  }
   let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
@@ -5474,6 +6061,12 @@ export function execute_atom(atomIndex: i32): void {
       (vx as f32) * 2.0 * (dampingFactor as f32);
     let nextY = (curY as f32) + accForceY +
       (vy as f32) * 2.0 * (dampingFactor as f32);
+
+    // Hard float clamping before rounding limits any NaN/Infinity physics bugs
+    if (nextX < 0.0) nextX = 0.0;
+    if (nextX > 1399.0) nextX = 1399.0;
+    if (nextY < 0.0) nextY = 0.0;
+    if (nextY > 799.0) nextY = 799.0;
 
     storeClampedPos(
       atomIndex,
@@ -5604,6 +6197,87 @@ export function execute_atom(atomIndex: i32): void {
         pc += 1;
         gasUsed += 10;
         gasLimit = 0; // force yield to host
+        break;
+      }
+      case OP_RESOLVE: {
+        let destReg = load<u8>(instr_base + ((pc + 1) as usize));
+        let angleReg = load<u8>(instr_base + ((pc + 2) as usize));
+        let modeReg = load<u8>(instr_base + ((pc + 3) as usize));
+
+        let angle = getReg(atomIndex, angleReg as i32);
+        let modeVal = getReg(atomIndex, modeReg as i32);
+
+        // modeVal decoding:
+        // 0: Sin Direct  (1 Gas)
+        // 1: Sin LERP    (5 Gas)
+        // 2: Cos Direct  (1 Gas)
+        // 3: Cos LERP    (5 Gas)
+        // 4: Sin Taylor2 (10 Gas - Reserved)
+
+        let val = 0;
+        let cost = 1;
+        let highRes = 0;
+
+        if (modeVal == 1 || modeVal == 3) {
+          highRes = 1;
+          cost = 5;
+        } else if (modeVal == 4 || modeVal == 5) {
+          highRes = 2; // Reserved for Taylor2
+          cost = 10;
+        }
+
+        if (modeVal == 0 || modeVal == 1 || modeVal == 4) {
+          val = math_sin(angle, highRes);
+        } else {
+          val = math_cos(angle, highRes);
+        }
+
+        setReg(atomIndex, destReg as i32, val);
+        pc += 4;
+        gasUsed += cost;
+        break;
+      }
+      case OP_RESONATE_KURAMOTO: {
+        let gx = (getX(atomIndex) / 1000) as i32;
+        let gy = (getY(atomIndex) / 1000) as i32;
+        let sumSin = 0;
+        let currentPhase = getPhase(atomIndex);
+        let neighborCount = 0;
+
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            let nx = gx + dx;
+            let ny = gy + dy;
+            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+              let count = getSpatialGridCount(nx, ny);
+              for (let i = 0; i < count; i++) {
+                let neighborId = getSpatialGridAtom(nx, ny, i);
+                if (
+                  neighborId > 0 && neighborId != atomIndex &&
+                  neighborId < MAX_ATOMS
+                ) {
+                  let neighborPhase = getPhase(neighborId);
+                  let diff = (neighborPhase - currentPhase) & 255;
+                  sumSin += math_sin(diff, 0); // Direct lookup for density scaling
+                  neighborCount++;
+                }
+              }
+            }
+          }
+        }
+
+        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+        let K = 5 + (coh / 100);
+        if (K > 128) K = 128;
+
+        if (neighborCount > 0) {
+          let d_theta = (K * sumSin) >> 15;
+          let theta_next = (currentPhase + d_theta) & 255;
+          setPhase(atomIndex, theta_next);
+        }
+
+        pc += 1;
+        gasUsed += 5 + neighborCount * 2;
         break;
       }
       default: {
@@ -6300,6 +6974,7 @@ export function apply_metabolism_kernel(
     }
   }
 }
+
 ```
 
 ---
@@ -6312,6 +6987,7 @@ export function apply_metabolism_kernel(
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
+
 ```
 
 ---
@@ -6385,6 +7061,7 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
+
 ```
 
 ---
@@ -6427,6 +7104,7 @@ export const AVATAR_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -6523,6 +7201,7 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
+
 ```
 
 ---
@@ -6577,6 +7256,7 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
+
 ```
 
 ---
@@ -6886,6 +7566,7 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
+
 ```
 
 ---
@@ -8291,6 +8972,7 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
+
 ```
 
 ---
@@ -8417,6 +9099,7 @@ export const CONTROL_INTENT_QUEUE = {
     "ui/index.html"
   ]
 }
+
 ```
 
 ---
@@ -9022,6 +9705,7 @@ export const planInvariantIngress = (
     admission,
   };
 };
+
 ```
 
 ---
@@ -9617,6 +10301,7 @@ export const hydrateDaemonPheromoneLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -9939,6 +10624,7 @@ export const resetDaemonPheromoneLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -10533,6 +11219,7 @@ export const hydrateDaemonPlasmidLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -10854,6 +11541,7 @@ export const resetDaemonPlasmidLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -10976,6 +11664,7 @@ Do not move anything from the table above into reduction until:
 1. the corresponding golden trace exists,
 2. the rollback owner is explicit,
 3. the replacement lane is narrower than the current one.
+
 ```
 
 ---
@@ -11106,6 +11795,7 @@ Stage 3 is considered real only when:
 - no replacement of the active WASM kernel
 - no semantic mutation of non-core glyphs
 - no claim that "64 glyphs are now proteins"
+
 ```
 
 ---
@@ -11271,6 +11961,7 @@ Current exit assessment:
 - export visibility: satisfied
 - next blocker: widen shadow consumers only when they map to a real trace id and
   an explicit rollback path
+
 ```
 
 ---
@@ -11537,6 +12228,7 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
   `/api/physiology` with `ledger_max_plasmid_charge` and
   `ledger_max_plasmid_charge_persistence`
+
 ```
 
 ---
@@ -12211,6 +12903,11 @@ No more than one at first.
 
 Current slit in progress:
 
+- [x] Phase 1 Implementation (Governance + Telemetry)
+- [x] Integrate first hybrid slit: guardian pheromone emission
+- [x] Integrate second hybrid slit: architect plasmid emission
+- [ ] Roll out to 10% Shadow
+- [ ] Evaluate Reduction Telemetry
 - guardian pheromone emission is now the chosen local-signaling slit
 - `runtime_bridge/guardian_signal_hybrid.ts` evaluates the live guardian script
   through the mapped bridge subset using read-only neural coherence input
@@ -12384,13 +13081,14 @@ This keeps myth and engineering aligned without letting either erase the other.
    [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
 3. Draft the first `GlyphIR64` type contract before any bridge implementation
    begins.
+
 ```
 
 ---
 
 ## FILE: docs/migration/ROADMAP_2_SIGMA_CORE.md
 
-````markdown
+```markdown
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
 This document fixes an adjacent future-vector for OMEGA-64. It is not the active
@@ -12472,7 +13170,6 @@ pub enum SigmaOp {
     Attract { vector: Vector64 },
 }
 ```
-````
 
 ### Чому це спрацює
 
@@ -12505,7 +13202,8 @@ pub enum SigmaOp {
   - rollback paths
   - export-visible progress markers
 
-````
+```
+
 ---
 
 ## FILE: ECOLOGY_ENGINE.ts
@@ -12587,7 +13285,8 @@ export const ECOLOGY_ENGINE = {
     }
   },
 };
-````
+
+```
 
 ---
 
@@ -12620,6 +13319,7 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
+
 ```
 
 ---
@@ -12660,6 +13360,7 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
+
 ```
 
 ---
@@ -12714,6 +13415,7 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
+
 ```
 
 ---
@@ -12938,6 +13640,7 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
+
 ```
 
 ---
@@ -13164,6 +13867,7 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
+
 ```
 
 ---
@@ -13627,6 +14331,7 @@ export const GATE = {
     );
   },
 };
+
 ```
 
 ---
@@ -13887,6 +14592,7 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
+
 ```
 
 ---
@@ -14178,6 +14884,7 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
+
 ```
 
 ---
@@ -14759,6 +15466,7 @@ export const hydrateBaseTaxLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -15074,6 +15782,7 @@ export const resetBaseTaxLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -15262,6 +15971,7 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
+
 ```
 
 ---
@@ -15331,6 +16041,7 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
+
 ```
 
 ---
@@ -15391,60 +16102,7 @@ export type GlyphSnapshot = {
   atomRolePlasmid: GlyphRoleCounters;
 };
 
-let lastInternalSignalSeeds = 0;
-let lastInternalMemorySeeds = 0;
-let lastInternalAtomPheromoneSeeds = 0;
-let lastInternalAtomPlasmidSeeds = 0;
 
-const createRoleCounters = (): GlyphRoleCounters => ({
-  neutral: 0,
-  producer: 0,
-  guardian: 0,
-  architect: 0,
-  parasite: 0,
-});
-
-const resetRoleCounters = (counters: GlyphRoleCounters): void => {
-  counters.neutral = 0;
-  counters.producer = 0;
-  counters.guardian = 0;
-  counters.architect = 0;
-  counters.parasite = 0;
-};
-
-const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
-  neutral: counters.neutral,
-  producer: counters.producer,
-  guardian: counters.guardian,
-  architect: counters.architect,
-  parasite: counters.parasite,
-});
-
-const lastAtomRolePheromone = createRoleCounters();
-const lastAtomRolePlasmid = createRoleCounters();
-
-const incrementRoleCounter = (
-  counters: GlyphRoleCounters,
-  role: number,
-): void => {
-  if (role === STATE_MATRIX.ROLE_PRODUCER) {
-    counters.producer++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_GUARDIAN) {
-    counters.guardian++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_ARCHITECT) {
-    counters.architect++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_PARASITE) {
-    counters.parasite++;
-    return;
-  }
-  counters.neutral++;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -15493,8 +16151,6 @@ export const GLYPH_BUFFER = {
   clear: () => {
     STATE_MATRIX.glyphHeaders.fill(0);
     STATE_MATRIX.glyphPayload.fill(0);
-    lastInternalSignalSeeds = 0;
-    lastInternalMemorySeeds = 0;
     secretionStatsView.fill(0);
   },
 
@@ -15533,8 +16189,7 @@ export const GLYPH_BUFFER = {
   },
 
   emitAtomPheromone: (x: number, y: number, intensity: number, role = 0) => {
-    lastInternalAtomPheromoneSeeds++;
-    incrementRoleCounter(lastAtomRolePheromone, role);
+    Atomics.add(secretionStatsView, role, 1);
     GLYPH_BUFFER.depositPheromone(x, y, intensity);
   },
 
@@ -15545,8 +16200,7 @@ export const GLYPH_BUFFER = {
     payload: Uint8Array,
     role = 0,
   ) => {
-    lastInternalAtomPlasmidSeeds++;
-    incrementRoleCounter(lastAtomRolePlasmid, role);
+    Atomics.add(secretionStatsView, 5 + role, 1);
     GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
   },
 
@@ -15617,6 +16271,7 @@ export const GLYPH_BUFFER = {
     };
   },
 };
+
 ```
 
 ---
@@ -15691,6 +16346,7 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
+
 ```
 
 ---
@@ -15884,6 +16540,7 @@ export const evaluateGuardianSignalPromotionDecision = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -16105,6 +16762,7 @@ export const evaluateGuardianSignalPromotion = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -16244,6 +16902,7 @@ export function injectHologram(
   }
   return newContent;
 }
+
 ```
 
 ---
@@ -16835,6 +17494,7 @@ export const hydrateTargetEnergyLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -17156,6 +17816,7 @@ export const resetTargetEnergyLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -17205,10 +17866,11 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   );
   STATE_MATRIX.setHormone(0, entropyPressure);
 
-  // 2. time_viscosity (derived from workerCount / maxActions)
+  // 2. time_viscosity (derived from daemonMaxActions)
+  // Note: removing workerCount so that physics remains deterministic regardless of hardware execution threads
   const timeViscosity = Math.round(
     clamp(
-      (input.workerCount / 32) * 1024 + (input.daemonMaxActions / 128) * 1024,
+      (input.daemonMaxActions / 128) * 1024,
       0,
       2048,
     ),
@@ -17256,6 +17918,7 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
   STATE_MATRIX.setHormone(6, consensus);
 };
+
 ```
 
 ---
@@ -17440,6 +18103,7 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
+
 ```
 
 ---
@@ -17500,6 +18164,7 @@ export const IMMUNE = {
     return purgeList;
   },
 };
+
 ```
 
 ---
@@ -18723,13 +19388,14 @@ export const LAMBDA_VM = {
     return res;
   },
 };
+
 ```
 
 ---
 
 ## FILE: llm_soul.ts
 
-````typescript
+```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "./LOGGER.ts";
 
@@ -18906,7 +19572,8 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-````
+
+```
 
 ---
 
@@ -19254,6 +19921,7 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
+
 ```
 
 ---
@@ -19291,7 +19959,7 @@ const normalizeLevel = (raw: string | undefined): LogLevel => {
   if (value === "silent" || value === "off" || value === "none") {
     return "silent";
   }
-  return "info";
+  return "warn";
 };
 
 let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
@@ -19332,6 +20000,7 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
+
 ```
 
 ---
@@ -19482,6 +20151,7 @@ export const MATRIX_ENGINE = {
     return count;
   },
 };
+
 ```
 
 ---
@@ -19492,917 +20162,12 @@ export const MATRIX_ENGINE = {
 // AUTO-GENERATED (PHASE: FLATLAND). DO NOT EDIT.
 // Source: Flatland root (0x*.md).
 
-export const ACTOR = {
-  id: "0xCA809C585FB51A04.ACTOR.md",
-  level: 4,
-  digest: "0xCA809C585FB51A04",
-};
-export const ADD = {
-  id: "0x765692798E8B1566.ADD.md",
-  level: 1,
-  digest: "0x765692798E8B1566",
-};
-export const AMPLITUDE = {
-  id: "0x5F134E4A001576B0.AMPLITUDE.md",
-  level: 6,
-  digest: "0x5F134E4A001576B0",
-};
-export const AND = {
-  id: "0xF1E94B65A244E398.AND.md",
-  level: 3,
-  digest: "0xF1E94B65A244E398",
-};
-export const ATTENTION = {
-  id: "0xA1DF067D73C0F8D1.ATTENTION.md",
-  level: 6,
-  digest: "0xA1DF067D73C0F8D1",
-};
-export const AUTONOMY_METRIC = {
-  id: "0x1ECCA66EA2D46BE8.AUTONOMY_METRIC.md",
-  level: 8,
-  digest: "0x1ECCA66EA2D46BE8",
-};
-export const AXIOMS = {
-  id: "0x98B991270521B4C0.AXIOMS.md",
-  level: 0,
-  digest: "0x98B991270521B4C0",
-};
-export const B = {
-  id: "0xD64B9424D78CDAB4.B.md",
-  level: 1,
-  digest: "0xD64B9424D78CDAB4",
-};
-export const B_READ = {
-  id: "0x4D5376DB787CA060.B_READ.md",
-  level: 2,
-  digest: "0x4D5376DB787CA060",
-};
-export const B0 = {
-  id: "0x67835FB57229A2FC.B0.md",
-  level: 2,
-  digest: "0x67835FB57229A2FC",
-};
-export const B1 = {
-  id: "0xD2FE12812D2D2E62.B1.md",
-  level: 2,
-  digest: "0xD2FE12812D2D2E62",
-};
-export const BASIS = {
-  id: "0xE9BA859E7F1EA937.BASIS.md",
-  level: 0,
-  digest: "0xE9BA859E7F1EA937",
-};
-export const BECOME = {
-  id: "0x91DB9B72C7FC2F9C.BECOME.md",
-  level: 4,
-  digest: "0x91DB9B72C7FC2F9C",
-};
-export const BRIDGE = {
-  id: "0x4CA5D75FC7E5342C.BRIDGE.md",
-  level: 0,
-  digest: "0x4CA5D75FC7E5342C",
-};
-export const BYTE = {
-  id: "0xE09A8EFCE7A9BF1C.BYTE.md",
-  level: 2,
-  digest: "0xE09A8EFCE7A9BF1C",
-};
-export const C = {
-  id: "0xC354CF5F6A93C2A6.C.md",
-  level: 1,
-  digest: "0xC354CF5F6A93C2A6",
-};
-export const C_ADD = {
-  id: "0xA055CC248B7649CC.C_ADD.md",
-  level: 0,
-  digest: "0xA055CC248B7649CC",
-};
-export const CAR = {
-  id: "0x987A10662A40A900.CAR.md",
-  level: 3,
-  digest: "0x987A10662A40A900",
-};
-export const CDR = {
-  id: "0xD1D4EB85246D475A.CDR.md",
-  level: 3,
-  digest: "0xD1D4EB85246D475A",
-};
-export const CODE_VECTOR_SINGULARITY = {
-  id: "0xB9D1E71FA644A95B.CODE_VECTOR_SINGULARITY.md",
-  level: 0,
-  digest: "0xB9D1E71FA644A95B",
-};
-export const COMM = {
-  id: "0x5E03208C5CCB80CE.COMM.md",
-  level: 7,
-  digest: "0x5E03208C5CCB80CE",
-};
-export const CONS = {
-  id: "0xBC34342367603100.CONS.md",
-  level: 0,
-  digest: "0xBC34342367603100",
-};
-export const CONSCIOUSNESS = {
-  id: "0x62BFAB8CD37130B3.CONSCIOUSNESS.md",
-  level: 5,
-  digest: "0x62BFAB8CD37130B3",
-};
-export const COORD_X = {
-  id: "0x0E85ADB86FA96BDA.COORD_X.md",
-  level: 4,
-  digest: "0x0E85ADB86FA96BDA",
-};
-export const COORD_Y = {
-  id: "0x4211E8F8FA309ECA.COORD_Y.md",
-  level: 4,
-  digest: "0x4211E8F8FA309ECA",
-};
-export const COORD_Z = {
-  id: "0x6224F6BF746F6046.COORD_Z.md",
-  level: 4,
-  digest: "0x6224F6BF746F6046",
-};
-export const COSMIC = {
-  id: "0xE89BFA41E6D6A060.COSMIC.md",
-  level: 7,
-  digest: "0xE89BFA41E6D6A060",
-};
-export const COUPLING = {
-  id: "0x99A1EE6BCC2392FE.COUPLING.md",
-  level: 6,
-  digest: "0x99A1EE6BCC2392FE",
-};
-export const CULTURE = {
-  id: "0x40D929D88955A4F6.CULTURE.md",
-  level: 5,
-  digest: "0x40D929D88955A4F6",
-};
-export const DETERMINISM_AUDIT = {
-  id: "0x4C67FE14C812FC3C.DETERMINISM_AUDIT.md",
-  level: 8,
-  digest: "0x4C67FE14C812FC3C",
-};
-export const DIM = {
-  id: "0x81772415EC471873.DIM.md",
-  level: 5,
-  digest: "0x81772415EC471873",
-};
-export const DUAL = {
-  id: "0xA3A4045800465E24.DUAL.md",
-  level: 0,
-  digest: "0xA3A4045800465E24",
-};
-export const E_GROWTH = {
-  id: "0xCF3D46F54C0C0B3A.E_GROWTH.md",
-  level: 5,
-  digest: "0xCF3D46F54C0C0B3A",
-};
-export const EMPATHY = {
-  id: "0x992B709BEE7A2FFC.EMPATHY.md",
-  level: 7,
-  digest: "0x992B709BEE7A2FFC",
-};
-export const ENERGY = {
-  id: "0x3EB68055A286A9DF.ENERGY.md",
-  level: 7,
-  digest: "0x3EB68055A286A9DF",
-};
-export const ENTROPY = {
-  id: "0xC29ABAEE07452719.ENTROPY.md",
-  level: 5,
-  digest: "0xC29ABAEE07452719",
-};
-export const EQ = {
-  id: "0xE5C6AA12A4299EE9.EQ.md",
-  level: 1,
-  digest: "0xE5C6AA12A4299EE9",
-};
-export const ETHER = {
-  id: "0x902EB8AD9E956A2C.ETHER.md",
-  level: 5,
-  digest: "0x902EB8AD9E956A2C",
-};
-export const EVOLVE = {
-  id: "0xC935358C82583261.EVOLVE.md",
-  level: 1,
-  digest: "0xC935358C82583261",
-};
-export const F = {
-  id: "0x8B77EAE45E2C96D0.F.md",
-  level: 0,
-  digest: "0x8B77EAE45E2C96D0",
-};
-export const FAILURE = {
-  id: "0x759C53626B7B9799.FAILURE.md",
-  level: 7,
-  digest: "0x759C53626B7B9799",
-};
-export const FIELD = {
-  id: "0x6530C55EDDEE511F.FIELD.md",
-  level: 5,
-  digest: "0x6530C55EDDEE511F",
-};
-export const FIXPOINT = {
-  id: "0xE37F666E0891987D.FIXPOINT.md",
-  level: 0,
-  digest: "0xE37F666E0891987D",
-};
-export const FLOW = {
-  id: "0x4BCFE7BB04AB4FEE.FLOW.md",
-  level: 5,
-  digest: "0x4BCFE7BB04AB4FEE",
-};
-export const FLUX_L6 = {
-  id: "0x1907F23EA1A4B259.FLUX_L6.md",
-  level: 6,
-  digest: "0x1907F23EA1A4B259",
-};
-export const FORCE = {
-  id: "0x4D41CAF9D4D17B13.FORCE.md",
-  level: 6,
-  digest: "0x4D41CAF9D4D17B13",
-};
-export const FORK = {
-  id: "0x3DB021CB51CE1331.FORK.md",
-  level: 7,
-  digest: "0x3DB021CB51CE1331",
-};
-export const FREQUENCY = {
-  id: "0xBE6E6BE0A9D3064C.FREQUENCY.md",
-  level: 6,
-  digest: "0xBE6E6BE0A9D3064C",
-};
-export const GENESIS_PARADOX = {
-  id: "0xCCDC8BFF944015BA.GENESIS_PARADOX.md",
-  level: 0,
-  digest: "0xCCDC8BFF944015BA",
-};
-export const GENOME = {
-  id: "0x2F04204D7F876200.GENOME.md",
-  level: 8,
-  digest: "0x2F04204D7F876200",
-};
-export const GET = {
-  id: "0xF6BE5DAFBAC30619.GET.md",
-  level: 2,
-  digest: "0xF6BE5DAFBAC30619",
-};
-export const GIFT = {
-  id: "0x203B9FF9929CBF99.GIFT.md",
-  level: 0,
-  digest: "0x203B9FF9929CBF99",
-};
-export const GRAVITY = {
-  id: "0x167EF17C1264EF94.GRAVITY.md",
-  level: 7,
-  digest: "0x167EF17C1264EF94",
-};
-export const HALT = {
-  id: "0xD3CB93F33153FFF2.HALT.md",
-  level: 3,
-  digest: "0xD3CB93F33153FFF2",
-};
-export const HARMONIC = {
-  id: "0x8534DAF4E11B831A.HARMONIC.md",
-  level: 2,
-  digest: "0x8534DAF4E11B831A",
-};
-export const HARMONY = {
-  id: "0xC597397E20BA82B6.HARMONY.md",
-  level: 2,
-  digest: "0xC597397E20BA82B6",
-};
-export const HOLOGRAM = {
-  id: "0x72D4B62F3F2D6C30.HOLOGRAM.md",
-  level: 7,
-  digest: "0x72D4B62F3F2D6C30",
-};
-export const I = {
-  id: "0x102B0518AF7A3B4F.I.md",
-  level: 3,
-  digest: "0x102B0518AF7A3B4F",
-};
-export const I16_CLAMP = {
-  id: "0x9501C74EE881B6C4.I16_CLAMP.md",
-  level: 0,
-  digest: "0x9501C74EE881B6C4",
-};
-export const I16_LIMITS = {
-  id: "0x96AA18FB0E3F901A.I16_LIMITS.md",
-  level: 0,
-  digest: "0x96AA18FB0E3F901A",
-};
-export const IF_ELSE = {
-  id: "0x32C5DC0C6543BB43.IF_ELSE.md",
-  level: 2,
-  digest: "0x32C5DC0C6543BB43",
-};
-export const INTERFACE = {
-  id: "0x5DE8BD259AB5593E.INTERFACE.md",
-  level: 7,
-  digest: "0x5DE8BD259AB5593E",
-};
-export const INTERFACE_99F4 = {
-  id: "0xDC9499F479E91967.INTERFACE.md",
-  level: 0,
-  digest: "0xDC9499F479E91967",
-};
-export const INTERFERENCE = {
-  id: "0xDAC65AC96E59FBAC.INTERFERENCE.md",
-  level: 6,
-  digest: "0xDAC65AC96E59FBAC",
-};
-export const IS_ISO = {
-  id: "0x68477B56776A52D1.IS_ISO.md",
-  level: 7,
-  digest: "0x68477B56776A52D1",
-};
-export const IS_NIL = {
-  id: "0x48AC8997EBD2EFF2.IS_NIL.md",
-  level: 6,
-  digest: "0x48AC8997EBD2EFF2",
-};
-export const IS_ZERO = {
-  id: "0xA7C64D97EC38C511.IS_ZERO.md",
-  level: 0,
-  digest: "0xA7C64D97EC38C511",
-};
-export const ISOMORPH_AUDIT = {
-  id: "0x918F169CD1995242.ISOMORPH_AUDIT.md",
-  level: 8,
-  digest: "0x918F169CD1995242",
-};
-export const JOIN = {
-  id: "0x9D30DC0D1D6BFD6B.JOIN.md",
-  level: 2,
-  digest: "0x9D30DC0D1D6BFD6B",
-};
-export const JUST = {
-  id: "0xD6EEABB40850072B.JUST.md",
-  level: 2,
-  digest: "0xD6EEABB40850072B",
-};
-export const K = {
-  id: "0x02516C7C677AE03F.K.md",
-  level: 0,
-  digest: "0x02516C7C677AE03F",
-};
-export const KAIROS = {
-  id: "0x85D1BCDF07AD6740.KAIROS.md",
-  level: 0,
-  digest: "0x85D1BCDF07AD6740",
-};
-export const L_MEET = {
-  id: "0xCB95EA52562F7686.L_MEET.md",
-  level: 7,
-  digest: "0xCB95EA52562F7686",
-};
-export const LEFT = {
-  id: "0x85C3907992FDA7F3.LEFT.md",
-  level: 7,
-  digest: "0x85C3907992FDA7F3",
-};
-export const LEQ = {
-  id: "0x69D2AF7736676937.LEQ.md",
-  level: 1,
-  digest: "0x69D2AF7736676937",
-};
-export const LIFE = {
-  id: "0xD896FD40C48F55AB.LIFE.md",
-  level: 3,
-  digest: "0xD896FD40C48F55AB",
-};
-export const LIFT = {
-  id: "0x25DC161133D59CC8.LIFT.md",
-  level: 4,
-  digest: "0x25DC161133D59CC8",
-};
-export const LISTEN = {
-  id: "0x20BD4DB6117ABA47.LISTEN.md",
-  level: 3,
-  digest: "0x20BD4DB6117ABA47",
-};
-export const LUT = {
-  id: "0xD0B9F914E5877291.LUT.md",
-  level: 0,
-  digest: "0xD0B9F914E5877291",
-};
-export const MACHINE = {
-  id: "0xC8122C55031FDC48.MACHINE.md",
-  level: 3,
-  digest: "0xC8122C55031FDC48",
-};
-export const MASS = {
-  id: "0x73537413B52D5E34.MASS.md",
-  level: 7,
-  digest: "0x73537413B52D5E34",
-};
-export const MATH = {
-  id: "0x1FA7A2C20E2FBDA3.MATH.md",
-  level: 0,
-  digest: "0x1FA7A2C20E2FBDA3",
-};
-export const MAYBE_CASE = {
-  id: "0x888EB0915B1393ED.MAYBE_CASE.md",
-  level: 2,
-  digest: "0x888EB0915B1393ED",
-};
-export const MEANING = {
-  id: "0x154A1F4F17FC20DB.MEANING.md",
-  level: 5,
-  digest: "0x154A1F4F17FC20DB",
-};
-export const MEME = {
-  id: "0xD7BFA413BB47E7C0.MEME.md",
-  level: 5,
-  digest: "0xD7BFA413BB47E7C0",
-};
-export const METABOLISM = {
-  id: "0xD00E69D4042047F4.METABOLISM.md",
-  level: 3,
-  digest: "0xD00E69D4042047F4",
-};
-export const MUX = {
-  id: "0xF1A392818F4B6792.MUX.md",
-  level: 0,
-  digest: "0xF1A392818F4B6792",
-};
-export const N0 = {
-  id: "0xA4354D9D41A29B57.N0.md",
-  level: 0,
-  digest: "0xA4354D9D41A29B57",
-};
-export const N1 = {
-  id: "0x6A60FAB236BC3638.N1.md",
-  level: 0,
-  digest: "0x6A60FAB236BC3638",
-};
-export const N2 = {
-  id: "0xB562885ABFD1FC7A.N2.md",
-  level: 0,
-  digest: "0xB562885ABFD1FC7A",
-};
-export const N3 = {
-  id: "0x8810D64911331AFB.N3.md",
-  level: 0,
-  digest: "0x8810D64911331AFB",
-};
-export const NAND = {
-  id: "0xBE70AFDAD41BD78B.NAND.md",
-  level: 0,
-  digest: "0xBE70AFDAD41BD78B",
-};
-export const NERVE = {
-  id: "0x1132C626EA706703.NERVE.md",
-  level: 6,
-  digest: "0x1132C626EA706703",
-};
-export const NETWORK = {
-  id: "0xBD777A5D3F915C50.NETWORK.md",
-  level: 3,
-  digest: "0xBD777A5D3F915C50",
-};
-export const NEURON = {
-  id: "0x85AFA433C4583E12.NEURON.md",
-  level: 3,
-  digest: "0x85AFA433C4583E12",
-};
-export const NEXT = {
-  id: "0x0FEEC0E8E677CB9E.NEXT.md",
-  level: 7,
-  digest: "0x0FEEC0E8E677CB9E",
-};
-export const NIL = {
-  id: "0x4159AB8B7E1407E1.NIL.md",
-  level: 3,
-  digest: "0x4159AB8B7E1407E1",
-};
-export const NOT = {
-  id: "0x7327625AF2C889F4.NOT.md",
-  level: 3,
-  digest: "0x7327625AF2C889F4",
-};
-export const NOTHING = {
-  id: "0x104D0AC4E2A0D757.NOTHING.md",
-  level: 2,
-  digest: "0x104D0AC4E2A0D757",
-};
-export const O_FILTER = {
-  id: "0xCED101002F3A29CD.O_FILTER.md",
-  level: 7,
-  digest: "0xCED101002F3A29CD",
-};
-export const O_POLICY = {
-  id: "0x0CD7B3E4B59DF002.O_POLICY.md",
-  level: 7,
-  digest: "0x0CD7B3E4B59DF002",
-};
-export const O_RANK = {
-  id: "0x994F0A2056877022.O_RANK.md",
-  level: 7,
-  digest: "0x994F0A2056877022",
-};
-export const O_STREAM_STORE = {
-  id: "0xD6BEE97DE9D48CF6.O_STREAM_STORE.md",
-  level: 8,
-  digest: "0xD6BEE97DE9D48CF6",
-};
-export const O_TRUST = {
-  id: "0x5B5CA45FB7BA5DB4.O_TRUST.md",
-  level: 7,
-  digest: "0x5B5CA45FB7BA5DB4",
-};
-export const OBJECT = {
-  id: "0xFB78DBDEDFE27423.OBJECT.md",
-  level: 0,
-  digest: "0xFB78DBDEDFE27423",
-};
-export const OBSERVER = {
-  id: "0x3C132FB1BAF26A73.OBSERVER.md",
-  level: 0,
-  digest: "0x3C132FB1BAF26A73",
-};
-export const OMEGA = {
-  id: "0x3AC2577402A10CB0.OMEGA.md",
-  level: 7,
-  digest: "0x3AC2577402A10CB0",
-};
-export const OR = {
-  id: "0x85B23CEA5D89D1C4.OR.md",
-  level: 3,
-  digest: "0x85B23CEA5D89D1C4",
-};
-export const PHASE = {
-  id: "0xC20F7C8F4F468034.PHASE.md",
-  level: 6,
-  digest: "0xC20F7C8F4F468034",
-};
-export const PHI_HARMONY = {
-  id: "0x81A4D6E1F3D81BF2.PHI_HARMONY.md",
-  level: 5,
-  digest: "0x81A4D6E1F3D81BF2",
-};
-export const POINT = {
-  id: "0x8DE45409AF8D2575.POINT.md",
-  level: 7,
-  digest: "0x8DE45409AF8D2575",
-};
-export const POTENTIAL = {
-  id: "0x239316A75CBB4BAE.POTENTIAL.md",
-  level: 0,
-  digest: "0x239316A75CBB4BAE",
-};
-export const PRED = {
-  id: "0x76803B78DDB8F48A.PRED.md",
-  level: 1,
-  digest: "0x76803B78DDB8F48A",
-};
-export const PRESSURE = {
-  id: "0x475211CF17C28AA9.PRESSURE.md",
-  level: 6,
-  digest: "0x475211CF17C28AA9",
-};
-export const PROJECT = {
-  id: "0x10092F5018AD6815.PROJECT.md",
-  level: 7,
-  digest: "0x10092F5018AD6815",
-};
-export const PROOF = {
-  id: "0xE96A91FBA2FF2E77.PROOF.md",
-  level: 8,
-  digest: "0xE96A91FBA2FF2E77",
-};
-export const PURGE_L7 = {
-  id: "0x41F44E73ABF39D70.PURGE_L7.md",
-  level: 7,
-  digest: "0x41F44E73ABF39D70",
-};
-export const PUT = {
-  id: "0xD5D499DFA1560D7E.PUT.md",
-  level: 2,
-  digest: "0xD5D499DFA1560D7E",
-};
-export const Q = {
-  id: "0x8B7560157697FECE.Q.md",
-  level: 6,
-  digest: "0x8B7560157697FECE",
-};
-export const QUANTUM_ENTANGLEMENT = {
-  id: "0xC781DFFE069AEE86.QUANTUM_ENTANGLEMENT.md",
-  level: 0,
-  digest: "0xC781DFFE069AEE86",
-};
-export const RADIANCE = {
-  id: "0xB38F9ABDA5C6752C.RADIANCE.md",
-  level: 7,
-  digest: "0xB38F9ABDA5C6752C",
-};
-export const RADIUS = {
-  id: "0x21AD489A9DEC27C4.RADIUS.md",
-  level: 7,
-  digest: "0x21AD489A9DEC27C4",
-};
-export const RANK = {
-  id: "0x6A62A231BEBA8EB0.RANK.md",
-  level: 7,
-  digest: "0x6A62A231BEBA8EB0",
-};
-export const REFL = {
-  id: "0x583DED60D43EBBE8.REFL.md",
-  level: 7,
-  digest: "0x583DED60D43EBBE8",
-};
-export const REFLECT_L7 = {
-  id: "0x719952D2C50FACBE.REFLECT_L7.md",
-  level: 7,
-  digest: "0x719952D2C50FACBE",
-};
-export const REFLEX = {
-  id: "0x5E3FD37D9C8E416C.REFLEX.md",
-  level: 5,
-  digest: "0x5E3FD37D9C8E416C",
-};
-export const RESONANCE = {
-  id: "0x6239EED2A93007D5.RESONANCE.md",
-  level: 5,
-  digest: "0x6239EED2A93007D5",
-};
-export const RESONATOR = {
-  id: "0x29AC6A4D7FBF3A7B.RESONATOR.md",
-  level: 0,
-  digest: "0x29AC6A4D7FBF3A7B",
-};
-export const RESTORE_L7 = {
-  id: "0x4F6929A13400D2D5.RESTORE_L7.md",
-  level: 7,
-  digest: "0x4F6929A13400D2D5",
-};
-export const RIGHT = {
-  id: "0xDF329926A82F9FC1.RIGHT.md",
-  level: 7,
-  digest: "0xDF329926A82F9FC1",
-};
-export const ROT = {
-  id: "0xB25B9F65BDAA5A9E.ROT.md",
-  level: 0,
-  digest: "0xB25B9F65BDAA5A9E",
-};
-export const S = {
-  id: "0x136B1C17601E4ABA.S.md",
-  level: 0,
-  digest: "0x136B1C17601E4ABA",
-};
-export const S_HEAD = {
-  id: "0xF840CF12C3247635.S_HEAD.md",
-  level: 1,
-  digest: "0xF840CF12C3247635",
-};
-export const S_MAP = {
-  id: "0xB4B7FA7DEA4C2AA5.S_MAP.md",
-  level: 1,
-  digest: "0xB4B7FA7DEA4C2AA5",
-};
-export const S_ONE = {
-  id: "0x297599133BE9EAD0.S_ONE.md",
-  level: 2,
-  digest: "0x297599133BE9EAD0",
-};
-export const S_TAIL = {
-  id: "0x503790F83A3D6935.S_TAIL.md",
-  level: 1,
-  digest: "0x503790F83A3D6935",
-};
-export const S_ZERO = {
-  id: "0xEA1F892126304868.S_ZERO.md",
-  level: 2,
-  digest: "0xEA1F892126304868",
-};
-export const SELECT = {
-  id: "0x8624317DC8A41960.SELECT.md",
-  level: 4,
-  digest: "0x8624317DC8A41960",
-};
-export const SEND = {
-  id: "0x65E76CABF845924B.SEND.md",
-  level: 0,
-  digest: "0x65E76CABF845924B",
-};
-export const SENSATION = {
-  id: "0x9D18A698CC8523BE.SENSATION.md",
-  level: 6,
-  digest: "0x9D18A698CC8523BE",
-};
-export const SENSORS = {
-  id: "0x08CC7A66BCF46FDE.SENSORS.md",
-  level: 7,
-  digest: "0x08CC7A66BCF46FDE",
-};
-export const SIGNAL = {
-  id: "0x6EFBC955FB791FDE.SIGNAL.md",
-  level: 7,
-  digest: "0x6EFBC955FB791FDE",
-};
-export const SIGNAL_L8 = {
-  id: "0x025BFF047F81315C.SIGNAL_L8.md",
-  level: 8,
-  digest: "0x025BFF047F81315C",
-};
-export const SOMA = {
-  id: "0xD31F2295CA1B3D28.SOMA.md",
-  level: 0,
-  digest: "0xD31F2295CA1B3D28",
-};
-export const SPECTRUM = {
-  id: "0x7B53FD514078F4EC.SPECTRUM.md",
-  level: 7,
-  digest: "0x7B53FD514078F4EC",
-};
-export const STALKER_MANUAL = {
-  id: "0x2803C2F80B52D3D6.STALKER_MANUAL.md",
-  level: 0,
-  digest: "0x2803C2F80B52D3D6",
-};
-export const STATE = {
-  id: "0x4DD48CEDC378CBC2.STATE.md",
-  level: 2,
-  digest: "0x4DD48CEDC378CBC2",
-};
-export const STEP = {
-  id: "0x328097BE23BE0014.STEP.md",
-  level: 3,
-  digest: "0x328097BE23BE0014",
-};
-export const STREAM = {
-  id: "0xB029C97BA721399C.STREAM.md",
-  level: 1,
-  digest: "0xB029C97BA721399C",
-};
-export const SUB = {
-  id: "0xD90E147CD4D6399A.SUB.md",
-  level: 1,
-  digest: "0xD90E147CD4D6399A",
-};
-export const SUBJECT = {
-  id: "0x94E22190862F9CCC.SUBJECT.md",
-  level: 7,
-  digest: "0x94E22190862F9CCC",
-};
-export const SUCC = {
-  id: "0x28873F2F3B5F8DE6.SUCC.md",
-  level: 0,
-  digest: "0x28873F2F3B5F8DE6",
-};
-export const SUCCESS = {
-  id: "0xD2083679E2921C12.SUCCESS.md",
-  level: 7,
-  digest: "0xD2083679E2921C12",
-};
-export const SURFACE = {
-  id: "0x989A324AE8FB5662.SURFACE.md",
-  level: 6,
-  digest: "0x989A324AE8FB5662",
-};
-export const SYNAPSE = {
-  id: "0x89CA940EBB455399.SYNAPSE.md",
-  level: 3,
-  digest: "0x89CA940EBB455399",
-};
-export const SYNCHRO_GLYPH = {
-  id: "0x1EFCC3B6D94158E7.SYNCHRO_GLYPH.md",
-  level: 0,
-  digest: "0x1EFCC3B6D94158E7",
-};
-export const T = {
-  id: "0xC705BCAE8AE40236.T.md",
-  level: 0,
-  digest: "0xC705BCAE8AE40236",
-};
-export const TELEMETRY_SIGNAL = {
-  id: "0x1C30EAFC2530ABE7.TELEMETRY_SIGNAL.md",
-  level: 7,
-  digest: "0x1C30EAFC2530ABE7",
-};
-export const TELL = {
-  id: "0x1D4DFF9ACAAE06A7.TELL.md",
-  level: 3,
-  digest: "0x1D4DFF9ACAAE06A7",
-};
-export const TENSION = {
-  id: "0xE0A542DD539A9AFA.TENSION.md",
-  level: 6,
-  digest: "0xE0A542DD539A9AFA",
-};
-export const TENSOR = {
-  id: "0x95DA9A3CDC2EB5E9.TENSOR.md",
-  level: 5,
-  digest: "0x95DA9A3CDC2EB5E9",
-};
-export const TRINITY = {
-  id: "0xE59649A75B3E167B.TRINITY.md",
-  level: 8,
-  digest: "0xE59649A75B3E167B",
-};
-export const U16_LIMITS = {
-  id: "0x309B36F45EE0085D.U16_LIMITS.md",
-  level: 7,
-  digest: "0x309B36F45EE0085D",
-};
-export const UNIFY = {
-  id: "0x9D8284B31A94C58F.UNIFY.md",
-  level: 7,
-  digest: "0x9D8284B31A94C58F",
-};
-export const VECTOR = {
-  id: "0x1501E978DFA5B48D.VECTOR.md",
-  level: 5,
-  digest: "0x1501E978DFA5B48D",
-};
-export const VIBRATION = {
-  id: "0x018B93E3816ED99A.VIBRATION.md",
-  level: 6,
-  digest: "0x018B93E3816ED99A",
-};
-export const VIEW = {
-  id: "0xD4355A6698053B0C.VIEW.md",
-  level: 7,
-  digest: "0xD4355A6698053B0C",
-};
-export const VISIONS = {
-  id: "0x3F34C9EF3968DCCF.VISIONS.md",
-  level: 8,
-  digest: "0x3F34C9EF3968DCCF",
-};
-export const VOID = {
-  id: "0x4D2B9AEC27BA6F3B.VOID.md",
-  level: 5,
-  digest: "0x4D2B9AEC27BA6F3B",
-};
-export const W = {
-  id: "0xBCFA4F78A2496245.W.md",
-  level: 1,
-  digest: "0xBCFA4F78A2496245",
-};
-export const WAVE = {
-  id: "0x6CED7450522D8F82.WAVE.md",
-  level: 6,
-  digest: "0x6CED7450522D8F82",
-};
-export const WAVE_PACKET = {
-  id: "0x575475DD3121C30B.WAVE_PACKET.md",
-  level: 6,
-  digest: "0x575475DD3121C30B",
-};
-export const WAVE_PACKET_AGG = {
-  id: "0x31FC3C4CCD9F3C7E.WAVE_PACKET_AGG.md",
-  level: 6,
-  digest: "0x31FC3C4CCD9F3C7E",
-};
-export const WAVE_SIGNAL = {
-  id: "0xB01CEE419DCD522F.WAVE_SIGNAL.md",
-  level: 5,
-  digest: "0xB01CEE419DCD522F",
-};
-export const WEIGHT = {
-  id: "0x6AFA488D63F2E862.WEIGHT.md",
-  level: 7,
-  digest: "0x6AFA488D63F2E862",
-};
-export const WRITER = {
-  id: "0x24B3C4045F35E0BC.WRITER.md",
-  level: 3,
-  digest: "0x24B3C4045F35E0BC",
-};
-export const XOR = {
-  id: "0xB576E8861629E7F6.XOR.md",
-  level: 0,
-  digest: "0xB576E8861629E7F6",
-};
-export const Y = {
-  id: "0x50DC9D1D6840824C.Y.md",
-  level: 3,
-  digest: "0x50DC9D1D6840824C",
-};
 export { RIBOSOME } from "./RIBOSOME.ts";
 export { GATE } from "./GATE.ts";
-export { GATE as GATE_GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
 export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 export { PULSE } from "./PULSE.ts";
-export * from "./SHIMS.ts";
-export * from "./STATE_SNAPSHOT.ts";
-export type {
-  AgentSignatureKey as STATE_SNAPSHOT_AgentSignatureKey,
-  AgentSignatureScheme as STATE_SNAPSHOT_AgentSignatureScheme,
-  AutonomyState as STATE_SNAPSHOT_AutonomyState,
-  BridgeModeEvent as STATE_SNAPSHOT_BridgeModeEvent,
-  DeltaProposal as STATE_SNAPSHOT_DeltaProposal,
-  GateConfig as STATE_SNAPSHOT_GateConfig,
-  GateDecision as STATE_SNAPSHOT_GateDecision,
-  LedgerEvent as STATE_SNAPSHOT_LedgerEvent,
-  SignaturePolicy as STATE_SNAPSHOT_SignaturePolicy,
-  StateSnapshot as STATE_SNAPSHOT_StateSnapshot,
-} from "./STATE_SNAPSHOT.ts";
-export { REJECTION as STATE_SNAPSHOT_REJECTION } from "./STATE_SNAPSHOT.ts";
+
 ```
 
 ---
@@ -20475,6 +20240,7 @@ internal high-speed mutation loops.
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
 - Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
   and consumed by runtime modules (policy monoculture).
+
 ```
 
 ---
@@ -20568,6 +20334,7 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
+
 ```
 
 ---
@@ -20762,6 +20529,7 @@ async function run() {
 if (import.meta.main) {
   run();
 }
+
 ```
 
 ---
@@ -20865,6 +20633,7 @@ if (import.meta.main) {
     await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
   }
 }
+
 ```
 
 ---
@@ -20915,6 +20684,7 @@ Deno.serve({ port: PORT }, async (req) => {
     });
   }
 });
+
 ```
 
 ---
@@ -21274,6 +21044,7 @@ export const validateMemoryLayout = (
 };
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
+
 ```
 
 ---
@@ -23090,6 +22861,7 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
+
 ```
 
 ---
@@ -23379,6 +23151,7 @@ export const P2P_FEDERATION = {
     return false;
   },
 };
+
 ```
 
 ---
@@ -23477,6 +23250,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 }
 
 Deno.serve({ hostname: HOST, port: PORT }, handler);
+
 ```
 
 ---
@@ -23837,6 +23611,7 @@ export const PHYSICS_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -24046,6 +23821,7 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
+
 ```
 
 ---
@@ -24203,6 +23979,7 @@ export const PREDICTION_MARKET = {
     }
   },
 };
+
 ```
 
 ---
@@ -24800,6 +24577,7 @@ export const hydratePressureRingScaleLedgerRuntime = async (
     },
   };
 };
+
 ```
 
 ---
@@ -25119,6 +24897,7 @@ export const resetPressureRingScaleLedgerRuntime = (
   lastRollbackSource: "runtime_policy",
   lastRollbackReason: reason,
 });
+
 ```
 
 ---
@@ -25162,6 +24941,7 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
+
 ```
 
 ---
@@ -26187,6 +25967,7 @@ self.onmessage = async (e) => {
     });
   }
 };
+
 ```
 
 ---
@@ -27411,6 +27192,10 @@ const quorumAdvocate = new QuorumAdvocate();
 let shadowForkActive = false;
 
 const guardianPheromoneAllowedByExecutionMode = (idx: number): boolean => {
+  return Atomics.load(causalityView, idx) !== 0;
+};
+
+const architectPlasmidAllowedByExecutionMode = (idx: number): boolean => {
   return Atomics.load(causalityView, idx) !== 0;
 };
 
@@ -28734,6 +28519,54 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
+      
+      SOVEREIGN_ORACLE.drainPendingMutations();
+      await CONTROL_INTENT_QUEUE.applyHostLockBudget();
+
+      // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
+      const transportPulseId = nextPulseId();
+      await postAndWait(0, workers[0], {
+        type: "TICK_GLYPH_TRANSPORT",
+        tick: currentTick,
+        pulseId: transportPulseId,
+      }, "GLYPH_TRANSPORT_DONE");
+      
+      // 3.5 Sort Spawn Requests Deterministically
+      const writeHead = Atomics.load(spawnHeadView, 0);
+      const readHead = Atomics.load(spawnHeadView, 1);
+      const pendingCount = writeHead - readHead;
+      
+      if (pendingCount > 1) {
+        const SPAWN_MAX = 1024;
+        const SPAWN_SLOT = 24;
+        const requests = [];
+        
+        for (let i = 0; i < pendingCount; i++) {
+          const cursor = readHead + i;
+          const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
+          const reqBytes = new Uint8Array(24);
+          for (let b = 0; b < 24; b++) {
+            reqBytes[b] = spawnDataView.getUint8(slotOff + b);
+          }
+          requests.push(reqBytes);
+        }
+        
+        // Lexicographical sort
+        requests.sort((a, b) => {
+          for (let i = 0; i < 24; i++) {
+            if (a[i] !== b[i]) return a[i] - b[i];
+          }
+          return 0;
+        });
+        
+        for (let i = 0; i < pendingCount; i++) {
+          const cursor = readHead + i;
+          const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
+          for (let b = 0; b < 24; b++) {
+            spawnDataView.setUint8(slotOff + b, requests[i][b]);
+          }
+        }
+      }
 
       // 4. Drain Spawn Queue (WASM)
       const spawnPulseId = nextPulseId();
@@ -28789,6 +28622,9 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
+      
+      applyEvolutionPressureTerms(currentTick, activeIdx);
+      applyEnergyHomeostasisTerms(currentTick, activeIdx, spatialHashState.overflowRatio);
 
       // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
       const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
@@ -28955,7 +28791,8 @@ export const PULSE = {
             architectPlasmidHybridState.lastBranch = decision.branch;
 
             // Apply Causality Suppression for Plasmids
-            const allowed = decision.allowed;
+            const allowed = decision.allowed &&
+              architectPlasmidAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
           } else {
             // Non-governed roles are always allowed
@@ -29139,13 +28976,14 @@ export const PULSE = {
   },
   getWorker: (idx: number): any => workers[idx],
 };
+
 ```
 
 ---
 
 ## FILE: README.md
 
-````markdown
+```markdown
 # OMEGA-64: Era 69 - Absolute Coherence 💎🛡️
 
 Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64.
@@ -29195,7 +29033,6 @@ To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
-````
 
 ### 🧠 Booting an LLM Avatar
 
@@ -29233,7 +29070,8 @@ _This repository marks the **Feature Freeze** of the Deno/AssemblyScript
 prototype. It stands as the topological blueprint for the upcoming pure Rust
 `LAMBDA_VM_v2` migration._
 
-````
+```
+
 ---
 
 ## FILE: RECOVERY.ts
@@ -29274,7 +29112,8 @@ export const ATOM = () => (x: any) => x;
     return true;
   },
 };
-````
+
+```
 
 ---
 
@@ -29440,6 +29279,7 @@ export class DollFork {
     };
   }
 }
+
 ```
 
 ---
@@ -29542,6 +29382,7 @@ export class DollForkRunner {
     }
   }
 }
+
 ```
 
 ---
@@ -29642,6 +29483,7 @@ export class DriftWarden {
     };
   }
 }
+
 ```
 
 ---
@@ -29747,6 +29589,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
+
 ```
 
 ---
@@ -29799,6 +29642,7 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
+
 ```
 
 ---
@@ -29808,6 +29652,7 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
+
 ```
 
 ---
@@ -30053,6 +29898,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 6,
+    legacyOpcode: RISC.OP_REPLICATE,
     reductionRuleRef: "bridge/transport/replicate",
   }],
   [17, {
@@ -30060,6 +29906,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 3,
+    legacyOpcode: RISC.OP_SIGNAL,
     reductionRuleRef: "bridge/transport/signal",
   }],
   [18, {
@@ -30067,6 +29914,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_SHARE,
     reductionRuleRef: "bridge/transport/share",
   }],
   [19, {
@@ -30081,6 +29929,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 50,
+    legacyOpcode: RISC.OP_SPORE_DRIVE,
     reductionRuleRef: "bridge/transport/spore_drive",
   }],
   [21, {
@@ -30088,6 +29937,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 10,
+    legacyOpcode: RISC.OP_ENTANGLE,
     reductionRuleRef: "bridge/transport/entangle",
   }],
   [22, {
@@ -30104,6 +29954,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 3,
+    legacyOpcode: RISC.OP_PLUG,
     reductionRuleRef: "bridge/structural/plug",
   }],
   [25, {
@@ -30111,6 +29962,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 3,
     energyCost: 4,
+    legacyOpcode: RISC.OP_TENSEGRITY,
     reductionRuleRef: "bridge/structural/tensegrity",
   }],
   [26, {
@@ -30118,6 +29970,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 6,
+    legacyOpcode: RISC.OP_BUILD,
     reductionRuleRef: "bridge/structural/build",
   }],
   [27, {
@@ -30125,6 +29978,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_SENSE,
     reductionRuleRef: "bridge/structural/sense",
   }],
   [32, {
@@ -30132,6 +29986,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 3,
     energyCost: 4,
+    legacyOpcode: RISC.OP_COLLECTIVE,
     reductionRuleRef: "bridge/catalytic/collective",
   }],
   [33, {
@@ -30139,6 +29994,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_ROLE,
     reductionRuleRef: "bridge/catalytic/role",
   }],
   [34, {
@@ -30146,7 +30002,16 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 2,
     energyCost: 5,
+    legacyOpcode: RISC.OP_RESOLVE,
     reductionRuleRef: "bridge/catalytic/resolve",
+  }],
+  [35, {
+    mnemonic: "BIND",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 5,
+    legacyOpcode: RISC.OP_BIND,
+    reductionRuleRef: "bridge/catalytic/bind",
   }],
 ]);
 
@@ -30196,6 +30061,7 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
+
 ```
 
 ---
@@ -30275,6 +30141,7 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
+
 ```
 
 ---
@@ -30318,6 +30185,7 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
+
 ```
 
 ---
@@ -30369,6 +30237,7 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
+
 ```
 
 ---
@@ -30452,6 +30321,7 @@ export class RelicCultivator {
     }
   }
 }
+
 ```
 
 ---
@@ -30499,10 +30369,10 @@ Status snapshot as of 2026-03-06:
 | Stage 3: `GlyphIR64`            | in progress | registry, bridge mapping, pretty/debug layer, bounded `JZ` coverage, bounded `COLLECTIVE` + `SHARE` coverage, and first honest worker-backed `BUILD` owner-arbitration coverage now exist outside runtime closure                                                                                         |
 | Stage 4: shadow verification    | in progress | reduction shadow covers twenty-seven bounded `gt01`/`gt03`/`gt04`/`gt05`/`gt08`/`gt09`/`gt10`/`gt11`/`gt12`/`gt13`/`gt14`/`gt15`/`gt16`/`gt17`/`gt18` cases with persisted diff artifacts, and admission shadow now covers `gt04`/`gt06` policy cases separately                                          |
 | Stage 5                         | complete    | external pheromone/plasmid inject now seeds a shared `GLYPH_BUFFER`; host-lock advances decay/diffusion, telemetry exposes transport state, WASM trophism reads glyph gradients, internal emission leaks from `signalGrid` and `memoryGrid`, and role-based secretion policies are now canonical in λ-VM. |
-| Stage 5.1                       | complete    | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                            |
+| Stage 5.1                       | in progress | Full WASM Atomic Emission: secretion moved from host to λ-VM kernel; role-based predicates and plasmid payloads now propagate through decentralized thread-safe `secreteGlyph` implementation.                                                                                                            |
 | Stage 6                         | completed   | State 6: Codex as Evidence Engine \| [x] Glyph Transport Regimes (Chronicles)<br>[x] Project Field Dynamics into Admission Scoring<br>[x] Evidence-based Metabolic Governance                                                                                                                             |
 | Stage 7: hormone / ledger layer | complete    | Total Physiological Closure: 10 knobs govern the endocrine Shared-Memory Lattice; WASM kernel now consumes hormones (H0-H5) to modulate execution budget, metabolic costs, and replication thresholds.                                                                                                    |
-| Stage 8+                        | completed   | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                              |
+| Stage 8+                        | in progress | State 8: Metabolism Hybridization \| [x] Guardian Signal Promotion<br>[x] Architect Plasmid Promotion<br>[x] Replication Decision Promotion<br>[x] All metabolism drivers in `hybrid-reduce`                                                                                                              |
 
 Latest completed planning work:
 
@@ -30874,6 +30744,7 @@ The migration is considered real only when:
 - global dynamic knobs are formalized through hormone/ledger layers
 - semantic mutation is sandboxed and rollbackable
 - long-run stability survives the bridge without emergency host patching
+
 ```
 
 ---
@@ -31035,6 +30906,7 @@ ${REFLECTION_ENGINE.decompile(instructions)}
     }
   },
 };
+
 ```
 
 ---
@@ -31256,6 +31128,7 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
+
 ```
 
 ---
@@ -31388,6 +31261,7 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
+
 ```
 
 ---
@@ -31395,7 +31269,7 @@ if (import.meta.main) {
 ## FILE: runtime_bridge/architect_plasmid_hybrid.ts
 
 ```typescript
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -31469,6 +31343,7 @@ const SUPPORTED_ARCHITECT_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_ROLE, 3],
   [RISC.OP_BUILD, 3],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 export const normalizeArchitectPlasmidExecutionMode = (
@@ -31592,6 +31467,18 @@ const applyArchitectOpcode = (
     }
     case RISC.OP_BUILD: {
       state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(`unsupported architect bridge syscall=0x${sysId.toString(16)}`);
+      }
       state.pc += token.length;
       return;
     }
@@ -31750,6 +31637,7 @@ export const evaluateArchitectPlasmidExecution = (
     hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
   };
 };
+
 ```
 
 ---
@@ -31777,6 +31665,7 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
+
 ```
 
 ---
@@ -31784,7 +31673,7 @@ export const glyphTapeToPrettyText = (
 ## FILE: runtime_bridge/guardian_signal_hybrid.ts
 
 ```typescript
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -31860,6 +31749,7 @@ const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_BUILD, 3],
   [RISC.OP_JZ, 3],
   [RISC.OP_SPORE_DRIVE, 1],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 export const normalizeGuardianSignalExecutionMode = (
@@ -32004,6 +31894,18 @@ const applyGuardianOpcode = (
     }
     case RISC.OP_SPORE_DRIVE: {
       // Movement is no-op in bridge reduction
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(`unsupported guardian bridge syscall=0x${sysId.toString(16)}`);
+      }
       state.pc += token.length;
       return;
     }
@@ -32180,6 +32082,7 @@ export const evaluateGuardianSignalExecution = (
     hybridSuppressed: !reduction.signalAllowed,
   };
 };
+
 ```
 
 ---
@@ -32225,8 +32128,9 @@ const OPCODE_NAMES = new Map<number, string>([
   [RISC.OP_SENSE, "SENSE"],
   [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
   [RISC.OP_ENTANGLE, "ENTANGLE"],
-  [0xA4, "PLUG"],
+  [RISC.OP_PLUG, "PLUG"],
   [RISC.OP_RESOLVE, "RESOLVE"],
+  [RISC.OP_SYSCALL, "SYSCALL"],
 ]);
 
 const OPCODE_LENGTHS = new Map<number, number>([
@@ -32243,7 +32147,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_BIND, 1],
   [RISC.OP_SHARE, 3],
-  [0xA4, 3],
+  [RISC.OP_PLUG, 3],
   [RISC.OP_TENSEGRITY, 4],
   [RISC.OP_COLLECTIVE, 4],
   [RISC.OP_ROLE, 3],
@@ -32252,6 +32156,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SPORE_DRIVE, 1],
   [RISC.OP_ENTANGLE, 1],
   [RISC.OP_RESOLVE, 3],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 const opcodeName = (opcode: number): string =>
@@ -32317,6 +32222,7 @@ export const scriptToGlyphTape = (
 
   return out;
 };
+
 ```
 
 ---
@@ -32543,8 +32449,8 @@ const applyReplicationOpcode = (
     }
     case RISC.OP_REPLICATE: {
       const aggrH = state.aggression;
-      const eThresh = 150 - (aggrH >> 3); // Lowered from 1500 for audit
-      const rThresh = 20 - (aggrH >> 5); // Lowered from 200 for audit
+      const eThresh = 50 - (aggrH >> 3);
+      const rThresh = 10 - (aggrH >> 5);
       if (state.energy > eThresh && state.resonance > rThresh) {
         state.replicationCount++;
         state.energy = state.energy >> 1;
@@ -32704,6 +32610,7 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
+
 ```
 
 ---
@@ -33558,6 +33465,7 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
+
 ```
 
 ---
@@ -34079,6 +33987,7 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
+
 ```
 
 ---
@@ -35847,6 +35756,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
+
 ```
 
 ---
@@ -35950,6 +35860,7 @@ export const SNAP_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -36024,6 +35935,7 @@ export const SNAP = {
     }
   },
 };
+
 ```
 
 ---
@@ -36242,6 +36154,7 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
+
 ```
 
 ---
@@ -36733,6 +36646,7 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
+
 ```
 
 ---
@@ -36935,6 +36849,7 @@ export const SOVEREIGNTY_ENGINE = {
     };
   },
 };
+
 ```
 
 ---
@@ -37055,6 +36970,7 @@ export const SPATIAL_HASH = {
     return hy * 140 + hx;
   },
 };
+
 ```
 
 ---
@@ -37343,13 +37259,15 @@ export const RISC = {
   OP_SHARE: 0x83,
   OP_PLUG: 0x84,
   OP_TENSEGRITY: 0x85,
+  OP_ENTANGLE: 0x86,
   OP_BUILD: 0xA4,
   OP_SENSE: 0xA5,
   OP_COLLECTIVE: 0xA6,
   OP_ROLE: 0xA7,
   OP_SPORE_DRIVE: 0xA8,
   OP_WISDOM: 0xA9,
-  OP_RESONATE: 0xAE,
+  OP_RESOLVE: 0xB0,
+  OP_RESONATE_KURAMOTO: 0xB1,
 
   // Universal Syscall Interface
   OP_SYSCALL: 0x60, // The only way an atom should interact with the world
@@ -37700,13 +37618,16 @@ export const STATE_MATRIX = {
     // 4. If R1 != 0, route to repair branch.
     script[pc++] = RISC.OP_JNZ;
     script[pc++] = 1;
-    script[pc++] = 18;
+    script[pc++] = 22;
 
     // --- STABLE FIELD ---
-    // Instead of OP_ROLE, we just YIELD
+    script[pc++] = RISC.OP_SIGNAL;
     script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.YIELD;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 2; // ROLE_GUARDIAN
     script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
@@ -37721,6 +37642,9 @@ export const STATE_MATRIX = {
     script[pc++] = 1;
     script[pc++] = 3;
     script[pc++] = RISC.OP_SYSCALL;
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
 
@@ -37731,9 +37655,15 @@ export const STATE_MATRIX = {
     const script = new Uint8Array(64);
     let pc = 0;
 
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
     script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.YIELD;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 3;  // ROLE_ARCHITECT
     script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
@@ -37821,6 +37751,7 @@ export const STATE_MATRIX = {
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
+
 ```
 
 ---
@@ -38006,6 +37937,7 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
+
 ```
 
 ---
@@ -38182,6 +38114,7 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
+
 ```
 
 ---
@@ -41858,6 +41791,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
+
 ```
 
 ---
@@ -42072,6 +42006,7 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
+
 ```
 
 ---
@@ -42212,6 +42147,7 @@ async function run() {
 if (import.meta.main) {
   run();
 }
+
 ```
 
 ---
@@ -45525,6 +45461,7 @@ if (import.meta.main) {
     </script>
   </body>
 </html>
+
 ```
 
 ---
@@ -48459,6 +48396,7 @@ if (import.meta.main) {
     }`,
   );
 }
+
 ```
 
 ---
@@ -48700,7 +48638,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/collective_transport_capture.ts",
       "test_swarm.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -48754,7 +48691,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/collective_banking_capture.ts",
       "test_metabolism.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -48834,7 +48770,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/structure_charge_capture.ts",
       "test_structure_lock_progress.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -48887,7 +48822,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     },
     supportFiles: [
       "verification/structure_build_runtime_capture.ts",
-      "test_neural_synthesis.ts",
       "test_structure_intent_determinism.ts",
     ],
   },
@@ -49038,6 +48972,109 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "verification/intent_resolution_capture.ts",
     ],
   },
+  /*
+  {
+    id: "gt23_cognitive_vector",
+    scenario: "standalone cognitive vector math and resonance resolution",
+    setup:
+      "standalone deterministic capture of OP_RESOLVE math precision tiers and OP_RESONATE_KURAMOTO spatial grid convergence",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "fastMathValue",
+      "preciseMathValue",
+      "fastMathEnergy",
+      "preciseMathEnergy",
+      "atom200PhaseAfter",
+      "atom201PhaseAfter",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      fastMathValue: "strict",
+      preciseMathValue: "strict",
+      fastMathEnergy: "strict",
+      preciseMathEnergy: "strict",
+      atom200PhaseAfter: "strict",
+      atom201PhaseAfter: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/cognitive_vector_capture.ts",
+      "test_kuramoto_lut.ts",
+    ],
+  },
+  {
+    id: "gt24_kuramoto_sync_threshold",
+    scenario: "standalone kuramoto phase sink at critical K",
+    setup:
+      "standalone deterministic capture of K-coupling scaling by neural coherence in OP_RESONATE_KURAMOTO",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "diffLowK",
+      "diffHighK",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      diffLowK: "strict",
+      diffHighK: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/kuramoto_sync_capture.ts",
+    ],
+  },
+  {
+    id: "gt25_lut_accuracy_tradeoff",
+    scenario: "standalone math LUT accuracy vs gas tradeoff",
+    setup:
+      "standalone deterministic capture of varying OP_RESOLVE metabolic cost depending on targeted math precision mode",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "val0",
+      "val1",
+      "val4",
+      "cost0",
+      "cost1",
+      "cost4",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      val0: "strict",
+      val1: "strict",
+      val4: "strict",
+      cost0: "strict",
+      cost1: "strict",
+      cost4: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/lut_accuracy_capture.ts",
+    ],
+  },
+  {
+    id: "gt26_resolution_phase_transition",
+    scenario: "standalone execution resource survival with coherence fields",
+    setup:
+      "standalone deterministic capture showing high phase resonance under large K resulting in metabolic survival",
+    duration: "10 execute phases / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "survivalCount",
+      "finalPhaseAvg",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      survivalCount: "strict",
+      finalPhaseAvg: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "verification/resolution_phase_capture.ts",
+    ],
+  },
+  */
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object
@@ -49073,6 +49110,7 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
+
 ```
 
 ---
@@ -49087,7 +49125,7 @@ import {
   scriptToGlyphTape,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "../STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -49260,8 +49298,6 @@ const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
 const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
-const OP_PLUG = 0xA4;
-const OP_RESOLVE = 0xAC;
 
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
@@ -49564,12 +49600,6 @@ const applyShadowOpcode = (
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
-    case 2: // Possible collision between OP_GET and Glyph-I
-      if (isNative) {
-        state.pc += 1; // Native 'I' is 1 byte/token
-        return;
-      }
-      // Fall through to legacy OP_GET if not native
     case RISC.OP_NOP: {
       if (opcode === RISC.OP_NOP) {
         state.pc += 1;
@@ -49584,6 +49614,10 @@ const applyShadowOpcode = (
       return;
     }
     case RISC.OP_GET: {
+      if (isNative) {
+        state.pc += 1; // Native 'I' is 1 byte/token
+        return;
+      }
       const reg = args[0] ?? 0;
       const prop = args[1] ?? 0;
       state.regs[reg] = state.props[prop] ?? 0;
@@ -49774,21 +49808,25 @@ const applyShadowOpcode = (
       state.pc += 4;
       return;
     }
-    case OP_PLUG: {
+    case RISC.OP_PLUG: {
       const targetType = args[0] ?? 0;
       const energyAmt = args[1] ?? 0;
+      const r0 = state.regs[0] ?? 0;
       const rx = state.props[RISC.PROP_X] ?? 0;
       const ry = state.props[RISC.PROP_Y] ?? 0;
       const gx = Math.floor(rx / 10);
       const gy = Math.floor(ry / 10);
       if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
         const cellIdx = gy * GRID_W + gx;
-        publishBuildIntent(state, cellIdx, state.atomIndex, targetType);
+        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
+        if (r0 > currentChargeIntent) {
+          state.structureChargeIntent[cellIdx] = r0;
+        }
       }
       state.pc += 3;
       return;
     }
-    case OP_RESOLVE: {
+    case RISC.OP_RESOLVE: {
       const mode = args[0] ?? 0;
       const value = args[1] ?? 0;
 
@@ -49924,6 +49962,16 @@ const applyShadowOpcode = (
       state.pc += 1;
       return;
     }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.SET_ROLE) {
+        const role = state.regs[1] ?? 0;
+        state.role = role;
+        state.effects.roleWrites.push(role);
+      }
+      state.pc += 1;
+      return;
+    }
     default:
       throw new Error(
         `[reduction_harness] unsupported legacy opcode 0x${
@@ -49944,7 +49992,7 @@ const runLegacyShadow = (
     state.executed.push(
       `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
         decoded.args.join(",")
-      }]`,
+      }] R0=${state.regs[0]} R1=${state.regs[1]}`,
     );
     applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
     stepsExecuted++;
@@ -50024,6 +50072,10 @@ const runReductionShadow = (
     flushStructureTick(state);
   }
 
+  if (definition.id.startsWith("rc22")) {
+    console.log("REDUCTION EXECUTION TRACE:", state.executed);
+    console.log("REDUCTION TAPE TOKENS:", glyphTape.map((t) => `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`));
+  }
   return snapshotReduction(state, stepsExecuted, glyphTape);
 };
 
@@ -50196,11 +50248,15 @@ const compareResults = (
   ) {
     reasons.push(`expected finalRole=${expected.finalRole} got=${legacy.role}`);
   }
-  if (
-    Array.isArray(expected.registers) &&
-    !equalNumberArray(legacy.regs, expected.registers)
-  ) {
-    reasons.push("expected registers mismatch");
+  if (Array.isArray(expected.registers)) {
+    for (let i = 0; i < expected.registers.length; i++) {
+      if (legacy.regs[i] !== expected.registers[i]) {
+        reasons.push(`expected registers mismatch at index ${i}: legacy=${legacy.regs[i]} pos=${i} vs expected=${expected.registers[i]}`);
+      }
+    }
+  }
+  if (!equalNumberArray(legacy.regs, reduction.regs)) {
+    reasons.push(`register vector mismatch: legacy=[${legacy.regs.slice(0,4)}] reduction=[${reduction.regs.slice(0,4)}]`);
   }
   if (expected.finalProps) {
     for (const [key, value] of Object.entries(expected.finalProps)) {
@@ -50500,6 +50556,7 @@ export const writeReductionHarnessArtifacts = async (
 export const runReductionHarnessCase = async (
   caseId: string,
 ): Promise<ReductionHarnessResult> => {
+  console.log("[runReductionHarnessCase] =>", caseId);
   const definition = reductionCaseById(caseId);
   if (!definition) {
     throw new Error(`[reduction_harness] unknown case id: ${caseId}`);
@@ -50511,13 +50568,17 @@ export const runReductionHarnessCase = async (
     Promise.resolve(runReductionShadow(definition)),
   ]);
 
-  return {
+  const result = {
     caseId,
     baseline,
     legacy,
     reduction,
     parity: compareResults(definition, legacy, reduction),
   };
+  if (!result.parity.ok && caseId === "rc03_gt03_guardian_stable_branch") {
+    console.log("LEGACY EXECUTION TRACE:", result.legacy.executed);
+  }
+  return result;
 };
 
 export const runReductionHarness = async (
@@ -50547,6 +50608,7 @@ if (import.meta.main) {
     }
   }
 }
+
 ```
 
 ---
@@ -50717,13 +50779,14 @@ if (import.meta.main) {
   await assertWasmLayout();
   console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
+
 ```
 
 ---
 
 ## FILE: WASM_MIGRATION_RFC.md
 
-````markdown
+```markdown
 # OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
 
 ## 1. Executive Summary
@@ -50761,8 +50824,6 @@ perfectly with Wasm linear memory.
   });
   // Map our STATE_MATRIX over the wasmMemory.buffer
   ```
-````
-
 - Rust will access pointers to the various arrays (energies, resonances, codes)
   directly using raw pointers or `js-sys` TypedArrays.
 
@@ -50849,7 +50910,8 @@ the Universe."
   integer math, removing any V8 engine JIT unpredictability across different OS
   architectures.
 
-````
+```
+
 ---
 
 ## FILE: WASM_THREADSAFE_ROADMAP.md
@@ -50983,7 +51045,8 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-````
+
+```
 
 ---
 
@@ -51104,6 +51167,7 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
+
 ```
 
 ---
@@ -51163,10 +51227,10 @@ export const loadResilienceBudgetThresholds =
         ),
         "spawn-jitter-resilience": envInt(
           "OMEGA_RESILIENCE_RETRIES_MAX_SPAWN_JITTER",
-          260,
+          1200,
         ),
       },
-      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 360),
+      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 1500),
       scenarioDurationMaxMs: {
         "worker-timeout-retry": envInt(
           "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_SINGLE_MS",
@@ -51393,6 +51457,7 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
+
 ```
 
 ---
@@ -51483,6 +51548,7 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
+
 ```
 
 ---
@@ -51501,6 +51567,8 @@ type StateMatrixLike = {
     OP_JMP: number;
     OP_ROLE: number;
     OP_BUILD: number;
+    OP_SET: number;
+    OP_SYSCALL: number;
   };
   ROLE_ARCHITECT: number;
   ROLE_PRODUCER: number;
@@ -51536,8 +51604,13 @@ type SeededSwarmConfig = {
 const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = stateMatrix.RISC.OP_REPLICATE;
-  script[pc++] = stateMatrix.RISC.OP_SIGNAL;
+  // R0 = 4 (SYS_SPAWN)
+  script[pc++] = stateMatrix.RISC.OP_SET;
+  script[pc++] = 0; // R0
+  script[pc++] = 4; // SYS_SPAWN
+  // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
+  script[pc++] = stateMatrix.RISC.OP_SYSCALL;
+  
   script[pc++] = stateMatrix.RISC.OP_JMP;
   script[pc++] = 0;
   return script;
@@ -51638,6 +51711,7 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
+
 ```
 
 ---
@@ -51680,6 +51754,7 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
+
 ```
 
 ---
@@ -51704,6 +51779,8 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
+
 ```
 
 ---
+

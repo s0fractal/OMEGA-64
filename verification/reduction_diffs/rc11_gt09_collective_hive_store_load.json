@@ -2,13 +2,11 @@
   "case_id": "rc11_gt09_collective_hive_store_load",
   "baseline_trace_id": "gt09_collective_transport",
   "baseline_runtime_mode": "standalone-collective-transport-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch"
-  ],
+  "parity_ok": true,
+  "parity_reasons": [],
   "legacy_digest": "258fc15a36ea685a1c2ddbf3d321def5572db26647a1398d24183cabe138c69e",
   "reduction_digest": "e21fe76127bb98a55dec3c7cd0450cb73cf9bc41245bd7a6716df0cc05f8b043",
-  "executed_digest_legacy": "4015ccec7f18c01e3c931000ecd78c706ba4d5a0b49e03ac7f3ad1f772d6ef25",
+  "executed_digest_legacy": "ea50f5590f405dbbdce776a9ce5307abd615c1dcf3bd2022aee8c7210814be10",
   "executed_digest_reduction": "224b081b2250ab4081c81a8ebc9738be2f9e85a9944aa6a62c2e5b8a6351aa4c",
   "diff": {
     "final_pc_match": true,

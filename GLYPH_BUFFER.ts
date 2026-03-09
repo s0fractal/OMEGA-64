@@ -51,60 +51,7 @@ export type GlyphSnapshot = {
   atomRolePlasmid: GlyphRoleCounters;
 };
 
-let lastInternalSignalSeeds = 0;
-let lastInternalMemorySeeds = 0;
-let lastInternalAtomPheromoneSeeds = 0;
-let lastInternalAtomPlasmidSeeds = 0;
 
-const createRoleCounters = (): GlyphRoleCounters => ({
-  neutral: 0,
-  producer: 0,
-  guardian: 0,
-  architect: 0,
-  parasite: 0,
-});
-
-const resetRoleCounters = (counters: GlyphRoleCounters): void => {
-  counters.neutral = 0;
-  counters.producer = 0;
-  counters.guardian = 0;
-  counters.architect = 0;
-  counters.parasite = 0;
-};
-
-const cloneRoleCounters = (counters: GlyphRoleCounters): GlyphRoleCounters => ({
-  neutral: counters.neutral,
-  producer: counters.producer,
-  guardian: counters.guardian,
-  architect: counters.architect,
-  parasite: counters.parasite,
-});
-
-const lastAtomRolePheromone = createRoleCounters();
-const lastAtomRolePlasmid = createRoleCounters();
-
-const incrementRoleCounter = (
-  counters: GlyphRoleCounters,
-  role: number,
-): void => {
-  if (role === STATE_MATRIX.ROLE_PRODUCER) {
-    counters.producer++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_GUARDIAN) {
-    counters.guardian++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_ARCHITECT) {
-    counters.architect++;
-    return;
-  }
-  if (role === STATE_MATRIX.ROLE_PARASITE) {
-    counters.parasite++;
-    return;
-  }
-  counters.neutral++;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -153,8 +100,6 @@ export const GLYPH_BUFFER = {
   clear: () => {
     STATE_MATRIX.glyphHeaders.fill(0);
     STATE_MATRIX.glyphPayload.fill(0);
-    lastInternalSignalSeeds = 0;
-    lastInternalMemorySeeds = 0;
     secretionStatsView.fill(0);
   },
 
@@ -193,8 +138,7 @@ export const GLYPH_BUFFER = {
   },
 
   emitAtomPheromone: (x: number, y: number, intensity: number, role = 0) => {
-    lastInternalAtomPheromoneSeeds++;
-    incrementRoleCounter(lastAtomRolePheromone, role);
+    Atomics.add(secretionStatsView, role, 1);
     GLYPH_BUFFER.depositPheromone(x, y, intensity);
   },
 
@@ -205,8 +149,7 @@ export const GLYPH_BUFFER = {
     payload: Uint8Array,
     role = 0,
   ) => {
-    lastInternalAtomPlasmidSeeds++;
-    incrementRoleCounter(lastAtomRolePlasmid, role);
+    Atomics.add(secretionStatsView, 5 + role, 1);
     GLYPH_BUFFER.depositPlasmid(x, y, charge, payload);
   },
 

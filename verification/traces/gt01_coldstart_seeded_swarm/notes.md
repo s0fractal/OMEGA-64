@@ -5,8 +5,8 @@
 - duration: 256 ticks
 - daemonEnabled: false
 - runtime_mode: legacy-runtime/api-observer-harness
-- base_url: http://127.0.0.1:56209
-- port: 56209
+- base_url: http://127.0.0.1:58559
+- port: 58559
 - seed: 424242
 
 ## Environment

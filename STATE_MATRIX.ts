@@ -279,6 +279,7 @@ export const RISC = {
   OP_SHARE: 0x83,
   OP_PLUG: 0x84,
   OP_TENSEGRITY: 0x85,
+  OP_ENTANGLE: 0x86,
   OP_BUILD: 0xA4,
   OP_SENSE: 0xA5,
   OP_COLLECTIVE: 0xA6,
@@ -637,13 +638,16 @@ export const STATE_MATRIX = {
     // 4. If R1 != 0, route to repair branch.
     script[pc++] = RISC.OP_JNZ;
     script[pc++] = 1;
-    script[pc++] = 18;
+    script[pc++] = 22;
 
     // --- STABLE FIELD ---
-    // Instead of OP_ROLE, we just YIELD
+    script[pc++] = RISC.OP_SIGNAL;
     script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.YIELD;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 2; // ROLE_GUARDIAN
     script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
@@ -658,6 +662,9 @@ export const STATE_MATRIX = {
     script[pc++] = 1;
     script[pc++] = 3;
     script[pc++] = RISC.OP_SYSCALL;
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
 
@@ -668,9 +675,15 @@ export const STATE_MATRIX = {
     const script = new Uint8Array(64);
     let pc = 0;
 
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
     script[pc++] = RISC.OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.YIELD;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 3;  // ROLE_ARCHITECT
     script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;

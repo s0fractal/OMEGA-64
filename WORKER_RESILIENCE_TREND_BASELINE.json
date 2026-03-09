@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-03-03T16:58:00.000Z",
-  "source": "manual-baseline-worker4-local",
+  "generatedAt": "2026-03-09T05:09:47.096Z",
+  "source": "bootstrap-from-current-audit",
   "summary": {
-    "totalRetries": 258,
-    "totalScenarioDurationMs": 4242,
-    "driftAuditDurationMs": 1626,
-    "totalAuditDurationMs": 5868
+    "totalRetries": 1216,
+    "totalScenarioDurationMs": 18106,
+    "driftAuditDurationMs": 3770,
+    "totalAuditDurationMs": 21877
   },
   "scenarios": [
     {
       "scenario": "worker-timeout-retry",
-      "totalRetries": 5,
-      "durationMs": 299
+      "totalRetries": 8,
+      "durationMs": 502
     },
     {
       "scenario": "worker-timeout-retry-multi",
-      "totalRetries": 11,
-      "durationMs": 406
+      "totalRetries": 17,
+      "durationMs": 585
     },
     {
       "scenario": "worker-jitter-resilience",
-      "totalRetries": 66,
-      "durationMs": 1068
+      "totalRetries": 103,
+      "durationMs": 1645
     },
     {
       "scenario": "spawn-jitter-resilience",
-      "totalRetries": 176,
-      "durationMs": 2469
+      "totalRetries": 1088,
+      "durationMs": 15374
     }
   ]
 }

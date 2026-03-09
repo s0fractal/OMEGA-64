@@ -236,6 +236,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 6,
+    legacyOpcode: RISC.OP_REPLICATE,
     reductionRuleRef: "bridge/transport/replicate",
   }],
   [17, {
@@ -243,6 +244,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 3,
+    legacyOpcode: RISC.OP_SIGNAL,
     reductionRuleRef: "bridge/transport/signal",
   }],
   [18, {
@@ -250,6 +252,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_SHARE,
     reductionRuleRef: "bridge/transport/share",
   }],
   [19, {
@@ -264,6 +267,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 50,
+    legacyOpcode: RISC.OP_SPORE_DRIVE,
     reductionRuleRef: "bridge/transport/spore_drive",
   }],
   [21, {
@@ -271,6 +275,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 10,
+    legacyOpcode: RISC.OP_ENTANGLE,
     reductionRuleRef: "bridge/transport/entangle",
   }],
   [22, {
@@ -287,6 +292,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 3,
+    legacyOpcode: RISC.OP_PLUG,
     reductionRuleRef: "bridge/structural/plug",
   }],
   [25, {
@@ -294,6 +300,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 3,
     energyCost: 4,
+    legacyOpcode: RISC.OP_TENSEGRITY,
     reductionRuleRef: "bridge/structural/tensegrity",
   }],
   [26, {
@@ -301,6 +308,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 6,
+    legacyOpcode: RISC.OP_BUILD,
     reductionRuleRef: "bridge/structural/build",
   }],
   [27, {
@@ -308,6 +316,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "structural",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_SENSE,
     reductionRuleRef: "bridge/structural/sense",
   }],
   [32, {
@@ -315,6 +324,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 3,
     energyCost: 4,
+    legacyOpcode: RISC.OP_COLLECTIVE,
     reductionRuleRef: "bridge/catalytic/collective",
   }],
   [33, {
@@ -322,6 +332,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 2,
     energyCost: 2,
+    legacyOpcode: RISC.OP_ROLE,
     reductionRuleRef: "bridge/catalytic/role",
   }],
   [34, {
@@ -329,7 +340,16 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 2,
     energyCost: 5,
+    legacyOpcode: RISC.OP_RESOLVE,
     reductionRuleRef: "bridge/catalytic/resolve",
+  }],
+  [35, {
+    mnemonic: "BIND",
+    kind: "catalytic",
+    arity: 2,
+    energyCost: 5,
+    legacyOpcode: RISC.OP_BIND,
+    reductionRuleRef: "bridge/catalytic/bind",
   }],
 ]);
 

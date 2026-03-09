@@ -204,7 +204,7 @@ const makePlugChargeScript = (charge: number): Uint8Array => {
   script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
   script[pc++] = charge & 0xFF;
-  script[pc++] = 0xA4;
+  script[pc++] = RISC.OP_PLUG;
   script[pc++] = 1;
   script[pc++] = 0;
   return script;
@@ -219,13 +219,13 @@ const makePlugChargeCompetitionScript = (
   script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
   script[pc++] = firstCharge & 0xFF;
-  script[pc++] = 0xA4;
+  script[pc++] = RISC.OP_PLUG;
   script[pc++] = 1;
   script[pc++] = 0;
   script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
   script[pc++] = secondCharge & 0xFF;
-  script[pc++] = 0xA4;
+  script[pc++] = RISC.OP_PLUG;
   script[pc++] = 1;
   script[pc++] = 0;
   return script;
@@ -475,7 +475,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "Guardian script on a coherent field should stay in the stable signaling branch.",
       script: GUARDIAN_SCRIPT,
-      maxSteps: 7,
+      maxSteps: 9,
       initialProps: {
         [RISC.PROP_NEURAL_COHERENCE]: 200,
       },
@@ -484,7 +484,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         signalCount: 1,
         buildCount: 0,
         finalRole: STATE_MATRIX.ROLE_GUARDIAN,
-        registers: [200, 0, 0, 0, 0, 0, 0, 0],
+        registers: [6, 2, 0, 0, 0, 0, 0, 0],
         branchTaken: false,
       },
     },
@@ -494,16 +494,16 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
       script: GUARDIAN_SCRIPT,
-      maxSteps: 8,
+      maxSteps: 9,
       initialProps: {
         [RISC.PROP_NEURAL_COHERENCE]: 0,
       },
       expected: {
         finalPc: 0,
-        signalCount: 1,
+        signalCount: 0,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-        registers: [0, 200, 0, 0, 0, 0, 0, 0],
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
         branchTaken: true,
       },
     },

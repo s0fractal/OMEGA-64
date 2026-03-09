@@ -1690,12 +1690,6 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
 }
 
 export function execute_atom(atomIndex: i32): void {
-  if (atomIndex < 20) {
-    const rawRole = load<u8>(ROLES_OFFSET + (atomIndex as usize));
-    const rawRes = load<i32>(RESONANCE_OFFSET + (atomIndex << 2) as usize);
-    const rawTick = load<i32>(TICK_COUNTER_OFF);
-    trace_atom(atomIndex, 0xAA, rawRes, rawTick, rawRole as i32);
-  }
   let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
@@ -1805,6 +1799,12 @@ export function execute_atom(atomIndex: i32): void {
       (vx as f32) * 2.0 * (dampingFactor as f32);
     let nextY = (curY as f32) + accForceY +
       (vy as f32) * 2.0 * (dampingFactor as f32);
+
+    // Hard float clamping before rounding limits any NaN/Infinity physics bugs
+    if (nextX < 0.0) nextX = 0.0;
+    if (nextX > 1399.0) nextX = 1399.0;
+    if (nextY < 0.0) nextY = 0.0;
+    if (nextY > 799.0) nextY = 799.0;
 
     storeClampedPos(
       atomIndex,

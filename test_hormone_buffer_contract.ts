@@ -11,8 +11,8 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    HORMONE_BUFFER_LENGTH === 6,
-    "[hormone_buffer] expected 6 initial hormones",
+    HORMONE_BUFFER_LENGTH === 7,
+    "[hormone_buffer] expected 7 initial hormones",
   );
   expect(
     HORMONE_BUFFER_CATALOG.length === HORMONE_BUFFER_LENGTH,

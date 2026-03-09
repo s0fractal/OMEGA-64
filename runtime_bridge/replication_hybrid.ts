@@ -217,8 +217,8 @@ const applyReplicationOpcode = (
     }
     case RISC.OP_REPLICATE: {
       const aggrH = state.aggression;
-      const eThresh = 150 - (aggrH >> 3); // Lowered from 1500 for audit
-      const rThresh = 20 - (aggrH >> 5); // Lowered from 200 for audit
+      const eThresh = 50 - (aggrH >> 3);
+      const rThresh = 10 - (aggrH >> 5);
       if (state.energy > eThresh && state.resonance > rThresh) {
         state.replicationCount++;
         state.energy = state.energy >> 1;

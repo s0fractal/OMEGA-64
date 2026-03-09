@@ -2,13 +2,11 @@
   "case_id": "rc21_gt14_plug_charge_resolve",
   "baseline_trace_id": "gt14_structure_charge_resolution",
   "baseline_runtime_mode": "standalone-structure-charge-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected structureGrid[423]=11141121 got=1"
-  ],
-  "legacy_digest": "0eb70a5f858989581a92282276c0d7b1902e21502a84caca013906e90bc29e1f",
-  "reduction_digest": "ea381bf0630d4b36f92ac366903fd168f0419e8b3304ca80492f8c3f7db3c1cd",
-  "executed_digest_legacy": "f1bff94fde50cd2d7cf9097e325dddcff3655182c4e442c0fa4678120fafd281",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "ff9eb026e098e3251decfc787a2c915f6310715a513e6c49677a4adc6d5032df",
+  "reduction_digest": "e046753236772ded5b61d424d954c604f9bbde27a19d82f38997244bc7a2bc4b",
+  "executed_digest_legacy": "5fcacf4abf0b9bb7016a96d7962c50d92c3269a9a7a178af64b44d41a8be8ef5",
   "executed_digest_reduction": "89770328be014270fd3d0a485e080520db8b6f49608c6d896911a0a7e61d348c",
   "diff": {
     "final_pc_match": true,

@@ -1,4 +1,4 @@
-import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -72,6 +72,7 @@ const SUPPORTED_ARCHITECT_OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_ROLE, 3],
   [RISC.OP_BUILD, 3],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 export const normalizeArchitectPlasmidExecutionMode = (
@@ -195,6 +196,18 @@ const applyArchitectOpcode = (
     }
     case RISC.OP_BUILD: {
       state.buildCount++;
+      state.pc += token.length;
+      return;
+    }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.YIELD) {
+        // no-op
+      } else if (sysId === SYS.SET_ROLE) {
+        state.role = state.regs[1] ?? 0;
+      } else {
+        throw new Error(`unsupported architect bridge syscall=0x${sysId.toString(16)}`);
+      }
       state.pc += token.length;
       return;
     }

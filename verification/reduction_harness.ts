@@ -5,7 +5,7 @@ import {
   scriptToGlyphTape,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "../STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -178,8 +178,6 @@ const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
 const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
-const OP_PLUG = 0xA4;
-const OP_RESOLVE = 0xAC;
 
 const cloneEffects = (): ShadowEffects => ({
   replicateCount: 0,
@@ -482,12 +480,6 @@ const applyShadowOpcode = (
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
-    case 2: // Possible collision between OP_GET and Glyph-I
-      if (isNative) {
-        state.pc += 1; // Native 'I' is 1 byte/token
-        return;
-      }
-      // Fall through to legacy OP_GET if not native
     case RISC.OP_NOP: {
       if (opcode === RISC.OP_NOP) {
         state.pc += 1;
@@ -502,6 +494,10 @@ const applyShadowOpcode = (
       return;
     }
     case RISC.OP_GET: {
+      if (isNative) {
+        state.pc += 1; // Native 'I' is 1 byte/token
+        return;
+      }
       const reg = args[0] ?? 0;
       const prop = args[1] ?? 0;
       state.regs[reg] = state.props[prop] ?? 0;
@@ -692,21 +688,25 @@ const applyShadowOpcode = (
       state.pc += 4;
       return;
     }
-    case OP_PLUG: {
+    case RISC.OP_PLUG: {
       const targetType = args[0] ?? 0;
       const energyAmt = args[1] ?? 0;
+      const r0 = state.regs[0] ?? 0;
       const rx = state.props[RISC.PROP_X] ?? 0;
       const ry = state.props[RISC.PROP_Y] ?? 0;
       const gx = Math.floor(rx / 10);
       const gy = Math.floor(ry / 10);
       if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
         const cellIdx = gy * GRID_W + gx;
-        publishBuildIntent(state, cellIdx, state.atomIndex, targetType);
+        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
+        if (r0 > currentChargeIntent) {
+          state.structureChargeIntent[cellIdx] = r0;
+        }
       }
       state.pc += 3;
       return;
     }
-    case OP_RESOLVE: {
+    case RISC.OP_RESOLVE: {
       const mode = args[0] ?? 0;
       const value = args[1] ?? 0;
 
@@ -842,6 +842,16 @@ const applyShadowOpcode = (
       state.pc += 1;
       return;
     }
+    case RISC.OP_SYSCALL: {
+      const sysId = state.regs[0] ?? 0;
+      if (sysId === SYS.SET_ROLE) {
+        const role = state.regs[1] ?? 0;
+        state.role = role;
+        state.effects.roleWrites.push(role);
+      }
+      state.pc += 1;
+      return;
+    }
     default:
       throw new Error(
         `[reduction_harness] unsupported legacy opcode 0x${
@@ -862,7 +872,7 @@ const runLegacyShadow = (
     state.executed.push(
       `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
         decoded.args.join(",")
-      }]`,
+      }] R0=${state.regs[0]} R1=${state.regs[1]}`,
     );
     applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
     stepsExecuted++;
@@ -942,6 +952,10 @@ const runReductionShadow = (
     flushStructureTick(state);
   }
 
+  if (definition.id.startsWith("rc22")) {
+    console.log("REDUCTION EXECUTION TRACE:", state.executed);
+    console.log("REDUCTION TAPE TOKENS:", glyphTape.map((t) => `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`));
+  }
   return snapshotReduction(state, stepsExecuted, glyphTape);
 };
 
@@ -1114,11 +1128,15 @@ const compareResults = (
   ) {
     reasons.push(`expected finalRole=${expected.finalRole} got=${legacy.role}`);
   }
-  if (
-    Array.isArray(expected.registers) &&
-    !equalNumberArray(legacy.regs, expected.registers)
-  ) {
-    reasons.push("expected registers mismatch");
+  if (Array.isArray(expected.registers)) {
+    for (let i = 0; i < expected.registers.length; i++) {
+      if (legacy.regs[i] !== expected.registers[i]) {
+        reasons.push(`expected registers mismatch at index ${i}: legacy=${legacy.regs[i]} pos=${i} vs expected=${expected.registers[i]}`);
+      }
+    }
+  }
+  if (!equalNumberArray(legacy.regs, reduction.regs)) {
+    reasons.push(`register vector mismatch: legacy=[${legacy.regs.slice(0,4)}] reduction=[${reduction.regs.slice(0,4)}]`);
   }
   if (expected.finalProps) {
     for (const [key, value] of Object.entries(expected.finalProps)) {
@@ -1418,6 +1436,7 @@ export const writeReductionHarnessArtifacts = async (
 export const runReductionHarnessCase = async (
   caseId: string,
 ): Promise<ReductionHarnessResult> => {
+  console.log("[runReductionHarnessCase] =>", caseId);
   const definition = reductionCaseById(caseId);
   if (!definition) {
     throw new Error(`[reduction_harness] unknown case id: ${caseId}`);
@@ -1429,13 +1448,17 @@ export const runReductionHarnessCase = async (
     Promise.resolve(runReductionShadow(definition)),
   ]);
 
-  return {
+  const result = {
     caseId,
     baseline,
     legacy,
     reduction,
     parity: compareResults(definition, legacy, reduction),
   };
+  if (!result.parity.ok && caseId === "rc03_gt03_guardian_stable_branch") {
+    console.log("LEGACY EXECUTION TRACE:", result.legacy.executed);
+  }
+  return result;
 };
 
 export const runReductionHarness = async (

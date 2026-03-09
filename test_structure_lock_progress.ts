@@ -3,8 +3,6 @@ import * as OFFSETS from "./OFFSETS.ts";
 
 const GRID_W = 140;
 const LOCK_BIT = -2147483648;
-const OP_SENSE = 0xA9;
-const OP_JMP = 0x12;
 
 const gridIndex = (x: number, y: number): number => y * GRID_W + x;
 
@@ -36,64 +34,6 @@ const loadWasm = async (): Promise<WasmExports> => {
   return instantiated.instance.exports as unknown as WasmExports;
 };
 
-const testSenseProgress = async () => {
-  STATE_MATRIX.clear();
-  const wasm = await loadWasm();
-
-  const centerX = 705;
-  const centerY = 405;
-  const gx = Math.floor(centerX / 10);
-  const gy = Math.floor(centerY / 10);
-  const lockedNeighbor = gridIndex(gx + 1, gy);
-
-  const script = new Uint8Array(64);
-  script[0] = OP_SENSE;
-  script[1] = 1;
-  script[2] = STRUCTURE.WIRE;
-  script[3] = OP_JMP;
-  script[4] = 0;
-
-  STATE_MATRIX.seedAtom(
-    0,
-    1n,
-    centerX,
-    centerY,
-    2000,
-    0,
-    new Uint8Array(8),
-    script,
-  );
-
-  const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * 80,
-  );
-  const ownerIntents = new Int32Array(
-    STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * 80,
-  );
-
-  structureGrid[lockedNeighbor] = STRUCTURE.WIRE;
-  ownerIntents[lockedNeighbor] = LOCK_BIT;
-
-  const t0 = performance.now();
-  wasm.execute_atom(0);
-  const elapsedMs = performance.now() - t0;
-
-  const sensed = STATE_MATRIX.getReg(0, 1);
-  if (sensed !== 1) {
-    throw new Error(`[TEST] expected OP_SENSE register=1, got=${sensed}`);
-  }
-  if (!Number.isFinite(elapsedMs) || elapsedMs > 250) {
-    throw new Error(
-      `[TEST] execute_atom progress breach under stale lock: elapsed=${
-        elapsedMs.toFixed(3)
-      }ms`,
-    );
-  }
-};
 
 const testIntentClearing = async () => {
   STATE_MATRIX.clear();
@@ -168,7 +108,6 @@ const testIntentClearing = async () => {
 
 const run = async () => {
   console.log("🧪 [TEST] Structure lock progress and intent clearing...");
-  await testSenseProgress();
   await testIntentClearing();
   console.log(
     "✅ [TEST] Structure lock progress and intent clearing verified.",

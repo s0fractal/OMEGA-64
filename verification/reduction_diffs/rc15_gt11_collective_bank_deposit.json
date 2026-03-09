@@ -6,7 +6,7 @@
   "parity_reasons": [],
   "legacy_digest": "e250a816ec376092bb6f35cadf4e0e8831c9703b152741820d1c8df43139bff9",
   "reduction_digest": "9d9e9576b2c5717561c25023593eae4fca388d4a1ded2d6eee16881e40f770c4",
-  "executed_digest_legacy": "5b220555b17d14fbac1b6e545e6953ce688fdf6119ea3b141a7bc5c558c38718",
+  "executed_digest_legacy": "13a01626489f6359f5ff7c3b83c77e93133ce4ad48c0794c4ad24d58b1c3cf66",
   "executed_digest_reduction": "5825c11e814c2da7119cc24d41a947a2db95d6ef6c11e73f5c7882f2302e757d",
   "diff": {
     "final_pc_match": true,

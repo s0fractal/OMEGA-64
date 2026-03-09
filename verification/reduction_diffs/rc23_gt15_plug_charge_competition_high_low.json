@@ -2,14 +2,11 @@
   "case_id": "rc23_gt15_plug_charge_competition_high_low",
   "baseline_trace_id": "gt15_structure_charge_competition",
   "baseline_runtime_mode": "standalone-structure-charge-competition-capture",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected registers mismatch",
-    "expected structureGrid[423]=13762561 got=1"
-  ],
-  "legacy_digest": "6bc9e303b9b7db7588722a1cb4be1081858a8475a1cf372a298641c707378360",
-  "reduction_digest": "426b5f6eb8242154ca8ea8afbe205d6cf9a9c888531a97baa6b122922a506b6c",
-  "executed_digest_legacy": "ccd2ff28059af801cc2c26cca4848c433e351b05933ea82c6b0ffc0c648f363d",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "b1bf8d658fe5969aa78ec32892c2ad1d8dadd580c5d2f42556e159ab48169696",
+  "reduction_digest": "bea430b6ebdf9eb7b843c35e0b5e67595b43a26e36492b1e99663fcb6e714f07",
+  "executed_digest_legacy": "c89f637ddce963684477eb1b0d0d0e62a3c090b33c5745aab81c99e36b849bb5",
   "executed_digest_reduction": "588e5a93c08bf27d9a7aeaa1b1b7266145449516ca9cb303165725c4e2557035",
   "diff": {
     "final_pc_match": true,

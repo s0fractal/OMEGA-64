@@ -665,6 +665,11 @@ No more than one at first.
 
 Current slit in progress:
 
+- [x] Phase 1 Implementation (Governance + Telemetry)
+- [x] Integrate first hybrid slit: guardian pheromone emission
+- [x] Integrate second hybrid slit: architect plasmid emission
+- [ ] Roll out to 10% Shadow
+- [ ] Evaluate Reduction Telemetry
 - guardian pheromone emission is now the chosen local-signaling slit
 - `runtime_bridge/guardian_signal_hybrid.ts` evaluates the live guardian script
   through the mapped bridge subset using read-only neural coherence input

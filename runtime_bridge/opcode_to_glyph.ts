@@ -36,8 +36,9 @@ const OPCODE_NAMES = new Map<number, string>([
   [RISC.OP_SENSE, "SENSE"],
   [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
   [RISC.OP_ENTANGLE, "ENTANGLE"],
-  [0xA4, "PLUG"],
+  [RISC.OP_PLUG, "PLUG"],
   [RISC.OP_RESOLVE, "RESOLVE"],
+  [RISC.OP_SYSCALL, "SYSCALL"],
 ]);
 
 const OPCODE_LENGTHS = new Map<number, number>([
@@ -54,7 +55,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SIGNAL, 1],
   [RISC.OP_BIND, 1],
   [RISC.OP_SHARE, 3],
-  [0xA4, 3],
+  [RISC.OP_PLUG, 3],
   [RISC.OP_TENSEGRITY, 4],
   [RISC.OP_COLLECTIVE, 4],
   [RISC.OP_ROLE, 3],
@@ -63,6 +64,7 @@ const OPCODE_LENGTHS = new Map<number, number>([
   [RISC.OP_SPORE_DRIVE, 1],
   [RISC.OP_ENTANGLE, 1],
   [RISC.OP_RESOLVE, 3],
+  [RISC.OP_SYSCALL, 1],
 ]);
 
 const opcodeName = (opcode: number): string =>

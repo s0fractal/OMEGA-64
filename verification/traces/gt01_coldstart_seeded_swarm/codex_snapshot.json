@@ -31,8 +31,8 @@
       "epoch": 0,
       "type": "hormone_regime",
       "title": "Hormone Regime: Balanced Homeostasis",
-      "body": "Tick 0 | entropy_pressure=175 time_viscosity=96 aggression=0 replication_bias=410 repair_drive=287 mutation_friction=2048. Regime: 'balanced_homeostasis'.",
-      "createdAt": "2026-03-09T03:35:11.849Z"
+      "body": "Tick 0 | entropy_pressure=175 time_viscosity=64 aggression=0 replication_bias=410 repair_drive=287 mutation_friction=2048. Regime: 'balanced_homeostasis'.",
+      "createdAt": "2026-03-09T05:37:29.466Z"
     },
     {
       "id": "chronicle-0-glyphtranspo",
@@ -40,8 +40,8 @@
       "epoch": 0,
       "type": "glyph_transport_regime",
       "title": "Glyph Transport Regime: Plasmid Surge",
-      "body": "Tick 0 registered Plasmid Surge with dominant role Producer via Actor Secretion. Active cells=2, pheromone=0, plasmid=2, totalAmplitude=22269, maxAmplitude=19486, atomPheromone=0, atomPlasmid=1.",
-      "createdAt": "2026-03-09T03:35:11.844Z"
+      "body": "Tick 0 registered Plasmid Surge with dominant role Producer via Actor Secretion. Active cells=3, pheromone=0, plasmid=3, totalAmplitude=22263, maxAmplitude=17048, atomPheromone=0, atomPlasmid=1.",
+      "createdAt": "2026-03-09T05:37:29.461Z"
     }
   ],
   "relics": [],

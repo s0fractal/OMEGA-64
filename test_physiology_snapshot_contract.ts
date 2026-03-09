@@ -27,8 +27,8 @@ const main = () => {
 
   expect(snapshot.tick === 123, "[physiology_snapshot] tick must be preserved");
   expect(
-    Object.keys(snapshot.hormones).length === 6,
-    "[physiology_snapshot] expected 6 hormones",
+    Object.keys(snapshot.hormones).length === 7,
+    "[physiology_snapshot] expected 7 hormones",
   );
   expect(
     Object.keys(snapshot.ledger).length >= 10,

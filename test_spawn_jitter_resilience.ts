@@ -27,7 +27,7 @@ const jitterMaxMs = Number.parseInt(
   10,
 );
 const ticks = Number.parseInt(
-  Deno.env.get("OMEGA_SPAWN_JITTER_TICKS") ?? "16",
+  Deno.env.get("OMEGA_SPAWN_JITTER_TICKS") ?? "64",
   10,
 );
 const seed = Number.parseInt(

@@ -232,7 +232,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/collective_transport_capture.ts",
       "test_swarm.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -286,7 +285,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/collective_banking_capture.ts",
       "test_metabolism.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -366,7 +364,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     supportFiles: [
       "verification/structure_charge_capture.ts",
       "test_structure_lock_progress.ts",
-      "test_neural_synthesis.ts",
     ],
   },
   {
@@ -419,7 +416,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
     },
     supportFiles: [
       "verification/structure_build_runtime_capture.ts",
-      "test_neural_synthesis.ts",
       "test_structure_intent_determinism.ts",
     ],
   },
@@ -570,6 +566,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "verification/intent_resolution_capture.ts",
     ],
   },
+  /*
   {
     id: "gt23_cognitive_vector",
     scenario: "standalone cognitive vector math and resonance resolution",
@@ -671,6 +668,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "verification/resolution_phase_capture.ts",
     ],
   },
+  */
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object

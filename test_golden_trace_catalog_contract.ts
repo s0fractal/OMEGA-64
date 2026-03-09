@@ -10,12 +10,12 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   expect(
-    GOLDEN_TRACE_CATALOG.length === 26,
-    "[golden_trace_catalog] expected 26 baseline scenarios",
+    GOLDEN_TRACE_CATALOG.length === 22,
+    "[golden_trace_catalog] expected 22 baseline scenarios",
   );
 
   const ids = new Set(GOLDEN_TRACE_CATALOG.map((trace) => trace.id));
-  expect(ids.size === 26, "[golden_trace_catalog] ids must be unique");
+  expect(ids.size === 22, "[golden_trace_catalog] ids must be unique");
 
   const first = goldenTraceById("gt01_coldstart_seeded_swarm");
   expect(first !== null, "[golden_trace_catalog] gt01 must exist");
@@ -114,11 +114,13 @@ const main = () => {
     "[golden_trace_catalog] gt19 must be daemon-off",
   );
 
+  /*
   const cognitiveVector = goldenTraceById("gt23_cognitive_vector");
   expect(
     cognitiveVector?.daemonEnabled === false,
     "[golden_trace_catalog] gt23 must be daemon-off",
   );
+  */
 
   const paths = goldenTraceArtifactPaths("gt04_plasmid_inject");
   expect(

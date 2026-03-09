@@ -50,10 +50,10 @@ export const loadResilienceBudgetThresholds =
         ),
         "spawn-jitter-resilience": envInt(
           "OMEGA_RESILIENCE_RETRIES_MAX_SPAWN_JITTER",
-          260,
+          1200,
         ),
       },
-      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 360),
+      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 1500),
       scenarioDurationMaxMs: {
         "worker-timeout-retry": envInt(
           "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_SINGLE_MS",

@@ -4,9 +4,9 @@
   "baseline_runtime_mode": "standalone-bind-capture",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "c6cf06cad009cf057adf9a5cea16776f9306a545e204d76f2887450c707473f4",
-  "reduction_digest": "82a8c10c6d9b5f04821050fe7ed17631d9c3d129b5dc530d798d6a780044e3c8",
-  "executed_digest_legacy": "31566a101124bb30a540985e0e1db4733e7a16026a758d4c9c7fec94f896303e",
+  "legacy_digest": "18b3b9dc7dc80f265c3b8d41a18375b462af347cd13c8bea19e4322aaed95a84",
+  "reduction_digest": "fc9eef3068f9bcf9a3c993b75d6197df4506f699241017731ef054863b5fb24a",
+  "executed_digest_legacy": "5cbb2c5448ec6c1e12a817a7ff20c596dd310a93d1371caebd5a5471b42daaae",
   "executed_digest_reduction": "9cca01b9317c8692a926d13a3dd1dd4c22495b41cf514a4e48f2ddd5acf048d2",
   "diff": {
     "final_pc_match": true,

@@ -1,4 +1,5 @@
 {
+  "trace_id": "gt20_bind_resolution",
   "scenario": "standalone symbiotic bond resolution",
   "runtime_mode": "standalone-bind-capture",
   "tick_start": 0,

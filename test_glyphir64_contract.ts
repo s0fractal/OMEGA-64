@@ -43,8 +43,8 @@ const main = () => {
     "[glyphir64] OP_JZ must map to glyph 15",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_BIND) === null,
-    "[glyphir64] OP_BIND must stay unmapped for now",
+    glyphSpecByLegacyOpcode(RISC.OP_BIND)?.mnemonic === "BIND",
+    "[glyphir64] OP_BIND must map",
   );
 
   console.log(

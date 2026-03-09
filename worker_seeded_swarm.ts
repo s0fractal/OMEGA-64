@@ -9,6 +9,8 @@ type StateMatrixLike = {
     OP_JMP: number;
     OP_ROLE: number;
     OP_BUILD: number;
+    OP_SET: number;
+    OP_SYSCALL: number;
   };
   ROLE_ARCHITECT: number;
   ROLE_PRODUCER: number;
@@ -44,8 +46,13 @@ type SeededSwarmConfig = {
 const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = stateMatrix.RISC.OP_REPLICATE;
-  script[pc++] = stateMatrix.RISC.OP_SIGNAL;
+  // R0 = 4 (SYS_SPAWN)
+  script[pc++] = stateMatrix.RISC.OP_SET;
+  script[pc++] = 0; // R0
+  script[pc++] = 4; // SYS_SPAWN
+  // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
+  script[pc++] = stateMatrix.RISC.OP_SYSCALL;
+  
   script[pc++] = stateMatrix.RISC.OP_JMP;
   script[pc++] = 0;
   return script;

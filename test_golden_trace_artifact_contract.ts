@@ -21,7 +21,9 @@ const STRUCTURE_BUILD_COMPETITION_RUNTIME_MODE =
 const STRUCTURE_BUILD_LOCK_RUNTIME_MODE =
   "worker-runtime-structure-build-stale-lock-capture";
 const TENSEGRITY_KINEMATICS_RUNTIME_MODE = "standalone-tensegrity-capture";
-
+const BIND_RESOLUTION_RUNTIME_MODE = "standalone-bind-capture";
+const QUORUM_SYNC_RUNTIME_MODE = "standalone-quorum-sync-capture";
+const INTENT_RESOLUTION_RUNTIME_MODE = "standalone-intent-resolution-capture";
 const main = async () => {
   for (const trace of GOLDEN_TRACE_CATALOG) {
     const paths = goldenTraceArtifactPaths(trace.id);
@@ -73,6 +75,12 @@ const main = async () => {
       ? STRUCTURE_BUILD_LOCK_RUNTIME_MODE
       : trace.id === "gt19_tensegrity_kinematics"
       ? TENSEGRITY_KINEMATICS_RUNTIME_MODE
+      : trace.id === "gt20_bind_resolution"
+      ? BIND_RESOLUTION_RUNTIME_MODE
+      : trace.id === "gt21_quorum_sync"
+      ? QUORUM_SYNC_RUNTIME_MODE
+      : trace.id === "gt22_intent_resolution"
+      ? INTENT_RESOLUTION_RUNTIME_MODE
       : TRACE_RUNTIME_MODE;
     if (traceJson.runtime_mode !== expectedRuntimeMode) {
       throw new Error(

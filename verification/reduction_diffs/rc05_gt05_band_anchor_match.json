@@ -2,19 +2,12 @@
   "case_id": "rc05_gt05_band_anchor_match",
   "baseline_trace_id": "gt05_homeostasis_correction",
   "baseline_runtime_mode": "legacy-runtime/api-observer-harness",
-  "parity_ok": false,
-  "parity_reasons": [
-    "expected finalPc=0 got=21",
-    "expected signalCount=1 got=0",
-    "expected buildCount=0 got=1",
-    "expected finalRole=0 got=3",
-    "expected registers mismatch",
-    "expected branchTaken=false got=true"
-  ],
-  "legacy_digest": "b95da4a90f12cbaf61ea525be13681b416559ce398def590aa97cfbdccb58151",
-  "reduction_digest": "39e1e9e22c894d29c2dd6d71e526f5bb3cfc1fe27fbdfb482b348eb894deb80b",
-  "executed_digest_legacy": "e88059903f7f7be68db18445a24fe9aa0b20453b1b4d5e242a55bacd2bb027b9",
-  "executed_digest_reduction": "fb1af146d8f5a15b85ea35419d791201d5d6b2a5380491d4cffd96cf527e4ab5",
+  "parity_ok": true,
+  "parity_reasons": [],
+  "legacy_digest": "7d5e4b67039e2e0f3cb930073b04caa8c1c0d911b77012af4cc899dc9a15baee",
+  "reduction_digest": "bf3facf373df09353b982c8ed3a1d8838696b04e9c95ec49e737774a398ae4c6",
+  "executed_digest_legacy": "80fdac53057006122088e53cce3d10ce5c21bda1a5c3266be8d37d79f70d56ac",
+  "executed_digest_reduction": "efc8b6c1f98234b9a498681d248dea130c5e47404edd6bc03870ea69e42c6131",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -39,7 +32,7 @@
     "build_count_match": true,
     "branch_taken_match": true,
     "role_writes_match": true,
-    "energy_spent_delta": 12
+    "energy_spent_delta": 8
   },
   "expectation_summary": {
     "finalPc": 0,
