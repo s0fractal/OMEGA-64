@@ -89,6 +89,7 @@ const SYS_MOVE = 14;
 const SYS_EAT = 15;
 const SYS_BET = 16;
 const SYS_SPORE_DRIVE = 20;
+const SYS_SENSE_PHASE = 21;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -158,6 +159,9 @@ function handle_syscall(atomIdx: number) {
       break;
     case SYS_SPORE_DRIVE:
       gasCost = 500;
+      break;
+    case SYS_SENSE_PHASE:
+      gasCost = 5;
       break;
     default:
       gasCost = 1;
@@ -640,11 +644,11 @@ function handle_syscall(atomIdx: number) {
       const energy = Atomics.load(energiesView!, atomIdx);
       const atomPhase = Atomics.load(phaseView!, atomIdx);
       const epochPhase = (currentPulseId * 4) % 256;
-      
+
       const sporeCost = resolveWithPhase(500, [
         { phase: epochPhase, weight: 50 },
         { phase: currentTheta, weight: 30 },
-        { phase: atomPhase, weight: 20 }
+        { phase: atomPhase, weight: 20 },
       ]);
       const energyBet = sporeCost * 1000;
 
@@ -653,11 +657,25 @@ function handle_syscall(atomIdx: number) {
         self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${Math.floor(currentTheta)}, AtomPhase=${atomPhase}).`,
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
+            Math.floor(currentTheta)
+          }, AtomPhase=${atomPhase}).`,
         );
       } else {
         contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
       }
+      break;
+    }
+    case SYS_SENSE_PHASE: {
+      const epochPhase = (currentPulseId * 4) % 256;
+      const packed = (epochPhase & 0xFFFF) |
+        ((Math.floor(currentTheta) & 0xFFFF) << 16);
+      contextI32View![regBase] = packed;
+      LOGGER.debug(
+        `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
+          Math.floor(currentTheta)
+        })`,
+      );
       break;
     }
     default:

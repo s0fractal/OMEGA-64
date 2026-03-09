@@ -1023,6 +1023,7 @@ const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
 const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
+const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -2022,6 +2023,13 @@ export function execute_atom(atomIndex: i32): void {
         setPendingSyscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
         pc += 1;
         gasUsed += 10;
+        gasLimit = 0; // force yield to host
+        break;
+      }
+      case OP_SENSE: {
+        setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
+        pc += 1;
+        gasUsed += 2;
         gasLimit = 0; // force yield to host
         break;
       }

@@ -1,16 +1,13 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T17:14:41.004Z*
-*Exported Files: 126*
-*Runtime Roots: 11*
-*Runtime Closure Files: 78*
-*Non-Runtime Code Files: 33*
-*Runtime-Support Code Files: 18*
-*Experimental Code Files: 15*
-*Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
-*Export Set SHA256: 9325af3808235a837cff8008e59cd82a44619c3c3b62365a5732e8af3b70fb9b*
-*Export Content SHA256: 2721be4e394a793c7aa0fb518e38d492fae96b96a09eeabf8c5911dab51e1491*
-*Git Commit: c54c47b925f9*
+_Generated: 2026-03-09T17:38:26.934Z_ _Exported Files: 126_ _Runtime Roots: 11_
+_Runtime Closure Files: 78_ _Non-Runtime Code Files: 33_ _Runtime-Support Code
+Files: 18_ _Experimental Code Files: 15_ _Manifest SHA256:
+bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8_ _Export Set
+SHA256: 9325af3808235a837cff8008e59cd82a44619c3c3b62365a5732e8af3b70fb9b_
+_Export Content SHA256:
+e9f8cdc4f14c7a897d1363e18b92921baf27a012ad4208ba676bc23eeae765bf_ _Git Commit:
+9ab484ecf172_
 
 ---
 
@@ -397,7 +394,6 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
-
 ```
 
 ---
@@ -2118,7 +2114,6 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
-
 ```
 
 ---
@@ -2857,7 +2852,6 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
-
 ```
 
 ---
@@ -3170,7 +3164,6 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
-
 ```
 
 ---
@@ -3559,7 +3552,6 @@ export const AKASHA_SIGNALING = {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -3634,7 +3626,6 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -3828,7 +3819,6 @@ export const evaluateArchitectPlasmidPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -4043,7 +4033,6 @@ export const evaluateArchitectPlasmidPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -4095,8 +4084,8 @@ export context. It intentionally excludes historical era narratives.
 - `runtime_root_files`: executable entry roots that define active runtime
   closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
   `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`,
-  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`,
-  `llm_soul.ts`, `nightly_soak.ts`.
+  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`, `llm_soul.ts`,
+  `nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
 - `experimental_files`: explicitly exported experimental surfaces that must not
@@ -4253,7 +4242,6 @@ Deep chain adds:
 - Policy: test files and archive/legacy folders are excluded; required active
   files must exist; context is limited to active architecture docs and UI/ops
   surfaces.
-
 ```
 
 ---
@@ -5286,6 +5274,7 @@ const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
 const OP_RESOLVE: u8 = 0xB0;
 const OP_RESONATE_KURAMOTO: u8 = 0xB1;
+const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -6288,6 +6277,13 @@ export function execute_atom(atomIndex: i32): void {
         gasLimit = 0; // force yield to host
         break;
       }
+      case OP_SENSE: {
+        setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
+        pc += 1;
+        gasUsed += 2;
+        gasLimit = 0; // force yield to host
+        break;
+      }
       default: {
         pc = 0; // Reset or stop
         gasUsed += 1;
@@ -6982,7 +6978,6 @@ export function apply_metabolism_kernel(
     }
   }
 }
-
 ```
 
 ---
@@ -6995,7 +6990,6 @@ export function apply_metabolism_kernel(
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
-
 ```
 
 ---
@@ -7069,7 +7063,6 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
-
 ```
 
 ---
@@ -7112,7 +7105,6 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -7209,7 +7201,6 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```
 
 ---
@@ -7264,7 +7255,6 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
-
 ```
 
 ---
@@ -7574,7 +7564,6 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
-
 ```
 
 ---
@@ -8757,7 +8746,11 @@ export const CONTROL_INTENT_QUEUE = {
     localCodexContext: unknown = null,
   ): QueueDecision => {
     const logicBytes = packet.subarray(24, 32);
-    const view = new DataView(packet.buffer, packet.byteOffset, packet.byteLength);
+    const view = new DataView(
+      packet.buffer,
+      packet.byteOffset,
+      packet.byteLength,
+    );
     const energy = view.getFloat32(12, true);
     const resonance = view.getInt32(16, true);
     const atomId = view.getBigUint64(0, true).toString();
@@ -8806,7 +8799,12 @@ export const CONTROL_INTENT_QUEUE = {
           admissionResult.admission.reasons.join("|")
         }`,
       );
-      return decision(false, 409, "FEDERATION_ADMISSION_REJECTED", admissionResult.admission);
+      return decision(
+        false,
+        409,
+        "FEDERATION_ADMISSION_REJECTED",
+        admissionResult.admission,
+      );
     }
 
     if (queue.length >= MAX_PENDING) {
@@ -8938,7 +8936,6 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
-
 ```
 
 ---
@@ -9065,7 +9062,6 @@ export const CONTROL_INTENT_QUEUE = {
     "ui/index.html"
   ]
 }
-
 ```
 
 ---
@@ -9671,7 +9667,6 @@ export const planInvariantIngress = (
     admission,
   };
 };
-
 ```
 
 ---
@@ -10267,7 +10262,6 @@ export const hydrateDaemonPheromoneLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -10590,7 +10584,6 @@ export const resetDaemonPheromoneLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -11185,7 +11178,6 @@ export const hydrateDaemonPlasmidLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -11507,7 +11499,6 @@ export const resetDaemonPlasmidLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -11630,7 +11621,6 @@ Do not move anything from the table above into reduction until:
 1. the corresponding golden trace exists,
 2. the rollback owner is explicit,
 3. the replacement lane is narrower than the current one.
-
 ```
 
 ---
@@ -11761,7 +11751,6 @@ Stage 3 is considered real only when:
 - no replacement of the active WASM kernel
 - no semantic mutation of non-core glyphs
 - no claim that "64 glyphs are now proteins"
-
 ```
 
 ---
@@ -11927,7 +11916,6 @@ Current exit assessment:
 - export visibility: satisfied
 - next blocker: widen shadow consumers only when they map to a real trace id and
   an explicit rollback path
-
 ```
 
 ---
@@ -12194,7 +12182,6 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
   `/api/physiology` with `ledger_max_plasmid_charge` and
   `ledger_max_plasmid_charge_persistence`
-
 ```
 
 ---
@@ -13047,14 +13034,13 @@ This keeps myth and engineering aligned without letting either erase the other.
    [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
 3. Draft the first `GlyphIR64` type contract before any bridge implementation
    begins.
-
 ```
 
 ---
 
 ## FILE: docs/migration/ROADMAP_2_SIGMA_CORE.md
 
-```markdown
+````markdown
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
 This document fixes an adjacent future-vector for OMEGA-64. It is not the active
@@ -13136,6 +13122,7 @@ pub enum SigmaOp {
     Attract { vector: Vector64 },
 }
 ```
+````
 
 ### Чому це спрацює
 
@@ -13168,8 +13155,7 @@ pub enum SigmaOp {
   - rollback paths
   - export-visible progress markers
 
-```
-
+````
 ---
 
 ## FILE: ECOLOGY_ENGINE.ts
@@ -13251,8 +13237,7 @@ export const ECOLOGY_ENGINE = {
     }
   },
 };
-
-```
+````
 
 ---
 
@@ -13285,7 +13270,6 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
-
 ```
 
 ---
@@ -13326,7 +13310,6 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
-
 ```
 
 ---
@@ -13381,7 +13364,6 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
-
 ```
 
 ---
@@ -13606,7 +13588,6 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
-
 ```
 
 ---
@@ -13833,7 +13814,6 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
-
 ```
 
 ---
@@ -14297,7 +14277,6 @@ export const GATE = {
     );
   },
 };
-
 ```
 
 ---
@@ -14558,7 +14537,6 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
-
 ```
 
 ---
@@ -14850,7 +14828,6 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
-
 ```
 
 ---
@@ -15432,7 +15409,6 @@ export const hydrateBaseTaxLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -15751,21 +15727,20 @@ export const resetBaseTaxLedgerRuntime = (
 
 export const resolveWithPhase = (
   baseValue: number,
-  modifiers: Array<{phase: number, weight: number}>
+  modifiers: Array<{ phase: number; weight: number }>,
 ): number => {
   let real = baseValue;
   let imag = 0;
-  
+
   for (const mod of modifiers) {
     const rad = mod.phase * Math.PI / 128; // 0-255 → radians
     real += mod.weight * Math.cos(rad);
     imag += mod.weight * Math.sin(rad);
   }
-  
-  // Return "intensity" = |z|
-  return Math.floor(Math.sqrt(real*real + imag*imag));
-};
 
+  // Return "intensity" = |z|
+  return Math.floor(Math.sqrt(real * real + imag * imag));
+};
 ```
 
 ---
@@ -15954,7 +15929,6 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
-
 ```
 
 ---
@@ -16024,7 +15998,6 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
-
 ```
 
 ---
@@ -16084,8 +16057,6 @@ export type GlyphSnapshot = {
   atomRolePheromone: GlyphRoleCounters;
   atomRolePlasmid: GlyphRoleCounters;
 };
-
-
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -16254,7 +16225,6 @@ export const GLYPH_BUFFER = {
     };
   },
 };
-
 ```
 
 ---
@@ -16329,7 +16299,6 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -16523,7 +16492,6 @@ export const evaluateGuardianSignalPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -16745,7 +16713,6 @@ export const evaluateGuardianSignalPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -16885,7 +16852,6 @@ export function injectHologram(
   }
   return newContent;
 }
-
 ```
 
 ---
@@ -17477,7 +17443,6 @@ export const hydrateTargetEnergyLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -17799,7 +17764,6 @@ export const resetTargetEnergyLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -17901,7 +17865,6 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
   STATE_MATRIX.setHormone(6, consensus);
 };
-
 ```
 
 ---
@@ -18086,7 +18049,6 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
-
 ```
 
 ---
@@ -18147,7 +18109,6 @@ export const IMMUNE = {
     return purgeList;
   },
 };
-
 ```
 
 ---
@@ -19371,14 +19332,13 @@ export const LAMBDA_VM = {
     return res;
   },
 };
-
 ```
 
 ---
 
 ## FILE: llm_soul.ts
 
-```typescript
+````typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "./LOGGER.ts";
 
@@ -19555,8 +19515,7 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-
-```
+````
 
 ---
 
@@ -19904,7 +19863,6 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
-
 ```
 
 ---
@@ -19983,7 +19941,6 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
-
 ```
 
 ---
@@ -20134,7 +20091,6 @@ export const MATRIX_ENGINE = {
     return count;
   },
 };
-
 ```
 
 ---
@@ -20150,7 +20106,6 @@ export { GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
 export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 export { PULSE } from "./PULSE.ts";
-
 ```
 
 ---
@@ -20223,7 +20178,6 @@ internal high-speed mutation loops.
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
 - Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
   and consumed by runtime modules (policy monoculture).
-
 ```
 
 ---
@@ -20317,7 +20271,6 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```
 
 ---
@@ -20512,7 +20465,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -20616,7 +20568,6 @@ if (import.meta.main) {
     await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
   }
 }
-
 ```
 
 ---
@@ -20667,7 +20618,6 @@ Deno.serve({ port: PORT }, async (req) => {
     });
   }
 });
-
 ```
 
 ---
@@ -21027,7 +20977,6 @@ export const validateMemoryLayout = (
 };
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
-
 ```
 
 ---
@@ -22844,7 +22793,6 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
-
 ```
 
 ---
@@ -22899,7 +22847,10 @@ export const P2P_CODEC = {
     view.setBigUint64(36, STATE_MATRIX.getLineage(idx), true);
 
     const context = STATE_MATRIX.getContext(idx);
-    u8.set(new Uint8Array(context.buffer, context.byteOffset, context.byteLength), 44);
+    u8.set(
+      new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
+      44,
+    );
 
     const instructions = STATE_MATRIX.getInstructions(idx);
     u8.set(instructions, 108);
@@ -22917,7 +22868,11 @@ export const P2P_CODEC = {
     const idx = STATE_MATRIX.findEmptySlot();
     if (idx === -1) return -1; // Lattice full
 
-    const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+    const view = new DataView(
+      buffer.buffer,
+      buffer.byteOffset,
+      buffer.byteLength,
+    );
 
     const id = view.getBigUint64(0, true);
     const x = view.getInt16(8, true);
@@ -22925,14 +22880,22 @@ export const P2P_CODEC = {
     const energy = view.getFloat32(12, true);
     const resonance = view.getInt32(16, true);
     const phase = view.getInt32(20, true);
-    
+
     const logic = buffer.subarray(24, 32);
     const role = view.getUint8(32);
     const damping = view.getUint8(33);
     const lineage = view.getBigUint64(36, true);
-    
+
     // Seed core fields
-    STATE_MATRIX.seedAtom(idx, id, x, y, Math.max(0, energy), Math.max(0, resonance), logic);
+    STATE_MATRIX.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      Math.max(0, energy),
+      Math.max(0, resonance),
+      logic,
+    );
     STATE_MATRIX.setPhase(idx, phase);
     STATE_MATRIX.setRole(idx, role);
     STATE_MATRIX.setDamping(idx, damping);
@@ -22940,7 +22903,11 @@ export const P2P_CODEC = {
 
     // Restore execution context (registers and PC)
     const contextSrc = buffer.subarray(44, 108);
-    const contextDst = new Uint8Array(STATE_MATRIX.getContext(idx).buffer, STATE_MATRIX.getContext(idx).byteOffset, 64);
+    const contextDst = new Uint8Array(
+      STATE_MATRIX.getContext(idx).buffer,
+      STATE_MATRIX.getContext(idx).byteOffset,
+      64,
+    );
     contextDst.set(contextSrc);
 
     // Restore instructions
@@ -22948,9 +22915,8 @@ export const P2P_CODEC = {
     STATE_MATRIX.setInstructions(idx, instSrc);
 
     return idx;
-  }
+  },
 };
-
 ```
 
 ---
@@ -23139,7 +23105,9 @@ export const P2P_FEDERATION = {
 
       const lineage = STATE_MATRIX.getLineage(idx);
       const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
-      const codexProfile = AKASHA_CODEX.lookupLineageProfile(lineage.toString());
+      const codexProfile = AKASHA_CODEX.lookupLineageProfile(
+        lineage.toString(),
+      );
 
       const headers: Record<string, string> = {
         "Content-Type": "application/octet-stream",
@@ -23196,10 +23164,8 @@ export const P2P_FEDERATION = {
       setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
     }
   },
-
   // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
-
 ```
 
 ---
@@ -23298,7 +23264,6 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 }
 
 Deno.serve({ hostname: HOST, port: PORT }, handler);
-
 ```
 
 ---
@@ -23659,7 +23624,6 @@ export const PHYSICS_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -23869,7 +23833,6 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
-
 ```
 
 ---
@@ -24027,7 +23990,6 @@ export const PREDICTION_MARKET = {
     }
   },
 };
-
 ```
 
 ---
@@ -24625,7 +24587,6 @@ export const hydratePressureRingScaleLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -24945,7 +24906,6 @@ export const resetPressureRingScaleLedgerRuntime = (
   lastRollbackSource: "runtime_policy",
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -24989,7 +24949,6 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
-
 ```
 
 ---
@@ -25088,6 +25047,7 @@ const SYS_MOVE = 14;
 const SYS_EAT = 15;
 const SYS_BET = 16;
 const SYS_SPORE_DRIVE = 20;
+const SYS_SENSE_PHASE = 21;
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -25157,6 +25117,9 @@ function handle_syscall(atomIdx: number) {
       break;
     case SYS_SPORE_DRIVE:
       gasCost = 500;
+      break;
+    case SYS_SENSE_PHASE:
+      gasCost = 5;
       break;
     default:
       gasCost = 1;
@@ -25639,11 +25602,11 @@ function handle_syscall(atomIdx: number) {
       const energy = Atomics.load(energiesView!, atomIdx);
       const atomPhase = Atomics.load(phaseView!, atomIdx);
       const epochPhase = (currentPulseId * 4) % 256;
-      
+
       const sporeCost = resolveWithPhase(500, [
         { phase: epochPhase, weight: 50 },
         { phase: currentTheta, weight: 30 },
-        { phase: atomPhase, weight: 20 }
+        { phase: atomPhase, weight: 20 },
       ]);
       const energyBet = sporeCost * 1000;
 
@@ -25652,11 +25615,25 @@ function handle_syscall(atomIdx: number) {
         self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${Math.floor(currentTheta)}, AtomPhase=${atomPhase}).`,
+          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
+            Math.floor(currentTheta)
+          }, AtomPhase=${atomPhase}).`,
         );
       } else {
         contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
       }
+      break;
+    }
+    case SYS_SENSE_PHASE: {
+      const epochPhase = (currentPulseId * 4) % 256;
+      const packed = (epochPhase & 0xFFFF) |
+        ((Math.floor(currentTheta) & 0xFFFF) << 16);
+      contextI32View![regBase] = packed;
+      LOGGER.debug(
+        `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
+          Math.floor(currentTheta)
+        })`,
+      );
       break;
     }
     default:
@@ -26051,7 +26028,6 @@ self.onmessage = async (e) => {
     });
   }
 };
-
 ```
 
 ---
@@ -27732,7 +27708,13 @@ const dispatchRangePhase = async (
     workerPromises.push(postAndWait(
       0,
       workers[0],
-      { type, startIdx: 0, endIdx: MAX_ATOMS, pulseId, theta: evolutionPressureState.ring.theta },
+      {
+        type,
+        startIdx: 0,
+        endIdx: MAX_ATOMS,
+        pulseId,
+        theta: evolutionPressureState.ring.theta,
+      },
       doneType,
     ));
   } else {
@@ -27747,7 +27729,13 @@ const dispatchRangePhase = async (
       workerPromises.push(postAndWait(
         i,
         workers[i],
-        { type, startIdx, endIdx, pulseId, theta: evolutionPressureState.ring.theta },
+        {
+          type,
+          startIdx,
+          endIdx,
+          pulseId,
+          theta: evolutionPressureState.ring.theta,
+        },
         doneType,
       ));
     }
@@ -27771,7 +27759,9 @@ const startWorkers = async (count: number): Promise<void> => {
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
           P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
-          LOGGER.debug(`🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`);
+          LOGGER.debug(
+            `🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`,
+          );
           STATE_MATRIX.recycleAtom(idx);
         }
       }
@@ -28619,7 +28609,7 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
-      
+
       SOVEREIGN_ORACLE.drainPendingMutations();
       await CONTROL_INTENT_QUEUE.applyHostLockBudget();
 
@@ -28630,17 +28620,17 @@ export const PULSE = {
         tick: currentTick,
         pulseId: transportPulseId,
       }, "GLYPH_TRANSPORT_DONE");
-      
+
       // 3.5 Sort Spawn Requests Deterministically
       const writeHead = Atomics.load(spawnHeadView, 0);
       const readHead = Atomics.load(spawnHeadView, 1);
       const pendingCount = writeHead - readHead;
-      
+
       if (pendingCount > 1) {
         const SPAWN_MAX = 1024;
         const SPAWN_SLOT = 24;
         const requests = [];
-        
+
         for (let i = 0; i < pendingCount; i++) {
           const cursor = readHead + i;
           const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
@@ -28650,7 +28640,7 @@ export const PULSE = {
           }
           requests.push(reqBytes);
         }
-        
+
         // Lexicographical sort
         requests.sort((a, b) => {
           for (let i = 0; i < 24; i++) {
@@ -28658,7 +28648,7 @@ export const PULSE = {
           }
           return 0;
         });
-        
+
         for (let i = 0; i < pendingCount; i++) {
           const cursor = readHead + i;
           const slotOff = (cursor % SPAWN_MAX) * SPAWN_SLOT;
@@ -28722,9 +28712,13 @@ export const PULSE = {
 
       // Pass 2: Apply Metabolism (Parallel)
       const pressureState = snapshotEvolutionPressureState();
-      
+
       applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(currentTick, activeIdx, spatialHashState.overflowRatio);
+      applyEnergyHomeostasisTerms(
+        currentTick,
+        activeIdx,
+        spatialHashState.overflowRatio,
+      );
 
       // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
       const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
@@ -29076,14 +29070,13 @@ export const PULSE = {
   },
   getWorker: (idx: number): any => workers[idx],
 };
-
 ```
 
 ---
 
 ## FILE: README.md
 
-```markdown
+````markdown
 # OMEGA-64: Era 69 - Absolute Coherence 💎🛡️
 
 Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64.
@@ -29133,6 +29126,7 @@ To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
+````
 
 ### 🧠 Booting an LLM Avatar
 
@@ -29170,8 +29164,7 @@ _This repository marks the **Feature Freeze** of the Deno/AssemblyScript
 prototype. It stands as the topological blueprint for the upcoming pure Rust
 `LAMBDA_VM_v2` migration._
 
-```
-
+````
 ---
 
 ## FILE: RECOVERY.ts
@@ -29212,8 +29205,7 @@ export const ATOM = () => (x: any) => x;
     return true;
   },
 };
-
-```
+````
 
 ---
 
@@ -29379,7 +29371,6 @@ export class DollFork {
     };
   }
 }
-
 ```
 
 ---
@@ -29482,7 +29473,6 @@ export class DollForkRunner {
     }
   }
 }
-
 ```
 
 ---
@@ -29583,7 +29573,6 @@ export class DriftWarden {
     };
   }
 }
-
 ```
 
 ---
@@ -29689,7 +29678,6 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
-
 ```
 
 ---
@@ -29742,7 +29730,6 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
-
 ```
 
 ---
@@ -29752,7 +29739,6 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
-
 ```
 
 ---
@@ -30161,7 +30147,6 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
-
 ```
 
 ---
@@ -30241,7 +30226,6 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
-
 ```
 
 ---
@@ -30285,7 +30269,6 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
-
 ```
 
 ---
@@ -30337,7 +30320,6 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
-
 ```
 
 ---
@@ -30421,7 +30403,6 @@ export class RelicCultivator {
     }
   }
 }
-
 ```
 
 ---
@@ -30844,7 +30825,6 @@ The migration is considered real only when:
 - global dynamic knobs are formalized through hormone/ledger layers
 - semantic mutation is sandboxed and rollbackable
 - long-run stability survives the bridge without emergency host patching
-
 ```
 
 ---
@@ -31006,7 +30986,6 @@ ${REFLECTION_ENGINE.decompile(instructions)}
     }
   },
 };
-
 ```
 
 ---
@@ -31228,7 +31207,6 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -31361,7 +31339,6 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
-
 ```
 
 ---
@@ -31369,7 +31346,7 @@ if (import.meta.main) {
 ## FILE: runtime_bridge/architect_plasmid_hybrid.ts
 
 ```typescript
-import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -31577,7 +31554,9 @@ const applyArchitectOpcode = (
       } else if (sysId === SYS.SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
-        throw new Error(`unsupported architect bridge syscall=0x${sysId.toString(16)}`);
+        throw new Error(
+          `unsupported architect bridge syscall=0x${sysId.toString(16)}`,
+        );
       }
       state.pc += token.length;
       return;
@@ -31737,7 +31716,6 @@ export const evaluateArchitectPlasmidExecution = (
     hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
   };
 };
-
 ```
 
 ---
@@ -31765,7 +31743,6 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
-
 ```
 
 ---
@@ -31773,7 +31750,7 @@ export const glyphTapeToPrettyText = (
 ## FILE: runtime_bridge/guardian_signal_hybrid.ts
 
 ```typescript
-import { RISC, SYS, STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "../STATE_MATRIX.ts";
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -32004,7 +31981,9 @@ const applyGuardianOpcode = (
       } else if (sysId === SYS.SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
-        throw new Error(`unsupported guardian bridge syscall=0x${sysId.toString(16)}`);
+        throw new Error(
+          `unsupported guardian bridge syscall=0x${sysId.toString(16)}`,
+        );
       }
       state.pc += token.length;
       return;
@@ -32182,7 +32161,6 @@ export const evaluateGuardianSignalExecution = (
     hybridSuppressed: !reduction.signalAllowed,
   };
 };
-
 ```
 
 ---
@@ -32322,7 +32300,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
 ```
 
 ---
@@ -32710,7 +32687,6 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
-
 ```
 
 ---
@@ -33565,7 +33541,6 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
-
 ```
 
 ---
@@ -34087,7 +34062,6 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```
 
 ---
@@ -35856,7 +35830,6 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
-
 ```
 
 ---
@@ -35960,7 +35933,6 @@ export const SNAP_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -36035,7 +36007,6 @@ export const SNAP = {
     }
   },
 };
-
 ```
 
 ---
@@ -36254,7 +36225,6 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
-
 ```
 
 ---
@@ -36746,7 +36716,6 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```
 
 ---
@@ -36949,7 +36918,6 @@ export const SOVEREIGNTY_ENGINE = {
     };
   },
 };
-
 ```
 
 ---
@@ -37070,7 +37038,6 @@ export const SPATIAL_HASH = {
     return hy * 140 + hx;
   },
 };
-
 ```
 
 ---
@@ -37763,7 +37730,7 @@ export const STATE_MATRIX = {
     script[pc++] = SYS.SET_ROLE;
     script[pc++] = RISC.OP_SET;
     script[pc++] = 1;
-    script[pc++] = 3;  // ROLE_ARCHITECT
+    script[pc++] = 3; // ROLE_ARCHITECT
     script[pc++] = RISC.OP_SYSCALL;
     script[pc++] = RISC.OP_JMP;
     script[pc++] = 0;
@@ -37851,7 +37818,6 @@ export const STATE_MATRIX = {
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
-
 ```
 
 ---
@@ -38037,7 +38003,6 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
-
 ```
 
 ---
@@ -38214,7 +38179,6 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -41405,14 +41369,16 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/federate" && req.method === "POST") {
-    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(CONTROL_INTENT_QUEUE);
+    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
+      CONTROL_INTENT_QUEUE,
+    );
     const denied = requireControlAuth(req);
     if (denied) return denied;
     try {
       const arrayBuffer = await req.arrayBuffer();
       const packet = new Uint8Array(arrayBuffer);
       const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
-      
+
       let peerRuleGenome = null;
       let peerBehaviorProfile = null;
       let peerCodexProfile = null;
@@ -41427,20 +41393,22 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const cStr = req.headers.get("x-omega-codex-profile");
         if (cStr) peerCodexProfile = JSON.parse(cStr);
       } catch (e) {
-        LOGGER.warn(`🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`);
+        LOGGER.warn(
+          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
+        );
       }
 
       const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
       const queued = qCall(
-        packet, 
+        packet,
         sourceNode,
         peerRuleGenome,
         peerBehaviorProfile,
         localContext.behavior,
         peerCodexProfile,
-        localContext.codex
+        localContext.codex,
       );
-      
+
       LOGGER.info(
         `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
       );
@@ -41880,7 +41848,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
-
 ```
 
 ---
@@ -42095,7 +42062,6 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
-
 ```
 
 ---
@@ -42236,7 +42202,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -45550,7 +45515,6 @@ if (import.meta.main) {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -48485,7 +48449,6 @@ if (import.meta.main) {
     }`,
   );
 }
-
 ```
 
 ---
@@ -49199,7 +49162,6 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
-
 ```
 
 ---
@@ -50163,7 +50125,12 @@ const runReductionShadow = (
 
   if (definition.id.startsWith("rc22")) {
     console.log("REDUCTION EXECUTION TRACE:", state.executed);
-    console.log("REDUCTION TAPE TOKENS:", glyphTape.map((t) => `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`));
+    console.log(
+      "REDUCTION TAPE TOKENS:",
+      glyphTape.map((t) =>
+        `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`
+      ),
+    );
   }
   return snapshotReduction(state, stepsExecuted, glyphTape);
 };
@@ -50340,12 +50307,20 @@ const compareResults = (
   if (Array.isArray(expected.registers)) {
     for (let i = 0; i < expected.registers.length; i++) {
       if (legacy.regs[i] !== expected.registers[i]) {
-        reasons.push(`expected registers mismatch at index ${i}: legacy=${legacy.regs[i]} pos=${i} vs expected=${expected.registers[i]}`);
+        reasons.push(
+          `expected registers mismatch at index ${i}: legacy=${
+            legacy.regs[i]
+          } pos=${i} vs expected=${expected.registers[i]}`,
+        );
       }
     }
   }
   if (!equalNumberArray(legacy.regs, reduction.regs)) {
-    reasons.push(`register vector mismatch: legacy=[${legacy.regs.slice(0,4)}] reduction=[${reduction.regs.slice(0,4)}]`);
+    reasons.push(
+      `register vector mismatch: legacy=[${
+        legacy.regs.slice(0, 4)
+      }] reduction=[${reduction.regs.slice(0, 4)}]`,
+    );
   }
   if (expected.finalProps) {
     for (const [key, value] of Object.entries(expected.finalProps)) {
@@ -50697,7 +50672,6 @@ if (import.meta.main) {
     }
   }
 }
-
 ```
 
 ---
@@ -50868,14 +50842,13 @@ if (import.meta.main) {
   await assertWasmLayout();
   console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
-
 ```
 
 ---
 
 ## FILE: WASM_MIGRATION_RFC.md
 
-```markdown
+````markdown
 # OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
 
 ## 1. Executive Summary
@@ -50913,6 +50886,8 @@ perfectly with Wasm linear memory.
   });
   // Map our STATE_MATRIX over the wasmMemory.buffer
   ```
+````
+
 - Rust will access pointers to the various arrays (energies, resonances, codes)
   directly using raw pointers or `js-sys` TypedArrays.
 
@@ -50999,8 +50974,7 @@ the Universe."
   integer math, removing any V8 engine JIT unpredictability across different OS
   architectures.
 
-```
-
+````
 ---
 
 ## FILE: WASM_THREADSAFE_ROADMAP.md
@@ -51134,8 +51108,7 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-
-```
+````
 
 ---
 
@@ -51256,7 +51229,6 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
-
 ```
 
 ---
@@ -51546,7 +51518,6 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
-
 ```
 
 ---
@@ -51637,7 +51608,6 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
-
 ```
 
 ---
@@ -51699,7 +51669,7 @@ const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
   script[pc++] = 4; // SYS_SPAWN
   // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
   script[pc++] = stateMatrix.RISC.OP_SYSCALL;
-  
+
   script[pc++] = stateMatrix.RISC.OP_JMP;
   script[pc++] = 0;
   return script;
@@ -51800,7 +51770,6 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
-
 ```
 
 ---
@@ -51843,7 +51812,6 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
-
 ```
 
 ---
@@ -51868,8 +51836,6 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
-
 ```
 
 ---
-
