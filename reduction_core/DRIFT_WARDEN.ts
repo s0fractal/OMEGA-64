@@ -1,6 +1,6 @@
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
 import * as OFFSETS from "../OFFSETS.ts";
-import { coherenceBuffer, energyBuffer, idBuffer } from "../STATE_MATRIX.ts";
+import { sharedBuffer } from "../STATE_MATRIX.ts";
 import { LOGGER } from "../LOGGER.ts";
 
 export type DriftMetrics = {
@@ -15,12 +15,22 @@ export type DriftMetrics = {
  * DriftWarden monitors the global state for behavioral anomalies and instability.
  */
 export class DriftWarden {
-  private energyView = new Int32Array(energyBuffer);
-  private idsView = new BigUint64Array(idBuffer);
-  private coherenceView = new Int32Array(coherenceBuffer);
+  private energyView: Int32Array;
+  private idsView: BigUint64Array;
+  private coherenceView: Int32Array;
 
   private lastPopulation = 0;
   private driftThreshold = 0.65; // High drift signals instability
+
+  constructor(
+    customEnergyView?: Int32Array,
+    customIdsView?: BigUint64Array,
+    customCoherenceView?: Int32Array
+  ) {
+    this.energyView = customEnergyView ?? new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+    this.idsView = customIdsView ?? new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+    this.coherenceView = customCoherenceView ?? new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+  }
 
   /**
    * Calculates the current drift status of the system.

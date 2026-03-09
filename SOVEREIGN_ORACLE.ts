@@ -320,7 +320,33 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
-        if (ORACLE_MUTATION_MODE === "direct") {
+        if (ORACLE_MUTATION_MODE === "shadow") {
+          const proposalId = `sp_${Date.now()}`;
+          const driftBudget = 0.15; // Fixed budget for now
+          const proposal = {
+            id: proposalId,
+            targetRole: "any",
+            proposedBytecode: Array.from(newInstructions),
+            driftBudget,
+          };
+          try {
+            const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
+            let proposals = [];
+            try {
+              const data = await Deno.readTextFile(sandboxPath);
+              proposals = JSON.parse(data).proposals || [];
+            } catch {
+              // Ignore if missing or invalid
+            }
+            proposals.push(proposal);
+            await Deno.writeTextFile(sandboxPath, JSON.stringify({ proposals }, null, 2));
+            LOGGER.info(
+              `🌑 [ORACLE] Generated Sandbox Proposal ${proposalId} (Drift Budget: ${driftBudget})`,
+            );
+          } catch (err) {
+            LOGGER.error(`🌑 [ORACLE] Failed to write Sandbox Proposal:`, err);
+          }
+        } else if (ORACLE_MUTATION_MODE === "direct") {
           SOVEREIGN_ORACLE.queueMutation({
             kind: "oracle_head_mutation",
             regentIndex,

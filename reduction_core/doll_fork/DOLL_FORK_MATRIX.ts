@@ -29,6 +29,7 @@ export class DollFork {
     structureGrid: Int32Array;
     glyphHeader: Int32Array;
     glyphPayload: Uint8Array;
+    coherence: Int32Array;
     // Physics Read Support (Double Buffering)
     readXs: Int16Array;
     readYs: Int16Array;
@@ -98,6 +99,7 @@ export class DollFork {
         OFFSETS.GLYPH_PAYLOAD_OFFSET,
         OFFSETS.GRID_CELLS * 8,
       ),
+      coherence: new Int32Array(b, OFFSETS.COHERENCE_OFFSET, 1),
       readXs: new Int16Array(
         b,
         OFFSETS.PHYSICS_READ_XS_OFFSET,

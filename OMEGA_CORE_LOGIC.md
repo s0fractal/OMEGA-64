@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T22:21:16.175Z*
+*Generated: 2026-03-09T22:42:26.144Z*
 *Exported Files: 129*
 *Runtime Roots: 11*
 *Runtime Closure Files: 65*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 31*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
 *Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
-*Export Content SHA256: 634a459623fdb5b6230a6f503859982375528735fb51950c27a4fa8c501e2d29*
-*Git Commit: 242150501aed*
+*Export Content SHA256: 53956fda70595874e61e37f80012993cf8956e00104b4949ea063bae5372b9ad*
+*Git Commit: d5c1a656358e*
 
 ---
 
@@ -29934,6 +29934,7 @@ export class DollFork {
     structureGrid: Int32Array;
     glyphHeader: Int32Array;
     glyphPayload: Uint8Array;
+    coherence: Int32Array;
     // Physics Read Support (Double Buffering)
     readXs: Int16Array;
     readYs: Int16Array;
@@ -30003,6 +30004,7 @@ export class DollFork {
         OFFSETS.GLYPH_PAYLOAD_OFFSET,
         OFFSETS.GRID_CELLS * 8,
       ),
+      coherence: new Int32Array(b, OFFSETS.COHERENCE_OFFSET, 1),
       readXs: new Int16Array(
         b,
         OFFSETS.PHYSICS_READ_XS_OFFSET,
@@ -30175,7 +30177,7 @@ export class DollForkRunner {
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
 import * as OFFSETS from "../OFFSETS.ts";
-import { coherenceBuffer, energyBuffer, idBuffer } from "../STATE_MATRIX.ts";
+import { sharedBuffer } from "../STATE_MATRIX.ts";
 import { LOGGER } from "../LOGGER.ts";
 
 export type DriftMetrics = {
@@ -30190,12 +30192,22 @@ export type DriftMetrics = {
  * DriftWarden monitors the global state for behavioral anomalies and instability.
  */
 export class DriftWarden {
-  private energyView = new Int32Array(energyBuffer);
-  private idsView = new BigUint64Array(idBuffer);
-  private coherenceView = new Int32Array(coherenceBuffer);
+  private energyView: Int32Array;
+  private idsView: BigUint64Array;
+  private coherenceView: Int32Array;
 
   private lastPopulation = 0;
   private driftThreshold = 0.65; // High drift signals instability
+
+  constructor(
+    customEnergyView?: Int32Array,
+    customIdsView?: BigUint64Array,
+    customCoherenceView?: Int32Array
+  ) {
+    this.energyView = customEnergyView ?? new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+    this.idsView = customIdsView ?? new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+    this.coherenceView = customCoherenceView ?? new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+  }
 
   /**
    * Calculates the current drift status of the system.
@@ -31115,10 +31127,16 @@ export class RelicCultivator {
 /**
  * SHADOW_EVOLUTION_RUNNER.ts
  * Automates the validation of semantic proposals against the OMEGA-64 Golden Traces.
+ * Runs in a secure WebAssembly memory sandbox (DollFork) isolated from the main matrix.
  */
 
 import { REDUCTION_CASES } from "../verification/reduction_cases.ts";
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+import { DollFork } from "./doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "./doll_fork/DOLL_FORK_RUNNER.ts";
+import { DriftWarden } from "./DRIFT_WARDEN.ts";
+import { ReificationAction } from "./REIFICATION_ACTION.ts";
+import * as OFFSETS from "../OFFSETS.ts";
 
 export type SemanticProposal = {
   id: string;
@@ -31139,33 +31157,128 @@ async function loadProposals(): Promise<SemanticProposal[]> {
   }
 }
 
-async function runShadowValidation() {
+async function markProposalProcessed(id: string) {
+  try {
+    const data = await Deno.readTextFile(
+      "./reduction_core/sandbox/PROPOSALS.json",
+    );
+    const json = JSON.parse(data);
+    json.proposals = (json.proposals || []).filter((p: any) => p.id !== id);
+    await Deno.writeTextFile(
+      "./reduction_core/sandbox/PROPOSALS.json",
+      JSON.stringify(json, null, 2),
+    );
+  } catch (err) {
+    // Ignore updates if json corrupted
+  }
+}
+
+export async function runShadowValidation() {
   const proposals = await loadProposals();
+  if (proposals.length === 0) return;
   console.log(`[shadow_runner] detected ${proposals.length} active proposals.`);
 
+  const fork = new DollFork();
+  const runner = new DollForkRunner(fork);
+  await runner.init();
+
+  const warden = new DriftWarden(
+    fork.views.energies,
+    fork.views.ids,
+    fork.views.coherence,
+  );
+  const reification = new ReificationAction();
+
   for (const proposal of proposals) {
-    console.log(`[shadow_runner] validating proposal: ${proposal.id}...`);
+    console.log(
+      `[shadow_runner] validating proposal: ${proposal.id} (Budget: ${proposal.driftBudget})...`,
+    );
 
-    // In a real implementation, this would temporarily override GENESIS_PROGRAMS
-    // or pass the proposed bytecode directly to the harness.
+    // 1. Fork Reality
+    fork.forkFromMainline();
 
-    // For now, we simulate the gate logic.
-    const pass = Math.random() > 0.1; // Placeholder for harness execution
+    // 2. Inject proposed bytecode into 15 active atoms
+    let infectedCount = 0;
+    const proposed = new Uint8Array(proposal.proposedBytecode);
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (fork.views.ids[i] !== 0n) {
+        fork.views.logic.set(proposed, i * 8);
+        infectedCount++;
+        if (infectedCount >= 15) break;
+      }
+    }
 
-    if (pass) {
+    if (infectedCount === 0) {
       console.log(
-        `[shadow_runner] proposal ${proposal.id} PASSED drift budget.`,
+        `[shadow_runner] proposal ${proposal.id} REJECTED: no living atoms available to host.`,
       );
+      await markProposalProcessed(proposal.id);
+      continue;
+    }
+
+    // 3. Baseline Drift
+    // Since DollFork forks mainline, we start at a baseline drift relative to mainline.
+    const initialMetrics = warden.analyze(0);
+    const initialDrift = initialMetrics.driftIndex;
+
+    // 4. Shadow Simulation
+    const SHADOW_TICKS = 50;
+    for (let t = 0; t < SHADOW_TICKS; t++) {
+      runner.runShadowTick(t);
+    }
+
+    // 5. Final Drift
+    const finalMetrics = warden.analyze(SHADOW_TICKS);
+    const finalDrift = finalMetrics.driftIndex;
+
+    const deltaDrift = finalDrift - initialDrift;
+
+    // Evaluate Survival
+    // Ensure all test subjects didn't just instantly die
+    const activePopulation = fork.getMetrics().activePopulation;
+
+    console.log(
+      `[shadow_runner] ${proposal.id} | Initial Drift: ${
+        initialDrift.toFixed(3)
+      } | Final: ${finalDrift.toFixed(3)} | Delta: ${deltaDrift.toFixed(3)}`,
+    );
+
+    if (deltaDrift <= proposal.driftBudget && activePopulation > 0) {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} PASSED. Mutants stabilized.`,
+      );
+
+      // Save Relic Payload
+      const relic = {
+        id: proposal.id,
+        bytecode: proposal.proposedBytecode,
+        targetRole: proposal.targetRole,
+        metadata: {
+          deltaDrift,
+          activePopulation,
+        },
+      };
+
+      const sandboxPath = `./reduction_core/sandbox/relic_${proposal.id}.json`;
+      await Deno.writeTextFile(sandboxPath, JSON.stringify(relic, null, 2));
+
+      await reification.reify(proposal.id);
     } else {
       console.log(
-        `[shadow_runner] proposal ${proposal.id} REJECTED: drift exceeds budget.`,
+        `[shadow_runner] proposal ${proposal.id} REJECTED: Destructive trajectory detected.`,
       );
     }
+
+    // Cleanup queue
+    await markProposalProcessed(proposal.id);
   }
 }
 
 if (import.meta.main) {
-  runShadowValidation();
+  runShadowValidation().catch((err) => {
+    console.error("Shadow verification failed:", err);
+    Deno.exit(1);
+  });
 }
 
 ```
@@ -33263,6 +33376,7 @@ const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
 const oracleMutationMode = (() => {
   const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
   if (value === "direct" || value === "head") return "direct" as const;
+  if (value === "shadow") return "shadow" as const;
   return "stigmergic" as const;
 })();
 
@@ -37207,7 +37321,33 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
-        if (ORACLE_MUTATION_MODE === "direct") {
+        if (ORACLE_MUTATION_MODE === "shadow") {
+          const proposalId = `sp_${Date.now()}`;
+          const driftBudget = 0.15; // Fixed budget for now
+          const proposal = {
+            id: proposalId,
+            targetRole: "any",
+            proposedBytecode: Array.from(newInstructions),
+            driftBudget,
+          };
+          try {
+            const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
+            let proposals = [];
+            try {
+              const data = await Deno.readTextFile(sandboxPath);
+              proposals = JSON.parse(data).proposals || [];
+            } catch {
+              // Ignore if missing or invalid
+            }
+            proposals.push(proposal);
+            await Deno.writeTextFile(sandboxPath, JSON.stringify({ proposals }, null, 2));
+            LOGGER.info(
+              `🌑 [ORACLE] Generated Sandbox Proposal ${proposalId} (Drift Budget: ${driftBudget})`,
+            );
+          } catch (err) {
+            LOGGER.error(`🌑 [ORACLE] Failed to write Sandbox Proposal:`, err);
+          }
+        } else if (ORACLE_MUTATION_MODE === "direct") {
           SOVEREIGN_ORACLE.queueMutation({
             kind: "oracle_head_mutation",
             regentIndex,

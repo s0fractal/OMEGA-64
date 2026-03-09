@@ -260,6 +260,7 @@ const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
 const oracleMutationMode = (() => {
   const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
   if (value === "direct" || value === "head") return "direct" as const;
+  if (value === "shadow") return "shadow" as const;
   return "stigmergic" as const;
 })();
 
