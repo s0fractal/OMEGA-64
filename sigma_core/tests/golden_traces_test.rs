@@ -307,3 +307,86 @@ fn test_gt17_build_competition() {
     let expected_val = (91 << 24) | (0xFF << 16) | 5;
     assert_eq!(state.matrix.structure_build_value[cell_idx], expected_val);
 }
+
+#[test]
+fn test_gt20_bind_resolution() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    // Setup Atom 1
+    state.matrix.ids[1] = 1;
+    state.matrix.energy[1] = 1000;
+
+    // Setup Atom 2
+    state.matrix.ids[2] = 2;
+    state.matrix.energy[2] = 1000;
+
+    // Atom 1 OP_BIND (0x82) target_idx (2)
+    state.matrix.instructions[1][0] = 0x82;
+    state.matrix.instructions[1][1] = 0; // Mode 0 (by ID)
+    state.matrix.instructions[1][2] = 2; // R2 which we mock as constant or put 2 here? Wait, OP_BIND args:
+                                         // Actually our OP_BIND reads: target_reg -> target_idx. Let's write 2 directly into R0, then call OP_BIND with R0.
+    state.matrix.context[1][0] = 2; // R0 = 2
+
+    state.matrix.instructions[1][0] = 0x82; // OP_BIND
+    state.matrix.instructions[1][1] = 0; // mode_reg (not used currently)
+    state.matrix.instructions[1][2] = 0; // target_reg is R0
+
+    // Step Atom 1
+    vm.step(&mut state, 1);
+
+    // Verify bond intent established
+    assert_eq!(state.matrix.bond_requests[3], 2); // Initiator+1 (1 * 3 = 3)
+    assert_eq!(state.matrix.bond_requests[4], 3); // Target+1
+    assert_eq!(state.matrix.bond_requests[5], 1); // PENDING
+
+    // Resolve bonds
+    let bonds_formed = state.resolve_bond_requests();
+    assert_eq!(bonds_formed, 1);
+
+    // Verify Bonds Array (Atom 1 slot 0 points to 2, Atom 2 slot 1 points to 1)
+    assert_eq!(state.matrix.bonds[(1 * 4) + 0], 2);
+    assert_eq!(state.matrix.bonds[(2 * 4) + 1], 1);
+
+    // Verify Stiffness
+    assert_eq!(state.matrix.stiffness[(1 * 4) + 0], 0.1);
+    assert_eq!(state.matrix.stiffness[(2 * 4) + 1], 0.1);
+}
+
+#[test]
+fn test_gt01_replicator_loop_spawn() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    // Setup Parent
+    let p_idx = 1;
+    state.matrix.ids[p_idx] = 999;
+    state.matrix.energy[p_idx] = 100_000;
+    state.matrix.xs[p_idx] = 500;
+    state.matrix.ys[p_idx] = 500;
+    state.matrix.resonance[p_idx] = 50;
+    state.matrix.logic[p_idx] = [1, 2, 3, 4, 5, 6, 7, 8];
+    state.matrix.instructions[p_idx][0] = 0x11; // Dummy payload
+
+    // OP_REPLICATE
+    state.matrix.instructions[p_idx][0] = 0x80;
+
+    vm.step(&mut state, p_idx);
+
+    // Check Energy Deducted exactly 50%
+    assert_eq!(state.matrix.energy[p_idx], 49983); // 100,000 / 2 = 50,000. Gas tax operates after reduction.
+
+    // Drain
+    let spawned = state.drain_spawn_requests(1);
+    assert_eq!(spawned, 1);
+
+    // Child is at idx 2
+    let c_idx = 2;
+    assert_eq!(state.matrix.energy[c_idx], 50_000); // Got exact half
+    assert_eq!(state.matrix.logic[c_idx], [1, 2, 3, 4, 5, 6, 7, 8]); // Logic cloned
+    assert_eq!(state.matrix.instructions[c_idx][0], 0x80); // ASM cloned
+
+    // Deterministic ID verify = (tick << 32) | free_idx
+    let expected_id = (1u64 << 32) | 2;
+    assert_eq!(state.matrix.ids[c_idx], expected_id);
+}

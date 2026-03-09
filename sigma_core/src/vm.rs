@@ -261,6 +261,71 @@ impl LambdaVM {
                     pc += 3;
                     gas_used += 10;
                 }
+                GlyphOp::Replicate => {
+                    let aggression = state.matrix.hormones[2] as i32;
+                    let e_thresh = 50 - (aggression >> 3);
+                    let r_thresh = 10 - (aggression >> 5);
+
+                    if energy > e_thresh * 1000 && state.matrix.resonance[atom_idx] > r_thresh {
+                        let cx = state.matrix.xs[atom_idx] as i32;
+                        let cy = state.matrix.ys[atom_idx] as i32;
+
+                        let child_energy = energy / 2;
+
+                        state.push_spawn_request(atom_idx, cx, cy, child_energy);
+
+                        state.matrix.energy[atom_idx] -= child_energy;
+                        energy -= child_energy;
+                        state.matrix.resonance[atom_idx] += 30;
+                    }
+
+                    pc += 1;
+                    gas_used += 15;
+                }
+                GlyphOp::Bind => {
+                    let _mode_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let target_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+
+                    let target_idx = if target_reg < 8 {
+                        state.matrix.context[atom_idx][target_reg as usize] as usize
+                    } else {
+                        0
+                    };
+
+                    if target_idx > 0 && target_idx < MAX_ATOMS && target_idx != atom_idx {
+                        state.push_bond_request(atom_idx, atom_idx, target_idx);
+                    }
+
+                    pc += 3;
+                    gas_used += 20;
+                }
+                GlyphOp::Tensegrity => {
+                    let target_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let val_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+
+                    let spring_target = if target_reg < 8 {
+                        state.matrix.context[atom_idx][target_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    let val = if val_reg < 8 {
+                        state.matrix.context[atom_idx][val_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    if spring_target >= 0 && spring_target < 4 {
+                        let bond_idx = (atom_idx * 4) + spring_target as usize;
+                        if state.matrix.bonds[bond_idx] != 0 {
+                            // Map integers to f32 stiffness (val / 100)
+                            state.matrix.stiffness[bond_idx] = (val as f32) / 100.0;
+                        }
+                    }
+
+                    pc += 3;
+                    gas_used += 5;
+                }
                 GlyphOp::Build => {
                     let type_val = state.matrix.instructions[atom_idx][(pc + 1) as usize] as i32;
                     let state_val = state.matrix.instructions[atom_idx][(pc + 2) as usize] as i32;
@@ -423,6 +488,32 @@ impl LambdaVM {
                                     }
                                 }
                                 gas_used += 30;
+                            }
+                            crate::isa::SYS_SPAWN => {
+                                let child_energy = r1 * 1000;
+                                let dx = r2;
+                                let dy = r3;
+
+                                if energy > child_energy {
+                                    let cx = (state.matrix.xs[atom_idx] as i32) + dx;
+                                    let cy = (state.matrix.ys[atom_idx] as i32) + dy;
+
+                                    state.push_spawn_request(atom_idx, cx, cy, child_energy);
+
+                                    state.matrix.energy[atom_idx] -= child_energy;
+                                    energy -= child_energy;
+                                }
+                                gas_used += 20;
+                            }
+                            crate::isa::SYS_BIND => {
+                                let target_idx = r1 as usize;
+                                if target_idx > 0
+                                    && target_idx < MAX_ATOMS
+                                    && target_idx != atom_idx
+                                {
+                                    state.push_bond_request(atom_idx, atom_idx, target_idx);
+                                }
+                                gas_used += 15;
                             }
                             SYS_TRANSFER => {
                                 let target_idx = r1 as usize;

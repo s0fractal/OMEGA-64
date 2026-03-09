@@ -14,9 +14,12 @@ pub enum GlyphOp {
     Jmp = 0x12,
     // Future syscalls
     Syscall = 0x60,
+    Replicate = 0x80,
     Signal = 0x81,
+    Bind = 0x82,
     Share = 0x83,
     Plug = 0xA4,
+    Tensegrity = 0xA5,
     Collective = 0xA6,
     Build = 0xA8,
     Sense = 0xA9,
@@ -38,9 +41,12 @@ impl From<u8> for GlyphOp {
             0x11 => GlyphOp::Jnz,
             0x12 => GlyphOp::Jmp,
             0x60 => GlyphOp::Syscall,
+            0x80 => GlyphOp::Replicate,
             0x81 => GlyphOp::Signal,
+            0x82 => GlyphOp::Bind,
             0x83 => GlyphOp::Share,
             0xA4 => GlyphOp::Plug,
+            0xA5 => GlyphOp::Tensegrity,
             0xA6 => GlyphOp::Collective,
             0xA8 => GlyphOp::Build,
             0xA9 => GlyphOp::Sense, // Structure Sense
@@ -62,6 +68,8 @@ pub const PROP_NEURAL_COHERENCE: u8 = 9;
 pub const PROP_MEMORY: u8 = 10;
 pub const PROP_CONSENSUS: u8 = 11;
 
+pub const SYS_SPAWN: i32 = 4;
+pub const SYS_BIND: i32 = 5;
 pub const SYS_TRANSFER: i32 = 10;
 pub const SYS_MOVE: i32 = 14;
 pub const SYS_EAT: i32 = 15;
