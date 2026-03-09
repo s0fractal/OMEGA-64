@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T20:31:56.071Z*
+*Generated: 2026-03-09T22:21:16.175Z*
 *Exported Files: 129*
 *Runtime Roots: 11*
 *Runtime Closure Files: 65*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 31*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
 *Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
-*Export Content SHA256: 9c82ebbb1e066f6270c3f3c60fcfe1b916eea15b083ea9c71dd227c071dbfe66*
-*Git Commit: b46b31f2047e*
+*Export Content SHA256: 634a459623fdb5b6230a6f503859982375528735fb51950c27a4fa8c501e2d29*
+*Git Commit: 242150501aed*
 
 ---
 
@@ -514,6 +514,7 @@ type InvariantEntry = {
   source: string;
   filePath: string;
   createdAt: string;
+  hormones: number[];
 };
 
 type DaemonInvariantFrame = {
@@ -524,6 +525,7 @@ type DaemonInvariantFrame = {
   summary: string;
   invariants: InvariantSignal[];
   created_at: string;
+  hormones: number[];
 };
 
 type CodexNarrative = {
@@ -564,6 +566,13 @@ type CodexNarrative = {
   daemonEffectDeltaBand: string;
   hormoneRegime: string;
   promptBridge: string;
+  hippocampusRecall?: {
+    tick: number;
+    epoch: number;
+    summary: string;
+    distance: number;
+    distanceType: string;
+  };
 };
 
 type CodexState = {
@@ -1036,6 +1045,11 @@ const parseDaemonInvariantFrame = (
     ? node.created_at.trim()
     : nowIso();
 
+  const hormones = asArray<unknown>(node.hormones)
+    .map((v) => asFiniteNumber(v, 0))
+    .slice(0, 6);
+  while (hormones.length < 6) hormones.push(0);
+
   return {
     tick,
     epoch,
@@ -1044,6 +1058,7 @@ const parseDaemonInvariantFrame = (
     summary,
     invariants: signals,
     created_at: createdAt,
+    hormones,
   };
 };
 
@@ -1072,6 +1087,7 @@ const recordInvariantFrame = async (
     source: DAEMON_INVARIANT_PATH,
     filePath,
     createdAt: frame.created_at,
+    hormones: frame.hormones,
   };
 
   invariantIndex.unshift(entry);
@@ -1107,6 +1123,7 @@ const recordInvariantFrame = async (
       `- Dominant Vector: ${entry.dominantVector}`,
       `- Source: ${entry.source}`,
       `- Recorded: ${entry.createdAt}`,
+      `- Hormones: [${entry.hormones.join(", ")}]`,
       "",
       "## Summary",
       entry.summary,
@@ -2088,8 +2105,52 @@ export const AKASHA_CODEX = {
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
       `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}. ${glyphStatus} ${daemonEffectStatus}`;
-    const promptBridge =
+
+    let hippocampusRecall: CodexNarrative["hippocampusRecall"];
+    const currentHormones = [
+      Atomics.load(STATE_MATRIX.hormones, 0),
+      Atomics.load(STATE_MATRIX.hormones, 1),
+      Atomics.load(STATE_MATRIX.hormones, 2),
+      Atomics.load(STATE_MATRIX.hormones, 3),
+      Atomics.load(STATE_MATRIX.hormones, 4),
+      Atomics.load(STATE_MATRIX.hormones, 5),
+    ];
+    let bestDistance = Number.MAX_VALUE;
+    let bestEntry: InvariantEntry | null = null;
+    
+    for (const entry of invariantIndex) {
+      if (entry.epoch === epoch) continue; // Skip current epoch
+      if (!entry.hormones || entry.hormones.length < 6) continue;
+      
+      let sqDist = 0;
+      for (let i = 0; i < 6; i++) {
+        const diff = entry.hormones[i] - currentHormones[i];
+        sqDist += diff * diff;
+      }
+      const dist = Math.sqrt(sqDist);
+      
+      if (dist < bestDistance) {
+        bestDistance = dist;
+        bestEntry = entry;
+      }
+    }
+
+    if (bestEntry) {
+      hippocampusRecall = {
+        tick: bestEntry.tick,
+        epoch: bestEntry.epoch,
+        summary: bestEntry.summary,
+        distance: bestDistance,
+        distanceType: "Euclidean H0-H5",
+      };
+    }
+
+    let promptBridge =
       `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, how the glyph transport regime affected the field, and what the latest daemon effect contour did to the lattice.`;
+    
+    if (hippocampusRecall) {
+      promptBridge += ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${hippocampusRecall.distance.toFixed(1)}. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
+    }
 
     return {
       tick,
@@ -2119,6 +2180,7 @@ export const AKASHA_CODEX = {
       daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
       hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
+      hippocampusRecall,
     };
   },
   recordImmunologicalPurge: async (count: number) => {
@@ -21444,6 +21506,7 @@ type Telemetry = {
     overflow_count: number;
     max_cell_count: number;
   };
+  hormones?: number[];
 };
 
 type CodexNarrative = {
@@ -21460,7 +21523,15 @@ type CodexNarrative = {
   daemonEffectStatus: string;
   daemonEffectLineage: string;
   daemonEffectDeltaBand: string;
+  hormoneRegime: string;
   promptBridge: string;
+  hippocampusRecall?: {
+    tick: number;
+    epoch: number;
+    summary: string;
+    distance: number;
+    distanceType: string;
+  };
   recentChronicles: Array<{
     tick: number;
     epoch: number;
@@ -21497,6 +21568,7 @@ type InvariantFrame = {
   invariants: InvariantSignal[];
   summary: string;
   created_at: string;
+  hormones: number[];
 };
 
 type OpenAIChoice = {
@@ -21979,6 +22051,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       typeof federationAdmissionRaw.latest === "object"
     ? federationAdmissionRaw.latest as Record<string, unknown>
     : null;
+  const hormonesRaw = Array.isArray(source.hormones) ? source.hormones : [];
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
@@ -22318,6 +22391,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
         ),
       }
       : undefined,
+    hormones: hormonesRaw.map(v => asFiniteNumber(v, 0)).slice(0, 6),
   };
 };
 
@@ -22387,9 +22461,16 @@ const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
     daemonEffectDeltaBand: typeof source.daemonEffectDeltaBand === "string"
       ? source.daemonEffectDeltaBand
       : "none",
+    hormoneRegime: typeof source.hormoneRegime === "string"
+      ? source.hormoneRegime
+      : "dormant_baseline",
     promptBridge: typeof source.promptBridge === "string"
       ? source.promptBridge
       : "Use plain language for observer-facing updates.",
+    hippocampusRecall: source.hippocampusRecall &&
+        typeof source.hippocampusRecall === "object"
+      ? source.hippocampusRecall as CodexNarrative["hippocampusRecall"]
+      : undefined,
     recentChronicles,
   };
 };
@@ -22424,6 +22505,7 @@ const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
       daemonEffectStatus: "Daemon effect status unavailable.",
       daemonEffectLineage: "none",
       daemonEffectDeltaBand: "none",
+      hormoneRegime: "dormant_baseline",
       promptBridge: "Use plain language for observer-facing updates.",
       recentChronicles: [],
     };
@@ -22645,6 +22727,7 @@ const buildInvariantFrame = (
     invariants: invariantSignals,
     summary,
     created_at: timestamp(),
+    hormones: telemetry.hormones ?? [0, 0, 0, 0, 0, 0],
   };
 };
 
@@ -39622,6 +39705,14 @@ const buildTelemetry = async () => {
       history: federationAdmissionState.history.slice(0, 8),
       policy: federationAdmissionState.policy,
     },
+    hormones: [
+      STATE_MATRIX.getHormone(0),
+      STATE_MATRIX.getHormone(1),
+      STATE_MATRIX.getHormone(2),
+      STATE_MATRIX.getHormone(3),
+      STATE_MATRIX.getHormone(4),
+      STATE_MATRIX.getHormone(5),
+    ],
     glyph_buffer: GLYPH_BUFFER.snapshot(),
   };
 };

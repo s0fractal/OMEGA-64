@@ -120,6 +120,7 @@ type Telemetry = {
     overflow_count: number;
     max_cell_count: number;
   };
+  hormones?: number[];
 };
 
 type CodexNarrative = {
@@ -136,7 +137,15 @@ type CodexNarrative = {
   daemonEffectStatus: string;
   daemonEffectLineage: string;
   daemonEffectDeltaBand: string;
+  hormoneRegime: string;
   promptBridge: string;
+  hippocampusRecall?: {
+    tick: number;
+    epoch: number;
+    summary: string;
+    distance: number;
+    distanceType: string;
+  };
   recentChronicles: Array<{
     tick: number;
     epoch: number;
@@ -173,6 +182,7 @@ type InvariantFrame = {
   invariants: InvariantSignal[];
   summary: string;
   created_at: string;
+  hormones: number[];
 };
 
 type OpenAIChoice = {
@@ -655,6 +665,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       typeof federationAdmissionRaw.latest === "object"
     ? federationAdmissionRaw.latest as Record<string, unknown>
     : null;
+  const hormonesRaw = Array.isArray(source.hormones) ? source.hormones : [];
   return {
     tick: Math.max(0, Math.floor(asFiniteNumber(source.tick, 0))),
     avgEnergy: asFiniteNumber(source.avgEnergy, 0),
@@ -994,6 +1005,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
         ),
       }
       : undefined,
+    hormones: hormonesRaw.map(v => asFiniteNumber(v, 0)).slice(0, 6),
   };
 };
 
@@ -1063,9 +1075,16 @@ const normalizeCodexNarrative = (raw: unknown): CodexNarrative => {
     daemonEffectDeltaBand: typeof source.daemonEffectDeltaBand === "string"
       ? source.daemonEffectDeltaBand
       : "none",
+    hormoneRegime: typeof source.hormoneRegime === "string"
+      ? source.hormoneRegime
+      : "dormant_baseline",
     promptBridge: typeof source.promptBridge === "string"
       ? source.promptBridge
       : "Use plain language for observer-facing updates.",
+    hippocampusRecall: source.hippocampusRecall &&
+        typeof source.hippocampusRecall === "object"
+      ? source.hippocampusRecall as CodexNarrative["hippocampusRecall"]
+      : undefined,
     recentChronicles,
   };
 };
@@ -1100,6 +1119,7 @@ const fetchCodexNarrative = async (): Promise<CodexNarrative> => {
       daemonEffectStatus: "Daemon effect status unavailable.",
       daemonEffectLineage: "none",
       daemonEffectDeltaBand: "none",
+      hormoneRegime: "dormant_baseline",
       promptBridge: "Use plain language for observer-facing updates.",
       recentChronicles: [],
     };
@@ -1321,6 +1341,7 @@ const buildInvariantFrame = (
     invariants: invariantSignals,
     summary,
     created_at: timestamp(),
+    hormones: telemetry.hormones ?? [0, 0, 0, 0, 0, 0],
   };
 };
 

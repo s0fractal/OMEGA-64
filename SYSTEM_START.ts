@@ -858,6 +858,14 @@ const buildTelemetry = async () => {
       history: federationAdmissionState.history.slice(0, 8),
       policy: federationAdmissionState.policy,
     },
+    hormones: [
+      STATE_MATRIX.getHormone(0),
+      STATE_MATRIX.getHormone(1),
+      STATE_MATRIX.getHormone(2),
+      STATE_MATRIX.getHormone(3),
+      STATE_MATRIX.getHormone(4),
+      STATE_MATRIX.getHormone(5),
+    ],
     glyph_buffer: GLYPH_BUFFER.snapshot(),
   };
 };

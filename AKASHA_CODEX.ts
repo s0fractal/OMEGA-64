@@ -88,6 +88,7 @@ type InvariantEntry = {
   source: string;
   filePath: string;
   createdAt: string;
+  hormones: number[];
 };
 
 type DaemonInvariantFrame = {
@@ -98,6 +99,7 @@ type DaemonInvariantFrame = {
   summary: string;
   invariants: InvariantSignal[];
   created_at: string;
+  hormones: number[];
 };
 
 type CodexNarrative = {
@@ -138,6 +140,13 @@ type CodexNarrative = {
   daemonEffectDeltaBand: string;
   hormoneRegime: string;
   promptBridge: string;
+  hippocampusRecall?: {
+    tick: number;
+    epoch: number;
+    summary: string;
+    distance: number;
+    distanceType: string;
+  };
 };
 
 type CodexState = {
@@ -610,6 +619,11 @@ const parseDaemonInvariantFrame = (
     ? node.created_at.trim()
     : nowIso();
 
+  const hormones = asArray<unknown>(node.hormones)
+    .map((v) => asFiniteNumber(v, 0))
+    .slice(0, 6);
+  while (hormones.length < 6) hormones.push(0);
+
   return {
     tick,
     epoch,
@@ -618,6 +632,7 @@ const parseDaemonInvariantFrame = (
     summary,
     invariants: signals,
     created_at: createdAt,
+    hormones,
   };
 };
 
@@ -646,6 +661,7 @@ const recordInvariantFrame = async (
     source: DAEMON_INVARIANT_PATH,
     filePath,
     createdAt: frame.created_at,
+    hormones: frame.hormones,
   };
 
   invariantIndex.unshift(entry);
@@ -681,6 +697,7 @@ const recordInvariantFrame = async (
       `- Dominant Vector: ${entry.dominantVector}`,
       `- Source: ${entry.source}`,
       `- Recorded: ${entry.createdAt}`,
+      `- Hormones: [${entry.hormones.join(", ")}]`,
       "",
       "## Summary",
       entry.summary,
@@ -1662,8 +1679,52 @@ export const AKASHA_CODEX = {
     const summary =
       `Tick ${tick} (Epoch ${epoch}). Population ${state.lastPopulation}, peak ${state.populationPeak}. ` +
       `Dominant lineage: ${leadSpecies}. Shared center: ${sharedCenter}. ${glyphStatus} ${daemonEffectStatus}`;
-    const promptBridge =
+
+    let hippocampusRecall: CodexNarrative["hippocampusRecall"];
+    const currentHormones = [
+      Atomics.load(STATE_MATRIX.hormones, 0),
+      Atomics.load(STATE_MATRIX.hormones, 1),
+      Atomics.load(STATE_MATRIX.hormones, 2),
+      Atomics.load(STATE_MATRIX.hormones, 3),
+      Atomics.load(STATE_MATRIX.hormones, 4),
+      Atomics.load(STATE_MATRIX.hormones, 5),
+    ];
+    let bestDistance = Number.MAX_VALUE;
+    let bestEntry: InvariantEntry | null = null;
+    
+    for (const entry of invariantIndex) {
+      if (entry.epoch === epoch) continue; // Skip current epoch
+      if (!entry.hormones || entry.hormones.length < 6) continue;
+      
+      let sqDist = 0;
+      for (let i = 0; i < 6; i++) {
+        const diff = entry.hormones[i] - currentHormones[i];
+        sqDist += diff * diff;
+      }
+      const dist = Math.sqrt(sqDist);
+      
+      if (dist < bestDistance) {
+        bestDistance = dist;
+        bestEntry = entry;
+      }
+    }
+
+    if (bestEntry) {
+      hippocampusRecall = {
+        tick: bestEntry.tick,
+        epoch: bestEntry.epoch,
+        summary: bestEntry.summary,
+        distance: bestDistance,
+        distanceType: "Euclidean H0-H5",
+      };
+    }
+
+    let promptBridge =
       `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, how the glyph transport regime affected the field, and what the latest daemon effect contour did to the lattice.`;
+    
+    if (hippocampusRecall) {
+      promptBridge += ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${hippocampusRecall.distance.toFixed(1)}. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
+    }
 
     return {
       tick,
@@ -1693,6 +1754,7 @@ export const AKASHA_CODEX = {
       daemonEffectDeltaBand: state.lastDaemonEffectDeltaBand,
       hormoneRegime: state.lastHormoneRegimeSummary,
       promptBridge,
+      hippocampusRecall,
     };
   },
   recordImmunologicalPurge: async (count: number) => {
