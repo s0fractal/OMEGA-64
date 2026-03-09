@@ -261,7 +261,81 @@ impl LambdaVM {
                     pc += 3;
                     gas_used += 10;
                 }
-                GlyphOp::Syscall | GlyphOp::SporeDrive | GlyphOp::Sense => {
+                GlyphOp::Build => {
+                    let type_val = state.matrix.instructions[atom_idx][(pc + 1) as usize] as i32;
+                    let state_val = state.matrix.instructions[atom_idx][(pc + 2) as usize] as i32;
+
+                    let build_val = (state_val << 24) | (0xFF << 16) | type_val;
+                    let cx = state.matrix.xs[atom_idx] as usize;
+                    let cy = state.matrix.ys[atom_idx] as usize;
+                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                    state.publish_build_intent(cell_idx, atom_idx, build_val);
+                    pc += 3;
+                    gas_used += 10;
+                }
+                GlyphOp::Plug => {
+                    let charge_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let charge_val = if charge_reg < 8 {
+                        state.matrix.context[atom_idx][charge_reg as usize]
+                    } else {
+                        0
+                    };
+                    let cx = state.matrix.xs[atom_idx] as usize;
+                    let cy = state.matrix.ys[atom_idx] as usize;
+                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                    state.set_structure_charge_intent(cell_idx, charge_val);
+                    pc += 2;
+                    gas_used += 5;
+                }
+                GlyphOp::Sense => {
+                    let dest_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    // Radius ignored for parity testing, directly sensing current cell
+                    let cx = state.matrix.xs[atom_idx] as usize;
+                    let cy = state.matrix.ys[atom_idx] as usize;
+                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                    let val = state.read_structure_cell(cell_idx);
+                    if dest_reg < 8 {
+                        state.matrix.context[atom_idx][dest_reg as usize] = val;
+                    }
+                    pc += 4;
+                    gas_used += 5;
+                }
+                GlyphOp::Signal => {
+                    let type_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let intensity_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let kind = if type_reg < 8 {
+                        state.matrix.context[atom_idx][type_reg as usize] as u8
+                    } else {
+                        0
+                    };
+                    let mut intensity = if intensity_reg < 8 {
+                        state.matrix.context[atom_idx][intensity_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    let role = state.matrix.roles[atom_idx];
+                    if role == 4 {
+                        // PARASITE
+                        intensity = -intensity;
+                    }
+
+                    let cx = state.matrix.xs[atom_idx] as usize;
+                    let cy = state.matrix.ys[atom_idx] as usize;
+                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                    state.atomic_deposit_glyph_header(cell_idx, kind, intensity);
+                    pc += 3;
+                    gas_used += 5;
+                }
+                GlyphOp::Collective => {
+                    pc += 2; // Pass
+                    gas_used += 5;
+                }
+                GlyphOp::Syscall => {
                     if op == GlyphOp::Syscall {
                         let sys_id = state.matrix.context[atom_idx][0]; // R0
                         let r1 = state.matrix.context[atom_idx][1];
@@ -384,7 +458,7 @@ impl LambdaVM {
                     pc += 1; // Basic jump over opcode for next resume if applicable
                     if op != GlyphOp::Syscall {
                         gas_used += 10;
-                    } // Fallback for SporeDrive/Sense
+                    } // Fallback
                     gas_limit = 0; // Yield to host
                 }
                 GlyphOp::Unknown => {

@@ -239,3 +239,71 @@ fn test_metabolic_tax_parity() {
     // Final Energy = 1000 - 9 = 991
     assert_eq!(state.matrix.energy[1], 991);
 }
+
+#[test]
+fn test_gt08_structure_intent_visibility() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    // Setup Atom 1
+    state.matrix.ids[1] = 1;
+    state.matrix.energy[1] = 1000;
+    state.matrix.xs[1] = 500; // grid 50
+    state.matrix.ys[1] = 500; // grid 50
+
+    // Build instruction: OP_BUILD (0xA8) Type (2) State (100)
+    state.matrix.instructions[1][0] = 0xA8;
+    state.matrix.instructions[1][1] = 2;
+    state.matrix.instructions[1][2] = 100;
+
+    // Sense instruction: OP_SENSE (0xA9) Dest(R0)
+    state.matrix.instructions[1][3] = 0xA9;
+    state.matrix.instructions[1][4] = 0; // write to R0
+
+    vm.step(&mut state, 1);
+
+    // The atom should see its own build intent value: (100 << 24) | (0xFF << 16) | 2
+    let expected_val = (100 << 24) | (0xFF << 16) | 2;
+    assert_eq!(state.matrix.context[1][0], expected_val);
+}
+
+#[test]
+fn test_gt17_build_competition() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    // Setup Atom 2 (Lower ID, executes first)
+    state.matrix.ids[2] = 2;
+    state.matrix.energy[2] = 1000;
+    state.matrix.xs[2] = 500;
+    state.matrix.ys[2] = 500;
+
+    // Setup Atom 3 (Higher ID)
+    state.matrix.ids[3] = 3;
+    state.matrix.energy[3] = 1000;
+    state.matrix.xs[3] = 500;
+    state.matrix.ys[3] = 500;
+
+    // Atom 2 builds state 17, type 5
+    state.matrix.instructions[2][0] = 0xA8;
+    state.matrix.instructions[2][1] = 5;
+    state.matrix.instructions[2][2] = 17;
+
+    // Atom 3 builds state 91, type 5
+    state.matrix.instructions[3][0] = 0xA8;
+    state.matrix.instructions[3][1] = 5;
+    state.matrix.instructions[3][2] = 91;
+
+    // Step 2 then 3
+    vm.step(&mut state, 2);
+    vm.step(&mut state, 3);
+
+    let cell_idx = (50 * 140) + 50;
+
+    // ownerToken is atom_idx + 1 = 4
+    assert_eq!(state.matrix.structure_build_owner[cell_idx], 4);
+
+    // Expecting Atom 3's values to overwrite Atom 2's
+    let expected_val = (91 << 24) | (0xFF << 16) | 5;
+    assert_eq!(state.matrix.structure_build_value[cell_idx], expected_val);
+}

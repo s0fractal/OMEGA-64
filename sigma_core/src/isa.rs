@@ -14,11 +14,14 @@ pub enum GlyphOp {
     Jmp = 0x12,
     // Future syscalls
     Syscall = 0x60,
+    Signal = 0x81,
     Share = 0x83,
+    Plug = 0xA4,
+    Collective = 0xA6,
+    Build = 0xA8,
+    Sense = 0xA9,
     Resolve = 0xB0,
     ResonateKuramoto = 0xB1,
-    Sense = 0xB2,
-    SporeDrive = 0xA8,
     Unknown = 0xFF,
 }
 
@@ -35,11 +38,14 @@ impl From<u8> for GlyphOp {
             0x11 => GlyphOp::Jnz,
             0x12 => GlyphOp::Jmp,
             0x60 => GlyphOp::Syscall,
+            0x81 => GlyphOp::Signal,
             0x83 => GlyphOp::Share,
+            0xA4 => GlyphOp::Plug,
+            0xA6 => GlyphOp::Collective,
+            0xA8 => GlyphOp::Build,
+            0xA9 => GlyphOp::Sense, // Structure Sense
             0xB0 => GlyphOp::Resolve,
             0xB1 => GlyphOp::ResonateKuramoto,
-            0xB2 => GlyphOp::Sense,
-            0xA8 => GlyphOp::SporeDrive,
             _ => GlyphOp::Unknown,
         }
     }
