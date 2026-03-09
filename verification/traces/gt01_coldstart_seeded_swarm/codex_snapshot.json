@@ -5,16 +5,17 @@
   "dominanceThreshold": 0.05,
   "minEpochsForDiscovery": 3,
   "population": {
-    "current": 145,
-    "peak": 208
+    "current": 65,
+    "peak": 65
   },
   "glyphTransport": {
     "regime": "plasmid_surge",
-    "summary": "Glyph regime Plasmid Surge | dominant role None | source None | amplitude surged.",
-    "dominantRole": "none",
-    "sourceMode": "none",
+    "summary": "Glyph regime Plasmid Surge | dominant role Producer | source Actor Secretion | amplitude surged | pressure 1.000.",
+    "dominantRole": "producer",
+    "sourceMode": "actor_secretion",
     "lastRecordedTick": 0,
-    "signature": "pheromone_canopy|producer|actor_secretion|surged"
+    "signature": "plasmid_surge|producer|actor_secretion|surged",
+    "metabolicPressure": 0
   },
   "daemonEffect": {
     "summary": "No daemon effect contour recorded yet.",
@@ -25,13 +26,22 @@
   "species": [],
   "chronicles": [
     {
+      "id": "chronicle-0-hormoneregim",
+      "tick": 0,
+      "epoch": 0,
+      "type": "hormone_regime",
+      "title": "Hormone Regime: Balanced Homeostasis",
+      "body": "Tick 0 | entropy_pressure=175 time_viscosity=96 aggression=0 replication_bias=410 repair_drive=287 mutation_friction=2048. Regime: 'balanced_homeostasis'.",
+      "createdAt": "2026-03-09T03:35:11.849Z"
+    },
+    {
       "id": "chronicle-0-glyphtranspo",
       "tick": 0,
       "epoch": 0,
       "type": "glyph_transport_regime",
-      "title": "Glyph Transport Regime: Pheromone Canopy",
-      "body": "Tick 0 registered Pheromone Canopy with dominant role Producer via Actor Secretion. Active cells=55, pheromone=44, plasmid=11, totalAmplitude=4501, maxAmplitude=278, atomPheromone=7, atomPlasmid=6.",
-      "createdAt": "2026-03-07T15:10:01.747Z"
+      "title": "Glyph Transport Regime: Plasmid Surge",
+      "body": "Tick 0 registered Plasmid Surge with dominant role Producer via Actor Secretion. Active cells=2, pheromone=0, plasmid=2, totalAmplitude=22269, maxAmplitude=19486, atomPheromone=0, atomPlasmid=1.",
+      "createdAt": "2026-03-09T03:35:11.844Z"
     }
   ],
   "relics": [],

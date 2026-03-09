@@ -48,7 +48,11 @@ Example of a valid strategy array:
 `;
 
 async function queryGemini(state: any, vision: any[]): Promise<any[]> {
-    const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${Math.floor(state.energy)}\n\nVision (sorted by distance):\n${JSON.stringify(vision, null, 2)}\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
+  const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${
+    Math.floor(state.energy)
+  }\n\nVision (sorted by distance):\n${
+    JSON.stringify(vision, null, 2)
+  }\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
 
   const payload = {
     systemInstruction: {
@@ -83,17 +87,21 @@ async function queryGemini(state: any, vision: any[]): Promise<any[]> {
     const cleanText = textResponse.replace(/```json/g, "").replace(/```/g, "")
       .trim();
     return JSON.parse(cleanText);
-    } catch (e: any) {
-        LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
-        // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
-        return [
-          { action: "YIELD" },
-          { action: "YIELD" },
-          { action: "MOVE", dx: Math.random() > 0.5 ? 1 : -1, dy: Math.random() > 0.5 ? 1 : -1 },
-          { action: "YIELD" },
-          { action: "YIELD" }
-        ];
-    }
+  } catch (e: any) {
+    LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
+    // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
+    return [
+      { action: "YIELD" },
+      { action: "YIELD" },
+      {
+        action: "MOVE",
+        dx: Math.random() > 0.5 ? 1 : -1,
+        dy: Math.random() > 0.5 ? 1 : -1,
+      },
+      { action: "YIELD" },
+      { action: "YIELD" },
+    ];
+  }
 }
 
 function sleep(ms: number) {
@@ -119,14 +127,20 @@ async function runSoul() {
         const data = await res.json();
         const me = data.self;
         // Filter out producers to save tokens, only care about predators (4) and prey (0)
-        const vision = data.vision.filter((v: any) => v.role === 0 || v.role === 4).slice(0, 10);
+        const vision = data.vision.filter((v: any) =>
+          v.role === 0 || v.role === 4
+        ).slice(0, 10);
 
-        LOGGER.info(`[LLM_SOUL] Energy: ${Math.floor(me.energy)} | Seeing ${vision.length} threats/food.`);
+        LOGGER.info(
+          `[LLM_SOUL] Energy: ${
+            Math.floor(me.energy)
+          } | Seeing ${vision.length} threats/food.`,
+        );
 
         // 2. COGNITION
         LOGGER.debug("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
         const strategy = await queryGemini(me, vision);
-        
+
         if (Array.isArray(strategy)) {
           actionBuffer = strategy;
         } else {
@@ -143,10 +157,9 @@ async function runSoul() {
         await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(intent)
+          body: JSON.stringify(intent),
         });
       }
-
     } catch (e: any) {
       LOGGER.error("[LLM_SOUL] Loop error:", e.message);
       actionBuffer = []; // Clear buffer on severe error
@@ -154,7 +167,7 @@ async function runSoul() {
     }
 
     // Tick delay (Matrix is 10 TPS. We execute 1 action every 500ms (2 TPS) to give the Avatar a steady physical pace)
-    await sleep(500); 
+    await sleep(500);
   }
 }
 

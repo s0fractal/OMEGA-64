@@ -1,7 +1,11 @@
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
 import { PULSE } from "./PULSE.ts";
-import { PREDICTION_MARKET, betPoolInt, marketState } from "./PREDICTION_MARKET.ts";
+import {
+  betPoolInt,
+  marketState,
+  PREDICTION_MARKET,
+} from "./PREDICTION_MARKET.ts";
 
 Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   STATE_MATRIX.clear();
@@ -13,22 +17,22 @@ Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   const idx = 1;
   STATE_MATRIX.setId(idx, 100n);
   STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PRODUCER);
-  STATE_MATRIX.setEnergy(idx, 100000); 
+  STATE_MATRIX.setEnergy(idx, 100000);
 
-  // Bet 5 energy 
+  // Bet 5 energy
   // R1 = 5
   // OP_SYSCALL with R0 = SYS_BET
   const betScript = new Uint8Array(64);
   betScript[0] = RISC.OP_SET;
   betScript[1] = 1;
   betScript[2] = 5;
-  
+
   betScript[3] = RISC.OP_SET;
   betScript[4] = 0;
   betScript[5] = SYS.BET;
-  
+
   betScript[6] = RISC.OP_SYSCALL;
-  
+
   // Followed by yield
   betScript[7] = RISC.OP_SET;
   betScript[8] = 0;
@@ -55,24 +59,32 @@ Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   // Gas cost 5 => 5000 units. Yield gas 1 => 1000 units.
   // Scaled bet 5 => 5000 units.
   // Energy in atoms: 100000 -> 99989 approx depending on base tax.
-  
+
   const poolVal = Atomics.load(betPoolInt, 0);
-  assertEquals(poolVal, 5000, "Bet pool should have 5000 scaled units from Atom 1");
+  assertEquals(
+    poolVal,
+    5000,
+    "Bet pool should have 5000 scaled units from Atom 1",
+  );
 
   // The atom wagered and its energy naturally decreased
   // Resolve Crisis directly
   // Fake the pot to be high enough for CRISIS_THRESHOLD (5000 scaled = 5.0 raw > 5000.0 needed?)
   // CRISIS_THRESHOLD is 5000.0. The final bet is poolVal / 1000. So we need 5 million in poolVal.
-  Atomics.store(betPoolInt, 0, 6000000); 
+  Atomics.store(betPoolInt, 0, 6000000);
 
   PREDICTION_MARKET.resolveCrisis();
 
-  assertEquals(Atomics.load(marketState, 0), 0, "Market should be inactive after resolve");
+  assertEquals(
+    Atomics.load(marketState, 0),
+    0,
+    "Market should be inactive after resolve",
+  );
 
   // Because pool was > threshold, the mutation should be adopted into atom 1
   const adopted = STATE_MATRIX.getInstructions(idx);
   assertEquals(adopted[0], 0xff, "Mutation should have been applied");
-  
+
   // Cleanup test
   STATE_MATRIX.clear();
   PULSE.stopWorkers();

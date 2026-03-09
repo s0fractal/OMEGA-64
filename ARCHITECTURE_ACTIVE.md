@@ -120,6 +120,21 @@ export context. It intentionally excludes historical era narratives.
   Deno-native environment. Legacy `node_modules`, `package.json`, and
   `package-lock.json` have been removed. AssemblyScript (`0.28.9`) is managed
   via Deno's native NPM resolution in `build_wasm.ts`.
+- **Cognitive Vector Protocol**: Transitioned to deterministic integer-based
+  Math (`math_sin`, `math_cos`) to ensure 100% causal consistency.
+  - **Phase-ring as Cognitive Zodiac**: The internal continuous `theta` phase
+    (0-255) maps symmetrically into a 4-quadrant archetype wheel:
+    - **Quadrant I (0-63)**: Fear vs Curiosity (Scientist / Analyzer)
+    - **Quadrant II (64-127)**: Curiosity vs Ego (Architect / Creator)
+    - **Quadrant III (128-191)**: Ego vs Love (Warrior / Extractor)
+    - **Quadrant IV (192-255)**: Love vs Fear (Guardian / Protector)
+  - **Resonance Dynamics**: Incorporates the Kuramoto model for phase
+    synchronization (`OP_RESONATE_KURAMOTO`) with K-coupling dictated strictly
+    by global `NEURAL_COHERENCE`, driving atoms into synchronous zodiac phases
+    when K > K_critical.
+  - **Gas Economics**: Implements precision-gas gradients where `LUT_LERP` and
+    `TAYLOR2` exact mathematically higher gas tariffs (5-10x more than fast
+    mapping) yielding resource competition under resonant loads.
 
 ## Governance and Integrity
 

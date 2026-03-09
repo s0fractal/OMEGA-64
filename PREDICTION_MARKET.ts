@@ -28,9 +28,10 @@ export const PREDICTION_MARKET = {
 
     console.log(
       `🌀 [MARKET] CRISIS INITIATED! Proposed Genome: ${
-        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0")).join(
-          "",
-        )
+        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0"))
+          .join(
+            "",
+          )
       }`,
     );
 

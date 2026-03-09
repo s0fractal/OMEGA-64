@@ -7,25 +7,16 @@
   "runtime_mode": "legacy-runtime/api-observer-harness",
   "daemon_enabled": false,
   "metrics": {
-    "population": 145,
-    "avgEnergy": 270.626,
-    "spatialOverflowRatio": 0.531034,
+    "population": 65,
+    "avgEnergy": 438.301,
+    "spatialOverflowRatio": 0.107692,
     "mutationCounts": {
       "enabled": true,
-      "total": 41066,
+      "total": 52,
       "lanes": {
-        "internal_host": 41014,
         "canonical_gate": 52
       },
       "topKinds": [
-        [
-          "energy_homeostasis_adjust",
-          40870
-        ],
-        [
-          "spawn_seed_atom",
-          144
-        ],
         [
           "audit_matrix_cycle",
           52
@@ -93,7 +84,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.730Z",
           "lastHydrationError": null
         },
         "fear_curiosity_balance": 1,
@@ -103,7 +94,7 @@
       }
     },
     "guardian_signal_hybrid": {
-      "mode": "shadow-reduce",
+      "mode": "hybrid-reduce",
       "hybridRuns": 0,
       "shadowRuns": 0,
       "fallbackRuns": 0,
@@ -118,7 +109,7 @@
       "lastFallbackReason": ""
     },
     "architect_plasmid_hybrid": {
-      "mode": "shadow-reduce",
+      "mode": "hybrid-reduce",
       "hybridRuns": 0,
       "shadowRuns": 0,
       "fallbackRuns": 0,
@@ -132,10 +123,25 @@
       "lastBranch": "unknown",
       "lastFallbackReason": ""
     },
+    "replication_hybrid": {
+      "mode": "hybrid-reduce",
+      "hybridRuns": 0,
+      "shadowRuns": 0,
+      "fallbackRuns": 0,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 0,
+      "allowedReplications": 0,
+      "suppressedReplications": 0,
+      "shadowSuppressedReplications": 0,
+      "lastTick": -1,
+      "lastStatus": "legacy",
+      "lastBranch": "unknown",
+      "lastFallbackReason": ""
+    },
     "guardian_signal_promotion": {
-      "status": "warming",
-      "ready": false,
-      "recommendedMode": "shadow-reduce",
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
       "shadowRuns": 0,
       "hybridRuns": 0,
       "reductionRuns": 0,
@@ -145,10 +151,7 @@
       "repairBranchCount": 0,
       "shadowSuppressedGuardianSignals": 0,
       "reasons": [
-        "shadow_runs_0_lt_64",
-        "stable_branch_count_0_lt_8",
-        "repair_branch_count_0_lt_4",
-        "shadow_suppressed_guardian_signals_0_lt_4"
+        "mode_already_hybrid_reduce"
       ],
       "thresholds": {
         "minShadowRuns": 64,
@@ -156,6 +159,52 @@
         "minStableBranchCount": 8,
         "minRepairBranchCount": 4,
         "minShadowSuppressedGuardianSignals": 4
+      }
+    },
+    "architect_plasmid_promotion": {
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 0,
+      "reductionRuns": 0,
+      "fallbackRuns": 0,
+      "fallbackRatio": 0,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 0,
+      "shadowSuppressedArchitectPlasmids": 0,
+      "reasons": [
+        "mode_already_hybrid_reduce"
+      ],
+      "thresholds": {
+        "minShadowRuns": 64,
+        "maxFallbackRatio": 0.05,
+        "minEmitBranchCount": 8,
+        "minSuppressBranchCount": 4,
+        "minShadowSuppressedArchitectPlasmids": 4
+      }
+    },
+    "replication_promotion": {
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 0,
+      "reductionRuns": 0,
+      "fallbackRuns": 0,
+      "fallbackRatio": 0,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 0,
+      "shadowSuppressedReplications": 0,
+      "reasons": [
+        "mode_already_hybrid_reduce"
+      ],
+      "thresholds": {
+        "minShadowRuns": 16,
+        "maxFallbackRatio": 0.05,
+        "minEmitBranchCount": 0,
+        "minSuppressBranchCount": 0,
+        "minShadowSuppressedReplications": 0
       }
     },
     "glyph_transport": {
@@ -189,7 +238,7 @@
       "actions_used_in_window": 0,
       "actions_max_in_window": 8,
       "actions_dynamic_max_in_window": 8,
-      "window_reset_in_ms": 59930,
+      "window_reset_in_ms": 59921,
       "max_pheromone_intensity": 300,
       "max_plasmid_charge": 1200,
       "ledger_max_pheromone_intensity": {
@@ -229,7 +278,7 @@
         "lastCompactedAt": null,
         "lastCompactedTick": -1,
         "hydrated": true,
-        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydratedAt": "2026-03-09T03:35:11.728Z",
         "lastHydrationError": null
       },
       "ledger_max_plasmid_charge": {
@@ -269,7 +318,7 @@
         "lastCompactedAt": null,
         "lastCompactedTick": -1,
         "hydrated": true,
-        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydratedAt": "2026-03-09T03:35:11.728Z",
         "lastHydrationError": null
       },
       "invariant_drift_mid_score": 2,
@@ -334,7 +383,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.729Z",
           "lastHydrationError": null
         },
         "ledger_target_energy": {
@@ -374,7 +423,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.729Z",
           "lastHydrationError": null
         }
       }
@@ -421,11 +470,11 @@
         "memberCount": 32,
         "dominantRole": 3,
         "genomeSamples": [
-          "A8A78306AD28679A",
-          "A8A7EF82F90493D6",
-          "A8A79B3E8520FF52",
-          "A8A7873A517CAB0E",
-          "A8A7B3765D18970A",
+          "A7818306AD28679A",
+          "A781EF82F90493D6",
+          "A7819B3E8520FF52",
+          "A781873A517CAB0E",
+          "A781B3765D18970A",
           "A8A71FF2A9F4C346"
         ],
         "fingerprint": {
@@ -448,7 +497,7 @@
         "pressureRingScale": 0,
         "workerCount": 1,
         "strictDeterminism": true,
-        "generatedAt": "2026-03-07T15:10:01.651Z"
+        "generatedAt": "2026-03-09T03:35:11.707Z"
       },
       "peers": []
     },
@@ -465,19 +514,44 @@
         "degradeResonanceRatio": 0.68,
         "openWorld": false
       }
+    },
+    "glyph_buffer": {
+      "activeCells": 0,
+      "pheromoneCells": 0,
+      "plasmidCells": 0,
+      "maxAmplitude": 0,
+      "totalAmplitude": 0,
+      "internalSignalSeeds": 0,
+      "internalMemorySeeds": 0,
+      "internalAtomPheromoneSeeds": 0,
+      "internalAtomPlasmidSeeds": 0,
+      "atomRolePheromone": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
+      },
+      "atomRolePlasmid": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
+      }
     }
   },
   "telemetry_stream_start": null,
   "telemetry_end": {
     "tick": 256,
-    "avgEnergy": 270.626,
+    "avgEnergy": 438.301,
     "dominantGenomes": [
+      "808103862DA8E71A",
       "80816F0279841356",
-      "80811BBE05A07FD2",
-      "80819F72297443C6"
+      "80811BBE05A07FD2"
     ],
     "voxPopuli": [
-      "[SYSTEM_STATE] Active Entities: 145. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
+      "[SYSTEM_STATE] Active Entities: 65. CRITICAL WARNING: The ecosystem is devouring itself! Too many aggressive parasites."
     ],
     "pulse_pressure": {
       "novelty_signed": 0,
@@ -527,7 +601,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.730Z",
           "lastHydrationError": null
         },
         "fear_curiosity_balance": 1,
@@ -537,52 +611,67 @@
       }
     },
     "guardian_signal_hybrid": {
-      "mode": "shadow-reduce",
-      "hybridRuns": 0,
+      "mode": "hybrid-reduce",
+      "hybridRuns": 1280,
       "shadowRuns": 0,
       "fallbackRuns": 0,
-      "stableBranchCount": 0,
-      "repairBranchCount": 0,
-      "allowedGuardianSignals": 0,
-      "suppressedGuardianSignals": 0,
+      "stableBranchCount": 768,
+      "repairBranchCount": 512,
+      "allowedGuardianSignals": 768,
+      "suppressedGuardianSignals": 512,
       "shadowSuppressedGuardianSignals": 0,
-      "lastTick": -1,
-      "lastStatus": "legacy",
-      "lastBranch": "unknown",
-      "lastFallbackReason": ""
+      "lastTick": 255,
+      "lastStatus": "hybrid",
+      "lastBranch": "stable",
+      "lastFallbackReason": "",
+      "lastMode": "hybrid-reduce"
     },
     "architect_plasmid_hybrid": {
-      "mode": "shadow-reduce",
-      "hybridRuns": 0,
-      "shadowRuns": 249,
-      "fallbackRuns": 249,
-      "emitBranchCount": 0,
-      "suppressBranchCount": 0,
-      "allowedArchitectPlasmids": 0,
-      "suppressedArchitectPlasmids": 0,
+      "mode": "hybrid-reduce",
+      "hybridRuns": 6912,
+      "shadowRuns": 0,
+      "fallbackRuns": 0,
+      "emitBranchCount": 3584,
+      "suppressBranchCount": 3328,
+      "allowedArchitectPlasmids": 3584,
+      "suppressedArchitectPlasmids": 3328,
       "shadowSuppressedArchitectPlasmids": 0,
-      "lastTick": 83,
-      "lastStatus": "fallback",
-      "lastBranch": "unknown",
-      "lastFallbackReason": "unsupported_architect_opcode_0xaa"
+      "lastTick": 255,
+      "lastStatus": "hybrid",
+      "lastBranch": "emit",
+      "lastFallbackReason": "",
+      "lastMode": "hybrid-reduce"
+    },
+    "replication_hybrid": {
+      "mode": "hybrid-reduce",
+      "hybridRuns": 16521,
+      "shadowRuns": 0,
+      "fallbackRuns": 16384,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 137,
+      "allowedReplications": 16384,
+      "suppressedReplications": 137,
+      "shadowSuppressedReplications": 0,
+      "lastTick": 255,
+      "lastStatus": "hybrid",
+      "lastBranch": "suppress",
+      "lastFallbackReason": "Error: unsupported_replication_opcode_0xa7",
+      "lastMode": "hybrid-reduce"
     },
     "guardian_signal_promotion": {
-      "status": "warming",
-      "ready": false,
-      "recommendedMode": "shadow-reduce",
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
       "shadowRuns": 0,
-      "hybridRuns": 0,
-      "reductionRuns": 0,
+      "hybridRuns": 1280,
+      "reductionRuns": 1280,
       "fallbackRuns": 0,
       "fallbackRatio": 0,
-      "stableBranchCount": 0,
-      "repairBranchCount": 0,
+      "stableBranchCount": 768,
+      "repairBranchCount": 512,
       "shadowSuppressedGuardianSignals": 0,
       "reasons": [
-        "shadow_runs_0_lt_64",
-        "stable_branch_count_0_lt_8",
-        "repair_branch_count_0_lt_4",
-        "shadow_suppressed_guardian_signals_0_lt_4"
+        "mode_already_hybrid_reduce"
       ],
       "thresholds": {
         "minShadowRuns": 64,
@@ -592,16 +681,62 @@
         "minShadowSuppressedGuardianSignals": 4
       }
     },
+    "architect_plasmid_promotion": {
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 6912,
+      "reductionRuns": 6912,
+      "fallbackRuns": 0,
+      "fallbackRatio": 0,
+      "emitBranchCount": 3584,
+      "suppressBranchCount": 3328,
+      "shadowSuppressedArchitectPlasmids": 0,
+      "reasons": [
+        "mode_already_hybrid_reduce"
+      ],
+      "thresholds": {
+        "minShadowRuns": 64,
+        "maxFallbackRatio": 0.05,
+        "minEmitBranchCount": 8,
+        "minSuppressBranchCount": 4,
+        "minShadowSuppressedArchitectPlasmids": 4
+      }
+    },
+    "replication_promotion": {
+      "status": "already-hybrid",
+      "ready": true,
+      "recommendedMode": "hybrid-reduce",
+      "shadowRuns": 0,
+      "hybridRuns": 16521,
+      "reductionRuns": 16521,
+      "fallbackRuns": 16384,
+      "fallbackRatio": 0.991708,
+      "emitBranchCount": 0,
+      "suppressBranchCount": 137,
+      "shadowSuppressedReplications": 0,
+      "reasons": [
+        "mode_already_hybrid_reduce"
+      ],
+      "thresholds": {
+        "minShadowRuns": 16,
+        "maxFallbackRatio": 0.05,
+        "minEmitBranchCount": 0,
+        "minSuppressBranchCount": 0,
+        "minShadowSuppressedReplications": 0
+      }
+    },
     "glyph_transport": {
-      "activeCells": 99,
+      "activeCells": 735,
       "pheromoneCells": 0,
-      "plasmidCells": 99,
-      "maxAmplitude": 512,
-      "totalAmplitude": 14026,
+      "plasmidCells": 735,
+      "maxAmplitude": 416758,
+      "totalAmplitude": 2020146,
       "internalSignalSeeds": 0,
       "internalMemorySeeds": 0,
       "internalAtomPheromoneSeeds": 0,
-      "internalAtomPlasmidSeeds": 0,
+      "internalAtomPlasmidSeeds": 76,
       "atomRolePheromone": {
         "neutral": 0,
         "producer": 0,
@@ -611,9 +746,9 @@
       },
       "atomRolePlasmid": {
         "neutral": 0,
-        "producer": 0,
+        "producer": 64,
         "guardian": 0,
-        "architect": 0,
+        "architect": 12,
         "parasite": 0
       }
     },
@@ -622,8 +757,8 @@
       "safe_mode_reason": "SAFE_MODE_OFF",
       "actions_used_in_window": 0,
       "actions_max_in_window": 8,
-      "actions_dynamic_max_in_window": 2,
-      "window_reset_in_ms": 52567,
+      "actions_dynamic_max_in_window": 8,
+      "window_reset_in_ms": 49881,
       "max_pheromone_intensity": 300,
       "max_plasmid_charge": 1200,
       "ledger_max_pheromone_intensity": {
@@ -663,7 +798,7 @@
         "lastCompactedAt": null,
         "lastCompactedTick": -1,
         "hydrated": true,
-        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydratedAt": "2026-03-09T03:35:11.728Z",
         "lastHydrationError": null
       },
       "ledger_max_plasmid_charge": {
@@ -703,7 +838,7 @@
         "lastCompactedAt": null,
         "lastCompactedTick": -1,
         "hydrated": true,
-        "lastHydratedAt": "2026-03-07T15:10:01.671Z",
+        "lastHydratedAt": "2026-03-09T03:35:11.728Z",
         "lastHydrationError": null
       },
       "invariant_drift_mid_score": 2,
@@ -768,7 +903,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.729Z",
           "lastHydrationError": null
         },
         "ledger_target_energy": {
@@ -808,7 +943,7 @@
           "lastCompactedAt": null,
           "lastCompactedTick": -1,
           "hydrated": true,
-          "lastHydratedAt": "2026-03-07T15:10:01.672Z",
+          "lastHydratedAt": "2026-03-09T03:35:11.729Z",
           "lastHydrationError": null
         }
       }
@@ -823,76 +958,81 @@
     },
     "spatial_hash_guard": {
       "tick": 256,
-      "overflow_count": 77,
+      "overflow_count": 7,
       "max_cell_count": 30,
-      "overflow_ratio": 0.531034
+      "overflow_ratio": 0.107692
     },
     "behavior_clusters": [
       {
         "behaviorSignature": "R0.00|S0.00|B0.00",
-        "memberCount": 144,
-        "dominantRole": 0,
+        "memberCount": 33,
+        "dominantRole": 3,
         "genomeSamples": [
-          "80816F0279841356",
-          "80811BBE05A07FD2",
-          "80819F72297443C6",
-          "80814B2EB590AF42",
-          "8081372A81EC5BFE",
-          "808163668D8847FA"
+          "A7818306AD28679A",
+          "A781EF82F90493D6",
+          "A7819B3E8520FF52",
+          "A781873A517CAB0E",
+          "A781B3765D18970A",
+          "A8A71FF2A9F4C346"
         ],
         "fingerprint": {
           "replicateRatio": 0,
           "signalRatio": 0,
           "buildRatio": 0,
           "survivalCurve": [
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144,
-            144
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33,
+            33
           ]
         },
         "lastTick": 256
       },
       {
         "behaviorSignature": "R0.50|S0.00|B0.00",
-        "memberCount": 1,
+        "memberCount": 32,
         "dominantRole": 1,
         "genomeSamples": [
-          "FFB9DBB065DBB6ED"
+          "808103862DA8E71A",
+          "80816F0279841356",
+          "80811BBE05A07FD2",
+          "808107BAD1FC2B8E",
+          "808133F6DD98178A",
+          "80819F72297443C6"
         ],
         "fingerprint": {
           "replicateRatio": 0.5,
           "signalRatio": 0,
           "buildRatio": 0,
           "survivalCurve": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
           ]
         },
         "lastTick": 256
@@ -907,7 +1047,7 @@
         "pressureRingScale": 0,
         "workerCount": 1,
         "strictDeterminism": true,
-        "generatedAt": "2026-03-07T15:10:01.651Z"
+        "generatedAt": "2026-03-09T03:35:11.707Z"
       },
       "peers": []
     },
@@ -924,6 +1064,31 @@
         "degradeResonanceRatio": 0.68,
         "openWorld": false
       }
+    },
+    "glyph_buffer": {
+      "activeCells": 735,
+      "pheromoneCells": 0,
+      "plasmidCells": 735,
+      "maxAmplitude": 416758,
+      "totalAmplitude": 2020146,
+      "internalSignalSeeds": 0,
+      "internalMemorySeeds": 0,
+      "internalAtomPheromoneSeeds": 0,
+      "internalAtomPlasmidSeeds": 76,
+      "atomRolePheromone": {
+        "neutral": 0,
+        "producer": 0,
+        "guardian": 0,
+        "architect": 0,
+        "parasite": 0
+      },
+      "atomRolePlasmid": {
+        "neutral": 0,
+        "producer": 64,
+        "guardian": 0,
+        "architect": 12,
+        "parasite": 0
+      }
     }
   },
   "mutation_telemetry_before": {
@@ -934,20 +1099,11 @@
   },
   "mutation_telemetry_after": {
     "enabled": true,
-    "total": 41066,
+    "total": 52,
     "lanes": {
-      "internal_host": 41014,
       "canonical_gate": 52
     },
     "topKinds": [
-      [
-        "energy_homeostasis_adjust",
-        40870
-      ],
-      [
-        "spawn_seed_atom",
-        144
-      ],
       [
         "audit_matrix_cycle",
         52
@@ -956,8 +1112,8 @@
   },
   "event_log": [],
   "event_log_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "mutation_telemetry_digest": "922abb8b46e898eac914755ea81ba1bf30286db62f2cba61639d1e164fce90bf",
-  "codex_snapshot_digest": "1040f88d853e20ada67be0524dfae5815d326e4a0b66cadd969e0265f7d39348",
+  "mutation_telemetry_digest": "0cb364d713934f8f2d8280aea9446c78b587dcc7da5e478e9b9e5085d84f18b0",
+  "codex_snapshot_digest": "0bc77e1a114bf2d200b899194f630eb09fdbb024164c61115eafc9c25bd59184",
   "invariant_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
   "extra_artifacts": {}
 }

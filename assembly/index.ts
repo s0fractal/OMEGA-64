@@ -11,6 +11,569 @@ declare function trace_atom(
 const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
+
+// --- STAGE 44: DISCRETE TRIGONOMETRY (LUT) ---
+// Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
+const SIN_LUT: StaticArray<i16> = [
+  0,
+  804,
+  1608,
+  2410,
+  3212,
+  4011,
+  4808,
+  5602,
+  6393,
+  7179,
+  7962,
+  8739,
+  9512,
+  10278,
+  11039,
+  11793,
+  12539,
+  13279,
+  14010,
+  14732,
+  15446,
+  16151,
+  16846,
+  17530,
+  18204,
+  18868,
+  19519,
+  20159,
+  20787,
+  21403,
+  22005,
+  22594,
+  23170,
+  23731,
+  24279,
+  24811,
+  25329,
+  25832,
+  26319,
+  26790,
+  27245,
+  27683,
+  28105,
+  28510,
+  28898,
+  29268,
+  29621,
+  29956,
+  30273,
+  30571,
+  30852,
+  31113,
+  31356,
+  31580,
+  31785,
+  31971,
+  32137,
+  32285,
+  32412,
+  32521,
+  32609,
+  32678,
+  32728,
+  32757,
+  32767,
+  32757,
+  32728,
+  32678,
+  32609,
+  32521,
+  32412,
+  32285,
+  32137,
+  31971,
+  31785,
+  31580,
+  31356,
+  31113,
+  30852,
+  30571,
+  30273,
+  29956,
+  29621,
+  29268,
+  28898,
+  28510,
+  28105,
+  27683,
+  27245,
+  26790,
+  26319,
+  25832,
+  25329,
+  24811,
+  24279,
+  23731,
+  23170,
+  22594,
+  22005,
+  21403,
+  20787,
+  20159,
+  19519,
+  18868,
+  18204,
+  17530,
+  16846,
+  16151,
+  15446,
+  14732,
+  14010,
+  13279,
+  12539,
+  11793,
+  11039,
+  10278,
+  9512,
+  8739,
+  7962,
+  7179,
+  6393,
+  5602,
+  4808,
+  4011,
+  3212,
+  2410,
+  1608,
+  804,
+  0,
+  -804,
+  -1608,
+  -2410,
+  -3212,
+  -4011,
+  -4808,
+  -5602,
+  -6393,
+  -7179,
+  -7962,
+  -8739,
+  -9512,
+  -10278,
+  -11039,
+  -11793,
+  -12539,
+  -13279,
+  -14010,
+  -14732,
+  -15446,
+  -16151,
+  -16846,
+  -17530,
+  -18204,
+  -18868,
+  -19519,
+  -20159,
+  -20787,
+  -21403,
+  -22005,
+  -22594,
+  -23170,
+  -23731,
+  -24279,
+  -24811,
+  -25329,
+  -25832,
+  -26319,
+  -26790,
+  -27245,
+  -27683,
+  -28105,
+  -28510,
+  -28898,
+  -29268,
+  -29621,
+  -29956,
+  -30273,
+  -30571,
+  -30852,
+  -31113,
+  -31356,
+  -31580,
+  -31785,
+  -31971,
+  -32137,
+  -32285,
+  -32412,
+  -32521,
+  -32609,
+  -32678,
+  -32728,
+  -32757,
+  -32767,
+  -32757,
+  -32728,
+  -32678,
+  -32609,
+  -32521,
+  -32412,
+  -32285,
+  -32137,
+  -31971,
+  -31785,
+  -31580,
+  -31356,
+  -31113,
+  -30852,
+  -30571,
+  -30273,
+  -29956,
+  -29621,
+  -29268,
+  -28898,
+  -28510,
+  -28105,
+  -27683,
+  -27245,
+  -26790,
+  -26319,
+  -25832,
+  -25329,
+  -24811,
+  -24279,
+  -23731,
+  -23170,
+  -22594,
+  -22005,
+  -21403,
+  -20787,
+  -20159,
+  -19519,
+  -18868,
+  -18204,
+  -17530,
+  -16846,
+  -16151,
+  -15446,
+  -14732,
+  -14010,
+  -13279,
+  -12539,
+  -11793,
+  -11039,
+  -10278,
+  -9512,
+  -8739,
+  -7962,
+  -7179,
+  -6393,
+  -5602,
+  -4808,
+  -4011,
+  -3212,
+  -2410,
+  -1608,
+  -804,
+];
+const COS_LUT: StaticArray<i16> = [
+  32767,
+  32757,
+  32728,
+  32678,
+  32609,
+  32521,
+  32412,
+  32285,
+  32137,
+  31971,
+  31785,
+  31580,
+  31356,
+  31113,
+  30852,
+  30571,
+  30273,
+  29956,
+  29621,
+  29268,
+  28898,
+  28510,
+  28105,
+  27683,
+  27245,
+  26790,
+  26319,
+  25832,
+  25329,
+  24811,
+  24279,
+  23731,
+  23170,
+  22594,
+  22005,
+  21403,
+  20787,
+  20159,
+  19519,
+  18868,
+  18204,
+  17530,
+  16846,
+  16151,
+  15446,
+  14732,
+  14010,
+  13279,
+  12539,
+  11793,
+  11039,
+  10278,
+  9512,
+  8739,
+  7962,
+  7179,
+  6393,
+  5602,
+  4808,
+  4011,
+  3212,
+  2410,
+  1608,
+  804,
+  0,
+  -804,
+  -1608,
+  -2410,
+  -3212,
+  -4011,
+  -4808,
+  -5602,
+  -6393,
+  -7179,
+  -7962,
+  -8739,
+  -9512,
+  -10278,
+  -11039,
+  -11793,
+  -12539,
+  -13279,
+  -14010,
+  -14732,
+  -15446,
+  -16151,
+  -16846,
+  -17530,
+  -18204,
+  -18868,
+  -19519,
+  -20159,
+  -20787,
+  -21403,
+  -22005,
+  -22594,
+  -23170,
+  -23731,
+  -24279,
+  -24811,
+  -25329,
+  -25832,
+  -26319,
+  -26790,
+  -27245,
+  -27683,
+  -28105,
+  -28510,
+  -28898,
+  -29268,
+  -29621,
+  -29956,
+  -30273,
+  -30571,
+  -30852,
+  -31113,
+  -31356,
+  -31580,
+  -31785,
+  -31971,
+  -32137,
+  -32285,
+  -32412,
+  -32521,
+  -32609,
+  -32678,
+  -32728,
+  -32757,
+  -32767,
+  -32757,
+  -32728,
+  -32678,
+  -32609,
+  -32521,
+  -32412,
+  -32285,
+  -32137,
+  -31971,
+  -31785,
+  -31580,
+  -31356,
+  -31113,
+  -30852,
+  -30571,
+  -30273,
+  -29956,
+  -29621,
+  -29268,
+  -28898,
+  -28510,
+  -28105,
+  -27683,
+  -27245,
+  -26790,
+  -26319,
+  -25832,
+  -25329,
+  -24811,
+  -24279,
+  -23731,
+  -23170,
+  -22594,
+  -22005,
+  -21403,
+  -20787,
+  -20159,
+  -19519,
+  -18868,
+  -18204,
+  -17530,
+  -16846,
+  -16151,
+  -15446,
+  -14732,
+  -14010,
+  -13279,
+  -12539,
+  -11793,
+  -11039,
+  -10278,
+  -9512,
+  -8739,
+  -7962,
+  -7179,
+  -6393,
+  -5602,
+  -4808,
+  -4011,
+  -3212,
+  -2410,
+  -1608,
+  -804,
+  0,
+  804,
+  1608,
+  2410,
+  3212,
+  4011,
+  4808,
+  5602,
+  6393,
+  7179,
+  7962,
+  8739,
+  9512,
+  10278,
+  11039,
+  11793,
+  12539,
+  13279,
+  14010,
+  14732,
+  15446,
+  16151,
+  16846,
+  17530,
+  18204,
+  18868,
+  19519,
+  20159,
+  20787,
+  21403,
+  22005,
+  22594,
+  23170,
+  23731,
+  24279,
+  24811,
+  25329,
+  25832,
+  26319,
+  26790,
+  27245,
+  27683,
+  28105,
+  28510,
+  28898,
+  29268,
+  29621,
+  29956,
+  30273,
+  30571,
+  30852,
+  31113,
+  31356,
+  31580,
+  31785,
+  31971,
+  32137,
+  32285,
+  32412,
+  32521,
+  32609,
+  32678,
+  32728,
+  32757,
+];
+
+export function math_sin(angle: i32, highRes: i32): i32 {
+  if (highRes == 0) {
+    let idx = angle & 255;
+    return SIN_LUT[idx] as i32;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
+  if (highRes == 1) { // LERP
+    let v0 = SIN_LUT[idx] as i32;
+    let v1 = SIN_LUT[(idx + 1) & 255] as i32;
+    return v0 + (((v1 - v0) * frac) >> 8);
+  }
+  // TAYLOR2
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (c_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (s_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return s_base + term1 - term2;
+}
+
+export function math_cos(angle: i32, highRes: i32): i32 {
+  if (highRes == 0) {
+    let idx = angle & 255;
+    return COS_LUT[idx] as i32;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
+  if (highRes == 1) { // LERP
+    let v0 = COS_LUT[idx] as i32;
+    let v1 = COS_LUT[(idx + 1) & 255] as i32;
+    return v0 + (((v1 - v0) * frac) >> 8);
+  }
+  // TAYLOR2
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (s_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (c_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return c_base - term1 - term2;
+}
 const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS matching OFFSETS.ts
@@ -458,6 +1021,8 @@ const OP_JZ: u8 = 0x10; // JZ Reg, RelAddr
 const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
 const OP_JMP: u8 = 0x12; // JMP RelAddr
 const OP_SYSCALL: u8 = 0x60;
+const OP_RESOLVE: u8 = 0xB0;
+const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const SPORE_DRIVE_COST: i32 = 500;
 const ENTANGLE_LOW_ENERGY: i32 = 500;
 const ENTANGLE_MAX_DRAW: i32 = 400;
@@ -1370,6 +1935,87 @@ export function execute_atom(atomIndex: i32): void {
         pc += 1;
         gasUsed += 10;
         gasLimit = 0; // force yield to host
+        break;
+      }
+      case OP_RESOLVE: {
+        let destReg = load<u8>(instr_base + ((pc + 1) as usize));
+        let angleReg = load<u8>(instr_base + ((pc + 2) as usize));
+        let modeReg = load<u8>(instr_base + ((pc + 3) as usize));
+
+        let angle = getReg(atomIndex, angleReg as i32);
+        let modeVal = getReg(atomIndex, modeReg as i32);
+
+        // modeVal decoding:
+        // 0: Sin Direct  (1 Gas)
+        // 1: Sin LERP    (5 Gas)
+        // 2: Cos Direct  (1 Gas)
+        // 3: Cos LERP    (5 Gas)
+        // 4: Sin Taylor2 (10 Gas - Reserved)
+
+        let val = 0;
+        let cost = 1;
+        let highRes = 0;
+
+        if (modeVal == 1 || modeVal == 3) {
+          highRes = 1;
+          cost = 5;
+        } else if (modeVal == 4 || modeVal == 5) {
+          highRes = 2; // Reserved for Taylor2
+          cost = 10;
+        }
+
+        if (modeVal == 0 || modeVal == 1 || modeVal == 4) {
+          val = math_sin(angle, highRes);
+        } else {
+          val = math_cos(angle, highRes);
+        }
+
+        setReg(atomIndex, destReg as i32, val);
+        pc += 4;
+        gasUsed += cost;
+        break;
+      }
+      case OP_RESONATE_KURAMOTO: {
+        let gx = (getX(atomIndex) / 1000) as i32;
+        let gy = (getY(atomIndex) / 1000) as i32;
+        let sumSin = 0;
+        let currentPhase = getPhase(atomIndex);
+        let neighborCount = 0;
+
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            let nx = gx + dx;
+            let ny = gy + dy;
+            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+              let count = getSpatialGridCount(nx, ny);
+              for (let i = 0; i < count; i++) {
+                let neighborId = getSpatialGridAtom(nx, ny, i);
+                if (
+                  neighborId > 0 && neighborId != atomIndex &&
+                  neighborId < MAX_ATOMS
+                ) {
+                  let neighborPhase = getPhase(neighborId);
+                  let diff = (neighborPhase - currentPhase) & 255;
+                  sumSin += math_sin(diff, 0); // Direct lookup for density scaling
+                  neighborCount++;
+                }
+              }
+            }
+          }
+        }
+
+        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+        let K = 5 + (coh / 100);
+        if (K > 128) K = 128;
+
+        if (neighborCount > 0) {
+          let d_theta = (K * sumSin) >> 15;
+          let theta_next = (currentPhase + d_theta) & 255;
+          setPhase(atomIndex, theta_next);
+        }
+
+        pc += 1;
+        gasUsed += 5 + neighborCount * 2;
         break;
       }
       default: {

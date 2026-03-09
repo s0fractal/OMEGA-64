@@ -285,7 +285,8 @@ export const RISC = {
   OP_ROLE: 0xA7,
   OP_SPORE_DRIVE: 0xA8,
   OP_WISDOM: 0xA9,
-  OP_RESONATE: 0xAE,
+  OP_RESOLVE: 0xB0,
+  OP_RESONATE_KURAMOTO: 0xB1,
 
   // Universal Syscall Interface
   OP_SYSCALL: 0x60, // The only way an atom should interact with the world

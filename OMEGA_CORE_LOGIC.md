@@ -1,16 +1,13 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-08T20:18:31.990Z*
-*Exported Files: 125*
-*Runtime Roots: 11*
-*Runtime Closure Files: 77*
-*Non-Runtime Code Files: 33*
-*Runtime-Support Code Files: 18*
-*Experimental Code Files: 15*
-*Manifest SHA256: bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8*
-*Export Set SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d*
-*Export Content SHA256: 751a3b3bc5eb9d0c24b501534ba63ff34c83e1407a2798373d2547c94af7c212*
-*Git Commit: 316804c32363*
+_Generated: 2026-03-09T03:06:36.374Z_ _Exported Files: 125_ _Runtime Roots: 11_
+_Runtime Closure Files: 77_ _Non-Runtime Code Files: 33_ _Runtime-Support Code
+Files: 18_ _Experimental Code Files: 15_ _Manifest SHA256:
+bff1abc91a32e90795fed697f7d48d3d75f0391cc024279a13d6d90c1f5181d8_ _Export Set
+SHA256: 0dfcc98f11da61c762fd5e61c9a44d111917312cceaa7cddffb3dc22b6e0575d_
+_Export Content SHA256:
+751a3b3bc5eb9d0c24b501534ba63ff34c83e1407a2798373d2547c94af7c212_ _Git Commit:
+1d37a4e9d823_
 
 ---
 
@@ -396,7 +393,6 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
-
 ```
 
 ---
@@ -2117,7 +2113,6 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
-
 ```
 
 ---
@@ -2856,7 +2851,6 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
-
 ```
 
 ---
@@ -3169,7 +3163,6 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
-
 ```
 
 ---
@@ -3558,7 +3551,6 @@ export const AKASHA_SIGNALING = {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -3633,7 +3625,6 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -3827,7 +3818,6 @@ export const evaluateArchitectPlasmidPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -4042,7 +4032,6 @@ export const evaluateArchitectPlasmidPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -4236,7 +4225,6 @@ Deep chain adds:
 - Policy: test files and archive/legacy folders are excluded; required active
   files must exist; context is limited to active architecture docs and UI/ops
   surfaces.
-
 ```
 
 ---
@@ -6312,7 +6300,6 @@ export function apply_metabolism_kernel(
     }
   }
 }
-
 ```
 
 ---
@@ -6325,7 +6312,6 @@ export function apply_metabolism_kernel(
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
-
 ```
 
 ---
@@ -6399,7 +6385,6 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
-
 ```
 
 ---
@@ -6442,7 +6427,6 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -6539,7 +6523,6 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```
 
 ---
@@ -6594,7 +6577,6 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
-
 ```
 
 ---
@@ -6904,7 +6886,6 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
-
 ```
 
 ---
@@ -8310,7 +8291,6 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
-
 ```
 
 ---
@@ -8437,7 +8417,6 @@ export const CONTROL_INTENT_QUEUE = {
     "ui/index.html"
   ]
 }
-
 ```
 
 ---
@@ -9043,7 +9022,6 @@ export const planInvariantIngress = (
     admission,
   };
 };
-
 ```
 
 ---
@@ -9639,7 +9617,6 @@ export const hydrateDaemonPheromoneLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -9962,7 +9939,6 @@ export const resetDaemonPheromoneLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -10557,7 +10533,6 @@ export const hydrateDaemonPlasmidLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -10879,7 +10854,6 @@ export const resetDaemonPlasmidLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -11002,7 +10976,6 @@ Do not move anything from the table above into reduction until:
 1. the corresponding golden trace exists,
 2. the rollback owner is explicit,
 3. the replacement lane is narrower than the current one.
-
 ```
 
 ---
@@ -11133,7 +11106,6 @@ Stage 3 is considered real only when:
 - no replacement of the active WASM kernel
 - no semantic mutation of non-core glyphs
 - no claim that "64 glyphs are now proteins"
-
 ```
 
 ---
@@ -11299,7 +11271,6 @@ Current exit assessment:
 - export visibility: satisfied
 - next blocker: widen shadow consumers only when they map to a real trace id and
   an explicit rollback path
-
 ```
 
 ---
@@ -11566,7 +11537,6 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
   `/api/physiology` with `ledger_max_plasmid_charge` and
   `ledger_max_plasmid_charge_persistence`
-
 ```
 
 ---
@@ -12414,14 +12384,13 @@ This keeps myth and engineering aligned without letting either erase the other.
    [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
 3. Draft the first `GlyphIR64` type contract before any bridge implementation
    begins.
-
 ```
 
 ---
 
 ## FILE: docs/migration/ROADMAP_2_SIGMA_CORE.md
 
-```markdown
+````markdown
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
 This document fixes an adjacent future-vector for OMEGA-64. It is not the active
@@ -12503,6 +12472,7 @@ pub enum SigmaOp {
     Attract { vector: Vector64 },
 }
 ```
+````
 
 ### Чому це спрацює
 
@@ -12535,8 +12505,7 @@ pub enum SigmaOp {
   - rollback paths
   - export-visible progress markers
 
-```
-
+````
 ---
 
 ## FILE: ECOLOGY_ENGINE.ts
@@ -12618,8 +12587,7 @@ export const ECOLOGY_ENGINE = {
     }
   },
 };
-
-```
+````
 
 ---
 
@@ -12652,7 +12620,6 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
-
 ```
 
 ---
@@ -12693,7 +12660,6 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
-
 ```
 
 ---
@@ -12748,7 +12714,6 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
-
 ```
 
 ---
@@ -12973,7 +12938,6 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
-
 ```
 
 ---
@@ -13200,7 +13164,6 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
-
 ```
 
 ---
@@ -13664,7 +13627,6 @@ export const GATE = {
     );
   },
 };
-
 ```
 
 ---
@@ -13925,7 +13887,6 @@ export const recordFromRollback = <K extends GeneticLedgerKey>(
   reason: mutation.rolledBackReason ?? mutation.reason,
   recorded_at: new Date().toISOString(),
 });
-
 ```
 
 ---
@@ -14217,7 +14178,6 @@ export const snapshotLedgerRuntime = <K extends GeneticLedgerKey>(
   lastRollbackReason: state.lastRollbackReason,
   lastRollbackToken: state.lastRollbackToken,
 });
-
 ```
 
 ---
@@ -14799,7 +14759,6 @@ export const hydrateBaseTaxLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -15115,7 +15074,6 @@ export const resetBaseTaxLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -15304,7 +15262,6 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
-
 ```
 
 ---
@@ -15374,7 +15331,6 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
-
 ```
 
 ---
@@ -15661,7 +15617,6 @@ export const GLYPH_BUFFER = {
     };
   },
 };
-
 ```
 
 ---
@@ -15736,7 +15691,6 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -15930,7 +15884,6 @@ export const evaluateGuardianSignalPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -16152,7 +16105,6 @@ export const evaluateGuardianSignalPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -16292,7 +16244,6 @@ export function injectHologram(
   }
   return newContent;
 }
-
 ```
 
 ---
@@ -16884,7 +16835,6 @@ export const hydrateTargetEnergyLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -17206,7 +17156,6 @@ export const resetTargetEnergyLedgerRuntime = (
   lastAppliedReason: reason,
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -17307,7 +17256,6 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): void => {
   const consensus = Math.round(clamp(input.globalSyntropy * 1024, 0, 2048));
   STATE_MATRIX.setHormone(6, consensus);
 };
-
 ```
 
 ---
@@ -17492,7 +17440,6 @@ export const hormoneBaselineState = (): Record<HormoneId, number> =>
   Object.fromEntries(
     HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec.defaultValue]),
   ) as Record<HormoneId, number>;
-
 ```
 
 ---
@@ -17553,7 +17500,6 @@ export const IMMUNE = {
     return purgeList;
   },
 };
-
 ```
 
 ---
@@ -18777,14 +18723,13 @@ export const LAMBDA_VM = {
     return res;
   },
 };
-
 ```
 
 ---
 
 ## FILE: llm_soul.ts
 
-```typescript
+````typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "./LOGGER.ts";
 
@@ -18835,7 +18780,11 @@ Example of a valid strategy array:
 `;
 
 async function queryGemini(state: any, vision: any[]): Promise<any[]> {
-    const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${Math.floor(state.energy)}\n\nVision (sorted by distance):\n${JSON.stringify(vision, null, 2)}\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
+  const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${
+    Math.floor(state.energy)
+  }\n\nVision (sorted by distance):\n${
+    JSON.stringify(vision, null, 2)
+  }\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
 
   const payload = {
     systemInstruction: {
@@ -18870,17 +18819,21 @@ async function queryGemini(state: any, vision: any[]): Promise<any[]> {
     const cleanText = textResponse.replace(/```json/g, "").replace(/```/g, "")
       .trim();
     return JSON.parse(cleanText);
-    } catch (e: any) {
-        LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
-        // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
-        return [
-          { action: "YIELD" },
-          { action: "YIELD" },
-          { action: "MOVE", dx: Math.random() > 0.5 ? 1 : -1, dy: Math.random() > 0.5 ? 1 : -1 },
-          { action: "YIELD" },
-          { action: "YIELD" }
-        ];
-    }
+  } catch (e: any) {
+    LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
+    // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
+    return [
+      { action: "YIELD" },
+      { action: "YIELD" },
+      {
+        action: "MOVE",
+        dx: Math.random() > 0.5 ? 1 : -1,
+        dy: Math.random() > 0.5 ? 1 : -1,
+      },
+      { action: "YIELD" },
+      { action: "YIELD" },
+    ];
+  }
 }
 
 function sleep(ms: number) {
@@ -18906,14 +18859,20 @@ async function runSoul() {
         const data = await res.json();
         const me = data.self;
         // Filter out producers to save tokens, only care about predators (4) and prey (0)
-        const vision = data.vision.filter((v: any) => v.role === 0 || v.role === 4).slice(0, 10);
+        const vision = data.vision.filter((v: any) =>
+          v.role === 0 || v.role === 4
+        ).slice(0, 10);
 
-        LOGGER.info(`[LLM_SOUL] Energy: ${Math.floor(me.energy)} | Seeing ${vision.length} threats/food.`);
+        LOGGER.info(
+          `[LLM_SOUL] Energy: ${
+            Math.floor(me.energy)
+          } | Seeing ${vision.length} threats/food.`,
+        );
 
         // 2. COGNITION
         LOGGER.debug("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
         const strategy = await queryGemini(me, vision);
-        
+
         if (Array.isArray(strategy)) {
           actionBuffer = strategy;
         } else {
@@ -18930,10 +18889,9 @@ async function runSoul() {
         await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(intent)
+          body: JSON.stringify(intent),
         });
       }
-
     } catch (e: any) {
       LOGGER.error("[LLM_SOUL] Loop error:", e.message);
       actionBuffer = []; // Clear buffer on severe error
@@ -18941,15 +18899,14 @@ async function runSoul() {
     }
 
     // Tick delay (Matrix is 10 TPS. We execute 1 action every 500ms (2 TPS) to give the Avatar a steady physical pace)
-    await sleep(500); 
+    await sleep(500);
   }
 }
 
 if (import.meta.main) {
   runSoul();
 }
-
-```
+````
 
 ---
 
@@ -19297,7 +19254,6 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
-
 ```
 
 ---
@@ -19376,7 +19332,6 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
-
 ```
 
 ---
@@ -19527,7 +19482,6 @@ export const MATRIX_ENGINE = {
     return count;
   },
 };
-
 ```
 
 ---
@@ -20449,7 +20403,6 @@ export type {
   StateSnapshot as STATE_SNAPSHOT_StateSnapshot,
 } from "./STATE_SNAPSHOT.ts";
 export { REJECTION as STATE_SNAPSHOT_REJECTION } from "./STATE_SNAPSHOT.ts";
-
 ```
 
 ---
@@ -20522,7 +20475,6 @@ internal high-speed mutation loops.
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
 - Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
   and consumed by runtime modules (policy monoculture).
-
 ```
 
 ---
@@ -20616,7 +20568,6 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```
 
 ---
@@ -20811,7 +20762,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -20915,7 +20865,6 @@ if (import.meta.main) {
     await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
   }
 }
-
 ```
 
 ---
@@ -20966,7 +20915,6 @@ Deno.serve({ port: PORT }, async (req) => {
     });
   }
 });
-
 ```
 
 ---
@@ -21326,7 +21274,6 @@ export const validateMemoryLayout = (
 };
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
-
 ```
 
 ---
@@ -23143,7 +23090,6 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
-
 ```
 
 ---
@@ -23433,7 +23379,6 @@ export const P2P_FEDERATION = {
     return false;
   },
 };
-
 ```
 
 ---
@@ -23532,7 +23477,6 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 }
 
 Deno.serve({ hostname: HOST, port: PORT }, handler);
-
 ```
 
 ---
@@ -23893,7 +23837,6 @@ export const PHYSICS_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -24103,7 +24046,6 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
-
 ```
 
 ---
@@ -24141,9 +24083,10 @@ export const PREDICTION_MARKET = {
 
     console.log(
       `🌀 [MARKET] CRISIS INITIATED! Proposed Genome: ${
-        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0")).join(
-          "",
-        )
+        Array.from(newInstructions).map((b) => b.toString(16).padStart(2, "0"))
+          .join(
+            "",
+          )
       }`,
     );
 
@@ -24260,7 +24203,6 @@ export const PREDICTION_MARKET = {
     }
   },
 };
-
 ```
 
 ---
@@ -24858,7 +24800,6 @@ export const hydratePressureRingScaleLedgerRuntime = async (
     },
   };
 };
-
 ```
 
 ---
@@ -25178,7 +25119,6 @@ export const resetPressureRingScaleLedgerRuntime = (
   lastRollbackSource: "runtime_policy",
   lastRollbackReason: reason,
 });
-
 ```
 
 ---
@@ -25222,7 +25162,6 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
-
 ```
 
 ---
@@ -25832,7 +25771,7 @@ function handle_syscall(atomIdx: number) {
         contextI32View[regBase + 1] = 0;
         break;
       }
-      
+
       const energyBet = Math.max(0, r1);
       if (energyBet <= 0) {
         contextI32View[regBase + 1] = 0;
@@ -25842,13 +25781,13 @@ function handle_syscall(atomIdx: number) {
       const currentMarketState = Atomics.load(marketState, 0);
       if (currentMarketState !== 1) {
         // No active crisis
-        contextI32View[regBase + 1] = 0; 
+        contextI32View[regBase + 1] = 0;
         break;
       }
 
       const scaledBet = energyBet * 1000;
       const availableEnergy = Atomics.load(energiesView, atomIdx);
-      
+
       // We already deducted gasCost * 1000 before reaching the switch block
       if (availableEnergy >= scaledBet) {
         Atomics.sub(energiesView, atomIdx, scaledBet);
@@ -26248,7 +26187,6 @@ self.onmessage = async (e) => {
     });
   }
 };
-
 ```
 
 ---
@@ -29201,49 +29139,70 @@ export const PULSE = {
   },
   getWorker: (idx: number): any => workers[idx],
 };
-
 ```
 
 ---
 
 ## FILE: README.md
 
-```markdown
+````markdown
 # OMEGA-64: Era 69 - Absolute Coherence 💎🛡️
 
-Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64. 
+Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64.
 
-*"We do not program life. We set the constants in which life is inevitable."*
+_"We do not program life. We set the constants in which life is inevitable."_
 
 ## 🧬 Architecture Overview
 
-Era 69 completely abandons the file-based "Flatland" of older eras in favor of the **Coherent Crystal** — a high-performance, concurrent, Shared-Memory physics engine driven by WebAssembly (WASM).
+Era 69 completely abandons the file-based "Flatland" of older eras in favor of
+the **Coherent Crystal** — a high-performance, concurrent, Shared-Memory physics
+engine driven by WebAssembly (WASM).
 
 ### 1. `STATE_MATRIX` (The Shared RAM)
-A unified `SharedArrayBuffer` spanning exactly `680MB`. 
-It holds `1,000,000` atoms, their 64-byte RISC genes, and their dynamic states (Energy, X, Y, Resonance, Roles). No database, no files, no serialization. Memory is the only truth.
+
+A unified `SharedArrayBuffer` spanning exactly `680MB`. It holds `1,000,000`
+atoms, their 64-byte RISC genes, and their dynamic states (Energy, X, Y,
+Resonance, Roles). No database, no files, no serialization. Memory is the only
+truth.
 
 ### 2. `PULSE_WORKER` (The Multi-Core Physics Bridge)
-WASM instances running across parallel Web Workers. Each worker ticks the physics of the matrix simultaneously. The Host (Deno) handles complex Euclidean mathematics and orchestrates the `SYSCALL` (0x60) interrupts thrown by WASM atoms.
+
+WASM instances running across parallel Web Workers. Each worker ticks the
+physics of the matrix simultaneously. The Host (Deno) handles complex Euclidean
+mathematics and orchestrates the `SYSCALL` (0x60) interrupts thrown by WASM
+atoms.
 
 ### 3. `SPATIAL_HASH` (The 2D Grid)
-A 140x80 spatial partitioning grid. Atoms automatically register their position, enabling hyper-fast radius queries, proximity sensing, and ecological interactions without O(N^2) bottlenecks.
+
+A 140x80 spatial partitioning grid. Atoms automatically register their position,
+enabling hyper-fast radius queries, proximity sensing, and ecological
+interactions without O(N^2) bottlenecks.
 
 ### 4. `AGENT_PROXY` (The LLM Soul Gateway)
-A REST HTTP server running concurrently with the Matrix loop. 
-It exposes simple endpoints (`GET /api/atom/:id` and `POST /api/atom/:id/act`) so that external Large Language Models (LLMs) can log in, take over an "Avatar" (ID: 9999), see the environment, and send WASM-compiled macro-intents to survive the savage ecology.
+
+A REST HTTP server running concurrently with the Matrix loop. It exposes simple
+endpoints (`GET /api/atom/:id` and `POST /api/atom/:id/act`) so that external
+Large Language Models (LLMs) can log in, take over an "Avatar" (ID: 9999), see
+the environment, and send WASM-compiled macro-intents to survive the savage
+ecology.
 
 ---
 
 ## 🚀 Running the Matrix
 
 To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
+
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
+````
 
 ### 🧠 Booting an LLM Avatar
-While the Matrix is running, you can connect an external Gemini AI to drive Atom `9999` (The Guardian). It will use your `GEMINI_API_KEY` to look at the Spatial Hash and physically run from predators or hunt prey!
+
+While the Matrix is running, you can connect an external Gemini AI to drive Atom
+`9999` (The Guardian). It will use your `GEMINI_API_KEY` to look at the Spatial
+Hash and physically run from predators or hunt prey!
+
 ```bash
 export GEMINI_API_KEY="..."
 deno run -A --unstable llm_soul.ts
@@ -29253,21 +29212,28 @@ deno run -A --unstable llm_soul.ts
 
 ## ⚖️ The Laws of Physics (Syscalls)
 
-In Era 69, an Atom's WASM genome can trigger the following biological interrupts:
-- `SYS_MOVE (0x0E)`: Updates X/Y coordinates on the Spatial Hash (`r1`=dx, `r2`=dy).
+In Era 69, an Atom's WASM genome can trigger the following biological
+interrupts:
+
+- `SYS_MOVE (0x0E)`: Updates X/Y coordinates on the Spatial Hash (`r1`=dx,
+  `r2`=dy).
 - `SYS_EAT (0x0F)`: Siphons energy from an adjacent organism (`r1`=targetIdx).
 - `SYS_MSG (0x08)`: Network cognition; sends a byte to another atom's mailbox.
-- `SYS_MUTATE (0x07)`: Self-modifying RISC. Writes a byte into the `instructionsView` of memory.
-- `SYS_REPLICATE (0x0B)`: Cell division. Copies the `instructionsView` to a dormant offspring.
+- `SYS_MUTATE (0x07)`: Self-modifying RISC. Writes a byte into the
+  `instructionsView` of memory.
+- `SYS_REPLICATE (0x0B)`: Cell division. Copies the `instructionsView` to a
+  dormant offspring.
 
-These calls cost **Metabolic Gas**. Every action drains energy. The universe enforces starvation to prune inefficient code.
+These calls cost **Metabolic Gas**. Every action drains energy. The universe
+enforces starvation to prune inefficient code.
 
 ---
 
-*This repository marks the **Feature Freeze** of the Deno/AssemblyScript prototype. It stands as the topological blueprint for the upcoming pure Rust `LAMBDA_VM_v2` migration.*
+_This repository marks the **Feature Freeze** of the Deno/AssemblyScript
+prototype. It stands as the topological blueprint for the upcoming pure Rust
+`LAMBDA_VM_v2` migration._
 
-```
-
+````
 ---
 
 ## FILE: RECOVERY.ts
@@ -29308,8 +29274,7 @@ export const ATOM = () => (x: any) => x;
     return true;
   },
 };
-
-```
+````
 
 ---
 
@@ -29475,7 +29440,6 @@ export class DollFork {
     };
   }
 }
-
 ```
 
 ---
@@ -29578,7 +29542,6 @@ export class DollForkRunner {
     }
   }
 }
-
 ```
 
 ---
@@ -29679,7 +29642,6 @@ export class DriftWarden {
     };
   }
 }
-
 ```
 
 ---
@@ -29785,7 +29747,6 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
-
 ```
 
 ---
@@ -29838,7 +29799,6 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
-
 ```
 
 ---
@@ -29848,7 +29808,6 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
-
 ```
 
 ---
@@ -30237,7 +30196,6 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
-
 ```
 
 ---
@@ -30317,7 +30275,6 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
-
 ```
 
 ---
@@ -30361,7 +30318,6 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
-
 ```
 
 ---
@@ -30413,7 +30369,6 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
-
 ```
 
 ---
@@ -30497,7 +30452,6 @@ export class RelicCultivator {
     }
   }
 }
-
 ```
 
 ---
@@ -30920,7 +30874,6 @@ The migration is considered real only when:
 - global dynamic knobs are formalized through hormone/ledger layers
 - semantic mutation is sandboxed and rollbackable
 - long-run stability survives the bridge without emergency host patching
-
 ```
 
 ---
@@ -31082,7 +31035,6 @@ ${REFLECTION_ENGINE.decompile(instructions)}
     }
   },
 };
-
 ```
 
 ---
@@ -31304,7 +31256,6 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -31437,7 +31388,6 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
-
 ```
 
 ---
@@ -31800,7 +31750,6 @@ export const evaluateArchitectPlasmidExecution = (
     hybridSuppressed: input.mode === "hybrid-reduce" && suppress,
   };
 };
-
 ```
 
 ---
@@ -31828,7 +31777,6 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
-
 ```
 
 ---
@@ -32232,7 +32180,6 @@ export const evaluateGuardianSignalExecution = (
     hybridSuppressed: !reduction.signalAllowed,
   };
 };
-
 ```
 
 ---
@@ -32370,7 +32317,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
 ```
 
 ---
@@ -32758,7 +32704,6 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
-
 ```
 
 ---
@@ -33613,7 +33558,6 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
-
 ```
 
 ---
@@ -34135,7 +34079,6 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```
 
 ---
@@ -35904,7 +35847,6 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
-
 ```
 
 ---
@@ -36008,7 +35950,6 @@ export const SNAP_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -36083,7 +36024,6 @@ export const SNAP = {
     }
   },
 };
-
 ```
 
 ---
@@ -36302,7 +36242,6 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
-
 ```
 
 ---
@@ -36794,7 +36733,6 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```
 
 ---
@@ -36997,7 +36935,6 @@ export const SOVEREIGNTY_ENGINE = {
     };
   },
 };
-
 ```
 
 ---
@@ -37118,7 +37055,6 @@ export const SPATIAL_HASH = {
     return hy * 140 + hx;
   },
 };
-
 ```
 
 ---
@@ -37885,7 +37821,6 @@ export const STATE_MATRIX = {
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
-
 ```
 
 ---
@@ -38071,7 +38006,6 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
-
 ```
 
 ---
@@ -38248,7 +38182,6 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -41925,7 +41858,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
-
 ```
 
 ---
@@ -42140,7 +42072,6 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
-
 ```
 
 ---
@@ -42281,7 +42212,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -45595,7 +45525,6 @@ if (import.meta.main) {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -48530,7 +48459,6 @@ if (import.meta.main) {
     }`,
   );
 }
-
 ```
 
 ---
@@ -49145,7 +49073,6 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
-
 ```
 
 ---
@@ -50620,7 +50547,6 @@ if (import.meta.main) {
     }
   }
 }
-
 ```
 
 ---
@@ -50791,14 +50717,13 @@ if (import.meta.main) {
   await assertWasmLayout();
   console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
-
 ```
 
 ---
 
 ## FILE: WASM_MIGRATION_RFC.md
 
-```markdown
+````markdown
 # OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
 
 ## 1. Executive Summary
@@ -50836,6 +50761,8 @@ perfectly with Wasm linear memory.
   });
   // Map our STATE_MATRIX over the wasmMemory.buffer
   ```
+````
+
 - Rust will access pointers to the various arrays (energies, resonances, codes)
   directly using raw pointers or `js-sys` TypedArrays.
 
@@ -50922,8 +50849,7 @@ the Universe."
   integer math, removing any V8 engine JIT unpredictability across different OS
   architectures.
 
-```
-
+````
 ---
 
 ## FILE: WASM_THREADSAFE_ROADMAP.md
@@ -51057,8 +50983,7 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-
-```
+````
 
 ---
 
@@ -51179,7 +51104,6 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
-
 ```
 
 ---
@@ -51469,7 +51393,6 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
-
 ```
 
 ---
@@ -51560,7 +51483,6 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
-
 ```
 
 ---
@@ -51716,7 +51638,6 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
-
 ```
 
 ---
@@ -51759,7 +51680,6 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
-
 ```
 
 ---
@@ -51784,8 +51704,6 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
-
 ```
 
 ---
-

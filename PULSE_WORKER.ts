@@ -600,7 +600,7 @@ function handle_syscall(atomIdx: number) {
         contextI32View[regBase + 1] = 0;
         break;
       }
-      
+
       const energyBet = Math.max(0, r1);
       if (energyBet <= 0) {
         contextI32View[regBase + 1] = 0;
@@ -610,13 +610,13 @@ function handle_syscall(atomIdx: number) {
       const currentMarketState = Atomics.load(marketState, 0);
       if (currentMarketState !== 1) {
         // No active crisis
-        contextI32View[regBase + 1] = 0; 
+        contextI32View[regBase + 1] = 0;
         break;
       }
 
       const scaledBet = energyBet * 1000;
       const availableEnergy = Atomics.load(energiesView, atomIdx);
-      
+
       // We already deducted gasCost * 1000 before reaching the switch block
       if (availableEnergy >= scaledBet) {
         Atomics.sub(energiesView, atomIdx, scaledBet);
