@@ -477,7 +477,7 @@ function handle_syscall(atomIdx: number) {
 
       if (
         radius > 0 && xsView && ysView && spatialGridView && idsView &&
-        energiesView
+        energiesView && resonancesView
       ) {
         // Deduct scan cost. Let's say 20 gas.
         const COST = 20 * 1000;
@@ -516,6 +516,10 @@ function handle_syscall(atomIdx: number) {
                 if (targetIdx === atomIdx) continue; // Skip self
 
                 if (idsView[targetIdx] !== 0n) {
+                  // Dark Forest Topology: Radar Stealth
+                  const targetRes = Atomics.load(resonancesView, targetIdx);
+                  if (targetRes <= 20) continue; // Invisible
+
                   const tx = xsView[targetIdx] / 100;
                   const ty = ysView[targetIdx] / 100;
                   const dx = tx - cx;

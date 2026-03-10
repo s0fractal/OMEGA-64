@@ -1924,8 +1924,28 @@ export function execute_atom(atomIndex: i32): void {
         let reg = load<u8>(instr_base + (pc + 1) as usize);
         let prop = load<u8>(instr_base + (pc + 2) as usize);
         let val = getReg(atomIndex, reg as i32);
-        if (prop == PROP_ENERGY) energy = val;
-        else if (prop == PROP_RESONANCE) resonance = val;
+        if (prop == PROP_ENERGY) {
+          energy = val;
+          setEnergy(atomIndex, val);
+        }
+        else if (prop == PROP_RESONANCE) {
+          if (val > resonance) {
+            let diff = val - resonance;
+            let cost = diff * 1000; // Energy is stored in thousandths
+            if (energy >= cost) {
+              energy -= cost;
+              resonance = val;
+            } else {
+              resonance += (energy / 1000);
+              energy = 0;
+            }
+          } else {
+            // Free stealth drop
+            resonance = val;
+          }
+          setResonance(atomIndex, resonance);
+          setEnergy(atomIndex, energy);
+        }
         else if (prop == PROP_PHASE) setPhase(atomIndex, val);
         pc += 3;
         gasUsed += 2;
