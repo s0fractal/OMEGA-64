@@ -5,11 +5,10 @@ import { STATE_MATRIX, wasmMemory } from "./STATE_MATRIX.ts";
 const main = async () => {
   const wasmBytes = await Deno.readFile("./build/release.wasm");
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
-    index: { trace_atom: () => {} },
+    index: { trace_atom: (a: any, b: any) => console.log("TRACE:", a, b) },
     env: {
       memory: wasmMemory,
       abort: () => {},
-      trace_atom: () => {},
     },
   });
   const tickGlyphTransport = instantiated.instance.exports
@@ -83,6 +82,7 @@ const main = async () => {
   STATE_MATRIX.memoryGrid[memoryOffset + 5] = 7;
 
   const internalTick = tick(32);
+  
   if (internalTick.internalSignalSeeds <= 0) {
     throw new Error(
       "[glyph-buffer] signal grid did not seed internal pheromone transport",

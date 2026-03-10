@@ -54,7 +54,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
   "guardian_base": [
     GLYPH.SET, 0, 100, // R0 = 100
     GLYPH.SET, 1, 1,   // R1 = 1 (Pheromone index)
-    GLYPH.SIGNAL, 1, 0, // Emit Pheromone with R0 (+100) intensity
+    GLYPH.SIGNAL,      // Emit Pheromone with R0 (+100) intensity
     GLYPH.I, // No-op return
   ],
 
@@ -67,7 +67,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.SET, 1, 100, // R1 = 100
     GLYPH.SUB, 0, 1,   // R0 = R0 - R1 (-100)
     GLYPH.SET, 2, 1,   // R2 = 1 (Pheromone index)
-    GLYPH.SIGNAL, 2, 0, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.SIGNAL,       // Emit Pheromone with R0 (-100) intensity
     GLYPH.I, 
   ],
 
@@ -76,10 +76,10 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [
-    GLYPH.COLLECTIVE,
-    7,
-    100,
-    200, // Mode 7 (PLASMID_EMIT), intensity=100, type=200
+    GLYPH.SET, 0, 100, // R0 = 100 (Charge / Amplitude)
+    GLYPH.SET, 1, 0,   // R1 = 0 (Plasmid index)
+    GLYPH.PLUG, 0, 0,  // Apply structural charge intent
+    GLYPH.SIGNAL,      // Emit Plasmid signal
     GLYPH.I,
   ],
 
@@ -88,6 +88,9 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Basic reproduction logic.
    */
   "replicator_base": [
+    GLYPH.SET, 0, 50,  // R0 = 50 (Low signal)
+    GLYPH.SET, 1, 2,   // R1 = 2 (Replication scent)
+    GLYPH.SIGNAL,
     GLYPH.REPLICATE,
     GLYPH.I,
   ],

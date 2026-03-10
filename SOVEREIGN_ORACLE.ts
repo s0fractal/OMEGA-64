@@ -7,6 +7,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { PULSE } from "./PULSE.ts";
 
 type OraclePendingMutation =
   | {
@@ -320,6 +321,28 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
+        // --- PHASE 23: EPISTEMIC LOOP CAUTION ---
+        try {
+          // Pre-flight check via native WebAssembly shadow clone
+          const drift = await PULSE.simulateFuture(50, regentIndex, new Uint8Array(newInstructions));
+          
+          let driftIndex = 0;
+          if (drift.populationDiff < 0) driftIndex += Math.abs(drift.populationDiff) * 2;
+          if (drift.coherenceDiff < 0) driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
+          if (drift.energyDiff < -100) driftIndex += Math.abs(drift.energyDiff) * 0.01;
+          
+          if (driftIndex > 20) {
+            LOGGER.warn(
+              `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${driftIndex.toFixed(2)})`
+            );
+            return; // Abort timeline divergence
+          }
+          LOGGER.info(`🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${driftIndex.toFixed(2)}`);
+        } catch (simErr) {
+          LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
+          return;
+        }
+
         if (ORACLE_MUTATION_MODE === "shadow") {
           const proposalId = `sp_${Date.now()}`;
           const driftBudget = 0.15; // Fixed budget for now

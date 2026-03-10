@@ -108,7 +108,8 @@ export class AgentProxy {
           Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
             Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
         ),
-      })).sort((a, b) => a.distance - b.distance);
+      })).sort((a, b) => a.distance - b.distance)
+         .slice(0, 30);
 
     return new Response(
       JSON.stringify({

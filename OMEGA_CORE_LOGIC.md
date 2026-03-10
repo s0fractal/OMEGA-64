@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-10T00:52:46.147Z*
-*Exported Files: 129*
+*Generated: 2026-03-10T02:09:09.147Z*
+*Exported Files: 136*
 *Runtime Roots: 11*
 *Runtime Closure Files: 65*
-*Non-Runtime Code Files: 49*
+*Non-Runtime Code Files: 56*
 *Runtime-Support Code Files: 18*
-*Experimental Code Files: 31*
+*Experimental Code Files: 38*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
-*Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
-*Export Content SHA256: fe909435951fda7b0d40a463dbfd619bd64a1fe6f2057ad2a7eca7c7b7e34b32*
-*Git Commit: 1564485065de*
+*Export Set SHA256: f01e625c1278a53b135b4f03e472cd6b0d27eda77c7728461c6149eb309868e5*
+*Export Content SHA256: 5cbf05398f3fc2693c1d8286ff12e94a56c220eec83b1d91b74559326fe6ee6c*
+*Git Commit: 46c47791253e*
 
 ---
 
@@ -105,11 +105,17 @@
 - ATOMIC_LEDGER.ts
 - avatar_bot.ts
 - build_wasm.ts
+- calc_rust_offsets.ts
 - check_guardians.ts
 - check_wasm_imports.ts
+- debug_tick.ts
 - ECOLOGY_ENGINE.ts
 - ENZYME_DIGEST.ts
 - FORCE_BOOTSTRAP.ts
+- gen_rust_deno.ts
+- gen_rust.ts
+- gen_rust4_fix.ts
+- gen_rust4.ts
 - HOLOGRAM_INJECTOR.ts
 - HOLOGRAM_MODULE.ts
 - LAMBDA_VM.ts
@@ -143,6 +149,7 @@
 - verification/reduction_cases.ts
 - verification/reduction_harness.ts
 - verification/secretion_energetics_audit.ts
+- verify_offsets.ts
 - wasm_layout_guard.ts
 - worker_determinism_capture.ts
 - worker_gate_thresholds.ts
@@ -181,11 +188,17 @@
 
 - ATOMIC_LEDGER.ts
 - avatar_bot.ts
+- calc_rust_offsets.ts
 - check_guardians.ts
 - check_wasm_imports.ts
+- debug_tick.ts
 - ECOLOGY_ENGINE.ts
 - ENZYME_DIGEST.ts
 - FORCE_BOOTSTRAP.ts
+- gen_rust_deno.ts
+- gen_rust.ts
+- gen_rust4_fix.ts
+- gen_rust4.ts
 - HOLOGRAM_INJECTOR.ts
 - LAMBDA_VM.ts
 - LONGRUN_CANARY.ts
@@ -209,6 +222,7 @@
 - verification/reduction_cases.ts
 - verification/reduction_harness.ts
 - verification/secretion_energetics_audit.ts
+- verify_offsets.ts
 - ZERO_IOPS.ts
 
 ---
@@ -326,7 +340,8 @@ export class AgentProxy {
           Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
             Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
         ),
-      })).sort((a, b) => a.distance - b.distance);
+      })).sort((a, b) => a.distance - b.distance)
+         .slice(0, 30);
 
     return new Response(
       JSON.stringify({
@@ -4898,57 +4913,58 @@ export function math_cos(angle: i32, highRes: i32): i32 {
 const RESOURCE_MAX: i32 = 2000000000;
 
 // EXACT UNIFIED OFFSETS matching OFFSETS.ts
-const MAX_ATOMS: i32 = 100000;
+const MAX_ATOMS: i32 = 500000;
 const SAFETY_BUFFER: usize = 8000000;
 const TICK_COUNTER_OFF: usize = SAFETY_BUFFER - 8;
 const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
-const XS_OFFSET: usize = SAFETY_BUFFER + 800000;
-const YS_OFFSET: usize = SAFETY_BUFFER + 1000000;
-const ENERGY_OFFSET: usize = SAFETY_BUFFER + 1200000;
-const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 1600000;
-const PHASE_OFFSET: usize = SAFETY_BUFFER + 2000000;
-const LOGIC_OFFSET: usize = SAFETY_BUFFER + 2400000;
-const BONDS_OFFSET: usize = SAFETY_BUFFER + 3200000;
-const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 4800000;
-const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 6400000;
-const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 12800000;
-const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 19200000;
+const XS_OFFSET: usize = SAFETY_BUFFER + 4000000;
+const YS_OFFSET: usize = SAFETY_BUFFER + 5000000;
+const ENERGY_OFFSET: usize = SAFETY_BUFFER + 6000000;
+const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 8000000;
+const PHASE_OFFSET: usize = SAFETY_BUFFER + 10000000;
+const LOGIC_OFFSET: usize = SAFETY_BUFFER + 12000000;
+const BONDS_OFFSET: usize = SAFETY_BUFFER + 16000000;
+const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 24000000;
+const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 32000000;
+const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 64000000;
+const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 96000000;
 const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
-const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 22000000;
-const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 23200000;
-const ROLES_OFFSET: usize = SAFETY_BUFFER + 33200000;
-const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 34200000;
-const SIGNAL_GRID_OFF: usize = SAFETY_BUFFER + 35200000;
-const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 36200000;
-const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 37200000;
-const BOND_DIST_OFF: usize = SAFETY_BUFFER + 38200000;
-const DAMPING_OFF: usize = SAFETY_BUFFER + 39200000;
-const CAUSALITY_OFF: usize = SAFETY_BUFFER + 39300000;
-const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 40200000;
-const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 40201024;
-const QUORUM_OFFSET: usize = SAFETY_BUFFER + 40300000;
-const SPAWN_GRID_OFF: usize = SAFETY_BUFFER + 19600000;
-const COHERENCE_OFF: usize = SAFETY_BUFFER + 40700100;
-const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 40700104;
-const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 40800000;
-const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 41000000;
-const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 41200000;
-const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 41600000;
-const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 42000000;
-const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 42400000;
-const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 42800000;
-const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 42844800;
-const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 42889600;
-const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 42934400;
-const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 42979200;
-const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 42980224;
-const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 43025024;
-const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 43114624;
-const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 43159424;
-const HORMONE_OFF: usize = SAFETY_BUFFER + 43249024;
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 43249040;
-const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 43400000;
-const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 20800000;
+const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 104024584;
+const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 110024584;
+const ROLES_OFFSET: usize = SAFETY_BUFFER + 111458184;
+const STRUCTURE_GRID_OFF: usize = SAFETY_BUFFER + 111958184;
+const SIGNAL_GRID_OFF: usize = SAFETY_BUFFER + 112002984;
+const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 112047784;
+const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 112137384;
+const BOND_DIST_OFF: usize = SAFETY_BUFFER + 117137384;
+const DAMPING_OFF: usize = SAFETY_BUFFER + 119137384;
+const CAUSALITY_OFF: usize = SAFETY_BUFFER + 119637384;
+const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 120137384;
+const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 120138408;
+const QUORUM_OFFSET: usize = SAFETY_BUFFER + 120138412;
+const SPAWN_REQUESTS_OFF: usize = SAFETY_BUFFER + 98000000;
+const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFF;
+const COHERENCE_OFF: usize = SAFETY_BUFFER + 120496812;
+const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 120496816;
+const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 120496820;
+const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 121496820;
+const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 122496820;
+const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 124496820;
+const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 126496820;
+const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 128496820;
+const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 130496820;
+const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 130541620;
+const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 130586420;
+const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 130631220;
+const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 130676020;
+const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 130677044;
+const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 130721844;
+const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 130811444;
+const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 130856244;
+const HORMONE_OFF: usize = SAFETY_BUFFER + 130945844;
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 130945860;
+const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 130945912;
+const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;
 const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
 const SPAWN_MAX: i32 = 1024;
 const SPAWN_SLOT: i32 = 24;
@@ -7489,9 +7505,9 @@ const args = [
   "-A",
   "npm:assemblyscript@0.28.9/asc",
   "assembly/index.ts",
+  "-O",
   "-o",
   "build/release.wasm",
-  "-O",
   "--noAssert",
   "--importMemory",
   "--sharedMemory",
@@ -7518,6 +7534,114 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
+
+```
+
+---
+
+## FILE: calc_rust_offsets.ts
+
+```typescript
+import * as off from "./OFFSETS.ts";
+
+const bounds = {
+    ids: off.IDS_OFFSET,
+    xs: off.XS_OFFSET,
+    ys: off.YS_OFFSET,
+    energy: off.ENERGY_OFFSET,
+    resonance: off.RESONANCE_OFFSET,
+    phase: off.PHASE_OFFSET,
+    logic: off.LOGIC_OFFSET,
+    bonds: off.BONDS_OFFSET,
+    stiffness: off.STIFFNESS_OFFSET,
+    instructions: off.INSTRUCTIONS_OFFSET,
+    context: off.CONTEXT_OFFSET,
+    evolution_reserved: off.EVOLUTION_OFFSET,
+    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+    meiosis: off.MEIOSIS_OFFSET,
+    bond_requests: off.BOND_REQUESTS_OFFSET,
+    spatial_grid: off.SPATIAL_GRID_OFFSET,
+    roles: off.ROLES_OFFSET,
+    structure_grid: off.STRUCTURE_GRID_OFFSET,
+    signal_grid: off.SIGNAL_GRID_OFFSET,
+    memory_grid: off.MEMORY_GRID_OFFSET,
+    ascension_stats: off.ASCENSION_STATS_OFFSET,
+    bond_distances: off.BOND_DISTANCES_OFFSET,
+    damping: off.DAMPING_OFFSET,
+    causality: off.CAUSALITY_OFFSET,
+    hive_memory: off.HIVE_MEMORY_OFFSET,
+    hive_balance: off.HIVE_BALANCE_OFFSET,
+    quorum: off.QUORUM_OFFSET,
+    coherence: off.COHERENCE_OFFSET,
+    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+    energy_delta: off.ENERGY_DELTA_OFFSET,
+    resonance_delta: off.RESONANCE_DELTA_OFFSET,
+    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+    attention_field: off.ATTENTION_FIELD_OFFSET,
+    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+    glyph_header: off.GLYPH_HEADER_OFFSET,
+    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    hormones: off.HORMONE_OFFSET,
+    secretion_stats: off.SECRETION_STATS_OFFSET,
+    lineage: off.LINEAGE_OFFSET,
+    mailbox: off.MAILBOX_OFFSET,
+    ledger_head: off.LEDGER_HEAD_OFFSET,
+    ledger_data: off.LEDGER_DATA_OFFSET,
+};
+
+
+for (const [k, v] of Object.entries(bounds)) {
+   console.log(`${k}: ${v} (+ 8 buffer) -> expected Rust offset_of: ${v + 8}`);
+}
+
+// Calculate the rust padding bytes 
+const expectedSizeForPad = (name: string, curEnd: number, nextTarget: number) => {
+    let pad = nextTarget - curEnd;
+    console.log(`_pad_${name}: [u8; ${pad}] // align to ${nextTarget+8}`);
+}
+
+let bytesPerAtom = {
+   bonds: 4 * 4,
+   stiffness: 4 * 4,
+   roles: 1,
+   bond_distances: 4,
+   damping: 1,
+   causality: 1,
+   physics_xs: 2,
+};
+console.log("\n");
+
+// from 110,024,584
+let end_spatial = bounds.spatial_grid + (140 * 80 * 128); // 32 * i32
+expectedSizeForPad("roles", end_spatial, bounds.roles);
+
+let end_roles = bounds.roles + 500000;
+expectedSizeForPad("structure_grid", end_roles, bounds.structure_grid);
+
+let end_structure = bounds.structure_grid + (140 * 80 * 4);
+expectedSizeForPad("signal_grid", end_structure, bounds.signal_grid);
+
+let end_signal = bounds.signal_grid + (140 * 80 * 4);
+expectedSizeForPad("memory_grid", end_signal, bounds.memory_grid);
+
+let end_memory = bounds.memory_grid + (140 * 80 * 8);
+expectedSizeForPad("ascension", end_memory, bounds.ascension_stats);
+
+// _pad_damping
+// Note bond_distances in off is after ascension stats theoretically, wait, no, bounds says BOND_DISTANCES_OFFSET = 117137384. 
+// Ascension ends at 112137384 + (250000 * 4) = 113,137,384? Wait, memory.rs gives [i32; 250_000] for ascension... Wait, memory.rs has 250000 not 500000 for ascension? Oh, memory_grid is earlier.
+// Wait, bounds.ascension_stats + 250_000 * 4 = 112137384 + 1000000 = 113137384. But bond_distances is 117137384! That means there's a 4M pad missing or the array size scales with atoms? 
+// Memory.rs: pub ascension_stats: [i32; 250_000] -> this was meant to be MAX_ATOMS * i32 perhaps?! 500k atoms * 4 = 2,000,000 bytes ... wait, old was 250000 * 4 = 1,000,000. For 100k, that is 10 bytes per atom? Let's check sizes... Wait, I should just match what I did in the offset calculator earlier!
+// Let me look at OFFSETS.js.
+
 
 ```
 
@@ -9958,6 +10082,50 @@ export const planInvariantIngress = (
     admission,
   };
 };
+
+```
+
+---
+
+## FILE: debug_tick.ts
+
+```typescript
+import { STATE_MATRIX, wasmMemory } from "./STATE_MATRIX.ts";
+
+const main = async () => {
+  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  console.log("Loaded wasm bytes", wasmBytes.length);
+  const instantiated = await WebAssembly.instantiate(wasmBytes, {
+    index: { trace_atom: (a: any, b: any) => console.log("TRACE:", a, b) },
+    env: {
+      memory: wasmMemory,
+      abort: () => console.log("ABORT"),
+      trace_atom: (a: any, b: any) => console.log("TRACE:", a, b),
+    },
+  });
+  console.log("Instantiated.");
+  const tickGlyphTransport = instantiated.instance.exports.tickGlyphTransport as (tick: number) => void;
+  Atomics.store(STATE_MATRIX.signalGrid, 512, 512);
+  const memoryCell = 544;
+  const memoryOffset = memoryCell * 8;
+  STATE_MATRIX.memoryGrid[memoryOffset] = 128;
+  STATE_MATRIX.memoryGrid[memoryOffset + 4] = 9;
+  STATE_MATRIX.memoryGrid[memoryOffset + 5] = 7;
+  console.log("Calling tickGlyphTransport...");
+  tickGlyphTransport(7);
+  console.log("Done calling tickGlyphTransport.");
+
+  const secretionStatsView = new Int32Array(
+    STATE_MATRIX.buffer,
+    138945860, // SECRETION_STATS_OFFSET from OFFSETS.ts
+    12,
+  );
+  
+  console.log("Secretion Stats [10] (Signal Leak):", Atomics.load(secretionStatsView, 10));
+  console.log("Secretion Stats [11] (Memory Leak):", Atomics.load(secretionStatsView, 11));
+};
+
+main();
 
 ```
 
@@ -12999,6 +13167,622 @@ export const GATE = {
     );
   },
 };
+
+```
+
+---
+
+## FILE: gen_rust_deno.ts
+
+```typescript
+import * as off from "./OFFSETS.ts";
+
+const bounds = {
+    tick_counter: 7999992,
+    sync_state: 7999996,
+    ids: off.IDS_OFFSET,
+    xs: off.XS_OFFSET,
+    ys: off.YS_OFFSET,
+    energy: off.ENERGY_OFFSET,
+    resonance: off.RESONANCE_OFFSET,
+    phase: off.PHASE_OFFSET,
+    logic: off.LOGIC_OFFSET,
+    bonds: off.BONDS_OFFSET,
+    stiffness: off.STIFFNESS_OFFSET,
+    instructions: off.INSTRUCTIONS_OFFSET,
+    context: off.CONTEXT_OFFSET,
+    evolution_reserved: off.EVOLUTION_OFFSET,
+    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+    meiosis: off.MEIOSIS_OFFSET,
+    bond_requests: off.BOND_REQUESTS_OFFSET,
+    spatial_grid: off.SPATIAL_GRID_OFFSET,
+    roles: off.ROLES_OFFSET,
+    structure_grid: off.STRUCTURE_GRID_OFFSET,
+    signal_grid: off.SIGNAL_GRID_OFFSET,
+    memory_grid: off.MEMORY_GRID_OFFSET,
+    ascension_stats: off.ASCENSION_STATS_OFFSET,
+    bond_distances: off.BOND_DISTANCES_OFFSET,
+    damping: off.DAMPING_OFFSET,
+    causality: off.CAUSALITY_OFFSET,
+    hive_memory: off.HIVE_MEMORY_OFFSET,
+    hive_balance: off.HIVE_BALANCE_OFFSET,
+    quorum: off.QUORUM_OFFSET,
+    coherence: off.COHERENCE_OFFSET,
+    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+    energy_delta: off.ENERGY_DELTA_OFFSET,
+    resonance_delta: off.RESONANCE_DELTA_OFFSET,
+    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+    attention_field: off.ATTENTION_FIELD_OFFSET,
+    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+    glyph_header: off.GLYPH_HEADER_OFFSET,
+    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    hormones: off.HORMONE_OFFSET,
+    secretion_stats: off.SECRETION_STATS_OFFSET,
+    lineage: off.LINEAGE_OFFSET,
+    mailbox: off.MAILBOX_OFFSET,
+    ledger_head: off.LEDGER_HEAD_OFFSET,
+    ledger_data: off.LEDGER_DATA_OFFSET,
+};
+
+
+const sizes: Record<string, number> = {
+   tick_counter: 4,
+   sync_state: 4,
+   ids: 8*500000,
+   xs: 2*500000,
+   ys: 2*500000,
+   energy: 4*500000,
+   resonance: 4*500000,
+   phase: 4*500000,
+   logic: 8*500000,
+   bonds: 4*500000*4,
+   stiffness: 4*500000*4,
+   instructions: 64*500000,
+   context: 64*500000,
+   evolution_reserved: 4*500000,
+   spawn_requests: 24584,
+   meiosis: 4*300000,
+   bond_requests: 4*500000*3,
+   spatial_grid: 4*358400,
+   roles: 1*500000,
+   structure_grid: 4*11200,
+   signal_grid: 4*11200,
+   memory_grid: 8*11200,
+   ascension_stats: 4*250000,
+   bond_distances: 1*500000*4,
+   damping: 1*500000,
+   causality: 1*500000,
+   hive_memory: 1024,
+   hive_balance: 4,
+   quorum: 4*100025,
+   coherence: 4,
+   neural_coherence: 4,
+   physics_read_xs: 2*500000,
+   physics_read_ys: 2*500000,
+   physics_read_energy: 4*500000,
+   physics_read_resonance: 4*500000,
+   energy_delta: 4*500000,
+   resonance_delta: 4*500000,
+   structure_build_owner: 4*11200,
+   structure_build_value: 4*11200,
+   structure_charge_intent: 4*11200,
+   attention_field: 4*11200,
+   hive_energy_pool: 4*256,
+   glyph_header: 4*11200,
+   glyph_payload: 8*11200,
+   glyph_scratch_header: 4*11200,
+   glyph_scratch_payload: 8*11200,
+   hormones: 2*8,
+   secretion_stats: 4*12,
+   lineage: 8*500000,
+   mailbox: 8*500000,
+   ledger_head: 4,
+   ledger_data: 16*65536,
+};
+const keys = Object.keys(bounds) as (keyof typeof bounds)[];
+let out = `    pub _pad_front: [u8; 7_999_992],
+    pub tick_counter: i32, // 7,999,992
+    pub sync_state: i32,   // 7,999,996
+`;
+let cur = 8000000;
+for (const k of keys) {
+   if (k === 'tick_counter' || k === 'sync_state') continue;
+   let start = bounds[k];
+   if (start > cur) {
+       out += `    pub _pad_to_${String(k)}: [u8; ${start - cur}],\n`;
+   }
+   if (start < cur) {
+       console.log(`OVERLAP AT ${String(k)}: wants ${start} but cur is ${cur}`);
+   }
+   
+   let typ = "u8";
+    if (k === "ids" || k === "lineage") out += `    pub ${String(k)}: [u64; ${sizes[k]/8}],\n`;
+    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k as string)) out += `    pub ${String(k)}: [i16; ${sizes[k]/2}],\n`;
+    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k as string)) out += `    pub ${String(k)}: [i32; ${sizes[k]/4}],\n`;
+    else if (["stiffness", "attention_field"].includes(k as string)) out += `    pub ${String(k)}: [f32; ${sizes[k]/4}],\n`;
+    else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k as string)) out += `    pub ${String(k)}: [[u8; 8]; ${sizes[k]/8}],\n`;
+    else if (k === "instructions") out += `    pub ${String(k)}: [[u8; 64]; ${sizes[k]/64}],\n`;
+    else if (k === "context") out += `    pub ${String(k)}: [[i32; 16]; ${sizes[k]/64}],\n`;
+    else if (k === "mailbox") out += `    pub ${String(k)}: [[i32; 2]; ${sizes[k]/8}],\n`;
+    else if (k === "ledger_data") out += `    pub ${String(k)}: [[i32; 4]; ${sizes[k]/16}],\n`;
+    else if (k === "hormones") out += `    pub ${String(k)}: [u16; ${sizes[k]/2}],\n`;
+    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k as string)) out += `    pub ${String(k)}: i32,\n`;
+    else out += `    pub ${String(k)}: [u8; ${sizes[k]}],\n`;
+
+   cur = start + sizes[k];
+}
+Deno.writeTextFileSync("/tmp/struct.txt", out);
+
+```
+
+---
+
+## FILE: gen_rust.ts
+
+```typescript
+import * as off from "./OFFSETS.ts";
+
+const bounds = {
+    tick_counter: 7999992,
+    sync_state: 7999996,
+    ids: off.IDS_OFFSET,
+    xs: off.XS_OFFSET,
+    ys: off.YS_OFFSET,
+    energy: off.ENERGY_OFFSET,
+    resonance: off.RESONANCE_OFFSET,
+    phase: off.PHASE_OFFSET,
+    logic: off.LOGIC_OFFSET,
+    bonds: off.BONDS_OFFSET,
+    stiffness: off.STIFFNESS_OFFSET,
+    instructions: off.INSTRUCTIONS_OFFSET,
+    context: off.CONTEXT_OFFSET,
+    evolution_reserved: off.EVOLUTION_OFFSET,
+    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+    meiosis: off.MEIOSIS_OFFSET,
+    bond_requests: off.BOND_REQUESTS_OFFSET,
+    spatial_grid: off.SPATIAL_GRID_OFFSET,
+    roles: off.ROLES_OFFSET,
+    structure_grid: off.STRUCTURE_GRID_OFFSET,
+    signal_grid: off.SIGNAL_GRID_OFFSET,
+    memory_grid: off.MEMORY_GRID_OFFSET,
+    ascension_stats: off.ASCENSION_STATS_OFFSET,
+    bond_distances: off.BOND_DISTANCES_OFFSET,
+    damping: off.DAMPING_OFFSET,
+    causality: off.CAUSALITY_OFFSET,
+    hive_memory: off.HIVE_MEMORY_OFFSET,
+    hive_balance: off.HIVE_BALANCE_OFFSET,
+    quorum: off.QUORUM_OFFSET,
+    coherence: off.COHERENCE_OFFSET,
+    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+    energy_delta: off.ENERGY_DELTA_OFFSET,
+    resonance_delta: off.RESONANCE_DELTA_OFFSET,
+    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+    attention_field: off.ATTENTION_FIELD_OFFSET,
+    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+    glyph_header: off.GLYPH_HEADER_OFFSET,
+    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    hormones: off.HORMONE_OFFSET,
+    secretion_stats: off.SECRETION_STATS_OFFSET,
+    lineage: off.LINEAGE_OFFSET,
+    mailbox: off.MAILBOX_OFFSET,
+    ledger_head: off.LEDGER_HEAD_OFFSET,
+    ledger_data: off.LEDGER_DATA_OFFSET,
+};
+
+
+const sizes = {
+   tick_counter: 4,
+   sync_state: 4,
+   ids: 8*500000,
+   xs: 2*500000,
+   ys: 2*500000,
+   energy: 4*500000,
+   resonance: 4*500000,
+   phase: 4*500000,
+   logic: 8*500000,
+   bonds: 4*500000*4,
+   stiffness: 4*500000*4,
+   instructions: 64*500000,
+   context: 64*500000,
+   evolution_reserved: 4*500000,
+   spawn_requests: 24584,
+   meiosis: 4*300000,
+   bond_requests: 4*500000*3,
+   spatial_grid: 4*358400,
+   roles: 1*500000,
+   structure_grid: 4*11200,
+   signal_grid: 4*11200,
+   memory_grid: 8*11200,
+   ascension_stats: 4*250000,
+   bond_distances: 1*500000*4,
+   damping: 1*500000,
+   causality: 1*500000,
+   hive_memory: 1024,
+   hive_balance: 4,
+   quorum: 4*100025,
+   coherence: 4,
+   neural_coherence: 4,
+   physics_read_xs: 2*500000,
+   physics_read_ys: 2*500000,
+   physics_read_energy: 4*500000,
+   physics_read_resonance: 4*500000,
+   energy_delta: 4*500000,
+   resonance_delta: 4*500000,
+   structure_build_owner: 4*11200,
+   structure_build_value: 4*11200,
+   structure_charge_intent: 4*11200,
+   attention_field: 4*11200,
+   hive_energy_pool: 4*256,
+   glyph_header: 4*11200,
+   glyph_payload: 8*11200,
+   glyph_scratch_header: 4*11200,
+   glyph_scratch_payload: 8*11200,
+   hormones: 2*8,
+   secretion_stats: 4*12,
+   lineage: 8*500000,
+   mailbox: 8*500000,
+   ledger_head: 4,
+   ledger_data: 16*65536,
+};
+
+let current = 7999992;
+for (const [k, v] of Object.entries(bounds)) {
+    if (v > current) {
+       let pad = v - current;
+       console.log(`pub _pad_${k}: [u8; ${pad}], // to ${v}`);
+    }
+    
+    // We don't type it out fully, just output the test blocks too
+    console.log(`assert_eq!(offset_of!(SigmaMatrix, ${k}), ${v + 8}, "${k}");`);
+    
+    current = v + sizes[k];
+}
+
+```
+
+---
+
+## FILE: gen_rust4_fix.ts
+
+```typescript
+import * as off from "./OFFSETS.ts";
+
+const bounds: Record<string, number> = {
+    tick_counter: 7999992,
+    sync_state: 7999996,
+    ids: off.IDS_OFFSET,
+    xs: off.XS_OFFSET,
+    ys: off.YS_OFFSET,
+    energy: off.ENERGY_OFFSET,
+    resonance: off.RESONANCE_OFFSET,
+    phase: off.PHASE_OFFSET,
+    logic: off.LOGIC_OFFSET,
+    bonds: off.BONDS_OFFSET,
+    stiffness: off.STIFFNESS_OFFSET,
+    instructions: off.INSTRUCTIONS_OFFSET,
+    context: off.CONTEXT_OFFSET,
+    evolution_reserved: off.EVOLUTION_OFFSET,
+    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+    meiosis: off.MEIOSIS_OFFSET,
+    bond_requests: off.BOND_REQUESTS_OFFSET,
+    spatial_grid: off.SPATIAL_GRID_OFFSET,
+    roles: off.ROLES_OFFSET,
+    structure_grid: off.STRUCTURE_GRID_OFFSET,
+    signal_grid: off.SIGNAL_GRID_OFFSET,
+    memory_grid: off.MEMORY_GRID_OFFSET,
+    ascension_stats: off.ASCENSION_STATS_OFFSET,
+    bond_distances: off.BOND_DISTANCES_OFFSET,
+    damping: off.DAMPING_OFFSET,
+    causality: off.CAUSALITY_OFFSET,
+    hive_memory: off.HIVE_MEMORY_OFFSET,
+    hive_balance: off.HIVE_BALANCE_OFFSET,
+    quorum: off.QUORUM_OFFSET,
+    coherence: off.COHERENCE_OFFSET,
+    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+    energy_delta: off.ENERGY_DELTA_OFFSET,
+    resonance_delta: off.RESONANCE_DELTA_OFFSET,
+    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+    attention_field: off.ATTENTION_FIELD_OFFSET,
+    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+    glyph_header: off.GLYPH_HEADER_OFFSET,
+    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    hormones: off.HORMONE_OFFSET,
+    secretion_stats: off.SECRETION_STATS_OFFSET,
+    lineage: off.LINEAGE_OFFSET,
+    mailbox: off.MAILBOX_OFFSET,
+    ledger_head: off.LEDGER_HEAD_OFFSET,
+    ledger_data: off.LEDGER_DATA_OFFSET,
+};
+
+
+const sizes: Record<string, number>  = {
+   tick_counter: 4,
+   sync_state: 4,
+   ids: 8*500000,
+   xs: 2*500000,
+   ys: 2*500000,
+   energy: 4*500000,
+   resonance: 4*500000,
+   phase: 4*500000,
+   logic: 8*500000,
+   bonds: 4*500000*4,
+   stiffness: 4*500000*4,
+   instructions: 64*500000,
+   context: 64*500000,
+   evolution_reserved: 4*500000,
+   spawn_requests: 24584,
+   meiosis: 4*300000,
+   bond_requests: 4*500000*3,
+   spatial_grid: 4*358400,
+   roles: 1*500000,
+   structure_grid: 4*11200,
+   signal_grid: 4*11200,
+   memory_grid: 8*11200,
+   ascension_stats: 4*250000,
+   bond_distances: 1*500000*4,
+   damping: 1*500000,
+   causality: 1*500000,
+   hive_memory: 1024,
+   hive_balance: 4,
+   quorum: 4*89600,
+   coherence: 4,
+   neural_coherence: 4,
+   physics_read_xs: 2*500000,
+   physics_read_ys: 2*500000,
+   physics_read_energy: 4*500000,
+   physics_read_resonance: 4*500000,
+   energy_delta: 4*500000,
+   resonance_delta: 4*500000,
+   structure_build_owner: 4*11200,
+   structure_build_value: 4*11200,
+   structure_charge_intent: 4*11200,
+   attention_field: 4*11200,
+   hive_energy_pool: 4*256,
+   glyph_header: 4*11200,
+   glyph_payload: 8*11200,
+   glyph_scratch_header: 4*11200,
+   glyph_scratch_payload: 8*11200,
+   hormones: 2*8,
+   secretion_stats: 4*12,
+   lineage: 8*500000,
+   mailbox: 8*500000,
+   ledger_head: 4,
+   ledger_data: 16*65536,
+};
+
+const keys = Object.keys(bounds);
+
+let structOut = `
+    pub _pad_front: [u8; 7_999_992],
+    pub tick_counter: i32,
+    pub sync_state: i32,
+`;
+
+let testOut = `
+    #[test]
+    fn verify_memory_offsets() {
+        assert_eq!(offset_of!(SigmaMatrix, tick_counter), 7_999_992, "tick_counter");
+        assert_eq!(offset_of!(SigmaMatrix, sync_state), 7_999_996, "sync_state");
+`;
+
+let cur = 8000000;
+for (const k of keys) {
+   if (k === 'tick_counter' || k === 'sync_state') continue;
+   let start = bounds[k];
+   if (start > cur) {
+       structOut += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
+   }
+   
+    if (k === "ids" || k === "lineage") structOut += `    pub ${k}: [u64; ${sizes[k]/8}],\n`;
+    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) structOut += `    pub ${k}: [i16; ${sizes[k]/2}],\n`;
+    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k)) structOut += `    pub ${k}: [i32; ${sizes[k]/4}],\n`;
+    else if (["stiffness", "attention_field"].includes(k)) structOut += `    pub ${k}: [f32; ${sizes[k]/4}],\n`;
+    else if (["logic", "glyph_payload", "glyph_scratch_payload", "memory_grid"].includes(k)) structOut += `    pub ${k}: [[u8; 8]; ${sizes[k]/8}],\n`;
+    else if (k === "instructions") structOut += `    pub ${k}: [[u8; 64]; ${sizes[k]/64}],\n`;
+    else if (k === "context") structOut += `    pub ${k}: [[i32; 16]; ${sizes[k]/64}],\n`;
+    else if (k === "mailbox") structOut += `    pub ${k}: [[i32; 2]; ${sizes[k]/8}],\n`;
+    else if (k === "ledger_data") structOut += `    pub ${k}: [[i32; 4]; ${sizes[k]/16}],\n`;
+    else if (k === "hormones") structOut += `    pub ${k}: [u16; ${sizes[k]/2}],\n`;
+    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)) structOut += `    pub ${k}: i32,\n`;
+    else structOut += `    pub ${k}: [u8; ${sizes[k]}],\n`;
+
+   testOut += `        assert_eq!(offset_of!(SigmaMatrix, ${k}), ${start}, "${k}");\n`;
+
+   cur = start + sizes[k];
+}
+
+testOut += `    }\n`;
+
+import * as fs from "node:fs";
+
+let memory_rs = fs.readFileSync("sigma_core/src/memory.rs", "utf8");
+
+memory_rs = memory_rs.replace(/pub _pad_front: \[u8; [0-9_]+\],[\s\S]+?pub ledger_data: \[\[i32; 4\]; 65536\],/, structOut.trim());
+
+// Replace test
+memory_rs = memory_rs.replace(/#\[test\]\s+fn verify_memory_offsets\(\)\s*\{[\s\S]+?    }\n(?=\})/m, testOut);
+
+fs.writeFileSync("sigma_core/src/memory.rs", memory_rs);
+
+```
+
+---
+
+## FILE: gen_rust4.ts
+
+```typescript
+import * as off from "./OFFSETS.ts";
+
+const bounds = {
+    tick_counter: 7999992,
+    sync_state: 7999996,
+    ids: off.IDS_OFFSET,
+    xs: off.XS_OFFSET,
+    ys: off.YS_OFFSET,
+    energy: off.ENERGY_OFFSET,
+    resonance: off.RESONANCE_OFFSET,
+    phase: off.PHASE_OFFSET,
+    logic: off.LOGIC_OFFSET,
+    bonds: off.BONDS_OFFSET,
+    stiffness: off.STIFFNESS_OFFSET,
+    instructions: off.INSTRUCTIONS_OFFSET,
+    context: off.CONTEXT_OFFSET,
+    evolution_reserved: off.EVOLUTION_OFFSET,
+    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+    meiosis: off.MEIOSIS_OFFSET,
+    bond_requests: off.BOND_REQUESTS_OFFSET,
+    spatial_grid: off.SPATIAL_GRID_OFFSET,
+    roles: off.ROLES_OFFSET,
+    structure_grid: off.STRUCTURE_GRID_OFFSET,
+    signal_grid: off.SIGNAL_GRID_OFFSET,
+    memory_grid: off.MEMORY_GRID_OFFSET,
+    ascension_stats: off.ASCENSION_STATS_OFFSET,
+    bond_distances: off.BOND_DISTANCES_OFFSET,
+    damping: off.DAMPING_OFFSET,
+    causality: off.CAUSALITY_OFFSET,
+    hive_memory: off.HIVE_MEMORY_OFFSET,
+    hive_balance: off.HIVE_BALANCE_OFFSET,
+    quorum: off.QUORUM_OFFSET,
+    coherence: off.COHERENCE_OFFSET,
+    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+    energy_delta: off.ENERGY_DELTA_OFFSET,
+    resonance_delta: off.RESONANCE_DELTA_OFFSET,
+    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+    attention_field: off.ATTENTION_FIELD_OFFSET,
+    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+    glyph_header: off.GLYPH_HEADER_OFFSET,
+    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    hormones: off.HORMONE_OFFSET,
+    secretion_stats: off.SECRETION_STATS_OFFSET,
+    lineage: off.LINEAGE_OFFSET,
+    mailbox: off.MAILBOX_OFFSET,
+    ledger_head: off.LEDGER_HEAD_OFFSET,
+    ledger_data: off.LEDGER_DATA_OFFSET,
+};
+
+
+const sizes = {
+   tick_counter: 4,
+   sync_state: 4,
+   ids: 8*500000,
+   xs: 2*500000,
+   ys: 2*500000,
+   energy: 4*500000,
+   resonance: 4*500000,
+   phase: 4*500000,
+   logic: 8*500000,
+   bonds: 4*500000*4,
+   stiffness: 4*500000*4,
+   instructions: 64*500000,
+   context: 64*500000,
+   evolution_reserved: 4*500000,
+   spawn_requests: 24584,
+   meiosis: 4*300000,
+   bond_requests: 4*500000*3,
+   spatial_grid: 4*358400,
+   roles: 1*500000,
+   structure_grid: 4*11200,
+   signal_grid: 4*11200,
+   memory_grid: 8*11200,
+   ascension_stats: 4*250000,
+   bond_distances: 1*500000*4,
+   damping: 1*500000,
+   causality: 1*500000,
+   hive_memory: 1024,
+   hive_balance: 4,
+   quorum: 4*100025,
+   coherence: 4,
+   neural_coherence: 4,
+   physics_read_xs: 2*500000,
+   physics_read_ys: 2*500000,
+   physics_read_energy: 4*500000,
+   physics_read_resonance: 4*500000,
+   energy_delta: 4*500000,
+   resonance_delta: 4*500000,
+   structure_build_owner: 4*11200,
+   structure_build_value: 4*11200,
+   structure_charge_intent: 4*11200,
+   attention_field: 4*11200,
+   hive_energy_pool: 4*256,
+   glyph_header: 4*11200,
+   glyph_payload: 8*11200,
+   glyph_scratch_header: 4*11200,
+   glyph_scratch_payload: 8*11200,
+   hormones: 2*8,
+   secretion_stats: 4*12,
+   lineage: 8*500000,
+   mailbox: 8*500000,
+   ledger_head: 4,
+   ledger_data: 16*65536,
+};
+
+const keys = Object.keys(bounds);
+let out = `
+    pub _pad_front: [u8; 7_999_992],
+    pub tick_counter: i32, // 7,999,992
+    pub sync_state: i32,   // 7,999,996
+`;
+let cur = 8000000;
+for (const k of keys) {
+   if (k === 'tick_counter' || k === 'sync_state') continue;
+   let start = bounds[k];
+   if (start > cur) {
+       out += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
+   }
+   if (start < cur) {
+       console.log(`OVERLAP AT ${k}: wants ${start} but cur is ${cur}`);
+   }
+   
+   let typ = "u8";
+    if (k === "ids" || k === "lineage") out += `    pub ${k}: [u64; ${sizes[k]/8}],\n`;
+    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) out += `    pub ${k}: [i16; ${sizes[k]/2}],\n`;
+    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k)) out += `    pub ${k}: [i32; ${sizes[k]/4}],\n`;
+    else if (["stiffness", "attention_field"].includes(k)) out += `    pub ${k}: [f32; ${sizes[k]/4}],\n`;
+    else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k)) out += `    pub ${k}: [[u8; 8]; ${sizes[k]/8}],\n`;
+    else if (k === "instructions") out += `    pub ${k}: [[u8; 64]; ${sizes[k]/64}],\n`;
+    else if (k === "context") out += `    pub ${k}: [[i32; 16]; ${sizes[k]/64}],\n`;
+    else if (k === "mailbox") out += `    pub ${k}: [[i32; 2]; ${sizes[k]/8}],\n`;
+    else if (k === "ledger_data") out += `    pub ${k}: [[i32; 4]; ${sizes[k]/16}],\n`;
+    else if (k === "hormones") out += `    pub ${k}: [u16; ${sizes[k]/2}],\n`;
+    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)) out += `    pub ${k}: i32,\n`;
+    else out += `    pub ${k}: [u8; ${sizes[k]}],\n`;
+
+   cur = start + sizes[k];
+}
+const fs = require("node:fs");
+fs.writeFileSync("/tmp/struct.txt", out);
 
 ```
 
@@ -21027,7 +21811,7 @@ Deno.serve({ port: PORT }, async (req) => {
 // OMEGA-64 | OFFSETS.ts | Era 68: Absolute Coherence
 // Unified Memory Lattice Constants - Relocated for WASM Safety
 
-export const MAX_ATOMS = 100000;
+export const MAX_ATOMS = 500000;
 export const SCALE = 1000;
 export const GRID_W = 140;
 export const GRID_H = 80;
@@ -21045,59 +21829,59 @@ export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
 export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
 
 export const IDS_OFFSET = SAFETY_BUFFER + 0;
-export const XS_OFFSET = SAFETY_BUFFER + 800000;
-export const YS_OFFSET = SAFETY_BUFFER + 1000000;
-export const ENERGY_OFFSET = SAFETY_BUFFER + 1200000;
-export const RESONANCE_OFFSET = SAFETY_BUFFER + 1600000;
-export const PHASE_OFFSET = SAFETY_BUFFER + 2000000;
-export const LOGIC_OFFSET = SAFETY_BUFFER + 2400000;
-export const BONDS_OFFSET = SAFETY_BUFFER + 3200000;
-export const STIFFNESS_OFFSET = SAFETY_BUFFER + 4800000;
-export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 6400000;
-export const CONTEXT_OFFSET = SAFETY_BUFFER + 12800000;
-export const EVOLUTION_OFFSET = SAFETY_BUFFER + 19200000; // Shifted by 3.2MB
+export const XS_OFFSET = SAFETY_BUFFER + 4000000;
+export const YS_OFFSET = SAFETY_BUFFER + 5000000;
+export const ENERGY_OFFSET = SAFETY_BUFFER + 6000000;
+export const RESONANCE_OFFSET = SAFETY_BUFFER + 8000000;
+export const PHASE_OFFSET = SAFETY_BUFFER + 10000000;
+export const LOGIC_OFFSET = SAFETY_BUFFER + 12000000;
+export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
+export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
+export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
+export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
+export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000; 
 export const INTENT_OFFSET = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 19600000;
-export const MEIOSIS_OFFSET = SAFETY_BUFFER + 20800000;
-export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 22000000;
-export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 23200000;
-export const ROLES_OFFSET = SAFETY_BUFFER + 33200000;
-export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 34200000;
-export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 35200000;
-export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 36200000;
-export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 37200000;
-export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 38200000;
-export const DAMPING_OFFSET = SAFETY_BUFFER + 39200000;
-export const CAUSALITY_OFFSET = SAFETY_BUFFER + 39300000;
-export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 40200000;
-export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 40201024;
-export const QUORUM_OFFSET = SAFETY_BUFFER + 40300000;
-export const COHERENCE_OFFSET = SAFETY_BUFFER + 40700100;
-export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 40700104;
-export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 40800000;
-export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 41000000;
-export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 41200000;
-export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 41600000;
-export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 42000000;
-export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 42400000;
-export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 42800000;
-export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 42844800;
-export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 42889600;
-export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 42934400;
-export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 42979200;
-export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 42980224;
-export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 43025024;
-export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 43114624;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 43159424;
-export const HORMONE_OFFSET = SAFETY_BUFFER + 43249024;
-export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 43249040; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
-export const LINEAGE_OFFSET = SAFETY_BUFFER + 43400000; // Ancestral lineage hashes (8 bytes per atom)
-export const MAILBOX_OFFSET = SAFETY_BUFFER + 44200000; // 8 bytes per atom (Type + Payload)
+export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
+export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
+export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 104024584;
+export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 110024584;
+export const ROLES_OFFSET = SAFETY_BUFFER + 111458184;
+export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 111958184;
+export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
+export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
+export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
+export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
+export const DAMPING_OFFSET = SAFETY_BUFFER + 119137384;
+export const CAUSALITY_OFFSET = SAFETY_BUFFER + 119637384;
+export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 120137384;
+export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 120138408;
+export const QUORUM_OFFSET = SAFETY_BUFFER + 120138412;
+export const COHERENCE_OFFSET = SAFETY_BUFFER + 120496812;
+export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 120496816;
+export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 120496820;
+export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 121496820;
+export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 122496820;
+export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 124496820;
+export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 126496820;
+export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
+export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 130496820;
+export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 130541620;
+export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 130586420;
+export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 130631220;
+export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 130676020;
+export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 130677044;
+export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 130721844;
+export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 130811444;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 130856244;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 130945844;
+export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 130945860; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 130945912; // Ancestral lineage hashes (8 bytes per atom)
+export const MAILBOX_OFFSET = SAFETY_BUFFER + 134945912; // 8 bytes per atom (Type + Payload)
 
 // Binary Event Ledger
 export const MAX_LEDGER_EVENTS = 65536; // 64K events
-export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 45000000; // 1 Int32 counter
-export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 45000004; // ~1MB data array
+export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 138945912; // 1 Int32 counter
+export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 138945916; // ~1MB data array
 
 type MemoryLayoutRegion = {
   name: string;
@@ -21313,7 +22097,7 @@ export const LATTICE_MEMORY_END = LEDGER_DATA_OFFSET + (MAX_LEDGER_EVENTS * 16);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
-export const WASM_MEMORY_PAGES = 1024;
+export const WASM_MEMORY_PAGES = 2500;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
 
 export const validateMemoryLayout = (
@@ -27301,13 +28085,105 @@ const startupSelfTestBreached = (): boolean => {
   return STATE_MATRIX.getActiveIndices().length !== 0;
 };
 
+export interface DriftMetrics {
+  energyDiff: number;
+  resonanceDiff: number;
+  bondsBroken: number;
+  bondsFormed: number;
+  structuralValueChange: number;
+  populationDiff: number;
+  coherenceDiff: number;
+  divergenceTick: number;
+}
+
+// Global reference for oracle side-channel
+let shadowWasmInstance: WebAssembly.Instance | null = null;
+let run_shadow_simulation_ffi: ((
+    atomId: number,
+    ticks: number,
+    logicPtr: number,
+    resultPtr: number,
+) => number) | null = null;
+
+async function initShadowWasm(): Promise<void> {
+  if (shadowWasmInstance) return;
+  const wasmBytes = await Deno.readFile(
+    new URL("./sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm", import.meta.url)
+  );
+  
+  const instantiated = await WebAssembly.instantiate(wasmBytes, {
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      abort: (msg: any) => LOGGER.error("   [SHADOW WASM ABORT]:", msg),
+      // Dummy trace_atom for shadow
+      trace_atom: () => {}
+    }
+  });
+  
+  shadowWasmInstance = instantiated.instance;
+  run_shadow_simulation_ffi = shadowWasmInstance.exports.run_shadow_simulation_ffi as any;
+}
+
 export const PULSE = {
   currentPulseId: Date.now(),
+  getStats: () => ({
+    // Placeholder for actual stats implementation
+    workerFaultStats: workerFaultStats.map(s => ({...s})),
+    runtimeWorkerCount,
+    startupSelfTestDone,
+    startupSelfTestInProgress,
+    startupSelfTestFallbackActivated,
+    startupSelfTestLastBreachTick,
+    initFallbackActivated,
+    initFallbackReason,
+    wasmBootDegraded,
+    wasmBootReason,
+    wasmBootArtifactBytes,
+    wasmBootPrecheckCompleted,
+  }),
+  simulateFuture: async (steps: number, targetIdx: number, bytecode: Uint8Array): Promise<DriftMetrics> => {
+    if (!shadowWasmInstance || !run_shadow_simulation_ffi) {
+      await initShadowWasm();
+    }
+    
+    // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
+    // We will place this at the very end of WASM_MEMORY_BYTES to avoid collisions.
+    const scratchSpaceOffset = OFFSETS.WASM_MEMORY_BYTES - 1024;
+    const resultPtr = scratchSpaceOffset + 64;
+    
+    // Write logic bytes
+    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer);
+    u8View.fill(0, scratchSpaceOffset, scratchSpaceOffset + 64);
+    u8View.set(bytecode, scratchSpaceOffset);
+    
+    // Clear result space
+    const i32View = new Int32Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 8);
+    i32View.fill(0);
+    
+    const atomId = Number(STATE_MATRIX.getId(targetIdx));
+    
+    // Call Rust side
+    const success = run_shadow_simulation_ffi!(atomId, steps, scratchSpaceOffset, resultPtr);
+    
+    if (success !== 1) {
+       throw new Error(`[SHADOW] Simulation execution failed for target ${atomId}`);
+    }
+    
+    return {
+      energyDiff: i32View[0],
+      resonanceDiff: i32View[1],
+      bondsBroken: i32View[2],
+      bondsFormed: i32View[3],
+      structuralValueChange: i32View[4],
+      populationDiff: i32View[5],
+      coherenceDiff: i32View[6],
+      divergenceTick: i32View[7]
+    };
+  },
   initWorkers: async (requestedWorkerCount?: number) => {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
-    resetSpatialHashStateForColdStart();
     resetHomeostasisStateForColdStart();
     await syncHomeostasisBaseTaxLedgerHydration();
     await syncHomeostasisTargetEnergyLedgerHydration();
@@ -30342,7 +31218,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
   "guardian_base": [
     GLYPH.SET, 0, 100, // R0 = 100
     GLYPH.SET, 1, 1,   // R1 = 1 (Pheromone index)
-    GLYPH.SIGNAL, 1, 0, // Emit Pheromone with R0 (+100) intensity
+    GLYPH.SIGNAL,      // Emit Pheromone with R0 (+100) intensity
     GLYPH.I, // No-op return
   ],
 
@@ -30355,7 +31231,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.SET, 1, 100, // R1 = 100
     GLYPH.SUB, 0, 1,   // R0 = R0 - R1 (-100)
     GLYPH.SET, 2, 1,   // R2 = 1 (Pheromone index)
-    GLYPH.SIGNAL, 2, 0, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.SIGNAL,       // Emit Pheromone with R0 (-100) intensity
     GLYPH.I, 
   ],
 
@@ -30364,10 +31240,10 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [
-    GLYPH.COLLECTIVE,
-    7,
-    100,
-    200, // Mode 7 (PLASMID_EMIT), intensity=100, type=200
+    GLYPH.SET, 0, 100, // R0 = 100 (Charge / Amplitude)
+    GLYPH.SET, 1, 0,   // R1 = 0 (Plasmid index)
+    GLYPH.PLUG, 0, 0,  // Apply structural charge intent
+    GLYPH.SIGNAL,      // Emit Plasmid signal
     GLYPH.I,
   ],
 
@@ -30376,6 +31252,9 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Basic reproduction logic.
    */
   "replicator_base": [
+    GLYPH.SET, 0, 50,  // R0 = 50 (Low signal)
+    GLYPH.SET, 1, 2,   // R1 = 2 (Replication scent)
+    GLYPH.SIGNAL,
     GLYPH.REPLICATE,
     GLYPH.I,
   ],
@@ -37023,6 +37902,7 @@ import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { PULSE } from "./PULSE.ts";
 
 type OraclePendingMutation =
   | {
@@ -37336,6 +38216,28 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
+        // --- PHASE 23: EPISTEMIC LOOP CAUTION ---
+        try {
+          // Pre-flight check via native WebAssembly shadow clone
+          const drift = await PULSE.simulateFuture(50, regentIndex, new Uint8Array(newInstructions));
+          
+          let driftIndex = 0;
+          if (drift.populationDiff < 0) driftIndex += Math.abs(drift.populationDiff) * 2;
+          if (drift.coherenceDiff < 0) driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
+          if (drift.energyDiff < -100) driftIndex += Math.abs(drift.energyDiff) * 0.01;
+          
+          if (driftIndex > 20) {
+            LOGGER.warn(
+              `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${driftIndex.toFixed(2)})`
+            );
+            return; // Abort timeline divergence
+          }
+          LOGGER.info(`🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${driftIndex.toFixed(2)}`);
+        } catch (simErr) {
+          LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
+          return;
+        }
+
         if (ORACLE_MUTATION_MODE === "shadow") {
           const proposalId = `sp_${Date.now()}`;
           const driftBudget = 0.15; // Fixed budget for now
@@ -48369,7 +49271,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: new Uint8Array([
         RISC.OP_SET, 0, 100,
         RISC.OP_SET, 1, 1,
-        RISC.OP_SIGNAL, 0, 1, 
+        RISC.OP_SIGNAL, 
         RISC.OP_NOP
       ]), 
       maxSteps: 3, // SET, SET, SIGNAL
@@ -48387,16 +49289,24 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt01_coldstart_seeded_swarm",
       description: "Native Genesis Architect collective emission behavior",
       nativeProgram: "architect_base",
-      script: new Uint8Array([RISC.OP_COLLECTIVE, 7, 100, 200, RISC.OP_NOP]),
-      maxSteps: 2,
+      script: new Uint8Array([
+        RISC.OP_SET, 0, 100,
+        RISC.OP_SET, 1, 0,
+        RISC.OP_PLUG, 0, 0,
+        RISC.OP_SIGNAL,
+        RISC.OP_NOP
+      ]),
+      maxSteps: 4,
       initialProps: {
         [RISC.PROP_X]: 50,
         [RISC.PROP_Y]: 50,
       },
       expected: {
-        finalPc: 4,
-        finalSignalGrid: {
-          [5 * 140 + 5]: (100 << 8) | 200,
+        finalPc: 10,
+        signalCount: 1,
+        registers: [100, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureChargeIntent: {
+          [5 * 140 + 5]: 100,
         },
       },
     },
@@ -50009,6 +50919,23 @@ async function runAudit() {
 }
 
 runAudit().catch(console.error);
+
+```
+
+---
+
+## FILE: verify_offsets.ts
+
+```typescript
+import { OFFSETS } from "./src/index.ts";
+import { OFFICIAL_CONSTANTS } from "./OFFSETS.ts";
+
+console.log("TS Offsets:");
+for (const [k, v] of Object.entries(import("./OFFSETS.ts"))) {
+   if(k.endsWith("_OFFSET")) {
+      console.log(k, v);
+   }
+}
 
 ```
 

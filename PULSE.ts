@@ -1696,13 +1696,105 @@ const startupSelfTestBreached = (): boolean => {
   return STATE_MATRIX.getActiveIndices().length !== 0;
 };
 
+export interface DriftMetrics {
+  energyDiff: number;
+  resonanceDiff: number;
+  bondsBroken: number;
+  bondsFormed: number;
+  structuralValueChange: number;
+  populationDiff: number;
+  coherenceDiff: number;
+  divergenceTick: number;
+}
+
+// Global reference for oracle side-channel
+let shadowWasmInstance: WebAssembly.Instance | null = null;
+let run_shadow_simulation_ffi: ((
+    atomId: number,
+    ticks: number,
+    logicPtr: number,
+    resultPtr: number,
+) => number) | null = null;
+
+async function initShadowWasm(): Promise<void> {
+  if (shadowWasmInstance) return;
+  const wasmBytes = await Deno.readFile(
+    new URL("./sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm", import.meta.url)
+  );
+  
+  const instantiated = await WebAssembly.instantiate(wasmBytes, {
+    env: {
+      memory: STATE_MATRIX.wasmMemory,
+      abort: (msg: any) => LOGGER.error("   [SHADOW WASM ABORT]:", msg),
+      // Dummy trace_atom for shadow
+      trace_atom: () => {}
+    }
+  });
+  
+  shadowWasmInstance = instantiated.instance;
+  run_shadow_simulation_ffi = shadowWasmInstance.exports.run_shadow_simulation_ffi as any;
+}
+
 export const PULSE = {
   currentPulseId: Date.now(),
+  getStats: () => ({
+    // Placeholder for actual stats implementation
+    workerFaultStats: workerFaultStats.map(s => ({...s})),
+    runtimeWorkerCount,
+    startupSelfTestDone,
+    startupSelfTestInProgress,
+    startupSelfTestFallbackActivated,
+    startupSelfTestLastBreachTick,
+    initFallbackActivated,
+    initFallbackReason,
+    wasmBootDegraded,
+    wasmBootReason,
+    wasmBootArtifactBytes,
+    wasmBootPrecheckCompleted,
+  }),
+  simulateFuture: async (steps: number, targetIdx: number, bytecode: Uint8Array): Promise<DriftMetrics> => {
+    if (!shadowWasmInstance || !run_shadow_simulation_ffi) {
+      await initShadowWasm();
+    }
+    
+    // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
+    // We will place this at the very end of WASM_MEMORY_BYTES to avoid collisions.
+    const scratchSpaceOffset = OFFSETS.WASM_MEMORY_BYTES - 1024;
+    const resultPtr = scratchSpaceOffset + 64;
+    
+    // Write logic bytes
+    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer);
+    u8View.fill(0, scratchSpaceOffset, scratchSpaceOffset + 64);
+    u8View.set(bytecode, scratchSpaceOffset);
+    
+    // Clear result space
+    const i32View = new Int32Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 8);
+    i32View.fill(0);
+    
+    const atomId = Number(STATE_MATRIX.getId(targetIdx));
+    
+    // Call Rust side
+    const success = run_shadow_simulation_ffi!(atomId, steps, scratchSpaceOffset, resultPtr);
+    
+    if (success !== 1) {
+       throw new Error(`[SHADOW] Simulation execution failed for target ${atomId}`);
+    }
+    
+    return {
+      energyDiff: i32View[0],
+      resonanceDiff: i32View[1],
+      bondsBroken: i32View[2],
+      bondsFormed: i32View[3],
+      structuralValueChange: i32View[4],
+      populationDiff: i32View[5],
+      coherenceDiff: i32View[6],
+      divergenceTick: i32View[7]
+    };
+  },
   initWorkers: async (requestedWorkerCount?: number) => {
     if (workers.length > 0) return;
     resetStartupSelfTestStateForColdStart();
     resetEvolutionPressureStateForColdStart();
-    resetSpatialHashStateForColdStart();
     resetHomeostasisStateForColdStart();
     await syncHomeostasisBaseTaxLedgerHydration();
     await syncHomeostasisTargetEnergyLedgerHydration();

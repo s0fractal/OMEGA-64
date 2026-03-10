@@ -1303,7 +1303,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: new Uint8Array([
         RISC.OP_SET, 0, 100,
         RISC.OP_SET, 1, 1,
-        RISC.OP_SIGNAL, 0, 1, 
+        RISC.OP_SIGNAL, 
         RISC.OP_NOP
       ]), 
       maxSteps: 3, // SET, SET, SIGNAL
@@ -1321,16 +1321,24 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt01_coldstart_seeded_swarm",
       description: "Native Genesis Architect collective emission behavior",
       nativeProgram: "architect_base",
-      script: new Uint8Array([RISC.OP_COLLECTIVE, 7, 100, 200, RISC.OP_NOP]),
-      maxSteps: 2,
+      script: new Uint8Array([
+        RISC.OP_SET, 0, 100,
+        RISC.OP_SET, 1, 0,
+        RISC.OP_PLUG, 0, 0,
+        RISC.OP_SIGNAL,
+        RISC.OP_NOP
+      ]),
+      maxSteps: 4,
       initialProps: {
         [RISC.PROP_X]: 50,
         [RISC.PROP_Y]: 50,
       },
       expected: {
-        finalPc: 4,
-        finalSignalGrid: {
-          [5 * 140 + 5]: (100 << 8) | 200,
+        finalPc: 10,
+        signalCount: 1,
+        registers: [100, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureChargeIntent: {
+          [5 * 140 + 5]: 100,
         },
       },
     },
