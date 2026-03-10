@@ -137,12 +137,31 @@ impl SigmaState {
     }
 
     pub fn allocate(&mut self) -> Option<usize> {
-        for i in 0..MAX_ATOMS {
+        for i in 1..MAX_ATOMS {
             if self.matrix.ids[i] == 0 {
                 return Some(i);
             }
         }
         None
+    }
+
+    pub fn recycle_atom(&mut self, idx: usize) {
+        self.matrix.ids[idx] = 0;
+        self.matrix.energy[idx] = 0;
+        self.matrix.resonance[idx] = 0;
+        self.matrix.xs[idx] = 0;
+        self.matrix.ys[idx] = 0;
+        self.matrix.phase[idx] = 0;
+        self.matrix.logic[idx].fill(0);
+        self.matrix.instructions[idx].fill(0);
+        self.matrix.context[idx].fill(0);
+        for i in 0..4 {
+            let b = (idx * 4) + i;
+            self.matrix.bonds[b] = 0;
+            self.matrix.stiffness[b] = 0.0;
+            self.matrix.bond_distances[b] = 0;
+        }
+        self.matrix.roles[idx] = 0;
     }
 
     pub fn set_energy(&mut self, index: usize, energy: i32) {
