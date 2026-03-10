@@ -8,9 +8,9 @@ use std::mem::ManuallyDrop;
 // By taking the 0-indexed memory pointer from WASM + 7,999,992 bytes,
 // we alias directly onto our Struct matching JS indices perfectly.
 
-// `SigmaMatrix` logically begins at address 7_999_992 natively matching the Deno SAB.
+// `SigmaMatrix` logically begins at address 8_000_000 natively matching the Deno SAB.
 
-const WASM_MEMORY_OFFSET: usize = 7_999_992;
+const WASM_MEMORY_OFFSET: usize = 8_000_000;
 
 /// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
@@ -21,6 +21,18 @@ unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
         matrix: unsafe { Box::from_raw(base_ptr) },
     };
     ManuallyDrop::new(state)
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn debug_get_instruction(idx: usize, pc: usize) -> i32 {
+    let state = unsafe { get_ffi_state() };
+    state.matrix.instructions[idx][pc] as i32
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn debug_get_xs(idx: usize) -> i32 {
+    let state = unsafe { get_ffi_state() };
+    state.matrix.xs[idx] as i32
 }
 
 #[unsafe(no_mangle)]
@@ -156,8 +168,16 @@ pub extern "C" fn run_shadow_simulation_ffi(
 
     let hallucination_bytes = unsafe { &*(logic_ptr as usize as *const [u8; 64]) };
 
-    let metrics =
-        crate::shadow::run_shadow_simulation(&state, atom_id as u64, hallucination_bytes, ticks);
+    let tick_ptr = 7_999_992 as *const i32;
+    let start_tick = unsafe { *tick_ptr as u32 };
+
+    let metrics = crate::shadow::run_shadow_simulation(
+        &state,
+        atom_id as u64,
+        hallucination_bytes,
+        ticks,
+        start_tick,
+    );
 
     // Write back the 32-byte struct to the provided result pointer
     // Structure: [energy_diff, resonance_diff, bonds_broken, bonds_formed, structural_value_change, population_diff, coherence_diff, divergence_tick]

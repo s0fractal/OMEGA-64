@@ -93,25 +93,33 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   const atomIdxA = 1;
   idsA[atomIdxA] = 12345678n;
-  xsA[atomIdxA] = 1399; // Edge
+  xsA[atomIdxA] = 1398; // Close to Edge
   ysA[atomIdxA] = 400;
   energiesA[atomIdxA] = 5000;
   
-  // OP_SET (0x01), R0 (0x00), SYS_MOVE (0x0E)
+  // Create a dummy target at the absolute edge (1399) to pull the atom outwards
+  const targetIdx = 2;
+  idsA[targetIdx] = 87654321n;
+  xsA[targetIdx] = 1399;
+  ysA[targetIdx] = 400;
+
+  // OP_SET (0x01), R0 (0x00), SYS_ATTRACT (0x11 = 17)
   logicA[atomIdxA * 64 + 0] = 0x01; // OP_SET
   logicA[atomIdxA * 64 + 1] = 0x00; // R0
-  logicA[atomIdxA * 64 + 2] = 0x0E; // SYS_MOVE (14)
+  logicA[atomIdxA * 64 + 2] = 0x11; // SYS_ATTRACT (17)
 
-
-
-  // OP_SET (0x01), R1 (0x01), 1 (East)
+  // OP_SET (0x01), R1 (0x01), targetIdx=2
   logicA[atomIdxA * 64 + 3] = 0x01; // OP_SET
   logicA[atomIdxA * 64 + 4] = 0x01; // R1
-  logicA[atomIdxA * 64 + 5] = 0x01; // 1 (East)
+  logicA[atomIdxA * 64 + 5] = 0x02; // Target 2
+
+  // OP_SET (0x01), R2 (0x02), intensity=1
+  logicA[atomIdxA * 64 + 6] = 0x01; // OP_SET
+  logicA[atomIdxA * 64 + 7] = 0x02; // R2
+  logicA[atomIdxA * 64 + 8] = 0x01; // Positive intensity
 
   // OP_SYSCALL (0x60)
-  logicA[atomIdxA * 64 + 6] = 0x60; // OP_SYSCALL
-  logicA[atomIdxA * 64 + 7] = 0x00; // NOP
+  logicA[atomIdxA * 64 + 9] = 0x60; // OP_SYSCALL
   
   // Call execute_atom(1)
   matrixA.exports.execute_atom(atomIdxA);

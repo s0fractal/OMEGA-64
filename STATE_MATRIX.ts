@@ -328,8 +328,8 @@ export const SYS = {
   REPLICATE: 0x0B,
   EMIT: 0x0C,
   SCAN: 0x0D,
-  MOVE: 0x0E,
-  EAT: 0x0F,
+  ATTRACT: 0x11,
+  FOLD: 0x12,
   BET: 0x10,
 };
 const DEFAULT_BOOT_SCRIPT = (() => {

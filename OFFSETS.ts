@@ -303,9 +303,9 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
 export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
-export const MIN_WASM_MEMORY_PAGES = Math.ceil(
+export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
-);
+));
 export const WASM_MEMORY_PAGES = 7630;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
 

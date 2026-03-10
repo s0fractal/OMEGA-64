@@ -43,7 +43,13 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
     assertEquals(sensor.self.id, 100, "Should read self ID correctly");
     assertEquals(sensor.self.x, 50, "Should read self X correctly");
 
-    // 5. Test POST Motor Intent (MOVE)
+    // 4.5. Spawn a target Atom for ATTRACT
+    const atomB = 101;
+    STATE_MATRIX.setId(atomB, 101n);
+    STATE_MATRIX.setX(atomB, 60); // +10 X relative to atomA
+    STATE_MATRIX.setY(atomB, 40); // -10 Y relative to atomA
+
+    // 5. Test POST Motor Intent (ATTRACT)
     const initX = STATE_MATRIX.getX(atomA);
     const initY = STATE_MATRIX.getY(atomA);
 
@@ -51,9 +57,9 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        action: "MOVE",
-        dx: 1, // Positive X move
-        dy: -1, // Negative Y move
+        action: "ATTRACT",
+        targetIdx: atomB,
+        intensity: 1, // Positive intensity -> move towards target
       }),
     });
     const motorRes = await r3.json();
@@ -66,16 +72,16 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
     const newX = STATE_MATRIX.getX(atomA);
     const newY = STATE_MATRIX.getY(atomA);
 
-    // dx=10 because SYS_MOVE speed is hardcoded to 10 pixels per dx=1
+    // dx=10 because SYS_ATTRACT speed is hardcoded to 10 pixels
     assertEquals(
       newX,
       initX + 10,
-      "Atom should have moved +10 in X via WASM syscall",
+      "Atom should have moved +10 in X via WASM syscall (Attracted)",
     );
     assertEquals(
       newY,
       initY - 10,
-      "Atom should have moved -10 in Y via WASM syscall",
+      "Atom should have moved -10 in Y via WASM syscall (Attracted)",
     );
   } finally {
     // 7. Cleanup

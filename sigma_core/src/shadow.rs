@@ -24,6 +24,7 @@ pub fn run_shadow_simulation(
     atom_id: u64,
     hallucination_bytes: &[u8; 64],
     ticks: u32,
+    start_tick: u32,
 ) -> DriftMetrics {
     // 1. Deep clone the massive matrix securely avoiding stack bounds
     let mut shadow_state = original_state.clone();
@@ -58,7 +59,6 @@ pub fn run_shadow_simulation(
     // 3. Spool up a sovereign Pulse orchestrator over the isolated shadow
     let mut orchestrator = PulseOrchestrator::new();
 
-    let start_tick = shadow_state.matrix.tick_counter as u32;
     for i in 0..ticks {
         orchestrator.tick(&mut shadow_state, start_tick + i);
     }
@@ -105,6 +105,6 @@ pub fn run_shadow_simulation(
         structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
         population_diff: final_population.saturating_sub(initial_population),
         coherence_diff: final_coherence.saturating_sub(initial_coherence),
-        divergence_tick: shadow_state.matrix.tick_counter as u32,
+        divergence_tick: start_tick + ticks,
     }
 }

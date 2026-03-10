@@ -1242,6 +1242,11 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           // when arbitrary massive energy pools are assigned by the test runner.
           if (force < -20.0) force = -20.0;
           if (force > 20.0) force = 20.0;
+          
+          // Anti-overshoot mechanism: Do not pull an atom past its target
+          if (force > 0.0 && force > d) {
+            force = d;
+          }
 
           tx += (dx / d) * force;
           ty += (dy / d) * force;
@@ -1711,6 +1716,10 @@ export function execute_atom(atomIndex: i32): void {
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
   let role = getRole(atomIndex);
+  
+  if (atomIndex == 11 || atomIndex == 8) {
+      trace_atom(atomIndex, 1000, curX, curY, id as i32);
+  }
 
   // --- VECTOR 7: THE QUANTUM SHIFT ---
   // If id > 10, calculate physics (matching JS neural verification)
@@ -1823,6 +1832,9 @@ export function execute_atom(atomIndex: i32): void {
     if (nextY < 0.0) nextY = 0.0;
     if (nextY > 799.0) nextY = 799.0;
 
+    if (atomIndex == 11) {
+      trace_atom(11, 999, Math.round(accForceX) as i32, Math.round(vx) as i32, Math.round(nextX) as i32);
+    }
     storeClampedPos(
       atomIndex,
       Math.round(nextX) as i32,
@@ -1850,7 +1862,7 @@ export function execute_atom(atomIndex: i32): void {
     switch (op) {
       case OP_SET: {
         let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let imm = load<u8>(instr_base + (pc + 2) as usize);
+        let imm = load<i8>(instr_base + (pc + 2) as usize);
         setReg(atomIndex, reg as i32, imm as i32);
         pc += 3;
         gasUsed += 1;

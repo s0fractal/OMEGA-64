@@ -16,8 +16,6 @@ impl PulseOrchestrator {
     }
 
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {
-        state.matrix.tick_counter = tick_number as i32;
-
         // 1. Spatial Hash
         state.build_spatial_hash();
 

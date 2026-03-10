@@ -1,4 +1,4 @@
-use sigma_core::isa::{GlyphOp, SYS_EAT};
+use sigma_core::isa::{GlyphOp, SYS_TRANSFER};
 use sigma_core::memory::SigmaState;
 use sigma_core::shadow::run_shadow_simulation;
 
@@ -19,25 +19,61 @@ fn test_shadow_catastrophe_rejection() {
     // Create base state
     let initial_population = state.matrix.ids.iter().filter(|&&id| id != 0).count() as i32;
 
-    // We hallucinate a destructive "EAT" script replacing Attacker's behavior
+    // We hallucinate a destructive "TRANSFER" script replacing Attacker's behavior
     // OP_SET R1, 1 (Target = 1)
-    // OP_SET R2, 5000 (Amount)
-    // OP_SET R0, SYS_EAT
+    // OP_SET R2, 0 (Resource = Energy)
+    // OP_SET R4, 0
+    // OP_SET R3, 255
+    // OP_SUB R3, R4 (R3 = R4 - R3  =>  0 - 255 = -255)
+    // OP_SET R0, SYS_TRANSFER
     // OP_SYSCALL
     let mut destruct_genome = [0u8; 64];
     destruct_genome[0] = GlyphOp::Set as u8;
     destruct_genome[1] = 1; // R1
     destruct_genome[2] = 1; // Target idx = 1
+
     destruct_genome[3] = GlyphOp::Set as u8;
     destruct_genome[4] = 2; // R2
-                            // Encode 5000 (0x1388) across 4 bytes (simplified for literal here, let's just eat 255 for test)
-    destruct_genome[5] = 255;
-    destruct_genome[6] = GlyphOp::Set as u8;
-    destruct_genome[7] = 0; // R0
-    destruct_genome[8] = SYS_EAT as u8;
-    destruct_genome[9] = GlyphOp::Syscall as u8;
+    destruct_genome[5] = 0; // Resource = Energy
 
-    let metrics = run_shadow_simulation(&state, 2002, &destruct_genome, 10);
+    destruct_genome[6] = GlyphOp::Set as u8;
+    destruct_genome[7] = 4; // R4
+    destruct_genome[8] = 0; // Value = 0
+
+    destruct_genome[9] = GlyphOp::Set as u8;
+    destruct_genome[10] = 3; // R3
+    destruct_genome[11] = 255; // Amount = 255
+
+    destruct_genome[12] = GlyphOp::Sub as u8;
+    destruct_genome[13] = 3; // Dest: R3
+    destruct_genome[14] = 4; // Src2: R4  => R3 = R3 - R4 !! Wait!
+
+    // OP_SUB R3, R4 = R3 - R4 => 255 - 0 = 255
+    // TO get -255 we need R3 = R4 - R3. So OP_SUB 3, 4, 3? Actually OP_SUB takes just two parameters. R1 = R1 - R2.
+    // So OP_SUB 4, 3 => R4 = R4 - R3  (0 - 255 = -255).
+    // Let's use R4 for the amount instead? Wait, TRANSFER uses R3 for amount.
+    // So if R3 must hold -255, we can do OP_SUB 3, 4 only if R3 was 0 and R4 was 255.
+    // Let's swap! R3 = 0, R4 = 255, OP_SUB 3, 4 => R3 = R3 - R4 (0 - 255 = -255). Yes!
+    destruct_genome[10] = 3; // R3
+    destruct_genome[11] = 0; // 0
+
+    destruct_genome[12] = GlyphOp::Set as u8;
+    destruct_genome[13] = 4; // R4
+    destruct_genome[14] = 255; // 255
+
+    destruct_genome[15] = GlyphOp::Sub as u8;
+    destruct_genome[16] = 3; // R3
+    destruct_genome[17] = 4; // R3 = R3 - R4 => -255
+
+    destruct_genome[18] = GlyphOp::Set as u8;
+    destruct_genome[19] = 0; // R0
+    destruct_genome[20] = sigma_core::isa::SYS_TRANSFER as u8;
+    destruct_genome[21] = GlyphOp::Syscall as u8;
+
+    // Attacker needs high resonance to bypass target's shield!
+    state.matrix.resonance[2] = 500;
+
+    let metrics = run_shadow_simulation(&state, 2002, &destruct_genome, 10, 0);
 
     // In this simulation, the attacker ate 255 energy from the victim, eventually dropping victim to 0.
     // We expect the matrix energy total to either be preserved or redistributed, but we can verify changes.

@@ -2526,11 +2526,19 @@ export const PULSE = {
       // 0. Sovereign Oracle Peak Detection & Coherence Polling
       const currentTick = Atomics.load(tickCounter, 0);
       PULSE.currentPulseId = currentTick;
+      const dumpA11 = (lbl: string) => {
+        const xs = new Int16Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
+        console.log(`[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`);
+      }
+
+      dumpA11("Before Quorum");
       const activeIdx = STATE_MATRIX.getActiveIndices();
 
       // Stage 25: Sovereign Feedback - Syntropy-modulated tax
       // Move evaluation earlier so it can affect metabolism and gate
       const syntropy = quorumAdvocate.evaluateQuorum(activeIdx);
+      
+      dumpA11("Before Coherence");
 
       const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) /
         1000.0;
@@ -2544,6 +2552,8 @@ export const PULSE = {
       );
       const coherence = coherenceRes.coherence ?? 0;
       SOVEREIGN_ORACLE.neuralCoherence = coherence;
+      
+      dumpA11("Before Hormones");
 
       // Reset global neural coherence aggregation field for the NEXT tick.
       Atomics.store(STATE_MATRIX.coherence, 0, 0); // Accumulator (Vector 10)
@@ -2556,6 +2566,8 @@ export const PULSE = {
         coherence: guardianChannel,
         pulseId: nextPulseId(),
       });
+      
+      dumpA11("Before Bonds");
 
       // Update Hormones with actual Syntropy
       const finalHormones = syncHormonesToLattice({
@@ -2631,6 +2643,8 @@ export const PULSE = {
           count: bondRes.count,
         });
       }
+      
+      dumpA11("After Bonds");
 
       // 2. Parallel Physics & WASM Kernel
       // 2a. Rebuild Spatial Lattice (WASM)
@@ -2687,6 +2701,7 @@ export const PULSE = {
 
       // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
       await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
+      dumpA11("After Reduce Deltas");
 
       // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
       // worker.ts message handler for 'TICK_ENVIRONMENT'.
@@ -2696,6 +2711,7 @@ export const PULSE = {
         tick: currentTick,
         pulseId: environmentPulseId,
       }, "ENVIRONMENT_DONE");
+      dumpA11("After Environment");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
@@ -2733,6 +2749,7 @@ export const PULSE = {
 
       SOVEREIGN_ORACLE.drainPendingMutations();
       await CONTROL_INTENT_QUEUE.applyHostLockBudget();
+      dumpA11("End of TICK phase 1");
 
       // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
       const transportPulseId = nextPulseId();
@@ -2859,12 +2876,12 @@ export const PULSE = {
       );
 
       const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+      const chunkSize = Math.ceil(OFFSETS.MAX_ATOMS / runtimeWorkerCount);
       for (let i = 0; i < runtimeWorkerCount; i++) {
         const startIdx = i * chunkSize;
         const endIdx = i === runtimeWorkerCount - 1
-          ? MAX_ATOMS
-          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+          ? OFFSETS.MAX_ATOMS
+          : Math.min(OFFSETS.MAX_ATOMS, (i + 1) * chunkSize);
 
         metabolismPromises.push(postAndWait(
           i,

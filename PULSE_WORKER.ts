@@ -102,6 +102,8 @@ const SYS_SCAN = 13;
 const SYS_MOVE = 14;
 const SYS_EAT = 15;
 const SYS_BET = 16;
+const SYS_ATTRACT = 17;
+const SYS_FOLD = 18;
 const SYS_SPORE_DRIVE = 20;
 const SYS_SENSE_PHASE = 21;
 
@@ -169,6 +171,10 @@ function handle_syscall(atomIdx: number) {
       gasCost = 30;
       break;
     case SYS_BET:
+      gasCost = 10;
+      break;
+    case SYS_ATTRACT:
+    case SYS_FOLD:
       gasCost = 10;
       break;
     case SYS_SPORE_DRIVE:
@@ -330,36 +336,61 @@ function handle_syscall(atomIdx: number) {
     case SYS_TRANSFER: {
       const targetIdx = r1;
       const resourceType = r2; // 0 = Energy, 1 = Resonance
-      const amount = r3;
+      const amount = r3;       // Positive to give, Negative to steal
 
-      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && amount > 0) {
+      if (targetIdx > 0 && targetIdx < MAX_ATOMS && amount !== 0) {
         if (resourceType === 0 && energiesView) { // ENERGY
-          const senderEnergy = Atomics.load(energiesView, atomIdx);
-          // amount is in standard units (1 = 1 energy). We compare with scaled.
-          const scaledAmount = amount * 1000;
-          if (senderEnergy >= scaledAmount) {
-            Atomics.sub(energiesView, atomIdx, scaledAmount);
-            Atomics.add(energiesView, targetIdx, scaledAmount);
-            LOGGER.debug(
-              `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
-            );
+          if (amount > 0) {
+            const senderEnergy = Atomics.load(energiesView, atomIdx);
+            const scaledAmount = amount * 1000;
+            if (senderEnergy >= scaledAmount) {
+              Atomics.sub(energiesView, atomIdx, scaledAmount);
+              Atomics.add(energiesView, targetIdx, scaledAmount);
+              LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`);
+            }
           } else {
-            LOGGER.debug(
-              `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy to transfer ${amount}`,
-            );
+             // Stealing
+             const stealAmount = (-amount) * 1000;
+             if (resonancesView && xsView && ysView) {
+               const myRes = Atomics.load(resonancesView, atomIdx);
+               const tRes = Atomics.load(resonancesView, targetIdx);
+               if (myRes > tRes && myRes > 250 && tRes < 100) {
+                 const ox = Atomics.load(xsView, atomIdx);
+                 const oy = Atomics.load(ysView, atomIdx);
+                 const tx = Atomics.load(xsView, targetIdx);
+                 const ty = Atomics.load(ysView, targetIdx);
+
+                 const dx = (tx - ox) / 10.0;
+                 const dy = (ty - oy) / 10.0;
+                 const distSq = dx * dx + dy * dy;
+
+                 if (distSq <= 2.25) {
+                   const tEnergy = Atomics.load(energiesView, targetIdx);
+                   const takeAmount = Math.min(stealAmount, tEnergy);
+                   if (takeAmount > 0) {
+                     Atomics.sub(energiesView, targetIdx, takeAmount);
+                     Atomics.add(energiesView, atomIdx, takeAmount);
+                     LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} STOLE ${takeAmount/1000} Energy from Atom ${targetIdx}`);
+                     if (contextU8View) {
+                         const flagsIdx = (atomIdx << 6) + 33; // pseudo-cost
+                         // Note: VM costs 30 for stealing, we already deducted 10, deduct 20 more
+                         const extraCost = 20 * 1000;
+                         const e = Atomics.load(energiesView, atomIdx);
+                         if (e >= extraCost) Atomics.sub(energiesView, atomIdx, extraCost); 
+                     }
+                   }
+                 }
+               }
+             }
           }
         } else if (resourceType === 1 && resonancesView) { // RESONANCE
-          const senderResonance = Atomics.load(resonancesView, atomIdx);
-          if (senderResonance >= amount) {
-            Atomics.sub(resonancesView, atomIdx, amount);
-            Atomics.add(resonancesView, targetIdx, amount);
-            LOGGER.debug(
-              `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
-            );
-          } else {
-            LOGGER.debug(
-              `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Resonance to transfer ${amount}`,
-            );
+          if (amount > 0) {
+            const senderResonance = Atomics.load(resonancesView, atomIdx);
+            if (senderResonance >= amount) {
+              Atomics.sub(resonancesView, atomIdx, amount);
+              Atomics.add(resonancesView, targetIdx, amount);
+              LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`);
+            }
           }
         }
       }
@@ -511,116 +542,58 @@ function handle_syscall(atomIdx: number) {
       contextI32View![regBase] = closestIdx;
       break;
     }
-    case SYS_MOVE: {
-      // Decode 8-bit two's complement for dx/dy where > 127 is negative
-      const dxDecoded = r1 > 127 ? r1 - 256 : r1;
-      const dyDecoded = r2 > 127 ? r2 - 256 : r2;
+    case SYS_ATTRACT: {
+      const targetIdx = r1;
+      const intensity = r2; // Pos=Attract, Neg=Repel
+      if (targetIdx > 0 && targetIdx < MAX_ATOMS && xsView && ysView && spatialGridView) {
+        const ox = Atomics.load(xsView, atomIdx);
+        const oy = Atomics.load(ysView, atomIdx);
+        const tx = Atomics.load(xsView, targetIdx);
+        const ty = Atomics.load(ysView, targetIdx);
 
-      const dxStr = dxDecoded === 0 ? 0 : (dxDecoded > 0 ? 1 : -1);
-      const dyStr = dyDecoded === 0 ? 0 : (dyDecoded > 0 ? 1 : -1);
-      if (dxStr !== 0 || dyStr !== 0) {
-        if (xsView && ysView && spatialGridView) {
-          const cx = Atomics.load(xsView, atomIdx);
-          const cy = Atomics.load(ysView, atomIdx);
-          // dxStr is roughly 1 grid cell move (factor of 10 in spatial real coordinates)
-          let nx = cx + dxStr * 10;
-          let ny = cy + dyStr * 10;
-          // Constrain to grid boundaries (0-1399, 0-799)
-          if (nx < 0) nx = 0;
-          else if (nx > 1399) nx = 1399;
-          if (ny < 0) ny = 0;
-          else if (ny > 799) ny = 799;
+        const dx = tx - ox;
+        const dy = ty - oy;
+
+        const dxSign = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
+        const dySign = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
+
+        const dxStr = intensity > 0 ? dxSign : -dxSign;
+        const dyStr = intensity > 0 ? dySign : -dySign;
+
+        if (dxStr !== 0 || dyStr !== 0) {
+          let nx = ox + dxStr * 10;
+          let ny = oy + dyStr * 10;
+          console.log(`[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`);
+          
+          if (nx < 0) nx = 0; else if (nx > 1399) nx = 1399;
+          if (ny < 0) ny = 0; else if (ny > 799) ny = 799;
 
           const nGridX = Math.floor(nx / 10);
           const nGridY = Math.floor(ny / 10);
           const nCellIdx = nGridY * 140 + nGridX;
 
-          // Check cell capacity
           let capacityOk = false;
           let emptySlotOffset = -1;
           for (let s = 0; s < 32; s++) {
-            const currentAtomId = Atomics.load(
-              spatialGridView,
-              nCellIdx * 32 + s,
-            );
+            const currentAtomId = Atomics.load(spatialGridView, nCellIdx * 32 + s);
             if (currentAtomId === 0) {
-              emptySlotOffset = s;
               capacityOk = true;
               break;
             }
           }
 
+          console.log(`[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`);
+
           if (capacityOk) {
-            // Write new coordinates
             Atomics.store(xsView, atomIdx, nx);
             Atomics.store(ysView, atomIdx, ny);
-            // Atom gets swept to the new spatial cell automatically in the next pulse's tick_spatial_hash.
-            // In a more aggressive engine, we would move it in the spatial hash immediately.
-            LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} MOVED to ${nx}, ${ny}`);
-          } else {
-            LOGGER.debug(
-              `   [SYSCALL-FAIL] Atom ${atomIdx} MOVE collision at ${nx}, ${ny}`,
-            );
           }
         }
       }
       break;
     }
-    case SYS_EAT: {
-      const targetIdx = r1;
-      const amount = r2;
-
-      if (
-        targetIdx > 0 && targetIdx < MAX_ATOMS && amount > 0 && energiesView &&
-        xsView && ysView && idsView
-      ) {
-        // Must be alive
-        const targetId = Atomics.load(idsView as never, targetIdx);
-        if (targetId !== 0n) {
-          const ox = Atomics.load(xsView, atomIdx);
-          const oy = Atomics.load(ysView, atomIdx);
-          const tx = Atomics.load(xsView, targetIdx);
-          const ty = Atomics.load(ysView, targetIdx);
-
-          // Euclidean distance check (1 cell = 10 units)
-          const dx = (tx - ox) / 10.0;
-          const dy = (ty - oy) / 10.0;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          // Distance <= 1.5 cell means adjacent or diagonal
-          if (dist <= 1.5) {
-            const targetEnergy = Atomics.load(energiesView, targetIdx);
-            const takeAmount = Math.min(amount * 1000, targetEnergy); // Cap at what target has
-
-            if (takeAmount > 0) {
-              // Deduct from target
-              Atomics.sub(energiesView, targetIdx, takeAmount);
-              // Add to self
-              Atomics.add(energiesView, atomIdx, takeAmount);
-              LOGGER.debug(
-                `   [SYSCALL] Atom ${atomIdx} ATE ${
-                  takeAmount / 1000
-                } Energy from Atom ${targetIdx}`,
-              );
-            } else {
-              LOGGER.debug(
-                `   [SYSCALL-FAIL] Atom ${targetIdx} has no energy for Atom ${atomIdx} to eat`,
-              );
-            }
-          } else {
-            LOGGER.debug(
-              `   [SYSCALL-FAIL] Atom ${atomIdx} at (${ox},${oy}) too far from target ${targetIdx} at (${tx},${ty}) to EAT (dist = ${
-                dist.toFixed(2)
-              })`,
-            );
-          }
-        } else {
-          LOGGER.debug(
-            `   [SYSCALL-FAIL] Atom ${atomIdx} tried to EAT dead Atom ${targetIdx}`,
-          );
-        }
-      }
-      break;
+    case SYS_FOLD: {
+      break; // Placeholder for purely topological matrix operations
     }
     case SYS_BET: {
       if (!marketState || !betPoolInt) {
@@ -825,20 +798,12 @@ self.onmessage = async (e) => {
         new URL("./build/release.wasm", import.meta.url).href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
-      const traceAtom = (
-        idx: number,
-        op: number,
-        gx: number,
-        gy: number,
-        target: number,
-      ) => {
-        if (idx < 10000) { // Keep threshold high for now
-          LOGGER.info(
-            `   [TRACE] At ${idx} | OP: 0x${
-              op.toString(16)
-            } | Pos: (${gx},${gy}) | PC: ${target}`,
-          );
-        }
+      const traceAtom = (idx: number, op: number, gx: number, gy: number, target: number) => {
+        console.log(
+          `   [WASM_TRACE] Atom ${idx} executed ${
+            op.toString(16)
+          } | Pos: (${gx},${gy}) | target: ${target}`,
+        );
       };
       const instantiated = await WebAssembly.instantiate(wasmBytes, {
         index: {
@@ -911,8 +876,19 @@ self.onmessage = async (e) => {
         if (currentId === 0n) continue;
 
         // Absolute WASM Coherence: The Kernel now handles Physics AND VM
+        const beforeX11 = Atomics.load(xsView!, 11);
         execute_atom_fn(i);
+        const afterX11 = Atomics.load(xsView!, 11);
+        if (beforeX11 !== afterX11) {
+          console.log(`[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`);
+        }
+        
         handle_syscall(i); // Process any syscall intent pending from the atom
+        
+        const afterSys11 = Atomics.load(xsView!, 11);
+        if (afterX11 !== afterSys11) {
+          console.log(`[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`);
+        }
       }
     } catch (err) {
       LOGGER.error("   [WORKER EXECUTION ERROR]", err);

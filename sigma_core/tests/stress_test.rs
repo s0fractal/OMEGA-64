@@ -41,5 +41,4 @@ fn test_sovereign_500k_stress() {
     // Validations post-stress
     let e = state.matrix.energy[0];
     assert!(e > 0);
-    assert_eq!(state.matrix.tick_counter, 10);
 }

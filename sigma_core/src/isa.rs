@@ -77,5 +77,5 @@ pub const PROP_CONSENSUS: u8 = 11;
 pub const SYS_SPAWN: i32 = 4;
 pub const SYS_BIND: i32 = 5;
 pub const SYS_TRANSFER: i32 = 10;
-pub const SYS_MOVE: i32 = 14;
-pub const SYS_EAT: i32 = 15;
+pub const SYS_ATTRACT: i32 = 17;
+pub const SYS_FOLD: i32 = 18;

@@ -135,29 +135,9 @@ export class AgentProxy {
       let ops: number[] = [];
 
       switch (action) {
-        case "MOVE": {
-          const dx = typeof body.dx === "number" ? Math.sign(body.dx) : 0;
-          const dy = typeof body.dy === "number" ? Math.sign(body.dy) : 0;
-
-          ops = [
-            RISC.OP_SET,
-            1,
-            dx,
-            RISC.OP_SET,
-            2,
-            dy,
-            RISC.OP_SET,
-            0,
-            SYS.MOVE,
-            RISC.OP_SYSCALL,
-          ];
-          break;
-        }
-        case "EAT": {
-          const targetIdx = typeof body.targetIdx === "number"
-            ? body.targetIdx
-            : 0;
-          const amount = typeof body.amount === "number" ? body.amount : 50;
+        case "ATTRACT": {
+          const targetIdx = typeof body.targetIdx === "number" ? body.targetIdx : 0;
+          const intensity = typeof body.intensity === "number" ? body.intensity : 1;
 
           ops = [
             RISC.OP_SET,
@@ -165,10 +145,32 @@ export class AgentProxy {
             targetIdx,
             RISC.OP_SET,
             2,
-            amount, // Note: amount > 255 needs different assembly strategy, keeping pure <255 fits basic op_set
+            intensity,
             RISC.OP_SET,
             0,
-            SYS.EAT,
+            SYS.ATTRACT,
+            RISC.OP_SYSCALL,
+          ];
+          break;
+        }
+        case "TRANSFER": {
+          const targetIdx = typeof body.targetIdx === "number" ? body.targetIdx : 0;
+          const resourceType = typeof body.resourceType === "number" ? body.resourceType : 0;
+          const amount = typeof body.amount === "number" ? body.amount : 0;
+
+          ops = [
+            RISC.OP_SET,
+            1,
+            targetIdx,
+            RISC.OP_SET,
+            2,
+            resourceType,
+            RISC.OP_SET,
+            3,
+            amount & 0xFF, // Negative fits in 8 bits nicely if < 127 steals
+            RISC.OP_SET,
+            0,
+            SYS.TRANSFER,
             RISC.OP_SYSCALL,
           ];
           break;

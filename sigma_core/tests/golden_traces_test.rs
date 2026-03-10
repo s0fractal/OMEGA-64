@@ -572,11 +572,11 @@ fn test_gt02_rayon_parity() {
         inst[7] = 0;
         inst[8] = 1;
 
-        // SYS_MOVE r0, r1
+        // SYS_YIELD r0, r1
         inst[9] = 0xB0; // OP_SYSCALL
-        source_state.matrix.context[i][0] = 0x01; // SYS_MOVE
-        source_state.matrix.context[i][1] = 5; // dx
-        source_state.matrix.context[i][2] = 5; // dy
+        source_state.matrix.context[i][0] = 0x01; // SYS_YIELD
+        source_state.matrix.context[i][1] = 5; // dx (ignored by yield)
+        source_state.matrix.context[i][2] = 5; // dy (ignored by yield)
     }
 
     // Prepare sequential baseline
