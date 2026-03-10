@@ -60,3 +60,5 @@ worker_test.js
 mandala_raw.svg
 render_mandala.html
 codex/
+sigma_core/target/
+target/
