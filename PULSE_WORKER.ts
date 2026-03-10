@@ -844,6 +844,11 @@ self.onmessage = async (e) => {
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       self.postMessage({ type: "READY" });
+      const bview = new Int32Array(sb, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+      setInterval(() => {
+        // console.log(`[WORKER BONDS VIEW] A2_0: ${bview[2 * 4]} A2_1: ${bview[2 * 4 + 1]}`);
+      }, 5000);
+      self.postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
     } catch (err) {
       LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
@@ -908,14 +913,16 @@ self.onmessage = async (e) => {
   }
 
   if (type === "TICK_MATRIX") {
-    if (tick_environment_fn) tick_environment_fn(e.data.tick || e.data.pulseId);
-    else if (tick_structure_grid_fn) tick_structure_grid_fn();
-    else if (tick_matrix_fn) tick_matrix_fn();
+    const bH = new Int32Array(sharedBuffer!, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+    // console.log(`[PULSE_WORKER:TICK_MATRIX] TICK=${e.data.tick} BONDS: Atom 2 = [${bH[2*4]}, ${bH[2*4+1]}, ${bH[2*4+2]}, ${bH[2*4+3]}]`);
+    if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
     self.postMessage({ type: "MATRIX_DONE", pulseId });
   }
 
   if (type === "TICK_ENVIRONMENT") {
+    const bH = new Int32Array(sharedBuffer!, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+    console.log(`[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${bH[2*4]}, ${bH[2*4+1]}, ${bH[2*4+2]}, ${bH[2*4+3]}]`);
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
     await maybeDelay();
     self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });

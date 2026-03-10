@@ -40,8 +40,19 @@ impl PulseOrchestrator {
         // 3. Execution Phase (Parallelizing over all logical atom indices)
         (1..MAX_ATOMS).into_par_iter().for_each(|i| {
             if state.matrix.ids[i] != 0 {
-                let mut vm = LambdaVM::new(); // VM has no deep state, very cheap to allocate
-                vm.step(state, i);
+                let mut mass = 1;
+                for b_slot in 0..4 {
+                    let bond_idx = (i * 4) + b_slot;
+                    let target = state.matrix.bonds[bond_idx];
+                    if target > 0 && (target as usize) < MAX_ATOMS && state.matrix.ids[target as usize] != 0 {
+                        mass += 1;
+                    }
+                }
+
+                if tick_number % mass == 0 {
+                    let mut vm = LambdaVM::new(); // VM has no deep state, very cheap to allocate
+                    vm.step(state, i);
+                }
             }
         });
 
@@ -60,8 +71,20 @@ impl PulseOrchestrator {
         for i in 1..MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
                 let mut e = state.matrix.energy[i];
-                e -= base_entropy_tax;
-                e -= base_friction;
+                
+                let mut mass = 1;
+                for b_slot in 0..4 {
+                    let bond_idx = (i * 4) + b_slot;
+                    let target = state.matrix.bonds[bond_idx];
+                    if target > 0 && (target as usize) < MAX_ATOMS && state.matrix.ids[target as usize] != 0 {
+                        mass += 1;
+                    }
+                }
+
+                let effective_tax = base_entropy_tax / mass;
+                
+                e -= effective_tax;
+                e -= base_friction; // Friction remains constant for mechanical movement parity
 
                 if e <= 0 {
                     state.recycle_atom(i);

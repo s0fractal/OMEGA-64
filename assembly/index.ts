@@ -1848,9 +1848,18 @@ export function execute_atom(atomIndex: i32): void {
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
   // Bounded Reduction - Gas Accounting Economy
+  let mass: i32 = 1;
+  const bondBase = BONDS_OFFSET + (atomIndex << 4) as usize;
+  for (let b = 0; b < 4; b++) {
+    const target = load<i32>(bondBase + (b << 2) as usize);
+    if (target > 0 && target < MAX_ATOMS) mass++;
+  }
+
   let gasUsed: i32 = 0;
   // Hard cap to prevent WASM thread lockup, bounded by physical energy
-  let gasLimit: i32 = energy < 100 ? energy : 100;
+  let baseLimit: i32 = energy < 100 ? energy : 100;
+  let gasLimit: i32 = baseLimit / mass;
+  if (gasLimit < 1) gasLimit = 1;
 
   while (gasUsed < gasLimit) {
     const op = load<u8>(instr_base + (pc as usize));
