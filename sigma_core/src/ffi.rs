@@ -8,6 +8,8 @@ use std::mem::ManuallyDrop;
 // By taking the 0-indexed memory pointer from WASM + 7,999,992 bytes,
 // we alias directly onto our Struct matching JS indices perfectly.
 
+// `SigmaMatrix` logically begins at address 7_999_992 natively matching the Deno SAB.
+
 const WASM_MEMORY_OFFSET: usize = 7_999_992;
 
 /// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
@@ -57,6 +59,14 @@ pub extern "C" fn build_spatial_hash() {
 #[unsafe(no_mangle)]
 pub extern "C" fn get_spatial_hash_overflow_count() -> i32 {
     0 // Deprecated in favor of direct metric array
+}
+
+// Memory mapping diagnosis hook
+#[unsafe(no_mangle)]
+pub extern "C" fn verify_memory_alignment(idx: usize, val: i32) {
+    let state = unsafe { get_ffi_state() };
+    state.xs_atomic()[idx].store(val as i16, std::sync::atomic::Ordering::Relaxed);
+    state.context_atomic(idx)[0].store(val, std::sync::atomic::Ordering::Relaxed);
 }
 
 #[unsafe(no_mangle)]
@@ -158,4 +168,41 @@ pub extern "C" fn run_shadow_simulation_ffi(
     result_slice[7] = metrics.divergence_tick as i32;
 
     1 // Success indicator
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
+    use sha2::{Digest, Sha256};
+    let state = unsafe { get_ffi_state() };
+    let mut hasher = Sha256::new();
+
+    hasher.update(tick.to_le_bytes());
+
+    for i in 1..crate::memory::MAX_ATOMS {
+        let id = state.matrix.ids[i];
+        if id != 0 {
+            hasher.update(id.to_le_bytes());
+            hasher.update(state.matrix.energy[i].to_le_bytes());
+            hasher.update(state.matrix.resonance[i].to_le_bytes());
+            hasher.update(state.matrix.xs[i].to_le_bytes());
+            hasher.update(state.matrix.ys[i].to_le_bytes());
+            hasher.update(state.matrix.phase[i].to_le_bytes());
+            hasher.update(state.matrix.logic[i]);
+        }
+    }
+
+    for i in 0..crate::memory::GRID_CELLS {
+        let owner = state.matrix.structure_build_owner[i];
+        if owner > 0 {
+            hasher.update((i as u32).to_le_bytes());
+            hasher.update(owner.to_le_bytes());
+            hasher.update(state.matrix.structure_build_value[i].to_le_bytes());
+            hasher.update(state.matrix.structure_charge_intent[i].to_le_bytes());
+        }
+    }
+
+    let result = hasher.finalize();
+    let result_slice =
+        unsafe { std::slice::from_raw_parts_mut(result_ptr as usize as *mut u8, 32) };
+    result_slice.copy_from_slice(&result);
 }

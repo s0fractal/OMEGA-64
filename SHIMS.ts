@@ -107,7 +107,7 @@ const importHmac = async (
 const importEd25519Private = async (b64: string): Promise<CryptoKey> =>
   await crypto.subtle.importKey(
     "pkcs8",
-    base64ToBytes(b64),
+    base64ToBytes(b64) as unknown as BufferSource,
     { name: "Ed25519" },
     false,
     ["sign"],
@@ -116,7 +116,7 @@ const importEd25519Private = async (b64: string): Promise<CryptoKey> =>
 const importEd25519Public = async (b64: string): Promise<CryptoKey> =>
   await crypto.subtle.importKey(
     "spki",
-    base64ToBytes(b64),
+    base64ToBytes(b64) as unknown as BufferSource,
     { name: "Ed25519" },
     false,
     ["verify"],
@@ -210,7 +210,7 @@ export const AGENT_SIGNATURE = {
       const payload = encoder.encode(canonicalProposalPayload(proposal));
       if (verifyKey.scheme === "hmac-sha256/v1") {
         const key = await importHmac(verifyKey.secret, ["verify"]);
-        const ok = await crypto.subtle.verify("HMAC", key, sigBytes, payload);
+        const ok = await crypto.subtle.verify("HMAC", key, sigBytes as unknown as BufferSource, payload);
         return ok
           ? { ok: true }
           : { ok: false, reason: REJECTION.SIGNATURE_INVALID };
@@ -220,7 +220,7 @@ export const AGENT_SIGNATURE = {
         const ok = await crypto.subtle.verify(
           "Ed25519",
           key,
-          sigBytes,
+          sigBytes as unknown as BufferSource,
           payload,
         );
         return ok
@@ -719,7 +719,7 @@ const normalizeHex64 = (value: unknown): string | null => {
 };
 
 const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  const digest = await crypto.subtle.digest("SHA-256", bytes as unknown as BufferSource);
   return bytesToHex(new Uint8Array(digest));
 };
 
@@ -1210,11 +1210,11 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
     if (typeof input === "undefined") return true;
     if (typeof input === "string") return input === expectedHash;
     const maybeVersion = "policy_version" in input
-      ? input.policy_version
-      : input.policyVersion;
+      ? (input as any).policy_version
+      : (input as any).policyVersion;
     const maybeHash = "policy_hash" in input
-      ? input.policy_hash
-      : input.policyHash;
+      ? (input as any).policy_hash
+      : (input as any).policyHash;
     if (
       typeof maybeVersion === "string" &&
       maybeVersion !== CRY_DATA.policyVersion
@@ -1595,7 +1595,7 @@ const verifyInvariantPacketSignature = async (
   return await crypto.subtle.verify(
     "HMAC",
     key,
-    sigBytes,
+    sigBytes as unknown as BufferSource,
     encoder.encode(packetHash),
   );
 };

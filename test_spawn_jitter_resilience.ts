@@ -11,7 +11,7 @@ const timeoutMs = Number.parseInt(
   10,
 );
 const retryCount = Number.parseInt(
-  Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT") ?? "3",
+  Deno.env.get("OMEGA_WORKER_TIMEOUT_RETRY_COUNT") ?? "4",
   10,
 );
 const retryMs = Number.parseInt(

@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-10T03:12:53.168Z*
-*Exported Files: 137*
+*Generated: 2026-03-10T14:18:46.623Z*
+*Exported Files: 139*
 *Runtime Roots: 11*
-*Runtime Closure Files: 66*
+*Runtime Closure Files: 68*
 *Non-Runtime Code Files: 56*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 38*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
-*Export Set SHA256: 811406c6fca19e317ff055b6f1253206d4290fc0ae0886a6fea1fcb57b023e60*
-*Export Content SHA256: 941a8059d6ad4afd9078a85beb861c8649f239b1352a92f7d34b877b49b0f775*
-*Git Commit: 69cd3adaf141*
+*Export Set SHA256: 775b12757867bb1fb22abf2d7a7ccb235e92ea30429592d99ea4ce8e86f00142*
+*Export Content SHA256: 0622dde28ca59a6c8cdf6b928e81f89271379a0a64147a94a2a8c8b5540600c5*
+*Git Commit: 60491b79341d*
 
 ---
 
@@ -65,6 +65,7 @@
 - LLM_SYNAPSE.ts
 - LOGGER.ts
 - MUTATION_TELEMETRY.ts
+- network/SWARM_NEXUS.ts
 - nightly_soak.ts
 - OFFSETS.ts
 - OMEGA_DAEMON.ts
@@ -95,6 +96,7 @@
 - SPATIAL_HASH.ts
 - STATE_MATRIX.ts
 - STATE_SNAPSHOT.ts
+- SWARM_NODE.ts
 - SYSTEM_START.ts
 - TELEMETRY_STREAM.ts
 - TUI_DASHBOARD.ts
@@ -8016,6 +8018,7 @@ export type ContinuumMetadata = {
   memoryBounds: number;
   population?: number;
   coherence?: number;
+  epochHash?: string;
   timestamp: string;
 };
 
@@ -8026,7 +8029,8 @@ export async function saveEpoch(
   tick: number,
   epochName: string,
   population: number = 0,
-  coherence: number = 0
+  coherence: number = 0,
+  epochHash?: string
 ): Promise<void> {
   await ensureDir(EPOCHS_DIR);
 
@@ -8050,6 +8054,7 @@ export async function saveEpoch(
     memoryBounds: LATTICE_MEMORY_END,
     population,
     coherence,
+    epochHash,
     timestamp: new Date().toISOString(),
   };
 
@@ -21544,6 +21549,322 @@ export const MUTATION_TELEMETRY = {
 
 ---
 
+## FILE: network/SWARM_NEXUS.ts
+
+```typescript
+import { LOGGER } from "../LOGGER.ts";
+
+export type NexusConfig = {
+  instanceId: number;
+  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
+};
+
+export const OP_NEXUS_HANDSHAKE = 0x00;
+export const OP_NEXUS_ATOM_TRANSIT = 0x01;
+export const OP_NEXUS_HEARTBEAT = 0x02;
+export const OP_NEXUS_EPOCH_CONSENSUS = 0x03;
+
+export class SwarmNexus {
+  public nodeId: string;
+  public instanceId: number;
+  public port: number;
+  public seedNodes: string[];
+  
+  // Peer registry
+  public connectedPeers: Map<string, WebSocket> = new Map();
+  // Server handle
+  private serverAbortController: AbortController = new AbortController();
+  
+  // Heartbeat tracking
+  public peerHeartbeats: Map<string, { tick: number, tps: number, lastSeen: number }> = new Map();
+  private heartbeatInterval?: number;
+
+  // Local TPS tracking support
+  public localCurrentTick: number = 0;
+  public localTps: number = 0;
+
+  // Callback Hook
+  public onAtomTransit?: (payload: Uint8Array) => void;
+
+  constructor(config: NexusConfig) {
+    this.nodeId = crypto.randomUUID();
+    this.instanceId = config.instanceId;
+    this.port = 8080 + config.instanceId;
+    this.seedNodes = config.seedNodes;
+  }
+
+  public start() {
+    LOGGER.info(`[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`);
+    
+    // 1. Start listening for incoming WebSocket connections
+    Deno.serve({
+      port: this.port,
+      signal: this.serverAbortController.signal,
+      onListen: ({ port }) => {
+        LOGGER.info(`[NEXUS] Listening for peers on ws://0.0.0.0:${port}`);
+      }
+    }, (req) => {
+      if (req.headers.get("upgrade") != "websocket") {
+        return new Response(null, { status: 501 });
+      }
+
+      const { socket, response } = Deno.upgradeWebSocket(req);
+      this.handleConnection(socket, "INBOUND");
+      return response;
+    });
+
+    // 2. Connect to known seed nodes
+    for (const seedUrl of this.seedNodes) {
+      if (seedUrl === `ws://127.0.0.1:${this.port}` || seedUrl === `ws://localhost:${this.port}`) {
+        continue; // Don't connect to self
+      }
+      this.connectToPeer(seedUrl);
+    }
+
+    // 3. Start Heartbeat Broadcast
+    this.heartbeatInterval = setInterval(() => {
+        this.broadcastHeartbeat();
+    }, 100);
+  }
+
+  public stop() {
+    LOGGER.info(`[NEXUS] Shutting down Node ${this.nodeId}`);
+    if (this.heartbeatInterval) {
+        clearInterval(this.heartbeatInterval);
+        this.heartbeatInterval = undefined;
+    }
+    this.serverAbortController.abort();
+    for (const [, ws] of this.connectedPeers) {
+      ws.close();
+    }
+    this.connectedPeers.clear();
+    this.peerHeartbeats.clear();
+  }
+
+  private connectToPeer(url: string) {
+    try {
+      LOGGER.info(`[NEXUS] Attempting connection to seed: ${url}`);
+      const socket = new WebSocket(url);
+      this.handleConnection(socket, "OUTBOUND");
+    } catch (e) {
+      LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
+    }
+  }
+
+  private handleConnection(socket: WebSocket, direction: "INBOUND" | "OUTBOUND") {
+    socket.binaryType = "arraybuffer";
+    let remoteNodeId: string | null = null;
+
+    socket.onopen = () => {
+      LOGGER.info(`[NEXUS] ${direction} Socket Opened.`);
+      // Initiate Handshake
+      this.sendHandshake(socket);
+    };
+
+    socket.onmessage = (event) => {
+      if (event.data instanceof ArrayBuffer) {
+        const payload = new Uint8Array(event.data);
+        const op = payload[0];
+
+        switch (op) {
+          case OP_NEXUS_HANDSHAKE:
+            remoteNodeId = this.handleHandshake(socket, payload);
+            break;
+          case OP_NEXUS_ATOM_TRANSIT:
+            this.handleAtomTransit(payload);
+            break;
+          case OP_NEXUS_HEARTBEAT:
+            if (remoteNodeId) this.handleHeartbeat(remoteNodeId, payload);
+            break;
+          case OP_NEXUS_EPOCH_CONSENSUS:
+            if (remoteNodeId) this.handleEpochConsensus(remoteNodeId, payload);
+            break;
+          default:
+            LOGGER.warn(`[NEXUS] Unknown binary OP code: ${op}`);
+        }
+      } else {
+        LOGGER.warn(`[NEXUS] Received non-binary message, discarding.`);
+      }
+    };
+
+    socket.onclose = () => {
+      if (remoteNodeId) {
+        LOGGER.info(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
+        this.connectedPeers.delete(remoteNodeId);
+        this.peerHeartbeats.delete(remoteNodeId);
+      } else {
+        LOGGER.info(`[NEXUS] Unidentified peer disconnected.`);
+      }
+    };
+
+    socket.onerror = (e) => {
+      LOGGER.error(`[NEXUS] Socket Error on ${remoteNodeId || 'unknown payload'}:`, e);
+    };
+  }
+
+  private sendHandshake(socket: WebSocket) {
+    // Handshake Payload:
+    // [0] OP_CODE (0x00)
+    // [1..37] UUID (36 bytes text)
+    const encoder = new TextEncoder();
+    const idBytes = encoder.encode(this.nodeId);
+    
+    if (idBytes.length !== 36) {
+      LOGGER.error("[NEXUS] UUID encoding length mismatch!");
+      return;
+    }
+
+    const payload = new Uint8Array(1 + 36);
+    payload[0] = OP_NEXUS_HANDSHAKE;
+    payload.set(idBytes, 1);
+    
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(payload.buffer);
+    }
+  }
+
+  private handleHandshake(socket: WebSocket, payload: Uint8Array): string {
+    const decoder = new TextDecoder();
+    const remoteId = decoder.decode(payload.slice(1, 37));
+    
+    LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
+    this.connectedPeers.set(remoteId, socket);
+    return remoteId;
+  }
+
+  public routeAtom(egressEvent: Uint8Array) {
+    // Egress Event is exactly 256 bytes from WASM Memory.
+    if (egressEvent.length !== 256) {
+      LOGGER.error(`[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`);
+      return;
+    }
+
+    if (this.connectedPeers.size === 0) {
+      // Bounced because we are alone in the universe
+      LOGGER.info(`[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`);
+      return;
+    }
+
+    // Select a random peer right now because spatial mapping is Phase 29
+    const peers = Array.from(this.connectedPeers.values());
+    const targetPeer = peers[Math.floor(Math.random() * peers.length)];
+
+    const payload = new Uint8Array(1 + 256);
+    payload[0] = OP_NEXUS_ATOM_TRANSIT;
+    payload.set(egressEvent, 1);
+
+    if (targetPeer.readyState === WebSocket.OPEN) {
+      targetPeer.send(payload.buffer);
+      LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+    } else {
+      LOGGER.warn(`[NEXUS] Target peer not OPEN. Atom lost.`);
+    }
+  }
+
+  private handleAtomTransit(payload: Uint8Array) {
+    if (payload.length !== 257) {
+      LOGGER.error(`[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`);
+      return;
+    }
+
+    // Strip OP_CODE and inject
+    const atomData = payload.slice(1);
+    LOGGER.info(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
+    if (this.onAtomTransit) {
+        this.onAtomTransit(atomData);
+    } else {
+        LOGGER.warn(`[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`);
+    }
+  }
+
+  private broadcastHeartbeat() {
+    if (this.connectedPeers.size === 0) return;
+
+    // Payload: [0] OP_CODE, [1..8] currentTick (Float64), [9..16] tps (Float64)
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_HEARTBEAT;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, this.localCurrentTick, true);
+    view.setFloat64(9, this.localTps, true);
+
+    for (const peer of this.connectedPeers.values()) {
+        if (peer.readyState === WebSocket.OPEN) {
+            peer.send(payload.buffer);
+        }
+    }
+  }
+
+  private handleHeartbeat(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const tick = view.getFloat64(1, true);
+    const tps = view.getFloat64(9, true);
+    
+    this.peerHeartbeats.set(remoteId, {
+        tick,
+        tps,
+        lastSeen: performance.now()
+    });
+  }
+
+  public getMedianSwarmTick(localTickFallback: number): number {
+    const now = performance.now();
+    const ticks: number[] = [localTickFallback]; // Always include ourselves
+
+    for (const [peerId, hb] of this.peerHeartbeats.entries()) {
+        // Evict dead nodes > 2s
+        if (now - hb.lastSeen > 2000) {
+            this.peerHeartbeats.delete(peerId);
+            continue;
+        }
+        ticks.push(hb.tick);
+    }
+
+    if (ticks.length === 1) return localTickFallback;
+
+    // Calculate median
+    ticks.sort((a, b) => a - b);
+    const mid = Math.floor(ticks.length / 2);
+    if (ticks.length % 2 === 0) {
+        return (ticks[mid - 1] + ticks[mid]) / 2;
+    }
+    return ticks[mid];
+  }
+
+  public broadcastEpochConsensus(epochTick: number, hash: bigint) {
+    if (this.connectedPeers.size === 0) return;
+
+    // Payload: [0] OP_CODE, [1..8] epochTick (Float64), [9..16] hash (BigUint64)
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_EPOCH_CONSENSUS;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, epochTick, true);
+    view.setBigUint64(9, hash, true);
+
+    for (const peer of this.connectedPeers.values()) {
+        if (peer.readyState === WebSocket.OPEN) {
+            peer.send(payload.buffer);
+        }
+    }
+  }
+
+  private handleEpochConsensus(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const epochTick = view.getFloat64(1, true);
+    const peerHash = view.getBigUint64(9, true);
+
+    // Naive local check for Phase 29: we expect this to match exactly our local epoch hash if we are at this tick.
+    // If not, we just log a Byzantine warning since full State Merging is a future phase.
+    // For now we just emit a warning locally allowing test to pick it up.
+    LOGGER.warn(`[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`);
+  }
+}
+
+```
+
+---
+
 ## FILE: nightly_soak.ts
 
 ```typescript
@@ -21973,6 +22294,11 @@ export const MAX_LEDGER_EVENTS = 65536; // 64K events
 export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912; // 1 Int32 counter
 export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916; // ~1MB data array
 
+// Boundary Membrane Egress (Swarm Topology)
+export const MAX_EGRESS_EVENTS = 8192;
+export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492; // 1 Int32 counter
+export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496; // 8192 * 128 bytes
+
 type MemoryLayoutRegion = {
   name: string;
   offset: number;
@@ -22180,11 +22506,23 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     MAX_LEDGER_EVENTS * 16, // 4 Int32 per event (tick, atom, r1, r2)
     4,
   ),
+  region(
+    "EGRESS_HEAD",
+    EGRESS_HEAD_OFFSET,
+    4,
+    4,
+  ),
+  region(
+    "EGRESS_DATA",
+    EGRESS_DATA_OFFSET,
+    MAX_EGRESS_EVENTS * 128,
+    4,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = LEDGER_DATA_OFFSET + (MAX_LEDGER_EVENTS * 16);
+export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -26490,6 +26828,18 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import { saveEpoch } from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
+import { SWARM_NODE } from "./SWARM_NODE.ts";
+import { SwarmNexus } from "./network/SWARM_NEXUS.ts";
+
+export const NEXUS_DAEMON = new SwarmNexus({
+  instanceId: 1,
+  seedNodes: []
+});
+
+const MAX_TICK_DRIFT = 50;
+let lastTickTime = performance.now();
+let tickCountLog = 0;
+
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
@@ -26509,6 +26859,7 @@ import {
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
 import {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -26685,29 +27036,6 @@ type ArchitectPlasmidHybridState = {
   lastBranch: "emit" | "suppress" | "unknown";
   lastFallbackReason: string;
   lastMode?: ArchitectPlasmidExecutionMode;
-};
-type ReplicationHybridState = {
-  mode: ReplicationExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  allowedReplications: number;
-  suppressedReplications: number;
-  shadowSuppressedReplications: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "emit"
-    | "suppress"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "emit" | "suppress" | "unknown";
-  lastFallbackReason: string;
-  lastMode?: ReplicationExecutionMode;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -28136,6 +28464,12 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     const primaryErr = err instanceof Error ? err.message : String(err);
 
     if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
+      pulseInitialized = true;
+
+      // Boot Network Interface
+      await NEXUS_DAEMON.start();
+
+      LOGGER.info(`[PULSE] System initialization complete.`);
       runtimeWorkerCount = 0;
       const failMsg = `[PULSE] Worker init failed: ${primaryErr}`;
       if (WASM_BOOT_POLICY === "safe-noop") {
@@ -28196,6 +28530,10 @@ let run_shadow_simulation_ffi: ((
     logicPtr: number,
     resultPtr: number,
 ) => number) | null = null;
+let generate_epoch_proof_ffi: ((
+    tick: number,
+    resultPtr: number,
+) => void) | null = null;
 
 async function initShadowWasm(): Promise<void> {
   if (shadowWasmInstance) return;
@@ -28214,9 +28552,44 @@ async function initShadowWasm(): Promise<void> {
   
   shadowWasmInstance = instantiated.instance;
   run_shadow_simulation_ffi = shadowWasmInstance.exports.run_shadow_simulation_ffi as any;
+  generate_epoch_proof_ffi = shadowWasmInstance.exports.generate_epoch_proof_ffi as any;
 }
 
+let pulseInitialized = false;
+let lastEgressReadHead = 0;
+
+export const drainEgressEvents = (): Uint8Array[] => {
+  const headView = new Int32Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.EGRESS_HEAD_OFFSET, 1);
+  const writeHead = Atomics.load(headView, 0);
+  const readHead = lastEgressReadHead || 0;
+  
+  if (writeHead === readHead) return [];
+  
+  const events: Uint8Array[] = [];
+  const maxEvents = OFFSETS.MAX_EGRESS_EVENTS;
+  const dataView = new Uint8Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.EGRESS_DATA_OFFSET, maxEvents * 256);
+  
+  const count = Math.min(writeHead - readHead, maxEvents);
+  const startIdx = readHead % maxEvents;
+  
+  for (let i = 0; i < count; i++) {
+    const idx = (startIdx + i) % maxEvents;
+    const offset = idx * 256;
+    // Copy the array out of WASM memory because WASM memory might mutate over time
+    events.push(new Uint8Array(dataView.slice(offset, offset + 256)));
+  }
+  
+  lastEgressReadHead = writeHead;
+  return events;
+};
+
 export const PULSE = {
+  get initialized() {
+    return pulseInitialized;
+  },
+  set initialized(val: boolean) {
+    pulseInitialized = val;
+  },
   currentPulseId: Date.now(),
   getStats: () => ({
     // Placeholder for actual stats implementation
@@ -28233,6 +28606,16 @@ export const PULSE = {
     wasmBootArtifactBytes,
     wasmBootPrecheckCompleted,
   }),
+  generateEpochProof: async (tick: number): Promise<string> => {
+    if (!shadowWasmInstance || !generate_epoch_proof_ffi) {
+      await initShadowWasm();
+    }
+    const resultPtr = OFFSETS.WASM_MEMORY_BYTES - 1024 + 128;
+    generate_epoch_proof_ffi!(tick, resultPtr);
+    
+    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 32);
+    return Array.from(u8View).map(b => b.toString(16).padStart(2, '0')).join('');
+  },
   simulateFuture: async (steps: number, targetIdx: number, bytecode: Uint8Array): Promise<DriftMetrics> => {
     if (!shadowWasmInstance || !run_shadow_simulation_ffi) {
       await initShadowWasm();
@@ -28426,6 +28809,9 @@ export const PULSE = {
         );
       }
 
+      if (!startupSelfTestFallbackActivated) {
+        pulseInitialized = true;
+      }
       startupSelfTestFallbackActivated = true;
       PULSE.stopWorkers();
       runtimeWorkerCount = 1;
@@ -29105,8 +29491,28 @@ export const PULSE = {
         LOGGER.info(`[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`);
         const pCount = activeIdx.length;
         const autoEpochId = `auto_tick_${currentTick}`;
-        await saveEpoch(STATE_MATRIX.wasmMemory, currentTick, autoEpochId, pCount, 0);
-        LOGGER.info(`[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere.`);
+        const epochHash = await PULSE.generateEpochProof(currentTick);
+        await saveEpoch(STATE_MATRIX.wasmMemory, currentTick, autoEpochId, pCount, 0, epochHash);
+        LOGGER.info(`[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`);
+      }
+
+      // --- STAGE 27/28: META-KURAMOTO SWARM MEMBRANE & P2P NEXUS ---
+      if (currentTick > 0 && currentTick % SWARM_NODE.heartbeatInterval === 0) {
+         let totalPhase = 0;
+         for (const idx of activeIdx) {
+            totalPhase += Math.abs(STATE_MATRIX.getPhase(idx));
+         }
+         const avgPhase = activeIdx.length > 0 ? totalPhase / activeIdx.length : 0;
+         const epochHash = await PULSE.generateEpochProof(currentTick);
+         const egressEvents = drainEgressEvents();
+         SWARM_NODE.evaluateHeartbeat(currentTick, epochHash, avgPhase, egressEvents.length);
+      }
+      
+      const egressEvents = drainEgressEvents();
+      if (egressEvents.length > 0) {
+         for(const ev of egressEvents) {
+            NEXUS_DAEMON.routeAtom(ev);
+         }
       }
 
       SOVEREIGN_ORACLE.drainPendingMutations();
@@ -29551,6 +29957,31 @@ export const PULSE = {
       // Increment Global Tick Counter
       Atomics.add(tickCounter, 0, 1);
 
+      // --- PHASE 29: Σ-CORE Byzantine Synchronization ---
+      NEXUS_DAEMON.localCurrentTick = currentTick;
+      const now = performance.now();
+      const dt = now - lastTickTime;
+      if (dt > 1000) {
+          NEXUS_DAEMON.localTps = (currentTick - tickCountLog) / (dt / 1000);
+          lastTickTime = now;
+          tickCountLog = currentTick;
+      }
+
+      const medianTick = NEXUS_DAEMON.getMedianSwarmTick(currentTick);
+      if (currentTick > medianTick + MAX_TICK_DRIFT) {
+          await new Promise(r => setTimeout(r, 10)); // Elastic yield bounds
+      }
+
+      if (currentTick > 0 && currentTick % 10000 === 0) {
+          let hashSum = 0n;
+          for(let i=1; i<STATE_MATRIX.MAX_ATOMS; i++) {
+              if (STATE_MATRIX.getEnergy(i) > 0) {
+                  hashSum += BigInt(STATE_MATRIX.getEnergy(i)) + BigInt(STATE_MATRIX.getPhase(i)); 
+              }
+          }
+          NEXUS_DAEMON.broadcastEpochConsensus(currentTick, hashSum);
+      }
+
       // --- SNAP PHASE: Asynchronous Matrix Persistence ---
       if (
         RUNTIME_POLICY.snapshot.enabled &&
@@ -29562,12 +29993,54 @@ export const PULSE = {
           SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
         });
       }
+
+      NEXUS_DAEMON.stop();
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
     }
   },
   getWorker: (idx: number): any => workers[idx],
+  drainEgressEvents,
+  injectForeignAtom: (payload: Uint8Array) => {
+    const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+    const genome = payload.slice(0, 64);
+    const energy = view.getInt32(64, true);
+    const phase = view.getInt32(68, true);
+    const resonance = view.getInt32(72, true);
+    let nx = view.getInt32(76, true);
+    let ny = view.getInt32(80, true);
+    
+    // Teleport to opposite edge
+    if (nx <= 0) nx = Math.floor(OFFSETS.GRID_W * 10 - 1);
+    else if (nx >= Math.floor(OFFSETS.GRID_W * 10 - 1)) nx = 0;
+    
+    if (ny <= 0) ny = Math.floor(OFFSETS.GRID_H * 10 - 1);
+    else if (ny >= Math.floor(OFFSETS.GRID_H * 10 - 1)) ny = 0;
+    
+    const role = payload[148];
+    
+    const atomIdx = STATE_MATRIX.findEmptySlot();
+    if (atomIdx > 0) {
+      STATE_MATRIX.setEnergy(atomIdx, energy);
+      STATE_MATRIX.setResonance(atomIdx, resonance);
+      STATE_MATRIX.setPhase(atomIdx, phase);
+      STATE_MATRIX.setId(atomIdx, BigInt(PULSE.currentPulseId) << 16n | BigInt(atomIdx));
+      STATE_MATRIX.setRole(atomIdx, role);
+      
+      const xs = new Int16Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
+      const ys = new Int16Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS);
+      Atomics.store(xs, atomIdx, nx);
+      Atomics.store(ys, atomIdx, ny);
+      
+      STATE_MATRIX.setInstructions(atomIdx, genome);
+      
+      const ctxView = new Int32Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.CONTEXT_OFFSET + atomIdx * 64, 16);
+      for (let i = 0; i < 16; i++) {
+        Atomics.store(ctxView, i, view.getInt32(84 + i * 4, true));
+      }
+    }
+  },
 };
 
 // --- INLINED FROM runtime_bridge/architect_plasmid_hybrid.ts ---
@@ -40008,6 +40481,56 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
+
+```
+
+---
+
+## FILE: SWARM_NODE.ts
+
+```typescript
+import { LOGGER } from "./LOGGER.ts";
+
+export type SwarmHeartbeat = {
+  nodeId: string;
+  currentTick: number;
+  epochHash: string;
+  phase: number;
+};
+
+export class MetaKuramotoNode {
+  public readonly nodeId: string;
+  public readonly heartbeatInterval: number;
+
+  constructor(nodeId: string = crypto.randomUUID(), heartbeatInterval: number = 1000) {
+    this.nodeId = nodeId;
+    this.heartbeatInterval = heartbeatInterval;
+  }
+
+  public evaluateHeartbeat(
+    currentTick: number, 
+    epochHash: string, 
+    avgPhase: number,
+    egressCount: number
+  ): void {
+    if (currentTick > 0 && currentTick % this.heartbeatInterval === 0) {
+      const heartbeat: SwarmHeartbeat = {
+        nodeId: this.nodeId,
+        currentTick,
+        epochHash,
+        phase: avgPhase,
+      };
+
+      LOGGER.info(`[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`);
+      
+      if (egressCount > 0) {
+        LOGGER.info(`[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`);
+      }
+    }
+  }
+}
+
+export const SWARM_NODE = new MetaKuramotoNode();
 
 ```
 

@@ -7,3 +7,4 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 rayon = "1.11.0"
+sha2 = "0.10.9"

@@ -81,7 +81,7 @@ export const seedSeededSwarmScenario = (
 
   stateMatrix.clear();
   Atomics.store(stateMatrix.syncState, 0, stateMatrix.SYNC.IDLE);
-  Atomics.store(stateMatrix.tickCounter, 0, 1);
+  Atomics.store(stateMatrix.tickCounter, 0, 0);
 
   const repScript = makeReplicatorScript(stateMatrix);
   const archScript = makeArchitectScript(stateMatrix);

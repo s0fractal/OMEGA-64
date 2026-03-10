@@ -30,7 +30,7 @@ export const DECREES: Record<string, any> = {
   },
 };
 
-export const SOVEREIGNTY_ENGINE = {
+export const SOVEREIGNTY_ENGINE: any = {
   currentRegent: {
     idx: -1,
     energy: 0,

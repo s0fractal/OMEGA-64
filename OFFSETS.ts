@@ -74,6 +74,11 @@ export const MAX_LEDGER_EVENTS = 65536; // 64K events
 export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912; // 1 Int32 counter
 export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916; // ~1MB data array
 
+// Boundary Membrane Egress (Swarm Topology)
+export const MAX_EGRESS_EVENTS = 8192;
+export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492; // 1 Int32 counter
+export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496; // 8192 * 128 bytes
+
 type MemoryLayoutRegion = {
   name: string;
   offset: number;
@@ -281,11 +286,23 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     MAX_LEDGER_EVENTS * 16, // 4 Int32 per event (tick, atom, r1, r2)
     4,
   ),
+  region(
+    "EGRESS_HEAD",
+    EGRESS_HEAD_OFFSET,
+    4,
+    4,
+  ),
+  region(
+    "EGRESS_DATA",
+    EGRESS_DATA_OFFSET,
+    MAX_EGRESS_EVENTS * 128,
+    4,
+  ),
 ];
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = LEDGER_DATA_OFFSET + (MAX_LEDGER_EVENTS * 16);
+export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );

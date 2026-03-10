@@ -8,6 +8,7 @@ export type ContinuumMetadata = {
   memoryBounds: number;
   population?: number;
   coherence?: number;
+  epochHash?: string;
   timestamp: string;
 };
 
@@ -18,7 +19,8 @@ export async function saveEpoch(
   tick: number,
   epochName: string,
   population: number = 0,
-  coherence: number = 0
+  coherence: number = 0,
+  epochHash?: string
 ): Promise<void> {
   await ensureDir(EPOCHS_DIR);
 
@@ -42,6 +44,7 @@ export async function saveEpoch(
     memoryBounds: LATTICE_MEMORY_END,
     population,
     coherence,
+    epochHash,
     timestamp: new Date().toISOString(),
   };
 
@@ -77,4 +80,40 @@ export async function loadEpoch(
   targetView.set(decompressedArray);
 
   return metadata;
+}
+
+// --- Phase 30: Bootstrapping ---
+
+export async function compressMemory(memory: WebAssembly.Memory): Promise<Uint8Array> {
+  const buffer = new Uint8Array(memory.buffer, 0, LATTICE_MEMORY_END);
+  const clone = new Uint8Array(buffer.byteLength);
+  clone.set(buffer);
+  
+  const compressionStream = new CompressionStream("gzip");
+  const writer = compressionStream.writable.getWriter();
+  writer.write(clone);
+  writer.close();
+  const compressedBuffer = await new Response(compressionStream.readable).arrayBuffer();
+  return new Uint8Array(compressedBuffer);
+}
+
+export async function decompressMemoryToLattice(memory: WebAssembly.Memory, payload: Uint8Array): Promise<void> {
+  const decompressionStream = new DecompressionStream("gzip");
+  const writer = decompressionStream.writable.getWriter();
+  
+  const clone = new Uint8Array(payload.byteLength);
+  clone.set(payload);
+  writer.write(clone);
+  
+  writer.close();
+
+  const decompressedBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+  const decompressedArray = new Uint8Array(decompressedBuffer);
+
+  if (decompressedArray.byteLength > memory.buffer.byteLength) {
+      throw new Error(`[CONTINUUM] Decompressed payload (${decompressedArray.byteLength}) exceeds logic memory bounds (${memory.buffer.byteLength})`);
+  }
+
+  const targetView = new Uint8Array(memory.buffer, 0, decompressedArray.byteLength);
+  targetView.set(decompressedArray);
 }

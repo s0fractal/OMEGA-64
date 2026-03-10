@@ -2,5 +2,6 @@
 rustflags = [
     "-C", "link-arg=--import-memory",
     "-C", "link-arg=--shared-memory",
+    "-C", "link-arg=--max-memory=163840000",
     "-C", "target-feature=+atomics,+bulk-memory,+mutable-globals"
 ]

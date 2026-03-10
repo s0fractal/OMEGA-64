@@ -198,7 +198,7 @@ export const P2P_FEDERATION = {
         const res = await fetch(`${targetPeer}/federate`, {
           method: "POST",
           headers,
-          body: packet,
+          body: new Uint8Array(packet),
           signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
         });
 

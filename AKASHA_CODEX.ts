@@ -229,7 +229,7 @@ const OPCODE_NAMES: Record<number, string> = {
   [RISC.OP_BUILD]: "BUILD",
   [RISC.OP_SENSE]: "SENSE",
   [RISC.OP_WISDOM]: "WISDOM",
-  [RISC.OP_RESONATE]: "RESONATE",
+  [RISC.OP_RESONATE_KURAMOTO]: "RESONATE",
 };
 
 const fallbackState = (): CodexState => ({

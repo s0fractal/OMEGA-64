@@ -10,7 +10,6 @@ pub const GRID_CELLS: usize = GRID_W * GRID_H;
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
 pub struct SigmaMatrix {
-    pub _pad_front: [u8; 7_999_992],
     pub tick_counter: i32,
     pub sync_state: i32,
     pub ids: [u64; 500000],
@@ -67,6 +66,8 @@ pub struct SigmaMatrix {
     pub mailbox: [[i32; 2]; 500000],
     pub ledger_head: i32,
     pub ledger_data: [[i32; 4]; 65536],
+    pub egress_head: i32,
+    pub egress_data: [[u8; 256]; 8192],
 }
 
 pub struct SigmaState {
@@ -322,6 +323,40 @@ impl SigmaState {
             None
         }
     }
+
+    pub fn egress_head_atomic(&self) -> &std::sync::atomic::AtomicI32 {
+        unsafe { &*(&self.matrix.egress_head as *const i32 as *const std::sync::atomic::AtomicI32) }
+    }
+
+    pub fn dispatch_egress(&self, atom_idx: usize, nx: i32, ny: i32, current_energy: i32) {
+        let max_events = 8192;
+        let head = self
+            .egress_head_atomic()
+            .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        let idx = (head as usize) % max_events;
+
+        let mut payload = [0u8; 256];
+        payload[0..64].copy_from_slice(&self.matrix.instructions[atom_idx]);
+        payload[64..68].copy_from_slice(&current_energy.to_le_bytes());
+        payload[68..72].copy_from_slice(&self.matrix.phase[atom_idx].to_le_bytes());
+        payload[72..76].copy_from_slice(&self.matrix.resonance[atom_idx].to_le_bytes());
+        payload[76..80].copy_from_slice(&nx.to_le_bytes());
+        payload[80..84].copy_from_slice(&ny.to_le_bytes());
+
+        for i in 0..16 {
+            let offset = 84 + (i * 4);
+            payload[offset..offset + 4]
+                .copy_from_slice(&self.matrix.context[atom_idx][i].to_le_bytes());
+        }
+
+        payload[148] = self.matrix.roles[atom_idx];
+
+        unsafe {
+            let egress_ptr = self.matrix.egress_data.as_ptr() as *mut u8;
+            let slot_ptr = egress_ptr.add(idx * 256);
+            std::ptr::copy_nonoverlapping(payload.as_ptr(), slot_ptr, 256);
+        }
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -519,6 +554,16 @@ mod tests {
             offset_of!(SigmaMatrix, ledger_data),
             148945916,
             "ledger_data"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, egress_head),
+            149994492,
+            "egress_head"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, egress_data),
+            149994496,
+            "egress_data"
         );
     }
 }

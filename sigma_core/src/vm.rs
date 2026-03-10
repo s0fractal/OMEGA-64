@@ -30,8 +30,16 @@ impl LambdaVM {
 
         let mut gas_used = 0;
         let mut gas_limit = if energy < 100 { energy } else { 100 };
+        let mut step_count = 0;
+        const MAX_EXECUTION_STEPS: usize = 64;
 
         while gas_used < gas_limit {
+            step_count += 1;
+            if step_count > MAX_EXECUTION_STEPS {
+                state.energy_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                break;
+            }
+
             let op = GlyphOp::from(state.matrix.instructions[atom_idx][pc as usize]);
 
             match op {
@@ -194,7 +202,7 @@ impl LambdaVM {
                     let grid_cx = gx;
                     let grid_cy = gy;
 
-                    for dy in -1..=1 {
+                    'search: for dy in -1..=1 {
                         for dx in -1..=1 {
                             let nx = grid_cx + dx;
                             let ny = grid_cy + dy;
@@ -202,6 +210,9 @@ impl LambdaVM {
                             if nx >= 0 && nx < 140 && ny >= 0 && ny < 80 {
                                 let count = state.get_spatial_grid_count(nx, ny);
                                 for i in 0..count {
+                                    if neighbor_count >= 32 {
+                                        break 'search;
+                                    }
                                     let neighbor_id =
                                         state.get_spatial_grid_atom(nx, ny, i) as usize;
                                     if neighbor_id > 0
@@ -210,7 +221,7 @@ impl LambdaVM {
                                     {
                                         let neighbor_phase = state.matrix.phase[neighbor_id] as i32;
                                         let diff = (neighbor_phase - current_phase) & 255;
-                                        sum_sin += math_sin(diff, 0); // Direct lookup density mapping
+                                        sum_sin = sum_sin.saturating_add(math_sin(diff, 0)); // Direct lookup density mapping
                                         neighbor_count += 1;
                                     }
                                 }
@@ -225,8 +236,8 @@ impl LambdaVM {
                     }
 
                     if neighbor_count > 0 {
-                        let d_theta = (k_bond * sum_sin) >> 15;
-                        let theta_next = (current_phase + d_theta) & 255;
+                        let d_theta = (k_bond.saturating_mul(sum_sin)) >> 15;
+                        let theta_next = current_phase.saturating_add(d_theta).rem_euclid(256);
                         state.phase_atomic()[atom_idx]
                             .store(theta_next as i32, std::sync::atomic::Ordering::Relaxed);
                     }
@@ -631,10 +642,11 @@ impl LambdaVM {
                 }
                 GlyphOp::Syscall => {
                     if op == GlyphOp::Syscall {
-                        let sys_id = state.matrix.context[atom_idx][0]; // R0
-                        let r1 = state.matrix.context[atom_idx][1];
-                        let r2 = state.matrix.context[atom_idx][2];
-                        let r3 = state.matrix.context[atom_idx][3];
+                        let context_regs = state.context_atomic(atom_idx);
+                        let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
+                        let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
+                        let r2 = context_regs[2].load(std::sync::atomic::Ordering::Relaxed);
+                        let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
 
                         match sys_id {
                             SYS_MOVE => {
@@ -660,31 +672,35 @@ impl LambdaVM {
                                     let cx = state.matrix.xs[atom_idx] as i32;
                                     let cy = state.matrix.ys[atom_idx] as i32;
 
-                                    let mut nx = cx + (dx_str * 10);
-                                    let mut ny = cy + (dy_str * 10);
+                                    let nx = cx + (dx_str * 10);
+                                    let ny = cy + (dy_str * 10);
 
-                                    if nx < 0 {
-                                        nx = 0;
-                                    } else if nx > 1399 {
-                                        nx = 1399;
-                                    }
-                                    if ny < 0 {
-                                        ny = 0;
-                                    } else if ny > 799 {
-                                        ny = 799;
-                                    }
+                                    let is_escaped = nx < 0 || nx > 1399 || ny < 0 || ny > 799;
 
-                                    let n_grid_x = nx / 10;
-                                    let n_grid_y = ny / 10;
+                                    if is_escaped {
+                                        state.dispatch_egress(atom_idx, nx, ny, energy);
+                                        state.energy_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        state.ids_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        energy = 0;
+                                    } else {
+                                        let n_grid_x = nx / 10;
+                                        let n_grid_y = ny / 10;
 
-                                    let count_in_cell =
-                                        state.get_spatial_grid_count(n_grid_x, n_grid_y);
+                                        let count_in_cell =
+                                            state.get_spatial_grid_count(n_grid_x, n_grid_y);
 
-                                    if count_in_cell < 31 {
-                                        state.xs_atomic()[atom_idx]
-                                            .store(nx as i16, std::sync::atomic::Ordering::Relaxed);
-                                        state.ys_atomic()[atom_idx]
-                                            .store(ny as i16, std::sync::atomic::Ordering::Relaxed);
+                                        if count_in_cell < 31 {
+                                            state.xs_atomic()[atom_idx].store(
+                                                nx as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                            state.ys_atomic()[atom_idx].store(
+                                                ny as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                        }
                                     }
                                 }
                                 gas_used += 10;
