@@ -125,7 +125,37 @@ pub extern "C" fn apply_metabolism_kernel(
     param11: i32,
     param12: i32,
 ) {
-    // The AssemblyScript runtime expected explicit values passed in,
-    // but in Rust `SigmaState` reads these directly from the `hormones` array fields.
     // Implemented internally via `pulse.rs` `apply_metabolism_kernel`.
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn run_shadow_simulation_ffi(
+    atom_id: u32,
+    ticks: u32,
+    logic_ptr: u32,
+    result_ptr: u32,
+) -> i32 {
+    let state = unsafe { get_ffi_state() };
+
+    // The logic_ptr and result_ptr are offsets into the linear WASM memory (usually starts at 0).
+    // We treat them as pointers.
+    let hallucination_bytes = unsafe { &*(logic_ptr as usize as *const [u8; 64]) };
+
+    let metrics =
+        crate::shadow::run_shadow_simulation(&state, atom_id as u64, hallucination_bytes, ticks);
+
+    // Write back the 32-byte struct to the provided result pointer
+    // Structure: [energy_diff, resonance_diff, bonds_broken, bonds_formed, structural_value_change, population_diff, coherence_diff, divergence_tick]
+    let result_slice =
+        unsafe { std::slice::from_raw_parts_mut(result_ptr as usize as *mut i32, 8) };
+    result_slice[0] = metrics.energy_diff;
+    result_slice[1] = metrics.resonance_diff;
+    result_slice[2] = metrics.bonds_broken as i32;
+    result_slice[3] = metrics.bonds_formed as i32;
+    result_slice[4] = metrics.structural_value_change;
+    result_slice[5] = metrics.population_diff;
+    result_slice[6] = metrics.coherence_diff;
+    result_slice[7] = metrics.divergence_tick as i32;
+
+    1 // Success indicator
 }
