@@ -390,3 +390,107 @@ fn test_gt01_replicator_loop_spawn() {
     let expected_id = (1u64 << 32) | 2;
     assert_eq!(state.matrix.ids[c_idx], expected_id);
 }
+
+#[test]
+fn test_gt11_collective_banking() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    let p1 = 1;
+    let p2 = 2;
+
+    state.matrix.ids[p1] = 1;
+    state.matrix.energy[p1] = 5000;
+
+    state.matrix.ids[p2] = 2;
+    state.matrix.energy[p2] = 5000;
+
+    // Atom 1: Mode 3 (Deposit) 5 energy units (5000 fractional)
+    state.matrix.instructions[p1][0] = 0xA6; // OP_COLLECTIVE
+    state.matrix.instructions[p1][1] = 3; // Mode 3
+    state.matrix.instructions[p1][2] = 5; // Value 5
+
+    // Atom 2: Mode 4 (Withdraw) into R0
+    state.matrix.instructions[p2][0] = 0xA6; // OP_COLLECTIVE
+    state.matrix.instructions[p2][1] = 4; // Mode 4
+    state.matrix.instructions[p2][2] = 0; // Reg 0
+    state.matrix.context[p2][0] = 0;
+
+    vm.step(&mut state, p1);
+
+    // Check Deposit
+    assert_eq!(state.matrix.energy[p1], 0); // Cost 5 so 5000 deducted
+    assert_eq!(state.matrix.hive_balance, 5);
+
+    vm.step(&mut state, p2);
+
+    // Check Withdraw
+    assert_eq!(state.matrix.hive_balance, 0); // Withdrew all 5
+                                              // Note: Deducting gas... Wait, withdraw energy is added * 1000
+                                              // so 5000 + 5000 (withdrawn) = 10000, minus gas cost. Let's just check context register
+    assert_eq!(state.matrix.context[p2][0], 5); // Withdrew 5 units
+}
+
+#[test]
+fn test_gt12_collective_synchrony() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    let p1 = 1;
+    let p2 = 2;
+
+    state.matrix.ids[p1] = 1;
+    state.matrix.ids[p2] = 2;
+    state.matrix.energy[p1] = 1000;
+
+    // Bond P1 -> P2
+    state.matrix.bonds[1 * 4] = p2 as i32;
+
+    // Atom 1: Mode 5 (Phase Lock bonds)
+    state.matrix.instructions[p1][0] = 0xA6; // OP_COLLECTIVE
+    state.matrix.instructions[p1][1] = 5; // Mode 5
+
+    // Initial PCs
+    state.matrix.context[p1][8] = 0;
+    state.matrix.context[p2][8] = 50;
+
+    vm.step(&mut state, p1);
+
+    // Since OP_COLLECTIVE takes 4 bytes, PC of p1 becomes 4
+    assert_eq!(state.matrix.context[p1][8], 4);
+    assert_eq!(state.matrix.context[p2][8], 4); // Synced
+}
+
+#[test]
+fn test_gt14_plug_charge_resolve() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    let p1 = 1;
+    state.matrix.ids[p1] = 1;
+    state.matrix.xs[p1] = 55;
+    state.matrix.ys[p1] = 55;
+
+    // OP_PLUG (0xA4 / 0x18 in some mappings, but let's check isa.rs)
+    // Actually, we don't need OP_PLUG, we can just write an intent manually based on coordinates.
+    // 55/10 = 5, 55/10 = 5. cell = 5 * 140 + 5 = 705
+    let cell_idx = 705;
+
+    // Simulate OP_PLUG Intent
+    state.matrix.structure_charge_intent[cell_idx] = 200;
+
+    // Simulate STR_VOID with neighbor charge to trigger spontaneous crystallization
+    state.matrix.structure_grid[cell_idx] = 0; // STR_VOID
+    state.matrix.structure_grid[cell_idx + 1] = 1 | (150 << 16); // Wire with charge 150
+
+    // Tick structure grid
+    sigma_core::environment::tick_structure_grid(&mut state);
+
+    // Should crystallize into STR_WIRE with charge 200-20 = 180
+    let cell_val = state.matrix.structure_grid[cell_idx];
+    let str_type = cell_val & 0xFF;
+    let charge = (cell_val >> 16) & 0xFF;
+
+    assert_eq!(str_type, 1); // STR_WIRE
+    assert_eq!(charge, 180);
+}

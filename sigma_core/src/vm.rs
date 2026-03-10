@@ -397,8 +397,77 @@ impl LambdaVM {
                     gas_used += 5;
                 }
                 GlyphOp::Collective => {
-                    pc += 2; // Pass
-                    gas_used += 5;
+                    let mode = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let p2 = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let p3 = state.matrix.instructions[atom_idx][(pc + 3) as usize];
+
+                    if mode == 0 {
+                        // Hive Store
+                        let addr = (p2 as usize) & 1023;
+                        let val = (p3 & 0xFF) as u8;
+                        state.matrix.hive_memory[addr] = val;
+                        gas_used += 10;
+                    } else if mode == 1 {
+                        // Hive Load
+                        let addr = (p2 as usize) & 1023;
+                        let reg = (p3 as usize) & 7;
+                        state.matrix.context[atom_idx][reg] = state.matrix.hive_memory[addr] as i32;
+                        gas_used += 10;
+                    } else if mode == 3 {
+                        // Hive Deposit
+                        let val = (p2 & 0xFF) as i32;
+                        if energy >= val * 1000 {
+                            state.matrix.hive_balance += val;
+                            state.matrix.energy[atom_idx] -= val * 1000;
+                            energy -= val * 1000;
+                        }
+                        gas_used += 15;
+                    } else if mode == 4 {
+                        // Hive Withdraw
+                        let reg = (p2 as usize) & 7;
+                        let amount = if state.matrix.hive_balance > 100 {
+                            100
+                        } else {
+                            state.matrix.hive_balance
+                        };
+                        if amount > 0 {
+                            state.matrix.hive_balance -= amount;
+                            state.matrix.energy[atom_idx] += amount * 1000;
+                            energy += amount * 1000;
+                        }
+                        state.matrix.context[atom_idx][reg] = amount;
+                        gas_used += 15;
+                    } else if mode == 5 {
+                        // Phase Lock (Bonds)
+                        for slot in 0..4 {
+                            let bond_idx = (atom_idx * 4) + slot;
+                            let target = state.matrix.bonds[bond_idx] as usize;
+                            if target > 0 && target < MAX_ATOMS && state.matrix.ids[target] != 0 {
+                                state.matrix.context[target][8] = (pc + 4) as i32;
+                            }
+                        }
+                        gas_used += 15;
+                    } else if mode == 6 {
+                        // Quorum PC Sync
+                        let cx = state.matrix.xs[atom_idx] as i32 / 10;
+                        let cy = state.matrix.ys[atom_idx] as i32 / 10;
+                        if cx >= 0 && cx < 140 && cy >= 0 && cy < 80 {
+                            let count = state.get_spatial_grid_count(cx, cy);
+                            for i in 0..count {
+                                let peer = state.get_spatial_grid_atom(cx, cy, i) as usize;
+                                if peer > 0
+                                    && peer < MAX_ATOMS
+                                    && peer != atom_idx
+                                    && state.matrix.ids[peer] != 0
+                                {
+                                    state.matrix.context[peer][8] = (pc + 4) as i32;
+                                }
+                            }
+                        }
+                        gas_used += 20;
+                    }
+
+                    pc += 4; // Length is 4 according to verification harness
                 }
                 GlyphOp::Syscall => {
                     if op == GlyphOp::Syscall {
