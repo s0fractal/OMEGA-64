@@ -23,7 +23,7 @@ const args = [
   "--importMemory",
   "--sharedMemory",
   "--initialMemory",
-  String(OFFSETS.WASM_MEMORY_PAGES),
+  String(OFFSETS.MIN_WASM_MEMORY_PAGES),
   "--maximumMemory",
   String(OFFSETS.WASM_MEMORY_PAGES),
   "--enable",

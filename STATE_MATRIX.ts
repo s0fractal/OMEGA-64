@@ -22,7 +22,7 @@ if (!layoutValidation.ok) {
 
 // Base Buffers for UI/WASM compatibility
 export const wasmMemory = new WebAssembly.Memory({
-  initial: OFFSETS.WASM_MEMORY_PAGES,
+  initial: OFFSETS.MIN_WASM_MEMORY_PAGES,
   maximum: OFFSETS.WASM_MEMORY_PAGES,
   shared: true,
 });
@@ -582,10 +582,32 @@ export const STATE_MATRIX = {
     return -1;
   },
   findEmptySlot: (): number => {
-    for (let i = 0; i < MAX_ATOMS; i++) {
+    for (let i = 1; i < MAX_ATOMS; i++) {
       if (Atomics.load(ids, i) === 0n) return i;
     }
     return -1;
+  },
+
+  /**
+   * Serializes the current active state of the matrix into a flat 32-bit Float array
+   * optimized for raw WebSocket telemetry and 60 FPS WebGL InstancedMesh buffering.
+   * [x, y, color (encoded as float), resonance]
+   */
+  packRenderFrame: (): Float32Array => {
+    const active = STATE_MATRIX.getActiveIndices();
+    const len = active.length;
+    // 4 floats per atom -> 16 bytes per atom. 500k atoms = 8MB packet.
+    const packet = new Float32Array(len * 4);
+    
+    for (let j = 0; j < len; j++) {
+      const idx = active[j];
+      const offset = j * 4;
+      packet[offset] = Atomics.load(xs, idx);     // x
+      packet[offset + 1] = Atomics.load(ys, idx); // y
+      packet[offset + 2] = Atomics.load(roles, idx); // color
+      packet[offset + 3] = Atomics.load(resonances, idx); // resonance
+    }
+    return packet;
   },
 
   seedAtom: (

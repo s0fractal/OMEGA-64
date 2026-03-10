@@ -13,6 +13,12 @@ impl LambdaVM {
         Self {}
     }
 
+    #[inline(always)]
+    fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
+        let actual_pc = (pc.wrapping_add(offset)) & 63;
+        state.matrix.instructions[atom_idx][actual_pc as usize]
+    }
+
     /// Execute a bounded execution step for a specific atom index,
     /// exactly matching the Deno reference step function economics.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
@@ -48,8 +54,8 @@ impl LambdaVM {
                     break;
                 }
                 GlyphOp::Set => {
-                    let reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let imm = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let imm = self.fetch_instruction(state, atom_idx, pc, 2);
                     if reg < 8 {
                         state.context_atomic(atom_idx)[reg as usize]
                             .store(imm as i32, std::sync::atomic::Ordering::Relaxed);
@@ -58,8 +64,8 @@ impl LambdaVM {
                     gas_used += 1;
                 }
                 GlyphOp::Get => {
-                    let reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let prop = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let prop = self.fetch_instruction(state, atom_idx, pc, 2);
                     let mut val = 0;
 
                     if prop == PROP_ENERGY {
@@ -79,8 +85,8 @@ impl LambdaVM {
                     gas_used += 2;
                 }
                 GlyphOp::Put => {
-                    let reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let prop = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let prop = self.fetch_instruction(state, atom_idx, pc, 2);
                     let val = if reg < 8 {
                         state.matrix.context[atom_idx][reg as usize]
                     } else {
@@ -100,8 +106,8 @@ impl LambdaVM {
                     gas_used += 2;
                 }
                 GlyphOp::Add => {
-                    let r1 = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let r2 = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let r1 = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let r2 = self.fetch_instruction(state, atom_idx, pc, 2);
                     if r1 < 8 && r2 < 8 {
                         let sum = state.matrix.context[atom_idx][r1 as usize]
                             .wrapping_add(state.matrix.context[atom_idx][r2 as usize]);
@@ -112,8 +118,8 @@ impl LambdaVM {
                     gas_used += 1;
                 }
                 GlyphOp::Sub => {
-                    let r1 = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let r2 = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let r1 = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let r2 = self.fetch_instruction(state, atom_idx, pc, 2);
                     if r1 < 8 && r2 < 8 {
                         let sub = state.matrix.context[atom_idx][r1 as usize]
                             .wrapping_sub(state.matrix.context[atom_idx][r2 as usize]);
@@ -124,8 +130,8 @@ impl LambdaVM {
                     gas_used += 1;
                 }
                 GlyphOp::Jnz => {
-                    let reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let target = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let target = self.fetch_instruction(state, atom_idx, pc, 2);
                     if reg < 8 && state.matrix.context[atom_idx][reg as usize] != 0 {
                         pc = target;
                     } else {
@@ -135,8 +141,8 @@ impl LambdaVM {
                 }
                 GlyphOp::Jz => {
                     // Note: Deno didn't have OP_JZ fully flushed in phase-7 physics, but logic implies inverse JNZ
-                    let reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let target = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let target = self.fetch_instruction(state, atom_idx, pc, 2);
                     if reg < 8 && state.matrix.context[atom_idx][reg as usize] == 0 {
                         pc = target;
                     } else {
@@ -145,13 +151,13 @@ impl LambdaVM {
                     gas_used += 2;
                 }
                 GlyphOp::Jmp => {
-                    pc = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    pc = self.fetch_instruction(state, atom_idx, pc, 1);
                     gas_used += 2;
                 }
                 GlyphOp::Resolve => {
-                    let dest_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let angle_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
-                    let mode_reg = state.matrix.instructions[atom_idx][(pc + 3) as usize];
+                    let dest_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let angle_reg = self.fetch_instruction(state, atom_idx, pc, 2);
+                    let mode_reg = self.fetch_instruction(state, atom_idx, pc, 3);
 
                     let angle = if angle_reg < 8 {
                         state.matrix.context[atom_idx][angle_reg as usize]
@@ -196,7 +202,7 @@ impl LambdaVM {
                     // Note: Deno physics clamp / 1000 logic is actually (xs / 10) / 100 -> xs / 1000.
                     // Let's use grid coordinates as mapped by build_spatial_hash (which are units of 10)
                     let current_phase = state.matrix.phase[atom_idx] as i32;
-                    let mut sum_sin = 0;
+                    let mut sum_sin: i32 = 0;
                     let mut neighbor_count = 0;
 
                     let grid_cx = gx;
@@ -237,7 +243,9 @@ impl LambdaVM {
 
                     if neighbor_count > 0 {
                         let d_theta = (k_bond.saturating_mul(sum_sin)) >> 15;
-                        let theta_next = current_phase.saturating_add(d_theta).rem_euclid(256);
+                        let theta_next = (current_phase as i32)
+                            .saturating_add(d_theta)
+                            .rem_euclid(256);
                         state.phase_atomic()[atom_idx]
                             .store(theta_next as i32, std::sync::atomic::Ordering::Relaxed);
                     }
@@ -246,8 +254,8 @@ impl LambdaVM {
                     gas_used += 5 + (neighbor_count * 2);
                 }
                 GlyphOp::Share => {
-                    let target_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let amount_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let target_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let amount_reg = self.fetch_instruction(state, atom_idx, pc, 2);
 
                     let target_idx = if target_reg < 8 {
                         state.matrix.context[atom_idx][target_reg as usize]
@@ -308,8 +316,8 @@ impl LambdaVM {
                     gas_used += 15;
                 }
                 GlyphOp::Bind => {
-                    let _mode_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let target_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let _mode_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let target_reg = self.fetch_instruction(state, atom_idx, pc, 2);
 
                     let target_idx = if target_reg < 8 {
                         state.matrix.context[atom_idx][target_reg as usize] as usize
@@ -325,7 +333,7 @@ impl LambdaVM {
                     gas_used += 20;
                 }
                 GlyphOp::Hebb => {
-                    let slot_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let slot_reg = self.fetch_instruction(state, atom_idx, pc, 1);
                     let slot = if slot_reg < 8 {
                         state.matrix.context[atom_idx][slot_reg as usize] as usize
                     } else {
@@ -353,8 +361,8 @@ impl LambdaVM {
                     gas_used += 10;
                 }
                 GlyphOp::Fire => {
-                    let slot_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let amp_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let slot_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let amp_reg = self.fetch_instruction(state, atom_idx, pc, 2);
 
                     let slot = if slot_reg < 8 {
                         state.matrix.context[atom_idx][slot_reg as usize] as usize
@@ -434,8 +442,8 @@ impl LambdaVM {
                     gas_used += 10;
                 }
                 GlyphOp::Tensegrity => {
-                    let target_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let val_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let target_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let val_reg = self.fetch_instruction(state, atom_idx, pc, 2);
 
                     let spring_target = if target_reg < 8 {
                         state.matrix.context[atom_idx][target_reg as usize]
@@ -464,8 +472,8 @@ impl LambdaVM {
                     gas_used += 5;
                 }
                 GlyphOp::Build => {
-                    let type_val = state.matrix.instructions[atom_idx][(pc + 1) as usize] as i32;
-                    let state_val = state.matrix.instructions[atom_idx][(pc + 2) as usize] as i32;
+                    let type_val = self.fetch_instruction(state, atom_idx, pc, 1) as i32;
+                    let state_val = self.fetch_instruction(state, atom_idx, pc, 2) as i32;
 
                     let build_val = (state_val << 24) | (0xFF << 16) | type_val;
                     let cx = state.matrix.xs[atom_idx] as usize;
@@ -477,7 +485,7 @@ impl LambdaVM {
                     gas_used += 10;
                 }
                 GlyphOp::Plug => {
-                    let charge_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let charge_reg = self.fetch_instruction(state, atom_idx, pc, 1);
                     let charge_val = if charge_reg < 8 {
                         state.matrix.context[atom_idx][charge_reg as usize]
                     } else {
@@ -492,7 +500,7 @@ impl LambdaVM {
                     gas_used += 5;
                 }
                 GlyphOp::Sense => {
-                    let dest_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let dest_reg = self.fetch_instruction(state, atom_idx, pc, 1);
                     // Radius ignored for parity testing, directly sensing current cell
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
@@ -507,8 +515,8 @@ impl LambdaVM {
                     gas_used += 5;
                 }
                 GlyphOp::Signal => {
-                    let type_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let intensity_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+                    let type_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let intensity_reg = self.fetch_instruction(state, atom_idx, pc, 2);
                     let kind = if type_reg < 8 {
                         state.matrix.context[atom_idx][type_reg as usize] as u8
                     } else {
@@ -531,9 +539,9 @@ impl LambdaVM {
                     gas_used += 5;
                 }
                 GlyphOp::Collective => {
-                    let mode = state.matrix.instructions[atom_idx][(pc + 1) as usize];
-                    let p2 = state.matrix.instructions[atom_idx][(pc + 2) as usize];
-                    let p3 = state.matrix.instructions[atom_idx][(pc + 3) as usize];
+                    let mode = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let p2 = self.fetch_instruction(state, atom_idx, pc, 2);
+                    let p3 = self.fetch_instruction(state, atom_idx, pc, 3);
 
                     if mode == 0 {
                         // Hive Store

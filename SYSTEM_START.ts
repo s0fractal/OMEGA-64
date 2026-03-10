@@ -17,7 +17,7 @@ import {
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
-import { PULSE } from "./PULSE.ts";
+import { PULSE, type ReplicationHybridState } from "./PULSE.ts";
 import { BREATH } from "./BREATH.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
@@ -50,7 +50,7 @@ import type {
   ArchitectPlasmidHybridSnapshot,
   ArchitectPlasmidPromotionSnapshot,
 } from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
-import type { ReplicationHybridState } from "./runtime_bridge/replication_hybrid.ts";
+import { PANOPTICON_SERVER } from "./PANOPTICON_SERVER.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
@@ -1815,6 +1815,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
+    const geneticLedger = PULSE.getGeneticLedgerState();
     
     const ledger = {
       ...generic,
@@ -3632,7 +3633,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 })();
 
-// 3. Start Cognitive Breathing Loop (Background)
+// 3. Start Panopticon Telemetry Server (Background)
+(async () => {
+    PANOPTICON_SERVER.start();
+})();
+
+// 4. Start Cognitive Breathing Loop (Background)
 (async () => {
   LOGGER.info("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
   await new Promise((r) => setTimeout(r, 5000));

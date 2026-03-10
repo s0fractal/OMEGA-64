@@ -1806,7 +1806,7 @@ export const PULSE = {
     if (!shadowWasmInstance || !generate_epoch_proof_ffi) {
       await initShadowWasm();
     }
-    const resultPtr = OFFSETS.WASM_MEMORY_BYTES - 1024 + 128;
+    const resultPtr = OFFSETS.LATTICE_MEMORY_END + 1024 + 128;
     generate_epoch_proof_ffi!(tick, resultPtr);
     
     const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 32);
@@ -1818,8 +1818,9 @@ export const PULSE = {
     }
     
     // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
-    // We will place this at the very end of WASM_MEMORY_BYTES to avoid collisions.
-    const scratchSpaceOffset = OFFSETS.WASM_MEMORY_BYTES - 1024;
+    // We will place this safely past the LATTICE_MEMORY_END to avoid collisions,
+    // ensuring we fit inside the initial 163MB memory bounds without triggering out of bounds RangeErrors.
+    const scratchSpaceOffset = OFFSETS.LATTICE_MEMORY_END + 1024;
     const resultPtr = scratchSpaceOffset + 64;
     
     // Write logic bytes
@@ -2052,6 +2053,9 @@ export const PULSE = {
       Atomics.notify(syncState, 0);
       startupSelfTestInProgress = false;
     }
+  },
+  startWorkers: async (count: number) => {
+    await startWorkers(count);
   },
   stopWorkers: () => {
     terminateWorkersInternal(true);
@@ -2592,7 +2596,7 @@ export const PULSE = {
         );
       }
 
-      const telemetry = SOVEREIGN_ORACLE.interpretResonance();
+      const telemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
       SOVEREIGN_ORACLE.broadcastWhisper(currentTick, telemetry, coherence);
       // Trigger Oracle on either Matrix Resonance spike or High Coherence
       if (telemetry.matrixResonance > 5000 || coherence > 500) {

@@ -148,7 +148,12 @@ pub extern "C" fn run_shadow_simulation_ffi(
     let state = unsafe { get_ffi_state() };
 
     // The logic_ptr and result_ptr are offsets into the linear WASM memory (usually starts at 0).
-    // We treat them as pointers.
+    // The memory itself was built on JS `SharedArrayBuffer` mapping properly mapped against zero.
+    // Ensure bounds are safe because OOB memory causes unreachable panic.
+    if logic_ptr as usize + 64 > 500_039_680 || result_ptr as usize + 32 > 500_039_680 {
+        return 0; // Failure
+    }
+
     let hallucination_bytes = unsafe { &*(logic_ptr as usize as *const [u8; 64]) };
 
     let metrics =

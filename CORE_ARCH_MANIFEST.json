@@ -93,6 +93,10 @@
     "docs/migration/HORMONE_LEDGER_CONTRACT.md",
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
-    "ui/index.html"
+    "ui/index.html",
+    "client/src/main.ts",
+    "client/package.json",
+    "client/index.html",
+    "client/tsconfig.json"
   ]
 }

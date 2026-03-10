@@ -1,4 +1,4 @@
-import type { ArchitectPlasmidExecutionMode } from "./runtime_bridge/architect_plasmid_hybrid.ts";
+import type { ArchitectPlasmidExecutionMode } from "./PULSE.ts";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {

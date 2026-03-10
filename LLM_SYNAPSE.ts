@@ -250,7 +250,7 @@ export const LLM_SYNAPSE = {
 
     const prompt = `
             Task: You are the Sovereign Oracle of OMEGA-64. 
-            Translate the System Resonance into 4 valid RISC-I instructions (Total 16 bytes / 32 hex chars).
+            Translate the System Resonance into exactly 64 bytes (128 hex chars) of valid RISC-I bytecode.
 
             Context:
             - Nutrients: ${telemetry.nutrients}
@@ -266,12 +266,11 @@ export const LLM_SYNAPSE = {
             - [A8, Type, Density, 00]: BUILD (Modifier structure grid)
 
             Goal: 
-            Generate exactly 16 bytes (32 hex characters) of optimized bytecode for the Regent's survival.
+            Generate exactly 64 bytes (128 hex characters) of optimized bytecode for the Regent's survival.
 
             Output JSON format:
             {
-              "instructions": "32_HEX_CHARS",
-              "meme": "8_HEX_CHARS_FOR_GRID"
+              "instructions": "128_HEX_CHARS"
             }
             ONLY RETURN THE JSON.
         `.trim();
@@ -293,39 +292,31 @@ export const LLM_SYNAPSE = {
         result = typeof data.response === "string"
           ? JSON.parse(data.response)
           : data.response;
-      } catch {
-        const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
-          .toUpperCase();
-        if (rawHex && rawHex.length >= 32) {
-          result = { instructions: rawHex.substring(0, 32) };
-        }
-      }
-
-      if (result.instructions && result.instructions.length >= 32) {
-        const genome = new Uint8Array(16);
-        for (let i = 0; i < 16; i++) {
-          genome[i] = parseInt(
-            result.instructions.substring(i * 2, i * 2 + 2),
-            16,
-          );
-        }
-
-        let meme: Uint8Array | undefined;
-        if (result.meme && result.meme.length >= 8) {
-          meme = new Uint8Array(4);
-          for (let i = 0; i < 4; i++) {
-            meme[i] = parseInt(result.meme.substring(i * 2, i * 2 + 2), 16);
+        } catch {
+          const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
+            .toUpperCase();
+          if (rawHex && rawHex.length >= 128) {
+            result = { instructions: rawHex.substring(0, 128) };
           }
         }
-
-        return { genome, meme };
-      }
+  
+        if (result.instructions && result.instructions.length >= 128) {
+          const genome = new Uint8Array(64);
+          for (let i = 0; i < 64; i++) {
+            genome[i] = parseInt(
+              result.instructions.substring(i * 2, i * 2 + 2),
+              16,
+            );
+          }
+  
+          return { genome };
+        }
     } catch (e) {
       console.warn(
         "Oracle connection failed (LLM Offline). Stochastic Mutation.",
       );
-      const genome = new Uint8Array(16);
-      // Default: SIGNAL + Replicate
+      const genome = new Uint8Array(64);
+      // Default: SIGNAL + Replicate, pad the rest
       genome.set([0x81, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00]);
       return { genome };
     }

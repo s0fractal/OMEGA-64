@@ -1,4 +1,4 @@
-import type { ReplicationExecutionMode } from "./runtime_bridge/replication_hybrid.ts";
+import type { ReplicationExecutionMode } from "./PULSE.ts";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;

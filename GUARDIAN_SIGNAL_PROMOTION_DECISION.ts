@@ -1,4 +1,4 @@
-import type { GuardianSignalExecutionMode } from "./runtime_bridge/guardian_signal_hybrid.ts";
+import type { GuardianSignalExecutionMode } from "./PULSE.ts";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {
