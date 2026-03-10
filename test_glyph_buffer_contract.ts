@@ -83,6 +83,8 @@ const main = async () => {
 
   const internalTick = tick(32);
   
+  console.log("INTERNAL TICK SEEDS:", internalTick.internalSignalSeeds, internalTick.internalMemorySeeds);
+  
   if (internalTick.internalSignalSeeds <= 0) {
     throw new Error(
       "[glyph-buffer] signal grid did not seed internal pheromone transport",

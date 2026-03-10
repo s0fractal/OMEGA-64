@@ -51,6 +51,9 @@ export const stiffnessBuffer =
 export const bondDistBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4)
     .buffer;
+export const synapticWeightBuffer =
+  new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4)
+    .buffer;
 export const dampingBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
 export const causalityBuffer =
@@ -100,6 +103,11 @@ const resonances = new Int32Array(
 );
 const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
 const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+const synapticWeights = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.SYNAPTIC_WEIGHTS_OFFSET,
+  MAX_ATOMS * 4,
+);
 const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(
   sharedBuffer,
@@ -464,6 +472,11 @@ export const STATE_MATRIX = {
   setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
   setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
   setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
+  getSynapticWeight: (index: number, slot: number): number =>
+    synapticWeights[index * 4 + slot],
+  setSynapticWeight: (index: number, slot: number, weight: number) => {
+    synapticWeights[index * 4 + slot] = weight;
+  },
   setRole: (i: number, val: number) => Atomics.store(roles, i, val),
   setEnergy: (i: number, val: number) =>
     Atomics.store(energies, i, toClampedEnergyRaw(val)),

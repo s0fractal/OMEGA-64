@@ -714,3 +714,115 @@ fn test_pure_substrate_emergence() {
         "Negative intensity must be preserved through OP_SIGNAL natively"
     );
 }
+
+#[test]
+fn test_hebbian_plasticity_circuit() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    let n1 = 1;
+    let n2 = 2;
+
+    state.matrix.ids[n1] = 10;
+    state.matrix.energy[n1] = 1000;
+    state.matrix.resonance[n1] = 250;
+
+    state.matrix.ids[n2] = 20;
+    state.matrix.energy[n2] = 1000;
+    state.matrix.resonance[n2] = 0;
+
+    // Manually map structural bond n1 -> n2 on slot 0
+    state.matrix.bonds[(n1 * 4) + 0] = n2 as i32;
+    state.matrix.synaptic_weights[(n1 * 4) + 0] = 0;
+
+    // We will walk the PC through 3 sequential tests linearly.
+    // 1. OP_HEBB (0x8A) SlotR0(0)
+    state.matrix.instructions[n1][0] = 0x8A;
+    state.matrix.instructions[n1][1] = 0; // Read from R0
+    state.matrix.context[n1][0] = 0; // R0 = 0 (bond_slot)
+
+    // 2. OP_FIRE (0x8B) SlotR0(0), AmpR1(255)
+    state.matrix.instructions[n1][2] = 0x8B;
+    state.matrix.instructions[n1][3] = 0; // R0
+    state.matrix.instructions[n1][4] = 1; // R1
+    state.matrix.context[n1][1] = 255; // R1 = Amplitude 255
+
+    // 3. OP_DECAY (0x91)
+    state.matrix.instructions[n1][5] = 0x91;
+
+    // Stop at NOP
+    state.matrix.instructions[n1][6] = 0x00;
+
+    // PC=0
+    state.matrix.context[n1][8] = 0;
+
+    // STEP 1: OP_HEBB
+    // Gas cost: 10 + NOP (1) = 11. Base cost: 11. Metabolic: 1 + 11 = 12. Energy: 1000 - 12 = 988.
+    // Wait, let's just step once and check weights. NOP break might not hit if gas isn't exhausted, but yield occurs after Hebb.
+    // Let's rely on VM stopping at pc=2 because of op boundaries that yield (gas_limit = 0 trick in syscalls. Wait, OP_HEBB is not a syscall!)
+    // If OP_HEBB doesn't yield, it will run until gas triggers break.
+    // Let's put them on separate executions by resetting PC, otherwise it all runs at once.
+    // Actually, let's let it run the whole 0..6 program natively since they aren't syscalls yielding!
+    // Wait, the test checks states in between. Let's do them step by step by isolating memory.
+
+    // Isolated Run 1: OP_HEBB only
+    state.matrix.instructions[n1][2] = 0x00; // Break after HEBB
+    vm.step(&mut state, n1);
+
+    assert_eq!(
+        state.matrix.synaptic_weights[(n1 * 4) + 0],
+        1,
+        "Weight should elevate to 1 via Hebbian tracking"
+    );
+    let e_after_hebb = state.matrix.energy[n1];
+
+    // Isolated Run 2: OP_FIRE
+    state.matrix.instructions[n1][0] = 0x8B; // OP_FIRE
+    state.matrix.instructions[n1][1] = 0; // R0 (Slot)
+    state.matrix.instructions[n1][2] = 1; // R1 (Amplitude)
+    state.matrix.instructions[n1][3] = 0x00; // Break
+    state.matrix.context[n1][8] = 0; // Reset PC
+
+    // Set resonance > 300 so that action potential doesn't clear resonance at end of step natively, wait.
+    // The target's resonance_delta isn't a native thing in vm.rs for OP_FIRE?
+    // In vm.rs OP_FIRE `fetch_add`ed directly to Target's actual `resonance`!
+
+    vm.step(&mut state, n1);
+
+    // Target received: Amplitude 255 * (Weight 1 / 255) = 1 resonance.
+    // Wait, target also natively decays resonance at end of ITS tick, but target hasn't been ticked!
+    // OP_FIRE adds directly.
+    assert_eq!(
+        state.matrix.resonance[n2], 1,
+        "Target atom received structurally weighted resonance Fire"
+    );
+
+    // Energy deducted on n1: (255 / 10) = 25.
+    // E after Hebb minus 25 minus metabolic execution cost.
+    assert!(
+        state.matrix.energy[n1] < e_after_hebb - 25,
+        "Paid OP_FIRE dynamic execution cost"
+    );
+
+    // Isolated Run 3: OP_DECAY
+    state.matrix.instructions[n1][0] = 0x91; // OP_DECAY
+    state.matrix.instructions[n1][1] = 0x00; // NOP
+    state.matrix.context[n1][8] = 0; // Reset PC
+
+    let e_before_decay = state.matrix.energy[n1];
+
+    vm.step(&mut state, n1);
+
+    // Assert weight dropped back to 0
+    assert_eq!(
+        state.matrix.synaptic_weights[(n1 * 4) + 0],
+        0,
+        "Weight deprecates downwards natively"
+    );
+
+    // Assert metabolic recoup (+50) minus gas
+    assert!(
+        state.matrix.energy[n1] > e_before_decay + 30,
+        "System localized pruning energy retrieval"
+    );
+}

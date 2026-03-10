@@ -1,0 +1,133 @@
+[0m[32mTask[0m [0m[36mci:verify:matrix[0m deno task ci:verify:worker1 && deno task ci:verify:worker4
+[0m[32mTask[0m [0m[36mci:verify:worker1[0m OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep
+[0m[32mTask[0m [0m[36mverify:coherence:deep[0m deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:structure-intent-determinism && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:worker-init-fallback && deno task test:worker-init-total-fail && deno task test:worker-init-safe-noop && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal
+[0m[32mTask[0m [0m[36mverify:coherence[0m deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:memory-layout && deno task test:attention-field && deno task test:env-parse-monoculture && deno task test:runtime-std-import-policy && deno task test:runtime-std-version-policy && deno task test:evolution-pressure && deno task test:homeostasis-contract && deno task test:homeostasis-scheduler && deno task test:pressure-ring-scheduler && deno task test:auto-snapshot && deno task test:spatial-hash-guard && deno task test:mutation-lane-contract && deno task test:mutation-telemetry-contract && deno task test:mutation-telemetry-api && deno task test:gate-decomposition-contract && deno task test:oracle-mutation-serialization && deno task test:oracle-plasmid-mode && deno task test:control-intent-serialization && deno task test:p2p-ingress-policy && deno task test:pulse-clock-contract && deno task test:log-level-policy && deno task test:daemon-contract && deno task test:daemon-glyph-admission && deno task test:guardian-signal-hybrid && deno task test:architect-plasmid-hybrid && deno task test:architect-plasmid-promotion && deno task test:architect-plasmid-promotion-decision && deno task test:architect-plasmid-promotion-action && deno task test:guardian-signal-promotion && deno task test:guardian-signal-promotion-decision && deno task test:guardian-signal-promotion-action && deno task test:guardian-signal-mode-diff-artifacts && deno task test:architect-plasmid-mode-diff-artifacts && deno task test:daemon-invariant-compressor && deno task test:semantic-behavior-cluster && deno task test:federation-rule-genome && deno task test:federation-admission && deno task test:akasha-webrtc-signaling && deno task test:daemon-governance && deno task test:hormone-buffer && deno task test:glyph-buffer && deno task test:transport-internalization && deno task test:hormone-ledger-alignment && deno task test:physiology-snapshot && deno task test:physiology-api && deno task test:telemetry-stream-contract && deno task test:codex-narrative-contract && deno task test:ui-codex-narrative-contract && deno task test:ui-human-channel-contract && deno task test:ui-spatial-hash-guard-contract && deno task test:ui-webrtc-mesh-contract && deno task test:architecture-active && deno task test:runtime-support-boundary && deno task test:runtime-experimental-boundary && deno task test:export-manifest && deno task test:export-file-set && deno task test:export-runtime-topology && deno task test:export-provenance && deno task test:glyphir64-contract && deno task test:opcode-to-glyph-contract && deno task test:golden-trace-catalog && deno task test:golden-trace-artifacts && deno task test:admission-diff-artifacts && deno task test:reduction-cases && deno task test:reduction-harness && deno task test:reduction-diff-artifacts && deno task vector10:verify && deno task test:worker-determinism && deno task test:structure-js && deno task test:structure-parity && deno task test:structure-lock-progress && deno task test:crystalline && deno task test:quantum && deno task test:quantum-mycelium && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain
+[0m[32mTask[0m [0m[36mtest:runtime-monoculture[0m deno run -A test_runtime_monoculture.ts
+[toolchain] Deno monoculture guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-logging[0m deno run -A test_runtime_logging.ts
+[logging] runtime LOGGER guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-state-matrix-api[0m deno run -A test_runtime_state_matrix_api_guard.ts
+[runtime-api] state-matrix API guard passed. scanned=11
+[0m[32mTask[0m [0m[36mtest:memory-layout[0m deno run -A test_memory_layout_guard.ts
+[memory-layout-guard] layout guard passed. regions=53
+[0m[32mTask[0m [0m[36mtest:attention-field[0m deno run -A test_attention_field_runtime.ts
+[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=140945860
+[attention-field] runtime guard passed. center=100.00 -> 90.00
+[0m[32mTask[0m [0m[36mtest:env-parse-monoculture[0m deno run -A test_env_parse_monoculture_contract.ts
+[env-parse-monoculture] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-std-import-policy[0m deno run -A test_runtime_std_import_policy.ts
+[std-policy] std import policy guard passed. scanned=29
+[0m[32mTask[0m [0m[36mtest:runtime-std-version-policy[0m deno run -A test_runtime_std_version_policy.ts
+[std-version-policy] std version policy guard passed. scanned=29
+[0m[32mTask[0m [0m[36mtest:evolution-pressure[0m deno run -A test_evolution_pressure_contract.ts
+[evolution-pressure] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:homeostasis-contract[0m deno run -A test_homeostasis_contract.ts
+[homeostasis-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:homeostasis-scheduler[0m deno run -A test_homeostasis_scheduler_contract.ts
+[homeostasis-scheduler] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:pressure-ring-scheduler[0m deno run -A test_pressure_ring_scheduler_contract.ts
+[pressure-ring-scheduler] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:auto-snapshot[0m deno run -A test_auto_snapshot_contract.ts
+[auto-snapshot-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:spatial-hash-guard[0m deno run -A test_spatial_hash_guard_contract.ts
+[spatial-hash-guard] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:mutation-lane-contract[0m deno run -A test_mutation_lane_contract.ts
+[mutation-lane] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:mutation-telemetry-contract[0m deno run -A test_mutation_telemetry_contract.ts
+[mutation-telemetry] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:mutation-telemetry-api[0m deno run -A test_mutation_telemetry_api_contract.ts
+[mutation-telemetry-api] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:gate-decomposition-contract[0m deno run -A test_gate_decomposition_contract.ts
+[gate-decomposition] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:oracle-mutation-serialization[0m deno run -A test_oracle_mutation_serialization_contract.ts
+[oracle-serialization] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:oracle-plasmid-mode[0m deno run -A test_oracle_plasmid_mode_contract.ts
+[oracle-plasmid-mode] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:control-intent-serialization[0m deno run -A test_control_intent_serialization_contract.ts
+[control-intent-serialization] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:p2p-ingress-policy[0m deno run -A test_p2p_ingress_policy_contract.ts
+[p2p-ingress-policy] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:pulse-clock-contract[0m deno run -A test_pulse_clock_contract.ts
+[pulse-clock] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:log-level-policy[0m deno run -A test_log_level_policy.ts
+✅ [TEST] LOGGER level policy verified.
+[0m[32mTask[0m [0m[36mtest:daemon-contract[0m deno run -A test_daemon_contract.ts
+[daemon-contract] daemon + akasha API contract passed.
+[0m[32mTask[0m [0m[36mtest:daemon-glyph-admission[0m deno run -A test_daemon_glyph_admission_contract.ts
+[daemon-glyph-admission] glyph pressure contract passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-hybrid[0m deno run -A test_guardian_signal_hybrid_contract.ts
+[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=140945860
+[guardian-signal-hybrid] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-hybrid[0m deno run -A test_architect_plasmid_hybrid_contract.ts
+[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=140945860
+[architect-plasmid-hybrid] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion[0m deno run -A test_architect_plasmid_promotion_contract.ts
+[architect-plasmid-promotion] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion-decision[0m deno run -A test_architect_plasmid_promotion_decision_contract.ts
+[architect-plasmid-promotion-decision] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion-action[0m deno run -A test_architect_plasmid_promotion_action_contract.ts
+[architect-plasmid-promotion-action] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion[0m deno run -A test_guardian_signal_promotion_contract.ts
+[guardian-signal-promotion] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion-decision[0m deno run -A test_guardian_signal_promotion_decision_contract.ts
+[guardian-signal-promotion-decision] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion-action[0m deno run -A test_guardian_signal_promotion_action_contract.ts
+[guardian-signal-promotion-action] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-mode-diff-artifacts[0m deno run -A test_guardian_signal_mode_diff_artifact_contract.ts
+[guardian-signal-mode-diff-artifacts] contract guard passed. artifacts=3
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-mode-diff-artifacts[0m deno run -A test_architect_plasmid_mode_diff_artifact_contract.ts
+[architect-plasmid-mode-diff-artifacts] contract guard passed. artifacts=3
+[0m[32mTask[0m [0m[36mtest:daemon-invariant-compressor[0m deno run -A test_daemon_invariant_compressor_contract.ts
+[daemon-invariant-compressor] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:semantic-behavior-cluster[0m deno run -A test_semantic_behavior_cluster_contract.ts
+[semantic-behavior-cluster] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:federation-rule-genome[0m deno run -A test_federation_rule_genome_contract.ts
+[federation-rule-genome] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:federation-admission[0m deno run -A test_federation_admission_contract.ts
+[federation-admission] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:akasha-webrtc-signaling[0m deno run -A test_akasha_webrtc_signaling_contract.ts
+[akasha-webrtc-signaling] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:daemon-governance[0m deno run -A test_daemon_governance_contract.ts
+[daemon-governance] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:hormone-buffer[0m deno run -A test_hormone_buffer_contract.ts
+[hormone_buffer] contract guard passed. hormones=7
+[0m[32mTask[0m [0m[36mtest:glyph-buffer[0m deno run -A test_glyph_buffer_contract.ts
+[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=140945860
+INTERNAL TICK SEEDS: 1 1
+[glyph-buffer] contract guard passed. active=20 pheromone=14 plasmid=6 signalSeeds=1 memorySeeds=1 atomPheromone=1 atomPlasmid=1 guardianPheromone=1 architectPlasmid=1
+[0m[32mTask[0m [0m[36mtest:transport-internalization[0m deno run -A test_transport_internalization_contract.ts
+[transport-internalization] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:hormone-ledger-alignment[0m deno run -A test_hormone_ledger_alignment_contract.ts
+[hormone_ledger] alignment guard passed. hormones=7 ledger=11
+[0m[32mTask[0m [0m[36mtest:physiology-snapshot[0m deno run -A test_physiology_snapshot_contract.ts
+[physiology_snapshot] contract guard passed. hormones=7 ledger=11
+[0m[32mTask[0m [0m[36mtest:physiology-api[0m deno run -A test_physiology_api_contract.ts
+[physiology-api] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:telemetry-stream-contract[0m deno run -A test_telemetry_stream_contract.ts
+[telemetry-stream-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:codex-narrative-contract[0m deno run -A test_codex_narrative_contract.ts
+[codex-narrative-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:ui-codex-narrative-contract[0m deno run -A test_ui_codex_narrative_contract.ts
+[ui-codex-narrative-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:ui-human-channel-contract[0m deno run -A test_ui_human_channel_contract.ts
+[ui-human-channel-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:ui-spatial-hash-guard-contract[0m deno run -A test_ui_spatial_hash_guard_contract.ts
+[ui-spatial-hash-guard-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:ui-webrtc-mesh-contract[0m deno run -A test_ui_webrtc_mesh_contract.ts
+[ui-webrtc-mesh-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architecture-active[0m deno run -A test_architecture_active_contract.ts
+[architecture-active] contract guard passed. era=69 runtimeRoots=11 runtimeSupport=18 experimental=10
+[0m[32mTask[0m [0m[36mtest:runtime-support-boundary[0m deno run -A test_runtime_support_boundary_contract.ts
+[runtime-support-boundary] guard passed. runtimeVisited=65 support=18
+[0m[32mTask[0m [0m[36mtest:runtime-experimental-boundary[0m deno run -A test_runtime_experimental_boundary_contract.ts
+[runtime-experimental-boundary] guard passed. runtimeVisited=65 experimental=10
+[0m[32mTask[0m [0m[36mtest:export-manifest[0m deno run -A test_export_manifest_guard.ts
+[manifest] CORE_ARCH_MANIFEST guard passed.
+[0m[32mTask[0m [0m[36mtest:export-file-set[0m deno run -A test_export_file_set_guard.ts
+[export-file-set] export set guard passed. files=136
+[0m[32mTask[0m [0m[36mtest:export-runtime-topology[0m deno run -A test_export_runtime_topology_guard.ts
+[export-runtime-topology] runtime topology guard passed. roots=11 closure=65 nonRuntimeCode=56 support=18 experimental=38
+[0m[32mTask[0m [0m[36mtest:export-provenance[0m deno run -A test_export_provenance_guard.ts
+❌ [TEST] Error: [export-provenance] OMEGA_CORE_LOGIC.md stale: export-content hash mismatch vs current render
+    at expect (file:///Users/s0fractal/OMEGA/test_export_provenance_guard.ts:16:20)
+    at main (file:///Users/s0fractal/OMEGA/test_export_provenance_guard.ts:248:3)

@@ -37,6 +37,7 @@ pub struct SigmaMatrix {
     pub ascension_stats: [i32; 250000],
     pub _pad_to_bond_distances: [u8; 4000000],
     pub bond_distances: [u8; 2000000],
+    pub synaptic_weights: [u8; 2000000],
     pub damping: [u8; 500000],
     pub causality: [u8; 500000],
     pub hive_memory: [u8; 1024],
@@ -175,6 +176,15 @@ impl SigmaState {
         }
     }
 
+    pub fn synaptic_weights_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.synaptic_weights.as_ptr() as *const std::sync::atomic::AtomicU8,
+                MAX_ATOMS * 4,
+            )
+        }
+    }
+
     pub fn spatial_grid_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
         unsafe {
             std::slice::from_raw_parts(
@@ -294,6 +304,7 @@ impl SigmaState {
             self.matrix.bonds[b] = 0;
             self.matrix.stiffness[b] = 0.0;
             self.matrix.bond_distances[b] = 0;
+            self.matrix.synaptic_weights[b] = 0;
         }
         self.matrix.roles[idx] = 0;
     }
@@ -322,12 +333,13 @@ mod tests {
     use super::*;
     use std::mem::offset_of;
 
-    
-    
-    
     #[test]
     fn verify_memory_offsets() {
-        assert_eq!(offset_of!(SigmaMatrix, tick_counter), 7_999_992, "tick_counter");
+        assert_eq!(
+            offset_of!(SigmaMatrix, tick_counter),
+            7_999_992,
+            "tick_counter"
+        );
         assert_eq!(offset_of!(SigmaMatrix, sync_state), 7_999_996, "sync_state");
         assert_eq!(offset_of!(SigmaMatrix, ids), 8000000, "ids");
         assert_eq!(offset_of!(SigmaMatrix, xs), 12000000, "xs");
@@ -338,46 +350,175 @@ mod tests {
         assert_eq!(offset_of!(SigmaMatrix, logic), 20000000, "logic");
         assert_eq!(offset_of!(SigmaMatrix, bonds), 24000000, "bonds");
         assert_eq!(offset_of!(SigmaMatrix, stiffness), 32000000, "stiffness");
-        assert_eq!(offset_of!(SigmaMatrix, instructions), 40000000, "instructions");
+        assert_eq!(
+            offset_of!(SigmaMatrix, instructions),
+            40000000,
+            "instructions"
+        );
         assert_eq!(offset_of!(SigmaMatrix, context), 72000000, "context");
-        assert_eq!(offset_of!(SigmaMatrix, evolution_reserved), 104000000, "evolution_reserved");
-        assert_eq!(offset_of!(SigmaMatrix, spawn_requests), 106000000, "spawn_requests");
+        assert_eq!(
+            offset_of!(SigmaMatrix, evolution_reserved),
+            104000000,
+            "evolution_reserved"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, spawn_requests),
+            106000000,
+            "spawn_requests"
+        );
         assert_eq!(offset_of!(SigmaMatrix, meiosis), 106024584, "meiosis");
-        assert_eq!(offset_of!(SigmaMatrix, bond_requests), 112024584, "bond_requests");
-        assert_eq!(offset_of!(SigmaMatrix, spatial_grid), 118024584, "spatial_grid");
+        assert_eq!(
+            offset_of!(SigmaMatrix, bond_requests),
+            112024584,
+            "bond_requests"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, spatial_grid),
+            118024584,
+            "spatial_grid"
+        );
         assert_eq!(offset_of!(SigmaMatrix, roles), 119458184, "roles");
-        assert_eq!(offset_of!(SigmaMatrix, structure_grid), 119958184, "structure_grid");
-        assert_eq!(offset_of!(SigmaMatrix, signal_grid), 120002984, "signal_grid");
-        assert_eq!(offset_of!(SigmaMatrix, memory_grid), 120047784, "memory_grid");
-        assert_eq!(offset_of!(SigmaMatrix, ascension_stats), 120137384, "ascension_stats");
-        assert_eq!(offset_of!(SigmaMatrix, bond_distances), 125137384, "bond_distances");
-        assert_eq!(offset_of!(SigmaMatrix, damping), 127137384, "damping");
-        assert_eq!(offset_of!(SigmaMatrix, causality), 127637384, "causality");
-        assert_eq!(offset_of!(SigmaMatrix, hive_memory), 128137384, "hive_memory");
-        assert_eq!(offset_of!(SigmaMatrix, hive_balance), 128138408, "hive_balance");
-        assert_eq!(offset_of!(SigmaMatrix, quorum), 128138412, "quorum");
-        assert_eq!(offset_of!(SigmaMatrix, coherence), 128496812, "coherence");
-        assert_eq!(offset_of!(SigmaMatrix, neural_coherence), 128496816, "neural_coherence");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_xs), 128496820, "physics_read_xs");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_ys), 129496820, "physics_read_ys");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_energy), 130496820, "physics_read_energy");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_resonance), 132496820, "physics_read_resonance");
-        assert_eq!(offset_of!(SigmaMatrix, energy_delta), 134496820, "energy_delta");
-        assert_eq!(offset_of!(SigmaMatrix, resonance_delta), 136496820, "resonance_delta");
-        assert_eq!(offset_of!(SigmaMatrix, structure_build_owner), 138496820, "structure_build_owner");
-        assert_eq!(offset_of!(SigmaMatrix, structure_build_value), 138541620, "structure_build_value");
-        assert_eq!(offset_of!(SigmaMatrix, structure_charge_intent), 138586420, "structure_charge_intent");
-        assert_eq!(offset_of!(SigmaMatrix, attention_field), 138631220, "attention_field");
-        assert_eq!(offset_of!(SigmaMatrix, hive_energy_pool), 138676020, "hive_energy_pool");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_header), 138677044, "glyph_header");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_payload), 138721844, "glyph_payload");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_scratch_header), 138811444, "glyph_scratch_header");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_scratch_payload), 138856244, "glyph_scratch_payload");
-        assert_eq!(offset_of!(SigmaMatrix, hormones), 138945844, "hormones");
-        assert_eq!(offset_of!(SigmaMatrix, secretion_stats), 138945860, "secretion_stats");
-        assert_eq!(offset_of!(SigmaMatrix, lineage), 138945912, "lineage");
-        assert_eq!(offset_of!(SigmaMatrix, mailbox), 142945912, "mailbox");
-        assert_eq!(offset_of!(SigmaMatrix, ledger_head), 146945912, "ledger_head");
-        assert_eq!(offset_of!(SigmaMatrix, ledger_data), 146945916, "ledger_data");
+        assert_eq!(
+            offset_of!(SigmaMatrix, structure_grid),
+            119958184,
+            "structure_grid"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, signal_grid),
+            120002984,
+            "signal_grid"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, memory_grid),
+            120047784,
+            "memory_grid"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, ascension_stats),
+            120137384,
+            "ascension_stats"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, bond_distances),
+            125137384,
+            "bond_distances"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, synaptic_weights),
+            127137384,
+            "synaptic_weights"
+        );
+        assert_eq!(offset_of!(SigmaMatrix, damping), 129137384, "damping");
+        assert_eq!(offset_of!(SigmaMatrix, causality), 129637384, "causality");
+        assert_eq!(
+            offset_of!(SigmaMatrix, hive_memory),
+            130137384,
+            "hive_memory"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, hive_balance),
+            130138408,
+            "hive_balance"
+        );
+        assert_eq!(offset_of!(SigmaMatrix, quorum), 130138412, "quorum");
+        assert_eq!(offset_of!(SigmaMatrix, coherence), 130496812, "coherence");
+        assert_eq!(
+            offset_of!(SigmaMatrix, neural_coherence),
+            130496816,
+            "neural_coherence"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, physics_read_xs),
+            130496820,
+            "physics_read_xs"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, physics_read_ys),
+            131496820,
+            "physics_read_ys"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, physics_read_energy),
+            132496820,
+            "physics_read_energy"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, physics_read_resonance),
+            134496820,
+            "physics_read_resonance"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, energy_delta),
+            136496820,
+            "energy_delta"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, resonance_delta),
+            138496820,
+            "resonance_delta"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, structure_build_owner),
+            140496820,
+            "structure_build_owner"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, structure_build_value),
+            140541620,
+            "structure_build_value"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, structure_charge_intent),
+            140586420,
+            "structure_charge_intent"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, attention_field),
+            140631220,
+            "attention_field"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, hive_energy_pool),
+            140676020,
+            "hive_energy_pool"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, glyph_header),
+            140677044,
+            "glyph_header"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, glyph_payload),
+            140721844,
+            "glyph_payload"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, glyph_scratch_header),
+            140811444,
+            "glyph_scratch_header"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, glyph_scratch_payload),
+            140856244,
+            "glyph_scratch_payload"
+        );
+        assert_eq!(offset_of!(SigmaMatrix, hormones), 140945844, "hormones");
+        assert_eq!(
+            offset_of!(SigmaMatrix, secretion_stats),
+            140945860,
+            "secretion_stats"
+        );
+        assert_eq!(offset_of!(SigmaMatrix, lineage), 140945912, "lineage");
+        assert_eq!(offset_of!(SigmaMatrix, mailbox), 144945912, "mailbox");
+        assert_eq!(
+            offset_of!(SigmaMatrix, ledger_head),
+            148945912,
+            "ledger_head"
+        );
+        assert_eq!(
+            offset_of!(SigmaMatrix, ledger_data),
+            148945916,
+            "ledger_data"
+        );
     }
 }

@@ -313,6 +313,115 @@ impl LambdaVM {
                     pc += 3;
                     gas_used += 20;
                 }
+                GlyphOp::Hebb => {
+                    let slot_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let slot = if slot_reg < 8 {
+                        state.matrix.context[atom_idx][slot_reg as usize] as usize
+                    } else {
+                        0
+                    };
+
+                    if slot < 4 && resonance > 200 {
+                        let bond_idx = (atom_idx * 4) + slot;
+                        let target_idx = state.matrix.bonds[bond_idx] as usize;
+                        if target_idx > 0
+                            && target_idx < MAX_ATOMS
+                            && state.matrix.ids[target_idx] != 0
+                        {
+                            let mut weight = state.synaptic_weights_atomic()[bond_idx]
+                                .load(std::sync::atomic::Ordering::Relaxed);
+                            if weight < 255 {
+                                weight += 1;
+                                state.synaptic_weights_atomic()[bond_idx]
+                                    .store(weight, std::sync::atomic::Ordering::Relaxed);
+                            }
+                        }
+                    }
+
+                    pc += 2;
+                    gas_used += 10;
+                }
+                GlyphOp::Fire => {
+                    let slot_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
+                    let amp_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];
+
+                    let slot = if slot_reg < 8 {
+                        state.matrix.context[atom_idx][slot_reg as usize] as usize
+                    } else {
+                        0
+                    };
+
+                    let amplitude = if amp_reg < 8 {
+                        state.matrix.context[atom_idx][amp_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    if slot < 4 && amplitude > 0 && energy >= (amplitude / 10) {
+                        let bond_idx = (atom_idx * 4) + slot;
+                        let target_idx = state.matrix.bonds[bond_idx] as usize;
+
+                        if target_idx > 0
+                            && target_idx < MAX_ATOMS
+                            && state.matrix.ids[target_idx] != 0
+                        {
+                            let weight = state.matrix.synaptic_weights[bond_idx] as f32;
+                            let fire_cost = amplitude / 10;
+
+                            // Scale the transmitted resonance mathematically by the synaptic weight
+                            let transmitted = ((amplitude as f32) * (weight / 255.0)) as i32;
+
+                            if transmitted > 0 {
+                                state.resonance_atomic()[target_idx]
+                                    .fetch_add(transmitted, std::sync::atomic::Ordering::Relaxed);
+                            }
+
+                            // Pay the firing cost
+                            state.energy_atomic()[atom_idx]
+                                .fetch_sub(fire_cost, std::sync::atomic::Ordering::Relaxed);
+                            energy -= fire_cost;
+                        }
+                    }
+
+                    pc += 3;
+                    gas_used += 15;
+                }
+                GlyphOp::Decay => {
+                    let mut min_weight = 255;
+                    let mut min_slot = None;
+
+                    for slot in 0..4 {
+                        let bond_idx = (atom_idx * 4) + slot;
+                        let target_idx = state.matrix.bonds[bond_idx] as usize;
+                        if target_idx > 0 {
+                            let weight = state.synaptic_weights_atomic()[bond_idx]
+                                .load(std::sync::atomic::Ordering::Relaxed);
+                            if weight > 0 && weight < min_weight {
+                                min_weight = weight;
+                                min_slot = Some(slot);
+                            }
+                        }
+                    }
+
+                    if let Some(slot) = min_slot {
+                        let bond_idx = (atom_idx * 4) + slot;
+                        let mut weight = state.synaptic_weights_atomic()[bond_idx]
+                            .load(std::sync::atomic::Ordering::Relaxed);
+                        if weight > 0 {
+                            weight -= 1;
+                            state.synaptic_weights_atomic()[bond_idx]
+                                .store(weight, std::sync::atomic::Ordering::Relaxed);
+
+                            // Metabolic Recoup via network pruning
+                            state.energy_atomic()[atom_idx]
+                                .fetch_add(50, std::sync::atomic::Ordering::Relaxed);
+                            energy += 50;
+                        }
+                    }
+
+                    pc += 1;
+                    gas_used += 10;
+                }
                 GlyphOp::Tensegrity => {
                     let target_reg = state.matrix.instructions[atom_idx][(pc + 1) as usize];
                     let val_reg = state.matrix.instructions[atom_idx][(pc + 2) as usize];

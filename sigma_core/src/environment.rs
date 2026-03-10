@@ -1,3 +1,4 @@
+use crate::memory::MAX_ATOMS;
 use crate::SigmaState;
 
 // Deno constants
@@ -12,9 +13,10 @@ const STR_CAPACITOR: i32 = 6;
 const STR_INVERTER: i32 = 7;
 const STR_LATCH: i32 = 8;
 
-pub fn tick_environment(state: &mut SigmaState, _tick: i32) {
+pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
     tick_glyph_transport(state);
+    tick_synaptic_decay(state, tick);
 }
 
 fn unpack_glyph_kind(header: i32) -> i32 {
@@ -544,4 +546,16 @@ fn update_charge_latch(state: &SigmaState, x: i32, y: i32, cell_state: i32) -> (
 
     let next_charge = if new_state == 1 { 255 } else { 0 };
     (new_state, next_charge)
+}
+
+fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
+    // Global slow-decay mechanism: Use it or lose it
+    if tick % 100 == 0 {
+        for bond_idx in 0..(MAX_ATOMS * 4) {
+            let weight = state.matrix.synaptic_weights[bond_idx];
+            if weight > 0 {
+                state.matrix.synaptic_weights[bond_idx] = weight - 1;
+            }
+        }
+    }
 }

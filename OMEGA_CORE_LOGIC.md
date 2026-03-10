@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-10T02:09:09.147Z*
-*Exported Files: 136*
+*Generated: 2026-03-10T03:12:53.168Z*
+*Exported Files: 137*
 *Runtime Roots: 11*
-*Runtime Closure Files: 65*
+*Runtime Closure Files: 66*
 *Non-Runtime Code Files: 56*
 *Runtime-Support Code Files: 18*
 *Experimental Code Files: 38*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
-*Export Set SHA256: f01e625c1278a53b135b4f03e472cd6b0d27eda77c7728461c6149eb309868e5*
-*Export Content SHA256: 5cbf05398f3fc2693c1d8286ff12e94a56c220eec83b1d91b74559326fe6ee6c*
-*Git Commit: 46c47791253e*
+*Export Set SHA256: 811406c6fca19e317ff055b6f1253206d4290fc0ae0886a6fea1fcb57b023e60*
+*Export Content SHA256: 941a8059d6ad4afd9078a85beb861c8649f239b1352a92f7d34b877b49b0f775*
+*Git Commit: 69cd3adaf141*
 
 ---
 
@@ -43,6 +43,7 @@
 - AVATAR_ENGINE.ts
 - BREATH.ts
 - COLDSTART_BOOTSTRAP.ts
+- CONTINUUM.ts
 - CONTROL_INTENT_QUEUE.ts
 - DAEMON_INGRESS_POLICY.ts
 - ENV_PARSE.ts
@@ -4937,33 +4938,33 @@ const SIGNAL_GRID_OFF: usize = SAFETY_BUFFER + 112002984;
 const MEMORY_GRID_OFF: usize = SAFETY_BUFFER + 112047784;
 const ASCENSION_STATS_OFF: usize = SAFETY_BUFFER + 112137384;
 const BOND_DIST_OFF: usize = SAFETY_BUFFER + 117137384;
-const DAMPING_OFF: usize = SAFETY_BUFFER + 119137384;
-const CAUSALITY_OFF: usize = SAFETY_BUFFER + 119637384;
-const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 120137384;
-const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 120138408;
-const QUORUM_OFFSET: usize = SAFETY_BUFFER + 120138412;
+const DAMPING_OFF: usize = SAFETY_BUFFER + 121137384;
+const CAUSALITY_OFF: usize = SAFETY_BUFFER + 121637384;
+const HIVE_MEMORY_OFF: usize = SAFETY_BUFFER + 122137384;
+const HIVE_BALANCE_OFF: usize = SAFETY_BUFFER + 122138408;
+const QUORUM_OFFSET: usize = SAFETY_BUFFER + 122138412;
 const SPAWN_REQUESTS_OFF: usize = SAFETY_BUFFER + 98000000;
 const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFF;
-const COHERENCE_OFF: usize = SAFETY_BUFFER + 120496812;
-const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 120496816;
-const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 120496820;
-const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 121496820;
-const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 122496820;
-const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 124496820;
-const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 126496820;
-const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 128496820;
-const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 130496820;
-const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 130541620;
-const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 130586420;
-const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 130631220;
-const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 130676020;
-const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 130677044;
-const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 130721844;
-const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 130811444;
-const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 130856244;
-const HORMONE_OFF: usize = SAFETY_BUFFER + 130945844;
-const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 130945860;
-const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 130945912;
+const COHERENCE_OFF: usize = SAFETY_BUFFER + 122496812;
+const NEURAL_COHERENCE_OFF: usize = SAFETY_BUFFER + 122496816;
+const PHYSICS_READ_XS_OFF: usize = SAFETY_BUFFER + 122496820;
+const PHYSICS_READ_YS_OFF: usize = SAFETY_BUFFER + 123496820;
+const PHYSICS_READ_ENERGY_OFF: usize = SAFETY_BUFFER + 124496820;
+const PHYSICS_READ_RESONANCE_OFF: usize = SAFETY_BUFFER + 126496820;
+const ENERGY_DELTA_OFF: usize = SAFETY_BUFFER + 128496820;
+const RESONANCE_DELTA_OFF: usize = SAFETY_BUFFER + 130496820;
+const STRUCTURE_BUILD_OWNER_OFF: usize = SAFETY_BUFFER + 132496820;
+const STRUCTURE_BUILD_VALUE_OFF: usize = SAFETY_BUFFER + 132541620;
+const STRUCTURE_CHARGE_INTENT_OFF: usize = SAFETY_BUFFER + 132586420;
+const ATTENTION_FIELD_OFF: usize = SAFETY_BUFFER + 132631220;
+const HIVE_ENERGY_POOL_OFF: usize = SAFETY_BUFFER + 132676020;
+const GLYPH_HEADER_OFF: usize = SAFETY_BUFFER + 132677044;
+const GLYPH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 132721844;
+const GLYPH_SCRATCH_HEADER_OFF: usize = SAFETY_BUFFER + 132811444;
+const GLYPH_SCRATCH_PAYLOAD_OFF: usize = SAFETY_BUFFER + 132856244;
+const HORMONE_OFF: usize = SAFETY_BUFFER + 132945844;
+const SECRETION_STATS_OFF: usize = SAFETY_BUFFER + 132945860;
+const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 132945912;
 const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;
 const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
 const SPAWN_MAX: i32 = 1024;
@@ -7997,6 +7998,94 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
+
+```
+
+---
+
+## FILE: CONTINUUM.ts
+
+```typescript
+import { LATTICE_MEMORY_END } from "./OFFSETS.ts";
+import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
+import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
+
+export type ContinuumMetadata = {
+  epochName: string;
+  tick: number;
+  memoryBounds: number;
+  population?: number;
+  coherence?: number;
+  timestamp: string;
+};
+
+const EPOCHS_DIR = ".omega/epochs";
+
+export async function saveEpoch(
+  memory: WebAssembly.Memory,
+  tick: number,
+  epochName: string,
+  population: number = 0,
+  coherence: number = 0
+): Promise<void> {
+  await ensureDir(EPOCHS_DIR);
+
+  const buffer = new Uint8Array(memory.buffer, 0, LATTICE_MEMORY_END);
+  
+  // Create a compression stream
+  const compressionStream = new CompressionStream("gzip");
+  const writer = compressionStream.writable.getWriter();
+  // Copy to standard ArrayBuffer to bypass SharedArrayBuffer stream clone constraints
+  writer.write(new Uint8Array(buffer));
+  writer.close();
+
+  const compressedBuffer = await new Response(compressionStream.readable).arrayBuffer();
+  
+  const sigmaPath = join(EPOCHS_DIR, `${epochName}.sigma`);
+  await Deno.writeFile(sigmaPath, new Uint8Array(compressedBuffer));
+
+  const metadata: ContinuumMetadata = {
+    epochName,
+    tick,
+    memoryBounds: LATTICE_MEMORY_END,
+    population,
+    coherence,
+    timestamp: new Date().toISOString(),
+  };
+
+  const metaPath = join(EPOCHS_DIR, `${epochName}.meta.json`);
+  await Deno.writeTextFile(metaPath, JSON.stringify(metadata, null, 2));
+}
+
+export async function loadEpoch(
+  memory: WebAssembly.Memory,
+  epochName: string
+): Promise<ContinuumMetadata> {
+  const sigmaPath = join(EPOCHS_DIR, `${epochName}.sigma`);
+  const metaPath = join(EPOCHS_DIR, `${epochName}.meta.json`);
+
+  const metaRaw = await Deno.readTextFile(metaPath);
+  const metadata = JSON.parse(metaRaw) as ContinuumMetadata;
+
+  const compressedData = await Deno.readFile(sigmaPath);
+  
+  const decompressionStream = new DecompressionStream("gzip");
+  const writer = decompressionStream.writable.getWriter();
+  writer.write(compressedData);
+  writer.close();
+
+  const decompressedBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+  const decompressedArray = new Uint8Array(decompressedBuffer);
+
+  if (decompressedArray.byteLength > memory.buffer.byteLength) {
+      throw new Error(`[CONTINUUM] Epoch ${epochName} memory bounds (${decompressedArray.byteLength}) exceed target matrix bounds (${memory.buffer.byteLength})`);
+  }
+
+  const targetView = new Uint8Array(memory.buffer, 0, decompressedArray.byteLength);
+  targetView.set(decompressedArray);
+
+  return metadata;
+}
 
 ```
 
@@ -21851,37 +21940,38 @@ export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
 export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
 export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
 export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
-export const DAMPING_OFFSET = SAFETY_BUFFER + 119137384;
-export const CAUSALITY_OFFSET = SAFETY_BUFFER + 119637384;
-export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 120137384;
-export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 120138408;
-export const QUORUM_OFFSET = SAFETY_BUFFER + 120138412;
-export const COHERENCE_OFFSET = SAFETY_BUFFER + 120496812;
-export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 120496816;
-export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 120496820;
-export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 121496820;
-export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 122496820;
-export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 124496820;
-export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 126496820;
-export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
-export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 130496820;
-export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 130541620;
-export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 130586420;
-export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 130631220;
-export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 130676020;
-export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 130677044;
-export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 130721844;
-export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 130811444;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 130856244;
-export const HORMONE_OFFSET = SAFETY_BUFFER + 130945844;
-export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 130945860; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
-export const LINEAGE_OFFSET = SAFETY_BUFFER + 130945912; // Ancestral lineage hashes (8 bytes per atom)
-export const MAILBOX_OFFSET = SAFETY_BUFFER + 134945912; // 8 bytes per atom (Type + Payload)
+export const SYNAPTIC_WEIGHTS_OFFSET = SAFETY_BUFFER + 119137384;
+export const DAMPING_OFFSET = SAFETY_BUFFER + 121137384;
+export const CAUSALITY_OFFSET = SAFETY_BUFFER + 121637384;
+export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 122137384;
+export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 122138408;
+export const QUORUM_OFFSET = SAFETY_BUFFER + 122138412;
+export const COHERENCE_OFFSET = SAFETY_BUFFER + 122496812;
+export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 122496816;
+export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 122496820;
+export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 123496820;
+export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 124496820;
+export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 126496820;
+export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
+export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 130496820;
+export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 132496820;
+export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 132541620;
+export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 132586420;
+export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 132631220;
+export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 132676020;
+export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 132677044;
+export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132721844;
+export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 132811444;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132856244;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 132945844;
+export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860; // 12 x I32 (5 roles x 2 kinds + 2 leaks)
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912; // Ancestral lineage hashes (8 bytes per atom)
+export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912; // 8 bytes per atom (Type + Payload)
 
 // Binary Event Ledger
 export const MAX_LEDGER_EVENTS = 65536; // 64K events
-export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 138945912; // 1 Int32 counter
-export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 138945916; // ~1MB data array
+export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912; // 1 Int32 counter
+export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916; // ~1MB data array
 
 type MemoryLayoutRegion = {
   name: string;
@@ -21960,6 +22050,7 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
     I32_BYTES,
   ),
   region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
+  region("SYNAPTIC_WEIGHTS", SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4, 1),
   region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
   region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
   region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, 1024, 1),
@@ -26397,6 +26488,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { saveEpoch } from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
@@ -29007,6 +29099,15 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
+
+      // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
+      if (currentTick > 0 && currentTick % 10000 === 0) {
+        LOGGER.info(`[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`);
+        const pCount = activeIdx.length;
+        const autoEpochId = `auto_tick_${currentTick}`;
+        await saveEpoch(STATE_MATRIX.wasmMemory, currentTick, autoEpochId, pCount, 0);
+        LOGGER.info(`[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere.`);
+      }
 
       SOVEREIGN_ORACLE.drainPendingMutations();
       await CONTROL_INTENT_QUEUE.applyHostLockBudget();
@@ -38811,6 +38912,9 @@ export const stiffnessBuffer =
 export const bondDistBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4)
     .buffer;
+export const synapticWeightBuffer =
+  new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4)
+    .buffer;
 export const dampingBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
 export const causalityBuffer =
@@ -38860,6 +38964,11 @@ const resonances = new Int32Array(
 );
 const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
 const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+const synapticWeights = new Uint8Array(
+  sharedBuffer,
+  OFFSETS.SYNAPTIC_WEIGHTS_OFFSET,
+  MAX_ATOMS * 4,
+);
 const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
 const bonds = new Uint32Array(
   sharedBuffer,
@@ -39224,6 +39333,11 @@ export const STATE_MATRIX = {
   setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
   setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
   setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
+  getSynapticWeight: (index: number, slot: number): number =>
+    synapticWeights[index * 4 + slot],
+  setSynapticWeight: (index: number, slot: number, weight: number) => {
+    synapticWeights[index * 4 + slot] = weight;
+  },
   setRole: (i: number, val: number) => Atomics.store(roles, i, val),
   setEnergy: (i: number, val: number) =>
     Atomics.store(energies, i, toClampedEnergyRaw(val)),

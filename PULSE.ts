@@ -8,6 +8,7 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
+import { saveEpoch } from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
@@ -2618,6 +2619,15 @@ export const PULSE = {
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
+
+      // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
+      if (currentTick > 0 && currentTick % 10000 === 0) {
+        LOGGER.info(`[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`);
+        const pCount = activeIdx.length;
+        const autoEpochId = `auto_tick_${currentTick}`;
+        await saveEpoch(STATE_MATRIX.wasmMemory, currentTick, autoEpochId, pCount, 0);
+        LOGGER.info(`[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere.`);
+      }
 
       SOVEREIGN_ORACLE.drainPendingMutations();
       await CONTROL_INTENT_QUEUE.applyHostLockBudget();

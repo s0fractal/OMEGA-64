@@ -8,7 +8,7 @@ fn test_shadow_catastrophe_rejection() {
 
     // Seed an atom (Victim)
     state.matrix.ids[1] = 1001;
-    state.matrix.energy[1] = 5000;
+    state.matrix.energy[1] = 100;
 
     // Seed an atom (Attacker)
     state.matrix.ids[2] = 2002;
