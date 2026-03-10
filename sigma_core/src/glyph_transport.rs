@@ -24,7 +24,7 @@ pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
 
 impl SigmaState {
     /// Models optical wave interference on a flat 2D grid cell.
-    pub fn atomic_deposit_glyph_header(&mut self, cell: usize, kind: u8, amplitude: i32) {
+    pub fn atomic_deposit_glyph_header(&self, cell: usize, kind: u8, amplitude: i32) {
         if amplitude == 0 || cell >= crate::memory::GRID_CELLS {
             return;
         }
@@ -36,7 +36,10 @@ impl SigmaState {
         // Mismatched kind prioritization (overwrite if strictly stronger, else annihilated/blocked)
         if current_kind != 0 && current_kind != kind {
             if amplitude.abs() > current_amp.abs() {
-                self.matrix.glyph_header[cell] = pack_glyph_header(kind, amplitude);
+                self.glyph_header_atomic()[cell].store(
+                    pack_glyph_header(kind, amplitude) as u32,
+                    std::sync::atomic::Ordering::Relaxed,
+                );
             }
         } else {
             // Matching kind (or zeroed cell): additive wave interference
@@ -51,7 +54,10 @@ impl SigmaState {
             // Annihilation (perfect destructive interference) clears the cell kind
             let next_kind = if next_amplitude == 0 { 0 } else { kind };
 
-            self.matrix.glyph_header[cell] = pack_glyph_header(next_kind, next_amplitude);
+            self.glyph_header_atomic()[cell].store(
+                pack_glyph_header(next_kind, next_amplitude) as u32,
+                std::sync::atomic::Ordering::Relaxed,
+            );
         }
     }
 }

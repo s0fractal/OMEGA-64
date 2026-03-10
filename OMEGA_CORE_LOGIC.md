@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-09T22:42:26.144Z*
+*Generated: 2026-03-10T00:52:46.147Z*
 *Exported Files: 129*
 *Runtime Roots: 11*
 *Runtime Closure Files: 65*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 31*
 *Manifest SHA256: 919ed54d713a609541e20bf47c891067c8c0f015394962e21d619564d87e6c4a*
 *Export Set SHA256: 740a4c6898a1fc08f3ba894ba0fc930cabe7d001bd4b0b3ab047ca137a18351a*
-*Export Content SHA256: 53956fda70595874e61e37f80012993cf8956e00104b4949ea063bae5372b9ad*
-*Git Commit: d5c1a656358e*
+*Export Content SHA256: fe909435951fda7b0d40a463dbfd619bd64a1fe6f2057ad2a7eca7c7b7e34b32*
+*Git Commit: 1564485065de*
 
 ---
 
@@ -30336,16 +30336,31 @@ export type RolePreamble = {
  */
 export const GENESIS_PROGRAMS: Record<string, number[]> = {
   /**
-   * GUARDIAN (Role 1):
-   * Focuses on PHEROMONE emission and stability.
+   * GUARDIAN (Role 2):
+   * Focuses on PHEROMONE emission (Positive Amplitude).
    */
   "guardian_base": [
-    GLYPH.SIGNAL, // Emit pheromone (Legacy OP_SIGNAL)
+    GLYPH.SET, 0, 100, // R0 = 100
+    GLYPH.SET, 1, 1,   // R1 = 1 (Pheromone index)
+    GLYPH.SIGNAL, 1, 0, // Emit Pheromone with R0 (+100) intensity
     GLYPH.I, // No-op return
   ],
 
   /**
-   * ARCHITECT (Role 2):
+   * PARASITE (Role 4):
+   * Disrupts signals (Negative Amplitude).
+   */
+  "parasite_base": [
+    GLYPH.SET, 0, 0,   // R0 = 0
+    GLYPH.SET, 1, 100, // R1 = 100
+    GLYPH.SUB, 0, 1,   // R0 = R0 - R1 (-100)
+    GLYPH.SET, 2, 1,   // R2 = 1 (Pheromone index)
+    GLYPH.SIGNAL, 2, 0, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.I, 
+  ],
+
+  /**
+   * ARCHITECT (Role 3):
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [
@@ -48351,14 +48366,20 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt01_coldstart_seeded_swarm",
       description: "Native Genesis Guardian signaling behavior",
       nativeProgram: "guardian_base",
-      script: new Uint8Array([RISC.OP_SIGNAL, RISC.OP_NOP]), // Matching legacy for parity check
-      maxSteps: 2,
+      script: new Uint8Array([
+        RISC.OP_SET, 0, 100,
+        RISC.OP_SET, 1, 1,
+        RISC.OP_SIGNAL, 0, 1, 
+        RISC.OP_NOP
+      ]), 
+      maxSteps: 3, // SET, SET, SIGNAL
       initialProps: {
         [RISC.PROP_ENERGY]: 1000,
       },
       expected: {
-        finalPc: 1,
+        finalPc: 7,
         signalCount: 1,
+        registers: [100, 1, 0, 0, 0, 0, 0, 0],
       },
     },
     {

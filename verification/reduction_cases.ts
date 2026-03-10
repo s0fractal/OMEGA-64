@@ -1300,14 +1300,20 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt01_coldstart_seeded_swarm",
       description: "Native Genesis Guardian signaling behavior",
       nativeProgram: "guardian_base",
-      script: new Uint8Array([RISC.OP_SIGNAL, RISC.OP_NOP]), // Matching legacy for parity check
-      maxSteps: 2,
+      script: new Uint8Array([
+        RISC.OP_SET, 0, 100,
+        RISC.OP_SET, 1, 1,
+        RISC.OP_SIGNAL, 0, 1, 
+        RISC.OP_NOP
+      ]), 
+      maxSteps: 3, // SET, SET, SIGNAL
       initialProps: {
         [RISC.PROP_ENERGY]: 1000,
       },
       expected: {
-        finalPc: 1,
+        finalPc: 7,
         signalCount: 1,
+        registers: [100, 1, 0, 0, 0, 0, 0, 0],
       },
     },
     {

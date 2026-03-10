@@ -1,9 +1,8 @@
 use crate::memory::MAX_ATOMS;
 use crate::{LambdaVM, SigmaState};
+use rayon::prelude::*;
 
-pub struct PulseOrchestrator {
-    vm: LambdaVM,
-}
+pub struct PulseOrchestrator {}
 
 impl Default for PulseOrchestrator {
     fn default() -> Self {
@@ -13,9 +12,7 @@ impl Default for PulseOrchestrator {
 
 impl PulseOrchestrator {
     pub fn new() -> Self {
-        Self {
-            vm: LambdaVM::new(),
-        }
+        Self {}
     }
 
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {
@@ -42,12 +39,13 @@ impl PulseOrchestrator {
             .physics_read_resonance
             .copy_from_slice(&state.matrix.resonance);
 
-        // 3. Execution Phase
-        for i in 1..MAX_ATOMS {
+        // 3. Execution Phase (Parallelizing over all logical atom indices)
+        (1..MAX_ATOMS).into_par_iter().for_each(|i| {
             if state.matrix.ids[i] != 0 {
-                self.vm.step(state, i);
+                let mut vm = LambdaVM::new(); // VM has no deep state, very cheap to allocate
+                vm.step(state, i);
             }
-        }
+        });
 
         // 4. Resolution Phase
         state.resolve_bond_requests();

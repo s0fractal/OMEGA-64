@@ -23,6 +23,9 @@ impl SigmaState {
             }
         }
 
+        let spatial_atomic = self.spatial_grid_atomic();
+        let quorum_atomic = self.quorum_atomic();
+
         let mut overflow_count = 0;
         let mut max_cell_count = 0;
 
@@ -54,24 +57,28 @@ impl SigmaState {
 
             let sg_base = cell_idx * 32;
 
-            let current_count = self.matrix.spatial_grid[sg_base];
-            let next_slot = current_count + 1;
+            // Atomically reserve a slot
+            let slot_idx =
+                spatial_atomic[sg_base].fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+            let next_slot = slot_idx + 1; // 1-based internal slot count
 
             if next_slot <= max_atom_slots {
-                self.matrix.spatial_grid[sg_base] = next_slot;
                 // Store atom index in the grid slot
-                self.matrix.spatial_grid[sg_base + (next_slot as usize)] = idx as i32;
+                spatial_atomic[sg_base + (next_slot as usize)]
+                    .store(idx as i32, std::sync::atomic::Ordering::Relaxed);
 
                 // Accumulate Phase into slot 31 (cell_capacity)
                 let my_phase = self.matrix.phase[idx] as i32;
-                self.matrix.spatial_grid[sg_base + (cell_capacity as usize)] += my_phase;
+                spatial_atomic[sg_base + (cell_capacity as usize)]
+                    .fetch_add(my_phase, std::sync::atomic::Ordering::Relaxed);
 
                 // Role quorum counting
                 let role = self.matrix.roles[idx];
                 let safe_role = if role > 7 { 7 } else { role as usize };
 
                 let q_base = cell_idx * 8;
-                self.matrix.quorum[q_base + safe_role] += 1;
+                quorum_atomic[q_base + safe_role]
+                    .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
 
                 if next_slot > max_cell_count {
                     max_cell_count = next_slot;
@@ -84,10 +91,12 @@ impl SigmaState {
         // 3. Finalize Phase Averages
         for i in 0..total_cells {
             let sg_base = i * 32;
-            let count = self.matrix.spatial_grid[sg_base];
+            let count = spatial_atomic[sg_base].load(std::sync::atomic::Ordering::Relaxed);
             if count > 0 {
-                let sum = self.matrix.spatial_grid[sg_base + (cell_capacity as usize)];
-                self.matrix.spatial_grid[sg_base + (cell_capacity as usize)] = sum / count;
+                let sum = spatial_atomic[sg_base + (cell_capacity as usize)]
+                    .load(std::sync::atomic::Ordering::Relaxed);
+                spatial_atomic[sg_base + (cell_capacity as usize)]
+                    .store(sum / count, std::sync::atomic::Ordering::Relaxed);
             }
         }
 

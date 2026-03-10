@@ -48,16 +48,31 @@ export type RolePreamble = {
  */
 export const GENESIS_PROGRAMS: Record<string, number[]> = {
   /**
-   * GUARDIAN (Role 1):
-   * Focuses on PHEROMONE emission and stability.
+   * GUARDIAN (Role 2):
+   * Focuses on PHEROMONE emission (Positive Amplitude).
    */
   "guardian_base": [
-    GLYPH.SIGNAL, // Emit pheromone (Legacy OP_SIGNAL)
+    GLYPH.SET, 0, 100, // R0 = 100
+    GLYPH.SET, 1, 1,   // R1 = 1 (Pheromone index)
+    GLYPH.SIGNAL, 1, 0, // Emit Pheromone with R0 (+100) intensity
     GLYPH.I, // No-op return
   ],
 
   /**
-   * ARCHITECT (Role 2):
+   * PARASITE (Role 4):
+   * Disrupts signals (Negative Amplitude).
+   */
+  "parasite_base": [
+    GLYPH.SET, 0, 0,   // R0 = 0
+    GLYPH.SET, 1, 100, // R1 = 100
+    GLYPH.SUB, 0, 1,   // R0 = R0 - R1 (-100)
+    GLYPH.SET, 2, 1,   // R2 = 1 (Pheromone index)
+    GLYPH.SIGNAL, 2, 0, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.I, 
+  ],
+
+  /**
+   * ARCHITECT (Role 3):
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [

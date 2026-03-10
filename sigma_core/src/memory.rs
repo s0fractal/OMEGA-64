@@ -10,7 +10,6 @@ pub const GRID_CELLS: usize = GRID_W * GRID_H;
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
 pub struct SigmaMatrix {
-    pub _pad_safety: [u8; SAFETY_BUFFER - 8], // 0 to 7,999,992
     pub tick_counter: i32,                    // 7,999,992
     pub sync_state: i32,                      // 7,999,996
 
@@ -135,6 +134,191 @@ impl SigmaState {
             },
         }
     }
+}
+impl Clone for SigmaState {
+    fn clone(&self) -> Self {
+        let mut new_state = Self::new();
+        unsafe {
+            std::ptr::copy_nonoverlapping(
+                self.matrix.as_ref() as *const SigmaMatrix,
+                new_state.matrix.as_mut() as *mut SigmaMatrix,
+                1,
+            );
+        }
+        new_state
+    }
+}
+
+impl SigmaState {
+    /// Returns a slice of AtomicI32 mapping directly to the `spatial_grid` array
+    /// Safe because `AtomicI32` has the exact same memory layout as `i32` (`repr(C)` transparent).
+    #[inline]
+    pub fn phase_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.phase.as_ptr() as *const std::sync::atomic::AtomicI32,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn ids_atomic(&self) -> &[std::sync::atomic::AtomicU64] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.ids.as_ptr() as *const std::sync::atomic::AtomicU64,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn context_atomic(&self, atom_idx: usize) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.context[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
+                16,
+            )
+        }
+    }
+
+    pub fn xs_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.xs.as_ptr() as *const std::sync::atomic::AtomicI16,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn ys_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.ys.as_ptr() as *const std::sync::atomic::AtomicI16,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn hive_memory_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.hive_memory.as_ptr() as *const std::sync::atomic::AtomicU8,
+                1024,
+            )
+        }
+    }
+
+    pub fn glyph_header_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.glyph_header.as_ptr() as *const std::sync::atomic::AtomicU32,
+                GRID_CELLS,
+            )
+        }
+    }
+
+    pub fn stiffness_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.stiffness.as_ptr() as *const std::sync::atomic::AtomicU32,
+                MAX_ATOMS * 4,
+            )
+        }
+    }
+
+    pub fn spatial_grid_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.spatial_grid.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.spatial_grid.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `structure_charge_intent` array
+    #[inline]
+    pub fn structure_charge_intent_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.structure_charge_intent.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.structure_charge_intent.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `structure_build_owner` array
+    #[inline]
+    pub fn structure_build_owner_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.structure_build_owner.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.structure_build_owner.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `bond_requests` array
+    #[inline]
+    pub fn bond_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.bond_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.bond_requests.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping to the `spawn_requests` head pointers.
+    /// The first 8 bytes of `spawn_requests` are the write and read heads (i32 each).
+    #[inline]
+    pub fn spawn_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.spawn_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
+                2, // We only need the first two AtomicI32s (write_head and read_head)
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `quorum` array
+    #[inline]
+    pub fn quorum_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.quorum.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.quorum.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `energy` array
+    #[inline]
+    pub fn energy_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.energy.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.energy.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `resonance` array
+    #[inline]
+    pub fn resonance_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.resonance.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.resonance.len(),
+            )
+        }
+    }
+
+    /// Returns a mutable reference to the atomic `hive_balance`
+    #[inline]
+    pub fn hive_balance_atomic(&self) -> &std::sync::atomic::AtomicI32 {
+        unsafe {
+            &*(&self.matrix.hive_balance as *const i32 as *const std::sync::atomic::AtomicI32)
+        }
+    }
 
     pub fn allocate(&mut self) -> Option<usize> {
         for i in 1..MAX_ATOMS {
@@ -190,177 +374,177 @@ mod tests {
 
     #[test]
     fn verify_memory_offsets() {
-        assert_eq!(offset_of!(SigmaMatrix, logic), 10_400_000, "logic");
-        assert_eq!(offset_of!(SigmaMatrix, bonds), 11_200_000, "bonds");
-        assert_eq!(offset_of!(SigmaMatrix, stiffness), 12_800_000, "stiffness");
+        assert_eq!(offset_of!(SigmaMatrix, logic), 2_400_008, "logic");
+        assert_eq!(offset_of!(SigmaMatrix, bonds), 3_200_008, "bonds");
+        assert_eq!(offset_of!(SigmaMatrix, stiffness), 4_800_008, "stiffness");
         assert_eq!(
             offset_of!(SigmaMatrix, instructions),
-            14_400_000,
+            6_400_008,
             "instructions"
         );
-        assert_eq!(offset_of!(SigmaMatrix, context), 20_800_000, "context");
+        assert_eq!(offset_of!(SigmaMatrix, context), 12_800_008, "context");
         assert_eq!(
             offset_of!(SigmaMatrix, evolution_reserved),
-            27_200_000,
+            19_200_008,
             "evolution"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, spawn_requests),
-            27_600_000,
+            19_600_008,
             "spawn_requests"
         );
-        assert_eq!(offset_of!(SigmaMatrix, meiosis), 28_800_000, "meiosis");
+        assert_eq!(offset_of!(SigmaMatrix, meiosis), 20_800_008, "meiosis");
         assert_eq!(
             offset_of!(SigmaMatrix, bond_requests),
-            30_000_000,
+            22_000_008,
             "bond_requests"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, spatial_grid),
-            31_200_000,
+            23_200_008,
             "spatial_grid"
         );
 
-        assert_eq!(offset_of!(SigmaMatrix, roles), 41_200_000, "roles");
+        assert_eq!(offset_of!(SigmaMatrix, roles), 33_200_008, "roles");
         assert_eq!(
             offset_of!(SigmaMatrix, structure_grid),
-            42_200_000,
+            34_200_008,
             "structure_grid"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, signal_grid),
-            43_200_000,
+            35_200_008,
             "signal_grid"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, memory_grid),
-            44_200_000,
+            36_200_008,
             "memory_grid"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, ascension_stats),
-            45_200_000,
+            37_200_008,
             "ascension_stats"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, bond_distances),
-            46_200_000,
+            38_200_008,
             "bond_distances"
         );
-        assert_eq!(offset_of!(SigmaMatrix, damping), 47_200_000, "damping");
-        assert_eq!(offset_of!(SigmaMatrix, causality), 47_300_000, "causality");
+        assert_eq!(offset_of!(SigmaMatrix, damping), 39_200_008, "damping");
+        assert_eq!(offset_of!(SigmaMatrix, causality), 39_300_008, "causality");
         assert_eq!(
             offset_of!(SigmaMatrix, hive_memory),
-            48_200_000,
+            40_200_008,
             "hive_memory"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, hive_balance),
-            48_201_024,
+            40_201_032,
             "hive_balance"
         );
-        assert_eq!(offset_of!(SigmaMatrix, quorum), 48_300_000, "quorum");
-        assert_eq!(offset_of!(SigmaMatrix, coherence), 48_700_100, "coherence");
+        assert_eq!(offset_of!(SigmaMatrix, quorum), 40_300_008, "quorum");
+        assert_eq!(offset_of!(SigmaMatrix, coherence), 40_700_108, "coherence");
         assert_eq!(
             offset_of!(SigmaMatrix, neural_coherence),
-            48_700_104,
+            40_700_112,
             "neural_coherence"
         );
 
         assert_eq!(
             offset_of!(SigmaMatrix, physics_read_xs),
-            48_800_000,
+            40_800_008,
             "physics_read_xs"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, physics_read_ys),
-            49_000_000,
+            41_000_008,
             "physics_read_ys"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, physics_read_energy),
-            49_200_000,
+            41_200_008,
             "physics_read_energy"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, physics_read_resonance),
-            49_600_000,
+            41_600_008,
             "physics_read_resonance"
         );
 
         assert_eq!(
             offset_of!(SigmaMatrix, energy_delta),
-            50_000_000,
+            42_000_008,
             "energy_delta"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, resonance_delta),
-            50_400_000,
+            42_400_008,
             "resonance_delta"
         );
 
         assert_eq!(
             offset_of!(SigmaMatrix, structure_build_owner),
-            50_800_000,
+            42_800_008,
             "structure_build_owner"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, structure_build_value),
-            50_844_800,
+            42_844_808,
             "structure_build_value"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, structure_charge_intent),
-            50_889_600,
+            42_889_608,
             "structure_charge_intent"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, attention_field),
-            50_934_400,
+            42_934_408,
             "attention_field"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, hive_energy_pool),
-            50_979_200,
+            42_979_208,
             "hive_energy_pool"
         );
 
         assert_eq!(
             offset_of!(SigmaMatrix, glyph_header),
-            50_980_224,
+            42_980_232,
             "glyph_header"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, glyph_payload),
-            51_025_024,
+            43_025_032,
             "glyph_payload"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, glyph_scratch_header),
-            51_114_624,
+            43_114_632,
             "glyph_scratch_header"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, glyph_scratch_payload),
-            51_159_424,
+            43_159_432,
             "glyph_scratch_payload"
         );
-        assert_eq!(offset_of!(SigmaMatrix, hormones), 51_249_024, "hormones");
+        assert_eq!(offset_of!(SigmaMatrix, hormones), 43_249_032, "hormones");
         assert_eq!(
             offset_of!(SigmaMatrix, secretion_stats),
-            51_249_040,
+            43_249_048,
             "secretion_stats"
         );
-        assert_eq!(offset_of!(SigmaMatrix, lineage), 51_400_000, "lineage");
-        assert_eq!(offset_of!(SigmaMatrix, mailbox), 52_200_000, "mailbox");
+        assert_eq!(offset_of!(SigmaMatrix, lineage), 43_400_008, "lineage");
+        assert_eq!(offset_of!(SigmaMatrix, mailbox), 44_200_008, "mailbox");
         assert_eq!(
             offset_of!(SigmaMatrix, ledger_head),
-            53_000_000,
+            45_000_008,
             "ledger_head"
         );
         assert_eq!(
             offset_of!(SigmaMatrix, ledger_data),
-            53_000_004,
+            45_000_012,
             "ledger_data"
         );
     }

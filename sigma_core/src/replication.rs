@@ -8,21 +8,33 @@ pub const SPAWN_SLOT: i32 = 24;
 
 impl SigmaState {
     /// Pushes a spawn request into the ring-buffer at the current write head.
+    /// Uses Atomic bounds allowing multiple threads to queue concurrently.
     /// `owner_idx`: ID of the parent atom replicating
     /// `cx, cy`: Coordinates for the child
     /// `energy`: Provisioned starting energy
-    pub fn push_spawn_request(&mut self, owner_idx: usize, cx: i32, cy: i32, energy: i32) {
-        let write_head: i32;
-        let read_head: i32;
+    pub fn push_spawn_request(&self, owner_idx: usize, cx: i32, cy: i32, energy: i32) {
+        let spawn_atomic = self.spawn_requests_atomic(); // index 0 is write_head, 1 is read_head
 
-        let header_slice: &[u8; 8] = self.matrix.spawn_requests[0..8].try_into().unwrap();
-        write_head = i32::from_le_bytes(header_slice[0..4].try_into().unwrap());
-        read_head = i32::from_le_bytes(header_slice[4..8].try_into().unwrap());
+        let read_head = spawn_atomic[1].load(std::sync::atomic::Ordering::Acquire);
 
-        if write_head - read_head >= SPAWN_MAX {
-            return; // Buffer full
+        // Atomically claim the next slot in the ring buffer
+        let mut write_head = spawn_atomic[0].load(std::sync::atomic::Ordering::Acquire);
+        loop {
+            if write_head - read_head >= SPAWN_MAX {
+                return; // Buffer full
+            }
+            match spawn_atomic[0].compare_exchange(
+                write_head,
+                write_head + 1,
+                std::sync::atomic::Ordering::AcqRel,
+                std::sync::atomic::Ordering::Acquire,
+            ) {
+                Ok(_) => break, // claim confirmed
+                Err(new_write_head) => write_head = new_write_head,
+            }
         }
 
+        // We claimed `write_head`. Now write payload specifically into our reserved slot.
         let slot_off = 8 + ((write_head % SPAWN_MAX) * SPAWN_SLOT) as usize;
         let p_id = self.matrix.ids[owner_idx];
 
@@ -30,24 +42,38 @@ impl SigmaState {
         let pid_lo = (p_id & 0xFFFFFFFF) as i32;
         let pid_hi = (p_id >> 32) as i32;
 
-        self.matrix.spawn_requests[slot_off..slot_off + 4].copy_from_slice(&pid_lo.to_le_bytes());
-        self.matrix.spawn_requests[slot_off + 4..slot_off + 8]
-            .copy_from_slice(&pid_hi.to_le_bytes());
+        unsafe {
+            // Note: Since each thread has a UNIQUE slot (`write_head` is atomic), we can bypass Rust's
+            // interior mutability checks purely for `spawn_requests` payload area using unsafe raw pointers.
+            let req_ptr = self.matrix.spawn_requests.as_ptr() as *mut u8;
 
-        self.matrix.spawn_requests[slot_off + 8..slot_off + 10]
-            .copy_from_slice(&(cx as i16).to_le_bytes());
-        self.matrix.spawn_requests[slot_off + 10..slot_off + 12]
-            .copy_from_slice(&(cy as i16).to_le_bytes());
+            std::ptr::copy_nonoverlapping(pid_lo.to_le_bytes().as_ptr(), req_ptr.add(slot_off), 4);
+            std::ptr::copy_nonoverlapping(
+                pid_hi.to_le_bytes().as_ptr(),
+                req_ptr.add(slot_off + 4),
+                4,
+            );
 
-        self.matrix.spawn_requests[slot_off + 12..slot_off + 16]
-            .copy_from_slice(&energy.to_le_bytes());
+            std::ptr::copy_nonoverlapping(
+                (cx as i16).to_le_bytes().as_ptr(),
+                req_ptr.add(slot_off + 8),
+                2,
+            );
+            std::ptr::copy_nonoverlapping(
+                (cy as i16).to_le_bytes().as_ptr(),
+                req_ptr.add(slot_off + 10),
+                2,
+            );
 
-        let logic = self.matrix.logic[owner_idx];
-        self.matrix.spawn_requests[slot_off + 16..slot_off + 24].copy_from_slice(&logic);
+            std::ptr::copy_nonoverlapping(
+                energy.to_le_bytes().as_ptr(),
+                req_ptr.add(slot_off + 12),
+                4,
+            );
 
-        // Advance write head
-        let next_write_head = write_head + 1;
-        self.matrix.spawn_requests[0..4].copy_from_slice(&next_write_head.to_le_bytes());
+            let logic = self.matrix.logic[owner_idx];
+            std::ptr::copy_nonoverlapping(logic.as_ptr(), req_ptr.add(slot_off + 16), 8);
+        }
     }
 
     /// Evaluates the spawn buffer at the end of the frame, copying instructions from known parent IDs.

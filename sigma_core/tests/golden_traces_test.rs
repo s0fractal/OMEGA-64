@@ -542,3 +542,175 @@ fn test_gt02_free_run_no_ingress() {
     assert!(e_p1 > 0);
     assert!(e_p2 > 0);
 }
+
+#[test]
+fn test_gt02_rayon_parity() {
+    let mut source_state = SigmaState::new();
+
+    // Seed 500 atoms with varied initial conditions
+    for i in 1..501 {
+        source_state.matrix.ids[i] = i as u64;
+        source_state.matrix.xs[i] = (10 + (i % 120)) as i16 * 10;
+        source_state.matrix.ys[i] = (10 + (i % 60)) as i16 * 10;
+        source_state.matrix.energy[i] = 1000 + (i as i32 * 10);
+        source_state.matrix.phase[i] = (i % 256) as i32;
+
+        let inst = &mut source_state.matrix.instructions[i];
+
+        // SET r0, (i%10)
+        inst[0] = 0x11; // OP_SET
+        inst[1] = 0;
+        inst[2] = (i % 10) as u8;
+
+        // SET r1, 15
+        inst[3] = 0x11;
+        inst[4] = 1;
+        inst[5] = 15;
+
+        // ADD r0, r1
+        inst[6] = 0x14; // OP_ADD
+        inst[7] = 0;
+        inst[8] = 1;
+
+        // SYS_MOVE r0, r1
+        inst[9] = 0xB0; // OP_SYSCALL
+        source_state.matrix.context[i][0] = 0x01; // SYS_MOVE
+        source_state.matrix.context[i][1] = 5; // dx
+        source_state.matrix.context[i][2] = 5; // dy
+    }
+
+    // Prepare sequential baseline
+    // SigmaState is ~51MB, MUST be cloned deeply to avoid shared heap Box panics
+    let mut seq_state = source_state.clone();
+
+    // Prepare parallel baseline
+    let mut p_state = source_state.clone();
+
+    // Run sequential baseline
+    let mut seq_vm = LambdaVM::new();
+    for atom_idx in 1..501 {
+        seq_vm.step(&seq_state, atom_idx);
+    }
+
+    // Run parallel orchestrator (only testing the `vm.step` parity for now, orchestrator covers full tick)
+    // To be perfectly 1:1, we just run the Rayon loop manually here simulating orchestrated step
+    use rayon::prelude::*;
+    (1..501).into_par_iter().for_each(|atom_idx| {
+        let mut p_vm = LambdaVM::new();
+        p_vm.step(&p_state, atom_idx);
+    });
+
+    // Parity check basic vectors
+    for i in 1..501 {
+        assert_eq!(
+            seq_state.matrix.context[i][0], p_state.matrix.context[i][0],
+            "Mismatch context r0 atom {}",
+            i
+        );
+        assert_eq!(
+            seq_state.matrix.energy[i], p_state.matrix.energy[i],
+            "Mismatch energy atom {}",
+            i
+        );
+        assert_eq!(
+            seq_state.matrix.xs[i], p_state.matrix.xs[i],
+            "Mismatch X atom {}",
+            i
+        );
+        assert_eq!(
+            seq_state.matrix.ys[i], p_state.matrix.ys[i],
+            "Mismatch Y atom {}",
+            i
+        );
+        assert_eq!(
+            seq_state.matrix.phase[i], p_state.matrix.phase[i],
+            "Mismatch phase atom {}",
+            i
+        );
+    }
+}
+
+#[test]
+fn test_pure_substrate_emergence() {
+    let mut state = SigmaState::new();
+    let mut vm = LambdaVM::new();
+
+    let guardian_idx = 1;
+    let parasite_idx = 2;
+
+    state.matrix.ids[guardian_idx] = 100;
+    state.matrix.energy[guardian_idx] = 1000;
+    state.matrix.roles[guardian_idx] = 1; // ROLE_GUARDIAN
+    state.matrix.xs[guardian_idx] = 100; // cell 10
+    state.matrix.ys[guardian_idx] = 100; // cell 10
+
+    state.matrix.ids[parasite_idx] = 101;
+    state.matrix.energy[parasite_idx] = 1000;
+    state.matrix.roles[parasite_idx] = 4; // ROLE_PARASITE (Historically hardcoded to invert intensity)
+    state.matrix.xs[parasite_idx] = 200; // cell 20
+    state.matrix.ys[parasite_idx] = 200; // cell 20
+
+    // Program both with identical INTENSITY = 50 in R1, KIND = 1 in R0
+    // OP_SIGNAL R0, R1
+
+    // Guardian setup
+    state.matrix.context[guardian_idx][0] = 1; // KIND = 1
+    state.matrix.context[guardian_idx][1] = 50; // INTENSITY = 50
+    state.matrix.context[guardian_idx][8] = 0; // PC = 0
+    state.matrix.instructions[guardian_idx][0] = 0x81; // OP_SIGNAL
+    state.matrix.instructions[guardian_idx][1] = 0; // type_reg is R0
+    state.matrix.instructions[guardian_idx][2] = 1; // intensity_reg is R1
+    state.matrix.instructions[guardian_idx][3] = 0x01; // NOP (halt)
+
+    // Parasite setup
+    state.matrix.context[parasite_idx][0] = 1; // KIND = 1
+    state.matrix.context[parasite_idx][1] = 50; // INTENSITY = 50
+    state.matrix.context[parasite_idx][8] = 0; // PC = 0
+    state.matrix.instructions[parasite_idx][0] = 0x81; // OP_SIGNAL
+    state.matrix.instructions[parasite_idx][1] = 0; // type_reg is R0
+    state.matrix.instructions[parasite_idx][2] = 1; // intensity_reg is R1
+    state.matrix.instructions[parasite_idx][3] = 0x01; // NOP (halt)
+
+    vm.step(&mut state, guardian_idx);
+    vm.step(&mut state, parasite_idx);
+
+    // Verify cell 10 + 10 * 140 = 1410
+    // Verify cell 20 + 20 * 140 = 2820
+
+    let guardian_header = state.matrix.glyph_header[1410];
+    let parasite_header = state.matrix.glyph_header[2820];
+
+    // Decode headers
+    let guardian_kind = guardian_header & 0xFF;
+    let guardian_amp = guardian_header >> 8;
+
+    let parasite_kind = parasite_header & 0xFF;
+    let parasite_amp = parasite_header >> 8;
+
+    // The pure substrate mandates NO ROLE OVERRIDES.
+    // Both must emit positive 50 because they executed the same bytecode.
+    assert_eq!(guardian_kind, 1);
+    assert_eq!(guardian_amp, 50, "Guardian emitted positive 50");
+
+    assert_eq!(parasite_kind, 1);
+    assert_eq!(
+        parasite_amp, 50,
+        "Parasite MUST emit positive 50 natively, no biology overrides!"
+    );
+
+    // Now test negative emission via generic math
+    // Reset parasite, set intensity to -100
+    state.matrix.context[parasite_idx][1] = -100;
+    state.matrix.context[parasite_idx][8] = 0; // Reset PC
+    state.matrix.instructions[parasite_idx][3] = 0x01; // Ensure NOP is still there
+    state.matrix.glyph_header[2820] = 0; // Clear buffer
+
+    vm.step(&mut state, parasite_idx);
+    let parasite_negative_header = state.matrix.glyph_header[2820];
+    let p_neg_amp = sigma_core::glyph_transport::unpack_glyph_amplitude(parasite_negative_header);
+
+    assert_eq!(
+        p_neg_amp, -100,
+        "Negative intensity must be preserved through OP_SIGNAL natively"
+    );
+}

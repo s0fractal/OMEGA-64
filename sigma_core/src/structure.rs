@@ -7,29 +7,55 @@ pub const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648; // 0x80000000
 
 impl SigmaState {
     /// Attempts to publish a build intent to the specified cell.
+    /// Attempts to publish a build intent to the specified cell.
     /// Arbitration happens via the `ownerToken` mechanism to resolve racing logic during a tick.
-    pub fn publish_build_intent(
-        &mut self,
-        cell_idx: usize,
-        owner_atom_idx: usize,
-        build_value: i32,
-    ) {
+    pub fn publish_build_intent(&self, cell_idx: usize, owner_atom_idx: usize, build_value: i32) {
         if cell_idx >= crate::memory::GRID_CELLS {
             return;
         }
 
-        let current_owner = self.matrix.structure_build_owner[cell_idx];
-
-        // Bail if locked by the consensus daemon
-        if current_owner == STRUCTURE_INTENT_LOCK_BIT {
-            return;
-        }
+        let owner_atomic = self.structure_build_owner_atomic();
+        let val_atomic = unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.structure_build_value.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.structure_build_value.len(),
+            )
+        };
 
         let owner_token = (owner_atom_idx as i32) + 1; // 1-indexed
 
-        if owner_token > current_owner {
-            self.matrix.structure_build_owner[cell_idx] = owner_token;
-            self.matrix.structure_build_value[cell_idx] = build_value;
+        // Spin until we successfully lock or realize we are over-prioritized
+        loop {
+            let current_owner = owner_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
+
+            // Bail if locked by the consensus daemon
+            if current_owner == STRUCTURE_INTENT_LOCK_BIT {
+                break;
+            }
+
+            if owner_token > current_owner {
+                // We have higher priority, attempt to claim it
+                match owner_atomic[cell_idx].compare_exchange(
+                    current_owner,
+                    owner_token,
+                    std::sync::atomic::Ordering::AcqRel,
+                    std::sync::atomic::Ordering::Acquire,
+                ) {
+                    Ok(_) => {
+                        // Success! We claimed the owner token. Write our value.
+                        val_atomic[cell_idx]
+                            .store(build_value, std::sync::atomic::Ordering::Release);
+                        break;
+                    }
+                    Err(_) => {
+                        // Failed to claim (another atom snuck in). Loop again and re-evaluate `current_owner`.
+                        continue;
+                    }
+                }
+            } else {
+                // An atom with higher priority already owns this slot for this tick.
+                break;
+            }
         }
     }
 
@@ -40,18 +66,44 @@ impl SigmaState {
             return 0;
         }
 
-        let intent_owner = self.matrix.structure_build_owner[cell_idx];
+        let owner_atomic = self.structure_build_owner_atomic();
+        let intent_owner = owner_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
+
         if intent_owner != 0 && intent_owner != STRUCTURE_INTENT_LOCK_BIT {
-            self.matrix.structure_build_value[cell_idx]
+            let val_atomic = unsafe {
+                std::slice::from_raw_parts(
+                    self.matrix.structure_build_value.as_ptr()
+                        as *const std::sync::atomic::AtomicI32,
+                    self.matrix.structure_build_value.len(),
+                )
+            };
+            val_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire)
         } else {
             self.matrix.structure_grid[cell_idx]
         }
     }
 
     /// Mutates the charge intent for OP_PLUG.
-    pub fn set_structure_charge_intent(&mut self, cell_idx: usize, charge: i32) {
+    pub fn set_structure_charge_intent(&self, cell_idx: usize, charge: i32) {
         if cell_idx < crate::memory::GRID_CELLS {
-            self.matrix.structure_charge_intent[cell_idx] = charge;
+            let intent_atomic = self.structure_charge_intent_atomic();
+            let mut current = intent_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
+            loop {
+                // In Deno, multiple plugs into the same cell don't sum, they take max, or they just overwrite.
+                // Assuming overwrite or max. Max is safer for multi-threaded:
+                if charge <= current {
+                    break;
+                }
+                match intent_atomic[cell_idx].compare_exchange(
+                    current,
+                    charge,
+                    std::sync::atomic::Ordering::AcqRel,
+                    std::sync::atomic::Ordering::Acquire,
+                ) {
+                    Ok(_) => break,
+                    Err(actual) => current = actual,
+                }
+            }
         }
     }
 }

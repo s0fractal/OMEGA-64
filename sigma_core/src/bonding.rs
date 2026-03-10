@@ -5,24 +5,35 @@ use crate::memory::{SigmaState, MAX_ATOMS};
 
 impl SigmaState {
     /// Attempts to establish a bond by pushing a request to the `bond_requests` array.
-    pub fn push_bond_request(
-        &mut self,
-        request_idx: usize,
-        initiator_idx: usize,
-        target_idx: usize,
-    ) {
+    pub fn push_bond_request(&self, request_idx: usize, initiator_idx: usize, target_idx: usize) {
         if request_idx >= MAX_ATOMS {
             return;
         }
 
         let ptr = request_idx * 3;
+        let bond_atomic = self.bond_requests_atomic();
 
-        // Only push if the slot is empty (status == 0)
-        if self.matrix.bond_requests[ptr + 2] == 0 {
-            // we use 1-indexed to avoid 0 clashes
-            self.matrix.bond_requests[ptr] = (initiator_idx as i32) + 1;
-            self.matrix.bond_requests[ptr + 1] = (target_idx as i32) + 1;
-            self.matrix.bond_requests[ptr + 2] = 1; // 1 = PENDING
+        // We use the status field (ptr + 2) as our primary lock point. 0 = IDLE, 1 = PENDING.
+        // Atoms trying to bind to the same request slot concurrently will race here.
+        if bond_atomic[ptr + 2]
+            .compare_exchange(
+                0,
+                1, // Reserve slot as PENDING
+                std::sync::atomic::Ordering::AcqRel,
+                std::sync::atomic::Ordering::Acquire,
+            )
+            .is_ok()
+        {
+            // Successfully claimed the slot. Now we can safely load the data payload.
+            // Initiator/Target writes don't need fetch_add since they are protected by the acquired status lock.
+            bond_atomic[ptr].store(
+                (initiator_idx as i32) + 1,
+                std::sync::atomic::Ordering::Release,
+            );
+            bond_atomic[ptr + 1].store(
+                (target_idx as i32) + 1,
+                std::sync::atomic::Ordering::Release,
+            );
         }
     }
 
