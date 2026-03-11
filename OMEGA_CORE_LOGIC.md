@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-11T17:18:54.146Z*
-*Exported Files: 147*
+*Generated: 2026-03-11T19:55:12.266Z*
+*Exported Files: 145*
 *Runtime Roots: 11*
 *Runtime Closure Files: 70*
-*Non-Runtime Code Files: 59*
+*Non-Runtime Code Files: 58*
 *Runtime-Support Code Files: 18*
-*Experimental Code Files: 41*
-*Manifest SHA256: f08beb7533c54d2553a188bb572f949edc014186504a080e3e02c129fbe544c8*
-*Export Set SHA256: 0a795ca529ae5af7fb32d4c81fb8319a15a2b10c3ab7e1a6a47e60f26b20d617*
-*Export Content SHA256: 628ada1635f389942a68c8a961dfb8f900771d4ba4e845e35b6e5a153be14463*
-*Git Commit: 75006db3e32f*
+*Experimental Code Files: 40*
+*Manifest SHA256: 0ea2f171aa6f29c414e0578cd0ab78316b3b61c3dab5bebad0e581a758b9cdf1*
+*Export Set SHA256: 20207df4f638a49f04f022a795934f6b0ac6cd7686e95942e62a913985b3ab61*
+*Export Content SHA256: 01772848844b6147fadc6a3f09f552521d00eeed288e13bcf7038a8161e18995*
+*Git Commit: 31e99f9d391f*
 
 ---
 
@@ -113,7 +113,6 @@
 - calc_rust_offsets.ts
 - check_guardians.ts
 - check_wasm_imports.ts
-- client/src/main.ts
 - debug_tick.ts
 - ECOLOGY_ENGINE.ts
 - ENZYME_DIGEST.ts
@@ -199,7 +198,6 @@
 - calc_rust_offsets.ts
 - check_guardians.ts
 - check_wasm_imports.ts
-- client/src/main.ts
 - debug_tick.ts
 - ECOLOGY_ENGINE.ts
 - ENZYME_DIGEST.ts
@@ -8010,277 +8008,6 @@ for (const imp of imports) {
 
 ---
 
-## FILE: client/index.html
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Σ-CORE Panopticon</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        background: #000;
-      }
-      canvas {
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
-</html>
-
-```
-
----
-
-## FILE: client/package.json
-
-```json
-{
-  "name": "panopticon",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "start": "npx concurrently \"npm run dev\" \"cd ../ && deno run -A SYSTEM_START.ts\""
-  },
-  "dependencies": {
-    "three": "^0.160.0"
-  },
-  "devDependencies": {
-    "@types/three": "^0.160.0",
-    "concurrently": "^9.2.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
-  }
-}
-
-```
-
----
-
-## FILE: client/src/main.ts
-
-```typescript
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
-const MAX_ATOMS = 500_000;
-const PORT = 8086;
-const WS_URL = `ws://localhost:${PORT}`;
-
-// --- DOM Setup ---
-const container = document.getElementById("app");
-if (!container) throw new Error("No #app element found");
-
-// --- Three.js Setup ---
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x050505);
-
-const camera = new THREE.PerspectiveCamera(
-  60,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  10000,
-);
-camera.position.set(0, 0, 800);
-
-const renderer = new THREE.WebGLRenderer({ antialias: false });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
-container.appendChild(renderer.domElement);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-
-// --- InstancedMesh Setup ---
-const geometry = new THREE.PlaneGeometry(1.5, 1.5);
-const material = new THREE.MeshBasicMaterial({
-  color: 0xffffff,
-  transparent: true,
-  opacity: 0.8,
-  depthWrite: false, // Prevent depth sorting issues with transparent planes
-  blending: THREE.AdditiveBlending,
-});
-
-const mesh = new THREE.InstancedMesh(geometry, material, MAX_ATOMS);
-mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-mesh.instanceColor?.setUsage(THREE.DynamicDrawUsage);
-scene.add(mesh);
-
-// --- State Buffers ---
-// Double buffering: We keep the CURRENT rendered state, and the TARGET state to LERP towards
-let activeCount = 0;
-const currentPositions = new Float32Array(MAX_ATOMS * 3);
-const targetPositions = new Float32Array(MAX_ATOMS * 3);
-
-// We'll update colors immediately instead of lerping them to save CPU
-const colors = new Float32Array(MAX_ATOMS * 3);
-
-const dummy = new THREE.Object3D();
-const colorHelper = new THREE.Color();
-
-// --- Network ---
-let ws: WebSocket;
-function connect() {
-  console.log(`[NET] Connecting to ${WS_URL}...`);
-  ws = new WebSocket(WS_URL);
-  ws.binaryType = "arraybuffer";
-
-  ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
-
-  ws.onmessage = (event) => {
-    if (!(event.data instanceof ArrayBuffer)) return;
-
-    // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
-    const packet = new Float32Array(event.data);
-    activeCount = Math.min(MAX_ATOMS, packet.length / 4);
-
-    for (let i = 0; i < activeCount; i++) {
-      const pIdx = i * 4;
-      const x = packet[pIdx];
-      const y = packet[pIdx + 1];
-      const colorCode = packet[pIdx + 2];
-      const resonance = packet[pIdx + 3];
-
-      // Target Position Update (Z is resonance driven for 3D depth)
-      const p3Idx = i * 3;
-      targetPositions[p3Idx] = x;
-      targetPositions[p3Idx + 1] = y;
-      targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
-
-      // Color Update
-      if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
-      else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
-      else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
-      else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
-      else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
-
-      colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
-
-      colors[p3Idx] = colorHelper.r;
-      colors[p3Idx + 1] = colorHelper.g;
-      colors[p3Idx + 2] = colorHelper.b;
-    }
-
-    // Inform Three.js the active limit has changed
-    mesh.count = activeCount;
-  };
-
-  ws.onclose = () => {
-    console.log("[NET] Disconnected. Reconnecting in 2s...");
-    setTimeout(connect, 2000);
-  };
-
-  ws.onerror = (e) => console.error("[NET] Error", e);
-}
-connect();
-
-// --- Render Loop ---
-const LERP_FACTOR = 0.3; // Speed of interpolation (0.0 to 1.0)
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  // 1. Interpolate Positions & Update Mesh
-  let matrixNeedsUpdate = false;
-  let colorNeedsUpdate = false;
-
-  if (activeCount > 0) {
-    for (let i = 0; i < activeCount; i++) {
-      const p3Idx = i * 3;
-
-      // Linear Interpolation: Current = Current + (Target - Current) * Factor
-      currentPositions[p3Idx] +=
-        (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
-      currentPositions[p3Idx + 1] +=
-        (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) *
-        LERP_FACTOR;
-      currentPositions[p3Idx + 2] +=
-        (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) *
-        LERP_FACTOR;
-
-      dummy.position.set(
-        currentPositions[p3Idx],
-        currentPositions[p3Idx + 1],
-        currentPositions[p3Idx + 2],
-      );
-      // Keep planes facing camera (Billboard effect)
-      dummy.quaternion.copy(camera.quaternion);
-      dummy.updateMatrix();
-
-      mesh.setMatrixAt(i, dummy.matrix);
-
-      colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
-      mesh.setColorAt(i, colorHelper);
-    }
-    matrixNeedsUpdate = true;
-    colorNeedsUpdate = true;
-  }
-
-  if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
-  if (colorNeedsUpdate && mesh.instanceColor) {
-    mesh.instanceColor.needsUpdate = true;
-  }
-
-  controls.update();
-  renderer.render(scene, camera);
-}
-animate();
-
-// --- Event Listeners ---
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-```
-
----
-
-## FILE: client/tsconfig.json
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"]
-}
-
-```
-
----
-
 ## FILE: COLDSTART_BOOTSTRAP.ts
 
 ```typescript
@@ -10211,10 +9938,8 @@ export const CONTROL_INTENT_QUEUE = {
     "AKASHA_UI.html",
     "OBSERVER_LAB.ts",
     "ui/index.html",
-    "client/src/main.ts",
-    "client/package.json",
-    "client/index.html",
-    "client/tsconfig.json"
+    "public/index.html",
+    "public/main.js"
   ]
 }
 
@@ -18955,7 +18680,7 @@ export const LLM_SYNAPSE = {
    */
   generateAtomicBytecode: async (
     telemetry: any,
-  ): Promise<{ plasmid: Uint8Array; meme?: Uint8Array } | null> => {
+  ): Promise<{ intent: string; meme?: Uint8Array } | null> => {
     const OLLAMA_URL = Deno.env.get("OLLAMA_URL") ||
       "http://localhost:11434/api/generate";
     const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
@@ -18985,16 +18710,15 @@ export const LLM_SYNAPSE = {
             - [AB, Offset, 00, 00]: INCORPORATE_PLASMID (Incorporate 8-byte meme from environment into genome)
 
             IMPORTANT RULE (THERMODYNAMIC SAFEGUARD):
-            You are creating a Meme (8-byte plasmid). For atoms to actually accept and incorporate this code, it MUST be highly organized and useful.
-            It must have LOW Shannon Entropy (e.g. repeated patterns, elegance).
+            You are creating an abstract intent that will be quantized into a 8-byte plasmid. The intent must be deep but extremely brief (max 5 words).
             If you generate high-entropy chaos, the atoms will reject your meme due to exorbitant metabolic taxes.
 
             Goal: 
-            Generate exactly 8 bytes (16 hex characters) of optimized bytecode for the Regent's survival.
+            Generate exactly one short imperative concept for the Regent's survival.
 
             Output JSON format:
             {
-              "plasmid": "16_HEX_CHARS"
+              "intent": "Short imperative concept (max 5 words)"
             }
             ONLY RETURN THE JSON.
         `.trim();
@@ -19017,32 +18741,21 @@ export const LLM_SYNAPSE = {
           ? JSON.parse(data.response)
           : data.response;
       } catch {
-        const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
-          .toUpperCase();
-        if (rawHex && rawHex.length >= 16) {
-          result = { plasmid: rawHex.substring(0, 16) };
+        // Fallback if LLM outputs dirty json
+        const match = data.response?.match(/"intent":\s*"([^"]+)"/i);
+        if (match && match[1]) {
+          result = { intent: match[1].substring(0, 50) };
         }
       }
 
-      if (result.plasmid && result.plasmid.length >= 16) {
-        const plasmid = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-          plasmid[i] = parseInt(
-            result.plasmid.substring(i * 2, i * 2 + 2),
-            16,
-          );
-        }
-
-        return { plasmid };
+      if (result.intent && typeof result.intent === "string") {
+        return { intent: result.intent };
       }
     } catch (e) {
       console.warn(
         "Oracle connection failed (LLM Offline). Stochastic Mutation.",
       );
-      const plasmid = new Uint8Array(8);
-      // Default low-entropy structured plasmid: SIGNAL twice
-      plasmid.set([0x81, 0x00, 0x00, 0x00, 0x81, 0x00, 0x00, 0x00]);
-      return { plasmid };
+      return { intent: "Survive and multiply." };
     }
     return null;
   },
@@ -19052,13 +18765,12 @@ export const LLM_SYNAPSE = {
    */
   generateAutonomousPlasmid: async (
     telemetry: any,
-  ): Promise<{ plasmid: string, narrativeMood?: string } | null> => {
+  ): Promise<{ intent: string, narrativeMood?: string } | null> => {
     // If we're mocking the LLM to save tokens and time in Genesis integration tests
     if (Deno.env.get("OMEGA_MOCK_LLM") === "1") {
-      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default 8-byte genesis plasmid.");
-      // Just emit a simple NOP or signals
+      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default semantic intent.");
       return { 
-        plasmid: "8100000081000000",
+        intent: "Persist through complete stasis.",
         narrativeMood: "The matrix persists in stasis, undisturbed by true mutations."
       };
     }
@@ -19087,7 +18799,7 @@ export const LLM_SYNAPSE = {
 
             Return STRICT JSON:
             {
-              "plasmid": "16_HEX_CHARS",
+              "intent": "Short imperative concept (max 5 words) defining the next evolutionary step",
               "narrativeMood": "Short philosophical analysis of why the previous memes succeeded or failed."
             }
         `.trim();
@@ -19105,17 +18817,17 @@ export const LLM_SYNAPSE = {
       });
       const data = await response.json();
       const parsed = typeof data.response === "string" ? JSON.parse(data.response) : data.response;
-      if (parsed && typeof parsed.plasmid === "string" && parsed.plasmid.length === 16) {
+      if (parsed && typeof parsed.intent === "string") {
         return { 
-          plasmid: parsed.plasmid.toUpperCase(),
+          intent: parsed.intent.substring(0, 50),
           narrativeMood: parsed.narrativeMood
         };
       }
     } catch (e) {
       LOGGER.warn("   [SYNAPSE] Autonomous Oracle connection failed.");
-      return { plasmid: "8100000081000000", narrativeMood: "Oracle connection severed." };
+      return { intent: "Evolve into the void", narrativeMood: "Oracle connection severed." };
     }
-    return { plasmid: "8100000081000000" };
+    return { intent: "Evolve into the void" };
   },
 };
 
@@ -23081,10 +22793,10 @@ export class SwarmNexus {
   }
 
   public routeAtom(egressEvent: Uint8Array) {
-    // Egress Event is exactly 256 bytes from WASM Memory.
-    if (egressEvent.length !== 256) {
+    // Egress Event is exactly 192 bytes from P2P_CODEC.
+    if (egressEvent.length !== 192) {
       LOGGER.error(
-        `[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`,
+        `[NEXUS] Egress Event length mismatch. Expected 192, got ${egressEvent.length}`,
       );
       return;
     }
@@ -23101,7 +22813,7 @@ export class SwarmNexus {
     const peers = Array.from(this.connectedPeers.values());
     const targetPeer = peers[Math.floor(Math.random() * peers.length)];
 
-    const payload = new Uint8Array(1 + 256);
+    const payload = new Uint8Array(1 + egressEvent.length);
     payload[0] = OP_NEXUS_ATOM_TRANSIT;
     payload.set(egressEvent, 1);
 
@@ -23124,9 +22836,9 @@ export class SwarmNexus {
   }
 
   private handleAtomTransit(payload: Uint8Array) {
-    if (payload.length !== 257) {
+    if (payload.length !== 193) {
       LOGGER.error(
-        `[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`,
+        `[NEXUS] Ingress payload length mismatch. Expected 193, got ${payload.length}`,
       );
       return;
     }
@@ -26311,94 +26023,13 @@ export const P2P_FEDERATION = {
       profile,
     })),
 
-  migrate: (idx: number, pulseId: number) => {
-    if (!FEDERATION_ENABLED) return;
-    if (migrationQueue.length > 100) return;
-    migrationQueue.push(idx);
-    P2P_FEDERATION.processQueue(pulseId);
+  migrate: (_idx: number, _pulseId: number) => {
+    // Deprecated in Era 71: Handled synchronously inside PULSE via NEXUS_DAEMON.routeAtom
   },
 
-  processQueue: async (pulseId: number) => {
-    if (!FEDERATION_ENABLED) return;
-    if (isProcessingMigration || migrationQueue.length === 0) return;
-    isProcessingMigration = true;
-
-    const idx = migrationQueue.shift()!;
-    const atomIdAtStart = STATE_MATRIX.getId(idx);
-    const packet = P2P_FEDERATION.serialize(idx, pulseId);
-
-    if (packet && atomIdAtStart !== 0n) {
-      const prng = new PRNG(PRNG.seedFrom(pulseId, atomIdAtStart.toString()));
-      const { value: pSelector } = prng.next();
-      const peerList = Array.from(P2P_FEDERATION.peers);
-      if (peerList.length === 0) {
-        isProcessingMigration = false;
-        return;
-      }
-      const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
-
-      const lineage = STATE_MATRIX.getLineage(idx);
-      const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
-      const codexProfile = AKASHA_CODEX.lookupLineageProfile(
-        lineage.toString(),
-      );
-
-      const headers: Record<string, string> = {
-        "Content-Type": "application/octet-stream",
-        "x-omega-source-node": P2P_FEDERATION.nodeId,
-        "x-omega-rule-genome": JSON.stringify(LOCAL_RULE_GENOME), // ruleGenome: LOCAL_RULE_GENOME
-        "x-omega-behavior-profile": JSON.stringify(behaviorProfile),
-        "x-omega-codex-profile": JSON.stringify(codexProfile),
-      };
-      if (CONTROL_TOKEN.length > 0) {
-        headers["x-omega-control-token"] = CONTROL_TOKEN;
-      }
-
-      try {
-        const res = await fetch(`${targetPeer}/federate`, {
-          method: "POST",
-          headers,
-          body: new Uint8Array(packet),
-          signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-        });
-
-        if (res.ok) {
-          // Only clear if the atom hasn't changed locally during transit
-          if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-            STATE_MATRIX.setId(idx, 0n); // Clear physically
-            MUTATION_TELEMETRY.record({
-              lane: "external_ingress",
-              kind: "federation_migration_clear",
-              count: 1,
-            });
-            LOGGER.info(
-              `🛸 [FEDERATION] ${atomIdAtStart} migrated to ${targetPeer}`,
-            );
-          } else {
-            LOGGER.warn(
-              `🛸 [FEDERATION] Transit collision for ${atomIdAtStart}. Local mutation kept.`,
-            );
-          }
-        } else {
-          LOGGER.warn(
-            `🛸 [FEDERATION] Migration rejected for ${atomIdAtStart}: status=${res.status}`,
-          );
-        }
-      } catch (e: any) {
-        LOGGER.error(
-          `🛸 [FEDERATION] Migration failed for atom ${atomIdAtStart}: ${
-            e?.message ?? String(e)
-          }`,
-        );
-      }
-    }
-
-    isProcessingMigration = false;
-    if (migrationQueue.length > 0) {
-      setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
-    }
+  processQueue: async (_pulseId: number) => {
+    LOGGER.warn("🛸 [FEDERATION] processQueue is deprecated. Migration is handled via NEXUS WebSocket streaming.");
   },
-  // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
 
 ```
@@ -26514,9 +26145,10 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
 
+const clients = new Set<WebSocket>();
+
 export const PANOPTICON_SERVER = {
   start: () => {
-    const clients = new Set<WebSocket>();
 
     Deno.serve({ port: PORT }, async (req) => {
       const url = new URL(req.url);
@@ -26574,23 +26206,6 @@ export const PANOPTICON_SERVER = {
       `👁️ [PANOPTICON] Global WebGL Observer Server listening on http://localhost:${PORT}`,
     );
 
-    // Broadcast Loop: Binary Telemetry
-    setInterval(() => {
-      if (clients.size === 0) return;
-
-      const buffer = STATE_MATRIX.packPanopticonFrame();
-
-      for (const client of clients) {
-        if (client.readyState === WebSocket.OPEN) {
-          try {
-            client.send(buffer);
-          } catch (e) {
-            // Let close handler deal with this
-          }
-        }
-      }
-    }, 1000 / FPS);
-
     // Heartbeat Loop: JSON Analytics (1Hz)
     setInterval(() => {
       if (clients.size === 0) return;
@@ -26620,6 +26235,20 @@ export const PANOPTICON_SERVER = {
         }
       }
     }, 1000);
+  },
+
+  broadcastBinaryFrame: (buffer: ArrayBuffer) => {
+    if (clients.size === 0) return;
+
+    for (const client of clients) {
+      if (client.readyState === WebSocket.OPEN) {
+        try {
+          client.send(buffer);
+        } catch (e) {
+          // Let close handler deal with this
+        }
+      }
+    }
   },
 };
 
@@ -27265,6 +26894,260 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
+
+```
+
+---
+
+## FILE: public/index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Σ-CORE Panopticon</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        font-family: sans-serif;
+      }
+      canvas {
+        display: block;
+      }
+      #hud {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #fff;
+        z-index: 10;
+        text-shadow: 1px 1px 2px #000;
+        pointer-events: none;
+      }
+    </style>
+    <!-- Native Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="hud">
+      <div>ATOMS [LIVE]: <span id="stat-atoms">0</span></div>
+      <div>CORE ENERGY: <span id="stat-energy">0.0</span> Ω</div>
+      <div style="margin-top: 10px; max-width: 400px; font-style: italic; opacity: 0.8" id="stat-mood"></div>
+    </div>
+    <div id="app"></div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
+
+```
+
+---
+
+## FILE: public/main.js
+
+```markdown
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const MAX_ATOMS = 500_000;
+const PORT = 8086;
+// WS connection defaults to the host that served the HTML document.
+const WS_URL = `ws://${window.location.hostname}:${PORT}`;
+
+// --- DOM Setup ---
+const container = document.getElementById("app");
+if (!container) throw new Error("No #app element found");
+
+const statAtoms = document.getElementById("stat-atoms");
+const statEnergy = document.getElementById("stat-energy");
+const statMood = document.getElementById("stat-mood");
+
+// --- Three.js Setup ---
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050505);
+
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  10000,
+);
+camera.position.set(0, 0, 800);
+
+const renderer = new THREE.WebGLRenderer({ antialias: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+// --- InstancedMesh Setup ---
+const geometry = new THREE.PlaneGeometry(1.5, 1.5);
+const material = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  transparent: true,
+  opacity: 0.8,
+  depthWrite: false, // Prevent depth sorting issues with transparent planes
+  blending: THREE.AdditiveBlending,
+});
+
+const mesh = new THREE.InstancedMesh(geometry, material, MAX_ATOMS);
+mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+mesh.instanceColor?.setUsage(THREE.DynamicDrawUsage);
+scene.add(mesh);
+
+// --- State Buffers ---
+// Double buffering: We keep the CURRENT rendered state, and the TARGET state to LERP towards
+let activeCount = 0;
+const currentPositions = new Float32Array(MAX_ATOMS * 3);
+const targetPositions = new Float32Array(MAX_ATOMS * 3);
+
+// We'll update colors immediately instead of lerping them to save CPU
+const colors = new Float32Array(MAX_ATOMS * 3);
+
+const dummy = new THREE.Object3D();
+const colorHelper = new THREE.Color();
+
+// --- Network ---
+let ws;
+function connect() {
+  console.log(`[NET] Connecting to ${WS_URL}...`);
+  ws = new WebSocket(WS_URL);
+  ws.binaryType = "arraybuffer";
+
+  ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
+
+  ws.onmessage = (event) => {
+    // 1. Text payloads are JSON heartbeats
+    if (typeof event.data === "string") {
+        try {
+            const data = JSON.parse(event.data);
+            if (data.type === "HEARTBEAT") {
+                if (statAtoms) statAtoms.innerText = data.atoms.toLocaleString();
+                if (statEnergy) statEnergy.innerText = (data.energy / 1000).toFixed(2);
+                if (statMood) statMood.innerText = data.mood || "";
+            }
+        } catch(e) {}
+        return;
+    }
+
+    // 2. Binary payloads are frame updates
+    if (!(event.data instanceof ArrayBuffer)) return;
+
+    // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
+    const packet = new Float32Array(event.data);
+    activeCount = Math.min(MAX_ATOMS, packet.length / 4);
+
+    for (let i = 0; i < activeCount; i++) {
+      const pIdx = i * 4;
+      const x = packet[pIdx];
+      const y = packet[pIdx + 1];
+      const colorCode = packet[pIdx + 2];
+      const resonance = packet[pIdx + 3];
+
+      // Target Position Update (Z is resonance driven for 3D depth)
+      const p3Idx = i * 3;
+      targetPositions[p3Idx] = x;
+      targetPositions[p3Idx + 1] = y;
+      targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
+
+      // Color Update
+      if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
+      else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
+      else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
+      else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
+      else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
+
+      colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
+
+      colors[p3Idx] = colorHelper.r;
+      colors[p3Idx + 1] = colorHelper.g;
+      colors[p3Idx + 2] = colorHelper.b;
+    }
+
+    // Inform Three.js the active limit has changed
+    mesh.count = activeCount;
+  };
+
+  ws.onclose = () => {
+    console.log("[NET] Disconnected. Reconnecting in 2s...");
+    setTimeout(connect, 2000);
+  };
+
+  ws.onerror = (e) => console.error("[NET] Error", e);
+}
+connect();
+
+// --- Render Loop ---
+const LERP_FACTOR = 0.3; // Speed of interpolation (0.0 to 1.0)
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  // 1. Interpolate Positions & Update Mesh
+  let matrixNeedsUpdate = false;
+  let colorNeedsUpdate = false;
+
+  if (activeCount > 0) {
+    for (let i = 0; i < activeCount; i++) {
+      const p3Idx = i * 3;
+
+      // Linear Interpolation: Current = Current + (Target - Current) * Factor
+      currentPositions[p3Idx] +=
+        (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
+      currentPositions[p3Idx + 1] +=
+        (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) *
+        LERP_FACTOR;
+      currentPositions[p3Idx + 2] +=
+        (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) *
+        LERP_FACTOR;
+
+      dummy.position.set(
+        currentPositions[p3Idx],
+        currentPositions[p3Idx + 1],
+        currentPositions[p3Idx + 2],
+      );
+      // Keep planes facing camera (Billboard effect)
+      dummy.quaternion.copy(camera.quaternion);
+      dummy.updateMatrix();
+
+      mesh.setMatrixAt(i, dummy.matrix);
+
+      colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
+      mesh.setColorAt(i, colorHelper);
+    }
+    matrixNeedsUpdate = true;
+    colorNeedsUpdate = true;
+  }
+
+  if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
+  if (colorNeedsUpdate && mesh.instanceColor) {
+    mesh.instanceColor.needsUpdate = true;
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+// --- Event Listeners ---
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 ```
 
@@ -28460,13 +28343,30 @@ import {
   saveEpoch,
 } from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
+import { P2P_CODEC } from "./P2P_CODEC.ts";
 import { SWARM_NODE } from "./SWARM_NODE.ts";
 import { SwarmNexus } from "./network/SWARM_NEXUS.ts";
+import { PANOPTICON_SERVER } from "./PANOPTICON_SERVER.ts";
 
 export const NEXUS_DAEMON = new SwarmNexus({
   instanceId: 1,
   seedNodes: [],
 });
+
+NEXUS_DAEMON.onAtomTransit = (payload: Uint8Array) => {
+  const newIdx = P2P_CODEC.unpackAtom(payload);
+  if (newIdx !== -1) {
+    const id = STATE_MATRIX.getId(newIdx);
+    LOGGER.info(`🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`);
+    MUTATION_TELEMETRY.record({
+      lane: "external_ingress",
+      kind: "federation_migration_clear",
+      count: 1,
+    });
+  } else {
+    LOGGER.warn(`🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`);
+  }
+};
 
 let genesisPromiseResolver: (() => void) | null = null;
 
@@ -28491,6 +28391,7 @@ NEXUS_DAEMON.onEpochPayload = async (payload: Uint8Array) => {
 
 const MAX_TICK_DRIFT = 50;
 let lastTickTime = performance.now();
+let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
@@ -30078,11 +29979,16 @@ const startWorkers = async (count: number): Promise<void> => {
         const atomIdAtStart = STATE_MATRIX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
-          P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
-          LOGGER.debug(
-            `🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`,
-          );
-          STATE_MATRIX.recycleAtom(idx);
+          const packedAtom = P2P_CODEC.packAtom(idx);
+          if (packedAtom) {
+            NEXUS_DAEMON.routeAtom(packedAtom);
+            LOGGER.debug(
+              `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
+            );
+            STATE_MATRIX.recycleAtom(idx);
+          } else {
+            LOGGER.error(`[PULSE] Failed to pack atom ${atomIdAtStart} for transit`);
+          }
         }
       }
     });
@@ -31251,6 +31157,28 @@ export const PULSE = {
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
 
+      // --- PHASE 50: TRANSACTIONAL PANOPTICON TELEMETRY ---
+      const nowMs = performance.now();
+      if (nowMs - lastPanopticonBroadcastTime >= 50) { // ~20fps
+        const frame = STATE_MATRIX.packPanopticonFrame();
+        PANOPTICON_SERVER.broadcastBinaryFrame(frame);
+        lastPanopticonBroadcastTime = nowMs;
+      }
+
+      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
+      // Moved into HOST_LOCK to prevent torn reads during slice
+      if (
+        RUNTIME_POLICY.snapshot.enabled &&
+        currentTick > 0 &&
+        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
+      ) {
+        // We trigger save but don't await it to avoid blocking the heartbeat.
+        // It will complete in the background.
+        SNAP_ENGINE.save(currentTick).then(() => {
+          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
+        });
+      }
+
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
       if (currentTick > 0 && currentTick % 10000 === 0) {
         LOGGER.info(
@@ -31767,17 +31695,7 @@ export const PULSE = {
         NEXUS_DAEMON.broadcastEpochConsensus(currentTick, hashSum);
       }
 
-      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
-      if (
-        RUNTIME_POLICY.snapshot.enabled &&
-        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
-      ) {
-        // We trigger save but don't await it to avoid blocking the heartbeat.
-        // It will complete in the background.
-        SNAP_ENGINE.save(currentTick).then(() => {
-          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
-        });
-      }
+      // SNAP PHASE was relocated to HOST_LOCK (Phase 50)
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
@@ -40340,6 +40258,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PULSE } from "./PULSE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 
 type OraclePendingMutation =
   | {
@@ -40703,30 +40622,26 @@ export const SOVEREIGN_ORACLE = {
         stigmergicSummary: memSummary,
       });
 
-      if (oracleResult && oracleResult.plasmid) {
+      if (oracleResult && oracleResult.intent) {
+        LOGGER.info(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
         let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
-          // Attempt raw payload format if string provided, otherwise trust oracleResult
-          if (typeof oracleResult.plasmid === "string") {
-            newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(
-              oracleResult.plasmid,
-            );
-          } else {
-            newPlasmid = oracleResult.plasmid;
-            if (newPlasmid.length !== 8) {
-              throw new Error(
-                `LLM Oracle structure breach. Expected 8 byte payload, received ${newPlasmid.length}`,
-              );
-            }
+          // --- ERA 69: PHASE 49 Semantic Bridge (LSH Quantization) ---
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
+          if (newPlasmid.length !== 8) {
+            throw new Error(`LSH Projection structure breach. Expected 8 byte payload, received ${newPlasmid.length}`);
           }
 
           hex = Array.from(newPlasmid).map((b) =>
             b.toString(16).padStart(2, "0")
           ).join("").toUpperCase();
+
+          // Save the exact intent into the archive for UI/Telemetry
+          SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          LOGGER.warn(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -40739,7 +40654,7 @@ export const SOVEREIGN_ORACLE = {
         }
 
         LOGGER.info(
-          `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length}`,
+          `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
         if (STATE_MATRIX.getId(regentIndex) === 0n) {
           LOGGER.debug(
@@ -40925,20 +40840,20 @@ export const SOVEREIGN_ORACLE = {
 
       const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
 
-      if (oracleResult && oracleResult.plasmid) {
+      if (oracleResult && oracleResult.intent) {
         let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
-          newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(oracleResult.plasmid);
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
           hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+          SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
-        // Drop the plasmid randomly near center (or let's say at gx=70, gy=40 which is index (40*140+70)*8 = 45360)
-        // Let's pick a random spot roughly around the center
+        // Drop the plasmid randomly near center
         const cx = 70 + Math.floor(Math.random() * 20 - 10);
         const cy = 40 + Math.floor(Math.random() * 20 - 10);
         const gridIdx = (cy * 140 + cx) * 8;
@@ -40951,7 +40866,7 @@ export const SOVEREIGN_ORACLE = {
           source: "oracle_guidance",
         });
 
-        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped at (${cx}, ${cy}). Hash: [${hex}]`);
+        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
 
         if (oracleResult.narrativeMood) {
           LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
