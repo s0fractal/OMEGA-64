@@ -29,7 +29,7 @@ import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY, mutateUniversalConstants } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
@@ -3641,6 +3641,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
   const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
 
+  // Phase 48: Eschaton Trackers
+  let stagnantTicks = 0;
+  let lastPopulation = -1;
+  const STAGNATION_THRESHOLD = 10000;
+
   while (true) {
     await PULSE.tick();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
@@ -3683,6 +3688,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         dominantMeme,
         destructiveMeme
       };
+
+      // Phase 48 Stagnation Check
+      let eschatonReason: string | null = null;
+      const epochTelemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
+      const topGenome = epochTelemetry.dominant_genomes[0];
+      const isMonoculture = topGenome && (topGenome.count / Math.max(1, metrics.population)) > 0.90;
+
+      if (metrics.neuralCoherence >= 10000) {
+        eschatonReason = "Absolute Order (Singularity of Coherence)";
+      } else if (metrics.population > 0 && isMonoculture) {
+        eschatonReason = "Leviathan Victory (Absolute Monoculture)";
+      } else if (metrics.population > 0 && metrics.avgEnergy < 10 && Math.abs(metrics.population - lastPopulation) < 5) {
+        stagnantTicks += genesisInterval;
+        if (stagnantTicks >= STAGNATION_THRESHOLD) {
+          eschatonReason = "Heat Death (Energetic and Memetic Stagnation)";
+        }
+      } else {
+        stagnantTicks = 0;
+      }
+      lastPopulation = metrics.population;
+
+      if (eschatonReason) {
+        await SOVEREIGN_ORACLE.declareEschaton(eschatonReason);
+        STATE_MATRIX.clear();
+        mutateUniversalConstants();
+        stagnantTicks = 0;
+        lastOracleTick = tick;
+        LOGGER.info("🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.");
+        // We do not consult the Oracle for a normal plasmid on Kalpa boundary
+        continue;
+      }
+
       // For testing speed: always run the first interval.
       SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
       lastOracleTick = tick;

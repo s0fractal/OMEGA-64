@@ -84,7 +84,7 @@ impl SigmaState {
 
         let mut cursor = read_head;
         let mut spawned = 0;
-        let mut free_search_cursor = 1; // 0 is null atom
+        let mut free_search_cursor = self.free_search_cursor; // 0 is null atom
 
         while cursor != write_head && spawned < 64 {
             let slot_off = 8 + ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
@@ -123,12 +123,18 @@ impl SigmaState {
                 let mut logic: [u8; 8] = [0; 8];
                 logic.copy_from_slice(&self.matrix.spawn_requests[slot_off + 16..slot_off + 24]);
 
-                // Find parent index based on p_id mapped
+                // O(1) Search via index hinting: The lower 32-bits of p_id contain the parent index
+                let parent_hint = (p_id & 0xFFFFFFFF) as usize;
                 let mut parent_idx = 0;
-                for i in 1..MAX_ATOMS {
-                    if self.matrix.ids[i] == p_id {
-                        parent_idx = i;
-                        break;
+                if parent_hint > 0 && parent_hint < MAX_ATOMS && self.matrix.ids[parent_hint] == p_id {
+                    parent_idx = parent_hint;
+                } else {
+                    // Fallback to linear search in case of desync
+                    for i in 1..MAX_ATOMS {
+                        if self.matrix.ids[i] == p_id {
+                            parent_idx = i;
+                            break;
+                        }
                     }
                 }
 
@@ -174,6 +180,7 @@ impl SigmaState {
 
         // Close transaction
         self.matrix.spawn_requests[4..8].copy_from_slice(&cursor.to_le_bytes());
+        self.free_search_cursor = free_search_cursor;
         spawned
     }
 }

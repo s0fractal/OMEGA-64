@@ -1,7 +1,7 @@
 //! LambdaVM Execution Engine
 
 use crate::isa::{
-    GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SYS_ATTRACT, SYS_FOLD, SYS_TRANSFER,
+    GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SYS_TRANSFER,
 };
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
@@ -618,7 +618,9 @@ impl LambdaVM {
                                 let is_desperate = energy < (100_000_000 / 10);
 
                                 if entropy_new < entropy_old || is_desperate {
-                                    // Cast to mut ptr carefully as we are the only executor thread over this specific atom_idx
+                                    // SAFETY: We hold an atomic lock on our own atom's execution (step_count loop bounds gas).
+                                    // Under the parallel execution model, no other thread writes to our `atom_idx` instruction block
+                                    // concurrently. Atomic protection applies inter-atom, but intra-atom we have absolute sovereignty.
                                     unsafe {
                                         let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
                                         let atom_inst = &mut *inst_ptr.add(atom_idx);
@@ -704,22 +706,23 @@ impl LambdaVM {
                         let mut current_bal =
                             hive_bal_atomic.load(std::sync::atomic::Ordering::Acquire);
                         loop {
-                            amount = if current_bal > 100 { 100 } else { current_bal };
-                            if amount <= 0 {
+                            let curr_amt = if current_bal > 100 { 100 } else { current_bal };
+                            if curr_amt <= 0 {
                                 break;
                             }
                             match hive_bal_atomic.compare_exchange(
                                 current_bal,
-                                current_bal - amount,
+                                current_bal - curr_amt,
                                 std::sync::atomic::Ordering::AcqRel,
                                 std::sync::atomic::Ordering::Acquire,
                             ) {
                                 Ok(_) => {
                                     state.energy_atomic()[atom_idx].fetch_add(
-                                        amount * 1000,
+                                        curr_amt * 1000,
                                         std::sync::atomic::Ordering::Relaxed,
                                     );
-                                    energy += amount * 1000;
+                                    energy += curr_amt * 1000;
+                                    amount = curr_amt;
                                     break;
                                 }
                                 Err(actual) => current_bal = actual,
@@ -768,7 +771,6 @@ impl LambdaVM {
                     pc += 4; // Length is 4 according to verification harness
                 }
                 GlyphOp::Syscall => {
-                    if op == GlyphOp::Syscall {
                         let context_regs = state.context_atomic(atom_idx);
                         let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
                         let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
@@ -906,14 +908,15 @@ impl LambdaVM {
                                             }
                                         } else {
                                             // Taking/Stealing (negative amount)
-                                            let my_role = state.matrix.roles[atom_idx] & 0x7F;
-                                            let target_role = state.matrix.roles[target_idx] & 0x7F;
+                                            let my_role = state.roles_atomic()[atom_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
+                                            let target_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
 
                                             if my_role == 3 && target_role == 1 {
                                                 let t_energy = state.energy_atomic()[target_idx].load(std::sync::atomic::Ordering::Acquire);
                                                 if t_energy > 20_000 {
                                                     // Mutate to Mitochondria (role 5)
-                                                    state.matrix.roles[target_idx] = 5 | (state.matrix.roles[target_idx] & 0x80);
+                                                    let current_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed);
+                                                    state.roles_atomic()[target_idx].store(5 | (current_role & 0x80), std::sync::atomic::Ordering::Relaxed);
                                                     // Store host atom_idx in Context Reg 12
                                                     state.context_atomic(target_idx)[12].store(atom_idx as i32, std::sync::atomic::Ordering::Relaxed);
                                                     break; // Engulfment replaces stealing
@@ -942,9 +945,9 @@ impl LambdaVM {
                                                     let energy_atomic = state.energy_atomic();
                                                     let mut t_energy = energy_atomic[target_idx]
                                                         .load(std::sync::atomic::Ordering::Acquire);
-                                                    let mut take_amount = 0;
+                                                    let mut final_take = 0;
                                                     loop {
-                                                        take_amount =
+                                                        let take_amount =
                                                             std::cmp::min(steal_amount, t_energy);
                                                         if take_amount <= 0 {
                                                             break;
@@ -956,16 +959,19 @@ impl LambdaVM {
                                                             std::sync::atomic::Ordering::AcqRel,
                                                             std::sync::atomic::Ordering::Acquire,
                                                         ) {
-                                                            Ok(_) => break,
+                                                            Ok(_) => {
+                                                                final_take = take_amount;
+                                                                break;
+                                                            }
                                                             Err(actual) => t_energy = actual,
                                                         }
                                                     }
-                                                    if take_amount > 0 {
+                                                    if final_take > 0 {
                                                         state.energy_atomic()[atom_idx].fetch_add(
-                                                            take_amount,
+                                                            final_take,
                                                             std::sync::atomic::Ordering::Relaxed,
                                                         );
-                                                        energy += take_amount;
+                                                        energy += final_take;
                                                     }
                                                 }
                                             }
@@ -993,12 +999,7 @@ impl LambdaVM {
                                 gas_used += 10;
                             }
                         }
-                    }
-
                     pc += 1; // Basic jump over opcode for next resume if applicable
-                    if op != GlyphOp::Syscall {
-                        gas_used += 10;
-                    } // Fallback
                     gas_limit = 0; // Yield to host
                 }
                 GlyphOp::Unknown => {

@@ -17,9 +17,7 @@ const WASM_MEMORY_OFFSET: usize = 8_000_000;
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
     let base_ptr = WASM_MEMORY_OFFSET as *mut crate::memory::SigmaMatrix;
-    let state = SigmaState {
-        matrix: unsafe { Box::from_raw(base_ptr) },
-    };
+    let state = SigmaState::from_external_memory(base_ptr);
     ManuallyDrop::new(state)
 }
 
@@ -50,7 +48,7 @@ pub extern "C" fn tick_environment(tick: u32) {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn tick_matrix() {
-    let mut state = unsafe { get_ffi_state() };
+    let _state = unsafe { get_ffi_state() };
     // Assuming mapping to pulse double buffering of coords natively:
     // (This existed in JS before pulse.rs orchestrator took over in Rust)
     // For now we'll do nothing, as PulseOrchestrator handles this.
@@ -62,11 +60,18 @@ pub extern "C" fn tick_structure_grid() {
     crate::environment::tick_structure_grid(&mut state);
 }
 
+static mut VISITED_MEMBRANE: [u8; crate::memory::MAX_ATOMS] = [0u8; crate::memory::MAX_ATOMS];
+
 #[unsafe(no_mangle)]
 pub extern "C" fn tick_membrane_physics() {
     let mut state = unsafe { get_ffi_state() };
     
-    let mut visited = vec![0u8; crate::memory::MAX_ATOMS];
+    let visited = unsafe {
+        let ptr = core::ptr::addr_of_mut!(VISITED_MEMBRANE);
+        let v = &mut *ptr;
+        v.fill(0);
+        v
+    };
     
     for i in 1..crate::memory::MAX_ATOMS {
         if state.matrix.ids[i] != 0 {
@@ -179,7 +184,7 @@ pub extern "C" fn reduce_atom_deltas(_start_idx: usize, _end_idx: usize) {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn get_neural_coherence() -> i32 {
-    let mut state = unsafe { get_ffi_state() };
+    let state = unsafe { get_ffi_state() };
     state.matrix.neural_coherence
 }
 
@@ -220,18 +225,18 @@ pub extern "C" fn accumulate_metabolism_stats(_start: usize, _end: usize) {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn apply_metabolism_kernel(
-    param1: i32,
-    param2: i32,
-    param3: i32,
-    param4: i32,
-    param5: i32,
-    param6: i32,
-    param7: i32,
-    param8: i32,
-    param9: i32,
-    param10: i32,
-    param11: i32,
-    param12: i32,
+    _param1: i32,
+    _param2: i32,
+    _param3: i32,
+    _param4: i32,
+    _param5: i32,
+    _param6: i32,
+    _param7: i32,
+    _param8: i32,
+    _param9: i32,
+    _param10: i32,
+    _param11: i32,
+    _param12: i32,
 ) {
     // Implemented internally via `pulse.rs` `apply_metabolism_kernel`.
 }

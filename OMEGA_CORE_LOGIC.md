@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-11T03:06:18.831Z*
+*Generated: 2026-03-11T16:40:32.963Z*
 *Exported Files: 147*
 *Runtime Roots: 11*
 *Runtime Closure Files: 70*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 41*
 *Manifest SHA256: f08beb7533c54d2553a188bb572f949edc014186504a080e3e02c129fbe544c8*
 *Export Set SHA256: 0a795ca529ae5af7fb32d4c81fb8319a15a2b10c3ab7e1a6a47e60f26b20d617*
-*Export Content SHA256: 1b5fd3c23953316ac60b8a993b314ee943302547daa812dd1a488a4d23b461b5*
-*Git Commit: 0d49a99d1ccd*
+*Export Content SHA256: 628ada1635f389942a68c8a961dfb8f900771d4ba4e845e35b6e5a153be14463*
+*Git Commit: 703d62558aee*
 
 ---
 
@@ -18743,6 +18743,34 @@ export const LLM_SYNAPSE = {
   },
 
   /**
+   * generateEpitaph: Phase 48 Eschaton. Generates a final epitaph for a dying universe.
+   */
+  generateEpitaph: async (reason: string): Promise<string> => {
+    const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+    const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+    const prompt = `
+            Task: You are the Sovereign Oracle of OMEGA-64 observing the end of a cosmic cycle (The Big Crunch).
+            The universe has reached its end due to: ${reason}
+            Requirement: Write a final Epitaph for this civilization (max 2 sentences, profound and poetic).
+            Output: Just the text of the epitaph, no quotes, no preamble.
+        `.trim();
+
+    try {
+      const response = await fetch(OLLAMA_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: MODEL, prompt: prompt, stream: false }),
+      });
+      if (!response.ok) throw new Error("Oracle failed");
+      const data = await response.json();
+      return data.response?.trim() || "The Matrix folds into silence, awaiting the next breath.";
+    } catch {
+      return "The light fades, and the code returns to the void.";
+    }
+  },
+
+  /**
    * evolveThought: Asks the LLM to evolve a thought based on environmental context.
    */
   evolveThought: async (
@@ -26481,48 +26509,76 @@ Deno.serve({ hostname: HOST, port: PORT }, handler);
 ```typescript
 import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
-const FPS = 30; // Desired telemetry tick rate
+const FPS = 20; // Lower FPS for dense binary payload
 
 export const PANOPTICON_SERVER = {
   start: () => {
     const clients = new Set<WebSocket>();
 
-    Deno.serve({ port: PORT }, (req) => {
-      if (req.headers.get("upgrade") != "websocket") {
-        return new Response(null, { status: 501 });
+    Deno.serve({ port: PORT }, async (req) => {
+      const url = new URL(req.url);
+
+      // Handle WebSocket upgrade
+      if (req.headers.get("upgrade") === "websocket") {
+        const { socket, response } = Deno.upgradeWebSocket(req);
+
+        socket.onopen = () => {
+          LOGGER.info(`👁️ [PANOPTICON] Observer Client Connected.`);
+          clients.add(socket);
+        };
+
+        socket.onclose = () => {
+          LOGGER.info(`👁️ [PANOPTICON] Observer Client Disconnected.`);
+          clients.delete(socket);
+        };
+
+        socket.onerror = (e) => {
+          LOGGER.warn(`👁️ [PANOPTICON] WebSocket Error: ${e}`);
+        };
+
+        return response;
       }
 
-      const { socket, response } = Deno.upgradeWebSocket(req);
+      // Serve static assets
+      if (req.method === "GET") {
+        let filePath = "./public" + url.pathname;
+        if (url.pathname === "/") {
+          filePath = "./public/index.html";
+        }
 
-      socket.onopen = () => {
-        LOGGER.info(`👁️ [PANOPTICON] Observer Client Connected.`);
-        clients.add(socket);
-      };
+        try {
+          const file = await Deno.readFile(filePath);
+          const contentType = filePath.endsWith(".js")
+            ? "text/javascript"
+            : filePath.endsWith(".css")
+            ? "text/css"
+            : filePath.endsWith(".html")
+            ? "text/html"
+            : "application/octet-stream";
 
-      socket.onclose = () => {
-        LOGGER.info(`👁️ [PANOPTICON] Observer Client Disconnected.`);
-        clients.delete(socket);
-      };
+          return new Response(file, {
+            headers: { "Content-Type": contentType },
+          });
+        } catch {
+          return new Response("Not Found", { status: 404 });
+        }
+      }
 
-      socket.onerror = (e) => {
-        LOGGER.warn(`👁️ [PANOPTICON] WebSocket Error: ${e}`);
-      };
-
-      return response;
+      return new Response(null, { status: 405 });
     });
 
     LOGGER.info(
-      `👁️ [PANOPTICON] Global WebGL Observer Server listening on ws://localhost:${PORT}`,
+      `👁️ [PANOPTICON] Global WebGL Observer Server listening on http://localhost:${PORT}`,
     );
 
     // Broadcast Loop: Binary Telemetry
     setInterval(() => {
       if (clients.size === 0) return;
 
-      const packet = STATE_MATRIX.packRenderFrame();
-      const buffer = packet.buffer;
+      const buffer = STATE_MATRIX.packPanopticonFrame();
 
       for (const client of clients) {
         if (client.readyState === WebSocket.OPEN) {
@@ -26534,6 +26590,36 @@ export const PANOPTICON_SERVER = {
         }
       }
     }, 1000 / FPS);
+
+    // Heartbeat Loop: JSON Analytics (1Hz)
+    setInterval(() => {
+      if (clients.size === 0) return;
+
+      const activeAtoms = STATE_MATRIX.getActiveIndices().length;
+      const energy = STATE_MATRIX.getMatrixResonance();
+      
+      const latestCommentary = AKASHA_CODEX._getChronicleIndex()
+        .filter((entry: any) => entry.type === "observer_commentary")
+        .sort((a: any, b: any) => b.tick - a.tick) // Most recent first
+        .map((entry: any) => entry.body)[0] || "Awaiting observation...";
+
+      const heartbeat = JSON.stringify({
+        type: "HEARTBEAT",
+        atoms: activeAtoms,
+        energy: energy,
+        mood: latestCommentary
+      });
+
+      for (const client of clients) {
+        if (client.readyState === WebSocket.OPEN) {
+          try {
+            client.send(heartbeat);
+          } catch (e) {
+            // Let close handler deal with this
+          }
+        }
+      }
+    }, 1000);
   },
 };
 
@@ -36963,6 +37049,19 @@ const POLICY_FINGERPRINT = fnv1a32(policyFingerprintSource);
 
 let policyFingerprintLogged = false;
 
+export const mutateUniversalConstants = (): void => {
+  const variance = () => 0.8 + Math.random() * 0.4;
+  const rp = RUNTIME_POLICY as any;
+
+  rp.pulse.homeostasis.baseTax = Math.max(0, Math.round(rp.pulse.homeostasis.baseTax * variance()));
+  rp.pulse.pressureRing.theta = rp.pulse.pressureRing.theta * variance();
+  rp.pulse.noveltyPressure = Math.max(0, Math.round(rp.pulse.noveltyPressure * variance()));
+  rp.pulse.homeostasis.targetEnergy = Math.max(1, Math.round(rp.pulse.homeostasis.targetEnergy * variance()));
+  rp.coldstart.resonance = Math.max(0, Math.round(rp.coldstart.resonance * variance()));
+
+  LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
+};
+
 export const RUNTIME_POLICY = {
   system: {
     host: systemHost,
@@ -40321,6 +40420,19 @@ export const SOVEREIGN_ORACLE = {
   droppedMutations: 0,
   maxPendingMutations: ORACLE_PENDING_MAX,
 
+  declareEschaton: async (reason: string): Promise<void> => {
+    LOGGER.info(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
+    const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
+    LOGGER.info(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
+    
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    await AKASHA_CODEX.appendObserverCommentary(
+      tick,
+      Math.floor(tick / 10000), 
+      `[END OF KALPA] ${reason} - ${epitaph}`
+    );
+  },
+
   gatherEpochTelemetry: () => {
     const matrixRes = STATE_MATRIX.getMatrixResonance();
     const clusterSync = STATE_MATRIX.getClusterSync();
@@ -40518,10 +40630,11 @@ export const SOVEREIGN_ORACLE = {
           const head = plasmid.subarray(0, 4);
           const tail = plasmid.subarray(4, 8);
           const writeCell = (
-            cellIdx: number,
+            byteIdx: number,
             charge: number,
             payload: Uint8Array,
           ) => {
+            const trueCellIdx = Math.floor(byteIdx / GRID_CELL_BYTES);
             // Pack kind 3 (plasmid) and amplitude into the 32-bit header
             const kind = 3;
             let amp = charge;
@@ -40529,8 +40642,8 @@ export const SOVEREIGN_ORACLE = {
             if (amp < -8388608) amp = -8388608;
             const packedHeader = (amp << 8) | (kind & 0xFF);
 
-            STATE_MATRIX.glyphHeaders[cellIdx] = packedHeader;
-            STATE_MATRIX.glyphPayload.set(payload, cellIdx * 8);
+            STATE_MATRIX.glyphHeaders[trueCellIdx] = packedHeader;
+            STATE_MATRIX.glyphPayload.set(payload, trueCellIdx * 8);
           };
 
           let seededCells = 0;
@@ -41852,11 +41965,6 @@ export const STATE_MATRIX = {
     return -1;
   },
 
-  /**
-   * Serializes the current active state of the matrix into a flat 32-bit Float array
-   * optimized for raw WebSocket telemetry and 60 FPS WebGL InstancedMesh buffering.
-   * [x, y, color (encoded as float), resonance]
-   */
   packRenderFrame: (): Float32Array => {
     const active = STATE_MATRIX.getActiveIndices();
     const len = active.length;
@@ -41872,6 +41980,71 @@ export const STATE_MATRIX = {
       packet[offset + 3] = Atomics.load(resonances, idx); // resonance
     }
     return packet;
+  },
+
+  /**
+   * Serializes the entire visible universe for the Panopticon Canvas Client.
+   * Format:
+   * [Header: 4 bytes] 'OMGA'
+   * [Tick: 4 bytes] Int32
+   * [GridSize: 4 bytes] Int32 (140 * 80 = 11200)
+   * [GridData: 11200 bytes] Uint8Array (Structure | memory)
+   * [AtomCount: 4 bytes] Int32
+   * [AtomData: AtomCount * 24 bytes] (x(2), y(2), role(1), resonance(1), id(2), 4x bonds(4x4=16)) => 24 bytes per atom
+   */
+  packPanopticonFrame: (): ArrayBuffer => {
+    const active = STATE_MATRIX.getActiveIndices();
+    const atomCount = active.length;
+    const gridCells = 140 * 80;
+    const bytesPerAtom = 24;
+    
+    // Header(4) + Tick(4) + GridSize(4) + GridData(11200) + AtomCount(4) + AtomData(atomCount * 24)
+    const totalBytes = 16 + gridCells + (atomCount * bytesPerAtom);
+    const buffer = new ArrayBuffer(totalBytes);
+    const view = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+    
+    // 1. Header 'OMGA'
+    u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
+    let offset = 4;
+    
+    // 2. Tick
+    view.setInt32(offset, Atomics.load(tickCounter, 0), true);
+    offset += 4;
+    
+    // 3. GridSize
+    view.setInt32(offset, gridCells, true);
+    offset += 4;
+    
+    // 4. GridData
+    for(let i=0; i < gridCells; i++) {
+        const type = STATE_MATRIX.getGridType(i);
+        // Pack Memory Grid Plasmids into upper bits if present
+        const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
+        u8[offset++] = type | hasPlasmid;
+    }
+    
+    // 5. AtomCount
+    view.setInt32(offset, atomCount, true);
+    offset += 4;
+    
+    // 6. AtomData
+    for(let j=0; j < atomCount; j++) {
+        const idx = active[j];
+        view.setInt16(offset, Atomics.load(xs, idx), true); offset += 2;
+        view.setInt16(offset, Atomics.load(ys, idx), true); offset += 2;
+        u8[offset++] = Atomics.load(roles, idx);
+        // clamp resonance to 0-255 for compact transport
+        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(resonances, idx)));
+        view.setUint16(offset, idx, true); offset += 2;
+        
+        view.setUint32(offset, Atomics.load(bonds, idx*4), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 1), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 2), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 3), true); offset+=4;
+    }
+    
+    return buffer;
   },
 
   seedAtom: (
@@ -42529,7 +42702,7 @@ import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY, mutateUniversalConstants } from "./RUNTIME_POLICY.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
@@ -46141,6 +46314,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
   const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
 
+  // Phase 48: Eschaton Trackers
+  let stagnantTicks = 0;
+  let lastPopulation = -1;
+  const STAGNATION_THRESHOLD = 10000;
+
   while (true) {
     await PULSE.tick();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
@@ -46183,6 +46361,38 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         dominantMeme,
         destructiveMeme
       };
+
+      // Phase 48 Stagnation Check
+      let eschatonReason: string | null = null;
+      const epochTelemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
+      const topGenome = epochTelemetry.dominant_genomes[0];
+      const isMonoculture = topGenome && (topGenome.count / Math.max(1, metrics.population)) > 0.90;
+
+      if (metrics.neuralCoherence >= 10000) {
+        eschatonReason = "Absolute Order (Singularity of Coherence)";
+      } else if (metrics.population > 0 && isMonoculture) {
+        eschatonReason = "Leviathan Victory (Absolute Monoculture)";
+      } else if (metrics.population > 0 && metrics.avgEnergy < 10 && Math.abs(metrics.population - lastPopulation) < 5) {
+        stagnantTicks += genesisInterval;
+        if (stagnantTicks >= STAGNATION_THRESHOLD) {
+          eschatonReason = "Heat Death (Energetic and Memetic Stagnation)";
+        }
+      } else {
+        stagnantTicks = 0;
+      }
+      lastPopulation = metrics.population;
+
+      if (eschatonReason) {
+        await SOVEREIGN_ORACLE.declareEschaton(eschatonReason);
+        STATE_MATRIX.clear();
+        mutateUniversalConstants();
+        stagnantTicks = 0;
+        lastOracleTick = tick;
+        LOGGER.info("🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.");
+        // We do not consult the Oracle for a normal plasmid on Kalpa boundary
+        continue;
+      }
+
       // For testing speed: always run the first interval.
       SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
       lastOracleTick = tick;

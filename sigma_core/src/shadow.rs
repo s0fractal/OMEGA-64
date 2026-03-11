@@ -1,4 +1,4 @@
-use crate::memory::{SigmaMatrix, SigmaState};
+use crate::memory::SigmaState;
 use crate::pulse::PulseOrchestrator;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.
@@ -27,7 +27,7 @@ pub fn run_shadow_simulation(
 ) -> DriftMetrics {
     // 1. Deep clone the massive matrix securely avoiding stack bounds
     let mut shadow_state = original_state.clone();
-    let mut shadow_matrix = &mut shadow_state.matrix;
+    let shadow_matrix = &mut shadow_state.matrix;
 
     // Find absolute memory index of the atom
     let mut target_idx = None;

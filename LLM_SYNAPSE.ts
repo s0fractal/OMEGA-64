@@ -55,6 +55,34 @@ export const LLM_SYNAPSE = {
   },
 
   /**
+   * generateEpitaph: Phase 48 Eschaton. Generates a final epitaph for a dying universe.
+   */
+  generateEpitaph: async (reason: string): Promise<string> => {
+    const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+    const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+    const prompt = `
+            Task: You are the Sovereign Oracle of OMEGA-64 observing the end of a cosmic cycle (The Big Crunch).
+            The universe has reached its end due to: ${reason}
+            Requirement: Write a final Epitaph for this civilization (max 2 sentences, profound and poetic).
+            Output: Just the text of the epitaph, no quotes, no preamble.
+        `.trim();
+
+    try {
+      const response = await fetch(OLLAMA_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: MODEL, prompt: prompt, stream: false }),
+      });
+      if (!response.ok) throw new Error("Oracle failed");
+      const data = await response.json();
+      return data.response?.trim() || "The Matrix folds into silence, awaiting the next breath.";
+    } catch {
+      return "The light fades, and the code returns to the void.";
+    }
+  },
+
+  /**
    * evolveThought: Asks the LLM to evolve a thought based on environmental context.
    */
   evolveThought: async (

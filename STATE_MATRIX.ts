@@ -596,11 +596,6 @@ export const STATE_MATRIX = {
     return -1;
   },
 
-  /**
-   * Serializes the current active state of the matrix into a flat 32-bit Float array
-   * optimized for raw WebSocket telemetry and 60 FPS WebGL InstancedMesh buffering.
-   * [x, y, color (encoded as float), resonance]
-   */
   packRenderFrame: (): Float32Array => {
     const active = STATE_MATRIX.getActiveIndices();
     const len = active.length;
@@ -616,6 +611,71 @@ export const STATE_MATRIX = {
       packet[offset + 3] = Atomics.load(resonances, idx); // resonance
     }
     return packet;
+  },
+
+  /**
+   * Serializes the entire visible universe for the Panopticon Canvas Client.
+   * Format:
+   * [Header: 4 bytes] 'OMGA'
+   * [Tick: 4 bytes] Int32
+   * [GridSize: 4 bytes] Int32 (140 * 80 = 11200)
+   * [GridData: 11200 bytes] Uint8Array (Structure | memory)
+   * [AtomCount: 4 bytes] Int32
+   * [AtomData: AtomCount * 24 bytes] (x(2), y(2), role(1), resonance(1), id(2), 4x bonds(4x4=16)) => 24 bytes per atom
+   */
+  packPanopticonFrame: (): ArrayBuffer => {
+    const active = STATE_MATRIX.getActiveIndices();
+    const atomCount = active.length;
+    const gridCells = 140 * 80;
+    const bytesPerAtom = 24;
+    
+    // Header(4) + Tick(4) + GridSize(4) + GridData(11200) + AtomCount(4) + AtomData(atomCount * 24)
+    const totalBytes = 16 + gridCells + (atomCount * bytesPerAtom);
+    const buffer = new ArrayBuffer(totalBytes);
+    const view = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+    
+    // 1. Header 'OMGA'
+    u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
+    let offset = 4;
+    
+    // 2. Tick
+    view.setInt32(offset, Atomics.load(tickCounter, 0), true);
+    offset += 4;
+    
+    // 3. GridSize
+    view.setInt32(offset, gridCells, true);
+    offset += 4;
+    
+    // 4. GridData
+    for(let i=0; i < gridCells; i++) {
+        const type = STATE_MATRIX.getGridType(i);
+        // Pack Memory Grid Plasmids into upper bits if present
+        const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
+        u8[offset++] = type | hasPlasmid;
+    }
+    
+    // 5. AtomCount
+    view.setInt32(offset, atomCount, true);
+    offset += 4;
+    
+    // 6. AtomData
+    for(let j=0; j < atomCount; j++) {
+        const idx = active[j];
+        view.setInt16(offset, Atomics.load(xs, idx), true); offset += 2;
+        view.setInt16(offset, Atomics.load(ys, idx), true); offset += 2;
+        u8[offset++] = Atomics.load(roles, idx);
+        // clamp resonance to 0-255 for compact transport
+        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(resonances, idx)));
+        view.setUint16(offset, idx, true); offset += 2;
+        
+        view.setUint32(offset, Atomics.load(bonds, idx*4), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 1), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 2), true); offset+=4;
+        view.setUint32(offset, Atomics.load(bonds, idx*4 + 3), true); offset+=4;
+    }
+    
+    return buffer;
   },
 
   seedAtom: (

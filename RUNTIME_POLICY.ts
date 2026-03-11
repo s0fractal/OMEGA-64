@@ -637,6 +637,19 @@ const POLICY_FINGERPRINT = fnv1a32(policyFingerprintSource);
 
 let policyFingerprintLogged = false;
 
+export const mutateUniversalConstants = (): void => {
+  const variance = () => 0.8 + Math.random() * 0.4;
+  const rp = RUNTIME_POLICY as any;
+
+  rp.pulse.homeostasis.baseTax = Math.max(0, Math.round(rp.pulse.homeostasis.baseTax * variance()));
+  rp.pulse.pressureRing.theta = rp.pulse.pressureRing.theta * variance();
+  rp.pulse.noveltyPressure = Math.max(0, Math.round(rp.pulse.noveltyPressure * variance()));
+  rp.pulse.homeostasis.targetEnergy = Math.max(1, Math.round(rp.pulse.homeostasis.targetEnergy * variance()));
+  rp.coldstart.resonance = Math.max(0, Math.round(rp.coldstart.resonance * variance()));
+
+  LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
+};
+
 export const RUNTIME_POLICY = {
   system: {
     host: systemHost,

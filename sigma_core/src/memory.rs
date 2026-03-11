@@ -70,6 +70,7 @@ pub struct SigmaMatrix {
 
 pub struct SigmaState {
     pub matrix: Box<SigmaMatrix>,
+    pub free_search_cursor: usize,
 }
 
 impl SigmaState {
@@ -82,6 +83,15 @@ impl SigmaState {
                 let ptr = std::alloc::alloc_zeroed(layout) as *mut SigmaMatrix;
                 Box::from_raw(ptr)
             },
+            free_search_cursor: 1,
+        }
+    }
+
+    /// SAFETY: ptr must be valid, aligned, and writeable (typically mapped to a JS SharedArrayBuffer)
+    pub unsafe fn from_external_memory(ptr: *mut SigmaMatrix) -> Self {
+        Self {
+            matrix: unsafe { Box::from_raw(ptr) },
+            free_search_cursor: 1,
         }
     }
 }
@@ -134,6 +144,15 @@ impl SigmaState {
         unsafe {
             std::slice::from_raw_parts(
                 self.matrix.xs.as_ptr() as *const std::sync::atomic::AtomicI16,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn roles_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.roles.as_ptr() as *const std::sync::atomic::AtomicU8,
                 MAX_ATOMS,
             )
         }

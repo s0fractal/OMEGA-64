@@ -12,16 +12,8 @@ impl SigmaState {
         let max_atom_slots = cell_capacity - 1;
 
         // 1. Clear Grid and Quorum
-        for i in 0..total_cells {
-            let sg_base = i * 32;
-            self.matrix.spatial_grid[sg_base] = 0; // Clear count
-
-            // Clear Quorum (8 roles)
-            let q_base = i * 8;
-            for role in 0..8 {
-                self.matrix.quorum[q_base + role] = 0;
-            }
-        }
+        self.matrix.spatial_grid[..].fill(0);
+        self.matrix.quorum[..].fill(0);
 
         let spatial_atomic = self.spatial_grid_atomic();
         let quorum_atomic = self.quorum_atomic();

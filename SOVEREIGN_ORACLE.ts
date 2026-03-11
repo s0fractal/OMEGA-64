@@ -89,6 +89,19 @@ export const SOVEREIGN_ORACLE = {
   droppedMutations: 0,
   maxPendingMutations: ORACLE_PENDING_MAX,
 
+  declareEschaton: async (reason: string): Promise<void> => {
+    LOGGER.info(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
+    const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
+    LOGGER.info(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
+    
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    await AKASHA_CODEX.appendObserverCommentary(
+      tick,
+      Math.floor(tick / 10000), 
+      `[END OF KALPA] ${reason} - ${epitaph}`
+    );
+  },
+
   gatherEpochTelemetry: () => {
     const matrixRes = STATE_MATRIX.getMatrixResonance();
     const clusterSync = STATE_MATRIX.getClusterSync();
@@ -286,10 +299,11 @@ export const SOVEREIGN_ORACLE = {
           const head = plasmid.subarray(0, 4);
           const tail = plasmid.subarray(4, 8);
           const writeCell = (
-            cellIdx: number,
+            byteIdx: number,
             charge: number,
             payload: Uint8Array,
           ) => {
+            const trueCellIdx = Math.floor(byteIdx / GRID_CELL_BYTES);
             // Pack kind 3 (plasmid) and amplitude into the 32-bit header
             const kind = 3;
             let amp = charge;
@@ -297,8 +311,8 @@ export const SOVEREIGN_ORACLE = {
             if (amp < -8388608) amp = -8388608;
             const packedHeader = (amp << 8) | (kind & 0xFF);
 
-            STATE_MATRIX.glyphHeaders[cellIdx] = packedHeader;
-            STATE_MATRIX.glyphPayload.set(payload, cellIdx * 8);
+            STATE_MATRIX.glyphHeaders[trueCellIdx] = packedHeader;
+            STATE_MATRIX.glyphPayload.set(payload, trueCellIdx * 8);
           };
 
           let seededCells = 0;
