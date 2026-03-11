@@ -2619,7 +2619,7 @@ export const PULSE = {
           OFFSETS.XS_OFFSET,
           OFFSETS.MAX_ATOMS,
         );
-        console.log(
+        LOGGER.debug(
           `[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`,
         );
       };

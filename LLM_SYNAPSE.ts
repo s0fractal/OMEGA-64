@@ -1,6 +1,8 @@
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
+import { LOGGER } from "./LOGGER.ts";
+
 export const LLM_SYNAPSE = {
   /**
    * generateThought: Asks an LLM to evolve the current system state.
@@ -327,6 +329,77 @@ export const LLM_SYNAPSE = {
       return { plasmid };
     }
     return null;
+  },
+
+  /**
+   * generateAutonomousPlasmid: For the Genesis Run, asks the Oracle to dictate the next step based on System State.
+   */
+  generateAutonomousPlasmid: async (
+    telemetry: any,
+  ): Promise<{ plasmid: string, narrativeMood?: string } | null> => {
+    // If we're mocking the LLM to save tokens and time in Genesis integration tests
+    if (Deno.env.get("OMEGA_MOCK_LLM") === "1") {
+      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default 8-byte genesis plasmid.");
+      // Just emit a simple NOP or signals
+      return { 
+        plasmid: "8100000081000000",
+        narrativeMood: "The matrix persists in stasis, undisturbed by true mutations."
+      };
+    }
+
+    const OLLAMA_URL = Deno.env.get("OLLAMA_URL") ||
+      "http://localhost:11434/api/generate";
+    const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
+
+    const prompt = `
+            Task: You are the Sovereign Oracle of the OMEGA-64 Matrix.
+            The system is running autonomously. It asks you for one 8-byte plasmid to drop into the world to change the course of history.
+
+            Context:
+            - Population: ${telemetry.population}
+            - Average Energy: ${telemetry.avgEnergy}
+            - Neural Coherence: ${telemetry.neuralCoherence}
+            - Entropy Pressure: ${telemetry.entropyPressure ?? 0}
+            - Past Epoch's Dominant Meme: ${telemetry.dominantMeme ?? "None"}
+            - Past Epoch's Destructive Meme: ${telemetry.destructiveMeme ?? "None"}
+
+            RISC-I Instruction Set (4 bytes per instruction, 8 bytes total):
+            - [A8, Type, Density, 00]: BUILD (Modifier structure grid. Type 1 is WIRE, Type 2 is WALL)
+            - [80, 00, 00, 00]: REPLICATE
+            - [AB, Offset, 00, 00]: INCORPORATE_PLASMID
+            - [A1, 00, 00, 00]: DEVOUR
+
+            Return STRICT JSON:
+            {
+              "plasmid": "16_HEX_CHARS",
+              "narrativeMood": "Short philosophical analysis of why the previous memes succeeded or failed."
+            }
+        `.trim();
+
+    try {
+      const response = await fetch(OLLAMA_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: MODEL,
+          prompt,
+          stream: false,
+          format: "json",
+        }),
+      });
+      const data = await response.json();
+      const parsed = typeof data.response === "string" ? JSON.parse(data.response) : data.response;
+      if (parsed && typeof parsed.plasmid === "string" && parsed.plasmid.length === 16) {
+        return { 
+          plasmid: parsed.plasmid.toUpperCase(),
+          narrativeMood: parsed.narrativeMood
+        };
+      }
+    } catch (e) {
+      LOGGER.warn("   [SYNAPSE] Autonomous Oracle connection failed.");
+      return { plasmid: "8100000081000000", narrativeMood: "Oracle connection severed." };
+    }
+    return { plasmid: "8100000081000000" };
   },
 };
 

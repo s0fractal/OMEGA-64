@@ -2696,7 +2696,91 @@ export function apply_metabolism_kernel(
     if (load<i64>(pId) == 0) continue;
 
     const current = getEnergy(i);
-    if (current <= 0) continue;
+
+    // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
+    // If atom is dead (energy <= 0), fossilize it before skipping metabolism
+    if (current <= 0) {
+      let resonance = atomic.load<i32>(RESONANCE_OFFSET + (i << 2) as usize);
+      let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
+      let role = roleRaw & 0x7F; // Strip metazoan flag
+      
+      let ctx13 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize);
+      let ctx14 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize);
+      let hasImmunity = ctx13 != 0 || ctx14 != 0;
+
+      let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
+      let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
+      let gx = cx / 10;
+      let gy = cy / 10;
+      let cellIdx = gy * 140 + gx;
+
+      trace_atom(i, 0xDD, gx, gy, 0);
+
+      // Only attempt fossilization if it has a qualifying property
+      if (resonance > 100 || role == ROLE_GUARDIAN || role == ROLE_ARCHITECT || hasImmunity) {
+
+        let structVal: i32 = 0;
+        if (role == ROLE_GUARDIAN) {
+            structVal = 1 | (150 << 16); // STR_WIRE = 1
+        } else if (role == ROLE_ARCHITECT) {
+            structVal = 1 | (100 << 16);
+        }
+
+        if (structVal != 0) {
+            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2) as usize, structVal);
+        }
+
+        // Epigenetic memory spillage
+        let memOff = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
+        
+        // Spilled CRISPR Hash (Reg 13) into bytes 4,5,6,7 in Big-Endian for test
+        atomic.store<u8>(memOff + 4, (ctx13 >>> 24) as u8);
+        atomic.store<u8>(memOff + 5, (ctx13 >>> 16) as u8);
+        atomic.store<u8>(memOff + 6, (ctx13 >>> 8) as u8);
+        atomic.store<u8>(memOff + 7, (ctx13) as u8);
+        
+        // Bootstrapping memory charge for Plasmid decay (bytes 0,1,2 in Little-Endian for test)
+        let bootCharge = 100;
+        atomic.store<u8>(memOff + 0, (bootCharge & 0xFF) as u8);
+        atomic.store<u8>(memOff + 1, ((bootCharge >>> 8) & 0xFF) as u8);
+        atomic.store<u8>(memOff + 2, ((bootCharge >>> 16) & 0xFF) as u8);
+
+        // Neutralize resonance and role so IMMUNE.ts phagocyte immediately purges this necrotic corpse
+        atomic.store<i32>(RESONANCE_OFFSET + (i << 2) as usize, 0);
+        atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
+        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize, 0);
+        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize, 0);
+      }
+      continue;
+    }
+
+    // --- PHASE 44: ENDOSYMBIOSIS ---
+    let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
+    let role = roleRaw & 0x7F; // Strip metazoan flag
+    if (role == 5) { // ROLE_MITOCHONDRIA
+      let hostId = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize);
+      if (hostId > 0 && hostId < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0) {
+        // Enforce Coordinate Lock
+        let hx = atomic.load<i16>(XS_OFFSET + (hostId << 1) as usize);
+        let hy = atomic.load<i16>(YS_OFFSET + (hostId << 1) as usize);
+        atomic.store<i16>(XS_OFFSET + (i << 1) as usize, hx);
+        atomic.store<i16>(YS_OFFSET + (i << 1) as usize, hy);
+
+        // Pay up 90% of excess energy to Host
+        if (current > starvationFloor) {
+          let transfer = i32(Math.floor(f64(current - starvationFloor) * 0.9));
+          if (transfer > 0) {
+            atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
+            setEnergy(i, current - transfer);
+          }
+        }
+      } else {
+        // Host died. Mitochondria perishes.
+        setEnergy(i, 0);
+        atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
+      }
+      continue; // Skip entropy tax and standard homeostasis
+    }
 
     const key = genomeKey16(i);
     const sameGenomeCount = atomic.load<i32>(
@@ -2852,29 +2936,94 @@ export function tick_membrane_physics(): void {
     const ringLen = dfsMembrane(i, i, 0, pathNodes, 1);
     
     if (ringLen > 0) {
-      let sumEnergy: i64 = 0;
-      let sumResonance: i64 = 0;
+      // Phase 41: Morphogenesis BFS Component Expansion
+      const componentNodes = new StaticArray<i32>(64);
+      let head = 0;
+      let tail = 0;
 
+      // Initialize component with the detected Membrane ring
       for (let k = 0; k < ringLen; k++) {
         const node = unchecked(pathNodes[k]);
         unchecked(membraneVisited[node] = 1);
-        sumEnergy += getEnergy(node);
-        sumResonance += atomic.load<i32>(RESONANCE_OFFSET + (node << 2) as usize);
-        
-        const roleOff = ROLES_OFFSET + node;
-        const role = atomic.load<u8>(roleOff as usize);
-        atomic.store<u8>(roleOff as usize, role | 0x80);
+        unchecked(componentNodes[tail++] = node);
       }
 
-      const avgEnergy = i32(sumEnergy / ringLen);
-      const avgResonance = i32(sumResonance / ringLen);
+      // BFS to expand the Metazoan tissue mask to all connected edges
+      while (head < tail && tail < 64) {
+        const curr = unchecked(componentNodes[head++]);
+        
+        for (let s = 0; s < 4; s++) {
+          const neighbor = atomic.load<i32>(BONDS_OFFSET + ((curr << 2) + s) * 4 as usize);
+          if (neighbor != 0) {
+            // Only absorb if it hasn't mapped to a membrane component yet
+            if (membraneVisited[neighbor] == 0 && tail < 64) {
+              unchecked(membraneVisited[neighbor] = 1);
+              unchecked(componentNodes[tail++] = neighbor);
+            }
+          }
+        }
+      }
+
+      // 1. Calculate the Resource Pool over the ENTIRE tissue
+      let sumEnergy: i64 = 0;
+      let sumResonance: i64 = 0;
+
+      for (let k = 0; k < tail; k++) {
+        const node = unchecked(componentNodes[k]);
+        sumEnergy += getEnergy(node);
+        sumResonance += atomic.load<i32>(RESONANCE_OFFSET + (node << 2) as usize);
+      }
+
+      const avgEnergy = i32(sumEnergy / tail);
+      const avgResonance = i32(sumResonance / tail);
       const totalResonance = i32(sumResonance);
 
-      for (let k = 0; k < ringLen; k++) {
-        const node = unchecked(pathNodes[k]);
+      // 2. Distribute pool & Differentiate Organelles (Morphogenesis)
+      for (let k = 0; k < tail; k++) {
+        const node = unchecked(componentNodes[k]);
         setEnergy(node, avgEnergy);
         atomic.store<i32>(RESONANCE_OFFSET + (node << 2) as usize, avgResonance);
         atomic.store<i32>(EVOLUTION_OFFSET + (node << 2) as usize, totalResonance);
+        
+        // Count internal bonds to figure out topological layer (Surface vs Core)
+        let internalBonds = 0;
+        for (let s = 0; s < 4; s++) {
+          const neighbor = atomic.load<i32>(BONDS_OFFSET + ((node << 2) + s) * 4 as usize);
+          if (neighbor != 0) {
+            // Verify if neighbor is part of this exact tissue component
+            let isInternal = false;
+            for (let c = 0; c < tail; c++) {
+              if (unchecked(componentNodes[c]) == neighbor) {
+                isInternal = true;
+                break;
+              }
+            }
+            if (isInternal) {
+              internalBonds++;
+            }
+          }
+        }
+
+        // Morphological Differentiation
+        const roleOff = ROLES_OFFSET + node;
+        let role = atomic.load<u8>(roleOff as usize);
+        
+        // Clear underlying lower 7 bits for differentiation
+        role = role & 0x80;
+
+        // Apply topological epigenetics
+        if (internalBonds >= 3) {
+          // Core / Architect (Protected Processor)
+          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
+        } else {
+          // Surface / Guardian (Radar & Armor)
+          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
+        }
+        
+        // Ensure Metazoan flag exists
+        role = role | 0x80;
+
+        atomic.store<u8>(roleOff as usize, role);
       }
       
       for (let k = 0; k < 8; k++) unchecked(pathNodes[k] = 0);

@@ -430,6 +430,7 @@ export const STATE_MATRIX = {
   ROLE_GUARDIAN: 2,
   ROLE_ARCHITECT: 3,
   ROLE_PARASITE: 4,
+  ROLE_MITOCHONDRIA: 5,
 
   getId: (i: number) => Atomics.load(ids, i),
   getX: (i: number) => Atomics.load(xs, i),

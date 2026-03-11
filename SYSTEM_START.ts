@@ -25,6 +25,7 @@ import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { PHYSICS_ENGINE } from "./PHYSICS_ENGINE.ts";
 import { SNAPSHOT_ENGINE } from "./SNAPSHOT_ENGINE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
+import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
@@ -33,6 +34,7 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
 import { TELEMETRY_STREAM } from "./TELEMETRY_STREAM.ts";
+import { LINEAGE_TRACKER } from "./LINEAGE_TRACKER.ts";
 import { capturePhysiologySnapshot } from "./PHYSIOLOGY_SNAPSHOT.ts";
 import { GLYPH_BUFFER, type GlyphSnapshot } from "./GLYPH_BUFFER.ts";
 import { evaluateGuardianSignalPromotion } from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
@@ -3609,13 +3611,44 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
     );
   }
+
+  const isGenesisRun = Deno.args.includes("--genesis") || Deno.args.includes("--autonomous");
+  if (isGenesisRun) {
+    LOGGER.info("🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.");
+    try {
+      Deno.addSignalListener("SIGINT", async () => {
+        LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
+        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        await SNAPSHOT_ENGINE.exportSnapshot({
+          tick,
+          reason: "genesis_shutdown",
+          prune: false,
+          retention: 0
+        });
+        LOGGER.info(`💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`);
+        Deno.exit(0);
+      });
+    } catch {
+      // Deno.addSignalListener is not supported on Windows, silently ignore
+    }
+  }
+
   await syncDaemonPheromonePolicyLedgerHydration();
   await syncDaemonPlasmidPolicyLedgerHydration();
   await PULSE.initWorkers();
 
+  let lastOracleTick = 0;
+  const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
+  const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
+
   while (true) {
     await PULSE.tick();
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    
+    if (tick % 100 === 0) {
+      LINEAGE_TRACKER.updateMetrics(tick);
+    }
+    
     await flushDaemonAuditEffects(tick);
     await maybeAutoSnapshot(tick);
     if (
@@ -3636,6 +3669,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       });
       telemetryStreamLastTick = tick;
     }
+
+    if (isGenesisRun && tick - lastOracleTick >= genesisInterval) {
+      const epoch = Math.floor(tick / genesisInterval);
+      const metrics = collectRuntimeMetrics();
+      const { dominantMeme, destructiveMeme } = LINEAGE_TRACKER.closeEpoch(tick);
+      const telemetry = {
+        epoch,
+        population: metrics.population,
+        avgEnergy: metrics.avgEnergy,
+        neuralCoherence: metrics.neuralCoherence,
+        entropyPressure: STATE_MATRIX.getHormone(0),
+        dominantMeme,
+        destructiveMeme
+      };
+      // For testing speed: always run the first interval.
+      SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
+      lastOracleTick = tick;
+    }
+
     await new Promise((r) => setTimeout(r, 16));
   }
 })();

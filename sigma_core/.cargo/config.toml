@@ -1,5 +1,6 @@
 [target.wasm32-unknown-unknown]
 rustflags = [
+    "-Z", "unstable-options",
     "-C", "link-arg=--import-memory",
     "-C", "link-arg=--shared-memory",
     "-C", "link-arg=--max-memory=500039680",

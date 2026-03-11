@@ -526,7 +526,7 @@ impl LambdaVM {
                     if energy >= 150_000 && offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 10) * 140 + (cx / 10);
+                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
 
                         // Read 8 bytes from genome
                         let mut payload = [0u8; 8];
@@ -560,7 +560,7 @@ impl LambdaVM {
                     if offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 10) * 140 + (cx / 10);
+                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
 
                         let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
                         let kind = (header & 0xFF) as u8;
@@ -572,31 +572,61 @@ impl LambdaVM {
                                 new_bytes[i] = payload_atomic[cell_idx * 8 + i].load(std::sync::atomic::Ordering::Relaxed);
                             }
                             
-                            // Thermodynamic Safeguard
-                            let mut current_bytes = [0u8; 8];
-                            current_bytes.copy_from_slice(&state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)]);
-                            
-                            // We need full 64 byte frames for entropy calculations
-                            let mut mock_old = [0u8; 64];
-                            mock_old.copy_from_slice(&state.matrix.instructions[atom_idx]);
-                            let mut mock_new = [0u8; 64];
-                            mock_new.copy_from_slice(&state.matrix.instructions[atom_idx]);
-                            mock_new[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                            // CRISPR Immunity Check
+                            // Fast hash: shifting the first 4 bytes into a 32-bit integer.
+                            let mut plasmid_hash: i32 = 0;
+                            plasmid_hash |= (new_bytes[0] as i32) << 24;
+                            plasmid_hash |= (new_bytes[1] as i32) << 16;
+                            plasmid_hash |= (new_bytes[2] as i32) << 8;
+                            plasmid_hash |= new_bytes[3] as i32;
 
-                            let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
-                            let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
-                            
-                            let is_desperate = energy < (100_000_000 / 10);
+                            let immune_memory = state.context_atomic(atom_idx)[13].load(std::sync::atomic::Ordering::Relaxed);
 
-                            if entropy_new < entropy_old || is_desperate {
-                                // Cast to mut ptr carefully as we are the only executor thread over this specific atom_idx
-                                unsafe {
-                                    let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
-                                    let atom_inst = &mut *inst_ptr.add(atom_idx);
-                                    atom_inst[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                            if immune_memory != 0 && immune_memory == plasmid_hash {
+                                // MATCH! Execute OP_PURGE immunity mechanism.
+                                // 1. Destroy payload in environment
+                                for i in 0..8 {
+                                    payload_atomic[cell_idx * 8 + i].store(0, std::sync::atomic::Ordering::Relaxed);
                                 }
-                                // Evict Entropy Cache
-                                state.context_atomic(atom_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                                state.glyph_header_atomic()[cell_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+
+                                // 2. Metabolic Bonus (+50_000 raw energy)
+                                state.energy_atomic()[atom_idx].fetch_add(50_000, std::sync::atomic::Ordering::Relaxed);
+                                energy += 50_000;
+
+                                // 3. Abort insertion
+                                gas_used += 10;
+                            } else {
+                                // NAIVE ENCOUNTER
+                                // Record the hash into Trauma Tracker (Reg 14) for potential learning at end of step
+                                state.context_atomic(atom_idx)[14].store(plasmid_hash, std::sync::atomic::Ordering::Relaxed);
+
+                                // Thermodynamic Safeguard
+                                let mut current_bytes = [0u8; 8];
+                                current_bytes.copy_from_slice(&state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)]);
+                                
+                                // We need full 64 byte frames for entropy calculations
+                                let mut mock_old = [0u8; 64];
+                                mock_old.copy_from_slice(&state.matrix.instructions[atom_idx]);
+                                let mut mock_new = [0u8; 64];
+                                mock_new.copy_from_slice(&state.matrix.instructions[atom_idx]);
+                                mock_new[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+
+                                let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
+                                let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
+                                
+                                let is_desperate = energy < (100_000_000 / 10);
+
+                                if entropy_new < entropy_old || is_desperate {
+                                    // Cast to mut ptr carefully as we are the only executor thread over this specific atom_idx
+                                    unsafe {
+                                        let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
+                                        let atom_inst = &mut *inst_ptr.add(atom_idx);
+                                        atom_inst[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                    }
+                                    // Evict Entropy Cache
+                                    state.context_atomic(atom_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                                }
                             }
                         }
                     }
@@ -876,6 +906,20 @@ impl LambdaVM {
                                             }
                                         } else {
                                             // Taking/Stealing (negative amount)
+                                            let my_role = state.matrix.roles[atom_idx] & 0x7F;
+                                            let target_role = state.matrix.roles[target_idx] & 0x7F;
+
+                                            if my_role == 3 && target_role == 1 {
+                                                let t_energy = state.energy_atomic()[target_idx].load(std::sync::atomic::Ordering::Acquire);
+                                                if t_energy > 20_000 {
+                                                    // Mutate to Mitochondria (role 5)
+                                                    state.matrix.roles[target_idx] = 5 | (state.matrix.roles[target_idx] & 0x80);
+                                                    // Store host atom_idx in Context Reg 12
+                                                    state.context_atomic(target_idx)[12].store(atom_idx as i32, std::sync::atomic::Ordering::Relaxed);
+                                                    break; // Engulfment replaces stealing
+                                                }
+                                            }
+
                                             let my_resonance = state.matrix.resonance[atom_idx];
                                             let target_defense = if state.matrix.evolution_reserved[target_idx] > 0 {
                                                 state.matrix.evolution_reserved[target_idx]
@@ -1038,6 +1082,18 @@ impl LambdaVM {
         } else {
             0
         };
+
+        // CRISPR Trauma Learning (Checkout Phase)
+        // If the atom suffered massive metabolic drain but survived (0 < final_energy <= starvation floor)
+        // we persist the temporary Trauma Tracker (Reg 14) into permanent CRISPR Cassette (Reg 13).
+        if final_energy > 0 && final_energy <= 100_000 {
+            let trauma_hash = state.context_atomic(atom_idx)[14].load(std::sync::atomic::Ordering::Relaxed);
+            if trauma_hash != 0 {
+                // Learn the traumatic signature
+                state.context_atomic(atom_idx)[13].store(trauma_hash, std::sync::atomic::Ordering::Relaxed);
+                state.context_atomic(atom_idx)[14].store(0, std::sync::atomic::Ordering::Relaxed);
+            }
+        }
 
         state.energy_atomic()[atom_idx].store(final_energy, std::sync::atomic::Ordering::Relaxed);
 

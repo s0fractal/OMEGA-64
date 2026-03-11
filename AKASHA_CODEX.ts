@@ -1302,6 +1302,11 @@ export const AKASHA_CODEX = {
   _getSpeciesIndex: () => speciesIndex,
   _getChronicleIndex: () => chronicleIndex,
 
+  appendObserverCommentary: async (tick: number, epoch: number, narrative: string): Promise<void> => {
+    await ensureStorage();
+    await appendChronicle(tick, "observer_commentary", `Psychohistorian's Log - Epoch ${epoch}`, narrative);
+  },
+
   start: async (): Promise<void> => {
     if (started) return;
     started = true;

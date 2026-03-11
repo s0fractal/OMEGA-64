@@ -8,6 +8,7 @@ import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PULSE } from "./PULSE.ts";
+import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 
 type OraclePendingMutation =
   | {
@@ -567,6 +568,59 @@ export const SOVEREIGN_ORACLE = {
       SOVEREIGN_ORACLE.isConsulting = false;
     }
   },
+  /**
+   * consultAutonomousOracle: Genesis mode where Oracle provides 8-byte plasmid based on world state.
+   */
+  consultAutonomousOracle: async (telemetry: any) => {
+    if (SOVEREIGN_ORACLE.isConsulting) return;
+    SOVEREIGN_ORACLE.isConsulting = true;
+
+    try {
+      LOGGER.info(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
+
+      const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
+
+      if (oracleResult && oracleResult.plasmid) {
+        let newPlasmid: Uint8Array;
+        let hex: string;
+
+        try {
+          newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(oracleResult.plasmid);
+          hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+        } catch (parseError) {
+          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          return;
+        }
+
+        // Drop the plasmid randomly near center (or let's say at gx=70, gy=40 which is index (40*140+70)*8 = 45360)
+        // Let's pick a random spot roughly around the center
+        const cx = 70 + Math.floor(Math.random() * 20 - 10);
+        const cy = 40 + Math.floor(Math.random() * 20 - 10);
+        const gridIdx = (cy * 140 + cx) * 8;
+
+        SOVEREIGN_ORACLE.queueMutation({
+          kind: "oracle_plasmid_injection",
+          gridIdx,
+          charge: 10000, // Very high charge to ensure it sits there
+          plasmidBytes: newPlasmid,
+          source: "oracle_guidance",
+        });
+
+        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped at (${cx}, ${cy}). Hash: [${hex}]`);
+
+        if (oracleResult.narrativeMood) {
+          LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
+          const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+          await AKASHA_CODEX.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
+        }
+      }
+    } catch (err) {
+      LOGGER.error(`👁️ [AUTONOMOUS_ORACLE] Connection severed:`, err);
+    } finally {
+      SOVEREIGN_ORACLE.isConsulting = false;
+    }
+  },
+
   /**
    * Vector 10: periodic memory-grid whisper channel.
    * Writes high-value resonance seeds into MEMORY_GRID when the field is active.

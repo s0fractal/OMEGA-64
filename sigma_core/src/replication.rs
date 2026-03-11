@@ -160,6 +160,10 @@ impl SigmaState {
                     self.matrix.phase[f] = 0;
                     self.matrix.context[f] = [0; 16];
                     self.matrix.context[f][8] = 0; // PC
+                    
+                    // CRISPR Inheritance
+                    // Pass adaptive immunity (Reg 13) down to the child
+                    self.matrix.context[f][13] = self.matrix.context[parent_idx][13];
 
                     free_search_cursor = (free_idx as usize + 1) % MAX_ATOMS;
                 }

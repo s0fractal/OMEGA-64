@@ -23,8 +23,11 @@ export const IMMUNE = {
     const energy = STATE_MATRIX.getEnergy(idx);
     const resonance = STATE_MATRIX.getResonance(idx);
     const id = STATE_MATRIX.getId(idx);
+    const role = STATE_MATRIX.getRole(idx);
 
     if (id === 0n) return false;
+    if (role === 5) return false; // ROLE_MITOCHONDRIA
+
 
     // Base threshold for "weak" atoms.
     // Entropy pressure (H0) modulates how aggressive the cleanup is.

@@ -73,8 +73,33 @@ impl PulseOrchestrator {
 
         for i in 1..MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
-                let mut e = state.matrix.energy[i];
-                
+                let role = state.matrix.roles[i] & 0x7F;
+
+                if role == 5 { // ROLE_MITOCHONDRIA
+                    let host_idx = state.matrix.context[i][12] as usize;
+                    if host_idx > 0 && host_idx < MAX_ATOMS && state.matrix.ids[host_idx] != 0 {
+                        // Enforce Coordinate Lock
+                        state.matrix.xs[i] = state.matrix.xs[host_idx];
+                        state.matrix.ys[i] = state.matrix.ys[host_idx];
+                        
+                        // Pay up 90% of current energy
+                        if e > 1000 {
+                            let transfer = ((e - 1000) as f64 * 0.9) as i32;
+                            if transfer > 0 {
+                                state.matrix.energy[host_idx] += transfer;
+                                e -= transfer;
+                            }
+                        }
+                        state.matrix.energy[i] = e;
+                    } else {
+                        // Host died
+                        state.matrix.energy[i] = 0;
+                        state.matrix.ids[i] = 0;
+                        state.matrix.roles[i] = 0;
+                    }
+                    continue;
+                }
+
                 let mut mass = 1;
                 for b_slot in 0..4 {
                     let bond_idx = (i * 4) + b_slot;
@@ -90,6 +115,71 @@ impl PulseOrchestrator {
                 e -= base_friction; // Friction remains constant for mechanical movement parity
 
                 if e <= 0 {
+                    // PH 43: Fossilization Check 
+                    let resonance = state.matrix.resonance[i];
+                    let role = state.matrix.roles[i] & 0x7F; // Strip metazoan flag
+                    let has_immunity = state.matrix.context[i][13] != 0 || state.matrix.context[i][14] != 0;
+                    
+                    if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
+                        let cx = state.matrix.xs[i] as usize;
+                        let cy = state.matrix.ys[i] as usize;
+                        let gx = cx / 1000;
+                        let gy = cy / 1000;
+                        
+                        if gx < 140 && gy < 80 {
+                            let cell_idx = gy * 140 + gx;
+                            let structure_val = state.matrix.structure_grid[cell_idx];
+                            let structure_type = structure_val & 0xFF;
+                            
+                            // 1. Structural Crystallization
+                            if structure_type == 0 || structure_type == 1 {
+                                let mut charge = resonance.clamp(10, 255);
+                                let base_charge = (structure_val >> 16) & 0xFF;
+                                charge = std::cmp::max(charge, base_charge);
+                                
+                                let new_type = if role == 3 {
+                                    6 // STR_CAPACITOR (Architects leave energy banks)
+                                } else {
+                                    1 // STR_WIRE (Guardians and others leave hardened walls/pathways)
+                                };
+                                
+                                state.matrix.structure_grid[cell_idx] = new_type | (charge << 16);
+                            }
+                            
+                            // 2. Epigenetic Hash Trace (CRISPR memory spill)
+                            let mut scroll_hash = state.matrix.context[i][13];
+                            if scroll_hash == 0 {
+                                scroll_hash = state.matrix.context[i][14];
+                            }
+                            
+                            if scroll_hash != 0 {
+                                let mut mem = state.matrix.memory_grid[cell_idx];
+                                
+                                // To organically decay into a kind=2 plasmid via tick_glyph_transport,
+                                // memory_grid triggers off of the first 3-bytes being a 24-bit charge >= 1.
+                                // We'll put the scroll into the 4 upper bytes (4..8) as payload,
+                                // and set the first byte to a minimal charge trigger if not already charged.
+                                mem[4] = ((scroll_hash >> 24) & 0xFF) as u8;
+                                mem[5] = ((scroll_hash >> 16) & 0xFF) as u8;
+                                mem[6] = ((scroll_hash >> 8) & 0xFF) as u8;
+                                mem[7] = (scroll_hash & 0xFF) as u8;
+                                
+                                // memory_lo triggers charge. 
+                                let memory_lo = u32::from_le_bytes([mem[0], mem[1], mem[2], mem[3]]);
+                                let mut charge = (memory_lo & 0xFFFFFF) as i32;
+                                if charge < 100 {
+                                    charge = 100; // Provide enough plasma generic charge to bleed off into a kind=2
+                                    mem[0] = (charge & 0xFF) as u8;
+                                    mem[1] = ((charge >> 8) & 0xFF) as u8;
+                                    mem[2] = ((charge >> 16) & 0xFF) as u8;
+                                    // keep mem[3] unaltered
+                                }
+                                
+                                state.matrix.memory_grid[cell_idx] = mem;
+                            }
+                        }
+                    }
+
                     state.recycle_atom(i);
                 } else {
                     state.matrix.energy[i] = e;

@@ -2,6 +2,7 @@
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "./OFFSETS.ts";
 import { LOGGER } from "./LOGGER.ts";
+import { STATE_MATRIX } from "./STATE_MATRIX.ts";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,
@@ -371,6 +372,22 @@ function handle_syscall(atomIdx: number) {
                 const tx = Atomics.load(xsView, targetIdx);
                 const ty = Atomics.load(ysView, targetIdx);
 
+                const rolesView = new Uint8Array(sharedBuffer!, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+                const myRole = Atomics.load(rolesView, atomIdx);
+                const tRole = Atomics.load(rolesView, targetIdx);
+
+                if (myRole === 3 && tRole === 1) { // Engulfment (Architect -> Producer)
+                  const tEnergy = Atomics.load(energiesView, targetIdx);
+                  if (tEnergy > 20000) { // Enough base generation
+                    Atomics.store(rolesView, targetIdx, 5); // ROLE_MITOCHONDRIA = 5
+                    if (contextI32View) {
+                      Atomics.store(contextI32View, targetIdx * 16 + 12, atomIdx); // Store host atomIdx in Context Reg 12
+                    }
+                    LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`);
+                    break;
+                  }
+                }
+
                 const dx = (tx - ox) / 10.0;
                 const dy = (ty - oy) / 10.0;
                 const distSq = dx * dx + dy * dy;
@@ -592,9 +609,10 @@ function handle_syscall(atomIdx: number) {
         if (dxStr !== 0 || dyStr !== 0) {
           let nx = ox + dxStr * 10;
           let ny = oy + dyStr * 10;
-          console.log(
+          LOGGER.debug(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
+
 
           if (nx < 0) nx = 0;
           else if (nx > 1399) nx = 1399;
@@ -618,9 +636,10 @@ function handle_syscall(atomIdx: number) {
             }
           }
 
-          console.log(
+          LOGGER.debug(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
+
 
           if (capacityOk) {
             Atomics.store(xsView, atomIdx, nx);
@@ -844,7 +863,13 @@ self.onmessage = async (e) => {
         gy: number,
         target: number,
       ) => {
-        console.log(
+        if (op === 0xDD) {
+           const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+           const epoch = Math.floor(tick / 10000);
+           LOGGER.info(`💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`);
+           return;
+        }
+        LOGGER.debug(
           `   [WASM_TRACE] Atom ${idx} executed ${
             op.toString(16)
           } | Pos: (${gx},${gy}) | target: ${target}`,
@@ -892,7 +917,7 @@ self.onmessage = async (e) => {
       self.postMessage({ type: "READY" });
       const bview = new Int32Array(sb, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
       setInterval(() => {
-        // console.log(`[WORKER BONDS VIEW] A2_0: ${bview[2 * 4]} A2_1: ${bview[2 * 4 + 1]}`);
+        // removed debug logging
       }, 5000);
       self.postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
     } catch (err) {
@@ -931,7 +956,7 @@ self.onmessage = async (e) => {
         execute_atom_fn(i);
         const afterX11 = Atomics.load(xsView!, 11);
         if (beforeX11 !== afterX11) {
-          console.log(
+          LOGGER.debug(
             `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
           );
         }
@@ -940,7 +965,7 @@ self.onmessage = async (e) => {
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
-          console.log(
+          LOGGER.debug(
             `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
           );
         }
@@ -968,7 +993,7 @@ self.onmessage = async (e) => {
       OFFSETS.BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
-    // console.log(`[PULSE_WORKER:TICK_MATRIX] TICK=${e.data.tick} BONDS: Atom 2 = [${bH[2*4]}, ${bH[2*4+1]}, ${bH[2*4+2]}, ${bH[2*4+3]}]`);
+    // removed debug logging
     if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
     self.postMessage({ type: "MATRIX_DONE", pulseId });
@@ -980,7 +1005,7 @@ self.onmessage = async (e) => {
       OFFSETS.BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
-    console.log(
+    LOGGER.debug(
       `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
         bH[2 * 4]
       }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
