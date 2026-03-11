@@ -9,6 +9,7 @@ import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
 import { PULSE } from "./PULSE.ts";
 import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 
 type OraclePendingMutation =
   | {
@@ -372,30 +373,26 @@ export const SOVEREIGN_ORACLE = {
         stigmergicSummary: memSummary,
       });
 
-      if (oracleResult && oracleResult.plasmid) {
+      if (oracleResult && oracleResult.intent) {
+        LOGGER.info(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
         let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
-          // Attempt raw payload format if string provided, otherwise trust oracleResult
-          if (typeof oracleResult.plasmid === "string") {
-            newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(
-              oracleResult.plasmid,
-            );
-          } else {
-            newPlasmid = oracleResult.plasmid;
-            if (newPlasmid.length !== 8) {
-              throw new Error(
-                `LLM Oracle structure breach. Expected 8 byte payload, received ${newPlasmid.length}`,
-              );
-            }
+          // --- ERA 69: PHASE 49 Semantic Bridge (LSH Quantization) ---
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
+          if (newPlasmid.length !== 8) {
+            throw new Error(`LSH Projection structure breach. Expected 8 byte payload, received ${newPlasmid.length}`);
           }
 
           hex = Array.from(newPlasmid).map((b) =>
             b.toString(16).padStart(2, "0")
           ).join("").toUpperCase();
+
+          // Save the exact intent into the archive for UI/Telemetry
+          SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          LOGGER.warn(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -408,7 +405,7 @@ export const SOVEREIGN_ORACLE = {
         }
 
         LOGGER.info(
-          `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length}`,
+          `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
         if (STATE_MATRIX.getId(regentIndex) === 0n) {
           LOGGER.debug(
@@ -594,20 +591,20 @@ export const SOVEREIGN_ORACLE = {
 
       const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
 
-      if (oracleResult && oracleResult.plasmid) {
+      if (oracleResult && oracleResult.intent) {
         let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
-          newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(oracleResult.plasmid);
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
           hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+          SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
-        // Drop the plasmid randomly near center (or let's say at gx=70, gy=40 which is index (40*140+70)*8 = 45360)
-        // Let's pick a random spot roughly around the center
+        // Drop the plasmid randomly near center
         const cx = 70 + Math.floor(Math.random() * 20 - 10);
         const cy = 40 + Math.floor(Math.random() * 20 - 10);
         const gridIdx = (cy * 140 + cx) * 8;
@@ -620,7 +617,7 @@ export const SOVEREIGN_ORACLE = {
           source: "oracle_guidance",
         });
 
-        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped at (${cx}, ${cy}). Hash: [${hex}]`);
+        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
 
         if (oracleResult.narrativeMood) {
           LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);

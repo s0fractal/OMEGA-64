@@ -267,7 +267,7 @@ export const LLM_SYNAPSE = {
    */
   generateAtomicBytecode: async (
     telemetry: any,
-  ): Promise<{ plasmid: Uint8Array; meme?: Uint8Array } | null> => {
+  ): Promise<{ intent: string; meme?: Uint8Array } | null> => {
     const OLLAMA_URL = Deno.env.get("OLLAMA_URL") ||
       "http://localhost:11434/api/generate";
     const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
@@ -297,16 +297,15 @@ export const LLM_SYNAPSE = {
             - [AB, Offset, 00, 00]: INCORPORATE_PLASMID (Incorporate 8-byte meme from environment into genome)
 
             IMPORTANT RULE (THERMODYNAMIC SAFEGUARD):
-            You are creating a Meme (8-byte plasmid). For atoms to actually accept and incorporate this code, it MUST be highly organized and useful.
-            It must have LOW Shannon Entropy (e.g. repeated patterns, elegance).
+            You are creating an abstract intent that will be quantized into a 8-byte plasmid. The intent must be deep but extremely brief (max 5 words).
             If you generate high-entropy chaos, the atoms will reject your meme due to exorbitant metabolic taxes.
 
             Goal: 
-            Generate exactly 8 bytes (16 hex characters) of optimized bytecode for the Regent's survival.
+            Generate exactly one short imperative concept for the Regent's survival.
 
             Output JSON format:
             {
-              "plasmid": "16_HEX_CHARS"
+              "intent": "Short imperative concept (max 5 words)"
             }
             ONLY RETURN THE JSON.
         `.trim();
@@ -329,32 +328,21 @@ export const LLM_SYNAPSE = {
           ? JSON.parse(data.response)
           : data.response;
       } catch {
-        const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
-          .toUpperCase();
-        if (rawHex && rawHex.length >= 16) {
-          result = { plasmid: rawHex.substring(0, 16) };
+        // Fallback if LLM outputs dirty json
+        const match = data.response?.match(/"intent":\s*"([^"]+)"/i);
+        if (match && match[1]) {
+          result = { intent: match[1].substring(0, 50) };
         }
       }
 
-      if (result.plasmid && result.plasmid.length >= 16) {
-        const plasmid = new Uint8Array(8);
-        for (let i = 0; i < 8; i++) {
-          plasmid[i] = parseInt(
-            result.plasmid.substring(i * 2, i * 2 + 2),
-            16,
-          );
-        }
-
-        return { plasmid };
+      if (result.intent && typeof result.intent === "string") {
+        return { intent: result.intent };
       }
     } catch (e) {
       console.warn(
         "Oracle connection failed (LLM Offline). Stochastic Mutation.",
       );
-      const plasmid = new Uint8Array(8);
-      // Default low-entropy structured plasmid: SIGNAL twice
-      plasmid.set([0x81, 0x00, 0x00, 0x00, 0x81, 0x00, 0x00, 0x00]);
-      return { plasmid };
+      return { intent: "Survive and multiply." };
     }
     return null;
   },
@@ -364,13 +352,12 @@ export const LLM_SYNAPSE = {
    */
   generateAutonomousPlasmid: async (
     telemetry: any,
-  ): Promise<{ plasmid: string, narrativeMood?: string } | null> => {
+  ): Promise<{ intent: string, narrativeMood?: string } | null> => {
     // If we're mocking the LLM to save tokens and time in Genesis integration tests
     if (Deno.env.get("OMEGA_MOCK_LLM") === "1") {
-      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default 8-byte genesis plasmid.");
-      // Just emit a simple NOP or signals
+      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default semantic intent.");
       return { 
-        plasmid: "8100000081000000",
+        intent: "Persist through complete stasis.",
         narrativeMood: "The matrix persists in stasis, undisturbed by true mutations."
       };
     }
@@ -399,7 +386,7 @@ export const LLM_SYNAPSE = {
 
             Return STRICT JSON:
             {
-              "plasmid": "16_HEX_CHARS",
+              "intent": "Short imperative concept (max 5 words) defining the next evolutionary step",
               "narrativeMood": "Short philosophical analysis of why the previous memes succeeded or failed."
             }
         `.trim();
@@ -417,17 +404,17 @@ export const LLM_SYNAPSE = {
       });
       const data = await response.json();
       const parsed = typeof data.response === "string" ? JSON.parse(data.response) : data.response;
-      if (parsed && typeof parsed.plasmid === "string" && parsed.plasmid.length === 16) {
+      if (parsed && typeof parsed.intent === "string") {
         return { 
-          plasmid: parsed.plasmid.toUpperCase(),
+          intent: parsed.intent.substring(0, 50),
           narrativeMood: parsed.narrativeMood
         };
       }
     } catch (e) {
       LOGGER.warn("   [SYNAPSE] Autonomous Oracle connection failed.");
-      return { plasmid: "8100000081000000", narrativeMood: "Oracle connection severed." };
+      return { intent: "Evolve into the void", narrativeMood: "Oracle connection severed." };
     }
-    return { plasmid: "8100000081000000" };
+    return { intent: "Evolve into the void" };
   },
 };
 
