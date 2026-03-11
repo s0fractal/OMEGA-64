@@ -286,7 +286,7 @@ impl LambdaVM {
                         }
 
                         let sender_energy = state.matrix.energy[atom_idx];
-                        let scaled_amount = amount * 1000;
+                        let scaled_amount = amount * crate::constants::ENERGY_SCALE;
 
                         if sender_energy >= scaled_amount {
                             state.energy_atomic()[atom_idx]
@@ -307,7 +307,7 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * 1000 && state.matrix.resonance[atom_idx] > r_thresh {
+                    if energy > e_thresh * crate::constants::ENERGY_SCALE && state.matrix.resonance[atom_idx] > r_thresh {
                         let cx = state.matrix.xs[atom_idx] as i32;
                         let cy = state.matrix.ys[atom_idx] as i32;
 
@@ -700,12 +700,12 @@ impl LambdaVM {
                     } else if mode == 3 {
                         // Hive Deposit
                         let val = (p2 & 0xFF) as i32;
-                        if energy >= val * 1000 {
+                        if energy >= val * crate::constants::ENERGY_SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
                             state.energy_atomic()[atom_idx]
-                                .fetch_sub(val * 1000, std::sync::atomic::Ordering::Relaxed);
-                            energy -= val * 1000;
+                                .fetch_sub(val * crate::constants::ENERGY_SCALE, std::sync::atomic::Ordering::Relaxed);
+                            energy -= val * crate::constants::ENERGY_SCALE;
                         }
                         gas_used += 15;
                     } else if mode == 4 {
@@ -729,10 +729,10 @@ impl LambdaVM {
                             ) {
                                 Ok(_) => {
                                     state.energy_atomic()[atom_idx].fetch_add(
-                                        curr_amt * 1000,
+                                        curr_amt * crate::constants::ENERGY_SCALE,
                                         std::sync::atomic::Ordering::Relaxed,
                                     );
-                                    energy += curr_amt * 1000;
+                                    energy += curr_amt * crate::constants::ENERGY_SCALE;
                                     amount = curr_amt;
                                     break;
                                 }

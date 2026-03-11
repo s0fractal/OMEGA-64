@@ -1,9 +1,11 @@
 //! Sigma-Core Memory Layout
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub const MAX_ATOMS: usize = 500_000;
+pub use crate::constants::{MAX_ATOMS, GRID_WIDTH};
+
 pub const SAFETY_BUFFER: usize = 8_000_000;
-pub const GRID_W: usize = 140;
+// For backward compatibility within local module
+pub const GRID_W: usize = GRID_WIDTH as usize;
 pub const GRID_H: usize = 80;
 pub const GRID_CELLS: usize = GRID_W * GRID_H;
 

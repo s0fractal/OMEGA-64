@@ -1,4 +1,4 @@
-use crate::memory::MAX_ATOMS;
+use crate::constants::MAX_ATOMS;
 use crate::{LambdaVM, SigmaState};
 
 pub struct PulseOrchestrator<'a> {
@@ -77,8 +77,8 @@ impl<'a> PulseOrchestrator<'a> {
                         state.matrix.ys[i] = state.matrix.ys[host_idx];
                         
                         // Pay up 90% of current energy
-                        if e > 1000 {
-                            let transfer = ((e - 1000) as f64 * 0.9) as i32;
+                        if e > crate::constants::ENERGY_SCALE {
+                            let transfer = ((e - crate::constants::ENERGY_SCALE) as f64 * 0.9) as i32;
                             if transfer > 0 {
                                 state.matrix.energy[host_idx] += transfer;
                                 e -= transfer;
@@ -117,8 +117,8 @@ impl<'a> PulseOrchestrator<'a> {
                     if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
                         let cx = state.matrix.xs[i] as usize;
                         let cy = state.matrix.ys[i] as usize;
-                        let gx = cx / 1000;
-                        let gy = cy / 1000;
+                        let gx = cx / (crate::constants::ENERGY_SCALE as usize);
+                        let gy = cy / (crate::constants::ENERGY_SCALE as usize);
                         
                         if gx < 140 && gy < 80 {
                             let cell_idx = gy * 140 + gx;
@@ -252,7 +252,7 @@ impl<'a> PulseOrchestrator<'a> {
             for &node in ring {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= 0x80; // Metazoan flag
+                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8; // Metazoan flag
             }
 
             let avg_energy = (sum_energy / count as i64) as i32;

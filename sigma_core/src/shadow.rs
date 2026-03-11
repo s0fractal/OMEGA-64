@@ -18,7 +18,7 @@ pub struct DriftMetrics {
 use std::cell::RefCell;
 
 thread_local! {
-    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::memory::MAX_ATOMS));
+    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::constants::MAX_ATOMS));
 }
 
 /// Clones the entire `SigmaState`, overrides the target `atom_id` logic bytes,
@@ -65,7 +65,7 @@ pub fn run_shadow_simulation(
     SHADOW_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
-        visited.resize(crate::memory::MAX_ATOMS, 0);
+        visited.resize(crate::constants::MAX_ATOMS, 0);
         let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
     for i in 0..ticks {

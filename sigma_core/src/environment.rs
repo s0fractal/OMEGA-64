@@ -1,4 +1,4 @@
-use crate::memory::MAX_ATOMS;
+use crate::constants::MAX_ATOMS;
 use crate::SigmaState;
 
 // Deno constants

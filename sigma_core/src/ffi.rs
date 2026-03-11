@@ -63,7 +63,7 @@ pub extern "C" fn tick_structure_grid() {
 use std::cell::RefCell;
 
 thread_local! {
-    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::memory::MAX_ATOMS));
+    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::constants::MAX_ATOMS));
 }
 
 #[unsafe(no_mangle)]
@@ -73,18 +73,18 @@ pub extern "C" fn tick_membrane_physics() {
     VISITED_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
-        visited.resize(crate::memory::MAX_ATOMS, 0);
+        visited.resize(crate::constants::MAX_ATOMS, 0);
         
-        for i in 1..crate::memory::MAX_ATOMS {
+        for i in 1..crate::constants::MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
-                state.matrix.roles[i] &= !0x80;
+                state.matrix.roles[i] &= !(crate::constants::AtomRole::MetazoanFlag as u8);
                 state.matrix.evolution_reserved[i] = 0;
             }
         }
 
         let mut rings: Vec<Vec<usize>> = Vec::new();
 
-        for start_node in 1..crate::memory::MAX_ATOMS {
+        for start_node in 1..crate::constants::MAX_ATOMS {
             if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
                 continue;
             }
@@ -105,7 +105,7 @@ pub extern "C" fn tick_membrane_physics() {
             
             for b_slot in 0..4 {
                 let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
-                if target > 0 && target < crate::memory::MAX_ATOMS && state.matrix.ids[target] != 0 {
+                if target > 0 && target < crate::constants::MAX_ATOMS && state.matrix.ids[target] != 0 {
                     if target == start && depth >= 2 {
                         return true;
                     }
@@ -140,7 +140,7 @@ pub extern "C" fn tick_membrane_physics() {
         for &node in ring {
             sum_energy += state.matrix.energy[node] as i64;
             sum_resonance += state.matrix.resonance[node] as i64;
-            state.matrix.roles[node] |= 0x80;
+            state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
         }
 
         let avg_energy = (sum_energy / count as i64) as i32;
@@ -297,7 +297,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 
     hasher.update(tick.to_le_bytes());
 
-    for i in 1..crate::memory::MAX_ATOMS {
+    for i in 1..crate::constants::MAX_ATOMS {
         let id = state.matrix.ids[i];
         if id != 0 {
             hasher.update(id.to_le_bytes());
