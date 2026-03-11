@@ -498,7 +498,7 @@ fn test_gt14_plug_charge_resolve() {
 #[test]
 fn test_gt02_free_run_no_ingress() {
     let mut state = SigmaState::new();
-    let mut visited = vec![0u8; sigma_core::memory::MAX_ATOMS];
+    let mut visited = vec![0u8; sigma_core::constants::MAX_ATOMS];
     let mut orchestrator = sigma_core::pulse::PulseOrchestrator::new(&mut visited);
 
     // Basic logic payloads to let LambdaVM run
