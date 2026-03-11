@@ -16,11 +16,22 @@ impl LambdaVM {
     #[inline(always)]
     fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
-        state.matrix.instructions[atom_idx][actual_pc as usize]
+        state.matrix.instructions.get(atom_idx)
+            .map(|inst| inst[actual_pc as usize])
+            .unwrap_or(0) // Default to NOP if indices completely invalid
     }
 
-    /// Execute a bounded execution step for a specific atom index,
-    /// exactly matching the Deno reference step function economics.
+    /// Executes a single atom's VM pipeline mapped exactly to Deno.
+    ///
+    /// # Safety
+    /// Bounded automatically if `atom_idx >= MAX_ATOMS`. Native out of bounds operations
+    /// degrade cleanly into NOP executions. Array manipulation operates primarily through
+    /// safely ordered hardware-level atomics to prevent simultaneous VM tick data races.
+    ///
+    /// # Metabolic Economics 
+    /// Standard execution runs at zero gas until operations resolve. Each opcode natively applies 
+    /// +1 base computation energy cost, scaled exponentially based on `hormone` friction/entropy
+    /// equations simulating thermodynamics across the Tensegrity lattice.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
         if atom_idx >= crate::memory::MAX_ATOMS {
             return;

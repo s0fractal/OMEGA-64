@@ -58,7 +58,14 @@ impl SigmaState {
             let initiator = (initiator_plus1 - 1) as usize;
             let target = (target_plus1 - 1) as usize;
 
-            if target > 0 && target < MAX_ATOMS {
+            if initiator >= MAX_ATOMS || target >= MAX_ATOMS {
+                self.matrix.bond_requests[ptr] = 0;
+                self.matrix.bond_requests[ptr + 1] = 0;
+                self.matrix.bond_requests[ptr + 2] = 0;
+                continue;
+            }
+
+            if target > 0 {
                 // Must ensure atom target still alive
                 if self.matrix.ids[target] != 0 {
                     // Set Bond on Initiator's first slot (for simplicity, we mimic deterministic slot 0/1 logic here)

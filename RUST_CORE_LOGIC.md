@@ -1,6 +1,6 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-11T16:33:40.122Z*
+*Generated: 2026-03-11T16:51:31.584Z*
 *Exported Files: 22*
 
 ---
@@ -1027,10 +1027,7 @@ const WASM_MEMORY_OFFSET: usize = 8_000_000;
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
     let base_ptr = WASM_MEMORY_OFFSET as *mut crate::memory::SigmaMatrix;
-    let state = SigmaState {
-        matrix: unsafe { Box::from_raw(base_ptr) },
-        free_search_cursor: 1,
-    };
+    let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
 
@@ -1073,25 +1070,34 @@ pub extern "C" fn tick_structure_grid() {
     crate::environment::tick_structure_grid(&mut state);
 }
 
+use std::cell::RefCell;
+
+thread_local! {
+    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::memory::MAX_ATOMS));
+}
+
 #[unsafe(no_mangle)]
 pub extern "C" fn tick_membrane_physics() {
     let mut state = unsafe { get_ffi_state() };
     
-    let mut visited = vec![0u8; crate::memory::MAX_ATOMS];
-    
-    for i in 1..crate::memory::MAX_ATOMS {
-        if state.matrix.ids[i] != 0 {
-            state.matrix.roles[i] &= !0x80;
-            state.matrix.evolution_reserved[i] = 0;
+    VISITED_POOL.with(|pool| {
+        let mut visited = pool.borrow_mut();
+        visited.clear();
+        visited.resize(crate::memory::MAX_ATOMS, 0);
+        
+        for i in 1..crate::memory::MAX_ATOMS {
+            if state.matrix.ids[i] != 0 {
+                state.matrix.roles[i] &= !0x80;
+                state.matrix.evolution_reserved[i] = 0;
+            }
         }
-    }
 
-    let mut rings: Vec<Vec<usize>> = Vec::new();
+        let mut rings: Vec<Vec<usize>> = Vec::new();
 
-    for start_node in 1..crate::memory::MAX_ATOMS {
-        if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
-            continue;
-        }
+        for start_node in 1..crate::memory::MAX_ATOMS {
+            if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
+                continue;
+            }
 
         let mut path = Vec::with_capacity(8);
         path.push(start_node);
@@ -1157,6 +1163,7 @@ pub extern "C" fn tick_membrane_physics() {
             state.matrix.evolution_reserved[node] = total_resonance;
         }
     }
+    });
 }
 
 #[unsafe(no_mangle)]
@@ -1699,6 +1706,14 @@ impl SigmaState {
                 let ptr = std::alloc::alloc_zeroed(layout) as *mut SigmaMatrix;
                 Box::from_raw(ptr)
             },
+            free_search_cursor: 1,
+        }
+    }
+
+    /// SAFETY: ptr must be valid, aligned, and writeable (typically mapped to a JS SharedArrayBuffer)
+    pub unsafe fn from_raw(ptr: *mut SigmaMatrix) -> Self {
+        Self {
+            matrix: unsafe { Box::from_raw(ptr) },
             free_search_cursor: 1,
         }
     }
@@ -2274,21 +2289,13 @@ mod tests {
 use crate::memory::MAX_ATOMS;
 use crate::{LambdaVM, SigmaState};
 
-pub struct PulseOrchestrator {
-    pub visited: Vec<u8>,
+pub struct PulseOrchestrator<'a> {
+    pub visited: &'a mut [u8],
 }
 
-impl Default for PulseOrchestrator {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl PulseOrchestrator {
-    pub fn new() -> Self {
-        Self {
-            visited: vec![0; MAX_ATOMS],
-        }
+impl<'a> PulseOrchestrator<'a> {
+    pub fn new(buffer: &'a mut [u8]) -> Self {
+        Self { visited: buffer }
     }
 
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {
@@ -2681,12 +2688,18 @@ impl SigmaState {
                 let mut logic: [u8; 8] = [0; 8];
                 logic.copy_from_slice(&self.matrix.spawn_requests[slot_off + 16..slot_off + 24]);
 
-                // Find parent index based on p_id mapped
+                // O(1) Search via index hinting: The lower 32-bits of p_id contain the parent index
+                let parent_hint = (p_id & 0xFFFFFFFF) as usize;
                 let mut parent_idx = 0;
-                for i in 1..MAX_ATOMS {
-                    if self.matrix.ids[i] == p_id {
-                        parent_idx = i;
-                        break;
+                if parent_hint > 0 && parent_hint < MAX_ATOMS && self.matrix.ids[parent_hint] == p_id {
+                    parent_idx = parent_hint;
+                } else {
+                    // Fallback to linear search in case of desync
+                    for i in 1..MAX_ATOMS {
+                        if self.matrix.ids[i] == p_id {
+                            parent_idx = i;
+                            break;
+                        }
                     }
                 }
 
@@ -2761,6 +2774,12 @@ pub struct DriftMetrics {
     pub divergence_tick: u32,
 }
 
+use std::cell::RefCell;
+
+thread_local! {
+    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::memory::MAX_ATOMS));
+}
+
 /// Clones the entire `SigmaState`, overrides the target `atom_id` logic bytes,
 /// runs `ticks` iterations of the native PulseOrchestrator, and calculates
 /// the topological drift before shedding the clone.
@@ -2802,7 +2821,11 @@ pub fn run_shadow_simulation(
     shadow_matrix.instructions[target_idx].copy_from_slice(hallucination_bytes);
 
     // 3. Spool up a sovereign Pulse orchestrator over the isolated shadow
-    let mut orchestrator = PulseOrchestrator::new();
+    SHADOW_POOL.with(|pool| {
+        let mut visited = pool.borrow_mut();
+        visited.clear();
+        visited.resize(crate::memory::MAX_ATOMS, 0);
+        let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
     for i in 0..ticks {
         orchestrator.tick(&mut shadow_state, start_tick + i);
@@ -2842,16 +2865,17 @@ pub fn run_shadow_simulation(
         }
     }
 
-    DriftMetrics {
-        energy_diff: final_energy.saturating_sub(initial_energy),
-        resonance_diff: final_resonance.saturating_sub(initial_resonance),
-        bonds_broken,
-        bonds_formed,
-        structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
-        population_diff: final_population.saturating_sub(initial_population),
-        coherence_diff: final_coherence.saturating_sub(initial_coherence),
-        divergence_tick: start_tick + ticks,
-    }
+        DriftMetrics {
+            energy_diff: final_energy.saturating_sub(initial_energy),
+            resonance_diff: final_resonance.saturating_sub(initial_resonance),
+            bonds_broken,
+            bonds_formed,
+            structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
+            population_diff: final_population.saturating_sub(initial_population),
+            coherence_diff: final_coherence.saturating_sub(initial_coherence),
+            divergence_tick: start_tick + ticks,
+        }
+    })
 }
 
 ```
@@ -3868,7 +3892,6 @@ impl LambdaVM {
                     pc += 4; // Length is 4 according to verification harness
                 }
                 GlyphOp::Syscall => {
-                    if op == GlyphOp::Syscall {
                         let context_regs = state.context_atomic(atom_idx);
                         let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
                         let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
@@ -4097,12 +4120,7 @@ impl LambdaVM {
                                 gas_used += 10;
                             }
                         }
-                    }
-
                     pc += 1; // Basic jump over opcode for next resume if applicable
-                    if op != GlyphOp::Syscall {
-                        gas_used += 10;
-                    } // Fallback
                     gas_limit = 0; // Yield to host
                 }
                 GlyphOp::Unknown => {
