@@ -1,13 +1,18 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const MAX_ATOMS = 500_000;
 const PORT = 8086;
-const WS_URL = `ws://localhost:${PORT}`;
+// WS connection defaults to the host that served the HTML document.
+const WS_URL = `ws://${window.location.hostname}:${PORT}`;
 
 // --- DOM Setup ---
 const container = document.getElementById("app");
 if (!container) throw new Error("No #app element found");
+
+const statAtoms = document.getElementById("stat-atoms");
+const statEnergy = document.getElementById("stat-energy");
+const statMood = document.getElementById("stat-mood");
 
 // --- Three.js Setup ---
 const scene = new THREE.Scene();
@@ -58,7 +63,7 @@ const dummy = new THREE.Object3D();
 const colorHelper = new THREE.Color();
 
 // --- Network ---
-let ws: WebSocket;
+let ws;
 function connect() {
   console.log(`[NET] Connecting to ${WS_URL}...`);
   ws = new WebSocket(WS_URL);
@@ -67,6 +72,20 @@ function connect() {
   ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
 
   ws.onmessage = (event) => {
+    // 1. Text payloads are JSON heartbeats
+    if (typeof event.data === "string") {
+        try {
+            const data = JSON.parse(event.data);
+            if (data.type === "HEARTBEAT") {
+                if (statAtoms) statAtoms.innerText = data.atoms.toLocaleString();
+                if (statEnergy) statEnergy.innerText = (data.energy / 1000).toFixed(2);
+                if (statMood) statMood.innerText = data.mood || "";
+            }
+        } catch(e) {}
+        return;
+    }
+
+    // 2. Binary payloads are frame updates
     if (!(event.data instanceof ArrayBuffer)) return;
 
     // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]

@@ -270,10 +270,10 @@ export class SwarmNexus {
   }
 
   public routeAtom(egressEvent: Uint8Array) {
-    // Egress Event is exactly 256 bytes from WASM Memory.
-    if (egressEvent.length !== 256) {
+    // Egress Event is exactly 192 bytes from P2P_CODEC.
+    if (egressEvent.length !== 192) {
       LOGGER.error(
-        `[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`,
+        `[NEXUS] Egress Event length mismatch. Expected 192, got ${egressEvent.length}`,
       );
       return;
     }
@@ -290,7 +290,7 @@ export class SwarmNexus {
     const peers = Array.from(this.connectedPeers.values());
     const targetPeer = peers[Math.floor(Math.random() * peers.length)];
 
-    const payload = new Uint8Array(1 + 256);
+    const payload = new Uint8Array(1 + egressEvent.length);
     payload[0] = OP_NEXUS_ATOM_TRANSIT;
     payload.set(egressEvent, 1);
 
@@ -313,9 +313,9 @@ export class SwarmNexus {
   }
 
   private handleAtomTransit(payload: Uint8Array) {
-    if (payload.length !== 257) {
+    if (payload.length !== 193) {
       LOGGER.error(
-        `[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`,
+        `[NEXUS] Ingress payload length mismatch. Expected 193, got ${payload.length}`,
       );
       return;
     }

@@ -20,6 +20,7 @@ import {
   saveEpoch,
 } from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
+import { P2P_CODEC } from "./P2P_CODEC.ts";
 import { SWARM_NODE } from "./SWARM_NODE.ts";
 import { SwarmNexus } from "./network/SWARM_NEXUS.ts";
 import { PANOPTICON_SERVER } from "./PANOPTICON_SERVER.ts";
@@ -28,6 +29,21 @@ export const NEXUS_DAEMON = new SwarmNexus({
   instanceId: 1,
   seedNodes: [],
 });
+
+NEXUS_DAEMON.onAtomTransit = (payload: Uint8Array) => {
+  const newIdx = P2P_CODEC.unpackAtom(payload);
+  if (newIdx !== -1) {
+    const id = STATE_MATRIX.getId(newIdx);
+    LOGGER.info(`🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`);
+    MUTATION_TELEMETRY.record({
+      lane: "external_ingress",
+      kind: "federation_migration_clear",
+      count: 1,
+    });
+  } else {
+    LOGGER.warn(`🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`);
+  }
+};
 
 let genesisPromiseResolver: (() => void) | null = null;
 
@@ -1640,11 +1656,16 @@ const startWorkers = async (count: number): Promise<void> => {
         const atomIdAtStart = STATE_MATRIX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
-          P2P_FEDERATION.migrate(idx, PULSE.currentPulseId);
-          LOGGER.debug(
-            `🛸 [PULSE] Spore Drive invoked: recycling atom ${atomIdAtStart} locally.`,
-          );
-          STATE_MATRIX.recycleAtom(idx);
+          const packedAtom = P2P_CODEC.packAtom(idx);
+          if (packedAtom) {
+            NEXUS_DAEMON.routeAtom(packedAtom);
+            LOGGER.debug(
+              `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
+            );
+            STATE_MATRIX.recycleAtom(idx);
+          } else {
+            LOGGER.error(`[PULSE] Failed to pack atom ${atomIdAtStart} for transit`);
+          }
         }
       }
     });

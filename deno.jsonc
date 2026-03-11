@@ -20,6 +20,7 @@
     "core:breath": "deno run -A BREATH.ts",
     "core:ui": "deno run -A OBSERVER_UI.ts",
     "core:start": "deno run -A SYSTEM_START.ts",
+    "core:genesis": "deno run -A --unstable SYSTEM_START.ts --genesis --genesis-interval=50",
     "daemon:start": "deno run -A OMEGA_DAEMON.ts",
     "membrane:test": "deno run -A SEMANTIC_MEMBRANE.ts",
     "membrane:inject": "deno eval 'import { SEMANTIC_MEMBRANE } from \"./SEMANTIC_MEMBRANE.ts\"; await SEMANTIC_MEMBRANE.injectThought(Deno.args[0] || \"Default Thought\", Number(Deno.args[1]) || 100)' --",

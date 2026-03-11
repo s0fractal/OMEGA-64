@@ -151,92 +151,11 @@ export const P2P_FEDERATION = {
       profile,
     })),
 
-  migrate: (idx: number, pulseId: number) => {
-    if (!FEDERATION_ENABLED) return;
-    if (migrationQueue.length > 100) return;
-    migrationQueue.push(idx);
-    P2P_FEDERATION.processQueue(pulseId);
+  migrate: (_idx: number, _pulseId: number) => {
+    // Deprecated in Era 71: Handled synchronously inside PULSE via NEXUS_DAEMON.routeAtom
   },
 
-  processQueue: async (pulseId: number) => {
-    if (!FEDERATION_ENABLED) return;
-    if (isProcessingMigration || migrationQueue.length === 0) return;
-    isProcessingMigration = true;
-
-    const idx = migrationQueue.shift()!;
-    const atomIdAtStart = STATE_MATRIX.getId(idx);
-    const packet = P2P_FEDERATION.serialize(idx, pulseId);
-
-    if (packet && atomIdAtStart !== 0n) {
-      const prng = new PRNG(PRNG.seedFrom(pulseId, atomIdAtStart.toString()));
-      const { value: pSelector } = prng.next();
-      const peerList = Array.from(P2P_FEDERATION.peers);
-      if (peerList.length === 0) {
-        isProcessingMigration = false;
-        return;
-      }
-      const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
-
-      const lineage = STATE_MATRIX.getLineage(idx);
-      const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
-      const codexProfile = AKASHA_CODEX.lookupLineageProfile(
-        lineage.toString(),
-      );
-
-      const headers: Record<string, string> = {
-        "Content-Type": "application/octet-stream",
-        "x-omega-source-node": P2P_FEDERATION.nodeId,
-        "x-omega-rule-genome": JSON.stringify(LOCAL_RULE_GENOME), // ruleGenome: LOCAL_RULE_GENOME
-        "x-omega-behavior-profile": JSON.stringify(behaviorProfile),
-        "x-omega-codex-profile": JSON.stringify(codexProfile),
-      };
-      if (CONTROL_TOKEN.length > 0) {
-        headers["x-omega-control-token"] = CONTROL_TOKEN;
-      }
-
-      try {
-        const res = await fetch(`${targetPeer}/federate`, {
-          method: "POST",
-          headers,
-          body: new Uint8Array(packet),
-          signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-        });
-
-        if (res.ok) {
-          // Only clear if the atom hasn't changed locally during transit
-          if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-            STATE_MATRIX.setId(idx, 0n); // Clear physically
-            MUTATION_TELEMETRY.record({
-              lane: "external_ingress",
-              kind: "federation_migration_clear",
-              count: 1,
-            });
-            LOGGER.info(
-              `🛸 [FEDERATION] ${atomIdAtStart} migrated to ${targetPeer}`,
-            );
-          } else {
-            LOGGER.warn(
-              `🛸 [FEDERATION] Transit collision for ${atomIdAtStart}. Local mutation kept.`,
-            );
-          }
-        } else {
-          LOGGER.warn(
-            `🛸 [FEDERATION] Migration rejected for ${atomIdAtStart}: status=${res.status}`,
-          );
-        }
-      } catch (e: any) {
-        LOGGER.error(
-          `🛸 [FEDERATION] Migration failed for atom ${atomIdAtStart}: ${
-            e?.message ?? String(e)
-          }`,
-        );
-      }
-    }
-
-    isProcessingMigration = false;
-    if (migrationQueue.length > 0) {
-      setTimeout(() => P2P_FEDERATION.processQueue(pulseId), 50);
-    }
+  processQueue: async (_pulseId: number) => {
+    LOGGER.warn("🛸 [FEDERATION] processQueue is deprecated. Migration is handled via NEXUS WebSocket streaming.");
   },
-  // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
