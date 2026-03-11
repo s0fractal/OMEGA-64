@@ -877,10 +877,13 @@ impl LambdaVM {
                                         } else {
                                             // Taking/Stealing (negative amount)
                                             let my_resonance = state.matrix.resonance[atom_idx];
-                                            let target_resonance =
-                                                state.matrix.resonance[target_idx];
+                                            let target_defense = if state.matrix.evolution_reserved[target_idx] > 0 {
+                                                state.matrix.evolution_reserved[target_idx]
+                                            } else {
+                                                state.matrix.resonance[target_idx]
+                                            };
 
-                                            if my_resonance > target_resonance {
+                                            if my_resonance > target_defense {
                                                 let ox = state.matrix.xs[atom_idx] as f32;
                                                 let oy = state.matrix.ys[atom_idx] as f32;
                                                 let tx = state.matrix.xs[target_idx] as f32;

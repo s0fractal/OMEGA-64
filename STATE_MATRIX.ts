@@ -102,6 +102,11 @@ const resonances = new Int32Array(
   MAX_ATOMS,
 );
 const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+const evolutionReserved = new Int32Array(
+  sharedBuffer,
+  OFFSETS.EVOLUTION_OFFSET,
+  MAX_ATOMS,
+);
 const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
 const synapticWeights = new Uint8Array(
   sharedBuffer,
@@ -376,6 +381,7 @@ export const STATE_MATRIX = {
   tickCounter,
   SYNC,
   phases,
+  evolutionReserved,
   roles,
   spatialGrid,
   structureGrid,
@@ -432,6 +438,7 @@ export const STATE_MATRIX = {
   getEnergy: (i: number) => Atomics.load(energies, i) / SCALE,
   getResonance: (i: number) => Atomics.load(resonances, i),
   getPhase: (i: number) => Atomics.load(phases, i),
+  getEvolutionReserved: (i: number) => Atomics.load(evolutionReserved, i),
   getLogic: (i: number) => logic.subarray(i * 8, i * 8 + 8),
   getBonds: (i: number) => bonds.subarray(i * 4, i * 4 + 4),
   getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),

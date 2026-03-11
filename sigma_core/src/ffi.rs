@@ -63,6 +63,92 @@ pub extern "C" fn tick_structure_grid() {
 }
 
 #[unsafe(no_mangle)]
+pub extern "C" fn tick_membrane_physics() {
+    let mut state = unsafe { get_ffi_state() };
+    
+    let mut visited = vec![0u8; crate::memory::MAX_ATOMS];
+    
+    for i in 1..crate::memory::MAX_ATOMS {
+        if state.matrix.ids[i] != 0 {
+            state.matrix.roles[i] &= !0x80;
+            state.matrix.evolution_reserved[i] = 0;
+        }
+    }
+
+    let mut rings: Vec<Vec<usize>> = Vec::new();
+
+    for start_node in 1..crate::memory::MAX_ATOMS {
+        if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
+            continue;
+        }
+
+        let mut path = Vec::with_capacity(8);
+        path.push(start_node);
+
+        fn dfs(
+            current: usize,
+            start: usize,
+            depth: usize,
+            path: &mut Vec<usize>,
+            state: &crate::memory::SigmaState,
+        ) -> bool {
+            if depth >= 8 {
+                return false;
+            }
+            
+            for b_slot in 0..4 {
+                let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
+                if target > 0 && target < crate::memory::MAX_ATOMS && state.matrix.ids[target] != 0 {
+                    if target == start && depth >= 2 {
+                        return true;
+                    }
+                    if target < start {
+                        continue;
+                    }
+                    if !path.contains(&target) {
+                        path.push(target);
+                        if dfs(target, start, depth + 1, path, state) {
+                            return true;
+                        }
+                        path.pop();
+                    }
+                }
+            }
+            false
+        }
+
+        if dfs(start_node, start_node, 0, &mut path, &*state) {
+            rings.push(path.clone());
+            for &node in &path {
+                visited[node] = 1;
+            }
+        }
+    }
+
+    for ring in &rings {
+        let count = ring.len() as i32;
+        let mut sum_energy: i64 = 0;
+        let mut sum_resonance: i64 = 0;
+
+        for &node in ring {
+            sum_energy += state.matrix.energy[node] as i64;
+            sum_resonance += state.matrix.resonance[node] as i64;
+            state.matrix.roles[node] |= 0x80;
+        }
+
+        let avg_energy = (sum_energy / count as i64) as i32;
+        let avg_resonance = (sum_resonance / count as i64) as i32;
+        let total_resonance = sum_resonance as i32;
+
+        for &node in ring {
+            state.matrix.energy[node] = avg_energy;
+            state.matrix.resonance[node] = avg_resonance;
+            state.matrix.evolution_reserved[node] = total_resonance;
+        }
+    }
+}
+
+#[unsafe(no_mangle)]
 pub extern "C" fn build_spatial_hash() {
     let mut state = unsafe { get_ffi_state() };
     state.build_spatial_hash();

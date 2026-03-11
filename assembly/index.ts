@@ -2788,3 +2788,96 @@ export function apply_metabolism_kernel(
     }
   }
 }
+
+const membraneVisited = new StaticArray<u8>(MAX_ATOMS);
+
+function dfsMembrane(
+  current: i32,
+  start: i32,
+  depth: i32,
+  pathNodes: StaticArray<i32>,
+  pathLen: i32
+): i32 {
+  if (depth >= 8) return 0;
+  
+  for (let b_slot = 0; b_slot < 4; b_slot++) {
+    const target = atomic.load<i32>(
+      BONDS_OFFSET + (((current << 2) + b_slot) << 2) as usize
+    );
+    if (target > 0 && target < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) != 0) {
+      if (target == start && depth >= 2) {
+        return pathLen;
+      }
+      if (target < start) continue;
+      
+      let contains = false;
+      for (let i = 0; i < pathLen; i++) {
+        if (unchecked(pathNodes[i]) == target) {
+          contains = true;
+          break;
+        }
+      }
+      if (!contains) {
+        unchecked(pathNodes[pathLen] = target);
+        const finalLen = dfsMembrane(target, start, depth + 1, pathNodes, pathLen + 1);
+        if (finalLen > 0) {
+          return finalLen;
+        }
+      }
+    }
+  }
+  return 0;
+}
+
+export function tick_membrane_physics(): void {
+  for (let i = 1; i < MAX_ATOMS; i++) {
+    const id = atomic.load<i64>(IDS_OFFSET + (i << 3) as usize);
+    if (id != 0) {
+      const roleOff = ROLES_OFFSET + i;
+      const role = atomic.load<u8>(roleOff as usize);
+      atomic.store<u8>(roleOff as usize, role & ~0x80);
+      atomic.store<i32>(EVOLUTION_OFFSET + (i << 2) as usize, 0);
+      unchecked(membraneVisited[i] = 0);
+    }
+  }
+
+  const pathNodes = new StaticArray<i32>(8);
+
+  for (let i = 1; i < MAX_ATOMS; i++) {
+    if (atomic.load<i64>(IDS_OFFSET + (i << 3) as usize) == 0 || membraneVisited[i] == 1) {
+      continue;
+    }
+
+    unchecked(pathNodes[0] = i);
+    const ringLen = dfsMembrane(i, i, 0, pathNodes, 1);
+    
+    if (ringLen > 0) {
+      let sumEnergy: i64 = 0;
+      let sumResonance: i64 = 0;
+
+      for (let k = 0; k < ringLen; k++) {
+        const node = unchecked(pathNodes[k]);
+        unchecked(membraneVisited[node] = 1);
+        sumEnergy += getEnergy(node);
+        sumResonance += atomic.load<i32>(RESONANCE_OFFSET + (node << 2) as usize);
+        
+        const roleOff = ROLES_OFFSET + node;
+        const role = atomic.load<u8>(roleOff as usize);
+        atomic.store<u8>(roleOff as usize, role | 0x80);
+      }
+
+      const avgEnergy = i32(sumEnergy / ringLen);
+      const avgResonance = i32(sumResonance / ringLen);
+      const totalResonance = i32(sumResonance);
+
+      for (let k = 0; k < ringLen; k++) {
+        const node = unchecked(pathNodes[k]);
+        setEnergy(node, avgEnergy);
+        atomic.store<i32>(RESONANCE_OFFSET + (node << 2) as usize, avgResonance);
+        atomic.store<i32>(EVOLUTION_OFFSET + (node << 2) as usize, totalResonance);
+      }
+      
+      for (let k = 0; k < 8; k++) unchecked(pathNodes[k] = 0);
+    }
+  }
+}

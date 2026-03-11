@@ -33,6 +33,7 @@ let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
 let get_neural_coherence_fn: (() => number) | null = null;
 let set_neural_coherence_fn: ((val: number) => void) | null = null;
 let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
+let tick_membrane_physics_fn: (() => void) | null = null;
 let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
   null;
 let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
@@ -75,6 +76,7 @@ let logicView: BigUint64Array | null = null;
 let bondRequestsView: Int32Array | null = null;
 let energiesView: Int32Array | null = null;
 let phaseView: Int32Array | null = null;
+let evolutionReservedView: Int32Array | null = null;
 
 let currentPulseId = 0;
 let currentTheta = 0;
@@ -356,7 +358,13 @@ function handle_syscall(atomIdx: number) {
             const stealAmount = (-amount) * 1000;
             if (resonancesView && xsView && ysView) {
               const myRes = Atomics.load(resonancesView, atomIdx);
-              const tRes = Atomics.load(resonancesView, targetIdx);
+              let tRes = Atomics.load(resonancesView, targetIdx);
+              
+              if (evolutionReservedView) {
+                const shield = Atomics.load(evolutionReservedView, targetIdx);
+                if (shield > 0) tRes = shield;
+              }
+
               if (myRes > tRes && myRes > 250 && tRes < 100) {
                 const ox = Atomics.load(xsView, atomIdx);
                 const oy = Atomics.load(ysView, atomIdx);
@@ -799,6 +807,7 @@ self.onmessage = async (e) => {
     energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
     resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
     phaseView = new Int32Array(sb, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+    evolutionReservedView = new Int32Array(sb, OFFSETS.EVOLUTION_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(
       sb,
       OFFSETS.INSTRUCTIONS_OFFSET,
@@ -867,6 +876,7 @@ self.onmessage = async (e) => {
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
+      tick_membrane_physics_fn = wasmInstance.exports.tick_membrane_physics as any;
       resolve_bond_requests_fn = wasmInstance.exports
         .resolve_bond_requests as any;
       drain_spawn_requests_fn = wasmInstance.exports
@@ -976,6 +986,7 @@ self.onmessage = async (e) => {
       }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
     );
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
+    if (tick_membrane_physics_fn) tick_membrane_physics_fn();
     await maybeDelay();
     self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });
   }
