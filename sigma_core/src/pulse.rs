@@ -1,6 +1,5 @@
 use crate::memory::MAX_ATOMS;
 use crate::{LambdaVM, SigmaState};
-use rayon::prelude::*;
 
 pub struct PulseOrchestrator {}
 
@@ -38,7 +37,7 @@ impl PulseOrchestrator {
             .copy_from_slice(&state.matrix.resonance);
 
         // 3. Execution Phase (Parallelizing over all logical atom indices)
-        (1..MAX_ATOMS).into_par_iter().for_each(|i| {
+        (1..MAX_ATOMS).into_iter().for_each(|i| {
             if state.matrix.ids[i] != 0 {
                 let mut mass = 1;
                 for b_slot in 0..4 {

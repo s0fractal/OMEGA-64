@@ -1313,6 +1313,9 @@ LOGGER.info(
     CONTROL_TOKEN.length > 0
   }`,
 );
+if (RUNTIME_POLICY.p2p.mainnetEnabled) {
+  LOGGER.info(`🌐 [SYSTEM] MAINNET BOOTSTRAP ACTIVE`);
+}
 await AKASHA_CODEX.start();
 
 // STAGE 5.3 VERIFICATION: Forced Reflection Seed
@@ -3634,7 +3637,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 })();
 
 // 3. Start Panopticon Telemetry Server (Background)
-(async () => {
+(() => {
     PANOPTICON_SERVER.start();
 })();
 

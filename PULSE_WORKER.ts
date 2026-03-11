@@ -285,6 +285,7 @@ function handle_syscall(atomIdx: number) {
       ) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
+        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
         LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
             (newValue & 0xFF).toString(16)
@@ -422,6 +423,9 @@ function handle_syscall(atomIdx: number) {
         // Reset target PC (PC is at offset 32 in contextU8View)
         const targetFlagIdx = (targetIdx << 6) + 32;
         Atomics.store(contextU8View, targetFlagIdx, 0);
+
+        // Evict Target Entropy Cache
+        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0);
 
         // Give the child a starter spark of energy from the sender
         const replicationSpark = 50 * 1000; // 50 energy units
@@ -577,7 +581,7 @@ function handle_syscall(atomIdx: number) {
           const nCellIdx = nGridY * 140 + nGridX;
 
           let capacityOk = false;
-          let emptySlotOffset = -1;
+          const emptySlotOffset = -1;
           for (let s = 0; s < 32; s++) {
             const currentAtomId = Atomics.load(spatialGridView, nCellIdx * 32 + s);
             if (currentAtomId === 0) {

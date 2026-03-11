@@ -49,3 +49,31 @@ pub fn math_cos(angle: i32, high_res: i32) -> i32 {
     let term2 = (d2 * frac * frac) >> 16;
     c_base - term1 - term2
 }
+
+pub const C_LOG2_C_LUT: [i32; 65] = [
+0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000
+];
+
+pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
+    let mut counts = [0i32; 256];
+    for &b in data.iter() {
+        counts[b as usize] += 1;
+    }
+
+    let mut sum_c_log_c = 0;
+    for &c in counts.iter() {
+        if c > 0 {
+            sum_c_log_c += C_LOG2_C_LUT[c as usize];
+        }
+    }
+
+    let mut entropy = 6000 - (sum_c_log_c >> 6);
+    
+    if entropy < 0 {
+        entropy = 0;
+    } else if entropy > 6000 {
+        entropy = 6000;
+    }
+    
+    entropy
+}

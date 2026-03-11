@@ -1,6 +1,5 @@
 use crate::memory::{SigmaMatrix, SigmaState};
 use crate::pulse::PulseOrchestrator;
-use rayon::prelude::*;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.
 #[repr(C)]

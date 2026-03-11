@@ -1,0 +1,578 @@
+[0m[38;5;245m------- pre-test output -------[0m
+[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=140945860
+[0m[38;5;245m----- pre-test output end -----[0m
+[0m[38;5;245mrunning 1 test from ./tests/test_shannon_entropy.ts[0m
+Stage 37: Information Thermodynamics (Noise Tax) ...
+[0m[38;5;245m------- output -------[0m
+[NEXUS_DEBUG] CALLING START ON PORT 8081 FOR NODE 17d4883a-1109-4cdd-b717-1de9537182d6
+[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://127.0.0.1:8081
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=100 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+🚨 [ADAPTIVE] High Drift (0.7000) detected. Triggering autonomous shadow rehearsal...
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=101 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=102 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=103 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=104 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=105 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=106 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=107 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=108 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=109 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=110 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=111 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=112 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=113 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=114 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=115 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=116 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=117 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=118 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=119 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=120 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=121 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=122 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=123 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=124 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=125 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=126 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=127 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=128 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=129 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=130 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=131 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=132 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=133 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=134 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=135 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=136 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=137 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=138 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=139 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=140 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=141 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=142 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=143 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=144 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=145 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=146 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=147 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=148 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Quorum -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Coherence -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 8888 executed 6f | Pos: (0,0) | target: 0
+[PULSE TRACE] Before Hormones -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] Before Bonds -> Atom 11 X=0 or 15 X=0
+   [WASM_TRACE] Atom 888 executed ee | Pos: (0,0) | target: 0
+[PULSE TRACE] After Bonds -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] After Reduce Deltas -> Atom 11 X=0 or 15 X=0
+[PULSE_WORKER:TICK_ENV] TICK=149 BONDS: Atom 2 = [0, 0, 0, 0]
+[PULSE TRACE] After Environment -> Atom 11 X=0 or 15 X=0
+[PULSE TRACE] End of TICK phase 1 -> Atom 11 X=0 or 15 X=0
+[0m[38;5;245m----- output end -----[0m
+Stage 37: Information Thermodynamics (Noise Tax) ... [0m[31mFAILED[0m [0m[38;5;245m(3s)[0m
+
+[0m[1m[37m[41m ERRORS [0m
+
+Stage 37: Information Thermodynamics (Noise Tax) [0m[38;5;245m=> ./tests/test_shannon_entropy.ts:7:6[0m
+[0m[1m[31merror[0m: AssertionError: Atom A (Low Entropy) should have significantly more energy remaining than Atom B (High Entropy)
+    throw new AssertionError(msg);
+[0m[31m          ^[0m
+    at [0m[1m[3massert[0m ([0m[36mhttps://deno.land/std@0.210.0/assert/assert.ts[0m:[0m[33m17[0m:[0m[33m11[0m)
+    at [0m[2m[38;5;245mfile:///Users/s0fractal/OMEGA/[0m[0m[36mtests/test_shannon_entropy.ts[0m:[0m[33m53[0m:[0m[33m3[0m
+
+[0m[1m[37m[41m FAILURES [0m
+
+Stage 37: Information Thermodynamics (Noise Tax) [0m[38;5;245m=> ./tests/test_shannon_entropy.ts:7:6[0m
+
+[0m[31mFAILED[0m | 0 passed | 1 failed [0m[38;5;245m(3s)[0m
+
+[0m[1m[31merror[0m: Test failed

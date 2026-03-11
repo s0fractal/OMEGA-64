@@ -1,4 +1,4 @@
-use sigma_core::isa::{GlyphOp, SYS_TRANSFER};
+use sigma_core::isa::GlyphOp;
 use sigma_core::memory::SigmaState;
 use sigma_core::shadow::run_shadow_simulation;
 
@@ -17,7 +17,7 @@ fn test_shadow_catastrophe_rejection() {
     state.matrix.ys[2] = 0;
 
     // Create base state
-    let initial_population = state.matrix.ids.iter().filter(|&&id| id != 0).count() as i32;
+    // initial_population tracked mentally but unused directly
 
     // We hallucinate a destructive "TRANSFER" script replacing Attacker's behavior
     // OP_SET R1, 1 (Target = 1)

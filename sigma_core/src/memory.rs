@@ -166,6 +166,15 @@ impl SigmaState {
         }
     }
 
+    pub fn glyph_payload_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.glyph_payload.as_ptr() as *const std::sync::atomic::AtomicU8,
+                GRID_CELLS * 8,
+            )
+        }
+    }
+
     pub fn stiffness_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
         unsafe {
             std::slice::from_raw_parts(

@@ -3,6 +3,8 @@ import { LOGGER } from "../LOGGER.ts";
 export type NexusConfig = {
   instanceId: number;
   seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
+  mainnetEnabled?: boolean;
+  bootstrapHubUrl?: string;
 };
 
 export const OP_NEXUS_HANDSHAKE = 0x00;
@@ -17,6 +19,8 @@ export class SwarmNexus {
   public instanceId: number;
   public port: number;
   public seedNodes: string[];
+  public mainnetEnabled: boolean;
+  public bootstrapHubUrl: string;
   
   // Peer registry
   public connectedPeers: Map<string, WebSocket> = new Map();
@@ -41,6 +45,8 @@ export class SwarmNexus {
     this.instanceId = config.instanceId;
     this.port = 8080 + config.instanceId;
     this.seedNodes = config.seedNodes;
+    this.mainnetEnabled = config.mainnetEnabled ?? false;
+    this.bootstrapHubUrl = config.bootstrapHubUrl ?? "";
   }
 
   public start() {
@@ -53,7 +59,7 @@ export class SwarmNexus {
       hostname: "127.0.0.1",
       signal: this.serverAbortController.signal,
       onListen: ({ port, hostname }) => {
-        try { Deno.writeTextFileSync("tests/.genesis_port", port.toString()); } catch {}
+        try { Deno.writeTextFileSync("tests/.genesis_port", port.toString()); } catch(e) { /* ignore test artifact failure */ }
         console.error(`[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`);
         LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
       }
@@ -77,6 +83,11 @@ export class SwarmNexus {
         continue; // Don't connect to self
       }
       this.connectToPeer(seedUrl);
+    }
+
+    // 2.5 Connect to Bootstrap Hub if requested
+    if (this.mainnetEnabled && this.bootstrapHubUrl) {
+      this.connectToHub();
     }
 
     // 3. Start Heartbeat Broadcast
@@ -106,6 +117,44 @@ export class SwarmNexus {
       this.handleConnection(socket, "OUTBOUND");
     } catch (e) {
       LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
+    }
+  }
+
+  private connectToHub() {
+    try {
+      LOGGER.info(`[NEXUS] Connecting to Bootstrap Hub: ${this.bootstrapHubUrl}`);
+      const hubSocket = new WebSocket(this.bootstrapHubUrl);
+      
+      hubSocket.onopen = () => {
+        LOGGER.info(`[NEXUS] Connected to Hub.`);
+        hubSocket.send(JSON.stringify({
+          op: "REGISTER",
+          nodeId: this.nodeId,
+          url: `ws://127.0.0.1:${this.port}`
+        }));
+      };
+
+      hubSocket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
+            LOGGER.info(`[NEXUS] Received ${data.peers.length} peers from Hub.`);
+            for (const peerUrl of data.peers) {
+              if (peerUrl !== `ws://127.0.0.1:${this.port}`) {
+                this.connectToPeer(peerUrl);
+              }
+            }
+          }
+        } catch(e) {
+          LOGGER.warn(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
+        }
+      };
+      
+      hubSocket.onclose = () => {
+        LOGGER.warn(`[NEXUS] Disconnected from Hub.`);
+      };
+    } catch(e) {
+      LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
     }
   }
 
@@ -217,11 +266,21 @@ export class SwarmNexus {
     payload[0] = OP_NEXUS_ATOM_TRANSIT;
     payload.set(egressEvent, 1);
 
-    if (targetPeer.readyState === WebSocket.OPEN) {
-      targetPeer.send(payload.buffer);
-      LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+    this.sendDataChannel(targetPeer, payload.buffer);
+    LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+  }
+
+  private sendDataChannel(socket: WebSocket, payload: ArrayBufferLike) {
+    // Graceful fallback abstraction for RTCDataChannel constraints
+    if (typeof (globalThis as any).RTCPeerConnection !== "undefined") {
+        // Future WebRTC Implementation hooks here
+        // this.dataChannels.get(peerId).send(payload);
+    } 
+    // Fallback to traditional WebSockets
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(payload);
     } else {
-      LOGGER.warn(`[NEXUS] Target peer not OPEN. Atom lost.`);
+      LOGGER.warn(`[NEXUS] Target peer not OPEN. Payload lost.`);
     }
   }
 

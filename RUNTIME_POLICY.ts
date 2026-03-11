@@ -70,6 +70,8 @@ const rawSystemControlEnable = readEnv("OMEGA_SYSTEM_CONTROL_ENABLE");
 const rawSystemControlToken = readEnv("OMEGA_SYSTEM_CONTROL_TOKEN");
 const rawSystemAvatarIngressEnable = readEnv("OMEGA_AVATAR_INGRESS_ENABLE");
 const rawP2PHost = readEnv("OMEGA_P2P_HOST");
+const rawOmegaMainnet = readEnv("OMEGA_MAINNET");
+const rawBootstrapHubUrl = readEnv("OMEGA_BOOTSTRAP_HUB_URL");
 const rawP2PMutateEnable = readEnv("OMEGA_P2P_MUTATE_ENABLE");
 const rawP2PMutateToken = readEnv("OMEGA_P2P_MUTATE_TOKEN");
 const rawFederationEnable = readEnv("OMEGA_FEDERATION_ENABLE");
@@ -183,6 +185,9 @@ const systemAvatarIngressEnabled = parseEnvBool(
 );
 
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
+const hasMainnetArg = typeof Deno !== "undefined" && Deno.args.includes("--mainnet");
+const mainnetEnabled = parseEnvBool(rawOmegaMainnet, hasMainnetArg);
+const bootstrapHubUrl = normalizeToken(rawBootstrapHubUrl) || "ws://127.0.0.1:9999";
 const p2pMutateEnabled = parseEnvBool(
   rawP2PMutateEnable ?? rawSystemControlEnable,
   false,
@@ -526,6 +531,8 @@ const policyFingerprintSource = JSON.stringify({
   p2p: {
     host: p2pHost,
     port: p2pPort,
+    mainnetEnabled,
+    bootstrapHubUrl,
     mutateEnabled: p2pMutateEnabled,
     mutateTokenSet: p2pMutateToken.length > 0,
   },
@@ -646,10 +653,14 @@ export const RUNTIME_POLICY = {
   p2p: {
     host: p2pHost,
     port: p2pPort,
+    mainnetEnabled,
+    bootstrapHubUrl,
     mutateEnabled: p2pMutateEnabled,
     mutateToken: p2pMutateToken,
     source: {
       host: hasEnvValue(rawP2PHost),
+      mainnetEnabled: rawOmegaMainnet !== undefined || hasMainnetArg,
+      bootstrapHubUrl: hasEnvValue(rawBootstrapHubUrl),
       mutateEnabled: rawP2PMutateEnable !== undefined,
       mutateToken: rawP2PMutateToken !== undefined,
       fallbackControlEnabled: rawP2PMutateEnable === undefined &&

@@ -471,7 +471,7 @@ let pressureRingScaleLedgerPersistence = createLedgerPersistence(
   "pulse.pressureRing.scale",
 );
 
-let physiologicalLedgers = Object.fromEntries(
+const physiologicalLedgers = Object.fromEntries(
   HORMONE_BUFFER_CATALOG.map((spec) => [
     spec.id,
     createPhysiologicalLedgerRuntime(spec.id),
@@ -1953,10 +1953,12 @@ export const PULSE = {
     }
 
     // Always start the network layer before bootstrapping bounds
+    NEXUS_DAEMON.mainnetEnabled = RUNTIME_POLICY.p2p.mainnetEnabled;
+    NEXUS_DAEMON.bootstrapHubUrl = RUNTIME_POLICY.p2p.bootstrapHubUrl;
     await NEXUS_DAEMON.start();
 
-    // Phase 30: Bootstrapping Node Payload
-    if (STATE_MATRIX.getActiveIndices().length === 0 && NEXUS_DAEMON.seedNodes.length > 0) {
+    // Phase 30 / Phase 36: Bootstrapping Node Payload
+    if (STATE_MATRIX.getActiveIndices().length === 0 && (NEXUS_DAEMON.seedNodes.length > 0 || NEXUS_DAEMON.mainnetEnabled)) {
        LOGGER.info(`[PULSE] Matrix is uninstantiated. Awaiting Swarm Handshake...`);
        await new Promise(r => setTimeout(r, 600)); // allow sockets to open
        

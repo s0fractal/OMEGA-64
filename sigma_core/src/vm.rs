@@ -514,6 +514,96 @@ impl LambdaVM {
                     pc += 4;
                     gas_used += 5;
                 }
+                GlyphOp::SecretePlasmid => {
+                    // Extract genome offset parameter
+                    let offset_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let offset = if offset_reg < 8 {
+                        state.matrix.context[atom_idx][offset_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    if energy >= 150_000 && offset >= 0 && offset <= 56 {
+                        let cx = state.matrix.xs[atom_idx] as usize;
+                        let cy = state.matrix.ys[atom_idx] as usize;
+                        let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                        // Read 8 bytes from genome
+                        let mut payload = [0u8; 8];
+                        payload.copy_from_slice(
+                            &state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)],
+                        );
+
+                        // Deposit into payload atomically
+                        let payload_atomic = state.glyph_payload_atomic();
+                        for i in 0..8 {
+                            payload_atomic[cell_idx * 8 + i].store(payload[i], std::sync::atomic::Ordering::Relaxed);
+                        }
+
+                        // Trigger interference map: Kind 3 (PLASMID), Max Amplitude (255)
+                        state.atomic_deposit_glyph_header(cell_idx, 3, 255);
+
+                        energy -= 150_000;
+                    }
+
+                    pc += 2;
+                    gas_used += 10;
+                }
+                GlyphOp::IncorporatePlasmid => {
+                    let offset_reg = self.fetch_instruction(state, atom_idx, pc, 1);
+                    let offset = if offset_reg < 8 {
+                        state.matrix.context[atom_idx][offset_reg as usize]
+                    } else {
+                        0
+                    };
+
+                    if offset >= 0 && offset <= 56 {
+                        let cx = state.matrix.xs[atom_idx] as usize;
+                        let cy = state.matrix.ys[atom_idx] as usize;
+                        let cell_idx = (cy / 10) * 140 + (cx / 10);
+
+                        let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
+                        let kind = (header & 0xFF) as u8;
+
+                        if kind == 3 {
+                            let payload_atomic = state.glyph_payload_atomic();
+                            let mut new_bytes = [0u8; 8];
+                            for i in 0..8 {
+                                new_bytes[i] = payload_atomic[cell_idx * 8 + i].load(std::sync::atomic::Ordering::Relaxed);
+                            }
+                            
+                            // Thermodynamic Safeguard
+                            let mut current_bytes = [0u8; 8];
+                            current_bytes.copy_from_slice(&state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)]);
+                            
+                            // We need full 64 byte frames for entropy calculations
+                            let mut mock_old = [0u8; 64];
+                            mock_old.copy_from_slice(&state.matrix.instructions[atom_idx]);
+                            let mut mock_new = [0u8; 64];
+                            mock_new.copy_from_slice(&state.matrix.instructions[atom_idx]);
+                            mock_new[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+
+                            let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
+                            let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
+                            
+                            let is_desperate = energy < (100_000_000 / 10);
+
+                            if entropy_new < entropy_old || is_desperate {
+                                // Cast to mut ptr carefully as we are the only executor thread over this specific atom_idx
+                                unsafe {
+                                    let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
+                                    let atom_inst = &mut *inst_ptr.add(atom_idx);
+                                    atom_inst[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                }
+                                // Evict Entropy Cache
+                                state.context_atomic(atom_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                        }
+                    }
+
+                    pc += 2;
+                    gas_used += 5;
+                }
                 GlyphOp::Signal => {
                     let type_reg = self.fetch_instruction(state, atom_idx, pc, 1);
                     let intensity_reg = self.fetch_instruction(state, atom_idx, pc, 2);
@@ -580,7 +670,6 @@ impl LambdaVM {
                         let reg = (p2 as usize) & 7;
                         let hive_bal_atomic = state.hive_balance_atomic();
 
-                        // Withdraw loop to handle soft-cap atomically
                         let mut amount = 0;
                         let mut current_bal =
                             hive_bal_atomic.load(std::sync::atomic::Ordering::Acquire);
@@ -881,6 +970,15 @@ impl LambdaVM {
         // Writeback PC
         state.context_atomic(atom_idx)[8].store(pc as i32, std::sync::atomic::Ordering::Relaxed);
 
+        // Structural Thermodynamics (Shannon Entropy Noise Tax)
+        let mut cached_entropy_plus_one = state.matrix.context[atom_idx][15];
+        if cached_entropy_plus_one == 0 {
+            let entropy = crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
+            cached_entropy_plus_one = entropy + 1;
+            state.context_atomic(atom_idx)[15].store(cached_entropy_plus_one, std::sync::atomic::Ordering::Relaxed);
+        }
+        let entropy_val = cached_entropy_plus_one - 1;
+
         // Metabolics
         let entropy_h = state.matrix.hormones[0] as i32;
         let repair_h = state.matrix.hormones[4] as i32;
@@ -896,8 +994,9 @@ impl LambdaVM {
         };
 
         let base_compute_cost = gas_used >> discount;
+        let noise_tax = (base_compute_cost * entropy_val) >> 12;
         let metabolic_cost =
-            1 + base_compute_cost + ((gas_used * entropy_h) >> (12 + discount)) + (friction_h >> 8);
+            1 + base_compute_cost + noise_tax + ((gas_used * entropy_h) >> (12 + discount)) + (friction_h >> 8);
 
         // Phase Synchronization
         if coherence_val > 500 {

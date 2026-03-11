@@ -26,6 +26,8 @@ pub enum GlyphOp {
     Collective = 0xA6,
     Build = 0xA8,
     Sense = 0xA9,
+    SecretePlasmid = 0xAA,
+    IncorporatePlasmid = 0xAB,
     Resolve = 0xB0,
     ResonateKuramoto = 0xB1,
     Unknown = 0xFF,
@@ -56,6 +58,8 @@ impl From<u8> for GlyphOp {
             0xA6 => GlyphOp::Collective,
             0xA8 => GlyphOp::Build,
             0xA9 => GlyphOp::Sense, // Structure Sense
+            0xAA => GlyphOp::SecretePlasmid,
+            0xAB => GlyphOp::IncorporatePlasmid,
             0xB0 => GlyphOp::Resolve,
             0xB1 => GlyphOp::ResonateKuramoto,
             _ => GlyphOp::Unknown,

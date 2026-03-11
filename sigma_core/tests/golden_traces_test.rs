@@ -593,9 +593,8 @@ fn test_gt02_rayon_parity() {
     }
 
     // Run parallel orchestrator (only testing the `vm.step` parity for now, orchestrator covers full tick)
-    // To be perfectly 1:1, we just run the Rayon loop manually here simulating orchestrated step
-    use rayon::prelude::*;
-    (1..501).into_par_iter().for_each(|atom_idx| {
+    // To be perfectly 1:1, we just run the sequential loop manually here simulating orchestrated step
+    (1..501).into_iter().for_each(|atom_idx| {
         let mut p_vm = LambdaVM::new();
         p_vm.step(&p_state, atom_idx);
     });
