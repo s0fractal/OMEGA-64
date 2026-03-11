@@ -5,9 +5,10 @@ import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
 
+const clients = new Set<WebSocket>();
+
 export const PANOPTICON_SERVER = {
   start: () => {
-    const clients = new Set<WebSocket>();
 
     Deno.serve({ port: PORT }, async (req) => {
       const url = new URL(req.url);
@@ -65,23 +66,6 @@ export const PANOPTICON_SERVER = {
       `👁️ [PANOPTICON] Global WebGL Observer Server listening on http://localhost:${PORT}`,
     );
 
-    // Broadcast Loop: Binary Telemetry
-    setInterval(() => {
-      if (clients.size === 0) return;
-
-      const buffer = STATE_MATRIX.packPanopticonFrame();
-
-      for (const client of clients) {
-        if (client.readyState === WebSocket.OPEN) {
-          try {
-            client.send(buffer);
-          } catch (e) {
-            // Let close handler deal with this
-          }
-        }
-      }
-    }, 1000 / FPS);
-
     // Heartbeat Loop: JSON Analytics (1Hz)
     setInterval(() => {
       if (clients.size === 0) return;
@@ -111,5 +95,19 @@ export const PANOPTICON_SERVER = {
         }
       }
     }, 1000);
+  },
+
+  broadcastBinaryFrame: (buffer: ArrayBuffer) => {
+    if (clients.size === 0) return;
+
+    for (const client of clients) {
+      if (client.readyState === WebSocket.OPEN) {
+        try {
+          client.send(buffer);
+        } catch (e) {
+          // Let close handler deal with this
+        }
+      }
+    }
   },
 };

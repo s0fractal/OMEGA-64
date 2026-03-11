@@ -22,6 +22,7 @@ import {
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { SWARM_NODE } from "./SWARM_NODE.ts";
 import { SwarmNexus } from "./network/SWARM_NEXUS.ts";
+import { PANOPTICON_SERVER } from "./PANOPTICON_SERVER.ts";
 
 export const NEXUS_DAEMON = new SwarmNexus({
   instanceId: 1,
@@ -51,6 +52,7 @@ NEXUS_DAEMON.onEpochPayload = async (payload: Uint8Array) => {
 
 const MAX_TICK_DRIFT = 50;
 let lastTickTime = performance.now();
+let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
@@ -2811,6 +2813,28 @@ export const PULSE = {
       Atomics.store(syncState, 0, SYNC.HOST_LOCK);
       Atomics.notify(syncState, 0);
 
+      // --- PHASE 50: TRANSACTIONAL PANOPTICON TELEMETRY ---
+      const nowMs = performance.now();
+      if (nowMs - lastPanopticonBroadcastTime >= 50) { // ~20fps
+        const frame = STATE_MATRIX.packPanopticonFrame();
+        PANOPTICON_SERVER.broadcastBinaryFrame(frame);
+        lastPanopticonBroadcastTime = nowMs;
+      }
+
+      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
+      // Moved into HOST_LOCK to prevent torn reads during slice
+      if (
+        RUNTIME_POLICY.snapshot.enabled &&
+        currentTick > 0 &&
+        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
+      ) {
+        // We trigger save but don't await it to avoid blocking the heartbeat.
+        // It will complete in the background.
+        SNAP_ENGINE.save(currentTick).then(() => {
+          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
+        });
+      }
+
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
       if (currentTick > 0 && currentTick % 10000 === 0) {
         LOGGER.info(
@@ -3327,17 +3351,7 @@ export const PULSE = {
         NEXUS_DAEMON.broadcastEpochConsensus(currentTick, hashSum);
       }
 
-      // --- SNAP PHASE: Asynchronous Matrix Persistence ---
-      if (
-        RUNTIME_POLICY.snapshot.enabled &&
-        currentTick % RUNTIME_POLICY.snapshot.intervalTicks === 0
-      ) {
-        // We trigger save but don't await it to avoid blocking the heartbeat.
-        // It will complete in the background.
-        SNAP_ENGINE.save(currentTick).then(() => {
-          SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
-        });
-      }
+      // SNAP PHASE was relocated to HOST_LOCK (Phase 50)
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
