@@ -25,11 +25,14 @@ export class DriftWarden {
   constructor(
     customEnergyView?: Int32Array,
     customIdsView?: BigUint64Array,
-    customCoherenceView?: Int32Array
+    customCoherenceView?: Int32Array,
   ) {
-    this.energyView = customEnergyView ?? new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-    this.idsView = customIdsView ?? new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
-    this.coherenceView = customCoherenceView ?? new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+    this.energyView = customEnergyView ??
+      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+    this.idsView = customIdsView ??
+      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+    this.coherenceView = customCoherenceView ??
+      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
   }
 
   /**

@@ -83,7 +83,7 @@ const depositHeader = (
 ): void => {
   let nextAmplitude = Math.round(amplitude);
   if (nextAmplitude === 0) return;
-  
+
   if (nextAmplitude < -8388608) nextAmplitude = -8388608;
   if (nextAmplitude > 8388607) nextAmplitude = 8388607;
 
@@ -103,7 +103,7 @@ const depositHeader = (
   } else {
     // Differing kinds - power comparison for override
     if (Math.abs(nextAmplitude) <= Math.abs(currentAmplitude)) {
-        return; // Current signal is stronger or equal
+      return; // Current signal is stronger or equal
     }
   }
 
@@ -129,7 +129,9 @@ export const GLYPH_BUFFER = {
   depositPheromone: (x: number, y: number, intensity: number) => {
     const cell = toGridCell(x, y);
     const core = clamp(Math.round(intensity), -4096, 4096);
-    const halo = core > 0 ? Math.max(1, Math.floor(core * 0.25)) : Math.min(-1, Math.ceil(core * 0.25));
+    const halo = core > 0
+      ? Math.max(1, Math.floor(core * 0.25))
+      : Math.min(-1, Math.ceil(core * 0.25));
     depositHeader(cell, GLYPH_KIND.PHEROMONE, core);
     const gx = cell % GRID_W;
     const gy = Math.floor(cell / GRID_W);

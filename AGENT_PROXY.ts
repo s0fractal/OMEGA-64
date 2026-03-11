@@ -109,7 +109,7 @@ export class AgentProxy {
             Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
         ),
       })).sort((a, b) => a.distance - b.distance)
-         .slice(0, 30);
+      .slice(0, 30);
 
     return new Response(
       JSON.stringify({
@@ -136,8 +136,12 @@ export class AgentProxy {
 
       switch (action) {
         case "ATTRACT": {
-          const targetIdx = typeof body.targetIdx === "number" ? body.targetIdx : 0;
-          const intensity = typeof body.intensity === "number" ? body.intensity : 1;
+          const targetIdx = typeof body.targetIdx === "number"
+            ? body.targetIdx
+            : 0;
+          const intensity = typeof body.intensity === "number"
+            ? body.intensity
+            : 1;
 
           ops = [
             RISC.OP_SET,
@@ -154,8 +158,12 @@ export class AgentProxy {
           break;
         }
         case "TRANSFER": {
-          const targetIdx = typeof body.targetIdx === "number" ? body.targetIdx : 0;
-          const resourceType = typeof body.resourceType === "number" ? body.resourceType : 0;
+          const targetIdx = typeof body.targetIdx === "number"
+            ? body.targetIdx
+            : 0;
+          const resourceType = typeof body.resourceType === "number"
+            ? body.resourceType
+            : 0;
           const amount = typeof body.amount === "number" ? body.amount : 0;
 
           ops = [

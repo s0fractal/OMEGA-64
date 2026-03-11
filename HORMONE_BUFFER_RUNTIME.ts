@@ -27,7 +27,9 @@ const clamp = (value: number, min: number, max: number): number =>
  * Synchronizes physiological signals from host runtimes into the shared memory lattice.
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
-export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId, number> => {
+export const syncHormonesToLattice = (
+  input: HormoneSyncInput,
+): Record<HormoneId, number> => {
   return {
     entropy_pressure: Math.round(
       clamp(
@@ -49,7 +51,8 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId
     ),
     replication_bias: Math.round(
       clamp(
-        input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
+        input.noveltyPressure +
+          ((1 - input.homeostasisOverflowThreshold) * 512),
         0,
         2048,
       ),

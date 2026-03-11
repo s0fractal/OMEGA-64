@@ -21,14 +21,17 @@ export class SwarmNexus {
   public seedNodes: string[];
   public mainnetEnabled: boolean;
   public bootstrapHubUrl: string;
-  
+
   // Peer registry
   public connectedPeers: Map<string, WebSocket> = new Map();
   // Server handle
   private serverAbortController: AbortController = new AbortController();
-  
+
   // Heartbeat tracking
-  public peerHeartbeats: Map<string, { tick: number, tps: number, lastSeen: number }> = new Map();
+  public peerHeartbeats: Map<
+    string,
+    { tick: number; tps: number; lastSeen: number }
+  > = new Map();
   private heartbeatInterval?: number;
 
   // Local TPS tracking support
@@ -50,19 +53,27 @@ export class SwarmNexus {
   }
 
   public start() {
-    console.error(`[NEXUS_DEBUG] CALLING START ON PORT ${this.port} FOR NODE ${this.nodeId}`);
-    LOGGER.info(`[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`);
-    
+    console.error(
+      `[NEXUS_DEBUG] CALLING START ON PORT ${this.port} FOR NODE ${this.nodeId}`,
+    );
+    LOGGER.info(
+      `[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`,
+    );
+
     // 1. Start listening for incoming WebSocket connections
     const server = Deno.serve({
       port: this.port,
       hostname: "127.0.0.1",
       signal: this.serverAbortController.signal,
       onListen: ({ port, hostname }) => {
-        try { Deno.writeTextFileSync("tests/.genesis_port", port.toString()); } catch(e) { /* ignore test artifact failure */ }
-        console.error(`[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`);
+        try {
+          Deno.writeTextFileSync("tests/.genesis_port", port.toString());
+        } catch (e) { /* ignore test artifact failure */ }
+        console.error(
+          `[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`,
+        );
         LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
-      }
+      },
     }, (req) => {
       if (req.headers.get("upgrade") != "websocket") {
         return new Response(null, { status: 501 });
@@ -74,12 +85,15 @@ export class SwarmNexus {
     });
 
     server.finished.catch((err: any) => {
-        console.error(`[NEXUS_DEBUG] FATAL SERVER CRASH: ${err}`);
+      console.error(`[NEXUS_DEBUG] FATAL SERVER CRASH: ${err}`);
     });
 
     // 2. Connect to known seed nodes
     for (const seedUrl of this.seedNodes) {
-      if (seedUrl === `ws://127.0.0.1:${this.port}` || seedUrl === `ws://localhost:${this.port}`) {
+      if (
+        seedUrl === `ws://127.0.0.1:${this.port}` ||
+        seedUrl === `ws://localhost:${this.port}`
+      ) {
         continue; // Don't connect to self
       }
       this.connectToPeer(seedUrl);
@@ -92,15 +106,15 @@ export class SwarmNexus {
 
     // 3. Start Heartbeat Broadcast
     this.heartbeatInterval = setInterval(() => {
-        this.broadcastHeartbeat();
+      this.broadcastHeartbeat();
     }, 100);
   }
 
   public stop() {
     LOGGER.info(`[NEXUS] Shutting down Node ${this.nodeId}`);
     if (this.heartbeatInterval) {
-        clearInterval(this.heartbeatInterval);
-        this.heartbeatInterval = undefined;
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = undefined;
     }
     this.serverAbortController.abort();
     for (const [, ws] of this.connectedPeers) {
@@ -122,15 +136,17 @@ export class SwarmNexus {
 
   private connectToHub() {
     try {
-      LOGGER.info(`[NEXUS] Connecting to Bootstrap Hub: ${this.bootstrapHubUrl}`);
+      LOGGER.info(
+        `[NEXUS] Connecting to Bootstrap Hub: ${this.bootstrapHubUrl}`,
+      );
       const hubSocket = new WebSocket(this.bootstrapHubUrl);
-      
+
       hubSocket.onopen = () => {
         LOGGER.info(`[NEXUS] Connected to Hub.`);
         hubSocket.send(JSON.stringify({
           op: "REGISTER",
           nodeId: this.nodeId,
-          url: `ws://127.0.0.1:${this.port}`
+          url: `ws://127.0.0.1:${this.port}`,
         }));
       };
 
@@ -138,27 +154,32 @@ export class SwarmNexus {
         try {
           const data = JSON.parse(event.data);
           if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
-            LOGGER.info(`[NEXUS] Received ${data.peers.length} peers from Hub.`);
+            LOGGER.info(
+              `[NEXUS] Received ${data.peers.length} peers from Hub.`,
+            );
             for (const peerUrl of data.peers) {
               if (peerUrl !== `ws://127.0.0.1:${this.port}`) {
                 this.connectToPeer(peerUrl);
               }
             }
           }
-        } catch(e) {
+        } catch (e) {
           LOGGER.warn(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
         }
       };
-      
+
       hubSocket.onclose = () => {
         LOGGER.warn(`[NEXUS] Disconnected from Hub.`);
       };
-    } catch(e) {
+    } catch (e) {
       LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
     }
   }
 
-  private handleConnection(socket: WebSocket, direction: "INBOUND" | "OUTBOUND") {
+  private handleConnection(
+    socket: WebSocket,
+    direction: "INBOUND" | "OUTBOUND",
+  ) {
     socket.binaryType = "arraybuffer";
     let remoteNodeId: string | null = null;
 
@@ -211,7 +232,10 @@ export class SwarmNexus {
     };
 
     socket.onerror = (e) => {
-      LOGGER.error(`[NEXUS] Socket Error on ${remoteNodeId || 'unknown payload'}:`, e);
+      LOGGER.error(
+        `[NEXUS] Socket Error on ${remoteNodeId || "unknown payload"}:`,
+        e,
+      );
     };
   }
 
@@ -221,7 +245,7 @@ export class SwarmNexus {
     // [1..37] UUID (36 bytes text)
     const encoder = new TextEncoder();
     const idBytes = encoder.encode(this.nodeId);
-    
+
     if (idBytes.length !== 36) {
       LOGGER.error("[NEXUS] UUID encoding length mismatch!");
       return;
@@ -230,7 +254,7 @@ export class SwarmNexus {
     const payload = new Uint8Array(1 + 36);
     payload[0] = OP_NEXUS_HANDSHAKE;
     payload.set(idBytes, 1);
-    
+
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(payload.buffer);
     }
@@ -239,7 +263,7 @@ export class SwarmNexus {
   private handleHandshake(socket: WebSocket, payload: Uint8Array): string {
     const decoder = new TextDecoder();
     const remoteId = decoder.decode(payload.slice(1, 37));
-    
+
     LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
     this.connectedPeers.set(remoteId, socket);
     return remoteId;
@@ -248,13 +272,17 @@ export class SwarmNexus {
   public routeAtom(egressEvent: Uint8Array) {
     // Egress Event is exactly 256 bytes from WASM Memory.
     if (egressEvent.length !== 256) {
-      LOGGER.error(`[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`);
+      LOGGER.error(
+        `[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`,
+      );
       return;
     }
 
     if (this.connectedPeers.size === 0) {
       // Bounced because we are alone in the universe
-      LOGGER.info(`[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`);
+      LOGGER.info(
+        `[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`,
+      );
       return;
     }
 
@@ -273,9 +301,9 @@ export class SwarmNexus {
   private sendDataChannel(socket: WebSocket, payload: ArrayBufferLike) {
     // Graceful fallback abstraction for RTCDataChannel constraints
     if (typeof (globalThis as any).RTCPeerConnection !== "undefined") {
-        // Future WebRTC Implementation hooks here
-        // this.dataChannels.get(peerId).send(payload);
-    } 
+      // Future WebRTC Implementation hooks here
+      // this.dataChannels.get(peerId).send(payload);
+    }
     // Fallback to traditional WebSockets
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(payload);
@@ -286,7 +314,9 @@ export class SwarmNexus {
 
   private handleAtomTransit(payload: Uint8Array) {
     if (payload.length !== 257) {
-      LOGGER.error(`[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`);
+      LOGGER.error(
+        `[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`,
+      );
       return;
     }
 
@@ -294,9 +324,11 @@ export class SwarmNexus {
     const atomData = payload.slice(1);
     LOGGER.info(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
     if (this.onAtomTransit) {
-        this.onAtomTransit(atomData);
+      this.onAtomTransit(atomData);
     } else {
-        LOGGER.warn(`[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`);
+      LOGGER.warn(
+        `[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`,
+      );
     }
   }
 
@@ -311,9 +343,9 @@ export class SwarmNexus {
     view.setFloat64(9, this.localTps, true);
 
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
@@ -322,11 +354,11 @@ export class SwarmNexus {
     const view = new DataView(payload.buffer);
     const tick = view.getFloat64(1, true);
     const tps = view.getFloat64(9, true);
-    
+
     this.peerHeartbeats.set(remoteId, {
-        tick,
-        tps,
-        lastSeen: performance.now()
+      tick,
+      tps,
+      lastSeen: performance.now(),
     });
   }
 
@@ -335,12 +367,12 @@ export class SwarmNexus {
     const ticks: number[] = [localTickFallback]; // Always include ourselves
 
     for (const [peerId, hb] of this.peerHeartbeats.entries()) {
-        // Evict dead nodes > 2s
-        if (now - hb.lastSeen > 2000) {
-            this.peerHeartbeats.delete(peerId);
-            continue;
-        }
-        ticks.push(hb.tick);
+      // Evict dead nodes > 2s
+      if (now - hb.lastSeen > 2000) {
+        this.peerHeartbeats.delete(peerId);
+        continue;
+      }
+      ticks.push(hb.tick);
     }
 
     if (ticks.length === 1) return localTickFallback;
@@ -349,7 +381,7 @@ export class SwarmNexus {
     ticks.sort((a, b) => a - b);
     const mid = Math.floor(ticks.length / 2);
     if (ticks.length % 2 === 0) {
-        return (ticks[mid - 1] + ticks[mid]) / 2;
+      return (ticks[mid - 1] + ticks[mid]) / 2;
     }
     return ticks[mid];
   }
@@ -365,9 +397,9 @@ export class SwarmNexus {
     view.setBigUint64(9, hash, true);
 
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
@@ -380,7 +412,9 @@ export class SwarmNexus {
     // Naive local check for Phase 29: we expect this to match exactly our local epoch hash if we are at this tick.
     // If not, we just log a Byzantine warning since full State Merging is a future phase.
     // For now we just emit a warning locally allowing test to pick it up.
-    LOGGER.warn(`[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`);
+    LOGGER.warn(
+      `[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`,
+    );
   }
 
   // --- Phase 30: Bootstrapping ---
@@ -393,39 +427,47 @@ export class SwarmNexus {
     const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
     LOGGER.info(`[NEXUS] Broadcasting SYNC_REQUEST to Swarm...`);
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
   private handleSyncRequest(remoteId: string) {
-    LOGGER.info(`[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`);
+    LOGGER.info(
+      `[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`,
+    );
     if (this.onSyncRequest) {
-        this.onSyncRequest(remoteId);
+      this.onSyncRequest(remoteId);
     }
   }
 
   public sendEpochPayload(targetNodeId: string, epochData: Uint8Array) {
     const peer = this.connectedPeers.get(targetNodeId);
     if (!peer || peer.readyState !== WebSocket.OPEN) {
-        LOGGER.warn(`[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`);
-        return;
+      LOGGER.warn(
+        `[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`,
+      );
+      return;
     }
 
     const payload = new Uint8Array(1 + epochData.length);
     payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
     payload.set(epochData, 1);
-    
-    LOGGER.info(`[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`);
+
+    LOGGER.info(
+      `[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`,
+    );
     peer.send(payload.buffer);
   }
 
   private handleEpochPayload(payload: Uint8Array) {
-    LOGGER.info(`[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`);
+    LOGGER.info(
+      `[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`,
+    );
     const epochData = payload.slice(1);
     if (this.onEpochPayload) {
-        this.onEpochPayload(epochData);
+      this.onEpochPayload(epochData);
     }
   }
 }

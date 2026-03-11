@@ -14,7 +14,7 @@ const main = () => {
   entropyRuntime.currentValue = 800;
   const timeRuntime = createPhysiologicalLedgerRuntime("time_viscosity");
   timeRuntime.currentValue = 500;
-  
+
   const baseTaxRuntime = createGeneticLedgerRuntime(
     "pulse.homeostasis.baseTax",
   );
@@ -25,11 +25,21 @@ const main = () => {
     hormones: {
       entropy_pressure: snapshotLedgerRuntime(entropyRuntime),
       time_viscosity: snapshotLedgerRuntime(timeRuntime),
-      aggression: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("aggression")),
-      replication_bias: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("replication_bias")),
-      repair_drive: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("repair_drive")),
-      mutation_friction: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("mutation_friction")),
-      global_consensus: snapshotLedgerRuntime(createPhysiologicalLedgerRuntime("global_consensus")),
+      aggression: snapshotLedgerRuntime(
+        createPhysiologicalLedgerRuntime("aggression"),
+      ),
+      replication_bias: snapshotLedgerRuntime(
+        createPhysiologicalLedgerRuntime("replication_bias"),
+      ),
+      repair_drive: snapshotLedgerRuntime(
+        createPhysiologicalLedgerRuntime("repair_drive"),
+      ),
+      mutation_friction: snapshotLedgerRuntime(
+        createPhysiologicalLedgerRuntime("mutation_friction"),
+      ),
+      global_consensus: snapshotLedgerRuntime(
+        createPhysiologicalLedgerRuntime("global_consensus"),
+      ),
     },
     ledger: {
       "pulse.homeostasis.baseTax": snapshotLedgerRuntime(baseTaxRuntime),

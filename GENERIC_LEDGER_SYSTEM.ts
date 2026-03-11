@@ -296,6 +296,9 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
   if (!entry) {
     throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
   }
-  return createLedgerRuntime(entry as unknown as LedgerRuntimeConfig<K>, initialValue, historyLimit);
+  return createLedgerRuntime(
+    entry as unknown as LedgerRuntimeConfig<K>,
+    initialValue,
+    historyLimit,
+  );
 };
-

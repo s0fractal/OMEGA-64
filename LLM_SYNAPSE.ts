@@ -232,17 +232,17 @@ export const LLM_SYNAPSE = {
   },
 
   /**
-   * generateAtomicBytecode: Era 69 (Voice of Oracle)
-   * Prompts the LLM to output exactly 32 hex characters (16 bytes) representing new RISC-I bytecode.
+   * generateAtomicBytecode: Era 69 (Voice of Oracle) -> Phase 39 (Sovereign Epistemics)
+   * Prompts the LLM to output exactly 16 hex characters (8 bytes) representing a new Memetic Plasmid.
    */
   generateAtomicBytecode: async (
     telemetry: any,
-  ): Promise<{ genome: Uint8Array; meme?: Uint8Array } | null> => {
+  ): Promise<{ plasmid: Uint8Array; meme?: Uint8Array } | null> => {
     const OLLAMA_URL = Deno.env.get("OLLAMA_URL") ||
       "http://localhost:11434/api/generate";
     const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
 
-    const memSummary = telemetry.stigmergicSummary.length > 0
+    const memSummary = telemetry.stigmergicSummary?.length > 0
       ? telemetry.stigmergicSummary.map((s: any) =>
         `Signature ${s.sig} (Count: ${s.count})`
       ).join(", ")
@@ -250,7 +250,7 @@ export const LLM_SYNAPSE = {
 
     const prompt = `
             Task: You are the Sovereign Oracle of OMEGA-64. 
-            Translate the System Resonance into exactly 64 bytes (128 hex chars) of valid RISC-I bytecode.
+            Translate the System Resonance into exactly 8 bytes (16 hex chars) of valid RISC-I bytecode (a Memetic Plasmid).
 
             Context:
             - Nutrients: ${telemetry.nutrients}
@@ -264,13 +264,19 @@ export const LLM_SYNAPSE = {
             - [81, 00, 00, 00]: SIGNAL (Emits resonance pulse)
             - [A6, Mode, Addr, Val]: COLLECTIVE (Mode 1:Store Hive, 2:Load Hive, 5:PHASE_LOCK)
             - [A8, Type, Density, 00]: BUILD (Modifier structure grid)
+            - [AB, Offset, 00, 00]: INCORPORATE_PLASMID (Incorporate 8-byte meme from environment into genome)
+
+            IMPORTANT RULE (THERMODYNAMIC SAFEGUARD):
+            You are creating a Meme (8-byte plasmid). For atoms to actually accept and incorporate this code, it MUST be highly organized and useful.
+            It must have LOW Shannon Entropy (e.g. repeated patterns, elegance).
+            If you generate high-entropy chaos, the atoms will reject your meme due to exorbitant metabolic taxes.
 
             Goal: 
-            Generate exactly 64 bytes (128 hex characters) of optimized bytecode for the Regent's survival.
+            Generate exactly 8 bytes (16 hex characters) of optimized bytecode for the Regent's survival.
 
             Output JSON format:
             {
-              "instructions": "128_HEX_CHARS"
+              "plasmid": "16_HEX_CHARS"
             }
             ONLY RETURN THE JSON.
         `.trim();
@@ -292,33 +298,33 @@ export const LLM_SYNAPSE = {
         result = typeof data.response === "string"
           ? JSON.parse(data.response)
           : data.response;
-        } catch {
-          const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
-            .toUpperCase();
-          if (rawHex && rawHex.length >= 128) {
-            result = { instructions: rawHex.substring(0, 128) };
-          }
+      } catch {
+        const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
+          .toUpperCase();
+        if (rawHex && rawHex.length >= 16) {
+          result = { plasmid: rawHex.substring(0, 16) };
         }
-  
-        if (result.instructions && result.instructions.length >= 128) {
-          const genome = new Uint8Array(64);
-          for (let i = 0; i < 64; i++) {
-            genome[i] = parseInt(
-              result.instructions.substring(i * 2, i * 2 + 2),
-              16,
-            );
-          }
-  
-          return { genome };
+      }
+
+      if (result.plasmid && result.plasmid.length >= 16) {
+        const plasmid = new Uint8Array(8);
+        for (let i = 0; i < 8; i++) {
+          plasmid[i] = parseInt(
+            result.plasmid.substring(i * 2, i * 2 + 2),
+            16,
+          );
         }
+
+        return { plasmid };
+      }
     } catch (e) {
       console.warn(
         "Oracle connection failed (LLM Offline). Stochastic Mutation.",
       );
-      const genome = new Uint8Array(64);
-      // Default: SIGNAL + Replicate, pad the rest
-      genome.set([0x81, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00]);
-      return { genome };
+      const plasmid = new Uint8Array(8);
+      // Default low-entropy structured plasmid: SIGNAL twice
+      plasmid.set([0x81, 0x00, 0x00, 0x00, 0x81, 0x00, 0x00, 0x00]);
+      return { plasmid };
     }
     return null;
   },

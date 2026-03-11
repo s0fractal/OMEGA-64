@@ -1,5 +1,9 @@
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
-import { type LedgerRuntimeState, type LedgerRuntimeConfig, createLedgerRuntime } from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  createLedgerRuntime,
+  type LedgerRuntimeConfig,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -193,4 +197,3 @@ export const createPhysiologicalLedgerRuntime = (
   };
   return createLedgerRuntime(config, initialValue, historyLimit);
 };
-

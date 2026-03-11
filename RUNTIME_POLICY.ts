@@ -185,9 +185,11 @@ const systemAvatarIngressEnabled = parseEnvBool(
 );
 
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
-const hasMainnetArg = typeof Deno !== "undefined" && Deno.args.includes("--mainnet");
+const hasMainnetArg = typeof Deno !== "undefined" &&
+  Deno.args.includes("--mainnet");
 const mainnetEnabled = parseEnvBool(rawOmegaMainnet, hasMainnetArg);
-const bootstrapHubUrl = normalizeToken(rawBootstrapHubUrl) || "ws://127.0.0.1:9999";
+const bootstrapHubUrl = normalizeToken(rawBootstrapHubUrl) ||
+  "ws://127.0.0.1:9999";
 const p2pMutateEnabled = parseEnvBool(
   rawP2PMutateEnable ?? rawSystemControlEnable,
   false,

@@ -188,8 +188,8 @@ fn test_gt10_share_transfer_parity() {
 
     // Sender Energy: 5000 - 6000 = -1000, BUT wait!
     // OP_SHARE check: `if sender_energy >= scaled_amount` -> 5000 >= 6000 is FALSE.
-    // Thus transfer should ABORT. Sender just pays 14 metabolic tax (12 gas + 1 NOP break).
-    assert_eq!(state.matrix.energy[1], 5000 - 14);
+    // Thus transfer should ABORT. Sender just pays 16 metabolic tax (12 gas + 1 NOP break = 13 compute base + 2 noise tax).
+    assert_eq!(state.matrix.energy[1], 5000 - 16);
     assert_eq!(state.matrix.energy[2], 1000);
 
     // Let's give Atom 1 more energy to succeed
@@ -198,12 +198,12 @@ fn test_gt10_share_transfer_parity() {
 
     vm.step(&mut state, 1);
 
-    // SHARE R0, R1 -> 10 gas. NOP break -> 1 gas. Total 11 gas. Metabolic = 12 (1 + 11).
+    // SHARE R0, R1 -> 10 gas. NOP break -> 1 gas. Total 11 gas. Metabolic = 1 + 11 base + 1 noise = 13.
     // Transferred = 6000.
-    // New Atom 1 Energy: 10000 - 6000 - 12 = 3988
-    // New Atom 2 Energy: 10000 + 6000 = 7000.
+    // New Atom 1 Energy: 10000 - 6000 - 13 = 3987
+    // New Atom 2 Energy: 10000 + 6000 = 7000. Wait, atom 2 had 1000 before. 1000 + 6000 = 7000.
 
-    assert_eq!(state.matrix.energy[1], 3988);
+    assert_eq!(state.matrix.energy[1], 3987);
     assert_eq!(state.matrix.energy[2], 7000);
 }
 

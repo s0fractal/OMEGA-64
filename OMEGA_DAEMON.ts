@@ -1005,7 +1005,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
         ),
       }
       : undefined,
-    hormones: hormonesRaw.map(v => asFiniteNumber(v, 0)).slice(0, 6),
+    hormones: hormonesRaw.map((v) => asFiniteNumber(v, 0)).slice(0, 6),
   };
 };
 

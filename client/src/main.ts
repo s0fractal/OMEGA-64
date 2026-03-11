@@ -1,19 +1,24 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const MAX_ATOMS = 500_000;
 const PORT = 8086;
 const WS_URL = `ws://localhost:${PORT}`;
 
 // --- DOM Setup ---
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 if (!container) throw new Error("No #app element found");
 
 // --- Three.js Setup ---
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x050505);
 
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  10000,
+);
 camera.position.set(0, 0, 800);
 
 const renderer = new THREE.WebGLRenderer({ antialias: false });
@@ -27,12 +32,12 @@ controls.dampingFactor = 0.05;
 
 // --- InstancedMesh Setup ---
 const geometry = new THREE.PlaneGeometry(1.5, 1.5);
-const material = new THREE.MeshBasicMaterial({ 
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.8,
-    depthWrite: false, // Prevent depth sorting issues with transparent planes
-    blending: THREE.AdditiveBlending 
+const material = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  transparent: true,
+  opacity: 0.8,
+  depthWrite: false, // Prevent depth sorting issues with transparent planes
+  blending: THREE.AdditiveBlending,
 });
 
 const mesh = new THREE.InstancedMesh(geometry, material, MAX_ATOMS);
@@ -47,7 +52,7 @@ const currentPositions = new Float32Array(MAX_ATOMS * 3);
 const targetPositions = new Float32Array(MAX_ATOMS * 3);
 
 // We'll update colors immediately instead of lerping them to save CPU
-const colors = new Float32Array(MAX_ATOMS * 3); 
+const colors = new Float32Array(MAX_ATOMS * 3);
 
 const dummy = new THREE.Object3D();
 const colorHelper = new THREE.Color();
@@ -55,56 +60,56 @@ const colorHelper = new THREE.Color();
 // --- Network ---
 let ws: WebSocket;
 function connect() {
-    console.log(`[NET] Connecting to ${WS_URL}...`);
-    ws = new WebSocket(WS_URL);
-    ws.binaryType = "arraybuffer";
+  console.log(`[NET] Connecting to ${WS_URL}...`);
+  ws = new WebSocket(WS_URL);
+  ws.binaryType = "arraybuffer";
 
-    ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
-    
-    ws.onmessage = (event) => {
-        if (!(event.data instanceof ArrayBuffer)) return;
-        
-        // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
-        const packet = new Float32Array(event.data);
-        activeCount = Math.min(MAX_ATOMS, packet.length / 4);
+  ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
 
-        for (let i = 0; i < activeCount; i++) {
-            const pIdx = i * 4;
-            const x = packet[pIdx];
-            const y = packet[pIdx + 1];
-            const colorCode = packet[pIdx + 2];
-            const resonance = packet[pIdx + 3];
+  ws.onmessage = (event) => {
+    if (!(event.data instanceof ArrayBuffer)) return;
 
-            // Target Position Update (Z is resonance driven for 3D depth)
-            const p3Idx = i * 3;
-            targetPositions[p3Idx] = x;
-            targetPositions[p3Idx + 1] = y;
-            targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
+    // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
+    const packet = new Float32Array(event.data);
+    activeCount = Math.min(MAX_ATOMS, packet.length / 4);
 
-            // Color Update
-            if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
-            else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
-            else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
-            else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
-            else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
+    for (let i = 0; i < activeCount; i++) {
+      const pIdx = i * 4;
+      const x = packet[pIdx];
+      const y = packet[pIdx + 1];
+      const colorCode = packet[pIdx + 2];
+      const resonance = packet[pIdx + 3];
 
-            colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
-            
-            colors[p3Idx] = colorHelper.r;
-            colors[p3Idx + 1] = colorHelper.g;
-            colors[p3Idx + 2] = colorHelper.b;
-        }
+      // Target Position Update (Z is resonance driven for 3D depth)
+      const p3Idx = i * 3;
+      targetPositions[p3Idx] = x;
+      targetPositions[p3Idx + 1] = y;
+      targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
 
-        // Inform Three.js the active limit has changed
-        mesh.count = activeCount;
-    };
+      // Color Update
+      if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
+      else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
+      else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
+      else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
+      else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
 
-    ws.onclose = () => {
-        console.log("[NET] Disconnected. Reconnecting in 2s...");
-        setTimeout(connect, 2000);
-    };
-    
-    ws.onerror = (e) => console.error("[NET] Error", e);
+      colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
+
+      colors[p3Idx] = colorHelper.r;
+      colors[p3Idx + 1] = colorHelper.g;
+      colors[p3Idx + 2] = colorHelper.b;
+    }
+
+    // Inform Three.js the active limit has changed
+    mesh.count = activeCount;
+  };
+
+  ws.onclose = () => {
+    console.log("[NET] Disconnected. Reconnecting in 2s...");
+    setTimeout(connect, 2000);
+  };
+
+  ws.onerror = (e) => console.error("[NET] Error", e);
 }
 connect();
 
@@ -112,46 +117,57 @@ connect();
 const LERP_FACTOR = 0.3; // Speed of interpolation (0.0 to 1.0)
 
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    // 1. Interpolate Positions & Update Mesh
-    let matrixNeedsUpdate = false;
-    let colorNeedsUpdate = false;
+  // 1. Interpolate Positions & Update Mesh
+  let matrixNeedsUpdate = false;
+  let colorNeedsUpdate = false;
 
-    if (activeCount > 0) {
-        for (let i = 0; i < activeCount; i++) {
-            const p3Idx = i * 3;
-            
-            // Linear Interpolation: Current = Current + (Target - Current) * Factor
-            currentPositions[p3Idx] += (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
-            currentPositions[p3Idx + 1] += (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) * LERP_FACTOR;
-            currentPositions[p3Idx + 2] += (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) * LERP_FACTOR;
+  if (activeCount > 0) {
+    for (let i = 0; i < activeCount; i++) {
+      const p3Idx = i * 3;
 
-            dummy.position.set(currentPositions[p3Idx], currentPositions[p3Idx + 1], currentPositions[p3Idx + 2]);
-            // Keep planes facing camera (Billboard effect)
-            dummy.quaternion.copy(camera.quaternion); 
-            dummy.updateMatrix();
-            
-            mesh.setMatrixAt(i, dummy.matrix);
-            
-            colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
-            mesh.setColorAt(i, colorHelper);
-        }
-        matrixNeedsUpdate = true;
-        colorNeedsUpdate = true;
+      // Linear Interpolation: Current = Current + (Target - Current) * Factor
+      currentPositions[p3Idx] +=
+        (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
+      currentPositions[p3Idx + 1] +=
+        (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) *
+        LERP_FACTOR;
+      currentPositions[p3Idx + 2] +=
+        (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) *
+        LERP_FACTOR;
+
+      dummy.position.set(
+        currentPositions[p3Idx],
+        currentPositions[p3Idx + 1],
+        currentPositions[p3Idx + 2],
+      );
+      // Keep planes facing camera (Billboard effect)
+      dummy.quaternion.copy(camera.quaternion);
+      dummy.updateMatrix();
+
+      mesh.setMatrixAt(i, dummy.matrix);
+
+      colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
+      mesh.setColorAt(i, colorHelper);
     }
+    matrixNeedsUpdate = true;
+    colorNeedsUpdate = true;
+  }
 
-    if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
-    if (colorNeedsUpdate && mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
+  if (colorNeedsUpdate && mesh.instanceColor) {
+    mesh.instanceColor.needsUpdate = true;
+  }
 
-    controls.update();
-    renderer.render(scene, camera);
+  controls.update();
+  renderer.render(scene, camera);
 }
 animate();
 
 // --- Event Listeners ---
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });

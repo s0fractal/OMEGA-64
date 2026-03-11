@@ -210,7 +210,12 @@ export const AGENT_SIGNATURE = {
       const payload = encoder.encode(canonicalProposalPayload(proposal));
       if (verifyKey.scheme === "hmac-sha256/v1") {
         const key = await importHmac(verifyKey.secret, ["verify"]);
-        const ok = await crypto.subtle.verify("HMAC", key, sigBytes as unknown as BufferSource, payload);
+        const ok = await crypto.subtle.verify(
+          "HMAC",
+          key,
+          sigBytes as unknown as BufferSource,
+          payload,
+        );
         return ok
           ? { ok: true }
           : { ok: false, reason: REJECTION.SIGNATURE_INVALID };
@@ -719,7 +724,10 @@ const normalizeHex64 = (value: unknown): string | null => {
 };
 
 const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
-  const digest = await crypto.subtle.digest("SHA-256", bytes as unknown as BufferSource);
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    bytes as unknown as BufferSource,
+  );
   return bytesToHex(new Uint8Array(digest));
 };
 

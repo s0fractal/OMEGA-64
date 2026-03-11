@@ -598,11 +598,11 @@ export const STATE_MATRIX = {
     const len = active.length;
     // 4 floats per atom -> 16 bytes per atom. 500k atoms = 8MB packet.
     const packet = new Float32Array(len * 4);
-    
+
     for (let j = 0; j < len; j++) {
       const idx = active[j];
       const offset = j * 4;
-      packet[offset] = Atomics.load(xs, idx);     // x
+      packet[offset] = Atomics.load(xs, idx); // x
       packet[offset + 1] = Atomics.load(ys, idx); // y
       packet[offset + 2] = Atomics.load(roles, idx); // color
       packet[offset + 3] = Atomics.load(resonances, idx); // resonance

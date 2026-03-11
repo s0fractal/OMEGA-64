@@ -12,7 +12,6 @@ const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 
-
 // Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
 const SIN_LUT: StaticArray<i16> = [
   0,
@@ -637,7 +636,6 @@ const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
 // Genomes are at the start of instructions
 
-
 // Crystal type constants
 const CRYSTAL_OSCILLATOR: i32 = 5;
 
@@ -646,7 +644,6 @@ const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
 const PHEROMONE_COST_BASE: i32 = 10;
 const PLASMID_COST_BASE: i32 = 25;
-
 
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
 let accForceX: f32 = 0;
@@ -1015,8 +1012,6 @@ const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
 
-
-
 // Property IDs for GET/PUT
 const PROP_ENERGY: u8 = 0;
 const PROP_RESONANCE: u8 = 1;
@@ -1083,8 +1078,6 @@ function getHiveBalance(): i32 {
 function addHiveBalance(val: i32): i32 {
   return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 }
-
-
 
 const ROLE_NEUTRAL: u8 = 0;
 const ROLE_PRODUCER: u8 = 1;
@@ -1242,7 +1235,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
           // when arbitrary massive energy pools are assigned by the test runner.
           if (force < -20.0) force = -20.0;
           if (force > 20.0) force = 20.0;
-          
+
           // Anti-overshoot mechanism: Do not pull an atom past its target
           if (force > 0.0 && force > d) {
             force = d;
@@ -1318,8 +1311,6 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
   accForceX += tx;
   accForceY += ty;
 }
-
-
 
 function unpackGlyphKind(header: i32): i32 {
   return header & 0xFF;
@@ -1401,7 +1392,7 @@ function atomicDepositGlyphHeader(
     let nextAmplitude = currentAmplitude + amplitude;
     if (nextAmplitude > 8388607) nextAmplitude = 8388607;
     if (nextAmplitude < -8388608) nextAmplitude = -8388608;
-    
+
     // If waves perfectly annihilate, clear the glyph entirely
     const nextKind = nextAmplitude == 0 ? 0 : kind;
 
@@ -1463,7 +1454,13 @@ function secreteGlyph(
   const isDestructive = role == 4;
   const phaseIntensity = isDestructive ? -intensity : intensity;
 
-  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, phaseIntensity, payloadPtr);
+  atomicDepositGlyphHeader(
+    GLYPH_HEADER_OFF,
+    cell,
+    kind,
+    phaseIntensity,
+    payloadPtr,
+  );
 
   // Halo spill for Pheromones (kind=1)
   if (kind == 1) {
@@ -1501,15 +1498,15 @@ export function tickGlyphTransport(tick: i32): void {
     if (amp == 0) continue;
 
     const decay = decayForKind(kind, amp);
-    
+
     // Bidirectional Decay (pull towards zero)
     let retained = 0;
     if (amp > 0) {
-        retained = amp - decay;
-        if (retained < 0) retained = 0;
+      retained = amp - decay;
+      if (retained < 0) retained = 0;
     } else {
-        retained = amp - decay; // decay is negative when amp is negative
-        if (retained > 0) retained = 0;
+      retained = amp - decay; // decay is negative when amp is negative
+      if (retained > 0) retained = 0;
     }
 
     if (Math.abs(retained) > 0) {
@@ -1531,7 +1528,12 @@ export function tickGlyphTransport(tick: i32): void {
         let ny = gy + dy[i];
         if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
           const nextCell = ny * 140 + nx;
-          atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
+          atomicDepositGlyphHeader(
+            GLYPH_SCRATCH_HEADER_OFF,
+            nextCell,
+            kind,
+            share,
+          );
 
           if (share >= 128 || share <= -128) {
             const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -1716,9 +1718,9 @@ export function execute_atom(atomIndex: i32): void {
   let curX = getReadX(atomIndex) as i32;
   let curY = getReadY(atomIndex) as i32;
   let role = getRole(atomIndex);
-  
+
   if (atomIndex == 11 || atomIndex == 8) {
-      trace_atom(atomIndex, 1000, curX, curY, id as i32);
+    trace_atom(atomIndex, 1000, curX, curY, id as i32);
   }
 
   // --- VECTOR 7: THE QUANTUM SHIFT ---
@@ -1833,7 +1835,13 @@ export function execute_atom(atomIndex: i32): void {
     if (nextY > 799.0) nextY = 799.0;
 
     if (atomIndex == 11) {
-      trace_atom(11, 999, Math.round(accForceX) as i32, Math.round(vx) as i32, Math.round(nextX) as i32);
+      trace_atom(
+        11,
+        999,
+        Math.round(accForceX) as i32,
+        Math.round(vx) as i32,
+        Math.round(nextX) as i32,
+      );
     }
     storeClampedPos(
       atomIndex,
@@ -1927,8 +1935,7 @@ export function execute_atom(atomIndex: i32): void {
         if (prop == PROP_ENERGY) {
           energy = val;
           setEnergy(atomIndex, val);
-        }
-        else if (prop == PROP_RESONANCE) {
+        } else if (prop == PROP_RESONANCE) {
           if (val > resonance) {
             let diff = val - resonance;
             let cost = diff * 1000; // Energy is stored in thousandths
@@ -1936,7 +1943,7 @@ export function execute_atom(atomIndex: i32): void {
               energy -= cost;
               resonance = val;
             } else {
-              resonance += (energy / 1000);
+              resonance += energy / 1000;
               energy = 0;
             }
           } else {
@@ -1945,8 +1952,7 @@ export function execute_atom(atomIndex: i32): void {
           }
           setResonance(atomIndex, resonance);
           setEnergy(atomIndex, energy);
-        }
-        else if (prop == PROP_PHASE) setPhase(atomIndex, val);
+        } else if (prop == PROP_PHASE) setPhase(atomIndex, val);
         pc += 3;
         gasUsed += 2;
         break;
@@ -2155,8 +2161,6 @@ export function execute_atom(atomIndex: i32): void {
     finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
   );
 }
-
-
 
 const STR_VOID: i32 = 0;
 const STR_WIRE: i32 = 1;

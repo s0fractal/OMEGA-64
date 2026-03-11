@@ -1,7 +1,10 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
-const WASM_URL = new URL("../sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm", import.meta.url);
+const WASM_URL = new URL(
+  "../sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
+  import.meta.url,
+);
 
 async function createMatrix() {
   const memory = new WebAssembly.Memory({
@@ -25,7 +28,11 @@ async function createMatrix() {
 }
 
 function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
-  const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+  const view = new DataView(
+    payload.buffer,
+    payload.byteOffset,
+    payload.byteLength,
+  );
   const genome = payload.slice(0, 64);
   const energy = view.getInt32(64, true);
   const phase = view.getInt32(68, true);
@@ -42,25 +49,53 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
   const role = payload[148];
 
   // Find empty slot natively
-  const ids = new BigInt64Array(memory.buffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+  const ids = new BigInt64Array(
+    memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
   let atomIdx = Number(ids[1] === 0n ? 1n : 0n);
   if (atomIdx === 0) {
     for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
-        if (ids[i] === 0n) {
-            atomIdx = i;
-            break;
-        }
+      if (ids[i] === 0n) {
+        atomIdx = i;
+        break;
+      }
     }
   }
 
   if (atomIdx > 0) {
-    const energies = new Int32Array(memory.buffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-    const resonances = new Int32Array(memory.buffer, OFFSETS.RESONANCE_OFFSET, OFFSETS.MAX_ATOMS);
-    const phases = new Int32Array(memory.buffer, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS);
-    const roles = new Uint8Array(memory.buffer, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS);
-    const xs = new Int16Array(memory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
-    const ys = new Int16Array(memory.buffer, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS);
-    
+    const energies = new Int32Array(
+      memory.buffer,
+      OFFSETS.ENERGY_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const resonances = new Int32Array(
+      memory.buffer,
+      OFFSETS.RESONANCE_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const phases = new Int32Array(
+      memory.buffer,
+      OFFSETS.PHASE_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const roles = new Uint8Array(
+      memory.buffer,
+      OFFSETS.ROLES_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const xs = new Int16Array(
+      memory.buffer,
+      OFFSETS.XS_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const ys = new Int16Array(
+      memory.buffer,
+      OFFSETS.YS_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+
     energies[atomIdx] = energy;
     resonances[atomIdx] = resonance;
     phases[atomIdx] = phase;
@@ -69,11 +104,19 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
     xs[atomIdx] = nx;
     ys[atomIdx] = ny;
 
-    const logic = new Uint8Array(memory.buffer, OFFSETS.INSTRUCTIONS_OFFSET + atomIdx * 64, 64);
+    const logic = new Uint8Array(
+      memory.buffer,
+      OFFSETS.INSTRUCTIONS_OFFSET + atomIdx * 64,
+      64,
+    );
     logic.set(genome);
 
     // Context maps natively from 84..148 block representing 16 x i32 slots.
-    const context = new Int32Array(memory.buffer, OFFSETS.CONTEXT_OFFSET + atomIdx * 16 * 4, 16);
+    const context = new Int32Array(
+      memory.buffer,
+      OFFSETS.CONTEXT_OFFSET + atomIdx * 16 * 4,
+      16,
+    );
     for (let c = 0; c < 16; c++) {
       context[c] = view.getInt32(84 + (c * 4), true);
     }
@@ -85,18 +128,38 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   const matrixB = await createMatrix();
 
   // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
-  const idsA = new BigInt64Array(matrixA.memory.buffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
-  const xsA = new Int16Array(matrixA.memory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
-  const ysA = new Int16Array(matrixA.memory.buffer, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS);
-  const energiesA = new Int32Array(matrixA.memory.buffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-  const logicA = new Uint8Array(matrixA.memory.buffer, OFFSETS.INSTRUCTIONS_OFFSET, OFFSETS.MAX_ATOMS * 64);
+  const idsA = new BigInt64Array(
+    matrixA.memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const xsA = new Int16Array(
+    matrixA.memory.buffer,
+    OFFSETS.XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const ysA = new Int16Array(
+    matrixA.memory.buffer,
+    OFFSETS.YS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const energiesA = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const logicA = new Uint8Array(
+    matrixA.memory.buffer,
+    OFFSETS.INSTRUCTIONS_OFFSET,
+    OFFSETS.MAX_ATOMS * 64,
+  );
 
   const atomIdxA = 1;
   idsA[atomIdxA] = 12345678n;
   xsA[atomIdxA] = 1398; // Close to Edge
   ysA[atomIdxA] = 400;
   energiesA[atomIdxA] = 5000;
-  
+
   // Create a dummy target at the absolute edge (1399) to pull the atom outwards
   const targetIdx = 2;
   idsA[targetIdx] = 87654321n;
@@ -120,11 +183,15 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   // OP_SYSCALL (0x60)
   logicA[atomIdxA * 64 + 9] = 0x60; // OP_SYSCALL
-  
+
   // Call execute_atom(1)
   matrixA.exports.execute_atom(atomIdxA);
 
-  const contextA = new Int32Array(matrixA.memory.buffer, OFFSETS.CONTEXT_OFFSET, OFFSETS.MAX_ATOMS * 16);
+  const contextA = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.CONTEXT_OFFSET,
+    OFFSETS.MAX_ATOMS * 16,
+  );
   console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
   console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
   console.log("Post Execute - R1 (dx):", contextA[atomIdxA * 16 + 1]);
@@ -133,29 +200,61 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   // 2. Assert Atom vanished from A (Recycled)
   assertEquals(energiesA[atomIdxA], 0, "Atom should be recycled on Egress");
-  
+
   // 3. Extract EgressEvent
-  const headView = new Int32Array(matrixA.memory.buffer, OFFSETS.EGRESS_HEAD_OFFSET, 1);
+  const headView = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.EGRESS_HEAD_OFFSET,
+    1,
+  );
   const writeHead = Atomics.load(headView, 0);
   assertEquals(writeHead, 1, "Egress head should be incremented to 1");
 
-  const dataView = new Uint8Array(matrixA.memory.buffer, OFFSETS.EGRESS_DATA_OFFSET, 256);
+  const dataView = new Uint8Array(
+    matrixA.memory.buffer,
+    OFFSETS.EGRESS_DATA_OFFSET,
+    256,
+  );
   const payload = dataView.slice(0, 256);
 
   // 4. Inject into Matrix B
   injectForeignAtom(matrixB.memory, payload);
 
   // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
-  const idsB = new BigInt64Array(matrixB.memory.buffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
-  const xsB = new Int16Array(matrixB.memory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
-  const energiesB = new Int32Array(matrixB.memory.buffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-  const logicB = new Uint8Array(matrixB.memory.buffer, OFFSETS.INSTRUCTIONS_OFFSET, OFFSETS.MAX_ATOMS * 64);
-  
+  const idsB = new BigInt64Array(
+    matrixB.memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const xsB = new Int16Array(
+    matrixB.memory.buffer,
+    OFFSETS.XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const energiesB = new Int32Array(
+    matrixB.memory.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const logicB = new Uint8Array(
+    matrixB.memory.buffer,
+    OFFSETS.INSTRUCTIONS_OFFSET,
+    OFFSETS.MAX_ATOMS * 64,
+  );
+
   // The first empty slot should be 1
   const atomIdxB = 1;
   assertEquals(idsB[atomIdxB] > 0n, true, "Atom should exist in Matrix B");
-  assertEquals(energiesB[atomIdxB], 5000, "Energy should match identically in Matrix B");
-  assertEquals(xsB[atomIdxB], 0, "X Coordinate mapped to Matrix B West Boundary limit");
+  assertEquals(
+    energiesB[atomIdxB],
+    5000,
+    "Energy should match identically in Matrix B",
+  );
+  assertEquals(
+    xsB[atomIdxB],
+    0,
+    "X Coordinate mapped to Matrix B West Boundary limit",
+  );
   assertEquals(logicB[atomIdxB * 64 + 0], 0x01, "Genome identical match");
   assertEquals(logicB[atomIdxB * 64 + 4], 0x01, "Genome identical match piece");
 });

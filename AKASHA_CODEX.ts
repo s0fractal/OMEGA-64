@@ -1691,18 +1691,18 @@ export const AKASHA_CODEX = {
     ];
     let bestDistance = Number.MAX_VALUE;
     let bestEntry: InvariantEntry | null = null;
-    
+
     for (const entry of invariantIndex) {
       if (entry.epoch === epoch) continue; // Skip current epoch
       if (!entry.hormones || entry.hormones.length < 6) continue;
-      
+
       let sqDist = 0;
       for (let i = 0; i < 6; i++) {
         const diff = entry.hormones[i] - currentHormones[i];
         sqDist += diff * diff;
       }
       const dist = Math.sqrt(sqDist);
-      
+
       if (dist < bestDistance) {
         bestDistance = dist;
         bestEntry = entry;
@@ -1721,9 +1721,12 @@ export const AKASHA_CODEX = {
 
     let promptBridge =
       `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, how the glyph transport regime affected the field, and what the latest daemon effect contour did to the lattice.`;
-    
+
     if (hippocampusRecall) {
-      promptBridge += ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${hippocampusRecall.distance.toFixed(1)}. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
+      promptBridge +=
+        ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${
+          hippocampusRecall.distance.toFixed(1)
+        }. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
     }
 
     return {

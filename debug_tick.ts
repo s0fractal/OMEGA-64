@@ -12,7 +12,8 @@ const main = async () => {
     },
   });
   console.log("Instantiated.");
-  const tickGlyphTransport = instantiated.instance.exports.tickGlyphTransport as (tick: number) => void;
+  const tickGlyphTransport = instantiated.instance.exports
+    .tickGlyphTransport as (tick: number) => void;
   Atomics.store(STATE_MATRIX.signalGrid, 512, 512);
   const memoryCell = 544;
   const memoryOffset = memoryCell * 8;
@@ -28,9 +29,15 @@ const main = async () => {
     138945860, // SECRETION_STATS_OFFSET from OFFSETS.ts
     12,
   );
-  
-  console.log("Secretion Stats [10] (Signal Leak):", Atomics.load(secretionStatsView, 10));
-  console.log("Secretion Stats [11] (Memory Leak):", Atomics.load(secretionStatsView, 11));
+
+  console.log(
+    "Secretion Stats [10] (Signal Leak):",
+    Atomics.load(secretionStatsView, 10),
+  );
+  console.log(
+    "Secretion Stats [11] (Memory Leak):",
+    Atomics.load(secretionStatsView, 11),
+  );
 };
 
 main();

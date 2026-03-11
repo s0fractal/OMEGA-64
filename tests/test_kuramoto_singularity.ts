@@ -36,15 +36,19 @@ async function main() {
 
   // Assert it completes incredibly fast due to execution limits and neighbor limits
   // (under normal circumstances an O(N^2) loop here without limits would hang the worker)
-  if (elapsed > 100) { 
-     console.warn(`⚠️ Warning: Executed in ${elapsed}ms, which is slower than 100ms bound.`);
+  if (elapsed > 100) {
+    console.warn(
+      `⚠️ Warning: Executed in ${elapsed}ms, which is slower than 100ms bound.`,
+    );
   }
 
-  // We should see it finish cleanly. 
+  // We should see it finish cleanly.
   assertEquals(true, true);
-  
+
   PULSE.stopWorkers();
-  console.log("✅ [TEST] Kuramoto Singularity test passed (No WorkerTimeoutError).");
+  console.log(
+    "✅ [TEST] Kuramoto Singularity test passed (No WorkerTimeoutError).",
+  );
 }
 
 main().catch((err) => {

@@ -91,41 +91,43 @@ export const SOVEREIGN_ORACLE = {
   gatherEpochTelemetry: () => {
     const matrixRes = STATE_MATRIX.getMatrixResonance();
     const clusterSync = STATE_MATRIX.getClusterSync();
-    
+
     // Calculate global Matrix statistics
     const activeIndices = STATE_MATRIX.getActiveIndices();
     const population = activeIndices.length;
-    
+
     let totalEnergy = 0;
     let successfulSynapses = 0;
-    
+
     // Tally dominant species base genomes (first 8 bytes)
     const genomeCounts = new Map<string, number>();
 
     for (const idx of activeIndices) {
-        totalEnergy += STATE_MATRIX.getEnergy(idx);
-        
-        // Count active learned synapses 
-        // (Assuming each atom has 8 semantic weight channels in Phase 25)
-        for (let s = 0; s < 8; s++) {
-            if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
-               successfulSynapses++;
-               break; // just count if the atom has ANY active synapses
-            }
+      totalEnergy += STATE_MATRIX.getEnergy(idx);
+
+      // Count active learned synapses
+      // (Assuming each atom has 8 semantic weight channels in Phase 25)
+      for (let s = 0; s < 8; s++) {
+        if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
+          successfulSynapses++;
+          break; // just count if the atom has ANY active synapses
         }
-        
-        const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
-        const hex = Array.from(genomeBase).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
-        genomeCounts.set(hex, (genomeCounts.get(hex) || 0) + 1);
+      }
+
+      const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
+      const hex = Array.from(genomeBase).map((b) =>
+        b.toString(16).padStart(2, "0")
+      ).join("").toUpperCase();
+      genomeCounts.set(hex, (genomeCounts.get(hex) || 0) + 1);
     }
 
     const avgEnergy = population > 0 ? Math.floor(totalEnergy / population) : 0;
-    
+
     // Sort and get top 3 dominant genomes
     const topGenomes = Array.from(genomeCounts.entries())
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([hex, count]) => ({ signature: hex, count }));
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([hex, count]) => ({ signature: hex, count }));
 
     return {
       matrixResonance: matrixRes,
@@ -133,24 +135,26 @@ export const SOVEREIGN_ORACLE = {
       population,
       avg_energy: avgEnergy,
       successful_synapses: successfulSynapses,
-      dominant_genomes: topGenomes
+      dominant_genomes: topGenomes,
     };
   },
 
   parseLLMResponse: (response: string): Uint8Array => {
-      // Clean string of all whitespace, quotes, markdown formatting
-      const cleanHex = response.replace(/[^0-9A-Fa-f]/g, "").toUpperCase();
-      
-      // We expect exactly 64 bytes (128 hex characters)
-      if (cleanHex.length !== 128) {
-          throw new Error(`LLM Oracle payload size mismatch. Expected 128 hex chars (64 bytes), parsed ${cleanHex.length}.`);
-      }
+    // Clean string of all whitespace, quotes, markdown formatting
+    const cleanHex = response.replace(/[^0-9A-Fa-f]/g, "").toUpperCase();
 
-      const instructions = new Uint8Array(64);
-      for (let i = 0; i < 64; i++) {
-          instructions[i] = parseInt(cleanHex.substring(i * 2, i * 2 + 2), 16);
-      }
-      return instructions;
+    // We expect exactly 8 bytes (16 hex characters)
+    if (cleanHex.length !== 16) {
+      throw new Error(
+        `LLM Oracle payload size mismatch. Expected 16 hex chars (8 bytes), parsed ${cleanHex.length}.`,
+      );
+    }
+
+    const plasmid = new Uint8Array(8);
+    for (let i = 0; i < 8; i++) {
+      plasmid[i] = parseInt(cleanHex.substring(i * 2, i * 2 + 2), 16);
+    }
+    return plasmid;
   },
   queueMutation: (mutation: OraclePendingMutation): void => {
     if (
@@ -281,15 +285,19 @@ export const SOVEREIGN_ORACLE = {
           const head = plasmid.subarray(0, 4);
           const tail = plasmid.subarray(4, 8);
           const writeCell = (
-            gridIdx: number,
+            cellIdx: number,
             charge: number,
             payload: Uint8Array,
           ) => {
-            STATE_MATRIX.memoryGrid[gridIdx] = charge & 0xFF;
-            STATE_MATRIX.memoryGrid[gridIdx + 1] = (charge >> 8) & 0xFF;
-            STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
-            STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
-            STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
+            // Pack kind 3 (plasmid) and amplitude into the 32-bit header
+            const kind = 3;
+            let amp = charge;
+            if (amp > 8388607) amp = 8388607;
+            if (amp < -8388608) amp = -8388608;
+            const packedHeader = (amp << 8) | (kind & 0xFF);
+
+            STATE_MATRIX.glyphHeaders[cellIdx] = packedHeader;
+            STATE_MATRIX.glyphPayload.set(payload, cellIdx * 8);
           };
 
           let seededCells = 0;
@@ -349,27 +357,31 @@ export const SOVEREIGN_ORACLE = {
         stigmergicSummary: memSummary,
       });
 
-      if (oracleResult && oracleResult.genome) {
-        let newInstructions: Uint8Array;
+      if (oracleResult && oracleResult.plasmid) {
+        let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
           // Attempt raw payload format if string provided, otherwise trust oracleResult
-          if (typeof oracleResult.genome === "string") {
-            newInstructions = SOVEREIGN_ORACLE.parseLLMResponse(oracleResult.genome);
+          if (typeof oracleResult.plasmid === "string") {
+            newPlasmid = SOVEREIGN_ORACLE.parseLLMResponse(
+              oracleResult.plasmid,
+            );
           } else {
-            newInstructions = oracleResult.genome;
-            if (newInstructions.length !== 64) {
-               throw new Error(`LLM Oracle structure breach. Expected 64 byte payload, received ${newInstructions.length}`);
+            newPlasmid = oracleResult.plasmid;
+            if (newPlasmid.length !== 8) {
+              throw new Error(
+                `LLM Oracle structure breach. Expected 8 byte payload, received ${newPlasmid.length}`,
+              );
             }
           }
-           
-          hex = Array.from(newInstructions).map((b) =>
+
+          hex = Array.from(newPlasmid).map((b) =>
             b.toString(16).padStart(2, "0")
           ).join("").toUpperCase();
         } catch (parseError) {
-           LOGGER.warn(`🛑 [ORACLE] Genome Structure Malformed: ${parseError}`);
-           return;
+          LOGGER.warn(`🛑 [ORACLE] Plasmid Structure Malformed: ${parseError}`);
+          return;
         }
 
         SOVEREIGN_ORACLE.guidanceCache.add(hex);
@@ -381,7 +393,7 @@ export const SOVEREIGN_ORACLE = {
         }
 
         LOGGER.info(
-          `👁️ [ORACLE] Oracle responded with instructions of length ${newInstructions.length}`,
+          `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length}`,
         );
         if (STATE_MATRIX.getId(regentIndex) === 0n) {
           LOGGER.debug(
@@ -389,78 +401,103 @@ export const SOVEREIGN_ORACLE = {
           );
           return;
         }
-        // --- PHASE 23: EPISTEMIC LOOP CAUTION ---
-        try {
-          // Pre-flight check via native WebAssembly shadow clone
-          const drift = await PULSE.simulateFuture(50, regentIndex, new Uint8Array(newInstructions));
-          
-          let driftIndex = 0;
-          if (drift.populationDiff < 0) driftIndex += Math.abs(drift.populationDiff) * 2;
-          if (drift.coherenceDiff < 0) driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
-          if (drift.energyDiff < -100) driftIndex += Math.abs(drift.energyDiff) * 0.01;
-          
-          if (driftIndex > 20 || drift.populationDiff <= -1) {
-            LOGGER.warn(
-              `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${driftIndex.toFixed(2)})`
-            );
-            return; // Abort timeline divergence
-          }
-          LOGGER.info(`🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${driftIndex.toFixed(2)}`);
-        } catch (simErr) {
-          LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
-          return;
-        }
 
-        if (ORACLE_MUTATION_MODE === "shadow") {
-          const proposalId = `sp_${Date.now()}`;
-          const driftBudget = 0.15; // Fixed budget for now
-          const proposal = {
-            id: proposalId,
-            targetRole: "any",
-            proposedBytecode: Array.from(newInstructions),
-            driftBudget,
-          };
-          try {
-            const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
-            let proposals = [];
-            try {
-              const data = await Deno.readTextFile(sandboxPath);
-              proposals = JSON.parse(data).proposals || [];
-            } catch {
-              // Ignore if missing or invalid
-            }
-            proposals.push(proposal);
-            await Deno.writeTextFile(sandboxPath, JSON.stringify({ proposals }, null, 2));
-            LOGGER.info(
-              `🌑 [ORACLE] Generated Sandbox Proposal ${proposalId} (Drift Budget: ${driftBudget})`,
-            );
-          } catch (err) {
-            LOGGER.error(`🌑 [ORACLE] Failed to write Sandbox Proposal:`, err);
-          }
-        } else if (ORACLE_MUTATION_MODE === "direct") {
-          SOVEREIGN_ORACLE.queueMutation({
-            kind: "oracle_head_mutation",
-            regentIndex,
-            headBytes: new Uint8Array(newInstructions),
-            genomeHex: hex,
-          });
-          LOGGER.info(
-            `⚡ [ORACLE] Divine Intervention applied. Direct semantic mutation queued. Hash: [${hex}]`,
+        if (
+          ORACLE_MUTATION_MODE === "direct" || ORACLE_MUTATION_MODE === "shadow"
+        ) {
+          // Fallback legacy behavior: overwrite beginning of instructions
+          const fullGenome = new Uint8Array(
+            STATE_MATRIX.getInstructions(regentIndex),
           );
+          fullGenome.set(newPlasmid, 0); // Put the 8 bytes at the start
+
+          // --- PHASE 23: EPISTEMIC LOOP CAUTION ---
+          try {
+            const drift = await PULSE.simulateFuture(
+              50,
+              regentIndex,
+              fullGenome,
+            );
+
+            let driftIndex = 0;
+            if (drift.populationDiff < 0) {
+              driftIndex += Math.abs(drift.populationDiff) * 2;
+            }
+            if (drift.coherenceDiff < 0) {
+              driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
+            }
+            if (drift.energyDiff < -100) {
+              driftIndex += Math.abs(drift.energyDiff) * 0.01;
+            }
+
+            if (driftIndex > 20 || drift.populationDiff <= -1) {
+              LOGGER.warn(
+                `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${
+                  driftIndex.toFixed(2)
+                })`,
+              );
+              return;
+            }
+            LOGGER.info(
+              `🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${
+                driftIndex.toFixed(2)
+              }`,
+            );
+          } catch (simErr) {
+            LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
+            return;
+          }
+
+          if (ORACLE_MUTATION_MODE === "shadow") {
+            const proposalId = `sp_${Date.now()}`;
+            const driftBudget = 0.15;
+            const proposal = {
+              id: proposalId,
+              targetRole: "any",
+              proposedBytecode: Array.from(fullGenome),
+              driftBudget,
+            };
+            try {
+              const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
+              let proposals = [];
+              try {
+                const data = await Deno.readTextFile(sandboxPath);
+                proposals = JSON.parse(data).proposals || [];
+              } catch {
+                // Ignore if missing
+              }
+              proposals.push(proposal);
+              await Deno.writeTextFile(
+                sandboxPath,
+                JSON.stringify({ proposals }, null, 2),
+              );
+            } catch (err) {
+              // Ignore if sandbox directory does not exist or write fails
+            }
+          } else {
+            SOVEREIGN_ORACLE.queueMutation({
+              kind: "oracle_head_mutation",
+              regentIndex,
+              headBytes: fullGenome,
+              genomeHex: hex,
+            });
+            LOGGER.info(
+              `⚡ [ORACLE] Divine Intervention applied. Direct semantic mutation queued. Hash: [${hex}]`,
+            );
+          }
         } else {
+          // Default: stigmergic
           const gridIdx = toGridIndexNearRegent(regentIndex);
           if (gridIdx !== null) {
             SOVEREIGN_ORACLE.queueMutation({
               kind: "oracle_plasmid_injection",
               gridIdx,
-              charge: 1000,
-              plasmidBytes: new Uint8Array(newInstructions.slice(0, 8)),
+              charge: 3000,
+              plasmidBytes: newPlasmid,
               source: "oracle_guidance",
             });
             LOGGER.info(
-              `🧬 [ORACLE] Divine Intervention applied. Stigmergic plasmid queued. Hash: [${
-                hex.slice(0, 16)
-              }]`,
+              `🧬 [ORACLE] Divine Intervention applied. Stigmergic plasmid queued. Hash: [${hex}]`,
             );
           }
         }

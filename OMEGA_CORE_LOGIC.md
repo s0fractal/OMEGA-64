@@ -1,16 +1,13 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-10T16:52:06.063Z*
-*Exported Files: 145*
-*Runtime Roots: 11*
-*Runtime Closure Files: 69*
-*Non-Runtime Code Files: 58*
-*Runtime-Support Code Files: 18*
-*Experimental Code Files: 40*
-*Manifest SHA256: f08beb7533c54d2553a188bb572f949edc014186504a080e3e02c129fbe544c8*
-*Export Set SHA256: 56a51e4c669787ab21e0b2ad33a0913933370e9b25f0bfd712bd183be418bba0*
-*Export Content SHA256: 9f9486af69578508e50c06326e30330f8f0a8261576f061ab6a0ee4e1b579f0f*
-*Git Commit: 69a6b0883b7a*
+_Generated: 2026-03-10T16:52:06.063Z_ _Exported Files: 145_ _Runtime Roots: 11_
+_Runtime Closure Files: 69_ _Non-Runtime Code Files: 58_ _Runtime-Support Code
+Files: 18_ _Experimental Code Files: 40_ _Manifest SHA256:
+f08beb7533c54d2553a188bb572f949edc014186504a080e3e02c129fbe544c8_ _Export Set
+SHA256: 56a51e4c669787ab21e0b2ad33a0913933370e9b25f0bfd712bd183be418bba0_
+_Export Content SHA256:
+9f9486af69578508e50c06326e30330f8f0a8261576f061ab6a0ee4e1b579f0f_ _Git Commit:
+69a6b0883b7a_
 
 ---
 
@@ -349,7 +346,7 @@ export class AgentProxy {
             Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
         ),
       })).sort((a, b) => a.distance - b.distance)
-         .slice(0, 30);
+      .slice(0, 30);
 
     return new Response(
       JSON.stringify({
@@ -439,7 +436,6 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
-
 ```
 
 ---
@@ -2140,18 +2136,18 @@ export const AKASHA_CODEX = {
     ];
     let bestDistance = Number.MAX_VALUE;
     let bestEntry: InvariantEntry | null = null;
-    
+
     for (const entry of invariantIndex) {
       if (entry.epoch === epoch) continue; // Skip current epoch
       if (!entry.hormones || entry.hormones.length < 6) continue;
-      
+
       let sqDist = 0;
       for (let i = 0; i < 6; i++) {
         const diff = entry.hormones[i] - currentHormones[i];
         sqDist += diff * diff;
       }
       const dist = Math.sqrt(sqDist);
-      
+
       if (dist < bestDistance) {
         bestDistance = dist;
         bestEntry = entry;
@@ -2170,9 +2166,12 @@ export const AKASHA_CODEX = {
 
     let promptBridge =
       `Use plain language. Explain ${title.toLowerCase()}, how ${leadSpecies} shaped recent epochs, how the glyph transport regime affected the field, and what the latest daemon effect contour did to the lattice.`;
-    
+
     if (hippocampusRecall) {
-      promptBridge += ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${hippocampusRecall.distance.toFixed(1)}. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
+      promptBridge +=
+        ` IMPORTANT: Episodic Memory retrieved epoch ${hippocampusRecall.epoch} with chemical distance ${
+          hippocampusRecall.distance.toFixed(1)
+        }. Context: ${hippocampusRecall.summary}. Use this past experience to avoid repeating mistakes or to replicate success.`;
     }
 
     return {
@@ -2222,7 +2221,6 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
-
 ```
 
 ---
@@ -2961,7 +2959,6 @@ const reqHandler = async (req: Request) => {
 
 Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
 console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
-
 ```
 
 ---
@@ -3274,7 +3271,6 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
-
 ```
 
 ---
@@ -3663,7 +3659,6 @@ export const AKASHA_SIGNALING = {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -4124,7 +4119,6 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -4334,7 +4328,6 @@ Deep chain adds:
 - Policy: test files and archive/legacy folders are excluded; required active
   files must exist; context is limited to active architecture docs and UI/ops
   surfaces.
-
 ```
 
 ---
@@ -4355,7 +4348,6 @@ declare function trace_atom(
 const STR_WIDTH: i32 = 140;
 const STR_HEIGHT: i32 = 80;
 const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
-
 
 // Precomputed Q15 format: values from -32768 to 32767 mapping to -1.0 to 1.0.
 const SIN_LUT: StaticArray<i16> = [
@@ -4981,7 +4973,6 @@ const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
 const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
 // Genomes are at the start of instructions
 
-
 // Crystal type constants
 const CRYSTAL_OSCILLATOR: i32 = 5;
 
@@ -4990,7 +4981,6 @@ const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
 const MAX_ASCENSIONS: i32 = 64;
 const PHEROMONE_COST_BASE: i32 = 10;
 const PLASMID_COST_BASE: i32 = 25;
-
 
 // Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
 let accForceX: f32 = 0;
@@ -5359,8 +5349,6 @@ const OP_RESONATE_KURAMOTO: u8 = 0xB1;
 const OP_SENSE: u8 = 0xB2;
 const OP_SPORE_DRIVE: u8 = 0xA8;
 
-
-
 // Property IDs for GET/PUT
 const PROP_ENERGY: u8 = 0;
 const PROP_RESONANCE: u8 = 1;
@@ -5427,8 +5415,6 @@ function getHiveBalance(): i32 {
 function addHiveBalance(val: i32): i32 {
   return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 }
-
-
 
 const ROLE_NEUTRAL: u8 = 0;
 const ROLE_PRODUCER: u8 = 1;
@@ -5658,8 +5644,6 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
   accForceY += ty;
 }
 
-
-
 function unpackGlyphKind(header: i32): i32 {
   return header & 0xFF;
 }
@@ -5740,7 +5724,7 @@ function atomicDepositGlyphHeader(
     let nextAmplitude = currentAmplitude + amplitude;
     if (nextAmplitude > 8388607) nextAmplitude = 8388607;
     if (nextAmplitude < -8388608) nextAmplitude = -8388608;
-    
+
     // If waves perfectly annihilate, clear the glyph entirely
     const nextKind = nextAmplitude == 0 ? 0 : kind;
 
@@ -5802,7 +5786,13 @@ function secreteGlyph(
   const isDestructive = role == 4;
   const phaseIntensity = isDestructive ? -intensity : intensity;
 
-  atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell, kind, phaseIntensity, payloadPtr);
+  atomicDepositGlyphHeader(
+    GLYPH_HEADER_OFF,
+    cell,
+    kind,
+    phaseIntensity,
+    payloadPtr,
+  );
 
   // Halo spill for Pheromones (kind=1)
   if (kind == 1) {
@@ -5840,15 +5830,15 @@ export function tickGlyphTransport(tick: i32): void {
     if (amp == 0) continue;
 
     const decay = decayForKind(kind, amp);
-    
+
     // Bidirectional Decay (pull towards zero)
     let retained = 0;
     if (amp > 0) {
-        retained = amp - decay;
-        if (retained < 0) retained = 0;
+      retained = amp - decay;
+      if (retained < 0) retained = 0;
     } else {
-        retained = amp - decay; // decay is negative when amp is negative
-        if (retained > 0) retained = 0;
+      retained = amp - decay; // decay is negative when amp is negative
+      if (retained > 0) retained = 0;
     }
 
     if (Math.abs(retained) > 0) {
@@ -5870,7 +5860,12 @@ export function tickGlyphTransport(tick: i32): void {
         let ny = gy + dy[i];
         if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
           const nextCell = ny * 140 + nx;
-          atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share);
+          atomicDepositGlyphHeader(
+            GLYPH_SCRATCH_HEADER_OFF,
+            nextCell,
+            kind,
+            share,
+          );
 
           if (share >= 128 || share <= -128) {
             const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -6458,8 +6453,6 @@ export function execute_atom(atomIndex: i32): void {
     finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
   );
 }
-
-
 
 const STR_VOID: i32 = 0;
 const STR_WIRE: i32 = 1;
@@ -7087,7 +7080,6 @@ export function apply_metabolism_kernel(
     }
   }
 }
-
 ```
 
 ---
@@ -7100,7 +7092,6 @@ export function apply_metabolism_kernel(
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
-
 ```
 
 ---
@@ -7185,7 +7176,6 @@ export const ATOMIC_LEDGER = {
     return events;
   },
 };
-
 ```
 
 ---
@@ -7259,7 +7249,6 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
-
 ```
 
 ---
@@ -7347,7 +7336,6 @@ async function runAvatar() {
 if (import.meta.main) {
   runAvatar();
 }
-
 ```
 
 ---
@@ -7390,7 +7378,6 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -7487,7 +7474,6 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```
 
 ---
@@ -7542,7 +7528,6 @@ const stat = await Deno.stat("build/release.wasm");
 console.log(
   `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );
-
 ```
 
 ---
@@ -7553,77 +7538,80 @@ console.log(
 import * as off from "./OFFSETS.ts";
 
 const bounds = {
-    ids: off.IDS_OFFSET,
-    xs: off.XS_OFFSET,
-    ys: off.YS_OFFSET,
-    energy: off.ENERGY_OFFSET,
-    resonance: off.RESONANCE_OFFSET,
-    phase: off.PHASE_OFFSET,
-    logic: off.LOGIC_OFFSET,
-    bonds: off.BONDS_OFFSET,
-    stiffness: off.STIFFNESS_OFFSET,
-    instructions: off.INSTRUCTIONS_OFFSET,
-    context: off.CONTEXT_OFFSET,
-    evolution_reserved: off.EVOLUTION_OFFSET,
-    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-    meiosis: off.MEIOSIS_OFFSET,
-    bond_requests: off.BOND_REQUESTS_OFFSET,
-    spatial_grid: off.SPATIAL_GRID_OFFSET,
-    roles: off.ROLES_OFFSET,
-    structure_grid: off.STRUCTURE_GRID_OFFSET,
-    signal_grid: off.SIGNAL_GRID_OFFSET,
-    memory_grid: off.MEMORY_GRID_OFFSET,
-    ascension_stats: off.ASCENSION_STATS_OFFSET,
-    bond_distances: off.BOND_DISTANCES_OFFSET,
-    damping: off.DAMPING_OFFSET,
-    causality: off.CAUSALITY_OFFSET,
-    hive_memory: off.HIVE_MEMORY_OFFSET,
-    hive_balance: off.HIVE_BALANCE_OFFSET,
-    quorum: off.QUORUM_OFFSET,
-    coherence: off.COHERENCE_OFFSET,
-    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-    energy_delta: off.ENERGY_DELTA_OFFSET,
-    resonance_delta: off.RESONANCE_DELTA_OFFSET,
-    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-    attention_field: off.ATTENTION_FIELD_OFFSET,
-    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-    glyph_header: off.GLYPH_HEADER_OFFSET,
-    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-    hormones: off.HORMONE_OFFSET,
-    secretion_stats: off.SECRETION_STATS_OFFSET,
-    lineage: off.LINEAGE_OFFSET,
-    mailbox: off.MAILBOX_OFFSET,
-    ledger_head: off.LEDGER_HEAD_OFFSET,
-    ledger_data: off.LEDGER_DATA_OFFSET,
+  ids: off.IDS_OFFSET,
+  xs: off.XS_OFFSET,
+  ys: off.YS_OFFSET,
+  energy: off.ENERGY_OFFSET,
+  resonance: off.RESONANCE_OFFSET,
+  phase: off.PHASE_OFFSET,
+  logic: off.LOGIC_OFFSET,
+  bonds: off.BONDS_OFFSET,
+  stiffness: off.STIFFNESS_OFFSET,
+  instructions: off.INSTRUCTIONS_OFFSET,
+  context: off.CONTEXT_OFFSET,
+  evolution_reserved: off.EVOLUTION_OFFSET,
+  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+  meiosis: off.MEIOSIS_OFFSET,
+  bond_requests: off.BOND_REQUESTS_OFFSET,
+  spatial_grid: off.SPATIAL_GRID_OFFSET,
+  roles: off.ROLES_OFFSET,
+  structure_grid: off.STRUCTURE_GRID_OFFSET,
+  signal_grid: off.SIGNAL_GRID_OFFSET,
+  memory_grid: off.MEMORY_GRID_OFFSET,
+  ascension_stats: off.ASCENSION_STATS_OFFSET,
+  bond_distances: off.BOND_DISTANCES_OFFSET,
+  damping: off.DAMPING_OFFSET,
+  causality: off.CAUSALITY_OFFSET,
+  hive_memory: off.HIVE_MEMORY_OFFSET,
+  hive_balance: off.HIVE_BALANCE_OFFSET,
+  quorum: off.QUORUM_OFFSET,
+  coherence: off.COHERENCE_OFFSET,
+  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+  energy_delta: off.ENERGY_DELTA_OFFSET,
+  resonance_delta: off.RESONANCE_DELTA_OFFSET,
+  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+  attention_field: off.ATTENTION_FIELD_OFFSET,
+  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+  glyph_header: off.GLYPH_HEADER_OFFSET,
+  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+  hormones: off.HORMONE_OFFSET,
+  secretion_stats: off.SECRETION_STATS_OFFSET,
+  lineage: off.LINEAGE_OFFSET,
+  mailbox: off.MAILBOX_OFFSET,
+  ledger_head: off.LEDGER_HEAD_OFFSET,
+  ledger_data: off.LEDGER_DATA_OFFSET,
 };
 
-
 for (const [k, v] of Object.entries(bounds)) {
-   console.log(`${k}: ${v} (+ 8 buffer) -> expected Rust offset_of: ${v + 8}`);
+  console.log(`${k}: ${v} (+ 8 buffer) -> expected Rust offset_of: ${v + 8}`);
 }
 
-// Calculate the rust padding bytes 
-const expectedSizeForPad = (name: string, curEnd: number, nextTarget: number) => {
-    let pad = nextTarget - curEnd;
-    console.log(`_pad_${name}: [u8; ${pad}] // align to ${nextTarget+8}`);
-}
+// Calculate the rust padding bytes
+const expectedSizeForPad = (
+  name: string,
+  curEnd: number,
+  nextTarget: number,
+) => {
+  let pad = nextTarget - curEnd;
+  console.log(`_pad_${name}: [u8; ${pad}] // align to ${nextTarget + 8}`);
+};
 
 let bytesPerAtom = {
-   bonds: 4 * 4,
-   stiffness: 4 * 4,
-   roles: 1,
-   bond_distances: 4,
-   damping: 1,
-   causality: 1,
-   physics_xs: 2,
+  bonds: 4 * 4,
+  stiffness: 4 * 4,
+  roles: 1,
+  bond_distances: 4,
+  damping: 1,
+  causality: 1,
+  physics_xs: 2,
 };
 console.log("\n");
 
@@ -7644,13 +7632,11 @@ let end_memory = bounds.memory_grid + (140 * 80 * 8);
 expectedSizeForPad("ascension", end_memory, bounds.ascension_stats);
 
 // _pad_damping
-// Note bond_distances in off is after ascension stats theoretically, wait, no, bounds says BOND_DISTANCES_OFFSET = 117137384. 
+// Note bond_distances in off is after ascension stats theoretically, wait, no, bounds says BOND_DISTANCES_OFFSET = 117137384.
 // Ascension ends at 112137384 + (250000 * 4) = 113,137,384? Wait, memory.rs gives [i32; 250_000] for ascension... Wait, memory.rs has 250000 not 500000 for ascension? Oh, memory_grid is earlier.
-// Wait, bounds.ascension_stats + 250_000 * 4 = 112137384 + 1000000 = 113137384. But bond_distances is 117137384! That means there's a 4M pad missing or the array size scales with atoms? 
+// Wait, bounds.ascension_stats + 250_000 * 4 = 112137384 + 1000000 = 113137384. But bond_distances is 117137384! That means there's a 4M pad missing or the array size scales with atoms?
 // Memory.rs: pub ascension_stats: [i32; 250_000] -> this was meant to be MAX_ATOMS * i32 perhaps?! 500k atoms * 4 = 2,000,000 bytes ... wait, old was 250000 * 4 = 1,000,000. For 100k, that is 10 bytes per atom? Let's check sizes... Wait, I should just match what I did in the offset calculator earlier!
 // Let me look at OFFSETS.js.
-
-
 ```
 
 ---
@@ -7680,7 +7666,6 @@ console.log(`Producers: ${producers}`);
 console.log(`Architects: ${architects}`);
 console.log(`Guardians: ${guardians}`);
 console.log(`Others: ${others}`);
-
 ```
 
 ---
@@ -7695,7 +7680,6 @@ const imports = WebAssembly.Module.imports(wasmModule);
 for (const imp of imports) {
   console.log(`  - ${imp.module}.${imp.name} (${imp.kind})`);
 }
-
 ```
 
 ---
@@ -7725,7 +7709,6 @@ for (const imp of imports) {
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
-
 ```
 
 ---
@@ -7754,7 +7737,6 @@ for (const imp of imports) {
     "vite": "^5.0.8"
   }
 }
-
 ```
 
 ---
@@ -7762,22 +7744,27 @@ for (const imp of imports) {
 ## FILE: client/src/main.ts
 
 ```typescript
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const MAX_ATOMS = 500_000;
 const PORT = 8086;
 const WS_URL = `ws://localhost:${PORT}`;
 
 // --- DOM Setup ---
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 if (!container) throw new Error("No #app element found");
 
 // --- Three.js Setup ---
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x050505);
 
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  10000,
+);
 camera.position.set(0, 0, 800);
 
 const renderer = new THREE.WebGLRenderer({ antialias: false });
@@ -7791,12 +7778,12 @@ controls.dampingFactor = 0.05;
 
 // --- InstancedMesh Setup ---
 const geometry = new THREE.PlaneGeometry(1.5, 1.5);
-const material = new THREE.MeshBasicMaterial({ 
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.8,
-    depthWrite: false, // Prevent depth sorting issues with transparent planes
-    blending: THREE.AdditiveBlending 
+const material = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  transparent: true,
+  opacity: 0.8,
+  depthWrite: false, // Prevent depth sorting issues with transparent planes
+  blending: THREE.AdditiveBlending,
 });
 
 const mesh = new THREE.InstancedMesh(geometry, material, MAX_ATOMS);
@@ -7811,7 +7798,7 @@ const currentPositions = new Float32Array(MAX_ATOMS * 3);
 const targetPositions = new Float32Array(MAX_ATOMS * 3);
 
 // We'll update colors immediately instead of lerping them to save CPU
-const colors = new Float32Array(MAX_ATOMS * 3); 
+const colors = new Float32Array(MAX_ATOMS * 3);
 
 const dummy = new THREE.Object3D();
 const colorHelper = new THREE.Color();
@@ -7819,56 +7806,56 @@ const colorHelper = new THREE.Color();
 // --- Network ---
 let ws: WebSocket;
 function connect() {
-    console.log(`[NET] Connecting to ${WS_URL}...`);
-    ws = new WebSocket(WS_URL);
-    ws.binaryType = "arraybuffer";
+  console.log(`[NET] Connecting to ${WS_URL}...`);
+  ws = new WebSocket(WS_URL);
+  ws.binaryType = "arraybuffer";
 
-    ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
-    
-    ws.onmessage = (event) => {
-        if (!(event.data instanceof ArrayBuffer)) return;
-        
-        // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
-        const packet = new Float32Array(event.data);
-        activeCount = Math.min(MAX_ATOMS, packet.length / 4);
+  ws.onopen = () => console.log("[NET] Connected to OMEGA-64");
 
-        for (let i = 0; i < activeCount; i++) {
-            const pIdx = i * 4;
-            const x = packet[pIdx];
-            const y = packet[pIdx + 1];
-            const colorCode = packet[pIdx + 2];
-            const resonance = packet[pIdx + 3];
+  ws.onmessage = (event) => {
+    if (!(event.data instanceof ArrayBuffer)) return;
 
-            // Target Position Update (Z is resonance driven for 3D depth)
-            const p3Idx = i * 3;
-            targetPositions[p3Idx] = x;
-            targetPositions[p3Idx + 1] = y;
-            targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
+    // Incoming format: [x, y, colorCode, resonance, x, y, colorCode, resonance...]
+    const packet = new Float32Array(event.data);
+    activeCount = Math.min(MAX_ATOMS, packet.length / 4);
 
-            // Color Update
-            if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
-            else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
-            else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
-            else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
-            else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
+    for (let i = 0; i < activeCount; i++) {
+      const pIdx = i * 4;
+      const x = packet[pIdx];
+      const y = packet[pIdx + 1];
+      const colorCode = packet[pIdx + 2];
+      const resonance = packet[pIdx + 3];
 
-            colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
-            
-            colors[p3Idx] = colorHelper.r;
-            colors[p3Idx + 1] = colorHelper.g;
-            colors[p3Idx + 2] = colorHelper.b;
-        }
+      // Target Position Update (Z is resonance driven for 3D depth)
+      const p3Idx = i * 3;
+      targetPositions[p3Idx] = x;
+      targetPositions[p3Idx + 1] = y;
+      targetPositions[p3Idx + 2] = resonance * 10; // Elevate based on resonance
 
-        // Inform Three.js the active limit has changed
-        mesh.count = activeCount;
-    };
+      // Color Update
+      if (colorCode === 1) colorHelper.setHex(0xff3333); // Predator (Red)
+      else if (colorCode === 2) colorHelper.setHex(0x33ff33); // Prey (Green)
+      else if (colorCode === 3) colorHelper.setHex(0x3333ff); // Guardian (Blue)
+      else if (colorCode === 4) colorHelper.setHex(0xffff33); // Architect (Yellow)
+      else colorHelper.setHex(0xaaaaaa); // Unknown/Inert (Grey)
 
-    ws.onclose = () => {
-        console.log("[NET] Disconnected. Reconnecting in 2s...");
-        setTimeout(connect, 2000);
-    };
-    
-    ws.onerror = (e) => console.error("[NET] Error", e);
+      colorHelper.multiplyScalar(0.5 + Math.min(resonance, 1.0) * 0.5); // Brighten with resonance
+
+      colors[p3Idx] = colorHelper.r;
+      colors[p3Idx + 1] = colorHelper.g;
+      colors[p3Idx + 2] = colorHelper.b;
+    }
+
+    // Inform Three.js the active limit has changed
+    mesh.count = activeCount;
+  };
+
+  ws.onclose = () => {
+    console.log("[NET] Disconnected. Reconnecting in 2s...");
+    setTimeout(connect, 2000);
+  };
+
+  ws.onerror = (e) => console.error("[NET] Error", e);
 }
 connect();
 
@@ -7876,50 +7863,60 @@ connect();
 const LERP_FACTOR = 0.3; // Speed of interpolation (0.0 to 1.0)
 
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    // 1. Interpolate Positions & Update Mesh
-    let matrixNeedsUpdate = false;
-    let colorNeedsUpdate = false;
+  // 1. Interpolate Positions & Update Mesh
+  let matrixNeedsUpdate = false;
+  let colorNeedsUpdate = false;
 
-    if (activeCount > 0) {
-        for (let i = 0; i < activeCount; i++) {
-            const p3Idx = i * 3;
-            
-            // Linear Interpolation: Current = Current + (Target - Current) * Factor
-            currentPositions[p3Idx] += (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
-            currentPositions[p3Idx + 1] += (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) * LERP_FACTOR;
-            currentPositions[p3Idx + 2] += (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) * LERP_FACTOR;
+  if (activeCount > 0) {
+    for (let i = 0; i < activeCount; i++) {
+      const p3Idx = i * 3;
 
-            dummy.position.set(currentPositions[p3Idx], currentPositions[p3Idx + 1], currentPositions[p3Idx + 2]);
-            // Keep planes facing camera (Billboard effect)
-            dummy.quaternion.copy(camera.quaternion); 
-            dummy.updateMatrix();
-            
-            mesh.setMatrixAt(i, dummy.matrix);
-            
-            colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
-            mesh.setColorAt(i, colorHelper);
-        }
-        matrixNeedsUpdate = true;
-        colorNeedsUpdate = true;
+      // Linear Interpolation: Current = Current + (Target - Current) * Factor
+      currentPositions[p3Idx] +=
+        (targetPositions[p3Idx] - currentPositions[p3Idx]) * LERP_FACTOR;
+      currentPositions[p3Idx + 1] +=
+        (targetPositions[p3Idx + 1] - currentPositions[p3Idx + 1]) *
+        LERP_FACTOR;
+      currentPositions[p3Idx + 2] +=
+        (targetPositions[p3Idx + 2] - currentPositions[p3Idx + 2]) *
+        LERP_FACTOR;
+
+      dummy.position.set(
+        currentPositions[p3Idx],
+        currentPositions[p3Idx + 1],
+        currentPositions[p3Idx + 2],
+      );
+      // Keep planes facing camera (Billboard effect)
+      dummy.quaternion.copy(camera.quaternion);
+      dummy.updateMatrix();
+
+      mesh.setMatrixAt(i, dummy.matrix);
+
+      colorHelper.setRGB(colors[p3Idx], colors[p3Idx + 1], colors[p3Idx + 2]);
+      mesh.setColorAt(i, colorHelper);
     }
+    matrixNeedsUpdate = true;
+    colorNeedsUpdate = true;
+  }
 
-    if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
-    if (colorNeedsUpdate && mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  if (matrixNeedsUpdate) mesh.instanceMatrix.needsUpdate = true;
+  if (colorNeedsUpdate && mesh.instanceColor) {
+    mesh.instanceColor.needsUpdate = true;
+  }
 
-    controls.update();
-    renderer.render(scene, camera);
+  controls.update();
+  renderer.render(scene, camera);
 }
 animate();
 
 // --- Event Listeners ---
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
-
 ```
 
 ---
@@ -7950,7 +7947,6 @@ window.addEventListener('resize', () => {
   },
   "include": ["src"]
 }
-
 ```
 
 ---
@@ -8260,7 +8256,6 @@ const coldstartSeed = (config: ColdstartConfig): ColdstartResult => {
 export const COLDSTART_BOOTSTRAP = {
   seed: coldstartSeed,
 };
-
 ```
 
 ---
@@ -8290,12 +8285,12 @@ export async function saveEpoch(
   epochName: string,
   population: number = 0,
   coherence: number = 0,
-  epochHash?: string
+  epochHash?: string,
 ): Promise<void> {
   await ensureDir(EPOCHS_DIR);
 
   const buffer = new Uint8Array(memory.buffer, 0, LATTICE_MEMORY_END);
-  
+
   // Create a compression stream
   const compressionStream = new CompressionStream("gzip");
   const writer = compressionStream.writable.getWriter();
@@ -8303,8 +8298,9 @@ export async function saveEpoch(
   writer.write(new Uint8Array(buffer));
   writer.close();
 
-  const compressedBuffer = await new Response(compressionStream.readable).arrayBuffer();
-  
+  const compressedBuffer = await new Response(compressionStream.readable)
+    .arrayBuffer();
+
   const sigmaPath = join(EPOCHS_DIR, `${epochName}.sigma`);
   await Deno.writeFile(sigmaPath, new Uint8Array(compressedBuffer));
 
@@ -8324,7 +8320,7 @@ export async function saveEpoch(
 
 export async function loadEpoch(
   memory: WebAssembly.Memory,
-  epochName: string
+  epochName: string,
 ): Promise<ContinuumMetadata> {
   const sigmaPath = join(EPOCHS_DIR, `${epochName}.sigma`);
   const metaPath = join(EPOCHS_DIR, `${epochName}.meta.json`);
@@ -8333,20 +8329,27 @@ export async function loadEpoch(
   const metadata = JSON.parse(metaRaw) as ContinuumMetadata;
 
   const compressedData = await Deno.readFile(sigmaPath);
-  
+
   const decompressionStream = new DecompressionStream("gzip");
   const writer = decompressionStream.writable.getWriter();
   writer.write(compressedData);
   writer.close();
 
-  const decompressedBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+  const decompressedBuffer = await new Response(decompressionStream.readable)
+    .arrayBuffer();
   const decompressedArray = new Uint8Array(decompressedBuffer);
 
   if (decompressedArray.byteLength > memory.buffer.byteLength) {
-      throw new Error(`[CONTINUUM] Epoch ${epochName} memory bounds (${decompressedArray.byteLength}) exceed target matrix bounds (${memory.buffer.byteLength})`);
+    throw new Error(
+      `[CONTINUUM] Epoch ${epochName} memory bounds (${decompressedArray.byteLength}) exceed target matrix bounds (${memory.buffer.byteLength})`,
+    );
   }
 
-  const targetView = new Uint8Array(memory.buffer, 0, decompressedArray.byteLength);
+  const targetView = new Uint8Array(
+    memory.buffer,
+    0,
+    decompressedArray.byteLength,
+  );
   targetView.set(decompressedArray);
 
   return metadata;
@@ -8354,40 +8357,52 @@ export async function loadEpoch(
 
 // --- Phase 30: Bootstrapping ---
 
-export async function compressMemory(memory: WebAssembly.Memory): Promise<Uint8Array> {
+export async function compressMemory(
+  memory: WebAssembly.Memory,
+): Promise<Uint8Array> {
   const buffer = new Uint8Array(memory.buffer, 0, LATTICE_MEMORY_END);
   const clone = new Uint8Array(buffer.byteLength);
   clone.set(buffer);
-  
+
   const compressionStream = new CompressionStream("gzip");
   const writer = compressionStream.writable.getWriter();
   writer.write(clone);
   writer.close();
-  const compressedBuffer = await new Response(compressionStream.readable).arrayBuffer();
+  const compressedBuffer = await new Response(compressionStream.readable)
+    .arrayBuffer();
   return new Uint8Array(compressedBuffer);
 }
 
-export async function decompressMemoryToLattice(memory: WebAssembly.Memory, payload: Uint8Array): Promise<void> {
+export async function decompressMemoryToLattice(
+  memory: WebAssembly.Memory,
+  payload: Uint8Array,
+): Promise<void> {
   const decompressionStream = new DecompressionStream("gzip");
   const writer = decompressionStream.writable.getWriter();
-  
+
   const clone = new Uint8Array(payload.byteLength);
   clone.set(payload);
   writer.write(clone);
-  
+
   writer.close();
 
-  const decompressedBuffer = await new Response(decompressionStream.readable).arrayBuffer();
+  const decompressedBuffer = await new Response(decompressionStream.readable)
+    .arrayBuffer();
   const decompressedArray = new Uint8Array(decompressedBuffer);
 
   if (decompressedArray.byteLength > memory.buffer.byteLength) {
-      throw new Error(`[CONTINUUM] Decompressed payload (${decompressedArray.byteLength}) exceeds logic memory bounds (${memory.buffer.byteLength})`);
+    throw new Error(
+      `[CONTINUUM] Decompressed payload (${decompressedArray.byteLength}) exceeds logic memory bounds (${memory.buffer.byteLength})`,
+    );
   }
 
-  const targetView = new Uint8Array(memory.buffer, 0, decompressedArray.byteLength);
+  const targetView = new Uint8Array(
+    memory.buffer,
+    0,
+    decompressedArray.byteLength,
+  );
   targetView.set(decompressedArray);
 }
-
 ```
 
 ---
@@ -9760,7 +9775,6 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
-
 ```
 
 ---
@@ -9870,7 +9884,6 @@ export const CONTROL_INTENT_QUEUE = {
     "client/tsconfig.json"
   ]
 }
-
 ```
 
 ---
@@ -10476,7 +10489,6 @@ export const planInvariantIngress = (
     admission,
   };
 };
-
 ```
 
 ---
@@ -10498,7 +10510,8 @@ const main = async () => {
     },
   });
   console.log("Instantiated.");
-  const tickGlyphTransport = instantiated.instance.exports.tickGlyphTransport as (tick: number) => void;
+  const tickGlyphTransport = instantiated.instance.exports
+    .tickGlyphTransport as (tick: number) => void;
   Atomics.store(STATE_MATRIX.signalGrid, 512, 512);
   const memoryCell = 544;
   const memoryOffset = memoryCell * 8;
@@ -10514,13 +10527,18 @@ const main = async () => {
     138945860, // SECRETION_STATS_OFFSET from OFFSETS.ts
     12,
   );
-  
-  console.log("Secretion Stats [10] (Signal Leak):", Atomics.load(secretionStatsView, 10));
-  console.log("Secretion Stats [11] (Memory Leak):", Atomics.load(secretionStatsView, 11));
+
+  console.log(
+    "Secretion Stats [10] (Signal Leak):",
+    Atomics.load(secretionStatsView, 10),
+  );
+  console.log(
+    "Secretion Stats [11] (Memory Leak):",
+    Atomics.load(secretionStatsView, 11),
+  );
 };
 
 main();
-
 ```
 
 ---
@@ -10643,7 +10661,6 @@ Do not move anything from the table above into reduction until:
 1. the corresponding golden trace exists,
 2. the rollback owner is explicit,
 3. the replacement lane is narrower than the current one.
-
 ```
 
 ---
@@ -10774,7 +10791,6 @@ Stage 3 is considered real only when:
 - no replacement of the active WASM kernel
 - no semantic mutation of non-core glyphs
 - no claim that "64 glyphs are now proteins"
-
 ```
 
 ---
@@ -10940,7 +10956,6 @@ Current exit assessment:
 - export visibility: satisfied
 - next blocker: widen shadow consumers only when they map to a real trace id and
   an explicit rollback path
-
 ```
 
 ---
@@ -11207,7 +11222,6 @@ As of 2026-03-06 this layer is:
 - observer-visible through `/api/daemon-policy`, `/api/telemetry`, and
   `/api/physiology` with `ledger_max_plasmid_charge` and
   `ledger_max_plasmid_charge_persistence`
-
 ```
 
 ---
@@ -12060,14 +12074,13 @@ This keeps myth and engineering aligned without letting either erase the other.
    [docs/migration/GOLDEN_TRACES.md](/Users/s0fractal/OMEGA/docs/migration/GOLDEN_TRACES.md).
 3. Draft the first `GlyphIR64` type contract before any bridge implementation
    begins.
-
 ```
 
 ---
 
 ## FILE: docs/migration/ROADMAP_2_SIGMA_CORE.md
 
-```markdown
+````markdown
 # 📑 Roadmap 2.0: OMEGA-64 / Σ-CORE
 
 This document fixes an adjacent future-vector for OMEGA-64. It is not the active
@@ -12149,6 +12162,7 @@ pub enum SigmaOp {
     Attract { vector: Vector64 },
 }
 ```
+````
 
 ### Чому це спрацює
 
@@ -12181,8 +12195,7 @@ pub enum SigmaOp {
   - rollback paths
   - export-visible progress markers
 
-```
-
+````
 ---
 
 ## FILE: ECOLOGY_ENGINE.ts
@@ -12264,8 +12277,7 @@ export const ECOLOGY_ENGINE = {
     }
   },
 };
-
-```
+````
 
 ---
 
@@ -12298,7 +12310,6 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
-
 ```
 
 ---
@@ -12516,7 +12527,6 @@ async function digestFile(filename: string, swarmData: Map<string, any>) {
     `   [MYCELIUM] 🍄 Digestion complete. Original artifact '${filename}' has been assimilated into the Swarm.`,
   );
 }
-
 ```
 
 ---
@@ -12527,7 +12537,7 @@ async function digestFile(filename: string, swarmData: Map<string, any>) {
 // OMEGA-64 | export_rust.ts
 // Builds RUST_CORE_LOGIC.md by consolidating the sigma_core and omega_wasm Rust sources.
 
-import { join, extname } from "node:path";
+import { extname, join } from "node:path";
 
 const TARGET_DIRS = ["sigma_core", "omega_wasm"];
 const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
@@ -12546,19 +12556,24 @@ async function collectFiles(dir: string): Promise<string[]> {
     try {
       for await (const entry of Deno.readDir(currentPath)) {
         if (entry.name.startsWith(".")) {
-            // Include .cargo but not .git
-            if (entry.name !== ".cargo") continue;
+          // Include .cargo but not .git
+          if (entry.name !== ".cargo") continue;
         }
 
         const entryPath = join(currentPath, entry.name);
-        
-        if (EXCLUDE_PATTERNS.some(p => p.test(entryPath))) continue;
+
+        if (EXCLUDE_PATTERNS.some((p) => p.test(entryPath))) continue;
 
         if (entry.isDirectory) {
           queue.push(entryPath);
-        } else if (entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))) {
-          if (entry.name === "Cargo.lock" && currentPath !== "sigma_core" && currentPath !== "omega_wasm") {
-             continue; // Only grab root locks
+        } else if (
+          entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))
+        ) {
+          if (
+            entry.name === "Cargo.lock" && currentPath !== "sigma_core" &&
+            currentPath !== "omega_wasm"
+          ) {
+            continue; // Only grab root locks
           }
           discovered.push(entryPath);
         }
@@ -12571,45 +12586,46 @@ async function collectFiles(dir: string): Promise<string[]> {
 }
 
 async function exportRustCore() {
-    let allFiles: string[] = [];
-    for (const dir of TARGET_DIRS) {
-        allFiles = allFiles.concat(await collectFiles(dir));
+  let allFiles: string[] = [];
+  for (const dir of TARGET_DIRS) {
+    allFiles = allFiles.concat(await collectFiles(dir));
+  }
+
+  allFiles.sort();
+
+  let output = `# OMEGA-64 | RUST CORE LOGIC\n\n`;
+  output += `*Generated: ${new Date().toISOString()}*\n`;
+  output += `*Exported Files: ${allFiles.length}*\n\n---\n\n`;
+
+  output += `## FILE INDEX\n\n`;
+  for (const file of allFiles) {
+    output += `- ${file}\n`;
+  }
+  output += `\n---\n\n`;
+
+  for (const file of allFiles) {
+    try {
+      const content = await Deno.readTextFile(file);
+      let lang = "rust";
+      if (file.endsWith(".toml")) lang = "toml";
+      if (file.endsWith(".json")) lang = "json";
+
+      output += `## FILE: ${file}\n\n`;
+      output += `\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
+    } catch (e) {
+      console.warn(`Could not read ${file}`);
     }
+  }
 
-    allFiles.sort();
-
-    let output = `# OMEGA-64 | RUST CORE LOGIC\n\n`;
-    output += `*Generated: ${new Date().toISOString()}*\n`;
-    output += `*Exported Files: ${allFiles.length}*\n\n---\n\n`;
-
-    output += `## FILE INDEX\n\n`;
-    for (const file of allFiles) {
-        output += `- ${file}\n`;
-    }
-    output += `\n---\n\n`;
-
-    for (const file of allFiles) {
-        try {
-            const content = await Deno.readTextFile(file);
-            let lang = "rust";
-            if (file.endsWith(".toml")) lang = "toml";
-            if (file.endsWith(".json")) lang = "json";
-            
-            output += `## FILE: ${file}\n\n`;
-            output += `\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
-        } catch (e) {
-            console.warn(`Could not read ${file}`);
-        }
-    }
-
-    await Deno.writeTextFile("RUST_CORE_LOGIC.md", output);
-    console.log(`✅ RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`);
+  await Deno.writeTextFile("RUST_CORE_LOGIC.md", output);
+  console.log(
+    `✅ RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
+  );
 }
 
 if (import.meta.main) {
-    await exportRustCore();
+  await exportRustCore();
 }
-
 ```
 
 ---
@@ -12642,7 +12658,6 @@ for (const idx of activeAfter) {
   if (rolesView[idx] === STATE_MATRIX.ROLE_GUARDIAN) guardians++;
 }
 console.log(`Guardians seeded: ${guardians}`);
-
 ```
 
 ---
@@ -12683,7 +12698,6 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
-
 ```
 
 ---
@@ -12738,7 +12752,6 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
-
 ```
 
 ---
@@ -12963,7 +12976,6 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
-
 ```
 
 ---
@@ -13190,7 +13202,6 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
-
 ```
 
 ---
@@ -13654,7 +13665,6 @@ export const GATE = {
     );
   },
 };
-
 ```
 
 ---
@@ -13665,114 +13675,113 @@ export const GATE = {
 import * as off from "./OFFSETS.ts";
 
 const bounds = {
-    tick_counter: 7999992,
-    sync_state: 7999996,
-    ids: off.IDS_OFFSET,
-    xs: off.XS_OFFSET,
-    ys: off.YS_OFFSET,
-    energy: off.ENERGY_OFFSET,
-    resonance: off.RESONANCE_OFFSET,
-    phase: off.PHASE_OFFSET,
-    logic: off.LOGIC_OFFSET,
-    bonds: off.BONDS_OFFSET,
-    stiffness: off.STIFFNESS_OFFSET,
-    instructions: off.INSTRUCTIONS_OFFSET,
-    context: off.CONTEXT_OFFSET,
-    evolution_reserved: off.EVOLUTION_OFFSET,
-    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-    meiosis: off.MEIOSIS_OFFSET,
-    bond_requests: off.BOND_REQUESTS_OFFSET,
-    spatial_grid: off.SPATIAL_GRID_OFFSET,
-    roles: off.ROLES_OFFSET,
-    structure_grid: off.STRUCTURE_GRID_OFFSET,
-    signal_grid: off.SIGNAL_GRID_OFFSET,
-    memory_grid: off.MEMORY_GRID_OFFSET,
-    ascension_stats: off.ASCENSION_STATS_OFFSET,
-    bond_distances: off.BOND_DISTANCES_OFFSET,
-    damping: off.DAMPING_OFFSET,
-    causality: off.CAUSALITY_OFFSET,
-    hive_memory: off.HIVE_MEMORY_OFFSET,
-    hive_balance: off.HIVE_BALANCE_OFFSET,
-    quorum: off.QUORUM_OFFSET,
-    coherence: off.COHERENCE_OFFSET,
-    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-    energy_delta: off.ENERGY_DELTA_OFFSET,
-    resonance_delta: off.RESONANCE_DELTA_OFFSET,
-    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-    attention_field: off.ATTENTION_FIELD_OFFSET,
-    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-    glyph_header: off.GLYPH_HEADER_OFFSET,
-    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-    hormones: off.HORMONE_OFFSET,
-    secretion_stats: off.SECRETION_STATS_OFFSET,
-    lineage: off.LINEAGE_OFFSET,
-    mailbox: off.MAILBOX_OFFSET,
-    ledger_head: off.LEDGER_HEAD_OFFSET,
-    ledger_data: off.LEDGER_DATA_OFFSET,
+  tick_counter: 7999992,
+  sync_state: 7999996,
+  ids: off.IDS_OFFSET,
+  xs: off.XS_OFFSET,
+  ys: off.YS_OFFSET,
+  energy: off.ENERGY_OFFSET,
+  resonance: off.RESONANCE_OFFSET,
+  phase: off.PHASE_OFFSET,
+  logic: off.LOGIC_OFFSET,
+  bonds: off.BONDS_OFFSET,
+  stiffness: off.STIFFNESS_OFFSET,
+  instructions: off.INSTRUCTIONS_OFFSET,
+  context: off.CONTEXT_OFFSET,
+  evolution_reserved: off.EVOLUTION_OFFSET,
+  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+  meiosis: off.MEIOSIS_OFFSET,
+  bond_requests: off.BOND_REQUESTS_OFFSET,
+  spatial_grid: off.SPATIAL_GRID_OFFSET,
+  roles: off.ROLES_OFFSET,
+  structure_grid: off.STRUCTURE_GRID_OFFSET,
+  signal_grid: off.SIGNAL_GRID_OFFSET,
+  memory_grid: off.MEMORY_GRID_OFFSET,
+  ascension_stats: off.ASCENSION_STATS_OFFSET,
+  bond_distances: off.BOND_DISTANCES_OFFSET,
+  damping: off.DAMPING_OFFSET,
+  causality: off.CAUSALITY_OFFSET,
+  hive_memory: off.HIVE_MEMORY_OFFSET,
+  hive_balance: off.HIVE_BALANCE_OFFSET,
+  quorum: off.QUORUM_OFFSET,
+  coherence: off.COHERENCE_OFFSET,
+  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+  energy_delta: off.ENERGY_DELTA_OFFSET,
+  resonance_delta: off.RESONANCE_DELTA_OFFSET,
+  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+  attention_field: off.ATTENTION_FIELD_OFFSET,
+  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+  glyph_header: off.GLYPH_HEADER_OFFSET,
+  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+  hormones: off.HORMONE_OFFSET,
+  secretion_stats: off.SECRETION_STATS_OFFSET,
+  lineage: off.LINEAGE_OFFSET,
+  mailbox: off.MAILBOX_OFFSET,
+  ledger_head: off.LEDGER_HEAD_OFFSET,
+  ledger_data: off.LEDGER_DATA_OFFSET,
 };
 
-
 const sizes: Record<string, number> = {
-   tick_counter: 4,
-   sync_state: 4,
-   ids: 8*500000,
-   xs: 2*500000,
-   ys: 2*500000,
-   energy: 4*500000,
-   resonance: 4*500000,
-   phase: 4*500000,
-   logic: 8*500000,
-   bonds: 4*500000*4,
-   stiffness: 4*500000*4,
-   instructions: 64*500000,
-   context: 64*500000,
-   evolution_reserved: 4*500000,
-   spawn_requests: 24584,
-   meiosis: 4*300000,
-   bond_requests: 4*500000*3,
-   spatial_grid: 4*358400,
-   roles: 1*500000,
-   structure_grid: 4*11200,
-   signal_grid: 4*11200,
-   memory_grid: 8*11200,
-   ascension_stats: 4*250000,
-   bond_distances: 1*500000*4,
-   damping: 1*500000,
-   causality: 1*500000,
-   hive_memory: 1024,
-   hive_balance: 4,
-   quorum: 4*100025,
-   coherence: 4,
-   neural_coherence: 4,
-   physics_read_xs: 2*500000,
-   physics_read_ys: 2*500000,
-   physics_read_energy: 4*500000,
-   physics_read_resonance: 4*500000,
-   energy_delta: 4*500000,
-   resonance_delta: 4*500000,
-   structure_build_owner: 4*11200,
-   structure_build_value: 4*11200,
-   structure_charge_intent: 4*11200,
-   attention_field: 4*11200,
-   hive_energy_pool: 4*256,
-   glyph_header: 4*11200,
-   glyph_payload: 8*11200,
-   glyph_scratch_header: 4*11200,
-   glyph_scratch_payload: 8*11200,
-   hormones: 2*8,
-   secretion_stats: 4*12,
-   lineage: 8*500000,
-   mailbox: 8*500000,
-   ledger_head: 4,
-   ledger_data: 16*65536,
+  tick_counter: 4,
+  sync_state: 4,
+  ids: 8 * 500000,
+  xs: 2 * 500000,
+  ys: 2 * 500000,
+  energy: 4 * 500000,
+  resonance: 4 * 500000,
+  phase: 4 * 500000,
+  logic: 8 * 500000,
+  bonds: 4 * 500000 * 4,
+  stiffness: 4 * 500000 * 4,
+  instructions: 64 * 500000,
+  context: 64 * 500000,
+  evolution_reserved: 4 * 500000,
+  spawn_requests: 24584,
+  meiosis: 4 * 300000,
+  bond_requests: 4 * 500000 * 3,
+  spatial_grid: 4 * 358400,
+  roles: 1 * 500000,
+  structure_grid: 4 * 11200,
+  signal_grid: 4 * 11200,
+  memory_grid: 8 * 11200,
+  ascension_stats: 4 * 250000,
+  bond_distances: 1 * 500000 * 4,
+  damping: 1 * 500000,
+  causality: 1 * 500000,
+  hive_memory: 1024,
+  hive_balance: 4,
+  quorum: 4 * 100025,
+  coherence: 4,
+  neural_coherence: 4,
+  physics_read_xs: 2 * 500000,
+  physics_read_ys: 2 * 500000,
+  physics_read_energy: 4 * 500000,
+  physics_read_resonance: 4 * 500000,
+  energy_delta: 4 * 500000,
+  resonance_delta: 4 * 500000,
+  structure_build_owner: 4 * 11200,
+  structure_build_value: 4 * 11200,
+  structure_charge_intent: 4 * 11200,
+  attention_field: 4 * 11200,
+  hive_energy_pool: 4 * 256,
+  glyph_header: 4 * 11200,
+  glyph_payload: 8 * 11200,
+  glyph_scratch_header: 4 * 11200,
+  glyph_scratch_payload: 8 * 11200,
+  hormones: 2 * 8,
+  secretion_stats: 4 * 12,
+  lineage: 8 * 500000,
+  mailbox: 8 * 500000,
+  ledger_head: 4,
+  ledger_data: 16 * 65536,
 };
 const keys = Object.keys(bounds) as (keyof typeof bounds)[];
 let out = `    pub _pad_front: [u8; 7_999_992],
@@ -13781,33 +13790,73 @@ let out = `    pub _pad_front: [u8; 7_999_992],
 `;
 let cur = 8000000;
 for (const k of keys) {
-   if (k === 'tick_counter' || k === 'sync_state') continue;
-   let start = bounds[k];
-   if (start > cur) {
-       out += `    pub _pad_to_${String(k)}: [u8; ${start - cur}],\n`;
-   }
-   if (start < cur) {
-       console.log(`OVERLAP AT ${String(k)}: wants ${start} but cur is ${cur}`);
-   }
-   
-   let typ = "u8";
-    if (k === "ids" || k === "lineage") out += `    pub ${String(k)}: [u64; ${sizes[k]/8}],\n`;
-    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k as string)) out += `    pub ${String(k)}: [i16; ${sizes[k]/2}],\n`;
-    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k as string)) out += `    pub ${String(k)}: [i32; ${sizes[k]/4}],\n`;
-    else if (["stiffness", "attention_field"].includes(k as string)) out += `    pub ${String(k)}: [f32; ${sizes[k]/4}],\n`;
-    else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k as string)) out += `    pub ${String(k)}: [[u8; 8]; ${sizes[k]/8}],\n`;
-    else if (k === "instructions") out += `    pub ${String(k)}: [[u8; 64]; ${sizes[k]/64}],\n`;
-    else if (k === "context") out += `    pub ${String(k)}: [[i32; 16]; ${sizes[k]/64}],\n`;
-    else if (k === "mailbox") out += `    pub ${String(k)}: [[i32; 2]; ${sizes[k]/8}],\n`;
-    else if (k === "ledger_data") out += `    pub ${String(k)}: [[i32; 4]; ${sizes[k]/16}],\n`;
-    else if (k === "hormones") out += `    pub ${String(k)}: [u16; ${sizes[k]/2}],\n`;
-    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k as string)) out += `    pub ${String(k)}: i32,\n`;
-    else out += `    pub ${String(k)}: [u8; ${sizes[k]}],\n`;
+  if (k === "tick_counter" || k === "sync_state") continue;
+  let start = bounds[k];
+  if (start > cur) {
+    out += `    pub _pad_to_${String(k)}: [u8; ${start - cur}],\n`;
+  }
+  if (start < cur) {
+    console.log(`OVERLAP AT ${String(k)}: wants ${start} but cur is ${cur}`);
+  }
 
-   cur = start + sizes[k];
+  let typ = "u8";
+  if (k === "ids" || k === "lineage") {
+    out += `    pub ${String(k)}: [u64; ${sizes[k] / 8}],\n`;
+  } else if (
+    ["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k as string)
+  ) out += `    pub ${String(k)}: [i16; ${sizes[k] / 2}],\n`;
+  else if (
+    [
+      "energy",
+      "resonance",
+      "phase",
+      "bonds",
+      "evolution_reserved",
+      "bond_requests",
+      "spatial_grid",
+      "structure_grid",
+      "signal_grid",
+      "ascension_stats",
+      "quorum",
+      "physics_read_energy",
+      "physics_read_resonance",
+      "energy_delta",
+      "resonance_delta",
+      "structure_build_owner",
+      "structure_build_value",
+      "structure_charge_intent",
+      "hive_energy_pool",
+      "glyph_header",
+      "glyph_scratch_header",
+      "secretion_stats",
+      "meiosis",
+    ].includes(k as string)
+  ) out += `    pub ${String(k)}: [i32; ${sizes[k] / 4}],\n`;
+  else if (["stiffness", "attention_field"].includes(k as string)) {
+    out += `    pub ${String(k)}: [f32; ${sizes[k] / 4}],\n`;
+  } else if (
+    ["logic", "glyph_payload", "glyph_scratch_payload"].includes(k as string)
+  ) out += `    pub ${String(k)}: [[u8; 8]; ${sizes[k] / 8}],\n`;
+  else if (k === "instructions") {
+    out += `    pub ${String(k)}: [[u8; 64]; ${sizes[k] / 64}],\n`;
+  } else if (k === "context") {
+    out += `    pub ${String(k)}: [[i32; 16]; ${sizes[k] / 64}],\n`;
+  } else if (k === "mailbox") {
+    out += `    pub ${String(k)}: [[i32; 2]; ${sizes[k] / 8}],\n`;
+  } else if (k === "ledger_data") {
+    out += `    pub ${String(k)}: [[i32; 4]; ${sizes[k] / 16}],\n`;
+  } else if (k === "hormones") {
+    out += `    pub ${String(k)}: [u16; ${sizes[k] / 2}],\n`;
+  } else if (
+    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(
+      k as string,
+    )
+  ) out += `    pub ${String(k)}: i32,\n`;
+  else out += `    pub ${String(k)}: [u8; ${sizes[k]}],\n`;
+
+  cur = start + sizes[k];
 }
 Deno.writeTextFileSync("/tmp/struct.txt", out);
-
 ```
 
 ---
@@ -13818,129 +13867,127 @@ Deno.writeTextFileSync("/tmp/struct.txt", out);
 import * as off from "./OFFSETS.ts";
 
 const bounds = {
-    tick_counter: 7999992,
-    sync_state: 7999996,
-    ids: off.IDS_OFFSET,
-    xs: off.XS_OFFSET,
-    ys: off.YS_OFFSET,
-    energy: off.ENERGY_OFFSET,
-    resonance: off.RESONANCE_OFFSET,
-    phase: off.PHASE_OFFSET,
-    logic: off.LOGIC_OFFSET,
-    bonds: off.BONDS_OFFSET,
-    stiffness: off.STIFFNESS_OFFSET,
-    instructions: off.INSTRUCTIONS_OFFSET,
-    context: off.CONTEXT_OFFSET,
-    evolution_reserved: off.EVOLUTION_OFFSET,
-    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-    meiosis: off.MEIOSIS_OFFSET,
-    bond_requests: off.BOND_REQUESTS_OFFSET,
-    spatial_grid: off.SPATIAL_GRID_OFFSET,
-    roles: off.ROLES_OFFSET,
-    structure_grid: off.STRUCTURE_GRID_OFFSET,
-    signal_grid: off.SIGNAL_GRID_OFFSET,
-    memory_grid: off.MEMORY_GRID_OFFSET,
-    ascension_stats: off.ASCENSION_STATS_OFFSET,
-    bond_distances: off.BOND_DISTANCES_OFFSET,
-    damping: off.DAMPING_OFFSET,
-    causality: off.CAUSALITY_OFFSET,
-    hive_memory: off.HIVE_MEMORY_OFFSET,
-    hive_balance: off.HIVE_BALANCE_OFFSET,
-    quorum: off.QUORUM_OFFSET,
-    coherence: off.COHERENCE_OFFSET,
-    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-    energy_delta: off.ENERGY_DELTA_OFFSET,
-    resonance_delta: off.RESONANCE_DELTA_OFFSET,
-    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-    attention_field: off.ATTENTION_FIELD_OFFSET,
-    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-    glyph_header: off.GLYPH_HEADER_OFFSET,
-    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-    hormones: off.HORMONE_OFFSET,
-    secretion_stats: off.SECRETION_STATS_OFFSET,
-    lineage: off.LINEAGE_OFFSET,
-    mailbox: off.MAILBOX_OFFSET,
-    ledger_head: off.LEDGER_HEAD_OFFSET,
-    ledger_data: off.LEDGER_DATA_OFFSET,
+  tick_counter: 7999992,
+  sync_state: 7999996,
+  ids: off.IDS_OFFSET,
+  xs: off.XS_OFFSET,
+  ys: off.YS_OFFSET,
+  energy: off.ENERGY_OFFSET,
+  resonance: off.RESONANCE_OFFSET,
+  phase: off.PHASE_OFFSET,
+  logic: off.LOGIC_OFFSET,
+  bonds: off.BONDS_OFFSET,
+  stiffness: off.STIFFNESS_OFFSET,
+  instructions: off.INSTRUCTIONS_OFFSET,
+  context: off.CONTEXT_OFFSET,
+  evolution_reserved: off.EVOLUTION_OFFSET,
+  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+  meiosis: off.MEIOSIS_OFFSET,
+  bond_requests: off.BOND_REQUESTS_OFFSET,
+  spatial_grid: off.SPATIAL_GRID_OFFSET,
+  roles: off.ROLES_OFFSET,
+  structure_grid: off.STRUCTURE_GRID_OFFSET,
+  signal_grid: off.SIGNAL_GRID_OFFSET,
+  memory_grid: off.MEMORY_GRID_OFFSET,
+  ascension_stats: off.ASCENSION_STATS_OFFSET,
+  bond_distances: off.BOND_DISTANCES_OFFSET,
+  damping: off.DAMPING_OFFSET,
+  causality: off.CAUSALITY_OFFSET,
+  hive_memory: off.HIVE_MEMORY_OFFSET,
+  hive_balance: off.HIVE_BALANCE_OFFSET,
+  quorum: off.QUORUM_OFFSET,
+  coherence: off.COHERENCE_OFFSET,
+  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+  energy_delta: off.ENERGY_DELTA_OFFSET,
+  resonance_delta: off.RESONANCE_DELTA_OFFSET,
+  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+  attention_field: off.ATTENTION_FIELD_OFFSET,
+  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+  glyph_header: off.GLYPH_HEADER_OFFSET,
+  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+  hormones: off.HORMONE_OFFSET,
+  secretion_stats: off.SECRETION_STATS_OFFSET,
+  lineage: off.LINEAGE_OFFSET,
+  mailbox: off.MAILBOX_OFFSET,
+  ledger_head: off.LEDGER_HEAD_OFFSET,
+  ledger_data: off.LEDGER_DATA_OFFSET,
 };
 
-
 const sizes = {
-   tick_counter: 4,
-   sync_state: 4,
-   ids: 8*500000,
-   xs: 2*500000,
-   ys: 2*500000,
-   energy: 4*500000,
-   resonance: 4*500000,
-   phase: 4*500000,
-   logic: 8*500000,
-   bonds: 4*500000*4,
-   stiffness: 4*500000*4,
-   instructions: 64*500000,
-   context: 64*500000,
-   evolution_reserved: 4*500000,
-   spawn_requests: 24584,
-   meiosis: 4*300000,
-   bond_requests: 4*500000*3,
-   spatial_grid: 4*358400,
-   roles: 1*500000,
-   structure_grid: 4*11200,
-   signal_grid: 4*11200,
-   memory_grid: 8*11200,
-   ascension_stats: 4*250000,
-   bond_distances: 1*500000*4,
-   damping: 1*500000,
-   causality: 1*500000,
-   hive_memory: 1024,
-   hive_balance: 4,
-   quorum: 4*100025,
-   coherence: 4,
-   neural_coherence: 4,
-   physics_read_xs: 2*500000,
-   physics_read_ys: 2*500000,
-   physics_read_energy: 4*500000,
-   physics_read_resonance: 4*500000,
-   energy_delta: 4*500000,
-   resonance_delta: 4*500000,
-   structure_build_owner: 4*11200,
-   structure_build_value: 4*11200,
-   structure_charge_intent: 4*11200,
-   attention_field: 4*11200,
-   hive_energy_pool: 4*256,
-   glyph_header: 4*11200,
-   glyph_payload: 8*11200,
-   glyph_scratch_header: 4*11200,
-   glyph_scratch_payload: 8*11200,
-   hormones: 2*8,
-   secretion_stats: 4*12,
-   lineage: 8*500000,
-   mailbox: 8*500000,
-   ledger_head: 4,
-   ledger_data: 16*65536,
+  tick_counter: 4,
+  sync_state: 4,
+  ids: 8 * 500000,
+  xs: 2 * 500000,
+  ys: 2 * 500000,
+  energy: 4 * 500000,
+  resonance: 4 * 500000,
+  phase: 4 * 500000,
+  logic: 8 * 500000,
+  bonds: 4 * 500000 * 4,
+  stiffness: 4 * 500000 * 4,
+  instructions: 64 * 500000,
+  context: 64 * 500000,
+  evolution_reserved: 4 * 500000,
+  spawn_requests: 24584,
+  meiosis: 4 * 300000,
+  bond_requests: 4 * 500000 * 3,
+  spatial_grid: 4 * 358400,
+  roles: 1 * 500000,
+  structure_grid: 4 * 11200,
+  signal_grid: 4 * 11200,
+  memory_grid: 8 * 11200,
+  ascension_stats: 4 * 250000,
+  bond_distances: 1 * 500000 * 4,
+  damping: 1 * 500000,
+  causality: 1 * 500000,
+  hive_memory: 1024,
+  hive_balance: 4,
+  quorum: 4 * 100025,
+  coherence: 4,
+  neural_coherence: 4,
+  physics_read_xs: 2 * 500000,
+  physics_read_ys: 2 * 500000,
+  physics_read_energy: 4 * 500000,
+  physics_read_resonance: 4 * 500000,
+  energy_delta: 4 * 500000,
+  resonance_delta: 4 * 500000,
+  structure_build_owner: 4 * 11200,
+  structure_build_value: 4 * 11200,
+  structure_charge_intent: 4 * 11200,
+  attention_field: 4 * 11200,
+  hive_energy_pool: 4 * 256,
+  glyph_header: 4 * 11200,
+  glyph_payload: 8 * 11200,
+  glyph_scratch_header: 4 * 11200,
+  glyph_scratch_payload: 8 * 11200,
+  hormones: 2 * 8,
+  secretion_stats: 4 * 12,
+  lineage: 8 * 500000,
+  mailbox: 8 * 500000,
+  ledger_head: 4,
+  ledger_data: 16 * 65536,
 };
 
 let current = 7999992;
 for (const [k, v] of Object.entries(bounds)) {
-    if (v > current) {
-       let pad = v - current;
-       console.log(`pub _pad_${k}: [u8; ${pad}], // to ${v}`);
-    }
-    
-    // We don't type it out fully, just output the test blocks too
-    console.log(`assert_eq!(offset_of!(SigmaMatrix, ${k}), ${v + 8}, "${k}");`);
-    
-    current = v + sizes[k];
-}
+  if (v > current) {
+    let pad = v - current;
+    console.log(`pub _pad_${k}: [u8; ${pad}], // to ${v}`);
+  }
 
+  // We don't type it out fully, just output the test blocks too
+  console.log(`assert_eq!(offset_of!(SigmaMatrix, ${k}), ${v + 8}, "${k}");`);
+
+  current = v + sizes[k];
+}
 ```
 
 ---
@@ -13951,114 +13998,113 @@ for (const [k, v] of Object.entries(bounds)) {
 import * as off from "./OFFSETS.ts";
 
 const bounds: Record<string, number> = {
-    tick_counter: 7999992,
-    sync_state: 7999996,
-    ids: off.IDS_OFFSET,
-    xs: off.XS_OFFSET,
-    ys: off.YS_OFFSET,
-    energy: off.ENERGY_OFFSET,
-    resonance: off.RESONANCE_OFFSET,
-    phase: off.PHASE_OFFSET,
-    logic: off.LOGIC_OFFSET,
-    bonds: off.BONDS_OFFSET,
-    stiffness: off.STIFFNESS_OFFSET,
-    instructions: off.INSTRUCTIONS_OFFSET,
-    context: off.CONTEXT_OFFSET,
-    evolution_reserved: off.EVOLUTION_OFFSET,
-    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-    meiosis: off.MEIOSIS_OFFSET,
-    bond_requests: off.BOND_REQUESTS_OFFSET,
-    spatial_grid: off.SPATIAL_GRID_OFFSET,
-    roles: off.ROLES_OFFSET,
-    structure_grid: off.STRUCTURE_GRID_OFFSET,
-    signal_grid: off.SIGNAL_GRID_OFFSET,
-    memory_grid: off.MEMORY_GRID_OFFSET,
-    ascension_stats: off.ASCENSION_STATS_OFFSET,
-    bond_distances: off.BOND_DISTANCES_OFFSET,
-    damping: off.DAMPING_OFFSET,
-    causality: off.CAUSALITY_OFFSET,
-    hive_memory: off.HIVE_MEMORY_OFFSET,
-    hive_balance: off.HIVE_BALANCE_OFFSET,
-    quorum: off.QUORUM_OFFSET,
-    coherence: off.COHERENCE_OFFSET,
-    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-    energy_delta: off.ENERGY_DELTA_OFFSET,
-    resonance_delta: off.RESONANCE_DELTA_OFFSET,
-    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-    attention_field: off.ATTENTION_FIELD_OFFSET,
-    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-    glyph_header: off.GLYPH_HEADER_OFFSET,
-    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-    hormones: off.HORMONE_OFFSET,
-    secretion_stats: off.SECRETION_STATS_OFFSET,
-    lineage: off.LINEAGE_OFFSET,
-    mailbox: off.MAILBOX_OFFSET,
-    ledger_head: off.LEDGER_HEAD_OFFSET,
-    ledger_data: off.LEDGER_DATA_OFFSET,
+  tick_counter: 7999992,
+  sync_state: 7999996,
+  ids: off.IDS_OFFSET,
+  xs: off.XS_OFFSET,
+  ys: off.YS_OFFSET,
+  energy: off.ENERGY_OFFSET,
+  resonance: off.RESONANCE_OFFSET,
+  phase: off.PHASE_OFFSET,
+  logic: off.LOGIC_OFFSET,
+  bonds: off.BONDS_OFFSET,
+  stiffness: off.STIFFNESS_OFFSET,
+  instructions: off.INSTRUCTIONS_OFFSET,
+  context: off.CONTEXT_OFFSET,
+  evolution_reserved: off.EVOLUTION_OFFSET,
+  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+  meiosis: off.MEIOSIS_OFFSET,
+  bond_requests: off.BOND_REQUESTS_OFFSET,
+  spatial_grid: off.SPATIAL_GRID_OFFSET,
+  roles: off.ROLES_OFFSET,
+  structure_grid: off.STRUCTURE_GRID_OFFSET,
+  signal_grid: off.SIGNAL_GRID_OFFSET,
+  memory_grid: off.MEMORY_GRID_OFFSET,
+  ascension_stats: off.ASCENSION_STATS_OFFSET,
+  bond_distances: off.BOND_DISTANCES_OFFSET,
+  damping: off.DAMPING_OFFSET,
+  causality: off.CAUSALITY_OFFSET,
+  hive_memory: off.HIVE_MEMORY_OFFSET,
+  hive_balance: off.HIVE_BALANCE_OFFSET,
+  quorum: off.QUORUM_OFFSET,
+  coherence: off.COHERENCE_OFFSET,
+  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+  energy_delta: off.ENERGY_DELTA_OFFSET,
+  resonance_delta: off.RESONANCE_DELTA_OFFSET,
+  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+  attention_field: off.ATTENTION_FIELD_OFFSET,
+  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+  glyph_header: off.GLYPH_HEADER_OFFSET,
+  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+  hormones: off.HORMONE_OFFSET,
+  secretion_stats: off.SECRETION_STATS_OFFSET,
+  lineage: off.LINEAGE_OFFSET,
+  mailbox: off.MAILBOX_OFFSET,
+  ledger_head: off.LEDGER_HEAD_OFFSET,
+  ledger_data: off.LEDGER_DATA_OFFSET,
 };
 
-
-const sizes: Record<string, number>  = {
-   tick_counter: 4,
-   sync_state: 4,
-   ids: 8*500000,
-   xs: 2*500000,
-   ys: 2*500000,
-   energy: 4*500000,
-   resonance: 4*500000,
-   phase: 4*500000,
-   logic: 8*500000,
-   bonds: 4*500000*4,
-   stiffness: 4*500000*4,
-   instructions: 64*500000,
-   context: 64*500000,
-   evolution_reserved: 4*500000,
-   spawn_requests: 24584,
-   meiosis: 4*300000,
-   bond_requests: 4*500000*3,
-   spatial_grid: 4*358400,
-   roles: 1*500000,
-   structure_grid: 4*11200,
-   signal_grid: 4*11200,
-   memory_grid: 8*11200,
-   ascension_stats: 4*250000,
-   bond_distances: 1*500000*4,
-   damping: 1*500000,
-   causality: 1*500000,
-   hive_memory: 1024,
-   hive_balance: 4,
-   quorum: 4*89600,
-   coherence: 4,
-   neural_coherence: 4,
-   physics_read_xs: 2*500000,
-   physics_read_ys: 2*500000,
-   physics_read_energy: 4*500000,
-   physics_read_resonance: 4*500000,
-   energy_delta: 4*500000,
-   resonance_delta: 4*500000,
-   structure_build_owner: 4*11200,
-   structure_build_value: 4*11200,
-   structure_charge_intent: 4*11200,
-   attention_field: 4*11200,
-   hive_energy_pool: 4*256,
-   glyph_header: 4*11200,
-   glyph_payload: 8*11200,
-   glyph_scratch_header: 4*11200,
-   glyph_scratch_payload: 8*11200,
-   hormones: 2*8,
-   secretion_stats: 4*12,
-   lineage: 8*500000,
-   mailbox: 8*500000,
-   ledger_head: 4,
-   ledger_data: 16*65536,
+const sizes: Record<string, number> = {
+  tick_counter: 4,
+  sync_state: 4,
+  ids: 8 * 500000,
+  xs: 2 * 500000,
+  ys: 2 * 500000,
+  energy: 4 * 500000,
+  resonance: 4 * 500000,
+  phase: 4 * 500000,
+  logic: 8 * 500000,
+  bonds: 4 * 500000 * 4,
+  stiffness: 4 * 500000 * 4,
+  instructions: 64 * 500000,
+  context: 64 * 500000,
+  evolution_reserved: 4 * 500000,
+  spawn_requests: 24584,
+  meiosis: 4 * 300000,
+  bond_requests: 4 * 500000 * 3,
+  spatial_grid: 4 * 358400,
+  roles: 1 * 500000,
+  structure_grid: 4 * 11200,
+  signal_grid: 4 * 11200,
+  memory_grid: 8 * 11200,
+  ascension_stats: 4 * 250000,
+  bond_distances: 1 * 500000 * 4,
+  damping: 1 * 500000,
+  causality: 1 * 500000,
+  hive_memory: 1024,
+  hive_balance: 4,
+  quorum: 4 * 89600,
+  coherence: 4,
+  neural_coherence: 4,
+  physics_read_xs: 2 * 500000,
+  physics_read_ys: 2 * 500000,
+  physics_read_energy: 4 * 500000,
+  physics_read_resonance: 4 * 500000,
+  energy_delta: 4 * 500000,
+  resonance_delta: 4 * 500000,
+  structure_build_owner: 4 * 11200,
+  structure_build_value: 4 * 11200,
+  structure_charge_intent: 4 * 11200,
+  attention_field: 4 * 11200,
+  hive_energy_pool: 4 * 256,
+  glyph_header: 4 * 11200,
+  glyph_payload: 8 * 11200,
+  glyph_scratch_header: 4 * 11200,
+  glyph_scratch_payload: 8 * 11200,
+  hormones: 2 * 8,
+  secretion_stats: 4 * 12,
+  lineage: 8 * 500000,
+  mailbox: 8 * 500000,
+  ledger_head: 4,
+  ledger_data: 16 * 65536,
 };
 
 const keys = Object.keys(bounds);
@@ -14078,28 +14124,69 @@ let testOut = `
 
 let cur = 8000000;
 for (const k of keys) {
-   if (k === 'tick_counter' || k === 'sync_state') continue;
-   let start = bounds[k];
-   if (start > cur) {
-       structOut += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
-   }
-   
-    if (k === "ids" || k === "lineage") structOut += `    pub ${k}: [u64; ${sizes[k]/8}],\n`;
-    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) structOut += `    pub ${k}: [i16; ${sizes[k]/2}],\n`;
-    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k)) structOut += `    pub ${k}: [i32; ${sizes[k]/4}],\n`;
-    else if (["stiffness", "attention_field"].includes(k)) structOut += `    pub ${k}: [f32; ${sizes[k]/4}],\n`;
-    else if (["logic", "glyph_payload", "glyph_scratch_payload", "memory_grid"].includes(k)) structOut += `    pub ${k}: [[u8; 8]; ${sizes[k]/8}],\n`;
-    else if (k === "instructions") structOut += `    pub ${k}: [[u8; 64]; ${sizes[k]/64}],\n`;
-    else if (k === "context") structOut += `    pub ${k}: [[i32; 16]; ${sizes[k]/64}],\n`;
-    else if (k === "mailbox") structOut += `    pub ${k}: [[i32; 2]; ${sizes[k]/8}],\n`;
-    else if (k === "ledger_data") structOut += `    pub ${k}: [[i32; 4]; ${sizes[k]/16}],\n`;
-    else if (k === "hormones") structOut += `    pub ${k}: [u16; ${sizes[k]/2}],\n`;
-    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)) structOut += `    pub ${k}: i32,\n`;
-    else structOut += `    pub ${k}: [u8; ${sizes[k]}],\n`;
+  if (k === "tick_counter" || k === "sync_state") continue;
+  let start = bounds[k];
+  if (start > cur) {
+    structOut += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
+  }
 
-   testOut += `        assert_eq!(offset_of!(SigmaMatrix, ${k}), ${start}, "${k}");\n`;
+  if (k === "ids" || k === "lineage") {
+    structOut += `    pub ${k}: [u64; ${sizes[k] / 8}],\n`;
+  } else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) {
+    structOut += `    pub ${k}: [i16; ${sizes[k] / 2}],\n`;
+  } else if (
+    [
+      "energy",
+      "resonance",
+      "phase",
+      "bonds",
+      "evolution_reserved",
+      "bond_requests",
+      "spatial_grid",
+      "structure_grid",
+      "signal_grid",
+      "ascension_stats",
+      "quorum",
+      "physics_read_energy",
+      "physics_read_resonance",
+      "energy_delta",
+      "resonance_delta",
+      "structure_build_owner",
+      "structure_build_value",
+      "structure_charge_intent",
+      "hive_energy_pool",
+      "glyph_header",
+      "glyph_scratch_header",
+      "secretion_stats",
+      "meiosis",
+    ].includes(k)
+  ) structOut += `    pub ${k}: [i32; ${sizes[k] / 4}],\n`;
+  else if (["stiffness", "attention_field"].includes(k)) {
+    structOut += `    pub ${k}: [f32; ${sizes[k] / 4}],\n`;
+  } else if (
+    ["logic", "glyph_payload", "glyph_scratch_payload", "memory_grid"].includes(
+      k,
+    )
+  ) structOut += `    pub ${k}: [[u8; 8]; ${sizes[k] / 8}],\n`;
+  else if (k === "instructions") {
+    structOut += `    pub ${k}: [[u8; 64]; ${sizes[k] / 64}],\n`;
+  } else if (k === "context") {
+    structOut += `    pub ${k}: [[i32; 16]; ${sizes[k] / 64}],\n`;
+  } else if (k === "mailbox") {
+    structOut += `    pub ${k}: [[i32; 2]; ${sizes[k] / 8}],\n`;
+  } else if (k === "ledger_data") {
+    structOut += `    pub ${k}: [[i32; 4]; ${sizes[k] / 16}],\n`;
+  } else if (k === "hormones") {
+    structOut += `    pub ${k}: [u16; ${sizes[k] / 2}],\n`;
+  } else if (
+    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)
+  ) structOut += `    pub ${k}: i32,\n`;
+  else structOut += `    pub ${k}: [u8; ${sizes[k]}],\n`;
 
-   cur = start + sizes[k];
+  testOut +=
+    `        assert_eq!(offset_of!(SigmaMatrix, ${k}), ${start}, "${k}");\n`;
+
+  cur = start + sizes[k];
 }
 
 testOut += `    }\n`;
@@ -14108,13 +14195,18 @@ import * as fs from "node:fs";
 
 let memory_rs = fs.readFileSync("sigma_core/src/memory.rs", "utf8");
 
-memory_rs = memory_rs.replace(/pub _pad_front: \[u8; [0-9_]+\],[\s\S]+?pub ledger_data: \[\[i32; 4\]; 65536\],/, structOut.trim());
+memory_rs = memory_rs.replace(
+  /pub _pad_front: \[u8; [0-9_]+\],[\s\S]+?pub ledger_data: \[\[i32; 4\]; 65536\],/,
+  structOut.trim(),
+);
 
 // Replace test
-memory_rs = memory_rs.replace(/#\[test\]\s+fn verify_memory_offsets\(\)\s*\{[\s\S]+?    }\n(?=\})/m, testOut);
+memory_rs = memory_rs.replace(
+  /#\[test\]\s+fn verify_memory_offsets\(\)\s*\{[\s\S]+?    }\n(?=\})/m,
+  testOut,
+);
 
 fs.writeFileSync("sigma_core/src/memory.rs", memory_rs);
-
 ```
 
 ---
@@ -14125,114 +14217,113 @@ fs.writeFileSync("sigma_core/src/memory.rs", memory_rs);
 import * as off from "./OFFSETS.ts";
 
 const bounds = {
-    tick_counter: 7999992,
-    sync_state: 7999996,
-    ids: off.IDS_OFFSET,
-    xs: off.XS_OFFSET,
-    ys: off.YS_OFFSET,
-    energy: off.ENERGY_OFFSET,
-    resonance: off.RESONANCE_OFFSET,
-    phase: off.PHASE_OFFSET,
-    logic: off.LOGIC_OFFSET,
-    bonds: off.BONDS_OFFSET,
-    stiffness: off.STIFFNESS_OFFSET,
-    instructions: off.INSTRUCTIONS_OFFSET,
-    context: off.CONTEXT_OFFSET,
-    evolution_reserved: off.EVOLUTION_OFFSET,
-    spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-    meiosis: off.MEIOSIS_OFFSET,
-    bond_requests: off.BOND_REQUESTS_OFFSET,
-    spatial_grid: off.SPATIAL_GRID_OFFSET,
-    roles: off.ROLES_OFFSET,
-    structure_grid: off.STRUCTURE_GRID_OFFSET,
-    signal_grid: off.SIGNAL_GRID_OFFSET,
-    memory_grid: off.MEMORY_GRID_OFFSET,
-    ascension_stats: off.ASCENSION_STATS_OFFSET,
-    bond_distances: off.BOND_DISTANCES_OFFSET,
-    damping: off.DAMPING_OFFSET,
-    causality: off.CAUSALITY_OFFSET,
-    hive_memory: off.HIVE_MEMORY_OFFSET,
-    hive_balance: off.HIVE_BALANCE_OFFSET,
-    quorum: off.QUORUM_OFFSET,
-    coherence: off.COHERENCE_OFFSET,
-    neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-    physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-    physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-    physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-    physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-    energy_delta: off.ENERGY_DELTA_OFFSET,
-    resonance_delta: off.RESONANCE_DELTA_OFFSET,
-    structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-    structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-    structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-    attention_field: off.ATTENTION_FIELD_OFFSET,
-    hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-    glyph_header: off.GLYPH_HEADER_OFFSET,
-    glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-    glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-    glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-    hormones: off.HORMONE_OFFSET,
-    secretion_stats: off.SECRETION_STATS_OFFSET,
-    lineage: off.LINEAGE_OFFSET,
-    mailbox: off.MAILBOX_OFFSET,
-    ledger_head: off.LEDGER_HEAD_OFFSET,
-    ledger_data: off.LEDGER_DATA_OFFSET,
+  tick_counter: 7999992,
+  sync_state: 7999996,
+  ids: off.IDS_OFFSET,
+  xs: off.XS_OFFSET,
+  ys: off.YS_OFFSET,
+  energy: off.ENERGY_OFFSET,
+  resonance: off.RESONANCE_OFFSET,
+  phase: off.PHASE_OFFSET,
+  logic: off.LOGIC_OFFSET,
+  bonds: off.BONDS_OFFSET,
+  stiffness: off.STIFFNESS_OFFSET,
+  instructions: off.INSTRUCTIONS_OFFSET,
+  context: off.CONTEXT_OFFSET,
+  evolution_reserved: off.EVOLUTION_OFFSET,
+  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
+  meiosis: off.MEIOSIS_OFFSET,
+  bond_requests: off.BOND_REQUESTS_OFFSET,
+  spatial_grid: off.SPATIAL_GRID_OFFSET,
+  roles: off.ROLES_OFFSET,
+  structure_grid: off.STRUCTURE_GRID_OFFSET,
+  signal_grid: off.SIGNAL_GRID_OFFSET,
+  memory_grid: off.MEMORY_GRID_OFFSET,
+  ascension_stats: off.ASCENSION_STATS_OFFSET,
+  bond_distances: off.BOND_DISTANCES_OFFSET,
+  damping: off.DAMPING_OFFSET,
+  causality: off.CAUSALITY_OFFSET,
+  hive_memory: off.HIVE_MEMORY_OFFSET,
+  hive_balance: off.HIVE_BALANCE_OFFSET,
+  quorum: off.QUORUM_OFFSET,
+  coherence: off.COHERENCE_OFFSET,
+  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
+  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
+  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
+  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
+  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
+  energy_delta: off.ENERGY_DELTA_OFFSET,
+  resonance_delta: off.RESONANCE_DELTA_OFFSET,
+  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
+  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
+  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
+  attention_field: off.ATTENTION_FIELD_OFFSET,
+  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
+  glyph_header: off.GLYPH_HEADER_OFFSET,
+  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
+  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
+  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
+  hormones: off.HORMONE_OFFSET,
+  secretion_stats: off.SECRETION_STATS_OFFSET,
+  lineage: off.LINEAGE_OFFSET,
+  mailbox: off.MAILBOX_OFFSET,
+  ledger_head: off.LEDGER_HEAD_OFFSET,
+  ledger_data: off.LEDGER_DATA_OFFSET,
 };
 
-
 const sizes = {
-   tick_counter: 4,
-   sync_state: 4,
-   ids: 8*500000,
-   xs: 2*500000,
-   ys: 2*500000,
-   energy: 4*500000,
-   resonance: 4*500000,
-   phase: 4*500000,
-   logic: 8*500000,
-   bonds: 4*500000*4,
-   stiffness: 4*500000*4,
-   instructions: 64*500000,
-   context: 64*500000,
-   evolution_reserved: 4*500000,
-   spawn_requests: 24584,
-   meiosis: 4*300000,
-   bond_requests: 4*500000*3,
-   spatial_grid: 4*358400,
-   roles: 1*500000,
-   structure_grid: 4*11200,
-   signal_grid: 4*11200,
-   memory_grid: 8*11200,
-   ascension_stats: 4*250000,
-   bond_distances: 1*500000*4,
-   damping: 1*500000,
-   causality: 1*500000,
-   hive_memory: 1024,
-   hive_balance: 4,
-   quorum: 4*100025,
-   coherence: 4,
-   neural_coherence: 4,
-   physics_read_xs: 2*500000,
-   physics_read_ys: 2*500000,
-   physics_read_energy: 4*500000,
-   physics_read_resonance: 4*500000,
-   energy_delta: 4*500000,
-   resonance_delta: 4*500000,
-   structure_build_owner: 4*11200,
-   structure_build_value: 4*11200,
-   structure_charge_intent: 4*11200,
-   attention_field: 4*11200,
-   hive_energy_pool: 4*256,
-   glyph_header: 4*11200,
-   glyph_payload: 8*11200,
-   glyph_scratch_header: 4*11200,
-   glyph_scratch_payload: 8*11200,
-   hormones: 2*8,
-   secretion_stats: 4*12,
-   lineage: 8*500000,
-   mailbox: 8*500000,
-   ledger_head: 4,
-   ledger_data: 16*65536,
+  tick_counter: 4,
+  sync_state: 4,
+  ids: 8 * 500000,
+  xs: 2 * 500000,
+  ys: 2 * 500000,
+  energy: 4 * 500000,
+  resonance: 4 * 500000,
+  phase: 4 * 500000,
+  logic: 8 * 500000,
+  bonds: 4 * 500000 * 4,
+  stiffness: 4 * 500000 * 4,
+  instructions: 64 * 500000,
+  context: 64 * 500000,
+  evolution_reserved: 4 * 500000,
+  spawn_requests: 24584,
+  meiosis: 4 * 300000,
+  bond_requests: 4 * 500000 * 3,
+  spatial_grid: 4 * 358400,
+  roles: 1 * 500000,
+  structure_grid: 4 * 11200,
+  signal_grid: 4 * 11200,
+  memory_grid: 8 * 11200,
+  ascension_stats: 4 * 250000,
+  bond_distances: 1 * 500000 * 4,
+  damping: 1 * 500000,
+  causality: 1 * 500000,
+  hive_memory: 1024,
+  hive_balance: 4,
+  quorum: 4 * 100025,
+  coherence: 4,
+  neural_coherence: 4,
+  physics_read_xs: 2 * 500000,
+  physics_read_ys: 2 * 500000,
+  physics_read_energy: 4 * 500000,
+  physics_read_resonance: 4 * 500000,
+  energy_delta: 4 * 500000,
+  resonance_delta: 4 * 500000,
+  structure_build_owner: 4 * 11200,
+  structure_build_value: 4 * 11200,
+  structure_charge_intent: 4 * 11200,
+  attention_field: 4 * 11200,
+  hive_energy_pool: 4 * 256,
+  glyph_header: 4 * 11200,
+  glyph_payload: 8 * 11200,
+  glyph_scratch_header: 4 * 11200,
+  glyph_scratch_payload: 8 * 11200,
+  hormones: 2 * 8,
+  secretion_stats: 4 * 12,
+  lineage: 8 * 500000,
+  mailbox: 8 * 500000,
+  ledger_head: 4,
+  ledger_data: 16 * 65536,
 };
 
 const keys = Object.keys(bounds);
@@ -14243,34 +14334,69 @@ let out = `
 `;
 let cur = 8000000;
 for (const k of keys) {
-   if (k === 'tick_counter' || k === 'sync_state') continue;
-   let start = bounds[k];
-   if (start > cur) {
-       out += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
-   }
-   if (start < cur) {
-       console.log(`OVERLAP AT ${k}: wants ${start} but cur is ${cur}`);
-   }
-   
-   let typ = "u8";
-    if (k === "ids" || k === "lineage") out += `    pub ${k}: [u64; ${sizes[k]/8}],\n`;
-    else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) out += `    pub ${k}: [i16; ${sizes[k]/2}],\n`;
-    else if (["energy", "resonance", "phase", "bonds", "evolution_reserved", "bond_requests", "spatial_grid", "structure_grid", "signal_grid", "ascension_stats", "quorum", "physics_read_energy", "physics_read_resonance", "energy_delta", "resonance_delta", "structure_build_owner", "structure_build_value", "structure_charge_intent", "hive_energy_pool", "glyph_header", "glyph_scratch_header", "secretion_stats", "meiosis"].includes(k)) out += `    pub ${k}: [i32; ${sizes[k]/4}],\n`;
-    else if (["stiffness", "attention_field"].includes(k)) out += `    pub ${k}: [f32; ${sizes[k]/4}],\n`;
-    else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k)) out += `    pub ${k}: [[u8; 8]; ${sizes[k]/8}],\n`;
-    else if (k === "instructions") out += `    pub ${k}: [[u8; 64]; ${sizes[k]/64}],\n`;
-    else if (k === "context") out += `    pub ${k}: [[i32; 16]; ${sizes[k]/64}],\n`;
-    else if (k === "mailbox") out += `    pub ${k}: [[i32; 2]; ${sizes[k]/8}],\n`;
-    else if (k === "ledger_data") out += `    pub ${k}: [[i32; 4]; ${sizes[k]/16}],\n`;
-    else if (k === "hormones") out += `    pub ${k}: [u16; ${sizes[k]/2}],\n`;
-    else if (["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)) out += `    pub ${k}: i32,\n`;
-    else out += `    pub ${k}: [u8; ${sizes[k]}],\n`;
+  if (k === "tick_counter" || k === "sync_state") continue;
+  let start = bounds[k];
+  if (start > cur) {
+    out += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
+  }
+  if (start < cur) {
+    console.log(`OVERLAP AT ${k}: wants ${start} but cur is ${cur}`);
+  }
 
-   cur = start + sizes[k];
+  let typ = "u8";
+  if (k === "ids" || k === "lineage") {
+    out += `    pub ${k}: [u64; ${sizes[k] / 8}],\n`;
+  } else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) {
+    out += `    pub ${k}: [i16; ${sizes[k] / 2}],\n`;
+  } else if (
+    [
+      "energy",
+      "resonance",
+      "phase",
+      "bonds",
+      "evolution_reserved",
+      "bond_requests",
+      "spatial_grid",
+      "structure_grid",
+      "signal_grid",
+      "ascension_stats",
+      "quorum",
+      "physics_read_energy",
+      "physics_read_resonance",
+      "energy_delta",
+      "resonance_delta",
+      "structure_build_owner",
+      "structure_build_value",
+      "structure_charge_intent",
+      "hive_energy_pool",
+      "glyph_header",
+      "glyph_scratch_header",
+      "secretion_stats",
+      "meiosis",
+    ].includes(k)
+  ) out += `    pub ${k}: [i32; ${sizes[k] / 4}],\n`;
+  else if (["stiffness", "attention_field"].includes(k)) {
+    out += `    pub ${k}: [f32; ${sizes[k] / 4}],\n`;
+  } else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k)) {
+    out += `    pub ${k}: [[u8; 8]; ${sizes[k] / 8}],\n`;
+  } else if (k === "instructions") {
+    out += `    pub ${k}: [[u8; 64]; ${sizes[k] / 64}],\n`;
+  } else if (k === "context") {
+    out += `    pub ${k}: [[i32; 16]; ${sizes[k] / 64}],\n`;
+  } else if (k === "mailbox") {
+    out += `    pub ${k}: [[i32; 2]; ${sizes[k] / 8}],\n`;
+  } else if (k === "ledger_data") {
+    out += `    pub ${k}: [[i32; 4]; ${sizes[k] / 16}],\n`;
+  } else if (k === "hormones") out += `    pub ${k}: [u16; ${sizes[k] / 2}],\n`;
+  else if (
+    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)
+  ) out += `    pub ${k}: i32,\n`;
+  else out += `    pub ${k}: [u8; ${sizes[k]}],\n`;
+
+  cur = start + sizes[k];
 }
 const fs = require("node:fs");
 fs.writeFileSync("/tmp/struct.txt", out);
-
 ```
 
 ---
@@ -14280,8 +14406,8 @@ fs.writeFileSync("/tmp/struct.txt", out);
 ```typescript
 import {
   applyLedgerUpdate,
-  createLedgerRuntime,
   createGeneticLedgerRuntime,
+  createLedgerRuntime,
   type LedgerRuntimeEvent,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
@@ -14703,7 +14829,6 @@ export const appendLedgerRecordAndMaybeCompact = async <
   await appendLedgerRecord(record);
   return await compactLedgerPersistence(key, options);
 };
-
 ```
 
 ---
@@ -15009,10 +15134,12 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
   if (!entry) {
     throw new Error(`[GENERIC_LEDGER_SYSTEM] missing ${key} entry`);
   }
-  return createLedgerRuntime(entry as unknown as LedgerRuntimeConfig<K>, initialValue, historyLimit);
+  return createLedgerRuntime(
+    entry as unknown as LedgerRuntimeConfig<K>,
+    initialValue,
+    historyLimit,
+  );
 };
-
-
 ```
 
 ---
@@ -15201,7 +15328,6 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
-
 ```
 
 ---
@@ -15271,7 +15397,6 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
-
 ```
 
 ---
@@ -15364,7 +15489,7 @@ const depositHeader = (
 ): void => {
   let nextAmplitude = Math.round(amplitude);
   if (nextAmplitude === 0) return;
-  
+
   if (nextAmplitude < -8388608) nextAmplitude = -8388608;
   if (nextAmplitude > 8388607) nextAmplitude = 8388607;
 
@@ -15384,7 +15509,7 @@ const depositHeader = (
   } else {
     // Differing kinds - power comparison for override
     if (Math.abs(nextAmplitude) <= Math.abs(currentAmplitude)) {
-        return; // Current signal is stronger or equal
+      return; // Current signal is stronger or equal
     }
   }
 
@@ -15410,7 +15535,9 @@ export const GLYPH_BUFFER = {
   depositPheromone: (x: number, y: number, intensity: number) => {
     const cell = toGridCell(x, y);
     const core = clamp(Math.round(intensity), -4096, 4096);
-    const halo = core > 0 ? Math.max(1, Math.floor(core * 0.25)) : Math.min(-1, Math.ceil(core * 0.25));
+    const halo = core > 0
+      ? Math.max(1, Math.floor(core * 0.25))
+      : Math.min(-1, Math.ceil(core * 0.25));
     depositHeader(cell, GLYPH_KIND.PHEROMONE, core);
     const gx = cell % GRID_W;
     const gy = Math.floor(cell / GRID_W);
@@ -15522,7 +15649,6 @@ export const GLYPH_BUFFER = {
     };
   },
 };
-
 ```
 
 ---
@@ -15990,7 +16116,6 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -16152,7 +16277,6 @@ async function run() {
 if (import.meta.main) {
   await run();
 }
-
 ```
 
 ---
@@ -16292,7 +16416,6 @@ export function injectHologram(
   }
   return newContent;
 }
-
 ```
 
 ---
@@ -16329,7 +16452,9 @@ const clamp = (value: number, min: number, max: number): number =>
  * Synchronizes physiological signals from host runtimes into the shared memory lattice.
  * This allows the WASM λ-VM to read global "hormones" directly.
  */
-export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId, number> => {
+export const syncHormonesToLattice = (
+  input: HormoneSyncInput,
+): Record<HormoneId, number> => {
   return {
     entropy_pressure: Math.round(
       clamp(
@@ -16351,7 +16476,8 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId
     ),
     replication_bias: Math.round(
       clamp(
-        input.noveltyPressure + ((1 - input.homeostasisOverflowThreshold) * 512),
+        input.noveltyPressure +
+          ((1 - input.homeostasisOverflowThreshold) * 512),
         0,
         2048,
       ),
@@ -16374,7 +16500,6 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId
     global_consensus: Math.round(clamp(input.globalSyntropy * 1024, 0, 2048)),
   };
 };
-
 ```
 
 ---
@@ -16383,7 +16508,11 @@ export const syncHormonesToLattice = (input: HormoneSyncInput): Record<HormoneId
 
 ```typescript
 import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
-import { type LedgerRuntimeState, type LedgerRuntimeConfig, createLedgerRuntime } from "./GENERIC_LEDGER_SYSTEM.ts";
+import {
+  createLedgerRuntime,
+  type LedgerRuntimeConfig,
+  type LedgerRuntimeState,
+} from "./GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -16577,8 +16706,6 @@ export const createPhysiologicalLedgerRuntime = (
   };
   return createLedgerRuntime(config, initialValue, historyLimit);
 };
-
-
 ```
 
 ---
@@ -16639,7 +16766,6 @@ export const IMMUNE = {
     return purgeList;
   },
 };
-
 ```
 
 ---
@@ -17863,14 +17989,13 @@ export const LAMBDA_VM = {
     return res;
   },
 };
-
 ```
 
 ---
 
 ## FILE: llm_soul.ts
 
-```typescript
+````typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "./LOGGER.ts";
 
@@ -18047,8 +18172,7 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-
-```
+````
 
 ---
 
@@ -18349,25 +18473,25 @@ export const LLM_SYNAPSE = {
         result = typeof data.response === "string"
           ? JSON.parse(data.response)
           : data.response;
-        } catch {
-          const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
-            .toUpperCase();
-          if (rawHex && rawHex.length >= 128) {
-            result = { instructions: rawHex.substring(0, 128) };
-          }
+      } catch {
+        const rawHex = data.response?.replace(/[^0-9A-Fa-f]/g, "")
+          .toUpperCase();
+        if (rawHex && rawHex.length >= 128) {
+          result = { instructions: rawHex.substring(0, 128) };
         }
-  
-        if (result.instructions && result.instructions.length >= 128) {
-          const genome = new Uint8Array(64);
-          for (let i = 0; i < 64; i++) {
-            genome[i] = parseInt(
-              result.instructions.substring(i * 2, i * 2 + 2),
-              16,
-            );
-          }
-  
-          return { genome };
+      }
+
+      if (result.instructions && result.instructions.length >= 128) {
+        const genome = new Uint8Array(64);
+        for (let i = 0; i < 64; i++) {
+          genome[i] = parseInt(
+            result.instructions.substring(i * 2, i * 2 + 2),
+            16,
+          );
         }
+
+        return { genome };
+      }
     } catch (e) {
       console.warn(
         "Oracle connection failed (LLM Offline). Stochastic Mutation.",
@@ -18387,7 +18511,6 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
-
 ```
 
 ---
@@ -18466,7 +18589,6 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
-
 ```
 
 ---
@@ -19848,7 +19970,6 @@ const main = async () => {
 if (import.meta.main) {
   await main();
 }
-
 ```
 
 ---
@@ -21594,7 +21715,6 @@ const main = async () => {
 if (import.meta.main) {
   await main();
 }
-
 ```
 
 ---
@@ -21745,7 +21865,6 @@ export const MATRIX_ENGINE = {
     return count;
   },
 };
-
 ```
 
 ---
@@ -21761,7 +21880,6 @@ export { GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
 export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 export { PULSE } from "./PULSE.ts";
-
 ```
 
 ---
@@ -21834,7 +21952,6 @@ internal high-speed mutation loops.
   (`CONTROL_INTENT_QUEUE.applyHostLockBudget()` in `PULSE.ts`).
 - Runtime env gates and thresholds are parsed centrally in `RUNTIME_POLICY.ts`
   and consumed by runtime modules (policy monoculture).
-
 ```
 
 ---
@@ -21928,7 +22045,6 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```
 
 ---
@@ -21955,14 +22071,17 @@ export class SwarmNexus {
   public instanceId: number;
   public port: number;
   public seedNodes: string[];
-  
+
   // Peer registry
   public connectedPeers: Map<string, WebSocket> = new Map();
   // Server handle
   private serverAbortController: AbortController = new AbortController();
-  
+
   // Heartbeat tracking
-  public peerHeartbeats: Map<string, { tick: number, tps: number, lastSeen: number }> = new Map();
+  public peerHeartbeats: Map<
+    string,
+    { tick: number; tps: number; lastSeen: number }
+  > = new Map();
   private heartbeatInterval?: number;
 
   // Local TPS tracking support
@@ -21982,19 +22101,27 @@ export class SwarmNexus {
   }
 
   public start() {
-    console.error(`[NEXUS_DEBUG] CALLING START ON PORT ${this.port} FOR NODE ${this.nodeId}`);
-    LOGGER.info(`[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`);
-    
+    console.error(
+      `[NEXUS_DEBUG] CALLING START ON PORT ${this.port} FOR NODE ${this.nodeId}`,
+    );
+    LOGGER.info(
+      `[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`,
+    );
+
     // 1. Start listening for incoming WebSocket connections
     const server = Deno.serve({
       port: this.port,
       hostname: "127.0.0.1",
       signal: this.serverAbortController.signal,
       onListen: ({ port, hostname }) => {
-        try { Deno.writeTextFileSync("tests/.genesis_port", port.toString()); } catch {}
-        console.error(`[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`);
+        try {
+          Deno.writeTextFileSync("tests/.genesis_port", port.toString());
+        } catch {}
+        console.error(
+          `[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`,
+        );
         LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
-      }
+      },
     }, (req) => {
       if (req.headers.get("upgrade") != "websocket") {
         return new Response(null, { status: 501 });
@@ -22006,12 +22133,15 @@ export class SwarmNexus {
     });
 
     server.finished.catch((err: any) => {
-        console.error(`[NEXUS_DEBUG] FATAL SERVER CRASH: ${err}`);
+      console.error(`[NEXUS_DEBUG] FATAL SERVER CRASH: ${err}`);
     });
 
     // 2. Connect to known seed nodes
     for (const seedUrl of this.seedNodes) {
-      if (seedUrl === `ws://127.0.0.1:${this.port}` || seedUrl === `ws://localhost:${this.port}`) {
+      if (
+        seedUrl === `ws://127.0.0.1:${this.port}` ||
+        seedUrl === `ws://localhost:${this.port}`
+      ) {
         continue; // Don't connect to self
       }
       this.connectToPeer(seedUrl);
@@ -22019,15 +22149,15 @@ export class SwarmNexus {
 
     // 3. Start Heartbeat Broadcast
     this.heartbeatInterval = setInterval(() => {
-        this.broadcastHeartbeat();
+      this.broadcastHeartbeat();
     }, 100);
   }
 
   public stop() {
     LOGGER.info(`[NEXUS] Shutting down Node ${this.nodeId}`);
     if (this.heartbeatInterval) {
-        clearInterval(this.heartbeatInterval);
-        this.heartbeatInterval = undefined;
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = undefined;
     }
     this.serverAbortController.abort();
     for (const [, ws] of this.connectedPeers) {
@@ -22047,7 +22177,10 @@ export class SwarmNexus {
     }
   }
 
-  private handleConnection(socket: WebSocket, direction: "INBOUND" | "OUTBOUND") {
+  private handleConnection(
+    socket: WebSocket,
+    direction: "INBOUND" | "OUTBOUND",
+  ) {
     socket.binaryType = "arraybuffer";
     let remoteNodeId: string | null = null;
 
@@ -22100,7 +22233,10 @@ export class SwarmNexus {
     };
 
     socket.onerror = (e) => {
-      LOGGER.error(`[NEXUS] Socket Error on ${remoteNodeId || 'unknown payload'}:`, e);
+      LOGGER.error(
+        `[NEXUS] Socket Error on ${remoteNodeId || "unknown payload"}:`,
+        e,
+      );
     };
   }
 
@@ -22110,7 +22246,7 @@ export class SwarmNexus {
     // [1..37] UUID (36 bytes text)
     const encoder = new TextEncoder();
     const idBytes = encoder.encode(this.nodeId);
-    
+
     if (idBytes.length !== 36) {
       LOGGER.error("[NEXUS] UUID encoding length mismatch!");
       return;
@@ -22119,7 +22255,7 @@ export class SwarmNexus {
     const payload = new Uint8Array(1 + 36);
     payload[0] = OP_NEXUS_HANDSHAKE;
     payload.set(idBytes, 1);
-    
+
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(payload.buffer);
     }
@@ -22128,7 +22264,7 @@ export class SwarmNexus {
   private handleHandshake(socket: WebSocket, payload: Uint8Array): string {
     const decoder = new TextDecoder();
     const remoteId = decoder.decode(payload.slice(1, 37));
-    
+
     LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
     this.connectedPeers.set(remoteId, socket);
     return remoteId;
@@ -22137,13 +22273,17 @@ export class SwarmNexus {
   public routeAtom(egressEvent: Uint8Array) {
     // Egress Event is exactly 256 bytes from WASM Memory.
     if (egressEvent.length !== 256) {
-      LOGGER.error(`[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`);
+      LOGGER.error(
+        `[NEXUS] Egress Event length mismatch. Expected 256, got ${egressEvent.length}`,
+      );
       return;
     }
 
     if (this.connectedPeers.size === 0) {
       // Bounced because we are alone in the universe
-      LOGGER.info(`[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`);
+      LOGGER.info(
+        `[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`,
+      );
       return;
     }
 
@@ -22165,7 +22305,9 @@ export class SwarmNexus {
 
   private handleAtomTransit(payload: Uint8Array) {
     if (payload.length !== 257) {
-      LOGGER.error(`[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`);
+      LOGGER.error(
+        `[NEXUS] Ingress payload length mismatch. Expected 257, got ${payload.length}`,
+      );
       return;
     }
 
@@ -22173,9 +22315,11 @@ export class SwarmNexus {
     const atomData = payload.slice(1);
     LOGGER.info(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
     if (this.onAtomTransit) {
-        this.onAtomTransit(atomData);
+      this.onAtomTransit(atomData);
     } else {
-        LOGGER.warn(`[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`);
+      LOGGER.warn(
+        `[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`,
+      );
     }
   }
 
@@ -22190,9 +22334,9 @@ export class SwarmNexus {
     view.setFloat64(9, this.localTps, true);
 
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
@@ -22201,11 +22345,11 @@ export class SwarmNexus {
     const view = new DataView(payload.buffer);
     const tick = view.getFloat64(1, true);
     const tps = view.getFloat64(9, true);
-    
+
     this.peerHeartbeats.set(remoteId, {
-        tick,
-        tps,
-        lastSeen: performance.now()
+      tick,
+      tps,
+      lastSeen: performance.now(),
     });
   }
 
@@ -22214,12 +22358,12 @@ export class SwarmNexus {
     const ticks: number[] = [localTickFallback]; // Always include ourselves
 
     for (const [peerId, hb] of this.peerHeartbeats.entries()) {
-        // Evict dead nodes > 2s
-        if (now - hb.lastSeen > 2000) {
-            this.peerHeartbeats.delete(peerId);
-            continue;
-        }
-        ticks.push(hb.tick);
+      // Evict dead nodes > 2s
+      if (now - hb.lastSeen > 2000) {
+        this.peerHeartbeats.delete(peerId);
+        continue;
+      }
+      ticks.push(hb.tick);
     }
 
     if (ticks.length === 1) return localTickFallback;
@@ -22228,7 +22372,7 @@ export class SwarmNexus {
     ticks.sort((a, b) => a - b);
     const mid = Math.floor(ticks.length / 2);
     if (ticks.length % 2 === 0) {
-        return (ticks[mid - 1] + ticks[mid]) / 2;
+      return (ticks[mid - 1] + ticks[mid]) / 2;
     }
     return ticks[mid];
   }
@@ -22244,9 +22388,9 @@ export class SwarmNexus {
     view.setBigUint64(9, hash, true);
 
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
@@ -22259,7 +22403,9 @@ export class SwarmNexus {
     // Naive local check for Phase 29: we expect this to match exactly our local epoch hash if we are at this tick.
     // If not, we just log a Byzantine warning since full State Merging is a future phase.
     // For now we just emit a warning locally allowing test to pick it up.
-    LOGGER.warn(`[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`);
+    LOGGER.warn(
+      `[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`,
+    );
   }
 
   // --- Phase 30: Bootstrapping ---
@@ -22272,43 +22418,50 @@ export class SwarmNexus {
     const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
     LOGGER.info(`[NEXUS] Broadcasting SYNC_REQUEST to Swarm...`);
     for (const peer of this.connectedPeers.values()) {
-        if (peer.readyState === WebSocket.OPEN) {
-            peer.send(payload.buffer);
-        }
+      if (peer.readyState === WebSocket.OPEN) {
+        peer.send(payload.buffer);
+      }
     }
   }
 
   private handleSyncRequest(remoteId: string) {
-    LOGGER.info(`[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`);
+    LOGGER.info(
+      `[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`,
+    );
     if (this.onSyncRequest) {
-        this.onSyncRequest(remoteId);
+      this.onSyncRequest(remoteId);
     }
   }
 
   public sendEpochPayload(targetNodeId: string, epochData: Uint8Array) {
     const peer = this.connectedPeers.get(targetNodeId);
     if (!peer || peer.readyState !== WebSocket.OPEN) {
-        LOGGER.warn(`[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`);
-        return;
+      LOGGER.warn(
+        `[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`,
+      );
+      return;
     }
 
     const payload = new Uint8Array(1 + epochData.length);
     payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
     payload.set(epochData, 1);
-    
-    LOGGER.info(`[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`);
+
+    LOGGER.info(
+      `[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`,
+    );
     peer.send(payload.buffer);
   }
 
   private handleEpochPayload(payload: Uint8Array) {
-    LOGGER.info(`[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`);
+    LOGGER.info(
+      `[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`,
+    );
     const epochData = payload.slice(1);
     if (this.onEpochPayload) {
-        this.onEpochPayload(epochData);
+      this.onEpochPayload(epochData);
     }
   }
 }
-
 ```
 
 ---
@@ -22503,7 +22656,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -22607,7 +22759,6 @@ if (import.meta.main) {
     await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
   }
 }
-
 ```
 
 ---
@@ -22658,7 +22809,6 @@ Deno.serve({ port: PORT }, async (req) => {
     });
   }
 });
-
 ```
 
 ---
@@ -22697,7 +22847,7 @@ export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
 export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
 export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
 export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
-export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000; 
+export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000;
 export const INTENT_OFFSET = EVOLUTION_OFFSET;
 export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
 export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
@@ -22970,7 +23120,8 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
 
 // WASM memory layout canon
 export const WASM_PAGE_BYTES = 64 * 1024;
-export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
+export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET +
+  (MAX_EGRESS_EVENTS * 128);
 export const MIN_WASM_MEMORY_PAGES = Math.ceil(
   LATTICE_MEMORY_END / WASM_PAGE_BYTES,
 );
@@ -23037,7 +23188,6 @@ export const validateMemoryLayout = (
 };
 
 export const MAX_ASCENSIONS_PER_TICK = 64;
-
 ```
 
 ---
@@ -24052,7 +24202,7 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
         ),
       }
       : undefined,
-    hormones: hormonesRaw.map(v => asFiniteNumber(v, 0)).slice(0, 6),
+    hormones: hormonesRaw.map((v) => asFiniteNumber(v, 0)).slice(0, 6),
   };
 };
 
@@ -24875,7 +25025,6 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
-
 ```
 
 ---
@@ -24890,164 +25039,163 @@ export const IN_PTR: u32 = 0;
 export const OUT_PTR: u32 = 64;
 
 const ISA_MOVE: u8 = 0x10;
-const ISA_JMP: u8  = 0x30;
-const ISA_JZ: u8   = 0x31;
-const ISA_JNZ: u8  = 0x32;
+const ISA_JMP: u8 = 0x30;
+const ISA_JZ: u8 = 0x31;
+const ISA_JNZ: u8 = 0x32;
 const ISA_CALL: u8 = 0x33;
-const ISA_RET: u8  = 0x34;
+const ISA_RET: u8 = 0x34;
 
-const ISA_ADD: u8  = 0x40;
-const ISA_SUB: u8  = 0x41;
-const ISA_MUL: u8  = 0x42;
-const ISA_CMP: u8  = 0x43;
+const ISA_ADD: u8 = 0x40;
+const ISA_SUB: u8 = 0x41;
+const ISA_MUL: u8 = 0x42;
+const ISA_CMP: u8 = 0x43;
 
 const ISA_LOAD: u8 = 0x50;
 const ISA_STORE: u8 = 0x51;
 
 export function execute_atom(): u8 {
-    let op = load<u8>(IN_PTR + 0);
-    let p1 = load<u8>(IN_PTR + 1);
-    let p2 = load<u8>(IN_PTR + 2);
-    let p3 = load<u8>(IN_PTR + 3);
-    let bonuses = load<u8>(IN_PTR + 4);
+  let op = load<u8>(IN_PTR + 0);
+  let p1 = load<u8>(IN_PTR + 1);
+  let p2 = load<u8>(IN_PTR + 2);
+  let p3 = load<u8>(IN_PTR + 3);
+  let bonuses = load<u8>(IN_PTR + 4);
 
-    let isSwift = (bonuses & 1) == 1;
+  let isSwift = (bonuses & 1) == 1;
 
-    let energyDelta: f32 = 0.0;
-    if (bonuses > 0) energyDelta -= 0.05;
+  let energyDelta: f32 = 0.0;
+  if (bonuses > 0) energyDelta -= 0.05;
 
-    // Reset Outputs
+  // Reset Outputs
+  store<f32>(OUT_PTR + 0, energyDelta);
+  store<f32>(OUT_PTR + 4, 0.0); // resonanceDelta
+  store<u8>(OUT_PTR + 8, 0); // hasIntent
+  store<f32>(OUT_PTR + 12, 0.0); // intentDx
+  store<f32>(OUT_PTR + 16, 0.0); // intentDy
+
+  // Copy context to output context (32 bytes)
+  for (let i: u32 = 0; i < 32; i++) {
+    let v = load<u8>(IN_PTR + 5 + i);
+    store<u8>(OUT_PTR + 20 + i, v);
+  }
+
+  // Load Logic (8 bytes starting at IN_PTR + 37)
+  // context ends at 5 + 32 = 37. So logic starts at 37
+  for (let j: u32 = 0; j < 8; j++) {
+    let l = load<u8>(IN_PTR + 37 + j);
+    store<u8>(OUT_PTR + 52 + j, l);
+  }
+
+  if (op == ISA_MOVE) {
+    store<u8>(OUT_PTR + 8, 1); // hasIntent = 1;
+    let dx: f32 = (f32(p1) - 128.0) / 10.0;
+    let dy: f32 = (f32(p2) - 128.0) / 10.0;
+    store<f32>(OUT_PTR + 12, dx);
+    store<f32>(OUT_PTR + 16, dy);
+
+    if (!isSwift) energyDelta -= 1.0;
     store<f32>(OUT_PTR + 0, energyDelta);
-    store<f32>(OUT_PTR + 4, 0.0); // resonanceDelta
-    store<u8>(OUT_PTR + 8, 0); // hasIntent
-    store<f32>(OUT_PTR + 12, 0.0); // intentDx
-    store<f32>(OUT_PTR + 16, 0.0); // intentDy
+    return 1; // Handled
+  }
 
-    // Copy context to output context (32 bytes)
-    for (let i: u32 = 0; i < 32; i++) {
-        let v = load<u8>(IN_PTR + 5 + i);
-        store<u8>(OUT_PTR + 20 + i, v);
+  if (op == ISA_ADD) {
+    let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8)); // REG2
+    let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8)); // REG3
+    store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 + v2); // wrap implicitly
+    return 1;
+  }
+
+  if (op == ISA_SUB) {
+    let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+    let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+    store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 - v2);
+    return 1;
+  }
+
+  if (op == ISA_MUL) {
+    let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+    let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
+    store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 * v2);
+    return 1;
+  }
+
+  if (op == ISA_CMP) {
+    let v1 = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8));
+    let v2 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
+    let flags = load<u8>(OUT_PTR + 20 + 1);
+    if (v1 == v2) {
+      store<u8>(OUT_PTR + 20 + 1, flags | 0x01);
+    } else {
+      store<u8>(OUT_PTR + 20 + 1, flags & ~0x01);
     }
+    return 1;
+  }
 
-    // Load Logic (8 bytes starting at IN_PTR + 37)
-    // context ends at 5 + 32 = 37. So logic starts at 37
-    for (let j: u32 = 0; j < 8; j++) {
-        let l = load<u8>(IN_PTR + 37 + j);
-        store<u8>(OUT_PTR + 52 + j, l);
+  // --- Control Flow ---
+  if (op == ISA_JMP) {
+    store<u8>(OUT_PTR + 20 + 0, p1 % 16); // PC = p1
+    return 2; // return 2 indicates pcJumped = true
+  }
+
+  if (op == ISA_JZ) {
+    let flags = load<u8>(OUT_PTR + 20 + 1);
+    if ((flags & 0x01) == 1) {
+      store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+      return 2;
     }
+    return 1;
+  }
 
-    if (op == ISA_MOVE) {
-        store<u8>(OUT_PTR + 8, 1); // hasIntent = 1;
-        let dx: f32 = (f32(p1) - 128.0) / 10.0;
-        let dy: f32 = (f32(p2) - 128.0) / 10.0;
-        store<f32>(OUT_PTR + 12, dx);
-        store<f32>(OUT_PTR + 16, dy);
-
-        if (!isSwift) energyDelta -= 1.0;
-        store<f32>(OUT_PTR + 0, energyDelta);
-        return 1; // Handled
+  if (op == ISA_JNZ) {
+    let flags = load<u8>(OUT_PTR + 20 + 1);
+    if ((flags & 0x01) == 0) {
+      store<u8>(OUT_PTR + 20 + 0, p1 % 16);
+      return 2;
     }
-    
-    if (op == ISA_ADD) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8)); // REG2
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8)); // REG3
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 + v2); // wrap implicitly
-        return 1;
+    return 1;
+  }
+
+  if (op == ISA_CALL) {
+    let sp = load<u8>(OUT_PTR + 20 + 18);
+    if (sp < 8) {
+      let pc = load<u8>(OUT_PTR + 20 + 0);
+      store<u8>(OUT_PTR + 20 + 10 + sp, (pc + 1) % 16); // push
+      store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8); // sp++
+      store<u8>(OUT_PTR + 20 + 0, p1 % 16); // jump
+      return 2;
     }
+    return 1;
+  }
 
-    if (op == ISA_SUB) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 - v2);
-        return 1;
+  if (op == ISA_RET) {
+    let sp = load<u8>(OUT_PTR + 20 + 18);
+    if (sp > 0) {
+      let val = load<u8>(OUT_PTR + 20 + 10 + (sp - 1)); // pop
+      store<u8>(OUT_PTR + 20 + 18, sp - 1); // sp--
+      store<u8>(OUT_PTR + 20 + 0, val); // jump
+      return 2;
     }
+    return 1;
+  }
 
-    if (op == ISA_MUL) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p3 % 8));
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), v1 * v2);
-        return 1;
-    }
+  // --- Data Movement ---
 
-    if (op == ISA_CMP) {
-        let v1 = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8));
-        let v2 = load<u8>(OUT_PTR + 20 + 2 + (p2 % 8));
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if (v1 == v2) {
-            store<u8>(OUT_PTR + 20 + 1, flags | 0x01);
-        } else {
-            store<u8>(OUT_PTR + 20 + 1, flags & ~0x01);
-        }
-        return 1;
-    }
+  if (op == ISA_LOAD) {
+    // TS: regs[p1 % 8] = logic[p2 % 8];
+    let val = load<u8>(OUT_PTR + 52 + (p2 % 8)); // 52 is Logic
+    store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val); // 20+2 is Regs
+    return 1;
+  }
 
-    // --- Control Flow ---
-    if (op == ISA_JMP) {
-        store<u8>(OUT_PTR + 20 + 0, p1 % 16); // PC = p1
-        return 2; // return 2 indicates pcJumped = true
-    }
+  if (op == ISA_STORE) {
+    // TS: res.modifiedLogic = { index: p2 % 8, value: regs[p1 % 8] };
+    // Write to Logic buffer
+    let val = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8)); // 20+2 is Regs
+    store<u8>(OUT_PTR + 52 + (p2 % 8), val); // 52 is Logic
+    return 1;
+  }
 
-    if (op == ISA_JZ) {
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if ((flags & 0x01) == 1) {
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_JNZ) {
-        let flags = load<u8>(OUT_PTR + 20 + 1);
-        if ((flags & 0x01) == 0) {
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16);
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_CALL) {
-        let sp = load<u8>(OUT_PTR + 20 + 18);
-        if (sp < 8) {
-            let pc = load<u8>(OUT_PTR + 20 + 0);
-            store<u8>(OUT_PTR + 20 + 10 + sp, (pc + 1) % 16); // push
-            store<u8>(OUT_PTR + 20 + 18, (sp + 1) % 8); // sp++
-            store<u8>(OUT_PTR + 20 + 0, p1 % 16); // jump
-            return 2;
-        }
-        return 1;
-    }
-
-    if (op == ISA_RET) {
-        let sp = load<u8>(OUT_PTR + 20 + 18);
-        if (sp > 0) {
-            let val = load<u8>(OUT_PTR + 20 + 10 + (sp - 1)); // pop
-            store<u8>(OUT_PTR + 20 + 18, sp - 1); // sp--
-            store<u8>(OUT_PTR + 20 + 0, val); // jump
-            return 2;
-        }
-        return 1;
-    }
-
-    // --- Data Movement ---
-
-    if (op == ISA_LOAD) {
-        // TS: regs[p1 % 8] = logic[p2 % 8];
-        let val = load<u8>(OUT_PTR + 52 + (p2 % 8)); // 52 is Logic
-        store<u8>(OUT_PTR + 20 + 2 + (p1 % 8), val); // 20+2 is Regs
-        return 1;
-    }
-
-    if (op == ISA_STORE) {
-        // TS: res.modifiedLogic = { index: p2 % 8, value: regs[p1 % 8] };
-        // Write to Logic buffer
-        let val = load<u8>(OUT_PTR + 20 + 2 + (p1 % 8)); // 20+2 is Regs
-        store<u8>(OUT_PTR + 52 + (p2 % 8), val); // 52 is Logic
-        return 1;
-    }
-
-    return 0; // Unhandled
+  return 0; // Unhandled
 }
-
 ```
 
 ---
@@ -25172,7 +25320,6 @@ export const P2P_CODEC = {
     return idx;
   },
 };
-
 ```
 
 ---
@@ -25422,7 +25569,6 @@ export const P2P_FEDERATION = {
   },
   // Legacy checkWanderlust removed. Migration is now entirely autonomous via OP_SPORE_DRIVE.
 };
-
 ```
 
 ---
@@ -25521,7 +25667,6 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 }
 
 Deno.serve({ hostname: HOST, port: PORT }, handler);
-
 ```
 
 ---
@@ -25572,21 +25717,20 @@ export const PANOPTICON_SERVER = {
       if (clients.size === 0) return;
 
       const packet = STATE_MATRIX.packRenderFrame();
-      const buffer = packet.buffer; 
+      const buffer = packet.buffer;
 
       for (const client of clients) {
         if (client.readyState === WebSocket.OPEN) {
           try {
             client.send(buffer);
           } catch (e) {
-             // Let close handler deal with this
+            // Let close handler deal with this
           }
         }
       }
     }, 1000 / FPS);
   },
 };
-
 ```
 
 ---
@@ -25947,7 +26091,6 @@ export const PHYSICS_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -25970,7 +26113,9 @@ import type { LedgerRuntimeSnapshot } from "./GENERIC_LEDGER_SYSTEM.ts";
 export type PhysiologySnapshotInput = {
   tick: number;
   hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
-  ledger: Partial<Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>>;
+  ledger: Partial<
+    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
+  >;
 };
 
 export type HormoneSnapshot = HormoneSpec & {
@@ -26025,7 +26170,6 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
-
 ```
 
 ---
@@ -26183,7 +26327,6 @@ export const PREDICTION_MARKET = {
     }
   },
 };
-
 ```
 
 ---
@@ -26227,7 +26370,6 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
-
 ```
 
 ---
@@ -27321,7 +27463,6 @@ self.onmessage = async (e) => {
     });
   }
 };
-
 ```
 
 ---
@@ -27330,7 +27471,13 @@ self.onmessage = async (e) => {
 
 ```typescript
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, RISC, SYS } from "./STATE_MATRIX.ts";
+import {
+  MAX_ATOMS,
+  RISC,
+  sharedBuffer,
+  STATE_MATRIX,
+  SYS,
+} from "./STATE_MATRIX.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import { SOVEREIGN_ORACLE } from "./SOVEREIGN_ORACLE.ts";
 import { SOVEREIGNTY_ENGINE } from "./SOVEREIGNTY_ENGINE.ts";
@@ -27339,31 +27486,39 @@ import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
 import { LOGGER } from "./LOGGER.ts";
 import { MUTATION_TELEMETRY } from "./MUTATION_TELEMETRY.ts";
 import { CONTROL_INTENT_QUEUE } from "./CONTROL_INTENT_QUEUE.ts";
-import { saveEpoch, compressMemory, decompressMemoryToLattice } from "./CONTINUUM.ts";
+import {
+  compressMemory,
+  decompressMemoryToLattice,
+  saveEpoch,
+} from "./CONTINUUM.ts";
 import { P2P_FEDERATION } from "./P2P_FEDERATION.ts";
 import { SWARM_NODE } from "./SWARM_NODE.ts";
 import { SwarmNexus } from "./network/SWARM_NEXUS.ts";
 
 export const NEXUS_DAEMON = new SwarmNexus({
   instanceId: 1,
-  seedNodes: []
+  seedNodes: [],
 });
 
 let genesisPromiseResolver: (() => void) | null = null;
 
 NEXUS_DAEMON.onSyncRequest = async (peerId: string) => {
-    LOGGER.info(`[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`);
-    const payload = await compressMemory(STATE_MATRIX.wasmMemory);
-    NEXUS_DAEMON.sendEpochPayload(peerId, payload);
+  LOGGER.info(
+    `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
+  );
+  const payload = await compressMemory(STATE_MATRIX.wasmMemory);
+  NEXUS_DAEMON.sendEpochPayload(peerId, payload);
 };
 
 NEXUS_DAEMON.onEpochPayload = async (payload: Uint8Array) => {
-    LOGGER.info(`[PULSE] Hot State Merging payload received. Unpacking into Lattice...`);
-    await decompressMemoryToLattice(STATE_MATRIX.wasmMemory, payload);
-    if (genesisPromiseResolver) {
-        genesisPromiseResolver();
-        genesisPromiseResolver = null;
-    }
+  LOGGER.info(
+    `[PULSE] Hot State Merging payload received. Unpacking into Lattice...`,
+  );
+  await decompressMemoryToLattice(STATE_MATRIX.wasmMemory, payload);
+  if (genesisPromiseResolver) {
+    genesisPromiseResolver();
+    genesisPromiseResolver = null;
+  }
 };
 
 const MAX_TICK_DRIFT = 50;
@@ -27379,11 +27534,15 @@ import { DAEMON_INGRESS_POLICY_LIMITS } from "./DAEMON_INGRESS_POLICY.ts";
 import { IMMUNE } from "./IMMUNE.ts";
 
 import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
-import { type HormoneId, HORMONE_BUFFER_CATALOG, createPhysiologicalLedgerRuntime } from "./HORMONE_BUFFER.ts";
+import {
+  createPhysiologicalLedgerRuntime,
+  HORMONE_BUFFER_CATALOG,
+  type HormoneId,
+} from "./HORMONE_BUFFER.ts";
 import {
   applyLedgerUpdate,
-  createLedgerRuntime,
   createGeneticLedgerRuntime,
+  createLedgerRuntime,
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
@@ -29051,61 +29210,78 @@ export interface DriftMetrics {
 
 // Global reference for oracle side-channel
 let shadowWasmInstance: WebAssembly.Instance | null = null;
-let run_shadow_simulation_ffi: ((
+let run_shadow_simulation_ffi:
+  | ((
     atomId: number,
     ticks: number,
     logicPtr: number,
     resultPtr: number,
-) => number) | null = null;
-let generate_epoch_proof_ffi: ((
+  ) => number)
+  | null = null;
+let generate_epoch_proof_ffi:
+  | ((
     tick: number,
     resultPtr: number,
-) => void) | null = null;
+  ) => void)
+  | null = null;
 
 async function initShadowWasm(): Promise<void> {
   if (shadowWasmInstance) return;
   const wasmBytes = await Deno.readFile(
-    new URL("./sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm", import.meta.url)
+    new URL(
+      "./sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
+      import.meta.url,
+    ),
   );
-  
+
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     env: {
       memory: STATE_MATRIX.wasmMemory,
       abort: (msg: any) => LOGGER.error("   [SHADOW WASM ABORT]:", msg),
       // Dummy trace_atom for shadow
-      trace_atom: () => {}
-    }
+      trace_atom: () => {},
+    },
   });
-  
+
   shadowWasmInstance = instantiated.instance;
-  run_shadow_simulation_ffi = shadowWasmInstance.exports.run_shadow_simulation_ffi as any;
-  generate_epoch_proof_ffi = shadowWasmInstance.exports.generate_epoch_proof_ffi as any;
+  run_shadow_simulation_ffi = shadowWasmInstance.exports
+    .run_shadow_simulation_ffi as any;
+  generate_epoch_proof_ffi = shadowWasmInstance.exports
+    .generate_epoch_proof_ffi as any;
 }
 
 let pulseInitialized = false;
 let lastEgressReadHead = 0;
 
 export const drainEgressEvents = (): Uint8Array[] => {
-  const headView = new Int32Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.EGRESS_HEAD_OFFSET, 1);
+  const headView = new Int32Array(
+    STATE_MATRIX.wasmMemory.buffer,
+    OFFSETS.EGRESS_HEAD_OFFSET,
+    1,
+  );
   const writeHead = Atomics.load(headView, 0);
   const readHead = lastEgressReadHead || 0;
-  
+
   if (writeHead === readHead) return [];
-  
+
   const events: Uint8Array[] = [];
   const maxEvents = OFFSETS.MAX_EGRESS_EVENTS;
-  const dataView = new Uint8Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.EGRESS_DATA_OFFSET, maxEvents * 256);
-  
+  const dataView = new Uint8Array(
+    STATE_MATRIX.wasmMemory.buffer,
+    OFFSETS.EGRESS_DATA_OFFSET,
+    maxEvents * 256,
+  );
+
   const count = Math.min(writeHead - readHead, maxEvents);
   const startIdx = readHead % maxEvents;
-  
+
   for (let i = 0; i < count; i++) {
     const idx = (startIdx + i) % maxEvents;
     const offset = idx * 256;
     // Copy the array out of WASM memory because WASM memory might mutate over time
     events.push(new Uint8Array(dataView.slice(offset, offset + 256)));
   }
-  
+
   lastEgressReadHead = writeHead;
   return events;
 };
@@ -29120,7 +29296,7 @@ export const PULSE = {
   currentPulseId: Date.now(),
   getStats: () => ({
     // Placeholder for actual stats implementation
-    workerFaultStats: workerFaultStats.map(s => ({...s})),
+    workerFaultStats: workerFaultStats.map((s) => ({ ...s })),
     runtimeWorkerCount,
     startupSelfTestDone,
     startupSelfTestInProgress,
@@ -29139,39 +29315,60 @@ export const PULSE = {
     }
     const resultPtr = OFFSETS.LATTICE_MEMORY_END + 1024 + 128;
     generate_epoch_proof_ffi!(tick, resultPtr);
-    
-    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 32);
-    return Array.from(u8View).map(b => b.toString(16).padStart(2, '0')).join('');
+
+    const u8View = new Uint8Array(
+      STATE_MATRIX.wasmMemory.buffer,
+      resultPtr,
+      32,
+    );
+    return Array.from(u8View).map((b) => b.toString(16).padStart(2, "0")).join(
+      "",
+    );
   },
-  simulateFuture: async (steps: number, targetIdx: number, bytecode: Uint8Array): Promise<DriftMetrics> => {
+  simulateFuture: async (
+    steps: number,
+    targetIdx: number,
+    bytecode: Uint8Array,
+  ): Promise<DriftMetrics> => {
     if (!shadowWasmInstance || !run_shadow_simulation_ffi) {
       await initShadowWasm();
     }
-    
+
     // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
     // We will place this safely past the LATTICE_MEMORY_END to avoid collisions,
     // ensuring we fit inside the initial 163MB memory bounds without triggering out of bounds RangeErrors.
     const scratchSpaceOffset = OFFSETS.LATTICE_MEMORY_END + 1024;
     const resultPtr = scratchSpaceOffset + 64;
-    
+
     // Write logic bytes
     const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer);
     u8View.fill(0, scratchSpaceOffset, scratchSpaceOffset + 64);
     u8View.set(bytecode, scratchSpaceOffset);
-    
+
     // Clear result space
-    const i32View = new Int32Array(STATE_MATRIX.wasmMemory.buffer, resultPtr, 8);
+    const i32View = new Int32Array(
+      STATE_MATRIX.wasmMemory.buffer,
+      resultPtr,
+      8,
+    );
     i32View.fill(0);
-    
+
     const atomId = Number(STATE_MATRIX.getId(targetIdx));
-    
+
     // Call Rust side
-    const success = run_shadow_simulation_ffi!(atomId, steps, scratchSpaceOffset, resultPtr);
-    
+    const success = run_shadow_simulation_ffi!(
+      atomId,
+      steps,
+      scratchSpaceOffset,
+      resultPtr,
+    );
+
     if (success !== 1) {
-       throw new Error(`[SHADOW] Simulation execution failed for target ${atomId}`);
+      throw new Error(
+        `[SHADOW] Simulation execution failed for target ${atomId}`,
+      );
     }
-    
+
     return {
       energyDiff: i32View[0],
       resonanceDiff: i32View[1],
@@ -29180,7 +29377,7 @@ export const PULSE = {
       structuralValueChange: i32View[4],
       populationDiff: i32View[5],
       coherenceDiff: i32View[6],
-      divergenceTick: i32View[7]
+      divergenceTick: i32View[7],
     };
   },
   initWorkers: async (requestedWorkerCount?: number) => {
@@ -29287,16 +29484,23 @@ export const PULSE = {
     await NEXUS_DAEMON.start();
 
     // Phase 30: Bootstrapping Node Payload
-    if (STATE_MATRIX.getActiveIndices().length === 0 && NEXUS_DAEMON.seedNodes.length > 0) {
-       LOGGER.info(`[PULSE] Matrix is uninstantiated. Awaiting Swarm Handshake...`);
-       await new Promise(r => setTimeout(r, 600)); // allow sockets to open
-       
-       LOGGER.info(`[PULSE] Requesting Genesis Block via Nexus...`);
-       await new Promise<void>((resolve) => {
-           genesisPromiseResolver = resolve;
-           NEXUS_DAEMON.broadcastSyncRequest();
-       });
-       LOGGER.info(`[PULSE] Genesis Bootstrapping complete! Synchronized to Swarm Lattice.`);
+    if (
+      STATE_MATRIX.getActiveIndices().length === 0 &&
+      NEXUS_DAEMON.seedNodes.length > 0
+    ) {
+      LOGGER.info(
+        `[PULSE] Matrix is uninstantiated. Awaiting Swarm Handshake...`,
+      );
+      await new Promise((r) => setTimeout(r, 600)); // allow sockets to open
+
+      LOGGER.info(`[PULSE] Requesting Genesis Block via Nexus...`);
+      await new Promise<void>((resolve) => {
+        genesisPromiseResolver = resolve;
+        NEXUS_DAEMON.broadcastSyncRequest();
+      });
+      LOGGER.info(
+        `[PULSE] Genesis Bootstrapping complete! Synchronized to Swarm Lattice.`,
+      );
     }
   },
   runStartupSelfTest: async () => {
@@ -29734,7 +29938,10 @@ export const PULSE = {
     }
     return result;
   },
-  getPhysiologicalLedgerState: (): Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>> => {
+  getPhysiologicalLedgerState: (): Record<
+    HormoneId,
+    LedgerRuntimeSnapshot<HormoneId>
+  > => {
     return Object.fromEntries(
       HORMONE_BUFFER_CATALOG.map((spec) => [
         spec.id,
@@ -29742,16 +29949,35 @@ export const PULSE = {
       ]),
     ) as Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
   },
-  getGenericLedgerSnapshots: (): Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>> => {
+  getGenericLedgerSnapshots: (): Record<
+    GeneticLedgerKey,
+    LedgerRuntimeSnapshot<GeneticLedgerKey>
+  > => {
     return {
-      "pulse.homeostasis.baseTax": snapshotLedgerRuntime(homeostasisBaseTaxLedgerRuntime),
-      "pulse.homeostasis.band": snapshotLedgerRuntime(homeostasisBandLedgerRuntime),
-      "pulse.homeostasis.maxDelta": snapshotLedgerRuntime(homeostasisMaxDeltaLedgerRuntime),
-      "pulse.homeostasis.overflowThreshold": snapshotLedgerRuntime(homeostasisOverflowThresholdLedgerRuntime),
-      "pulse.homeostasis.targetEnergy": snapshotLedgerRuntime(homeostasisTargetEnergyLedgerRuntime),
-      "pulse.pressureRing.scale": snapshotLedgerRuntime(pressureRingScaleLedgerRuntime),
-      "daemon.maxActionsPerWindow": snapshotLedgerRuntime(daemonMaxActionsLedgerRuntime),
-      "federation.admission.degradeEnergyRatio": snapshotLedgerRuntime(federationDegradeEnergyRatioLedgerRuntime),
+      "pulse.homeostasis.baseTax": snapshotLedgerRuntime(
+        homeostasisBaseTaxLedgerRuntime,
+      ),
+      "pulse.homeostasis.band": snapshotLedgerRuntime(
+        homeostasisBandLedgerRuntime,
+      ),
+      "pulse.homeostasis.maxDelta": snapshotLedgerRuntime(
+        homeostasisMaxDeltaLedgerRuntime,
+      ),
+      "pulse.homeostasis.overflowThreshold": snapshotLedgerRuntime(
+        homeostasisOverflowThresholdLedgerRuntime,
+      ),
+      "pulse.homeostasis.targetEnergy": snapshotLedgerRuntime(
+        homeostasisTargetEnergyLedgerRuntime,
+      ),
+      "pulse.pressureRing.scale": snapshotLedgerRuntime(
+        pressureRingScaleLedgerRuntime,
+      ),
+      "daemon.maxActionsPerWindow": snapshotLedgerRuntime(
+        daemonMaxActionsLedgerRuntime,
+      ),
+      "federation.admission.degradeEnergyRatio": snapshotLedgerRuntime(
+        federationDegradeEnergyRatioLedgerRuntime,
+      ),
     } as Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>;
   },
   getHomeostasisState: (): HomeostasisState => snapshotHomeostasisState(),
@@ -30035,31 +30261,49 @@ export const PULSE = {
 
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
       if (currentTick > 0 && currentTick % 10000 === 0) {
-        LOGGER.info(`[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`);
+        LOGGER.info(
+          `[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`,
+        );
         const pCount = activeIdx.length;
         const autoEpochId = `auto_tick_${currentTick}`;
         const epochHash = await PULSE.generateEpochProof(currentTick);
-        await saveEpoch(STATE_MATRIX.wasmMemory, currentTick, autoEpochId, pCount, 0, epochHash);
-        LOGGER.info(`[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`);
+        await saveEpoch(
+          STATE_MATRIX.wasmMemory,
+          currentTick,
+          autoEpochId,
+          pCount,
+          0,
+          epochHash,
+        );
+        LOGGER.info(
+          `[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`,
+        );
       }
 
       // --- STAGE 27/28: META-KURAMOTO SWARM MEMBRANE & P2P NEXUS ---
       if (currentTick > 0 && currentTick % SWARM_NODE.heartbeatInterval === 0) {
-         let totalPhase = 0;
-         for (const idx of activeIdx) {
-            totalPhase += Math.abs(STATE_MATRIX.getPhase(idx));
-         }
-         const avgPhase = activeIdx.length > 0 ? totalPhase / activeIdx.length : 0;
-         const epochHash = await PULSE.generateEpochProof(currentTick);
-         const egressEvents = drainEgressEvents();
-         SWARM_NODE.evaluateHeartbeat(currentTick, epochHash, avgPhase, egressEvents.length);
+        let totalPhase = 0;
+        for (const idx of activeIdx) {
+          totalPhase += Math.abs(STATE_MATRIX.getPhase(idx));
+        }
+        const avgPhase = activeIdx.length > 0
+          ? totalPhase / activeIdx.length
+          : 0;
+        const epochHash = await PULSE.generateEpochProof(currentTick);
+        const egressEvents = drainEgressEvents();
+        SWARM_NODE.evaluateHeartbeat(
+          currentTick,
+          epochHash,
+          avgPhase,
+          egressEvents.length,
+        );
       }
-      
+
       const egressEvents = drainEgressEvents();
       if (egressEvents.length > 0) {
-         for(const ev of egressEvents) {
-            NEXUS_DAEMON.routeAtom(ev);
-         }
+        for (const ev of egressEvents) {
+          NEXUS_DAEMON.routeAtom(ev);
+        }
       }
 
       SOVEREIGN_ORACLE.drainPendingMutations();
@@ -30509,24 +30753,25 @@ export const PULSE = {
       const now = performance.now();
       const dt = now - lastTickTime;
       if (dt > 1000) {
-          NEXUS_DAEMON.localTps = (currentTick - tickCountLog) / (dt / 1000);
-          lastTickTime = now;
-          tickCountLog = currentTick;
+        NEXUS_DAEMON.localTps = (currentTick - tickCountLog) / (dt / 1000);
+        lastTickTime = now;
+        tickCountLog = currentTick;
       }
 
       const medianTick = NEXUS_DAEMON.getMedianSwarmTick(currentTick);
       if (currentTick > medianTick + MAX_TICK_DRIFT) {
-          await new Promise(r => setTimeout(r, 10)); // Elastic yield bounds
+        await new Promise((r) => setTimeout(r, 10)); // Elastic yield bounds
       }
 
       if (currentTick > 0 && currentTick % 10000 === 0) {
-          let hashSum = 0n;
-          for(let i=1; i<STATE_MATRIX.MAX_ATOMS; i++) {
-              if (STATE_MATRIX.getEnergy(i) > 0) {
-                  hashSum += BigInt(STATE_MATRIX.getEnergy(i)) + BigInt(STATE_MATRIX.getPhase(i)); 
-              }
+        let hashSum = 0n;
+        for (let i = 1; i < STATE_MATRIX.MAX_ATOMS; i++) {
+          if (STATE_MATRIX.getEnergy(i) > 0) {
+            hashSum += BigInt(STATE_MATRIX.getEnergy(i)) +
+              BigInt(STATE_MATRIX.getPhase(i));
           }
-          NEXUS_DAEMON.broadcastEpochConsensus(currentTick, hashSum);
+        }
+        NEXUS_DAEMON.broadcastEpochConsensus(currentTick, hashSum);
       }
 
       // --- SNAP PHASE: Asynchronous Matrix Persistence ---
@@ -30540,7 +30785,6 @@ export const PULSE = {
           SNAP_ENGINE.cleanup(RUNTIME_POLICY.snapshot.retention);
         });
       }
-
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
@@ -30549,39 +30793,58 @@ export const PULSE = {
   getWorker: (idx: number): any => workers[idx],
   drainEgressEvents,
   injectForeignAtom: (payload: Uint8Array) => {
-    const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+    const view = new DataView(
+      payload.buffer,
+      payload.byteOffset,
+      payload.byteLength,
+    );
     const genome = payload.slice(0, 64);
     const energy = view.getInt32(64, true);
     const phase = view.getInt32(68, true);
     const resonance = view.getInt32(72, true);
     let nx = view.getInt32(76, true);
     let ny = view.getInt32(80, true);
-    
+
     // Teleport to opposite edge
     if (nx <= 0) nx = Math.floor(OFFSETS.GRID_W * 10 - 1);
     else if (nx >= Math.floor(OFFSETS.GRID_W * 10 - 1)) nx = 0;
-    
+
     if (ny <= 0) ny = Math.floor(OFFSETS.GRID_H * 10 - 1);
     else if (ny >= Math.floor(OFFSETS.GRID_H * 10 - 1)) ny = 0;
-    
+
     const role = payload[148];
-    
+
     const atomIdx = STATE_MATRIX.findEmptySlot();
     if (atomIdx > 0) {
       STATE_MATRIX.setEnergy(atomIdx, energy);
       STATE_MATRIX.setResonance(atomIdx, resonance);
       STATE_MATRIX.setPhase(atomIdx, phase);
-      STATE_MATRIX.setId(atomIdx, BigInt(PULSE.currentPulseId) << 16n | BigInt(atomIdx));
+      STATE_MATRIX.setId(
+        atomIdx,
+        BigInt(PULSE.currentPulseId) << 16n | BigInt(atomIdx),
+      );
       STATE_MATRIX.setRole(atomIdx, role);
-      
-      const xs = new Int16Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS);
-      const ys = new Int16Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS);
+
+      const xs = new Int16Array(
+        STATE_MATRIX.wasmMemory.buffer,
+        OFFSETS.XS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      );
+      const ys = new Int16Array(
+        STATE_MATRIX.wasmMemory.buffer,
+        OFFSETS.YS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      );
       Atomics.store(xs, atomIdx, nx);
       Atomics.store(ys, atomIdx, ny);
-      
+
       STATE_MATRIX.setInstructions(atomIdx, genome);
-      
-      const ctxView = new Int32Array(STATE_MATRIX.wasmMemory.buffer, OFFSETS.CONTEXT_OFFSET + atomIdx * 64, 16);
+
+      const ctxView = new Int32Array(
+        STATE_MATRIX.wasmMemory.buffer,
+        OFFSETS.CONTEXT_OFFSET + atomIdx * 64,
+        16,
+      );
       for (let i = 0; i < 16; i++) {
         Atomics.store(ctxView, i, view.getInt32(84 + i * 4, true));
       }
@@ -30679,7 +30942,9 @@ export const normalizeArchitectPlasmidExecutionMode = (
   return "shadow-reduce";
 };
 
-const createArchitectInitialState = (neuralCoherence: number): ArchitectShadowState => ({
+const createArchitectInitialState = (
+  neuralCoherence: number,
+): ArchitectShadowState => ({
   pc: 0,
   regs: new Array(8).fill(0),
   role: 0,
@@ -30960,7 +31225,6 @@ export const evaluateArchitectPlasmidExecution = (
   };
 };
 
-
 // --- INLINED FROM runtime_bridge/guardian_signal_hybrid.ts ---
 
 export type GuardianSignalExecutionMode =
@@ -31053,7 +31317,9 @@ export const normalizeGuardianSignalExecutionMode = (
   return "shadow-reduce";
 };
 
-const createGuardianInitialState = (neuralCoherence: number): GuardianShadowState => ({
+const createGuardianInitialState = (
+  neuralCoherence: number,
+): GuardianShadowState => ({
   pc: 0,
   regs: new Array(8).fill(0),
   role: 0,
@@ -31372,7 +31638,6 @@ export const evaluateGuardianSignalExecution = (
     hybridSuppressed: !reduction.signalAllowed,
   };
 };
-
 
 // --- INLINED FROM runtime_bridge/replication_hybrid.ts ---
 
@@ -31754,15 +32019,13 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
-
-
 ```
 
 ---
 
 ## FILE: README.md
 
-```markdown
+````markdown
 # OMEGA-64: Era 69 - Absolute Coherence 💎🛡️
 
 Welcome to **Matrixland** — the Golden Master architecture of OMEGA-64.
@@ -31812,6 +32075,7 @@ To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
+````
 
 ### 🧠 Booting an LLM Avatar
 
@@ -31849,8 +32113,7 @@ _This repository marks the **Feature Freeze** of the Deno/AssemblyScript
 prototype. It stands as the topological blueprint for the upcoming pure Rust
 `LAMBDA_VM_v2` migration._
 
-```
-
+````
 ---
 
 ## FILE: RECOVERY.ts
@@ -31891,8 +32154,7 @@ export const ATOM = () => (x: any) => x;
     return true;
   },
 };
-
-```
+````
 
 ---
 
@@ -32060,7 +32322,6 @@ export class DollFork {
     };
   }
 }
-
 ```
 
 ---
@@ -32163,7 +32424,6 @@ export class DollForkRunner {
     }
   }
 }
-
 ```
 
 ---
@@ -32198,11 +32458,14 @@ export class DriftWarden {
   constructor(
     customEnergyView?: Int32Array,
     customIdsView?: BigUint64Array,
-    customCoherenceView?: Int32Array
+    customCoherenceView?: Int32Array,
   ) {
-    this.energyView = customEnergyView ?? new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-    this.idsView = customIdsView ?? new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
-    this.coherenceView = customCoherenceView ?? new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+    this.energyView = customEnergyView ??
+      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+    this.idsView = customIdsView ??
+      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+    this.coherenceView = customCoherenceView ??
+      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
   }
 
   /**
@@ -32274,7 +32537,6 @@ export class DriftWarden {
     };
   }
 }
-
 ```
 
 ---
@@ -32336,9 +32598,13 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Focuses on PHEROMONE emission (Positive Amplitude).
    */
   "guardian_base": [
-    GLYPH.SET, 0, 100, // R0 = 100
-    GLYPH.SET, 1, 1,   // R1 = 1 (Pheromone index)
-    GLYPH.SIGNAL,      // Emit Pheromone with R0 (+100) intensity
+    GLYPH.SET,
+    0,
+    100, // R0 = 100
+    GLYPH.SET,
+    1,
+    1, // R1 = 1 (Pheromone index)
+    GLYPH.SIGNAL, // Emit Pheromone with R0 (+100) intensity
     GLYPH.I, // No-op return
   ],
 
@@ -32347,12 +32613,20 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Disrupts signals (Negative Amplitude).
    */
   "parasite_base": [
-    GLYPH.SET, 0, 0,   // R0 = 0
-    GLYPH.SET, 1, 100, // R1 = 100
-    GLYPH.SUB, 0, 1,   // R0 = R0 - R1 (-100)
-    GLYPH.SET, 2, 1,   // R2 = 1 (Pheromone index)
-    GLYPH.SIGNAL,       // Emit Pheromone with R0 (-100) intensity
-    GLYPH.I, 
+    GLYPH.SET,
+    0,
+    0, // R0 = 0
+    GLYPH.SET,
+    1,
+    100, // R1 = 100
+    GLYPH.SUB,
+    0,
+    1, // R0 = R0 - R1 (-100)
+    GLYPH.SET,
+    2,
+    1, // R2 = 1 (Pheromone index)
+    GLYPH.SIGNAL, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.I,
   ],
 
   /**
@@ -32360,10 +32634,16 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Focuses on PLASMID emission and structural intent.
    */
   "architect_base": [
-    GLYPH.SET, 0, 100, // R0 = 100 (Charge / Amplitude)
-    GLYPH.SET, 1, 0,   // R1 = 0 (Plasmid index)
-    GLYPH.PLUG, 0, 0,  // Apply structural charge intent
-    GLYPH.SIGNAL,      // Emit Plasmid signal
+    GLYPH.SET,
+    0,
+    100, // R0 = 100 (Charge / Amplitude)
+    GLYPH.SET,
+    1,
+    0, // R1 = 0 (Plasmid index)
+    GLYPH.PLUG,
+    0,
+    0, // Apply structural charge intent
+    GLYPH.SIGNAL, // Emit Plasmid signal
     GLYPH.I,
   ],
 
@@ -32372,8 +32652,12 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
    * Basic reproduction logic.
    */
   "replicator_base": [
-    GLYPH.SET, 0, 50,  // R0 = 50 (Low signal)
-    GLYPH.SET, 1, 2,   // R1 = 2 (Replication scent)
+    GLYPH.SET,
+    0,
+    50, // R0 = 50 (Low signal)
+    GLYPH.SET,
+    1,
+    2, // R1 = 2 (Replication scent)
     GLYPH.SIGNAL,
     GLYPH.REPLICATE,
     GLYPH.I,
@@ -32398,7 +32682,6 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
-
 ```
 
 ---
@@ -32451,7 +32734,6 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
-
 ```
 
 ---
@@ -32461,7 +32743,6 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
-
 ```
 
 ---
@@ -32870,7 +33151,6 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
-
 ```
 
 ---
@@ -32950,7 +33230,6 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
-
 ```
 
 ---
@@ -32994,7 +33273,6 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
-
 ```
 
 ---
@@ -33046,7 +33324,6 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
-
 ```
 
 ---
@@ -33130,7 +33407,6 @@ export class RelicCultivator {
     }
   }
 }
-
 ```
 
 ---
@@ -33294,7 +33570,6 @@ if (import.meta.main) {
     Deno.exit(1);
   });
 }
-
 ```
 
 ---
@@ -33717,7 +33992,6 @@ The migration is considered real only when:
 - global dynamic knobs are formalized through hormone/ledger layers
 - semantic mutation is sandboxed and rollbackable
 - long-run stability survives the bridge without emergency host patching
-
 ```
 
 ---
@@ -33879,7 +34153,6 @@ ${REFLECTION_ENGINE.decompile(instructions)}
     }
   },
 };
-
 ```
 
 ---
@@ -33941,7 +34214,6 @@ export const evaluateReplicationPromotionAction = (
     reasons: ["unknown_current_mode"],
   };
 };
-
 ```
 
 ---
@@ -34105,7 +34377,6 @@ export const evaluateReplicationPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -34327,7 +34598,6 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -34460,7 +34730,6 @@ export const RIBOSOME_TICK = {
 if (import.meta.main) {
   RIBOSOME_TICK.verify();
 }
-
 ```
 
 ---
@@ -34742,7 +35011,6 @@ if (import.meta.main) {
   const lattice = await RIBOSOME.lift();
   LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
 }
-
 ```
 
 ---
@@ -34896,7 +35164,6 @@ async function run() {
 }
 
 run();
-
 ```
 
 ---
@@ -34952,7 +35219,6 @@ run().catch((err) => {
   console.error("Verification failed:", err);
   Deno.exit(1);
 });
-
 ```
 
 ---
@@ -34980,7 +35246,6 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\n");
-
 ```
 
 ---
@@ -35120,7 +35385,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
 ```
 
 ---
@@ -35976,7 +36240,6 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
-
 ```
 
 ---
@@ -36498,7 +36761,6 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```
 
 ---
@@ -36838,7 +37100,6 @@ console.log(
   "🌟 Flatland Petri Dish Dashboard is running on http://localhost:8000",
 );
 serve(handler, { port: 8000 });
-
 ```
 
 ---
@@ -37058,7 +37319,12 @@ export const AGENT_SIGNATURE = {
       const payload = encoder.encode(canonicalProposalPayload(proposal));
       if (verifyKey.scheme === "hmac-sha256/v1") {
         const key = await importHmac(verifyKey.secret, ["verify"]);
-        const ok = await crypto.subtle.verify("HMAC", key, sigBytes as unknown as BufferSource, payload);
+        const ok = await crypto.subtle.verify(
+          "HMAC",
+          key,
+          sigBytes as unknown as BufferSource,
+          payload,
+        );
         return ok
           ? { ok: true }
           : { ok: false, reason: REJECTION.SIGNATURE_INVALID };
@@ -37567,7 +37833,10 @@ const normalizeHex64 = (value: unknown): string | null => {
 };
 
 const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
-  const digest = await crypto.subtle.digest("SHA-256", bytes as unknown as BufferSource);
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    bytes as unknown as BufferSource,
+  );
   return bytesToHex(new Uint8Array(digest));
 };
 
@@ -38607,7 +38876,6 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
-
 ```
 
 ---
@@ -38711,7 +38979,6 @@ export const SNAP_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -38786,7 +39053,6 @@ export const SNAP = {
     }
   },
 };
-
 ```
 
 ---
@@ -39005,7 +39271,6 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
-
 ```
 
 ---
@@ -39106,41 +39371,43 @@ export const SOVEREIGN_ORACLE = {
   gatherEpochTelemetry: () => {
     const matrixRes = STATE_MATRIX.getMatrixResonance();
     const clusterSync = STATE_MATRIX.getClusterSync();
-    
+
     // Calculate global Matrix statistics
     const activeIndices = STATE_MATRIX.getActiveIndices();
     const population = activeIndices.length;
-    
+
     let totalEnergy = 0;
     let successfulSynapses = 0;
-    
+
     // Tally dominant species base genomes (first 8 bytes)
     const genomeCounts = new Map<string, number>();
 
     for (const idx of activeIndices) {
-        totalEnergy += STATE_MATRIX.getEnergy(idx);
-        
-        // Count active learned synapses 
-        // (Assuming each atom has 8 semantic weight channels in Phase 25)
-        for (let s = 0; s < 8; s++) {
-            if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
-               successfulSynapses++;
-               break; // just count if the atom has ANY active synapses
-            }
+      totalEnergy += STATE_MATRIX.getEnergy(idx);
+
+      // Count active learned synapses
+      // (Assuming each atom has 8 semantic weight channels in Phase 25)
+      for (let s = 0; s < 8; s++) {
+        if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
+          successfulSynapses++;
+          break; // just count if the atom has ANY active synapses
         }
-        
-        const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
-        const hex = Array.from(genomeBase).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
-        genomeCounts.set(hex, (genomeCounts.get(hex) || 0) + 1);
+      }
+
+      const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
+      const hex = Array.from(genomeBase).map((b) =>
+        b.toString(16).padStart(2, "0")
+      ).join("").toUpperCase();
+      genomeCounts.set(hex, (genomeCounts.get(hex) || 0) + 1);
     }
 
     const avgEnergy = population > 0 ? Math.floor(totalEnergy / population) : 0;
-    
+
     // Sort and get top 3 dominant genomes
     const topGenomes = Array.from(genomeCounts.entries())
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([hex, count]) => ({ signature: hex, count }));
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([hex, count]) => ({ signature: hex, count }));
 
     return {
       matrixResonance: matrixRes,
@@ -39148,24 +39415,26 @@ export const SOVEREIGN_ORACLE = {
       population,
       avg_energy: avgEnergy,
       successful_synapses: successfulSynapses,
-      dominant_genomes: topGenomes
+      dominant_genomes: topGenomes,
     };
   },
 
   parseLLMResponse: (response: string): Uint8Array => {
-      // Clean string of all whitespace, quotes, markdown formatting
-      const cleanHex = response.replace(/[^0-9A-Fa-f]/g, "").toUpperCase();
-      
-      // We expect exactly 64 bytes (128 hex characters)
-      if (cleanHex.length !== 128) {
-          throw new Error(`LLM Oracle payload size mismatch. Expected 128 hex chars (64 bytes), parsed ${cleanHex.length}.`);
-      }
+    // Clean string of all whitespace, quotes, markdown formatting
+    const cleanHex = response.replace(/[^0-9A-Fa-f]/g, "").toUpperCase();
 
-      const instructions = new Uint8Array(64);
-      for (let i = 0; i < 64; i++) {
-          instructions[i] = parseInt(cleanHex.substring(i * 2, i * 2 + 2), 16);
-      }
-      return instructions;
+    // We expect exactly 64 bytes (128 hex characters)
+    if (cleanHex.length !== 128) {
+      throw new Error(
+        `LLM Oracle payload size mismatch. Expected 128 hex chars (64 bytes), parsed ${cleanHex.length}.`,
+      );
+    }
+
+    const instructions = new Uint8Array(64);
+    for (let i = 0; i < 64; i++) {
+      instructions[i] = parseInt(cleanHex.substring(i * 2, i * 2 + 2), 16);
+    }
+    return instructions;
   },
   queueMutation: (mutation: OraclePendingMutation): void => {
     if (
@@ -39371,20 +39640,24 @@ export const SOVEREIGN_ORACLE = {
         try {
           // Attempt raw payload format if string provided, otherwise trust oracleResult
           if (typeof oracleResult.genome === "string") {
-            newInstructions = SOVEREIGN_ORACLE.parseLLMResponse(oracleResult.genome);
+            newInstructions = SOVEREIGN_ORACLE.parseLLMResponse(
+              oracleResult.genome,
+            );
           } else {
             newInstructions = oracleResult.genome;
             if (newInstructions.length !== 64) {
-               throw new Error(`LLM Oracle structure breach. Expected 64 byte payload, received ${newInstructions.length}`);
+              throw new Error(
+                `LLM Oracle structure breach. Expected 64 byte payload, received ${newInstructions.length}`,
+              );
             }
           }
-           
+
           hex = Array.from(newInstructions).map((b) =>
             b.toString(16).padStart(2, "0")
           ).join("").toUpperCase();
         } catch (parseError) {
-           LOGGER.warn(`🛑 [ORACLE] Genome Structure Malformed: ${parseError}`);
-           return;
+          LOGGER.warn(`🛑 [ORACLE] Genome Structure Malformed: ${parseError}`);
+          return;
         }
 
         SOVEREIGN_ORACLE.guidanceCache.add(hex);
@@ -39407,20 +39680,36 @@ export const SOVEREIGN_ORACLE = {
         // --- PHASE 23: EPISTEMIC LOOP CAUTION ---
         try {
           // Pre-flight check via native WebAssembly shadow clone
-          const drift = await PULSE.simulateFuture(50, regentIndex, new Uint8Array(newInstructions));
-          
+          const drift = await PULSE.simulateFuture(
+            50,
+            regentIndex,
+            new Uint8Array(newInstructions),
+          );
+
           let driftIndex = 0;
-          if (drift.populationDiff < 0) driftIndex += Math.abs(drift.populationDiff) * 2;
-          if (drift.coherenceDiff < 0) driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
-          if (drift.energyDiff < -100) driftIndex += Math.abs(drift.energyDiff) * 0.01;
-          
+          if (drift.populationDiff < 0) {
+            driftIndex += Math.abs(drift.populationDiff) * 2;
+          }
+          if (drift.coherenceDiff < 0) {
+            driftIndex += Math.abs(drift.coherenceDiff) * 0.5;
+          }
+          if (drift.energyDiff < -100) {
+            driftIndex += Math.abs(drift.energyDiff) * 0.01;
+          }
+
           if (driftIndex > 20 || drift.populationDiff <= -1) {
             LOGGER.warn(
-              `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${driftIndex.toFixed(2)})`
+              `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${
+                driftIndex.toFixed(2)
+              })`,
             );
             return; // Abort timeline divergence
           }
-          LOGGER.info(`🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${driftIndex.toFixed(2)}`);
+          LOGGER.info(
+            `🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${
+              driftIndex.toFixed(2)
+            }`,
+          );
         } catch (simErr) {
           LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
           return;
@@ -39445,7 +39734,10 @@ export const SOVEREIGN_ORACLE = {
               // Ignore if missing or invalid
             }
             proposals.push(proposal);
-            await Deno.writeTextFile(sandboxPath, JSON.stringify({ proposals }, null, 2));
+            await Deno.writeTextFile(
+              sandboxPath,
+              JSON.stringify({ proposals }, null, 2),
+            );
             LOGGER.info(
               `🌑 [ORACLE] Generated Sandbox Proposal ${proposalId} (Drift Budget: ${driftBudget})`,
             );
@@ -39614,7 +39906,6 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```
 
 ---
@@ -39817,7 +40108,6 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
   },
 };
-
 ```
 
 ---
@@ -39938,7 +40228,6 @@ export const SPATIAL_HASH = {
     return hy * 140 + hx;
   },
 };
-
 ```
 
 ---
@@ -40546,11 +40835,11 @@ export const STATE_MATRIX = {
     const len = active.length;
     // 4 floats per atom -> 16 bytes per atom. 500k atoms = 8MB packet.
     const packet = new Float32Array(len * 4);
-    
+
     for (let j = 0; j < len; j++) {
       const idx = active[j];
       const offset = j * 4;
-      packet[offset] = Atomics.load(xs, idx);     // x
+      packet[offset] = Atomics.load(xs, idx); // x
       packet[offset + 1] = Atomics.load(ys, idx); // y
       packet[offset + 2] = Atomics.load(roles, idx); // color
       packet[offset + 3] = Atomics.load(resonances, idx); // resonance
@@ -40754,7 +41043,6 @@ export const STATE_MATRIX = {
   getHormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
-
 ```
 
 ---
@@ -40940,7 +41228,6 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
-
 ```
 
 ---
@@ -41117,7 +41404,6 @@ export const STRUCTURE_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -41138,16 +41424,19 @@ export class MetaKuramotoNode {
   public readonly nodeId: string;
   public readonly heartbeatInterval: number;
 
-  constructor(nodeId: string = crypto.randomUUID(), heartbeatInterval: number = 1000) {
+  constructor(
+    nodeId: string = crypto.randomUUID(),
+    heartbeatInterval: number = 1000,
+  ) {
     this.nodeId = nodeId;
     this.heartbeatInterval = heartbeatInterval;
   }
 
   public evaluateHeartbeat(
-    currentTick: number, 
-    epochHash: string, 
+    currentTick: number,
+    epochHash: string,
     avgPhase: number,
-    egressCount: number
+    egressCount: number,
   ): void {
     if (currentTick > 0 && currentTick % this.heartbeatInterval === 0) {
       const heartbeat: SwarmHeartbeat = {
@@ -41157,17 +41446,20 @@ export class MetaKuramotoNode {
         phase: avgPhase,
       };
 
-      LOGGER.info(`[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`);
-      
+      LOGGER.info(
+        `[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`,
+      );
+
       if (egressCount > 0) {
-        LOGGER.info(`[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`);
+        LOGGER.info(
+          `[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`,
+        );
       }
     }
   }
 }
 
 export const SWARM_NODE = new MetaKuramotoNode();
-
 ```
 
 ---
@@ -41177,8 +41469,8 @@ export const SWARM_NODE = new MetaKuramotoNode();
 ```typescript
 import {
   applyLedgerUpdate,
-  createLedgerRuntime,
   createGeneticLedgerRuntime,
+  createLedgerRuntime,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
@@ -42993,11 +43285,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
     const geneticLedger = PULSE.getGeneticLedgerState();
-    
+
     const ledger = {
       ...generic,
-      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(daemonPheromoneLedgerRuntime),
-      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(daemonPlasmidLedgerRuntime),
+      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(
+        daemonPheromoneLedgerRuntime,
+      ),
+      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(
+        daemonPlasmidLedgerRuntime,
+      ),
     };
 
     const physiology = capturePhysiologySnapshot({
@@ -44812,7 +45108,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 // 3. Start Panopticon Telemetry Server (Background)
 (async () => {
-    PANOPTICON_SERVER.start();
+  PANOPTICON_SERVER.start();
 })();
 
 // 4. Start Cognitive Breathing Loop (Background)
@@ -44821,7 +45117,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
-
 ```
 
 ---
@@ -45036,7 +45331,6 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
-
 ```
 
 ---
@@ -45068,7 +45362,6 @@ async function boostAtom() {
   }
 }
 boostAtom();
-
 ```
 
 ---
@@ -45209,7 +45502,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -48523,7 +48815,6 @@ if (import.meta.main) {
     </script>
   </body>
 </html>
-
 ```
 
 ---
@@ -49237,7 +49528,6 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
-
 ```
 
 ---
@@ -50548,11 +50838,15 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Guardian signaling behavior",
       nativeProgram: "guardian_base",
       script: new Uint8Array([
-        RISC.OP_SET, 0, 100,
-        RISC.OP_SET, 1, 1,
-        RISC.OP_SIGNAL, 
-        RISC.OP_NOP
-      ]), 
+        RISC.OP_SET,
+        0,
+        100,
+        RISC.OP_SET,
+        1,
+        1,
+        RISC.OP_SIGNAL,
+        RISC.OP_NOP,
+      ]),
       maxSteps: 3, // SET, SET, SIGNAL
       initialProps: {
         [RISC.PROP_ENERGY]: 1000,
@@ -50569,11 +50863,17 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Architect collective emission behavior",
       nativeProgram: "architect_base",
       script: new Uint8Array([
-        RISC.OP_SET, 0, 100,
-        RISC.OP_SET, 1, 0,
-        RISC.OP_PLUG, 0, 0,
+        RISC.OP_SET,
+        0,
+        100,
+        RISC.OP_SET,
+        1,
+        0,
+        RISC.OP_PLUG,
+        0,
+        0,
         RISC.OP_SIGNAL,
-        RISC.OP_NOP
+        RISC.OP_NOP,
       ]),
       maxSteps: 4,
       initialProps: {
@@ -50597,7 +50897,6 @@ const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
 
 export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
   REDUCTION_CASE_BY_ID.get(id) ?? null;
-
 ```
 
 ---
@@ -52108,7 +52407,6 @@ if (import.meta.main) {
     }
   }
 }
-
 ```
 
 ---
@@ -52198,7 +52496,6 @@ async function runAudit() {
 }
 
 runAudit().catch(console.error);
-
 ```
 
 ---
@@ -52211,11 +52508,10 @@ import { OFFICIAL_CONSTANTS } from "./OFFSETS.ts";
 
 console.log("TS Offsets:");
 for (const [k, v] of Object.entries(import("./OFFSETS.ts"))) {
-   if(k.endsWith("_OFFSET")) {
-      console.log(k, v);
-   }
+  if (k.endsWith("_OFFSET")) {
+    console.log(k, v);
+  }
 }
-
 ```
 
 ---
@@ -52386,14 +52682,13 @@ if (import.meta.main) {
   await assertWasmLayout();
   console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
 }
-
 ```
 
 ---
 
 ## FILE: WASM_MIGRATION_RFC.md
 
-```markdown
+````markdown
 # OMEGA-64: WebAssembly (Wasm) Migration RFC 🦀🕸️🌀
 
 ## 1. Executive Summary
@@ -52431,6 +52726,8 @@ perfectly with Wasm linear memory.
   });
   // Map our STATE_MATRIX over the wasmMemory.buffer
   ```
+````
+
 - Rust will access pointers to the various arrays (energies, resonances, codes)
   directly using raw pointers or `js-sys` TypedArrays.
 
@@ -52517,8 +52814,7 @@ the Universe."
   integer math, removing any V8 engine JIT unpredictability across different OS
   architectures.
 
-```
-
+````
 ---
 
 ## FILE: WASM_THREADSAFE_ROADMAP.md
@@ -52652,8 +52948,7 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-
-```
+````
 
 ---
 
@@ -52774,7 +53069,6 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
-
 ```
 
 ---
@@ -53064,7 +53358,6 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
-
 ```
 
 ---
@@ -53155,7 +53448,6 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
-
 ```
 
 ---
@@ -53318,7 +53610,6 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
-
 ```
 
 ---
@@ -53361,7 +53652,6 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
-
 ```
 
 ---
@@ -53386,7 +53676,6 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
-
 ```
 
 ---
@@ -53637,8 +53926,6 @@ async function processAtom(targetFilename: string) {
     } catch { /* ignore */ }
   }
 }
-
 ```
 
 ---
-

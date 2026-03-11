@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "./PULSE.ts";
-import { STATE_MATRIX, RISC, SYS } from "./STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
 
 Deno.test({
   name: "Stage 37: The Dark Forest Topology (Radar & Stealth)",
@@ -17,7 +17,7 @@ Deno.test({
     const setup = (preyResonance: number) => {
       STATE_MATRIX.clear();
       Atomics.store(STATE_MATRIX.tickCounter, 0, 0);
-      
+
       STATE_MATRIX.setId(PREDATOR, 999n);
       STATE_MATRIX.setX(PREDATOR, 100);
       STATE_MATRIX.setY(PREDATOR, 100);
@@ -28,7 +28,7 @@ Deno.test({
       STATE_MATRIX.setX(PREY, 120);
       STATE_MATRIX.setY(PREY, 120);
       STATE_MATRIX.setEnergy(PREY, 50000); // 50k energy
-      STATE_MATRIX.setResonance(PREY, preyResonance); 
+      STATE_MATRIX.setResonance(PREY, preyResonance);
       STATE_MATRIX.setRole(PREY, 1);
 
       // ----- PREDATOR SCRIPT (SYS_SCAN) -----
@@ -51,9 +51,13 @@ Deno.test({
     // ==========================================
     setup(50);
     await PULSE.tick();
-    
+
     let scanResultA = STATE_MATRIX.getReg(PREDATOR, 0);
-    assertEquals(scanResultA, PREY, "SYS_SCAN should detect Prey with Resonance 50");
+    assertEquals(
+      scanResultA,
+      PREY,
+      "SYS_SCAN should detect Prey with Resonance 50",
+    );
 
     // ==========================================
     // SCENARIO B: PREY IS INVISIBLE (Res=0)
@@ -62,19 +66,23 @@ Deno.test({
     await PULSE.tick();
 
     let scanResultB = STATE_MATRIX.getReg(PREDATOR, 0);
-    assertEquals(scanResultB, -1, "SYS_SCAN should ignore Prey with Resonance 0 (Stealth)");
+    assertEquals(
+      scanResultB,
+      -1,
+      "SYS_SCAN should ignore Prey with Resonance 0 (Stealth)",
+    );
 
     // ==========================================
     // SCENARIO C: PAID RESONANCE & STEALTH DROP
     // ==========================================
     STATE_MATRIX.clear();
     Atomics.store(STATE_MATRIX.tickCounter, 0, 0);
-    
+
     const ATOM_C = 3;
     STATE_MATRIX.setId(ATOM_C, 333n);
     STATE_MATRIX.setX(ATOM_C, 100);
     STATE_MATRIX.setY(ATOM_C, 100);
-    STATE_MATRIX.setEnergy(ATOM_C, 100); 
+    STATE_MATRIX.setEnergy(ATOM_C, 100);
     STATE_MATRIX.setResonance(ATOM_C, 10);
     STATE_MATRIX.setRole(ATOM_C, 1);
 
@@ -95,28 +103,36 @@ Deno.test({
     scriptC[11] = 1; // PROP_RESONANCE
 
     STATE_MATRIX.setInstructions(ATOM_C, scriptC);
-    
+
     // Execute multiple ticks to ensure instructions run
-    for(let i=0; i<5; i++) {
-        await PULSE.tick(); 
-        console.log(`[TICK ${i}] Atom C: Res=${STATE_MATRIX.getResonance(ATOM_C)} Energy=${STATE_MATRIX.getEnergy(ATOM_C)}`);
+    for (let i = 0; i < 5; i++) {
+      await PULSE.tick();
+      console.log(
+        `[TICK ${i}] Atom C: Res=${STATE_MATRIX.getResonance(ATOM_C)} Energy=${
+          STATE_MATRIX.getEnergy(ATOM_C)
+        }`,
+      );
     }
 
     const finalRes = STATE_MATRIX.getResonance(ATOM_C);
     const finalEnergy = STATE_MATRIX.getEnergy(ATOM_C);
 
     // Initial Energy = 100.
-    // Drop to 0 resonance = Free. Energy = 100. 
+    // Drop to 0 resonance = Free. Energy = 100.
     // Rise to 50 resonance = Costs 50. Energy = 50.
     // NOTE: Resonance naturally decays by ~2 per tick. By tick 5, it should be around 40-42.
     if (finalRes < 35 || finalRes > 50) {
-      throw new Error(`Resonance did not inflate correctly! Expected ~40-50, got ${finalRes}`);
+      throw new Error(
+        `Resonance did not inflate correctly! Expected ~40-50, got ${finalRes}`,
+      );
     }
-    
+
     if (finalEnergy > 50) {
-      throw new Error(`Energy was not deducted! Expected <= 50, got ${finalEnergy}`);
+      throw new Error(
+        `Energy was not deducted! Expected <= 50, got ${finalEnergy}`,
+      );
     }
 
     PULSE.stopWorkers();
-  }
+  },
 });

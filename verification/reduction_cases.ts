@@ -1301,11 +1301,15 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Guardian signaling behavior",
       nativeProgram: "guardian_base",
       script: new Uint8Array([
-        RISC.OP_SET, 0, 100,
-        RISC.OP_SET, 1, 1,
-        RISC.OP_SIGNAL, 
-        RISC.OP_NOP
-      ]), 
+        RISC.OP_SET,
+        0,
+        100,
+        RISC.OP_SET,
+        1,
+        1,
+        RISC.OP_SIGNAL,
+        RISC.OP_NOP,
+      ]),
       maxSteps: 3, // SET, SET, SIGNAL
       initialProps: {
         [RISC.PROP_ENERGY]: 1000,
@@ -1322,11 +1326,17 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Architect collective emission behavior",
       nativeProgram: "architect_base",
       script: new Uint8Array([
-        RISC.OP_SET, 0, 100,
-        RISC.OP_SET, 1, 0,
-        RISC.OP_PLUG, 0, 0,
+        RISC.OP_SET,
+        0,
+        100,
+        RISC.OP_SET,
+        1,
+        0,
+        RISC.OP_PLUG,
+        0,
+        0,
         RISC.OP_SIGNAL,
-        RISC.OP_NOP
+        RISC.OP_NOP,
       ]),
       maxSteps: 4,
       initialProps: {

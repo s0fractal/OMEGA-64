@@ -1,7 +1,7 @@
 // OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
-import { PULSE, NEXUS_DAEMON } from "./PULSE.ts";
+import { NEXUS_DAEMON, PULSE } from "./PULSE.ts";
 import { LOGGER } from "./LOGGER.ts";
 
 Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () => {
@@ -48,7 +48,7 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
   await PULSE.tick(); // Tick 2: Predator moves
   const newPx = STATE_MATRIX.getX(predatorA);
   LOGGER.info(`Predator X is now: ${newPx}`);
-  
+
   assertEquals(
     newPx,
     STATE_MATRIX.getX(preyB),
@@ -98,5 +98,5 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
   console.log("--- STAGE 36: SUCCESS ---");
   PULSE.stopWorkers();
   NEXUS_DAEMON.stop();
-  await new Promise(r => setTimeout(r, 10));
+  await new Promise((r) => setTimeout(r, 10));
 });

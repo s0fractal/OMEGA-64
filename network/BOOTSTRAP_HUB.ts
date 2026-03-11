@@ -14,7 +14,7 @@ const args = parseArgs(Deno.args, {
 const PORT = parseInt(args.port, 10);
 const HOST = args.host;
 
-// Registry of active nodes. 
+// Registry of active nodes.
 // Key: Node UUID
 // Value: { socket, url }
 type NodeRecord = {
@@ -35,13 +35,16 @@ function broadcastPeerStats() {
 const server = Deno.serve({ port: PORT, hostname: HOST }, (req) => {
   if (req.headers.get("upgrade") !== "websocket") {
     // Health check endpoint
-    return new Response(JSON.stringify({ 
-      status: "OMEGA_BOOTSTRAP_HUB_ONLINE", 
-      active_nodes: activeNodes.size 
-    }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
+    return new Response(
+      JSON.stringify({
+        status: "OMEGA_BOOTSTRAP_HUB_ONLINE",
+        active_nodes: activeNodes.size,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   const { socket, response } = Deno.upgradeWebSocket(req);
@@ -56,29 +59,35 @@ const server = Deno.serve({ port: PORT, hostname: HOST }, (req) => {
       const data = JSON.parse(event.data);
       if (data.op === "REGISTER") {
         if (!data.nodeId || !data.url) {
-          socket.send(JSON.stringify({ op: "ERROR", message: "Missing nodeId or url" }));
+          socket.send(
+            JSON.stringify({ op: "ERROR", message: "Missing nodeId or url" }),
+          );
           return;
         }
 
         localNodeId = data.nodeId;
-        
+
         // Remove old connection for same ID if exists (reconnection)
         const old = activeNodes.get(localNodeId!);
         if (old && old.socket !== socket) {
-            try { old.socket.close(); } catch {}
+          try {
+            old.socket.close();
+          } catch {}
         }
 
         activeNodes.set(localNodeId!, { socket, url: data.url });
         log(`Node Registered: ${localNodeId} at ${data.url}`);
-        
+
         // Pick up to 5 random peers to send back
         const peerUrls: string[] = [];
-        const allPeerIds = Array.from(activeNodes.keys()).filter(id => id !== localNodeId);
-        
+        const allPeerIds = Array.from(activeNodes.keys()).filter((id) =>
+          id !== localNodeId
+        );
+
         // Shuffle and take 5
         allPeerIds.sort(() => Math.random() - 0.5);
         const selectedIds = allPeerIds.slice(0, 5);
-        
+
         for (const id of selectedIds) {
           const record = activeNodes.get(id);
           if (record) {
@@ -88,7 +97,7 @@ const server = Deno.serve({ port: PORT, hostname: HOST }, (req) => {
 
         socket.send(JSON.stringify({
           op: "PEER_LIST",
-          peers: peerUrls
+          peers: peerUrls,
         }));
 
         broadcastPeerStats();

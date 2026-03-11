@@ -13,7 +13,9 @@ import type { LedgerRuntimeSnapshot } from "./GENERIC_LEDGER_SYSTEM.ts";
 export type PhysiologySnapshotInput = {
   tick: number;
   hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
-  ledger: Partial<Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>>;
+  ledger: Partial<
+    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
+  >;
 };
 
 export type HormoneSnapshot = HormoneSpec & {

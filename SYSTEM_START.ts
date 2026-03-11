@@ -1,7 +1,7 @@
 import {
   applyLedgerUpdate,
-  createLedgerRuntime,
   createGeneticLedgerRuntime,
+  createLedgerRuntime,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
@@ -1819,11 +1819,15 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
     const geneticLedger = PULSE.getGeneticLedgerState();
-    
+
     const ledger = {
       ...generic,
-      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(daemonPheromoneLedgerRuntime),
-      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(daemonPlasmidLedgerRuntime),
+      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(
+        daemonPheromoneLedgerRuntime,
+      ),
+      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(
+        daemonPlasmidLedgerRuntime,
+      ),
     };
 
     const physiology = capturePhysiologySnapshot({
@@ -3638,7 +3642,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 // 3. Start Panopticon Telemetry Server (Background)
 (() => {
-    PANOPTICON_SERVER.start();
+  PANOPTICON_SERVER.start();
 })();
 
 // 4. Start Cognitive Breathing Loop (Background)

@@ -1,7 +1,6 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-10T16:48:07.151Z*
-*Exported Files: 22*
+_Generated: 2026-03-10T16:48:07.151Z_ _Exported Files: 22_
 
 ---
 
@@ -43,7 +42,6 @@ rustflags = [
   "-C", "link-arg=--global-base=167772160",
   "-C", "target-feature=+atomics,+bulk-memory,+mutable-globals"
 ]
-
 ```
 
 ---
@@ -58,7 +56,6 @@ version = 4
 [[package]]
 name = "omega_wasm"
 version = "0.1.0"
-
 ```
 
 ---
@@ -75,7 +72,6 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-
 ```
 
 ---
@@ -204,7 +200,6 @@ pub extern "C" fn execute_atom() -> u8 {
         }
     }
 }
-
 ```
 
 ---
@@ -220,7 +215,6 @@ rustflags = [
     "-C", "link-arg=--global-base=167772160",
     "-C", "target-feature=+atomics,+bulk-memory,+mutable-globals"
 ]
-
 ```
 
 ---
@@ -373,7 +367,6 @@ name = "version_check"
 version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
-
 ```
 
 ---
@@ -391,7 +384,6 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 rayon = "1.11.0"
 sha2 = "0.10.9"
-
 ```
 
 ---
@@ -483,7 +475,6 @@ impl SigmaState {
         resolved
     }
 }
-
 ```
 
 ---
@@ -1052,7 +1043,6 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
         }
     }
 }
-
 ```
 
 ---
@@ -1273,7 +1263,6 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         unsafe { std::slice::from_raw_parts_mut(result_ptr as usize as *mut u8, 32) };
     result_slice.copy_from_slice(&result);
 }
-
 ```
 
 ---
@@ -1344,7 +1333,6 @@ impl SigmaState {
         }
     }
 }
-
 ```
 
 ---
@@ -1433,7 +1421,6 @@ pub const SYS_BIND: i32 = 5;
 pub const SYS_TRANSFER: i32 = 10;
 pub const SYS_MOVE: i32 = 14;
 pub const SYS_EAT: i32 = 15;
-
 ```
 
 ---
@@ -1460,7 +1447,6 @@ pub use memory::{SigmaMatrix, SigmaState};
 pub use pulse::PulseOrchestrator;
 pub use shadow::run_shadow_simulation;
 pub use vm::LambdaVM;
-
 ```
 
 ---
@@ -1519,7 +1505,6 @@ pub fn math_cos(angle: i32, high_res: i32) -> i32 {
     let term2 = (d2 * frac * frac) >> 16;
     c_base - term1 - term2
 }
-
 ```
 
 ---
@@ -2096,7 +2081,6 @@ mod tests {
         );
     }
 }
-
 ```
 
 ---
@@ -2180,7 +2164,6 @@ impl PulseOrchestrator {
         }
     }
 }
-
 ```
 
 ---
@@ -2363,7 +2346,6 @@ impl SigmaState {
         spawned
     }
 }
-
 ```
 
 ---
@@ -2481,7 +2463,6 @@ pub fn run_shadow_simulation(
         divergence_tick: shadow_state.matrix.tick_counter as u32,
     }
 }
-
 ```
 
 ---
@@ -2606,7 +2587,6 @@ impl SigmaState {
         self.matrix.spatial_grid[cell_idx * 32 + ((sub_idx + 1) as usize)]
     }
 }
-
 ```
 
 ---
@@ -2723,7 +2703,6 @@ impl SigmaState {
         }
     }
 }
-
 ```
 
 ---
@@ -3657,7 +3636,6 @@ impl LambdaVM {
         }
     }
 }
-
 ```
 
 ---
@@ -3729,8 +3707,6 @@ mod tests {
         assert_eq!(offset_of!(SigmaMatrix, ledger_data), 53_000_004, "ledger_data");
     }
 }
-
 ```
 
 ---
-

@@ -6,8 +6,8 @@ import {
 } from "./GENERIC_LEDGER_PERSISTENCE.ts";
 import {
   applyLedgerUpdate,
-  createLedgerRuntime,
   createGeneticLedgerRuntime,
+  createLedgerRuntime,
   rollbackLedgerUpdate,
 } from "./GENERIC_LEDGER_SYSTEM.ts";
 

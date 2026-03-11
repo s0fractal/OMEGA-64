@@ -41,14 +41,14 @@ export const PANOPTICON_SERVER = {
       if (clients.size === 0) return;
 
       const packet = STATE_MATRIX.packRenderFrame();
-      const buffer = packet.buffer; 
+      const buffer = packet.buffer;
 
       for (const client of clients) {
         if (client.readyState === WebSocket.OPEN) {
           try {
             client.send(buffer);
           } catch (e) {
-             // Let close handler deal with this
+            // Let close handler deal with this
           }
         }
       }
