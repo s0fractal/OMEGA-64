@@ -1,8 +1,8 @@
 // OMEGA-64 | tests/test_necropolis.ts
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/assert_equals.ts";
-import { PULSE } from "../PULSE.ts";
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import { IMMUNE } from "../IMMUNE.ts"; // Just to verify it doesn't break GC
+import { PULSE } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { IMMUNE } from "../02_metabolism/mod.ts"; // Just to verify it doesn't break GC
 
 Deno.test({
   name: "Phase 43: The Necropolis (Fossilization & Ruins)",

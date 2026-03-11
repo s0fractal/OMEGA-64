@@ -1,5 +1,5 @@
-import * as OFFSETS from "./OFFSETS.ts";
-import { assertWasmLayout } from "./wasm_layout_guard.ts";
+import * as OFFSETS from "./00_substrate/mod.ts";
+import { assertWasmLayout } from "./tests/wasm_layout_guard.ts";
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   console.error(

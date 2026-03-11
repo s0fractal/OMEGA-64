@@ -1,4 +1,4 @@
-import { RISC } from "../STATE_MATRIX.ts";
+import { RISC } from "../00_substrate/STATE_MATRIX.ts";
 import { glyphSpecByLegacyOpcode } from "../reduction_core/GlyphIR64.ts";
 
 export type LegacyInstruction = {

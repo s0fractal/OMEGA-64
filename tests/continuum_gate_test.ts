@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { loadEpoch, saveEpoch } from "../CONTINUUM.ts";
-import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "../OFFSETS.ts";
+import { loadEpoch, saveEpoch } from "../06_akasha/mod.ts";
+import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "../00_substrate/mod.ts";
 
 async function hashMemArray(buffer: Uint8Array): Promise<string> {
   // crypto.subtle.digest requires ArrayBuffer, so we slice a copy if it's SharedArrayBuffer

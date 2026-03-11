@@ -1,0 +1,170 @@
+import {
+  assertEquals,
+  assertNotEquals,
+} from "https://deno.land/std/testing/asserts.ts";
+import { STATE_MATRIX, wasmMemory } from "../00_substrate/mod.ts";
+import * as OFFSETS from "../00_substrate/mod.ts";
+
+const WASM_PATH = "./build/release.wasm";
+const wasmModule = await Deno.readFile(WASM_PATH);
+const { instance } = await WebAssembly.instantiate(wasmModule, {
+  index: {
+    trace_atom: (
+      idx: number,
+      op: number,
+      res: number,
+      tick: number,
+      role: number,
+    ) => {
+      console.log(
+        `[Trace] Atom ${idx}: op=0x${
+          op.toString(16)
+        }, param1=${res}, param2=${tick}, param3=${role}`,
+      );
+    },
+  },
+  env: {
+    memory: wasmMemory,
+    abort: (msg: any) => console.error("WASM ABORT:", msg),
+    trace_atom: (
+      idx: number,
+      op: number,
+      res: number,
+      tick: number,
+      role: number,
+    ) => {},
+    lcgNext: (seed: number) => (seed * 1664525 + 1013904223) >>> 0,
+    Mathf_sqrt: Math.sqrt,
+    "Math.round": Math.round,
+  },
+});
+
+const kernel = instance.exports as any;
+
+/**
+ * Setup a clean state for testing
+ */
+function setupTestState() {
+  new Uint8Array(STATE_MATRIX.buffer).fill(0);
+  STATE_MATRIX.setHormone(0, 512); // entropy_pressure
+  STATE_MATRIX.setHormone(1, 512); // time_viscosity
+  STATE_MATRIX.setHormone(2, 512); // aggression
+  STATE_MATRIX.setHormone(3, 512); // replication_bias
+  STATE_MATRIX.setHormone(4, 512); // repair_drive
+  STATE_MATRIX.setHormone(5, 512); // mutation_friction
+}
+
+// 1. Verify OP_BIND (Autonomous Bonding)
+console.log("--- Test A: OP_BIND (Autonomous Bonding) ---");
+setupTestState();
+
+// Atom 1 at (100, 100)
+STATE_MATRIX.setId(1, 100n);
+STATE_MATRIX.setX(1, 100);
+STATE_MATRIX.setY(1, 100);
+STATE_MATRIX.setEnergy(1, 400);
+STATE_MATRIX.setResonance(1, 200);
+
+// Population of read buffers for spatial grid and proximity
+const readXs = new Int16Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_XS_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readYs = new Int16Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_YS_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readEnergy = new Int32Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+const readResonance = new Int32Array(
+  STATE_MATRIX.buffer,
+  OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+  OFFSETS.MAX_ATOMS,
+);
+
+readXs[1] = 100;
+readYs[1] = 100;
+readEnergy[1] = 400;
+readResonance[1] = 200;
+
+// Atom 2 at (105, 105) - nearby
+STATE_MATRIX.setId(2, 200n);
+STATE_MATRIX.setX(2, 105);
+STATE_MATRIX.setY(2, 105);
+readXs[2] = 105;
+readYs[2] = 105;
+readResonance[2] = 0;
+readEnergy[2] = 100;
+
+// Build spatial grid manually for the test
+const gridIdx = (10 * 140) + 10; // (100/10, 100/10)
+const gridOff = (OFFSETS.SPATIAL_GRID_OFFSET) + (gridIdx << 7);
+const view = new Int32Array(STATE_MATRIX.buffer);
+const gridViewIdx = gridOff >> 2;
+view[gridViewIdx] = 2; // Count
+view[gridViewIdx + 1] = 1; // Atom 1
+view[gridViewIdx + 2] = 2; // Atom 2
+
+// Write instructions for Atom 1: OP_BIND (0x82)
+const instOff = OFFSETS.INSTRUCTIONS_OFFSET + (1 << 6);
+const instView = new Uint8Array(STATE_MATRIX.buffer);
+instView[instOff] = 0x82; // OP_BIND
+
+kernel.execute_atom(1);
+
+// Check bond requests
+const reqOff = OFFSETS.BOND_REQUESTS_OFFSET + (1 * 12);
+const reqView = new Int32Array(STATE_MATRIX.buffer, reqOff, 3);
+console.log(
+  `Bond Request: Initiator=${reqView[0]}, Target=${reqView[1]}, Status=${
+    reqView[2]
+  }`,
+);
+
+assertEquals(reqView[0], 2, "Initiator should be Atom 1 (idx 1 + 1)");
+assertEquals(reqView[1], 3, "Target should be Atom 2 (idx 2 + 1)");
+assertEquals(reqView[2], 1, "Status should be 1 (Active)");
+console.log("✅ OP_BIND Successful");
+
+// 2. Verify Resonance Synchronization
+console.log("\n--- Test B: Resonance Synchronization ---");
+setupTestState();
+
+// Setup physical bond: Atom 1 <-> Atom 2
+// Bonds are at BONDS_OFFSET: 16 bytes per atom (4 slots of i32)
+const bondsOff = OFFSETS.BONDS_OFFSET;
+const bondsView = new Int32Array(STATE_MATRIX.buffer);
+bondsView[(bondsOff + (1 * 16)) >> 2] = 2; // Atom 1 bond 0 -> Atom 2
+
+// Resonance: Atom 1 = 200, Atom 2 = 0
+STATE_MATRIX.setId(1, 101n);
+STATE_MATRIX.setId(2, 201n);
+STATE_MATRIX.setResonance(1, 200);
+STATE_MATRIX.setResonance(2, 0);
+
+readResonance[1] = 200;
+readResonance[2] = 0;
+readXs[1] = 100;
+readYs[1] = 100;
+readXs[2] = 105;
+readYs[2] = 105;
+
+// Execute Atom 1
+kernel.execute_atom(1);
+
+// Check resonance delta for Atom 1
+const resDeltaOff = OFFSETS.RESONANCE_DELTA_OFFSET;
+const resDeltaView = new Int32Array(STATE_MATRIX.buffer);
+const delta1 = resDeltaView[(resDeltaOff + (1 << 2)) >> 2];
+
+console.log(`Atom 1 Resonance Delta: ${delta1}`);
+// Expect (0 - 200) / 20 = -10
+assertEquals(delta1, -10, "Resonance should flow from high to low");
+console.log("✅ Resonance Sync Successful");
+
+Deno.exit(0);

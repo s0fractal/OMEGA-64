@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PULSE } from "../PULSE.ts";
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
+import { PULSE } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "../00_substrate/mod.ts";
 
 Deno.test({
   name: "Phase 41: Metazoan Morphogenesis (Organelle Differentiation)",

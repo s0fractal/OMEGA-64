@@ -1,5 +1,5 @@
 export const DETERMINISM_CAPTURE_MARKER = "__OMEGA_DETERMINISM_CAPTURE__";
-const DETERMINISM_CAPTURE_SCRIPT = "test_worker_determinism.ts";
+const DETERMINISM_CAPTURE_SCRIPT = "tests/test_worker_determinism.ts";
 
 export type DeterminismAtomState = {
   idx: number;

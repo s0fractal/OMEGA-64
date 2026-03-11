@@ -8,7 +8,7 @@ if (Deno.args[0] === "run-node") {
   const peerPort = parseInt(Deno.args[3] || "0", 10);
 
   const { PULSE, NEXUS_DAEMON } = await import("../PULSE.ts");
-  const { STATE_MATRIX } = await import("../STATE_MATRIX.ts");
+  const { STATE_MATRIX } = await import("../00_substrate/STATE_MATRIX.ts");
 
   // Do not lock port up front; SwarmNexus assigns port 0 to fallback to ephemeral
   if (port >= 0) {

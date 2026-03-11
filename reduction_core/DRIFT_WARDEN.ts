@@ -1,7 +1,7 @@
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import * as OFFSETS from "../OFFSETS.ts";
-import { sharedBuffer } from "../STATE_MATRIX.ts";
-import { LOGGER } from "../LOGGER.ts";
+import * as OFFSETS from "../00_substrate/mod.ts";
+import { sharedBuffer } from "../00_substrate/mod.ts";
+import { LOGGER } from "../00_substrate/mod.ts";
 
 export type DriftMetrics = {
   coherence: number;

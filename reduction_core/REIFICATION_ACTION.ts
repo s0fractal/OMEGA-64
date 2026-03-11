@@ -1,6 +1,6 @@
 // OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
 import { Relic } from "./relics/RELIC_CULTIVATION.ts";
-import { LOGGER } from "../LOGGER.ts";
+import { LOGGER } from "../00_substrate/mod.ts";
 
 /**
  * ReificationAction promotes a relic from the sandbox to the canonical GENESIS pool.

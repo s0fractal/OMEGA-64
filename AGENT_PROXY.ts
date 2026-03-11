@@ -1,8 +1,8 @@
-import { RISC, STATE_MATRIX, SYS } from "./STATE_MATRIX.ts";
-import { PULSE } from "./PULSE.ts";
-import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
-import { assembleScript } from "./GENOMES.ts";
-import { LOGGER } from "./LOGGER.ts";
+import { RISC, STATE_MATRIX, SYS } from "./00_substrate/mod.ts";
+import { PULSE } from "./02_metabolism/mod.ts";
+import { SPATIAL_HASH } from "./01_physics/mod.ts";
+import { assembleScript } from "./02_metabolism/mod.ts";
+import { LOGGER } from "./00_substrate/mod.ts";
 
 export class AgentProxy {
   port: number;

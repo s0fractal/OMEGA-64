@@ -1,4 +1,4 @@
-import * as off from "./OFFSETS.ts";
+import * as off from "./63_necropolis/mod.ts";
 
 const bounds = {
   ids: off.IDS_OFFSET,

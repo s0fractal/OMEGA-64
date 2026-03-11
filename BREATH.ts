@@ -1,18 +1,21 @@
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
-import { AUDIT_ENGINE } from "./AUDIT_ENGINE.ts";
-import { LOGGER } from "./LOGGER.ts";
-import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
-
+import { STATE_MATRIX } from "./00_substrate/mod.ts";
+import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
+import { LLM_SYNAPSE } from "./05_exocortex/mod.ts";
+import { AUDIT_ENGINE } from "./03_governance/mod.ts";
+import { LOGGER } from "./00_substrate/mod.ts";
+import { AKASHA_CODEX } from "./06_akasha/mod.ts";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
 export const BREATH = {
   inhale: async () => {
+    AUDIT_ENGINE.setDelegate({
+      generateThought: (c: string) => LLM_SYNAPSE.generateThought(c),
+    });
+
     LOGGER.info("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
 
     while (true) {

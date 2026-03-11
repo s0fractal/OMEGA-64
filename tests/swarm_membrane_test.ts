@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import * as OFFSETS from "../OFFSETS.ts";
+import * as OFFSETS from "../00_substrate/mod.ts";
 
 const WASM_URL = new URL(
   "../sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",

@@ -1,5 +1,5 @@
-import { STATE_MATRIX } from "./STATE_MATRIX.ts";
-import { rolesView } from "./PULSE.ts";
+import { STATE_MATRIX } from "./00_substrate/mod.ts";
+import { rolesView } from "./02_metabolism/mod.ts";
 
 const active = STATE_MATRIX.getActiveIndices();
 let producers = 0;

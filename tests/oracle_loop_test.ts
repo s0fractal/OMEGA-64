@@ -3,10 +3,10 @@ import {
   assert,
   assertEquals,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { NEXUS_DAEMON, PULSE } from "../PULSE.ts";
-import { STATE_MATRIX } from "../STATE_MATRIX.ts";
-import { SOVEREIGN_ORACLE } from "../SOVEREIGN_ORACLE.ts";
-import { LLM_SYNAPSE } from "../LLM_SYNAPSE.ts";
+import { NEXUS_DAEMON, PULSE } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { SOVEREIGN_ORACLE } from "../05_exocortex/mod.ts";
+import { LLM_SYNAPSE } from "../05_exocortex/mod.ts";
 
 Deno.test({
   name: "Phase 39: Sovereign Oracle Epistemic Gate (Memetic Ingestion)",

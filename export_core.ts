@@ -41,8 +41,10 @@ const fileExists = async (path: string): Promise<boolean> => {
   }
 };
 
-const isExcluded = (path: string): boolean =>
-  EXCLUDE_PATTERNS.some((pattern) => pattern.test(path));
+const isExcluded = (path: string): boolean => {
+  if (path === "tests/wasm_layout_guard.ts") return false;
+  return EXCLUDE_PATTERNS.some((pattern) => pattern.test(path));
+};
 
 const uniqueSorted = (items: Iterable<string>): string[] =>
   Array.from(new Set(items)).sort((a, b) => a.localeCompare(b));
@@ -79,8 +81,10 @@ type ExportFileContent = {
   content: string;
 };
 
-const hasTestLikeName = (path: string): boolean =>
-  /^test_.*\.ts$/u.test(path) || /^tests\//u.test(path);
+const hasTestLikeName = (path: string): boolean => {
+  if (path === "tests/wasm_layout_guard.ts") return false;
+  return /^test_.*\.ts$/u.test(path) || /^tests\//u.test(path);
+};
 
 const parseManifestStringArray = (
   value: unknown,

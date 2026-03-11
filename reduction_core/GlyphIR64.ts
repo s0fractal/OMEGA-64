@@ -1,4 +1,4 @@
-import { RISC } from "../STATE_MATRIX.ts";
+import { RISC } from "../00_substrate/mod.ts";
 
 export type GlyphKind =
   | "core"

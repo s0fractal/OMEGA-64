@@ -40,10 +40,10 @@ export context. It intentionally excludes historical era narratives.
 
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
-  closure. Current roots: `SYSTEM_START.ts`, `PULSE.ts`, `PULSE_WORKER.ts`,
-  `AKASHA_SERVER.ts`, `OMEGA_DAEMON.ts`, `assembly/index.ts`,
-  `MUTATION_TELEMETRY.ts`, `TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`, `llm_soul.ts`,
-  `nightly_soak.ts`.
+  closure. Current roots: `SYSTEM_START.ts`, `02_metabolism/PULSE.ts`, `02_metabolism/PULSE_WORKER.ts`,
+  `06_akasha/AKASHA_SERVER.ts`, `06_akasha/OMEGA_DAEMON.ts`, `assembly/index.ts`,
+  `06_akasha/MUTATION_TELEMETRY.ts`, `06_akasha/TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`, `05_exocortex/llm_soul.ts`,
+  `63_necropolis/nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
 - `experimental_files`: explicitly exported experimental surfaces that must not
