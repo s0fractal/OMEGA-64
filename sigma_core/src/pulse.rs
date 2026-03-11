@@ -1,21 +1,13 @@
 use crate::memory::MAX_ATOMS;
 use crate::{LambdaVM, SigmaState};
 
-pub struct PulseOrchestrator {
-    pub visited: Vec<u8>,
+pub struct PulseOrchestrator<'a> {
+    pub visited: &'a mut [u8],
 }
 
-impl Default for PulseOrchestrator {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl PulseOrchestrator {
-    pub fn new() -> Self {
-        Self {
-            visited: vec![0; MAX_ATOMS],
-        }
+impl<'a> PulseOrchestrator<'a> {
+    pub fn new(buffer: &'a mut [u8]) -> Self {
+        Self { visited: buffer }
     }
 
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {

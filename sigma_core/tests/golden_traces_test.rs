@@ -464,7 +464,7 @@ fn test_gt12_collective_synchrony() {
 #[test]
 fn test_gt14_plug_charge_resolve() {
     let mut state = SigmaState::new();
-    let mut vm = LambdaVM::new();
+    let _vm = LambdaVM::new();
 
     let p1 = 1;
     state.matrix.ids[p1] = 1;
@@ -498,7 +498,8 @@ fn test_gt14_plug_charge_resolve() {
 #[test]
 fn test_gt02_free_run_no_ingress() {
     let mut state = SigmaState::new();
-    let mut orchestrator = sigma_core::pulse::PulseOrchestrator::new();
+    let mut visited = vec![0u8; sigma_core::memory::MAX_ATOMS];
+    let mut orchestrator = sigma_core::pulse::PulseOrchestrator::new(&mut visited);
 
     // Basic logic payloads to let LambdaVM run
     let producer_logic = [0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18];
@@ -581,10 +582,10 @@ fn test_gt02_rayon_parity() {
 
     // Prepare sequential baseline
     // SigmaState is ~51MB, MUST be cloned deeply to avoid shared heap Box panics
-    let mut seq_state = source_state.clone();
+    let seq_state = source_state.clone();
 
     // Prepare parallel baseline
-    let mut p_state = source_state.clone();
+    let p_state = source_state.clone();
 
     // Run sequential baseline
     let mut seq_vm = LambdaVM::new();

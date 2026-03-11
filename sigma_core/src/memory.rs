@@ -88,7 +88,7 @@ impl SigmaState {
     }
 
     /// SAFETY: ptr must be valid, aligned, and writeable (typically mapped to a JS SharedArrayBuffer)
-    pub unsafe fn from_external_memory(ptr: *mut SigmaMatrix) -> Self {
+    pub unsafe fn from_raw(ptr: *mut SigmaMatrix) -> Self {
         Self {
             matrix: unsafe { Box::from_raw(ptr) },
             free_search_cursor: 1,

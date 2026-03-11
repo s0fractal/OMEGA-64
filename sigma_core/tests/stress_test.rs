@@ -31,7 +31,8 @@ fn test_sovereign_500k_stress() {
         state.matrix.logic[i].copy_from_slice(&replicator_logic);
     }
 
-    let mut orchestrator = PulseOrchestrator::new();
+    let mut visited = vec![0u8; MAX_ATOMS];
+    let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
     // Run 10 ticks for now to verify deadlock freedom and throughput
     for tick in 1..=10 {

@@ -15,6 +15,12 @@ pub struct DriftMetrics {
     pub divergence_tick: u32,
 }
 
+use std::cell::RefCell;
+
+thread_local! {
+    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::memory::MAX_ATOMS));
+}
+
 /// Clones the entire `SigmaState`, overrides the target `atom_id` logic bytes,
 /// runs `ticks` iterations of the native PulseOrchestrator, and calculates
 /// the topological drift before shedding the clone.
@@ -56,7 +62,11 @@ pub fn run_shadow_simulation(
     shadow_matrix.instructions[target_idx].copy_from_slice(hallucination_bytes);
 
     // 3. Spool up a sovereign Pulse orchestrator over the isolated shadow
-    let mut orchestrator = PulseOrchestrator::new();
+    SHADOW_POOL.with(|pool| {
+        let mut visited = pool.borrow_mut();
+        visited.clear();
+        visited.resize(crate::memory::MAX_ATOMS, 0);
+        let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
     for i in 0..ticks {
         orchestrator.tick(&mut shadow_state, start_tick + i);
@@ -96,14 +106,15 @@ pub fn run_shadow_simulation(
         }
     }
 
-    DriftMetrics {
-        energy_diff: final_energy.saturating_sub(initial_energy),
-        resonance_diff: final_resonance.saturating_sub(initial_resonance),
-        bonds_broken,
-        bonds_formed,
-        structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
-        population_diff: final_population.saturating_sub(initial_population),
-        coherence_diff: final_coherence.saturating_sub(initial_coherence),
-        divergence_tick: start_tick + ticks,
-    }
+        DriftMetrics {
+            energy_diff: final_energy.saturating_sub(initial_energy),
+            resonance_diff: final_resonance.saturating_sub(initial_resonance),
+            bonds_broken,
+            bonds_formed,
+            structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
+            population_diff: final_population.saturating_sub(initial_population),
+            coherence_diff: final_coherence.saturating_sub(initial_coherence),
+            divergence_tick: start_tick + ticks,
+        }
+    })
 }
