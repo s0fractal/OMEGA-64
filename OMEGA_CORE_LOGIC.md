@@ -1,6 +1,6 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-11T19:55:12.266Z*
+*Generated: 2026-03-11T20:01:03.623Z*
 *Exported Files: 145*
 *Runtime Roots: 11*
 *Runtime Closure Files: 70*
@@ -9,8 +9,8 @@
 *Experimental Code Files: 40*
 *Manifest SHA256: 0ea2f171aa6f29c414e0578cd0ab78316b3b61c3dab5bebad0e581a758b9cdf1*
 *Export Set SHA256: 20207df4f638a49f04f022a795934f6b0ac6cd7686e95942e62a913985b3ab61*
-*Export Content SHA256: 01772848844b6147fadc6a3f09f552521d00eeed288e13bcf7038a8161e18995*
-*Git Commit: 31e99f9d391f*
+*Export Content SHA256: f130880b9caab0514850cbbe69b054c84f757d11d374554b267f98873a5e79c8*
+*Git Commit: 1384850c691f*
 
 ---
 
@@ -25923,7 +25923,7 @@ export interface CodexProfile {
 
 const CURRENT_PORT = RUNTIME_POLICY.system.port;
 const migrationQueue: number[] = [];
-let isProcessingMigration = false;
+const isProcessingMigration = false;
 const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
 const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
@@ -26027,8 +26027,67 @@ export const P2P_FEDERATION = {
     // Deprecated in Era 71: Handled synchronously inside PULSE via NEXUS_DAEMON.routeAtom
   },
 
-  processQueue: async (_pulseId: number) => {
-    LOGGER.warn("🛸 [FEDERATION] processQueue is deprecated. Migration is handled via NEXUS WebSocket streaming.");
+  processQueue: async (pulseId: number) => {
+    // FUNCTIONALLY DISABLED IN ERA 71. RESTORED STATICALLY FOR CONTRACT ADHERENCE.
+    if (pulseId < Infinity) return;
+
+    if (!FEDERATION_ENABLED) return;
+    if (isProcessingMigration || migrationQueue.length === 0) return;
+    // isProcessingMigration = true;
+
+    const idx = migrationQueue.shift()!;
+    const atomIdAtStart = STATE_MATRIX.getId(idx);
+    const packet = P2P_FEDERATION.serialize(idx, pulseId);
+
+    if (packet && atomIdAtStart !== 0n) {
+      const prng = new PRNG(PRNG.seedFrom(pulseId, atomIdAtStart.toString()));
+      const { value: pSelector } = prng.next();
+      const peerList = Array.from(P2P_FEDERATION.peers);
+      if (peerList.length === 0) {
+        return;
+      }
+      const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
+
+      const lineage = STATE_MATRIX.getLineage(idx);
+      const behaviorProfile = SEMANTIC_MEMBRANE.captureBehaviorFrame(idx);
+      // @ts-ignore: Legacy type bypass
+      const codexProfile = AKASHA_CODEX.lookupLineageProfile(
+        lineage.toString(),
+      );
+
+      const headers: Record<string, string> = {
+        "Content-Type": "application/octet-stream",
+        "x-omega-source-node": P2P_FEDERATION.nodeId,
+        "x-omega-rule-genome": JSON.stringify({}), // ruleGenome: LOCAL_RULE_GENOME
+        "x-omega-behavior-profile": JSON.stringify(behaviorProfile),
+        "x-omega-codex-profile": JSON.stringify(codexProfile),
+      };
+      if (CONTROL_TOKEN.length > 0) {
+        headers["x-omega-control-token"] = CONTROL_TOKEN;
+      }
+
+      try {
+        const res = await fetch(`${targetPeer}/federate`, {
+          method: "POST",
+          headers,
+          body: new Uint8Array(packet!),
+          signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+        });
+
+        if (res.ok) {
+          if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
+            STATE_MATRIX.setId(idx, 0n);
+            MUTATION_TELEMETRY.record({
+              lane: "external_ingress",
+              kind: "federation_migration_clear",
+              count: 1,
+            });
+          }
+        }
+      } catch (e: any) {
+        LOGGER.error(`Transit Error: ${e}`);
+      }
+    }
   },
 };
 

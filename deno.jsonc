@@ -152,7 +152,9 @@
       "UI/",
       "SINGULARITY/",
       "archive/",
-      "assembly/"
+      "assembly/",
+      "public/",
+      "e/"
     ],
     "rules": {
       "tags": [
