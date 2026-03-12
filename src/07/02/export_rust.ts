@@ -80,7 +80,7 @@ async function exportRustCore() {
     }
   }
 
-  await Deno.mkdir("08_artifacts", { recursive: true });
+  await Deno.mkdir("src/08", { recursive: true });
   await Deno.writeTextFile("src/08/RUST_CORE_LOGIC.md", output);
   console.log(
     `✅ 08/RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
