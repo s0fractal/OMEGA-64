@@ -7,7 +7,7 @@
   },
   "tasks": {
     "lint": "deno lint",
-    "core:export": "deno run -A src/07/02/export_core.ts",
+    "core:export": "deno run -A src/07/02/export_core.ts && deno run -A src/07/02/export_rust.ts",
     "core:refresh": "deno task core:export",
     "core:pulse": "deno run -A src/PULSE.ts",
     "core:breath": "deno run -A src/06/BREATH.ts",
