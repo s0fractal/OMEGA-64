@@ -25,6 +25,7 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)export_core\.ts$/u,
   /(^|\/)diag_.*\.ts$/u,
   /(^|\/)fix_.*\.ts$/u,
+  /(^|\/)phase\d+_.*\.ts$/u,
   /(^|\/)WORKER_.*\.(json|md)$/u,
   /\.bak$/u,
 ];
