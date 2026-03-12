@@ -1,4 +1,4 @@
-const ASSEMBLY_PATH = "assembly/index.ts";
+const ASSEMBLY_PATH = "00_substrate/assembly/index.ts";
 const WORKER_PATH = "02_metabolism/PULSE_WORKER.ts";
 const PULSE_PATH = "02_metabolism/PULSE.ts";
 const SYSTEM_PATH = "07_meta/02_runners/SYSTEM_START.ts";

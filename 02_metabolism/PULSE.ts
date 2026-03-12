@@ -1,10 +1,17 @@
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, RISC, sharedBuffer, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
+import {
+  MAX_ATOMS,
+  RISC,
+  sharedBuffer,
+  STATE_MATRIX,
+  SYS,
+  WASM_PATH,
+  LOGGER,
+} from "../00_substrate/mod.ts";
 import * as OFFSETS from "../00_substrate/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "../03_governance/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "../03_governance/GATE.ts";
 import { PREDICTION_MARKET } from "../03_governance/PREDICTION_MARKET.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
 import { CONTROL_INTENT_QUEUE } from "../03_governance/CONTROL_INTENT_QUEUE.ts";
 
 
@@ -140,8 +147,16 @@ const HOMEOSTASIS_TARGET_ENERGY_MIN = 1;
 const HOMEOSTASIS_TARGET_ENERGY_MAX = 1_000_000;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
-const WASM_RELEASE_URL = new URL("../08_artifacts/release.wasm", import.meta.url);
 
+const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
+  try {
+    const bytes = await Deno.readFile(WASM_PATH);
+    return await WebAssembly.compile(bytes);
+  } catch (err) {
+    LOGGER.error(`Failed to cache WASM module: ${(err as Error).message}`);
+    return null;
+  }
+};
 type EvolutionPressureState = {
   noveltySigned: number;
   symbiosisSigned: number;
@@ -1357,7 +1372,7 @@ const wasmPreflight = async (): Promise<WasmPreflightReport> => {
     };
   }
   try {
-    const bytes = await Deno.readFile(WASM_RELEASE_URL);
+    const bytes = await Deno.readFile(WASM_PATH);
     if (bytes.byteLength <= 0) {
       return { ok: false, bytes: 0, reason: "EMPTY_WASM_ARTIFACT" };
     }

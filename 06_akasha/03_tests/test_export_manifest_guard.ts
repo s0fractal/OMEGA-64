@@ -17,7 +17,7 @@ const REQUIRED_RUNTIME_ROOT_FILES = [
   "06_akasha/OMEGA_DAEMON.ts",
 ];
 const REQUIRED_RUNTIME_SUPPORT_FILES = [
-  "07_meta/02_runners/build_wasm.ts",
+  "00_substrate/07_meta/02_runners/build_wasm.ts",
   "00_substrate/03_tests/wasm_layout_guard.ts",
 ];
 const REQUIRED_EXPERIMENTAL_FILES = [

@@ -41,7 +41,7 @@ export context. It intentionally excludes historical era narratives.
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
   closure. Current roots: `07_meta/02_runners/SYSTEM_START.ts`, `02_metabolism/PULSE.ts`, `02_metabolism/PULSE_WORKER.ts`,
-  `06_akasha/AKASHA_SERVER.ts`, `06_akasha/OMEGA_DAEMON.ts`, `assembly/index.ts`,
+  `06_akasha/AKASHA_SERVER.ts`, `06_akasha/OMEGA_DAEMON.ts`, `00_substrate/assembly/index.ts`,
   `06_akasha/MUTATION_TELEMETRY.ts`, `06_akasha/TUI_DASHBOARD.ts`, `06_akasha/AGENT_PROXY.ts`, `05_exocortex/llm_soul.ts`,
   `63_necropolis/nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
@@ -64,7 +64,7 @@ export context. It intentionally excludes historical era narratives.
 - `ATTENTION_FIELD` is now canonical shared-memory lattice state:
   `OFFSETS.ATTENTION_FIELD_OFFSET` + `STATE_MATRIX.attentionField`.
 - Observer presence enters through `/avatar` and decays in host pulse.
-- WASM trophism (`assembly/index.ts`) applies role-specific response to
+- WASM trophism (`00_substrate/assembly/index.ts`) applies role-specific response to
   attention gradients.
 - `AKASHA_CODEX` performs epochal taxonomy + chronicle + relic + invariant
   archive scans and serves API snapshots via `/codex*` endpoints.

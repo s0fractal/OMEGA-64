@@ -5,7 +5,7 @@ import {
 import { STATE_MATRIX, wasmMemory } from "../mod.ts";
 import * as OFFSETS from "../mod.ts";
 
-const WASM_PATH = "../../08_artifacts/release.wasm";
+const WASM_PATH = "../../00_substrate/08_artifacts/release.wasm";
 const wasmModule = await Deno.readFile(WASM_PATH);
 const { instance } = await WebAssembly.instantiate(wasmModule, {
   index: {

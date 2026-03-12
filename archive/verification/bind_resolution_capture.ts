@@ -29,7 +29,7 @@ const hashHex = async (payload: string): Promise<string> => {
 };
 
 const loadWasm = async (): Promise<WasmExports> => {
-  const wasmBytes = await Deno.readFile("../../08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("../../00_substrate/08_artifacts/release.wasm");
   const trace_atom = (
     idx: number,
     op: number,

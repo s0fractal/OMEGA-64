@@ -11,7 +11,7 @@ async function hashMemArray(buffer: Uint8Array): Promise<string> {
     .join("");
 }
 
-const WASM_RELEASE_URL = new URL("../../08_artifacts/release.wasm", import.meta.url);
+const WASM_RELEASE_URL = new URL("../../00_substrate/08_artifacts/release.wasm", import.meta.url);
 
 async function instantiateOmega() {
   const wasmBytes = await Deno.readFile(WASM_RELEASE_URL);

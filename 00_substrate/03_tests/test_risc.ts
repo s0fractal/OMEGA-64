@@ -4,7 +4,7 @@ import { RISC, STATE_MATRIX } from "../mod.ts";
 async function runTest() {
   console.log("🚀 Initializing RISC VM Test...");
 
-  const wasmCode = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmCode = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const trace_atom = (
     idx: number,
     op: number,

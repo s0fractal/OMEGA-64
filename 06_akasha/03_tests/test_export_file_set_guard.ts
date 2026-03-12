@@ -20,8 +20,8 @@ const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
 
 const REQUIRED_RUNTIME_SURFACE = [
   "06_akasha/AKASHA_SIGNALING.ts",
-  "assembly/index.ts",
-  "07_meta/02_runners/build_wasm.ts",
+  "00_substrate/assembly/index.ts",
+  "00_substrate/07_meta/02_runners/build_wasm.ts",
   "00_substrate/03_tests/wasm_layout_guard.ts",
   "07_meta/02_runners/SYSTEM_START.ts",
   "03_governance/CONTROL_INTENT_QUEUE.ts",

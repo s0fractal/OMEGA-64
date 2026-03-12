@@ -8,7 +8,7 @@ async function testIntentBuffer() {
   STATE_MATRIX.setEnergy(0, 100000); // 100 * SCALE
 
   // 2. Load WASM
-  const wasmCode = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmCode = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const wasmModule = await WebAssembly.compile(wasmCode);
   const instance = await WebAssembly.instantiate(wasmModule, {
     index: { trace_atom: () => {} },

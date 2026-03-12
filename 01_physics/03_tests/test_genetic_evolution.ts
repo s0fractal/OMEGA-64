@@ -5,7 +5,7 @@ async function runGeneticEvolutionTests() {
   console.log("🕸️ [TEST] Booting Genetic Evolution diagnostics...");
 
   // 1. Load WASM
-  const wasmBytes = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: () => {} },
     env: {

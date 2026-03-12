@@ -6,7 +6,7 @@ async function testMetabolism() {
   console.log("🧪 Starting Vector 4: Metabolic Sovereignty Verification...");
 
   // 1. Initialize State
-  const wasmCode = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmCode = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const trace_atom = (
     _idx: number,
     _op: number,

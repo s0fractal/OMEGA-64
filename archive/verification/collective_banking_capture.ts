@@ -72,7 +72,7 @@ const runCapture = async (): Promise<CapturePayload> => {
   STATE_MATRIX.clear();
   STATE_MATRIX.setHiveBalance(INITIAL_HIVE_BALANCE);
 
-  const wasmBytes = await Deno.readFile("../../08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("../../00_substrate/08_artifacts/release.wasm");
   const trace_atom = (
     _idx: number,
     _op: number,

@@ -55,7 +55,7 @@ const syncPhysicsBuffers = (): void => {
 const runCapture = async (): Promise<CapturePayload> => {
   STATE_MATRIX.clear();
 
-  const wasmBytes = await Deno.readFile("../../08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("../../00_substrate/08_artifacts/release.wasm");
   const trace_atom = (
     idx: number,
     op: number,

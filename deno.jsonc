@@ -26,7 +26,7 @@
     "membrane:inject": "deno eval 'import { SEMANTIC_MEMBRANE } from \"./SEMANTIC_MEMBRANE.ts\"; await SEMANTIC_MEMBRANE.injectThought(Deno.args[0] || \"Default Thought\", Number(Deno.args[1]) || 100)' --",
     "check:canon": "deno task lint && deno task canon:mod && deno task glider:breathe",
     "wasm:layout": "deno run -A wasm_layout_guard.ts",
-    "wasm:build": "deno run -A 07_meta/02_runners/build_wasm.ts",
+    "wasm:build": "deno run -A 00_substrate/07_meta/02_runners/build_wasm.ts",
     "test:resonance": "deno run -A 05_exocortex/03_tests/test_resonance_protocol.ts",
     "test:swarm": "deno run -A 00_substrate/03_tests/test_swarm.ts",
     "test:tensegrity": "deno run -A 00_substrate/03_tests/test_tensegrity.ts",

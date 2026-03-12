@@ -7,7 +7,7 @@ import { PHYSICS_ENGINE } from "../mod.ts";
 import { STRUCTURE_ENGINE } from "../STRUCTURE_ENGINE.ts";
 import { STATE_MATRIX, wasmMemory } from "../../00_substrate/mod.ts";
 
-const WASM_PATH = "../../08_artifacts/release.wasm";
+const WASM_PATH = "../../00_substrate/08_artifacts/release.wasm";
 
 async function runTest() {
   console.log("🧬 Testing Environment Parity [Host vs WASM]...");

@@ -8,7 +8,7 @@ async function runTest() {
   LOGGER.info("🧪 [TEST] Pheromone Decay Parity (Host vs WASM)");
 
   // 1. Load WASM Kernel manually for synchronous testing
-  const wasmBytes = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: () => {} },
     env: {

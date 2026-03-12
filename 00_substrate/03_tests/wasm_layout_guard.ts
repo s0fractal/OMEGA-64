@@ -1,6 +1,6 @@
 import * as OFFSETS from "../mod.ts";
 
-const ASM_SOURCE_PATH = "./assembly/index.ts";
+const ASM_SOURCE_PATH = new URL("../assembly/index.ts", import.meta.url);
 
 const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
 

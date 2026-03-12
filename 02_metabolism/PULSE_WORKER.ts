@@ -1,7 +1,11 @@
 /// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import {
+  LOGGER,
+  SCALE,
+  WASM_PATH,
+} from "../00_substrate/mod.ts";
 import { STATE_MATRIX } from "../00_substrate/mod.ts";
 const resolveWithPhase = (
   baseValue: number,
@@ -853,7 +857,7 @@ self.onmessage = async (e) => {
     }
     try {
       const wasmRes = await fetch(
-        new URL("../08_artifacts/release.wasm", import.meta.url).href,
+        WASM_PATH.href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (

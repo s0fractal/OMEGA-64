@@ -3,7 +3,7 @@ import { GRID_W } from "../../00_substrate/mod.ts";
 import { STATE_MATRIX, wasmMemory } from "../../00_substrate/mod.ts";
 
 const main = async () => {
-  const wasmBytes = await Deno.readFile("08_artifacts/release.wasm");
+  const wasmBytes = await Deno.readFile("00_substrate/08_artifacts/release.wasm");
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: (a: any, b: any) => console.log("TRACE:", a, b) },
     env: {
