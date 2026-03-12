@@ -5,7 +5,7 @@ import { STATE_MATRIX } from "@00";
 import { SEMANTIC_MEMBRANE } from "@05";
 
 const PORT = 8000;
-const UI_PATH = "./ui/index.html";
+const UI_PATH = "./63_necropolis/old/ui/ui/index.html";
 
 console.log(`👁️ OMEGA-64 | OBSERVER EYE | Port: ${PORT}`);
 

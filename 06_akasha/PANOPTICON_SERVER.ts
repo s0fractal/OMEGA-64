@@ -38,7 +38,7 @@ export const PANOPTICON_SERVER = {
       if (req.method === "GET") {
         let filePath = "./public" + url.pathname;
         if (url.pathname === "/") {
-          filePath = "./public/index.html";
+          filePath = "./63_necropolis/old/ui/public/index.html";
         }
 
         try {

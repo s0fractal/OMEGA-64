@@ -328,7 +328,7 @@ const INVARIANT_MEMORY_LIMIT = parseBoundedInt(
   256,
 );
 const INVARIANT_PATH = Deno.env.get("OMEGA_DAEMON_INVARIANT_PATH") ??
-  "./daemon_invariants.json";
+  "./08_artifacts/telemetry/daemon_invariants.json";
 const PHASE_SEASONS_ENABLE = parseEnvBool(
   Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_ENABLE"),
   true,

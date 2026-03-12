@@ -6,8 +6,8 @@ const AVATAR_ENGINE_PATH = "05_exocortex/AVATAR_ENGINE.ts";
 const PULSE_PATH = "02_metabolism/PULSE.ts";
 const SYSTEM_START_PATH = "07_meta/02_runners/SYSTEM_START.ts";
 const ASSEMBLY_PATH = "00_substrate/assembly/index.ts";
-const ROADMAP_PATH = "REDUCTION_METABOLISM_ROADMAP.md";
-const TRANSITION_PATH = "docs/migration/OMEGA_TRANSITION_PLAN.md";
+const ROADMAP_PATH = "63_necropolis/old/docs/REDUCTION_METABOLISM_ROADMAP.md";
+const TRANSITION_PATH = "63_necropolis/old/docs/docs/migration/OMEGA_TRANSITION_PLAN.md";
 
 type Violation = {
   file: string;

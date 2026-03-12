@@ -1,4 +1,4 @@
-const UI_PATH = "ui/index.html";
+const UI_PATH = "63_necropolis/old/ui/ui/index.html";
 
 const requireSnippet = (
   source: string,

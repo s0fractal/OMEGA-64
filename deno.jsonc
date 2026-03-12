@@ -237,22 +237,7 @@
       "06_akasha/mod.ts"
     ],
     "context_files": [
-      "MUTATION_LANES.md",
-      "README.md",
-      "REDUCTION_METABOLISM_ROADMAP.md",
-      "WASM_MIGRATION_RFC.md",
-      "WASM_THREADSAFE_ROADMAP.md",
-      "docs/migration/ROADMAP_2_SIGMA_CORE.md",
-      "docs/migration/OMEGA_TRANSITION_PLAN.md",
-      "docs/migration/CAUSAL_ATLAS.md",
-      "docs/migration/GOLDEN_TRACES.md",
-      "docs/migration/GLYPHIR64_CONTRACT.md",
-      "docs/migration/HORMONE_LEDGER_CONTRACT.md",
-      "AKASHA_UI.html",
-      "06_akasha/OBSERVER_LAB.ts",
-      "ui/index.html",
-      "public/index.html",
-      "public/main.js"
+      "06_akasha/OBSERVER_LAB.ts"
     ]
   }
 }

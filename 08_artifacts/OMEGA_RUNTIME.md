@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T04:13:00.847Z*
+*Generated: 2026-03-12T04:24:22.025Z*
 *Exported Files in Category: 87*
-*Total Exported Files: 122*
+*Total Exported Files: 107*
 *Runtime Roots: 10*
 *Runtime Closure Files: 76*
 *Non-Runtime Code Files: 31*
 *Runtime-Support Code Files: 10*
 *Experimental Code Files: 21*
-*Manifest SHA256: 8859e600cecd3efe0294bc3cdb799fba3efbd60df9bbf2c28237364ac0736cb2*
-*Export Set SHA256: 2d922d5a7f5daf06582a48ed6168e08cbccab403c05a9209c976f15b7d5601bf*
-*Export Content SHA256: 2256bbee15b883f7c1e851ca216f5515ad6ca2b2d405ef9fb46a14ad3d1df2a1*
-*Git Commit: 0de2d85be814*
+*Manifest SHA256: e0a891e0bf4dbcb3280c08e4abeca5989312d98013be0972e7905c5147334f42*
+*Export Set SHA256: 805577f8cfcce2027399d1d2a46bf6246dbc0608bdf6c7b27edbe130a4d71284*
+*Export Content SHA256: e0b80fd99e8412fa698d644b3641694ef42a140c0591fec987c99a6d6a267a91*
+*Git Commit: 37d38f97e9ba*
 
 ---
 
@@ -26077,7 +26077,7 @@ const SPECIES_INDEX_FILE = `${SPECIES_DIR}/index.json`;
 const CHRONICLES_INDEX_FILE = `${CHRONICLES_DIR}/index.json`;
 const RELICS_INDEX_FILE = `${RELICS_DIR}/index.json`;
 const INVARIANTS_INDEX_FILE = `${INVARIANTS_DIR}/index.json`;
-const DAEMON_INVARIANT_PATH = "./daemon_invariants.json";
+const DAEMON_INVARIANT_PATH = "./08_artifacts/telemetry/daemon_invariants.json";
 
 const EPOCH_TICKS = 10_000;
 const DOMINANCE_THRESHOLD = 0.05;
@@ -29491,7 +29491,7 @@ import { STATE_MATRIX } from "@00";
 import { SEMANTIC_MEMBRANE } from "@05";
 
 const PORT = 8000;
-const UI_PATH = "./ui/index.html";
+const UI_PATH = "./63_necropolis/old/ui/ui/index.html";
 
 console.log(`👁️ OMEGA-64 | OBSERVER EYE | Port: ${PORT}`);
 
@@ -29867,7 +29867,7 @@ const INVARIANT_MEMORY_LIMIT = parseBoundedInt(
   256,
 );
 const INVARIANT_PATH = Deno.env.get("OMEGA_DAEMON_INVARIANT_PATH") ??
-  "./daemon_invariants.json";
+  "./08_artifacts/telemetry/daemon_invariants.json";
 const PHASE_SEASONS_ENABLE = parseEnvBool(
   Deno.env.get("OMEGA_DAEMON_PHASE_SEASONS_ENABLE"),
   true,
@@ -31415,7 +31415,7 @@ export const PANOPTICON_SERVER = {
       if (req.method === "GET") {
         let filePath = "./public" + url.pathname;
         if (url.pathname === "/") {
-          filePath = "./public/index.html";
+          filePath = "./63_necropolis/old/ui/public/index.html";
         }
 
         try {
@@ -31884,7 +31884,7 @@ async function handler(req: Request): Promise<Response> {
 
   if (url.pathname === "/") {
     try {
-      const html = await Deno.readTextFile("DASHBOARD.html");
+      const html = await Deno.readTextFile("63_necropolis/old/ui/DASHBOARD.html");
       return new Response(html, {
         headers: { "Content-Type": "text/html" },
       });

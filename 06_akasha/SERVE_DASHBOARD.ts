@@ -314,7 +314,7 @@ async function handler(req: Request): Promise<Response> {
 
   if (url.pathname === "/") {
     try {
-      const html = await Deno.readTextFile("DASHBOARD.html");
+      const html = await Deno.readTextFile("63_necropolis/old/ui/DASHBOARD.html");
       return new Response(html, {
         headers: { "Content-Type": "text/html" },
       });

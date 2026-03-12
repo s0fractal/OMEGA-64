@@ -9,7 +9,6 @@ type Violation = {
 };
 
 const MANIFEST_PATH = "deno.jsonc";
-const REQUIRED_DOC = "MUTATION_LANES.md";
 const AKASHA_PATH = "06_akasha/AKASHA_SERVER.ts";
 const P2P_PATH = "04_noosphere/P2P_SYNAPSE.ts";
 const FEDERATION_PATH = "04_noosphere/P2P_FEDERATION.ts";
@@ -55,12 +54,6 @@ const main = async () => {
   const context = Array.isArray(manifest.context_files)
     ? manifest.context_files
     : [];
-  if (!context.includes(REQUIRED_DOC)) {
-    violations.push({
-      file: MANIFEST_PATH,
-      reason: `context_files must include ${REQUIRED_DOC}`,
-    });
-  }
 
   const akasha = await Deno.readTextFile(AKASHA_PATH);
   const p2p = await Deno.readTextFile(P2P_PATH);

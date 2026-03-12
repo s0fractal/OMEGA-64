@@ -17,7 +17,7 @@ const SPECIES_INDEX_FILE = `${SPECIES_DIR}/index.json`;
 const CHRONICLES_INDEX_FILE = `${CHRONICLES_DIR}/index.json`;
 const RELICS_INDEX_FILE = `${RELICS_DIR}/index.json`;
 const INVARIANTS_INDEX_FILE = `${INVARIANTS_DIR}/index.json`;
-const DAEMON_INVARIANT_PATH = "./daemon_invariants.json";
+const DAEMON_INVARIANT_PATH = "./08_artifacts/telemetry/daemon_invariants.json";
 
 const EPOCH_TICKS = 10_000;
 const DOMINANCE_THRESHOLD = 0.05;

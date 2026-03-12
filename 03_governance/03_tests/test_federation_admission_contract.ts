@@ -3,7 +3,7 @@ const POLICY_PATH = "03_governance/RUNTIME_POLICY.ts";
 const P2P_PATH = "04_noosphere/P2P_FEDERATION.ts";
 const SYSTEM_PATH = "07_meta/02_runners/SYSTEM_START.ts";
 const DAEMON_PATH = "06_akasha/OMEGA_DAEMON.ts";
-const UI_PATH = "ui/index.html";
+const UI_PATH = "63_necropolis/old/ui/ui/index.html";
 
 type Violation = {
   file: string;
