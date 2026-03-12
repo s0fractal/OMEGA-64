@@ -3,7 +3,7 @@
 
 import { extname, join } from "node:path";
 
-const TARGET_DIRS = ["00/00/sigma_core"];
+const TARGET_DIRS = ["src/00/sigma_core"];
 const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json"];
 
 const EXCLUDE_PATTERNS = [
@@ -33,10 +33,8 @@ async function collectFiles(dir: string): Promise<string[]> {
         } else if (
           entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))
         ) {
-          if (
-            entry.name === "Cargo.lock" && currentPath !== "00/00/sigma_core"
-          ) {
-            continue; // Only grab root locks
+          if (entry.name === "Cargo.lock") {
+            continue; // Specifically exclude lockfiles
           }
           discovered.push(entryPath);
         }
