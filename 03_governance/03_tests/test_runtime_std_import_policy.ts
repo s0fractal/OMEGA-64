@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   core_entry_files: string[];
   required_additional_files: string[];
@@ -11,7 +12,7 @@ type Violation = {
   excerpt: string;
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 
 const FORBIDDEN_PATTERNS: Array<{ reason: string; re: RegExp }> = [
   {
@@ -26,7 +27,7 @@ const FORBIDDEN_PATTERNS: Array<{ reason: string; re: RegExp }> = [
 
 const collectManifestTsFiles = async (): Promise<string[]> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = JSON.parse(raw) as ExportManifest;
+  const parsed = parse(raw).omega as ExportManifest;
   const all = [
     ...(Array.isArray(parsed.core_entry_files) ? parsed.core_entry_files : []),
     ...(Array.isArray(parsed.required_additional_files)

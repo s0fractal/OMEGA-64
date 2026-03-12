@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
@@ -5,7 +6,7 @@
 import { dirname, extname, join, normalize } from "node:path";
 import { resolveVector } from "../01_guards/vector_decoder.ts";
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)test_.*\.ts$/u,
@@ -130,7 +131,7 @@ const parseManifestStringArray = (
 
 const loadManifest = async (): Promise<LoadedManifest> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = JSON.parse(raw) as ExportManifest;
+  const parsed = parse(raw).omega as ExportManifest;
 
   const era = typeof parsed?.era === "string" ? parsed.era.trim() : "";
   if (!era) {

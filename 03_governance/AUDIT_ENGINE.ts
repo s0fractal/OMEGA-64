@@ -24,7 +24,7 @@ export const AUDIT_ENGINE = {
         if (entry.isFile && entry.name.endsWith(".md")) {
           // Skip core manifesto and architecture docs
           if (
-            ["MANIFESTO.md", "ARCHITECTURE.md", "GEMINI.md", "README.md"]
+            ["MANIFESTO.md", "GEMINI.md", "README.md"]
               .includes(entry.name)
           ) continue;
 

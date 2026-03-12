@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   era: string;
   runtime_root_files?: string[];
@@ -8,8 +9,8 @@ type ExportManifest = {
   context_files: string[];
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
-const REQUIRED_CONTEXT_FILES = ["ARCHITECTURE_ACTIVE.md"];
+const MANIFEST_PATH = "deno.jsonc";
+const REQUIRED_CONTEXT_FILES: string[] = [];
 const REQUIRED_RUNTIME_ROOT_FILES = [
   "07_meta/02_runners/SYSTEM_START.ts",
   "02_metabolism/PULSE.ts",
@@ -106,7 +107,7 @@ const assertFilesExist = async (
 
 const main = async () => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = JSON.parse(raw) as ExportManifest;
+  const parsed = parse(raw).omega as ExportManifest;
 
   if (typeof parsed.era !== "string" || parsed.era.trim().length === 0) {
     throw new Error("[manifest] era must be a non-empty string");

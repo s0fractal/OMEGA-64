@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   core_entry_files: string[];
 };
@@ -8,13 +9,13 @@ type Violation = {
   excerpt: string;
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 const LEGACY_API_PATTERN =
   /\bSTATE_MATRIX\.(getCode|getContext|setCode|setContext)\b/u;
 
 const collectCoreEntryFiles = async (): Promise<string[]> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = JSON.parse(raw) as ExportManifest;
+  const parsed = parse(raw).omega as ExportManifest;
   if (!Array.isArray(parsed.core_entry_files)) {
     throw new Error(`[runtime-api] invalid manifest: ${MANIFEST_PATH}`);
   }

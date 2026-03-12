@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   context_files: string[];
 };
@@ -7,7 +8,7 @@ type Violation = {
   reason: string;
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 const REQUIRED_DOC = "MUTATION_LANES.md";
 const AKASHA_PATH = "06_akasha/AKASHA_SERVER.ts";
 const P2P_PATH = "04_noosphere/P2P_SYNAPSE.ts";
@@ -50,7 +51,7 @@ const main = async () => {
   const violations: Violation[] = [];
 
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
-  const manifest = JSON.parse(manifestRaw) as ExportManifest;
+  const manifest = parse(manifestRaw).omega as ExportManifest;
   const context = Array.isArray(manifest.context_files)
     ? manifest.context_files
     : [];

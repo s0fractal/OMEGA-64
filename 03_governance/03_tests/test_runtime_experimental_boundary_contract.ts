@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 import { dirname, join, normalize } from "jsr:@std/path";
 
 type Manifest = {
@@ -5,7 +6,7 @@ type Manifest = {
   experimental_files: string[];
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 
 const IMPORT_RE =
   /(?:import|export)\s+(?:[\s\S]*?\sfrom\s+)?["'](\.[^"']+)["']/g;
@@ -71,7 +72,7 @@ const ensureStringArray = (value: unknown, field: string): string[] => {
 
 const main = async () => {
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
-  const manifest = JSON.parse(manifestRaw) as Manifest;
+  const manifest = parse(manifestRaw).omega as Manifest;
 
   const runtimeRoots = ensureStringArray(
     manifest.runtime_root_files,

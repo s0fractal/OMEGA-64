@@ -1,3 +1,4 @@
+import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   core_entry_files: string[];
 };
@@ -7,7 +8,7 @@ type Violation = {
   reason: string;
 };
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 const TELEMETRY_PATH = "06_akasha/MUTATION_TELEMETRY.ts";
 const PULSE_PATH = "02_metabolism/PULSE.ts";
 const ORACLE_PATH = "05_exocortex/SOVEREIGN_ORACLE.ts";
@@ -29,7 +30,7 @@ const main = async () => {
   const violations: Violation[] = [];
 
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
-  const manifest = JSON.parse(manifestRaw) as ExportManifest;
+  const manifest = parse(manifestRaw).omega as ExportManifest;
   const coreFiles = Array.isArray(manifest.core_entry_files)
     ? manifest.core_entry_files
     : [];

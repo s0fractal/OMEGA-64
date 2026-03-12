@@ -1,17 +1,17 @@
 # OMEGA-64 | SHADOW ECOLOGY (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T03:36:31.296Z*
+*Generated: 2026-03-12T04:13:00.849Z*
 *Exported Files in Category: 20*
-*Total Exported Files: 124*
+*Total Exported Files: 122*
 *Runtime Roots: 10*
 *Runtime Closure Files: 76*
 *Non-Runtime Code Files: 31*
 *Runtime-Support Code Files: 10*
 *Experimental Code Files: 21*
-*Manifest SHA256: e1907a0326c27a5c8628f5502c9d28e3834206694de8c81aa5d8669ee05f68de*
-*Export Set SHA256: 8f31d4d4917e75663760455ae7f3279d6aa8d1d4ca18a88ebf7eac78a996a44f*
-*Export Content SHA256: e5eb1e06d27a98c9455ce1d20944fd226448009f87e67dc8950ac3430bce8f46*
-*Git Commit: 3b718ed5176c*
+*Manifest SHA256: 8859e600cecd3efe0294bc3cdb799fba3efbd60df9bbf2c28237364ac0736cb2*
+*Export Set SHA256: 2d922d5a7f5daf06582a48ed6168e08cbccab403c05a9209c976f15b7d5601bf*
+*Export Content SHA256: 2256bbee15b883f7c1e851ca216f5515ad6ca2b2d405ef9fb46a14ad3d1df2a1*
+*Git Commit: 0de2d85be814*
 
 ---
 
@@ -937,6 +937,7 @@ export class DriftWarden {
 ## FILE: 07_meta/02_runners/export_core.ts
 
 ```typescript
+import { parse } from "jsr:@std/jsonc";
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
@@ -944,7 +945,7 @@ export class DriftWarden {
 import { dirname, extname, join, normalize } from "node:path";
 import { resolveVector } from "../01_guards/vector_decoder.ts";
 
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
+const MANIFEST_PATH = "deno.jsonc";
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)test_.*\.ts$/u,
@@ -1069,7 +1070,7 @@ const parseManifestStringArray = (
 
 const loadManifest = async (): Promise<LoadedManifest> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = JSON.parse(raw) as ExportManifest;
+  const parsed = parse(raw).omega as ExportManifest;
 
   const era = typeof parsed?.era === "string" ? parsed.era.trim() : "";
   if (!era) {
