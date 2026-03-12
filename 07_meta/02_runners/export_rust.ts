@@ -3,7 +3,7 @@
 
 import { extname, join } from "node:path";
 
-const TARGET_DIRS = ["sigma_core"];
+const TARGET_DIRS = ["00_substrate/sigma_core"];
 const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
 
 const EXCLUDE_PATTERNS = [
@@ -34,8 +34,7 @@ async function collectFiles(dir: string): Promise<string[]> {
           entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))
         ) {
           if (
-            entry.name === "Cargo.lock" && currentPath !== "sigma_core" &&
-            currentPath !== "omega_wasm"
+            entry.name === "Cargo.lock" && currentPath !== "00_substrate/sigma_core"
           ) {
             continue; // Only grab root locks
           }
@@ -81,9 +80,10 @@ async function exportRustCore() {
     }
   }
 
-  await Deno.writeTextFile("RUST_CORE_LOGIC.md", output);
+  await Deno.mkdir("08_artifacts", { recursive: true });
+  await Deno.writeTextFile("08_artifacts/RUST_CORE_LOGIC.md", output);
   console.log(
-    `✅ RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
+    `✅ 08_artifacts/RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
   );
 }
 
