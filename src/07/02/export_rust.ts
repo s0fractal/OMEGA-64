@@ -4,7 +4,7 @@
 import { extname, join } from "node:path";
 
 const TARGET_DIRS = ["00/00/sigma_core"];
-const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
+const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json"];
 
 const EXCLUDE_PATTERNS = [
   /\/target\//,
