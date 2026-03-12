@@ -7,13 +7,6 @@
   },
   "tasks": {
     "lint": "deno lint",
-    "audit:determinism": "deno run -A e/CRYSTALLIZE.ts DETERMINISM_AUDIT.md --run",
-    "audit:root": "deno run -A e/AUDIT_ROOT_CANON.ts",
-    "export:sigma": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity",
-    "sigma:verify": "deno run -A e/legacy/sigma_quine.ts --input I.sigma.md --verify",
-    "sigma:index": "deno run -A e/legacy/sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
-    "canon:mod": "deno run -A e/GENERATE_MOD_TS.ts",
-    "glider:breathe": "deno run -A e/RIBOSOME_ZERO.ts",
     "core:export": "deno run -A 07_meta/02_runners/export_core.ts",
     "core:refresh": "deno task core:export",
     "core:pulse": "deno run -A PULSE.ts",
@@ -24,7 +17,6 @@
     "daemon:start": "deno run -A OMEGA_DAEMON.ts",
     "membrane:test": "deno run -A SEMANTIC_MEMBRANE.ts",
     "membrane:inject": "deno eval 'import { SEMANTIC_MEMBRANE } from \"./SEMANTIC_MEMBRANE.ts\"; await SEMANTIC_MEMBRANE.injectThought(Deno.args[0] || \"Default Thought\", Number(Deno.args[1]) || 100)' --",
-    "check:canon": "deno task lint && deno task canon:mod && deno task glider:breathe",
     "wasm:layout": "deno run -A wasm_layout_guard.ts",
     "wasm:build": "deno run -A 00_substrate/07_meta/02_runners/build_wasm.ts",
     "test:resonance": "deno run -A 05_exocortex/03_tests/test_resonance_protocol.ts",
@@ -151,11 +143,9 @@
     "exclude": [
       "I.ts",
       "UI/",
-      "SINGULARITY/",
-      "archive/",
+      "63_necropolis/",
       "00_substrate/assembly/",
-      "public/",
-      "e/"
+      "public/"
     ],
     "rules": {
       "tags": [

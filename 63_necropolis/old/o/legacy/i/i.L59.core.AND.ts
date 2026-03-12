@@ -1,0 +1,1 @@
+export const AND = (p: any) => (q: any) => p(q)(p);

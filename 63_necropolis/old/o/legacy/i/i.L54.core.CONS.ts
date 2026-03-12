@@ -1,0 +1,1 @@
+export const CONS = (x: any) => (y: any) => (s: any) => s(x)(y);
