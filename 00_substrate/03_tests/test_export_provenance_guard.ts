@@ -169,7 +169,7 @@ const parseExportHeader = (
 
 const main = async () => {
   const {
-    output,
+    runtimeOutput: output,
     files,
     era,
     provenance,
@@ -228,46 +228,46 @@ const main = async () => {
     "[export-provenance] experimental count mismatch between header and payload",
   );
 
-  const exportedMarkdown = await Deno.readTextFile("OMEGA_CORE_LOGIC.md");
+  const exportedMarkdown = await Deno.readTextFile("08_artifacts/OMEGA_RUNTIME.md");
   const persistedHeader = parseExportHeader(
     exportedMarkdown,
-    "OMEGA_CORE_LOGIC.md",
+    "08_artifacts/OMEGA_RUNTIME.md",
   );
   expect(
     persistedHeader.title.includes(`ERA ${era}`),
-    `[export-provenance] OMEGA_CORE_LOGIC.md title does not include era=${era}`,
+    `[export-provenance] 08_artifacts/OMEGA_RUNTIME.md title does not include era=${era}`,
   );
   expect(
     persistedHeader.manifestHash === provenance.manifestSha256,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: manifest hash mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: manifest hash mismatch vs current render",
   );
   expect(
     persistedHeader.exportSetHash === provenance.exportSetSha256,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: export-set hash mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: export-set hash mismatch vs current render",
   );
   expect(
     persistedHeader.exportContentHash === provenance.exportContentSha256,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: export-content hash mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: export-content hash mismatch vs current render",
   );
   expect(
     persistedHeader.runtimeRootCount === runtimeRoots.length,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: runtime root count mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: runtime root count mismatch vs current render",
   );
   expect(
     persistedHeader.runtimeClosureCount === runtimeClosureFiles.length,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: runtime closure count mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: runtime closure count mismatch vs current render",
   );
   expect(
     persistedHeader.nonRuntimeCodeCount === nonRuntimeCodeFiles.length,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: non-runtime code count mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: non-runtime code count mismatch vs current render",
   );
   expect(
     persistedHeader.runtimeSupportCount === runtimeSupportCodeFiles.length,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: runtime-support count mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: runtime-support count mismatch vs current render",
   );
   expect(
     persistedHeader.experimentalCount === experimentalCodeFiles.length,
-    "[export-provenance] OMEGA_CORE_LOGIC.md stale: experimental count mismatch vs current render",
+    "[export-provenance] 08_artifacts/OMEGA_RUNTIME.md stale: experimental count mismatch vs current render",
   );
 
   console.log(

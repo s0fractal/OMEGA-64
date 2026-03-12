@@ -9,6 +9,7 @@ const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)test_.*\.ts$/u,
+  /(^|\/)03_tests\//u,
   /(^|\/)tests\//u,
   /(^|\/)archive\//u,
   /(^|\/)e\//u,
@@ -22,12 +23,16 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)coverage\//u,
   /(^|\/)\.git\//u,
   /(^|\/)OMEGA_CORE_LOGIC\.md$/u,
-  /(^|\/)export_core\.ts$/u,
+  /(^|\/)export_stats\.ts$/u,
   /(^|\/)diag_.*\.ts$/u,
   /(^|\/)fix_.*\.ts$/u,
   /(^|\/)phase\d+_.*\.ts$/u,
   /(^|\/)WORKER_.*\.(json|md)$/u,
   /\.bak$/u,
+  /(^|\/)63_necropolis\//u,
+  /\.wasm$/u,
+  /\.log$/u,
+  /\.jsonl$/u,
 ];
 
 const IMPORT_RE =
@@ -537,9 +542,24 @@ const buildExportProvenance = async (
   return { manifestSha256, exportSetSha256, exportContentSha256, gitCommit };
 };
 
+const classifyFile = (file: string): "RUNTIME" | "SHADOW" | "LORE" => {
+  if (file.endsWith(".md") || file.endsWith(".json") || file.endsWith(".jsonc") || file.endsWith(".html") || file.includes("public/") || file.includes("ui/")) return "LORE";
+  if (file.includes("07_meta/") || file.includes("03_tests/") || file.match(/(^|\/)test_.*\.ts$/u) || file.includes("tests/") || file.includes("reduction_core/") || file.includes("verification/")) return "SHADOW";
+  return "RUNTIME";
+};
+
+const truncateLUTs = (content: string): string => {
+  return content.replace(
+    /(const\s+(?:SIN_LUT|COS_LUT|ACOSH_LUT_KEYS|ACOSH_LUT_VALS)\s*(?::\s*[^=]+)?\s*=\s*\[)[\s\S]*?(\];)/g,
+    "$1\n  /* [TRUNCATED LUT ARRAY] */\n$2"
+  );
+};
+
 export const renderCoreExport = async (): Promise<
   {
-    output: string;
+    runtimeOutput: string;
+    shadowOutput: string;
+    loreOutput: string;
     files: string[];
     era: string;
     provenance: ExportProvenance;
@@ -561,73 +581,57 @@ export const renderCoreExport = async (): Promise<
   } = await buildExportFileList();
   const fileContents: ExportFileContent[] = [];
   for (const file of files) {
-    const content = await Deno.readTextFile(file);
+    let content = await Deno.readTextFile(file);
+    content = truncateLUTs(content);
     fileContents.push({ file, content });
   }
   const provenance = await buildExportProvenance(era, files, fileContents);
 
-  let output = `# OMEGA-64 | CORE LOGIC (ERA ${era}: THE COHERENT LATTICE)\n\n`;
-  output += `*Generated: ${new Date().toISOString()}*\n`;
-  output += `*Exported Files: ${files.length}*\n`;
-  output += `*Runtime Roots: ${runtimeRoots.length}*\n`;
-  output += `*Runtime Closure Files: ${runtimeClosureFiles.length}*\n`;
-  output += `*Non-Runtime Code Files: ${nonRuntimeCodeFiles.length}*\n`;
-  output += `*Runtime-Support Code Files: ${runtimeSupportCodeFiles.length}*\n`;
-  output += `*Experimental Code Files: ${experimentalCodeFiles.length}*\n`;
-  output += `*Manifest SHA256: ${provenance.manifestSha256}*\n`;
-  output += `*Export Set SHA256: ${provenance.exportSetSha256}*\n`;
-  output += `*Export Content SHA256: ${provenance.exportContentSha256}*\n`;
-  output += `*Git Commit: ${provenance.gitCommit}*\n\n---\n\n`;
+  const writeHeaders = (title: string, count: number) => {
+    let out = `# OMEGA-64 | ${title} (ERA ${era}: THE COHERENT LATTICE)\n\n`;
+    out += `*Generated: ${new Date().toISOString()}*\n`;
+    out += `*Exported Files in Category: ${count}*\n`;
+    out += `*Total Exported Files: ${files.length}*\n`;
+    out += `*Runtime Roots: ${runtimeRoots.length}*\n`;
+    out += `*Runtime Closure Files: ${runtimeClosureFiles.length}*\n`;
+    out += `*Non-Runtime Code Files: ${nonRuntimeCodeFiles.length}*\n`;
+    out += `*Runtime-Support Code Files: ${runtimeSupportCodeFiles.length}*\n`;
+    out += `*Experimental Code Files: ${experimentalCodeFiles.length}*\n`;
+    out += `*Manifest SHA256: ${provenance.manifestSha256}*\n`;
+    out += `*Export Set SHA256: ${provenance.exportSetSha256}*\n`;
+    out += `*Export Content SHA256: ${provenance.exportContentSha256}*\n`;
+    out += `*Git Commit: ${provenance.gitCommit}*\n\n---\n\n`;
+    return out;
+  };
 
-  output += `## ACTIVE RUNTIME ROOTS\n\n`;
-  for (const file of runtimeRoots) {
-    output += `- ${file}\n`;
-  }
-  output += `\n---\n\n`;
+  const runtimeFiles = fileContents.filter((f) => classifyFile(f.file) === "RUNTIME");
+  const shadowFiles = fileContents.filter((f) => classifyFile(f.file) === "SHADOW");
+  const loreFiles = fileContents.filter((f) => classifyFile(f.file) === "LORE");
 
-  output += `## ACTIVE RUNTIME CLOSURE\n\n`;
-  for (const file of runtimeClosureFiles) {
-    output += `- ${file}\n`;
-  }
-  output += `\n---\n\n`;
+  let runtimeOutput = writeHeaders("RUNTIME LOGIC", runtimeFiles.length);
+  runtimeOutput += `## ACTIVE RUNTIME ROOTS\n\n`;
+  for (const file of runtimeRoots) runtimeOutput += `- ${file}\n`;
+  runtimeOutput += `\n---\n\n`;
+  runtimeOutput += `## ACTIVE RUNTIME CLOSURE\n\n`;
+  for (const file of runtimeClosureFiles) runtimeOutput += `- ${file}\n`;
+  runtimeOutput += `\n---\n\n`;
 
-  output += `## NON-RUNTIME CODE FILES (ALL)\n\n`;
-  if (nonRuntimeCodeFiles.length === 0) {
-    output += `- none\n`;
-  } else {
-    for (const file of nonRuntimeCodeFiles) {
-      output += `- ${file}\n`;
+  const shadowOutput = writeHeaders("SHADOW ECOLOGY", shadowFiles.length);
+  const loreOutput = writeHeaders("ARCHITECTURE LORE", loreFiles.length);
+
+  const appendContents = (out: string, list: ExportFileContent[]) => {
+    let res = out;
+    for (const { file, content } of list) {
+      res += `## FILE: ${file}\n\n`;
+      res += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
     }
-  }
-  output += `\n---\n\n`;
-
-  output += `## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT\n\n`;
-  if (runtimeSupportCodeFiles.length === 0) {
-    output += `- none\n`;
-  } else {
-    for (const file of runtimeSupportCodeFiles) {
-      output += `- ${file}\n`;
-    }
-  }
-  output += `\n---\n\n`;
-
-  output += `## NON-RUNTIME CODE FILES | EXPERIMENTAL\n\n`;
-  if (experimentalCodeFiles.length === 0) {
-    output += `- none\n`;
-  } else {
-    for (const file of experimentalCodeFiles) {
-      output += `- ${file}\n`;
-    }
-  }
-  output += `\n---\n\n`;
-
-  for (const { file, content } of fileContents) {
-    output += `## FILE: ${file}\n\n`;
-    output += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
-  }
+    return res;
+  };
 
   return {
-    output,
+    runtimeOutput: appendContents(runtimeOutput, runtimeFiles),
+    shadowOutput: appendContents(shadowOutput, shadowFiles),
+    loreOutput: appendContents(loreOutput, loreFiles),
     files,
     era,
     provenance,
@@ -641,10 +645,13 @@ export const renderCoreExport = async (): Promise<
 
 async function exportCore() {
   const rendered = await renderCoreExport();
-  const { output, files, provenance } = rendered;
-  await Deno.writeTextFile("OMEGA_CORE_LOGIC.md", output);
+  const { runtimeOutput, shadowOutput, loreOutput, files, provenance } = rendered;
+  await Deno.mkdir("08_artifacts", { recursive: true });
+  await Deno.writeTextFile("08_artifacts/OMEGA_RUNTIME.md", runtimeOutput);
+  await Deno.writeTextFile("08_artifacts/OMEGA_SHADOW.md", shadowOutput);
+  await Deno.writeTextFile("08_artifacts/OMEGA_LORE.md", loreOutput);
   console.log(
-    `✅ OMEGA_CORE_LOGIC.md updated. files=${files.length} testsExcluded=true architectureGuard=true commit=${provenance.gitCommit}`,
+    `✅ Holographic Exporter success. files=${files.length} contextDistillation=3 artifacts commit=${provenance.gitCommit}`,
   );
 }
 

@@ -10,8 +10,7 @@
     "06_akasha/MUTATION_TELEMETRY.ts",
     "06_akasha/TUI_DASHBOARD.ts",
     "06_akasha/AGENT_PROXY.ts",
-    "05_exocortex/llm_soul.ts",
-    "63_necropolis/nightly_soak.ts"
+    "05_exocortex/llm_soul.ts"
   ],
   "runtime_support_files": [
     "00_substrate/07_meta/02_runners/build_wasm.ts",
@@ -23,12 +22,6 @@
     "02_metabolism/SNAP.ts",
     "01_physics/STRUCTURE_ENGINE.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "02_metabolism/03_tests/worker_determinism_capture.ts",
-    "02_metabolism/03_tests/worker_gate_thresholds.ts",
-    "02_metabolism/03_tests/worker_resilience_capture.ts",
-    "02_metabolism/03_tests/worker_seeded_swarm.ts",
-    "02_metabolism/03_tests/worker_trend_baseline.ts",
-    "02_metabolism/03_tests/worker_trend_math.ts",
     "reduction_core/REIFICATION_ACTION.ts",
     "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
@@ -54,8 +47,7 @@
     "06_akasha/MUTATION_TELEMETRY.ts",
     "06_akasha/TUI_DASHBOARD.ts",
     "06_akasha/AGENT_PROXY.ts",
-    "05_exocortex/llm_soul.ts",
-    "63_necropolis/nightly_soak.ts"
+    "05_exocortex/llm_soul.ts"
   ],
   "required_additional_files": [
     "03_governance/DAEMON_INGRESS_POLICY.ts",
@@ -67,12 +59,6 @@
     "02_metabolism/HORMONE_BUFFER_RUNTIME.ts",
     "00_substrate/07_meta/02_runners/build_wasm.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "02_metabolism/03_tests/worker_gate_thresholds.ts",
-    "02_metabolism/03_tests/worker_determinism_capture.ts",
-    "02_metabolism/03_tests/worker_resilience_capture.ts",
-    "02_metabolism/03_tests/worker_seeded_swarm.ts",
-    "02_metabolism/03_tests/worker_trend_math.ts",
-    "02_metabolism/03_tests/worker_trend_baseline.ts",
     "reduction_core/REIFICATION_ACTION.ts",
     "reduction_core/relics/RELIC_CULTIVATION.ts",
     "06_akasha/mod.ts"
