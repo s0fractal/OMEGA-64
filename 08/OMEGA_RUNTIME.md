@@ -1,6 +1,6 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T05:31:23.201Z*
+*Generated: 2026-03-12T05:38:13.970Z*
 *Exported Files in Category: 1839*
 *Total Exported Files: 1839*
 *Runtime Roots: 10*
@@ -10,7 +10,7 @@
 *Experimental Code Files: 1751*
 *Manifest SHA256: f0f51e9d2095402fe902b5fc9dce34d21b9761ea3623b2b9c007a0ded07d9dd9*
 *Export Set SHA256: 5f47642f289898b7de6d182aa8239dae934a42c6d1bf567ce0719dbee5e79a2b*
-*Export Content SHA256: daea1264f7ff2181690172e0e805d812602e7cbcaec5b4fe4bfab09fbc6821d6*
+*Export Content SHA256: 57df5328a13fd7236e7718654dcb39a9743e3e1dd019def3f5da8b7e7ddff55c*
 *Git Commit: 6f7b070cd2ea*
 
 ---
@@ -3722,7 +3722,7 @@ export * from "@00/ATOM_INDEX.ts";
 export * from "@00/STATE_SNAPSHOT.ts";
 export * from "@00/ENV_PARSE.ts";
 export * from "@00/PRNG.ts";
-export const WASM_PATH = new URL("./08/release.wasm", import.meta.url);
+export const WASM_PATH = new URL("./release.wasm", import.meta.url);
 
 ```
 
@@ -31663,17 +31663,17 @@ import { walk } from "jsr:@std/fs";
 import { assert } from "jsr:@std/assert";
 
 const LAYERS = [
-  "00_substrate",
-  "01_physics",
-  "02_metabolism",
-  "03_governance",
-  "04_noosphere",
-  "05_exocortex",
-  "06_akasha"
+  "00",
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06"
 ];
 
 Deno.test("topology: architecture guard - strict acyclic descent", async () => {
-  const IMPORT_REGEX = /from\s+["']\.\.\/(\d{2}_[^/]+)\/mod\.ts["']/g;
+  const IMPORT_REGEX = /from\s+["']@(\d{2})["']/g;
 
   for (let i = 0; i < LAYERS.length; i++) {
     const layer = LAYERS[i];
@@ -39901,10 +39901,10 @@ export const renderCoreExport = async (): Promise<
 async function exportCore() {
   const rendered = await renderCoreExport();
   const { runtimeOutput, shadowOutput, loreOutput, files, provenance } = rendered;
-  await Deno.mkdir("08_artifacts", { recursive: true });
-  await Deno.writeTextFile("08_artifacts/OMEGA_RUNTIME.md", runtimeOutput);
-  await Deno.writeTextFile("08_artifacts/OMEGA_SHADOW.md", shadowOutput);
-  await Deno.writeTextFile("08_artifacts/OMEGA_LORE.md", loreOutput);
+  await Deno.mkdir("08", { recursive: true });
+  await Deno.writeTextFile("08/OMEGA_RUNTIME.md", runtimeOutput);
+  await Deno.writeTextFile("08/OMEGA_SHADOW.md", shadowOutput);
+  await Deno.writeTextFile("08/OMEGA_LORE.md", loreOutput);
   console.log(
     `✅ Holographic Exporter success. files=${files.length} contextDistillation=3 artifacts commit=${provenance.gitCommit}`,
   );
