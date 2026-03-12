@@ -9,7 +9,7 @@ export context. It intentionally excludes historical era narratives.
 2. Shared substrate: `STATE_MATRIX.ts` + `OFFSETS.ts` (`SharedArrayBuffer`).
    Requires bit-exact memory correspondence between Host and WASM kernel offsets
    (e.g., literal `8,000,000` bytes vs binary `8MiB` alignment).
-3. Execution plane: `PULSE_WORKER.ts` + `build/release.wasm`
+3. Execution plane: `PULSE_WORKER.ts` + `00_substrate/08_artifacts/release.wasm`
 4. Governance plane: `GATE.ts` + `SHIMS.ts`
 5. Snapshot/continuity plane: `STATE_SNAPSHOT.ts`, `SNAP.ts`,
    `SNAPSHOT_ENGINE.ts`

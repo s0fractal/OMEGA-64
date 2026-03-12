@@ -1,6 +1,5 @@
 # OMEGA-64 Flatland Gitignore
 .DS_Store
-.venv/
 __pycache__/
 *.log
 *.png
@@ -37,7 +36,6 @@ omega_wasm/
 omega_wasm_asc/
 
 # WASM build artifacts
-build/
 *.wasm
 WORKER_DRIFT_AUDIT.md
 WORKER_DRIFT_AUDIT.json
