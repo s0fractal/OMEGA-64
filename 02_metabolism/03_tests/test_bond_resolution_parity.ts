@@ -1,7 +1,7 @@
 // OMEGA-64 | test_bond_resolution_parity.ts | Bond Resolution Verifier
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
+import { PULSE } from "@02";
 
 async function testBondParity() {
   console.log("🧬 [TEST] Starting Bond Resolution Parity Test...");

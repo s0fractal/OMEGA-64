@@ -1,4 +1,4 @@
-import { LOGGER, type LogLevel } from "../../00_substrate/mod.ts";
+import { LOGGER, type LogLevel } from "@00";
 
 type SinkCounts = {
   debug: number;

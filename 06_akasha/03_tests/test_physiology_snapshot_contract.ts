@@ -1,6 +1,6 @@
-import { capturePhysiologySnapshot } from "../../06_akasha/mod.ts";
-import { createGeneticLedgerRuntime, snapshotLedgerRuntime } from "../../03_governance/mod.ts";
-import { createPhysiologicalLedgerRuntime } from "../../02_metabolism/mod.ts";
+import { capturePhysiologySnapshot } from "@06";
+import { createGeneticLedgerRuntime, snapshotLedgerRuntime } from "@03";
+import { createPhysiologicalLedgerRuntime } from "@02";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

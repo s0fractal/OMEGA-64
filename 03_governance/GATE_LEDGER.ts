@@ -1,7 +1,7 @@
-import { type BridgeModeEvent, type GateConfig } from "../00_substrate/mod.ts";
-import { type LedgerEvent } from "../00_substrate/mod.ts";
+import { type BridgeModeEvent, type GateConfig } from "@00";
+import { type LedgerEvent } from "@00";
 import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "../00_substrate/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@00";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

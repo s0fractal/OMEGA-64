@@ -1,9 +1,9 @@
-import type { ResilienceScenario } from "./worker_gate_thresholds.ts";
+import type { ResilienceScenario } from "@02/03_tests/worker_gate_thresholds.ts";
 import {
   parseResilienceCaptureFromMergedOutput,
   RESILIENCE_SCENARIO_SCRIPT_PAIRS,
   type ResilienceCapturePayload,
-} from "./worker_resilience_capture.ts";
+} from "@02/03_tests/worker_resilience_capture.ts";
 
 const REPORT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const DRIFT_JSON_PATH = "WORKER_DRIFT_AUDIT.json";

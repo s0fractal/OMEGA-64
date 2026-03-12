@@ -1,7 +1,7 @@
 // OMEGA-64 | test_automaton.ts | Phase 24: Pure Automaton Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { GATE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { GATE } from "@03";
 
 async function runTest() {
   console.log("🧪 OMEGA-64 | TEST_AUTOMATON | Starting...");

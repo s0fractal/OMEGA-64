@@ -1,7 +1,7 @@
 import {
   type DeterminismCapturePayload,
   runDeterminismCaptureSubprocess,
-} from "./worker_determinism_capture.ts";
+} from "@02/03_tests/worker_determinism_capture.ts";
 
 type CapturePayload = DeterminismCapturePayload;
 

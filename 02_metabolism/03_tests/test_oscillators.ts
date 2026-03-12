@@ -2,7 +2,7 @@
 // Tests ISA.OSCILLATE phase ripple, ISA.LOCK_PHASE constructive/destructive,
 // SENSE type 0x0E cell phase average, and sinusoidal amplitude.
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,

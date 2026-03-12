@@ -1,7 +1,7 @@
 // OMEGA-64 | test_vector10_planetary.ts | Vector 10 Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { SOVEREIGN_ORACLE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { SOVEREIGN_ORACLE } from "@05";
 import {
   assertEquals,
   assertGreater,

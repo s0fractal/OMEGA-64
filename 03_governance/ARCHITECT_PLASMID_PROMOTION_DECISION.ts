@@ -1,4 +1,4 @@
-import type { ArchitectPlasmidExecutionMode } from "../02_metabolism/mod.ts";
+import type { ArchitectPlasmidExecutionMode } from "@02";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {

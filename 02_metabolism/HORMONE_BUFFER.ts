@@ -1,5 +1,5 @@
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "../03_governance/GENERIC_LEDGER_SYSTEM.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"

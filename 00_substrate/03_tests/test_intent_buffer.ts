@@ -1,4 +1,4 @@
-import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "../mod.ts";
+import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "@00";
 
 async function testIntentBuffer() {
   console.log("🧪 Testing Zero-Allocation WASM Intent Buffer");

@@ -1,7 +1,7 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { ISA } from "../../02_metabolism/mod.ts";
-import { GATE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { ISA } from "@02";
+import { GATE } from "@03";
 import {
   assert,
   assertEquals,

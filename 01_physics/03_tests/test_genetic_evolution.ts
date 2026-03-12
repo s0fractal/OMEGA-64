@@ -1,5 +1,5 @@
-import { STATE_MATRIX, wasmMemory } from "../../00_substrate/mod.ts";
-import { GLYPH_BUFFER } from "../mod.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
+import { GLYPH_BUFFER } from "@01";
 
 async function runGeneticEvolutionTests() {
   console.log("🕸️ [TEST] Booting Genetic Evolution diagnostics...");

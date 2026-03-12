@@ -1,5 +1,5 @@
-import { STATE_MATRIX, STRUCTURE } from "../../00_substrate/mod.ts";
-import { STRUCTURE_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "@00";
+import { STRUCTURE_ENGINE } from "@01";
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 
 const GRID_W = 140;

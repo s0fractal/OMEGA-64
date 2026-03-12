@@ -1,4 +1,4 @@
-import { evaluateArchitectPlasmidPromotionAction } from "../mod.ts";
+import { evaluateArchitectPlasmidPromotionAction } from "@03";
 
 type Failure = {
   name: string;

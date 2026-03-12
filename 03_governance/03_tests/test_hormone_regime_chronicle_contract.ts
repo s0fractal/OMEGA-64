@@ -10,7 +10,7 @@
  * 5. AkashaServiceState.hormoneRegime is a string (type sanity at import).
  */
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 let passed = 0;
 let failed = 0;

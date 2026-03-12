@@ -1,6 +1,6 @@
-import { loadSoakTrendThresholds } from "./worker_gate_thresholds.ts";
-import { loadTrendBaselineWithBootstrap } from "./worker_trend_baseline.ts";
-import { limitByRatioAndDelta, minByRatio } from "./worker_trend_math.ts";
+import { loadSoakTrendThresholds } from "@02/03_tests/worker_gate_thresholds.ts";
+import { loadTrendBaselineWithBootstrap } from "@02/03_tests/worker_trend_baseline.ts";
+import { limitByRatioAndDelta, minByRatio } from "@02/03_tests/worker_trend_math.ts";
 
 const SOAK_JSON_PATH = "WORKER_SOAK_STABILITY.json";
 const BASELINE_JSON_PATH = "WORKER_SOAK_STABILITY_BASELINE.json";

@@ -1,9 +1,9 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { ISA } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { ISA } from "@02";
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PHYSICS_ENGINE } from "../../01_physics/mod.ts";
-import { SPATIAL_HASH } from "../../01_physics/mod.ts";
+import { PHYSICS_ENGINE } from "@01";
+import { SPATIAL_HASH } from "@01";
 
 Deno.test("Era 47: Sensory Transduction - Full Multi-Modal Suite", async () => {
   // 1. Setup

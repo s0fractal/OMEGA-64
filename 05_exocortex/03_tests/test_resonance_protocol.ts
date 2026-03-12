@@ -1,7 +1,7 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { SOVEREIGN_ORACLE } from "../mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { SOVEREIGN_ORACLE } from "@05";
+import * as OFFSETS from "@00";
 
 async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");

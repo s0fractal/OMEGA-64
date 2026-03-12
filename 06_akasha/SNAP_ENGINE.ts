@@ -1,7 +1,7 @@
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
-import { sharedBuffer } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { sharedBuffer } from "@00";
+import * as OFFSETS from "@00";
+import { LOGGER } from "@00";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const SNAP_DIR = ".omega/snap";

@@ -1,4 +1,4 @@
-import { RISC } from "../../00_substrate/mod.ts";
+import { RISC } from "@00";
 import {
   BRIDGE_GLYPH_IDS,
   GLYPH_SPECS,

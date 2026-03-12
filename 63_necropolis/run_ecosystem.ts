@@ -1,8 +1,8 @@
 // OMEGA-64 | run_ecosystem.ts | Long-term Evolution Simulator
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { ISA } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { ISA } from "@02";
 
 const TOTAL_TICKS = 50000;
 const LOG_INTERVAL = 100;

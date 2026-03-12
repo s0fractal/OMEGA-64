@@ -1,4 +1,4 @@
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"

@@ -1,4 +1,4 @@
-import { GENETIC_LEDGER_CATALOG, geneticLedgerBaseline, geneticLedgerEntryByKey } from "../mod.ts";
+import { GENETIC_LEDGER_CATALOG, geneticLedgerBaseline, geneticLedgerEntryByKey } from "@03";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

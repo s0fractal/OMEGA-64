@@ -1,6 +1,6 @@
-import { STATE_MATRIX, wasmMemory } from "../../00_substrate/mod.ts";
-import { RIBOSOME } from "../mod.ts";
-import { GLYPH_BUFFER } from "../../01_physics/mod.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
+import { RIBOSOME } from "@02";
+import { GLYPH_BUFFER } from "@01";
 
 async function runSecretionOpcodeTests() {
   console.log("🕸️ [TEST] Booting WASM native secretion opcode diagnostics...");

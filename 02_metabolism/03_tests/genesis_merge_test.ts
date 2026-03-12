@@ -1,14 +1,14 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
-import { seedSeededSwarmScenario } from "../../02_metabolism/mod.ts";
+import { seedSeededSwarmScenario } from "@02";
 
 if (Deno.args[0] === "run-node") {
   const role = Deno.args[1];
   const port = parseInt(Deno.args[2], 10);
   const peerPort = parseInt(Deno.args[3] || "0", 10);
 
-  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
-  const { STATE_MATRIX } = await import("../STATE_MATRIX.ts");
+  const { PULSE, NEXUS_DAEMON } = await import("@02");
+  const { STATE_MATRIX } = await import("@02/STATE_MATRIX.ts");
 
   // Do not lock port up front; SwarmNexus assigns port 0 to fallback to ephemeral
   if (port >= 0) {

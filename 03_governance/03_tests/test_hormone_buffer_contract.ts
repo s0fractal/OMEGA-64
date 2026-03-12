@@ -1,4 +1,4 @@
-import { HORMONE_BUFFER_CATALOG, HORMONE_BUFFER_LENGTH, hormoneBaselineState, hormoneSpecById } from "../../02_metabolism/mod.ts";
+import { HORMONE_BUFFER_CATALOG, HORMONE_BUFFER_LENGTH, hormoneBaselineState, hormoneSpecById } from "@02";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

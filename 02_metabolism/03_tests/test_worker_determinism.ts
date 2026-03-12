@@ -1,13 +1,13 @@
-import { PULSE } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import { PULSE } from "@02";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 import {
   type DeterminismAtomState,
   type DeterminismCapturePayload,
   type DeterminismSnapshot,
   emitDeterminismCapture,
   runDeterminismCaptureSubprocess,
-} from "./worker_determinism_capture.ts";
+} from "@02/03_tests/worker_determinism_capture.ts";
 
 const DEFAULT_TICKS = 24;
 const DEFAULT_SEED = 1337;

@@ -1,8 +1,8 @@
 // OMEGA-64 | test_decay.ts | Era 57: Synaptic Plasticity Decay Verification
 // Tests: passive decay, ISA.DECAY (auto/specific/all modes), SENSE type 0x0D, HEBB protection.
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { STATE_MATRIX } from "@00";
 import {
   assert,
   assertEquals,

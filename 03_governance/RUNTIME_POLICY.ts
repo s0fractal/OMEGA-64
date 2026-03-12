@@ -1,5 +1,5 @@
-import { parseEnvBool, parseEnvBoundedInt } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "@00";
+import { LOGGER } from "@00";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =

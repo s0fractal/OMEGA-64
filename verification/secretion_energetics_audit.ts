@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "../00_substrate/STATE_MATRIX.ts";
+import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
 import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 

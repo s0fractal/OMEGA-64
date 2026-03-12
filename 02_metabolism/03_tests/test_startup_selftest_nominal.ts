@@ -6,8 +6,8 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST_FALLBACK", "1");
 Deno.env.set("OMEGA_STARTUP_SELFTEST_QUIET", "1");
 Deno.env.delete("OMEGA_STARTUP_SELFTEST_FORCE_BREACH");
 
-const { PULSE } = await import("../PULSE.ts");
-const { STATE_MATRIX } = await import("../../00_substrate/mod.ts");
+const { PULSE } = await import("@02/PULSE.ts");
+const { STATE_MATRIX } = await import("@00");
 
 function assertNominalStartup(expectedWorkers: number): void {
   const status = PULSE.getStartupSelfTestStatus();

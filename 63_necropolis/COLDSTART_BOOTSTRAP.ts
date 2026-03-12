@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 type ColdstartConfig = {
   enabled: boolean;

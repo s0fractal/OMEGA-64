@@ -1,8 +1,8 @@
 // OMEGA-64 | test_temporal.ts | Era 54: Temporal Cognition Verification
 // Tests ISA.AGE, ISA.PHASE_LIFE lifecycle phases, SENSE type 0x0A, and apoptosis.
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { STATE_MATRIX } from "@00";
 import {
   assert,
   assertEquals,

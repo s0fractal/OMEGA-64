@@ -1,4 +1,4 @@
-import { STATE_MATRIX, wasmMemory } from "../00_substrate/mod.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
 
 const main = async () => {
   const wasmBytes = await Deno.readFile("../../00_substrate/08_artifacts/release.wasm");

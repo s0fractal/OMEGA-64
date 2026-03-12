@@ -1,5 +1,5 @@
-import { GLYPH_BUFFER, GLYPH_KIND } from "../../01_physics/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { GLYPH_BUFFER, GLYPH_KIND } from "@01";
+import { STATE_MATRIX } from "@00";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

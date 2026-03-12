@@ -1,7 +1,7 @@
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { rolesView } from "../02_metabolism/mod.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { STATE_MATRIX } from "@00";
+import { rolesView } from "@02";
 
 console.log("Starting forced bootstrap...");
 

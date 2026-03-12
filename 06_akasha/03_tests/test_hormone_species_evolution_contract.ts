@@ -8,9 +8,9 @@
  * 3. discoverSpecies enqueues chronicles mentioning the hormone regime.
  */
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "../../06_akasha/mod.ts";
-import { LLM_SYNAPSE } from "../../05_exocortex/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { AKASHA_CODEX } from "@06";
+import { LLM_SYNAPSE } from "@05";
 
 let passed = 0;
 let failed = 0;

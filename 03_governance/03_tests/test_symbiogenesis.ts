@@ -1,5 +1,5 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { GATE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { GATE } from "@03";
 
 console.log("🛡️ [TEST] Verifying Era 35: Symbiogenesis...");
 

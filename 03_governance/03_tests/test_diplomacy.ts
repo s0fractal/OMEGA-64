@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { GATE } from "../mod.ts";
-import { LAMBDA_VM } from "../../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { GATE } from "@03";
+import { LAMBDA_VM } from "@02";
 
 console.log("🤝 [TEST] Verifying Era 38: Diplomacy & Taxation...");
 

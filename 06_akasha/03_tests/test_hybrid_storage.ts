@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { SNAPSHOT_ENGINE } from "../mod.ts";
-import { RIBOSOME } from "../../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { SNAPSHOT_ENGINE } from "@06";
+import { RIBOSOME } from "@02";
 
 console.log("📦 [TEST] Verifying Era 39: Hybrid Storage...");
 

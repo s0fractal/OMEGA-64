@@ -1,4 +1,4 @@
-import { emitResilienceCapture } from "./worker_resilience_capture.ts";
+import { emitResilienceCapture } from "@02/03_tests/worker_resilience_capture.ts";
 
 const timeoutMs = Number.parseInt(
   Deno.env.get("OMEGA_WORKER_RESPONSE_TIMEOUT_MS") ?? "8",
@@ -24,8 +24,8 @@ Deno.env.set("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", String(timeoutMs));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
-const { PULSE } = await import("../PULSE.ts");
-const { STATE_MATRIX } = await import("../../00_substrate/mod.ts");
+const { PULSE } = await import("@02/PULSE.ts");
+const { STATE_MATRIX } = await import("@00");
 
 async function main() {
   console.log(

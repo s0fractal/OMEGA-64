@@ -6,7 +6,7 @@ if (Deno.args[0] === "run-node") {
   const peerPort = parseInt(Deno.args[2], 10);
   const applyDelay = Deno.args.includes("--delay");
 
-  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
+  const { PULSE, NEXUS_DAEMON } = await import("@02");
 
   // Re-configure the static Nexus daemon for our test isolated node
   NEXUS_DAEMON.port = port;

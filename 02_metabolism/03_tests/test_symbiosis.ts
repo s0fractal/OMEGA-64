@@ -1,13 +1,13 @@
 // OMEGA-64 | test_symbiosis.ts | Era 61: Symbiotic Bonding Verification
 // Tests ISA.SHARE (energy transfer to bonded neighbor) and ISA.EAT (nutrient consumption).
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 const GRID_W = 140;
 const SCALE = 100;

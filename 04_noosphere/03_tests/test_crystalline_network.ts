@@ -1,5 +1,5 @@
-import { STATE_MATRIX, STRUCTURE } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "@00";
+import { PULSE } from "@02";
 
 async function testCrystallineNetwork() {
   console.log("💎 [TEST] Starting Crystalline Neural Network Verification...");

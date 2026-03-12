@@ -3,7 +3,7 @@ import {
   createDaemonPheromoneLedgerRuntime,
   rollbackDaemonPheromoneLedgerRuntimeUpdate,
   snapshotDaemonPheromoneLedgerRuntime,
-} from "./DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
+} from "@03/03_tests/DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

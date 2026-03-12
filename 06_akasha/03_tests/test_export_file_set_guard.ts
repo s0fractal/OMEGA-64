@@ -1,4 +1,4 @@
-import { buildExportFileList } from "../../07_meta/02_runners/export_core.ts";
+import { buildExportFileList } from "@07/02_runners/export_core.ts";
 
 const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
   /^test_.*\.ts$/u,

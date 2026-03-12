@@ -1,10 +1,10 @@
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PHYSICS_ENGINE } from "@01";
+import { SEMANTIC_MEMBRANE } from "@05";
+import { LOGGER } from "@00";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {

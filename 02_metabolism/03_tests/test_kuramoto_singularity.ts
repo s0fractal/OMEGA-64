@@ -1,5 +1,5 @@
-import { PULSE } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { PULSE } from "@02";
+import { STATE_MATRIX } from "@00";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 
 async function main() {

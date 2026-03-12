@@ -1,13 +1,13 @@
 // OMEGA-64 | test_immune_learning.ts | Era 62: Immune Learning Verification
 // Tests GATE.ts tracking average resonance of novel plasmids and promoting them cleanly.
 
-import { GATE } from "../mod.ts";
+import { GATE } from "@03";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 // Helper to construct a mock state matrix interface for GATE testing
 function mockStateMatrix(

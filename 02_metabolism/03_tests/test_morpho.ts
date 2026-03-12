@@ -1,9 +1,9 @@
 // OMEGA-64 | test_morpho.ts | Phase 13: Crystalline Intelligence Verification
 // Tests: WASM-accelerated matrix tick, signal propagation, and Memetic Nodes.
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { CRYSTAL_MEME, CRYSTAL_STANDARD, CRYSTAL_THRESHOLD, MATRIX_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { CRYSTAL_MEME, CRYSTAL_STANDARD, CRYSTAL_THRESHOLD, MATRIX_ENGINE } from "@01";
 
 async function runTest() {
   console.log("🧬 Phase 13: Crystalline Intelligence Verification\n");

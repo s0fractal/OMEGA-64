@@ -1,6 +1,6 @@
 // OMEGA-64 | test_breath.ts | Phase 23: Entropy Flux (Breath) Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
 
 async function runTest() {
   console.log("🧪 OMEGA-64 | TEST_BREATH | Starting...");

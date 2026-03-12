@@ -1,8 +1,8 @@
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "../00_substrate/mod.ts";
-import { LOAD_LOAD as LOAD } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { GATE_BUDGET } from "./GATE_BUDGET.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@00";
+import { LOAD_LOAD as LOAD } from "@00";
+import { LOGGER } from "@00";
+import { GATE_BUDGET } from "@03/GATE_BUDGET.ts";
+import { STATE_MATRIX } from "@00";
 
 type I16Limits = {
   max: number;

@@ -1,6 +1,6 @@
-import { evaluateGuardianSignalPromotionAction } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotion } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotionDecision } from "../03_governance/mod.ts";
+import { evaluateGuardianSignalPromotionAction } from "@03";
+import { evaluateGuardianSignalPromotion } from "@03";
+import { evaluateGuardianSignalPromotionDecision } from "@03";
 
 type AuditConfig = {
   hostUrl: string;

@@ -1,9 +1,9 @@
 // OMEGA-64 | test_resilience.ts | Era 68: Resilience Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { SNAPSHOT_ENGINE } from "../../06_akasha/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { RIBOSOME } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { SNAPSHOT_ENGINE } from "@06";
+import * as OFFSETS from "@00";
+import { RIBOSOME } from "@02";
 
 async function runTest() {
   console.log("🏎️ Starting Phase 12: Systemic Resilience Verification...");

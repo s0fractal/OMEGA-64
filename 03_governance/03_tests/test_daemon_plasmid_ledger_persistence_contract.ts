@@ -3,12 +3,12 @@ import {
   hydrateDaemonPlasmidLedgerRuntime,
   recordFromDaemonPlasmidApplyMutation,
   recordFromDaemonPlasmidRollbackMutation,
-} from "./DAEMON_PLASMID_LEDGER_PERSISTENCE.ts";
+} from "@03/03_tests/DAEMON_PLASMID_LEDGER_PERSISTENCE.ts";
 import {
   applyDaemonPlasmidLedgerRuntimeUpdate,
   createDaemonPlasmidLedgerRuntime,
   rollbackDaemonPlasmidLedgerRuntimeUpdate,
-} from "./DAEMON_PLASMID_LEDGER_RUNTIME.ts";
+} from "@03/03_tests/DAEMON_PLASMID_LEDGER_RUNTIME.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

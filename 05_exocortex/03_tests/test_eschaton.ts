@@ -1,8 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "../../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
-import { mutateUniversalConstants } from "../../03_governance/mod.ts";
-import { SOVEREIGN_ORACLE } from "../mod.ts";
+import { STATE_MATRIX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "@00";
+import { RUNTIME_POLICY } from "@03";
+import { mutateUniversalConstants } from "@03";
+import { SOVEREIGN_ORACLE } from "@05";
 
 Deno.test("Phase 48: Eschaton Big Crunch execution (Unit Level)", async () => {
   // 1. Setup Stagnation conditions

@@ -1,6 +1,6 @@
-import { PULSE } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import { PULSE } from "@02";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 
 const CAPTURE_MARKER = "__OMEGA_SPAWN_CAPTURE__";
 const DEFAULT_SEED = 424242;

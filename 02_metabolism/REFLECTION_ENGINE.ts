@@ -1,9 +1,9 @@
 // OMEGA-64 | REFLECTION_ENGINE.ts | Era 17: The True Quine
 // Bridges RAM state back to Flatland source code.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@00";
+import { LOGGER } from "@00";
 
 const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
   const out = new Uint32Array(16);

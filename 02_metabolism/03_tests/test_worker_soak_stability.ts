@@ -1,10 +1,10 @@
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { loadSoakStabilityConfig } from "./worker_gate_thresholds.ts";
+import * as OFFSETS from "@00";
+import { loadSoakStabilityConfig } from "@02/03_tests/worker_gate_thresholds.ts";
 import {
   assertSeededSwarmWorldInvariants,
   seedSeededSwarmScenario,
   SPAWN_RING_CAPACITY,
-} from "./worker_seeded_swarm.ts";
+} from "@02/03_tests/worker_seeded_swarm.ts";
 
 const {
   timeoutMs,
@@ -71,8 +71,8 @@ Deno.env.set("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", String(timeoutMs));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
-const { PULSE } = await import("../PULSE.ts");
-const { STATE_MATRIX } = await import("../../00_substrate/mod.ts");
+const { PULSE } = await import("@02/PULSE.ts");
+const { STATE_MATRIX } = await import("@00");
 
 const slope = (values: number[]): number => {
   const n = values.length;

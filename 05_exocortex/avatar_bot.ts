@@ -1,5 +1,5 @@
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999; // Assume an atom seeded with this ID

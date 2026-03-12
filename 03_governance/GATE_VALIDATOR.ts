@@ -1,6 +1,6 @@
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "../00_substrate/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@00";
 import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "../00_substrate/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@00";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";

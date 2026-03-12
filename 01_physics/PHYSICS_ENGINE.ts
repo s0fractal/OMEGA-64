@@ -1,7 +1,7 @@
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PRNG } from "../00_substrate/mod.ts";
-import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PRNG } from "@00";
+import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
+import * as OFFSETS from "@00";
 
 const GRID_W = 140;
 const GRID_H = 80;

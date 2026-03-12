@@ -1,10 +1,10 @@
-import { PULSE } from "./02_metabolism/mod.ts";
-import { STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SOVEREIGN_ORACLE } from "./05_exocortex/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
+import { PULSE } from "@07/02_runners/02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@07/02_runners/00_substrate/mod.ts";
+import { SOVEREIGN_ORACLE } from "@07/02_runners/05_exocortex/mod.ts";
+import { LOGGER } from "@07/02_runners/00_substrate/mod.ts";
+import { evaluateGuardianSignalPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "@07/02_runners/63_necropolis/mod.ts";
+import { RUNTIME_POLICY } from "@03";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");

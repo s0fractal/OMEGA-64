@@ -2,7 +2,7 @@
 // Securely re-materializes atoms from metadata. No eval, no injections.
 
 import { stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
-import { injectHologram } from "./HOLOGRAM_MODULE.ts";
+import { injectHologram } from "@02/HOLOGRAM_MODULE.ts";
 
 export const RECOVERY = {
   // Re-materialize an atom from its last known metadata

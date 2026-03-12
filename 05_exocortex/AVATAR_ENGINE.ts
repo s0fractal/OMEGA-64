@@ -1,8 +1,8 @@
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { GLYPH_BUFFER } from "../01_physics/mod.ts";
+import { PHYSICS_ENGINE } from "@01";
+import { GLYPH_BUFFER } from "@01";
 
 export const AVATAR_ENGINE = {
   /**

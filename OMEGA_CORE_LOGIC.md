@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T00:52:25.013Z*
-*Exported Files: 158*
+*Generated: 2026-03-12T01:21:11.353Z*
+*Exported Files: 160*
 *Runtime Roots: 11*
 *Runtime Closure Files: 79*
-*Non-Runtime Code Files: 62*
+*Non-Runtime Code Files: 64*
 *Runtime-Support Code Files: 17*
-*Experimental Code Files: 45*
+*Experimental Code Files: 47*
 *Manifest SHA256: 44a711b71eec137b4d49446e9d359d7da87a6559e90ccf0486b47b91ebe32ac8*
-*Export Set SHA256: d43019309ca31d34641e5dfe3230fef93bb87e89f95fb91a12fb6fbf2a617847*
-*Export Content SHA256: f35b5fd64f25b367caf70d33e3e0107cf6e8b06cd568266eec07ce27bdb46c33*
-*Git Commit: d32d9fa598b7*
+*Export Set SHA256: 9ddf3ab546b240aa4642c8e64a2d3244be1857875cc83ec3e1a706b4a585bd28*
+*Export Content SHA256: 04a680570a97b6b3c37671fe0c4c5d65ec799d98ae1e4844eddedc25991226ed*
+*Git Commit: 6284ac9e0301*
 
 ---
 
@@ -154,6 +154,8 @@
 - 06_akasha/03_tests/continuum_gate_test.ts
 - 06_akasha/OBSERVER_LAB.ts
 - 06_akasha/OBSERVER_UI.ts
+- 07_meta/01_guards/vector_decoder.ts
+- 07_meta/02_runners/apply_vector_maps.ts
 - 07_meta/02_runners/export_rust.ts
 - 07_meta/02_runners/RUN_STAGE8_TICKS.ts
 - 07_meta/03_guards/topology_linter.ts
@@ -228,6 +230,8 @@
 - 05_exocortex/03_tests/oracle_loop_test.ts
 - 06_akasha/03_tests/architecture_guard.ts
 - 06_akasha/03_tests/continuum_gate_test.ts
+- 07_meta/01_guards/vector_decoder.ts
+- 07_meta/02_runners/apply_vector_maps.ts
 - 07_meta/02_runners/export_rust.ts
 - 07_meta/02_runners/RUN_STAGE8_TICKS.ts
 - 07_meta/03_guards/topology_linter.ts
@@ -285,8 +289,8 @@ runAcousticAudit();
  * Тест семантичної інтерференції хвильових пакетів.
  */
 
-import { WAVE_PACKET } from "./i.L13.core.WAVE_PACKET.ts";
-import { INTERFERENCE } from "./i.L13.core.INTERFERENCE.ts";
+import { WAVE_PACKET } from "@00/03_tests/i.L13.core.WAVE_PACKET.ts";
+import { INTERFERENCE } from "@00/03_tests/i.L13.core.INTERFERENCE.ts";
 
 function test() {
   console.log("🌊 OMEGA-64: Semantic Interference Test\n");
@@ -324,8 +328,8 @@ test();
  * Тест дипольного поля та енергетичного метаболізму.
  */
 
-import { FIELD } from "./i.L00.core.FIELD.ts";
-import { ENERGY_ENGINE, QWaveState } from "./i.L05.core.ENERGY.ts";
+import { FIELD } from "@00/03_tests/i.L00.core.FIELD.ts";
+import { ENERGY_ENGINE, QWaveState } from "@00/03_tests/i.L05.core.ENERGY.ts";
 
 function test() {
   console.log("🌀 OMEGA-64: Dipole Field Resonance Test\n");
@@ -376,8 +380,8 @@ test();
  * Тест "вінілових канавок" та суб'єктивної видимості.
  */
 
-import { FIELD } from "./i.L00.core.FIELD.ts";
-import { SUBJECTIVE, SubjectivePosition } from "./i.L05.core.SUBJECTIVE.ts";
+import { FIELD } from "@00/03_tests/i.L00.core.FIELD.ts";
+import { SUBJECTIVE, SubjectivePosition } from "@00/03_tests/i.L05.core.SUBJECTIVE.ts";
 
 function test() {
   console.log("🌀 OMEGA-64: Anti-Control Geometry Test\n");
@@ -428,7 +432,7 @@ test();
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import * as OFFSETS from "../mod.ts";
+import * as OFFSETS from "@00";
 
 const WASM_URL = new URL(
   "../../00_substrate/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
@@ -703,7 +707,7 @@ if (Deno.args[0] === "run-node") {
   const peerPort = parseInt(Deno.args[2], 10);
   const applyDelay = Deno.args.includes("--delay");
 
-  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
+  const { PULSE, NEXUS_DAEMON } = await import("@02");
 
   // Re-configure the static Nexus daemon for our test isolated node
   NEXUS_DAEMON.port = port;
@@ -942,7 +946,7 @@ if (res3.amp > 14000 && res3.amp < 14300) {
 ## FILE: 00_substrate/03_tests/wasm_layout_guard.ts
 
 ```typescript
-import * as OFFSETS from "../mod.ts";
+import * as OFFSETS from "@00";
 
 const ASM_SOURCE_PATH = new URL("../assembly/index.ts", import.meta.url);
 
@@ -1113,8 +1117,8 @@ if (import.meta.main) {
 ## FILE: 00_substrate/07_meta/02_runners/build_wasm.ts
 
 ```typescript
-import * as OFFSETS from "../../mod.ts";
-import { assertWasmLayout } from "../../03_tests/wasm_layout_guard.ts";
+import * as OFFSETS from "@00";
+import { assertWasmLayout } from "@00/03_tests/wasm_layout_guard.ts";
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   console.error(
@@ -4334,14 +4338,14 @@ export const LOGGER = {
 ## FILE: 00_substrate/mod.ts
 
 ```typescript
-export * from "./OFFSETS.ts";
-export * from "./SHIMS.ts";
-export * from "./STATE_MATRIX.ts";
-export * from "./LOGGER.ts";
-export * from "./ATOM_INDEX.ts";
-export * from "./STATE_SNAPSHOT.ts";
-export * from "./ENV_PARSE.ts";
-export * from "./PRNG.ts";
+export * from "@00/OFFSETS.ts";
+export * from "@00/SHIMS.ts";
+export * from "@00/STATE_MATRIX.ts";
+export * from "@00/LOGGER.ts";
+export * from "@00/ATOM_INDEX.ts";
+export * from "@00/STATE_SNAPSHOT.ts";
+export * from "@00/ENV_PARSE.ts";
+export * from "@00/PRNG.ts";
 export const WASM_PATH = new URL("./08_artifacts/release.wasm", import.meta.url);
 
 ```
@@ -4782,7 +4786,7 @@ export class PRNG {
 // OMEGA-64 | Legacy Compliance Shims
 // Shared dependency surface for Gate/runtime paths.
 
-import { REJECTION } from "./STATE_SNAPSHOT.ts";
+import { REJECTION } from "@00/STATE_SNAPSHOT.ts";
 
 const crypto = globalThis.crypto;
 
@@ -6556,7 +6560,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 
 ```typescript
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "./OFFSETS.ts";
+import * as OFFSETS from "@00/OFFSETS.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 const SCALE = OFFSETS.SCALE;
@@ -7629,8 +7633,8 @@ export const REJECTION = {
 // OMEGA-64 | ECOLOGY_ENGINE.ts | The Biological Layer
 // Handles Metabolism, Resonance, Cultural Drift, and Caste Logic.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PRNG } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PRNG } from "@00";
 
 export const ECOLOGY_ENGINE = {
   // Metabolism: Energy and Resonance decay
@@ -7709,8 +7713,8 @@ export const ECOLOGY_ENGINE = {
 ## FILE: 01_physics/GLYPH_BUFFER.ts
 
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "@00";
+import { STATE_MATRIX } from "@00";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -7958,8 +7962,8 @@ export const GLYPH_BUFFER = {
 
 ```typescript
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 
 const GRID_COLS = 140;
 const GRID_ROWS = 80;
@@ -8108,9 +8112,9 @@ export const MATRIX_ENGINE = {
 ## FILE: 01_physics/mod.ts
 
 ```typescript
-export * from "./GLYPH_BUFFER.ts";
-export * from "./PHYSICS_ENGINE.ts";
-export * from "./SPATIAL_HASH.ts";
+export * from "@01/GLYPH_BUFFER.ts";
+export * from "@01/PHYSICS_ENGINE.ts";
+export * from "@01/SPATIAL_HASH.ts";
 
 ```
 
@@ -8119,10 +8123,10 @@ export * from "./SPATIAL_HASH.ts";
 ## FILE: 01_physics/PHYSICS_ENGINE.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PRNG } from "../00_substrate/mod.ts";
-import { SPATIAL_HASH } from "./SPATIAL_HASH.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PRNG } from "@00";
+import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
+import * as OFFSETS from "@00";
 
 const GRID_W = 140;
 const GRID_H = 80;
@@ -8480,7 +8484,7 @@ export const PHYSICS_ENGINE = {
 ## FILE: 01_physics/SPATIAL_HASH.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
 const GRID_COLS = 140; // 1400 / 10
@@ -8601,7 +8605,7 @@ export const SPATIAL_HASH = {
 ## FILE: 01_physics/STRUCTURE_ENGINE.ts
 
 ```typescript
-import { STATE_MATRIX, STRUCTURE } from "../00_substrate/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "@00";
 
 const GRID_W = 140;
 const GRID_H = 80;
@@ -8780,15 +8784,15 @@ export const STRUCTURE_ENGINE = {
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
-import { seedSeededSwarmScenario } from "../../02_metabolism/mod.ts";
+import { seedSeededSwarmScenario } from "@02";
 
 if (Deno.args[0] === "run-node") {
   const role = Deno.args[1];
   const port = parseInt(Deno.args[2], 10);
   const peerPort = parseInt(Deno.args[3] || "0", 10);
 
-  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
-  const { STATE_MATRIX } = await import("../STATE_MATRIX.ts");
+  const { PULSE, NEXUS_DAEMON } = await import("@02");
+  const { STATE_MATRIX } = await import("@02/STATE_MATRIX.ts");
 
   // Do not lock port up front; SwarmNexus assigns port 0 to fallback to ephemeral
   if (port >= 0) {
@@ -9417,7 +9421,7 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
 import {
   RESILIENCE_SCENARIOS,
   type ResilienceScenario,
-} from "./worker_gate_thresholds.ts";
+} from "@02/03_tests/worker_gate_thresholds.ts";
 
 export const RESILIENCE_CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
 
@@ -9954,8 +9958,8 @@ async function digestFile(filename: string, swarmData: Map<string, any>) {
 ## FILE: 02_metabolism/GENOMES.ts
 
 ```typescript
-import { RISC } from "../00_substrate/mod.ts";
-import { SYS } from "../00_substrate/mod.ts";
+import { RISC } from "@00";
+import { SYS } from "@00";
 
 // Utility to assemble RISC script
 export function assembleScript(ops: number[]): Uint8Array {
@@ -10350,8 +10354,8 @@ export function injectHologram(
 ## FILE: 02_metabolism/HORMONE_BUFFER_RUNTIME.ts
 
 ```typescript
-import { HORMONE_BUFFER_CATALOG, type HormoneId } from "./HORMONE_BUFFER.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { HORMONE_BUFFER_CATALOG, type HormoneId } from "@02/HORMONE_BUFFER.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 export type HormoneSyncInput = {
   baseTax: number;
@@ -10435,8 +10439,8 @@ export const syncHormonesToLattice = (
 ## FILE: 02_metabolism/HORMONE_BUFFER.ts
 
 ```typescript
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "../03_governance/GENERIC_LEDGER_SYSTEM.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -10639,7 +10643,7 @@ export const createPhysiologicalLedgerRuntime = (
 
 ```typescript
 // OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
-import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
 export const IMMUNE = {
   /**
@@ -11926,15 +11930,15 @@ export const LAMBDA_VM = {
 ## FILE: 02_metabolism/mod.ts
 
 ```typescript
-export * from "./HORMONE_BUFFER_RUNTIME.ts";
-export * from "./HOLOGRAM_INJECTOR.ts";
-export * from "./IMMUNE.ts";
-export * from "./GENOMES.ts";
-export * from "./HORMONE_BUFFER.ts";
-export * from "./RIBOSOME.ts";
-export * from "./PULSE_WORKER.ts";
-export * from "./ENZYME_DIGEST.ts";
-export * from "./PULSE.ts";
+export * from "@02/HORMONE_BUFFER_RUNTIME.ts";
+export * from "@02/HOLOGRAM_INJECTOR.ts";
+export * from "@02/IMMUNE.ts";
+export * from "@02/GENOMES.ts";
+export * from "@02/HORMONE_BUFFER.ts";
+export * from "@02/RIBOSOME.ts";
+export * from "@02/PULSE_WORKER.ts";
+export * from "@02/ENZYME_DIGEST.ts";
+export * from "@02/PULSE.ts";
 
 ```
 
@@ -11945,13 +11949,13 @@ export * from "./PULSE.ts";
 ```typescript
 /// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 import {
   LOGGER,
   SCALE,
   WASM_PATH,
-} from "../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+} from "@00";
+import { STATE_MATRIX } from "@00";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,
@@ -13121,12 +13125,12 @@ import {
   SYS,
   WASM_PATH,
   LOGGER,
-} from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "../03_governance/SOVEREIGNTY_ENGINE.ts";
-import { GATE } from "../03_governance/GATE.ts";
-import { PREDICTION_MARKET } from "../03_governance/PREDICTION_MARKET.ts";
-import { CONTROL_INTENT_QUEUE } from "../03_governance/CONTROL_INTENT_QUEUE.ts";
+} from "@00";
+import * as OFFSETS from "@00";
+import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
+import { GATE } from "@03/GATE.ts";
+import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
+import { CONTROL_INTENT_QUEUE } from "@03/CONTROL_INTENT_QUEUE.ts";
 
 
 export interface PulseOracleDelegate {
@@ -13187,21 +13191,21 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { GLYPH_BUFFER } from "../01_physics/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "../03_governance/DAEMON_INGRESS_POLICY.ts";
-import { IMMUNE } from "./IMMUNE.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { PHYSICS_ENGINE } from "@01";
+import { GLYPH_BUFFER } from "@01";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
+import { IMMUNE } from "@02/IMMUNE.ts";
 
-import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
+import { syncHormonesToLattice } from "@02/HORMONE_BUFFER_RUNTIME.ts";
 import {
   createPhysiologicalLedgerRuntime,
   HORMONE_BUFFER_CATALOG,
   type HormoneId,
-} from "./HORMONE_BUFFER.ts";
-import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "../03_governance/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "../03_governance/GENETIC_LEDGER.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "../03_governance/GENERIC_LEDGER_PERSISTENCE.ts";
+} from "@02/HORMONE_BUFFER.ts";
+import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@03/GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "../reduction_core/DRIFT_WARDEN.ts";
 import { DollFork } from "../reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
@@ -13813,7 +13817,7 @@ const applyHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = applyLedgerUpdate(homeostasisBaseTaxLedgerRuntime, update);
@@ -13835,7 +13839,7 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = rollbackLedgerUpdate(
@@ -13882,7 +13886,7 @@ const applyHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = applyLedgerUpdate(
@@ -13907,7 +13911,7 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = rollbackLedgerUpdate(
@@ -13957,7 +13961,7 @@ const applyPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.pressureRing.scale"
 > => {
   const result = applyLedgerUpdate(pressureRingScaleLedgerRuntime, update);
@@ -13979,7 +13983,7 @@ const rollbackPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.pressureRing.scale"
 > => {
   const result = rollbackLedgerUpdate(pressureRingScaleLedgerRuntime, rollback);
@@ -15354,13 +15358,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.pressureRing.scale"
     >
   > => {
@@ -15486,13 +15490,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.pressureRing.scale"
     >
   > => {
@@ -17762,7 +17766,7 @@ export const evaluateReplicationExecution = (
 // Securely re-materializes atoms from metadata. No eval, no injections.
 
 import { stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
-import { injectHologram } from "./HOLOGRAM_MODULE.ts";
+import { injectHologram } from "@02/HOLOGRAM_MODULE.ts";
 
 export const RECOVERY = {
   // Re-materialize an atom from its last known metadata
@@ -17804,9 +17808,9 @@ export const ATOM = () => (x: any) => x;
 // OMEGA-64 | REFLECTION_ENGINE.ts | Era 17: The True Quine
 // Bridges RAM state back to Flatland source code.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@00";
+import { LOGGER } from "@00";
 
 const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
   const out = new Uint32Array(16);
@@ -17966,7 +17970,7 @@ ${REFLECTION_ENGINE.decompile(instructions)}
 // OMEGA-64 | RIBOSOME_TICK.ts | Zero-IOPS Execution Kernel
 // Interprets the Logic Prefix (8 hex chars) directly from eigenvalues.
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export const MAPPING: Record<string, string> = {
   "0": "[0]",
@@ -18101,11 +18105,11 @@ if (import.meta.main) {
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
-import { IMMUNE } from "./IMMUNE.ts";
-import { ID_TO_IDX, IDX_TO_ID } from "../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { IMMUNE } from "@02/IMMUNE.ts";
+import { ID_TO_IDX, IDX_TO_ID } from "@00";
+import { STATE_MATRIX } from "@00";
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export interface Atom {
   id: string; // The Filename (Address)
@@ -18375,13 +18379,13 @@ if (import.meta.main) {
 // OMEGA-64 | SNAP.ts | The Persistent Observer (Era 15)
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
-import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@00";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
 } from "jsr:@std/yaml@^1.0.5";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export const SNAP = {
   // Sync Matrix State to .md Files with Atomic "Write-then-Rename"
@@ -18447,7 +18451,7 @@ export const SNAP = {
 ## FILE: 03_governance/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 
 ```typescript
-import type { ArchitectPlasmidExecutionMode } from "../02_metabolism/mod.ts";
+import type { ArchitectPlasmidExecutionMode } from "@02";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {
@@ -18911,8 +18915,8 @@ export const evaluateArchitectPlasmidPromotionAction = (
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 
 export type LedgerEvent = {
   tick: number;
@@ -19078,15 +19082,15 @@ export const AUDIT_ENGINE = {
 ## FILE: 03_governance/CONTROL_INTENT_QUEUE.ts
 
 ```typescript
-import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
-import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
-import { PRNG } from "../00_substrate/mod.ts";
+import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
+import { PRNG } from "@00";
 
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
-import { GLYPH_BUFFER, PHYSICS_ENGINE } from "../01_physics/mod.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { GLYPH_BUFFER, PHYSICS_ENGINE } from "@01";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
@@ -20483,7 +20487,7 @@ export const CONTROL_INTENT_QUEUE = {
 ## FILE: 03_governance/DAEMON_INGRESS_POLICY.ts
 
 ```typescript
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
@@ -21130,10 +21134,10 @@ export const GATE_BUDGET = {
 ## FILE: 03_governance/GATE_LEDGER.ts
 
 ```typescript
-import { type BridgeModeEvent, type GateConfig } from "../00_substrate/mod.ts";
-import { type LedgerEvent } from "../00_substrate/mod.ts";
+import { type BridgeModeEvent, type GateConfig } from "@00";
+import { type LedgerEvent } from "@00";
 import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "../00_substrate/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@00";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -21178,11 +21182,11 @@ export const persistGateLedgerArtifacts = async (
 ## FILE: 03_governance/GATE_MERGER.ts
 
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "../00_substrate/mod.ts";
-import { LOAD_LOAD as LOAD } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { GATE_BUDGET } from "./GATE_BUDGET.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@00";
+import { LOAD_LOAD as LOAD } from "@00";
+import { LOGGER } from "@00";
+import { GATE_BUDGET } from "@03/GATE_BUDGET.ts";
+import { STATE_MATRIX } from "@00";
 
 type I16Limits = {
   max: number;
@@ -21397,9 +21401,9 @@ export const mergeGateProposals = (
 ## FILE: 03_governance/GATE_VALIDATOR.ts
 
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "../00_substrate/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@00";
 import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "../00_substrate/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@00";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
@@ -21614,14 +21618,14 @@ export const validateGateProposals = async (
 ## FILE: 03_governance/GATE.ts
 
 ```typescript
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "../00_substrate/mod.ts";
-import { type LedgerEvent } from "../00_substrate/mod.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@00";
+import { type LedgerEvent } from "@00";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP, I16_LIMITS_I16_LIMITS as I16_LIMITS, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { validateGateProposals } from "./mod.ts";
-import { mergeGateProposals } from "./mod.ts";
-import { persistGateLedgerArtifacts } from "./mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@00";
+import { LOGGER } from "@00";
+import { validateGateProposals } from "@03";
+import { mergeGateProposals } from "@03";
+import { persistGateLedgerArtifacts } from "@03";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -22071,8 +22075,8 @@ import {
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
-} from "./GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "./GENETIC_LEDGER.ts";
+} from "@03/GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
   | {
@@ -22498,7 +22502,7 @@ export const appendLedgerRecordAndMaybeCompact = async <
 import {
   geneticLedgerEntryByKey,
   type GeneticLedgerKey,
-} from "./GENETIC_LEDGER.ts";
+} from "@03/GENETIC_LEDGER.ts";
 
 export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;
@@ -22807,7 +22811,7 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
 ## FILE: 03_governance/GENETIC_LEDGER.ts
 
 ```typescript
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"
@@ -22996,7 +23000,7 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
 ## FILE: 03_governance/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
 
 ```typescript
-import type { GuardianSignalExecutionMode } from "../02_metabolism/mod.ts";
+import type { GuardianSignalExecutionMode } from "@02";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {
@@ -23464,26 +23468,26 @@ export const evaluateGuardianSignalPromotionAction = (
 ## FILE: 03_governance/mod.ts
 
 ```typescript
-export * from "./GATE_LEDGER.ts";
-export * from "./CONTROL_INTENT_QUEUE.ts";
-export * from "./DAEMON_INGRESS_POLICY.ts";
-export * from "./GATE_BUDGET.ts";
-export * from "./PREDICTION_MARKET.ts";
-export * from "./GATE.ts";
-export * from "./ATOMIC_LEDGER.ts";
-export * from "./SOVEREIGNTY_ENGINE.ts";
-export * from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
-export * from "./AUDIT_ENGINE.ts";
-export * from "./REPLICATION_PROMOTION_ACTION.ts";
-export * from "./GATE_MERGER.ts";
-export * from "./RUNTIME_POLICY.ts";
-export * from "./GENERIC_LEDGER_SYSTEM.ts";
-export * from "./REPLICATION_PROMOTION_DECISION.ts";
-export * from "./GENETIC_LEDGER.ts";
-export * from "./GATE_VALIDATOR.ts";
-export * from "./REPLICATION_PROMOTION.ts";
-export * from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
-export * from "./GENERIC_LEDGER_PERSISTENCE.ts";
+export * from "@03/GATE_LEDGER.ts";
+export * from "@03/CONTROL_INTENT_QUEUE.ts";
+export * from "@03/DAEMON_INGRESS_POLICY.ts";
+export * from "@03/GATE_BUDGET.ts";
+export * from "@03/PREDICTION_MARKET.ts";
+export * from "@03/GATE.ts";
+export * from "@03/ATOMIC_LEDGER.ts";
+export * from "@03/SOVEREIGNTY_ENGINE.ts";
+export * from "@03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
+export * from "@03/AUDIT_ENGINE.ts";
+export * from "@03/REPLICATION_PROMOTION_ACTION.ts";
+export * from "@03/GATE_MERGER.ts";
+export * from "@03/RUNTIME_POLICY.ts";
+export * from "@03/GENERIC_LEDGER_SYSTEM.ts";
+export * from "@03/REPLICATION_PROMOTION_DECISION.ts";
+export * from "@03/GENETIC_LEDGER.ts";
+export * from "@03/GATE_VALIDATOR.ts";
+export * from "@03/REPLICATION_PROMOTION.ts";
+export * from "@03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+export * from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 ```
 
@@ -23495,7 +23499,7 @@ export * from "./GENERIC_LEDGER_PERSISTENCE.ts";
 // OMEGA-64 | PREDICTION_MARKET.ts | Era 18: Deterministic Monad
 // Replaces Parallel Realities. Crisis triggers mutations that atoms bet on.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 export interface PredictionMarketAkashaDelegate {
   recordMarketResolution(
@@ -23663,8 +23667,8 @@ export const PREDICTION_MARKET = {
 ## FILE: 03_governance/REPLICATION_PROMOTION_ACTION.ts
 
 ```typescript
-import type { ReplicationExecutionMode } from "./runtime_bridge/replication_hybrid.ts";
-import type { ReplicationPromotionDecision } from "./REPLICATION_PROMOTION_DECISION.ts";
+import type { ReplicationExecutionMode } from "@03/runtime_bridge/replication_hybrid.ts";
+import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {
   currentMode: ReplicationExecutionMode;
@@ -23889,7 +23893,7 @@ export const evaluateReplicationPromotionDecision = (
 ## FILE: 03_governance/REPLICATION_PROMOTION.ts
 
 ```typescript
-import type { ReplicationExecutionMode } from "../02_metabolism/mod.ts";
+import type { ReplicationExecutionMode } from "@02";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;
@@ -24111,8 +24115,8 @@ export const evaluateReplicationPromotion = (
 ## FILE: 03_governance/RUNTIME_POLICY.ts
 
 ```typescript
-import { parseEnvBool, parseEnvBoundedInt } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { parseEnvBool, parseEnvBoundedInt } from "@00";
+import { LOGGER } from "@00";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =
@@ -24996,8 +25000,8 @@ export const RUNTIME_POLICY = {
 // OMEGA-64 | SOVEREIGNTY_ENGINE.ts | The Governance Layer
 // Handles Regent Election, Decrees, and Legitimacy.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@02";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(
     tick: number,
@@ -25208,7 +25212,7 @@ export const SOVEREIGNTY_ENGINE: any = {
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus } from "../mod.ts";
+import { SwarmNexus } from "@04";
 
 Deno.test("P2P Transit: Nexus A routes Atom to Nexus B", async () => {
   let receivedPayload: Uint8Array | null = null;
@@ -25424,12 +25428,12 @@ if (import.meta.main) {
 ## FILE: 04_noosphere/mod.ts
 
 ```typescript
-export * from "./P2P_FEDERATION.ts";
-export * from "./BOOTSTRAP_HUB.ts";
-export * from "./P2P_CODEC.ts";
-export * from "./SWARM_NODE.ts";
-export * from "./SWARM_NEXUS.ts";
-export * from "./P2P_SYNAPSE.ts";
+export * from "@04/P2P_FEDERATION.ts";
+export * from "@04/BOOTSTRAP_HUB.ts";
+export * from "@04/P2P_CODEC.ts";
+export * from "@04/SWARM_NODE.ts";
+export * from "@04/SWARM_NEXUS.ts";
+export * from "@04/P2P_SYNAPSE.ts";
 
 ```
 
@@ -25441,7 +25445,7 @@ export * from "./P2P_SYNAPSE.ts";
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
@@ -25566,11 +25570,11 @@ export const P2P_CODEC = {
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../02_metabolism/mod.ts";
-import { PRNG } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@02";
+import { PRNG } from "@00";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -25578,7 +25582,7 @@ export interface P2pFederationUpwardDelegate {
 }
 
 let delegate: P2pFederationUpwardDelegate | null = null;
-import { P2P_CODEC } from "./P2P_CODEC.ts";
+import { P2P_CODEC } from "@04/P2P_CODEC.ts";
 
 export interface AtomPacket {
   id: string;
@@ -25799,8 +25803,8 @@ export const P2P_FEDERATION = {
 
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;
@@ -25899,7 +25903,7 @@ if (import.meta.main) {
 ## FILE: 04_noosphere/SWARM_NEXUS.ts
 
 ```typescript
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export type NexusConfig = {
   instanceId: number;
@@ -26380,7 +26384,7 @@ export class SwarmNexus {
 ## FILE: 04_noosphere/SWARM_NODE.ts
 
 ```typescript
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export type SwarmHeartbeat = {
   nodeId: string;
@@ -26442,10 +26446,10 @@ import {
   assert,
   assertEquals,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { NEXUS_DAEMON, PULSE } from "../../02_metabolism/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { SOVEREIGN_ORACLE } from "../mod.ts";
-import { LLM_SYNAPSE } from "../mod.ts";
+import { NEXUS_DAEMON, PULSE } from "@02";
+import { STATE_MATRIX } from "@00";
+import { SOVEREIGN_ORACLE } from "@05";
+import { LLM_SYNAPSE } from "@05";
 
 Deno.test({
   name: "Phase 39: Sovereign Oracle Epistemic Gate (Memetic Ingestion)",
@@ -26530,7 +26534,7 @@ Deno.test({
 
 ```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999; // Assume an atom seeded with this ID
@@ -26620,8 +26624,8 @@ if (import.meta.main) {
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { GLYPH_BUFFER } from "../01_physics/mod.ts";
+import { PHYSICS_ENGINE } from "@01";
+import { GLYPH_BUFFER } from "@01";
 
 export const AVATAR_ENGINE = {
   /**
@@ -26661,7 +26665,7 @@ export const AVATAR_ENGINE = {
 
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999;
@@ -26847,7 +26851,7 @@ if (import.meta.main) {
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export const LLM_SYNAPSE = {
   /**
@@ -27278,12 +27282,12 @@ if (import.meta.main) {
 ## FILE: 05_exocortex/mod.ts
 
 ```typescript
-export * from "./AVATAR_ENGINE.ts";
-export * from "./SOVEREIGN_ORACLE.ts";
-export * from "./llm_soul.ts";
-export * from "./SEMANTIC_MEMBRANE.ts";
-export * from "./avatar_bot.ts";
-export * from "./LLM_SYNAPSE.ts";
+export * from "@05/AVATAR_ENGINE.ts";
+export * from "@05/SOVEREIGN_ORACLE.ts";
+export * from "@05/llm_soul.ts";
+export * from "@05/SEMANTIC_MEMBRANE.ts";
+export * from "@05/avatar_bot.ts";
+export * from "@05/LLM_SYNAPSE.ts";
 
 ```
 
@@ -27295,8 +27299,8 @@ export * from "./LLM_SYNAPSE.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { STATE_MATRIX } from "@00";
+import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -27817,13 +27821,13 @@ export const SEMANTIC_MEMBRANE = {
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "../03_governance/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
+import { STATE_MATRIX } from "@00";
+import { SOVEREIGNTY_ENGINE } from "@03";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
+import { PULSE } from "@02";
+import { SEMANTIC_MEMBRANE } from "@05/SEMANTIC_MEMBRANE.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -28573,8 +28577,8 @@ Deno.test("topology: architecture guard - strict acyclic descent", async () => {
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { loadEpoch, saveEpoch } from "../mod.ts";
-import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "../../00_substrate/mod.ts";
+import { loadEpoch, saveEpoch } from "@06";
+import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "@00";
 
 async function hashMemArray(buffer: Uint8Array): Promise<string> {
   // crypto.subtle.digest requires ArrayBuffer, so we slice a copy if it's SharedArrayBuffer
@@ -28670,11 +28674,11 @@ Deno.test("Continuum Binary Epoch Restoration Parity", async () => {
 ## FILE: 06_akasha/AGENT_PROXY.ts
 
 ```typescript
-import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { SPATIAL_HASH } from "../01_physics/mod.ts";
-import { assembleScript } from "../02_metabolism/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
+import { SPATIAL_HASH } from "@01";
+import { assembleScript } from "@02";
+import { LOGGER } from "@00";
 
 export class AgentProxy {
   port: number;
@@ -28892,10 +28896,10 @@ if (import.meta.main) {
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { RISC, STATE_MATRIX } from "../00_substrate/mod.ts";
-import type { GlyphSnapshot } from "../01_physics/mod.ts";
-import { LLM_SYNAPSE } from "../05_exocortex/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX } from "@00";
+import type { GlyphSnapshot } from "@01";
+import { LLM_SYNAPSE } from "@05";
+import { LOGGER } from "@00";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
@@ -30681,8 +30685,8 @@ export const AKASHA_CODEX = {
 
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
-import { AKASHA_SIGNALING } from "./AKASHA_SIGNALING.ts";
+import { RUNTIME_POLICY } from "@03";
+import { AKASHA_SIGNALING } from "@06/AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -31736,12 +31740,12 @@ export const AKASHA_SIGNALING = {
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
-import { LLM_SYNAPSE } from "../05_exocortex/mod.ts";
-import { AUDIT_ENGINE } from "../03_governance/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "../06_akasha/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { SEMANTIC_MEMBRANE } from "@05";
+import { LLM_SYNAPSE } from "@05";
+import { AUDIT_ENGINE } from "@03";
+import { LOGGER } from "@00";
+import { AKASHA_CODEX } from "@06";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -31833,7 +31837,7 @@ if (import.meta.main) {
 ## FILE: 06_akasha/CONTINUUM.ts
 
 ```typescript
-import { LATTICE_MEMORY_END } from "../00_substrate/mod.ts";
+import { LATTICE_MEMORY_END } from "@00";
 import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
 import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
 
@@ -31981,9 +31985,9 @@ export async function decompressMemoryToLattice(
 ## FILE: 06_akasha/LINEAGE_TRACKER.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { STATE_MATRIX } from "@00";
+import { LOGGER } from "@00";
+import { AKASHA_CODEX } from "@06/AKASHA_CODEX.ts";
 
 export type MemeticStats = {
   firstAppearance: number;
@@ -32093,22 +32097,22 @@ export const LINEAGE_TRACKER = {
 ## FILE: 06_akasha/mod.ts
 
 ```typescript
-export * from "./AGENT_PROXY.ts";
-export * from "./TELEMETRY_STREAM.ts";
-export * from "./AKASHA_CODEX.ts";
-export * from "./SNAP_ENGINE.ts";
-export * from "./SNAPSHOT_ENGINE.ts";
-export * from "./BREATH.ts";
-export * from "./PHYSIOLOGY_SNAPSHOT.ts";
-export * from "./AKASHA_SERVER.ts";
-export * from "./CONTINUUM.ts";
-export * from "./TUI_DASHBOARD.ts";
-export * from "./LINEAGE_TRACKER.ts";
-export * from "./PANOPTICON_SERVER.ts";
-export * from "./SERVE_DASHBOARD.ts";
-export * from "./OMEGA_DAEMON.ts";
-export * from "./AKASHA_SIGNALING.ts";
-export * from "./MUTATION_TELEMETRY.ts";
+export * from "@06/AGENT_PROXY.ts";
+export * from "@06/TELEMETRY_STREAM.ts";
+export * from "@06/AKASHA_CODEX.ts";
+export * from "@06/SNAP_ENGINE.ts";
+export * from "@06/SNAPSHOT_ENGINE.ts";
+export * from "@06/BREATH.ts";
+export * from "@06/PHYSIOLOGY_SNAPSHOT.ts";
+export * from "@06/AKASHA_SERVER.ts";
+export * from "@06/CONTINUUM.ts";
+export * from "@06/TUI_DASHBOARD.ts";
+export * from "@06/LINEAGE_TRACKER.ts";
+export * from "@06/PANOPTICON_SERVER.ts";
+export * from "@06/SERVE_DASHBOARD.ts";
+export * from "@06/OMEGA_DAEMON.ts";
+export * from "@06/AKASHA_SIGNALING.ts";
+export * from "@06/MUTATION_TELEMETRY.ts";
 
 ```
 
@@ -32117,8 +32121,8 @@ export * from "./MUTATION_TELEMETRY.ts";
 ## FILE: 06_akasha/MUTATION_TELEMETRY.ts
 
 ```typescript
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
 
 type MutationLane =
   | "internal_oracle"
@@ -32318,8 +32322,8 @@ if (import.meta.main) {
 // OMEGA-64 | OBSERVER_UI.ts | Era 11: The Eye of the Observer
 // Deno server to stream the SoA Matrix and Vox Populi to the browser.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { SEMANTIC_MEMBRANE } from "@05";
 
 const PORT = 8000;
 const UI_PATH = "./ui/index.html";
@@ -34206,9 +34210,9 @@ if (import.meta.main) {
 ## FILE: 06_akasha/PANOPTICON_SERVER.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "./AKASHA_CODEX.ts";
+import { STATE_MATRIX } from "@00";
+import { LOGGER } from "@00";
+import { AKASHA_CODEX } from "@06/AKASHA_CODEX.ts";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
@@ -34327,9 +34331,9 @@ export const PANOPTICON_SERVER = {
 ## FILE: 06_akasha/PHYSIOLOGY_SNAPSHOT.ts
 
 ```typescript
-import { GENETIC_LEDGER_CATALOG, type GeneticLedgerEntry, type GeneticLedgerKey } from "../03_governance/mod.ts";
-import { HORMONE_BUFFER_CATALOG, type HormoneId, type HormoneSpec } from "../02_metabolism/mod.ts";
-import type { LedgerRuntimeSnapshot } from "../03_governance/mod.ts";
+import { GENETIC_LEDGER_CATALOG, type GeneticLedgerEntry, type GeneticLedgerKey } from "@03";
+import { HORMONE_BUFFER_CATALOG, type HormoneId, type HormoneSpec } from "@02";
+import type { LedgerRuntimeSnapshot } from "@03";
 
 export type PhysiologySnapshotInput = {
   tick: number;
@@ -34619,7 +34623,7 @@ async function handler(req: Request): Promise<Response> {
         args: [
           "eval",
           `
-                    import { injectHologram } from "../02_metabolism/mod.ts";
+                    import { injectHologram } from "@02";
                     import { stringify } from "jsr:@std/yaml@^1.0.5";
                     const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
                     let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
@@ -34742,9 +34746,9 @@ if (import.meta.main) {
 
 ```typescript
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
-import { sharedBuffer } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { sharedBuffer } from "@00";
+import * as OFFSETS from "@00";
+import { LOGGER } from "@00";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const SNAP_DIR = ".omega/snap";
@@ -34848,10 +34852,10 @@ export const SNAP_ENGINE = {
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PHYSICS_ENGINE } from "@01";
+import { SEMANTIC_MEMBRANE } from "@05";
+import { LOGGER } from "@00";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
@@ -35279,11 +35283,11 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ## FILE: 06_akasha/TUI_DASHBOARD.ts
 
 ```typescript
-import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "../02_metabolism/mod.ts";
-import { AgentProxy } from "./AGENT_PROXY.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
+import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
+import { AgentProxy } from "@06/AGENT_PROXY.ts";
+import { LOGGER } from "@00";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;
@@ -35417,6 +35421,198 @@ if (import.meta.main) {
 
 ---
 
+## FILE: 07_meta/01_guards/vector_decoder.ts
+
+```typescript
+// OMEGA-64 | vector_decoder.ts | The Memory Management Unit (Phase 55)
+
+const configText = await Deno.readTextFile(
+  new URL("../../deno.jsonc", import.meta.url)
+);
+const config = JSON.parse(configText);
+
+/**
+ * Перетворює векторний імпорт на реальний шлях ФС.
+ * resolveVector("@00") -> "./00_substrate/mod.ts"
+ * resolveVector("@01/03_tests/test.ts") -> "./01_physics/03_tests/test.ts"
+ */
+export function resolveVector(vector: string): string {
+  if (config.imports[vector]) {
+    return config.imports[vector];
+  }
+
+  // Check prefix mapping (e.g. @01/path -> ./01_physics/path)
+  for (const [key, value] of Object.entries(config.imports)) {
+    if (key.endsWith("/") && vector.startsWith(key)) {
+      const remainder = vector.slice(key.length);
+      return `${value}${remainder}`;
+    }
+  }
+
+  throw new Error(`Quantum breach: Vector ${vector} is unmapped.`);
+}
+
+/**
+ * Перетворює реальний шлях на вектор (для лінтера).
+ * extractVector("./02_metabolism/PULSE.ts") -> "@02"
+ */
+export function extractVector(realPath: string): string {
+  // Витягуємо перші дві цифри папки
+  const match = realPath.match(/(?:^|\/)0?(\d)_/);
+  if (match) {
+    return `@0${match[1]}`;
+  }
+  const matchTwoDigits = realPath.match(/(?:^|\/)(\d{2})_/);
+  return matchTwoDigits ? `@${matchTwoDigits[1]}` : "@unknown";
+}
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/apply_vector_maps.ts
+
+```typescript
+// OMEGA-64 | apply_vector_maps.ts | Mass Vector Normalizer
+import { join } from "node:path";
+
+const configText = await Deno.readTextFile(
+  new URL("../../deno.jsonc", import.meta.url)
+);
+const config = JSON.parse(configText);
+
+// Extract map mappings like "./02_metabolism/mod.ts" -> "@02"
+// and "./02_metabolism/" -> "@02/"
+const inverseMap: { realPath: string; vector: string }[] = [];
+for (const [vector, realPath] of Object.entries(config.imports)) {
+  if (typeof realPath === "string" && vector.startsWith("@0")) {
+     inverseMap.push({ realPath: realPath.replace(/^\.\//, ""), vector });
+  }
+}
+
+// Sort by length descending to match longest precise path first
+inverseMap.sort((a, b) => b.realPath.length - a.realPath.length);
+
+const EXCLUDE_PATTERNS: RegExp[] = [
+  /(^|\/)\.omega\//u,
+  /(^|\/)node_modules\//u,
+  /(^|\/)build\//u,
+  /(^|\/)dist\//u,
+  /(^|\/)\.git\//u,
+];
+
+const discoverCodeFiles = async (dir: string): Promise<string[]> => {
+  const discovered: string[] = [];
+  const queue = [dir];
+  while (queue.length > 0) {
+    const currentPath = queue.shift()!;
+    try {
+      for await (const entry of Deno.readDir(currentPath)) {
+        if (entry.name.startsWith(".")) continue;
+        const entryPath = currentPath === "."
+          ? entry.name
+          : join(currentPath, entry.name);
+        
+        if (EXCLUDE_PATTERNS.some(p => p.test(entryPath))) continue;
+
+        if (entry.isDirectory) {
+          queue.push(entryPath);
+        } else if (
+          entry.isFile &&
+          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx"))
+        ) {
+          discovered.push(entryPath);
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+  return discovered;
+};
+
+const resolveImportPath = (currentFilePath: string, importSpecifier: string) => {
+    try {
+        const url = new URL(importSpecifier, `file:///fake/root/${currentFilePath}`);
+        const resolvedPath = url.pathname.replace(/^\/fake\/root\//, "");
+        return resolvedPath;
+    } catch {
+        return null;
+    }
+};
+
+const processFile = async (filePath: string) => {
+    let content = await Deno.readTextFile(filePath);
+    let modified = false;
+
+    // Regex to find import/export statements
+    // Matches: import { X } from "@02"
+    const IMPORT_EXPORT_RE = /(import|export)\s+(?:[\s\S]*?\sfrom\s+)?["'](\.[^"']+)["']/g;
+    const DYNAMIC_IMPORT_RE = /import\(\s*["'](\.[^"']+)["']\s*\)/g;
+
+    const replacer = (match: string, p1: string, specifier: string) => {
+        // Resolve the specifier relative to the current file
+        const resolvedPath = resolveImportPath(filePath, specifier);
+        if (!resolvedPath) return match;
+
+        // Check if resolvedPath matches any vector
+        for (const { realPath, vector } of inverseMap) {
+            // Precise exact match for mod.ts files
+            if (resolvedPath === realPath) {
+                modified = true;
+                return match.replace(specifier, vector);
+            }
+            // Prefix match for deep folders
+            if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
+                modified = true;
+                const remainder = resolvedPath.slice(realPath.length);
+                return match.replace(specifier, `${vector}${remainder}`);
+            }
+        }
+        return match;
+    };
+
+    content = content.replace(IMPORT_EXPORT_RE, replacer);
+    content = content.replace(DYNAMIC_IMPORT_RE, (match, specifier) => {
+         const resolvedPath = resolveImportPath(filePath, specifier);
+         if (!resolvedPath) return match;
+         for (const { realPath, vector } of inverseMap) {
+            if (resolvedPath === realPath) {
+                modified = true;
+                return match.replace(specifier, vector);
+            }
+            if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
+                modified = true;
+                const remainder = resolvedPath.slice(realPath.length);
+                return match.replace(specifier, `${vector}${remainder}`);
+            }
+        }
+        return match;
+    });
+
+    if (modified) {
+        await Deno.writeTextFile(filePath, content);
+        console.log(`Vectorized: ${filePath}`);
+    }
+};
+
+const main = async () => {
+    console.log("Discovering files...");
+    const files = await discoverCodeFiles(".");
+    console.log(`Found ${files.length} ts files. Processing...`);
+    
+    for (const file of files) {
+        await processFile(file);
+    }
+    console.log("Vectorization complete.");
+};
+
+await main();
+
+```
+
+---
+
 ## FILE: 07_meta/02_runners/export_rust.ts
 
 ```typescript
@@ -35520,13 +35716,13 @@ if (import.meta.main) {
 ## FILE: 07_meta/02_runners/RUN_STAGE8_TICKS.ts
 
 ```typescript
-import { PULSE } from "./02_metabolism/mod.ts";
-import { STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SOVEREIGN_ORACLE } from "./05_exocortex/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
+import { PULSE } from "@07/02_runners/02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@07/02_runners/00_substrate/mod.ts";
+import { SOVEREIGN_ORACLE } from "@07/02_runners/05_exocortex/mod.ts";
+import { LOGGER } from "@07/02_runners/00_substrate/mod.ts";
+import { evaluateGuardianSignalPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "@07/02_runners/63_necropolis/mod.ts";
+import { RUNTIME_POLICY } from "@03";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");
@@ -35576,42 +35772,42 @@ run().catch((err) => {
 ## FILE: 07_meta/02_runners/SYSTEM_START.ts
 
 ```typescript
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "./03_governance/mod.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "./03_governance/mod.ts";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02_runners/03_governance/mod.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02_runners/03_governance/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
-import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "./02_metabolism/mod.ts";
-import { BREATH } from "../../06_akasha/mod.ts";
-import { MAX_ATOMS, STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
-import { P2P_FEDERATION } from "./04_noosphere/mod.ts";
-import { PHYSICS_ENGINE } from "./01_physics/mod.ts";
-import { SNAPSHOT_ENGINE } from "./06_akasha/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "./03_governance/mod.ts";
+import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "@07/02_runners/02_metabolism/mod.ts";
+import { BREATH } from "@06";
+import { MAX_ATOMS, STATE_MATRIX } from "@07/02_runners/00_substrate/mod.ts";
+import { SEMANTIC_MEMBRANE } from "@07/02_runners/05_exocortex/mod.ts";
+import { P2P_FEDERATION } from "@07/02_runners/04_noosphere/mod.ts";
+import { PHYSICS_ENGINE } from "@07/02_runners/01_physics/mod.ts";
+import { SNAPSHOT_ENGINE } from "@07/02_runners/06_akasha/mod.ts";
+import { SOVEREIGNTY_ENGINE } from "@07/02_runners/03_governance/mod.ts";
 import {
   SOVEREIGN_ORACLE,
-} from "./05_exocortex/mod.ts";
+} from "@07/02_runners/05_exocortex/mod.ts";
 import {
   SwarmNexus,
   SWARM_NODE,
   P2P_CODEC,
-} from "./04_noosphere/mod.ts";
-import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "./03_governance/mod.ts";
-import * as OFFSETS from "./00_substrate/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
-import { mutateUniversalConstants } from "./03_governance/mod.ts";
-import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "./06_akasha/mod.ts";
-import { MUTATION_TELEMETRY } from "./06_akasha/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { TELEMETRY_STREAM } from "./06_akasha/mod.ts";
-import { LINEAGE_TRACKER } from "./06_akasha/mod.ts";
-import { capturePhysiologySnapshot } from "./06_akasha/mod.ts";
-import { GLYPH_BUFFER, type GlyphSnapshot } from "./01_physics/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "./03_governance/mod.ts";
-import { evaluateReplicationPromotion } from "./03_governance/mod.ts";
+} from "@07/02_runners/04_noosphere/mod.ts";
+import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02_runners/03_governance/mod.ts";
+import * as OFFSETS from "@07/02_runners/00_substrate/mod.ts";
+import { LOGGER } from "@07/02_runners/00_substrate/mod.ts";
+import { RUNTIME_POLICY } from "@03";
+import { mutateUniversalConstants } from "@07/02_runners/03_governance/mod.ts";
+import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "@07/02_runners/06_akasha/mod.ts";
+import { MUTATION_TELEMETRY } from "@07/02_runners/06_akasha/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "@07/02_runners/63_necropolis/mod.ts";
+import { TELEMETRY_STREAM } from "@07/02_runners/06_akasha/mod.ts";
+import { LINEAGE_TRACKER } from "@07/02_runners/06_akasha/mod.ts";
+import { capturePhysiologySnapshot } from "@07/02_runners/06_akasha/mod.ts";
+import { GLYPH_BUFFER, type GlyphSnapshot } from "@07/02_runners/01_physics/mod.ts";
+import { evaluateGuardianSignalPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { evaluateArchitectPlasmidPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { evaluateReplicationPromotion } from "@07/02_runners/03_governance/mod.ts";
 import type {
   ReplicationHybridSnapshot,
   ReplicationPromotionSnapshot,
@@ -35619,9 +35815,9 @@ import type {
   GuardianSignalPromotionSnapshot,
   ArchitectPlasmidHybridSnapshot,
   ArchitectPlasmidPromotionSnapshot,
-} from "./03_governance/mod.ts";
-import { PANOPTICON_SERVER } from "./06_akasha/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "./03_governance/mod.ts";
+} from "@07/02_runners/03_governance/mod.ts";
+import { PANOPTICON_SERVER } from "@07/02_runners/06_akasha/mod.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "@07/02_runners/03_governance/mod.ts";
 
 
 
@@ -36762,7 +36958,7 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
@@ -36778,7 +36974,7 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
@@ -36804,7 +37000,7 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
@@ -36820,7 +37016,7 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
@@ -39472,7 +39668,7 @@ if (violations > 0) {
 ## FILE: 63_necropolis/COLDSTART_BOOTSTRAP.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 type ColdstartConfig = {
   enabled: boolean;
@@ -39782,7 +39978,7 @@ export const COLDSTART_BOOTSTRAP = {
 ## FILE: 63_necropolis/debug_tick.ts
 
 ```typescript
-import { STATE_MATRIX, wasmMemory } from "../00_substrate/mod.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
 
 const main = async () => {
   const wasmBytes = await Deno.readFile("../../00_substrate/08_artifacts/release.wasm");
@@ -39834,9 +40030,9 @@ main();
 
 ```typescript
 import { COLDSTART_BOOTSTRAP } from "./COLDSTART_BOOTSTRAP.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { rolesView } from "../02_metabolism/mod.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { STATE_MATRIX } from "@00";
+import { rolesView } from "@02";
 
 console.log("Starting forced bootstrap...");
 
@@ -39866,15 +40062,15 @@ console.log(`Guardians seeded: ${guardians}`);
 ## FILE: 63_necropolis/LONGRUN_CANARY.ts
 
 ```typescript
-import { evaluateGuardianSignalPromotionAction } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotion } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotionDecision } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotionAction } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotionDecision } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotionAction } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotion } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotionDecision } from "../03_governance/mod.ts";
+import { evaluateGuardianSignalPromotionAction } from "@03";
+import { evaluateGuardianSignalPromotion } from "@03";
+import { evaluateGuardianSignalPromotionDecision } from "@03";
+import { evaluateArchitectPlasmidPromotionAction } from "@03";
+import { evaluateArchitectPlasmidPromotion } from "@03";
+import { evaluateArchitectPlasmidPromotionDecision } from "@03";
+import { evaluateReplicationPromotionAction } from "@03";
+import { evaluateReplicationPromotion } from "@03";
+import { evaluateReplicationPromotionDecision } from "@03";
 
 type CanaryConfig = {
   hostUrl: string;
@@ -41248,9 +41444,9 @@ if (import.meta.main) {
 ## FILE: 63_necropolis/LONGRUN_DAEMON_AUDIT.ts
 
 ```typescript
-import { evaluateGuardianSignalPromotionAction } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotion } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotionDecision } from "../03_governance/mod.ts";
+import { evaluateGuardianSignalPromotionAction } from "@03";
+import { evaluateGuardianSignalPromotion } from "@03";
+import { evaluateGuardianSignalPromotionDecision } from "@03";
 
 type AuditConfig = {
   hostUrl: string;
@@ -43015,11 +43211,11 @@ export * from "./debug_tick.ts";
 
 ```typescript
 // OMEGA-64 | nightly_soak.ts | Stage 42 Golden Master Validation
-import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "../02_metabolism/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
+import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "../AGENT_PROXY.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;
@@ -43211,9 +43407,9 @@ if (import.meta.main) {
 ```typescript
 // OMEGA-64 | run_ecosystem.ts | Long-term Evolution Simulator
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { ISA } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { ISA } from "@02";
 
 const TOTAL_TICKS = 50000;
 const LOG_INTERVAL = 100;
@@ -46663,8 +46859,8 @@ prototype. It stands as the topological blueprint for the upcoming pure Rust
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { sharedBuffer as mainlineBuffer } from "../../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
+import { sharedBuffer as mainlineBuffer } from "@00";
 
 /**
  * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
@@ -46832,9 +47028,9 @@ export class DollFork {
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;
@@ -46935,9 +47131,9 @@ export class DollForkRunner {
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import * as OFFSETS from "../00_substrate/mod.ts";
-import { sharedBuffer } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
+import { sharedBuffer } from "@00";
+import { LOGGER } from "@00";
 
 export type DriftMetrics = {
   coherence: number;
@@ -47197,7 +47393,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
 import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export interface InceptiveProgram {
   bytecode: number[];
@@ -47257,7 +47453,7 @@ export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 ## FILE: reduction_core/GlyphIR64.ts
 
 ```typescript
-import { RISC } from "../00_substrate/mod.ts";
+import { RISC } from "@00";
 
 export type GlyphKind =
   | "core"
@@ -47668,7 +47864,7 @@ export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
 ```typescript
 // OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
 import { Relic } from "./relics/RELIC_CULTIVATION.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 /**
  * ReificationAction promotes a relic from the sandbox to the canonical GENESIS pool.
@@ -47747,9 +47943,9 @@ if (import.meta.main) {
 
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "../../06_akasha/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { AKASHA_CODEX } from "@06";
+import { LOGGER } from "@00";
 
 /**
  * LineageTracker maintains the semantic link between active atoms and their ancestry.
@@ -47791,8 +47987,8 @@ export class LineageTracker {
 
 ```typescript
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { LOGGER } from "@00";
 
 /**
  * QuorumAdvocate evaluates local group coherence and biases the GATE system.
@@ -47843,9 +48039,9 @@ export class QuorumAdvocate {
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 import { DollFork } from "../doll_fork/DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export type Relic = {
   id: string;
@@ -47938,7 +48134,7 @@ import { DollFork } from "./doll_fork/DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "./doll_fork/DOLL_FORK_RUNNER.ts";
 import { DriftWarden } from "./DRIFT_WARDEN.ts";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 
 export type SemanticProposal = {
   id: string;
@@ -48541,7 +48737,7 @@ export const glyphTapeToPrettyText = (
 ## FILE: runtime_bridge/opcode_to_glyph.ts
 
 ```typescript
-import { RISC } from "../00_substrate/STATE_MATRIX.ts";
+import { RISC } from "@00/STATE_MATRIX.ts";
 import { glyphSpecByLegacyOpcode } from "../reduction_core/GlyphIR64.ts";
 
 export type LegacyInstruction = {
@@ -52709,7 +52905,7 @@ export const goldenTraceArtifactPaths = (id: string) => {
 ## FILE: verification/reduction_cases.ts
 
 ```typescript
-import { RISC, STATE_MATRIX, STRUCTURE } from "../00_substrate/STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {
   finalPc: number;
@@ -54086,7 +54282,7 @@ import {
   scriptToGlyphTape,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "../00_substrate/STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -55590,7 +55786,7 @@ if (import.meta.main) {
 ## FILE: verification/secretion_energetics_audit.ts
 
 ```typescript
-import { STATE_MATRIX } from "../00_substrate/STATE_MATRIX.ts";
+import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
 import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 

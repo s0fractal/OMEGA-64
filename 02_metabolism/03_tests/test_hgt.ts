@@ -2,13 +2,13 @@
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 const GRID_W = 140;
 

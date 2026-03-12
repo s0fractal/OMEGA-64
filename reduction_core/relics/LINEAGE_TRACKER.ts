@@ -1,7 +1,7 @@
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { AKASHA_CODEX } from "../../06_akasha/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { AKASHA_CODEX } from "@06";
+import { LOGGER } from "@00";
 
 /**
  * LineageTracker maintains the semantic link between active atoms and their ancestry.

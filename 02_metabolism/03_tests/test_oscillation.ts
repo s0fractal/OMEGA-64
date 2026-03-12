@@ -1,7 +1,7 @@
 // OMEGA-64 | test_oscillation.ts | Phase 18: Neural Oscillation Loops
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { MATRIX_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { MATRIX_ENGINE } from "@01";
 
 const CRYSTAL_OSCILLATOR = 5;
 const MEMORY_GRID_BASE = 33000000 + 1000000; // As used by WASM

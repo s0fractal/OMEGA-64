@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus } from "../mod.ts";
+import { SwarmNexus } from "@04";
 
 Deno.test("P2P Transit: Nexus A routes Atom to Nexus B", async () => {
   let receivedPayload: Uint8Array | null = null;

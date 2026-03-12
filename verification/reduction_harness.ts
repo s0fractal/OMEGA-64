@@ -5,7 +5,7 @@ import {
   scriptToGlyphTape,
 } from "../runtime_bridge/opcode_to_glyph.ts";
 import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "../00_substrate/STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,

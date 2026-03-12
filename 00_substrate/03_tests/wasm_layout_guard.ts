@@ -1,4 +1,4 @@
-import * as OFFSETS from "../mod.ts";
+import * as OFFSETS from "@00";
 
 const ASM_SOURCE_PATH = new URL("../assembly/index.ts", import.meta.url);
 

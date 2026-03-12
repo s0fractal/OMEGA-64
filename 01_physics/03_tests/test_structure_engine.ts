@@ -1,5 +1,5 @@
-import { STATE_MATRIX, STRUCTURE } from "../../00_substrate/mod.ts";
-import { STRUCTURE_ENGINE } from "../STRUCTURE_ENGINE.ts";
+import { STATE_MATRIX, STRUCTURE } from "@00";
+import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
 
 const gridIndex = (x: number, y: number): number => y * 140 + x;
 

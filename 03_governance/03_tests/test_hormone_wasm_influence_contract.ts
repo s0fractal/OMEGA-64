@@ -13,7 +13,7 @@
  *   5. Asserts the metric has changed in the expected direction.
  */
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 let passed = 0;
 let failed = 0;

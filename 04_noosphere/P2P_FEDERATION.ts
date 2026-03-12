@@ -1,11 +1,11 @@
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "../02_metabolism/mod.ts";
-import { PRNG } from "../00_substrate/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { IDX_TO_ID } from "@02";
+import { PRNG } from "@00";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -13,7 +13,7 @@ export interface P2pFederationUpwardDelegate {
 }
 
 let delegate: P2pFederationUpwardDelegate | null = null;
-import { P2P_CODEC } from "./P2P_CODEC.ts";
+import { P2P_CODEC } from "@04/P2P_CODEC.ts";
 
 export interface AtomPacket {
   id: string;

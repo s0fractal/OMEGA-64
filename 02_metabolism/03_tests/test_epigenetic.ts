@@ -1,8 +1,8 @@
 // OMEGA-64 | test_epigenetic.ts | Era 56: Epigenetic Inheritance Verification
 // Tests: weight inheritance in MITOSIS/MEIOSIS, ISA.INHERIT voluntary sync, SENSE type 0x0C.
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { STATE_MATRIX } from "@00";
 import {
   assert,
   assertEquals,

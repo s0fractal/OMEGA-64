@@ -1,7 +1,7 @@
 // OMEGA-64 | test_biomatrix.ts | Phase 14: Bio-Matrix Coupling Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { CRYSTAL_MEME, CRYSTAL_STANDARD, MATRIX_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { CRYSTAL_MEME, CRYSTAL_STANDARD, MATRIX_ENGINE } from "@01";
 
 async function runTest() {
   console.log("🔌 Phase 14: Bio-Matrix Coupling Verification\n");

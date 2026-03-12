@@ -3,8 +3,8 @@
  * Тест семантичної інтерференції хвильових пакетів.
  */
 
-import { WAVE_PACKET } from "./i.L13.core.WAVE_PACKET.ts";
-import { INTERFERENCE } from "./i.L13.core.INTERFERENCE.ts";
+import { WAVE_PACKET } from "@00/03_tests/i.L13.core.WAVE_PACKET.ts";
+import { INTERFERENCE } from "@00/03_tests/i.L13.core.INTERFERENCE.ts";
 
 function test() {
   console.log("🌊 OMEGA-64: Semantic Interference Test\n");

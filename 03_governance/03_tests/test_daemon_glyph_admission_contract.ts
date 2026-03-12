@@ -1,4 +1,4 @@
-import { type DaemonIngressMetrics, type DaemonInjectEnvelope, evaluateInvariantAdmission, normalizeDaemonNarrativeContext, planInvariantIngress } from "../mod.ts";
+import { type DaemonIngressMetrics, type DaemonInjectEnvelope, evaluateInvariantAdmission, normalizeDaemonNarrativeContext, planInvariantIngress } from "@03";
 
 const expect = (condition: boolean, message: string): void => {
   if (!condition) throw new Error(`[daemon-glyph-admission] ${message}`);

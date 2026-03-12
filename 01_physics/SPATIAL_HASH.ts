@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
 const GRID_COLS = 140; // 1400 / 10

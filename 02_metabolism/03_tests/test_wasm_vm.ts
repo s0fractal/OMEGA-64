@@ -1,6 +1,6 @@
-import { ISA, LAMBDA_VM } from "../../02_metabolism/mod.ts";
-import { STATE_MATRIX } from "../mod.ts";
-import { RIBOSOME } from "../../02_metabolism/mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { STATE_MATRIX } from "@02";
+import { RIBOSOME } from "@02";
 
 async function runWasmExpansionTests() {
   console.log("🕸️ [TEST] Booting Wasm Kernel Expansion Diagnostics...");

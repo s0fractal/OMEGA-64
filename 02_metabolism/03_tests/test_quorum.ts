@@ -1,8 +1,8 @@
 // OMEGA-64 | test_quorum.ts | Era 55: Quorum Sensing Verification
 // Tests ISA.QUORUM collective behaviors, quorumBuffer census, and SENSE type 0x0B.
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { STATE_MATRIX } from "@00";
 import {
   assert,
   assertEquals,

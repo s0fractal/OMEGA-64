@@ -1,7 +1,7 @@
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 import { DollFork } from "../doll_fork/DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export type Relic = {
   id: string;

@@ -1,12 +1,12 @@
-import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
-import { PREDICTION_MARKET } from "./PREDICTION_MARKET.ts";
-import { PRNG } from "../00_substrate/mod.ts";
+import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
+import { PRNG } from "@00";
 
-import { RUNTIME_POLICY } from "./RUNTIME_POLICY.ts";
-import { GLYPH_BUFFER, PHYSICS_ENGINE } from "../01_physics/mod.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { GLYPH_BUFFER, PHYSICS_ENGINE } from "@01";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;

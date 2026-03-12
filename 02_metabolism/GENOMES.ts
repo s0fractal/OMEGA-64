@@ -1,5 +1,5 @@
-import { RISC } from "../00_substrate/mod.ts";
-import { SYS } from "../00_substrate/mod.ts";
+import { RISC } from "@00";
+import { SYS } from "@00";
 
 // Utility to assemble RISC script
 export function assembleScript(ops: number[]): Uint8Array {

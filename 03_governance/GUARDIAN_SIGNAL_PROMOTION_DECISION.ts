@@ -1,4 +1,4 @@
-import type { GuardianSignalExecutionMode } from "../02_metabolism/mod.ts";
+import type { GuardianSignalExecutionMode } from "@02";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {

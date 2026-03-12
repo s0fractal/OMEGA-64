@@ -1,7 +1,7 @@
 // OMEGA-64 | test_matrix.ts | The Awakened Matrix Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { MATRIX_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { MATRIX_ENGINE } from "@01";
 
 async function runTest() {
   console.log("💎 Starting Phase 10: The Awakened Matrix Verification...");

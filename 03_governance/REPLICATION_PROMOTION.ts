@@ -1,4 +1,4 @@
-import type { ReplicationExecutionMode } from "../02_metabolism/mod.ts";
+import type { ReplicationExecutionMode } from "@02";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;

@@ -1,5 +1,5 @@
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "@00";
+import { STATE_MATRIX } from "@00";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;

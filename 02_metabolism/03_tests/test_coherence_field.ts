@@ -1,7 +1,7 @@
 // OMEGA-64 | test_coherence_field.ts | Stage 11.1 Dedicated Verification
-import { MAX_ATOMS, STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import * as OFFSETS from "@00";
 
 async function test_coherence_field() {
   console.log(

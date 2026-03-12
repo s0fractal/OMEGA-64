@@ -1,8 +1,8 @@
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 
 export type LedgerEvent = {
   tick: number;

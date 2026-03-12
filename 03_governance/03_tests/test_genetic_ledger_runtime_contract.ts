@@ -3,7 +3,7 @@ import {
   createBaseTaxLedgerRuntime,
   rollbackBaseTaxLedgerRuntimeUpdate,
   snapshotBaseTaxLedgerRuntime,
-} from "./GENETIC_LEDGER_RUNTIME.ts";
+} from "@03/03_tests/GENETIC_LEDGER_RUNTIME.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

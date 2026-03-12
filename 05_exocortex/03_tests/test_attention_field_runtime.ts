@@ -1,6 +1,6 @@
-import { AVATAR_ENGINE } from "../mod.ts";
-import { PHYSICS_ENGINE } from "../../01_physics/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { AVATAR_ENGINE } from "@05";
+import { PHYSICS_ENGINE } from "@01";
+import { STATE_MATRIX } from "@00";
 
 const assert = (cond: boolean, reason: string): void => {
   if (!cond) {

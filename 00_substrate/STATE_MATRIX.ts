@@ -1,5 +1,5 @@
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "./OFFSETS.ts";
+import * as OFFSETS from "@00/OFFSETS.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
 const SCALE = OFFSETS.SCALE;

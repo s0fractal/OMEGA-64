@@ -1,7 +1,7 @@
 // OMEGA-64 | PREDICTION_MARKET.ts | Era 18: Deterministic Monad
 // Replaces Parallel Realities. Crisis triggers mutations that atoms bet on.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 export interface PredictionMarketAkashaDelegate {
   recordMarketResolution(

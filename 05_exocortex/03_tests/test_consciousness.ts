@@ -1,8 +1,8 @@
 // OMEGA-64 | test_consciousness.ts | Phase 19: Planetary Consciousness
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { MATRIX_ENGINE } from "../../01_physics/mod.ts";
-import { SOVEREIGN_ORACLE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { MATRIX_ENGINE } from "@01";
+import { SOVEREIGN_ORACLE } from "@05";
 
 const CRYSTAL_STANDARD = 1;
 const CRYSTAL_OSCILLATOR = 5;

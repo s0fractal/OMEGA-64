@@ -1,12 +1,12 @@
 /// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
 import {
   LOGGER,
   SCALE,
   WASM_PATH,
-} from "../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
+} from "@00";
+import { STATE_MATRIX } from "@00";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,

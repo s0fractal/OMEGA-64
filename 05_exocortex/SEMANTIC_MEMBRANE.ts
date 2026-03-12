@@ -1,8 +1,8 @@
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
+import { STATE_MATRIX } from "@00";
+import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);

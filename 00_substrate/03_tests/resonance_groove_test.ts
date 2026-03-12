@@ -3,8 +3,8 @@
  * Тест "вінілових канавок" та суб'єктивної видимості.
  */
 
-import { FIELD } from "./i.L00.core.FIELD.ts";
-import { SUBJECTIVE, SubjectivePosition } from "./i.L05.core.SUBJECTIVE.ts";
+import { FIELD } from "@00/03_tests/i.L00.core.FIELD.ts";
+import { SUBJECTIVE, SubjectivePosition } from "@00/03_tests/i.L05.core.SUBJECTIVE.ts";
 
 function test() {
   console.log("🌀 OMEGA-64: Anti-Control Geometry Test\n");

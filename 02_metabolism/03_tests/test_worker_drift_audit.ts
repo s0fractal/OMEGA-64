@@ -2,7 +2,7 @@ import {
   type DeterminismAtomState,
   type DeterminismCapturePayload,
   runDeterminismCaptureSubprocess,
-} from "./worker_determinism_capture.ts";
+} from "@02/03_tests/worker_determinism_capture.ts";
 
 const REPORT_PATH = "WORKER_DRIFT_AUDIT.md";
 const REPORT_JSON_PATH = "WORKER_DRIFT_AUDIT.json";

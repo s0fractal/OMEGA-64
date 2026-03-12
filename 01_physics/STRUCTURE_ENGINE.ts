@@ -1,4 +1,4 @@
-import { STATE_MATRIX, STRUCTURE } from "../00_substrate/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "@00";
 
 const GRID_W = 140;
 const GRID_H = 80;

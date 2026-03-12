@@ -1,5 +1,5 @@
 // OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
-import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
 export const IMMUNE = {
   /**

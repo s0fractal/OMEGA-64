@@ -4,8 +4,8 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST", "0");
 Deno.env.set("OMEGA_WORKER_INIT_FALLBACK", "1");
 Deno.env.set("OMEGA_FORCE_WORKER_INIT_FAIL", "nonzero");
 
-const { PULSE } = await import("../PULSE.ts");
-const { STATE_MATRIX } = await import("../../00_substrate/mod.ts");
+const { PULSE } = await import("@02/PULSE.ts");
+const { STATE_MATRIX } = await import("@00");
 
 async function main() {
   console.log("🧪 [TEST] Worker init fallback (forced init failure)");

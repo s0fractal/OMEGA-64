@@ -1,9 +1,9 @@
-import { loadResilienceTrendThresholds } from "./worker_gate_thresholds.ts";
-import { loadTrendBaselineWithBootstrap } from "./worker_trend_baseline.ts";
+import { loadResilienceTrendThresholds } from "@02/03_tests/worker_gate_thresholds.ts";
+import { loadTrendBaselineWithBootstrap } from "@02/03_tests/worker_trend_baseline.ts";
 import {
   ensurePositive,
   limitByRatioAndDeltaCeil,
-} from "./worker_trend_math.ts";
+} from "@02/03_tests/worker_trend_math.ts";
 
 const AUDIT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const BASELINE_JSON_PATH = "WORKER_RESILIENCE_TREND_BASELINE.json";

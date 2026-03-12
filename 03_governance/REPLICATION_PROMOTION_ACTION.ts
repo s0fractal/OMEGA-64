@@ -1,5 +1,5 @@
-import type { ReplicationExecutionMode } from "./runtime_bridge/replication_hybrid.ts";
-import type { ReplicationPromotionDecision } from "./REPLICATION_PROMOTION_DECISION.ts";
+import type { ReplicationExecutionMode } from "@03/runtime_bridge/replication_hybrid.ts";
+import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {
   currentMode: ReplicationExecutionMode;

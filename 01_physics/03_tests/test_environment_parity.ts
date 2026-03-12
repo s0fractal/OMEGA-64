@@ -2,10 +2,10 @@
 // Verifies bit-identical parity for the unified environmental physics.
 
 import { assertEquals } from "https://deno.land/std/assert/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { PHYSICS_ENGINE } from "../mod.ts";
-import { STRUCTURE_ENGINE } from "../STRUCTURE_ENGINE.ts";
-import { STATE_MATRIX, wasmMemory } from "../../00_substrate/mod.ts";
+import * as OFFSETS from "@00";
+import { PHYSICS_ENGINE } from "@01";
+import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
 
 const WASM_PATH = "../../00_substrate/08_artifacts/release.wasm";
 

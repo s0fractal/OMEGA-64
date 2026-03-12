@@ -1,9 +1,9 @@
 // OMEGA-64 | test_agent_proxy.ts | Stage 38 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { AgentProxy } from "../../06_akasha/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { AgentProxy } from "@06";
+import { LOGGER } from "@00";
 
 Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
   LOGGER.info("--- STAGE 38: AGENT PROXY TEST ---");

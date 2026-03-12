@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus } from "../mod.ts";
+import { SwarmNexus } from "@04";
 
 Deno.test("Mainnet Bootstrap: Hub Discovery and WebSocket Fallback", async () => {
   // 1. Spawn BOOTSTRAP_HUB as an autonomous process

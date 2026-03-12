@@ -1,5 +1,5 @@
-import { HORMONE_BUFFER_CATALOG } from "../../02_metabolism/mod.ts";
-import { GENETIC_LEDGER_CATALOG } from "../mod.ts";
+import { HORMONE_BUFFER_CATALOG } from "@02";
+import { GENETIC_LEDGER_CATALOG } from "@03";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

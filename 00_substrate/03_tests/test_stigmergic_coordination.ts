@@ -1,9 +1,9 @@
 // OMEGA-64 | test_stigmergic_coordination.ts | Stage 24: Stigmergic Synthesis
-import { RISC, STATE_MATRIX } from "../mod.ts";
+import { RISC, STATE_MATRIX } from "@00";
 const { OP_BUILD, OP_RESONATE } = RISC;
 import { QuorumAdvocate } from "../../reduction_core/relics/QUORUM_ADVOCATE.ts";
-import { LOGGER } from "../mod.ts";
-import { wasmMemory } from "../mod.ts";
+import { LOGGER } from "@00";
+import { wasmMemory } from "@00";
 
 async function runTest() {
   LOGGER.info("🧪 [TEST] Starting Stigmergic Coordination Verification...");

@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { ISA } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { ISA } from "@02";
 import {
   assertAlmostEquals,
   assertEquals,

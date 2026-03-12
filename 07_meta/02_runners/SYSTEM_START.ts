@@ -1,39 +1,39 @@
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "./03_governance/mod.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "./03_governance/mod.ts";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02_runners/03_governance/mod.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02_runners/03_governance/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
-import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "./02_metabolism/mod.ts";
-import { BREATH } from "../../06_akasha/mod.ts";
-import { MAX_ATOMS, STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
-import { P2P_FEDERATION } from "./04_noosphere/mod.ts";
-import { PHYSICS_ENGINE } from "./01_physics/mod.ts";
-import { SNAPSHOT_ENGINE } from "./06_akasha/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "./03_governance/mod.ts";
+import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "@07/02_runners/02_metabolism/mod.ts";
+import { BREATH } from "@06";
+import { MAX_ATOMS, STATE_MATRIX } from "@07/02_runners/00_substrate/mod.ts";
+import { SEMANTIC_MEMBRANE } from "@07/02_runners/05_exocortex/mod.ts";
+import { P2P_FEDERATION } from "@07/02_runners/04_noosphere/mod.ts";
+import { PHYSICS_ENGINE } from "@07/02_runners/01_physics/mod.ts";
+import { SNAPSHOT_ENGINE } from "@07/02_runners/06_akasha/mod.ts";
+import { SOVEREIGNTY_ENGINE } from "@07/02_runners/03_governance/mod.ts";
 import {
   SOVEREIGN_ORACLE,
-} from "./05_exocortex/mod.ts";
+} from "@07/02_runners/05_exocortex/mod.ts";
 import {
   SwarmNexus,
   SWARM_NODE,
   P2P_CODEC,
-} from "./04_noosphere/mod.ts";
-import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "./03_governance/mod.ts";
-import * as OFFSETS from "./00_substrate/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
-import { mutateUniversalConstants } from "./03_governance/mod.ts";
-import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "./06_akasha/mod.ts";
-import { MUTATION_TELEMETRY } from "./06_akasha/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { TELEMETRY_STREAM } from "./06_akasha/mod.ts";
-import { LINEAGE_TRACKER } from "./06_akasha/mod.ts";
-import { capturePhysiologySnapshot } from "./06_akasha/mod.ts";
-import { GLYPH_BUFFER, type GlyphSnapshot } from "./01_physics/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "./03_governance/mod.ts";
-import { evaluateReplicationPromotion } from "./03_governance/mod.ts";
+} from "@07/02_runners/04_noosphere/mod.ts";
+import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02_runners/03_governance/mod.ts";
+import * as OFFSETS from "@07/02_runners/00_substrate/mod.ts";
+import { LOGGER } from "@07/02_runners/00_substrate/mod.ts";
+import { RUNTIME_POLICY } from "@03";
+import { mutateUniversalConstants } from "@07/02_runners/03_governance/mod.ts";
+import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "@07/02_runners/06_akasha/mod.ts";
+import { MUTATION_TELEMETRY } from "@07/02_runners/06_akasha/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "@07/02_runners/63_necropolis/mod.ts";
+import { TELEMETRY_STREAM } from "@07/02_runners/06_akasha/mod.ts";
+import { LINEAGE_TRACKER } from "@07/02_runners/06_akasha/mod.ts";
+import { capturePhysiologySnapshot } from "@07/02_runners/06_akasha/mod.ts";
+import { GLYPH_BUFFER, type GlyphSnapshot } from "@07/02_runners/01_physics/mod.ts";
+import { evaluateGuardianSignalPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { evaluateArchitectPlasmidPromotion } from "@07/02_runners/03_governance/mod.ts";
+import { evaluateReplicationPromotion } from "@07/02_runners/03_governance/mod.ts";
 import type {
   ReplicationHybridSnapshot,
   ReplicationPromotionSnapshot,
@@ -41,9 +41,9 @@ import type {
   GuardianSignalPromotionSnapshot,
   ArchitectPlasmidHybridSnapshot,
   ArchitectPlasmidPromotionSnapshot,
-} from "./03_governance/mod.ts";
-import { PANOPTICON_SERVER } from "./06_akasha/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "./03_governance/mod.ts";
+} from "@07/02_runners/03_governance/mod.ts";
+import { PANOPTICON_SERVER } from "@07/02_runners/06_akasha/mod.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "@07/02_runners/03_governance/mod.ts";
 
 
 
@@ -1184,7 +1184,7 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
@@ -1200,7 +1200,7 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
@@ -1226,7 +1226,7 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
@@ -1242,7 +1242,7 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);

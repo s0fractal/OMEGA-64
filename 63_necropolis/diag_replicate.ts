@@ -1,5 +1,5 @@
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
 await PULSE.initWorkers();
 
 STATE_MATRIX.setId(0, 1000n);

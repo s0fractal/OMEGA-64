@@ -3,9 +3,9 @@ import {
   assert,
   assertEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { LOGGER } from "@00";
 
 Deno.test("Stage 37: Information Thermodynamics (Noise Tax)", async () => {
   LOGGER.info("--- STAGE 37: SHANNON ENTROPY NOISE TAX TEST ---");

@@ -1,13 +1,13 @@
 // OMEGA-64 | test_ascension.ts | Era 63 & 64: The Final Fractal Convergence Verification
 // Tests ISA.PHI (Golden Angle phase shift) and ISA.ASCEND (Crystallization to Matrixland).
 
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
 
 const GRID_W = 140;
 

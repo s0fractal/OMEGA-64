@@ -1,4 +1,4 @@
-import * as OFFSETS from "../mod.ts";
+import * as OFFSETS from "@00";
 
 const main = () => {
   const report = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);

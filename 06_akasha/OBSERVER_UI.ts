@@ -1,8 +1,8 @@
 // OMEGA-64 | OBSERVER_UI.ts | Era 11: The Eye of the Observer
 // Deno server to stream the SoA Matrix and Vox Populi to the browser.
 
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { SEMANTIC_MEMBRANE } from "@05";
 
 const PORT = 8000;
 const UI_PATH = "./ui/index.html";

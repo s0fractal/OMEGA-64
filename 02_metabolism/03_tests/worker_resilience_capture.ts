@@ -1,7 +1,7 @@
 import {
   RESILIENCE_SCENARIOS,
   type ResilienceScenario,
-} from "./worker_gate_thresholds.ts";
+} from "@02/03_tests/worker_gate_thresholds.ts";
 
 export const RESILIENCE_CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
 

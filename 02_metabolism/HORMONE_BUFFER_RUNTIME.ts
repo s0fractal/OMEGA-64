@@ -1,5 +1,5 @@
-import { HORMONE_BUFFER_CATALOG, type HormoneId } from "./HORMONE_BUFFER.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { HORMONE_BUFFER_CATALOG, type HormoneId } from "@02/HORMONE_BUFFER.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 export type HormoneSyncInput = {
   baseTax: number;

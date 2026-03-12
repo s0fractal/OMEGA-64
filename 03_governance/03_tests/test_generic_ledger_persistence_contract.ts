@@ -1,7 +1,7 @@
-import { appendLedgerRecord, hydrateLedgerRuntime, recordFromApply, recordFromRollback } from "../mod.ts";
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate } from "../mod.ts";
+import { appendLedgerRecord, hydrateLedgerRuntime, recordFromApply, recordFromRollback } from "@03";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate } from "@03";
 
-import { getLogPath } from "../mod.ts";
+import { getLogPath } from "@03";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

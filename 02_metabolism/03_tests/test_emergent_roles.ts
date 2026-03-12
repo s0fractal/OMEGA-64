@@ -2,8 +2,8 @@
 // Tests ISA.ATTUNE, signal tally accumulation, role derivation, and SENSE type 0x09.
 // All tests exercise LAMBDA_VM directly.
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,

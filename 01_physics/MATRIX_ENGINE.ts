@@ -1,6 +1,6 @@
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
+import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "@00";
 
 const GRID_COLS = 140;
 const GRID_ROWS = 80;

@@ -8,11 +8,11 @@
  * 3. All 6 hormones can be written/read from SharedArrayBuffer with atomic guarantees.
  */
 
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { syncHormonesToLattice } from "../../02_metabolism/mod.ts";
-import { HORMONE_BUFFER_CATALOG } from "../../02_metabolism/mod.ts";
-import { RUNTIME_POLICY } from "../RUNTIME_POLICY.ts";
+import * as OFFSETS from "@00";
+import { STATE_MATRIX } from "@00";
+import { syncHormonesToLattice } from "@02";
+import { HORMONE_BUFFER_CATALOG } from "@02";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 
 let passed = 0;
 let failed = 0;

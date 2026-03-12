@@ -3,8 +3,8 @@
  * Тест дипольного поля та енергетичного метаболізму.
  */
 
-import { FIELD } from "./i.L00.core.FIELD.ts";
-import { ENERGY_ENGINE, QWaveState } from "./i.L05.core.ENERGY.ts";
+import { FIELD } from "@00/03_tests/i.L00.core.FIELD.ts";
+import { ENERGY_ENGINE, QWaveState } from "@00/03_tests/i.L05.core.ENERGY.ts";
 
 function test() {
   console.log("🌀 OMEGA-64: Dipole Field Resonance Test\n");

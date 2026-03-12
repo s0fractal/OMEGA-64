@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PHYSICS_ENGINE } from "../../01_physics/mod.ts";
-import { AUDIT_ENGINE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PHYSICS_ENGINE } from "@01";
+import { AUDIT_ENGINE } from "@03";
 
 console.log("🏺 [TEST] Verifying Era 34: Digital Archaeology...");
 

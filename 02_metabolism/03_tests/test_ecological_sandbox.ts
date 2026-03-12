@@ -1,8 +1,8 @@
 // OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "../../00_substrate/mod.ts";
-import { NEXUS_DAEMON, PULSE } from "../mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { NEXUS_DAEMON, PULSE } from "@02";
+import { LOGGER } from "@00";
 
 Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () => {
   LOGGER.info("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");

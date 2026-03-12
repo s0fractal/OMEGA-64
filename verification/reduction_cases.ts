@@ -1,4 +1,4 @@
-import { RISC, STATE_MATRIX, STRUCTURE } from "../00_substrate/STATE_MATRIX.ts";
+import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {
   finalPc: number;

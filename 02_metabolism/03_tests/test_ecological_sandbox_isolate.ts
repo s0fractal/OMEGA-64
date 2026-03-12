@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
 
 Deno.test("Isolate 920 bug", async () => {
   STATE_MATRIX.clear();

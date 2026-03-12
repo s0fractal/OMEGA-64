@@ -3,9 +3,9 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
+import { LOGGER } from "@00";
 
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   LOGGER.info("--- STAGE 32: NETWORK MITOSIS TEST ---");

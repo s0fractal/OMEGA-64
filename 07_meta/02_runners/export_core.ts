@@ -3,6 +3,7 @@
 // Guards against accidental export drift (tests/archive artifacts).
 
 import { dirname, extname, join, normalize } from "node:path";
+import { resolveVector } from "../01_guards/vector_decoder.ts";
 
 const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
 
@@ -29,8 +30,8 @@ const EXCLUDE_PATTERNS: RegExp[] = [
 ];
 
 const IMPORT_RE =
-  /(?:import|export)\s+(?:[\s\S]*?\sfrom\s+)?["'](\.[^"']+)["']/g;
-const DYNAMIC_IMPORT_RE = /import\(\s*["'](\.[^"']+)["']\s*\)/g;
+  /(?:import|export)\s+(?:[\s\S]*?\sfrom\s+)?["']([\.@][^"']+)["']/g;
+const DYNAMIC_IMPORT_RE = /import\(\s*["']([\.@][^"']+)["']\s*\)/g;
 
 const fileExists = async (path: string): Promise<boolean> => {
   try {
@@ -252,9 +253,21 @@ const resolveLocalImport = async (
   fromFile: string,
   specifier: string,
 ): Promise<string | null> => {
+  let isFromRoot = false;
+  if (specifier.startsWith("@")) {
+    try {
+      specifier = resolveVector(specifier);
+      isFromRoot = true;
+    } catch {
+      return null;
+    }
+  }
+
   if (!specifier.startsWith("./") && !specifier.startsWith("../")) return null;
 
-  const base = normalize(join(dirname(fromFile), specifier));
+  const base = isFromRoot
+    ? normalize(specifier.replace(/^\.\//, ""))
+    : normalize(join(dirname(fromFile), specifier));
   const candidates = [
     base,
     `${base}.ts`,

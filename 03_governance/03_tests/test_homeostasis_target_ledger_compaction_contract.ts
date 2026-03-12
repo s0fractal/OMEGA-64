@@ -4,12 +4,12 @@ import {
   readTargetEnergyLedgerPersistenceSummary,
   recordFromTargetEnergyApplyMutation,
   recordFromTargetEnergyRollbackMutation,
-} from "./HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
+} from "@03/03_tests/HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
 import {
   applyTargetEnergyLedgerRuntimeUpdate,
   createTargetEnergyLedgerRuntime,
   rollbackTargetEnergyLedgerRuntimeUpdate,
-} from "./HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
+} from "@03/03_tests/HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

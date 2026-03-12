@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { PULSE } from "../mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
-import { energyBuffer, idBuffer, RISC, STATE_MATRIX, structureGridBuffer, SYS } from "../../00_substrate/mod.ts";
+import { PULSE } from "@02";
+import * as OFFSETS from "@00";
+import { energyBuffer, idBuffer, RISC, STATE_MATRIX, structureGridBuffer, SYS } from "@00";
 
 Deno.test({
   name: "Universal Syscall - WRITE_MEM / READ_MEM execution correctness",

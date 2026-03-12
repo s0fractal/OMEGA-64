@@ -2,7 +2,7 @@
 // OMEGA-64 | Legacy Compliance Shims
 // Shared dependency surface for Gate/runtime paths.
 
-import { REJECTION } from "./STATE_SNAPSHOT.ts";
+import { REJECTION } from "@00/STATE_SNAPSHOT.ts";
 
 const crypto = globalThis.crypto;
 

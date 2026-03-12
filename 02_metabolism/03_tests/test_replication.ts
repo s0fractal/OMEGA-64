@@ -1,7 +1,7 @@
 // OMEGA-64 | test_replication.ts | Phase 20: Self-Replication 🔄🧬
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../mod.ts";
-import { CRYSTAL_STANDARD, MATRIX_ENGINE } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { CRYSTAL_STANDARD, MATRIX_ENGINE } from "@01";
 
 async function runTest() {
   console.log("🌱 Phase 20: Self-Replication Verification\n");

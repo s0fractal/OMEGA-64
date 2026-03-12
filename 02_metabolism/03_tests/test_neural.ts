@@ -2,8 +2,8 @@
 // Tests Hebbian plasticity (ISA.HEBB), signal propagation (ISA.FIRE),
 // synaptic weight decay, and SENSE type 0x08 — directly via LAMBDA_VM.
 
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { ISA, LAMBDA_VM } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,

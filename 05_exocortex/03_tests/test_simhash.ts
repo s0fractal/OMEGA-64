@@ -1,4 +1,4 @@
-import { SEMANTIC_MEMBRANE } from "../mod.ts";
+import { SEMANTIC_MEMBRANE } from "@05";
 
 async function testSimHash() {
   const phrases = [

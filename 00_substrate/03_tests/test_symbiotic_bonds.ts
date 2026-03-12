@@ -2,8 +2,8 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
-import { STATE_MATRIX, wasmMemory } from "../mod.ts";
-import * as OFFSETS from "../mod.ts";
+import { STATE_MATRIX, wasmMemory } from "@00";
+import * as OFFSETS from "@00";
 
 const WASM_PATH = "../../00_substrate/08_artifacts/release.wasm";
 const wasmModule = await Deno.readFile(WASM_PATH);

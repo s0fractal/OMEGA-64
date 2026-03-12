@@ -1,6 +1,6 @@
-import { GENETIC_LEDGER_CATALOG, type GeneticLedgerEntry, type GeneticLedgerKey } from "../03_governance/mod.ts";
-import { HORMONE_BUFFER_CATALOG, type HormoneId, type HormoneSpec } from "../02_metabolism/mod.ts";
-import type { LedgerRuntimeSnapshot } from "../03_governance/mod.ts";
+import { GENETIC_LEDGER_CATALOG, type GeneticLedgerEntry, type GeneticLedgerKey } from "@03";
+import { HORMONE_BUFFER_CATALOG, type HormoneId, type HormoneSpec } from "@02";
+import type { LedgerRuntimeSnapshot } from "@03";
 
 export type PhysiologySnapshotInput = {
   tick: number;

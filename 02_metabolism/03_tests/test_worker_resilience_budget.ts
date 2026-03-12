@@ -1,7 +1,7 @@
 import {
   loadResilienceBudgetThresholds,
   type ResilienceScenario,
-} from "./worker_gate_thresholds.ts";
+} from "@02/03_tests/worker_gate_thresholds.ts";
 
 const AUDIT_JSON_PATH = "WORKER_RESILIENCE_AUDIT.json";
 const REPORT_JSON_PATH = "WORKER_RESILIENCE_BUDGET.json";

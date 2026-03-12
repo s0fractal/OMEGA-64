@@ -1,5 +1,5 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { betPoolInt, PREDICTION_MARKET } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { betPoolInt, PREDICTION_MARKET } from "@03";
 
 console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
 

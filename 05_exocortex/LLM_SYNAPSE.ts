@@ -1,7 +1,7 @@
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export const LLM_SYNAPSE = {
   /**

@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { LOGGER } from "../../00_substrate/mod.ts";
-import * as OFFSETS from "../../00_substrate/mod.ts";
+import { RISC, STATE_MATRIX, SYS } from "@00";
+import { PULSE } from "@02";
+import { LOGGER } from "@00";
+import * as OFFSETS from "@00";
 
 Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   LOGGER.info("--- STAGE 29: SEMANTIC MUTATION TEST ---");

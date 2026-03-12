@@ -153,7 +153,7 @@
       "UI/",
       "SINGULARITY/",
       "archive/",
-      "assembly/",
+      "00_substrate/assembly/",
       "public/",
       "e/"
     ],
@@ -168,6 +168,22 @@
     }
   },
   "imports": {
-    "@omega": "./mod.ts"
+    "@omega": "./mod.ts",
+    "@00": "./00_substrate/mod.ts",
+    "@01": "./01_physics/mod.ts",
+    "@02": "./02_metabolism/mod.ts",
+    "@03": "./03_governance/mod.ts",
+    "@04": "./04_noosphere/mod.ts",
+    "@05": "./05_exocortex/mod.ts",
+    "@06": "./06_akasha/mod.ts",
+    "@07": "./07_meta/mod.ts",
+    "@00/": "./00_substrate/",
+    "@01/": "./01_physics/",
+    "@02/": "./02_metabolism/",
+    "@03/": "./03_governance/",
+    "@04/": "./04_noosphere/",
+    "@05/": "./05_exocortex/",
+    "@06/": "./06_akasha/",
+    "@07/": "./07_meta/"
   }
 }

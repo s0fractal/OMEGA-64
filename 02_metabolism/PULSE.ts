@@ -7,12 +7,12 @@ import {
   SYS,
   WASM_PATH,
   LOGGER,
-} from "../00_substrate/mod.ts";
-import * as OFFSETS from "../00_substrate/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "../03_governance/SOVEREIGNTY_ENGINE.ts";
-import { GATE } from "../03_governance/GATE.ts";
-import { PREDICTION_MARKET } from "../03_governance/PREDICTION_MARKET.ts";
-import { CONTROL_INTENT_QUEUE } from "../03_governance/CONTROL_INTENT_QUEUE.ts";
+} from "@00";
+import * as OFFSETS from "@00";
+import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
+import { GATE } from "@03/GATE.ts";
+import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
+import { CONTROL_INTENT_QUEUE } from "@03/CONTROL_INTENT_QUEUE.ts";
 
 
 export interface PulseOracleDelegate {
@@ -73,21 +73,21 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
-import { PHYSICS_ENGINE } from "../01_physics/mod.ts";
-import { GLYPH_BUFFER } from "../01_physics/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "../03_governance/DAEMON_INGRESS_POLICY.ts";
-import { IMMUNE } from "./IMMUNE.ts";
+import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { PHYSICS_ENGINE } from "@01";
+import { GLYPH_BUFFER } from "@01";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
+import { IMMUNE } from "@02/IMMUNE.ts";
 
-import { syncHormonesToLattice } from "./HORMONE_BUFFER_RUNTIME.ts";
+import { syncHormonesToLattice } from "@02/HORMONE_BUFFER_RUNTIME.ts";
 import {
   createPhysiologicalLedgerRuntime,
   HORMONE_BUFFER_CATALOG,
   type HormoneId,
-} from "./HORMONE_BUFFER.ts";
-import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "../03_governance/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "../03_governance/GENETIC_LEDGER.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "../03_governance/GENERIC_LEDGER_PERSISTENCE.ts";
+} from "@02/HORMONE_BUFFER.ts";
+import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@03/GENERIC_LEDGER_SYSTEM.ts";
+import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "../reduction_core/DRIFT_WARDEN.ts";
 import { DollFork } from "../reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
@@ -699,7 +699,7 @@ const applyHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = applyLedgerUpdate(homeostasisBaseTaxLedgerRuntime, update);
@@ -721,7 +721,7 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = rollbackLedgerUpdate(
@@ -768,7 +768,7 @@ const applyHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = applyLedgerUpdate(
@@ -793,7 +793,7 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = rollbackLedgerUpdate(
@@ -843,7 +843,7 @@ const applyPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerApplyResult<
+): import("@03").LedgerApplyResult<
   "pulse.pressureRing.scale"
 > => {
   const result = applyLedgerUpdate(pressureRingScaleLedgerRuntime, update);
@@ -865,7 +865,7 @@ const rollbackPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("../03_governance/mod.ts").LedgerRollbackResult<
+): import("@03").LedgerRollbackResult<
   "pulse.pressureRing.scale"
 > => {
   const result = rollbackLedgerUpdate(pressureRingScaleLedgerRuntime, rollback);
@@ -2240,13 +2240,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("../03_governance/mod.ts").LedgerApplyResult<
+    | import("@03").LedgerApplyResult<
       "pulse.pressureRing.scale"
     >
   > => {
@@ -2372,13 +2372,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("../03_governance/mod.ts").LedgerRollbackResult<
+    | import("@03").LedgerRollbackResult<
       "pulse.pressureRing.scale"
     >
   > => {

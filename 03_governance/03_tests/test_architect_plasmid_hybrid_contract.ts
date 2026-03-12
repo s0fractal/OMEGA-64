@@ -1,5 +1,5 @@
-import { evaluateArchitectPlasmidReduction, normalizeArchitectPlasmidExecutionMode } from "../../02_metabolism/mod.ts";
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { evaluateArchitectPlasmidReduction, normalizeArchitectPlasmidExecutionMode } from "@02";
+import { STATE_MATRIX } from "@00";
 
 const RUNTIME_POLICY_PATH = "03_governance/RUNTIME_POLICY.ts";
 const PULSE_PATH = "02_metabolism/PULSE.ts";

@@ -1,13 +1,13 @@
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
-import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "../03_governance/mod.ts";
-import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
-import { PULSE } from "../02_metabolism/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
+import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
+import { STATE_MATRIX } from "@00";
+import { SOVEREIGNTY_ENGINE } from "@03";
+import { LOGGER } from "@00";
+import { RUNTIME_POLICY } from "@03";
+import { PULSE } from "@02";
+import { SEMANTIC_MEMBRANE } from "@05/SEMANTIC_MEMBRANE.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;

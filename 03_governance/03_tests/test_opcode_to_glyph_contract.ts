@@ -1,4 +1,4 @@
-import { RISC } from "../../00_substrate/mod.ts";
+import { RISC } from "@00";
 import { glyphTapeToPrettyText } from "../../runtime_bridge/glyph_pretty.ts";
 import { scriptToGlyphTape } from "../../runtime_bridge/opcode_to_glyph.ts";
 

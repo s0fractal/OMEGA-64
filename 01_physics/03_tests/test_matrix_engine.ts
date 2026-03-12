@@ -1,5 +1,5 @@
 // test_matrix_engine.ts
-import { MATRIX_ENGINE } from "../mod.ts";
+import { MATRIX_ENGINE } from "@01";
 
 const GRID_W = 140;
 const GRID_H = 80;

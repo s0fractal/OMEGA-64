@@ -1,12 +1,12 @@
-import { evaluateGuardianSignalPromotionAction } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotion } from "../03_governance/mod.ts";
-import { evaluateGuardianSignalPromotionDecision } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotionAction } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "../03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotionDecision } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotionAction } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotion } from "../03_governance/mod.ts";
-import { evaluateReplicationPromotionDecision } from "../03_governance/mod.ts";
+import { evaluateGuardianSignalPromotionAction } from "@03";
+import { evaluateGuardianSignalPromotion } from "@03";
+import { evaluateGuardianSignalPromotionDecision } from "@03";
+import { evaluateArchitectPlasmidPromotionAction } from "@03";
+import { evaluateArchitectPlasmidPromotion } from "@03";
+import { evaluateArchitectPlasmidPromotionDecision } from "@03";
+import { evaluateReplicationPromotionAction } from "@03";
+import { evaluateReplicationPromotion } from "@03";
+import { evaluateReplicationPromotionDecision } from "@03";
 
 type CanaryConfig = {
   hostUrl: string;

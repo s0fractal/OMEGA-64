@@ -1,4 +1,4 @@
-import { evaluateGuardianSignalPromotion } from "../mod.ts";
+import { evaluateGuardianSignalPromotion } from "@03";
 
 type Failure = {
   name: string;

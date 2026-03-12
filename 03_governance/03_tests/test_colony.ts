@@ -1,8 +1,8 @@
 // OMEGA-64 | test_colony.ts | Phase 15: Emergent Colonies Verification
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PULSE } from "../../02_metabolism/mod.ts";
-import { MATRIX_ENGINE } from "../../01_physics/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "../mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PULSE } from "@02";
+import { MATRIX_ENGINE } from "@01";
+import { SOVEREIGNTY_ENGINE } from "@03";
 
 async function runTest() {
   console.log("🐝 Phase 15: Emergent Colonies Verification\n");

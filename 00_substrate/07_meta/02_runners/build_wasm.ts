@@ -1,5 +1,6 @@
-import * as OFFSETS from "../../mod.ts";
-import { assertWasmLayout } from "../../03_tests/wasm_layout_guard.ts";
+import * as OFFSETS from "@00";
+import { assertWasmLayout } from "@00/03_tests/wasm_layout_guard.ts";
+import { resolveFsVectorSync } from "@07/01_guards/vector_decoder.ts";
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   console.error(
@@ -8,17 +9,21 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   Deno.exit(1);
 }
 
-await Deno.mkdir("00_substrate/08_artifacts", { recursive: true });
+const artifactsDir = resolveFsVectorSync("@00_08");
+await Deno.mkdir(artifactsDir, { recursive: true });
 await assertWasmLayout();
+
+const wasmFile = `${artifactsDir}/release.wasm`;
+const assemblyFile = `${resolveFsVectorSync("@00")}/assembly/index.ts`;
 
 const args = [
   "run",
   "-A",
   "npm:assemblyscript@0.28.9/asc",
-  "00_substrate/assembly/index.ts",
+  assemblyFile,
   "-O",
   "-o",
-  "00_substrate/08_artifacts/release.wasm",
+  wasmFile,
   "--noAssert",
   "--importMemory",
   "--sharedMemory",
@@ -41,7 +46,7 @@ const build = new Deno.Command("deno", {
 const { code } = await build.output();
 if (code !== 0) Deno.exit(code);
 
-const stat = await Deno.stat("00_substrate/08_artifacts/release.wasm");
+const stat = await Deno.stat(wasmFile);
 console.log(
-  `[wasm:build] 00_substrate/08_artifacts/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+  `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
 );

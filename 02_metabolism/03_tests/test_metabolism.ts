@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "../../00_substrate/mod.ts";
-import { PHYSICS_ENGINE } from "../../01_physics/mod.ts";
-import { SPATIAL_HASH } from "../../01_physics/mod.ts";
+import { STATE_MATRIX } from "@00";
+import { PHYSICS_ENGINE } from "@01";
+import { SPATIAL_HASH } from "@01";
 
 async function testMetabolism() {
   console.log("🧪 Starting Vector 4: Metabolic Sovereignty Verification...");

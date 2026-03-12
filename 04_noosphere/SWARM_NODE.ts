@@ -1,4 +1,4 @@
-import { LOGGER } from "../00_substrate/mod.ts";
+import { LOGGER } from "@00";
 
 export type SwarmHeartbeat = {
   nodeId: string;

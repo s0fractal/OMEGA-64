@@ -36,7 +36,7 @@ const main = async () => {
 
   for (const target of TARGETS) {
     const source = await Deno.readTextFile(target.file);
-    if (!source.includes('03_governance/mod.ts"') && !source.includes('./RUNTIME_POLICY.ts"') && !source.includes('03_governance/RUNTIME_POLICY.ts"')) {
+    if (!source.includes('@03"') && !source.includes('./RUNTIME_POLICY.ts"') && !source.includes('@03/RUNTIME_POLICY.ts"')) {
       violations.push({
         file: target.file,
         reason: "must import runtime policy from RUNTIME_POLICY.ts / 03_governance",
@@ -48,7 +48,7 @@ const main = async () => {
         reason: `expected policy access: ${target.requiresPolicyAccess}`,
       });
     }
-    if (source.includes('parseEnvBool') && !source.includes('03_governance/RUNTIME_POLICY.ts')) {
+    if (source.includes('parseEnvBool') && (!source.includes('@03/RUNTIME_POLICY.ts') && !source.includes('@03'))) {
       violations.push({
         file: target.file,
         reason: "env parser helpers should be consumed through RUNTIME_POLICY",
@@ -75,7 +75,7 @@ const main = async () => {
   }
 
   const runtimePolicy = await Deno.readTextFile("03_governance/RUNTIME_POLICY.ts");
-  if (!runtimePolicy.includes('00_substrate/mod.ts"')) {
+  if (!runtimePolicy.includes('@00"')) {
     violations.push({
       file: "03_governance/RUNTIME_POLICY.ts",
       reason: "must import canonical parser helpers from ENV_PARSE.ts/00_substrate",

@@ -1,5 +1,5 @@
-import { ISA, LAMBDA_VM } from "../../02_metabolism/mod.ts";
-import { SEMANTIC_MEMBRANE } from "../mod.ts";
+import { ISA, LAMBDA_VM } from "@02";
+import { SEMANTIC_MEMBRANE } from "@05";
 
 console.log("🧠 [TEST] Verifying Era 36: Cognitive Scaffolding...");
 

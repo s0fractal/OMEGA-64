@@ -2,8 +2,8 @@
 // Direct unit tests for ISA.IMPRINT, ISA.RECALL, and ISA.SENSE type 0x07.
 // Tests exercise LAMBDA_VM directly and simulate PULSE_WORKER's imprintRequest path.
 
-import { STATE_MATRIX } from "../mod.ts";
-import { ISA, LAMBDA_VM } from "../../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "@02";
+import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,
   assertEquals,

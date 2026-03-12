@@ -3,7 +3,7 @@ import {
   createPressureRingScaleLedgerRuntime,
   rollbackPressureRingScaleLedgerRuntimeUpdate,
   snapshotPressureRingScaleLedgerRuntime,
-} from "./PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
+} from "@03/03_tests/PRESSURE_RING_SCALE_LEDGER_RUNTIME.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

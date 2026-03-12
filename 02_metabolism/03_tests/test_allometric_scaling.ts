@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PULSE } from "../mod.ts";
-import { RISC, STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { PULSE } from "@02";
+import { RISC, STATE_MATRIX } from "@00";
 
 Deno.test({
   name: "Allometric Scaling - Chronoflux Verification",

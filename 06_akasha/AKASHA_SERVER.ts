@@ -1,6 +1,6 @@
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { RUNTIME_POLICY } from "../03_governance/mod.ts";
-import { AKASHA_SIGNALING } from "./AKASHA_SIGNALING.ts";
+import { RUNTIME_POLICY } from "@03";
+import { AKASHA_SIGNALING } from "@06/AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
