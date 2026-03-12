@@ -22,7 +22,7 @@ export type SemanticProposal = {
 async function loadProposals(): Promise<SemanticProposal[]> {
   try {
     const data = await Deno.readTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
+      "./@07/02_runners/sandbox/PROPOSALS.json",
     );
     const json = JSON.parse(data);
     return json.proposals || [];
@@ -34,12 +34,12 @@ async function loadProposals(): Promise<SemanticProposal[]> {
 async function markProposalProcessed(id: string) {
   try {
     const data = await Deno.readTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
+      "./@07/02_runners/sandbox/PROPOSALS.json",
     );
     const json = JSON.parse(data);
     json.proposals = (json.proposals || []).filter((p: any) => p.id !== id);
     await Deno.writeTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
+      "./@07/02_runners/sandbox/PROPOSALS.json",
       JSON.stringify(json, null, 2),
     );
   } catch (err) {
@@ -133,7 +133,7 @@ export async function runShadowValidation() {
         },
       };
 
-      const sandboxPath = `./reduction_core/sandbox/relic_${proposal.id}.json`;
+      const sandboxPath = `./@07/02_runners/sandbox/relic_${proposal.id}.json`;
       await Deno.writeTextFile(sandboxPath, JSON.stringify(relic, null, 2));
 
       await reification.reify(proposal.id);

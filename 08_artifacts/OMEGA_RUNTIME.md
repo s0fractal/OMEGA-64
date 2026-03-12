@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T02:58:31.314Z*
-*Exported Files in Category: 89*
-*Total Exported Files: 131*
+*Generated: 2026-03-12T03:08:14.107Z*
+*Exported Files in Category: 87*
+*Total Exported Files: 128*
 *Runtime Roots: 10*
-*Runtime Closure Files: 78*
-*Non-Runtime Code Files: 36*
-*Runtime-Support Code Files: 11*
+*Runtime Closure Files: 76*
+*Non-Runtime Code Files: 35*
+*Runtime-Support Code Files: 10*
 *Experimental Code Files: 25*
-*Manifest SHA256: b3b2b69ccc8bda7dcd9b5e69b91bc81d0946bbe80e10e429379741a24576c82d*
-*Export Set SHA256: ed5e2c2c3af9b619ef25e612d310baa1329d6acae1c79d01fb6889ce3779d3f9*
-*Export Content SHA256: f3dfaba8fc50559e40db4d2bb9656acb049ff5e4775a36765d9e68f49c8e1db0*
-*Git Commit: 53b552e9fd16*
+*Manifest SHA256: 2a9262e770f6d15db8b47abbad760e3a433372deceb663ba0ee2746c281e02fa*
+*Export Set SHA256: 73d58698aee0a141c299a4f49212a380188f03bb079616c0d2be06fe94f1d6c8*
+*Export Content SHA256: 6a48d8a680e8f0b42a321fd91d75ad9c6e735704a5a6e95b4015b4775bd30d1c*
+*Git Commit: fd51ce093b8f*
 
 ---
 
@@ -101,15 +101,13 @@
 - 06_akasha/SNAPSHOT_ENGINE.ts
 - 06_akasha/TELEMETRY_STREAM.ts
 - 06_akasha/TUI_DASHBOARD.ts
+- 07_meta/02_runners/doll_fork/DOLL_FORK_MATRIX.ts
+- 07_meta/02_runners/doll_fork/DOLL_FORK_RUNNER.ts
+- 07_meta/02_runners/DRIFT_WARDEN.ts
 - 07_meta/02_runners/SYSTEM_START.ts
-- reduction_core/doll_fork/DOLL_FORK_MATRIX.ts
-- reduction_core/doll_fork/DOLL_FORK_RUNNER.ts
-- reduction_core/DRIFT_WARDEN.ts
-- reduction_core/GENESIS_BOOT.ts
-- reduction_core/GENESIS_INCEPTOR.ts
-- reduction_core/GENESIS_REIFIED.ts
-- reduction_core/relics/LINEAGE_TRACKER.ts
-- reduction_core/relics/QUORUM_ADVOCATE.ts
+- 07_meta/05_generators/GENESIS_BOOT.ts
+- 07_meta/05_generators/GENESIS_INCEPTOR.ts
+- 07_meta/05_generators/GENESIS_REIFIED.ts
 
 ---
 
@@ -10683,13 +10681,13 @@ import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, typ
 import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
-import { DriftWarden } from "../reduction_core/DRIFT_WARDEN.ts";
-import { DollFork } from "../reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "../reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
-import { REIFIED_PROGRAMS } from "../reduction_core/GENESIS_REIFIED.ts";
-import { GenesisInceptor } from "../reduction_core/GENESIS_INCEPTOR.ts";
-import { LineageTracker } from "../reduction_core/relics/LINEAGE_TRACKER.ts";
-import { QuorumAdvocate } from "../reduction_core/relics/QUORUM_ADVOCATE.ts";
+import { DriftWarden } from "@07/02_runners/DRIFT_WARDEN.ts";
+import { DollFork } from "@07/02_runners/doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "@07/02_runners/doll_fork/DOLL_FORK_RUNNER.ts";
+import { REIFIED_PROGRAMS } from "@07/05_generators/GENESIS_REIFIED.ts";
+import { GenesisInceptor } from "@07/05_generators/GENESIS_INCEPTOR.ts";
+import { LineageTracker } from "@07/02_runners/relics/LINEAGE_TRACKER.ts";
+import { QuorumAdvocate } from "@07/02_runners/relics/QUORUM_ADVOCATE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -14063,7 +14061,7 @@ export const PULSE = {
   },
 };
 
-// --- INLINED FROM runtime_bridge/architect_plasmid_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/architect_plasmid_hybrid.ts ---
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -14436,7 +14434,7 @@ export const evaluateArchitectPlasmidExecution = (
   };
 };
 
-// --- INLINED FROM runtime_bridge/guardian_signal_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/guardian_signal_hybrid.ts ---
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -14850,7 +14848,7 @@ export const evaluateGuardianSignalExecution = (
   };
 };
 
-// --- INLINED FROM runtime_bridge/replication_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/replication_hybrid.ts ---
 
 export type ReplicationExecutionMode =
   | "legacy-execute"
@@ -21143,7 +21141,7 @@ export const PREDICTION_MARKET = {
 ## FILE: 03_governance/REPLICATION_PROMOTION_ACTION.ts
 
 ```typescript
-import type { ReplicationExecutionMode } from "@03/runtime_bridge/replication_hybrid.ts";
+import type { ReplicationExecutionMode } from "@03/@07/04_transpilers/replication_hybrid.ts";
 import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {
@@ -25602,7 +25600,7 @@ export const SOVEREIGN_ORACLE = {
               driftBudget,
             };
             try {
-              const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
+              const sandboxPath = "./@07/02_runners/sandbox/PROPOSALS.json";
               let proposals = [];
               try {
                 const data = await Deno.readTextFile(sandboxPath);
@@ -32583,174 +32581,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
-```
-
----
-
-## FILE: runtime_bridge/glyph_pretty.ts
-
-```typescript
-import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
-import type { GlyphTapeToken } from "./opcode_to_glyph.ts";
-
-export const describeGlyphToken = (token: GlyphTapeToken): string => {
-  const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);
-  const glyphLabel = token.mapped && spec
-    ? `${spec.mnemonic}[${spec.id}]`
-    : `UNMAPPED(${token.opcodeMnemonic})`;
-  const args = token.args.length > 0 ? ` args=[${token.args.join(",")}]` : "";
-  const reductionRule = spec ? ` rule=${spec.reductionRuleRef}` : "";
-  const energy = spec ? ` energy=${spec.energyCost}` : "";
-  return `pc=${token.pc} opcode=${token.opcodeMnemonic} -> ${glyphLabel}${args}${energy}${reductionRule}`;
-};
-
-export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
-  tape.map((token) => describeGlyphToken(token));
-
-export const glyphTapeToPrettyText = (
-  tape: readonly GlyphTapeToken[],
-): string => glyphTapeToLines(tape).join("\n");
-
-```
-
----
-
-## FILE: runtime_bridge/opcode_to_glyph.ts
-
-```typescript
-import { RISC } from "@00/STATE_MATRIX.ts";
-import { glyphSpecByLegacyOpcode } from "../reduction_core/GlyphIR64.ts";
-
-export type LegacyInstruction = {
-  pc: number;
-  opcode: number;
-  opcodeMnemonic: string;
-  length: number;
-  args: number[];
-};
-
-export type GlyphTapeToken = LegacyInstruction & {
-  glyphId: number | null;
-  glyphMnemonic: string | null;
-  mapped: boolean;
-};
-
-const OPCODE_NAMES = new Map<number, string>([
-  [RISC.OP_NOP, "NOP"],
-  [RISC.OP_SET, "SET"],
-  [RISC.OP_GET, "GET"],
-  [RISC.OP_PUT, "PUT"],
-  [RISC.OP_ADD, "ADD"],
-  [RISC.OP_SUB, "SUB"],
-  [RISC.OP_JZ, "JZ"],
-  [RISC.OP_JNZ, "JNZ"],
-  [RISC.OP_JMP, "JMP"],
-  [RISC.OP_REPLICATE, "REPLICATE"],
-  [RISC.OP_SIGNAL, "SIGNAL"],
-  [RISC.OP_BIND, "BIND"],
-  [RISC.OP_SHARE, "SHARE"],
-  [RISC.OP_TENSEGRITY, "TENSEGRITY"],
-  [RISC.OP_COLLECTIVE, "COLLECTIVE"],
-  [RISC.OP_ROLE, "ROLE"],
-  [RISC.OP_BUILD, "BUILD"],
-  [RISC.OP_SENSE, "SENSE"],
-  [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
-  [RISC.OP_ENTANGLE, "ENTANGLE"],
-  [RISC.OP_PLUG, "PLUG"],
-  [RISC.OP_RESOLVE, "RESOLVE"],
-  [RISC.OP_SYSCALL, "SYSCALL"],
-]);
-
-const OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_NOP, 1],
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_PUT, 3],
-  [RISC.OP_ADD, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_REPLICATE, 1],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_BIND, 1],
-  [RISC.OP_SHARE, 3],
-  [RISC.OP_PLUG, 3],
-  [RISC.OP_TENSEGRITY, 4],
-  [RISC.OP_COLLECTIVE, 4],
-  [RISC.OP_ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_SENSE, 3],
-  [RISC.OP_SPORE_DRIVE, 1],
-  [RISC.OP_ENTANGLE, 1],
-  [RISC.OP_RESOLVE, 3],
-  [RISC.OP_SYSCALL, 1],
-]);
-
-const opcodeName = (opcode: number): string =>
-  OPCODE_NAMES.get(opcode) ?? `OP_0x${opcode.toString(16).toUpperCase()}`;
-
-export const legacyOpcodeLength = (opcode: number): number =>
-  OPCODE_LENGTHS.get(opcode) ?? 1;
-
-export const decodeLegacyInstruction = (
-  script: Uint8Array,
-  pc: number,
-): LegacyInstruction | null => {
-  if (pc < 0 || pc >= script.length) return null;
-  const opcode = script[pc] ?? RISC.OP_NOP;
-  const length = legacyOpcodeLength(opcode);
-  const args = Array.from(script.slice(pc + 1, pc + length));
-  return {
-    pc,
-    opcode,
-    opcodeMnemonic: opcodeName(opcode),
-    length,
-    args,
-  };
-};
-
-type ScriptToGlyphOptions = {
-  allowUnmapped?: boolean;
-  maxSteps?: number;
-};
-
-export const scriptToGlyphTape = (
-  script: Uint8Array,
-  options: ScriptToGlyphOptions = {},
-): GlyphTapeToken[] => {
-  const allowUnmapped = options.allowUnmapped ?? false;
-  const maxSteps = Math.max(1, Math.min(64, options.maxSteps ?? 64));
-  const out: GlyphTapeToken[] = [];
-  let pc = 0;
-  let steps = 0;
-
-  while (pc >= 0 && pc < script.length && steps < maxSteps) {
-    const decoded = decodeLegacyInstruction(script, pc);
-    if (!decoded) break;
-    if (decoded.opcode === RISC.OP_NOP) break;
-
-    const spec = glyphSpecByLegacyOpcode(decoded.opcode);
-    if (!spec && !allowUnmapped) {
-      throw new Error(
-        `[opcode_to_glyph] unmapped legacy opcode at pc=${pc}: ${decoded.opcodeMnemonic}`,
-      );
-    }
-
-    out.push({
-      ...decoded,
-      glyphId: spec?.id ?? null,
-      glyphMnemonic: spec?.mnemonic ?? null,
-      mapped: spec !== null,
-    });
-
-    pc += decoded.length;
-    steps++;
-  }
-
-  return out;
-};
 
 ```
 

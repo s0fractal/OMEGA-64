@@ -3,7 +3,7 @@ import {
   evaluateGuardianSignalExecution,
   type GuardianSignalExecutionDecision,
   type GuardianSignalExecutionMode,
-} from "../runtime_bridge/guardian_signal_hybrid.ts";
+} from "@07/04_transpilers/guardian_signal_hybrid.ts";
 import {
   GUARDIAN_SIGNAL_MODE_CASES,
   guardianSignalModeCaseById,

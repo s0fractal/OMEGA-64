@@ -1,4 +1,4 @@
-import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
+import { glyphSpecById } from "@07/04_transpilers/GlyphIR64.ts";
 import type { GlyphTapeToken } from "./opcode_to_glyph.ts";
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {

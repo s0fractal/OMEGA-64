@@ -1,6 +1,6 @@
 // OMEGA-64 | test_autopoietic_gate_feedback.ts | Stage 25: Sovereign Feedback Verification
 import { STATE_MATRIX } from "@00";
-import { QuorumAdvocate } from "../../reduction_core/relics/QUORUM_ADVOCATE.ts";
+import { QuorumAdvocate } from "@07/02_runners/relics/QUORUM_ADVOCATE.ts";
 import { mergeGateProposals } from "@05";
 import { syncHormonesToLattice } from "@02";
 import { LOGGER } from "@00";

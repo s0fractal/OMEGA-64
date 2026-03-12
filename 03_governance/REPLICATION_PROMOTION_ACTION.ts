@@ -1,4 +1,4 @@
-import type { ReplicationExecutionMode } from "@03/runtime_bridge/replication_hybrid.ts";
+import type { ReplicationExecutionMode } from "@03/@07/04_transpilers/replication_hybrid.ts";
 import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {

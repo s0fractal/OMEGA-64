@@ -89,13 +89,13 @@ import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, typ
 import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
-import { DriftWarden } from "../reduction_core/DRIFT_WARDEN.ts";
-import { DollFork } from "../reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "../reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
-import { REIFIED_PROGRAMS } from "../reduction_core/GENESIS_REIFIED.ts";
-import { GenesisInceptor } from "../reduction_core/GENESIS_INCEPTOR.ts";
-import { LineageTracker } from "../reduction_core/relics/LINEAGE_TRACKER.ts";
-import { QuorumAdvocate } from "../reduction_core/relics/QUORUM_ADVOCATE.ts";
+import { DriftWarden } from "@07/02_runners/DRIFT_WARDEN.ts";
+import { DollFork } from "@07/02_runners/doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "@07/02_runners/doll_fork/DOLL_FORK_RUNNER.ts";
+import { REIFIED_PROGRAMS } from "@07/05_generators/GENESIS_REIFIED.ts";
+import { GenesisInceptor } from "@07/05_generators/GENESIS_INCEPTOR.ts";
+import { LineageTracker } from "@07/02_runners/relics/LINEAGE_TRACKER.ts";
+import { QuorumAdvocate } from "@07/02_runners/relics/QUORUM_ADVOCATE.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -3469,7 +3469,7 @@ export const PULSE = {
   },
 };
 
-// --- INLINED FROM runtime_bridge/architect_plasmid_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/architect_plasmid_hybrid.ts ---
 
 export type ArchitectPlasmidExecutionMode =
   | "legacy-execute"
@@ -3842,7 +3842,7 @@ export const evaluateArchitectPlasmidExecution = (
   };
 };
 
-// --- INLINED FROM runtime_bridge/guardian_signal_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/guardian_signal_hybrid.ts ---
 
 export type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -4256,7 +4256,7 @@ export const evaluateGuardianSignalExecution = (
   };
 };
 
-// --- INLINED FROM runtime_bridge/replication_hybrid.ts ---
+// --- INLINED FROM @07/04_transpilers/replication_hybrid.ts ---
 
 export type ReplicationExecutionMode =
   | "legacy-execute"

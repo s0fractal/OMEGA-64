@@ -478,7 +478,7 @@ export const SOVEREIGN_ORACLE = {
               driftBudget,
             };
             try {
-              const sandboxPath = "./reduction_core/sandbox/PROPOSALS.json";
+              const sandboxPath = "./@07/02_runners/sandbox/PROPOSALS.json";
               let proposals = [];
               try {
                 const data = await Deno.readTextFile(sandboxPath);

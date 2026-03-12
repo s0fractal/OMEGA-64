@@ -1,6 +1,6 @@
 import {
   type ArchitectPlasmidExecutionMode,
-} from "../runtime_bridge/architect_plasmid_hybrid.ts";
+} from "@07/04_transpilers/architect_plasmid_hybrid.ts";
 
 export type ArchitectPlasmidModeCaseDefinition = {
   id: string;

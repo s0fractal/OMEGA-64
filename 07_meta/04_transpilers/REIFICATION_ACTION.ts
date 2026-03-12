@@ -6,13 +6,13 @@ import { LOGGER } from "@00";
  * ReificationAction promotes a relic from the sandbox to the canonical GENESIS pool.
  */
 export class ReificationAction {
-  private genesisPath = "./reduction_core/GENESIS_REIFIED.ts";
+  private genesisPath = "./@07/05_generators/GENESIS_REIFIED.ts";
 
   /**
    * Promotes a relic JSON file to the GENESIS_REIFIED.ts registry.
    */
   public async reify(relicId: string): Promise<void> {
-    const sandboxPath = `./reduction_core/sandbox/relic_${relicId}.json`;
+    const sandboxPath = `./@07/02_runners/sandbox/relic_${relicId}.json`;
 
     try {
       const relicData = await Deno.readTextFile(sandboxPath);

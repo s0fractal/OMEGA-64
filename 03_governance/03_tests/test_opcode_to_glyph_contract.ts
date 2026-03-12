@@ -1,6 +1,6 @@
 import { RISC } from "@00";
-import { glyphTapeToPrettyText } from "../../runtime_bridge/glyph_pretty.ts";
-import { scriptToGlyphTape } from "../../runtime_bridge/opcode_to_glyph.ts";
+import { glyphTapeToPrettyText } from "@07/04_transpilers/glyph_pretty.ts";
+import { scriptToGlyphTape } from "@07/04_transpilers/opcode_to_glyph.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

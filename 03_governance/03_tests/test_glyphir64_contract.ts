@@ -4,7 +4,7 @@ import {
   GLYPH_SPECS,
   glyphSpecById,
   glyphSpecByLegacyOpcode,
-} from "../../reduction_core/GlyphIR64.ts";
+} from "@07/04_transpilers/GlyphIR64.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

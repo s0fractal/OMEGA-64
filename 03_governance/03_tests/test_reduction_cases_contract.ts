@@ -1,4 +1,4 @@
-import { scriptToGlyphTape } from "../../runtime_bridge/opcode_to_glyph.ts";
+import { scriptToGlyphTape } from "@07/04_transpilers/opcode_to_glyph.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,

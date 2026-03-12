@@ -1,5 +1,5 @@
 import { RISC } from "@00/STATE_MATRIX.ts";
-import { glyphSpecByLegacyOpcode } from "../reduction_core/GlyphIR64.ts";
+import { glyphSpecByLegacyOpcode } from "@07/04_transpilers/GlyphIR64.ts";
 
 export type LegacyInstruction = {
   pc: number;

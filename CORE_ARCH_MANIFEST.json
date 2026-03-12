@@ -22,8 +22,7 @@
     "02_metabolism/SNAP.ts",
     "01_physics/STRUCTURE_ENGINE.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "reduction_core/REIFICATION_ACTION.ts",
-    "reduction_core/relics/RELIC_CULTIVATION.ts"
+    "07_meta/04_transpilers/REIFICATION_ACTION.ts"
   ],
   "experimental_files": [
     "01_physics/ECOLOGY_ENGINE.ts",
@@ -31,9 +30,9 @@
     "01_physics/MATRIX_ENGINE.ts",
     "02_metabolism/REFLECTION_ENGINE.ts",
     "02_metabolism/RIBOSOME_TICK.ts",
-    "reduction_core/GlyphIR64.ts",
-    "runtime_bridge/glyph_pretty.ts",
-    "runtime_bridge/opcode_to_glyph.ts",
+    "07_meta/04_transpilers/GlyphIR64.ts",
+    "07_meta/04_transpilers/glyph_pretty.ts",
+    "07_meta/04_transpilers/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
     "verification/reduction_harness.ts"
   ],
@@ -59,8 +58,7 @@
     "02_metabolism/HORMONE_BUFFER_RUNTIME.ts",
     "00_substrate/07_meta/02_runners/build_wasm.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "reduction_core/REIFICATION_ACTION.ts",
-    "reduction_core/relics/RELIC_CULTIVATION.ts",
+    "07_meta/04_transpilers/REIFICATION_ACTION.ts",
     "06_akasha/mod.ts"
   ],
   "context_files": [

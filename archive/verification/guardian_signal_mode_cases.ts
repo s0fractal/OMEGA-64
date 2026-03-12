@@ -1,6 +1,6 @@
 import {
   type GuardianSignalExecutionMode,
-} from "../runtime_bridge/guardian_signal_hybrid.ts";
+} from "@07/04_transpilers/guardian_signal_hybrid.ts";
 
 export type GuardianSignalModeCaseDefinition = {
   id: string;

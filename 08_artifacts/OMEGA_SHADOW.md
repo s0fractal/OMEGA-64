@@ -1,17 +1,17 @@
 # OMEGA-64 | SHADOW ECOLOGY (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T02:58:31.315Z*
-*Exported Files in Category: 25*
-*Total Exported Files: 131*
+*Generated: 2026-03-12T03:08:14.107Z*
+*Exported Files in Category: 24*
+*Total Exported Files: 128*
 *Runtime Roots: 10*
-*Runtime Closure Files: 78*
-*Non-Runtime Code Files: 36*
-*Runtime-Support Code Files: 11*
+*Runtime Closure Files: 76*
+*Non-Runtime Code Files: 35*
+*Runtime-Support Code Files: 10*
 *Experimental Code Files: 25*
-*Manifest SHA256: b3b2b69ccc8bda7dcd9b5e69b91bc81d0946bbe80e10e429379741a24576c82d*
-*Export Set SHA256: ed5e2c2c3af9b619ef25e612d310baa1329d6acae1c79d01fb6889ce3779d3f9*
-*Export Content SHA256: f3dfaba8fc50559e40db4d2bb9656acb049ff5e4775a36765d9e68f49c8e1db0*
-*Git Commit: 53b552e9fd16*
+*Manifest SHA256: 2a9262e770f6d15db8b47abbad760e3a433372deceb663ba0ee2746c281e02fa*
+*Export Set SHA256: 73d58698aee0a141c299a4f49212a380188f03bb079616c0d2be06fe94f1d6c8*
+*Export Content SHA256: 6a48d8a680e8f0b42a321fd91d75ad9c6e735704a5a6e95b4015b4775bd30d1c*
+*Git Commit: fd51ce093b8f*
 
 ---
 
@@ -246,6 +246,80 @@ console.log(
 
 ---
 
+## FILE: 07_meta/01_guards/topology_linter.ts
+
+```typescript
+import { walk } from "https://deno.land/std@0.224.0/fs/mod.ts";
+
+const LAYER_PREFIXES = ["00_", "01_", "02_", "03_", "04_", "05_", "06_"];
+let violations = 0;
+
+function getLayerCode(layerStr: string): number {
+    return parseInt(layerStr.substring(0, 2), 10);
+}
+
+const importRegex = /import\s+(?:(?:{[^}]+})|(?:[\w\s,]+\*?\s+as\s+\w+))\s+from\s+["']([^"']+)["']/g;
+
+for await (const entry of walk(".", { exts: [".ts"], skip: [/\.git/, /08_artifacts/, /63_necropolis/, /07_meta/] })) {
+    if (!entry.isFile) continue;
+    
+    let sourceLayerPrefix = null;
+    for (const p of LAYER_PREFIXES) {
+        if (entry.path.startsWith(p)) {
+            sourceLayerPrefix = p;
+            break;
+        }
+    }
+    
+    if (!sourceLayerPrefix) continue;
+    const sourceCode = getLayerCode(sourceLayerPrefix);
+    
+    const content = await Deno.readTextFile(entry.path);
+    let match;
+    
+    while ((match = importRegex.exec(content)) !== null) {
+        const importPath = match[1];
+        
+        // Skip external imports
+        if (importPath.startsWith("http") || importPath.startsWith("npm:")) continue;
+        
+        let targetLayerPrefix = null;
+        for (const p of LAYER_PREFIXES) {
+            if (importPath.includes(p)) {
+                targetLayerPrefix = p;
+                break;
+            }
+        }
+        
+        if (targetLayerPrefix && targetLayerPrefix !== sourceLayerPrefix) {
+            const targetCode = getLayerCode(targetLayerPrefix);
+            
+            // Rule 1: YY <= XX (Downward scalar)
+            if (targetCode > sourceCode) {
+                console.error(`[TOPOLOGY BREACH] Ascending Import: ${entry.path} (${sourceLayerPrefix}) imports from ${targetLayerPrefix} (${importPath})`);
+                violations++;
+            }
+            
+            // Rule 2: Exclusively through mod.ts
+            if (!importPath.endsWith("/mod.ts")) {
+                console.error(`[TOPOLOGY BREACH] Deep Import Violation: ${entry.path} imports directly from ${importPath}. Must go through mod.ts.`);
+                violations++;
+            }
+        }
+    }
+}
+
+if (violations > 0) {
+    console.error(`\n❌ Failed. ${violations} topological breaches detected in the Lattice.`);
+    Deno.exit(1);
+} else {
+    console.log("✅ The Lattice is Absolute. 0 Topology Breaches.");
+}
+
+```
+
+---
+
 ## FILE: 07_meta/01_guards/vector_decoder.ts
 
 ```typescript
@@ -474,6 +548,392 @@ await main();
 
 ---
 
+## FILE: 07_meta/02_runners/doll_fork/DOLL_FORK_MATRIX.ts
+
+```typescript
+// OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
+import * as OFFSETS from "@00";
+import { sharedBuffer as mainlineBuffer } from "@00";
+
+/**
+ * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
+ * It allows for risk-free simulation, mutation, and relic cultivation without affecting global causality.
+ */
+export class DollFork {
+  public wasmMemory: WebAssembly.Memory;
+  public shardBuffer: SharedArrayBuffer;
+  public views: {
+    ids: BigUint64Array;
+    xs: Int16Array;
+    ys: Int16Array;
+    energies: Int32Array;
+    resonances: Int32Array;
+    phases: Int32Array;
+    roles: Uint8Array;
+    logic: Uint8Array;
+    bonds: Uint32Array;
+    stiffness: Float32Array;
+    bondDistances: Uint8Array;
+    damping: Uint8Array;
+    causality: Uint8Array;
+    hormones: Uint16Array;
+    signalGrid: Int32Array;
+    memoryGrid: Uint8Array;
+    structureGrid: Int32Array;
+    glyphHeader: Int32Array;
+    glyphPayload: Uint8Array;
+    coherence: Int32Array;
+    // Physics Read Support (Double Buffering)
+    readXs: Int16Array;
+    readYs: Int16Array;
+    readEnergies: Int32Array;
+    readResonances: Int32Array;
+  };
+
+  constructor(customMemory?: WebAssembly.Memory) {
+    this.wasmMemory = customMemory ?? new WebAssembly.Memory({
+      initial: OFFSETS.WASM_MEMORY_PAGES,
+      maximum: OFFSETS.WASM_MEMORY_PAGES,
+      shared: true,
+    });
+    this.shardBuffer = this.wasmMemory.buffer as SharedArrayBuffer;
+
+    // Initialize primary views (Host side)
+    const b = this.shardBuffer;
+    this.views = {
+      ids: new BigUint64Array(b, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS),
+      xs: new Int16Array(b, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS),
+      ys: new Int16Array(b, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS),
+      energies: new Int32Array(b, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
+      resonances: new Int32Array(
+        b,
+        OFFSETS.RESONANCE_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      phases: new Int32Array(b, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS),
+      roles: new Uint8Array(b, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS),
+      logic: new Uint8Array(b, OFFSETS.LOGIC_OFFSET, OFFSETS.MAX_ATOMS * 8),
+      bonds: new Uint32Array(b, OFFSETS.BONDS_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      stiffness: new Float32Array(
+        b,
+        OFFSETS.STIFFNESS_OFFSET,
+        OFFSETS.MAX_ATOMS * 4,
+      ),
+      bondDistances: new Uint8Array(
+        b,
+        OFFSETS.BOND_DISTANCES_OFFSET,
+        OFFSETS.MAX_ATOMS * 4,
+      ),
+      damping: new Uint8Array(b, OFFSETS.DAMPING_OFFSET, OFFSETS.MAX_ATOMS),
+      causality: new Uint8Array(b, OFFSETS.CAUSALITY_OFFSET, OFFSETS.MAX_ATOMS),
+      hormones: new Uint16Array(b, OFFSETS.HORMONE_OFFSET, 6),
+      signalGrid: new Int32Array(
+        b,
+        OFFSETS.SIGNAL_GRID_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      memoryGrid: new Uint8Array(
+        b,
+        OFFSETS.MEMORY_GRID_OFFSET,
+        OFFSETS.GRID_CELLS * 8,
+      ),
+      structureGrid: new Int32Array(
+        b,
+        OFFSETS.STRUCTURE_GRID_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      glyphHeader: new Int32Array(
+        b,
+        OFFSETS.GLYPH_HEADER_OFFSET,
+        OFFSETS.GRID_CELLS,
+      ),
+      glyphPayload: new Uint8Array(
+        b,
+        OFFSETS.GLYPH_PAYLOAD_OFFSET,
+        OFFSETS.GRID_CELLS * 8,
+      ),
+      coherence: new Int32Array(b, OFFSETS.COHERENCE_OFFSET, 1),
+      readXs: new Int16Array(
+        b,
+        OFFSETS.PHYSICS_READ_XS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readYs: new Int16Array(
+        b,
+        OFFSETS.PHYSICS_READ_YS_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readEnergies: new Int32Array(
+        b,
+        OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+      readResonances: new Int32Array(
+        b,
+        OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+        OFFSETS.MAX_ATOMS,
+      ),
+    };
+  }
+
+  /**
+   * Performs a bit-perfect deep copy from the mainline sharedBuffer into the DollFork shard.
+   */
+  public forkFromMainline(): void {
+    const mainlineView = new Uint8Array(mainlineBuffer);
+    const shardView = new Uint8Array(this.shardBuffer);
+    shardView.set(mainlineView);
+  }
+
+  /**
+   * Synchronizes 'Physics Read' buffers from primary buffers.
+   * Essential before calling WASM execution kernels in the shadow world.
+   */
+  public syncReadViews(): void {
+    this.views.readXs.set(this.views.xs);
+    this.views.readYs.set(this.views.ys);
+    this.views.readEnergies.set(this.views.energies);
+    this.views.readResonances.set(this.views.resonances);
+  }
+
+  public getMetrics() {
+    let totalEnergy = 0;
+    let activePopulation = 0;
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (this.views.energies[i] > 0) {
+        totalEnergy += Number(this.views.energies[i]);
+        activePopulation++;
+      }
+    }
+    return {
+      activePopulation,
+      totalEnergy,
+      avgEnergy: activePopulation > 0 ? totalEnergy / activePopulation : 0,
+    };
+  }
+}
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/doll_fork/DOLL_FORK_RUNNER.ts
+
+```typescript
+// OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
+import * as OFFSETS from "@00";
+import { DollFork } from "./DOLL_FORK_MATRIX.ts";
+import { LOGGER } from "@00";
+
+export class DollForkRunner {
+  private wasmInstance: WebAssembly.Instance | null = null;
+  private fork: DollFork;
+
+  constructor(fork: DollFork) {
+    this.fork = fork;
+  }
+
+  /**
+   * Initializes a private WebAssembly instance for the shadow matrix.
+   */
+  public async init(): Promise<void> {
+    const wasmRes = await fetch(
+      new URL("../../00_substrate/08_artifacts/release.wasm", import.meta.url).href,
+    );
+    const wasmBytes = await wasmRes.arrayBuffer();
+
+    const traceAtom = (
+      idx: number,
+      op: number,
+      gx: number,
+      gy: number,
+      target: number,
+    ) => {
+      // Shadow traces are suppressed
+    };
+
+    const instantiated = await WebAssembly.instantiate(wasmBytes, {
+      index: { trace_atom: traceAtom },
+      env: {
+        memory: this.fork.wasmMemory,
+        abort: (msg: any) => LOGGER.error("[SHADOW WASM ABORT]:", msg),
+        trace_atom: traceAtom,
+      },
+    });
+
+    this.wasmInstance = instantiated.instance;
+  }
+
+  /**
+   * Executes a single discrete shadow tick on the forked matrix.
+   */
+  public runShadowTick(tickCount: number): void {
+    if (!this.wasmInstance) throw new Error("DollForkRunner not initialized");
+
+    // 0. Sync Read Views (Double Buffering)
+    this.fork.syncReadViews();
+
+    const exports = this.wasmInstance.exports as any;
+
+    try {
+      // 1. Build Spatial Hash
+      exports.build_spatial_hash();
+
+      // 2. Execute Atoms (Physics + VM)
+      for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+        if (this.fork.views.ids[i] !== 0n) {
+          exports.execute_atom(i);
+        }
+      }
+
+      // 3. Resolve Bonds & Spawns
+      exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
+      exports.drain_spawn_requests(tickCount);
+
+      // 4. Tick Environment (Glyph Transport, Decay)
+      exports.tickGlyphTransport(tickCount);
+      exports.tick_environment(tickCount);
+
+      // 5. Apply Metabolism
+      exports.apply_metabolism_kernel(
+        0,
+        OFFSETS.MAX_ATOMS,
+        0,
+        0, // Novelty/Symbiosis
+        10, // Base Tax
+        1000, // Target Energy
+        10,
+        10,
+        10, // Band, MaxDelta, Overflow
+        0, // Spatial Overflow
+        1, // Starvation Floor
+        0, // Subsidy
+      );
+    } catch (err) {
+      LOGGER.error("[SHADOW TICK ERROR]", err);
+      throw err;
+    }
+  }
+}
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/DRIFT_WARDEN.ts
+
+```typescript
+// OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
+import * as OFFSETS from "@00";
+import { sharedBuffer } from "@00";
+import { LOGGER } from "@00";
+
+export type DriftMetrics = {
+  coherence: number;
+  energyVariance: number;
+  populationStability: number;
+  driftIndex: number;
+  shadowForkRecommended: boolean;
+};
+
+/**
+ * DriftWarden monitors the global state for behavioral anomalies and instability.
+ */
+export class DriftWarden {
+  private energyView: Int32Array;
+  private idsView: BigUint64Array;
+  private coherenceView: Int32Array;
+
+  private lastPopulation = 0;
+  private driftThreshold = 0.65; // High drift signals instability
+
+  constructor(
+    customEnergyView?: Int32Array,
+    customIdsView?: BigUint64Array,
+    customCoherenceView?: Int32Array,
+  ) {
+    this.energyView = customEnergyView ??
+      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+    this.idsView = customIdsView ??
+      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+    this.coherenceView = customCoherenceView ??
+      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+  }
+
+  /**
+   * Calculates the current drift status of the system.
+   */
+  public analyze(currentTick: number): DriftMetrics {
+    const activeIds = [];
+    let totalEnergy = 0;
+
+    // 1. Gather active population metrics
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (this.idsView[i] !== 0n) {
+        activeIds.push(i);
+        totalEnergy += this.energyView[i];
+      }
+    }
+
+    const population = activeIds.length;
+    const avgEnergy = population > 0 ? totalEnergy / population : 0;
+
+    // 2. Coherence (from WASM kernel neural sync)
+    // Coherence is usually 0..1000 in our standard (fixed point)
+    const rawCoherence = Atomics.load(this.coherenceView, 0);
+    const coherenceNormalized = rawCoherence / 1000.0;
+
+    // 3. Energy Variance (local stability)
+    let varianceSum = 0;
+    if (population > 1) {
+      for (const idx of activeIds) {
+        const diff = this.energyView[idx] - avgEnergy;
+        varianceSum += diff * diff;
+      }
+    }
+    const energyVariance = population > 0
+      ? Math.sqrt(varianceSum / population) / 1000.0
+      : 0;
+
+    // 4. Population Stability (Delta from last analysis)
+    const popDelta = Math.abs(population - this.lastPopulation);
+    const populationStability = population > 0
+      ? 1.0 - Math.min(1.0, popDelta / (population * 0.1))
+      : 1.0;
+    this.lastPopulation = population;
+
+    // 5. Final Drift Index Calculation
+    // High drift = Low coherence, High variance, Low stability
+    const driftIndex = ((1.0 - coherenceNormalized) * 0.5) +
+      (Math.min(1.0, energyVariance) * 0.3) +
+      ((1.0 - populationStability) * 0.2);
+
+    const shadowForkRecommended = driftIndex > this.driftThreshold;
+
+    if (currentTick % 100 === 0) {
+      LOGGER.info(
+        `[DRIFT WARDEN] Tick ${currentTick} | Drift: ${
+          driftIndex.toFixed(4)
+        } | Coherence: ${
+          coherenceNormalized.toFixed(4)
+        } | Fork: ${shadowForkRecommended}`,
+      );
+    }
+
+    return {
+      coherence: coherenceNormalized,
+      energyVariance,
+      populationStability,
+      driftIndex,
+      shadowForkRecommended,
+    };
+  }
+}
+
+```
+
+---
+
 ## FILE: 07_meta/02_runners/export_core.ts
 
 ```typescript
@@ -494,6 +954,8 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)e\//u,
   /(^|\/)o\//u,
   /(^|\/)DIMENSIONS\//u,
+  /(^|\/)sandbox\//u,
+  /(^|\/)relics\//u,
   /(^|\/)\.omega\//u,
   /(^|\/)node_modules\//u,
   /(^|\/)build\//u,
@@ -1292,6 +1754,170 @@ run().catch((err) => {
   console.error("Verification failed:", err);
   Deno.exit(1);
 });
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/SHADOW_EVOLUTION_RUNNER.ts
+
+```typescript
+/**
+ * SHADOW_EVOLUTION_RUNNER.ts
+ * Automates the validation of semantic proposals against the OMEGA-64 Golden Traces.
+ * Runs in a secure WebAssembly memory sandbox (DollFork) isolated from the main matrix.
+ */
+
+import { REDUCTION_CASES } from "../verification/reduction_cases.ts";
+import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+import { DollFork } from "./doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "./doll_fork/DOLL_FORK_RUNNER.ts";
+import { DriftWarden } from "./DRIFT_WARDEN.ts";
+import { ReificationAction } from "./REIFICATION_ACTION.ts";
+import * as OFFSETS from "@00";
+
+export type SemanticProposal = {
+  id: string;
+  targetRole: string; // e.g. "guardian_base"
+  proposedBytecode: number[];
+  driftBudget: number; // Max allowed energy/state mismatch
+};
+
+async function loadProposals(): Promise<SemanticProposal[]> {
+  try {
+    const data = await Deno.readTextFile(
+      "./@07/02_runners/sandbox/PROPOSALS.json",
+    );
+    const json = JSON.parse(data);
+    return json.proposals || [];
+  } catch {
+    return [];
+  }
+}
+
+async function markProposalProcessed(id: string) {
+  try {
+    const data = await Deno.readTextFile(
+      "./@07/02_runners/sandbox/PROPOSALS.json",
+    );
+    const json = JSON.parse(data);
+    json.proposals = (json.proposals || []).filter((p: any) => p.id !== id);
+    await Deno.writeTextFile(
+      "./@07/02_runners/sandbox/PROPOSALS.json",
+      JSON.stringify(json, null, 2),
+    );
+  } catch (err) {
+    // Ignore updates if json corrupted
+  }
+}
+
+export async function runShadowValidation() {
+  const proposals = await loadProposals();
+  if (proposals.length === 0) return;
+  console.log(`[shadow_runner] detected ${proposals.length} active proposals.`);
+
+  const fork = new DollFork();
+  const runner = new DollForkRunner(fork);
+  await runner.init();
+
+  const warden = new DriftWarden(
+    fork.views.energies,
+    fork.views.ids,
+    fork.views.coherence,
+  );
+  const reification = new ReificationAction();
+
+  for (const proposal of proposals) {
+    console.log(
+      `[shadow_runner] validating proposal: ${proposal.id} (Budget: ${proposal.driftBudget})...`,
+    );
+
+    // 1. Fork Reality
+    fork.forkFromMainline();
+
+    // 2. Inject proposed bytecode into 15 active atoms
+    let infectedCount = 0;
+    const proposed = new Uint8Array(proposal.proposedBytecode);
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (fork.views.ids[i] !== 0n) {
+        fork.views.logic.set(proposed, i * 8);
+        infectedCount++;
+        if (infectedCount >= 15) break;
+      }
+    }
+
+    if (infectedCount === 0) {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} REJECTED: no living atoms available to host.`,
+      );
+      await markProposalProcessed(proposal.id);
+      continue;
+    }
+
+    // 3. Baseline Drift
+    // Since DollFork forks mainline, we start at a baseline drift relative to mainline.
+    const initialMetrics = warden.analyze(0);
+    const initialDrift = initialMetrics.driftIndex;
+
+    // 4. Shadow Simulation
+    const SHADOW_TICKS = 50;
+    for (let t = 0; t < SHADOW_TICKS; t++) {
+      runner.runShadowTick(t);
+    }
+
+    // 5. Final Drift
+    const finalMetrics = warden.analyze(SHADOW_TICKS);
+    const finalDrift = finalMetrics.driftIndex;
+
+    const deltaDrift = finalDrift - initialDrift;
+
+    // Evaluate Survival
+    // Ensure all test subjects didn't just instantly die
+    const activePopulation = fork.getMetrics().activePopulation;
+
+    console.log(
+      `[shadow_runner] ${proposal.id} | Initial Drift: ${
+        initialDrift.toFixed(3)
+      } | Final: ${finalDrift.toFixed(3)} | Delta: ${deltaDrift.toFixed(3)}`,
+    );
+
+    if (deltaDrift <= proposal.driftBudget && activePopulation > 0) {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} PASSED. Mutants stabilized.`,
+      );
+
+      // Save Relic Payload
+      const relic = {
+        id: proposal.id,
+        bytecode: proposal.proposedBytecode,
+        targetRole: proposal.targetRole,
+        metadata: {
+          deltaDrift,
+          activePopulation,
+        },
+      };
+
+      const sandboxPath = `./@07/02_runners/sandbox/relic_${proposal.id}.json`;
+      await Deno.writeTextFile(sandboxPath, JSON.stringify(relic, null, 2));
+
+      await reification.reify(proposal.id);
+    } else {
+      console.log(
+        `[shadow_runner] proposal ${proposal.id} REJECTED: Destructive trajectory detected.`,
+      );
+    }
+
+    // Cleanup queue
+    await markProposalProcessed(proposal.id);
+  }
+}
+
+if (import.meta.main) {
+  runShadowValidation().catch((err) => {
+    console.error("Shadow verification failed:", err);
+    Deno.exit(1);
+  });
+}
 
 ```
 
@@ -5119,676 +5745,35 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 ---
 
-## FILE: 07_meta/03_guards/topology_linter.ts
+## FILE: 07_meta/04_transpilers/glyph_pretty.ts
 
 ```typescript
-import { walk } from "https://deno.land/std@0.224.0/fs/mod.ts";
+import { glyphSpecById } from "@07/04_transpilers/GlyphIR64.ts";
+import type { GlyphTapeToken } from "./opcode_to_glyph.ts";
 
-const LAYER_PREFIXES = ["00_", "01_", "02_", "03_", "04_", "05_", "06_"];
-let violations = 0;
-
-function getLayerCode(layerStr: string): number {
-    return parseInt(layerStr.substring(0, 2), 10);
-}
-
-const importRegex = /import\s+(?:(?:{[^}]+})|(?:[\w\s,]+\*?\s+as\s+\w+))\s+from\s+["']([^"']+)["']/g;
-
-for await (const entry of walk(".", { exts: [".ts"], skip: [/\.git/, /08_artifacts/, /63_necropolis/, /07_meta/] })) {
-    if (!entry.isFile) continue;
-    
-    let sourceLayerPrefix = null;
-    for (const p of LAYER_PREFIXES) {
-        if (entry.path.startsWith(p)) {
-            sourceLayerPrefix = p;
-            break;
-        }
-    }
-    
-    if (!sourceLayerPrefix) continue;
-    const sourceCode = getLayerCode(sourceLayerPrefix);
-    
-    const content = await Deno.readTextFile(entry.path);
-    let match;
-    
-    while ((match = importRegex.exec(content)) !== null) {
-        const importPath = match[1];
-        
-        // Skip external imports
-        if (importPath.startsWith("http") || importPath.startsWith("npm:")) continue;
-        
-        let targetLayerPrefix = null;
-        for (const p of LAYER_PREFIXES) {
-            if (importPath.includes(p)) {
-                targetLayerPrefix = p;
-                break;
-            }
-        }
-        
-        if (targetLayerPrefix && targetLayerPrefix !== sourceLayerPrefix) {
-            const targetCode = getLayerCode(targetLayerPrefix);
-            
-            // Rule 1: YY <= XX (Downward scalar)
-            if (targetCode > sourceCode) {
-                console.error(`[TOPOLOGY BREACH] Ascending Import: ${entry.path} (${sourceLayerPrefix}) imports from ${targetLayerPrefix} (${importPath})`);
-                violations++;
-            }
-            
-            // Rule 2: Exclusively through mod.ts
-            if (!importPath.endsWith("/mod.ts")) {
-                console.error(`[TOPOLOGY BREACH] Deep Import Violation: ${entry.path} imports directly from ${importPath}. Must go through mod.ts.`);
-                violations++;
-            }
-        }
-    }
-}
-
-if (violations > 0) {
-    console.error(`\n❌ Failed. ${violations} topological breaches detected in the Lattice.`);
-    Deno.exit(1);
-} else {
-    console.log("✅ The Lattice is Absolute. 0 Topology Breaches.");
-}
-
-```
-
----
-
-## FILE: reduction_core/doll_fork/DOLL_FORK_MATRIX.ts
-
-```typescript
-// OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "@00";
-import { sharedBuffer as mainlineBuffer } from "@00";
-
-/**
- * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
- * It allows for risk-free simulation, mutation, and relic cultivation without affecting global causality.
- */
-export class DollFork {
-  public wasmMemory: WebAssembly.Memory;
-  public shardBuffer: SharedArrayBuffer;
-  public views: {
-    ids: BigUint64Array;
-    xs: Int16Array;
-    ys: Int16Array;
-    energies: Int32Array;
-    resonances: Int32Array;
-    phases: Int32Array;
-    roles: Uint8Array;
-    logic: Uint8Array;
-    bonds: Uint32Array;
-    stiffness: Float32Array;
-    bondDistances: Uint8Array;
-    damping: Uint8Array;
-    causality: Uint8Array;
-    hormones: Uint16Array;
-    signalGrid: Int32Array;
-    memoryGrid: Uint8Array;
-    structureGrid: Int32Array;
-    glyphHeader: Int32Array;
-    glyphPayload: Uint8Array;
-    coherence: Int32Array;
-    // Physics Read Support (Double Buffering)
-    readXs: Int16Array;
-    readYs: Int16Array;
-    readEnergies: Int32Array;
-    readResonances: Int32Array;
-  };
-
-  constructor(customMemory?: WebAssembly.Memory) {
-    this.wasmMemory = customMemory ?? new WebAssembly.Memory({
-      initial: OFFSETS.WASM_MEMORY_PAGES,
-      maximum: OFFSETS.WASM_MEMORY_PAGES,
-      shared: true,
-    });
-    this.shardBuffer = this.wasmMemory.buffer as SharedArrayBuffer;
-
-    // Initialize primary views (Host side)
-    const b = this.shardBuffer;
-    this.views = {
-      ids: new BigUint64Array(b, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS),
-      xs: new Int16Array(b, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS),
-      ys: new Int16Array(b, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS),
-      energies: new Int32Array(b, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
-      resonances: new Int32Array(
-        b,
-        OFFSETS.RESONANCE_OFFSET,
-        OFFSETS.MAX_ATOMS,
-      ),
-      phases: new Int32Array(b, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS),
-      roles: new Uint8Array(b, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS),
-      logic: new Uint8Array(b, OFFSETS.LOGIC_OFFSET, OFFSETS.MAX_ATOMS * 8),
-      bonds: new Uint32Array(b, OFFSETS.BONDS_OFFSET, OFFSETS.MAX_ATOMS * 4),
-      stiffness: new Float32Array(
-        b,
-        OFFSETS.STIFFNESS_OFFSET,
-        OFFSETS.MAX_ATOMS * 4,
-      ),
-      bondDistances: new Uint8Array(
-        b,
-        OFFSETS.BOND_DISTANCES_OFFSET,
-        OFFSETS.MAX_ATOMS * 4,
-      ),
-      damping: new Uint8Array(b, OFFSETS.DAMPING_OFFSET, OFFSETS.MAX_ATOMS),
-      causality: new Uint8Array(b, OFFSETS.CAUSALITY_OFFSET, OFFSETS.MAX_ATOMS),
-      hormones: new Uint16Array(b, OFFSETS.HORMONE_OFFSET, 6),
-      signalGrid: new Int32Array(
-        b,
-        OFFSETS.SIGNAL_GRID_OFFSET,
-        OFFSETS.GRID_CELLS,
-      ),
-      memoryGrid: new Uint8Array(
-        b,
-        OFFSETS.MEMORY_GRID_OFFSET,
-        OFFSETS.GRID_CELLS * 8,
-      ),
-      structureGrid: new Int32Array(
-        b,
-        OFFSETS.STRUCTURE_GRID_OFFSET,
-        OFFSETS.GRID_CELLS,
-      ),
-      glyphHeader: new Int32Array(
-        b,
-        OFFSETS.GLYPH_HEADER_OFFSET,
-        OFFSETS.GRID_CELLS,
-      ),
-      glyphPayload: new Uint8Array(
-        b,
-        OFFSETS.GLYPH_PAYLOAD_OFFSET,
-        OFFSETS.GRID_CELLS * 8,
-      ),
-      coherence: new Int32Array(b, OFFSETS.COHERENCE_OFFSET, 1),
-      readXs: new Int16Array(
-        b,
-        OFFSETS.PHYSICS_READ_XS_OFFSET,
-        OFFSETS.MAX_ATOMS,
-      ),
-      readYs: new Int16Array(
-        b,
-        OFFSETS.PHYSICS_READ_YS_OFFSET,
-        OFFSETS.MAX_ATOMS,
-      ),
-      readEnergies: new Int32Array(
-        b,
-        OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-        OFFSETS.MAX_ATOMS,
-      ),
-      readResonances: new Int32Array(
-        b,
-        OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-        OFFSETS.MAX_ATOMS,
-      ),
-    };
-  }
-
-  /**
-   * Performs a bit-perfect deep copy from the mainline sharedBuffer into the DollFork shard.
-   */
-  public forkFromMainline(): void {
-    const mainlineView = new Uint8Array(mainlineBuffer);
-    const shardView = new Uint8Array(this.shardBuffer);
-    shardView.set(mainlineView);
-  }
-
-  /**
-   * Synchronizes 'Physics Read' buffers from primary buffers.
-   * Essential before calling WASM execution kernels in the shadow world.
-   */
-  public syncReadViews(): void {
-    this.views.readXs.set(this.views.xs);
-    this.views.readYs.set(this.views.ys);
-    this.views.readEnergies.set(this.views.energies);
-    this.views.readResonances.set(this.views.resonances);
-  }
-
-  public getMetrics() {
-    let totalEnergy = 0;
-    let activePopulation = 0;
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-      if (this.views.energies[i] > 0) {
-        totalEnergy += Number(this.views.energies[i]);
-        activePopulation++;
-      }
-    }
-    return {
-      activePopulation,
-      totalEnergy,
-      avgEnergy: activePopulation > 0 ? totalEnergy / activePopulation : 0,
-    };
-  }
-}
-
-```
-
----
-
-## FILE: reduction_core/doll_fork/DOLL_FORK_RUNNER.ts
-
-```typescript
-// OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "@00";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "@00";
-
-export class DollForkRunner {
-  private wasmInstance: WebAssembly.Instance | null = null;
-  private fork: DollFork;
-
-  constructor(fork: DollFork) {
-    this.fork = fork;
-  }
-
-  /**
-   * Initializes a private WebAssembly instance for the shadow matrix.
-   */
-  public async init(): Promise<void> {
-    const wasmRes = await fetch(
-      new URL("../../00_substrate/08_artifacts/release.wasm", import.meta.url).href,
-    );
-    const wasmBytes = await wasmRes.arrayBuffer();
-
-    const traceAtom = (
-      idx: number,
-      op: number,
-      gx: number,
-      gy: number,
-      target: number,
-    ) => {
-      // Shadow traces are suppressed
-    };
-
-    const instantiated = await WebAssembly.instantiate(wasmBytes, {
-      index: { trace_atom: traceAtom },
-      env: {
-        memory: this.fork.wasmMemory,
-        abort: (msg: any) => LOGGER.error("[SHADOW WASM ABORT]:", msg),
-        trace_atom: traceAtom,
-      },
-    });
-
-    this.wasmInstance = instantiated.instance;
-  }
-
-  /**
-   * Executes a single discrete shadow tick on the forked matrix.
-   */
-  public runShadowTick(tickCount: number): void {
-    if (!this.wasmInstance) throw new Error("DollForkRunner not initialized");
-
-    // 0. Sync Read Views (Double Buffering)
-    this.fork.syncReadViews();
-
-    const exports = this.wasmInstance.exports as any;
-
-    try {
-      // 1. Build Spatial Hash
-      exports.build_spatial_hash();
-
-      // 2. Execute Atoms (Physics + VM)
-      for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-        if (this.fork.views.ids[i] !== 0n) {
-          exports.execute_atom(i);
-        }
-      }
-
-      // 3. Resolve Bonds & Spawns
-      exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
-      exports.drain_spawn_requests(tickCount);
-
-      // 4. Tick Environment (Glyph Transport, Decay)
-      exports.tickGlyphTransport(tickCount);
-      exports.tick_environment(tickCount);
-
-      // 5. Apply Metabolism
-      exports.apply_metabolism_kernel(
-        0,
-        OFFSETS.MAX_ATOMS,
-        0,
-        0, // Novelty/Symbiosis
-        10, // Base Tax
-        1000, // Target Energy
-        10,
-        10,
-        10, // Band, MaxDelta, Overflow
-        0, // Spatial Overflow
-        1, // Starvation Floor
-        0, // Subsidy
-      );
-    } catch (err) {
-      LOGGER.error("[SHADOW TICK ERROR]", err);
-      throw err;
-    }
-  }
-}
-
-```
-
----
-
-## FILE: reduction_core/DRIFT_WARDEN.ts
-
-```typescript
-// OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import * as OFFSETS from "@00";
-import { sharedBuffer } from "@00";
-import { LOGGER } from "@00";
-
-export type DriftMetrics = {
-  coherence: number;
-  energyVariance: number;
-  populationStability: number;
-  driftIndex: number;
-  shadowForkRecommended: boolean;
+export const describeGlyphToken = (token: GlyphTapeToken): string => {
+  const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);
+  const glyphLabel = token.mapped && spec
+    ? `${spec.mnemonic}[${spec.id}]`
+    : `UNMAPPED(${token.opcodeMnemonic})`;
+  const args = token.args.length > 0 ? ` args=[${token.args.join(",")}]` : "";
+  const reductionRule = spec ? ` rule=${spec.reductionRuleRef}` : "";
+  const energy = spec ? ` energy=${spec.energyCost}` : "";
+  return `pc=${token.pc} opcode=${token.opcodeMnemonic} -> ${glyphLabel}${args}${energy}${reductionRule}`;
 };
 
-/**
- * DriftWarden monitors the global state for behavioral anomalies and instability.
- */
-export class DriftWarden {
-  private energyView: Int32Array;
-  private idsView: BigUint64Array;
-  private coherenceView: Int32Array;
+export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
+  tape.map((token) => describeGlyphToken(token));
 
-  private lastPopulation = 0;
-  private driftThreshold = 0.65; // High drift signals instability
-
-  constructor(
-    customEnergyView?: Int32Array,
-    customIdsView?: BigUint64Array,
-    customCoherenceView?: Int32Array,
-  ) {
-    this.energyView = customEnergyView ??
-      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
-    this.idsView = customIdsView ??
-      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
-    this.coherenceView = customCoherenceView ??
-      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
-  }
-
-  /**
-   * Calculates the current drift status of the system.
-   */
-  public analyze(currentTick: number): DriftMetrics {
-    const activeIds = [];
-    let totalEnergy = 0;
-
-    // 1. Gather active population metrics
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-      if (this.idsView[i] !== 0n) {
-        activeIds.push(i);
-        totalEnergy += this.energyView[i];
-      }
-    }
-
-    const population = activeIds.length;
-    const avgEnergy = population > 0 ? totalEnergy / population : 0;
-
-    // 2. Coherence (from WASM kernel neural sync)
-    // Coherence is usually 0..1000 in our standard (fixed point)
-    const rawCoherence = Atomics.load(this.coherenceView, 0);
-    const coherenceNormalized = rawCoherence / 1000.0;
-
-    // 3. Energy Variance (local stability)
-    let varianceSum = 0;
-    if (population > 1) {
-      for (const idx of activeIds) {
-        const diff = this.energyView[idx] - avgEnergy;
-        varianceSum += diff * diff;
-      }
-    }
-    const energyVariance = population > 0
-      ? Math.sqrt(varianceSum / population) / 1000.0
-      : 0;
-
-    // 4. Population Stability (Delta from last analysis)
-    const popDelta = Math.abs(population - this.lastPopulation);
-    const populationStability = population > 0
-      ? 1.0 - Math.min(1.0, popDelta / (population * 0.1))
-      : 1.0;
-    this.lastPopulation = population;
-
-    // 5. Final Drift Index Calculation
-    // High drift = Low coherence, High variance, Low stability
-    const driftIndex = ((1.0 - coherenceNormalized) * 0.5) +
-      (Math.min(1.0, energyVariance) * 0.3) +
-      ((1.0 - populationStability) * 0.2);
-
-    const shadowForkRecommended = driftIndex > this.driftThreshold;
-
-    if (currentTick % 100 === 0) {
-      LOGGER.info(
-        `[DRIFT WARDEN] Tick ${currentTick} | Drift: ${
-          driftIndex.toFixed(4)
-        } | Coherence: ${
-          coherenceNormalized.toFixed(4)
-        } | Fork: ${shadowForkRecommended}`,
-      );
-    }
-
-    return {
-      coherence: coherenceNormalized,
-      energyVariance,
-      populationStability,
-      driftIndex,
-      shadowForkRecommended,
-    };
-  }
-}
+export const glyphTapeToPrettyText = (
+  tape: readonly GlyphTapeToken[],
+): string => glyphTapeToLines(tape).join("\n");
 
 ```
 
 ---
 
-## FILE: reduction_core/GENESIS_BOOT.ts
-
-```typescript
-/**
- * GENESIS_BOOT.ts
- * Axiomatic bytecode definitions for OMEGA-64 Stage 20.
- * These are the "First Programs" that define the core roles in native GlyphIR64.
- */
-
-export const GLYPH = {
-  // Core
-  S: 0,
-  K: 1,
-  I: 2,
-  Y: 3,
-  // Control
-  SET: 8,
-  GET: 9,
-  PUT: 10,
-  ADD: 11,
-  SUB: 12,
-  JNZ: 13,
-  JMP: 14,
-  JZ: 15,
-  // Transport
-  REPLICATE: 16,
-  SIGNAL: 17,
-  SHARE: 18,
-  BIND: 19,
-  SPORE_DRIVE: 20,
-  ENTANGLE: 21,
-  // Structural
-  PLUG: 24,
-  TENSEGRITY: 25,
-  BUILD: 26,
-  SENSE: 27,
-  // Catalytic
-  COLLECTIVE: 32,
-  ROLE: 33,
-  RESOLVE: 34,
-};
-
-export type RolePreamble = {
-  roleId: number;
-  bytecode: number[];
-};
-
-/**
- * The Genesis Programs:
- * These bypass legacy WASM interpretation when running in "Native Mode".
- */
-export const GENESIS_PROGRAMS: Record<string, number[]> = {
-  /**
-   * GUARDIAN (Role 2):
-   * Focuses on PHEROMONE emission (Positive Amplitude).
-   */
-  "guardian_base": [
-    GLYPH.SET,
-    0,
-    100, // R0 = 100
-    GLYPH.SET,
-    1,
-    1, // R1 = 1 (Pheromone index)
-    GLYPH.SIGNAL, // Emit Pheromone with R0 (+100) intensity
-    GLYPH.I, // No-op return
-  ],
-
-  /**
-   * PARASITE (Role 4):
-   * Disrupts signals (Negative Amplitude).
-   */
-  "parasite_base": [
-    GLYPH.SET,
-    0,
-    0, // R0 = 0
-    GLYPH.SET,
-    1,
-    100, // R1 = 100
-    GLYPH.SUB,
-    0,
-    1, // R0 = R0 - R1 (-100)
-    GLYPH.SET,
-    2,
-    1, // R2 = 1 (Pheromone index)
-    GLYPH.SIGNAL, // Emit Pheromone with R0 (-100) intensity
-    GLYPH.I,
-  ],
-
-  /**
-   * ARCHITECT (Role 3):
-   * Focuses on PLASMID emission and structural intent.
-   */
-  "architect_base": [
-    GLYPH.SET,
-    0,
-    100, // R0 = 100 (Charge / Amplitude)
-    GLYPH.SET,
-    1,
-    0, // R1 = 0 (Plasmid index)
-    GLYPH.PLUG,
-    0,
-    0, // Apply structural charge intent
-    GLYPH.SIGNAL, // Emit Plasmid signal
-    GLYPH.I,
-  ],
-
-  /**
-   * REPLICATOR (Default / Shared):
-   * Basic reproduction logic.
-   */
-  "replicator_base": [
-    GLYPH.SET,
-    0,
-    50, // R0 = 50 (Low signal)
-    GLYPH.SET,
-    1,
-    2, // R1 = 2 (Replication scent)
-    GLYPH.SIGNAL,
-    GLYPH.REPLICATE,
-    GLYPH.I,
-  ],
-
-  /**
-   * COMPLEX_STABILITY:
-   * A program demonstrating control flow via JNZ.
-   */
-  "stability_loop": [
-    GLYPH.SET,
-    0,
-    10, // R0 = 10 (Counter)
-    // Label 0x03
-    GLYPH.SIGNAL, // Pulse
-    GLYPH.SUB,
-    0,
-    1, // R0--
-    GLYPH.JNZ,
-    0,
-    3, // If R0 != 0, jump back to signaling
-    GLYPH.I,
-  ],
-};
-
-```
-
----
-
-## FILE: reduction_core/GENESIS_INCEPTOR.ts
-
-```typescript
-// OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
-import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
-import { LOGGER } from "@00";
-
-export interface InceptiveProgram {
-  bytecode: number[];
-  metadata?: {
-    ancestorHash?: bigint;
-    roleHint?: number;
-  };
-}
-
-/**
- * GenesisInceptor manages the selection of bytecode for new atomic entities.
- * It prioritizes reified relics from the shadow laboratory.
- */
-export class GenesisInceptor {
-  /**
-   * Selects a program for a new spawn.
-   * @param roleId Hint for the desired role (1: Guardian, 2: Architect, etc.)
-   */
-  public selectProgram(roleId?: number): InceptiveProgram {
-    const reifiedKeys = Object.keys(REIFIED_PROGRAMS);
-
-    // 1. Check for reified programs first (Evolutionary priority)
-    if (reifiedKeys.length > 0) {
-      // Simple heuristic: pick a random reified program or one matching role hint
-      const pickedKey =
-        reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
-      LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
-      return {
-        bytecode: REIFIED_PROGRAMS[pickedKey],
-        metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) }, // Pseudo-hash
-      };
-    }
-
-    // 2. Fallback to canonical genesis programs
-    if (roleId === 1) return { bytecode: GENESIS_PROGRAMS["guardian_base"] };
-    if (roleId === 2) return { bytecode: GENESIS_PROGRAMS["architect_base"] };
-
-    // Default replicator
-    return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
-  }
-}
-
-```
-
----
-
-## FILE: reduction_core/GENESIS_REIFIED.ts
-
-```typescript
-// OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
-export const REIFIED_PROGRAMS: Record<string, number[]> = {};
-
-```
-
----
-
-## FILE: reduction_core/GlyphIR64.ts
+## FILE: 07_meta/04_transpilers/GlyphIR64.ts
 
 ```typescript
 import { RISC } from "@00";
@@ -6197,7 +6182,147 @@ export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
 
 ---
 
-## FILE: reduction_core/REIFICATION_ACTION.ts
+## FILE: 07_meta/04_transpilers/opcode_to_glyph.ts
+
+```typescript
+import { RISC } from "@00/STATE_MATRIX.ts";
+import { glyphSpecByLegacyOpcode } from "@07/04_transpilers/GlyphIR64.ts";
+
+export type LegacyInstruction = {
+  pc: number;
+  opcode: number;
+  opcodeMnemonic: string;
+  length: number;
+  args: number[];
+};
+
+export type GlyphTapeToken = LegacyInstruction & {
+  glyphId: number | null;
+  glyphMnemonic: string | null;
+  mapped: boolean;
+};
+
+const OPCODE_NAMES = new Map<number, string>([
+  [RISC.OP_NOP, "NOP"],
+  [RISC.OP_SET, "SET"],
+  [RISC.OP_GET, "GET"],
+  [RISC.OP_PUT, "PUT"],
+  [RISC.OP_ADD, "ADD"],
+  [RISC.OP_SUB, "SUB"],
+  [RISC.OP_JZ, "JZ"],
+  [RISC.OP_JNZ, "JNZ"],
+  [RISC.OP_JMP, "JMP"],
+  [RISC.OP_REPLICATE, "REPLICATE"],
+  [RISC.OP_SIGNAL, "SIGNAL"],
+  [RISC.OP_BIND, "BIND"],
+  [RISC.OP_SHARE, "SHARE"],
+  [RISC.OP_TENSEGRITY, "TENSEGRITY"],
+  [RISC.OP_COLLECTIVE, "COLLECTIVE"],
+  [RISC.OP_ROLE, "ROLE"],
+  [RISC.OP_BUILD, "BUILD"],
+  [RISC.OP_SENSE, "SENSE"],
+  [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
+  [RISC.OP_ENTANGLE, "ENTANGLE"],
+  [RISC.OP_PLUG, "PLUG"],
+  [RISC.OP_RESOLVE, "RESOLVE"],
+  [RISC.OP_SYSCALL, "SYSCALL"],
+]);
+
+const OPCODE_LENGTHS = new Map<number, number>([
+  [RISC.OP_NOP, 1],
+  [RISC.OP_SET, 3],
+  [RISC.OP_GET, 3],
+  [RISC.OP_PUT, 3],
+  [RISC.OP_ADD, 3],
+  [RISC.OP_SUB, 3],
+  [RISC.OP_JZ, 3],
+  [RISC.OP_JNZ, 3],
+  [RISC.OP_JMP, 2],
+  [RISC.OP_REPLICATE, 1],
+  [RISC.OP_SIGNAL, 1],
+  [RISC.OP_BIND, 1],
+  [RISC.OP_SHARE, 3],
+  [RISC.OP_PLUG, 3],
+  [RISC.OP_TENSEGRITY, 4],
+  [RISC.OP_COLLECTIVE, 4],
+  [RISC.OP_ROLE, 3],
+  [RISC.OP_BUILD, 3],
+  [RISC.OP_SENSE, 3],
+  [RISC.OP_SPORE_DRIVE, 1],
+  [RISC.OP_ENTANGLE, 1],
+  [RISC.OP_RESOLVE, 3],
+  [RISC.OP_SYSCALL, 1],
+]);
+
+const opcodeName = (opcode: number): string =>
+  OPCODE_NAMES.get(opcode) ?? `OP_0x${opcode.toString(16).toUpperCase()}`;
+
+export const legacyOpcodeLength = (opcode: number): number =>
+  OPCODE_LENGTHS.get(opcode) ?? 1;
+
+export const decodeLegacyInstruction = (
+  script: Uint8Array,
+  pc: number,
+): LegacyInstruction | null => {
+  if (pc < 0 || pc >= script.length) return null;
+  const opcode = script[pc] ?? RISC.OP_NOP;
+  const length = legacyOpcodeLength(opcode);
+  const args = Array.from(script.slice(pc + 1, pc + length));
+  return {
+    pc,
+    opcode,
+    opcodeMnemonic: opcodeName(opcode),
+    length,
+    args,
+  };
+};
+
+type ScriptToGlyphOptions = {
+  allowUnmapped?: boolean;
+  maxSteps?: number;
+};
+
+export const scriptToGlyphTape = (
+  script: Uint8Array,
+  options: ScriptToGlyphOptions = {},
+): GlyphTapeToken[] => {
+  const allowUnmapped = options.allowUnmapped ?? false;
+  const maxSteps = Math.max(1, Math.min(64, options.maxSteps ?? 64));
+  const out: GlyphTapeToken[] = [];
+  let pc = 0;
+  let steps = 0;
+
+  while (pc >= 0 && pc < script.length && steps < maxSteps) {
+    const decoded = decodeLegacyInstruction(script, pc);
+    if (!decoded) break;
+    if (decoded.opcode === RISC.OP_NOP) break;
+
+    const spec = glyphSpecByLegacyOpcode(decoded.opcode);
+    if (!spec && !allowUnmapped) {
+      throw new Error(
+        `[opcode_to_glyph] unmapped legacy opcode at pc=${pc}: ${decoded.opcodeMnemonic}`,
+      );
+    }
+
+    out.push({
+      ...decoded,
+      glyphId: spec?.id ?? null,
+      glyphMnemonic: spec?.mnemonic ?? null,
+      mapped: spec !== null,
+    });
+
+    pc += decoded.length;
+    steps++;
+  }
+
+  return out;
+};
+
+```
+
+---
+
+## FILE: 07_meta/04_transpilers/REIFICATION_ACTION.ts
 
 ```typescript
 // OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
@@ -6208,13 +6333,13 @@ import { LOGGER } from "@00";
  * ReificationAction promotes a relic from the sandbox to the canonical GENESIS pool.
  */
 export class ReificationAction {
-  private genesisPath = "./reduction_core/GENESIS_REIFIED.ts";
+  private genesisPath = "./@07/05_generators/GENESIS_REIFIED.ts";
 
   /**
    * Promotes a relic JSON file to the GENESIS_REIFIED.ts registry.
    */
   public async reify(relicId: string): Promise<void> {
-    const sandboxPath = `./reduction_core/sandbox/relic_${relicId}.json`;
+    const sandboxPath = `./@07/02_runners/sandbox/relic_${relicId}.json`;
 
     try {
       const relicData = await Deno.readTextFile(sandboxPath);
@@ -6277,179 +6402,198 @@ if (import.meta.main) {
 
 ---
 
-## FILE: reduction_core/relics/LINEAGE_TRACKER.ts
+## FILE: 07_meta/05_generators/GENESIS_BOOT.ts
 
 ```typescript
-// OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
-import { STATE_MATRIX } from "@00";
-import { AKASHA_CODEX } from "@06";
-import { LOGGER } from "@00";
-
 /**
- * LineageTracker maintains the semantic link between active atoms and their ancestry.
+ * GENESIS_BOOT.ts
+ * Axiomatic bytecode definitions for OMEGA-64 Stage 20.
+ * These are the "First Programs" that define the core roles in native GlyphIR64.
  */
-export class LineageTracker {
-  /**
-   * Initializes or updates the lineage buffer based on active atoms and their parents.
-   * This is called during the host-lock phase of individual pulses.
-   */
-  public syncLineages(activeIdx: number[]): void {
-    // 1. Scan for newly spawned atoms that inherited parent lineages
-    // Logic: If WASM replication copied the lineage hash, we correlate it here.
 
-    // 2. Map lineages to Akasha wisdom
-    // For now, we'll just log detections. In a full implementation,
-    // we would pull stability metrics from AKASHA_CODEX.
+export const GLYPH = {
+  // Core
+  S: 0,
+  K: 1,
+  I: 2,
+  Y: 3,
+  // Control
+  SET: 8,
+  GET: 9,
+  PUT: 10,
+  ADD: 11,
+  SUB: 12,
+  JNZ: 13,
+  JMP: 14,
+  JZ: 15,
+  // Transport
+  REPLICATE: 16,
+  SIGNAL: 17,
+  SHARE: 18,
+  BIND: 19,
+  SPORE_DRIVE: 20,
+  ENTANGLE: 21,
+  // Structural
+  PLUG: 24,
+  TENSEGRITY: 25,
+  BUILD: 26,
+  SENSE: 27,
+  // Catalytic
+  COLLECTIVE: 32,
+  ROLE: 33,
+  RESOLVE: 34,
+};
 
-    if (activeIdx.length > 0 && Math.random() < 0.05) {
-      LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
-    }
-  }
-
-  /**
-   * Calculates a "Wisdom Coefficient" for a given lineage hash.
-   * Stability and historical resonance from the Codex increase this coefficient.
-   */
-  public getWisdomForLineage(hash: bigint): number {
-    // Placeholder: In a mature system, this queries the species registry.
-    // High historical resonance = high wisdom.
-    return 100; // Baseline wisdom
-  }
-}
-
-```
-
----
-
-## FILE: reduction_core/relics/QUORUM_ADVOCATE.ts
-
-```typescript
-// OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX } from "@00";
-import { LOGGER } from "@00";
-
-/**
- * QuorumAdvocate evaluates local group coherence and biases the GATE system.
- * It detects "Quorum" conditions when atoms of similar lineage or phase
- * cluster together to perform coordinated actions.
- */
-export class QuorumAdvocate {
-  /**
-   * Evaluates the collective "Strength" of a group of atoms.
-   * This is used to lower the energy threshold for OP_BUILD or other
-   * collective intents.
-   */
-  public evaluateQuorum(indices: number[]): number {
-    if (indices.length < 2) return 0;
-
-    let totalResonace = 0;
-    let totalWisdom = 0;
-
-    for (const idx of indices) {
-      totalResonace += STATE_MATRIX.getResonance(idx);
-      // Wisdom will eventually be pulled from LINEAGE_TRACKER
-      totalWisdom += 100;
-    }
-
-    const avgResonance = totalResonace / indices.length;
-
-    // Quorum Strength is a function of density and internal coherence
-    const strength = (indices.length * avgResonance) / 1000;
-
-    return Math.min(strength, 1.0);
-  }
-
-  /**
-   * Decides if a collective action (e.g. delegated build) should be
-   * fast-tracked through the GATE.
-   */
-  public recommendAdmission(quorumStrength: number): boolean {
-    // High quorum strength ( > 0.7) suggests a coordinated structural intent
-    return quorumStrength > 0.7;
-  }
-}
-
-```
-
----
-
-## FILE: reduction_core/relics/RELIC_CULTIVATION.ts
-
-```typescript
-// OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "@00";
-import { DollFork } from "../doll_fork/DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "@00";
-
-export type Relic = {
-  id: string;
+export type RolePreamble = {
+  roleId: number;
   bytecode: number[];
-  role: number;
-  resonance: number;
-  energy: number;
-  extractedAtTick: number;
 };
 
 /**
- * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.
+ * The Genesis Programs:
+ * These bypass legacy WASM interpretation when running in "Native Mode".
  */
-export class RelicCultivator {
-  private fork: DollFork;
-
-  constructor(fork: DollFork) {
-    this.fork = fork;
-  }
+export const GENESIS_PROGRAMS: Record<string, number[]> = {
+  /**
+   * GUARDIAN (Role 2):
+   * Focuses on PHEROMONE emission (Positive Amplitude).
+   */
+  "guardian_base": [
+    GLYPH.SET,
+    0,
+    100, // R0 = 100
+    GLYPH.SET,
+    1,
+    1, // R1 = 1 (Pheromone index)
+    GLYPH.SIGNAL, // Emit Pheromone with R0 (+100) intensity
+    GLYPH.I, // No-op return
+  ],
 
   /**
-   * Scans the shadow matrix for atoms that meet 'relic' criteria.
-   * Criteria: energy > 500, resonance > 200, non-zero bytecode.
+   * PARASITE (Role 4):
+   * Disrupts signals (Negative Amplitude).
    */
-  public cultivateRelics(tick: number): Relic[] {
-    const relics: Relic[] = [];
-    const views = this.fork.views;
-
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-      const energy = views.energies[i];
-      const resonance = views.resonances[i];
-      const atomId = views.ids[i];
-
-      if (atomId !== 0n && energy > 500 && resonance > 200) {
-        const bytecode = Array.from(
-          views.logic.slice(i * 8, (i + 1) * 8),
-        ) as number[];
-
-        // Basic check: is bytecode non-zero?
-        if (bytecode.some((b) => b !== 0)) {
-          relics.push({
-            id: `relic_${tick}_${i}_${atomId}`,
-            bytecode,
-            role: views.roles[i],
-            resonance,
-            energy,
-            extractedAtTick: tick,
-          });
-        }
-      }
-    }
-
-    if (relics.length > 0) {
-      LOGGER.info(
-        `[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`,
-      );
-    }
-
-    return relics;
-  }
+  "parasite_base": [
+    GLYPH.SET,
+    0,
+    0, // R0 = 0
+    GLYPH.SET,
+    1,
+    100, // R1 = 100
+    GLYPH.SUB,
+    0,
+    1, // R0 = R0 - R1 (-100)
+    GLYPH.SET,
+    2,
+    1, // R2 = 1 (Pheromone index)
+    GLYPH.SIGNAL, // Emit Pheromone with R0 (-100) intensity
+    GLYPH.I,
+  ],
 
   /**
-   * Persists relics to the semantic sandbox for future reification.
+   * ARCHITECT (Role 3):
+   * Focuses on PLASMID emission and structural intent.
    */
-  public async persistRelics(relics: Relic[]): Promise<void> {
-    for (const relic of relics) {
-      const path = `./reduction_core/sandbox/relic_${relic.id}.json`;
-      await Deno.writeTextFile(path, JSON.stringify(relic, null, 2));
-      LOGGER.info(`[RELIC CULTIVATOR] Saved relic to ${path}`);
+  "architect_base": [
+    GLYPH.SET,
+    0,
+    100, // R0 = 100 (Charge / Amplitude)
+    GLYPH.SET,
+    1,
+    0, // R1 = 0 (Plasmid index)
+    GLYPH.PLUG,
+    0,
+    0, // Apply structural charge intent
+    GLYPH.SIGNAL, // Emit Plasmid signal
+    GLYPH.I,
+  ],
+
+  /**
+   * REPLICATOR (Default / Shared):
+   * Basic reproduction logic.
+   */
+  "replicator_base": [
+    GLYPH.SET,
+    0,
+    50, // R0 = 50 (Low signal)
+    GLYPH.SET,
+    1,
+    2, // R1 = 2 (Replication scent)
+    GLYPH.SIGNAL,
+    GLYPH.REPLICATE,
+    GLYPH.I,
+  ],
+
+  /**
+   * COMPLEX_STABILITY:
+   * A program demonstrating control flow via JNZ.
+   */
+  "stability_loop": [
+    GLYPH.SET,
+    0,
+    10, // R0 = 10 (Counter)
+    // Label 0x03
+    GLYPH.SIGNAL, // Pulse
+    GLYPH.SUB,
+    0,
+    1, // R0--
+    GLYPH.JNZ,
+    0,
+    3, // If R0 != 0, jump back to signaling
+    GLYPH.I,
+  ],
+};
+
+```
+
+---
+
+## FILE: 07_meta/05_generators/GENESIS_INCEPTOR.ts
+
+```typescript
+// OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
+import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
+import { LOGGER } from "@00";
+
+export interface InceptiveProgram {
+  bytecode: number[];
+  metadata?: {
+    ancestorHash?: bigint;
+    roleHint?: number;
+  };
+}
+
+/**
+ * GenesisInceptor manages the selection of bytecode for new atomic entities.
+ * It prioritizes reified relics from the shadow laboratory.
+ */
+export class GenesisInceptor {
+  /**
+   * Selects a program for a new spawn.
+   * @param roleId Hint for the desired role (1: Guardian, 2: Architect, etc.)
+   */
+  public selectProgram(roleId?: number): InceptiveProgram {
+    const reifiedKeys = Object.keys(REIFIED_PROGRAMS);
+
+    // 1. Check for reified programs first (Evolutionary priority)
+    if (reifiedKeys.length > 0) {
+      // Simple heuristic: pick a random reified program or one matching role hint
+      const pickedKey =
+        reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
+      LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
+      return {
+        bytecode: REIFIED_PROGRAMS[pickedKey],
+        metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) }, // Pseudo-hash
+      };
     }
+
+    // 2. Fallback to canonical genesis programs
+    if (roleId === 1) return { bytecode: GENESIS_PROGRAMS["guardian_base"] };
+    if (roleId === 2) return { bytecode: GENESIS_PROGRAMS["architect_base"] };
+
+    // Default replicator
+    return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
 
@@ -6457,165 +6601,11 @@ export class RelicCultivator {
 
 ---
 
-## FILE: reduction_core/SHADOW_EVOLUTION_RUNNER.ts
+## FILE: 07_meta/05_generators/GENESIS_REIFIED.ts
 
 ```typescript
-/**
- * SHADOW_EVOLUTION_RUNNER.ts
- * Automates the validation of semantic proposals against the OMEGA-64 Golden Traces.
- * Runs in a secure WebAssembly memory sandbox (DollFork) isolated from the main matrix.
- */
-
-import { REDUCTION_CASES } from "../verification/reduction_cases.ts";
-import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
-import { DollFork } from "./doll_fork/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "./doll_fork/DOLL_FORK_RUNNER.ts";
-import { DriftWarden } from "./DRIFT_WARDEN.ts";
-import { ReificationAction } from "./REIFICATION_ACTION.ts";
-import * as OFFSETS from "@00";
-
-export type SemanticProposal = {
-  id: string;
-  targetRole: string; // e.g. "guardian_base"
-  proposedBytecode: number[];
-  driftBudget: number; // Max allowed energy/state mismatch
-};
-
-async function loadProposals(): Promise<SemanticProposal[]> {
-  try {
-    const data = await Deno.readTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
-    );
-    const json = JSON.parse(data);
-    return json.proposals || [];
-  } catch {
-    return [];
-  }
-}
-
-async function markProposalProcessed(id: string) {
-  try {
-    const data = await Deno.readTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
-    );
-    const json = JSON.parse(data);
-    json.proposals = (json.proposals || []).filter((p: any) => p.id !== id);
-    await Deno.writeTextFile(
-      "./reduction_core/sandbox/PROPOSALS.json",
-      JSON.stringify(json, null, 2),
-    );
-  } catch (err) {
-    // Ignore updates if json corrupted
-  }
-}
-
-export async function runShadowValidation() {
-  const proposals = await loadProposals();
-  if (proposals.length === 0) return;
-  console.log(`[shadow_runner] detected ${proposals.length} active proposals.`);
-
-  const fork = new DollFork();
-  const runner = new DollForkRunner(fork);
-  await runner.init();
-
-  const warden = new DriftWarden(
-    fork.views.energies,
-    fork.views.ids,
-    fork.views.coherence,
-  );
-  const reification = new ReificationAction();
-
-  for (const proposal of proposals) {
-    console.log(
-      `[shadow_runner] validating proposal: ${proposal.id} (Budget: ${proposal.driftBudget})...`,
-    );
-
-    // 1. Fork Reality
-    fork.forkFromMainline();
-
-    // 2. Inject proposed bytecode into 15 active atoms
-    let infectedCount = 0;
-    const proposed = new Uint8Array(proposal.proposedBytecode);
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
-      if (fork.views.ids[i] !== 0n) {
-        fork.views.logic.set(proposed, i * 8);
-        infectedCount++;
-        if (infectedCount >= 15) break;
-      }
-    }
-
-    if (infectedCount === 0) {
-      console.log(
-        `[shadow_runner] proposal ${proposal.id} REJECTED: no living atoms available to host.`,
-      );
-      await markProposalProcessed(proposal.id);
-      continue;
-    }
-
-    // 3. Baseline Drift
-    // Since DollFork forks mainline, we start at a baseline drift relative to mainline.
-    const initialMetrics = warden.analyze(0);
-    const initialDrift = initialMetrics.driftIndex;
-
-    // 4. Shadow Simulation
-    const SHADOW_TICKS = 50;
-    for (let t = 0; t < SHADOW_TICKS; t++) {
-      runner.runShadowTick(t);
-    }
-
-    // 5. Final Drift
-    const finalMetrics = warden.analyze(SHADOW_TICKS);
-    const finalDrift = finalMetrics.driftIndex;
-
-    const deltaDrift = finalDrift - initialDrift;
-
-    // Evaluate Survival
-    // Ensure all test subjects didn't just instantly die
-    const activePopulation = fork.getMetrics().activePopulation;
-
-    console.log(
-      `[shadow_runner] ${proposal.id} | Initial Drift: ${
-        initialDrift.toFixed(3)
-      } | Final: ${finalDrift.toFixed(3)} | Delta: ${deltaDrift.toFixed(3)}`,
-    );
-
-    if (deltaDrift <= proposal.driftBudget && activePopulation > 0) {
-      console.log(
-        `[shadow_runner] proposal ${proposal.id} PASSED. Mutants stabilized.`,
-      );
-
-      // Save Relic Payload
-      const relic = {
-        id: proposal.id,
-        bytecode: proposal.proposedBytecode,
-        targetRole: proposal.targetRole,
-        metadata: {
-          deltaDrift,
-          activePopulation,
-        },
-      };
-
-      const sandboxPath = `./reduction_core/sandbox/relic_${proposal.id}.json`;
-      await Deno.writeTextFile(sandboxPath, JSON.stringify(relic, null, 2));
-
-      await reification.reify(proposal.id);
-    } else {
-      console.log(
-        `[shadow_runner] proposal ${proposal.id} REJECTED: Destructive trajectory detected.`,
-      );
-    }
-
-    // Cleanup queue
-    await markProposalProcessed(proposal.id);
-  }
-}
-
-if (import.meta.main) {
-  runShadowValidation().catch((err) => {
-    console.error("Shadow verification failed:", err);
-    Deno.exit(1);
-  });
-}
+// OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
+export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 
 ```
 
@@ -8708,13 +8698,13 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
 ## FILE: verification/reduction_harness.ts
 
 ```typescript
-import { glyphTapeToPrettyText } from "../runtime_bridge/glyph_pretty.ts";
+import { glyphTapeToPrettyText } from "@07/04_transpilers/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
   type GlyphTapeToken,
   scriptToGlyphTape,
-} from "../runtime_bridge/opcode_to_glyph.ts";
-import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
+} from "@07/04_transpilers/opcode_to_glyph.ts";
+import { glyphSpecById } from "@07/04_transpilers/GlyphIR64.ts";
 import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
@@ -8722,7 +8712,7 @@ import {
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-import { GENESIS_PROGRAMS } from "../reduction_core/GENESIS_BOOT.ts";
+import { GENESIS_PROGRAMS } from "@07/05_generators/GENESIS_BOOT.ts";
 
 type HarnessProps = Record<number, number>;
 

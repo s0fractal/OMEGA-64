@@ -1,10 +1,10 @@
-import { glyphTapeToPrettyText } from "../runtime_bridge/glyph_pretty.ts";
+import { glyphTapeToPrettyText } from "@07/04_transpilers/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
   type GlyphTapeToken,
   scriptToGlyphTape,
-} from "../runtime_bridge/opcode_to_glyph.ts";
-import { glyphSpecById } from "../reduction_core/GlyphIR64.ts";
+} from "@07/04_transpilers/opcode_to_glyph.ts";
+import { glyphSpecById } from "@07/04_transpilers/GlyphIR64.ts";
 import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
@@ -12,7 +12,7 @@ import {
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-import { GENESIS_PROGRAMS } from "../reduction_core/GENESIS_BOOT.ts";
+import { GENESIS_PROGRAMS } from "@07/05_generators/GENESIS_BOOT.ts";
 
 type HarnessProps = Record<number, number>;
 

@@ -68,7 +68,7 @@ export class RelicCultivator {
    */
   public async persistRelics(relics: Relic[]): Promise<void> {
     for (const relic of relics) {
-      const path = `./reduction_core/sandbox/relic_${relic.id}.json`;
+      const path = `./@07/02_runners/sandbox/relic_${relic.id}.json`;
       await Deno.writeTextFile(path, JSON.stringify(relic, null, 2));
       LOGGER.info(`[RELIC CULTIVATOR] Saved relic to ${path}`);
     }

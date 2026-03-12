@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T02:58:31.315Z*
+*Generated: 2026-03-12T03:08:14.107Z*
 *Exported Files in Category: 17*
-*Total Exported Files: 131*
+*Total Exported Files: 128*
 *Runtime Roots: 10*
-*Runtime Closure Files: 78*
-*Non-Runtime Code Files: 36*
-*Runtime-Support Code Files: 11*
+*Runtime Closure Files: 76*
+*Non-Runtime Code Files: 35*
+*Runtime-Support Code Files: 10*
 *Experimental Code Files: 25*
-*Manifest SHA256: b3b2b69ccc8bda7dcd9b5e69b91bc81d0946bbe80e10e429379741a24576c82d*
-*Export Set SHA256: ed5e2c2c3af9b619ef25e612d310baa1329d6acae1c79d01fb6889ce3779d3f9*
-*Export Content SHA256: f3dfaba8fc50559e40db4d2bb9656acb049ff5e4775a36765d9e68f49c8e1db0*
-*Git Commit: 53b552e9fd16*
+*Manifest SHA256: 2a9262e770f6d15db8b47abbad760e3a433372deceb663ba0ee2746c281e02fa*
+*Export Set SHA256: 73d58698aee0a141c299a4f49212a380188f03bb079616c0d2be06fe94f1d6c8*
+*Export Content SHA256: 6a48d8a680e8f0b42a321fd91d75ad9c6e735704a5a6e95b4015b4775bd30d1c*
+*Git Commit: fd51ce093b8f*
 
 ---
 
@@ -641,8 +641,7 @@ Deep chain adds:
     "02_metabolism/SNAP.ts",
     "01_physics/STRUCTURE_ENGINE.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "reduction_core/REIFICATION_ACTION.ts",
-    "reduction_core/relics/RELIC_CULTIVATION.ts"
+    "07_meta/04_transpilers/REIFICATION_ACTION.ts"
   ],
   "experimental_files": [
     "01_physics/ECOLOGY_ENGINE.ts",
@@ -650,9 +649,9 @@ Deep chain adds:
     "01_physics/MATRIX_ENGINE.ts",
     "02_metabolism/REFLECTION_ENGINE.ts",
     "02_metabolism/RIBOSOME_TICK.ts",
-    "reduction_core/GlyphIR64.ts",
-    "runtime_bridge/glyph_pretty.ts",
-    "runtime_bridge/opcode_to_glyph.ts",
+    "07_meta/04_transpilers/GlyphIR64.ts",
+    "07_meta/04_transpilers/glyph_pretty.ts",
+    "07_meta/04_transpilers/opcode_to_glyph.ts",
     "verification/golden_trace_catalog.ts",
     "verification/reduction_harness.ts"
   ],
@@ -678,8 +677,7 @@ Deep chain adds:
     "02_metabolism/HORMONE_BUFFER_RUNTIME.ts",
     "00_substrate/07_meta/02_runners/build_wasm.ts",
     "00_substrate/03_tests/wasm_layout_guard.ts",
-    "reduction_core/REIFICATION_ACTION.ts",
-    "reduction_core/relics/RELIC_CULTIVATION.ts",
+    "07_meta/04_transpilers/REIFICATION_ACTION.ts",
     "06_akasha/mod.ts"
   ],
   "context_files": [

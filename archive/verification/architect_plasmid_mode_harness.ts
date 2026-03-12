@@ -3,7 +3,7 @@ import {
   type ArchitectPlasmidExecutionDecision,
   type ArchitectPlasmidExecutionMode,
   evaluateArchitectPlasmidExecution,
-} from "../runtime_bridge/architect_plasmid_hybrid.ts";
+} from "@07/04_transpilers/architect_plasmid_hybrid.ts";
 import {
   ARCHITECT_PLASMID_MODE_CASES,
   architectPlasmidModeCaseById,

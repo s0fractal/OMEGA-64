@@ -1,7 +1,7 @@
 // OMEGA-64 | test_doll_fork_resonance.ts | Stage 21 Verification
-import { DollFork } from "../../reduction_core/doll_fork/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "../../reduction_core/doll_fork/DOLL_FORK_RUNNER.ts";
-import { RelicCultivator } from "../../reduction_core/relics/RELIC_CULTIVATION.ts";
+import { DollFork } from "@07/02_runners/doll_fork/DOLL_FORK_MATRIX.ts";
+import { DollForkRunner } from "@07/02_runners/doll_fork/DOLL_FORK_RUNNER.ts";
+import { RelicCultivator } from "@07/02_runners/relics/RELIC_CULTIVATION.ts";
 import { LOGGER } from "@00";
 import { assertEquals } from "https://deno.land/std@0.211.0/assert/mod.ts";
 
