@@ -15,7 +15,6 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)e\//u,
   /(^|\/)o\//u,
   /(^|\/)DIMENSIONS\//u,
-  /(^|\/)legacy_sigma\//u,
   /(^|\/)\.omega\//u,
   /(^|\/)node_modules\//u,
   /(^|\/)build\//u,
