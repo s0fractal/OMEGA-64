@@ -3,7 +3,7 @@
 
 import { extname, join } from "node:path";
 
-const TARGET_DIRS = ["sigma_core", "omega_wasm"];
+const TARGET_DIRS = ["sigma_core"];
 const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
 
 const EXCLUDE_PATTERNS = [
