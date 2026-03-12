@@ -140,7 +140,7 @@ const HOMEOSTASIS_TARGET_ENERGY_MIN = 1;
 const HOMEOSTASIS_TARGET_ENERGY_MAX = 1_000_000;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
-const WASM_RELEASE_URL = new URL("../build/release.wasm", import.meta.url);
+const WASM_RELEASE_URL = new URL("../08_artifacts/release.wasm", import.meta.url);
 
 type EvolutionPressureState = {
   noveltySigned: number;

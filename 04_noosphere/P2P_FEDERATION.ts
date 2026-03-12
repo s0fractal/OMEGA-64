@@ -5,7 +5,7 @@ import { STATE_MATRIX } from "../00_substrate/mod.ts";
 import { IDX_TO_ID } from "../02_metabolism/mod.ts";
 import { PRNG } from "../00_substrate/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;

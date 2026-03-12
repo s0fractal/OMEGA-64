@@ -2,7 +2,7 @@
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
 import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "./mod.ts";
+import { IDX_TO_ID } from "../00_substrate/mod.ts";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,

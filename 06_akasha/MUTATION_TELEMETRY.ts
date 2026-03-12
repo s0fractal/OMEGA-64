@@ -1,5 +1,5 @@
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 
 type MutationLane =
   | "internal_oracle"

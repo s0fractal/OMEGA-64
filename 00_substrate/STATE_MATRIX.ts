@@ -2,7 +2,7 @@
 import * as OFFSETS from "./OFFSETS.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-export const SCALE = OFFSETS.SCALE;
+const SCALE = OFFSETS.SCALE;
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   throw new Error(

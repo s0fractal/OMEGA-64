@@ -16,7 +16,7 @@ export class DollForkRunner {
    */
   public async init(): Promise<void> {
     const wasmRes = await fetch(
-      new URL("../../build/release.wasm", import.meta.url).href,
+      new URL("../../08_artifacts/release.wasm", import.meta.url).href,
     );
     const wasmBytes = await wasmRes.arrayBuffer();
 

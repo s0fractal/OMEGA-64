@@ -1,16 +1,16 @@
 # OMEGA-64 | CORE LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-11T22:57:46.007Z*
-*Exported Files: 155*
+*Generated: 2026-03-12T00:16:05.530Z*
+*Exported Files: 159*
 *Runtime Roots: 11*
-*Runtime Closure Files: 94*
-*Non-Runtime Code Files: 44*
-*Runtime-Support Code Files: 18*
-*Experimental Code Files: 26*
-*Manifest SHA256: 4a0ac742dd08b0975a2403f503d7324689a7a5d556df4c9ca8c6541eb8aa82f5*
-*Export Set SHA256: 07a902acdb5b6f35594740d62f95da1400b49cb7cb2fd56df4b0cbef4b77fb5a*
-*Export Content SHA256: 18bdf672e706f263f06788282881b5e9829741f9c01845691890fed2dec02cb2*
-*Git Commit: c899ba7f4b92*
+*Runtime Closure Files: 79*
+*Non-Runtime Code Files: 63*
+*Runtime-Support Code Files: 17*
+*Experimental Code Files: 46*
+*Manifest SHA256: 99dd7384b2598128b761e2667da2b5def9da9d7364169adabd8e8711ab31ed27*
+*Export Set SHA256: 6155af9196ff04b89b03576007733ef17f3061c67862a1a5d84c5bf3e18dbe60*
+*Export Content SHA256: 572e85b1b165f008d2460a13e6c6e44e111d67a316650c0883e6772cb676947e*
+*Git Commit: 27b86677a7e4*
 
 ---
 
@@ -19,14 +19,14 @@
 - 02_metabolism/PULSE_WORKER.ts
 - 02_metabolism/PULSE.ts
 - 05_exocortex/llm_soul.ts
+- 06_akasha/AGENT_PROXY.ts
 - 06_akasha/AKASHA_SERVER.ts
 - 06_akasha/MUTATION_TELEMETRY.ts
 - 06_akasha/OMEGA_DAEMON.ts
 - 06_akasha/TUI_DASHBOARD.ts
+- 07_meta/02_runners/SYSTEM_START.ts
 - 63_necropolis/nightly_soak.ts
-- AGENT_PROXY.ts
 - assembly/index.ts
-- SYSTEM_START.ts
 
 ---
 
@@ -76,12 +76,6 @@
 - 03_governance/REPLICATION_PROMOTION.ts
 - 03_governance/RUNTIME_POLICY.ts
 - 03_governance/SOVEREIGNTY_ENGINE.ts
-- 04_noosphere/BOOTSTRAP_HUB.ts
-- 04_noosphere/mod.ts
-- 04_noosphere/P2P_CODEC.ts
-- 04_noosphere/P2P_FEDERATION.ts
-- 04_noosphere/SWARM_NEXUS.ts
-- 04_noosphere/SWARM_NODE.ts
 - 05_exocortex/avatar_bot.ts
 - 05_exocortex/AVATAR_ENGINE.ts
 - 05_exocortex/llm_soul.ts
@@ -89,9 +83,11 @@
 - 05_exocortex/mod.ts
 - 05_exocortex/SEMANTIC_MEMBRANE.ts
 - 05_exocortex/SOVEREIGN_ORACLE.ts
+- 06_akasha/AGENT_PROXY.ts
 - 06_akasha/AKASHA_CODEX.ts
 - 06_akasha/AKASHA_SERVER.ts
 - 06_akasha/AKASHA_SIGNALING.ts
+- 06_akasha/BREATH.ts
 - 06_akasha/CONTINUUM.ts
 - 06_akasha/LINEAGE_TRACKER.ts
 - 06_akasha/mod.ts
@@ -104,19 +100,9 @@
 - 06_akasha/SNAPSHOT_ENGINE.ts
 - 06_akasha/TELEMETRY_STREAM.ts
 - 06_akasha/TUI_DASHBOARD.ts
-- 63_necropolis/COLDSTART_BOOTSTRAP.ts
-- 63_necropolis/debug_tick.ts
-- 63_necropolis/FORCE_BOOTSTRAP.ts
-- 63_necropolis/LONGRUN_CANARY.ts
-- 63_necropolis/LONGRUN_DAEMON_AUDIT.ts
-- 63_necropolis/mod.ts
+- 07_meta/02_runners/SYSTEM_START.ts
 - 63_necropolis/nightly_soak.ts
-- 63_necropolis/run_ecosystem.ts
-- 63_necropolis/trigger_singularity.ts
-- 63_necropolis/ZERO_IOPS.ts
-- AGENT_PROXY.ts
 - assembly/index.ts
-- BREATH.ts
 - reduction_core/doll_fork/DOLL_FORK_MATRIX.ts
 - reduction_core/doll_fork/DOLL_FORK_RUNNER.ts
 - reduction_core/DRIFT_WARDEN.ts
@@ -125,110 +111,1004 @@
 - reduction_core/GENESIS_REIFIED.ts
 - reduction_core/relics/LINEAGE_TRACKER.ts
 - reduction_core/relics/QUORUM_ADVOCATE.ts
-- SYSTEM_START.ts
 
 ---
 
 ## NON-RUNTIME CODE FILES (ALL)
 
+- 00_substrate/03_tests/interference_test.ts
+- 00_substrate/03_tests/interference_wave_test.ts
+- 00_substrate/03_tests/resonance_dipole_test.ts
+- 00_substrate/03_tests/resonance_groove_test.ts
+- 00_substrate/03_tests/swarm_membrane_test.ts
+- 00_substrate/03_tests/swarm_sync_test.ts
+- 00_substrate/03_tests/swarm_test.ts
+- 00_substrate/03_tests/wasm_layout_guard.ts
 - 01_physics/ECOLOGY_ENGINE.ts
 - 01_physics/MATRIX_ENGINE.ts
 - 01_physics/STRUCTURE_ENGINE.ts
+- 02_metabolism/03_tests/genesis_merge_test.ts
+- 02_metabolism/03_tests/worker_determinism_capture.ts
+- 02_metabolism/03_tests/worker_gate_thresholds.ts
+- 02_metabolism/03_tests/worker_resilience_capture.ts
+- 02_metabolism/03_tests/worker_seeded_swarm.ts
+- 02_metabolism/03_tests/worker_trend_baseline.ts
+- 02_metabolism/03_tests/worker_trend_math.ts
 - 02_metabolism/HOLOGRAM_MODULE.ts
 - 02_metabolism/LAMBDA_VM.ts
 - 02_metabolism/RECOVERY.ts
 - 02_metabolism/REFLECTION_ENGINE.ts
 - 02_metabolism/RIBOSOME_TICK.ts
 - 02_metabolism/SNAP.ts
+- 04_noosphere/03_tests/p2p_transit_test.ts
+- 04_noosphere/BOOTSTRAP_HUB.ts
+- 04_noosphere/mod.ts
+- 04_noosphere/P2P_CODEC.ts
+- 04_noosphere/P2P_FEDERATION.ts
 - 04_noosphere/P2P_SYNAPSE.ts
+- 04_noosphere/SWARM_NEXUS.ts
+- 04_noosphere/SWARM_NODE.ts
+- 05_exocortex/03_tests/oracle_loop_test.ts
+- 06_akasha/03_tests/architecture_guard.ts
+- 06_akasha/03_tests/continuum_gate_test.ts
 - 06_akasha/OBSERVER_LAB.ts
 - 06_akasha/OBSERVER_UI.ts
-- build_wasm.ts
-- calc_rust_offsets.ts
-- check_guardians.ts
-- check_wasm_imports.ts
-- dump_waste.ts
-- export_rust.ts
-- gen_rust_deno.ts
-- gen_rust.ts
-- gen_rust4_fix.ts
-- gen_rust4.ts
-- mod.ts
+- 07_meta/02_runners/build_wasm.ts
+- 07_meta/02_runners/export_rust.ts
+- 07_meta/02_runners/RUN_STAGE8_TICKS.ts
+- 07_meta/03_guards/topology_linter.ts
+- 63_necropolis/COLDSTART_BOOTSTRAP.ts
+- 63_necropolis/debug_tick.ts
+- 63_necropolis/FORCE_BOOTSTRAP.ts
+- 63_necropolis/LONGRUN_CANARY.ts
+- 63_necropolis/LONGRUN_DAEMON_AUDIT.ts
+- 63_necropolis/mod.ts
+- 63_necropolis/run_ecosystem.ts
+- 63_necropolis/trigger_singularity.ts
+- 63_necropolis/ZERO_IOPS.ts
 - omega_wasm_asc/assembly/index.ts
-- phase52_fix.ts
-- phase52.ts
+- phase53_rewriter.ts
+- phase53_routers.ts
 - reduction_core/GlyphIR64.ts
 - reduction_core/REIFICATION_ACTION.ts
 - reduction_core/relics/RELIC_CULTIVATION.ts
 - reduction_core/SHADOW_EVOLUTION_RUNNER.ts
-- RUN_STAGE8_TICKS.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
-- tests/wasm_layout_guard.ts
 - verification/golden_trace_catalog.ts
 - verification/reduction_cases.ts
 - verification/reduction_harness.ts
 - verification/secretion_energetics_audit.ts
-- worker_determinism_capture.ts
-- worker_gate_thresholds.ts
-- worker_resilience_capture.ts
-- worker_seeded_swarm.ts
-- worker_trend_baseline.ts
-- worker_trend_math.ts
 
 ---
 
 ## NON-RUNTIME CODE FILES | RUNTIME-SUPPORT
 
+- 00_substrate/03_tests/wasm_layout_guard.ts
 - 01_physics/STRUCTURE_ENGINE.ts
+- 02_metabolism/03_tests/worker_determinism_capture.ts
+- 02_metabolism/03_tests/worker_gate_thresholds.ts
+- 02_metabolism/03_tests/worker_resilience_capture.ts
+- 02_metabolism/03_tests/worker_seeded_swarm.ts
+- 02_metabolism/03_tests/worker_trend_baseline.ts
+- 02_metabolism/03_tests/worker_trend_math.ts
 - 02_metabolism/HOLOGRAM_MODULE.ts
 - 02_metabolism/RECOVERY.ts
 - 02_metabolism/SNAP.ts
 - 04_noosphere/P2P_SYNAPSE.ts
 - 06_akasha/OBSERVER_LAB.ts
 - 06_akasha/OBSERVER_UI.ts
-- build_wasm.ts
-- mod.ts
+- 07_meta/02_runners/build_wasm.ts
 - reduction_core/REIFICATION_ACTION.ts
 - reduction_core/relics/RELIC_CULTIVATION.ts
-- tests/wasm_layout_guard.ts
-- worker_determinism_capture.ts
-- worker_gate_thresholds.ts
-- worker_resilience_capture.ts
-- worker_seeded_swarm.ts
-- worker_trend_baseline.ts
-- worker_trend_math.ts
 
 ---
 
 ## NON-RUNTIME CODE FILES | EXPERIMENTAL
 
+- 00_substrate/03_tests/interference_test.ts
+- 00_substrate/03_tests/interference_wave_test.ts
+- 00_substrate/03_tests/resonance_dipole_test.ts
+- 00_substrate/03_tests/resonance_groove_test.ts
+- 00_substrate/03_tests/swarm_membrane_test.ts
+- 00_substrate/03_tests/swarm_sync_test.ts
+- 00_substrate/03_tests/swarm_test.ts
 - 01_physics/ECOLOGY_ENGINE.ts
 - 01_physics/MATRIX_ENGINE.ts
+- 02_metabolism/03_tests/genesis_merge_test.ts
 - 02_metabolism/LAMBDA_VM.ts
 - 02_metabolism/REFLECTION_ENGINE.ts
 - 02_metabolism/RIBOSOME_TICK.ts
-- calc_rust_offsets.ts
-- check_guardians.ts
-- check_wasm_imports.ts
-- dump_waste.ts
-- export_rust.ts
-- gen_rust_deno.ts
-- gen_rust.ts
-- gen_rust4_fix.ts
-- gen_rust4.ts
+- 04_noosphere/03_tests/p2p_transit_test.ts
+- 04_noosphere/BOOTSTRAP_HUB.ts
+- 04_noosphere/mod.ts
+- 04_noosphere/P2P_CODEC.ts
+- 04_noosphere/P2P_FEDERATION.ts
+- 04_noosphere/SWARM_NEXUS.ts
+- 04_noosphere/SWARM_NODE.ts
+- 05_exocortex/03_tests/oracle_loop_test.ts
+- 06_akasha/03_tests/architecture_guard.ts
+- 06_akasha/03_tests/continuum_gate_test.ts
+- 07_meta/02_runners/export_rust.ts
+- 07_meta/02_runners/RUN_STAGE8_TICKS.ts
+- 07_meta/03_guards/topology_linter.ts
+- 63_necropolis/COLDSTART_BOOTSTRAP.ts
+- 63_necropolis/debug_tick.ts
+- 63_necropolis/FORCE_BOOTSTRAP.ts
+- 63_necropolis/LONGRUN_CANARY.ts
+- 63_necropolis/LONGRUN_DAEMON_AUDIT.ts
+- 63_necropolis/mod.ts
+- 63_necropolis/run_ecosystem.ts
+- 63_necropolis/trigger_singularity.ts
+- 63_necropolis/ZERO_IOPS.ts
 - omega_wasm_asc/assembly/index.ts
-- phase52_fix.ts
-- phase52.ts
+- phase53_rewriter.ts
+- phase53_routers.ts
 - reduction_core/GlyphIR64.ts
 - reduction_core/SHADOW_EVOLUTION_RUNNER.ts
-- RUN_STAGE8_TICKS.ts
 - runtime_bridge/glyph_pretty.ts
 - runtime_bridge/opcode_to_glyph.ts
 - verification/golden_trace_catalog.ts
 - verification/reduction_cases.ts
 - verification/reduction_harness.ts
 - verification/secretion_energetics_audit.ts
+
+---
+
+## FILE: 00_substrate/03_tests/interference_test.ts
+
+```typescript
+// OMEGA-64: Acoustic Audit (L13)
+// Interference & Noise Cancellation
+
+async function runAcousticAudit() {
+  console.log("🌊 INITIATING ACOUSTIC AUDIT (L13)...");
+
+  const cmd = new Deno.Command("./omega_rust_core", {
+    args: ["--level", "13", "--intent", "AUDIT"],
+  });
+  const { stdout } = await cmd.output();
+  const result = new TextDecoder().decode(stdout).trim();
+
+  console.log(result);
+}
+
+runAcousticAudit();
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/interference_wave_test.ts
+
+```typescript
+/**
+ * interference_wave_test.ts
+ * Тест семантичної інтерференції хвильових пакетів.
+ */
+
+import { WAVE_PACKET } from "./i.L13.core.WAVE_PACKET.ts";
+import { INTERFERENCE } from "./i.L13.core.INTERFERENCE.ts";
+
+function test() {
+  console.log("🌊 OMEGA-64: Semantic Interference Test\n");
+
+  const p1 = WAVE_PACKET.create(0, 500, 0, 1.0); // Центр 0, фаза 0
+  const p2_constructive = WAVE_PACKET.create(200, 500, 0, 1.0); // Фаза 0 (Конструктивна)
+  const p2_destructive = WAVE_PACKET.create(200, 500, Math.PI, 1.0); // Фаза PI (Деструктивна)
+
+  console.log("--- Point Interference (at r=100) ---");
+  const res_c = INTERFERENCE.superpose(p1, p2_constructive, 100);
+  const res_d = INTERFERENCE.superpose(p1, p2_destructive, 100);
+
+  console.log(`Constructive Amplitude: ${res_c.toFixed(4)} (Expected > 1.0)`);
+  console.log(`Destructive Amplitude:  ${res_d.toFixed(4)} (Expected < 1.0)`);
+
+  console.log("\n--- Semantic Tension (Overlap Conflict) ---");
+  const tension_c = INTERFERENCE.getTension(p1, p2_constructive);
+  const tension_d = INTERFERENCE.getTension(p1, p2_destructive);
+
+  console.log(`Tension (Same Phase): ${tension_c.toFixed(4)}`);
+  console.log(`Tension (Opposite):   ${tension_d.toFixed(4)} (Expected High)`);
+}
+
+test();
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/resonance_dipole_test.ts
+
+```typescript
+/**
+ * resonance_dipole_test.ts
+ * Тест дипольного поля та енергетичного метаболізму.
+ */
+
+import { FIELD } from "./i.L00.core.FIELD.ts";
+import { ENERGY_ENGINE, QWaveState } from "./i.L05.core.ENERGY.ts";
+
+function test() {
+  console.log("🌀 OMEGA-64: Dipole Field Resonance Test\n");
+
+  const points = [-30000, -10000, -500, 0, 500, 10000, 30000];
+
+  console.log("--- Logarithmic Compression ---");
+  points.forEach((p) => {
+    const comp = FIELD.compress(p);
+    const exp = FIELD.expand(comp);
+    console.log(
+      `p: ${p.toString().padStart(6)} | log: ${
+        comp.toFixed(2).padStart(8)
+      } | exp: ${exp.toString().padStart(6)} | Diff: ${Math.abs(p - exp)}`,
+    );
+  });
+
+  console.log("\n--- Potential & Pain Simulation ---");
+  const states: QWaveState[] = [
+    { r: 0, energy: 1000, coherence: 1.0, tension: 0 },
+    { r: 15000, energy: 500, coherence: 0.9, tension: 50 },
+    { r: -32000, energy: 200, coherence: 0.95, tension: 150 },
+  ];
+
+  states.forEach((s, i) => {
+    const potential = FIELD.getPotential(s.r);
+    const decay = ENERGY_ENGINE.calculateDecay(s);
+    const pain = ENERGY_ENGINE.getPainLevel(s);
+    console.log(
+      `State ${i} [r: ${s.r.toString().padStart(6)}]: Potential: ${
+        potential.toFixed(4)
+      } | Decay: ${decay.toFixed(2)} | Pain: ${pain.toFixed(2)}`,
+    );
+  });
+}
+
+test();
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/resonance_groove_test.ts
+
+```typescript
+/**
+ * resonance_groove_test.ts
+ * Тест "вінілових канавок" та суб'єктивної видимості.
+ */
+
+import { FIELD } from "./i.L00.core.FIELD.ts";
+import { SUBJECTIVE, SubjectivePosition } from "./i.L05.core.SUBJECTIVE.ts";
+
+function test() {
+  console.log("🌀 OMEGA-64: Anti-Control Geometry Test\n");
+
+  const subjectiveStates: SubjectivePosition[] = [
+    { tension: -0.9, momentum: -0.5, proximity: 0.1 }, // Глибокий біль
+    { tension: 0.05, momentum: 0.8, proximity: 0.9 }, // Біля екватора, активний рух
+    { tension: 0.85, momentum: 0.1, proximity: 0.5 }, // Поверхневий потік
+  ];
+
+  console.log("--- Visibility Reports (Anti-Control) ---");
+  subjectiveStates.forEach((s, i) => {
+    const report = SUBJECTIVE.getVisibility(s);
+    console.log(
+      `Subject ${i}: r=${report.r.toString().padStart(6)} | Potential=${
+        report.potential.toFixed(4)
+      } | State=${report.state} | Momentum=${report.momentum}`,
+    );
+  });
+
+  console.log("\n--- Attractor Catch Verification ---");
+  // Перевіримо потенціал поруч з "канавкою" та трохи далі
+  const r_groove = 0;
+  const r_near = 500;
+
+  const p_groove = FIELD.getPotential(r_groove);
+  const p_near = FIELD.getPotential(r_near);
+
+  console.log(`Equator Groove (r=0):   Potential ${p_groove.toFixed(4)}`);
+  console.log(`Near Equator (r=500):  Potential ${p_near.toFixed(4)}`);
+
+  if (p_groove < p_near) {
+    console.log(
+      "\n✅ SUCCESS: Attractor is a local minimum (The groove catches).",
+    );
+  } else {
+    console.log("\n❌ FAILURE: Field is too flat or incorrectly scaled.");
+  }
+}
+
+test();
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/swarm_membrane_test.ts
+
+```typescript
+import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
+import * as OFFSETS from "../mod.ts";
+
+const WASM_URL = new URL(
+  "../../00_substrate/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
+  import.meta.url,
+);
+
+async function createMatrix() {
+  const memory = new WebAssembly.Memory({
+    initial: OFFSETS.WASM_MEMORY_PAGES,
+    maximum: OFFSETS.WASM_MEMORY_PAGES,
+    shared: true,
+  });
+
+  const imports = {
+    env: {
+      memory,
+      abort: () => {},
+      trace_atom: () => {},
+    },
+  };
+
+  const wasmBytes = await Deno.readFile(WASM_URL);
+  const instantiated = await WebAssembly.instantiate(wasmBytes, imports);
+
+  return { memory, exports: instantiated.instance.exports as any };
+}
+
+function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
+  const view = new DataView(
+    payload.buffer,
+    payload.byteOffset,
+    payload.byteLength,
+  );
+  const genome = payload.slice(0, 64);
+  const energy = view.getInt32(64, true);
+  const phase = view.getInt32(68, true);
+  const resonance = view.getInt32(72, true);
+  let nx = view.getInt32(76, true);
+  let ny = view.getInt32(80, true);
+
+  // Teleport
+  if (nx <= 0) nx = 1399;
+  else if (nx >= 1399) nx = 0;
+  if (ny <= 0) ny = 799;
+  else if (ny >= 799) ny = 0;
+
+  const role = payload[148];
+
+  // Find empty slot natively
+  const ids = new BigInt64Array(
+    memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  let atomIdx = Number(ids[1] === 0n ? 1n : 0n);
+  if (atomIdx === 0) {
+    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+      if (ids[i] === 0n) {
+        atomIdx = i;
+        break;
+      }
+    }
+  }
+
+  if (atomIdx > 0) {
+    const energies = new Int32Array(
+      memory.buffer,
+      OFFSETS.ENERGY_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const resonances = new Int32Array(
+      memory.buffer,
+      OFFSETS.RESONANCE_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const phases = new Int32Array(
+      memory.buffer,
+      OFFSETS.PHASE_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const roles = new Uint8Array(
+      memory.buffer,
+      OFFSETS.ROLES_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const xs = new Int16Array(
+      memory.buffer,
+      OFFSETS.XS_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+    const ys = new Int16Array(
+      memory.buffer,
+      OFFSETS.YS_OFFSET,
+      OFFSETS.MAX_ATOMS,
+    );
+
+    energies[atomIdx] = energy;
+    resonances[atomIdx] = resonance;
+    phases[atomIdx] = phase;
+    ids[atomIdx] = BigInt(Date.now()) << 16n | BigInt(atomIdx);
+    roles[atomIdx] = role;
+    xs[atomIdx] = nx;
+    ys[atomIdx] = ny;
+
+    const logic = new Uint8Array(
+      memory.buffer,
+      OFFSETS.INSTRUCTIONS_OFFSET + atomIdx * 64,
+      64,
+    );
+    logic.set(genome);
+
+    // Context maps natively from 84..148 block representing 16 x i32 slots.
+    const context = new Int32Array(
+      memory.buffer,
+      OFFSETS.CONTEXT_OFFSET + atomIdx * 16 * 4,
+      16,
+    );
+    for (let c = 0; c < 16; c++) {
+      context[c] = view.getInt32(84 + (c * 4), true);
+    }
+  }
+}
+
+Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () => {
+  const matrixA = await createMatrix();
+  const matrixB = await createMatrix();
+
+  // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
+  const idsA = new BigInt64Array(
+    matrixA.memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const xsA = new Int16Array(
+    matrixA.memory.buffer,
+    OFFSETS.XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const ysA = new Int16Array(
+    matrixA.memory.buffer,
+    OFFSETS.YS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const energiesA = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const logicA = new Uint8Array(
+    matrixA.memory.buffer,
+    OFFSETS.INSTRUCTIONS_OFFSET,
+    OFFSETS.MAX_ATOMS * 64,
+  );
+
+  const atomIdxA = 1;
+  idsA[atomIdxA] = 12345678n;
+  xsA[atomIdxA] = 1398; // Close to Edge
+  ysA[atomIdxA] = 400;
+  energiesA[atomIdxA] = 5000;
+
+  // Create a dummy target at the absolute edge (1399) to pull the atom outwards
+  const targetIdx = 2;
+  idsA[targetIdx] = 87654321n;
+  xsA[targetIdx] = 1399;
+  ysA[targetIdx] = 400;
+
+  // OP_SET (0x01), R0 (0x00), SYS_ATTRACT (0x11 = 17)
+  logicA[atomIdxA * 64 + 0] = 0x01; // OP_SET
+  logicA[atomIdxA * 64 + 1] = 0x00; // R0
+  logicA[atomIdxA * 64 + 2] = 0x11; // SYS_ATTRACT (17)
+
+  // OP_SET (0x01), R1 (0x01), targetIdx=2
+  logicA[atomIdxA * 64 + 3] = 0x01; // OP_SET
+  logicA[atomIdxA * 64 + 4] = 0x01; // R1
+  logicA[atomIdxA * 64 + 5] = 0x02; // Target 2
+
+  // OP_SET (0x01), R2 (0x02), intensity=1
+  logicA[atomIdxA * 64 + 6] = 0x01; // OP_SET
+  logicA[atomIdxA * 64 + 7] = 0x02; // R2
+  logicA[atomIdxA * 64 + 8] = 0x01; // Positive intensity
+
+  // OP_SYSCALL (0x60)
+  logicA[atomIdxA * 64 + 9] = 0x60; // OP_SYSCALL
+
+  // Call execute_atom(1)
+  matrixA.exports.execute_atom(atomIdxA);
+
+  const contextA = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.CONTEXT_OFFSET,
+    OFFSETS.MAX_ATOMS * 16,
+  );
+  console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
+  console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
+  console.log("Post Execute - R1 (dx):", contextA[atomIdxA * 16 + 1]);
+  console.log("Post Execute - R2 (dy):", contextA[atomIdxA * 16 + 2]);
+  console.log("Post Execute - Energy:", energiesA[atomIdxA]);
+
+  // 2. Assert Atom vanished from A (Recycled)
+  assertEquals(energiesA[atomIdxA], 0, "Atom should be recycled on Egress");
+
+  // 3. Extract EgressEvent
+  const headView = new Int32Array(
+    matrixA.memory.buffer,
+    OFFSETS.EGRESS_HEAD_OFFSET,
+    1,
+  );
+  const writeHead = Atomics.load(headView, 0);
+  assertEquals(writeHead, 1, "Egress head should be incremented to 1");
+
+  const dataView = new Uint8Array(
+    matrixA.memory.buffer,
+    OFFSETS.EGRESS_DATA_OFFSET,
+    256,
+  );
+  const payload = dataView.slice(0, 256);
+
+  // 4. Inject into Matrix B
+  injectForeignAtom(matrixB.memory, payload);
+
+  // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
+  const idsB = new BigInt64Array(
+    matrixB.memory.buffer,
+    OFFSETS.IDS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const xsB = new Int16Array(
+    matrixB.memory.buffer,
+    OFFSETS.XS_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const energiesB = new Int32Array(
+    matrixB.memory.buffer,
+    OFFSETS.ENERGY_OFFSET,
+    OFFSETS.MAX_ATOMS,
+  );
+  const logicB = new Uint8Array(
+    matrixB.memory.buffer,
+    OFFSETS.INSTRUCTIONS_OFFSET,
+    OFFSETS.MAX_ATOMS * 64,
+  );
+
+  // The first empty slot should be 1
+  const atomIdxB = 1;
+  assertEquals(idsB[atomIdxB] > 0n, true, "Atom should exist in Matrix B");
+  assertEquals(
+    energiesB[atomIdxB],
+    5000,
+    "Energy should match identically in Matrix B",
+  );
+  assertEquals(
+    xsB[atomIdxB],
+    0,
+    "X Coordinate mapped to Matrix B West Boundary limit",
+  );
+  assertEquals(logicB[atomIdxB * 64 + 0], 0x01, "Genome identical match");
+  assertEquals(logicB[atomIdxB * 64 + 4], 0x01, "Genome identical match piece");
+});
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/swarm_sync_test.ts
+
+```typescript
+import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
+import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
+
+if (Deno.args[0] === "run-node") {
+  const port = parseInt(Deno.args[1], 10);
+  const peerPort = parseInt(Deno.args[2], 10);
+  const applyDelay = Deno.args.includes("--delay");
+
+  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
+
+  // Re-configure the static Nexus daemon for our test isolated node
+  NEXUS_DAEMON.port = port;
+  NEXUS_DAEMON.seedNodes = [`ws://127.0.0.1:${peerPort}`];
+
+  await PULSE.initWorkers();
+
+  // Give Nexus a moment to handshake
+  await delay(200);
+
+  // Run manually mimicking normal Orchestrator loop
+  for (let i = 0; i < 200; i++) {
+    await PULSE.tick();
+
+    if (applyDelay) {
+      await delay(10); // Deliberately slow
+    }
+
+    if (i % 10 === 0) {
+      console.log(`SYNC_REPORT_TICK:${port}:${NEXUS_DAEMON.localCurrentTick}`);
+    }
+  }
+
+  // Final flush
+  console.log(`SYNC_REPORT_FINAL:${port}:${NEXUS_DAEMON.localCurrentTick}`);
+  PULSE.stopWorkers();
+  NEXUS_DAEMON.stop();
+  Deno.exit(0);
+} else {
+  // --- Orchestrator ---
+  async function runMaster() {
+    console.log("🧪 [TEST] Byzantine Swarm Synchronization (Hive Clock)");
+
+    const fastNode = new Deno.Command(Deno.execPath(), {
+      args: [
+        "run",
+        "-A",
+        "--unstable",
+        import.meta.url,
+        "run-node",
+        "9010",
+        "9011",
+      ],
+      stdout: "piped",
+      stderr: "inherit",
+    }).spawn();
+
+    const slowNode = new Deno.Command(Deno.execPath(), {
+      args: [
+        "run",
+        "-A",
+        "--unstable",
+        import.meta.url,
+        "run-node",
+        "9011",
+        "9010",
+        "--delay",
+      ],
+      stdout: "piped",
+      stderr: "inherit",
+    }).spawn();
+
+    let fastFinalTick = 0;
+    let slowFinalTick = 0;
+
+    const readStream = async (stream: ReadableStream, port: number) => {
+      const reader = stream.getReader();
+      const decoder = new TextDecoder();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const text = decoder.decode(value);
+        const lines = text.split("\n");
+        for (const line of lines) {
+          if (line.includes("SYNC_REPORT_FINAL:")) {
+            const parts = line.trim().split(":");
+            const t = parseInt(parts[2], 10);
+            if (port === 9010) fastFinalTick = t;
+            if (port === 9011) slowFinalTick = t;
+            console.log(`[ORCHESTRATOR] Node ${port} finished at tick ${t}`);
+          } else if (line.trim().length > 0) {
+            console.log(`[NODE ${port}] ${line.trim()}`);
+          }
+        }
+      }
+    };
+
+    const fastPromise = readStream(fastNode.stdout, 9010);
+    const slowPromise = readStream(slowNode.stdout, 9011);
+
+    await Promise.all([
+      fastNode.status,
+      slowNode.status,
+      fastPromise,
+      slowPromise,
+    ]);
+
+    console.log(
+      `📊 [RESULTS] Fast Node Tick: ${fastFinalTick} | Slow Node Tick: ${slowFinalTick}`,
+    );
+
+    // If Elastic Tick Yielding works, Fast Node should have yielded waiting for the median
+    // Median in a 2-node cluster favors the slow node (since median forces waiting if ahead)
+    // The drift should be exactly capped under MAX_TICK_DRIFT (50) + a small margin for loop timing
+    const drift = Math.abs(fastFinalTick - slowFinalTick);
+
+    if (drift > 60) {
+      console.error(
+        `❌ [TEST FAILS] Drift (${drift}) exceeds 50! Fast node did not elastic yield.`,
+      );
+      Deno.exit(1);
+    }
+
+    if (fastFinalTick === 0 || slowFinalTick === 0) {
+      console.error(`❌ [TEST FAILS] A node failed to execute loop bounds.`);
+      Deno.exit(1);
+    }
+
+    // Pass
+    assertEquals(true, true);
+    console.log("✅ [TEST] Hive Clock Byzantine Synchronization Verified.");
+  }
+
+  runMaster().catch((err) => {
+    console.error("❌", err);
+    Deno.exit(1);
+  });
+}
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/swarm_test.ts
+
+```typescript
+/**
+ * swarm_test.rs
+ * Тест інтерференції QWave.
+ * Перевіряє конструктивну та деструктивну взаємодію.
+ *
+ * NOTE: Since I cannot compile Rust directly in this environment effectively without a cargo project setup,
+ * this file serves as a logic verification script or a blueprint for the user to run.
+ * I will emulate the logic in TypeScript for immediate verification if needed,
+ * but this file is part of the requested artifacts (Lxx atoms are usually code).
+ * However, atoms are usually .rs or .ts. This is a test.
+ */
+
+// Since we are adding this to the OMEGA/ repo, we can try to "emulate" the test
+// by creating a small TypeScript script that implements the EXACT same math
+// and runs it to verify the logic. The user can then use the Rust code in their actual system.
+
+// Re-implementing the core logic in TS for verification output.
+console.log("🌀 OMEGA-64: Swarm Wave Interference Test");
+
+const PI = Math.PI;
+
+function evaluate_phase_vector(amp: number, phi_u16: number): [number, number] {
+  const phase_rad = (phi_u16 / 65535.0) * 2.0 * PI;
+  return [amp * Math.cos(phase_rad), amp * Math.sin(phase_rad)];
+}
+
+function interference(
+  waves: { r: number; phi: number; amp: number }[],
+): { r: number; phi: number; amp: number } {
+  let sum_x = 0.0;
+  let sum_y = 0.0;
+
+  waves.forEach((w) => {
+    const [vx, vy] = evaluate_phase_vector(w.amp, w.phi);
+    sum_x += vx;
+    sum_y += vy;
+  });
+
+  const res_amp = Math.sqrt(sum_x * sum_x + sum_y * sum_y);
+  let res_phase = Math.atan2(sum_y, sum_x);
+  if (res_phase < 0) res_phase += 2 * PI;
+
+  const res_phi_u16 = (res_phase / (2 * PI)) * 65535;
+
+  // Simple average for r
+  const res_r = waves.reduce((a, b) => a + b.r, 0) / waves.length;
+
+  return {
+    r: Math.round(res_r),
+    phi: Math.round(res_phi_u16),
+    amp: Math.round(res_amp),
+  };
+}
+
+// Case 1: Constructive Interference
+// Two waves in phase (phi=0), amp=100
+const w1 = { r: 0, phi: 0, amp: 10000 };
+const w2 = { r: 0, phi: 0, amp: 10000 };
+const res1 = interference([w1, w2]);
+console.log(`\nCase 1: Constructive (In-Phase)`);
+console.log(`Wave A: Amp=${w1.amp}, Phi=${w1.phi}`);
+console.log(`Wave B: Amp=${w2.amp}, Phi=${w2.phi}`);
+console.log(`Result: Amp=${res1.amp} (Expected ~20000), Phi=${res1.phi}`);
+
+if (res1.amp > 19000) console.log("✅ SUCCESS: Amplitude doubled.");
+else console.log("❌ FAILURE: Constructive interference failed.");
+
+// Case 2: Destructive Interference
+// Two waves out of phase (phi=0 and phi=32768 ~ PI), amp=10000
+const w3 = { r: 0, phi: 0, amp: 10000 };
+const w4 = { r: 0, phi: 32767, amp: 10000 }; // ~PI
+const res2 = interference([w3, w4]);
+console.log(`\nCase 2: Destructive (Out-of-Phase)`);
+console.log(`Wave A: Amp=${w3.amp}, Phi=${w3.phi}`);
+console.log(`Wave B: Amp=${w4.amp}, Phi=${w4.phi}`);
+console.log(`Result: Amp=${res2.amp} (Expected ~0)`);
+
+if (res2.amp < 100) console.log("✅ SUCCESS: Waves annihilated.");
+else console.log("❌ FAILURE: Destructive interference failed.");
+
+// Case 3: 90 Degree Phase
+// Two waves 90 deg apart (0 and 16384 ~ PI/2)
+const w5 = { r: 0, phi: 0, amp: 10000 };
+const w6 = { r: 0, phi: 16383, amp: 10000 }; // ~PI/2
+const res3 = interference([w5, w6]);
+console.log(`\nCase 3: Orthogonal (90 deg)`);
+console.log(`Wave A: Amp=${w5.amp}, Phi=${w5.phi}`);
+console.log(`Wave B: Amp=${w6.amp}, Phi=${w6.phi}`);
+// Vector sum: sqrt(10000^2 + 10000^2) = 14142
+console.log(`Result: Amp=${res3.amp} (Expected ~14142)`);
+
+if (res3.amp > 14000 && res3.amp < 14300) {
+  console.log("✅ SUCCESS: Vector sum correct.");
+} else console.log("❌ FAILURE: Vector physics incorrect.");
+
+```
+
+---
+
+## FILE: 00_substrate/03_tests/wasm_layout_guard.ts
+
+```typescript
+import * as OFFSETS from "../mod.ts";
+
+const ASM_SOURCE_PATH = "./assembly/index.ts";
+
+const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
+
+const parseLiteral = (token: string): number | null => {
+  if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
+  if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
+  return null;
+};
+
+const normalizeExpr = (expr: string): string =>
+  expr
+    .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
+    .replace(/[()]/g, "")
+    .trim();
+
+const evalExpr = (
+  name: string,
+  expressions: ReadonlyMap<string, string>,
+  memo: Map<string, number>,
+  stack: Set<string>,
+): number => {
+  const cached = memo.get(name);
+  if (cached !== undefined) return cached;
+
+  const raw = expressions.get(name);
+  if (!raw) {
+    throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
+  }
+  if (stack.has(name)) {
+    throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
+  }
+
+  stack.add(name);
+  const expr = normalizeExpr(raw);
+  const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
+
+  let sign = 1;
+  let total = 0;
+  for (const part of parts) {
+    if (part === "+") {
+      sign = 1;
+      continue;
+    }
+    if (part === "-") {
+      sign = -1;
+      continue;
+    }
+
+    const literal = parseLiteral(part);
+    if (literal !== null) {
+      total += sign * literal;
+      continue;
+    }
+
+    if (!/^[A-Z0-9_]+$/.test(part)) {
+      throw new Error(
+        `[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`,
+      );
+    }
+
+    const ref = evalExpr(part, expressions, memo, stack);
+    total += sign * ref;
+  }
+
+  stack.delete(name);
+  memo.set(name, total);
+  return total;
+};
+
+const readAssemblyConsts = async (): Promise<Map<string, string>> => {
+  const src = await Deno.readTextFile(ASM_SOURCE_PATH);
+  const out = new Map<string, string>();
+  for (const match of src.matchAll(CONST_DEF_RE)) {
+    const [, name, expr] = match;
+    out.set(name, expr.trim());
+  }
+  return out;
+};
+
+export const assertWasmLayout = async (): Promise<void> => {
+  const asmExpressions = await readAssemblyConsts();
+  const memo = new Map<string, number>();
+
+  const expected: Array<{ asm: string; value: number }> = [
+    { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
+    { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
+    { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
+    { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
+    { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
+    { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
+    { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
+    { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
+    { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
+    { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
+    { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
+    { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
+    { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
+    { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
+    { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
+    { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
+    { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
+    { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
+    { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
+    { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
+    { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
+    { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
+    { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
+    { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
+    { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
+    { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
+    { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
+    { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
+    { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
+    {
+      asm: "PHYSICS_READ_ENERGY_OFF",
+      value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+    },
+    {
+      asm: "PHYSICS_READ_RESONANCE_OFF",
+      value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+    },
+    { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
+    { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
+    {
+      asm: "STRUCTURE_BUILD_OWNER_OFF",
+      value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    },
+    {
+      asm: "STRUCTURE_BUILD_VALUE_OFF",
+      value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    },
+    {
+      asm: "STRUCTURE_CHARGE_INTENT_OFF",
+      value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    },
+    { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
+    { asm: "HIVE_ENERGY_POOL_OFF", value: OFFSETS.HIVE_ENERGY_POOL_OFFSET },
+  ];
+
+  const mismatches: string[] = [];
+  for (const item of expected) {
+    const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
+    if (actual !== item.value) {
+      mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
+    }
+  }
+
+  if (mismatches.length > 0) {
+    throw new Error(
+      `[wasm:layout] Constant drift detected:\n${
+        mismatches.map((m) => `- ${m}`).join("\n")
+      }`,
+    );
+  }
+};
+
+if (import.meta.main) {
+  await assertWasmLayout();
+  console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
+}
+
+```
 
 ---
 
@@ -2585,7 +3465,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 import * as OFFSETS from "./OFFSETS.ts";
 
 const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-export const SCALE = OFFSETS.SCALE;
+const SCALE = OFFSETS.SCALE;
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   throw new Error(
@@ -4801,6 +5681,964 @@ export const STRUCTURE_ENGINE = {
 
 ---
 
+## FILE: 02_metabolism/03_tests/genesis_merge_test.ts
+
+```typescript
+import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
+import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
+import { seedSeededSwarmScenario } from "../../02_metabolism/mod.ts";
+
+if (Deno.args[0] === "run-node") {
+  const role = Deno.args[1];
+  const port = parseInt(Deno.args[2], 10);
+  const peerPort = parseInt(Deno.args[3] || "0", 10);
+
+  const { PULSE, NEXUS_DAEMON } = await import("../../02_metabolism/mod.ts");
+  const { STATE_MATRIX } = await import("../STATE_MATRIX.ts");
+
+  // Do not lock port up front; SwarmNexus assigns port 0 to fallback to ephemeral
+  if (port >= 0) {
+    NEXUS_DAEMON.port = port;
+  }
+
+  if (role === "genesis") {
+    seedSeededSwarmScenario(STATE_MATRIX, {
+      seed: 42,
+      replicators: 20,
+      architects: 2,
+    });
+    await PULSE.initWorkers();
+
+    // Crucial: Wait for Deno.serve asynchronous back-end threads to natively bind to the TCP OS loop
+    // before we bombard WASM with blocking Shadow Rehearsals that starve the event loop.
+    await delay(500);
+
+    for (let i = 0; i < 100; i++) {
+      await PULSE.tick();
+      await delay(5); // Explicit yield to Deno event loop for TCP!
+    }
+    const hash100 = await PULSE.generateEpochProof(100);
+    console.log(`HASH_100:${hash100}`);
+
+    // Wait for peer to initialize, connect, request sync, and merge the payload!
+    // Since Peer waits 12000ms before booting, Genesis needs to idle here.
+    console.log(
+      `[Genesis] Server Aborted: ${
+        NEXUS_DAEMON["serverAbortController"].signal.aborted
+      }`,
+    );
+    await delay(15000);
+
+    // Wait for peer to catch up and reach 150
+    for (let i = 100; i < 150; i++) {
+      await PULSE.tick();
+    }
+    const hash150 = await PULSE.generateEpochProof(150);
+    console.log(`FINAL_HASH:${hash150}`);
+
+    // Flush and exit
+    PULSE.stopWorkers();
+    NEXUS_DAEMON.stop();
+    Deno.exit(0);
+  } else if (role === "peer") {
+    // Peer connects to Genesis natively via args
+    NEXUS_DAEMON.seedNodes = [`ws://127.0.0.1:${peerPort}`];
+
+    // Give genesis time to reach tick 100
+    await delay(12000);
+
+    // Booting peer... it should block until Genesis payload is received
+    await PULSE.initWorkers();
+
+    // Wait for sync request processing
+    await delay(200);
+
+    const tickAfterSync = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    console.log(`SYNCED_TICK:${tickAfterSync}`);
+
+    // Tick it up to 150 (from wherever it landed, presumably 100)
+    const ticksTo150 = 150 - tickAfterSync;
+    for (let i = 0; i < ticksTo150; i++) {
+      await PULSE.tick();
+    }
+    const tickEOF = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const hash150 = await PULSE.generateEpochProof(tickEOF);
+    console.log(`FINAL_HASH:${hash150}`);
+
+    PULSE.stopWorkers();
+    NEXUS_DAEMON.stop();
+    Deno.exit(0);
+  }
+} else {
+  // --- Orchestrator ---
+  async function runMaster() {
+    console.log("🧪 [TEST] Genesis Block & Hot State Merging");
+
+    try {
+      Deno.removeSync("02_metabolism/03_tests/.genesis_port");
+    } catch {}
+
+    const genesisNode = new Deno.Command(Deno.execPath(), {
+      args: [
+        "run",
+        "-A",
+        "--unstable",
+        import.meta.url,
+        "run-node",
+        "genesis",
+        "0",
+        "0",
+      ],
+      stdout: "piped",
+      stderr: "inherit",
+    }).spawn();
+
+    let dynamicPeerPort = 0;
+    for (let i = 0; i < 50; i++) {
+      try {
+        dynamicPeerPort = parseInt(
+          Deno.readTextFileSync("02_metabolism/03_tests/.genesis_port"),
+          10,
+        );
+        if (!isNaN(dynamicPeerPort) && dynamicPeerPort > 0) break;
+      } catch {}
+      await delay(200);
+    }
+    console.log(`[TEST] Detected dynamic Genesis Port: ${dynamicPeerPort}`);
+
+    const peerNode = new Deno.Command(Deno.execPath(), {
+      args: [
+        "run",
+        "-A",
+        "--unstable",
+        import.meta.url,
+        "run-node",
+        "peer",
+        "0",
+        dynamicPeerPort.toString(),
+      ],
+      stdout: "piped",
+      stderr: "inherit",
+    }).spawn();
+
+    let genesisFinalHash = "";
+    let peerFinalHash = "";
+    let peerSyncedTick = 0;
+
+    const readStream = async (stream: ReadableStream, role: string) => {
+      const reader = stream.getReader();
+      const decoder = new TextDecoder();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const text = decoder.decode(value);
+        const lines = text.split("\n");
+        for (const line of lines) {
+          if (line.trim() === "") continue;
+
+          if (line.includes("HASH_100:")) {
+            console.log(
+              `[${role}] Reached Tick 100 Hash: ${line.split(":")[1]}`,
+            );
+          } else if (line.includes("SYNCED_TICK:")) {
+            peerSyncedTick = parseInt(line.split(":")[1], 10);
+            console.log(
+              `[${role}] Synced Native Matrix to Tick: ${peerSyncedTick}`,
+            );
+          } else if (line.includes("FINAL_HASH:")) {
+            const hash = line.split(":")[1].trim();
+            if (role === "Genesis") genesisFinalHash = hash;
+            if (role === "Peer") peerFinalHash = hash;
+            console.log(`[${role}] Final Hash at 150: ${hash}`);
+          } else {
+            console.log(`[${role}] ${line.trim()}`);
+          }
+        }
+      }
+    };
+
+    const gPromise = readStream(genesisNode.stdout, "Genesis");
+    const pPromise = readStream(peerNode.stdout, "Peer");
+
+    await Promise.all([
+      genesisNode.status,
+      peerNode.status,
+      gPromise,
+      pPromise,
+    ]);
+
+    console.log(
+      `📊 [RESULTS] Genesis Hash: ${genesisFinalHash} | Peer Hash: ${peerFinalHash}`,
+    );
+
+    if (peerSyncedTick !== 100) {
+      console.error(
+        `❌ [TEST FAILS] Peer Node failed to Hot Merge State Matrix! Synced Tick bounded to ${peerSyncedTick} instead of 100.`,
+      );
+      Deno.exit(1);
+    }
+
+    if (!genesisFinalHash || !peerFinalHash) {
+      console.error(`❌ [TEST FAILS] A node failed to compute final hashes.`);
+      Deno.exit(1);
+    }
+
+    if (genesisFinalHash !== peerFinalHash) {
+      console.error(
+        `❌ [TEST FAILS] Determinism drifted after Genesis payload merge!`,
+      );
+      Deno.exit(1);
+    }
+
+    // Pass
+    assertEquals(genesisFinalHash, peerFinalHash);
+    console.log("✅ [TEST] Genesis Block Hot State Merging Verified.");
+  }
+
+  runMaster().catch((err) => {
+    console.error("❌", err);
+    Deno.exit(1);
+  });
+}
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_determinism_capture.ts
+
+```typescript
+export const DETERMINISM_CAPTURE_MARKER = "__OMEGA_DETERMINISM_CAPTURE__";
+const DETERMINISM_CAPTURE_SCRIPT = "02_metabolism/03_tests/test_worker_determinism.ts";
+
+export type DeterminismAtomState = {
+  idx: number;
+  id: string;
+  role: number;
+  x: number;
+  y: number;
+  energy: number;
+  resonance: number;
+  phase: number;
+  pc: number;
+  logic: number[];
+  bonds: number[];
+  bondDistances: number[];
+  damping: number;
+};
+
+export type DeterminismSnapshot = {
+  activeCount: number;
+  tickCounter: number;
+  atoms: DeterminismAtomState[];
+  structureSlice: number[];
+  signalSlice: number[];
+};
+
+export type DeterminismCapturePayload = {
+  workerCount: number;
+  strictDeterminism: boolean;
+  seed: number;
+  ticks: number;
+  atomCount: number;
+  hash: string;
+  snapshot: DeterminismSnapshot;
+};
+
+export type DeterminismCaptureRunOptions = {
+  workerCount: number;
+  strict: boolean;
+  seed?: number;
+  ticks?: number;
+  atomCount?: number;
+  script?: string;
+  context?: string;
+};
+
+const decode = (bytes: Uint8Array): string => new TextDecoder().decode(bytes);
+
+export const emitDeterminismCapture = (
+  payload: DeterminismCapturePayload,
+): void => {
+  console.log(`${DETERMINISM_CAPTURE_MARKER}${JSON.stringify(payload)}`);
+};
+
+export const parseDeterminismCaptureFromMergedOutput = (
+  mergedOutput: string,
+  context: string,
+): DeterminismCapturePayload => {
+  const markerLine = mergedOutput
+    .split("\n")
+    .map((s) => s.trim())
+    .find((s) => s.startsWith(DETERMINISM_CAPTURE_MARKER));
+  if (!markerLine) {
+    throw new Error(`[${context}] capture marker missing.\n${mergedOutput}`);
+  }
+
+  return JSON.parse(
+    markerLine.slice(DETERMINISM_CAPTURE_MARKER.length),
+  ) as DeterminismCapturePayload;
+};
+
+export const runDeterminismCaptureSubprocess = async (
+  options: DeterminismCaptureRunOptions,
+): Promise<DeterminismCapturePayload> => {
+  const {
+    workerCount,
+    strict,
+    seed,
+    ticks,
+    atomCount,
+    script = DETERMINISM_CAPTURE_SCRIPT,
+    context = "DETERMINISM",
+  } = options;
+
+  const env: Record<string, string> = {
+    ...Deno.env.toObject(),
+    OMEGA_PULSE_WORKERS: String(workerCount),
+    OMEGA_STRICT_DETERMINISM: strict ? "1" : "0",
+  };
+  if (typeof seed === "number") env.OMEGA_DETERMINISM_SEED = String(seed);
+  if (typeof ticks === "number") env.OMEGA_DETERMINISM_TICKS = String(ticks);
+  if (typeof atomCount === "number") {
+    env.OMEGA_DETERMINISM_ATOMS = String(atomCount);
+  }
+
+  const cmd = new Deno.Command(Deno.execPath(), {
+    args: ["run", "-A", script, "--capture"],
+    env,
+    stdout: "piped",
+    stderr: "piped",
+  });
+
+  const res = await cmd.output();
+  const mergedOutput = `${decode(res.stdout)}\n${decode(res.stderr)}`;
+
+  if (res.code !== 0) {
+    throw new Error(
+      `[${context}] capture failed workers=${workerCount} strict=${strict}.\n${mergedOutput}`,
+    );
+  }
+
+  return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
+};
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_gate_thresholds.ts
+
+```typescript
+export const RESILIENCE_SCENARIOS = [
+  "worker-timeout-retry",
+  "worker-timeout-retry-multi",
+  "worker-jitter-resilience",
+  "spawn-jitter-resilience",
+] as const;
+
+export type ResilienceScenario = (typeof RESILIENCE_SCENARIOS)[number];
+
+const envInt = (key: string, fallback: number): number => {
+  const raw = Deno.env.get(key);
+  if (!raw || raw.trim().length === 0) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return parsed;
+};
+
+const envFloat = (key: string, fallback: number): number => {
+  const raw = Deno.env.get(key);
+  if (!raw || raw.trim().length === 0) return fallback;
+  const parsed = Number.parseFloat(raw);
+  if (!Number.isFinite(parsed)) return fallback;
+  return parsed;
+};
+
+export type ResilienceBudgetThresholds = {
+  scenarioRetriesMax: Record<ResilienceScenario, number>;
+  totalRetriesMax: number;
+  scenarioDurationMaxMs: Record<ResilienceScenario, number>;
+  scenarioDurationTotalMaxMs: number;
+  driftAuditDurationMaxMs: number;
+  auditDurationTotalMaxMs: number;
+};
+
+export const loadResilienceBudgetThresholds =
+  (): ResilienceBudgetThresholds => {
+    return {
+      scenarioRetriesMax: {
+        "worker-timeout-retry": envInt(
+          "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_SINGLE",
+          12,
+        ),
+        "worker-timeout-retry-multi": envInt(
+          "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_MULTI",
+          24,
+        ),
+        "worker-jitter-resilience": envInt(
+          "OMEGA_RESILIENCE_RETRIES_MAX_JITTER",
+          120,
+        ),
+        "spawn-jitter-resilience": envInt(
+          "OMEGA_RESILIENCE_RETRIES_MAX_SPAWN_JITTER",
+          1200,
+        ),
+      },
+      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 1500),
+      scenarioDurationMaxMs: {
+        "worker-timeout-retry": envInt(
+          "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_SINGLE_MS",
+          15_000,
+        ),
+        "worker-timeout-retry-multi": envInt(
+          "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_MULTI_MS",
+          20_000,
+        ),
+        "worker-jitter-resilience": envInt(
+          "OMEGA_RESILIENCE_DURATION_MAX_JITTER_MS",
+          25_000,
+        ),
+        "spawn-jitter-resilience": envInt(
+          "OMEGA_RESILIENCE_DURATION_MAX_SPAWN_JITTER_MS",
+          35_000,
+        ),
+      },
+      scenarioDurationTotalMaxMs: envInt(
+        "OMEGA_RESILIENCE_DURATION_MAX_SCENARIOS_MS",
+        75_000,
+      ),
+      driftAuditDurationMaxMs: envInt(
+        "OMEGA_RESILIENCE_DURATION_MAX_DRIFT_AUDIT_MS",
+        30_000,
+      ),
+      auditDurationTotalMaxMs: envInt(
+        "OMEGA_RESILIENCE_DURATION_MAX_AUDIT_TOTAL_MS",
+        105_000,
+      ),
+    };
+  };
+
+export type ResilienceTrendThresholds = {
+  retriesRatioMax: number;
+  retriesDeltaMax: number;
+  durationRatioMax: number;
+  durationDeltaMaxMs: number;
+  totalRetriesRatioMax: number;
+  totalRetriesDeltaMax: number;
+  totalScenarioDurationRatioMax: number;
+  totalScenarioDurationDeltaMaxMs: number;
+  driftAuditDurationRatioMax: number;
+  driftAuditDurationDeltaMaxMs: number;
+  totalAuditDurationRatioMax: number;
+  totalAuditDurationDeltaMaxMs: number;
+};
+
+export const loadResilienceTrendThresholds = (): ResilienceTrendThresholds => {
+  return {
+    retriesRatioMax: envFloat("OMEGA_RESILIENCE_TREND_RETRIES_RATIO_MAX", 2.2),
+    retriesDeltaMax: envFloat("OMEGA_RESILIENCE_TREND_RETRIES_DELTA_MAX", 16),
+    durationRatioMax: envFloat("OMEGA_RESILIENCE_TREND_DURATION_RATIO_MAX", 3),
+    durationDeltaMaxMs: envFloat(
+      "OMEGA_RESILIENCE_TREND_DURATION_DELTA_MAX_MS",
+      4_000,
+    ),
+    totalRetriesRatioMax: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_RATIO_MAX",
+      2,
+    ),
+    totalRetriesDeltaMax: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_DELTA_MAX",
+      40,
+    ),
+    totalScenarioDurationRatioMax: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_RATIO_MAX",
+      3,
+    ),
+    totalScenarioDurationDeltaMaxMs: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_DELTA_MAX_MS",
+      8_000,
+    ),
+    driftAuditDurationRatioMax: envFloat(
+      "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_RATIO_MAX",
+      3,
+    ),
+    driftAuditDurationDeltaMaxMs: envFloat(
+      "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_DELTA_MAX_MS",
+      5_000,
+    ),
+    totalAuditDurationRatioMax: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_RATIO_MAX",
+      3,
+    ),
+    totalAuditDurationDeltaMaxMs: envFloat(
+      "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_DELTA_MAX_MS",
+      12_000,
+    ),
+  };
+};
+
+export type SoakStabilityConfig = {
+  timeoutMs: number;
+  retryCount: number;
+  retryMs: number;
+  jitterMinMs: number;
+  jitterMaxMs: number;
+  ticks: number;
+  sampleEvery: number;
+  seed: number;
+  replicators: number;
+  architects: number;
+  backlogMax: number;
+  activeMax: number;
+  rssSlopeMaxBytes: number;
+  heapSlopeMaxBytes: number;
+  backlogSlopeMax: number;
+  retryRateSlopeMax: number;
+  avgTickMsSlopeMax: number;
+  avgTickMsP95Max: number;
+  avgTickMsSpikeMax: number;
+};
+
+export const loadSoakStabilityConfig = (): SoakStabilityConfig => {
+  return {
+    timeoutMs: envInt("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", 10),
+    retryCount: envInt("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", 3),
+    retryMs: envInt("OMEGA_WORKER_TIMEOUT_RETRY_MS", 70),
+    jitterMinMs: envInt("OMEGA_WORKER_JITTER_MIN_MS", 12),
+    jitterMaxMs: envInt("OMEGA_WORKER_JITTER_MAX_MS", 30),
+    ticks: envInt("OMEGA_SOAK_STABILITY_TICKS", 320),
+    sampleEvery: envInt("OMEGA_SOAK_STABILITY_SAMPLE_EVERY", 20),
+    seed: envInt("OMEGA_SOAK_STABILITY_SEED", 424242),
+    replicators: envInt("OMEGA_SOAK_STABILITY_REPLICATORS", 8),
+    architects: envInt("OMEGA_SOAK_STABILITY_ARCHITECTS", 4),
+    backlogMax: envInt("OMEGA_SOAK_BACKLOG_MAX", 64),
+    activeMax: envInt("OMEGA_SOAK_ACTIVE_MAX", 5000),
+    rssSlopeMaxBytes: envInt("OMEGA_SOAK_RSS_SLOPE_MAX_BYTES", 6_000_000),
+    heapSlopeMaxBytes: envInt("OMEGA_SOAK_HEAP_SLOPE_MAX_BYTES", 3_000_000),
+    backlogSlopeMax: envFloat("OMEGA_SOAK_BACKLOG_SLOPE_MAX", 4),
+    retryRateSlopeMax: envFloat("OMEGA_SOAK_RETRY_RATE_SLOPE_MAX", 0.04),
+    avgTickMsSlopeMax: envFloat("OMEGA_SOAK_AVG_TICK_MS_SLOPE_MAX", 2.5),
+    avgTickMsP95Max: envFloat("OMEGA_SOAK_AVG_TICK_MS_P95_MAX", 160),
+    avgTickMsSpikeMax: envFloat("OMEGA_SOAK_AVG_TICK_MS_SPIKE_MAX", 220),
+  };
+};
+
+export type SoakTrendThresholds = {
+  durationRatioMax: number;
+  durationDeltaMaxMs: number;
+  p95TickRatioMax: number;
+  p95TickDeltaMaxMs: number;
+  maxTickRatioMax: number;
+  maxTickDeltaMaxMs: number;
+  peakActiveRatioMax: number;
+  peakActiveDeltaMax: number;
+  backlogRatioMax: number;
+  backlogDeltaMax: number;
+  rssSlopeRatioMax: number;
+  rssSlopeDeltaMax: number;
+  heapSlopeRatioMax: number;
+  heapSlopeDeltaMax: number;
+  backlogSlopeRatioMax: number;
+  backlogSlopeDeltaMax: number;
+  retryRateSlopeRatioMax: number;
+  retryRateSlopeDeltaMax: number;
+  avgTickSlopeAbsRatioMax: number;
+  avgTickSlopeAbsDeltaMax: number;
+  retriesRatioMax: number;
+  retriesDeltaMax: number;
+  timeoutsRatioMax: number;
+  timeoutsDeltaMax: number;
+  requestsRatioMin: number;
+  requestsRatioMax: number;
+  requestsDeltaMax: number;
+};
+
+export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
+  return {
+    durationRatioMax: envFloat("OMEGA_SOAK_TREND_DURATION_RATIO_MAX", 1.6),
+    durationDeltaMaxMs: envFloat(
+      "OMEGA_SOAK_TREND_DURATION_DELTA_MAX_MS",
+      18_000,
+    ),
+    p95TickRatioMax: envFloat("OMEGA_SOAK_TREND_P95_TICK_RATIO_MAX", 1.1),
+    p95TickDeltaMaxMs: envFloat("OMEGA_SOAK_TREND_P95_TICK_DELTA_MAX_MS", 6),
+    maxTickRatioMax: envFloat("OMEGA_SOAK_TREND_MAX_TICK_RATIO_MAX", 1.35),
+    maxTickDeltaMaxMs: envFloat("OMEGA_SOAK_TREND_MAX_TICK_DELTA_MAX_MS", 20),
+    peakActiveRatioMax: envFloat("OMEGA_SOAK_TREND_PEAK_ACTIVE_RATIO_MAX", 1.3),
+    peakActiveDeltaMax: envFloat("OMEGA_SOAK_TREND_PEAK_ACTIVE_DELTA_MAX", 24),
+    backlogRatioMax: envFloat("OMEGA_SOAK_TREND_BACKLOG_RATIO_MAX", 4),
+    backlogDeltaMax: envFloat("OMEGA_SOAK_TREND_BACKLOG_DELTA_MAX", 8),
+    rssSlopeRatioMax: envFloat("OMEGA_SOAK_TREND_RSS_SLOPE_RATIO_MAX", 4),
+    rssSlopeDeltaMax: envFloat(
+      "OMEGA_SOAK_TREND_RSS_SLOPE_DELTA_MAX",
+      4_000_000,
+    ),
+    heapSlopeRatioMax: envFloat("OMEGA_SOAK_TREND_HEAP_SLOPE_RATIO_MAX", 6),
+    heapSlopeDeltaMax: envFloat(
+      "OMEGA_SOAK_TREND_HEAP_SLOPE_DELTA_MAX",
+      2_500_000,
+    ),
+    backlogSlopeRatioMax: envFloat(
+      "OMEGA_SOAK_TREND_BACKLOG_SLOPE_RATIO_MAX",
+      4,
+    ),
+    backlogSlopeDeltaMax: envFloat(
+      "OMEGA_SOAK_TREND_BACKLOG_SLOPE_DELTA_MAX",
+      2,
+    ),
+    retryRateSlopeRatioMax: envFloat(
+      "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_RATIO_MAX",
+      4,
+    ),
+    retryRateSlopeDeltaMax: envFloat(
+      "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_DELTA_MAX",
+      0.02,
+    ),
+    avgTickSlopeAbsRatioMax: envFloat(
+      "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_RATIO_MAX",
+      4,
+    ),
+    avgTickSlopeAbsDeltaMax: envFloat(
+      "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_DELTA_MAX",
+      1.2,
+    ),
+    retriesRatioMax: envFloat("OMEGA_SOAK_TREND_RETRIES_RATIO_MAX", 1.4),
+    retriesDeltaMax: envFloat("OMEGA_SOAK_TREND_RETRIES_DELTA_MAX", 500),
+    timeoutsRatioMax: envFloat("OMEGA_SOAK_TREND_TIMEOUTS_RATIO_MAX", 1.4),
+    timeoutsDeltaMax: envFloat("OMEGA_SOAK_TREND_TIMEOUTS_DELTA_MAX", 500),
+    requestsRatioMin: envFloat("OMEGA_SOAK_TREND_REQUESTS_RATIO_MIN", 0.95),
+    requestsRatioMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_RATIO_MAX", 1.2),
+    requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
+  };
+};
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_resilience_capture.ts
+
+```typescript
+import {
+  RESILIENCE_SCENARIOS,
+  type ResilienceScenario,
+} from "./worker_gate_thresholds.ts";
+
+export const RESILIENCE_CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
+
+export const RESILIENCE_SCENARIO_SCRIPT_BY_ID: Record<
+  ResilienceScenario,
+  string
+> = {
+  "worker-timeout-retry": "test_worker_timeout_retry.ts",
+  "worker-timeout-retry-multi": "test_worker_timeout_retry_multi.ts",
+  "worker-jitter-resilience": "test_worker_jitter_resilience.ts",
+  "spawn-jitter-resilience": "test_spawn_jitter_resilience.ts",
+};
+
+export const RESILIENCE_SCENARIO_SCRIPT_PAIRS = RESILIENCE_SCENARIOS.map((
+  scenario,
+) => ({
+  scenario,
+  script: RESILIENCE_SCENARIO_SCRIPT_BY_ID[scenario],
+}));
+
+export type ResilienceWorkerStat = {
+  workerIndex: number;
+  requests: number;
+  completed: number;
+  timeouts: number;
+  retryWaits: number;
+  failures: number;
+  consecutiveTimeouts?: number;
+  lastRequestType?: string;
+  lastPulseId?: number;
+  lastError?: string;
+};
+
+export type ResilienceCapturePayload = {
+  scenario: ResilienceScenario;
+  workerCount: number;
+  timeoutMs: number;
+  retryCount: number;
+  retryMs: number;
+  totalRetries: number;
+  totalFailures: number;
+  stats: ResilienceWorkerStat[];
+  [key: string]: unknown;
+};
+
+const SCENARIO_SET = new Set<string>(RESILIENCE_SCENARIOS);
+
+export const emitResilienceCapture = (
+  payload: ResilienceCapturePayload,
+): void => {
+  console.log(`${RESILIENCE_CAPTURE_MARKER}${JSON.stringify(payload)}`);
+};
+
+export const parseResilienceCaptureFromMergedOutput = (
+  mergedOutput: string,
+  script: string,
+): ResilienceCapturePayload => {
+  const markerLine = mergedOutput
+    .split("\n")
+    .map((s) => s.trim())
+    .find((s) => s.startsWith(RESILIENCE_CAPTURE_MARKER));
+  if (!markerLine) {
+    throw new Error(`[AUDIT] Capture marker missing for ${script}.`);
+  }
+
+  const payload = JSON.parse(
+    markerLine.slice(RESILIENCE_CAPTURE_MARKER.length),
+  ) as ResilienceCapturePayload;
+
+  if (!SCENARIO_SET.has(String(payload.scenario))) {
+    throw new Error(
+      `[AUDIT] Invalid resilience scenario in ${script}: ${
+        String(payload.scenario)
+      }`,
+    );
+  }
+
+  return payload;
+};
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_seeded_swarm.ts
+
+```typescript
+export const SPAWN_RING_CAPACITY = 1024;
+const WORLD_MAX_X = 1399;
+const WORLD_MAX_Y = 799;
+
+type StateMatrixLike = {
+  RISC: {
+    OP_REPLICATE: number;
+    OP_SIGNAL: number;
+    OP_JMP: number;
+    OP_ROLE: number;
+    OP_BUILD: number;
+    OP_SET: number;
+    OP_SYSCALL: number;
+  };
+  ROLE_ARCHITECT: number;
+  ROLE_PRODUCER: number;
+  SYNC: {
+    IDLE: number;
+  };
+  syncState: Int32Array;
+  tickCounter: Int32Array;
+  clear: () => void;
+  seedAtom: (
+    idx: number,
+    id: bigint,
+    x: number,
+    y: number,
+    energy: number,
+    mass: number,
+    genome: Uint8Array,
+    script: Uint8Array,
+  ) => void;
+  setRole: (idx: number, role: number) => void;
+  getActiveIndices: () => number[];
+  getId: (idx: number) => bigint;
+  getX: (idx: number) => number;
+  getY: (idx: number) => number;
+};
+
+type SeededSwarmConfig = {
+  seed: number;
+  replicators: number;
+  architects: number;
+};
+
+const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  // R0 = 4 (SYS_SPAWN)
+  script[pc++] = stateMatrix.RISC.OP_SET;
+  script[pc++] = 0; // R0
+  script[pc++] = 4; // SYS_SPAWN
+  // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
+  script[pc++] = stateMatrix.RISC.OP_SYSCALL;
+
+  script[pc++] = stateMatrix.RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+const makeArchitectScript = (stateMatrix: StateMatrixLike): Uint8Array => {
+  const script = new Uint8Array(64);
+  let pc = 0;
+  script[pc++] = stateMatrix.RISC.OP_ROLE;
+  script[pc++] = 0;
+  script[pc++] = stateMatrix.ROLE_ARCHITECT;
+  script[pc++] = stateMatrix.RISC.OP_BUILD;
+  script[pc++] = 1;
+  script[pc++] = 1;
+  script[pc++] = stateMatrix.RISC.OP_SIGNAL;
+  script[pc++] = stateMatrix.RISC.OP_JMP;
+  script[pc++] = 0;
+  return script;
+};
+
+export const seedSeededSwarmScenario = (
+  stateMatrix: StateMatrixLike,
+  config: SeededSwarmConfig,
+): number => {
+  const { seed, replicators, architects } = config;
+
+  stateMatrix.clear();
+  Atomics.store(stateMatrix.syncState, 0, stateMatrix.SYNC.IDLE);
+  Atomics.store(stateMatrix.tickCounter, 0, 0);
+
+  const repScript = makeReplicatorScript(stateMatrix);
+  const archScript = makeArchitectScript(stateMatrix);
+
+  for (let i = 0; i < replicators; i++) {
+    const idx = 1000 + i * 197;
+    const x = 180 + (i % 5) * 220;
+    const y = 120 + Math.floor(i / 5) * 220;
+    const id = (BigInt(seed >>> 0) << 32n) ^ BigInt(idx + 1);
+    const genome = new Uint8Array(8);
+    genome[0] = (seed + i * 17) & 0xff;
+    genome[1] = (seed >>> 8) & 0xff;
+    genome[2] = 0xaa;
+    genome[3] = i & 0xff;
+    stateMatrix.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      3200,
+      260 + (i % 7),
+      genome,
+      repScript,
+    );
+    stateMatrix.setRole(idx, stateMatrix.ROLE_PRODUCER);
+  }
+
+  for (let i = 0; i < architects; i++) {
+    const idx = 5000 + i * 211;
+    const x = 420 + (i % 3) * 150;
+    const y = 280 + Math.floor(i / 3) * 150;
+    const id = ((BigInt(seed >>> 0) << 32n) ^ 0xABCDEF00n) + BigInt(i + 1);
+    const genome = new Uint8Array(8);
+    genome[0] = 0xf0;
+    genome[1] = (seed + i * 13) & 0xff;
+    genome[2] = 0x0d;
+    genome[3] = 0x42;
+    stateMatrix.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      2600,
+      180 + (i % 5),
+      genome,
+      archScript,
+    );
+    stateMatrix.setRole(idx, stateMatrix.ROLE_ARCHITECT);
+  }
+
+  return replicators + architects;
+};
+
+export const assertSeededSwarmWorldInvariants = (
+  stateMatrix: StateMatrixLike,
+  errorPrefix: string,
+): number => {
+  const active = stateMatrix.getActiveIndices();
+  for (const idx of active) {
+    const id = stateMatrix.getId(idx);
+    if (id === 0n) {
+      throw new Error(`${errorPrefix} Active index ${idx} has zero id.`);
+    }
+    const x = stateMatrix.getX(idx);
+    const y = stateMatrix.getY(idx);
+    if (x < 0 || x > WORLD_MAX_X || y < 0 || y > WORLD_MAX_Y) {
+      throw new Error(`${errorPrefix} Atom ${idx} out of bounds: (${x},${y}).`);
+    }
+  }
+  return active.length;
+};
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_trend_baseline.ts
+
+```typescript
+type BaselineBootstrapOptions<TCurrent, TBaseline> = {
+  baselinePath: string;
+  bootstrapEnv: string;
+  current: TCurrent;
+  baselineFromCurrent: (current: TCurrent) => TBaseline;
+  missingErrorMessage: (path: string, envVar: string) => string;
+  createdLogMessage: (path: string) => string;
+};
+
+export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
+  options: BaselineBootstrapOptions<TCurrent, TBaseline>,
+): Promise<TBaseline> => {
+  const {
+    baselinePath,
+    bootstrapEnv,
+    current,
+    baselineFromCurrent,
+    missingErrorMessage,
+    createdLogMessage,
+  } = options;
+
+  try {
+    const raw = await Deno.readTextFile(baselinePath);
+    return JSON.parse(raw) as TBaseline;
+  } catch {
+    const bootstrap = Deno.env.get(bootstrapEnv) === "1";
+    if (!bootstrap) {
+      throw new Error(missingErrorMessage(baselinePath, bootstrapEnv));
+    }
+    const baseline = baselineFromCurrent(current);
+    await Deno.writeTextFile(baselinePath, JSON.stringify(baseline, null, 2));
+    console.log(createdLogMessage(baselinePath));
+    return baseline;
+  }
+};
+
+```
+
+---
+
+## FILE: 02_metabolism/03_tests/worker_trend_math.ts
+
+```typescript
+export const ensurePositive = (value: number, fallback: number): number =>
+  Number.isFinite(value) && value > 0 ? value : fallback;
+
+export const limitByRatioAndDelta = (
+  baseline: number,
+  ratioMax: number,
+  deltaMax: number,
+): number => (baseline * ratioMax) + deltaMax;
+
+export const limitByRatioAndDeltaCeil = (
+  baseline: number,
+  ratioMax: number,
+  deltaMax: number,
+): number => Math.ceil(limitByRatioAndDelta(baseline, ratioMax, deltaMax));
+
+export const minByRatio = (baseline: number, ratioMin: number): number =>
+  baseline * ratioMin;
+
+```
+
+---
+
 ## FILE: 02_metabolism/ENZYME_DIGEST.ts
 
 ```typescript
@@ -6996,7 +8834,6 @@ export const LAMBDA_VM = {
 ```typescript
 export * from "./HORMONE_BUFFER_RUNTIME.ts";
 export * from "./HOLOGRAM_INJECTOR.ts";
-
 export * from "./IMMUNE.ts";
 export * from "./GENOMES.ts";
 export * from "./HORMONE_BUFFER.ts";
@@ -7867,7 +9704,7 @@ self.onmessage = async (e) => {
     }
     try {
       const wasmRes = await fetch(
-        new URL("../build/release.wasm", import.meta.url).href,
+        new URL("../08_artifacts/release.wasm", import.meta.url).href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (
@@ -8319,7 +10156,7 @@ const HOMEOSTASIS_TARGET_ENERGY_MIN = 1;
 const HOMEOSTASIS_TARGET_ENERGY_MAX = 1_000_000;
 const SPAWN_RING_CAPACITY = 1024;
 const SPAWN_SLOT_BYTES = 16;
-const WASM_RELEASE_URL = new URL("../build/release.wasm", import.meta.url);
+const WASM_RELEASE_URL = new URL("../08_artifacts/release.wasm", import.meta.url);
 
 type EvolutionPressureState = {
   noveltySigned: number;
@@ -12855,7 +14692,7 @@ export const ATOM = () => (x: any) => x;
 // Bridges RAM state back to Flatland source code.
 
 import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "./mod.ts";
+import { IDX_TO_ID } from "../00_substrate/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
 
 const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
@@ -13426,7 +15263,7 @@ if (import.meta.main) {
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
 import { MAX_ATOMS, STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "./mod.ts";
+import { IDX_TO_ID } from "../00_substrate/mod.ts";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
@@ -20254,6 +22091,86 @@ export const SOVEREIGNTY_ENGINE: any = {
 
 ---
 
+## FILE: 04_noosphere/03_tests/p2p_transit_test.ts
+
+```typescript
+import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
+import { SwarmNexus } from "../mod.ts";
+
+Deno.test("P2P Transit: Nexus A routes Atom to Nexus B", async () => {
+  let receivedPayload: Uint8Array | null = null;
+
+  let resolveReceipt: () => void;
+  const receiptPromise = new Promise<void>((resolve) => {
+    resolveReceipt = resolve;
+  });
+
+  const nexusA = new SwarmNexus({
+    instanceId: 2001, // Calculates to port 10081
+    seedNodes: ["ws://127.0.0.1:10082"], // Connecting to B
+  });
+
+  const nexusB = new SwarmNexus({
+    instanceId: 2002, // Calculates to port 10082
+    seedNodes: [],
+  });
+
+  nexusB.onAtomTransit = (payload: Uint8Array) => {
+    receivedPayload = payload;
+    resolveReceipt();
+  };
+
+  try {
+    // Boot Nexus instances
+    nexusB.start();
+    nexusA.start();
+
+    // Give WebSockets 150ms to establish Transport connections & Handshake
+    await new Promise((r) => setTimeout(r, 150));
+
+    // Construct a deterministically identifiable EgressEvent payload matching 256 boundaries
+    const egressFakePayload = new Uint8Array(256);
+    egressFakePayload.fill(0xAA);
+    egressFakePayload[0] = 0x42;
+
+    // Dispatch onto P2P network plane
+    nexusA.routeAtom(egressFakePayload);
+
+    // Await Target Nexus node decoding procedure
+    await receiptPromise;
+
+    // Asserts: Structural Payload consistency checked
+    assertEquals(
+      receivedPayload !== null,
+      true,
+      "Payload should be populated upon Network Receipt",
+    );
+    assertEquals(
+      receivedPayload!.length,
+      256,
+      "Should decode exactly 256 payload bytes from transit",
+    );
+    assertEquals(
+      receivedPayload![0],
+      0x42,
+      "Head byte should map completely across the transit buffer",
+    );
+    assertEquals(
+      receivedPayload![255],
+      0xAA,
+      "Tail byte should maintain identical block alignment across transmission",
+    );
+  } finally {
+    // Reclaim Global states
+    nexusA.stop();
+    nexusB.stop();
+  }
+});
+
+```
+
+---
+
 ## FILE: 04_noosphere/BOOTSTRAP_HUB.ts
 
 ```typescript
@@ -20399,6 +22316,7 @@ export * from "./BOOTSTRAP_HUB.ts";
 export * from "./P2P_CODEC.ts";
 export * from "./SWARM_NODE.ts";
 export * from "./SWARM_NEXUS.ts";
+export * from "./P2P_SYNAPSE.ts";
 
 ```
 
@@ -20539,7 +22457,7 @@ import { STATE_MATRIX } from "../00_substrate/mod.ts";
 import { IDX_TO_ID } from "../02_metabolism/mod.ts";
 import { PRNG } from "../00_substrate/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -20769,7 +22687,7 @@ export const P2P_FEDERATION = {
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;
@@ -21398,6 +23316,98 @@ export class MetaKuramotoNode {
 }
 
 export const SWARM_NODE = new MetaKuramotoNode();
+
+```
+
+---
+
+## FILE: 05_exocortex/03_tests/oracle_loop_test.ts
+
+```typescript
+// OMEGA-64 | oracle_loop_test.ts | Phase 39: Sovereign Epistemics
+import {
+  assert,
+  assertEquals,
+} from "https://deno.land/std@0.224.0/assert/mod.ts";
+import { NEXUS_DAEMON, PULSE } from "../../02_metabolism/mod.ts";
+import { STATE_MATRIX } from "../../00_substrate/mod.ts";
+import { SOVEREIGN_ORACLE } from "../mod.ts";
+import { LLM_SYNAPSE } from "../mod.ts";
+
+Deno.test({
+  name: "Phase 39: Sovereign Oracle Epistemic Gate (Memetic Ingestion)",
+  async fn() {
+    // 1. Initialize an empty standard matrix with 1 test subject
+    await PULSE.initWorkers(1);
+    STATE_MATRIX.clear();
+
+    const atomIdx = STATE_MATRIX.findEmptySlot();
+    STATE_MATRIX.setEnergy(atomIdx, 500);
+    STATE_MATRIX.setId(atomIdx, 1n);
+
+    // Give it a genome that executes OP_INCORPORATE_PLASMID (0xAB) at offset 8.
+    const initGenome = new Uint8Array(64).fill(0x00);
+    initGenome[0] = 0x01; // OP_SET
+    initGenome[1] = 0x00; // R0
+    initGenome[2] = 0x08; // Immutable value 8
+
+    initGenome[3] = 0xAB; // OP_INCORPORATE_PLASMID
+    initGenome[4] = 0x00; // Offset register R0
+    STATE_MATRIX.setInstructions(atomIdx, initGenome);
+
+    // 2. Mock `LLM_SYNAPSE.generateAtomicBytecode` function
+    const optimalPlasmid = new Uint8Array(8).fill(0x00);
+    optimalPlasmid[0] = 0x81; // OP_SIGNAL
+    optimalPlasmid[1] = 0x01;
+    optimalPlasmid[2] = 0x81; // Highly structured/low-entropy
+
+    // Override the LLM API module
+    const originalGenerate = LLM_SYNAPSE.generateAtomicBytecode;
+    LLM_SYNAPSE.generateAtomicBytecode = async (_telemetry) => {
+      return { plasmid: optimalPlasmid };
+    };
+
+    try {
+      const telemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
+      await SOVEREIGN_ORACLE.consultOracle(atomIdx, telemetry);
+
+      // Assert plasmid injection
+      const drains = SOVEREIGN_ORACLE.drainPendingMutations();
+      assert(drains.applied > 0, "Oracle MUST inject the Stigmergic Plasmid.");
+
+      // Let's tick the simulation. The atom should execute OP_INCORPORATE_PLASMID
+      // and fetch the new plasmid into index 8 of its genome.
+      await PULSE.tick();
+      await PULSE.tick();
+
+      const studentGenomeAfter = STATE_MATRIX.getInstructions(atomIdx);
+
+      let matchArray = true;
+      for (let i = 0; i < 8; i++) {
+        if (studentGenomeAfter[8 + i] !== optimalPlasmid[i]) {
+          matchArray = false;
+          break;
+        }
+      }
+
+      assert(
+        matchArray,
+        "Atom did NOT successfully read the Oracle's plasmid from the environment!",
+      );
+
+      console.log("Atom first 16 bytes:", studentGenomeAfter.slice(0, 16));
+      console.log("Oracle was successfully downloaded without forced rewrite.");
+    } finally {
+      // Cleanup Worker threads and mock overrides
+      LLM_SYNAPSE.generateAtomicBytecode = originalGenerate;
+      PULSE.stopWorkers();
+      await NEXUS_DAEMON.stop();
+      await new Promise((r) => setTimeout(r, 200));
+    }
+  },
+  sanitizeOps: false,
+  sanitizeResources: false,
+});
 
 ```
 
@@ -22698,7 +24708,7 @@ import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "../00_substrate/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "../03_governance/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 import { PULSE } from "../02_metabolism/mod.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 
@@ -23402,6 +25412,362 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
+
+```
+
+---
+
+## FILE: 06_akasha/03_tests/architecture_guard.ts
+
+```typescript
+import { walk } from "jsr:@std/fs";
+import { assert } from "jsr:@std/assert";
+
+const LAYERS = [
+  "00_substrate",
+  "01_physics",
+  "02_metabolism",
+  "03_governance",
+  "04_noosphere",
+  "05_exocortex",
+  "06_akasha"
+];
+
+Deno.test("topology: architecture guard - strict acyclic descent", async () => {
+  const IMPORT_REGEX = /from\s+["']\.\.\/(\d{2}_[^/]+)\/mod\.ts["']/g;
+
+  for (let i = 0; i < LAYERS.length; i++) {
+    const layer = LAYERS[i];
+    const allowed = LAYERS.slice(0, i + 1); // Layer can import itself and anything below it
+
+    for await (const entry of walk(layer, { exts: [".ts"] })) {
+      const content = await Deno.readTextFile(entry.path);
+      let match;
+      while ((match = IMPORT_REGEX.exec(content)) !== null) {
+        const targetLayer = match[1];
+        if (!allowed.includes(targetLayer)) {
+          throw new Error(`Topological Breach! ${entry.path} is importing from ${targetLayer}. A layer may only import from layers at or below its own level.`);
+        }
+      }
+    }
+  }
+});
+```
+
+---
+
+## FILE: 06_akasha/03_tests/continuum_gate_test.ts
+
+```typescript
+import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
+import { loadEpoch, saveEpoch } from "../mod.ts";
+import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "../../00_substrate/mod.ts";
+
+async function hashMemArray(buffer: Uint8Array): Promise<string> {
+  // crypto.subtle.digest requires ArrayBuffer, so we slice a copy if it's SharedArrayBuffer
+  const copy = new Uint8Array(buffer).buffer;
+  const hashBuffer = await crypto.subtle.digest("SHA-256", copy);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+const WASM_RELEASE_URL = new URL("../../08_artifacts/release.wasm", import.meta.url);
+
+async function instantiateOmega() {
+  const wasmBytes = await Deno.readFile(WASM_RELEASE_URL);
+  const memory = new WebAssembly.Memory({
+    initial: WASM_MEMORY_PAGES,
+    maximum: WASM_MEMORY_PAGES,
+    shared: true,
+  });
+
+  const env = {
+    abort: (msg: number, file: number, line: number, col: number) => {
+      console.error(`abort: ${msg} ${file} ${line} ${col}`);
+    },
+    memory,
+  };
+
+  const index = {
+    trace_atom: () => {},
+  };
+
+  const instantiated = await WebAssembly.instantiate(wasmBytes, { env, index });
+  return { memory, instance: instantiated.instance };
+}
+
+Deno.test("Continuum Binary Epoch Restoration Parity", async () => {
+  // 1. Initialize fresh WASM State A
+  const stateA = await instantiateOmega();
+  const viewA = new Uint32Array(stateA.memory.buffer);
+
+  // Mutate memory A explicitly to simulate elapsed time
+  for (let i = 0; i < 500; i++) {
+    viewA[i] = i * 42;
+  }
+
+  // 2. Snapshot the state at tick 100
+  await saveEpoch(stateA.memory, 100, "test_snapshot_100");
+
+  // 3. Advance state A further 50 ticks (to 150)
+  for (let i = 500; i < 1000; i++) {
+    viewA[i] = i * 42;
+  }
+  const hashA = await hashMemArray(
+    new Uint8Array(stateA.memory.buffer, 0, LATTICE_MEMORY_END),
+  );
+
+  // 4. Initialize a fresh WASM State B
+  const stateB = await instantiateOmega();
+  const viewB = new Uint32Array(stateB.memory.buffer);
+
+  // Verify it is empty
+  assertEquals(viewB[100], 0);
+
+  const metaBytes = await loadEpoch(stateB.memory, "test_snapshot_100");
+  assertEquals(metaBytes.tick, 100);
+
+  // Verify restored state
+  assertEquals(viewB[100], 100 * 42);
+
+  // 5. Advance state B identical to A
+  for (let i = 500; i < 1000; i++) {
+    viewB[i] = i * 42;
+  }
+  const hashB = await hashMemArray(
+    new Uint8Array(stateB.memory.buffer, 0, LATTICE_MEMORY_END),
+  );
+
+  assertEquals(
+    hashA,
+    hashB,
+    `Chronosphere temporal drift detected at tick 150!`,
+  );
+
+  // Cleanup
+  await Deno.remove(".omega/epochs/test_snapshot_100.sigma");
+  await Deno.remove(".omega/epochs/test_snapshot_100.meta.json");
+});
+
+```
+
+---
+
+## FILE: 06_akasha/AGENT_PROXY.ts
+
+```typescript
+import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
+import { PULSE } from "../02_metabolism/mod.ts";
+import { SPATIAL_HASH } from "../01_physics/mod.ts";
+import { assembleScript } from "../02_metabolism/mod.ts";
+import { LOGGER } from "../00_substrate/mod.ts";
+
+export class AgentProxy {
+  port: number;
+  server: Deno.HttpServer | null = null;
+
+  constructor(port: number = 8080) {
+    this.port = port;
+  }
+
+  start() {
+    LOGGER.info(
+      `[AGENT_PROXY] Starting LLM Sandbox Proxy on port ${this.port}...`,
+    );
+    this.server = Deno.serve(
+      { port: this.port },
+      this.handleRequest.bind(this),
+    );
+  }
+
+  stop() {
+    if (this.server) {
+      this.server.shutdown();
+      LOGGER.info("[AGENT_PROXY] Server stopped.");
+    }
+  }
+
+  async handleRequest(req: Request): Promise<Response> {
+    const url = new URL(req.url);
+    const method = req.method;
+
+    if (method === "GET" && url.pathname === "/api/matrix/info") {
+      return this.handleMatrixInfo(req);
+    }
+
+    const atomMatch = url.pathname.match(/^\/api\/atom\/(\d+)(?:\/(.*))?$/);
+    if (atomMatch) {
+      const atomId = parseInt(atomMatch[1], 10);
+      const action = atomMatch[2];
+
+      if (!action && method === "GET") {
+        return this.handleAtomSense(atomId);
+      }
+
+      if (action === "act" && method === "POST") {
+        return await this.handleAtomAct(req, atomId);
+      }
+    }
+
+    return new Response(JSON.stringify({ error: "Not Found" }), {
+      status: 404,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  handleMatrixInfo(req: Request): Response {
+    let pop = 0;
+    let totalEnergy = 0;
+    const tick = Atomics.load((STATE_MATRIX as any).tickCounter, 0);
+    // Simple population scan
+    for (let i = 1; i <= 10000; i++) { // Bounding scan for performance
+      const id = Number(STATE_MATRIX.getId(i));
+      const energy = STATE_MATRIX.getEnergy(i);
+      if (id > 0 && energy > 0) {
+        pop++;
+        totalEnergy += energy;
+      }
+    }
+
+    return new Response(
+      JSON.stringify({
+        tick,
+        population: pop,
+        totalEnergy,
+      }),
+      { headers: { "Content-Type": "application/json" } },
+    );
+  }
+
+  handleAtomSense(atomId: number): Response {
+    const id = Number(STATE_MATRIX.getId(atomId));
+    if (id <= 0) {
+      return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
+        status: 404,
+      });
+    }
+
+    const x = STATE_MATRIX.getX(atomId);
+    const y = STATE_MATRIX.getY(atomId);
+    const energy = STATE_MATRIX.getEnergy(atomId);
+    const role = STATE_MATRIX.getRole(atomId);
+
+    // Radar scan (radius 50 units = 5 cells)
+    const neighbors = SPATIAL_HASH.queryRadius(x, y, 50);
+    const vision = neighbors
+      .filter((nIdx) => nIdx !== atomId)
+      .map((nIdx) => ({
+        id: Number(STATE_MATRIX.getId(nIdx)),
+        idx: nIdx,
+        dx: STATE_MATRIX.getX(nIdx) - x,
+        dy: STATE_MATRIX.getY(nIdx) - y,
+        role: STATE_MATRIX.getRole(nIdx),
+        distance: Math.sqrt(
+          Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
+            Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
+        ),
+      })).sort((a, b) => a.distance - b.distance)
+      .slice(0, 30);
+
+    return new Response(
+      JSON.stringify({
+        self: { id, idx: atomId, x, y, energy, role },
+        vision,
+      }),
+      { headers: { "Content-Type": "application/json" } },
+    );
+  }
+
+  async handleAtomAct(req: Request, atomId: number): Promise<Response> {
+    const id = Number(STATE_MATRIX.getId(atomId));
+    if (id <= 0) {
+      return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
+        status: 404,
+      });
+    }
+
+    try {
+      const body = await req.json();
+      const action = body.action;
+
+      let ops: number[] = [];
+
+      switch (action) {
+        case "ATTRACT": {
+          const targetIdx = typeof body.targetIdx === "number"
+            ? body.targetIdx
+            : 0;
+          const intensity = typeof body.intensity === "number"
+            ? body.intensity
+            : 1;
+
+          ops = [
+            RISC.OP_SET,
+            1,
+            targetIdx,
+            RISC.OP_SET,
+            2,
+            intensity,
+            RISC.OP_SET,
+            0,
+            SYS.ATTRACT,
+            RISC.OP_SYSCALL,
+          ];
+          break;
+        }
+        case "TRANSFER": {
+          const targetIdx = typeof body.targetIdx === "number"
+            ? body.targetIdx
+            : 0;
+          const resourceType = typeof body.resourceType === "number"
+            ? body.resourceType
+            : 0;
+          const amount = typeof body.amount === "number" ? body.amount : 0;
+
+          ops = [
+            RISC.OP_SET,
+            1,
+            targetIdx,
+            RISC.OP_SET,
+            2,
+            resourceType,
+            RISC.OP_SET,
+            3,
+            amount & 0xFF, // Negative fits in 8 bits nicely if < 127 steals
+            RISC.OP_SET,
+            0,
+            SYS.TRANSFER,
+            RISC.OP_SYSCALL,
+          ];
+          break;
+        }
+        case "YIELD":
+        default:
+          ops = [0]; // HALT/NOP
+          break;
+      }
+
+      const compiledScript = assembleScript(ops);
+      STATE_MATRIX.setInstructions(atomId, compiledScript);
+
+      return new Response(
+        JSON.stringify({ success: true, compiled_bytes: ops.length }),
+      );
+    } catch (e) {
+      LOGGER.error(e);
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON or Internal Error" }),
+        { status: 400 },
+      );
+    }
+  }
+}
+
+if (import.meta.main) {
+  const proxy = new AgentProxy();
+  proxy.start();
+}
 
 ```
 
@@ -25202,7 +27568,7 @@ export const AKASHA_CODEX = {
 
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 import { AKASHA_SIGNALING } from "./AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
@@ -26251,6 +28617,106 @@ export const AKASHA_SIGNALING = {
 
 ---
 
+## FILE: 06_akasha/BREATH.ts
+
+```typescript
+// OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
+// Periodically samples the Matrix and injects new conceptual spores.
+
+import { STATE_MATRIX } from "../00_substrate/mod.ts";
+import { SEMANTIC_MEMBRANE } from "../05_exocortex/mod.ts";
+import { LLM_SYNAPSE } from "../05_exocortex/mod.ts";
+import { AUDIT_ENGINE } from "../03_governance/mod.ts";
+import { LOGGER } from "../00_substrate/mod.ts";
+import { AKASHA_CODEX } from "../06_akasha/mod.ts";
+const PULSE_LOG = "AKASHA.log";
+const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
+
+export const BREATH = {
+  inhale: async () => {
+    AUDIT_ENGINE.setDelegate({
+      generateThought: (c: string) => LLM_SYNAPSE.generateThought(c),
+    });
+
+    LOGGER.info("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
+
+    while (true) {
+      LOGGER.info("\n--- [BREATH] Deep Sample ---");
+
+      // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
+      const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+      const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
+      LOGGER.info(
+        `   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`,
+      );
+      if (oracle.length > 0) {
+        LOGGER.info(
+          `   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`,
+        );
+      }
+
+      // 2. Audit Archived Intent (Historical Context)
+      const historicalBriefing = await AUDIT_ENGINE
+        .generateHistoricalBriefing();
+      LOGGER.info(
+        `   [BREATH] Historical Briefing: "${
+          historicalBriefing.substring(0, 50)
+        }..."`,
+      );
+      const codexChronicle = await AKASHA_CODEX.getChronicleContext(3);
+      LOGGER.info(
+        `   [BREATH] Codex Chronicle: "${codexChronicle.substring(0, 60)}..."`,
+      );
+
+      // 3. Consult the Oracle (LLM Synapse)
+      const combinedContext = `${historicalBriefing} | MOOD: ${
+        vox.join(" ")
+      } | ORACLE: ${oracle.join(" ")} | CODEX: ${codexChronicle}`;
+      const thought = await LLM_SYNAPSE.generateThought(combinedContext);
+
+      // 4. Inject back into the Matrix (Motor Output)
+      const weight = 80 + Math.random() * 40;
+      await SEMANTIC_MEMBRANE.injectThought(thought, weight);
+
+      // Phase 23: Entropy Flux (Negative Entropy Injection)
+      const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
+      LOGGER.info(
+        `   [BREATH] Negentropy Flux: +${
+          (weight * 2).toFixed(1)
+        } energy units across ${energyInjected} atoms`,
+      );
+
+      // 5. Digital Archaeology (Every 5 cycles)
+      if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
+        LOGGER.info("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
+        const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
+        if (ruins.length > 0) {
+          const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
+          LOGGER.info(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
+        } else {
+          LOGGER.info("   [ARCHAEOLOGY] No ruins found in this sector.");
+        }
+      }
+
+      LOGGER.info(
+        `   [BREATH] Exhale complete. Next cycle in ${
+          BREATH_INTERVAL_MS / 1000
+        }s.`,
+      );
+
+      await new Promise((r) => setTimeout(r, BREATH_INTERVAL_MS));
+    }
+  },
+};
+
+if (import.meta.main) {
+  BREATH.inhale();
+}
+
+```
+
+---
+
 ## FILE: 06_akasha/CONTINUUM.ts
 
 ```typescript
@@ -26514,10 +28980,12 @@ export const LINEAGE_TRACKER = {
 ## FILE: 06_akasha/mod.ts
 
 ```typescript
+export * from "./AGENT_PROXY.ts";
 export * from "./TELEMETRY_STREAM.ts";
 export * from "./AKASHA_CODEX.ts";
 export * from "./SNAP_ENGINE.ts";
 export * from "./SNAPSHOT_ENGINE.ts";
+export * from "./BREATH.ts";
 export * from "./PHYSIOLOGY_SNAPSHOT.ts";
 export * from "./AKASHA_SERVER.ts";
 export * from "./CONTINUUM.ts";
@@ -26526,8 +28994,8 @@ export * from "./LINEAGE_TRACKER.ts";
 export * from "./PANOPTICON_SERVER.ts";
 export * from "./SERVE_DASHBOARD.ts";
 export * from "./OMEGA_DAEMON.ts";
-export * from "./MUTATION_TELEMETRY.ts";
 export * from "./AKASHA_SIGNALING.ts";
+export * from "./MUTATION_TELEMETRY.ts";
 
 ```
 
@@ -26537,7 +29005,7 @@ export * from "./AKASHA_SIGNALING.ts";
 
 ```typescript
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -29701,7 +32169,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
 import { PULSE } from "../02_metabolism/mod.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "../02_metabolism/mod.ts";
-import { AgentProxy } from "../AGENT_PROXY.ts";
+import { AgentProxy } from "./AGENT_PROXY.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
 
 const STARTING_PREY = 500;
@@ -29830,6 +32298,4113 @@ async function run() {
 
 if (import.meta.main) {
   run();
+}
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/build_wasm.ts
+
+```typescript
+import * as OFFSETS from "../../00_substrate/mod.ts";
+import { assertWasmLayout } from "../../00_substrate/03_tests/wasm_layout_guard.ts";
+
+if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+  console.error(
+    `[wasm:build] Refusing build: pages=${OFFSETS.WASM_MEMORY_PAGES} < required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+  );
+  Deno.exit(1);
+}
+
+await Deno.mkdir("08_artifacts", { recursive: true });
+await assertWasmLayout();
+
+const args = [
+  "run",
+  "-A",
+  "npm:assemblyscript@0.28.9/asc",
+  "assembly/index.ts",
+  "-O",
+  "-o",
+  "08_artifacts/release.wasm",
+  "--noAssert",
+  "--importMemory",
+  "--sharedMemory",
+  "--initialMemory",
+  String(OFFSETS.MIN_WASM_MEMORY_PAGES),
+  "--maximumMemory",
+  String(OFFSETS.WASM_MEMORY_PAGES),
+  "--enable",
+  "threads",
+  "--runtime",
+  "stub",
+];
+
+const build = new Deno.Command("deno", {
+  args,
+  stdout: "inherit",
+  stderr: "inherit",
+});
+
+const { code } = await build.output();
+if (code !== 0) Deno.exit(code);
+
+const stat = await Deno.stat("08_artifacts/release.wasm");
+console.log(
+  `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+);
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/export_rust.ts
+
+```typescript
+// OMEGA-64 | export_rust.ts
+// Builds RUST_CORE_LOGIC.md by consolidating the sigma_core and omega_wasm Rust sources.
+
+import { extname, join } from "node:path";
+
+const TARGET_DIRS = ["sigma_core", "omega_wasm"];
+const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
+
+const EXCLUDE_PATTERNS = [
+  /\/target\//,
+  /\/.git\//,
+  /\/tests\/.*\.rs$/,
+];
+
+async function collectFiles(dir: string): Promise<string[]> {
+  const discovered: string[] = [];
+  const queue = [dir];
+  while (queue.length > 0) {
+    const currentPath = queue.shift()!;
+    try {
+      for await (const entry of Deno.readDir(currentPath)) {
+        if (entry.name.startsWith(".")) {
+          // Include .cargo but not .git
+          if (entry.name !== ".cargo") continue;
+        }
+
+        const entryPath = join(currentPath, entry.name);
+
+        if (EXCLUDE_PATTERNS.some((p) => p.test(entryPath))) continue;
+
+        if (entry.isDirectory) {
+          queue.push(entryPath);
+        } else if (
+          entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))
+        ) {
+          if (
+            entry.name === "Cargo.lock" && currentPath !== "sigma_core" &&
+            currentPath !== "omega_wasm"
+          ) {
+            continue; // Only grab root locks
+          }
+          discovered.push(entryPath);
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+  return discovered;
+}
+
+async function exportRustCore() {
+  let allFiles: string[] = [];
+  for (const dir of TARGET_DIRS) {
+    allFiles = allFiles.concat(await collectFiles(dir));
+  }
+
+  allFiles.sort();
+
+  let output = `# OMEGA-64 | RUST CORE LOGIC\n\n`;
+  output += `*Generated: ${new Date().toISOString()}*\n`;
+  output += `*Exported Files: ${allFiles.length}*\n\n---\n\n`;
+
+  output += `## FILE INDEX\n\n`;
+  for (const file of allFiles) {
+    output += `- ${file}\n`;
+  }
+  output += `\n---\n\n`;
+
+  for (const file of allFiles) {
+    try {
+      const content = await Deno.readTextFile(file);
+      let lang = "rust";
+      if (file.endsWith(".toml")) lang = "toml";
+      if (file.endsWith(".json")) lang = "json";
+
+      output += `## FILE: ${file}\n\n`;
+      output += `\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
+    } catch (e) {
+      console.warn(`Could not read ${file}`);
+    }
+  }
+
+  await Deno.writeTextFile("RUST_CORE_LOGIC.md", output);
+  console.log(
+    `✅ RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
+  );
+}
+
+if (import.meta.main) {
+  await exportRustCore();
+}
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/RUN_STAGE8_TICKS.ts
+
+```typescript
+import { PULSE } from "./02_metabolism/mod.ts";
+import { STATE_MATRIX } from "./00_substrate/mod.ts";
+import { SOVEREIGN_ORACLE } from "./05_exocortex/mod.ts";
+import { LOGGER } from "./00_substrate/mod.ts";
+import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
+import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
+
+async function run() {
+  console.log("Initializing Pulse for Stage 8 verification...");
+
+  // 1. Seed the world in the SAME process memory
+  const seedResult = COLDSTART_BOOTSTRAP.seed({
+    ...RUNTIME_POLICY.coldstart,
+    enabled: true,
+  });
+  console.log("Seed Result:", seedResult);
+
+  await PULSE.initWorkers();
+
+  console.log("Running 50 ticks to gather metrics...");
+  for (let i = 0; i < 50; i++) {
+    // Fluctuate coherence to trigger different branches
+    SOVEREIGN_ORACLE.neuralCoherence = (i % 2 === 0) ? 100 : 0;
+    await PULSE.tick();
+    if (i % 10 === 0) {
+      const state = PULSE.getGuardianSignalHybridState();
+      console.log(
+        `Tick ${i}: shadowRuns=${state.shadowRuns}, stable=${state.stableBranchCount}, repair=${state.repairBranchCount}, fallback=${state.fallbackRuns} (last: ${state.lastFallbackReason})`,
+      );
+    }
+  }
+
+  const finalState = PULSE.getGuardianSignalHybridState();
+  console.log("\n--- Final Guardian Signal Hybrid State ---");
+  console.log(JSON.stringify(finalState, null, 2));
+
+  const promotion = evaluateGuardianSignalPromotion(finalState);
+  console.log("\n--- Promotion Readiness ---");
+  console.log(JSON.stringify(promotion, null, 2));
+
+  Deno.exit(0);
+}
+
+run().catch((err) => {
+  console.error("Verification failed:", err);
+  Deno.exit(1);
+});
+
+```
+
+---
+
+## FILE: 07_meta/02_runners/SYSTEM_START.ts
+
+```typescript
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "./03_governance/mod.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "./03_governance/mod.ts";
+// OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
+// Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
+
+import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "./02_metabolism/mod.ts";
+import { BREATH } from "../../06_akasha/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "./00_substrate/mod.ts";
+import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
+import { P2P_FEDERATION } from "./04_noosphere/mod.ts";
+import { PHYSICS_ENGINE } from "./01_physics/mod.ts";
+import { SNAPSHOT_ENGINE } from "./06_akasha/mod.ts";
+import { SOVEREIGNTY_ENGINE } from "./03_governance/mod.ts";
+import {
+  SOVEREIGN_ORACLE,
+} from "./05_exocortex/mod.ts";
+import {
+  SwarmNexus,
+  SWARM_NODE,
+  P2P_CODEC,
+} from "./04_noosphere/mod.ts";
+import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "./03_governance/mod.ts";
+import * as OFFSETS from "./00_substrate/mod.ts";
+import { LOGGER } from "./00_substrate/mod.ts";
+import { RUNTIME_POLICY } from "../../03_governance/mod.ts";
+import { mutateUniversalConstants } from "./03_governance/mod.ts";
+import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "./06_akasha/mod.ts";
+import { MUTATION_TELEMETRY } from "./06_akasha/mod.ts";
+import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
+import { TELEMETRY_STREAM } from "./06_akasha/mod.ts";
+import { LINEAGE_TRACKER } from "./06_akasha/mod.ts";
+import { capturePhysiologySnapshot } from "./06_akasha/mod.ts";
+import { GLYPH_BUFFER, type GlyphSnapshot } from "./01_physics/mod.ts";
+import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
+import { evaluateArchitectPlasmidPromotion } from "./03_governance/mod.ts";
+import { evaluateReplicationPromotion } from "./03_governance/mod.ts";
+import type {
+  ReplicationHybridSnapshot,
+  ReplicationPromotionSnapshot,
+  GuardianSignalHybridSnapshot,
+  GuardianSignalPromotionSnapshot,
+  ArchitectPlasmidHybridSnapshot,
+  ArchitectPlasmidPromotionSnapshot,
+} from "./03_governance/mod.ts";
+import { PANOPTICON_SERVER } from "./06_akasha/mod.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "./03_governance/mod.ts";
+
+
+
+setPulseGovernanceDelegate({ 
+  GATE, SOVEREIGNTY_ENGINE, CONTROL_INTENT_QUEUE, PREDICTION_MARKET, 
+  RUNTIME_POLICY, DAEMON_INGRESS_POLICY_LIMITS, applyLedgerUpdate, 
+  createLedgerRuntime, createGeneticLedgerRuntime, rollbackLedgerUpdate, 
+  snapshotLedgerRuntime, appendLedgerRecordAndMaybeCompact, getLogPath, 
+  getSnapshotPath, hydrateLedgerRuntime, recordFromApply, recordFromRollback 
+});
+setHormoneGovernanceDelegate({ RUNTIME_POLICY, createLedgerRuntime });
+setHormoneRuntimeGovernanceDelegate({ RUNTIME_POLICY });
+
+const UI_PORT = RUNTIME_POLICY.system.port;
+const HOST = RUNTIME_POLICY.system.host;
+const UI_PATH = "./ui/index.html";
+const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
+const GRID_W = 140;
+const GRID_H = 80;
+const WORLD_W = GRID_W * 10;
+const WORLD_H = GRID_H * 10;
+const JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
+
+type DaemonAdmissionSnapshot = {
+  tick: number;
+  status: "accepted" | "rejected";
+  requestedAction: string;
+  appliedAction: string;
+  degraded: boolean;
+  severity: "LOW" | "MID" | "HIGH" | "BLOCKED";
+  score: number;
+  reason: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel?: string;
+  codexLineageGuardScore?: number;
+  codexLineageGuardReasons?: string[];
+  glyphStatus?: string;
+  glyphRegime?: string;
+  glyphDominantRole?: string;
+  glyphSourceMode?: string;
+};
+
+type RuntimeMetrics = {
+  tick: number;
+  population: number;
+  avgEnergy: number;
+  neuralCoherence: number;
+  spatialOverflowRatio: number;
+  spatialOverflowCount: number;
+  spatialMaxCellCount: number;
+  guardianSignalHybrid: GuardianSignalHybridSnapshot;
+  architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
+  guardianSignalPromotion: GuardianSignalPromotionSnapshot;
+  architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
+  replicationHybrid: ReplicationHybridState;
+  replicationPromotion: ReplicationPromotionSnapshot;
+  glyphTransport: GlyphSnapshot;
+};
+
+type DaemonAuditPending = {
+  auditId: string;
+  action: Exclude<DaemonAction, "OBSERVE">;
+  requestedAction: DaemonAction;
+  targetX: number;
+  targetY: number;
+  intensity: number;
+  hexCode?: string;
+  queued: boolean;
+  queueReason: string;
+  queuedStatus: number;
+  tickApplied: number;
+  evaluateAtTick: number;
+  baseline: RuntimeMetrics;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel?: string;
+};
+
+type PressureRingIngressEnvelope = {
+  mode?: "set" | "step";
+  theta?: number;
+  delta_theta?: number;
+  scale?: number;
+  enabled?: boolean;
+  rollback_token?: string;
+  reason?: string;
+};
+
+type PressureRingUpdateSnapshot = {
+  tick: number;
+  mode: "set" | "step" | "scale_only" | "mixed" | "rollback";
+  source: string;
+  delta_theta: number;
+  theta: number;
+  scale: number;
+  enabled: boolean;
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  scale_rollback_token: string | null;
+  scale_before: number;
+  scale_after: number;
+};
+
+type HomeostasisIngressEnvelope = {
+  base_tax?: number;
+  target_energy?: number;
+  rollback_token?: string;
+  reason?: string;
+};
+
+type HomeostasisUpdateSnapshot = {
+  tick: number;
+  source: string;
+  reason: string;
+  mode: "apply" | "target_only" | "mixed" | "rollback";
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  base_tax_ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  target_energy_ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  base_tax_rollback_token: string | null;
+  target_energy_rollback_token: string | null;
+  base_tax_before: number;
+  base_tax_after: number;
+  target_energy_before: number;
+  target_energy_after: number;
+};
+
+type DaemonPolicyIngressEnvelope = {
+  max_pheromone_intensity?: number;
+  max_plasmid_charge?: number;
+  rollback_token?: string;
+  reason?: string;
+};
+
+type DaemonPolicyUpdateSnapshot = {
+  tick: number;
+  source: string;
+  reason: string;
+  mode: "apply" | "rollback";
+  policy_key:
+    | "daemon.maxPheromoneIntensity"
+    | "daemon.maxPlasmidCharge"
+    | null;
+  ledger_status:
+    | "applied"
+    | "noop"
+    | "rolled_back"
+    | "missing"
+    | "consumed"
+    | "stale"
+    | null;
+  pheromone_rollback_token: string | null;
+  plasmid_rollback_token: string | null;
+  max_pheromone_intensity_before: number;
+  max_pheromone_intensity_after: number;
+  max_plasmid_charge_before: number;
+  max_plasmid_charge_after: number;
+};
+
+const requireControlAuth = (req: Request): Response | null => {
+  const path = new URL(req.url).pathname;
+  const isAvatarIngress = path === "/avatar";
+  if (!CONTROL_ENABLE) {
+    if (isAvatarIngress && AVATAR_INGRESS_ENABLE) {
+      return null;
+    }
+    return new Response("Control plane disabled", { status: 403 });
+  }
+  if (CONTROL_TOKEN.length === 0) {
+    return null;
+  }
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
+
+const requireDaemonAuth = (req: Request): Response | null => {
+  if (!CONTROL_ENABLE || CONTROL_TOKEN.length === 0) return null;
+  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
+  if (provided !== CONTROL_TOKEN) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return null;
+};
+
+const asFiniteNumber = (value: unknown, fallback: number): number => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return fallback;
+};
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const DAEMON_POLICY = RUNTIME_POLICY.daemon;
+const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
+const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
+const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
+const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
+const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
+  .safeMinPopulation;
+const DAEMON_SAFE_MIN_AVG_ENERGY =
+  DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
+const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
+const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
+const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftMidScore;
+const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = DAEMON_INGRESS_POLICY_LIMITS
+  .invariantDriftHighScore;
+const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = DAEMON_INGRESS_POLICY_LIMITS
+  .codexLineageLongevityEpochs;
+const DAEMON_CODEX_LINEAGE_PEAK_SHARE = DAEMON_INGRESS_POLICY_LIMITS
+  .codexLineagePeakShare;
+const CODEX_LINEAGE_GUARD_PLASMID = "CODEX_LINEAGE_GUARD_PLASMID";
+const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
+const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
+const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
+const DAEMON_POLICY_HISTORY_LIMIT = 24;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
+const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
+const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
+const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
+const DAEMON_MAX_PHEROMONE_INTENSITY_MIN = 1;
+const DAEMON_MAX_PHEROMONE_INTENSITY_MAX = 4096;
+const DAEMON_MAX_PLASMID_CHARGE_MIN = 1;
+const DAEMON_MAX_PLASMID_CHARGE_MAX = 4096;
+const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
+  1,
+  Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
+);
+const DAEMON_DYNAMIC_OVERFLOW_SOFT = 0.18;
+const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
+const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
+const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
+const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
+
+const currentDaemonMaxPheromoneIntensity = (): number =>
+  DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
+const currentDaemonMaxPlasmidCharge = (): number =>
+  DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge;
+
+let daemonWindowStartMs = Date.now();
+let daemonActionsInWindow = 0;
+let daemonAuditSeq = 0;
+const daemonAuditPending: DaemonAuditPending[] = [];
+let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
+let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
+let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
+let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
+let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
+let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
+let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
+let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
+let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
+  "daemon.maxPheromoneIntensity",
+  DAEMON_POLICY.maxPheromoneIntensity,
+  128,
+);
+let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPheromoneIntensity"),
+  snapshotPath: getSnapshotPath("daemon.maxPheromoneIntensity"),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
+let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
+  "daemon.maxPlasmidCharge",
+  DAEMON_POLICY.maxPlasmidCharge,
+  128,
+);
+let daemonPlasmidLedgerPersistence: LedgerPersistenceSummary = {
+  path: getLogPath("daemon.maxPlasmidCharge"),
+  snapshotPath: getSnapshotPath("daemon.maxPlasmidCharge"),
+  exists: false,
+  snapshotExists: false,
+  recordCount: 0,
+  applyCount: 0,
+  rollbackCount: 0,
+  tailRecordCount: 0,
+  tailApplyCount: 0,
+  tailRollbackCount: 0,
+  snapshotRecordCount: 0,
+  snapshotApplyCount: 0,
+  snapshotRollbackCount: 0,
+  compactionEnabled: true,
+  compactionThreshold: 64,
+  compactionKeepTail: 16,
+  lastCompactedAt: null,
+  lastCompactedTick: -1,
+  hydrated: false,
+  lastHydratedAt: null,
+  lastHydrationError: null,
+};
+let autoSnapshotLastTick = -1;
+let autoSnapshotInFlight = false;
+let telemetryStreamLastTick = -1;
+let autoSnapshotLastResult: {
+  tick: number;
+  timestamp: string;
+  success: boolean;
+  reason: string;
+  pruned: number;
+  retention: number;
+  error?: string;
+} | null = null;
+
+const setLatestDaemonAdmission = (
+  snapshot: DaemonAdmissionSnapshot,
+): void => {
+  latestDaemonAdmission = snapshot;
+  daemonAdmissionHistory = [snapshot, ...daemonAdmissionHistory].slice(
+    0,
+    DAEMON_ADMISSION_HISTORY_LIMIT,
+  );
+};
+
+const setLatestPressureRingUpdate = (
+  snapshot: PressureRingUpdateSnapshot,
+): void => {
+  latestPressureRingUpdate = snapshot;
+  pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
+    0,
+    DAEMON_PRESSURE_RING_HISTORY_LIMIT,
+  );
+};
+
+const setLatestHomeostasisUpdate = (
+  snapshot: HomeostasisUpdateSnapshot,
+): void => {
+  latestHomeostasisUpdate = snapshot;
+  homeostasisHistory = [snapshot, ...homeostasisHistory].slice(
+    0,
+    DAEMON_HOMEOSTASIS_HISTORY_LIMIT,
+  );
+};
+
+const setLatestDaemonPolicyUpdate = (
+  snapshot: DaemonPolicyUpdateSnapshot,
+): void => {
+  latestDaemonPolicyUpdate = snapshot;
+  daemonPolicyHistory = [snapshot, ...daemonPolicyHistory].slice(
+    0,
+    DAEMON_POLICY_HISTORY_LIMIT,
+  );
+};
+
+const logicToHex = (logic: Uint8Array): string =>
+  Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
+    .toUpperCase();
+
+const dominantGenomes = (active: number[], limit = 3): string[] => {
+  const counts = new Map<string, number>();
+  for (const idx of active) {
+    const hex = logicToHex(STATE_MATRIX.getLogic(idx));
+    counts.set(hex, (counts.get(hex) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([hex]) => hex);
+};
+
+const collectRuntimeMetrics = (): RuntimeMetrics => {
+  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+  const active = STATE_MATRIX.getActiveIndices();
+  const spatialHash = PULSE.getSpatialHashState();
+  const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
+  const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
+  const replicationHybrid = PULSE.getReplicationHybridState();
+  let totalEnergy = 0;
+  for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
+  const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
+  const rawCoherence = (STATE_MATRIX.getClusterSync?.() ??
+    0) as number;
+  return {
+    tick,
+    population: active.length,
+    avgEnergy: Number(avgEnergy.toFixed(3)),
+    neuralCoherence: Number(rawCoherence.toFixed(3)),
+    spatialOverflowRatio: spatialHash.overflowRatio,
+    spatialOverflowCount: spatialHash.overflowCount,
+    spatialMaxCellCount: spatialHash.maxCellCount,
+    guardianSignalHybrid: guardianSignalHybrid as any,
+    architectPlasmidHybrid: architectPlasmidHybrid as any,
+    guardianSignalPromotion: evaluateGuardianSignalPromotion(
+      guardianSignalHybrid as any,
+    ),
+    architectPlasmidPromotion: evaluateArchitectPlasmidPromotion(
+      architectPlasmidHybrid as any,
+    ),
+    replicationHybrid,
+    replicationPromotion: evaluateReplicationPromotion(
+      replicationHybrid as ReplicationHybridSnapshot,
+    ),
+    glyphTransport: GLYPH_BUFFER.snapshot(),
+  };
+};
+
+const isDaemonSafeMode = (
+  metrics: RuntimeMetrics,
+): { blocked: boolean; reason: string } => {
+  if (metrics.population < DAEMON_SAFE_MIN_POPULATION) {
+    return {
+      blocked: true,
+      reason:
+        `SAFE_MODE_POPULATION_${metrics.population}_LT_${DAEMON_SAFE_MIN_POPULATION}`,
+    };
+  }
+  if (metrics.avgEnergy < DAEMON_SAFE_MIN_AVG_ENERGY) {
+    return {
+      blocked: true,
+      reason:
+        `SAFE_MODE_AVG_ENERGY_${metrics.avgEnergy}_LT_${DAEMON_SAFE_MIN_AVG_ENERGY}`,
+    };
+  }
+  return { blocked: false, reason: "SAFE_MODE_OFF" };
+};
+
+const resolveDaemonBudgetMax = (metrics: RuntimeMetrics): number => {
+  let maxActions = DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW;
+  if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_HARD) {
+    maxActions = Math.floor(maxActions * 0.35);
+  } else if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_SOFT) {
+    maxActions = Math.floor(maxActions * 0.6);
+  }
+  if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_HARD) {
+    maxActions = Math.floor(maxActions * 0.5);
+  } else if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_SOFT) {
+    maxActions = Math.floor(maxActions * 0.75);
+  }
+  return clamp(
+    Math.floor(maxActions),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+};
+
+const consumeDaemonBudget = (maxActionsPerWindow: number): {
+  ok: boolean;
+  remaining: number;
+  resetInMs: number;
+} => {
+  const now = Date.now();
+  if (now - daemonWindowStartMs >= DAEMON_POLICY_WINDOW_MS) {
+    daemonWindowStartMs = now;
+    daemonActionsInWindow = 0;
+  }
+  const maxActions = clamp(
+    Math.floor(maxActionsPerWindow),
+    DAEMON_DYNAMIC_BUDGET_MIN,
+    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+  );
+  if (daemonActionsInWindow >= maxActions) {
+    const elapsed = now - daemonWindowStartMs;
+    return {
+      ok: false,
+      remaining: 0,
+      resetInMs: Math.max(0, DAEMON_POLICY_WINDOW_MS - elapsed),
+    };
+  }
+  daemonActionsInWindow++;
+  return {
+    ok: true,
+    remaining: Math.max(
+      0,
+      maxActions - daemonActionsInWindow,
+    ),
+    resetInMs: Math.max(
+      0,
+      DAEMON_POLICY_WINDOW_MS - (now - daemonWindowStartMs),
+    ),
+  };
+};
+
+const appendDaemonAudit = async (
+  event: Record<string, unknown>,
+): Promise<void> => {
+  try {
+    await Deno.writeTextFile(
+      DAEMON_AUDIT_PATH,
+      `${JSON.stringify(event)}
+`,
+      { append: true, create: true },
+    );
+  } catch (err) {
+    LOGGER.warn(`[DAEMON_AUDIT] append failed: ${String(err)}`);
+  }
+};
+
+const queueDaemonAudit = (entry: DaemonAuditPending): void => {
+  daemonAuditPending.push(entry);
+};
+
+const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
+  if (daemonAuditPending.length === 0) return;
+  const remaining: DaemonAuditPending[] = [];
+  for (const pending of daemonAuditPending) {
+    if (currentTick < pending.evaluateAtTick) {
+      remaining.push(pending);
+      continue;
+    }
+    const metrics = collectRuntimeMetrics();
+    await appendDaemonAudit({
+      event_type: "DAEMON_EFFECT_EVAL",
+      audit_id: pending.auditId,
+      evaluated_at_tick: currentTick,
+      action: pending.action,
+      requested_action: pending.requestedAction,
+      target_x: pending.targetX,
+      target_y: pending.targetY,
+      shared_center: pending.sharedCenter,
+      dominant_invariant_vector: pending.dominantInvariantVector,
+      codex_lineage_label: pending.codexLineageLabel ?? "none",
+      baseline: pending.baseline,
+      outcome: metrics,
+      delta: {
+        population: metrics.population - pending.baseline.population,
+        avgEnergy: Number(
+          (metrics.avgEnergy - pending.baseline.avgEnergy).toFixed(3),
+        ),
+        neuralCoherence: Number(
+          (metrics.neuralCoherence - pending.baseline.neuralCoherence).toFixed(
+            3,
+          ),
+        ),
+      },
+    });
+    const currentDominantGenome =
+      dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0] ?? "";
+    AKASHA_CODEX.recordDaemonEffect(
+      currentTick,
+      pending.auditId,
+      pending.requestedAction,
+      pending.action,
+      pending.sharedCenter,
+      pending.dominantInvariantVector,
+      pending.baseline.population,
+      metrics.population,
+      pending.baseline.avgEnergy,
+      metrics.avgEnergy,
+      pending.baseline.neuralCoherence,
+      metrics.neuralCoherence,
+      currentDominantGenome,
+    );
+  }
+  daemonAuditPending.length = 0;
+  daemonAuditPending.push(...remaining);
+};
+
+const maybeAutoSnapshot = async (tick: number): Promise<void> => {
+  if (!SNAPSHOT_POLICY.enabled) return;
+  if (!Number.isFinite(tick) || tick < 0) return;
+  if (autoSnapshotInFlight) return;
+  if (
+    autoSnapshotLastTick >= 0 &&
+    tick - autoSnapshotLastTick < SNAPSHOT_POLICY.intervalTicks
+  ) {
+    return;
+  }
+
+  autoSnapshotInFlight = true;
+  const reason = "auto_tick_interval";
+  try {
+    const result = await SNAPSHOT_ENGINE.exportSnapshot({
+      tick,
+      reason,
+      prune: true,
+      retention: SNAPSHOT_POLICY.retention ?? 10,
+    });
+    if (result.success) {
+      autoSnapshotLastTick = tick;
+      autoSnapshotLastResult = {
+        tick,
+        timestamp: result.timestamp ?? new Date().toISOString(),
+        success: true,
+        reason,
+        pruned: result.pruned ?? 0,
+        retention: result.retention ?? SNAPSHOT_POLICY.retention,
+      };
+      return;
+    }
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: result.error ?? "SNAPSHOT_EXPORT_FAILED",
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot failed tick=${tick} reason=${autoSnapshotLastResult.error}`,
+    );
+  } catch (err) {
+    autoSnapshotLastResult = {
+      tick,
+      timestamp: "",
+      success: false,
+      reason,
+      pruned: 0,
+      retention: SNAPSHOT_POLICY.retention,
+      error: String(err),
+    };
+    LOGGER.warn(
+      `[SNAPSHOT] Auto snapshot exception tick=${tick} err=${String(err)}`,
+    );
+  } finally {
+    autoSnapshotInFlight = false;
+  }
+};
+
+const buildTelemetry = async () => {
+  const metrics = collectRuntimeMetrics();
+  const active = STATE_MATRIX.getActiveIndices();
+  const pressure = PULSE.getEvolutionPressureState();
+  const homeostasis = PULSE.getHomeostasisState();
+  const geneticLedger = PULSE.getGeneticLedgerState();
+  const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
+  const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
+    metrics.tick,
+    4096,
+  );
+  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
+  const federationAdmissionState = CONTROL_INTENT_QUEUE
+    .getFederationAdmissionState();
+  let voxPopuli: string[] = [];
+  try {
+    const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
+    if (Array.isArray(vox)) {
+      voxPopuli = vox
+        .filter((entry): entry is string => typeof entry === "string")
+        .slice(0, 8);
+    }
+  } catch {
+    voxPopuli = [];
+  }
+  const safeMode = isDaemonSafeMode(metrics);
+  const resetInMs = Math.max(
+    0,
+    DAEMON_POLICY_WINDOW_MS - (Date.now() - daemonWindowStartMs),
+  );
+  return {
+    tick: metrics.tick,
+    avgEnergy: metrics.avgEnergy,
+    dominantGenomes: dominantGenomes(active, 3),
+    voxPopuli,
+    pulse_pressure: {
+      novelty_signed: pressure.noveltySigned,
+      symbiosis_signed: pressure.symbiosisSigned,
+      novelty: pressure.novelty,
+      fear: pressure.fear,
+      symbiosis: pressure.symbiosis,
+      ego: pressure.ego,
+      ring: {
+        enabled: pressure.ring.enabled,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
+        ledger_scale: geneticLedger.pressureRingScale,
+        ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
+        fear_curiosity_balance: Number(
+          pressure.ring.fearCuriosityBalance.toFixed(6),
+        ),
+        ego_love_balance: Number(
+          pressure.ring.egoLoveBalance.toFixed(6),
+        ),
+        novelty_axis_from_ring: pressure.ring.enabled,
+        symbiosis_axis_from_ring: pressure.ring.enabled,
+      },
+    },
+    guardian_signal_hybrid: metrics.guardianSignalHybrid,
+    architect_plasmid_hybrid: metrics.architectPlasmidHybrid,
+    replication_hybrid: metrics.replicationHybrid,
+    guardian_signal_promotion: metrics.guardianSignalPromotion,
+    architect_plasmid_promotion: metrics.architectPlasmidPromotion,
+    replication_promotion: metrics.replicationPromotion,
+    glyph_transport: metrics.glyphTransport,
+    daemon_governance: {
+      safe_mode: safeMode.blocked,
+      safe_mode_reason: safeMode.reason,
+      actions_used_in_window: daemonActionsInWindow,
+      actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
+      actions_dynamic_max_in_window: dynamicMaxActions,
+      window_reset_in_ms: resetInMs,
+      max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
+      max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
+      ledger_max_pheromone_intensity: snapshotLedgerRuntime(
+        daemonPheromoneLedgerRuntime,
+      ),
+      ledger_max_pheromone_intensity_persistence:
+        daemonPheromoneLedgerPersistence,
+      ledger_max_plasmid_charge: snapshotLedgerRuntime(
+        daemonPlasmidLedgerRuntime,
+      ),
+      ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
+      invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
+      invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
+      last_admission: latestDaemonAdmission,
+      last_admission_history: daemonAdmissionHistory,
+      last_policy_update: latestDaemonPolicyUpdate,
+      last_policy_history: daemonPolicyHistory,
+      last_pressure_ring_update: latestPressureRingUpdate,
+      last_pressure_ring_history: pressureRingHistory,
+      last_homeostasis_update: latestHomeostasisUpdate,
+      last_homeostasis_history: homeostasisHistory,
+      homeostasis: {
+        enabled: homeostasis.enabled,
+        target_energy: homeostasis.targetEnergy,
+        target_energy_default: homeostasis.targetEnergyDefault,
+        target_energy_current: homeostasis.targetEnergyCurrent,
+        band: homeostasis.band,
+        max_delta: homeostasis.maxDelta,
+        overflow_threshold: homeostasis.overflowThreshold,
+        starvation_floor: homeostasis.starvationFloor,
+        subsidy_enabled: homeostasis.subsidyEnabled,
+        base_tax_default: homeostasis.baseTaxDefault,
+        base_tax_current: homeostasis.baseTaxCurrent,
+        last_update_tick: homeostasis.lastUpdateTick,
+        last_update_source: homeostasis.lastUpdateSource,
+        last_update_reason: homeostasis.lastUpdateReason,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
+      },
+    },
+    snapshot_guard: {
+      enabled: SNAPSHOT_POLICY.enabled,
+      interval_ticks: SNAPSHOT_POLICY.intervalTicks,
+      retention: SNAPSHOT_POLICY.retention,
+      in_flight: autoSnapshotInFlight,
+      last_tick: autoSnapshotLastTick,
+      last_result: autoSnapshotLastResult,
+    },
+    spatial_hash_guard: {
+      tick: metrics.tick,
+      overflow_count: metrics.spatialOverflowCount,
+      max_cell_count: metrics.spatialMaxCellCount,
+      overflow_ratio: metrics.spatialOverflowRatio,
+    },
+    behavior_clusters: behaviorClusters.slice(0, 6),
+    behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
+    federation_rule_genome: {
+      local: P2P_FEDERATION.localRuleGenome,
+      peers: peerRuleProfiles.slice(0, 8),
+    },
+    federation_admission: {
+      latest: federationAdmissionState.latest,
+      history: federationAdmissionState.history.slice(0, 8),
+      policy: federationAdmissionState.policy,
+    },
+    hormones: [
+      STATE_MATRIX.getHormone(0),
+      STATE_MATRIX.getHormone(1),
+      STATE_MATRIX.getHormone(2),
+      STATE_MATRIX.getHormone(3),
+      STATE_MATRIX.getHormone(4),
+      STATE_MATRIX.getHormone(5),
+    ],
+    glyph_buffer: GLYPH_BUFFER.snapshot(),
+  };
+};
+
+const buildFederateLocalContext = (
+  packet: Record<string, unknown>,
+  pulseId: number,
+): {
+  behavior: { invariant: string; dominantRole: number; memberCount: number };
+  codex: {
+    genome: string;
+    label: string;
+    dominantEpochs: number;
+    peakShare: number;
+    known: boolean;
+    generatedAt: string;
+  };
+} => {
+  const localBehavior =
+    SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024)[0];
+  const behavior = localBehavior
+    ? {
+      invariant: localBehavior.behaviorSignature,
+      dominantRole: localBehavior.dominantRole,
+      memberCount: localBehavior.memberCount,
+    }
+    : { invariant: "none", dominantRole: -1, memberCount: 0 };
+  const localDominantGenome =
+    dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0];
+  const fallbackGenome = typeof packet?.logic === "string"
+    ? packet.logic
+    : "0000000000000000";
+  const codex = AKASHA_CODEX.lookupLineageProfile(
+    localDominantGenome ?? fallbackGenome,
+  );
+  return { behavior, codex };
+};
+
+const parseDaemonInjectEnvelope = (
+  body: unknown,
+): DaemonInjectEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+
+  const actionRaw = typeof root.action_type === "string"
+    ? root.action_type
+    : typeof root.type === "string"
+    ? root.type
+    : typeof payloadSource.hex_code === "string"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const action = actionRaw.trim().toUpperCase();
+  if (
+    action !== "DROP_PHEROMONE" && action !== "INJECT_PLASMID" &&
+    action !== "OBSERVE"
+  ) {
+    return null;
+  }
+
+  const x = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_x ?? payloadSource.x, 700)),
+    0,
+    WORLD_W - 1,
+  );
+  const y = clamp(
+    Math.round(asFiniteNumber(payloadSource.target_y ?? payloadSource.y, 400)),
+    0,
+    WORLD_H - 1,
+  );
+  const intensity = clamp(
+    asFiniteNumber(payloadSource.intensity ?? payloadSource.charge, 100),
+    1,
+    2000,
+  );
+  const hexCode = typeof payloadSource.hex_code === "string"
+    ? payloadSource.hex_code
+    : typeof payloadSource.plasmid_hex === "string"
+    ? payloadSource.plasmid_hex
+    : undefined;
+
+  return {
+    action_type: action as DaemonAction,
+    payload: {
+      target_x: x,
+      target_y: y,
+      intensity,
+      hex_code: hexCode,
+    },
+  };
+};
+
+const asOptionalBoolean = (value: unknown): boolean | undefined => {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    const norm = value.trim().toLowerCase();
+    if (["1", "true", "yes", "on"].includes(norm)) return true;
+    if (["0", "false", "no", "off"].includes(norm)) return false;
+  }
+  return undefined;
+};
+
+const parsePressureRingIngressEnvelope = (
+  body: unknown,
+): PressureRingIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+
+  const modeRaw = typeof root.mode === "string"
+    ? root.mode
+    : typeof payloadSource.mode === "string"
+    ? payloadSource.mode
+    : "";
+  const mode = modeRaw.trim().toLowerCase();
+  if (rollbackToken.length === 0 && mode !== "set" && mode !== "step") {
+    return null;
+  }
+
+  const thetaValue = asFiniteNumber(
+    payloadSource.theta ?? payloadSource.target_theta,
+    Number.NaN,
+  );
+  const deltaValue = asFiniteNumber(
+    payloadSource.delta_theta ?? payloadSource.delta,
+    Number.NaN,
+  );
+  const scaleRaw = asFiniteNumber(payloadSource.scale, Number.NaN);
+  const enabled = asOptionalBoolean(payloadSource.enabled);
+  if (
+    rollbackToken.length === 0 &&
+    mode === "set" &&
+    !Number.isFinite(thetaValue)
+  ) return null;
+  if (
+    rollbackToken.length === 0 &&
+    mode === "step" &&
+    !Number.isFinite(deltaValue)
+  ) return null;
+  if (
+    rollbackToken.length === 0 &&
+    !Number.isFinite(thetaValue) &&
+    !Number.isFinite(deltaValue) &&
+    !Number.isFinite(scaleRaw) &&
+    enabled === undefined
+  ) {
+    return null;
+  }
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_phase_scheduler";
+
+  const envelope: PressureRingIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_phase_scheduler",
+  };
+  if (mode === "set" || mode === "step") {
+    envelope.mode = mode as "set" | "step";
+  }
+  if (Number.isFinite(thetaValue)) envelope.theta = thetaValue;
+  if (Number.isFinite(deltaValue)) {
+    envelope.delta_theta = clamp(
+      deltaValue,
+      -DAEMON_PRESSURE_RING_MAX_STEP,
+      DAEMON_PRESSURE_RING_MAX_STEP,
+    );
+  }
+  if (Number.isFinite(scaleRaw)) {
+    envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
+  }
+  if (enabled !== undefined) envelope.enabled = enabled;
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
+  }
+  return envelope;
+};
+
+const parseHomeostasisIngressEnvelope = (
+  body: unknown,
+): HomeostasisIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const baseTax = asFiniteNumber(
+    payloadSource.base_tax ?? payloadSource.baseTax,
+    Number.NaN,
+  );
+  const targetEnergy = asFiniteNumber(
+    payloadSource.target_energy ?? payloadSource.targetEnergy,
+    Number.NaN,
+  );
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+  if (
+    !Number.isFinite(baseTax) &&
+    !Number.isFinite(targetEnergy) &&
+    rollbackToken.length === 0
+  ) {
+    return null;
+  }
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_homeostasis_controller";
+  const envelope: HomeostasisIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
+  };
+  if (Number.isFinite(baseTax)) {
+    envelope.base_tax = clamp(
+      Math.round(baseTax),
+      DAEMON_HOMEOSTASIS_BASE_TAX_MIN,
+      DAEMON_HOMEOSTASIS_BASE_TAX_MAX,
+    );
+  }
+  if (Number.isFinite(targetEnergy)) {
+    envelope.target_energy = clamp(
+      Math.round(targetEnergy),
+      DAEMON_HOMEOSTASIS_TARGET_MIN,
+      DAEMON_HOMEOSTASIS_TARGET_MAX,
+    );
+  }
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
+  }
+  return envelope;
+};
+
+const parseDaemonPolicyIngressEnvelope = (
+  body: unknown,
+): DaemonPolicyIngressEnvelope | null => {
+  if (!body || typeof body !== "object") return null;
+  const root = body as Record<string, unknown>;
+  const payloadSource = root.payload && typeof root.payload === "object"
+    ? root.payload as Record<string, unknown>
+    : root;
+  const maxPheromoneIntensity = asFiniteNumber(
+    payloadSource.max_pheromone_intensity ??
+      payloadSource.maxPheromoneIntensity,
+    Number.NaN,
+  );
+  const maxPlasmidCharge = asFiniteNumber(
+    payloadSource.max_plasmid_charge ??
+      payloadSource.maxPlasmidCharge,
+    Number.NaN,
+  );
+  const rollbackToken = typeof (
+      payloadSource.rollback_token ?? payloadSource.rollbackToken
+    ) === "string"
+    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
+    : "";
+  if (
+    !Number.isFinite(maxPheromoneIntensity) &&
+    !Number.isFinite(maxPlasmidCharge) &&
+    rollbackToken.length === 0
+  ) {
+    return null;
+  }
+  const reason = typeof payloadSource.reason === "string"
+    ? payloadSource.reason.trim().slice(0, 96)
+    : "daemon_policy_controller";
+  const envelope: DaemonPolicyIngressEnvelope = {
+    reason: reason.length > 0 ? reason : "daemon_policy_controller",
+  };
+  if (Number.isFinite(maxPheromoneIntensity)) {
+    envelope.max_pheromone_intensity = clamp(
+      Math.round(maxPheromoneIntensity),
+      DAEMON_MAX_PHEROMONE_INTENSITY_MIN,
+      DAEMON_MAX_PHEROMONE_INTENSITY_MAX,
+    );
+  }
+  if (Number.isFinite(maxPlasmidCharge)) {
+    envelope.max_plasmid_charge = clamp(
+      Math.round(maxPlasmidCharge),
+      DAEMON_MAX_PLASMID_CHARGE_MIN,
+      DAEMON_MAX_PLASMID_CHARGE_MAX,
+    );
+  }
+  if (rollbackToken.length > 0) {
+    envelope.rollback_token = rollbackToken.slice(0, 160);
+  }
+  return envelope;
+};
+
+const inferHomeostasisRollbackKey = (
+  rollbackToken: string,
+): "pulse.homeostasis.baseTax" | "pulse.homeostasis.targetEnergy" | null => {
+  if (rollbackToken.startsWith("pulse.homeostasis.baseTax@")) {
+    return "pulse.homeostasis.baseTax";
+  }
+  if (rollbackToken.startsWith("pulse.homeostasis.targetEnergy@")) {
+    return "pulse.homeostasis.targetEnergy";
+  }
+  return null;
+};
+
+const inferDaemonPolicyRollbackKey = (
+  rollbackToken: string,
+): "daemon.maxPheromoneIntensity" | "daemon.maxPlasmidCharge" | null => {
+  if (rollbackToken.startsWith("daemon.maxPheromoneIntensity@")) {
+    return "daemon.maxPheromoneIntensity";
+  }
+  if (rollbackToken.startsWith("daemon.maxPlasmidCharge@")) {
+    return "daemon.maxPlasmidCharge";
+  }
+  return null;
+};
+
+const applyDaemonPheromonePolicyLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): import("../../03_governance/mod.ts").LedgerApplyResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
+  daemonPheromoneLedgerRuntime = result.state;
+  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
+  return result;
+};
+
+const rollbackDaemonPheromonePolicyLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): import("../../03_governance/mod.ts").LedgerRollbackResult<
+  "daemon.maxPheromoneIntensity"
+> => {
+  const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
+  daemonPheromoneLedgerRuntime = result.state;
+  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
+  return result;
+};
+
+const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPheromoneIntensity", {
+    initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+    historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+  });
+  daemonPheromoneLedgerRuntime = hydrated.state;
+  daemonPheromoneLedgerPersistence = hydrated.persistence;
+  syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
+};
+
+const applyDaemonPlasmidPolicyLedgerUpdate = (
+  update: {
+    value: number;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): import("../../03_governance/mod.ts").LedgerApplyResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
+  daemonPlasmidLedgerRuntime = result.state;
+  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
+  return result;
+};
+
+const rollbackDaemonPlasmidPolicyLedgerUpdate = (
+  rollback: {
+    rollbackToken: string;
+    source?: string;
+    reason?: string;
+    tick?: number;
+  },
+): import("../../03_governance/mod.ts").LedgerRollbackResult<
+  "daemon.maxPlasmidCharge"
+> => {
+  const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
+  daemonPlasmidLedgerRuntime = result.state;
+  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
+  return result;
+};
+
+const syncDaemonPlasmidPolicyLedgerHydration = async (): Promise<void> => {
+  const hydrated = await hydrateLedgerRuntime("daemon.maxPlasmidCharge", {
+    initialValue: DAEMON_POLICY.maxPlasmidCharge,
+    historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+  });
+  daemonPlasmidLedgerRuntime = hydrated.state;
+  daemonPlasmidLedgerPersistence = hydrated.persistence;
+  syncDaemonIngressMaxPlasmidCharge(hydrated.state.currentValue);
+};
+
+const serializeDaemonPolicyState = () => {
+  const liveLimits = snapshotDaemonIngressPolicyLimits();
+  return {
+    max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
+    max_pheromone_intensity_default: daemonPheromoneLedgerRuntime.defaultValue,
+    max_pheromone_intensity_current: daemonPheromoneLedgerRuntime.currentValue,
+    max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
+    max_plasmid_charge_default: daemonPlasmidLedgerRuntime.defaultValue,
+    max_plasmid_charge_current: daemonPlasmidLedgerRuntime.currentValue,
+    safe_min_population: liveLimits.safeMinPopulation,
+    safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
+    ledger_max_pheromone_intensity: snapshotLedgerRuntime(
+      daemonPheromoneLedgerRuntime,
+    ),
+    ledger_max_pheromone_intensity_persistence:
+      daemonPheromoneLedgerPersistence,
+    ledger_max_plasmid_charge: snapshotLedgerRuntime(
+      daemonPlasmidLedgerRuntime,
+    ),
+    ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
+  };
+};
+
+const collapseHomeostasisLedgerStatus = (
+  baseStatus: HomeostasisUpdateSnapshot["base_tax_ledger_status"],
+  targetStatus: HomeostasisUpdateSnapshot["target_energy_ledger_status"],
+): HomeostasisUpdateSnapshot["ledger_status"] => {
+  if (baseStatus !== null && targetStatus === null) return baseStatus;
+  if (baseStatus === null && targetStatus !== null) return targetStatus;
+  if (
+    baseStatus !== null && targetStatus !== null && baseStatus === targetStatus
+  ) {
+    return baseStatus;
+  }
+  return null;
+};
+
+LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+RUNTIME_POLICY.logFingerprintOnce("system-start");
+LOGGER.info(
+  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${AVATAR_INGRESS_ENABLE} tokenRequired=${
+    CONTROL_TOKEN.length > 0
+  }`,
+);
+if (RUNTIME_POLICY.p2p.mainnetEnabled) {
+  LOGGER.info(`🌐 [SYSTEM] MAINNET BOOTSTRAP ACTIVE`);
+}
+await AKASHA_CODEX.start();
+
+// STAGE 5.3 VERIFICATION: Forced Reflection Seed
+setInterval(() => {
+  const signalGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    35200000 + 4096,
+    140 * 80,
+  );
+  const memoryGrid = new Int32Array(
+    STATE_MATRIX.buffer,
+    36100000 + 4096,
+    140 * 80,
+  );
+  // Seed a strong signal in the center
+  const center = 40 * 140 + 70;
+  Atomics.store(signalGrid, center, 1000);
+  Atomics.store(memoryGrid, center, 500);
+}, 100);
+
+// 1. Initialize Observer UI Server
+Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
+  const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
+    });
+  }
+
+  if (url.pathname === "/state") {
+    const buffer = STATE_MATRIX.buffer;
+
+    const bufferCopy = new Uint8Array(buffer.byteLength);
+    bufferCopy.set(new Uint8Array(buffer));
+    return new Response(bufferCopy, {
+      headers: { "Content-Type": "application/octet-stream" },
+    });
+  }
+
+  if (url.pathname === "/grid") {
+    const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
+    const attention = PHYSICS_ENGINE.ATTENTION_PHEROMONES;
+
+    const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
+    const outEnv = new Int32Array(buffer, 0, env.length);
+    const outAttention = new Float32Array(
+      buffer,
+      env.byteLength,
+      attention.length,
+    );
+
+    outEnv.set(env);
+    outAttention.set(attention);
+
+    return new Response(buffer, {
+      headers: { "Content-Type": "application/octet-stream" },
+    });
+  }
+
+  if (url.pathname === "/api/telemetry" && req.method === "GET") {
+    return new Response(JSON.stringify(await buildTelemetry()), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/telemetry/stream" && req.method === "GET") {
+    const limit = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("limit"), 128)),
+      1,
+      1024,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        history: TELEMETRY_STREAM.history(limit),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/histogram" && req.method === "GET") {
+    const metricRaw = (url.searchParams.get("metric") ?? "").trim();
+    if (
+      metricRaw !== "population" && metricRaw !== "avgEnergy" &&
+      metricRaw !== "neuralCoherence" && metricRaw !== "spatialOverflowRatio"
+    ) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_METRIC",
+          allowed: TELEMETRY_STREAM.metrics(),
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
+    const windowMs = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("window_ms"), 60000)),
+      1000,
+      86_400_000,
+    );
+    const buckets = clamp(
+      Math.floor(asFiniteNumber(url.searchParams.get("buckets"), 12)),
+      1,
+      64,
+    );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        histogram: TELEMETRY_STREAM.histogram(metricRaw, windowMs, buckets),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/mutation-telemetry" && req.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/telemetry/ws") {
+    if (req.headers.get("upgrade") !== "websocket") {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "WEBSOCKET_UPGRADE_REQUIRED",
+        }),
+        { status: 426, headers: JSON_HEADERS },
+      );
+    }
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    TELEMETRY_STREAM.attach(socket);
+    return response;
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
+    const pressure = PULSE.getEvolutionPressureState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        pressure_ring: {
+          novelty_signed: pressure.noveltySigned,
+          symbiosis_signed: pressure.symbiosisSigned,
+          novelty: pressure.novelty,
+          fear: pressure.fear,
+          symbiosis: pressure.symbiosis,
+          ego: pressure.ego,
+          ring: {
+            enabled: pressure.ring.enabled,
+            theta: Number(pressure.ring.theta.toFixed(6)),
+            scale: pressure.ring.scale,
+            fear_curiosity_balance: Number(
+              pressure.ring.fearCuriosityBalance.toFixed(6),
+            ),
+            ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
+            ledger_scale: geneticLedger.pressureRingScale,
+            ledger_scale_persistence:
+              geneticLedger.pressureRingScalePersistence,
+          },
+        },
+        latest_update: latestPressureRingUpdate,
+        history: pressureRingHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/pressure-ring" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parsePressureRingIngressEnvelope(body);
+      if (!envelope) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PRESSURE_RING_PAYLOAD",
+            expected:
+              "Provide {mode?:set|step, theta|delta_theta, scale?, enabled?, rollback_token?, reason?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const before = PULSE.getEvolutionPressureState();
+      const source = envelope.reason ?? "daemon_phase_scheduler";
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (
+          envelope.mode !== undefined ||
+          envelope.theta !== undefined ||
+          envelope.delta_theta !== undefined ||
+          envelope.scale !== undefined ||
+          envelope.enabled !== undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (envelope.rollback_token !== undefined) {
+        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
+          key: "pulse.pressureRing.scale",
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason: source,
+          tick,
+        });
+        const pressure = PULSE.getEvolutionPressureState();
+        const geneticLedger = PULSE.getGeneticLedgerState();
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_pressure_ring_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "PRESSURE_RING_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              pressure_ring: {
+                novelty_signed: pressure.noveltySigned,
+                symbiosis_signed: pressure.symbiosisSigned,
+                novelty: pressure.novelty,
+                fear: pressure.fear,
+                symbiosis: pressure.symbiosis,
+                ego: pressure.ego,
+                ring: {
+                  enabled: pressure.ring.enabled,
+                  theta: Number(pressure.ring.theta.toFixed(6)),
+                  scale: pressure.ring.scale,
+                  fear_curiosity_balance: Number(
+                    pressure.ring.fearCuriosityBalance.toFixed(6),
+                  ),
+                  ego_love_balance: Number(
+                    pressure.ring.egoLoveBalance.toFixed(6),
+                  ),
+                  ledger_scale: geneticLedger.pressureRingScale,
+                  ledger_scale_persistence:
+                    geneticLedger.pressureRingScalePersistence,
+                },
+              },
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        const snapshot: PressureRingUpdateSnapshot = {
+          tick,
+          mode: "rollback",
+          source,
+          delta_theta: 0,
+          theta: Number(pressure.ring.theta.toFixed(6)),
+          scale: pressure.ring.scale,
+          enabled: pressure.ring.enabled,
+          ledger_status: rollback.status,
+          scale_rollback_token: envelope.rollback_token,
+          scale_before: before.ring.scale,
+          scale_after: pressure.ring.scale,
+        };
+        setLatestPressureRingUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_pressure_ring_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_PRESSURE_RING_ROLLBACK",
+          tick,
+          mode: snapshot.mode,
+          source: snapshot.source,
+          delta_theta: snapshot.delta_theta,
+          theta: snapshot.theta,
+          scale: snapshot.scale,
+          enabled: snapshot.enabled,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.scale_rollback_token,
+          scale_before: snapshot.scale_before,
+          scale_after: snapshot.scale_after,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            pressure_ring: {
+              novelty_signed: pressure.noveltySigned,
+              symbiosis_signed: pressure.symbiosisSigned,
+              novelty: pressure.novelty,
+              fear: pressure.fear,
+              symbiosis: pressure.symbiosis,
+              ego: pressure.ego,
+              ring: {
+                enabled: pressure.ring.enabled,
+                theta: Number(pressure.ring.theta.toFixed(6)),
+                scale: pressure.ring.scale,
+                fear_curiosity_balance: Number(
+                  pressure.ring.fearCuriosityBalance.toFixed(6),
+                ),
+                ego_love_balance: Number(
+                  pressure.ring.egoLoveBalance.toFixed(6),
+                ),
+                ledger_scale: geneticLedger.pressureRingScale,
+                ledger_scale_persistence:
+                  geneticLedger.pressureRingScalePersistence,
+              },
+            },
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const ledgerUpdate = envelope.scale === undefined
+        ? null
+        : await PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.pressureRing.scale",
+          value: envelope.scale,
+          source,
+          reason: source,
+          tick,
+        });
+      const pressure = envelope.mode === undefined
+        ? PULSE.getEvolutionPressureState()
+        : PULSE.updateEvolutionPressureRing({
+          mode: envelope.mode,
+          theta: envelope.theta,
+          deltaTheta: envelope.delta_theta,
+          enabled: envelope.enabled,
+          source,
+        });
+      const geneticLedger = PULSE.getGeneticLedgerState();
+      const snapshot: PressureRingUpdateSnapshot = {
+        tick,
+        mode: envelope.scale !== undefined && envelope.mode !== undefined
+          ? "mixed"
+          : envelope.scale !== undefined
+          ? "scale_only"
+          : envelope.mode ?? "set",
+        source,
+        delta_theta: envelope.mode === "step" ? (envelope.delta_theta ?? 0) : 0,
+        theta: Number(pressure.ring.theta.toFixed(6)),
+        scale: pressure.ring.scale,
+        enabled: pressure.ring.enabled,
+        ledger_status: ledgerUpdate?.status ?? null,
+        scale_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
+        scale_before: before.ring.scale,
+        scale_after: pressure.ring.scale,
+      };
+      setLatestPressureRingUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_PRESSURE_RING",
+        tick,
+        mode: snapshot.mode,
+        source: snapshot.source,
+        delta_theta: snapshot.delta_theta,
+        theta: snapshot.theta,
+        scale: snapshot.scale,
+        enabled: snapshot.enabled,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.scale_rollback_token,
+        scale_before: snapshot.scale_before,
+        scale_after: snapshot.scale_after,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          pressure_ring: {
+            novelty_signed: pressure.noveltySigned,
+            symbiosis_signed: pressure.symbiosisSigned,
+            novelty: pressure.novelty,
+            fear: pressure.fear,
+            symbiosis: pressure.symbiosis,
+            ego: pressure.ego,
+            ring: {
+              enabled: pressure.ring.enabled,
+              theta: Number(pressure.ring.theta.toFixed(6)),
+              scale: pressure.ring.scale,
+              fear_curiosity_balance: Number(
+                pressure.ring.fearCuriosityBalance.toFixed(6),
+              ),
+              ego_love_balance: Number(
+                pressure.ring.egoLoveBalance.toFixed(6),
+              ),
+              ledger_scale: geneticLedger.pressureRingScale,
+              ledger_scale_persistence:
+                geneticLedger.pressureRingScalePersistence,
+            },
+          },
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_pressure_ring_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "PRESSURE_RING_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "GET") {
+    const homeostasis = PULSE.getHomeostasisState();
+    const geneticLedger = PULSE.getGeneticLedgerState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        homeostasis: {
+          enabled: homeostasis.enabled,
+          target_energy: homeostasis.targetEnergy,
+          target_energy_default: homeostasis.targetEnergyDefault,
+          target_energy_current: homeostasis.targetEnergyCurrent,
+          band: homeostasis.band,
+          max_delta: homeostasis.maxDelta,
+          overflow_threshold: homeostasis.overflowThreshold,
+          starvation_floor: homeostasis.starvationFloor,
+          subsidy_enabled: homeostasis.subsidyEnabled,
+          base_tax_default: homeostasis.baseTaxDefault,
+          base_tax_current: homeostasis.baseTaxCurrent,
+          last_update_tick: homeostasis.lastUpdateTick,
+          last_update_source: homeostasis.lastUpdateSource,
+          last_update_reason: homeostasis.lastUpdateReason,
+          ledger_base_tax: geneticLedger.homeostasisBaseTax,
+          ledger_base_tax_persistence:
+            geneticLedger.homeostasisBaseTaxPersistence,
+          ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+          ledger_target_energy_persistence:
+            geneticLedger.homeostasisTargetEnergyPersistence,
+        },
+        latest_update: latestHomeostasisUpdate,
+        history: homeostasisHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/physiology" && req.method === "GET") {
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const hormones = PULSE.getPhysiologicalLedgerState();
+    const generic = PULSE.getGenericLedgerSnapshots();
+    const geneticLedger = PULSE.getGeneticLedgerState();
+
+    const ledger = {
+      ...generic,
+      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(
+        daemonPheromoneLedgerRuntime,
+      ),
+      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(
+        daemonPlasmidLedgerRuntime,
+      ),
+    };
+
+    const physiology = capturePhysiologySnapshot({
+      tick,
+      hormones,
+      ledger,
+    });
+    const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
+    const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        physiology,
+        guardian_signal_hybrid: guardianSignalHybrid,
+        architect_plasmid_hybrid: architectPlasmidHybrid,
+        guardian_signal_promotion: evaluateGuardianSignalPromotion(
+          guardianSignalHybrid,
+        ),
+        glyph_transport: GLYPH_BUFFER.snapshot(),
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
+        ledger_pressure_ring_scale: geneticLedger.pressureRingScale,
+        ledger_pressure_ring_scale_persistence:
+          geneticLedger.pressureRingScalePersistence,
+      }),
+      { headers: JSON_HEADERS },
+    );
+  }
+
+  if (url.pathname === "/api/homeostasis" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseHomeostasisIngressEnvelope(body);
+      if (
+        !envelope ||
+        (
+          envelope.base_tax === undefined &&
+          envelope.target_energy === undefined &&
+          envelope.rollback_token === undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_HOMEOSTASIS_PAYLOAD",
+            expected:
+              "Provide {base_tax?:number, target_energy?:number, rollback_token?:string, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (envelope.base_tax !== undefined ||
+          envelope.target_energy !== undefined)
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const before = PULSE.getHomeostasisState();
+      const source = "daemon_homeostasis_controller";
+      const reason = envelope.reason ?? "daemon_homeostasis_controller";
+      const serializeHomeostasis = (
+        updated: ReturnType<typeof PULSE.getHomeostasisState>,
+        geneticLedger: ReturnType<typeof PULSE.getGeneticLedgerState>,
+      ) => ({
+        enabled: updated.enabled,
+        target_energy: updated.targetEnergy,
+        target_energy_default: updated.targetEnergyDefault,
+        target_energy_current: updated.targetEnergyCurrent,
+        band: updated.band,
+        max_delta: updated.maxDelta,
+        overflow_threshold: updated.overflowThreshold,
+        starvation_floor: updated.starvationFloor,
+        subsidy_enabled: updated.subsidyEnabled,
+        base_tax_default: updated.baseTaxDefault,
+        base_tax_current: updated.baseTaxCurrent,
+        last_update_tick: updated.lastUpdateTick,
+        last_update_source: updated.lastUpdateSource,
+        last_update_reason: updated.lastUpdateReason,
+        ledger_base_tax: geneticLedger.homeostasisBaseTax,
+        ledger_base_tax_persistence:
+          geneticLedger.homeostasisBaseTaxPersistence,
+        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
+        ledger_target_energy_persistence:
+          geneticLedger.homeostasisTargetEnergyPersistence,
+      });
+
+      if (envelope.rollback_token !== undefined) {
+        const rollbackKey = inferHomeostasisRollbackKey(
+          envelope.rollback_token,
+        );
+        if (rollbackKey === null) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_homeostasis_invalid_payload",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "UNKNOWN_HOMEOSTASIS_ROLLBACK_TOKEN",
+              rollback_token: envelope.rollback_token,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
+        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
+          key: rollbackKey,
+          rollbackToken: envelope.rollback_token,
+          source,
+          reason,
+          tick,
+        });
+        const updated = PULSE.getHomeostasisState();
+        const geneticLedger = PULSE.getGeneticLedgerState();
+        const baseTaxLedgerStatus = rollbackKey === "pulse.homeostasis.baseTax"
+          ? rollback.status
+          : null;
+        const targetEnergyLedgerStatus =
+          rollbackKey === "pulse.homeostasis.targetEnergy"
+            ? rollback.status
+            : null;
+        const ledgerStatus = collapseHomeostasisLedgerStatus(
+          baseTaxLedgerStatus,
+          targetEnergyLedgerStatus,
+        );
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_homeostasis_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "HOMEOSTASIS_ROLLBACK_REJECTED",
+              ledger_status: ledgerStatus,
+              base_tax_ledger_status: baseTaxLedgerStatus,
+              target_energy_ledger_status: targetEnergyLedgerStatus,
+              rollback_token: envelope.rollback_token,
+              rollback_key: rollbackKey,
+              homeostasis: serializeHomeostasis(updated, geneticLedger),
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        const snapshot: HomeostasisUpdateSnapshot = {
+          tick,
+          source,
+          reason,
+          mode: "rollback",
+          ledger_status: ledgerStatus,
+          base_tax_ledger_status: baseTaxLedgerStatus,
+          target_energy_ledger_status: targetEnergyLedgerStatus,
+          base_tax_rollback_token: rollbackKey === "pulse.homeostasis.baseTax"
+            ? envelope.rollback_token
+            : null,
+          target_energy_rollback_token:
+            rollbackKey === "pulse.homeostasis.targetEnergy"
+              ? envelope.rollback_token
+              : null,
+          base_tax_before: before.baseTaxCurrent,
+          base_tax_after: updated.baseTaxCurrent,
+          target_energy_before: before.targetEnergy,
+          target_energy_after: updated.targetEnergy,
+        };
+        setLatestHomeostasisUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_homeostasis_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_HOMEOSTASIS_ROLLBACK",
+          tick,
+          source: snapshot.source,
+          reason: snapshot.reason,
+          mode: snapshot.mode,
+          ledger_status: snapshot.ledger_status,
+          base_tax_ledger_status: snapshot.base_tax_ledger_status,
+          target_energy_ledger_status: snapshot.target_energy_ledger_status,
+          rollback_key: rollbackKey,
+          rollback_token: envelope.rollback_token,
+          base_tax_rollback_token: snapshot.base_tax_rollback_token,
+          target_energy_rollback_token: snapshot.target_energy_rollback_token,
+          base_tax_before: snapshot.base_tax_before,
+          base_tax_after: snapshot.base_tax_after,
+          target_energy_before: snapshot.target_energy_before,
+          target_energy_after: snapshot.target_energy_after,
+        });
+
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            homeostasis: serializeHomeostasis(updated, geneticLedger),
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const baseTaxLedgerUpdate = envelope.base_tax === undefined
+        ? null
+        : await PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.homeostasis.baseTax",
+          value: envelope.base_tax,
+          source,
+          reason,
+          tick,
+        });
+      const targetEnergyLedgerUpdate = envelope.target_energy === undefined
+        ? null
+        : await PULSE.applyGeneticLedgerUpdate({
+          key: "pulse.homeostasis.targetEnergy",
+          value: envelope.target_energy,
+          source,
+          reason,
+          tick,
+        });
+      const updated = PULSE.getHomeostasisState();
+      const geneticLedger = PULSE.getGeneticLedgerState();
+      const baseTaxLedgerStatus = baseTaxLedgerUpdate?.status ?? null;
+      const targetEnergyLedgerStatus = targetEnergyLedgerUpdate?.status ?? null;
+      const snapshot: HomeostasisUpdateSnapshot = {
+        tick,
+        source,
+        reason,
+        mode: envelope.base_tax !== undefined &&
+            envelope.target_energy !== undefined
+          ? "mixed"
+          : envelope.base_tax !== undefined
+          ? "apply"
+          : "target_only",
+        ledger_status: collapseHomeostasisLedgerStatus(
+          baseTaxLedgerStatus,
+          targetEnergyLedgerStatus,
+        ),
+        base_tax_ledger_status: baseTaxLedgerStatus,
+        target_energy_ledger_status: targetEnergyLedgerStatus,
+        base_tax_rollback_token: baseTaxLedgerUpdate?.mutation?.rollbackToken ??
+          null,
+        target_energy_rollback_token:
+          targetEnergyLedgerUpdate?.mutation?.rollbackToken ?? null,
+        base_tax_before: before.baseTaxCurrent,
+        base_tax_after: updated.baseTaxCurrent,
+        target_energy_before: before.targetEnergy,
+        target_energy_after: updated.targetEnergy,
+      };
+      setLatestHomeostasisUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_HOMEOSTASIS",
+        tick,
+        source: snapshot.source,
+        reason: snapshot.reason,
+        mode: snapshot.mode,
+        ledger_status: snapshot.ledger_status,
+        base_tax_ledger_status: snapshot.base_tax_ledger_status,
+        target_energy_ledger_status: snapshot.target_energy_ledger_status,
+        rollback_token: snapshot.base_tax_rollback_token ??
+          snapshot.target_energy_rollback_token,
+        base_tax_rollback_token: snapshot.base_tax_rollback_token,
+        target_energy_rollback_token: snapshot.target_energy_rollback_token,
+        base_tax_before: snapshot.base_tax_before,
+        base_tax_after: snapshot.base_tax_after,
+        target_energy_before: snapshot.target_energy_before,
+        target_energy_after: snapshot.target_energy_after,
+      });
+
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          homeostasis: serializeHomeostasis(updated, geneticLedger),
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_homeostasis_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "HOMEOSTASIS_UPDATE_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/api/daemon-policy" && req.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        daemon_policy: serializeDaemonPolicyState(),
+        latest_update: latestDaemonPolicyUpdate,
+        history: daemonPolicyHistory,
+      }),
+      {
+        headers: JSON_HEADERS,
+      },
+    );
+  }
+
+  if (url.pathname === "/api/daemon-policy" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseDaemonPolicyIngressEnvelope(body);
+      if (
+        !envelope ||
+        (
+          envelope.max_pheromone_intensity === undefined &&
+          envelope.max_plasmid_charge === undefined &&
+          envelope.rollback_token === undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_DAEMON_POLICY_PAYLOAD",
+            expected:
+              "Provide {max_pheromone_intensity?:number, max_plasmid_charge?:number, rollback_token?:string, reason?:string}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.rollback_token !== undefined &&
+        (
+          envelope.max_pheromone_intensity !== undefined ||
+          envelope.max_plasmid_charge !== undefined
+        )
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      if (
+        envelope.max_pheromone_intensity !== undefined &&
+        envelope.max_plasmid_charge !== undefined
+      ) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "MULTIPLE_DAEMON_POLICY_FIELDS_NOT_ALLOWED",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const source = "daemon_policy_controller";
+      const reason = envelope.reason ?? "daemon_policy_controller";
+      const beforePheromone = currentDaemonMaxPheromoneIntensity();
+      const beforePlasmid = currentDaemonMaxPlasmidCharge();
+
+      if (envelope.rollback_token !== undefined) {
+        const rollbackKey = inferDaemonPolicyRollbackKey(
+          envelope.rollback_token,
+        );
+        if (rollbackKey === null) {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_invalid_payload",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "INVALID_DAEMON_POLICY_ROLLBACK_TOKEN",
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+        const rollback = rollbackKey === "daemon.maxPheromoneIntensity"
+          ? rollbackDaemonPheromonePolicyLedgerUpdate({
+            rollbackToken: envelope.rollback_token,
+            source,
+            reason,
+            tick,
+          })
+          : rollbackDaemonPlasmidPolicyLedgerUpdate({
+            rollbackToken: envelope.rollback_token,
+            source,
+            reason,
+            tick,
+          });
+        if (rollback.status !== "rolled_back") {
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_rollback_reject",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_ROLLBACK_REJECTED",
+              ledger_status: rollback.status,
+              rollback_token: envelope.rollback_token,
+              daemon_policy: serializeDaemonPolicyState(),
+            }),
+            { status: 409, headers: JSON_HEADERS },
+          );
+        }
+
+        if (rollback.mutation) {
+          if (rollbackKey === "daemon.maxPheromoneIntensity") {
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPheromoneIntensity",
+              recordFromRollback(
+                rollback.mutation,
+                "daemon.maxPheromoneIntensity",
+              ),
+              {
+                initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+              },
+            );
+            daemonPheromoneLedgerPersistence = {
+              ...persisted,
+              hydrated: daemonPheromoneLedgerPersistence.hydrated,
+              lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+              lastHydrationError:
+                daemonPheromoneLedgerPersistence.lastHydrationError,
+            };
+          } else {
+            const persisted = await appendLedgerRecordAndMaybeCompact(
+              "daemon.maxPlasmidCharge",
+              recordFromRollback(rollback.mutation, "daemon.maxPlasmidCharge"),
+              {
+                initialValue: DAEMON_POLICY.maxPlasmidCharge,
+                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+              },
+            );
+            daemonPlasmidLedgerPersistence = {
+              ...persisted,
+              hydrated: daemonPlasmidLedgerPersistence.hydrated,
+              lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
+              lastHydrationError:
+                daemonPlasmidLedgerPersistence.lastHydrationError,
+            };
+          }
+        }
+
+        const snapshot: DaemonPolicyUpdateSnapshot = {
+          tick,
+          source,
+          reason,
+          mode: "rollback",
+          policy_key: rollbackKey,
+          ledger_status: rollback.status,
+          pheromone_rollback_token:
+            rollbackKey === "daemon.maxPheromoneIntensity"
+              ? envelope.rollback_token
+              : null,
+          plasmid_rollback_token: rollbackKey === "daemon.maxPlasmidCharge"
+            ? envelope.rollback_token
+            : null,
+          max_pheromone_intensity_before: beforePheromone,
+          max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+          max_plasmid_charge_before: beforePlasmid,
+          max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
+        };
+        setLatestDaemonPolicyUpdate(snapshot);
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_rollback",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_POLICY_ROLLBACK",
+          tick,
+          source: snapshot.source,
+          reason: snapshot.reason,
+          mode: snapshot.mode,
+          policy_key: snapshot.policy_key,
+          ledger_status: snapshot.ledger_status,
+          rollback_token: snapshot.pheromone_rollback_token ??
+            snapshot.plasmid_rollback_token,
+          max_pheromone_intensity_before:
+            snapshot.max_pheromone_intensity_before,
+          max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+          max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
+          max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            updated: snapshot,
+            daemon_policy: serializeDaemonPolicyState(),
+          }),
+          {
+            status: 200,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      const updateKey = envelope.max_pheromone_intensity !== undefined
+        ? "daemon.maxPheromoneIntensity"
+        : "daemon.maxPlasmidCharge";
+      const result = updateKey === "daemon.maxPheromoneIntensity"
+        ? applyDaemonPheromonePolicyLedgerUpdate({
+          value: envelope.max_pheromone_intensity!,
+          source,
+          reason,
+          tick,
+        })
+        : applyDaemonPlasmidPolicyLedgerUpdate({
+          value: envelope.max_plasmid_charge!,
+          source,
+          reason,
+          tick,
+        });
+      if (result.mutation) {
+        if (updateKey === "daemon.maxPheromoneIntensity") {
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPheromoneIntensity",
+            recordFromApply(result.mutation, "daemon.maxPheromoneIntensity"),
+            {
+              initialValue: DAEMON_POLICY.maxPheromoneIntensity,
+              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
+            },
+          );
+          daemonPheromoneLedgerPersistence = {
+            ...persisted,
+            hydrated: daemonPheromoneLedgerPersistence.hydrated,
+            lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              daemonPheromoneLedgerPersistence.lastHydrationError,
+          };
+        } else {
+          const persisted = await appendLedgerRecordAndMaybeCompact(
+            "daemon.maxPlasmidCharge",
+            recordFromApply(result.mutation, "daemon.maxPlasmidCharge"),
+            {
+              initialValue: DAEMON_POLICY.maxPlasmidCharge,
+              historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
+            },
+          );
+          daemonPlasmidLedgerPersistence = {
+            ...persisted,
+            hydrated: daemonPlasmidLedgerPersistence.hydrated,
+            lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
+            lastHydrationError:
+              daemonPlasmidLedgerPersistence.lastHydrationError,
+          };
+        }
+      }
+
+      const snapshot: DaemonPolicyUpdateSnapshot = {
+        tick,
+        source,
+        reason,
+        mode: "apply",
+        policy_key: updateKey,
+        ledger_status: result.status,
+        pheromone_rollback_token: updateKey === "daemon.maxPheromoneIntensity"
+          ? result.mutation?.rollbackToken ?? null
+          : null,
+        plasmid_rollback_token: updateKey === "daemon.maxPlasmidCharge"
+          ? result.mutation?.rollbackToken ?? null
+          : null,
+        max_pheromone_intensity_before: beforePheromone,
+        max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
+        max_plasmid_charge_before: beforePlasmid,
+        max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
+      };
+      setLatestDaemonPolicyUpdate(snapshot);
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_policy_update",
+        count: 1,
+      });
+      await appendDaemonAudit({
+        event_type: "DAEMON_POLICY",
+        tick,
+        source: snapshot.source,
+        reason: snapshot.reason,
+        mode: snapshot.mode,
+        policy_key: snapshot.policy_key,
+        ledger_status: snapshot.ledger_status,
+        rollback_token: snapshot.pheromone_rollback_token ??
+          snapshot.plasmid_rollback_token,
+        max_pheromone_intensity_before: snapshot.max_pheromone_intensity_before,
+        max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
+        max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
+        max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: true,
+          updated: snapshot,
+          daemon_policy: serializeDaemonPolicyState(),
+        }),
+        {
+          status: 200,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_policy_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "DAEMON_POLICY_EXCEPTION",
+          details: String(err),
+        }),
+        { status: 500, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/api/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
+    return new Response(JSON.stringify(snapshot), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "12", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 12,
+    );
+    return new Response(JSON.stringify(invariants), {
+      headers: JSON_HEADERS,
+    });
+  }
+
+  if (url.pathname === "/api/inject" && req.method === "POST") {
+    const denied = requireDaemonAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const envelope = parseDaemonInjectEnvelope(body);
+      if (!envelope) {
+        setLatestDaemonAdmission({
+          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+          status: "rejected",
+          requestedAction: "UNKNOWN",
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "INVALID_INJECT_PAYLOAD",
+          sharedCenter: "parse",
+          dominantInvariantVector: "none",
+        });
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_inject_invalid_payload",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_INJECT_PAYLOAD",
+            expected:
+              "Provide action_type and payload {target_x,target_y,intensity,hex_code?}",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const baseline = collectRuntimeMetrics();
+      const safeMode = isDaemonSafeMode(baseline);
+      const recordDaemonCodexAdmission = (
+        severity: "MID" | "HIGH" | "BLOCKED",
+        requestedAction: string,
+        appliedAction: string,
+        score: number,
+        reason: string,
+        sharedCenter: string,
+        dominantInvariantVector: string,
+      ): void => {
+        AKASHA_CODEX.recordDaemonAdmission(
+          baseline.tick,
+          requestedAction,
+          appliedAction,
+          severity,
+          score,
+          reason,
+          sharedCenter,
+          dominantInvariantVector,
+          baseline.glyphTransport,
+        );
+      };
+
+      if (envelope.action_type === "OBSERVE") {
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: "OBSERVE",
+          appliedAction: "OBSERVE",
+          degraded: false,
+          severity: "LOW",
+          score: 0,
+          reason: "OBSERVE_NOOP",
+          sharedCenter: "tick.exists",
+          dominantInvariantVector: "none",
+        });
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_observe_noop",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_OBSERVE",
+          tick: baseline.tick,
+          metrics: baseline,
+          safe_mode: safeMode.blocked,
+          safe_mode_reason: safeMode.reason,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            status: 200,
+            reason: "OBSERVE_NOOP",
+            safe_mode: safeMode.blocked,
+            safe_mode_reason: safeMode.reason,
+          }),
+          { status: 200, headers: JSON_HEADERS },
+        );
+      }
+
+      if (safeMode.blocked) {
+        recordDaemonCodexAdmission(
+          "BLOCKED",
+          envelope.action_type,
+          "BLOCKED",
+          0,
+          safeMode.reason,
+          "safe-mode",
+          "none",
+        );
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: safeMode.reason,
+          sharedCenter: "safe-mode",
+          dominantInvariantVector: "none",
+        });
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_safe_mode_block",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_REJECT",
+          reason: safeMode.reason,
+          tick: baseline.tick,
+          action: envelope.action_type,
+          payload: envelope.payload,
+          metrics: baseline,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: safeMode.reason,
+            safe_mode: true,
+            status: 429,
+          }),
+          { status: 429, headers: JSON_HEADERS },
+        );
+      }
+
+      const dynamicBudgetMax = resolveDaemonBudgetMax(baseline);
+      const budget = consumeDaemonBudget(dynamicBudgetMax);
+      if (!budget.ok) {
+        recordDaemonCodexAdmission(
+          "BLOCKED",
+          envelope.action_type,
+          "BLOCKED",
+          0,
+          "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          "budget-window",
+          "none",
+        );
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "rejected",
+          requestedAction: envelope.action_type,
+          appliedAction: "BLOCKED",
+          degraded: false,
+          severity: "BLOCKED",
+          score: 0,
+          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          sharedCenter: "budget-window",
+          dominantInvariantVector: "none",
+        });
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_rate_limit_block",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_REJECT",
+          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+          tick: baseline.tick,
+          action: envelope.action_type,
+          payload: envelope.payload,
+          metrics: baseline,
+          budget,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
+            status: 429,
+            retry_after_ms: budget.resetInMs,
+            dynamic_max_actions: dynamicBudgetMax,
+          }),
+          { status: 429, headers: JSON_HEADERS },
+        );
+      }
+
+      let plasmidRisk: PlasmidRiskProfile | null = null;
+      if (envelope.action_type === "INJECT_PLASMID") {
+        if (!envelope.payload.hex_code) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            "INVALID_PLASMID_PAYLOAD",
+            "policy",
+            "none",
+          );
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_missing_hex",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "INVALID_PLASMID_PAYLOAD",
+              expected: "hex_code must be 16 hex chars",
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
+        if (envelope.payload.intensity > currentDaemonMaxPlasmidCharge()) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            "policy",
+            "none",
+          );
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_plasmid_charge",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
+              max: currentDaemonMaxPlasmidCharge(),
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+
+        const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
+        if (!plasmidPolicy.ok) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            "BLOCKED",
+            0,
+            plasmidPolicy.reason,
+            "policy",
+            "none",
+          );
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: "BLOCKED",
+            degraded: false,
+            severity: "BLOCKED",
+            score: 0,
+            reason: plasmidPolicy.reason,
+            sharedCenter: "policy",
+            dominantInvariantVector: "none",
+          });
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_plasmid_rule",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: plasmidPolicy.reason,
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+        plasmidRisk = evaluatePlasmidRisk(
+          envelope.payload.hex_code,
+          envelope.payload.intensity,
+        );
+      }
+
+      const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
+        .at(0) ?? "";
+      const narrativeContext = normalizeDaemonNarrativeContext(
+        await AKASHA_CODEX.getNarrative(3),
+        dominantGenome,
+      );
+      const ingressPlan = planInvariantIngress(
+        envelope,
+        evaluateInvariantAdmission(
+          envelope,
+          baseline,
+          narrativeContext,
+          plasmidRisk,
+        ),
+      );
+      const applied = ingressPlan.applied;
+
+      if (ingressPlan.degraded) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: ingressPlan.admission.severity === "HIGH"
+            ? "daemon_invariant_degrade_high"
+            : "daemon_invariant_degrade_mid",
+          count: 1,
+        });
+        await appendDaemonAudit({
+          event_type: "DAEMON_DEGRADED",
+          tick: baseline.tick,
+          requested_action: ingressPlan.requested.action_type,
+          applied_action: ingressPlan.applied.action_type,
+          requested_payload: ingressPlan.requested.payload,
+          applied_payload: ingressPlan.applied.payload,
+          degrade_reason: ingressPlan.degradeReason,
+          admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
+          metrics: baseline,
+          budget,
+        });
+        AKASHA_CODEX.recordDaemonAdmission(
+          baseline.tick,
+          ingressPlan.requested.action_type,
+          ingressPlan.applied.action_type,
+          ingressPlan.admission.severity,
+          ingressPlan.admission.score,
+          ingressPlan.degradeReason ?? "INVARIANT_DEGRADED",
+          ingressPlan.admission.context.sharedCenter,
+          ingressPlan.admission.context.dominantInvariantVector,
+          baseline.glyphTransport,
+        );
+      }
+
+      if (applied.action_type === "DROP_PHEROMONE") {
+        if (
+          applied.payload.intensity > currentDaemonMaxPheromoneIntensity()
+        ) {
+          recordDaemonCodexAdmission(
+            "BLOCKED",
+            envelope.action_type,
+            applied.action_type,
+            ingressPlan.admission.score,
+            "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+            ingressPlan.admission.context.sharedCenter,
+            ingressPlan.admission.context.dominantInvariantVector,
+          );
+          setLatestDaemonAdmission({
+            tick: baseline.tick,
+            status: "rejected",
+            requestedAction: envelope.action_type,
+            appliedAction: applied.action_type,
+            degraded: ingressPlan.degraded,
+            severity: "BLOCKED",
+            score: ingressPlan.admission.score,
+            reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+            sharedCenter: ingressPlan.admission.context.sharedCenter,
+            dominantInvariantVector:
+              ingressPlan.admission.context.dominantInvariantVector,
+            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+            codexLineageGuardScore:
+              ingressPlan.admission.context.codexLineageGuardScore,
+            codexLineageGuardReasons:
+              ingressPlan.admission.context.codexLineageGuardReasons,
+          });
+          MUTATION_TELEMETRY.record({
+            lane: "external_daemon",
+            kind: "daemon_policy_block_pheromone_intensity",
+            count: 1,
+          });
+          return new Response(
+            JSON.stringify({
+              ok: false,
+              reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
+              max: currentDaemonMaxPheromoneIntensity(),
+            }),
+            { status: 400, headers: JSON_HEADERS },
+          );
+        }
+        const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
+          applied.payload.target_x,
+          applied.payload.target_y,
+          applied.payload.intensity,
+          "external_daemon",
+        );
+        const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
+        if (queued.ok) {
+          queueDaemonAudit({
+            auditId,
+            action: "DROP_PHEROMONE",
+            requestedAction: ingressPlan.requested.action_type,
+            targetX: applied.payload.target_x,
+            targetY: applied.payload.target_y,
+            intensity: applied.payload.intensity,
+            queued: queued.ok,
+            queueReason: queued.reason,
+            queuedStatus: queued.status,
+            tickApplied: baseline.tick,
+            evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
+            baseline,
+            sharedCenter: ingressPlan.admission.context.sharedCenter,
+            dominantInvariantVector:
+              ingressPlan.admission.context.dominantInvariantVector,
+            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+          });
+        }
+        await appendDaemonAudit({
+          event_type: "DAEMON_ACCEPT",
+          audit_id: auditId,
+          tick: baseline.tick,
+          action: "DROP_PHEROMONE",
+          requested_action: ingressPlan.requested.action_type,
+          payload: applied.payload,
+          queue: queued,
+          metrics: baseline,
+          budget,
+          admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
+          degraded: ingressPlan.degraded,
+          degrade_reason: ingressPlan.degradeReason,
+        });
+        setLatestDaemonAdmission({
+          tick: baseline.tick,
+          status: "accepted",
+          requestedAction: ingressPlan.requested.action_type,
+          appliedAction: "DROP_PHEROMONE",
+          degraded: ingressPlan.degraded,
+          severity: ingressPlan.admission.severity,
+          score: ingressPlan.admission.score,
+          reason: ingressPlan.degradeReason ??
+            ingressPlan.admission.reasons.join("|"),
+          sharedCenter: ingressPlan.admission.context.sharedCenter,
+          dominantInvariantVector:
+            ingressPlan.admission.context.dominantInvariantVector,
+          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+          codexLineageGuardScore:
+            ingressPlan.admission.context.codexLineageGuardScore,
+          codexLineageGuardReasons:
+            ingressPlan.admission.context.codexLineageGuardReasons,
+        });
+        return new Response(
+          JSON.stringify({
+            ...queued,
+            admission: ingressPlan.admission,
+            plasmid_risk: plasmidRisk,
+            degraded: ingressPlan.degraded,
+            degrade_reason: ingressPlan.degradeReason,
+            applied_action: "DROP_PHEROMONE",
+          }),
+          {
+            status: queued.status,
+            headers: JSON_HEADERS,
+          },
+        );
+      }
+
+      if (!applied.payload.hex_code) {
+        MUTATION_TELEMETRY.record({
+          lane: "external_daemon",
+          kind: "daemon_policy_block_missing_hex",
+          count: 1,
+        });
+        return new Response(
+          JSON.stringify({
+            ok: false,
+            reason: "INVALID_PLASMID_PAYLOAD",
+            expected: "hex_code must be 16 hex chars",
+          }),
+          { status: 400, headers: JSON_HEADERS },
+        );
+      }
+
+      const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
+        applied.payload.target_x,
+        applied.payload.target_y,
+        applied.payload.hex_code,
+        applied.payload.intensity,
+        "external_daemon",
+      );
+      const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
+      if (queued.ok) {
+        queueDaemonAudit({
+          auditId,
+          action: "INJECT_PLASMID",
+          requestedAction: ingressPlan.requested.action_type,
+          targetX: applied.payload.target_x,
+          targetY: applied.payload.target_y,
+          intensity: applied.payload.intensity,
+          hexCode: applied.payload.hex_code,
+          queued: queued.ok,
+          queueReason: queued.reason,
+          queuedStatus: queued.status,
+          tickApplied: baseline.tick,
+          evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
+          baseline,
+          sharedCenter: ingressPlan.admission.context.sharedCenter,
+          dominantInvariantVector:
+            ingressPlan.admission.context.dominantInvariantVector,
+          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+        });
+      }
+      await appendDaemonAudit({
+        event_type: "DAEMON_ACCEPT",
+        audit_id: auditId,
+        tick: baseline.tick,
+        action: "INJECT_PLASMID",
+        requested_action: ingressPlan.requested.action_type,
+        payload: applied.payload,
+        queue: queued,
+        metrics: baseline,
+        budget,
+        admission: ingressPlan.admission,
+        plasmid_risk: plasmidRisk,
+        degraded: ingressPlan.degraded,
+        degrade_reason: ingressPlan.degradeReason,
+      });
+      setLatestDaemonAdmission({
+        tick: baseline.tick,
+        status: "accepted",
+        requestedAction: ingressPlan.requested.action_type,
+        appliedAction: "INJECT_PLASMID",
+        degraded: ingressPlan.degraded,
+        severity: ingressPlan.admission.severity,
+        score: ingressPlan.admission.score,
+        reason: ingressPlan.degradeReason ??
+          ingressPlan.admission.reasons.join("|"),
+        sharedCenter: ingressPlan.admission.context.sharedCenter,
+        dominantInvariantVector:
+          ingressPlan.admission.context.dominantInvariantVector,
+        codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
+        codexLineageGuardScore:
+          ingressPlan.admission.context.codexLineageGuardScore,
+        codexLineageGuardReasons:
+          ingressPlan.admission.context.codexLineageGuardReasons,
+      });
+      return new Response(
+        JSON.stringify({
+          ...queued,
+          admission: ingressPlan.admission,
+          plasmid_risk: plasmidRisk,
+          degraded: ingressPlan.degraded,
+          degrade_reason: ingressPlan.degradeReason,
+          applied_action: "INJECT_PLASMID",
+        }),
+        {
+          status: queued.status,
+          headers: JSON_HEADERS,
+        },
+      );
+    } catch (err) {
+      setLatestDaemonAdmission({
+        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        status: "rejected",
+        requestedAction: "UNKNOWN",
+        appliedAction: "BLOCKED",
+        degraded: false,
+        severity: "BLOCKED",
+        score: 0,
+        reason: "INVALID_INJECT_PAYLOAD",
+        sharedCenter: "exception",
+        dominantInvariantVector: "none",
+      });
+      MUTATION_TELEMETRY.record({
+        lane: "external_daemon",
+        kind: "daemon_inject_exception",
+        count: 1,
+      });
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_INJECT_PAYLOAD",
+          details: String(err),
+        }),
+        { status: 400, headers: JSON_HEADERS },
+      );
+    }
+  }
+
+  if (url.pathname === "/crisis" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueCrisis(body?.logicHex);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_CRISIS_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }
+
+  if (url.pathname === "/federate" && req.method === "POST") {
+    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
+      CONTROL_INTENT_QUEUE,
+    );
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const arrayBuffer = await req.arrayBuffer();
+      const packet = new Uint8Array(arrayBuffer);
+      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
+
+      let peerRuleGenome = null;
+      let peerBehaviorProfile = null;
+      let peerCodexProfile = null;
+      try {
+        const rStr = req.headers.get("x-omega-rule-genome");
+        if (rStr) {
+          peerRuleGenome = JSON.parse(rStr);
+          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
+        }
+        const bStr = req.headers.get("x-omega-behavior-profile");
+        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
+        const cStr = req.headers.get("x-omega-codex-profile");
+        if (cStr) peerCodexProfile = JSON.parse(cStr);
+      } catch (e) {
+        LOGGER.warn(
+          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
+        );
+      }
+
+      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
+      const queued = qCall(
+        packet,
+        sourceNode,
+        peerRuleGenome,
+        peerBehaviorProfile,
+        localContext.behavior,
+        peerCodexProfile,
+        localContext.codex,
+      );
+
+      LOGGER.info(
+        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_FEDERATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }
+
+  if (url.pathname === "/peers") {
+    return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  if (url.pathname === "/peers/profiles") {
+    return new Response(
+      JSON.stringify({
+        local: P2P_FEDERATION.localRuleGenome,
+        peers: P2P_FEDERATION.getPeerRuleProfiles(),
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  if (url.pathname === "/federate/admission") {
+    return new Response(
+      JSON.stringify(CONTROL_INTENT_QUEUE.getFederationAdmissionState()),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  if (url.pathname === "/vox") {
+    return new Response(
+      JSON.stringify(await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd())),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  if (url.pathname === "/thoughts") {
+    return new Response(
+      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  if (url.pathname === "/snapshots" && req.method === "GET") {
+    const list = await SNAPSHOT_ENGINE.listSnapshots();
+    return new Response(JSON.stringify(list), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/governance" && req.method === "GET") {
+    return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/lineage" && req.method === "GET") {
+    return new Response(
+      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
+  }
+
+  if (url.pathname === "/codex" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 8,
+    );
+    return new Response(JSON.stringify(snapshot), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/species" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(snapshot.species), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/chronicles" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(snapshot.chronicles), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/relics" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const snapshot = await AKASHA_CODEX.getSnapshot(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(snapshot.relics), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/narrative" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
+    const narrative = await AKASHA_CODEX.getNarrative(
+      Number.isFinite(limit) ? limit : 5,
+    );
+    return new Response(JSON.stringify(narrative), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/codex/invariants" && req.method === "GET") {
+    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
+    const invariants = await AKASHA_CODEX.getInvariants(
+      Number.isFinite(limit) ? limit : 16,
+    );
+    return new Response(JSON.stringify(invariants), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/viral" && req.method === "GET") {
+    // @ts-ignore: viralGridBuffer is dynamically exposed
+    return new Response(STATE_MATRIX.viralGridBuffer, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/immunity" && req.method === "GET") {
+    const buffer = STATE_MATRIX.immuneBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/signals" && req.method === "GET") {
+    const buffer = STATE_MATRIX.currentReadBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/stiffness" && req.method === "GET") {
+    const buffer = STATE_MATRIX.bondStiffnessBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/bonds" && req.method === "GET") {
+    const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
+    const BONDS_SIZE = MAX_ATOMS * 4 * 4;
+    const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
+    const copy = new Uint8Array(view.byteLength);
+    copy.set(view);
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/synapses" && req.method === "GET") {
+    const buffer = STATE_MATRIX.synapticStackBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/architecture" && req.method === "GET") {
+    const buffer = STATE_MATRIX.structureGridBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/memory" && req.method === "GET") {
+    const buffer = STATE_MATRIX.memoryGridBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/roles" && req.method === "GET") {
+    const buffer = STATE_MATRIX.roleRegistryBuffer;
+    const copy = new Uint8Array(buffer.byteLength);
+    copy.set(new Uint8Array(buffer));
+    return new Response(copy, {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  if (url.pathname === "/snapshot/export" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    const result = await SNAPSHOT_ENGINE.exportSnapshot();
+    return new Response(JSON.stringify(result), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  if (url.pathname === "/snapshot/import" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const body = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueSnapshotImport(
+        body?.timestamp,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_SNAPSHOT_IMPORT_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }
+
+  // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
+  /*
+    if (url.pathname === "/inject" && req.method === "POST") {
+        try {
+            const { text, energy } = await req.json();
+            LOGGER.info(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
+            await SEMANTIC_MEMBRANE.injectThought(text, energy || 100);
+            return new Response("OK", { status: 200 });
+        } catch (e) {
+            return new Response("Injection Failed", { status: 400 });
+        }
+    }
+    */
+
+  // 4. Spatial Mutation (POST)
+  if (url.pathname === "/mutate" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const { x, y, deltaEnergy, radius } = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueMutate(
+        x,
+        y,
+        deltaEnergy,
+        radius,
+      );
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_MUTATE_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }
+
+  // 5. Avatar Cursor Sync (POST)
+  if (url.pathname === "/avatar" && req.method === "POST") {
+    const denied = requireControlAuth(req);
+    if (denied) return denied;
+    try {
+      const { x, y } = await req.json();
+      const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(x, y);
+      return new Response(JSON.stringify(queued), {
+        status: queued.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          reason: "INVALID_AVATAR_PAYLOAD",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }
+
+  try {
+    const html = await Deno.readTextFile(UI_PATH);
+    return new Response(html, { headers: { "Content-Type": "text/html" } });
+  } catch (e) {
+    return new Response("UI not found.", { status: 404 });
+  }
+});
+
+// 2. Start Simulation Pulse Loop (Background)
+(async () => {
+  LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
+  const coldstart = COLDSTART_BOOTSTRAP.seed({
+    enabled: COLDSTART_POLICY.enabled,
+    count: COLDSTART_POLICY.count,
+    replicatorRatio: COLDSTART_POLICY.replicatorRatio,
+    guardianRatio: COLDSTART_POLICY.guardianRatio,
+    seed: COLDSTART_POLICY.seed,
+    energy: COLDSTART_POLICY.energy,
+    resonance: COLDSTART_POLICY.resonance,
+  });
+  if (coldstart.skipped) {
+    LOGGER.info(`🌱 [COLDSTART] ${coldstart.reason}`);
+  } else {
+    LOGGER.info(
+      `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
+    );
+  }
+
+  const isGenesisRun = Deno.args.includes("--genesis") || Deno.args.includes("--autonomous");
+  if (isGenesisRun) {
+    LOGGER.info("🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.");
+    try {
+      Deno.addSignalListener("SIGINT", async () => {
+        LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
+        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        await SNAPSHOT_ENGINE.exportSnapshot({
+          tick,
+          reason: "genesis_shutdown",
+          prune: false,
+          retention: 0
+        });
+        LOGGER.info(`💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`);
+        Deno.exit(0);
+      });
+    } catch {
+      // Deno.addSignalListener is not supported on Windows, silently ignore
+    }
+  }
+
+  await syncDaemonPheromonePolicyLedgerHydration();
+  await syncDaemonPlasmidPolicyLedgerHydration();
+  
+  PULSE.setOracleDelegate({
+    setNeuralCoherence: (c: number) => { SOVEREIGN_ORACLE.neuralCoherence = c; },
+    getNeuralCoherence: () => SOVEREIGN_ORACLE.neuralCoherence,
+    gatherEpochTelemetry: () => SOVEREIGN_ORACLE.gatherEpochTelemetry(),
+    broadcastWhisper: (t: number, tel: any, c: number) => SOVEREIGN_ORACLE.broadcastWhisper(t, tel, c),
+    consultOracle: (idx: number, tel: any) => SOVEREIGN_ORACLE.consultOracle(idx, tel),
+    drainPendingMutations: () => SOVEREIGN_ORACLE.drainPendingMutations()
+  });
+
+  PULSE.setAkashaDelegate({
+    recordMutationTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
+    flushMutationTelemetry: (t: number) => MUTATION_TELEMETRY.flushIfDue(t),
+    compressMemory: (m: any) => compressMemory(m),
+    decompressMemoryToLattice: (m: any, p: any) => decompressMemoryToLattice(m, p),
+    saveEpoch: (m: any, t: number, l: string, p1: number, p2: number, h: string) => saveEpoch(m as any, t, l, p1, p2, h),
+    broadcastPanopticonFrame: (f: ArrayBuffer) => PANOPTICON_SERVER.broadcastBinaryFrame(f),
+    recordImmunologicalPurge: (c: number) => AKASHA_CODEX.recordImmunologicalPurge(c),
+    observePulseCodex: (t: number, p: number, g: any, s: number) => AKASHA_CODEX.observePulse(t, p, g, s),
+    saveSnap: async (t: number) => { await SNAP_ENGINE.save(t); },
+    cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r)
+  });
+
+  const NEXUS_DAEMON = new SwarmNexus({
+    instanceId: 1,
+    seedNodes: [],
+  });
+
+  NEXUS_DAEMON.onAtomTransit = PULSE.onRemoteAtomTransit;
+  NEXUS_DAEMON.onSyncRequest = PULSE.onRemoteSyncRequest;
+  NEXUS_DAEMON.onEpochPayload = PULSE.onRemoteEpochPayload;
+
+  CONTROL_INTENT_QUEUE.setDelegate({
+    recordTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
+    importSnapshot: (ts) => SNAPSHOT_ENGINE.importSnapshot(ts),
+    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
+  });
+
+  PREDICTION_MARKET.setDelegate({
+    recordMarketResolution: (t, c, f, w) => AKASHA_CODEX.recordMarketResolution(t, c, f, w),
+  });
+
+  SOVEREIGNTY_ENGINE.setDelegate({
+    recordDecreeShift: (t: number, o: string, n: string, e: number) => AKASHA_CODEX.recordDecreeShift(t, o, n, e),
+  });
+
+  P2P_FEDERATION.setUpwardDelegate({
+    recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
+    lookupLineageProfile: (l: string) => AKASHA_CODEX.lookupLineageProfile(l),
+    captureBehaviorFrame: (idx: number) => SEMANTIC_MEMBRANE.captureBehaviorFrame(idx),
+  });
+
+  SOVEREIGN_ORACLE.setAkashaDelegate({
+    recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
+    appendObserverCommentary: (t: number, ep: number, m: string) => AKASHA_CODEX.appendObserverCommentary(t, ep, m),
+  });
+
+  PULSE.setNoosphereDelegate({
+    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
+    packAtom: (i) => P2P_CODEC.packAtom(i),
+    evaluateHeartbeat: (t, h, p, e) => SWARM_NODE.evaluateHeartbeat(t, h, p, e),
+    sendEpochPayload: (p, f) => NEXUS_DAEMON.sendEpochPayload(p, f),
+    routeAtom: (p) => NEXUS_DAEMON.routeAtom(p),
+    startNexus: () => NEXUS_DAEMON.start(),
+    broadcastSyncRequest: () => NEXUS_DAEMON.broadcastSyncRequest(),
+    broadcastEpochConsensus: (t, h) => NEXUS_DAEMON.broadcastEpochConsensus(t, h),
+    getNexusStatus: () => ({
+      mainnetEnabled: NEXUS_DAEMON.mainnetEnabled,
+      bootstrapHubUrl: NEXUS_DAEMON.bootstrapHubUrl ?? "",
+      seedNodesLength: NEXUS_DAEMON.seedNodes.length,
+      localCurrentTick: NEXUS_DAEMON.localCurrentTick,
+      localTps: NEXUS_DAEMON.localTps
+    }),
+    setNexusStatus: (s) => {
+      if (s.mainnetEnabled !== undefined) NEXUS_DAEMON.mainnetEnabled = s.mainnetEnabled;
+      if (s.bootstrapHubUrl !== undefined) NEXUS_DAEMON.bootstrapHubUrl = s.bootstrapHubUrl;
+      if (s.localCurrentTick !== undefined) NEXUS_DAEMON.localCurrentTick = s.localCurrentTick;
+      if (s.localTps !== undefined) NEXUS_DAEMON.localTps = s.localTps;
+    },
+    getMedianSwarmTick: (t) => NEXUS_DAEMON.getMedianSwarmTick(t)
+  });
+
+  await PULSE.initWorkers();
+
+  let lastOracleTick = 0;
+  const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
+  const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
+
+  // Phase 48: Eschaton Trackers
+  let stagnantTicks = 0;
+  let lastPopulation = -1;
+  const STAGNATION_THRESHOLD = 10000;
+
+  while (true) {
+    await PULSE.tick();
+    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    
+    if (tick % 100 === 0) {
+      LINEAGE_TRACKER.updateMetrics(tick);
+    }
+    
+    await flushDaemonAuditEffects(tick);
+    await maybeAutoSnapshot(tick);
+    if (
+      telemetryStreamLastTick < 0 ||
+      tick - telemetryStreamLastTick >= TELEMETRY_STREAM_EMIT_INTERVAL_TICKS
+    ) {
+      const metrics = collectRuntimeMetrics();
+      const safeMode = isDaemonSafeMode(metrics);
+      const glyphSnap = GLYPH_BUFFER.snapshot();
+
+      TELEMETRY_STREAM.emit({
+        tick: metrics.tick,
+        population: metrics.population,
+        avgEnergy: metrics.avgEnergy,
+        neuralCoherence: metrics.neuralCoherence,
+        spatialOverflowRatio: metrics.spatialOverflowRatio,
+        daemonSafeMode: safeMode.blocked,
+      });
+      telemetryStreamLastTick = tick;
+    }
+
+    if (isGenesisRun && tick - lastOracleTick >= genesisInterval) {
+      const epoch = Math.floor(tick / genesisInterval);
+      const metrics = collectRuntimeMetrics();
+      const { dominantMeme, destructiveMeme } = LINEAGE_TRACKER.closeEpoch(tick);
+      const telemetry = {
+        epoch,
+        population: metrics.population,
+        avgEnergy: metrics.avgEnergy,
+        neuralCoherence: metrics.neuralCoherence,
+        entropyPressure: STATE_MATRIX.getHormone(0),
+        dominantMeme,
+        destructiveMeme
+      };
+
+      // Phase 48 Stagnation Check
+      let eschatonReason: string | null = null;
+      const epochTelemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
+      const topGenome = epochTelemetry.dominant_genomes[0];
+      const isMonoculture = topGenome && (topGenome.count / Math.max(1, metrics.population)) > 0.90;
+
+      if (metrics.neuralCoherence >= 10000) {
+        eschatonReason = "Absolute Order (Singularity of Coherence)";
+      } else if (metrics.population > 0 && isMonoculture) {
+        eschatonReason = "Leviathan Victory (Absolute Monoculture)";
+      } else if (metrics.population > 0 && metrics.avgEnergy < 10 && Math.abs(metrics.population - lastPopulation) < 5) {
+        stagnantTicks += genesisInterval;
+        if (stagnantTicks >= STAGNATION_THRESHOLD) {
+          eschatonReason = "Heat Death (Energetic and Memetic Stagnation)";
+        }
+      } else {
+        stagnantTicks = 0;
+      }
+      lastPopulation = metrics.population;
+
+      if (eschatonReason) {
+        await SOVEREIGN_ORACLE.declareEschaton(eschatonReason);
+        STATE_MATRIX.clear();
+        mutateUniversalConstants();
+        stagnantTicks = 0;
+        lastOracleTick = tick;
+        LOGGER.info("🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.");
+        // We do not consult the Oracle for a normal plasmid on Kalpa boundary
+        continue;
+      }
+
+      // For testing speed: always run the first interval.
+      SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
+      lastOracleTick = tick;
+    }
+
+    await new Promise((r) => setTimeout(r, 16));
+  }
+})();
+
+// 3. Start Panopticon Telemetry Server (Background)
+(() => {
+  PANOPTICON_SERVER.start();
+})();
+
+// 4. Start Cognitive Breathing Loop (Background)
+(async () => {
+  LOGGER.info("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
+  await new Promise((r) => setTimeout(r, 5000));
+  await BREATH.inhale();
+})();
+
+```
+
+---
+
+## FILE: 07_meta/03_guards/topology_linter.ts
+
+```typescript
+import { walk } from "https://deno.land/std@0.224.0/fs/mod.ts";
+
+const LAYER_PREFIXES = ["00_", "01_", "02_", "03_", "04_", "05_", "06_"];
+let violations = 0;
+
+function getLayerCode(layerStr: string): number {
+    return parseInt(layerStr.substring(0, 2), 10);
+}
+
+const importRegex = /import\s+(?:(?:{[^}]+})|(?:[\w\s,]+\*?\s+as\s+\w+))\s+from\s+["']([^"']+)["']/g;
+
+for await (const entry of walk(".", { exts: [".ts"], skip: [/\.git/, /08_artifacts/, /63_necropolis/, /07_meta/] })) {
+    if (!entry.isFile) continue;
+    
+    let sourceLayerPrefix = null;
+    for (const p of LAYER_PREFIXES) {
+        if (entry.path.startsWith(p)) {
+            sourceLayerPrefix = p;
+            break;
+        }
+    }
+    
+    if (!sourceLayerPrefix) continue;
+    const sourceCode = getLayerCode(sourceLayerPrefix);
+    
+    const content = await Deno.readTextFile(entry.path);
+    let match;
+    
+    while ((match = importRegex.exec(content)) !== null) {
+        const importPath = match[1];
+        
+        // Skip external imports
+        if (importPath.startsWith("http") || importPath.startsWith("npm:")) continue;
+        
+        let targetLayerPrefix = null;
+        for (const p of LAYER_PREFIXES) {
+            if (importPath.includes(p)) {
+                targetLayerPrefix = p;
+                break;
+            }
+        }
+        
+        if (targetLayerPrefix && targetLayerPrefix !== sourceLayerPrefix) {
+            const targetCode = getLayerCode(targetLayerPrefix);
+            
+            // Rule 1: YY <= XX (Downward scalar)
+            if (targetCode > sourceCode) {
+                console.error(`[TOPOLOGY BREACH] Ascending Import: ${entry.path} (${sourceLayerPrefix}) imports from ${targetLayerPrefix} (${importPath})`);
+                violations++;
+            }
+            
+            // Rule 2: Exclusively through mod.ts
+            if (!importPath.endsWith("/mod.ts")) {
+                console.error(`[TOPOLOGY BREACH] Deep Import Violation: ${entry.path} imports directly from ${importPath}. Must go through mod.ts.`);
+                violations++;
+            }
+        }
+    }
+}
+
+if (violations > 0) {
+    console.error(`\n❌ Failed. ${violations} topological breaches detected in the Lattice.`);
+    Deno.exit(1);
+} else {
+    console.log("✅ The Lattice is Absolute. 0 Topology Breaches.");
 }
 
 ```
@@ -30152,7 +36727,7 @@ export const COLDSTART_BOOTSTRAP = {
 import { STATE_MATRIX, wasmMemory } from "../00_substrate/mod.ts";
 
 const main = async () => {
-  const wasmBytes = await Deno.readFile("./build/release.wasm");
+  const wasmBytes = await Deno.readFile("../../08_artifacts/release.wasm");
   console.log("Loaded wasm bytes", wasmBytes.length);
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: (a: any, b: any) => console.log("TRACE:", a, b) },
@@ -34010,225 +40585,6 @@ async function processAtom(targetFilename: string) {
 
 ---
 
-## FILE: AGENT_PROXY.ts
-
-```typescript
-import { RISC, STATE_MATRIX, SYS } from "./00_substrate/mod.ts";
-import { PULSE } from "./02_metabolism/mod.ts";
-import { SPATIAL_HASH } from "./01_physics/mod.ts";
-import { assembleScript } from "./02_metabolism/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-
-export class AgentProxy {
-  port: number;
-  server: Deno.HttpServer | null = null;
-
-  constructor(port: number = 8080) {
-    this.port = port;
-  }
-
-  start() {
-    LOGGER.info(
-      `[AGENT_PROXY] Starting LLM Sandbox Proxy on port ${this.port}...`,
-    );
-    this.server = Deno.serve(
-      { port: this.port },
-      this.handleRequest.bind(this),
-    );
-  }
-
-  stop() {
-    if (this.server) {
-      this.server.shutdown();
-      LOGGER.info("[AGENT_PROXY] Server stopped.");
-    }
-  }
-
-  async handleRequest(req: Request): Promise<Response> {
-    const url = new URL(req.url);
-    const method = req.method;
-
-    if (method === "GET" && url.pathname === "/api/matrix/info") {
-      return this.handleMatrixInfo(req);
-    }
-
-    const atomMatch = url.pathname.match(/^\/api\/atom\/(\d+)(?:\/(.*))?$/);
-    if (atomMatch) {
-      const atomId = parseInt(atomMatch[1], 10);
-      const action = atomMatch[2];
-
-      if (!action && method === "GET") {
-        return this.handleAtomSense(atomId);
-      }
-
-      if (action === "act" && method === "POST") {
-        return await this.handleAtomAct(req, atomId);
-      }
-    }
-
-    return new Response(JSON.stringify({ error: "Not Found" }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  handleMatrixInfo(req: Request): Response {
-    let pop = 0;
-    let totalEnergy = 0;
-    const tick = Atomics.load((STATE_MATRIX as any).tickCounter, 0);
-    // Simple population scan
-    for (let i = 1; i <= 10000; i++) { // Bounding scan for performance
-      const id = Number(STATE_MATRIX.getId(i));
-      const energy = STATE_MATRIX.getEnergy(i);
-      if (id > 0 && energy > 0) {
-        pop++;
-        totalEnergy += energy;
-      }
-    }
-
-    return new Response(
-      JSON.stringify({
-        tick,
-        population: pop,
-        totalEnergy,
-      }),
-      { headers: { "Content-Type": "application/json" } },
-    );
-  }
-
-  handleAtomSense(atomId: number): Response {
-    const id = Number(STATE_MATRIX.getId(atomId));
-    if (id <= 0) {
-      return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
-        status: 404,
-      });
-    }
-
-    const x = STATE_MATRIX.getX(atomId);
-    const y = STATE_MATRIX.getY(atomId);
-    const energy = STATE_MATRIX.getEnergy(atomId);
-    const role = STATE_MATRIX.getRole(atomId);
-
-    // Radar scan (radius 50 units = 5 cells)
-    const neighbors = SPATIAL_HASH.queryRadius(x, y, 50);
-    const vision = neighbors
-      .filter((nIdx) => nIdx !== atomId)
-      .map((nIdx) => ({
-        id: Number(STATE_MATRIX.getId(nIdx)),
-        idx: nIdx,
-        dx: STATE_MATRIX.getX(nIdx) - x,
-        dy: STATE_MATRIX.getY(nIdx) - y,
-        role: STATE_MATRIX.getRole(nIdx),
-        distance: Math.sqrt(
-          Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
-            Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
-        ),
-      })).sort((a, b) => a.distance - b.distance)
-      .slice(0, 30);
-
-    return new Response(
-      JSON.stringify({
-        self: { id, idx: atomId, x, y, energy, role },
-        vision,
-      }),
-      { headers: { "Content-Type": "application/json" } },
-    );
-  }
-
-  async handleAtomAct(req: Request, atomId: number): Promise<Response> {
-    const id = Number(STATE_MATRIX.getId(atomId));
-    if (id <= 0) {
-      return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
-        status: 404,
-      });
-    }
-
-    try {
-      const body = await req.json();
-      const action = body.action;
-
-      let ops: number[] = [];
-
-      switch (action) {
-        case "ATTRACT": {
-          const targetIdx = typeof body.targetIdx === "number"
-            ? body.targetIdx
-            : 0;
-          const intensity = typeof body.intensity === "number"
-            ? body.intensity
-            : 1;
-
-          ops = [
-            RISC.OP_SET,
-            1,
-            targetIdx,
-            RISC.OP_SET,
-            2,
-            intensity,
-            RISC.OP_SET,
-            0,
-            SYS.ATTRACT,
-            RISC.OP_SYSCALL,
-          ];
-          break;
-        }
-        case "TRANSFER": {
-          const targetIdx = typeof body.targetIdx === "number"
-            ? body.targetIdx
-            : 0;
-          const resourceType = typeof body.resourceType === "number"
-            ? body.resourceType
-            : 0;
-          const amount = typeof body.amount === "number" ? body.amount : 0;
-
-          ops = [
-            RISC.OP_SET,
-            1,
-            targetIdx,
-            RISC.OP_SET,
-            2,
-            resourceType,
-            RISC.OP_SET,
-            3,
-            amount & 0xFF, // Negative fits in 8 bits nicely if < 127 steals
-            RISC.OP_SET,
-            0,
-            SYS.TRANSFER,
-            RISC.OP_SYSCALL,
-          ];
-          break;
-        }
-        case "YIELD":
-        default:
-          ops = [0]; // HALT/NOP
-          break;
-      }
-
-      const compiledScript = assembleScript(ops);
-      STATE_MATRIX.setInstructions(atomId, compiledScript);
-
-      return new Response(
-        JSON.stringify({ success: true, compiled_bytes: ops.length }),
-      );
-    } catch (e) {
-      LOGGER.error(e);
-      return new Response(
-        JSON.stringify({ error: "Invalid JSON or Internal Error" }),
-        { status: 400 },
-      );
-    }
-  }
-}
-
-if (import.meta.main) {
-  const proxy = new AgentProxy();
-  proxy.start();
-}
-
-```
-
----
-
 ## FILE: AKASHA_UI.html
 
 ```html
@@ -34663,9 +41019,9 @@ export context. It intentionally excludes historical era narratives.
 
 - Source of truth: `CORE_ARCH_MANIFEST.json`.
 - `runtime_root_files`: executable entry roots that define active runtime
-  closure. Current roots: `SYSTEM_START.ts`, `02_metabolism/PULSE.ts`, `02_metabolism/PULSE_WORKER.ts`,
+  closure. Current roots: `07_meta/02_runners/SYSTEM_START.ts`, `02_metabolism/PULSE.ts`, `02_metabolism/PULSE_WORKER.ts`,
   `06_akasha/AKASHA_SERVER.ts`, `06_akasha/OMEGA_DAEMON.ts`, `assembly/index.ts`,
-  `06_akasha/MUTATION_TELEMETRY.ts`, `06_akasha/TUI_DASHBOARD.ts`, `AGENT_PROXY.ts`, `05_exocortex/llm_soul.ts`,
+  `06_akasha/MUTATION_TELEMETRY.ts`, `06_akasha/TUI_DASHBOARD.ts`, `06_akasha/AGENT_PROXY.ts`, `05_exocortex/llm_soul.ts`,
   `63_necropolis/nightly_soak.ts`.
 - `runtime_support_files`: operational/support code intentionally exported but
   outside active runtime closure.
@@ -37868,323 +44224,13 @@ export function tick_membrane_physics(): void {
 
 ---
 
-## FILE: BREATH.ts
-
-```typescript
-// OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
-// Periodically samples the Matrix and injects new conceptual spores.
-
-import { STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
-import { LLM_SYNAPSE } from "./05_exocortex/mod.ts";
-import { AUDIT_ENGINE } from "./03_governance/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { AKASHA_CODEX } from "./06_akasha/mod.ts";
-const PULSE_LOG = "AKASHA.log";
-const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
-
-export const BREATH = {
-  inhale: async () => {
-    AUDIT_ENGINE.setDelegate({
-      generateThought: (c: string) => LLM_SYNAPSE.generateThought(c),
-    });
-
-    LOGGER.info("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
-
-    while (true) {
-      LOGGER.info("\n--- [BREATH] Deep Sample ---");
-
-      // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
-      const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
-      const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
-      LOGGER.info(
-        `   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`,
-      );
-      if (oracle.length > 0) {
-        LOGGER.info(
-          `   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`,
-        );
-      }
-
-      // 2. Audit Archived Intent (Historical Context)
-      const historicalBriefing = await AUDIT_ENGINE
-        .generateHistoricalBriefing();
-      LOGGER.info(
-        `   [BREATH] Historical Briefing: "${
-          historicalBriefing.substring(0, 50)
-        }..."`,
-      );
-      const codexChronicle = await AKASHA_CODEX.getChronicleContext(3);
-      LOGGER.info(
-        `   [BREATH] Codex Chronicle: "${codexChronicle.substring(0, 60)}..."`,
-      );
-
-      // 3. Consult the Oracle (LLM Synapse)
-      const combinedContext = `${historicalBriefing} | MOOD: ${
-        vox.join(" ")
-      } | ORACLE: ${oracle.join(" ")} | CODEX: ${codexChronicle}`;
-      const thought = await LLM_SYNAPSE.generateThought(combinedContext);
-
-      // 4. Inject back into the Matrix (Motor Output)
-      const weight = 80 + Math.random() * 40;
-      await SEMANTIC_MEMBRANE.injectThought(thought, weight);
-
-      // Phase 23: Entropy Flux (Negative Entropy Injection)
-      const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
-      LOGGER.info(
-        `   [BREATH] Negentropy Flux: +${
-          (weight * 2).toFixed(1)
-        } energy units across ${energyInjected} atoms`,
-      );
-
-      // 5. Digital Archaeology (Every 5 cycles)
-      if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
-        LOGGER.info("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
-        const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
-        if (ruins.length > 0) {
-          const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
-          LOGGER.info(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
-        } else {
-          LOGGER.info("   [ARCHAEOLOGY] No ruins found in this sector.");
-        }
-      }
-
-      LOGGER.info(
-        `   [BREATH] Exhale complete. Next cycle in ${
-          BREATH_INTERVAL_MS / 1000
-        }s.`,
-      );
-
-      await new Promise((r) => setTimeout(r, BREATH_INTERVAL_MS));
-    }
-  },
-};
-
-if (import.meta.main) {
-  BREATH.inhale();
-}
-
-```
-
----
-
-## FILE: build_wasm.ts
-
-```typescript
-import * as OFFSETS from "./00_substrate/mod.ts";
-import { assertWasmLayout } from "./tests/wasm_layout_guard.ts";
-
-if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
-  console.error(
-    `[wasm:build] Refusing build: pages=${OFFSETS.WASM_MEMORY_PAGES} < required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
-  );
-  Deno.exit(1);
-}
-
-await Deno.mkdir("build", { recursive: true });
-await assertWasmLayout();
-
-const args = [
-  "run",
-  "-A",
-  "npm:assemblyscript@0.28.9/asc",
-  "assembly/index.ts",
-  "-O",
-  "-o",
-  "build/release.wasm",
-  "--noAssert",
-  "--importMemory",
-  "--sharedMemory",
-  "--initialMemory",
-  String(OFFSETS.MIN_WASM_MEMORY_PAGES),
-  "--maximumMemory",
-  String(OFFSETS.WASM_MEMORY_PAGES),
-  "--enable",
-  "threads",
-  "--runtime",
-  "stub",
-];
-
-const build = new Deno.Command("deno", {
-  args,
-  stdout: "inherit",
-  stderr: "inherit",
-});
-
-const { code } = await build.output();
-if (code !== 0) Deno.exit(code);
-
-const stat = await Deno.stat("build/release.wasm");
-console.log(
-  `[wasm:build] build/release.wasm=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
-);
-
-```
-
----
-
-## FILE: calc_rust_offsets.ts
-
-```typescript
-import * as off from "./63_necropolis/mod.ts";
-
-const bounds = {
-  ids: off.IDS_OFFSET,
-  xs: off.XS_OFFSET,
-  ys: off.YS_OFFSET,
-  energy: off.ENERGY_OFFSET,
-  resonance: off.RESONANCE_OFFSET,
-  phase: off.PHASE_OFFSET,
-  logic: off.LOGIC_OFFSET,
-  bonds: off.BONDS_OFFSET,
-  stiffness: off.STIFFNESS_OFFSET,
-  instructions: off.INSTRUCTIONS_OFFSET,
-  context: off.CONTEXT_OFFSET,
-  evolution_reserved: off.EVOLUTION_OFFSET,
-  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-  meiosis: off.MEIOSIS_OFFSET,
-  bond_requests: off.BOND_REQUESTS_OFFSET,
-  spatial_grid: off.SPATIAL_GRID_OFFSET,
-  roles: off.ROLES_OFFSET,
-  structure_grid: off.STRUCTURE_GRID_OFFSET,
-  signal_grid: off.SIGNAL_GRID_OFFSET,
-  memory_grid: off.MEMORY_GRID_OFFSET,
-  ascension_stats: off.ASCENSION_STATS_OFFSET,
-  bond_distances: off.BOND_DISTANCES_OFFSET,
-  damping: off.DAMPING_OFFSET,
-  causality: off.CAUSALITY_OFFSET,
-  hive_memory: off.HIVE_MEMORY_OFFSET,
-  hive_balance: off.HIVE_BALANCE_OFFSET,
-  quorum: off.QUORUM_OFFSET,
-  coherence: off.COHERENCE_OFFSET,
-  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-  energy_delta: off.ENERGY_DELTA_OFFSET,
-  resonance_delta: off.RESONANCE_DELTA_OFFSET,
-  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-  attention_field: off.ATTENTION_FIELD_OFFSET,
-  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-  glyph_header: off.GLYPH_HEADER_OFFSET,
-  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-  hormones: off.HORMONE_OFFSET,
-  secretion_stats: off.SECRETION_STATS_OFFSET,
-  lineage: off.LINEAGE_OFFSET,
-  mailbox: off.MAILBOX_OFFSET,
-  ledger_head: off.LEDGER_HEAD_OFFSET,
-  ledger_data: off.LEDGER_DATA_OFFSET,
-};
-
-for (const [k, v] of Object.entries(bounds)) {
-  console.log(`${k}: ${v} (+ 8 buffer) -> expected Rust offset_of: ${v + 8}`);
-}
-
-// Calculate the rust padding bytes
-const expectedSizeForPad = (
-  name: string,
-  curEnd: number,
-  nextTarget: number,
-) => {
-  let pad = nextTarget - curEnd;
-  console.log(`_pad_${name}: [u8; ${pad}] // align to ${nextTarget + 8}`);
-};
-
-let bytesPerAtom = {
-  bonds: 4 * 4,
-  stiffness: 4 * 4,
-  roles: 1,
-  bond_distances: 4,
-  damping: 1,
-  causality: 1,
-  physics_xs: 2,
-};
-console.log("\n");
-
-// from 110,024,584
-let end_spatial = bounds.spatial_grid + (140 * 80 * 128); // 32 * i32
-expectedSizeForPad("roles", end_spatial, bounds.roles);
-
-let end_roles = bounds.roles + 500000;
-expectedSizeForPad("structure_grid", end_roles, bounds.structure_grid);
-
-let end_structure = bounds.structure_grid + (140 * 80 * 4);
-expectedSizeForPad("signal_grid", end_structure, bounds.signal_grid);
-
-let end_signal = bounds.signal_grid + (140 * 80 * 4);
-expectedSizeForPad("memory_grid", end_signal, bounds.memory_grid);
-
-let end_memory = bounds.memory_grid + (140 * 80 * 8);
-expectedSizeForPad("ascension", end_memory, bounds.ascension_stats);
-
-// _pad_damping
-// Note bond_distances in off is after ascension stats theoretically, wait, no, bounds says BOND_DISTANCES_OFFSET = 117137384.
-// Ascension ends at 112137384 + (250000 * 4) = 113,137,384? Wait, memory.rs gives [i32; 250_000] for ascension... Wait, memory.rs has 250000 not 500000 for ascension? Oh, memory_grid is earlier.
-// Wait, bounds.ascension_stats + 250_000 * 4 = 112137384 + 1000000 = 113137384. But bond_distances is 117137384! That means there's a 4M pad missing or the array size scales with atoms?
-// Memory.rs: pub ascension_stats: [i32; 250_000] -> this was meant to be MAX_ATOMS * i32 perhaps?! 500k atoms * 4 = 2,000,000 bytes ... wait, old was 250000 * 4 = 1,000,000. For 100k, that is 10 bytes per atom? Let's check sizes... Wait, I should just match what I did in the offset calculator earlier!
-// Let me look at OFFSETS.js.
-
-```
-
----
-
-## FILE: check_guardians.ts
-
-```typescript
-import { STATE_MATRIX } from "./00_substrate/mod.ts";
-import { rolesView } from "./02_metabolism/mod.ts";
-
-const active = STATE_MATRIX.getActiveIndices();
-let producers = 0;
-let architects = 0;
-let guardians = 0;
-let others = 0;
-
-for (const idx of active) {
-  const role = rolesView[idx];
-  if (role === STATE_MATRIX.ROLE_PRODUCER) producers++;
-  else if (role === STATE_MATRIX.ROLE_ARCHITECT) architects++;
-  else if (role === STATE_MATRIX.ROLE_GUARDIAN) guardians++;
-  else others++;
-}
-
-console.log(`Total active: ${active.length}`);
-console.log(`Producers: ${producers}`);
-console.log(`Architects: ${architects}`);
-console.log(`Guardians: ${guardians}`);
-console.log(`Others: ${others}`);
-
-```
-
----
-
-## FILE: check_wasm_imports.ts
-
-```typescript
-const wasmBytes = await Deno.readFile("build/release.wasm");
-const wasmModule = await WebAssembly.compile(wasmBytes);
-console.log("Imports:");
-const imports = WebAssembly.Module.imports(wasmModule);
-for (const imp of imports) {
-  console.log(`  - ${imp.module}.${imp.name} (${imp.kind})`);
-}
-
-```
-
----
-
 ## FILE: CORE_ARCH_MANIFEST.json
 
 ```json
 {
   "era": "69",
   "runtime_root_files": [
-    "SYSTEM_START.ts",
+    "07_meta/02_runners/SYSTEM_START.ts",
     "02_metabolism/PULSE.ts",
     "02_metabolism/PULSE_WORKER.ts",
     "06_akasha/AKASHA_SERVER.ts",
@@ -38192,27 +44238,26 @@ for (const imp of imports) {
     "assembly/index.ts",
     "06_akasha/MUTATION_TELEMETRY.ts",
     "06_akasha/TUI_DASHBOARD.ts",
-    "AGENT_PROXY.ts",
+    "06_akasha/AGENT_PROXY.ts",
     "05_exocortex/llm_soul.ts",
     "63_necropolis/nightly_soak.ts"
   ],
   "runtime_support_files": [
-    "build_wasm.ts",
+    "07_meta/02_runners/build_wasm.ts",
     "02_metabolism/HOLOGRAM_MODULE.ts",
-    "mod.ts",
     "06_akasha/OBSERVER_LAB.ts",
     "06_akasha/OBSERVER_UI.ts",
     "04_noosphere/P2P_SYNAPSE.ts",
     "02_metabolism/RECOVERY.ts",
     "02_metabolism/SNAP.ts",
     "01_physics/STRUCTURE_ENGINE.ts",
-    "tests/wasm_layout_guard.ts",
-    "worker_determinism_capture.ts",
-    "worker_gate_thresholds.ts",
-    "worker_resilience_capture.ts",
-    "worker_seeded_swarm.ts",
-    "worker_trend_baseline.ts",
-    "worker_trend_math.ts",
+    "00_substrate/03_tests/wasm_layout_guard.ts",
+    "02_metabolism/03_tests/worker_determinism_capture.ts",
+    "02_metabolism/03_tests/worker_gate_thresholds.ts",
+    "02_metabolism/03_tests/worker_resilience_capture.ts",
+    "02_metabolism/03_tests/worker_seeded_swarm.ts",
+    "02_metabolism/03_tests/worker_trend_baseline.ts",
+    "02_metabolism/03_tests/worker_trend_math.ts",
     "reduction_core/REIFICATION_ACTION.ts",
     "reduction_core/relics/RELIC_CULTIVATION.ts"
   ],
@@ -38229,7 +44274,7 @@ for (const imp of imports) {
     "verification/reduction_harness.ts"
   ],
   "core_entry_files": [
-    "SYSTEM_START.ts",
+    "07_meta/02_runners/SYSTEM_START.ts",
     "02_metabolism/PULSE.ts",
     "02_metabolism/PULSE_WORKER.ts",
     "06_akasha/AKASHA_SERVER.ts",
@@ -38237,7 +44282,7 @@ for (const imp of imports) {
     "assembly/index.ts",
     "06_akasha/MUTATION_TELEMETRY.ts",
     "06_akasha/TUI_DASHBOARD.ts",
-    "AGENT_PROXY.ts",
+    "06_akasha/AGENT_PROXY.ts",
     "05_exocortex/llm_soul.ts",
     "63_necropolis/nightly_soak.ts"
   ],
@@ -38249,16 +44294,17 @@ for (const imp of imports) {
     "03_governance/GENERIC_LEDGER_PERSISTENCE.ts",
     "03_governance/GENERIC_LEDGER_SYSTEM.ts",
     "02_metabolism/HORMONE_BUFFER_RUNTIME.ts",
-    "build_wasm.ts",
-    "tests/wasm_layout_guard.ts",
-    "worker_gate_thresholds.ts",
-    "worker_determinism_capture.ts",
-    "worker_resilience_capture.ts",
-    "worker_seeded_swarm.ts",
-    "worker_trend_math.ts",
-    "worker_trend_baseline.ts",
+    "07_meta/02_runners/build_wasm.ts",
+    "00_substrate/03_tests/wasm_layout_guard.ts",
+    "02_metabolism/03_tests/worker_gate_thresholds.ts",
+    "02_metabolism/03_tests/worker_determinism_capture.ts",
+    "02_metabolism/03_tests/worker_resilience_capture.ts",
+    "02_metabolism/03_tests/worker_seeded_swarm.ts",
+    "02_metabolism/03_tests/worker_trend_math.ts",
+    "02_metabolism/03_tests/worker_trend_baseline.ts",
     "reduction_core/REIFICATION_ACTION.ts",
-    "reduction_core/relics/RELIC_CULTIVATION.ts"
+    "reduction_core/relics/RELIC_CULTIVATION.ts",
+    "06_akasha/mod.ts"
   ],
   "context_files": [
     "CORE_ARCH_MANIFEST.json",
@@ -38281,7 +44327,6 @@ for (const imp of imports) {
     "public/main.js"
   ]
 }
-
 ```
 
 ---
@@ -39946,923 +45991,6 @@ pub enum SigmaOp {
 
 ---
 
-## FILE: dump_waste.ts
-
-```typescript
-import { join } from "node:path";
-
-const MANIFEST_PATH = "CORE_ARCH_MANIFEST.json";
-
-const raw = await Deno.readTextFile(MANIFEST_PATH);
-const manifest = JSON.parse(raw);
-
-const explicitFiles = new Set<string>();
-for (const key of Object.keys(manifest)) {
-  if (Array.isArray(manifest[key])) {
-    for (const file of manifest[key]) {
-      explicitFiles.add(file);
-    }
-  }
-}
-
-const cmd = new Deno.Command("git", { args: ["ls-files"] });
-const { stdout } = await cmd.output();
-const allTracked = new TextDecoder().decode(stdout).split("\n").filter(Boolean);
-
-const orphans = [];
-for (const file of allTracked) {
-  if (explicitFiles.has(file)) continue;
-  
-  if (file === "OMEGA_CORE_LOGIC.md" || file === "export_core.ts" || file === "dump_waste.ts" || file === "generate_orphans.ts") continue;
-  if (file.startsWith(".")) continue;
-  if (file.startsWith("tests/") || file.match(/^test_.*\.ts$/)) continue; // ignore test files
-  if (file.startsWith("sigma_core/") || file.startsWith("omega_vm/") || file.startsWith("omega_wasm/") || file.startsWith("target/")) continue; // ignore rust logic
-  if (file === "LICENSE" || file.endsWith(".lock") || file.endsWith(".json") || file.endsWith(".jsonc") || file.endsWith(".toml") || file.endsWith(".yaml")) continue;
-  if (file.endsWith(".log") || file.includes("logs/")) continue;
-  if (file.endsWith(".webp") || file.endsWith(".png") || file.endsWith(".jpg") || file.endsWith(".ico") || file.endsWith(".wasm") || file.endsWith(".html") || file.endsWith(".css")) continue;
-  if (file.endsWith(".csv")) continue;
-  
-  orphans.push(file);
-}
-
-let md = "# FORGOTTEN & UNTRACKED RESOURCES\n\n";
-md += "The following files are tracked in the OMEGA-64 repository but are **NOT** explicitly listed in the `CORE_ARCH_MANIFEST.json` arrays. This makes them 'orphans', legacy scripts, scratchpads, forgotten docs, or auxiliary tools.\n\n";
-
-let dumpedCount = 0;
-for (const f of orphans) {
-  try {
-    const content = await Deno.readTextFile(f);
-    let lang = "text";
-    if (f.endsWith(".ts") || f.endsWith(".js")) lang = "typescript";
-    else if (f.endsWith(".md")) lang = "markdown";
-    else if (f.endsWith(".rs")) lang = "rust";
-    
-    md += `## FILE: ${f}\n\n\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
-    dumpedCount++;
-  } catch (err) {
-    // Might be binary or unreadable
-  }
-}
-
-await Deno.writeTextFile("ORPHANED_WASTE.md", md);
-console.log(`Generated ORPHANED_WASTE.md with ${dumpedCount} files.`);
-
-```
-
----
-
-## FILE: export_rust.ts
-
-```typescript
-// OMEGA-64 | export_rust.ts
-// Builds RUST_CORE_LOGIC.md by consolidating the sigma_core and omega_wasm Rust sources.
-
-import { extname, join } from "node:path";
-
-const TARGET_DIRS = ["sigma_core", "omega_wasm"];
-const ALLOWED_EXTENSIONS = [".rs", ".toml", ".json", ".lock"];
-
-const EXCLUDE_PATTERNS = [
-  /\/target\//,
-  /\/.git\//,
-  /\/tests\/.*\.rs$/,
-];
-
-async function collectFiles(dir: string): Promise<string[]> {
-  const discovered: string[] = [];
-  const queue = [dir];
-  while (queue.length > 0) {
-    const currentPath = queue.shift()!;
-    try {
-      for await (const entry of Deno.readDir(currentPath)) {
-        if (entry.name.startsWith(".")) {
-          // Include .cargo but not .git
-          if (entry.name !== ".cargo") continue;
-        }
-
-        const entryPath = join(currentPath, entry.name);
-
-        if (EXCLUDE_PATTERNS.some((p) => p.test(entryPath))) continue;
-
-        if (entry.isDirectory) {
-          queue.push(entryPath);
-        } else if (
-          entry.isFile && ALLOWED_EXTENSIONS.includes(extname(entry.name))
-        ) {
-          if (
-            entry.name === "Cargo.lock" && currentPath !== "sigma_core" &&
-            currentPath !== "omega_wasm"
-          ) {
-            continue; // Only grab root locks
-          }
-          discovered.push(entryPath);
-        }
-      }
-    } catch {
-      continue;
-    }
-  }
-  return discovered;
-}
-
-async function exportRustCore() {
-  let allFiles: string[] = [];
-  for (const dir of TARGET_DIRS) {
-    allFiles = allFiles.concat(await collectFiles(dir));
-  }
-
-  allFiles.sort();
-
-  let output = `# OMEGA-64 | RUST CORE LOGIC\n\n`;
-  output += `*Generated: ${new Date().toISOString()}*\n`;
-  output += `*Exported Files: ${allFiles.length}*\n\n---\n\n`;
-
-  output += `## FILE INDEX\n\n`;
-  for (const file of allFiles) {
-    output += `- ${file}\n`;
-  }
-  output += `\n---\n\n`;
-
-  for (const file of allFiles) {
-    try {
-      const content = await Deno.readTextFile(file);
-      let lang = "rust";
-      if (file.endsWith(".toml")) lang = "toml";
-      if (file.endsWith(".json")) lang = "json";
-
-      output += `## FILE: ${file}\n\n`;
-      output += `\`\`\`${lang}\n${content}\n\`\`\`\n\n---\n\n`;
-    } catch (e) {
-      console.warn(`Could not read ${file}`);
-    }
-  }
-
-  await Deno.writeTextFile("RUST_CORE_LOGIC.md", output);
-  console.log(
-    `✅ RUST_CORE_LOGIC.md exported successfully. Indexed ${allFiles.length} files.`,
-  );
-}
-
-if (import.meta.main) {
-  await exportRustCore();
-}
-
-```
-
----
-
-## FILE: gen_rust_deno.ts
-
-```typescript
-import * as off from "./63_necropolis/mod.ts";
-
-const bounds = {
-  tick_counter: 7999992,
-  sync_state: 7999996,
-  ids: off.IDS_OFFSET,
-  xs: off.XS_OFFSET,
-  ys: off.YS_OFFSET,
-  energy: off.ENERGY_OFFSET,
-  resonance: off.RESONANCE_OFFSET,
-  phase: off.PHASE_OFFSET,
-  logic: off.LOGIC_OFFSET,
-  bonds: off.BONDS_OFFSET,
-  stiffness: off.STIFFNESS_OFFSET,
-  instructions: off.INSTRUCTIONS_OFFSET,
-  context: off.CONTEXT_OFFSET,
-  evolution_reserved: off.EVOLUTION_OFFSET,
-  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-  meiosis: off.MEIOSIS_OFFSET,
-  bond_requests: off.BOND_REQUESTS_OFFSET,
-  spatial_grid: off.SPATIAL_GRID_OFFSET,
-  roles: off.ROLES_OFFSET,
-  structure_grid: off.STRUCTURE_GRID_OFFSET,
-  signal_grid: off.SIGNAL_GRID_OFFSET,
-  memory_grid: off.MEMORY_GRID_OFFSET,
-  ascension_stats: off.ASCENSION_STATS_OFFSET,
-  bond_distances: off.BOND_DISTANCES_OFFSET,
-  damping: off.DAMPING_OFFSET,
-  causality: off.CAUSALITY_OFFSET,
-  hive_memory: off.HIVE_MEMORY_OFFSET,
-  hive_balance: off.HIVE_BALANCE_OFFSET,
-  quorum: off.QUORUM_OFFSET,
-  coherence: off.COHERENCE_OFFSET,
-  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-  energy_delta: off.ENERGY_DELTA_OFFSET,
-  resonance_delta: off.RESONANCE_DELTA_OFFSET,
-  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-  attention_field: off.ATTENTION_FIELD_OFFSET,
-  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-  glyph_header: off.GLYPH_HEADER_OFFSET,
-  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-  hormones: off.HORMONE_OFFSET,
-  secretion_stats: off.SECRETION_STATS_OFFSET,
-  lineage: off.LINEAGE_OFFSET,
-  mailbox: off.MAILBOX_OFFSET,
-  ledger_head: off.LEDGER_HEAD_OFFSET,
-  ledger_data: off.LEDGER_DATA_OFFSET,
-};
-
-const sizes: Record<string, number> = {
-  tick_counter: 4,
-  sync_state: 4,
-  ids: 8 * 500000,
-  xs: 2 * 500000,
-  ys: 2 * 500000,
-  energy: 4 * 500000,
-  resonance: 4 * 500000,
-  phase: 4 * 500000,
-  logic: 8 * 500000,
-  bonds: 4 * 500000 * 4,
-  stiffness: 4 * 500000 * 4,
-  instructions: 64 * 500000,
-  context: 64 * 500000,
-  evolution_reserved: 4 * 500000,
-  spawn_requests: 24584,
-  meiosis: 4 * 300000,
-  bond_requests: 4 * 500000 * 3,
-  spatial_grid: 4 * 358400,
-  roles: 1 * 500000,
-  structure_grid: 4 * 11200,
-  signal_grid: 4 * 11200,
-  memory_grid: 8 * 11200,
-  ascension_stats: 4 * 250000,
-  bond_distances: 1 * 500000 * 4,
-  damping: 1 * 500000,
-  causality: 1 * 500000,
-  hive_memory: 1024,
-  hive_balance: 4,
-  quorum: 4 * 100025,
-  coherence: 4,
-  neural_coherence: 4,
-  physics_read_xs: 2 * 500000,
-  physics_read_ys: 2 * 500000,
-  physics_read_energy: 4 * 500000,
-  physics_read_resonance: 4 * 500000,
-  energy_delta: 4 * 500000,
-  resonance_delta: 4 * 500000,
-  structure_build_owner: 4 * 11200,
-  structure_build_value: 4 * 11200,
-  structure_charge_intent: 4 * 11200,
-  attention_field: 4 * 11200,
-  hive_energy_pool: 4 * 256,
-  glyph_header: 4 * 11200,
-  glyph_payload: 8 * 11200,
-  glyph_scratch_header: 4 * 11200,
-  glyph_scratch_payload: 8 * 11200,
-  hormones: 2 * 8,
-  secretion_stats: 4 * 12,
-  lineage: 8 * 500000,
-  mailbox: 8 * 500000,
-  ledger_head: 4,
-  ledger_data: 16 * 65536,
-};
-const keys = Object.keys(bounds) as (keyof typeof bounds)[];
-let out = `    pub _pad_front: [u8; 7_999_992],
-    pub tick_counter: i32, // 7,999,992
-    pub sync_state: i32,   // 7,999,996
-`;
-let cur = 8000000;
-for (const k of keys) {
-  if (k === "tick_counter" || k === "sync_state") continue;
-  let start = bounds[k];
-  if (start > cur) {
-    out += `    pub _pad_to_${String(k)}: [u8; ${start - cur}],\n`;
-  }
-  if (start < cur) {
-    console.log(`OVERLAP AT ${String(k)}: wants ${start} but cur is ${cur}`);
-  }
-
-  let typ = "u8";
-  if (k === "ids" || k === "lineage") {
-    out += `    pub ${String(k)}: [u64; ${sizes[k] / 8}],\n`;
-  } else if (
-    ["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k as string)
-  ) out += `    pub ${String(k)}: [i16; ${sizes[k] / 2}],\n`;
-  else if (
-    [
-      "energy",
-      "resonance",
-      "phase",
-      "bonds",
-      "evolution_reserved",
-      "bond_requests",
-      "spatial_grid",
-      "structure_grid",
-      "signal_grid",
-      "ascension_stats",
-      "quorum",
-      "physics_read_energy",
-      "physics_read_resonance",
-      "energy_delta",
-      "resonance_delta",
-      "structure_build_owner",
-      "structure_build_value",
-      "structure_charge_intent",
-      "hive_energy_pool",
-      "glyph_header",
-      "glyph_scratch_header",
-      "secretion_stats",
-      "meiosis",
-    ].includes(k as string)
-  ) out += `    pub ${String(k)}: [i32; ${sizes[k] / 4}],\n`;
-  else if (["stiffness", "attention_field"].includes(k as string)) {
-    out += `    pub ${String(k)}: [f32; ${sizes[k] / 4}],\n`;
-  } else if (
-    ["logic", "glyph_payload", "glyph_scratch_payload"].includes(k as string)
-  ) out += `    pub ${String(k)}: [[u8; 8]; ${sizes[k] / 8}],\n`;
-  else if (k === "instructions") {
-    out += `    pub ${String(k)}: [[u8; 64]; ${sizes[k] / 64}],\n`;
-  } else if (k === "context") {
-    out += `    pub ${String(k)}: [[i32; 16]; ${sizes[k] / 64}],\n`;
-  } else if (k === "mailbox") {
-    out += `    pub ${String(k)}: [[i32; 2]; ${sizes[k] / 8}],\n`;
-  } else if (k === "ledger_data") {
-    out += `    pub ${String(k)}: [[i32; 4]; ${sizes[k] / 16}],\n`;
-  } else if (k === "hormones") {
-    out += `    pub ${String(k)}: [u16; ${sizes[k] / 2}],\n`;
-  } else if (
-    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(
-      k as string,
-    )
-  ) out += `    pub ${String(k)}: i32,\n`;
-  else out += `    pub ${String(k)}: [u8; ${sizes[k]}],\n`;
-
-  cur = start + sizes[k];
-}
-Deno.writeTextFileSync("/tmp/struct.txt", out);
-
-```
-
----
-
-## FILE: gen_rust.ts
-
-```typescript
-import * as off from "./63_necropolis/mod.ts";
-
-const bounds = {
-  tick_counter: 7999992,
-  sync_state: 7999996,
-  ids: off.IDS_OFFSET,
-  xs: off.XS_OFFSET,
-  ys: off.YS_OFFSET,
-  energy: off.ENERGY_OFFSET,
-  resonance: off.RESONANCE_OFFSET,
-  phase: off.PHASE_OFFSET,
-  logic: off.LOGIC_OFFSET,
-  bonds: off.BONDS_OFFSET,
-  stiffness: off.STIFFNESS_OFFSET,
-  instructions: off.INSTRUCTIONS_OFFSET,
-  context: off.CONTEXT_OFFSET,
-  evolution_reserved: off.EVOLUTION_OFFSET,
-  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-  meiosis: off.MEIOSIS_OFFSET,
-  bond_requests: off.BOND_REQUESTS_OFFSET,
-  spatial_grid: off.SPATIAL_GRID_OFFSET,
-  roles: off.ROLES_OFFSET,
-  structure_grid: off.STRUCTURE_GRID_OFFSET,
-  signal_grid: off.SIGNAL_GRID_OFFSET,
-  memory_grid: off.MEMORY_GRID_OFFSET,
-  ascension_stats: off.ASCENSION_STATS_OFFSET,
-  bond_distances: off.BOND_DISTANCES_OFFSET,
-  damping: off.DAMPING_OFFSET,
-  causality: off.CAUSALITY_OFFSET,
-  hive_memory: off.HIVE_MEMORY_OFFSET,
-  hive_balance: off.HIVE_BALANCE_OFFSET,
-  quorum: off.QUORUM_OFFSET,
-  coherence: off.COHERENCE_OFFSET,
-  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-  energy_delta: off.ENERGY_DELTA_OFFSET,
-  resonance_delta: off.RESONANCE_DELTA_OFFSET,
-  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-  attention_field: off.ATTENTION_FIELD_OFFSET,
-  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-  glyph_header: off.GLYPH_HEADER_OFFSET,
-  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-  hormones: off.HORMONE_OFFSET,
-  secretion_stats: off.SECRETION_STATS_OFFSET,
-  lineage: off.LINEAGE_OFFSET,
-  mailbox: off.MAILBOX_OFFSET,
-  ledger_head: off.LEDGER_HEAD_OFFSET,
-  ledger_data: off.LEDGER_DATA_OFFSET,
-};
-
-const sizes = {
-  tick_counter: 4,
-  sync_state: 4,
-  ids: 8 * 500000,
-  xs: 2 * 500000,
-  ys: 2 * 500000,
-  energy: 4 * 500000,
-  resonance: 4 * 500000,
-  phase: 4 * 500000,
-  logic: 8 * 500000,
-  bonds: 4 * 500000 * 4,
-  stiffness: 4 * 500000 * 4,
-  instructions: 64 * 500000,
-  context: 64 * 500000,
-  evolution_reserved: 4 * 500000,
-  spawn_requests: 24584,
-  meiosis: 4 * 300000,
-  bond_requests: 4 * 500000 * 3,
-  spatial_grid: 4 * 358400,
-  roles: 1 * 500000,
-  structure_grid: 4 * 11200,
-  signal_grid: 4 * 11200,
-  memory_grid: 8 * 11200,
-  ascension_stats: 4 * 250000,
-  bond_distances: 1 * 500000 * 4,
-  damping: 1 * 500000,
-  causality: 1 * 500000,
-  hive_memory: 1024,
-  hive_balance: 4,
-  quorum: 4 * 100025,
-  coherence: 4,
-  neural_coherence: 4,
-  physics_read_xs: 2 * 500000,
-  physics_read_ys: 2 * 500000,
-  physics_read_energy: 4 * 500000,
-  physics_read_resonance: 4 * 500000,
-  energy_delta: 4 * 500000,
-  resonance_delta: 4 * 500000,
-  structure_build_owner: 4 * 11200,
-  structure_build_value: 4 * 11200,
-  structure_charge_intent: 4 * 11200,
-  attention_field: 4 * 11200,
-  hive_energy_pool: 4 * 256,
-  glyph_header: 4 * 11200,
-  glyph_payload: 8 * 11200,
-  glyph_scratch_header: 4 * 11200,
-  glyph_scratch_payload: 8 * 11200,
-  hormones: 2 * 8,
-  secretion_stats: 4 * 12,
-  lineage: 8 * 500000,
-  mailbox: 8 * 500000,
-  ledger_head: 4,
-  ledger_data: 16 * 65536,
-};
-
-let current = 7999992;
-for (const [k, v] of Object.entries(bounds)) {
-  if (v > current) {
-    let pad = v - current;
-    console.log(`pub _pad_${k}: [u8; ${pad}], // to ${v}`);
-  }
-
-  // We don't type it out fully, just output the test blocks too
-  console.log(`assert_eq!(offset_of!(SigmaMatrix, ${k}), ${v + 8}, "${k}");`);
-
-  current = v + sizes[k];
-}
-
-```
-
----
-
-## FILE: gen_rust4_fix.ts
-
-```typescript
-import * as off from "./63_necropolis/mod.ts";
-
-const bounds: Record<string, number> = {
-  tick_counter: 7999992,
-  sync_state: 7999996,
-  ids: off.IDS_OFFSET,
-  xs: off.XS_OFFSET,
-  ys: off.YS_OFFSET,
-  energy: off.ENERGY_OFFSET,
-  resonance: off.RESONANCE_OFFSET,
-  phase: off.PHASE_OFFSET,
-  logic: off.LOGIC_OFFSET,
-  bonds: off.BONDS_OFFSET,
-  stiffness: off.STIFFNESS_OFFSET,
-  instructions: off.INSTRUCTIONS_OFFSET,
-  context: off.CONTEXT_OFFSET,
-  evolution_reserved: off.EVOLUTION_OFFSET,
-  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-  meiosis: off.MEIOSIS_OFFSET,
-  bond_requests: off.BOND_REQUESTS_OFFSET,
-  spatial_grid: off.SPATIAL_GRID_OFFSET,
-  roles: off.ROLES_OFFSET,
-  structure_grid: off.STRUCTURE_GRID_OFFSET,
-  signal_grid: off.SIGNAL_GRID_OFFSET,
-  memory_grid: off.MEMORY_GRID_OFFSET,
-  ascension_stats: off.ASCENSION_STATS_OFFSET,
-  bond_distances: off.BOND_DISTANCES_OFFSET,
-  damping: off.DAMPING_OFFSET,
-  causality: off.CAUSALITY_OFFSET,
-  hive_memory: off.HIVE_MEMORY_OFFSET,
-  hive_balance: off.HIVE_BALANCE_OFFSET,
-  quorum: off.QUORUM_OFFSET,
-  coherence: off.COHERENCE_OFFSET,
-  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-  energy_delta: off.ENERGY_DELTA_OFFSET,
-  resonance_delta: off.RESONANCE_DELTA_OFFSET,
-  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-  attention_field: off.ATTENTION_FIELD_OFFSET,
-  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-  glyph_header: off.GLYPH_HEADER_OFFSET,
-  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-  hormones: off.HORMONE_OFFSET,
-  secretion_stats: off.SECRETION_STATS_OFFSET,
-  lineage: off.LINEAGE_OFFSET,
-  mailbox: off.MAILBOX_OFFSET,
-  ledger_head: off.LEDGER_HEAD_OFFSET,
-  ledger_data: off.LEDGER_DATA_OFFSET,
-};
-
-const sizes: Record<string, number> = {
-  tick_counter: 4,
-  sync_state: 4,
-  ids: 8 * 500000,
-  xs: 2 * 500000,
-  ys: 2 * 500000,
-  energy: 4 * 500000,
-  resonance: 4 * 500000,
-  phase: 4 * 500000,
-  logic: 8 * 500000,
-  bonds: 4 * 500000 * 4,
-  stiffness: 4 * 500000 * 4,
-  instructions: 64 * 500000,
-  context: 64 * 500000,
-  evolution_reserved: 4 * 500000,
-  spawn_requests: 24584,
-  meiosis: 4 * 300000,
-  bond_requests: 4 * 500000 * 3,
-  spatial_grid: 4 * 358400,
-  roles: 1 * 500000,
-  structure_grid: 4 * 11200,
-  signal_grid: 4 * 11200,
-  memory_grid: 8 * 11200,
-  ascension_stats: 4 * 250000,
-  bond_distances: 1 * 500000 * 4,
-  damping: 1 * 500000,
-  causality: 1 * 500000,
-  hive_memory: 1024,
-  hive_balance: 4,
-  quorum: 4 * 89600,
-  coherence: 4,
-  neural_coherence: 4,
-  physics_read_xs: 2 * 500000,
-  physics_read_ys: 2 * 500000,
-  physics_read_energy: 4 * 500000,
-  physics_read_resonance: 4 * 500000,
-  energy_delta: 4 * 500000,
-  resonance_delta: 4 * 500000,
-  structure_build_owner: 4 * 11200,
-  structure_build_value: 4 * 11200,
-  structure_charge_intent: 4 * 11200,
-  attention_field: 4 * 11200,
-  hive_energy_pool: 4 * 256,
-  glyph_header: 4 * 11200,
-  glyph_payload: 8 * 11200,
-  glyph_scratch_header: 4 * 11200,
-  glyph_scratch_payload: 8 * 11200,
-  hormones: 2 * 8,
-  secretion_stats: 4 * 12,
-  lineage: 8 * 500000,
-  mailbox: 8 * 500000,
-  ledger_head: 4,
-  ledger_data: 16 * 65536,
-};
-
-const keys = Object.keys(bounds);
-
-let structOut = `
-    pub _pad_front: [u8; 7_999_992],
-    pub tick_counter: i32,
-    pub sync_state: i32,
-`;
-
-let testOut = `
-    #[test]
-    fn verify_memory_offsets() {
-        assert_eq!(offset_of!(SigmaMatrix, tick_counter), 7_999_992, "tick_counter");
-        assert_eq!(offset_of!(SigmaMatrix, sync_state), 7_999_996, "sync_state");
-`;
-
-let cur = 8000000;
-for (const k of keys) {
-  if (k === "tick_counter" || k === "sync_state") continue;
-  let start = bounds[k];
-  if (start > cur) {
-    structOut += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
-  }
-
-  if (k === "ids" || k === "lineage") {
-    structOut += `    pub ${k}: [u64; ${sizes[k] / 8}],\n`;
-  } else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) {
-    structOut += `    pub ${k}: [i16; ${sizes[k] / 2}],\n`;
-  } else if (
-    [
-      "energy",
-      "resonance",
-      "phase",
-      "bonds",
-      "evolution_reserved",
-      "bond_requests",
-      "spatial_grid",
-      "structure_grid",
-      "signal_grid",
-      "ascension_stats",
-      "quorum",
-      "physics_read_energy",
-      "physics_read_resonance",
-      "energy_delta",
-      "resonance_delta",
-      "structure_build_owner",
-      "structure_build_value",
-      "structure_charge_intent",
-      "hive_energy_pool",
-      "glyph_header",
-      "glyph_scratch_header",
-      "secretion_stats",
-      "meiosis",
-    ].includes(k)
-  ) structOut += `    pub ${k}: [i32; ${sizes[k] / 4}],\n`;
-  else if (["stiffness", "attention_field"].includes(k)) {
-    structOut += `    pub ${k}: [f32; ${sizes[k] / 4}],\n`;
-  } else if (
-    ["logic", "glyph_payload", "glyph_scratch_payload", "memory_grid"].includes(
-      k,
-    )
-  ) structOut += `    pub ${k}: [[u8; 8]; ${sizes[k] / 8}],\n`;
-  else if (k === "instructions") {
-    structOut += `    pub ${k}: [[u8; 64]; ${sizes[k] / 64}],\n`;
-  } else if (k === "context") {
-    structOut += `    pub ${k}: [[i32; 16]; ${sizes[k] / 64}],\n`;
-  } else if (k === "mailbox") {
-    structOut += `    pub ${k}: [[i32; 2]; ${sizes[k] / 8}],\n`;
-  } else if (k === "ledger_data") {
-    structOut += `    pub ${k}: [[i32; 4]; ${sizes[k] / 16}],\n`;
-  } else if (k === "hormones") {
-    structOut += `    pub ${k}: [u16; ${sizes[k] / 2}],\n`;
-  } else if (
-    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)
-  ) structOut += `    pub ${k}: i32,\n`;
-  else structOut += `    pub ${k}: [u8; ${sizes[k]}],\n`;
-
-  testOut +=
-    `        assert_eq!(offset_of!(SigmaMatrix, ${k}), ${start}, "${k}");\n`;
-
-  cur = start + sizes[k];
-}
-
-testOut += `    }\n`;
-
-import * as fs from "node:fs";
-
-let memory_rs = fs.readFileSync("sigma_core/src/memory.rs", "utf8");
-
-memory_rs = memory_rs.replace(
-  /pub _pad_front: \[u8; [0-9_]+\],[\s\S]+?pub ledger_data: \[\[i32; 4\]; 65536\],/,
-  structOut.trim(),
-);
-
-// Replace test
-memory_rs = memory_rs.replace(
-  /#\[test\]\s+fn verify_memory_offsets\(\)\s*\{[\s\S]+?    }\n(?=\})/m,
-  testOut,
-);
-
-fs.writeFileSync("sigma_core/src/memory.rs", memory_rs);
-
-```
-
----
-
-## FILE: gen_rust4.ts
-
-```typescript
-import * as off from "./63_necropolis/mod.ts";
-
-const bounds = {
-  tick_counter: 7999992,
-  sync_state: 7999996,
-  ids: off.IDS_OFFSET,
-  xs: off.XS_OFFSET,
-  ys: off.YS_OFFSET,
-  energy: off.ENERGY_OFFSET,
-  resonance: off.RESONANCE_OFFSET,
-  phase: off.PHASE_OFFSET,
-  logic: off.LOGIC_OFFSET,
-  bonds: off.BONDS_OFFSET,
-  stiffness: off.STIFFNESS_OFFSET,
-  instructions: off.INSTRUCTIONS_OFFSET,
-  context: off.CONTEXT_OFFSET,
-  evolution_reserved: off.EVOLUTION_OFFSET,
-  spawn_requests: off.SPAWN_REQUESTS_OFFSET,
-  meiosis: off.MEIOSIS_OFFSET,
-  bond_requests: off.BOND_REQUESTS_OFFSET,
-  spatial_grid: off.SPATIAL_GRID_OFFSET,
-  roles: off.ROLES_OFFSET,
-  structure_grid: off.STRUCTURE_GRID_OFFSET,
-  signal_grid: off.SIGNAL_GRID_OFFSET,
-  memory_grid: off.MEMORY_GRID_OFFSET,
-  ascension_stats: off.ASCENSION_STATS_OFFSET,
-  bond_distances: off.BOND_DISTANCES_OFFSET,
-  damping: off.DAMPING_OFFSET,
-  causality: off.CAUSALITY_OFFSET,
-  hive_memory: off.HIVE_MEMORY_OFFSET,
-  hive_balance: off.HIVE_BALANCE_OFFSET,
-  quorum: off.QUORUM_OFFSET,
-  coherence: off.COHERENCE_OFFSET,
-  neural_coherence: off.NEURAL_COHERENCE_OFFSET,
-  physics_read_xs: off.PHYSICS_READ_XS_OFFSET,
-  physics_read_ys: off.PHYSICS_READ_YS_OFFSET,
-  physics_read_energy: off.PHYSICS_READ_ENERGY_OFFSET,
-  physics_read_resonance: off.PHYSICS_READ_RESONANCE_OFFSET,
-  energy_delta: off.ENERGY_DELTA_OFFSET,
-  resonance_delta: off.RESONANCE_DELTA_OFFSET,
-  structure_build_owner: off.STRUCTURE_BUILD_OWNER_OFFSET,
-  structure_build_value: off.STRUCTURE_BUILD_VALUE_OFFSET,
-  structure_charge_intent: off.STRUCTURE_CHARGE_INTENT_OFFSET,
-  attention_field: off.ATTENTION_FIELD_OFFSET,
-  hive_energy_pool: off.HIVE_ENERGY_POOL_OFFSET,
-  glyph_header: off.GLYPH_HEADER_OFFSET,
-  glyph_payload: off.GLYPH_PAYLOAD_OFFSET,
-  glyph_scratch_header: off.GLYPH_SCRATCH_HEADER_OFFSET,
-  glyph_scratch_payload: off.GLYPH_SCRATCH_PAYLOAD_OFFSET,
-  hormones: off.HORMONE_OFFSET,
-  secretion_stats: off.SECRETION_STATS_OFFSET,
-  lineage: off.LINEAGE_OFFSET,
-  mailbox: off.MAILBOX_OFFSET,
-  ledger_head: off.LEDGER_HEAD_OFFSET,
-  ledger_data: off.LEDGER_DATA_OFFSET,
-};
-
-const sizes = {
-  tick_counter: 4,
-  sync_state: 4,
-  ids: 8 * 500000,
-  xs: 2 * 500000,
-  ys: 2 * 500000,
-  energy: 4 * 500000,
-  resonance: 4 * 500000,
-  phase: 4 * 500000,
-  logic: 8 * 500000,
-  bonds: 4 * 500000 * 4,
-  stiffness: 4 * 500000 * 4,
-  instructions: 64 * 500000,
-  context: 64 * 500000,
-  evolution_reserved: 4 * 500000,
-  spawn_requests: 24584,
-  meiosis: 4 * 300000,
-  bond_requests: 4 * 500000 * 3,
-  spatial_grid: 4 * 358400,
-  roles: 1 * 500000,
-  structure_grid: 4 * 11200,
-  signal_grid: 4 * 11200,
-  memory_grid: 8 * 11200,
-  ascension_stats: 4 * 250000,
-  bond_distances: 1 * 500000 * 4,
-  damping: 1 * 500000,
-  causality: 1 * 500000,
-  hive_memory: 1024,
-  hive_balance: 4,
-  quorum: 4 * 100025,
-  coherence: 4,
-  neural_coherence: 4,
-  physics_read_xs: 2 * 500000,
-  physics_read_ys: 2 * 500000,
-  physics_read_energy: 4 * 500000,
-  physics_read_resonance: 4 * 500000,
-  energy_delta: 4 * 500000,
-  resonance_delta: 4 * 500000,
-  structure_build_owner: 4 * 11200,
-  structure_build_value: 4 * 11200,
-  structure_charge_intent: 4 * 11200,
-  attention_field: 4 * 11200,
-  hive_energy_pool: 4 * 256,
-  glyph_header: 4 * 11200,
-  glyph_payload: 8 * 11200,
-  glyph_scratch_header: 4 * 11200,
-  glyph_scratch_payload: 8 * 11200,
-  hormones: 2 * 8,
-  secretion_stats: 4 * 12,
-  lineage: 8 * 500000,
-  mailbox: 8 * 500000,
-  ledger_head: 4,
-  ledger_data: 16 * 65536,
-};
-
-const keys = Object.keys(bounds);
-let out = `
-    pub _pad_front: [u8; 7_999_992],
-    pub tick_counter: i32, // 7,999,992
-    pub sync_state: i32,   // 7,999,996
-`;
-let cur = 8000000;
-for (const k of keys) {
-  if (k === "tick_counter" || k === "sync_state") continue;
-  let start = bounds[k];
-  if (start > cur) {
-    out += `    pub _pad_to_${k}: [u8; ${start - cur}],\n`;
-  }
-  if (start < cur) {
-    console.log(`OVERLAP AT ${k}: wants ${start} but cur is ${cur}`);
-  }
-
-  let typ = "u8";
-  if (k === "ids" || k === "lineage") {
-    out += `    pub ${k}: [u64; ${sizes[k] / 8}],\n`;
-  } else if (["xs", "ys", "physics_read_xs", "physics_read_ys"].includes(k)) {
-    out += `    pub ${k}: [i16; ${sizes[k] / 2}],\n`;
-  } else if (
-    [
-      "energy",
-      "resonance",
-      "phase",
-      "bonds",
-      "evolution_reserved",
-      "bond_requests",
-      "spatial_grid",
-      "structure_grid",
-      "signal_grid",
-      "ascension_stats",
-      "quorum",
-      "physics_read_energy",
-      "physics_read_resonance",
-      "energy_delta",
-      "resonance_delta",
-      "structure_build_owner",
-      "structure_build_value",
-      "structure_charge_intent",
-      "hive_energy_pool",
-      "glyph_header",
-      "glyph_scratch_header",
-      "secretion_stats",
-      "meiosis",
-    ].includes(k)
-  ) out += `    pub ${k}: [i32; ${sizes[k] / 4}],\n`;
-  else if (["stiffness", "attention_field"].includes(k)) {
-    out += `    pub ${k}: [f32; ${sizes[k] / 4}],\n`;
-  } else if (["logic", "glyph_payload", "glyph_scratch_payload"].includes(k)) {
-    out += `    pub ${k}: [[u8; 8]; ${sizes[k] / 8}],\n`;
-  } else if (k === "instructions") {
-    out += `    pub ${k}: [[u8; 64]; ${sizes[k] / 64}],\n`;
-  } else if (k === "context") {
-    out += `    pub ${k}: [[i32; 16]; ${sizes[k] / 64}],\n`;
-  } else if (k === "mailbox") {
-    out += `    pub ${k}: [[i32; 2]; ${sizes[k] / 8}],\n`;
-  } else if (k === "ledger_data") {
-    out += `    pub ${k}: [[i32; 4]; ${sizes[k] / 16}],\n`;
-  } else if (k === "hormones") out += `    pub ${k}: [u16; ${sizes[k] / 2}],\n`;
-  else if (
-    ["ledger_head", "hive_balance", "coherence", "neural_coherence"].includes(k)
-  ) out += `    pub ${k}: i32,\n`;
-  else out += `    pub ${k}: [u8; ${sizes[k]}],\n`;
-
-  cur = start + sizes[k];
-}
-const fs = require("node:fs");
-fs.writeFileSync("/tmp/struct.txt", out);
-
-```
-
----
-
-## FILE: mod.ts
-
-```typescript
-// AUTO-GENERATED (PHASE: FLATLAND). DO NOT EDIT.
-// Source: Flatland root (0x*.md).
-
-export { RIBOSOME } from "./63_necropolis/mod.ts";
-export { GATE } from "./63_necropolis/mod.ts";
-export { IMMUNE } from "./63_necropolis/mod.ts";
-export { RIBOSOME_TICK } from "./63_necropolis/mod.ts";
-export { PULSE } from "./02_metabolism/mod.ts";
-
-```
-
----
-
 ## FILE: MUTATION_LANES.md
 
 ```markdown
@@ -41108,300 +46236,228 @@ export function execute_atom(): u8 {
 
 ---
 
-## FILE: phase52_fix.ts
+## FILE: phase53_rewriter.ts
 
 ```typescript
-import { ensureDir, move, walk } from "jsr:@std/fs";
-import { join, basename } from "jsr:@std/path";
+import { walk } from "https://deno.land/std@0.224.0/fs/mod.ts";
+import { dirname, join, relative, basename } from "https://deno.land/std@0.224.0/path/mod.ts";
 
-const LAYERS = [
-  "00_substrate", "01_physics", "02_metabolism", "03_governance",
-  "04_noosphere", "05_exocortex", "06_akasha", "63_necropolis", "tests"
-];
+const LAYER_PREFIXES = ["00_", "01_", "02_", "03_", "04_", "05_", "06_"];
 
-const classify = (file: string): string => {
-  const b = basename(file);
-
-  if (b.startsWith("test_") || b.endsWith("_test.ts") || b === "wasm_layout_guard.ts" || b === "verify_offsets.ts") return "tests";
-  
-  if (['OFFSETS.ts', 'STATE_MATRIX.ts', 'SHIMS.ts', 'ENV_PARSE.ts', 'ATOM_INDEX.ts', 'LOGGER.ts', 'PRNG.ts', 'STATE_SNAPSHOT.ts'].includes(b)) return '00_substrate';
-  if (['PHYSICS_ENGINE.ts', 'SPATIAL_HASH.ts', 'STRUCTURE_ENGINE.ts', 'GLYPH_BUFFER.ts', 'MATRIX_ENGINE.ts', 'ECOLOGY_ENGINE.ts'].includes(b)) return '01_physics';
-  if (['PULSE.ts', 'PULSE_WORKER.ts', 'GENOMES.ts', 'IMMUNE.ts', 'RIBOSOME.ts', 'RIBOSOME_TICK.ts', 'LAMBDA_VM.ts', 'ENZYME_DIGEST.ts', 'RECOVERY.ts', 'REFLECTION_ENGINE.ts', 'SNAP.ts', 'HOLOGRAM_INJECTOR.ts', 'HOLOGRAM_MODULE.ts', 'HORMONE_BUFFER.ts', 'HORMONE_BUFFER_RUNTIME.ts'].includes(b)) return '02_metabolism';
-  if (b.startsWith("GATE") || b.startsWith("GENETIC_LEDGER") || b.startsWith("GENERIC_LEDGER") || b.includes("PROMOTION") || ['RUNTIME_POLICY.ts', 'SOVEREIGNTY_ENGINE.ts', 'CONTROL_INTENT_QUEUE.ts', 'DAEMON_INGRESS_POLICY.ts', 'ATOMIC_LEDGER.ts', 'PREDICTION_MARKET.ts', 'AUDIT_ENGINE.ts'].includes(b)) return '03_governance';
-  if (b.startsWith("P2P_") || ['SWARM_NEXUS.ts', 'BOOTSTRAP_HUB.ts', 'SWARM_NODE.ts'].includes(b)) return '04_noosphere';
-  if (['SOVEREIGN_ORACLE.ts', 'LLM_SYNAPSE.ts', 'SEMANTIC_MEMBRANE.ts', 'llm_soul.ts', 'avatar_bot.ts', 'AVATAR_ENGINE.ts'].includes(b)) return '05_exocortex';
-  if (['AKASHA_CODEX.ts', 'LINEAGE_TRACKER.ts', 'PANOPTICON_SERVER.ts', 'TELEMETRY_STREAM.ts', 'PHYSIOLOGY_SNAPSHOT.ts', 'CONTINUUM.ts', 'SNAP_ENGINE.ts', 'OBSERVER_UI.ts', 'OBSERVER_LAB.ts', 'MUTATION_TELEMETRY.ts', 'AKASHA_SERVER.ts', 'OMEGA_DAEMON.ts', 'TUI_DASHBOARD.ts', 'SERVE_DASHBOARD.ts', 'SNAPSHOT_ENGINE.ts'].includes(b)) return '06_akasha';
-  if (['ZERO_IOPS.ts', 'LONGRUN_CANARY.ts', 'LONGRUN_DAEMON_AUDIT.ts', 'COLDSTART_BOOTSTRAP.ts', 'FORCE_BOOTSTRAP.ts', 'run_ecosystem.ts', 'trigger_singularity.ts', 'nightly_soak.ts', 'debug_tick.ts'].concat(['diag_replicate.ts', 'diag_replicate2.ts', 'diag_replicate3.ts']).includes(b)) return '63_necropolis';
-
-  return 'root';
-};
-
-async function main() {
-  for (const l of LAYERS) {
-    await ensureDir(l);
-  }
-
-  const files = [];
-  for await (const dirEntry of Deno.readDir(".")) {
-    if (dirEntry.isFile && dirEntry.name.endsWith(".ts")) {
-      files.push(dirEntry.name);
-    }
-  }
-
-  try {
-    for await (const dirEntry of Deno.readDir("network")) {
-      if (dirEntry.isFile && dirEntry.name.endsWith(".ts")) {
-        files.push("network/" + dirEntry.name);
+function getLayer(path: string): string | null {
+  for (const prefix of LAYER_PREFIXES) {
+    if (path.includes(`/${prefix}`) || path.startsWith(prefix)) {
+      const parts = path.split("/");
+      for (const p of parts) {
+        if (p.startsWith(prefix)) return p;
       }
     }
-  } catch(e) {}
-
-  let cnt = 0;
-  for (const file of files) {
-    if (file === "phase52.ts" || file === "phase52_fix.ts" || file.startsWith("fix_") || file.startsWith("gen_rust") || file.startsWith("export_rust")) continue;
-
-    const b = basename(file);
-    const layer = classify(b);
-    if (layer !== "root") {
-      const dest = join(layer, b);
-      console.log(`Moving ${file} -> ${dest}`);
-      await move(file, dest, { overwrite: true });
-      cnt++;
-    }
   }
-  
-  // Re-generate mod.ts correctly
-  for (const layer of LAYERS.filter(l => l !== 'tests')) {
-    const exports = [];
-    for await (const entry of Deno.readDir(layer)) {
-      if (entry.isFile && entry.name.endsWith(".ts") && entry.name !== "mod.ts") {
-        exports.push(`export * from "./${entry.name}";`);
-      }
-    }
-    if (exports.length > 0) {
-      await Deno.writeTextFile(join(layer, "mod.ts"), exports.join("\n") + "\n");
-    } else {
-      await Deno.writeTextFile(join(layer, "mod.ts"), "// Empty layer\n");
-    }
-  }
-  
-  console.log(`Moved ${cnt} root files.`);
+  return null;
 }
-main();
+
+// 1. Build an index of all files
+const fileMap = new Map<string, string>(); // basename -> act_path
+const layerExports = new Map<string, string[]>();
+
+for (const p of LAYER_PREFIXES) {
+    for await (const entry of Deno.readDir(".")) {
+        if (entry.isDirectory && entry.name.startsWith(p)) {
+            layerExports.set(entry.name, []);
+        }
+    }
+}
+
+for await (const entry of walk(".", { exts: [".ts"], skip: [/\.git/, /08_artifacts/, /63_necropolis/, /07_meta/] })) {
+  if (entry.isFile) {
+    const bname = basename(entry.path);
+    fileMap.set(bname, entry.path);
+    const l = getLayer(entry.path);
+    if (l && !entry.path.includes("03_tests")) {
+        // add to mod.ts exports
+        const list = layerExports.get(l) || [];
+        // relative to layer root
+        const rel = relative(l, entry.path).replace(/\\/g, "/");
+        if (rel !== "mod.ts") {
+           list.push(rel);
+        }
+        layerExports.set(l, list);
+    }
+  }
+}
+
+// 2. Generate mod.ts for each layer
+for (const [layer, files] of layerExports.entries()) {
+    let content = "";
+    for (const f of files) {
+        let imp = f.startsWith(".") ? f : `./${f}`;
+        content += `export * from "${imp}";\n`;
+    }
+    Deno.writeTextFileSync(join(layer, "mod.ts"), content);
+}
+
+// 3. Rewrite all imports
+const importRegex = /from\s+["']([^"']+)["']/g;
+const dynamicImportRegex = /import\s*\(\s*["']([^"']+)["']\s*\)/g;
+
+async function processFile(path: string) {
+    let content = await Deno.readTextFile(path);
+    const myLayer = getLayer(path);
+    if (!myLayer) return; // ignore files outside layers
+
+    let modified = false;
+
+    function replacer(match: string, importPath: string, isDynamic: boolean) {
+        if (importPath.startsWith("http") || importPath.startsWith("npm:")) return match;
+
+        // Resolve absolute target file path
+        let targetFile = basename(importPath);
+        if (targetFile === "mod.ts") {
+             // guess based on path
+             const parts = importPath.split("/");
+             if (parts.length >= 2) {
+                 const dir = parts[parts.length - 2];
+                 if (dir.match(/^\d\d_/)) {
+                     targetFile = dir; // it's pointing to a layer
+                 }
+             }
+        }
+        if (!targetFile.endsWith(".ts")) {
+             if (importPath.endsWith(".js") || importPath.endsWith(".json")) return match; 
+             targetFile += ".ts"; // Deno extension 
+        }
+
+        const targetReal = fileMap.get(targetFile);
+        if (!targetReal) return match; // fallback
+
+        const targetLayer = getLayer(targetReal);
+        
+        if (targetLayer && targetLayer !== myLayer) {
+             // inter-layer export through mod.ts
+             const depth = path.split("/").length - 1; 
+             const up = "../".repeat(depth);
+             const newImport = `${up}${targetLayer}/mod.ts`;
+             modified = true;
+             return isDynamic ? `import("${newImport}")` : `from "${newImport}"`;
+        } else if (targetLayer === myLayer) {
+             // intra-layer export
+             const pDir = dirname(path);
+             let rel = relative(pDir, targetReal).replace(/\\/g, "/");
+             if (!rel.startsWith(".")) rel = `./${rel}`;
+             modified = true;
+             return isDynamic ? `import("${rel}")` : `from "${rel}"`;
+        }
+        
+        return match;
+    }
+
+    content = content.replace(importRegex, (m, p1) => replacer(m, p1, false));
+    content = content.replace(dynamicImportRegex, (m, p1) => replacer(m, p1, true));
+
+    if (modified) {
+        await Deno.writeTextFile(path, content);
+        console.log(`Rewrote imports in ${path}`);
+    }
+}
+
+for await (const entry of walk(".", { exts: [".ts"], skip: [/\.git/] })) {
+    if (entry.isFile && getLayer(entry.path)) {
+        await processFile(entry.path);
+    }
+}
+
+console.log("Rewrite complete.");
 
 ```
 
 ---
 
-## FILE: phase52.ts
+## FILE: phase53_routers.ts
 
 ```typescript
-import { ensureDir, move, walk } from "jsr:@std/fs";
-import { join, dirname, basename, extname } from "jsr:@std/path";
+import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.224.0/fs/mod.ts";
 
-const LAYERS = [
-  "00_substrate",
-  "01_physics",
-  "02_metabolism",
-  "03_governance",
-  "04_noosphere",
-  "05_exocortex",
-  "06_akasha",
-  "63_necropolis",
-  "tests"
-];
-
-// Mapping overrides to precisely enforce the specification
-const mapping: Record<string, string> = {};
-
-const classify = (file: string): string => {
-  const b = basename(file);
-  if (mapping[b]) return mapping[b];
-
-  if (b.startsWith("test_") || b.endsWith("_test.ts") || b === "wasm_layout_guard.ts" || b === "verify_offsets.ts") return "tests";
-  
-  // 00_substrate
-  if (['OFFSETS.ts', 'STATE_MATRIX.ts', 'SHIMS.ts', 'ENV_PARSE.ts', 'ATOM_INDEX.ts', 'LOGGER.ts', 'PRNG.ts', 'STATE_SNAPSHOT.ts'].includes(b)) return '00_substrate';
-  
-  // 01_physics
-  if (['PHYSICS_ENGINE.ts', 'SPATIAL_HASH.ts', 'STRUCTURE_ENGINE.ts', 'GLYPH_BUFFER.ts', 'MATRIX_ENGINE.ts', 'ECOLOGY_ENGINE.ts'].includes(b)) return '01_physics';
-
-  // 02_metabolism
-  if (['PULSE.ts', 'PULSE_WORKER.ts', 'GENOMES.ts', 'IMMUNE.ts', 'RIBOSOME.ts', 'RIBOSOME_TICK.ts', 'LAMBDA_VM.ts', 'ENZYME_DIGEST.ts', 'RECOVERY.ts', 'REFLECTION_ENGINE.ts', 'SNAP.ts', 'HOLOGRAM_INJECTOR.ts', 'HOLOGRAM_MODULE.ts', 'HORMONE_BUFFER.ts', 'HORMONE_BUFFER_RUNTIME.ts'].includes(b)) return '02_metabolism';
-
-  // 03_governance
-  if (b.startsWith("GATE") || b.startsWith("GENETIC_LEDGER") || b.startsWith("GENERIC_LEDGER") || b.includes("PROMOTION") || ['RUNTIME_POLICY.ts', 'SOVEREIGNTY_ENGINE.ts', 'CONTROL_INTENT_QUEUE.ts', 'DAEMON_INGRESS_POLICY.ts', 'ATOMIC_LEDGER.ts', 'PREDICTION_MARKET.ts', 'AUDIT_ENGINE.ts'].includes(b)) return '03_governance';
-
-  // 04_noosphere
-  if (b.startsWith("P2P_") || ['SWARM_NEXUS.ts', 'BOOTSTRAP_HUB.ts', 'SWARM_NODE.ts'].includes(b)) return '04_noosphere';
-
-  // 05_exocortex
-  if (['SOVEREIGN_ORACLE.ts', 'LLM_SYNAPSE.ts', 'SEMANTIC_MEMBRANE.ts', 'llm_soul.ts', 'avatar_bot.ts', 'AVATAR_ENGINE.ts'].includes(b)) return '05_exocortex';
-
-  // 06_akasha
-  if (['AKASHA_CODEX.ts', 'LINEAGE_TRACKER.ts', 'PANOPTICON_SERVER.ts', 'TELEMETRY_STREAM.ts', 'PHYSIOLOGY_SNAPSHOT.ts', 'CONTINUUM.ts', 'SNAP_ENGINE.ts', 'OBSERVER_UI.ts', 'OBSERVER_LAB.ts', 'MUTATION_TELEMETRY.ts', 'AKASHA_SERVER.ts', 'OMEGA_DAEMON.ts', 'TUI_DASHBOARD.ts', 'SERVE_DASHBOARD.ts', 'SNAPSHOT_ENGINE.ts'].includes(b)) return '06_akasha';
-
-  // 63_necropolis
-  if (['ZERO_IOPS.ts', 'LONGRUN_CANARY.ts', 'LONGRUN_DAEMON_AUDIT.ts', 'COLDSTART_BOOTSTRAP.ts', 'FORCE_BOOTSTRAP.ts', 'run_ecosystem.ts', 'trigger_singularity.ts', 'nightly_soak.ts', 'debug_tick.ts'].concat(['diag_replicate.ts', 'diag_replicate2.ts', 'diag_replicate3.ts']).includes(b)) return '63_necropolis';
-
-  // Root or unclassified (keep null to leave at root)
-  return 'root';
+const targets = {
+  "00_substrate": ["memory", "layout", "offset", "wasm", "state_matrix", "baseline", "alloc", "budget"],
+  "01_physics": ["spatial", "structure", "collision", "glyph", "vector10", "oscillator", "topology", "physics", "matrix_engine"],
+  "02_metabolism": ["pulse", "worker", "metabolism", "replication", "mitosis", "meiosis", "energy", "spawn", "resilience", "trend", "soak", "snap", "rehydration", "ribosome", "lambda", "vm", "opcode", "syscall"],
+  "03_governance": ["ledger", "guard", "policy", "pressure", "ring", "contract", "governance", "reduction", "telemetry"],
+  "04_noosphere": ["p2p", "federation", "network", "transport", "spore", "webrtc", "sync", "ingress"],
+  "05_exocortex": ["oracle", "semantic", "llm", "cognition", "neural", "neuro", "plasmid", "prediction", "market"],
+  "06_akasha": ["ui", "codex", "observer", "dashboard", "narrative", "human_channel"],
+  "63_necropolis": ["nightly", "necropolis", "decay", "ruin", "fossil", "archived"]
 };
 
+const decoder = new TextDecoder();
+
+async function gitMv(src: string, dest: string) {
+  const p = new Deno.Command("git", { args: ["mv", src, dest] });
+  const { code, stderr } = await p.output();
+  if (code !== 0) {
+    console.error(`Failed to move ${src} -> ${dest}: ${decoder.decode(stderr)}`);
+  } else {
+    console.log(`Moved: ${src} -> ${dest}`);
+  }
+}
+
+async function moveFile(src: string, dest: string) {
+  const p = new Deno.Command("git", { args: ["mv", src, dest] });
+  const { code } = await p.output();
+  if (code !== 0) {
+     Deno.renameSync(src, dest);
+  }
+}
+
+function matchLayer(filename: string, content: string): string {
+  const lower = filename.toLowerCase();
+  
+  // Specific mappings first
+  if (lower.includes("ui") || lower.includes("dashboard")) return "06_akasha";
+  if (lower.includes("oracle") || lower.includes("llm") || lower.includes("semantic")) return "05_exocortex";
+  if (lower.includes("p2p") || lower.includes("webrtc") || lower.includes("network")) return "04_noosphere";
+  if (lower.includes("ledger") || lower.includes("policy") || lower.includes("reduction") || lower.includes("contract")) return "03_governance";
+  if (lower.includes("worker") || lower.includes("pulse") || lower.includes("spawn") || lower.includes("metabolism") || lower.includes("resilience")) return "02_metabolism";
+  if (lower.includes("spatial") || lower.includes("structure") || lower.includes("glyph")) return "01_physics";
+  if (lower.includes("memory") || lower.includes("wasm") || lower.includes("offset") || lower.includes("state_matrix")) return "00_substrate";
+
+  // Scan file contents for layer strings
+  if (content.includes("06_akasha")) return "06_akasha";
+  if (content.includes("05_exocortex")) return "05_exocortex";
+  if (content.includes("04_noosphere")) return "04_noosphere";
+  if (content.includes("03_governance")) return "03_governance";
+  if (content.includes("02_metabolism")) return "02_metabolism";
+  if (content.includes("01_physics")) return "01_physics";
+  
+  return "00_substrate"; // default
+}
+
 async function main() {
-  for (const l of LAYERS) {
-    await ensureDir(l);
-  }
-
-  // 1. Gather all TS files
-  const tsFiles = [];
-  for await (const entry of walk(".", { exts: [".ts"], skip: [/^\./, /^sigma_core/, /^omega_vm/, /^omega_wasm/, /^tests/, /^e\//, /^o\//, /^archive\//, /^assembly\//, /^\d{2}_/] })) {
-    if (entry.isFile && entry.name !== "phase52.ts" && entry.name !== "export_core.ts" && entry.name !== "build_wasm.ts" && entry.name !== "SYSTEM_START.ts" && !entry.name.startsWith("gen_rust") && !entry.name.startsWith("export_rust") && !entry.name.startsWith("fix_") && entry.name !== "dump_waste.ts" && entry.name !== "mod.ts") {
-      tsFiles.push(entry.path);
-    }
-  }
-
-  // Also include SWARM_NEXUS.ts and BOOTSTRAP_HUB.ts from network/
-  try {
-    for await (const entry of walk("network", { exts: [".ts"] })) {
-      tsFiles.push(entry.path);
-    }
-  } catch (e) {}
+  const testDir = "tests";
   
-  // Include existing tests to move them
-  try {
-    for await (const entry of walk(".", { exts: [".ts"], match: [/^test_/] })) {
-      if (!entry.path.startsWith("tests/")) tsFiles.push(entry.path);
-    }
-  } catch (e) {}
-
-  const fileMap = new Map<string, string>(); // basename -> new layer
-  const relocationMap = new Map<string, string>(); // oldPath -> newPath
-
-  // Move files physically
-  for (const path of tsFiles) {
-    const b = basename(path);
-    const layer = classify(b);
-    if (layer !== 'root') {
-      const dest = join(layer, b);
-      fileMap.set(b, layer);
-      relocationMap.set(path, dest);
-      console.log(`Moving ${path} -> ${dest}`);
-      await move(path, dest, { overwrite: true });
-    } else {
-      fileMap.set(b, 'root');
+  for await (const entry of Deno.readDir(testDir)) {
+    if (entry.isFile && entry.name.endsWith(".ts")) {
+      const src = join(testDir, entry.name);
+      const content = await Deno.readTextFile(src);
+      const layer = matchLayer(entry.name, content);
+      
+      const destDir = join(layer, "03_tests");
+      await ensureDir(destDir);
+      
+      const dest = join(destDir, entry.name);
+      await gitMv(src, dest);
     }
   }
 
-  // Pre-seed known locations (for tests and sub-imports)
-  for await (const entry of walk(".", { exts: [".ts"] })) {
-    for (const l of LAYERS) {
-      if (entry.path.startsWith(`${l}/`)) {
-        fileMap.set(entry.name, l);
+  // Move remaining worker tools to 02_metabolism/03_tests
+  for await (const entry of Deno.readDir(".")) {
+      if (entry.isFile && entry.name.startsWith("worker_") && entry.name.endsWith(".ts")) {
+          await gitMv(entry.name, join("02_metabolism/03_tests", entry.name));
       }
-    }
+      if (entry.isFile && entry.name === "worker_test.js") {
+          await gitMv(entry.name, join("02_metabolism/03_tests", entry.name));
+      }
   }
-
-  // 2. Generate mod.ts for layers 00-06 and 63
-  for (const layer of LAYERS.filter(l => l !== 'tests')) {
-    const exports = [];
-    for await (const entry of walk(layer, { exts: [".ts"], maxDepth: 1 })) {
-      if (entry.name !== "mod.ts") {
-        exports.push(`export * from "./${entry.name}";`);
-      }
-    }
-    if (exports.length > 0) {
-      await Deno.writeTextFile(join(layer, "mod.ts"), exports.join("\n") + "\n");
-    } else {
-      await Deno.writeTextFile(join(layer, "mod.ts"), "// Empty layer\n");
-    }
-  }
-
-  // 3. Rewrite Imports
-  // We'll walk ALL .ts files in the repository
-  const IMPORT_REGEX = /(from|import)\s+["'](\.\/|\.\.\/|network\/)([^"']+)["']/g;
-  
-  for await (const entry of walk(".", { exts: [".ts"], skip: [/^\./, /^sigma_core/, /^omega_vm/, /^omega_wasm/, /^e\//, /^archive\//, /^assembly\//] })) {
-    const content = await Deno.readTextFile(entry.path);
-    const currentLayerMatch = entry.path.split("/");
-    const isRoot = currentLayerMatch.length === 1;
-    const currentLayer = isRoot ? 'root' : currentLayerMatch[0];
-    
-    let edited = false;
-    const newContent = content.replace(IMPORT_REGEX, (match, keyword, relNode, importedPath) => {
-      // Remove .ts just for checking
-      let importedName = basename(importedPath);
-      if (!importedName.endsWith(".ts")) importedName += ".ts";
-
-      const targetLayer = fileMap.get(importedName);
-
-      if (!targetLayer) {
-        // Unknown, leave it alone
-        return match;
-      }
-
-      let newRel = "";
-      if (isRoot) {
-        if (targetLayer === 'root') newRel = `./${importedName}`;
-        else newRel = `./${targetLayer}/mod.ts`;
-      } else {
-        if (targetLayer === 'root') {
-          newRel = `../${importedName}`;
-        } else if (currentLayer === targetLayer) {
-          // Intra-layer: direct
-          newRel = `./${importedName}`;
-        } else {
-          // Inter-layer: through mod.ts
-          newRel = `../${targetLayer}/mod.ts`;
-        }
-      }
-
-      edited = true;
-      return `${keyword} "${newRel}"`;
-    });
-
-    if (edited) {
-      await Deno.writeTextFile(entry.path, newContent);
-    }
-  }
-
-  // Generate Architecture Guard
-  const guardCode = `
-import { walk } from "jsr:@std/fs";
-import { assert } from "jsr:@std/assert";
-
-const LAYERS = [
-  "00_substrate",
-  "01_physics",
-  "02_metabolism",
-  "03_governance",
-  "04_noosphere",
-  "05_exocortex",
-  "06_akasha"
-];
-
-Deno.test("topology: architecture guard - strict acyclic descent", async () => {
-  const IMPORT_REGEX = /from\\s+["']\\.\\.\\/(\\d{2}_[^/]+)\\/mod\\.ts["']/g;
-
-  for (let i = 0; i < LAYERS.length; i++) {
-    const layer = LAYERS[i];
-    const allowed = LAYERS.slice(0, i + 1); // Layer can import itself and anything below it
-
-    for await (const entry of walk(layer, { exts: [".ts"] })) {
-      const content = await Deno.readTextFile(entry.path);
-      let match;
-      while ((match = IMPORT_REGEX.exec(content)) !== null) {
-        const targetLayer = match[1];
-        if (!allowed.includes(targetLayer)) {
-          throw new Error(\`Topological Breach! \${entry.path} is importing from \${targetLayer}. A layer may only import from layers at or below its own level.\`);
-        }
-      }
-    }
-  }
-});
-`;
-  await Deno.writeTextFile("tests/architecture_guard.ts", guardCode.trim());
-  console.log("Migration Complete.");
 }
 
 main();
@@ -41947,7 +47003,7 @@ export class DollForkRunner {
    */
   public async init(): Promise<void> {
     const wasmRes = await fetch(
-      new URL("../../build/release.wasm", import.meta.url).href,
+      new URL("../../08_artifacts/release.wasm", import.meta.url).href,
     );
     const wasmBytes = await wasmRes.arrayBuffer();
 
@@ -43608,62 +48664,6 @@ The migration is considered real only when:
 
 ---
 
-## FILE: RUN_STAGE8_TICKS.ts
-
-```typescript
-import { PULSE } from "./02_metabolism/mod.ts";
-import { STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SOVEREIGN_ORACLE } from "./05_exocortex/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { RUNTIME_POLICY } from "./03_governance/RUNTIME_POLICY.ts";
-
-async function run() {
-  console.log("Initializing Pulse for Stage 8 verification...");
-
-  // 1. Seed the world in the SAME process memory
-  const seedResult = COLDSTART_BOOTSTRAP.seed({
-    ...RUNTIME_POLICY.coldstart,
-    enabled: true,
-  });
-  console.log("Seed Result:", seedResult);
-
-  await PULSE.initWorkers();
-
-  console.log("Running 50 ticks to gather metrics...");
-  for (let i = 0; i < 50; i++) {
-    // Fluctuate coherence to trigger different branches
-    SOVEREIGN_ORACLE.neuralCoherence = (i % 2 === 0) ? 100 : 0;
-    await PULSE.tick();
-    if (i % 10 === 0) {
-      const state = PULSE.getGuardianSignalHybridState();
-      console.log(
-        `Tick ${i}: shadowRuns=${state.shadowRuns}, stable=${state.stableBranchCount}, repair=${state.repairBranchCount}, fallback=${state.fallbackRuns} (last: ${state.lastFallbackReason})`,
-      );
-    }
-  }
-
-  const finalState = PULSE.getGuardianSignalHybridState();
-  console.log("\n--- Final Guardian Signal Hybrid State ---");
-  console.log(JSON.stringify(finalState, null, 2));
-
-  const promotion = evaluateGuardianSignalPromotion(finalState);
-  console.log("\n--- Promotion Readiness ---");
-  console.log(JSON.stringify(promotion, null, 2));
-
-  Deno.exit(0);
-}
-
-run().catch((err) => {
-  console.error("Verification failed:", err);
-  Deno.exit(1);
-});
-
-```
-
----
-
 ## FILE: runtime_bridge/glyph_pretty.ts
 
 ```typescript
@@ -43827,3986 +48827,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
-```
-
----
-
-## FILE: SYSTEM_START.ts
-
-```typescript
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "./03_governance/mod.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "./03_governance/mod.ts";
-// OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
-// Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
-
-import { PULSE, type ReplicationHybridState } from "./02_metabolism/mod.ts";
-import { BREATH } from "./BREATH.ts";
-import { MAX_ATOMS, STATE_MATRIX } from "./00_substrate/mod.ts";
-import { SEMANTIC_MEMBRANE } from "./05_exocortex/mod.ts";
-import { P2P_FEDERATION } from "./04_noosphere/mod.ts";
-import { PHYSICS_ENGINE } from "./01_physics/mod.ts";
-import { SNAPSHOT_ENGINE } from "./06_akasha/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "./03_governance/mod.ts";
-import {
-  SOVEREIGN_ORACLE,
-} from "./05_exocortex/mod.ts";
-import {
-  SwarmNexus,
-  SWARM_NODE,
-  P2P_CODEC,
-} from "./04_noosphere/mod.ts";
-import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "./03_governance/mod.ts";
-import * as OFFSETS from "./00_substrate/mod.ts";
-import { LOGGER } from "./00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "./03_governance/RUNTIME_POLICY.ts";
-import { mutateUniversalConstants } from "./03_governance/mod.ts";
-import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "./06_akasha/mod.ts";
-import { MUTATION_TELEMETRY } from "./06_akasha/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "./63_necropolis/mod.ts";
-import { TELEMETRY_STREAM } from "./06_akasha/mod.ts";
-import { LINEAGE_TRACKER } from "./06_akasha/mod.ts";
-import { capturePhysiologySnapshot } from "./06_akasha/mod.ts";
-import { GLYPH_BUFFER, type GlyphSnapshot } from "./01_physics/mod.ts";
-import { evaluateGuardianSignalPromotion } from "./03_governance/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "./03_governance/mod.ts";
-import { evaluateReplicationPromotion } from "./03_governance/mod.ts";
-import type {
-  ReplicationHybridSnapshot,
-  ReplicationPromotionSnapshot,
-  GuardianSignalHybridSnapshot,
-  GuardianSignalPromotionSnapshot,
-  ArchitectPlasmidHybridSnapshot,
-  ArchitectPlasmidPromotionSnapshot,
-} from "./03_governance/mod.ts";
-import { PANOPTICON_SERVER } from "./06_akasha/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "./03_governance/mod.ts";
-
-const UI_PORT = RUNTIME_POLICY.system.port;
-const HOST = RUNTIME_POLICY.system.host;
-const UI_PATH = "./ui/index.html";
-const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
-const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
-const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
-const GRID_W = 140;
-const GRID_H = 80;
-const WORLD_W = GRID_W * 10;
-const WORLD_H = GRID_H * 10;
-const JSON_HEADERS = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-} as const;
-
-type DaemonAdmissionSnapshot = {
-  tick: number;
-  status: "accepted" | "rejected";
-  requestedAction: string;
-  appliedAction: string;
-  degraded: boolean;
-  severity: "LOW" | "MID" | "HIGH" | "BLOCKED";
-  score: number;
-  reason: string;
-  sharedCenter: string;
-  dominantInvariantVector: string;
-  codexLineageLabel?: string;
-  codexLineageGuardScore?: number;
-  codexLineageGuardReasons?: string[];
-  glyphStatus?: string;
-  glyphRegime?: string;
-  glyphDominantRole?: string;
-  glyphSourceMode?: string;
-};
-
-type RuntimeMetrics = {
-  tick: number;
-  population: number;
-  avgEnergy: number;
-  neuralCoherence: number;
-  spatialOverflowRatio: number;
-  spatialOverflowCount: number;
-  spatialMaxCellCount: number;
-  guardianSignalHybrid: GuardianSignalHybridSnapshot;
-  architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
-  guardianSignalPromotion: GuardianSignalPromotionSnapshot;
-  architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
-  replicationHybrid: ReplicationHybridState;
-  replicationPromotion: ReplicationPromotionSnapshot;
-  glyphTransport: GlyphSnapshot;
-};
-
-type DaemonAuditPending = {
-  auditId: string;
-  action: Exclude<DaemonAction, "OBSERVE">;
-  requestedAction: DaemonAction;
-  targetX: number;
-  targetY: number;
-  intensity: number;
-  hexCode?: string;
-  queued: boolean;
-  queueReason: string;
-  queuedStatus: number;
-  tickApplied: number;
-  evaluateAtTick: number;
-  baseline: RuntimeMetrics;
-  sharedCenter: string;
-  dominantInvariantVector: string;
-  codexLineageLabel?: string;
-};
-
-type PressureRingIngressEnvelope = {
-  mode?: "set" | "step";
-  theta?: number;
-  delta_theta?: number;
-  scale?: number;
-  enabled?: boolean;
-  rollback_token?: string;
-  reason?: string;
-};
-
-type PressureRingUpdateSnapshot = {
-  tick: number;
-  mode: "set" | "step" | "scale_only" | "mixed" | "rollback";
-  source: string;
-  delta_theta: number;
-  theta: number;
-  scale: number;
-  enabled: boolean;
-  ledger_status:
-    | "applied"
-    | "noop"
-    | "rolled_back"
-    | "missing"
-    | "consumed"
-    | "stale"
-    | null;
-  scale_rollback_token: string | null;
-  scale_before: number;
-  scale_after: number;
-};
-
-type HomeostasisIngressEnvelope = {
-  base_tax?: number;
-  target_energy?: number;
-  rollback_token?: string;
-  reason?: string;
-};
-
-type HomeostasisUpdateSnapshot = {
-  tick: number;
-  source: string;
-  reason: string;
-  mode: "apply" | "target_only" | "mixed" | "rollback";
-  ledger_status:
-    | "applied"
-    | "noop"
-    | "rolled_back"
-    | "missing"
-    | "consumed"
-    | "stale"
-    | null;
-  base_tax_ledger_status:
-    | "applied"
-    | "noop"
-    | "rolled_back"
-    | "missing"
-    | "consumed"
-    | "stale"
-    | null;
-  target_energy_ledger_status:
-    | "applied"
-    | "noop"
-    | "rolled_back"
-    | "missing"
-    | "consumed"
-    | "stale"
-    | null;
-  base_tax_rollback_token: string | null;
-  target_energy_rollback_token: string | null;
-  base_tax_before: number;
-  base_tax_after: number;
-  target_energy_before: number;
-  target_energy_after: number;
-};
-
-type DaemonPolicyIngressEnvelope = {
-  max_pheromone_intensity?: number;
-  max_plasmid_charge?: number;
-  rollback_token?: string;
-  reason?: string;
-};
-
-type DaemonPolicyUpdateSnapshot = {
-  tick: number;
-  source: string;
-  reason: string;
-  mode: "apply" | "rollback";
-  policy_key:
-    | "daemon.maxPheromoneIntensity"
-    | "daemon.maxPlasmidCharge"
-    | null;
-  ledger_status:
-    | "applied"
-    | "noop"
-    | "rolled_back"
-    | "missing"
-    | "consumed"
-    | "stale"
-    | null;
-  pheromone_rollback_token: string | null;
-  plasmid_rollback_token: string | null;
-  max_pheromone_intensity_before: number;
-  max_pheromone_intensity_after: number;
-  max_plasmid_charge_before: number;
-  max_plasmid_charge_after: number;
-};
-
-const requireControlAuth = (req: Request): Response | null => {
-  const path = new URL(req.url).pathname;
-  const isAvatarIngress = path === "/avatar";
-  if (!CONTROL_ENABLE) {
-    if (isAvatarIngress && AVATAR_INGRESS_ENABLE) {
-      return null;
-    }
-    return new Response("Control plane disabled", { status: 403 });
-  }
-  if (CONTROL_TOKEN.length === 0) {
-    return null;
-  }
-  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
-  if (provided !== CONTROL_TOKEN) {
-    return new Response("Unauthorized", { status: 401 });
-  }
-  return null;
-};
-
-const requireDaemonAuth = (req: Request): Response | null => {
-  if (!CONTROL_ENABLE || CONTROL_TOKEN.length === 0) return null;
-  const provided = (req.headers.get("x-omega-control-token") ?? "").trim();
-  if (provided !== CONTROL_TOKEN) {
-    return new Response("Unauthorized", { status: 401 });
-  }
-  return null;
-};
-
-const asFiniteNumber = (value: unknown, fallback: number): number => {
-  if (typeof value === "number" && Number.isFinite(value)) return value;
-  if (typeof value === "string" && value.trim().length > 0) {
-    const parsed = Number(value);
-    if (Number.isFinite(parsed)) return parsed;
-  }
-  return fallback;
-};
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-const DAEMON_POLICY = RUNTIME_POLICY.daemon;
-const COLDSTART_POLICY = RUNTIME_POLICY.coldstart;
-const SNAPSHOT_POLICY = RUNTIME_POLICY.snapshot;
-const DAEMON_POLICY_WINDOW_MS = DAEMON_POLICY.policyWindowMs;
-const DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW = DAEMON_POLICY.maxActionsPerWindow;
-const DAEMON_SAFE_MIN_POPULATION = DAEMON_INGRESS_POLICY_LIMITS
-  .safeMinPopulation;
-const DAEMON_SAFE_MIN_AVG_ENERGY =
-  DAEMON_INGRESS_POLICY_LIMITS.safeMinAvgEnergy;
-const DAEMON_AUDIT_EFFECT_TICKS = DAEMON_POLICY.auditEffectTicks;
-const DAEMON_AUDIT_PATH = DAEMON_POLICY.auditPath;
-const DAEMON_INVARIANT_DRIFT_MID_SCORE = DAEMON_INGRESS_POLICY_LIMITS
-  .invariantDriftMidScore;
-const DAEMON_INVARIANT_DRIFT_HIGH_SCORE = DAEMON_INGRESS_POLICY_LIMITS
-  .invariantDriftHighScore;
-const DAEMON_CODEX_LINEAGE_LONGEVITY_EPOCHS = DAEMON_INGRESS_POLICY_LIMITS
-  .codexLineageLongevityEpochs;
-const DAEMON_CODEX_LINEAGE_PEAK_SHARE = DAEMON_INGRESS_POLICY_LIMITS
-  .codexLineagePeakShare;
-const CODEX_LINEAGE_GUARD_PLASMID = "CODEX_LINEAGE_GUARD_PLASMID";
-const DAEMON_ADMISSION_HISTORY_LIMIT = 12;
-const DAEMON_PRESSURE_RING_MAX_STEP = Math.PI / 6;
-const DAEMON_PRESSURE_RING_HISTORY_LIMIT = 24;
-const DAEMON_HOMEOSTASIS_HISTORY_LIMIT = 24;
-const DAEMON_POLICY_HISTORY_LIMIT = 24;
-const DAEMON_HOMEOSTASIS_BASE_TAX_MIN = 0;
-const DAEMON_HOMEOSTASIS_BASE_TAX_MAX = 128;
-const DAEMON_HOMEOSTASIS_TARGET_MIN = 1;
-const DAEMON_HOMEOSTASIS_TARGET_MAX = 10_000;
-const DAEMON_MAX_PHEROMONE_INTENSITY_MIN = 1;
-const DAEMON_MAX_PHEROMONE_INTENSITY_MAX = 4096;
-const DAEMON_MAX_PLASMID_CHARGE_MIN = 1;
-const DAEMON_MAX_PLASMID_CHARGE_MAX = 4096;
-const DAEMON_DYNAMIC_BUDGET_MIN = Math.max(
-  1,
-  Math.floor(DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW * 0.25),
-);
-const DAEMON_DYNAMIC_OVERFLOW_SOFT = 0.18;
-const DAEMON_DYNAMIC_OVERFLOW_HARD = 0.35;
-const DAEMON_DYNAMIC_ENERGY_SOFT = DAEMON_SAFE_MIN_AVG_ENERGY + 8;
-const DAEMON_DYNAMIC_ENERGY_HARD = DAEMON_SAFE_MIN_AVG_ENERGY + 3;
-const TELEMETRY_STREAM_EMIT_INTERVAL_TICKS = 2;
-
-const currentDaemonMaxPheromoneIntensity = (): number =>
-  DAEMON_INGRESS_POLICY_LIMITS.maxPheromoneIntensity;
-const currentDaemonMaxPlasmidCharge = (): number =>
-  DAEMON_INGRESS_POLICY_LIMITS.maxPlasmidCharge;
-
-let daemonWindowStartMs = Date.now();
-let daemonActionsInWindow = 0;
-let daemonAuditSeq = 0;
-const daemonAuditPending: DaemonAuditPending[] = [];
-let latestDaemonAdmission: DaemonAdmissionSnapshot | null = null;
-let daemonAdmissionHistory: DaemonAdmissionSnapshot[] = [];
-let latestPressureRingUpdate: PressureRingUpdateSnapshot | null = null;
-let pressureRingHistory: PressureRingUpdateSnapshot[] = [];
-let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
-let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
-let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
-let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
-  "daemon.maxPheromoneIntensity",
-  DAEMON_POLICY.maxPheromoneIntensity,
-  128,
-);
-let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
-  path: getLogPath("daemon.maxPheromoneIntensity"),
-  snapshotPath: getSnapshotPath("daemon.maxPheromoneIntensity"),
-  exists: false,
-  snapshotExists: false,
-  recordCount: 0,
-  applyCount: 0,
-  rollbackCount: 0,
-  tailRecordCount: 0,
-  tailApplyCount: 0,
-  tailRollbackCount: 0,
-  snapshotRecordCount: 0,
-  snapshotApplyCount: 0,
-  snapshotRollbackCount: 0,
-  compactionEnabled: true,
-  compactionThreshold: 64,
-  compactionKeepTail: 16,
-  lastCompactedAt: null,
-  lastCompactedTick: -1,
-  hydrated: false,
-  lastHydratedAt: null,
-  lastHydrationError: null,
-};
-let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
-  "daemon.maxPlasmidCharge",
-  DAEMON_POLICY.maxPlasmidCharge,
-  128,
-);
-let daemonPlasmidLedgerPersistence: LedgerPersistenceSummary = {
-  path: getLogPath("daemon.maxPlasmidCharge"),
-  snapshotPath: getSnapshotPath("daemon.maxPlasmidCharge"),
-  exists: false,
-  snapshotExists: false,
-  recordCount: 0,
-  applyCount: 0,
-  rollbackCount: 0,
-  tailRecordCount: 0,
-  tailApplyCount: 0,
-  tailRollbackCount: 0,
-  snapshotRecordCount: 0,
-  snapshotApplyCount: 0,
-  snapshotRollbackCount: 0,
-  compactionEnabled: true,
-  compactionThreshold: 64,
-  compactionKeepTail: 16,
-  lastCompactedAt: null,
-  lastCompactedTick: -1,
-  hydrated: false,
-  lastHydratedAt: null,
-  lastHydrationError: null,
-};
-let autoSnapshotLastTick = -1;
-let autoSnapshotInFlight = false;
-let telemetryStreamLastTick = -1;
-let autoSnapshotLastResult: {
-  tick: number;
-  timestamp: string;
-  success: boolean;
-  reason: string;
-  pruned: number;
-  retention: number;
-  error?: string;
-} | null = null;
-
-const setLatestDaemonAdmission = (
-  snapshot: DaemonAdmissionSnapshot,
-): void => {
-  latestDaemonAdmission = snapshot;
-  daemonAdmissionHistory = [snapshot, ...daemonAdmissionHistory].slice(
-    0,
-    DAEMON_ADMISSION_HISTORY_LIMIT,
-  );
-};
-
-const setLatestPressureRingUpdate = (
-  snapshot: PressureRingUpdateSnapshot,
-): void => {
-  latestPressureRingUpdate = snapshot;
-  pressureRingHistory = [snapshot, ...pressureRingHistory].slice(
-    0,
-    DAEMON_PRESSURE_RING_HISTORY_LIMIT,
-  );
-};
-
-const setLatestHomeostasisUpdate = (
-  snapshot: HomeostasisUpdateSnapshot,
-): void => {
-  latestHomeostasisUpdate = snapshot;
-  homeostasisHistory = [snapshot, ...homeostasisHistory].slice(
-    0,
-    DAEMON_HOMEOSTASIS_HISTORY_LIMIT,
-  );
-};
-
-const setLatestDaemonPolicyUpdate = (
-  snapshot: DaemonPolicyUpdateSnapshot,
-): void => {
-  latestDaemonPolicyUpdate = snapshot;
-  daemonPolicyHistory = [snapshot, ...daemonPolicyHistory].slice(
-    0,
-    DAEMON_POLICY_HISTORY_LIMIT,
-  );
-};
-
-const logicToHex = (logic: Uint8Array): string =>
-  Array.from(logic).map((b) => b.toString(16).padStart(2, "0")).join("")
-    .toUpperCase();
-
-const dominantGenomes = (active: number[], limit = 3): string[] => {
-  const counts = new Map<string, number>();
-  for (const idx of active) {
-    const hex = logicToHex(STATE_MATRIX.getLogic(idx));
-    counts.set(hex, (counts.get(hex) ?? 0) + 1);
-  }
-  return Array.from(counts.entries())
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([hex]) => hex);
-};
-
-const collectRuntimeMetrics = (): RuntimeMetrics => {
-  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-  const active = STATE_MATRIX.getActiveIndices();
-  const spatialHash = PULSE.getSpatialHashState();
-  const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
-  const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
-  const replicationHybrid = PULSE.getReplicationHybridState();
-  let totalEnergy = 0;
-  for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
-  const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
-  const rawCoherence = (STATE_MATRIX.getClusterSync?.() ??
-    0) as number;
-  return {
-    tick,
-    population: active.length,
-    avgEnergy: Number(avgEnergy.toFixed(3)),
-    neuralCoherence: Number(rawCoherence.toFixed(3)),
-    spatialOverflowRatio: spatialHash.overflowRatio,
-    spatialOverflowCount: spatialHash.overflowCount,
-    spatialMaxCellCount: spatialHash.maxCellCount,
-    guardianSignalHybrid: guardianSignalHybrid as any,
-    architectPlasmidHybrid: architectPlasmidHybrid as any,
-    guardianSignalPromotion: evaluateGuardianSignalPromotion(
-      guardianSignalHybrid as any,
-    ),
-    architectPlasmidPromotion: evaluateArchitectPlasmidPromotion(
-      architectPlasmidHybrid as any,
-    ),
-    replicationHybrid,
-    replicationPromotion: evaluateReplicationPromotion(
-      replicationHybrid as ReplicationHybridSnapshot,
-    ),
-    glyphTransport: GLYPH_BUFFER.snapshot(),
-  };
-};
-
-const isDaemonSafeMode = (
-  metrics: RuntimeMetrics,
-): { blocked: boolean; reason: string } => {
-  if (metrics.population < DAEMON_SAFE_MIN_POPULATION) {
-    return {
-      blocked: true,
-      reason:
-        `SAFE_MODE_POPULATION_${metrics.population}_LT_${DAEMON_SAFE_MIN_POPULATION}`,
-    };
-  }
-  if (metrics.avgEnergy < DAEMON_SAFE_MIN_AVG_ENERGY) {
-    return {
-      blocked: true,
-      reason:
-        `SAFE_MODE_AVG_ENERGY_${metrics.avgEnergy}_LT_${DAEMON_SAFE_MIN_AVG_ENERGY}`,
-    };
-  }
-  return { blocked: false, reason: "SAFE_MODE_OFF" };
-};
-
-const resolveDaemonBudgetMax = (metrics: RuntimeMetrics): number => {
-  let maxActions = DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW;
-  if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_HARD) {
-    maxActions = Math.floor(maxActions * 0.35);
-  } else if (metrics.spatialOverflowRatio >= DAEMON_DYNAMIC_OVERFLOW_SOFT) {
-    maxActions = Math.floor(maxActions * 0.6);
-  }
-  if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_HARD) {
-    maxActions = Math.floor(maxActions * 0.5);
-  } else if (metrics.avgEnergy <= DAEMON_DYNAMIC_ENERGY_SOFT) {
-    maxActions = Math.floor(maxActions * 0.75);
-  }
-  return clamp(
-    Math.floor(maxActions),
-    DAEMON_DYNAMIC_BUDGET_MIN,
-    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
-  );
-};
-
-const consumeDaemonBudget = (maxActionsPerWindow: number): {
-  ok: boolean;
-  remaining: number;
-  resetInMs: number;
-} => {
-  const now = Date.now();
-  if (now - daemonWindowStartMs >= DAEMON_POLICY_WINDOW_MS) {
-    daemonWindowStartMs = now;
-    daemonActionsInWindow = 0;
-  }
-  const maxActions = clamp(
-    Math.floor(maxActionsPerWindow),
-    DAEMON_DYNAMIC_BUDGET_MIN,
-    DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
-  );
-  if (daemonActionsInWindow >= maxActions) {
-    const elapsed = now - daemonWindowStartMs;
-    return {
-      ok: false,
-      remaining: 0,
-      resetInMs: Math.max(0, DAEMON_POLICY_WINDOW_MS - elapsed),
-    };
-  }
-  daemonActionsInWindow++;
-  return {
-    ok: true,
-    remaining: Math.max(
-      0,
-      maxActions - daemonActionsInWindow,
-    ),
-    resetInMs: Math.max(
-      0,
-      DAEMON_POLICY_WINDOW_MS - (now - daemonWindowStartMs),
-    ),
-  };
-};
-
-const appendDaemonAudit = async (
-  event: Record<string, unknown>,
-): Promise<void> => {
-  try {
-    await Deno.writeTextFile(
-      DAEMON_AUDIT_PATH,
-      `${JSON.stringify(event)}\n`,
-      { append: true, create: true },
-    );
-  } catch (err) {
-    LOGGER.warn(`[DAEMON_AUDIT] append failed: ${String(err)}`);
-  }
-};
-
-const queueDaemonAudit = (entry: DaemonAuditPending): void => {
-  daemonAuditPending.push(entry);
-};
-
-const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
-  if (daemonAuditPending.length === 0) return;
-  const remaining: DaemonAuditPending[] = [];
-  for (const pending of daemonAuditPending) {
-    if (currentTick < pending.evaluateAtTick) {
-      remaining.push(pending);
-      continue;
-    }
-    const metrics = collectRuntimeMetrics();
-    await appendDaemonAudit({
-      event_type: "DAEMON_EFFECT_EVAL",
-      audit_id: pending.auditId,
-      evaluated_at_tick: currentTick,
-      action: pending.action,
-      requested_action: pending.requestedAction,
-      target_x: pending.targetX,
-      target_y: pending.targetY,
-      shared_center: pending.sharedCenter,
-      dominant_invariant_vector: pending.dominantInvariantVector,
-      codex_lineage_label: pending.codexLineageLabel ?? "none",
-      baseline: pending.baseline,
-      outcome: metrics,
-      delta: {
-        population: metrics.population - pending.baseline.population,
-        avgEnergy: Number(
-          (metrics.avgEnergy - pending.baseline.avgEnergy).toFixed(3),
-        ),
-        neuralCoherence: Number(
-          (metrics.neuralCoherence - pending.baseline.neuralCoherence).toFixed(
-            3,
-          ),
-        ),
-      },
-    });
-    const currentDominantGenome =
-      dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0] ?? "";
-    AKASHA_CODEX.recordDaemonEffect(
-      currentTick,
-      pending.auditId,
-      pending.requestedAction,
-      pending.action,
-      pending.sharedCenter,
-      pending.dominantInvariantVector,
-      pending.baseline.population,
-      metrics.population,
-      pending.baseline.avgEnergy,
-      metrics.avgEnergy,
-      pending.baseline.neuralCoherence,
-      metrics.neuralCoherence,
-      currentDominantGenome,
-    );
-  }
-  daemonAuditPending.length = 0;
-  daemonAuditPending.push(...remaining);
-};
-
-const maybeAutoSnapshot = async (tick: number): Promise<void> => {
-  if (!SNAPSHOT_POLICY.enabled) return;
-  if (!Number.isFinite(tick) || tick < 0) return;
-  if (autoSnapshotInFlight) return;
-  if (
-    autoSnapshotLastTick >= 0 &&
-    tick - autoSnapshotLastTick < SNAPSHOT_POLICY.intervalTicks
-  ) {
-    return;
-  }
-
-  autoSnapshotInFlight = true;
-  const reason = "auto_tick_interval";
-  try {
-    const result = await SNAPSHOT_ENGINE.exportSnapshot({
-      tick,
-      reason,
-      prune: true,
-      retention: SNAPSHOT_POLICY.retention ?? 10,
-    });
-    if (result.success) {
-      autoSnapshotLastTick = tick;
-      autoSnapshotLastResult = {
-        tick,
-        timestamp: result.timestamp ?? new Date().toISOString(),
-        success: true,
-        reason,
-        pruned: result.pruned ?? 0,
-        retention: result.retention ?? SNAPSHOT_POLICY.retention,
-      };
-      return;
-    }
-    autoSnapshotLastResult = {
-      tick,
-      timestamp: "",
-      success: false,
-      reason,
-      pruned: 0,
-      retention: SNAPSHOT_POLICY.retention,
-      error: result.error ?? "SNAPSHOT_EXPORT_FAILED",
-    };
-    LOGGER.warn(
-      `[SNAPSHOT] Auto snapshot failed tick=${tick} reason=${autoSnapshotLastResult.error}`,
-    );
-  } catch (err) {
-    autoSnapshotLastResult = {
-      tick,
-      timestamp: "",
-      success: false,
-      reason,
-      pruned: 0,
-      retention: SNAPSHOT_POLICY.retention,
-      error: String(err),
-    };
-    LOGGER.warn(
-      `[SNAPSHOT] Auto snapshot exception tick=${tick} err=${String(err)}`,
-    );
-  } finally {
-    autoSnapshotInFlight = false;
-  }
-};
-
-const buildTelemetry = async () => {
-  const metrics = collectRuntimeMetrics();
-  const active = STATE_MATRIX.getActiveIndices();
-  const pressure = PULSE.getEvolutionPressureState();
-  const homeostasis = PULSE.getHomeostasisState();
-  const geneticLedger = PULSE.getGeneticLedgerState();
-  const dynamicMaxActions = resolveDaemonBudgetMax(metrics);
-  const behaviorClusters = SEMANTIC_MEMBRANE.captureBehaviorFrame(
-    metrics.tick,
-    4096,
-  );
-  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
-  const federationAdmissionState = CONTROL_INTENT_QUEUE
-    .getFederationAdmissionState();
-  let voxPopuli: string[] = [];
-  try {
-    const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
-    if (Array.isArray(vox)) {
-      voxPopuli = vox
-        .filter((entry): entry is string => typeof entry === "string")
-        .slice(0, 8);
-    }
-  } catch {
-    voxPopuli = [];
-  }
-  const safeMode = isDaemonSafeMode(metrics);
-  const resetInMs = Math.max(
-    0,
-    DAEMON_POLICY_WINDOW_MS - (Date.now() - daemonWindowStartMs),
-  );
-  return {
-    tick: metrics.tick,
-    avgEnergy: metrics.avgEnergy,
-    dominantGenomes: dominantGenomes(active, 3),
-    voxPopuli,
-    pulse_pressure: {
-      novelty_signed: pressure.noveltySigned,
-      symbiosis_signed: pressure.symbiosisSigned,
-      novelty: pressure.novelty,
-      fear: pressure.fear,
-      symbiosis: pressure.symbiosis,
-      ego: pressure.ego,
-      ring: {
-        enabled: pressure.ring.enabled,
-        theta: Number(pressure.ring.theta.toFixed(6)),
-        scale: pressure.ring.scale,
-        ledger_scale: geneticLedger.pressureRingScale,
-        ledger_scale_persistence: geneticLedger.pressureRingScalePersistence,
-        fear_curiosity_balance: Number(
-          pressure.ring.fearCuriosityBalance.toFixed(6),
-        ),
-        ego_love_balance: Number(
-          pressure.ring.egoLoveBalance.toFixed(6),
-        ),
-        novelty_axis_from_ring: pressure.ring.enabled,
-        symbiosis_axis_from_ring: pressure.ring.enabled,
-      },
-    },
-    guardian_signal_hybrid: metrics.guardianSignalHybrid,
-    architect_plasmid_hybrid: metrics.architectPlasmidHybrid,
-    replication_hybrid: metrics.replicationHybrid,
-    guardian_signal_promotion: metrics.guardianSignalPromotion,
-    architect_plasmid_promotion: metrics.architectPlasmidPromotion,
-    replication_promotion: metrics.replicationPromotion,
-    glyph_transport: metrics.glyphTransport,
-    daemon_governance: {
-      safe_mode: safeMode.blocked,
-      safe_mode_reason: safeMode.reason,
-      actions_used_in_window: daemonActionsInWindow,
-      actions_max_in_window: DAEMON_POLICY_MAX_ACTIONS_PER_WINDOW,
-      actions_dynamic_max_in_window: dynamicMaxActions,
-      window_reset_in_ms: resetInMs,
-      max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
-      max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
-      ledger_max_pheromone_intensity: snapshotLedgerRuntime(
-        daemonPheromoneLedgerRuntime,
-      ),
-      ledger_max_pheromone_intensity_persistence:
-        daemonPheromoneLedgerPersistence,
-      ledger_max_plasmid_charge: snapshotLedgerRuntime(
-        daemonPlasmidLedgerRuntime,
-      ),
-      ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
-      invariant_drift_mid_score: DAEMON_INVARIANT_DRIFT_MID_SCORE,
-      invariant_drift_high_score: DAEMON_INVARIANT_DRIFT_HIGH_SCORE,
-      last_admission: latestDaemonAdmission,
-      last_admission_history: daemonAdmissionHistory,
-      last_policy_update: latestDaemonPolicyUpdate,
-      last_policy_history: daemonPolicyHistory,
-      last_pressure_ring_update: latestPressureRingUpdate,
-      last_pressure_ring_history: pressureRingHistory,
-      last_homeostasis_update: latestHomeostasisUpdate,
-      last_homeostasis_history: homeostasisHistory,
-      homeostasis: {
-        enabled: homeostasis.enabled,
-        target_energy: homeostasis.targetEnergy,
-        target_energy_default: homeostasis.targetEnergyDefault,
-        target_energy_current: homeostasis.targetEnergyCurrent,
-        band: homeostasis.band,
-        max_delta: homeostasis.maxDelta,
-        overflow_threshold: homeostasis.overflowThreshold,
-        starvation_floor: homeostasis.starvationFloor,
-        subsidy_enabled: homeostasis.subsidyEnabled,
-        base_tax_default: homeostasis.baseTaxDefault,
-        base_tax_current: homeostasis.baseTaxCurrent,
-        last_update_tick: homeostasis.lastUpdateTick,
-        last_update_source: homeostasis.lastUpdateSource,
-        last_update_reason: homeostasis.lastUpdateReason,
-        ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence:
-          geneticLedger.homeostasisBaseTaxPersistence,
-        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
-        ledger_target_energy_persistence:
-          geneticLedger.homeostasisTargetEnergyPersistence,
-      },
-    },
-    snapshot_guard: {
-      enabled: SNAPSHOT_POLICY.enabled,
-      interval_ticks: SNAPSHOT_POLICY.intervalTicks,
-      retention: SNAPSHOT_POLICY.retention,
-      in_flight: autoSnapshotInFlight,
-      last_tick: autoSnapshotLastTick,
-      last_result: autoSnapshotLastResult,
-    },
-    spatial_hash_guard: {
-      tick: metrics.tick,
-      overflow_count: metrics.spatialOverflowCount,
-      max_cell_count: metrics.spatialMaxCellCount,
-      overflow_ratio: metrics.spatialOverflowRatio,
-    },
-    behavior_clusters: behaviorClusters.slice(0, 6),
-    behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
-    federation_rule_genome: {
-      local: P2P_FEDERATION.localRuleGenome,
-      peers: peerRuleProfiles.slice(0, 8),
-    },
-    federation_admission: {
-      latest: federationAdmissionState.latest,
-      history: federationAdmissionState.history.slice(0, 8),
-      policy: federationAdmissionState.policy,
-    },
-    hormones: [
-      STATE_MATRIX.getHormone(0),
-      STATE_MATRIX.getHormone(1),
-      STATE_MATRIX.getHormone(2),
-      STATE_MATRIX.getHormone(3),
-      STATE_MATRIX.getHormone(4),
-      STATE_MATRIX.getHormone(5),
-    ],
-    glyph_buffer: GLYPH_BUFFER.snapshot(),
-  };
-};
-
-const buildFederateLocalContext = (
-  packet: Record<string, unknown>,
-  pulseId: number,
-): {
-  behavior: { invariant: string; dominantRole: number; memberCount: number };
-  codex: {
-    genome: string;
-    label: string;
-    dominantEpochs: number;
-    peakShare: number;
-    known: boolean;
-    generatedAt: string;
-  };
-} => {
-  const localBehavior =
-    SEMANTIC_MEMBRANE.captureBehaviorFrame(pulseId, 1024)[0];
-  const behavior = localBehavior
-    ? {
-      invariant: localBehavior.behaviorSignature,
-      dominantRole: localBehavior.dominantRole,
-      memberCount: localBehavior.memberCount,
-    }
-    : { invariant: "none", dominantRole: -1, memberCount: 0 };
-  const localDominantGenome =
-    dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0];
-  const fallbackGenome = typeof packet?.logic === "string"
-    ? packet.logic
-    : "0000000000000000";
-  const codex = AKASHA_CODEX.lookupLineageProfile(
-    localDominantGenome ?? fallbackGenome,
-  );
-  return { behavior, codex };
-};
-
-const parseDaemonInjectEnvelope = (
-  body: unknown,
-): DaemonInjectEnvelope | null => {
-  if (!body || typeof body !== "object") return null;
-  const root = body as Record<string, unknown>;
-  const payloadSource = root.payload && typeof root.payload === "object"
-    ? root.payload as Record<string, unknown>
-    : root;
-
-  const actionRaw = typeof root.action_type === "string"
-    ? root.action_type
-    : typeof root.type === "string"
-    ? root.type
-    : typeof payloadSource.hex_code === "string"
-    ? "INJECT_PLASMID"
-    : "DROP_PHEROMONE";
-  const action = actionRaw.trim().toUpperCase();
-  if (
-    action !== "DROP_PHEROMONE" && action !== "INJECT_PLASMID" &&
-    action !== "OBSERVE"
-  ) {
-    return null;
-  }
-
-  const x = clamp(
-    Math.round(asFiniteNumber(payloadSource.target_x ?? payloadSource.x, 700)),
-    0,
-    WORLD_W - 1,
-  );
-  const y = clamp(
-    Math.round(asFiniteNumber(payloadSource.target_y ?? payloadSource.y, 400)),
-    0,
-    WORLD_H - 1,
-  );
-  const intensity = clamp(
-    asFiniteNumber(payloadSource.intensity ?? payloadSource.charge, 100),
-    1,
-    2000,
-  );
-  const hexCode = typeof payloadSource.hex_code === "string"
-    ? payloadSource.hex_code
-    : typeof payloadSource.plasmid_hex === "string"
-    ? payloadSource.plasmid_hex
-    : undefined;
-
-  return {
-    action_type: action as DaemonAction,
-    payload: {
-      target_x: x,
-      target_y: y,
-      intensity,
-      hex_code: hexCode,
-    },
-  };
-};
-
-const asOptionalBoolean = (value: unknown): boolean | undefined => {
-  if (typeof value === "boolean") return value;
-  if (typeof value === "string") {
-    const norm = value.trim().toLowerCase();
-    if (["1", "true", "yes", "on"].includes(norm)) return true;
-    if (["0", "false", "no", "off"].includes(norm)) return false;
-  }
-  return undefined;
-};
-
-const parsePressureRingIngressEnvelope = (
-  body: unknown,
-): PressureRingIngressEnvelope | null => {
-  if (!body || typeof body !== "object") return null;
-  const root = body as Record<string, unknown>;
-  const payloadSource = root.payload && typeof root.payload === "object"
-    ? root.payload as Record<string, unknown>
-    : root;
-  const rollbackToken = typeof (
-      payloadSource.rollback_token ?? payloadSource.rollbackToken
-    ) === "string"
-    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
-    : "";
-
-  const modeRaw = typeof root.mode === "string"
-    ? root.mode
-    : typeof payloadSource.mode === "string"
-    ? payloadSource.mode
-    : "";
-  const mode = modeRaw.trim().toLowerCase();
-  if (rollbackToken.length === 0 && mode !== "set" && mode !== "step") {
-    return null;
-  }
-
-  const thetaValue = asFiniteNumber(
-    payloadSource.theta ?? payloadSource.target_theta,
-    Number.NaN,
-  );
-  const deltaValue = asFiniteNumber(
-    payloadSource.delta_theta ?? payloadSource.delta,
-    Number.NaN,
-  );
-  const scaleRaw = asFiniteNumber(payloadSource.scale, Number.NaN);
-  const enabled = asOptionalBoolean(payloadSource.enabled);
-  if (
-    rollbackToken.length === 0 &&
-    mode === "set" &&
-    !Number.isFinite(thetaValue)
-  ) return null;
-  if (
-    rollbackToken.length === 0 &&
-    mode === "step" &&
-    !Number.isFinite(deltaValue)
-  ) return null;
-  if (
-    rollbackToken.length === 0 &&
-    !Number.isFinite(thetaValue) &&
-    !Number.isFinite(deltaValue) &&
-    !Number.isFinite(scaleRaw) &&
-    enabled === undefined
-  ) {
-    return null;
-  }
-  const reason = typeof payloadSource.reason === "string"
-    ? payloadSource.reason.trim().slice(0, 96)
-    : "daemon_phase_scheduler";
-
-  const envelope: PressureRingIngressEnvelope = {
-    reason: reason.length > 0 ? reason : "daemon_phase_scheduler",
-  };
-  if (mode === "set" || mode === "step") {
-    envelope.mode = mode as "set" | "step";
-  }
-  if (Number.isFinite(thetaValue)) envelope.theta = thetaValue;
-  if (Number.isFinite(deltaValue)) {
-    envelope.delta_theta = clamp(
-      deltaValue,
-      -DAEMON_PRESSURE_RING_MAX_STEP,
-      DAEMON_PRESSURE_RING_MAX_STEP,
-    );
-  }
-  if (Number.isFinite(scaleRaw)) {
-    envelope.scale = clamp(Math.round(scaleRaw), 0, 2048);
-  }
-  if (enabled !== undefined) envelope.enabled = enabled;
-  if (rollbackToken.length > 0) {
-    envelope.rollback_token = rollbackToken.slice(0, 160);
-  }
-  return envelope;
-};
-
-const parseHomeostasisIngressEnvelope = (
-  body: unknown,
-): HomeostasisIngressEnvelope | null => {
-  if (!body || typeof body !== "object") return null;
-  const root = body as Record<string, unknown>;
-  const payloadSource = root.payload && typeof root.payload === "object"
-    ? root.payload as Record<string, unknown>
-    : root;
-  const baseTax = asFiniteNumber(
-    payloadSource.base_tax ?? payloadSource.baseTax,
-    Number.NaN,
-  );
-  const targetEnergy = asFiniteNumber(
-    payloadSource.target_energy ?? payloadSource.targetEnergy,
-    Number.NaN,
-  );
-  const rollbackToken = typeof (
-      payloadSource.rollback_token ?? payloadSource.rollbackToken
-    ) === "string"
-    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
-    : "";
-  if (
-    !Number.isFinite(baseTax) &&
-    !Number.isFinite(targetEnergy) &&
-    rollbackToken.length === 0
-  ) {
-    return null;
-  }
-  const reason = typeof payloadSource.reason === "string"
-    ? payloadSource.reason.trim().slice(0, 96)
-    : "daemon_homeostasis_controller";
-  const envelope: HomeostasisIngressEnvelope = {
-    reason: reason.length > 0 ? reason : "daemon_homeostasis_controller",
-  };
-  if (Number.isFinite(baseTax)) {
-    envelope.base_tax = clamp(
-      Math.round(baseTax),
-      DAEMON_HOMEOSTASIS_BASE_TAX_MIN,
-      DAEMON_HOMEOSTASIS_BASE_TAX_MAX,
-    );
-  }
-  if (Number.isFinite(targetEnergy)) {
-    envelope.target_energy = clamp(
-      Math.round(targetEnergy),
-      DAEMON_HOMEOSTASIS_TARGET_MIN,
-      DAEMON_HOMEOSTASIS_TARGET_MAX,
-    );
-  }
-  if (rollbackToken.length > 0) {
-    envelope.rollback_token = rollbackToken.slice(0, 160);
-  }
-  return envelope;
-};
-
-const parseDaemonPolicyIngressEnvelope = (
-  body: unknown,
-): DaemonPolicyIngressEnvelope | null => {
-  if (!body || typeof body !== "object") return null;
-  const root = body as Record<string, unknown>;
-  const payloadSource = root.payload && typeof root.payload === "object"
-    ? root.payload as Record<string, unknown>
-    : root;
-  const maxPheromoneIntensity = asFiniteNumber(
-    payloadSource.max_pheromone_intensity ??
-      payloadSource.maxPheromoneIntensity,
-    Number.NaN,
-  );
-  const maxPlasmidCharge = asFiniteNumber(
-    payloadSource.max_plasmid_charge ??
-      payloadSource.maxPlasmidCharge,
-    Number.NaN,
-  );
-  const rollbackToken = typeof (
-      payloadSource.rollback_token ?? payloadSource.rollbackToken
-    ) === "string"
-    ? String(payloadSource.rollback_token ?? payloadSource.rollbackToken).trim()
-    : "";
-  if (
-    !Number.isFinite(maxPheromoneIntensity) &&
-    !Number.isFinite(maxPlasmidCharge) &&
-    rollbackToken.length === 0
-  ) {
-    return null;
-  }
-  const reason = typeof payloadSource.reason === "string"
-    ? payloadSource.reason.trim().slice(0, 96)
-    : "daemon_policy_controller";
-  const envelope: DaemonPolicyIngressEnvelope = {
-    reason: reason.length > 0 ? reason : "daemon_policy_controller",
-  };
-  if (Number.isFinite(maxPheromoneIntensity)) {
-    envelope.max_pheromone_intensity = clamp(
-      Math.round(maxPheromoneIntensity),
-      DAEMON_MAX_PHEROMONE_INTENSITY_MIN,
-      DAEMON_MAX_PHEROMONE_INTENSITY_MAX,
-    );
-  }
-  if (Number.isFinite(maxPlasmidCharge)) {
-    envelope.max_plasmid_charge = clamp(
-      Math.round(maxPlasmidCharge),
-      DAEMON_MAX_PLASMID_CHARGE_MIN,
-      DAEMON_MAX_PLASMID_CHARGE_MAX,
-    );
-  }
-  if (rollbackToken.length > 0) {
-    envelope.rollback_token = rollbackToken.slice(0, 160);
-  }
-  return envelope;
-};
-
-const inferHomeostasisRollbackKey = (
-  rollbackToken: string,
-): "pulse.homeostasis.baseTax" | "pulse.homeostasis.targetEnergy" | null => {
-  if (rollbackToken.startsWith("pulse.homeostasis.baseTax@")) {
-    return "pulse.homeostasis.baseTax";
-  }
-  if (rollbackToken.startsWith("pulse.homeostasis.targetEnergy@")) {
-    return "pulse.homeostasis.targetEnergy";
-  }
-  return null;
-};
-
-const inferDaemonPolicyRollbackKey = (
-  rollbackToken: string,
-): "daemon.maxPheromoneIntensity" | "daemon.maxPlasmidCharge" | null => {
-  if (rollbackToken.startsWith("daemon.maxPheromoneIntensity@")) {
-    return "daemon.maxPheromoneIntensity";
-  }
-  if (rollbackToken.startsWith("daemon.maxPlasmidCharge@")) {
-    return "daemon.maxPlasmidCharge";
-  }
-  return null;
-};
-
-const applyDaemonPheromonePolicyLedgerUpdate = (
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): import("./03_governance/GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
-  "daemon.maxPheromoneIntensity"
-> => {
-  const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
-  daemonPheromoneLedgerRuntime = result.state;
-  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
-  return result;
-};
-
-const rollbackDaemonPheromonePolicyLedgerUpdate = (
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): import("./03_governance/GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
-  "daemon.maxPheromoneIntensity"
-> => {
-  const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
-  daemonPheromoneLedgerRuntime = result.state;
-  syncDaemonIngressMaxPheromoneIntensity(result.state.currentValue);
-  return result;
-};
-
-const syncDaemonPheromonePolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateLedgerRuntime("daemon.maxPheromoneIntensity", {
-    initialValue: DAEMON_POLICY.maxPheromoneIntensity,
-    historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-  });
-  daemonPheromoneLedgerRuntime = hydrated.state;
-  daemonPheromoneLedgerPersistence = hydrated.persistence;
-  syncDaemonIngressMaxPheromoneIntensity(hydrated.state.currentValue);
-};
-
-const applyDaemonPlasmidPolicyLedgerUpdate = (
-  update: {
-    value: number;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): import("./03_governance/GENERIC_LEDGER_SYSTEM.ts").LedgerApplyResult<
-  "daemon.maxPlasmidCharge"
-> => {
-  const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
-  daemonPlasmidLedgerRuntime = result.state;
-  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
-  return result;
-};
-
-const rollbackDaemonPlasmidPolicyLedgerUpdate = (
-  rollback: {
-    rollbackToken: string;
-    source?: string;
-    reason?: string;
-    tick?: number;
-  },
-): import("./03_governance/GENERIC_LEDGER_SYSTEM.ts").LedgerRollbackResult<
-  "daemon.maxPlasmidCharge"
-> => {
-  const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
-  daemonPlasmidLedgerRuntime = result.state;
-  syncDaemonIngressMaxPlasmidCharge(result.state.currentValue);
-  return result;
-};
-
-const syncDaemonPlasmidPolicyLedgerHydration = async (): Promise<void> => {
-  const hydrated = await hydrateLedgerRuntime("daemon.maxPlasmidCharge", {
-    initialValue: DAEMON_POLICY.maxPlasmidCharge,
-    historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-  });
-  daemonPlasmidLedgerRuntime = hydrated.state;
-  daemonPlasmidLedgerPersistence = hydrated.persistence;
-  syncDaemonIngressMaxPlasmidCharge(hydrated.state.currentValue);
-};
-
-const serializeDaemonPolicyState = () => {
-  const liveLimits = snapshotDaemonIngressPolicyLimits();
-  return {
-    max_pheromone_intensity: currentDaemonMaxPheromoneIntensity(),
-    max_pheromone_intensity_default: daemonPheromoneLedgerRuntime.defaultValue,
-    max_pheromone_intensity_current: daemonPheromoneLedgerRuntime.currentValue,
-    max_plasmid_charge: currentDaemonMaxPlasmidCharge(),
-    max_plasmid_charge_default: daemonPlasmidLedgerRuntime.defaultValue,
-    max_plasmid_charge_current: daemonPlasmidLedgerRuntime.currentValue,
-    safe_min_population: liveLimits.safeMinPopulation,
-    safe_min_avg_energy: liveLimits.safeMinAvgEnergy,
-    ledger_max_pheromone_intensity: snapshotLedgerRuntime(
-      daemonPheromoneLedgerRuntime,
-    ),
-    ledger_max_pheromone_intensity_persistence:
-      daemonPheromoneLedgerPersistence,
-    ledger_max_plasmid_charge: snapshotLedgerRuntime(
-      daemonPlasmidLedgerRuntime,
-    ),
-    ledger_max_plasmid_charge_persistence: daemonPlasmidLedgerPersistence,
-  };
-};
-
-const collapseHomeostasisLedgerStatus = (
-  baseStatus: HomeostasisUpdateSnapshot["base_tax_ledger_status"],
-  targetStatus: HomeostasisUpdateSnapshot["target_energy_ledger_status"],
-): HomeostasisUpdateSnapshot["ledger_status"] => {
-  if (baseStatus !== null && targetStatus === null) return baseStatus;
-  if (baseStatus === null && targetStatus !== null) return targetStatus;
-  if (
-    baseStatus !== null && targetStatus !== null && baseStatus === targetStatus
-  ) {
-    return baseStatus;
-  }
-  return null;
-};
-
-LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
-RUNTIME_POLICY.logFingerprintOnce("system-start");
-LOGGER.info(
-  `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${AVATAR_INGRESS_ENABLE} tokenRequired=${
-    CONTROL_TOKEN.length > 0
-  }`,
-);
-if (RUNTIME_POLICY.p2p.mainnetEnabled) {
-  LOGGER.info(`🌐 [SYSTEM] MAINNET BOOTSTRAP ACTIVE`);
-}
-await AKASHA_CODEX.start();
-
-// STAGE 5.3 VERIFICATION: Forced Reflection Seed
-setInterval(() => {
-  const signalGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    35200000 + 4096,
-    140 * 80,
-  );
-  const memoryGrid = new Int32Array(
-    STATE_MATRIX.buffer,
-    36100000 + 4096,
-    140 * 80,
-  );
-  // Seed a strong signal in the center
-  const center = 40 * 140 + 70;
-  Atomics.store(signalGrid, center, 1000);
-  Atomics.store(memoryGrid, center, 500);
-}, 100);
-
-// 1. Initialize Observer UI Server
-Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
-  const url = new URL(req.url);
-
-  if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
-      },
-    });
-  }
-
-  if (url.pathname === "/state") {
-    const buffer = STATE_MATRIX.buffer;
-
-    const bufferCopy = new Uint8Array(buffer.byteLength);
-    bufferCopy.set(new Uint8Array(buffer));
-    return new Response(bufferCopy, {
-      headers: { "Content-Type": "application/octet-stream" },
-    });
-  }
-
-  if (url.pathname === "/grid") {
-    const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
-    const attention = PHYSICS_ENGINE.ATTENTION_PHEROMONES;
-
-    const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
-    const outEnv = new Int32Array(buffer, 0, env.length);
-    const outAttention = new Float32Array(
-      buffer,
-      env.byteLength,
-      attention.length,
-    );
-
-    outEnv.set(env);
-    outAttention.set(attention);
-
-    return new Response(buffer, {
-      headers: { "Content-Type": "application/octet-stream" },
-    });
-  }
-
-  if (url.pathname === "/api/telemetry" && req.method === "GET") {
-    return new Response(JSON.stringify(await buildTelemetry()), {
-      headers: JSON_HEADERS,
-    });
-  }
-
-  if (url.pathname === "/api/telemetry/stream" && req.method === "GET") {
-    const limit = clamp(
-      Math.floor(asFiniteNumber(url.searchParams.get("limit"), 128)),
-      1,
-      1024,
-    );
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        history: TELEMETRY_STREAM.history(limit),
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/telemetry/histogram" && req.method === "GET") {
-    const metricRaw = (url.searchParams.get("metric") ?? "").trim();
-    if (
-      metricRaw !== "population" && metricRaw !== "avgEnergy" &&
-      metricRaw !== "neuralCoherence" && metricRaw !== "spatialOverflowRatio"
-    ) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_METRIC",
-          allowed: TELEMETRY_STREAM.metrics(),
-        }),
-        { status: 400, headers: JSON_HEADERS },
-      );
-    }
-    const windowMs = clamp(
-      Math.floor(asFiniteNumber(url.searchParams.get("window_ms"), 60000)),
-      1000,
-      86_400_000,
-    );
-    const buckets = clamp(
-      Math.floor(asFiniteNumber(url.searchParams.get("buckets"), 12)),
-      1,
-      64,
-    );
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        histogram: TELEMETRY_STREAM.histogram(metricRaw, windowMs, buckets),
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/mutation-telemetry" && req.method === "GET") {
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-        mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/telemetry/ws") {
-    if (req.headers.get("upgrade") !== "websocket") {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "WEBSOCKET_UPGRADE_REQUIRED",
-        }),
-        { status: 426, headers: JSON_HEADERS },
-      );
-    }
-    const { socket, response } = Deno.upgradeWebSocket(req);
-    TELEMETRY_STREAM.attach(socket);
-    return response;
-  }
-
-  if (url.pathname === "/api/pressure-ring" && req.method === "GET") {
-    const pressure = PULSE.getEvolutionPressureState();
-    const geneticLedger = PULSE.getGeneticLedgerState();
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-        pressure_ring: {
-          novelty_signed: pressure.noveltySigned,
-          symbiosis_signed: pressure.symbiosisSigned,
-          novelty: pressure.novelty,
-          fear: pressure.fear,
-          symbiosis: pressure.symbiosis,
-          ego: pressure.ego,
-          ring: {
-            enabled: pressure.ring.enabled,
-            theta: Number(pressure.ring.theta.toFixed(6)),
-            scale: pressure.ring.scale,
-            fear_curiosity_balance: Number(
-              pressure.ring.fearCuriosityBalance.toFixed(6),
-            ),
-            ego_love_balance: Number(pressure.ring.egoLoveBalance.toFixed(6)),
-            ledger_scale: geneticLedger.pressureRingScale,
-            ledger_scale_persistence:
-              geneticLedger.pressureRingScalePersistence,
-          },
-        },
-        latest_update: latestPressureRingUpdate,
-        history: pressureRingHistory,
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/pressure-ring" && req.method === "POST") {
-    const denied = requireDaemonAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const envelope = parsePressureRingIngressEnvelope(body);
-      if (!envelope) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_pressure_ring_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "INVALID_PRESSURE_RING_PAYLOAD",
-            expected:
-              "Provide {mode?:set|step, theta|delta_theta, scale?, enabled?, rollback_token?, reason?}",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-      const before = PULSE.getEvolutionPressureState();
-      const source = envelope.reason ?? "daemon_phase_scheduler";
-
-      if (
-        envelope.rollback_token !== undefined &&
-        (
-          envelope.mode !== undefined ||
-          envelope.theta !== undefined ||
-          envelope.delta_theta !== undefined ||
-          envelope.scale !== undefined ||
-          envelope.enabled !== undefined
-        )
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_pressure_ring_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      if (envelope.rollback_token !== undefined) {
-        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
-          key: "pulse.pressureRing.scale",
-          rollbackToken: envelope.rollback_token,
-          source,
-          reason: source,
-          tick,
-        });
-        const pressure = PULSE.getEvolutionPressureState();
-        const geneticLedger = PULSE.getGeneticLedgerState();
-        if (rollback.status !== "rolled_back") {
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_pressure_ring_rollback_reject",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "PRESSURE_RING_ROLLBACK_REJECTED",
-              ledger_status: rollback.status,
-              rollback_token: envelope.rollback_token,
-              pressure_ring: {
-                novelty_signed: pressure.noveltySigned,
-                symbiosis_signed: pressure.symbiosisSigned,
-                novelty: pressure.novelty,
-                fear: pressure.fear,
-                symbiosis: pressure.symbiosis,
-                ego: pressure.ego,
-                ring: {
-                  enabled: pressure.ring.enabled,
-                  theta: Number(pressure.ring.theta.toFixed(6)),
-                  scale: pressure.ring.scale,
-                  fear_curiosity_balance: Number(
-                    pressure.ring.fearCuriosityBalance.toFixed(6),
-                  ),
-                  ego_love_balance: Number(
-                    pressure.ring.egoLoveBalance.toFixed(6),
-                  ),
-                  ledger_scale: geneticLedger.pressureRingScale,
-                  ledger_scale_persistence:
-                    geneticLedger.pressureRingScalePersistence,
-                },
-              },
-            }),
-            { status: 409, headers: JSON_HEADERS },
-          );
-        }
-
-        const snapshot: PressureRingUpdateSnapshot = {
-          tick,
-          mode: "rollback",
-          source,
-          delta_theta: 0,
-          theta: Number(pressure.ring.theta.toFixed(6)),
-          scale: pressure.ring.scale,
-          enabled: pressure.ring.enabled,
-          ledger_status: rollback.status,
-          scale_rollback_token: envelope.rollback_token,
-          scale_before: before.ring.scale,
-          scale_after: pressure.ring.scale,
-        };
-        setLatestPressureRingUpdate(snapshot);
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_pressure_ring_rollback",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_PRESSURE_RING_ROLLBACK",
-          tick,
-          mode: snapshot.mode,
-          source: snapshot.source,
-          delta_theta: snapshot.delta_theta,
-          theta: snapshot.theta,
-          scale: snapshot.scale,
-          enabled: snapshot.enabled,
-          ledger_status: snapshot.ledger_status,
-          rollback_token: snapshot.scale_rollback_token,
-          scale_before: snapshot.scale_before,
-          scale_after: snapshot.scale_after,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: true,
-            updated: snapshot,
-            pressure_ring: {
-              novelty_signed: pressure.noveltySigned,
-              symbiosis_signed: pressure.symbiosisSigned,
-              novelty: pressure.novelty,
-              fear: pressure.fear,
-              symbiosis: pressure.symbiosis,
-              ego: pressure.ego,
-              ring: {
-                enabled: pressure.ring.enabled,
-                theta: Number(pressure.ring.theta.toFixed(6)),
-                scale: pressure.ring.scale,
-                fear_curiosity_balance: Number(
-                  pressure.ring.fearCuriosityBalance.toFixed(6),
-                ),
-                ego_love_balance: Number(
-                  pressure.ring.egoLoveBalance.toFixed(6),
-                ),
-                ledger_scale: geneticLedger.pressureRingScale,
-                ledger_scale_persistence:
-                  geneticLedger.pressureRingScalePersistence,
-              },
-            },
-          }),
-          {
-            status: 200,
-            headers: JSON_HEADERS,
-          },
-        );
-      }
-
-      const ledgerUpdate = envelope.scale === undefined
-        ? null
-        : await PULSE.applyGeneticLedgerUpdate({
-          key: "pulse.pressureRing.scale",
-          value: envelope.scale,
-          source,
-          reason: source,
-          tick,
-        });
-      const pressure = envelope.mode === undefined
-        ? PULSE.getEvolutionPressureState()
-        : PULSE.updateEvolutionPressureRing({
-          mode: envelope.mode,
-          theta: envelope.theta,
-          deltaTheta: envelope.delta_theta,
-          enabled: envelope.enabled,
-          source,
-        });
-      const geneticLedger = PULSE.getGeneticLedgerState();
-      const snapshot: PressureRingUpdateSnapshot = {
-        tick,
-        mode: envelope.scale !== undefined && envelope.mode !== undefined
-          ? "mixed"
-          : envelope.scale !== undefined
-          ? "scale_only"
-          : envelope.mode ?? "set",
-        source,
-        delta_theta: envelope.mode === "step" ? (envelope.delta_theta ?? 0) : 0,
-        theta: Number(pressure.ring.theta.toFixed(6)),
-        scale: pressure.ring.scale,
-        enabled: pressure.ring.enabled,
-        ledger_status: ledgerUpdate?.status ?? null,
-        scale_rollback_token: ledgerUpdate?.mutation?.rollbackToken ?? null,
-        scale_before: before.ring.scale,
-        scale_after: pressure.ring.scale,
-      };
-      setLatestPressureRingUpdate(snapshot);
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_pressure_ring_update",
-        count: 1,
-      });
-      await appendDaemonAudit({
-        event_type: "DAEMON_PRESSURE_RING",
-        tick,
-        mode: snapshot.mode,
-        source: snapshot.source,
-        delta_theta: snapshot.delta_theta,
-        theta: snapshot.theta,
-        scale: snapshot.scale,
-        enabled: snapshot.enabled,
-        ledger_status: snapshot.ledger_status,
-        rollback_token: snapshot.scale_rollback_token,
-        scale_before: snapshot.scale_before,
-        scale_after: snapshot.scale_after,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          updated: snapshot,
-          pressure_ring: {
-            novelty_signed: pressure.noveltySigned,
-            symbiosis_signed: pressure.symbiosisSigned,
-            novelty: pressure.novelty,
-            fear: pressure.fear,
-            symbiosis: pressure.symbiosis,
-            ego: pressure.ego,
-            ring: {
-              enabled: pressure.ring.enabled,
-              theta: Number(pressure.ring.theta.toFixed(6)),
-              scale: pressure.ring.scale,
-              fear_curiosity_balance: Number(
-                pressure.ring.fearCuriosityBalance.toFixed(6),
-              ),
-              ego_love_balance: Number(
-                pressure.ring.egoLoveBalance.toFixed(6),
-              ),
-              ledger_scale: geneticLedger.pressureRingScale,
-              ledger_scale_persistence:
-                geneticLedger.pressureRingScalePersistence,
-            },
-          },
-        }),
-        {
-          status: 200,
-          headers: JSON_HEADERS,
-        },
-      );
-    } catch (err) {
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_pressure_ring_exception",
-        count: 1,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "PRESSURE_RING_UPDATE_EXCEPTION",
-          details: String(err),
-        }),
-        { status: 500, headers: JSON_HEADERS },
-      );
-    }
-  }
-
-  if (url.pathname === "/api/homeostasis" && req.method === "GET") {
-    const homeostasis = PULSE.getHomeostasisState();
-    const geneticLedger = PULSE.getGeneticLedgerState();
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-        homeostasis: {
-          enabled: homeostasis.enabled,
-          target_energy: homeostasis.targetEnergy,
-          target_energy_default: homeostasis.targetEnergyDefault,
-          target_energy_current: homeostasis.targetEnergyCurrent,
-          band: homeostasis.band,
-          max_delta: homeostasis.maxDelta,
-          overflow_threshold: homeostasis.overflowThreshold,
-          starvation_floor: homeostasis.starvationFloor,
-          subsidy_enabled: homeostasis.subsidyEnabled,
-          base_tax_default: homeostasis.baseTaxDefault,
-          base_tax_current: homeostasis.baseTaxCurrent,
-          last_update_tick: homeostasis.lastUpdateTick,
-          last_update_source: homeostasis.lastUpdateSource,
-          last_update_reason: homeostasis.lastUpdateReason,
-          ledger_base_tax: geneticLedger.homeostasisBaseTax,
-          ledger_base_tax_persistence:
-            geneticLedger.homeostasisBaseTaxPersistence,
-          ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
-          ledger_target_energy_persistence:
-            geneticLedger.homeostasisTargetEnergyPersistence,
-        },
-        latest_update: latestHomeostasisUpdate,
-        history: homeostasisHistory,
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/physiology" && req.method === "GET") {
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    const hormones = PULSE.getPhysiologicalLedgerState();
-    const generic = PULSE.getGenericLedgerSnapshots();
-    const geneticLedger = PULSE.getGeneticLedgerState();
-
-    const ledger = {
-      ...generic,
-      "daemon.maxPheromoneIntensity": snapshotLedgerRuntime(
-        daemonPheromoneLedgerRuntime,
-      ),
-      "daemon.maxPlasmidCharge": snapshotLedgerRuntime(
-        daemonPlasmidLedgerRuntime,
-      ),
-    };
-
-    const physiology = capturePhysiologySnapshot({
-      tick,
-      hormones,
-      ledger,
-    });
-    const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
-    const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        physiology,
-        guardian_signal_hybrid: guardianSignalHybrid,
-        architect_plasmid_hybrid: architectPlasmidHybrid,
-        guardian_signal_promotion: evaluateGuardianSignalPromotion(
-          guardianSignalHybrid,
-        ),
-        glyph_transport: GLYPH_BUFFER.snapshot(),
-        ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence:
-          geneticLedger.homeostasisBaseTaxPersistence,
-        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
-        ledger_target_energy_persistence:
-          geneticLedger.homeostasisTargetEnergyPersistence,
-        ledger_pressure_ring_scale: geneticLedger.pressureRingScale,
-        ledger_pressure_ring_scale_persistence:
-          geneticLedger.pressureRingScalePersistence,
-      }),
-      { headers: JSON_HEADERS },
-    );
-  }
-
-  if (url.pathname === "/api/homeostasis" && req.method === "POST") {
-    const denied = requireDaemonAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const envelope = parseHomeostasisIngressEnvelope(body);
-      if (
-        !envelope ||
-        (
-          envelope.base_tax === undefined &&
-          envelope.target_energy === undefined &&
-          envelope.rollback_token === undefined
-        )
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_homeostasis_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "INVALID_HOMEOSTASIS_PAYLOAD",
-            expected:
-              "Provide {base_tax?:number, target_energy?:number, rollback_token?:string, reason?:string}",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      if (
-        envelope.rollback_token !== undefined &&
-        (envelope.base_tax !== undefined ||
-          envelope.target_energy !== undefined)
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_homeostasis_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-      const before = PULSE.getHomeostasisState();
-      const source = "daemon_homeostasis_controller";
-      const reason = envelope.reason ?? "daemon_homeostasis_controller";
-      const serializeHomeostasis = (
-        updated: ReturnType<typeof PULSE.getHomeostasisState>,
-        geneticLedger: ReturnType<typeof PULSE.getGeneticLedgerState>,
-      ) => ({
-        enabled: updated.enabled,
-        target_energy: updated.targetEnergy,
-        target_energy_default: updated.targetEnergyDefault,
-        target_energy_current: updated.targetEnergyCurrent,
-        band: updated.band,
-        max_delta: updated.maxDelta,
-        overflow_threshold: updated.overflowThreshold,
-        starvation_floor: updated.starvationFloor,
-        subsidy_enabled: updated.subsidyEnabled,
-        base_tax_default: updated.baseTaxDefault,
-        base_tax_current: updated.baseTaxCurrent,
-        last_update_tick: updated.lastUpdateTick,
-        last_update_source: updated.lastUpdateSource,
-        last_update_reason: updated.lastUpdateReason,
-        ledger_base_tax: geneticLedger.homeostasisBaseTax,
-        ledger_base_tax_persistence:
-          geneticLedger.homeostasisBaseTaxPersistence,
-        ledger_target_energy: geneticLedger.homeostasisTargetEnergy,
-        ledger_target_energy_persistence:
-          geneticLedger.homeostasisTargetEnergyPersistence,
-      });
-
-      if (envelope.rollback_token !== undefined) {
-        const rollbackKey = inferHomeostasisRollbackKey(
-          envelope.rollback_token,
-        );
-        if (rollbackKey === null) {
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_homeostasis_invalid_payload",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "UNKNOWN_HOMEOSTASIS_ROLLBACK_TOKEN",
-              rollback_token: envelope.rollback_token,
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-
-        const rollback = await PULSE.rollbackGeneticLedgerUpdate({
-          key: rollbackKey,
-          rollbackToken: envelope.rollback_token,
-          source,
-          reason,
-          tick,
-        });
-        const updated = PULSE.getHomeostasisState();
-        const geneticLedger = PULSE.getGeneticLedgerState();
-        const baseTaxLedgerStatus = rollbackKey === "pulse.homeostasis.baseTax"
-          ? rollback.status
-          : null;
-        const targetEnergyLedgerStatus =
-          rollbackKey === "pulse.homeostasis.targetEnergy"
-            ? rollback.status
-            : null;
-        const ledgerStatus = collapseHomeostasisLedgerStatus(
-          baseTaxLedgerStatus,
-          targetEnergyLedgerStatus,
-        );
-        if (rollback.status !== "rolled_back") {
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_homeostasis_rollback_reject",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "HOMEOSTASIS_ROLLBACK_REJECTED",
-              ledger_status: ledgerStatus,
-              base_tax_ledger_status: baseTaxLedgerStatus,
-              target_energy_ledger_status: targetEnergyLedgerStatus,
-              rollback_token: envelope.rollback_token,
-              rollback_key: rollbackKey,
-              homeostasis: serializeHomeostasis(updated, geneticLedger),
-            }),
-            { status: 409, headers: JSON_HEADERS },
-          );
-        }
-
-        const snapshot: HomeostasisUpdateSnapshot = {
-          tick,
-          source,
-          reason,
-          mode: "rollback",
-          ledger_status: ledgerStatus,
-          base_tax_ledger_status: baseTaxLedgerStatus,
-          target_energy_ledger_status: targetEnergyLedgerStatus,
-          base_tax_rollback_token: rollbackKey === "pulse.homeostasis.baseTax"
-            ? envelope.rollback_token
-            : null,
-          target_energy_rollback_token:
-            rollbackKey === "pulse.homeostasis.targetEnergy"
-              ? envelope.rollback_token
-              : null,
-          base_tax_before: before.baseTaxCurrent,
-          base_tax_after: updated.baseTaxCurrent,
-          target_energy_before: before.targetEnergy,
-          target_energy_after: updated.targetEnergy,
-        };
-        setLatestHomeostasisUpdate(snapshot);
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_homeostasis_rollback",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_HOMEOSTASIS_ROLLBACK",
-          tick,
-          source: snapshot.source,
-          reason: snapshot.reason,
-          mode: snapshot.mode,
-          ledger_status: snapshot.ledger_status,
-          base_tax_ledger_status: snapshot.base_tax_ledger_status,
-          target_energy_ledger_status: snapshot.target_energy_ledger_status,
-          rollback_key: rollbackKey,
-          rollback_token: envelope.rollback_token,
-          base_tax_rollback_token: snapshot.base_tax_rollback_token,
-          target_energy_rollback_token: snapshot.target_energy_rollback_token,
-          base_tax_before: snapshot.base_tax_before,
-          base_tax_after: snapshot.base_tax_after,
-          target_energy_before: snapshot.target_energy_before,
-          target_energy_after: snapshot.target_energy_after,
-        });
-
-        return new Response(
-          JSON.stringify({
-            ok: true,
-            updated: snapshot,
-            homeostasis: serializeHomeostasis(updated, geneticLedger),
-          }),
-          {
-            status: 200,
-            headers: JSON_HEADERS,
-          },
-        );
-      }
-
-      const baseTaxLedgerUpdate = envelope.base_tax === undefined
-        ? null
-        : await PULSE.applyGeneticLedgerUpdate({
-          key: "pulse.homeostasis.baseTax",
-          value: envelope.base_tax,
-          source,
-          reason,
-          tick,
-        });
-      const targetEnergyLedgerUpdate = envelope.target_energy === undefined
-        ? null
-        : await PULSE.applyGeneticLedgerUpdate({
-          key: "pulse.homeostasis.targetEnergy",
-          value: envelope.target_energy,
-          source,
-          reason,
-          tick,
-        });
-      const updated = PULSE.getHomeostasisState();
-      const geneticLedger = PULSE.getGeneticLedgerState();
-      const baseTaxLedgerStatus = baseTaxLedgerUpdate?.status ?? null;
-      const targetEnergyLedgerStatus = targetEnergyLedgerUpdate?.status ?? null;
-      const snapshot: HomeostasisUpdateSnapshot = {
-        tick,
-        source,
-        reason,
-        mode: envelope.base_tax !== undefined &&
-            envelope.target_energy !== undefined
-          ? "mixed"
-          : envelope.base_tax !== undefined
-          ? "apply"
-          : "target_only",
-        ledger_status: collapseHomeostasisLedgerStatus(
-          baseTaxLedgerStatus,
-          targetEnergyLedgerStatus,
-        ),
-        base_tax_ledger_status: baseTaxLedgerStatus,
-        target_energy_ledger_status: targetEnergyLedgerStatus,
-        base_tax_rollback_token: baseTaxLedgerUpdate?.mutation?.rollbackToken ??
-          null,
-        target_energy_rollback_token:
-          targetEnergyLedgerUpdate?.mutation?.rollbackToken ?? null,
-        base_tax_before: before.baseTaxCurrent,
-        base_tax_after: updated.baseTaxCurrent,
-        target_energy_before: before.targetEnergy,
-        target_energy_after: updated.targetEnergy,
-      };
-      setLatestHomeostasisUpdate(snapshot);
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_homeostasis_update",
-        count: 1,
-      });
-      await appendDaemonAudit({
-        event_type: "DAEMON_HOMEOSTASIS",
-        tick,
-        source: snapshot.source,
-        reason: snapshot.reason,
-        mode: snapshot.mode,
-        ledger_status: snapshot.ledger_status,
-        base_tax_ledger_status: snapshot.base_tax_ledger_status,
-        target_energy_ledger_status: snapshot.target_energy_ledger_status,
-        rollback_token: snapshot.base_tax_rollback_token ??
-          snapshot.target_energy_rollback_token,
-        base_tax_rollback_token: snapshot.base_tax_rollback_token,
-        target_energy_rollback_token: snapshot.target_energy_rollback_token,
-        base_tax_before: snapshot.base_tax_before,
-        base_tax_after: snapshot.base_tax_after,
-        target_energy_before: snapshot.target_energy_before,
-        target_energy_after: snapshot.target_energy_after,
-      });
-
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          updated: snapshot,
-          homeostasis: serializeHomeostasis(updated, geneticLedger),
-        }),
-        {
-          status: 200,
-          headers: JSON_HEADERS,
-        },
-      );
-    } catch (err) {
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_homeostasis_exception",
-        count: 1,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "HOMEOSTASIS_UPDATE_EXCEPTION",
-          details: String(err),
-        }),
-        { status: 500, headers: JSON_HEADERS },
-      );
-    }
-  }
-
-  if (url.pathname === "/api/daemon-policy" && req.method === "GET") {
-    return new Response(
-      JSON.stringify({
-        ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-        daemon_policy: serializeDaemonPolicyState(),
-        latest_update: latestDaemonPolicyUpdate,
-        history: daemonPolicyHistory,
-      }),
-      {
-        headers: JSON_HEADERS,
-      },
-    );
-  }
-
-  if (url.pathname === "/api/daemon-policy" && req.method === "POST") {
-    const denied = requireDaemonAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const envelope = parseDaemonPolicyIngressEnvelope(body);
-      if (
-        !envelope ||
-        (
-          envelope.max_pheromone_intensity === undefined &&
-          envelope.max_plasmid_charge === undefined &&
-          envelope.rollback_token === undefined
-        )
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "INVALID_DAEMON_POLICY_PAYLOAD",
-            expected:
-              "Provide {max_pheromone_intensity?:number, max_plasmid_charge?:number, rollback_token?:string, reason?:string}",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      if (
-        envelope.rollback_token !== undefined &&
-        (
-          envelope.max_pheromone_intensity !== undefined ||
-          envelope.max_plasmid_charge !== undefined
-        )
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "ROLLBACK_TOKEN_MUST_NOT_BE_MIXED",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      if (
-        envelope.max_pheromone_intensity !== undefined &&
-        envelope.max_plasmid_charge !== undefined
-      ) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "MULTIPLE_DAEMON_POLICY_FIELDS_NOT_ALLOWED",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-      const source = "daemon_policy_controller";
-      const reason = envelope.reason ?? "daemon_policy_controller";
-      const beforePheromone = currentDaemonMaxPheromoneIntensity();
-      const beforePlasmid = currentDaemonMaxPlasmidCharge();
-
-      if (envelope.rollback_token !== undefined) {
-        const rollbackKey = inferDaemonPolicyRollbackKey(
-          envelope.rollback_token,
-        );
-        if (rollbackKey === null) {
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_invalid_payload",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "INVALID_DAEMON_POLICY_ROLLBACK_TOKEN",
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-        const rollback = rollbackKey === "daemon.maxPheromoneIntensity"
-          ? rollbackDaemonPheromonePolicyLedgerUpdate({
-            rollbackToken: envelope.rollback_token,
-            source,
-            reason,
-            tick,
-          })
-          : rollbackDaemonPlasmidPolicyLedgerUpdate({
-            rollbackToken: envelope.rollback_token,
-            source,
-            reason,
-            tick,
-          });
-        if (rollback.status !== "rolled_back") {
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_rollback_reject",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "DAEMON_POLICY_ROLLBACK_REJECTED",
-              ledger_status: rollback.status,
-              rollback_token: envelope.rollback_token,
-              daemon_policy: serializeDaemonPolicyState(),
-            }),
-            { status: 409, headers: JSON_HEADERS },
-          );
-        }
-
-        if (rollback.mutation) {
-          if (rollbackKey === "daemon.maxPheromoneIntensity") {
-            const persisted = await appendLedgerRecordAndMaybeCompact(
-              "daemon.maxPheromoneIntensity",
-              recordFromRollback(
-                rollback.mutation,
-                "daemon.maxPheromoneIntensity",
-              ),
-              {
-                initialValue: DAEMON_POLICY.maxPheromoneIntensity,
-                historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-              },
-            );
-            daemonPheromoneLedgerPersistence = {
-              ...persisted,
-              hydrated: daemonPheromoneLedgerPersistence.hydrated,
-              lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
-              lastHydrationError:
-                daemonPheromoneLedgerPersistence.lastHydrationError,
-            };
-          } else {
-            const persisted = await appendLedgerRecordAndMaybeCompact(
-              "daemon.maxPlasmidCharge",
-              recordFromRollback(rollback.mutation, "daemon.maxPlasmidCharge"),
-              {
-                initialValue: DAEMON_POLICY.maxPlasmidCharge,
-                historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-              },
-            );
-            daemonPlasmidLedgerPersistence = {
-              ...persisted,
-              hydrated: daemonPlasmidLedgerPersistence.hydrated,
-              lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
-              lastHydrationError:
-                daemonPlasmidLedgerPersistence.lastHydrationError,
-            };
-          }
-        }
-
-        const snapshot: DaemonPolicyUpdateSnapshot = {
-          tick,
-          source,
-          reason,
-          mode: "rollback",
-          policy_key: rollbackKey,
-          ledger_status: rollback.status,
-          pheromone_rollback_token:
-            rollbackKey === "daemon.maxPheromoneIntensity"
-              ? envelope.rollback_token
-              : null,
-          plasmid_rollback_token: rollbackKey === "daemon.maxPlasmidCharge"
-            ? envelope.rollback_token
-            : null,
-          max_pheromone_intensity_before: beforePheromone,
-          max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
-          max_plasmid_charge_before: beforePlasmid,
-          max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
-        };
-        setLatestDaemonPolicyUpdate(snapshot);
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_rollback",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_POLICY_ROLLBACK",
-          tick,
-          source: snapshot.source,
-          reason: snapshot.reason,
-          mode: snapshot.mode,
-          policy_key: snapshot.policy_key,
-          ledger_status: snapshot.ledger_status,
-          rollback_token: snapshot.pheromone_rollback_token ??
-            snapshot.plasmid_rollback_token,
-          max_pheromone_intensity_before:
-            snapshot.max_pheromone_intensity_before,
-          max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
-          max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
-          max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: true,
-            updated: snapshot,
-            daemon_policy: serializeDaemonPolicyState(),
-          }),
-          {
-            status: 200,
-            headers: JSON_HEADERS,
-          },
-        );
-      }
-
-      const updateKey = envelope.max_pheromone_intensity !== undefined
-        ? "daemon.maxPheromoneIntensity"
-        : "daemon.maxPlasmidCharge";
-      const result = updateKey === "daemon.maxPheromoneIntensity"
-        ? applyDaemonPheromonePolicyLedgerUpdate({
-          value: envelope.max_pheromone_intensity!,
-          source,
-          reason,
-          tick,
-        })
-        : applyDaemonPlasmidPolicyLedgerUpdate({
-          value: envelope.max_plasmid_charge!,
-          source,
-          reason,
-          tick,
-        });
-      if (result.mutation) {
-        if (updateKey === "daemon.maxPheromoneIntensity") {
-          const persisted = await appendLedgerRecordAndMaybeCompact(
-            "daemon.maxPheromoneIntensity",
-            recordFromApply(result.mutation, "daemon.maxPheromoneIntensity"),
-            {
-              initialValue: DAEMON_POLICY.maxPheromoneIntensity,
-              historyLimit: daemonPheromoneLedgerRuntime.historyLimit,
-            },
-          );
-          daemonPheromoneLedgerPersistence = {
-            ...persisted,
-            hydrated: daemonPheromoneLedgerPersistence.hydrated,
-            lastHydratedAt: daemonPheromoneLedgerPersistence.lastHydratedAt,
-            lastHydrationError:
-              daemonPheromoneLedgerPersistence.lastHydrationError,
-          };
-        } else {
-          const persisted = await appendLedgerRecordAndMaybeCompact(
-            "daemon.maxPlasmidCharge",
-            recordFromApply(result.mutation, "daemon.maxPlasmidCharge"),
-            {
-              initialValue: DAEMON_POLICY.maxPlasmidCharge,
-              historyLimit: daemonPlasmidLedgerRuntime.historyLimit,
-            },
-          );
-          daemonPlasmidLedgerPersistence = {
-            ...persisted,
-            hydrated: daemonPlasmidLedgerPersistence.hydrated,
-            lastHydratedAt: daemonPlasmidLedgerPersistence.lastHydratedAt,
-            lastHydrationError:
-              daemonPlasmidLedgerPersistence.lastHydrationError,
-          };
-        }
-      }
-
-      const snapshot: DaemonPolicyUpdateSnapshot = {
-        tick,
-        source,
-        reason,
-        mode: "apply",
-        policy_key: updateKey,
-        ledger_status: result.status,
-        pheromone_rollback_token: updateKey === "daemon.maxPheromoneIntensity"
-          ? result.mutation?.rollbackToken ?? null
-          : null,
-        plasmid_rollback_token: updateKey === "daemon.maxPlasmidCharge"
-          ? result.mutation?.rollbackToken ?? null
-          : null,
-        max_pheromone_intensity_before: beforePheromone,
-        max_pheromone_intensity_after: currentDaemonMaxPheromoneIntensity(),
-        max_plasmid_charge_before: beforePlasmid,
-        max_plasmid_charge_after: currentDaemonMaxPlasmidCharge(),
-      };
-      setLatestDaemonPolicyUpdate(snapshot);
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_policy_update",
-        count: 1,
-      });
-      await appendDaemonAudit({
-        event_type: "DAEMON_POLICY",
-        tick,
-        source: snapshot.source,
-        reason: snapshot.reason,
-        mode: snapshot.mode,
-        policy_key: snapshot.policy_key,
-        ledger_status: snapshot.ledger_status,
-        rollback_token: snapshot.pheromone_rollback_token ??
-          snapshot.plasmid_rollback_token,
-        max_pheromone_intensity_before: snapshot.max_pheromone_intensity_before,
-        max_pheromone_intensity_after: snapshot.max_pheromone_intensity_after,
-        max_plasmid_charge_before: snapshot.max_plasmid_charge_before,
-        max_plasmid_charge_after: snapshot.max_plasmid_charge_after,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          updated: snapshot,
-          daemon_policy: serializeDaemonPolicyState(),
-        }),
-        {
-          status: 200,
-          headers: JSON_HEADERS,
-        },
-      );
-    } catch (err) {
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_policy_exception",
-        count: 1,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "DAEMON_POLICY_EXCEPTION",
-          details: String(err),
-        }),
-        { status: 500, headers: JSON_HEADERS },
-      );
-    }
-  }
-
-  if (url.pathname === "/api/codex" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(
-      Number.isFinite(limit) ? limit : 8,
-    );
-    return new Response(JSON.stringify(snapshot), {
-      headers: JSON_HEADERS,
-    });
-  }
-
-  if (url.pathname === "/api/codex/narrative" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
-    const narrative = await AKASHA_CODEX.getNarrative(
-      Number.isFinite(limit) ? limit : 5,
-    );
-    return new Response(JSON.stringify(narrative), {
-      headers: JSON_HEADERS,
-    });
-  }
-
-  if (url.pathname === "/api/codex/invariants" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "12", 10);
-    const invariants = await AKASHA_CODEX.getInvariants(
-      Number.isFinite(limit) ? limit : 12,
-    );
-    return new Response(JSON.stringify(invariants), {
-      headers: JSON_HEADERS,
-    });
-  }
-
-  if (url.pathname === "/api/inject" && req.method === "POST") {
-    const denied = requireDaemonAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const envelope = parseDaemonInjectEnvelope(body);
-      if (!envelope) {
-        setLatestDaemonAdmission({
-          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-          status: "rejected",
-          requestedAction: "UNKNOWN",
-          appliedAction: "BLOCKED",
-          degraded: false,
-          severity: "BLOCKED",
-          score: 0,
-          reason: "INVALID_INJECT_PAYLOAD",
-          sharedCenter: "parse",
-          dominantInvariantVector: "none",
-        });
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_inject_invalid_payload",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "INVALID_INJECT_PAYLOAD",
-            expected:
-              "Provide action_type and payload {target_x,target_y,intensity,hex_code?}",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const baseline = collectRuntimeMetrics();
-      const safeMode = isDaemonSafeMode(baseline);
-      const recordDaemonCodexAdmission = (
-        severity: "MID" | "HIGH" | "BLOCKED",
-        requestedAction: string,
-        appliedAction: string,
-        score: number,
-        reason: string,
-        sharedCenter: string,
-        dominantInvariantVector: string,
-      ): void => {
-        AKASHA_CODEX.recordDaemonAdmission(
-          baseline.tick,
-          requestedAction,
-          appliedAction,
-          severity,
-          score,
-          reason,
-          sharedCenter,
-          dominantInvariantVector,
-          baseline.glyphTransport,
-        );
-      };
-
-      if (envelope.action_type === "OBSERVE") {
-        setLatestDaemonAdmission({
-          tick: baseline.tick,
-          status: "accepted",
-          requestedAction: "OBSERVE",
-          appliedAction: "OBSERVE",
-          degraded: false,
-          severity: "LOW",
-          score: 0,
-          reason: "OBSERVE_NOOP",
-          sharedCenter: "tick.exists",
-          dominantInvariantVector: "none",
-        });
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_observe_noop",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_OBSERVE",
-          tick: baseline.tick,
-          metrics: baseline,
-          safe_mode: safeMode.blocked,
-          safe_mode_reason: safeMode.reason,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: true,
-            status: 200,
-            reason: "OBSERVE_NOOP",
-            safe_mode: safeMode.blocked,
-            safe_mode_reason: safeMode.reason,
-          }),
-          { status: 200, headers: JSON_HEADERS },
-        );
-      }
-
-      if (safeMode.blocked) {
-        recordDaemonCodexAdmission(
-          "BLOCKED",
-          envelope.action_type,
-          "BLOCKED",
-          0,
-          safeMode.reason,
-          "safe-mode",
-          "none",
-        );
-        setLatestDaemonAdmission({
-          tick: baseline.tick,
-          status: "rejected",
-          requestedAction: envelope.action_type,
-          appliedAction: "BLOCKED",
-          degraded: false,
-          severity: "BLOCKED",
-          score: 0,
-          reason: safeMode.reason,
-          sharedCenter: "safe-mode",
-          dominantInvariantVector: "none",
-        });
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_safe_mode_block",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_REJECT",
-          reason: safeMode.reason,
-          tick: baseline.tick,
-          action: envelope.action_type,
-          payload: envelope.payload,
-          metrics: baseline,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: safeMode.reason,
-            safe_mode: true,
-            status: 429,
-          }),
-          { status: 429, headers: JSON_HEADERS },
-        );
-      }
-
-      const dynamicBudgetMax = resolveDaemonBudgetMax(baseline);
-      const budget = consumeDaemonBudget(dynamicBudgetMax);
-      if (!budget.ok) {
-        recordDaemonCodexAdmission(
-          "BLOCKED",
-          envelope.action_type,
-          "BLOCKED",
-          0,
-          "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
-          "budget-window",
-          "none",
-        );
-        setLatestDaemonAdmission({
-          tick: baseline.tick,
-          status: "rejected",
-          requestedAction: envelope.action_type,
-          appliedAction: "BLOCKED",
-          degraded: false,
-          severity: "BLOCKED",
-          score: 0,
-          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
-          sharedCenter: "budget-window",
-          dominantInvariantVector: "none",
-        });
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_rate_limit_block",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_REJECT",
-          reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
-          tick: baseline.tick,
-          action: envelope.action_type,
-          payload: envelope.payload,
-          metrics: baseline,
-          budget,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "DAEMON_RATE_LIMIT_WINDOW_EXCEEDED",
-            status: 429,
-            retry_after_ms: budget.resetInMs,
-            dynamic_max_actions: dynamicBudgetMax,
-          }),
-          { status: 429, headers: JSON_HEADERS },
-        );
-      }
-
-      let plasmidRisk: PlasmidRiskProfile | null = null;
-      if (envelope.action_type === "INJECT_PLASMID") {
-        if (!envelope.payload.hex_code) {
-          recordDaemonCodexAdmission(
-            "BLOCKED",
-            envelope.action_type,
-            "BLOCKED",
-            0,
-            "INVALID_PLASMID_PAYLOAD",
-            "policy",
-            "none",
-          );
-          setLatestDaemonAdmission({
-            tick: baseline.tick,
-            status: "rejected",
-            requestedAction: envelope.action_type,
-            appliedAction: "BLOCKED",
-            degraded: false,
-            severity: "BLOCKED",
-            score: 0,
-            reason: "INVALID_PLASMID_PAYLOAD",
-            sharedCenter: "policy",
-            dominantInvariantVector: "none",
-          });
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_block_missing_hex",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "INVALID_PLASMID_PAYLOAD",
-              expected: "hex_code must be 16 hex chars",
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-
-        if (envelope.payload.intensity > currentDaemonMaxPlasmidCharge()) {
-          recordDaemonCodexAdmission(
-            "BLOCKED",
-            envelope.action_type,
-            "BLOCKED",
-            0,
-            "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
-            "policy",
-            "none",
-          );
-          setLatestDaemonAdmission({
-            tick: baseline.tick,
-            status: "rejected",
-            requestedAction: envelope.action_type,
-            appliedAction: "BLOCKED",
-            degraded: false,
-            severity: "BLOCKED",
-            score: 0,
-            reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
-            sharedCenter: "policy",
-            dominantInvariantVector: "none",
-          });
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_block_plasmid_charge",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "DAEMON_POLICY_PLASMID_CHARGE_EXCEEDED",
-              max: currentDaemonMaxPlasmidCharge(),
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-
-        const plasmidPolicy = evaluatePlasmidPolicy(envelope.payload.hex_code);
-        if (!plasmidPolicy.ok) {
-          recordDaemonCodexAdmission(
-            "BLOCKED",
-            envelope.action_type,
-            "BLOCKED",
-            0,
-            plasmidPolicy.reason,
-            "policy",
-            "none",
-          );
-          setLatestDaemonAdmission({
-            tick: baseline.tick,
-            status: "rejected",
-            requestedAction: envelope.action_type,
-            appliedAction: "BLOCKED",
-            degraded: false,
-            severity: "BLOCKED",
-            score: 0,
-            reason: plasmidPolicy.reason,
-            sharedCenter: "policy",
-            dominantInvariantVector: "none",
-          });
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_block_plasmid_rule",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: plasmidPolicy.reason,
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-        plasmidRisk = evaluatePlasmidRisk(
-          envelope.payload.hex_code,
-          envelope.payload.intensity,
-        );
-      }
-
-      const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
-        .at(0) ?? "";
-      const narrativeContext = normalizeDaemonNarrativeContext(
-        await AKASHA_CODEX.getNarrative(3),
-        dominantGenome,
-      );
-      const ingressPlan = planInvariantIngress(
-        envelope,
-        evaluateInvariantAdmission(
-          envelope,
-          baseline,
-          narrativeContext,
-          plasmidRisk,
-        ),
-      );
-      const applied = ingressPlan.applied;
-
-      if (ingressPlan.degraded) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: ingressPlan.admission.severity === "HIGH"
-            ? "daemon_invariant_degrade_high"
-            : "daemon_invariant_degrade_mid",
-          count: 1,
-        });
-        await appendDaemonAudit({
-          event_type: "DAEMON_DEGRADED",
-          tick: baseline.tick,
-          requested_action: ingressPlan.requested.action_type,
-          applied_action: ingressPlan.applied.action_type,
-          requested_payload: ingressPlan.requested.payload,
-          applied_payload: ingressPlan.applied.payload,
-          degrade_reason: ingressPlan.degradeReason,
-          admission: ingressPlan.admission,
-          plasmid_risk: plasmidRisk,
-          metrics: baseline,
-          budget,
-        });
-        AKASHA_CODEX.recordDaemonAdmission(
-          baseline.tick,
-          ingressPlan.requested.action_type,
-          ingressPlan.applied.action_type,
-          ingressPlan.admission.severity,
-          ingressPlan.admission.score,
-          ingressPlan.degradeReason ?? "INVARIANT_DEGRADED",
-          ingressPlan.admission.context.sharedCenter,
-          ingressPlan.admission.context.dominantInvariantVector,
-          baseline.glyphTransport,
-        );
-      }
-
-      if (applied.action_type === "DROP_PHEROMONE") {
-        if (
-          applied.payload.intensity > currentDaemonMaxPheromoneIntensity()
-        ) {
-          recordDaemonCodexAdmission(
-            "BLOCKED",
-            envelope.action_type,
-            applied.action_type,
-            ingressPlan.admission.score,
-            "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
-            ingressPlan.admission.context.sharedCenter,
-            ingressPlan.admission.context.dominantInvariantVector,
-          );
-          setLatestDaemonAdmission({
-            tick: baseline.tick,
-            status: "rejected",
-            requestedAction: envelope.action_type,
-            appliedAction: applied.action_type,
-            degraded: ingressPlan.degraded,
-            severity: "BLOCKED",
-            score: ingressPlan.admission.score,
-            reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
-            sharedCenter: ingressPlan.admission.context.sharedCenter,
-            dominantInvariantVector:
-              ingressPlan.admission.context.dominantInvariantVector,
-            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
-            codexLineageGuardScore:
-              ingressPlan.admission.context.codexLineageGuardScore,
-            codexLineageGuardReasons:
-              ingressPlan.admission.context.codexLineageGuardReasons,
-          });
-          MUTATION_TELEMETRY.record({
-            lane: "external_daemon",
-            kind: "daemon_policy_block_pheromone_intensity",
-            count: 1,
-          });
-          return new Response(
-            JSON.stringify({
-              ok: false,
-              reason: "DAEMON_POLICY_PHEROMONE_INTENSITY_EXCEEDED",
-              max: currentDaemonMaxPheromoneIntensity(),
-            }),
-            { status: 400, headers: JSON_HEADERS },
-          );
-        }
-        const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(
-          applied.payload.target_x,
-          applied.payload.target_y,
-          applied.payload.intensity,
-          "external_daemon",
-        );
-        const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
-        if (queued.ok) {
-          queueDaemonAudit({
-            auditId,
-            action: "DROP_PHEROMONE",
-            requestedAction: ingressPlan.requested.action_type,
-            targetX: applied.payload.target_x,
-            targetY: applied.payload.target_y,
-            intensity: applied.payload.intensity,
-            queued: queued.ok,
-            queueReason: queued.reason,
-            queuedStatus: queued.status,
-            tickApplied: baseline.tick,
-            evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
-            baseline,
-            sharedCenter: ingressPlan.admission.context.sharedCenter,
-            dominantInvariantVector:
-              ingressPlan.admission.context.dominantInvariantVector,
-            codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
-          });
-        }
-        await appendDaemonAudit({
-          event_type: "DAEMON_ACCEPT",
-          audit_id: auditId,
-          tick: baseline.tick,
-          action: "DROP_PHEROMONE",
-          requested_action: ingressPlan.requested.action_type,
-          payload: applied.payload,
-          queue: queued,
-          metrics: baseline,
-          budget,
-          admission: ingressPlan.admission,
-          plasmid_risk: plasmidRisk,
-          degraded: ingressPlan.degraded,
-          degrade_reason: ingressPlan.degradeReason,
-        });
-        setLatestDaemonAdmission({
-          tick: baseline.tick,
-          status: "accepted",
-          requestedAction: ingressPlan.requested.action_type,
-          appliedAction: "DROP_PHEROMONE",
-          degraded: ingressPlan.degraded,
-          severity: ingressPlan.admission.severity,
-          score: ingressPlan.admission.score,
-          reason: ingressPlan.degradeReason ??
-            ingressPlan.admission.reasons.join("|"),
-          sharedCenter: ingressPlan.admission.context.sharedCenter,
-          dominantInvariantVector:
-            ingressPlan.admission.context.dominantInvariantVector,
-          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
-          codexLineageGuardScore:
-            ingressPlan.admission.context.codexLineageGuardScore,
-          codexLineageGuardReasons:
-            ingressPlan.admission.context.codexLineageGuardReasons,
-        });
-        return new Response(
-          JSON.stringify({
-            ...queued,
-            admission: ingressPlan.admission,
-            plasmid_risk: plasmidRisk,
-            degraded: ingressPlan.degraded,
-            degrade_reason: ingressPlan.degradeReason,
-            applied_action: "DROP_PHEROMONE",
-          }),
-          {
-            status: queued.status,
-            headers: JSON_HEADERS,
-          },
-        );
-      }
-
-      if (!applied.payload.hex_code) {
-        MUTATION_TELEMETRY.record({
-          lane: "external_daemon",
-          kind: "daemon_policy_block_missing_hex",
-          count: 1,
-        });
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            reason: "INVALID_PLASMID_PAYLOAD",
-            expected: "hex_code must be 16 hex chars",
-          }),
-          { status: 400, headers: JSON_HEADERS },
-        );
-      }
-
-      const queued = CONTROL_INTENT_QUEUE.enqueuePlasmid(
-        applied.payload.target_x,
-        applied.payload.target_y,
-        applied.payload.hex_code,
-        applied.payload.intensity,
-        "external_daemon",
-      );
-      const auditId = `daemon-${baseline.tick}-${++daemonAuditSeq}`;
-      if (queued.ok) {
-        queueDaemonAudit({
-          auditId,
-          action: "INJECT_PLASMID",
-          requestedAction: ingressPlan.requested.action_type,
-          targetX: applied.payload.target_x,
-          targetY: applied.payload.target_y,
-          intensity: applied.payload.intensity,
-          hexCode: applied.payload.hex_code,
-          queued: queued.ok,
-          queueReason: queued.reason,
-          queuedStatus: queued.status,
-          tickApplied: baseline.tick,
-          evaluateAtTick: baseline.tick + DAEMON_AUDIT_EFFECT_TICKS,
-          baseline,
-          sharedCenter: ingressPlan.admission.context.sharedCenter,
-          dominantInvariantVector:
-            ingressPlan.admission.context.dominantInvariantVector,
-          codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
-        });
-      }
-      await appendDaemonAudit({
-        event_type: "DAEMON_ACCEPT",
-        audit_id: auditId,
-        tick: baseline.tick,
-        action: "INJECT_PLASMID",
-        requested_action: ingressPlan.requested.action_type,
-        payload: applied.payload,
-        queue: queued,
-        metrics: baseline,
-        budget,
-        admission: ingressPlan.admission,
-        plasmid_risk: plasmidRisk,
-        degraded: ingressPlan.degraded,
-        degrade_reason: ingressPlan.degradeReason,
-      });
-      setLatestDaemonAdmission({
-        tick: baseline.tick,
-        status: "accepted",
-        requestedAction: ingressPlan.requested.action_type,
-        appliedAction: "INJECT_PLASMID",
-        degraded: ingressPlan.degraded,
-        severity: ingressPlan.admission.severity,
-        score: ingressPlan.admission.score,
-        reason: ingressPlan.degradeReason ??
-          ingressPlan.admission.reasons.join("|"),
-        sharedCenter: ingressPlan.admission.context.sharedCenter,
-        dominantInvariantVector:
-          ingressPlan.admission.context.dominantInvariantVector,
-        codexLineageLabel: ingressPlan.admission.context.codexLineageLabel,
-        codexLineageGuardScore:
-          ingressPlan.admission.context.codexLineageGuardScore,
-        codexLineageGuardReasons:
-          ingressPlan.admission.context.codexLineageGuardReasons,
-      });
-      return new Response(
-        JSON.stringify({
-          ...queued,
-          admission: ingressPlan.admission,
-          plasmid_risk: plasmidRisk,
-          degraded: ingressPlan.degraded,
-          degrade_reason: ingressPlan.degradeReason,
-          applied_action: "INJECT_PLASMID",
-        }),
-        {
-          status: queued.status,
-          headers: JSON_HEADERS,
-        },
-      );
-    } catch (err) {
-      setLatestDaemonAdmission({
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
-        status: "rejected",
-        requestedAction: "UNKNOWN",
-        appliedAction: "BLOCKED",
-        degraded: false,
-        severity: "BLOCKED",
-        score: 0,
-        reason: "INVALID_INJECT_PAYLOAD",
-        sharedCenter: "exception",
-        dominantInvariantVector: "none",
-      });
-      MUTATION_TELEMETRY.record({
-        lane: "external_daemon",
-        kind: "daemon_inject_exception",
-        count: 1,
-      });
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_INJECT_PAYLOAD",
-          details: String(err),
-        }),
-        { status: 400, headers: JSON_HEADERS },
-      );
-    }
-  }
-
-  if (url.pathname === "/crisis" && req.method === "POST") {
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const queued = CONTROL_INTENT_QUEUE.enqueueCrisis(body?.logicHex);
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_CRISIS_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  if (url.pathname === "/federate" && req.method === "POST") {
-    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
-      CONTROL_INTENT_QUEUE,
-    );
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const arrayBuffer = await req.arrayBuffer();
-      const packet = new Uint8Array(arrayBuffer);
-      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
-
-      let peerRuleGenome = null;
-      let peerBehaviorProfile = null;
-      let peerCodexProfile = null;
-      try {
-        const rStr = req.headers.get("x-omega-rule-genome");
-        if (rStr) {
-          peerRuleGenome = JSON.parse(rStr);
-          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
-        }
-        const bStr = req.headers.get("x-omega-behavior-profile");
-        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
-        const cStr = req.headers.get("x-omega-codex-profile");
-        if (cStr) peerCodexProfile = JSON.parse(cStr);
-      } catch (e) {
-        LOGGER.warn(
-          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
-        );
-      }
-
-      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
-      const queued = qCall(
-        packet,
-        sourceNode,
-        peerRuleGenome,
-        peerBehaviorProfile,
-        localContext.behavior,
-        peerCodexProfile,
-        localContext.codex,
-      );
-
-      LOGGER.info(
-        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
-      );
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_FEDERATE_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  if (url.pathname === "/peers") {
-    return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  if (url.pathname === "/peers/profiles") {
-    return new Response(
-      JSON.stringify({
-        local: P2P_FEDERATION.localRuleGenome,
-        peers: P2P_FEDERATION.getPeerRuleProfiles(),
-      }),
-      {
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  }
-
-  if (url.pathname === "/federate/admission") {
-    return new Response(
-      JSON.stringify(CONTROL_INTENT_QUEUE.getFederationAdmissionState()),
-      {
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  }
-
-  if (url.pathname === "/vox") {
-    return new Response(
-      JSON.stringify(await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd())),
-      {
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  }
-
-  if (url.pathname === "/thoughts") {
-    return new Response(
-      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.thoughtArchive)),
-      {
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  }
-
-  if (url.pathname === "/snapshots" && req.method === "GET") {
-    const list = await SNAPSHOT_ENGINE.listSnapshots();
-    return new Response(JSON.stringify(list), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/governance" && req.method === "GET") {
-    return new Response(JSON.stringify(SOVEREIGNTY_ENGINE.currentRegent), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/lineage" && req.method === "GET") {
-    return new Response(
-      JSON.stringify(Object.fromEntries(SEMANTIC_MEMBRANE.lineage)),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
-    );
-  }
-
-  if (url.pathname === "/codex" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "8", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(
-      Number.isFinite(limit) ? limit : 8,
-    );
-    return new Response(JSON.stringify(snapshot), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/codex/species" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(
-      Number.isFinite(limit) ? limit : 16,
-    );
-    return new Response(JSON.stringify(snapshot.species), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/codex/chronicles" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(
-      Number.isFinite(limit) ? limit : 16,
-    );
-    return new Response(JSON.stringify(snapshot.chronicles), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/codex/relics" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const snapshot = await AKASHA_CODEX.getSnapshot(
-      Number.isFinite(limit) ? limit : 16,
-    );
-    return new Response(JSON.stringify(snapshot.relics), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/codex/narrative" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "5", 10);
-    const narrative = await AKASHA_CODEX.getNarrative(
-      Number.isFinite(limit) ? limit : 5,
-    );
-    return new Response(JSON.stringify(narrative), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/codex/invariants" && req.method === "GET") {
-    const limit = Number.parseInt(url.searchParams.get("limit") ?? "16", 10);
-    const invariants = await AKASHA_CODEX.getInvariants(
-      Number.isFinite(limit) ? limit : 16,
-    );
-    return new Response(JSON.stringify(invariants), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/viral" && req.method === "GET") {
-    // @ts-ignore: viralGridBuffer is dynamically exposed
-    return new Response(STATE_MATRIX.viralGridBuffer, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/immunity" && req.method === "GET") {
-    const buffer = STATE_MATRIX.immuneBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/signals" && req.method === "GET") {
-    const buffer = STATE_MATRIX.currentReadBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/stiffness" && req.method === "GET") {
-    const buffer = STATE_MATRIX.bondStiffnessBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/bonds" && req.method === "GET") {
-    const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
-    const BONDS_SIZE = MAX_ATOMS * 4 * 4;
-    const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
-    const copy = new Uint8Array(view.byteLength);
-    copy.set(view);
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/synapses" && req.method === "GET") {
-    const buffer = STATE_MATRIX.synapticStackBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/architecture" && req.method === "GET") {
-    const buffer = STATE_MATRIX.structureGridBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/memory" && req.method === "GET") {
-    const buffer = STATE_MATRIX.memoryGridBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/roles" && req.method === "GET") {
-    const buffer = STATE_MATRIX.roleRegistryBuffer;
-    const copy = new Uint8Array(buffer.byteLength);
-    copy.set(new Uint8Array(buffer));
-    return new Response(copy, {
-      headers: {
-        "Content-Type": "application/octet-stream",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-  }
-
-  if (url.pathname === "/snapshot/export" && req.method === "POST") {
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    const result = await SNAPSHOT_ENGINE.exportSnapshot();
-    return new Response(JSON.stringify(result), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  if (url.pathname === "/snapshot/import" && req.method === "POST") {
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const body = await req.json();
-      const queued = CONTROL_INTENT_QUEUE.enqueueSnapshotImport(
-        body?.timestamp,
-      );
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_SNAPSHOT_IMPORT_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  // 3. Direct Thought Injection (POST) - OBSOLETE in Era 18
-  /*
-    if (url.pathname === "/inject" && req.method === "POST") {
-        try {
-            const { text, energy } = await req.json();
-            LOGGER.info(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
-            await SEMANTIC_MEMBRANE.injectThought(text, energy || 100);
-            return new Response("OK", { status: 200 });
-        } catch (e) {
-            return new Response("Injection Failed", { status: 400 });
-        }
-    }
-    */
-
-  // 4. Spatial Mutation (POST)
-  if (url.pathname === "/mutate" && req.method === "POST") {
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const { x, y, deltaEnergy, radius } = await req.json();
-      const queued = CONTROL_INTENT_QUEUE.enqueueMutate(
-        x,
-        y,
-        deltaEnergy,
-        radius,
-      );
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_MUTATE_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  // 5. Avatar Cursor Sync (POST)
-  if (url.pathname === "/avatar" && req.method === "POST") {
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const { x, y } = await req.json();
-      const queued = CONTROL_INTENT_QUEUE.enqueueAvatar(x, y);
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_AVATAR_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  try {
-    const html = await Deno.readTextFile(UI_PATH);
-    return new Response(html, { headers: { "Content-Type": "text/html" } });
-  } catch (e) {
-    return new Response("UI not found.", { status: 404 });
-  }
-});
-
-// 2. Start Simulation Pulse Loop (Background)
-(async () => {
-  LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
-  const coldstart = COLDSTART_BOOTSTRAP.seed({
-    enabled: COLDSTART_POLICY.enabled,
-    count: COLDSTART_POLICY.count,
-    replicatorRatio: COLDSTART_POLICY.replicatorRatio,
-    guardianRatio: COLDSTART_POLICY.guardianRatio,
-    seed: COLDSTART_POLICY.seed,
-    energy: COLDSTART_POLICY.energy,
-    resonance: COLDSTART_POLICY.resonance,
-  });
-  if (coldstart.skipped) {
-    LOGGER.info(`🌱 [COLDSTART] ${coldstart.reason}`);
-  } else {
-    LOGGER.info(
-      `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
-    );
-  }
-
-  const isGenesisRun = Deno.args.includes("--genesis") || Deno.args.includes("--autonomous");
-  if (isGenesisRun) {
-    LOGGER.info("🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.");
-    try {
-      Deno.addSignalListener("SIGINT", async () => {
-        LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
-        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-        await SNAPSHOT_ENGINE.exportSnapshot({
-          tick,
-          reason: "genesis_shutdown",
-          prune: false,
-          retention: 0
-        });
-        LOGGER.info(`💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`);
-        Deno.exit(0);
-      });
-    } catch {
-      // Deno.addSignalListener is not supported on Windows, silently ignore
-    }
-  }
-
-  await syncDaemonPheromonePolicyLedgerHydration();
-  await syncDaemonPlasmidPolicyLedgerHydration();
-  
-  PULSE.setOracleDelegate({
-    setNeuralCoherence: (c: number) => { SOVEREIGN_ORACLE.neuralCoherence = c; },
-    getNeuralCoherence: () => SOVEREIGN_ORACLE.neuralCoherence,
-    gatherEpochTelemetry: () => SOVEREIGN_ORACLE.gatherEpochTelemetry(),
-    broadcastWhisper: (t: number, tel: any, c: number) => SOVEREIGN_ORACLE.broadcastWhisper(t, tel, c),
-    consultOracle: (idx: number, tel: any) => SOVEREIGN_ORACLE.consultOracle(idx, tel),
-    drainPendingMutations: () => SOVEREIGN_ORACLE.drainPendingMutations()
-  });
-
-  PULSE.setAkashaDelegate({
-    recordMutationTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
-    flushMutationTelemetry: (t: number) => MUTATION_TELEMETRY.flushIfDue(t),
-    compressMemory: (m: any) => compressMemory(m),
-    decompressMemoryToLattice: (m: any, p: any) => decompressMemoryToLattice(m, p),
-    saveEpoch: (m: any, t: number, l: string, p1: number, p2: number, h: string) => saveEpoch(m as any, t, l, p1, p2, h),
-    broadcastPanopticonFrame: (f: ArrayBuffer) => PANOPTICON_SERVER.broadcastBinaryFrame(f),
-    recordImmunologicalPurge: (c: number) => AKASHA_CODEX.recordImmunologicalPurge(c),
-    observePulseCodex: (t: number, p: number, g: any, s: number) => AKASHA_CODEX.observePulse(t, p, g, s),
-    saveSnap: async (t: number) => { await SNAP_ENGINE.save(t); },
-    cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r)
-  });
-
-  const NEXUS_DAEMON = new SwarmNexus({
-    instanceId: 1,
-    seedNodes: [],
-  });
-
-  NEXUS_DAEMON.onAtomTransit = PULSE.onRemoteAtomTransit;
-  NEXUS_DAEMON.onSyncRequest = PULSE.onRemoteSyncRequest;
-  NEXUS_DAEMON.onEpochPayload = PULSE.onRemoteEpochPayload;
-
-  CONTROL_INTENT_QUEUE.setDelegate({
-    recordTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
-    importSnapshot: (ts) => SNAPSHOT_ENGINE.importSnapshot(ts),
-    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
-  });
-
-  PREDICTION_MARKET.setDelegate({
-    recordMarketResolution: (t, c, f, w) => AKASHA_CODEX.recordMarketResolution(t, c, f, w),
-  });
-
-  SOVEREIGNTY_ENGINE.setDelegate({
-    recordDecreeShift: (t: number, o: string, n: string, e: number) => AKASHA_CODEX.recordDecreeShift(t, o, n, e),
-  });
-
-  P2P_FEDERATION.setUpwardDelegate({
-    recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
-    lookupLineageProfile: (l: string) => AKASHA_CODEX.lookupLineageProfile(l),
-    captureBehaviorFrame: (idx: number) => SEMANTIC_MEMBRANE.captureBehaviorFrame(idx),
-  });
-
-  SOVEREIGN_ORACLE.setAkashaDelegate({
-    recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
-    appendObserverCommentary: (t: number, ep: number, m: string) => AKASHA_CODEX.appendObserverCommentary(t, ep, m),
-  });
-
-  PULSE.setNoosphereDelegate({
-    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
-    packAtom: (i) => P2P_CODEC.packAtom(i),
-    evaluateHeartbeat: (t, h, p, e) => SWARM_NODE.evaluateHeartbeat(t, h, p, e),
-    sendEpochPayload: (p, f) => NEXUS_DAEMON.sendEpochPayload(p, f),
-    routeAtom: (p) => NEXUS_DAEMON.routeAtom(p),
-    startNexus: () => NEXUS_DAEMON.start(),
-    broadcastSyncRequest: () => NEXUS_DAEMON.broadcastSyncRequest(),
-    broadcastEpochConsensus: (t, h) => NEXUS_DAEMON.broadcastEpochConsensus(t, h),
-    getNexusStatus: () => ({
-      mainnetEnabled: NEXUS_DAEMON.mainnetEnabled,
-      bootstrapHubUrl: NEXUS_DAEMON.bootstrapHubUrl ?? "",
-      seedNodesLength: NEXUS_DAEMON.seedNodes.length,
-      localCurrentTick: NEXUS_DAEMON.localCurrentTick,
-      localTps: NEXUS_DAEMON.localTps
-    }),
-    setNexusStatus: (s) => {
-      if (s.mainnetEnabled !== undefined) NEXUS_DAEMON.mainnetEnabled = s.mainnetEnabled;
-      if (s.bootstrapHubUrl !== undefined) NEXUS_DAEMON.bootstrapHubUrl = s.bootstrapHubUrl;
-      if (s.localCurrentTick !== undefined) NEXUS_DAEMON.localCurrentTick = s.localCurrentTick;
-      if (s.localTps !== undefined) NEXUS_DAEMON.localTps = s.localTps;
-    },
-    getMedianSwarmTick: (t) => NEXUS_DAEMON.getMedianSwarmTick(t)
-  });
-
-  await PULSE.initWorkers();
-
-  let lastOracleTick = 0;
-  const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
-  const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
-
-  // Phase 48: Eschaton Trackers
-  let stagnantTicks = 0;
-  let lastPopulation = -1;
-  const STAGNATION_THRESHOLD = 10000;
-
-  while (true) {
-    await PULSE.tick();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    
-    if (tick % 100 === 0) {
-      LINEAGE_TRACKER.updateMetrics(tick);
-    }
-    
-    await flushDaemonAuditEffects(tick);
-    await maybeAutoSnapshot(tick);
-    if (
-      telemetryStreamLastTick < 0 ||
-      tick - telemetryStreamLastTick >= TELEMETRY_STREAM_EMIT_INTERVAL_TICKS
-    ) {
-      const metrics = collectRuntimeMetrics();
-      const safeMode = isDaemonSafeMode(metrics);
-      const glyphSnap = GLYPH_BUFFER.snapshot();
-
-      TELEMETRY_STREAM.emit({
-        tick: metrics.tick,
-        population: metrics.population,
-        avgEnergy: metrics.avgEnergy,
-        neuralCoherence: metrics.neuralCoherence,
-        spatialOverflowRatio: metrics.spatialOverflowRatio,
-        daemonSafeMode: safeMode.blocked,
-      });
-      telemetryStreamLastTick = tick;
-    }
-
-    if (isGenesisRun && tick - lastOracleTick >= genesisInterval) {
-      const epoch = Math.floor(tick / genesisInterval);
-      const metrics = collectRuntimeMetrics();
-      const { dominantMeme, destructiveMeme } = LINEAGE_TRACKER.closeEpoch(tick);
-      const telemetry = {
-        epoch,
-        population: metrics.population,
-        avgEnergy: metrics.avgEnergy,
-        neuralCoherence: metrics.neuralCoherence,
-        entropyPressure: STATE_MATRIX.getHormone(0),
-        dominantMeme,
-        destructiveMeme
-      };
-
-      // Phase 48 Stagnation Check
-      let eschatonReason: string | null = null;
-      const epochTelemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
-      const topGenome = epochTelemetry.dominant_genomes[0];
-      const isMonoculture = topGenome && (topGenome.count / Math.max(1, metrics.population)) > 0.90;
-
-      if (metrics.neuralCoherence >= 10000) {
-        eschatonReason = "Absolute Order (Singularity of Coherence)";
-      } else if (metrics.population > 0 && isMonoculture) {
-        eschatonReason = "Leviathan Victory (Absolute Monoculture)";
-      } else if (metrics.population > 0 && metrics.avgEnergy < 10 && Math.abs(metrics.population - lastPopulation) < 5) {
-        stagnantTicks += genesisInterval;
-        if (stagnantTicks >= STAGNATION_THRESHOLD) {
-          eschatonReason = "Heat Death (Energetic and Memetic Stagnation)";
-        }
-      } else {
-        stagnantTicks = 0;
-      }
-      lastPopulation = metrics.population;
-
-      if (eschatonReason) {
-        await SOVEREIGN_ORACLE.declareEschaton(eschatonReason);
-        STATE_MATRIX.clear();
-        mutateUniversalConstants();
-        stagnantTicks = 0;
-        lastOracleTick = tick;
-        LOGGER.info("🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.");
-        // We do not consult the Oracle for a normal plasmid on Kalpa boundary
-        continue;
-      }
-
-      // For testing speed: always run the first interval.
-      SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
-      lastOracleTick = tick;
-    }
-
-    await new Promise((r) => setTimeout(r, 16));
-  }
-})();
-
-// 3. Start Panopticon Telemetry Server (Background)
-(() => {
-  PANOPTICON_SERVER.start();
-})();
-
-// 4. Start Cognitive Breathing Loop (Background)
-(async () => {
-  LOGGER.info("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
-  await new Promise((r) => setTimeout(r, 5000));
-  await BREATH.inhale();
-})();
-
-```
-
----
-
-## FILE: tests/wasm_layout_guard.ts
-
-```typescript
-import * as OFFSETS from "../00_substrate/mod.ts";
-
-const ASM_SOURCE_PATH = "./assembly/index.ts";
-
-const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
-
-const parseLiteral = (token: string): number | null => {
-  if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
-  if (/^\d+$/.test(token)) return Number.parseInt(token, 10);
-  return null;
-};
-
-const normalizeExpr = (expr: string): string =>
-  expr
-    .replace(/\bas\s+[A-Za-z0-9_<>]+/g, "")
-    .replace(/[()]/g, "")
-    .trim();
-
-const evalExpr = (
-  name: string,
-  expressions: ReadonlyMap<string, string>,
-  memo: Map<string, number>,
-  stack: Set<string>,
-): number => {
-  const cached = memo.get(name);
-  if (cached !== undefined) return cached;
-
-  const raw = expressions.get(name);
-  if (!raw) {
-    throw new Error(`[wasm:layout] Missing constant in assembly: ${name}`);
-  }
-  if (stack.has(name)) {
-    throw new Error(`[wasm:layout] Cyclic constant reference: ${name}`);
-  }
-
-  stack.add(name);
-  const expr = normalizeExpr(raw);
-  const parts = expr.split(/([+-])/).map((p) => p.trim()).filter(Boolean);
-
-  let sign = 1;
-  let total = 0;
-  for (const part of parts) {
-    if (part === "+") {
-      sign = 1;
-      continue;
-    }
-    if (part === "-") {
-      sign = -1;
-      continue;
-    }
-
-    const literal = parseLiteral(part);
-    if (literal !== null) {
-      total += sign * literal;
-      continue;
-    }
-
-    if (!/^[A-Z0-9_]+$/.test(part)) {
-      throw new Error(
-        `[wasm:layout] Unsupported expression token "${part}" in ${name}=${raw}`,
-      );
-    }
-
-    const ref = evalExpr(part, expressions, memo, stack);
-    total += sign * ref;
-  }
-
-  stack.delete(name);
-  memo.set(name, total);
-  return total;
-};
-
-const readAssemblyConsts = async (): Promise<Map<string, string>> => {
-  const src = await Deno.readTextFile(ASM_SOURCE_PATH);
-  const out = new Map<string, string>();
-  for (const match of src.matchAll(CONST_DEF_RE)) {
-    const [, name, expr] = match;
-    out.set(name, expr.trim());
-  }
-  return out;
-};
-
-export const assertWasmLayout = async (): Promise<void> => {
-  const asmExpressions = await readAssemblyConsts();
-  const memo = new Map<string, number>();
-
-  const expected: Array<{ asm: string; value: number }> = [
-    { asm: "MAX_ATOMS", value: OFFSETS.MAX_ATOMS },
-    { asm: "SAFETY_BUFFER", value: OFFSETS.SAFETY_BUFFER },
-    { asm: "IDS_OFFSET", value: OFFSETS.IDS_OFFSET },
-    { asm: "XS_OFFSET", value: OFFSETS.XS_OFFSET },
-    { asm: "YS_OFFSET", value: OFFSETS.YS_OFFSET },
-    { asm: "ENERGY_OFFSET", value: OFFSETS.ENERGY_OFFSET },
-    { asm: "RESONANCE_OFFSET", value: OFFSETS.RESONANCE_OFFSET },
-    { asm: "PHASE_OFFSET", value: OFFSETS.PHASE_OFFSET },
-    { asm: "LOGIC_OFFSET", value: OFFSETS.LOGIC_OFFSET },
-    { asm: "BONDS_OFFSET", value: OFFSETS.BONDS_OFFSET },
-    { asm: "STIFFNESS_OFFSET", value: OFFSETS.STIFFNESS_OFFSET },
-    { asm: "INSTRUCTIONS_OFFSET", value: OFFSETS.INSTRUCTIONS_OFFSET },
-    { asm: "CONTEXT_OFFSET", value: OFFSETS.CONTEXT_OFFSET },
-    { asm: "BOND_REQUESTS_OFFSET", value: OFFSETS.BOND_REQUESTS_OFFSET },
-    { asm: "SPATIAL_GRID_OFFSET", value: OFFSETS.SPATIAL_GRID_OFFSET },
-    { asm: "ROLES_OFFSET", value: OFFSETS.ROLES_OFFSET },
-    { asm: "STRUCTURE_GRID_OFF", value: OFFSETS.STRUCTURE_GRID_OFFSET },
-    { asm: "SIGNAL_GRID_OFF", value: OFFSETS.SIGNAL_GRID_OFFSET },
-    { asm: "MEMORY_GRID_OFF", value: OFFSETS.MEMORY_GRID_OFFSET },
-    { asm: "ASCENSION_STATS_OFF", value: OFFSETS.ASCENSION_STATS_OFFSET },
-    { asm: "BOND_DIST_OFF", value: OFFSETS.BOND_DISTANCES_OFFSET },
-    { asm: "DAMPING_OFF", value: OFFSETS.DAMPING_OFFSET },
-    { asm: "HIVE_MEMORY_OFF", value: OFFSETS.HIVE_MEMORY_OFFSET },
-    { asm: "HIVE_BALANCE_OFF", value: OFFSETS.HIVE_BALANCE_OFFSET },
-    { asm: "QUORUM_OFFSET", value: OFFSETS.QUORUM_OFFSET },
-    { asm: "SPAWN_GRID_OFF", value: OFFSETS.SPAWN_REQUESTS_OFFSET },
-    { asm: "NEURAL_COHERENCE_OFF", value: OFFSETS.NEURAL_COHERENCE_OFFSET },
-    { asm: "PHYSICS_READ_XS_OFF", value: OFFSETS.PHYSICS_READ_XS_OFFSET },
-    { asm: "PHYSICS_READ_YS_OFF", value: OFFSETS.PHYSICS_READ_YS_OFFSET },
-    {
-      asm: "PHYSICS_READ_ENERGY_OFF",
-      value: OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-    },
-    {
-      asm: "PHYSICS_READ_RESONANCE_OFF",
-      value: OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-    },
-    { asm: "ENERGY_DELTA_OFF", value: OFFSETS.ENERGY_DELTA_OFFSET },
-    { asm: "RESONANCE_DELTA_OFF", value: OFFSETS.RESONANCE_DELTA_OFFSET },
-    {
-      asm: "STRUCTURE_BUILD_OWNER_OFF",
-      value: OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    },
-    {
-      asm: "STRUCTURE_BUILD_VALUE_OFF",
-      value: OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    },
-    {
-      asm: "STRUCTURE_CHARGE_INTENT_OFF",
-      value: OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    },
-    { asm: "ATTENTION_FIELD_OFF", value: OFFSETS.ATTENTION_FIELD_OFFSET },
-    { asm: "HIVE_ENERGY_POOL_OFF", value: OFFSETS.HIVE_ENERGY_POOL_OFFSET },
-  ];
-
-  const mismatches: string[] = [];
-  for (const item of expected) {
-    const actual = evalExpr(item.asm, asmExpressions, memo, new Set<string>());
-    if (actual !== item.value) {
-      mismatches.push(`${item.asm}: asm=${actual}, offsets=${item.value}`);
-    }
-  }
-
-  if (mismatches.length > 0) {
-    throw new Error(
-      `[wasm:layout] Constant drift detected:\n${
-        mismatches.map((m) => `- ${m}`).join("\n")
-      }`,
-    );
-  }
-};
-
-if (import.meta.main) {
-  await assertWasmLayout();
-  console.log("[wasm:layout] assembly/index.ts and OFFSETS.ts are coherent.");
-}
 
 ```
 
@@ -55072,740 +56092,6 @@ Acceptance:
   with bounded slope/cap metrics.
 - Soak trend regression gate remains green (`deno task test:worker-soak-trend`)
   against canonical baseline.
-
-```
-
----
-
-## FILE: worker_determinism_capture.ts
-
-```typescript
-export const DETERMINISM_CAPTURE_MARKER = "__OMEGA_DETERMINISM_CAPTURE__";
-const DETERMINISM_CAPTURE_SCRIPT = "tests/test_worker_determinism.ts";
-
-export type DeterminismAtomState = {
-  idx: number;
-  id: string;
-  role: number;
-  x: number;
-  y: number;
-  energy: number;
-  resonance: number;
-  phase: number;
-  pc: number;
-  logic: number[];
-  bonds: number[];
-  bondDistances: number[];
-  damping: number;
-};
-
-export type DeterminismSnapshot = {
-  activeCount: number;
-  tickCounter: number;
-  atoms: DeterminismAtomState[];
-  structureSlice: number[];
-  signalSlice: number[];
-};
-
-export type DeterminismCapturePayload = {
-  workerCount: number;
-  strictDeterminism: boolean;
-  seed: number;
-  ticks: number;
-  atomCount: number;
-  hash: string;
-  snapshot: DeterminismSnapshot;
-};
-
-export type DeterminismCaptureRunOptions = {
-  workerCount: number;
-  strict: boolean;
-  seed?: number;
-  ticks?: number;
-  atomCount?: number;
-  script?: string;
-  context?: string;
-};
-
-const decode = (bytes: Uint8Array): string => new TextDecoder().decode(bytes);
-
-export const emitDeterminismCapture = (
-  payload: DeterminismCapturePayload,
-): void => {
-  console.log(`${DETERMINISM_CAPTURE_MARKER}${JSON.stringify(payload)}`);
-};
-
-export const parseDeterminismCaptureFromMergedOutput = (
-  mergedOutput: string,
-  context: string,
-): DeterminismCapturePayload => {
-  const markerLine = mergedOutput
-    .split("\n")
-    .map((s) => s.trim())
-    .find((s) => s.startsWith(DETERMINISM_CAPTURE_MARKER));
-  if (!markerLine) {
-    throw new Error(`[${context}] capture marker missing.\n${mergedOutput}`);
-  }
-
-  return JSON.parse(
-    markerLine.slice(DETERMINISM_CAPTURE_MARKER.length),
-  ) as DeterminismCapturePayload;
-};
-
-export const runDeterminismCaptureSubprocess = async (
-  options: DeterminismCaptureRunOptions,
-): Promise<DeterminismCapturePayload> => {
-  const {
-    workerCount,
-    strict,
-    seed,
-    ticks,
-    atomCount,
-    script = DETERMINISM_CAPTURE_SCRIPT,
-    context = "DETERMINISM",
-  } = options;
-
-  const env: Record<string, string> = {
-    ...Deno.env.toObject(),
-    OMEGA_PULSE_WORKERS: String(workerCount),
-    OMEGA_STRICT_DETERMINISM: strict ? "1" : "0",
-  };
-  if (typeof seed === "number") env.OMEGA_DETERMINISM_SEED = String(seed);
-  if (typeof ticks === "number") env.OMEGA_DETERMINISM_TICKS = String(ticks);
-  if (typeof atomCount === "number") {
-    env.OMEGA_DETERMINISM_ATOMS = String(atomCount);
-  }
-
-  const cmd = new Deno.Command(Deno.execPath(), {
-    args: ["run", "-A", script, "--capture"],
-    env,
-    stdout: "piped",
-    stderr: "piped",
-  });
-
-  const res = await cmd.output();
-  const mergedOutput = `${decode(res.stdout)}\n${decode(res.stderr)}`;
-
-  if (res.code !== 0) {
-    throw new Error(
-      `[${context}] capture failed workers=${workerCount} strict=${strict}.\n${mergedOutput}`,
-    );
-  }
-
-  return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
-};
-
-```
-
----
-
-## FILE: worker_gate_thresholds.ts
-
-```typescript
-export const RESILIENCE_SCENARIOS = [
-  "worker-timeout-retry",
-  "worker-timeout-retry-multi",
-  "worker-jitter-resilience",
-  "spawn-jitter-resilience",
-] as const;
-
-export type ResilienceScenario = (typeof RESILIENCE_SCENARIOS)[number];
-
-const envInt = (key: string, fallback: number): number => {
-  const raw = Deno.env.get(key);
-  if (!raw || raw.trim().length === 0) return fallback;
-  const parsed = Number.parseInt(raw, 10);
-  if (!Number.isFinite(parsed)) return fallback;
-  return parsed;
-};
-
-const envFloat = (key: string, fallback: number): number => {
-  const raw = Deno.env.get(key);
-  if (!raw || raw.trim().length === 0) return fallback;
-  const parsed = Number.parseFloat(raw);
-  if (!Number.isFinite(parsed)) return fallback;
-  return parsed;
-};
-
-export type ResilienceBudgetThresholds = {
-  scenarioRetriesMax: Record<ResilienceScenario, number>;
-  totalRetriesMax: number;
-  scenarioDurationMaxMs: Record<ResilienceScenario, number>;
-  scenarioDurationTotalMaxMs: number;
-  driftAuditDurationMaxMs: number;
-  auditDurationTotalMaxMs: number;
-};
-
-export const loadResilienceBudgetThresholds =
-  (): ResilienceBudgetThresholds => {
-    return {
-      scenarioRetriesMax: {
-        "worker-timeout-retry": envInt(
-          "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_SINGLE",
-          12,
-        ),
-        "worker-timeout-retry-multi": envInt(
-          "OMEGA_RESILIENCE_RETRIES_MAX_TIMEOUT_MULTI",
-          24,
-        ),
-        "worker-jitter-resilience": envInt(
-          "OMEGA_RESILIENCE_RETRIES_MAX_JITTER",
-          120,
-        ),
-        "spawn-jitter-resilience": envInt(
-          "OMEGA_RESILIENCE_RETRIES_MAX_SPAWN_JITTER",
-          1200,
-        ),
-      },
-      totalRetriesMax: envInt("OMEGA_RESILIENCE_RETRIES_MAX_TOTAL", 1500),
-      scenarioDurationMaxMs: {
-        "worker-timeout-retry": envInt(
-          "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_SINGLE_MS",
-          15_000,
-        ),
-        "worker-timeout-retry-multi": envInt(
-          "OMEGA_RESILIENCE_DURATION_MAX_TIMEOUT_MULTI_MS",
-          20_000,
-        ),
-        "worker-jitter-resilience": envInt(
-          "OMEGA_RESILIENCE_DURATION_MAX_JITTER_MS",
-          25_000,
-        ),
-        "spawn-jitter-resilience": envInt(
-          "OMEGA_RESILIENCE_DURATION_MAX_SPAWN_JITTER_MS",
-          35_000,
-        ),
-      },
-      scenarioDurationTotalMaxMs: envInt(
-        "OMEGA_RESILIENCE_DURATION_MAX_SCENARIOS_MS",
-        75_000,
-      ),
-      driftAuditDurationMaxMs: envInt(
-        "OMEGA_RESILIENCE_DURATION_MAX_DRIFT_AUDIT_MS",
-        30_000,
-      ),
-      auditDurationTotalMaxMs: envInt(
-        "OMEGA_RESILIENCE_DURATION_MAX_AUDIT_TOTAL_MS",
-        105_000,
-      ),
-    };
-  };
-
-export type ResilienceTrendThresholds = {
-  retriesRatioMax: number;
-  retriesDeltaMax: number;
-  durationRatioMax: number;
-  durationDeltaMaxMs: number;
-  totalRetriesRatioMax: number;
-  totalRetriesDeltaMax: number;
-  totalScenarioDurationRatioMax: number;
-  totalScenarioDurationDeltaMaxMs: number;
-  driftAuditDurationRatioMax: number;
-  driftAuditDurationDeltaMaxMs: number;
-  totalAuditDurationRatioMax: number;
-  totalAuditDurationDeltaMaxMs: number;
-};
-
-export const loadResilienceTrendThresholds = (): ResilienceTrendThresholds => {
-  return {
-    retriesRatioMax: envFloat("OMEGA_RESILIENCE_TREND_RETRIES_RATIO_MAX", 2.2),
-    retriesDeltaMax: envFloat("OMEGA_RESILIENCE_TREND_RETRIES_DELTA_MAX", 16),
-    durationRatioMax: envFloat("OMEGA_RESILIENCE_TREND_DURATION_RATIO_MAX", 3),
-    durationDeltaMaxMs: envFloat(
-      "OMEGA_RESILIENCE_TREND_DURATION_DELTA_MAX_MS",
-      4_000,
-    ),
-    totalRetriesRatioMax: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_RATIO_MAX",
-      2,
-    ),
-    totalRetriesDeltaMax: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_RETRIES_DELTA_MAX",
-      40,
-    ),
-    totalScenarioDurationRatioMax: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_RATIO_MAX",
-      3,
-    ),
-    totalScenarioDurationDeltaMaxMs: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_SCENARIO_DURATION_DELTA_MAX_MS",
-      8_000,
-    ),
-    driftAuditDurationRatioMax: envFloat(
-      "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_RATIO_MAX",
-      3,
-    ),
-    driftAuditDurationDeltaMaxMs: envFloat(
-      "OMEGA_RESILIENCE_TREND_DRIFT_AUDIT_DURATION_DELTA_MAX_MS",
-      5_000,
-    ),
-    totalAuditDurationRatioMax: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_RATIO_MAX",
-      3,
-    ),
-    totalAuditDurationDeltaMaxMs: envFloat(
-      "OMEGA_RESILIENCE_TREND_TOTAL_AUDIT_DURATION_DELTA_MAX_MS",
-      12_000,
-    ),
-  };
-};
-
-export type SoakStabilityConfig = {
-  timeoutMs: number;
-  retryCount: number;
-  retryMs: number;
-  jitterMinMs: number;
-  jitterMaxMs: number;
-  ticks: number;
-  sampleEvery: number;
-  seed: number;
-  replicators: number;
-  architects: number;
-  backlogMax: number;
-  activeMax: number;
-  rssSlopeMaxBytes: number;
-  heapSlopeMaxBytes: number;
-  backlogSlopeMax: number;
-  retryRateSlopeMax: number;
-  avgTickMsSlopeMax: number;
-  avgTickMsP95Max: number;
-  avgTickMsSpikeMax: number;
-};
-
-export const loadSoakStabilityConfig = (): SoakStabilityConfig => {
-  return {
-    timeoutMs: envInt("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", 10),
-    retryCount: envInt("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", 3),
-    retryMs: envInt("OMEGA_WORKER_TIMEOUT_RETRY_MS", 70),
-    jitterMinMs: envInt("OMEGA_WORKER_JITTER_MIN_MS", 12),
-    jitterMaxMs: envInt("OMEGA_WORKER_JITTER_MAX_MS", 30),
-    ticks: envInt("OMEGA_SOAK_STABILITY_TICKS", 320),
-    sampleEvery: envInt("OMEGA_SOAK_STABILITY_SAMPLE_EVERY", 20),
-    seed: envInt("OMEGA_SOAK_STABILITY_SEED", 424242),
-    replicators: envInt("OMEGA_SOAK_STABILITY_REPLICATORS", 8),
-    architects: envInt("OMEGA_SOAK_STABILITY_ARCHITECTS", 4),
-    backlogMax: envInt("OMEGA_SOAK_BACKLOG_MAX", 64),
-    activeMax: envInt("OMEGA_SOAK_ACTIVE_MAX", 5000),
-    rssSlopeMaxBytes: envInt("OMEGA_SOAK_RSS_SLOPE_MAX_BYTES", 6_000_000),
-    heapSlopeMaxBytes: envInt("OMEGA_SOAK_HEAP_SLOPE_MAX_BYTES", 3_000_000),
-    backlogSlopeMax: envFloat("OMEGA_SOAK_BACKLOG_SLOPE_MAX", 4),
-    retryRateSlopeMax: envFloat("OMEGA_SOAK_RETRY_RATE_SLOPE_MAX", 0.04),
-    avgTickMsSlopeMax: envFloat("OMEGA_SOAK_AVG_TICK_MS_SLOPE_MAX", 2.5),
-    avgTickMsP95Max: envFloat("OMEGA_SOAK_AVG_TICK_MS_P95_MAX", 160),
-    avgTickMsSpikeMax: envFloat("OMEGA_SOAK_AVG_TICK_MS_SPIKE_MAX", 220),
-  };
-};
-
-export type SoakTrendThresholds = {
-  durationRatioMax: number;
-  durationDeltaMaxMs: number;
-  p95TickRatioMax: number;
-  p95TickDeltaMaxMs: number;
-  maxTickRatioMax: number;
-  maxTickDeltaMaxMs: number;
-  peakActiveRatioMax: number;
-  peakActiveDeltaMax: number;
-  backlogRatioMax: number;
-  backlogDeltaMax: number;
-  rssSlopeRatioMax: number;
-  rssSlopeDeltaMax: number;
-  heapSlopeRatioMax: number;
-  heapSlopeDeltaMax: number;
-  backlogSlopeRatioMax: number;
-  backlogSlopeDeltaMax: number;
-  retryRateSlopeRatioMax: number;
-  retryRateSlopeDeltaMax: number;
-  avgTickSlopeAbsRatioMax: number;
-  avgTickSlopeAbsDeltaMax: number;
-  retriesRatioMax: number;
-  retriesDeltaMax: number;
-  timeoutsRatioMax: number;
-  timeoutsDeltaMax: number;
-  requestsRatioMin: number;
-  requestsRatioMax: number;
-  requestsDeltaMax: number;
-};
-
-export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
-  return {
-    durationRatioMax: envFloat("OMEGA_SOAK_TREND_DURATION_RATIO_MAX", 1.6),
-    durationDeltaMaxMs: envFloat(
-      "OMEGA_SOAK_TREND_DURATION_DELTA_MAX_MS",
-      18_000,
-    ),
-    p95TickRatioMax: envFloat("OMEGA_SOAK_TREND_P95_TICK_RATIO_MAX", 1.1),
-    p95TickDeltaMaxMs: envFloat("OMEGA_SOAK_TREND_P95_TICK_DELTA_MAX_MS", 6),
-    maxTickRatioMax: envFloat("OMEGA_SOAK_TREND_MAX_TICK_RATIO_MAX", 1.35),
-    maxTickDeltaMaxMs: envFloat("OMEGA_SOAK_TREND_MAX_TICK_DELTA_MAX_MS", 20),
-    peakActiveRatioMax: envFloat("OMEGA_SOAK_TREND_PEAK_ACTIVE_RATIO_MAX", 1.3),
-    peakActiveDeltaMax: envFloat("OMEGA_SOAK_TREND_PEAK_ACTIVE_DELTA_MAX", 24),
-    backlogRatioMax: envFloat("OMEGA_SOAK_TREND_BACKLOG_RATIO_MAX", 4),
-    backlogDeltaMax: envFloat("OMEGA_SOAK_TREND_BACKLOG_DELTA_MAX", 8),
-    rssSlopeRatioMax: envFloat("OMEGA_SOAK_TREND_RSS_SLOPE_RATIO_MAX", 4),
-    rssSlopeDeltaMax: envFloat(
-      "OMEGA_SOAK_TREND_RSS_SLOPE_DELTA_MAX",
-      4_000_000,
-    ),
-    heapSlopeRatioMax: envFloat("OMEGA_SOAK_TREND_HEAP_SLOPE_RATIO_MAX", 6),
-    heapSlopeDeltaMax: envFloat(
-      "OMEGA_SOAK_TREND_HEAP_SLOPE_DELTA_MAX",
-      2_500_000,
-    ),
-    backlogSlopeRatioMax: envFloat(
-      "OMEGA_SOAK_TREND_BACKLOG_SLOPE_RATIO_MAX",
-      4,
-    ),
-    backlogSlopeDeltaMax: envFloat(
-      "OMEGA_SOAK_TREND_BACKLOG_SLOPE_DELTA_MAX",
-      2,
-    ),
-    retryRateSlopeRatioMax: envFloat(
-      "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_RATIO_MAX",
-      4,
-    ),
-    retryRateSlopeDeltaMax: envFloat(
-      "OMEGA_SOAK_TREND_RETRY_RATE_SLOPE_DELTA_MAX",
-      0.02,
-    ),
-    avgTickSlopeAbsRatioMax: envFloat(
-      "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_RATIO_MAX",
-      4,
-    ),
-    avgTickSlopeAbsDeltaMax: envFloat(
-      "OMEGA_SOAK_TREND_AVG_TICK_SLOPE_ABS_DELTA_MAX",
-      1.2,
-    ),
-    retriesRatioMax: envFloat("OMEGA_SOAK_TREND_RETRIES_RATIO_MAX", 1.4),
-    retriesDeltaMax: envFloat("OMEGA_SOAK_TREND_RETRIES_DELTA_MAX", 500),
-    timeoutsRatioMax: envFloat("OMEGA_SOAK_TREND_TIMEOUTS_RATIO_MAX", 1.4),
-    timeoutsDeltaMax: envFloat("OMEGA_SOAK_TREND_TIMEOUTS_DELTA_MAX", 500),
-    requestsRatioMin: envFloat("OMEGA_SOAK_TREND_REQUESTS_RATIO_MIN", 0.95),
-    requestsRatioMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_RATIO_MAX", 1.2),
-    requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
-  };
-};
-
-```
-
----
-
-## FILE: worker_resilience_capture.ts
-
-```typescript
-import {
-  RESILIENCE_SCENARIOS,
-  type ResilienceScenario,
-} from "./worker_gate_thresholds.ts";
-
-export const RESILIENCE_CAPTURE_MARKER = "__OMEGA_RESILIENCE_CAPTURE__";
-
-export const RESILIENCE_SCENARIO_SCRIPT_BY_ID: Record<
-  ResilienceScenario,
-  string
-> = {
-  "worker-timeout-retry": "test_worker_timeout_retry.ts",
-  "worker-timeout-retry-multi": "test_worker_timeout_retry_multi.ts",
-  "worker-jitter-resilience": "test_worker_jitter_resilience.ts",
-  "spawn-jitter-resilience": "test_spawn_jitter_resilience.ts",
-};
-
-export const RESILIENCE_SCENARIO_SCRIPT_PAIRS = RESILIENCE_SCENARIOS.map((
-  scenario,
-) => ({
-  scenario,
-  script: RESILIENCE_SCENARIO_SCRIPT_BY_ID[scenario],
-}));
-
-export type ResilienceWorkerStat = {
-  workerIndex: number;
-  requests: number;
-  completed: number;
-  timeouts: number;
-  retryWaits: number;
-  failures: number;
-  consecutiveTimeouts?: number;
-  lastRequestType?: string;
-  lastPulseId?: number;
-  lastError?: string;
-};
-
-export type ResilienceCapturePayload = {
-  scenario: ResilienceScenario;
-  workerCount: number;
-  timeoutMs: number;
-  retryCount: number;
-  retryMs: number;
-  totalRetries: number;
-  totalFailures: number;
-  stats: ResilienceWorkerStat[];
-  [key: string]: unknown;
-};
-
-const SCENARIO_SET = new Set<string>(RESILIENCE_SCENARIOS);
-
-export const emitResilienceCapture = (
-  payload: ResilienceCapturePayload,
-): void => {
-  console.log(`${RESILIENCE_CAPTURE_MARKER}${JSON.stringify(payload)}`);
-};
-
-export const parseResilienceCaptureFromMergedOutput = (
-  mergedOutput: string,
-  script: string,
-): ResilienceCapturePayload => {
-  const markerLine = mergedOutput
-    .split("\n")
-    .map((s) => s.trim())
-    .find((s) => s.startsWith(RESILIENCE_CAPTURE_MARKER));
-  if (!markerLine) {
-    throw new Error(`[AUDIT] Capture marker missing for ${script}.`);
-  }
-
-  const payload = JSON.parse(
-    markerLine.slice(RESILIENCE_CAPTURE_MARKER.length),
-  ) as ResilienceCapturePayload;
-
-  if (!SCENARIO_SET.has(String(payload.scenario))) {
-    throw new Error(
-      `[AUDIT] Invalid resilience scenario in ${script}: ${
-        String(payload.scenario)
-      }`,
-    );
-  }
-
-  return payload;
-};
-
-```
-
----
-
-## FILE: worker_seeded_swarm.ts
-
-```typescript
-export const SPAWN_RING_CAPACITY = 1024;
-const WORLD_MAX_X = 1399;
-const WORLD_MAX_Y = 799;
-
-type StateMatrixLike = {
-  RISC: {
-    OP_REPLICATE: number;
-    OP_SIGNAL: number;
-    OP_JMP: number;
-    OP_ROLE: number;
-    OP_BUILD: number;
-    OP_SET: number;
-    OP_SYSCALL: number;
-  };
-  ROLE_ARCHITECT: number;
-  ROLE_PRODUCER: number;
-  SYNC: {
-    IDLE: number;
-  };
-  syncState: Int32Array;
-  tickCounter: Int32Array;
-  clear: () => void;
-  seedAtom: (
-    idx: number,
-    id: bigint,
-    x: number,
-    y: number,
-    energy: number,
-    mass: number,
-    genome: Uint8Array,
-    script: Uint8Array,
-  ) => void;
-  setRole: (idx: number, role: number) => void;
-  getActiveIndices: () => number[];
-  getId: (idx: number) => bigint;
-  getX: (idx: number) => number;
-  getY: (idx: number) => number;
-};
-
-type SeededSwarmConfig = {
-  seed: number;
-  replicators: number;
-  architects: number;
-};
-
-const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  // R0 = 4 (SYS_SPAWN)
-  script[pc++] = stateMatrix.RISC.OP_SET;
-  script[pc++] = 0; // R0
-  script[pc++] = 4; // SYS_SPAWN
-  // SYS_SPAWN child_x=R1, child_y=R2. Let's just use 0 (relative) or whatever
-  script[pc++] = stateMatrix.RISC.OP_SYSCALL;
-
-  script[pc++] = stateMatrix.RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-const makeArchitectScript = (stateMatrix: StateMatrixLike): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = stateMatrix.RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = stateMatrix.ROLE_ARCHITECT;
-  script[pc++] = stateMatrix.RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = stateMatrix.RISC.OP_SIGNAL;
-  script[pc++] = stateMatrix.RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
-
-export const seedSeededSwarmScenario = (
-  stateMatrix: StateMatrixLike,
-  config: SeededSwarmConfig,
-): number => {
-  const { seed, replicators, architects } = config;
-
-  stateMatrix.clear();
-  Atomics.store(stateMatrix.syncState, 0, stateMatrix.SYNC.IDLE);
-  Atomics.store(stateMatrix.tickCounter, 0, 0);
-
-  const repScript = makeReplicatorScript(stateMatrix);
-  const archScript = makeArchitectScript(stateMatrix);
-
-  for (let i = 0; i < replicators; i++) {
-    const idx = 1000 + i * 197;
-    const x = 180 + (i % 5) * 220;
-    const y = 120 + Math.floor(i / 5) * 220;
-    const id = (BigInt(seed >>> 0) << 32n) ^ BigInt(idx + 1);
-    const genome = new Uint8Array(8);
-    genome[0] = (seed + i * 17) & 0xff;
-    genome[1] = (seed >>> 8) & 0xff;
-    genome[2] = 0xaa;
-    genome[3] = i & 0xff;
-    stateMatrix.seedAtom(
-      idx,
-      id,
-      x,
-      y,
-      3200,
-      260 + (i % 7),
-      genome,
-      repScript,
-    );
-    stateMatrix.setRole(idx, stateMatrix.ROLE_PRODUCER);
-  }
-
-  for (let i = 0; i < architects; i++) {
-    const idx = 5000 + i * 211;
-    const x = 420 + (i % 3) * 150;
-    const y = 280 + Math.floor(i / 3) * 150;
-    const id = ((BigInt(seed >>> 0) << 32n) ^ 0xABCDEF00n) + BigInt(i + 1);
-    const genome = new Uint8Array(8);
-    genome[0] = 0xf0;
-    genome[1] = (seed + i * 13) & 0xff;
-    genome[2] = 0x0d;
-    genome[3] = 0x42;
-    stateMatrix.seedAtom(
-      idx,
-      id,
-      x,
-      y,
-      2600,
-      180 + (i % 5),
-      genome,
-      archScript,
-    );
-    stateMatrix.setRole(idx, stateMatrix.ROLE_ARCHITECT);
-  }
-
-  return replicators + architects;
-};
-
-export const assertSeededSwarmWorldInvariants = (
-  stateMatrix: StateMatrixLike,
-  errorPrefix: string,
-): number => {
-  const active = stateMatrix.getActiveIndices();
-  for (const idx of active) {
-    const id = stateMatrix.getId(idx);
-    if (id === 0n) {
-      throw new Error(`${errorPrefix} Active index ${idx} has zero id.`);
-    }
-    const x = stateMatrix.getX(idx);
-    const y = stateMatrix.getY(idx);
-    if (x < 0 || x > WORLD_MAX_X || y < 0 || y > WORLD_MAX_Y) {
-      throw new Error(`${errorPrefix} Atom ${idx} out of bounds: (${x},${y}).`);
-    }
-  }
-  return active.length;
-};
-
-```
-
----
-
-## FILE: worker_trend_baseline.ts
-
-```typescript
-type BaselineBootstrapOptions<TCurrent, TBaseline> = {
-  baselinePath: string;
-  bootstrapEnv: string;
-  current: TCurrent;
-  baselineFromCurrent: (current: TCurrent) => TBaseline;
-  missingErrorMessage: (path: string, envVar: string) => string;
-  createdLogMessage: (path: string) => string;
-};
-
-export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
-  options: BaselineBootstrapOptions<TCurrent, TBaseline>,
-): Promise<TBaseline> => {
-  const {
-    baselinePath,
-    bootstrapEnv,
-    current,
-    baselineFromCurrent,
-    missingErrorMessage,
-    createdLogMessage,
-  } = options;
-
-  try {
-    const raw = await Deno.readTextFile(baselinePath);
-    return JSON.parse(raw) as TBaseline;
-  } catch {
-    const bootstrap = Deno.env.get(bootstrapEnv) === "1";
-    if (!bootstrap) {
-      throw new Error(missingErrorMessage(baselinePath, bootstrapEnv));
-    }
-    const baseline = baselineFromCurrent(current);
-    await Deno.writeTextFile(baselinePath, JSON.stringify(baseline, null, 2));
-    console.log(createdLogMessage(baselinePath));
-    return baseline;
-  }
-};
-
-```
-
----
-
-## FILE: worker_trend_math.ts
-
-```typescript
-export const ensurePositive = (value: number, fallback: number): number =>
-  Number.isFinite(value) && value > 0 ? value : fallback;
-
-export const limitByRatioAndDelta = (
-  baseline: number,
-  ratioMax: number,
-  deltaMax: number,
-): number => (baseline * ratioMax) + deltaMax;
-
-export const limitByRatioAndDeltaCeil = (
-  baseline: number,
-  ratioMax: number,
-  deltaMax: number,
-): number => Math.ceil(limitByRatioAndDelta(baseline, ratioMax, deltaMax));
-
-export const minByRatio = (baseline: number, ratioMin: number): number =>
-  baseline * ratioMin;
 
 ```
 

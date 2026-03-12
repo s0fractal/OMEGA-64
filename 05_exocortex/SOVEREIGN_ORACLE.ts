@@ -5,7 +5,7 @@ import { LLM_SYNAPSE } from "./LLM_SYNAPSE.ts";
 import { STATE_MATRIX } from "../00_substrate/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "../03_governance/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 import { PULSE } from "../02_metabolism/mod.ts";
 import { SEMANTIC_MEMBRANE } from "./SEMANTIC_MEMBRANE.ts";
 

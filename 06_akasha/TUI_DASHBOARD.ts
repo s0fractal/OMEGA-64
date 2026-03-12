@@ -1,7 +1,7 @@
 import { RISC, STATE_MATRIX, SYS } from "../00_substrate/mod.ts";
 import { PULSE } from "../02_metabolism/mod.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "../02_metabolism/mod.ts";
-import { AgentProxy } from "../AGENT_PROXY.ts";
+import { AgentProxy } from "./AGENT_PROXY.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
 
 const STARTING_PREY = 500;

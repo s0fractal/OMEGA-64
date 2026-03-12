@@ -1,6 +1,6 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "../00_substrate/mod.ts";
-import { RUNTIME_POLICY } from "../03_governance/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "../03_governance/mod.ts";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;

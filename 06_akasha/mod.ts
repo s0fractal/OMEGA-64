@@ -1,7 +1,9 @@
+export * from "./AGENT_PROXY.ts";
 export * from "./TELEMETRY_STREAM.ts";
 export * from "./AKASHA_CODEX.ts";
 export * from "./SNAP_ENGINE.ts";
 export * from "./SNAPSHOT_ENGINE.ts";
+export * from "./BREATH.ts";
 export * from "./PHYSIOLOGY_SNAPSHOT.ts";
 export * from "./AKASHA_SERVER.ts";
 export * from "./CONTINUUM.ts";
@@ -10,5 +12,5 @@ export * from "./LINEAGE_TRACKER.ts";
 export * from "./PANOPTICON_SERVER.ts";
 export * from "./SERVE_DASHBOARD.ts";
 export * from "./OMEGA_DAEMON.ts";
-export * from "./MUTATION_TELEMETRY.ts";
 export * from "./AKASHA_SIGNALING.ts";
+export * from "./MUTATION_TELEMETRY.ts";

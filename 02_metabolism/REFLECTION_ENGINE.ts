@@ -2,7 +2,7 @@
 // Bridges RAM state back to Flatland source code.
 
 import { STATE_MATRIX } from "../00_substrate/mod.ts";
-import { IDX_TO_ID } from "./mod.ts";
+import { IDX_TO_ID } from "../00_substrate/mod.ts";
 import { LOGGER } from "../00_substrate/mod.ts";
 
 const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
