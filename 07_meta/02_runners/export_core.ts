@@ -542,7 +542,7 @@ const buildExportProvenance = async (
 
 const classifyFile = (file: string): "RUNTIME" | "SHADOW" | "LORE" => {
   if (file.endsWith(".md") || file.endsWith(".json") || file.endsWith(".jsonc") || file.endsWith(".html") || file.includes("public/") || file.includes("ui/")) return "LORE";
-  if (file.includes("07_meta/") || file.includes("03_tests/") || file.match(/(^|\/)test_.*\.ts$/u) || file.includes("tests/") || file.includes("reduction_core/") || file.includes("verification/")) return "SHADOW";
+  if (file.includes("07_meta/") || file.includes("03_tests/") || file.match(/(^|\/)test_.*\.ts$/u) || file.includes("tests/") || file.includes("reduction_core/") || file.includes("03_governance/03_tests/verification/")) return "SHADOW";
   return "RUNTIME";
 };
 

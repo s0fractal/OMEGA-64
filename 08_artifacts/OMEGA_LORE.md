@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T03:24:21.525Z*
+*Generated: 2026-03-12T03:36:31.296Z*
 *Exported Files in Category: 17*
-*Total Exported Files: 128*
+*Total Exported Files: 124*
 *Runtime Roots: 10*
 *Runtime Closure Files: 76*
-*Non-Runtime Code Files: 35*
+*Non-Runtime Code Files: 31*
 *Runtime-Support Code Files: 10*
-*Experimental Code Files: 25*
-*Manifest SHA256: 2a9262e770f6d15db8b47abbad760e3a433372deceb663ba0ee2746c281e02fa*
-*Export Set SHA256: 73d58698aee0a141c299a4f49212a380188f03bb079616c0d2be06fe94f1d6c8*
-*Export Content SHA256: 250caf2718ff6f288b60d566a0cd7d3f936c2805606a05ea40d160c2b71cf829*
-*Git Commit: 42365ad71fce*
+*Experimental Code Files: 21*
+*Manifest SHA256: e1907a0326c27a5c8628f5502c9d28e3834206694de8c81aa5d8669ee05f68de*
+*Export Set SHA256: 8f31d4d4917e75663760455ae7f3279d6aa8d1d4ca18a88ebf7eac78a996a44f*
+*Export Content SHA256: e5eb1e06d27a98c9455ce1d20944fd226448009f87e67dc8950ac3430bce8f46*
+*Git Commit: 3b718ed5176c*
 
 ---
 
@@ -651,9 +651,7 @@ Deep chain adds:
     "02_metabolism/RIBOSOME_TICK.ts",
     "07_meta/04_transpilers/GlyphIR64.ts",
     "07_meta/04_transpilers/glyph_pretty.ts",
-    "07_meta/04_transpilers/opcode_to_glyph.ts",
-    "verification/golden_trace_catalog.ts",
-    "verification/reduction_harness.ts"
+    "07_meta/04_transpilers/opcode_to_glyph.ts"
   ],
   "core_entry_files": [
     "07_meta/02_runners/SYSTEM_START.ts",

@@ -1,4 +1,4 @@
-const DIFF_ROOT = "verification/hybrid_mode_diffs";
+const DIFF_ROOT = "03_governance/03_tests/verification/hybrid_mode_diffs";
 const REQUIRED_ARTIFACTS = [
   "gh01_gt03_guardian_stable_modes.json",
   "gh02_gt03_guardian_repair_modes.json",

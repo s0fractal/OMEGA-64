@@ -11,7 +11,7 @@ export type GoldenTraceScenario = {
   supportFiles: readonly string[];
 };
 
-const TRACE_ROOT = "verification/traces";
+const TRACE_ROOT = "03_governance/03_tests/verification/traces";
 
 const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   {
@@ -230,7 +230,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/collective_transport_capture.ts",
+      "03_governance/03_tests/verification/collective_transport_capture.ts",
       "test_swarm.ts",
     ],
   },
@@ -256,7 +256,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/share_transfer_capture.ts",
+      "03_governance/03_tests/verification/share_transfer_capture.ts",
       "test_metabolism.ts",
       "test_symbiosis.ts",
     ],
@@ -283,7 +283,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/collective_banking_capture.ts",
+      "03_governance/03_tests/verification/collective_banking_capture.ts",
       "test_metabolism.ts",
     ],
   },
@@ -311,7 +311,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/collective_synchrony_capture.ts",
+      "03_governance/03_tests/verification/collective_synchrony_capture.ts",
       "test_swarm.ts",
       "test_structure_lock_progress.ts",
     ],
@@ -338,7 +338,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_lock_capture.ts",
+      "03_governance/03_tests/verification/structure_lock_capture.ts",
       "test_structure_lock_progress.ts",
     ],
   },
@@ -362,7 +362,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_charge_capture.ts",
+      "03_governance/03_tests/verification/structure_charge_capture.ts",
       "test_structure_lock_progress.ts",
     ],
   },
@@ -388,8 +388,8 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_charge_competition_capture.ts",
-      "verification/structure_charge_capture.ts",
+      "03_governance/03_tests/verification/structure_charge_competition_capture.ts",
+      "03_governance/03_tests/verification/structure_charge_capture.ts",
       "test_structure_lock_progress.ts",
     ],
   },
@@ -415,7 +415,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_build_runtime_capture.ts",
+      "03_governance/03_tests/verification/structure_build_runtime_capture.ts",
       "test_structure_intent_determinism.ts",
     ],
   },
@@ -441,8 +441,8 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_build_competition_capture.ts",
-      "verification/structure_build_runtime_capture.ts",
+      "03_governance/03_tests/verification/structure_build_competition_capture.ts",
+      "03_governance/03_tests/verification/structure_build_runtime_capture.ts",
       "test_structure_intent_determinism.ts",
     ],
   },
@@ -468,9 +468,9 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/structure_build_lock_capture.ts",
-      "verification/structure_build_runtime_capture.ts",
-      "verification/structure_lock_capture.ts",
+      "03_governance/03_tests/verification/structure_build_lock_capture.ts",
+      "03_governance/03_tests/verification/structure_build_runtime_capture.ts",
+      "03_governance/03_tests/verification/structure_lock_capture.ts",
       "test_structure_intent_determinism.ts",
     ],
   },
@@ -492,7 +492,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/tensegrity_capture.ts",
+      "03_governance/03_tests/verification/tensegrity_capture.ts",
       "test_tensegrity.ts",
     ],
   },
@@ -516,7 +516,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/bind_resolution_capture.ts",
+      "03_governance/03_tests/verification/bind_resolution_capture.ts",
       "test_symbiosis.ts",
     ],
   },
@@ -540,7 +540,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/quorum_sync_capture.ts",
+      "03_governance/03_tests/verification/quorum_sync_capture.ts",
     ],
   },
   {
@@ -563,7 +563,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/intent_resolution_capture.ts",
+      "03_governance/03_tests/verification/intent_resolution_capture.ts",
     ],
   },
   /*
@@ -593,7 +593,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/cognitive_vector_capture.ts",
+      "03_governance/03_tests/verification/cognitive_vector_capture.ts",
       "test_kuramoto_lut.ts",
     ],
   },
@@ -615,7 +615,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/kuramoto_sync_capture.ts",
+      "03_governance/03_tests/verification/kuramoto_sync_capture.ts",
     ],
   },
   {
@@ -644,7 +644,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/lut_accuracy_capture.ts",
+      "03_governance/03_tests/verification/lut_accuracy_capture.ts",
     ],
   },
   {
@@ -665,7 +665,7 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       snapshotDigest: "strict",
     },
     supportFiles: [
-      "verification/resolution_phase_capture.ts",
+      "03_governance/03_tests/verification/resolution_phase_capture.ts",
     ],
   },
   */

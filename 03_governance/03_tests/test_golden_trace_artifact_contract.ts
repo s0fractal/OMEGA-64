@@ -1,7 +1,7 @@
 import {
   GOLDEN_TRACE_CATALOG,
   goldenTraceArtifactPaths,
-} from "../../verification/golden_trace_catalog.ts";
+} from "./verification/golden_trace_catalog.ts";
 
 const TRACE_RUNTIME_MODE = "legacy-runtime/api-observer-harness";
 const STRUCTURE_INTENT_RUNTIME_MODE = "standalone-structure-intent-capture";

@@ -174,7 +174,7 @@ export type ReductionHarnessArtifact = {
   expectation_summary: ReductionCaseDefinition["expected"];
 };
 
-const REDUCTION_DIFF_ROOT = "verification/reduction_diffs";
+const REDUCTION_DIFF_ROOT = "03_governance/03_tests/verification/reduction_diffs";
 const GRID_W = 140;
 const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;

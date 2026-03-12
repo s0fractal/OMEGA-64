@@ -1,4 +1,4 @@
-const DIFF_ROOT = "verification/architect_hybrid_mode_diffs";
+const DIFF_ROOT = "03_governance/03_tests/verification/architect_hybrid_mode_diffs";
 const REQUIRED_ARTIFACTS = [
   "ah01_gt04_architect_emit_modes.json",
   "ah02_gt04_architect_suppress_modes.json",

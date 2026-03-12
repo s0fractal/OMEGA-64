@@ -1,4 +1,4 @@
-import { runReductionHarness } from "../../verification/reduction_harness.ts";
+import { runReductionHarness } from "./verification/reduction_harness.ts";
 
 const main = async () => {
   const results = await runReductionHarness();

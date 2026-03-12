@@ -1,8 +1,8 @@
 const ARTIFACTS = [
-  "verification/admission_diffs/ac01_gt04_low_risk_accept.json",
-  "verification/admission_diffs/ac02_gt06_pheromone_accept.json",
-  "verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
-  "verification/admission_diffs/ac04_gt07_plasmid_policy_block.json",
+  "03_governance/03_tests/verification/admission_diffs/ac01_gt04_low_risk_accept.json",
+  "03_governance/03_tests/verification/admission_diffs/ac02_gt06_pheromone_accept.json",
+  "03_governance/03_tests/verification/admission_diffs/ac03_gt06_plasmid_high_degrade.json",
+  "03_governance/03_tests/verification/admission_diffs/ac04_gt07_plasmid_policy_block.json",
 ] as const;
 
 type AdmissionShadowArtifact = {

@@ -1,6 +1,6 @@
-import { REDUCTION_CASES } from "../../verification/reduction_cases.ts";
+import { REDUCTION_CASES } from "./verification/reduction_cases.ts";
 
-const ARTIFACT_ROOT = "verification/reduction_diffs";
+const ARTIFACT_ROOT = "03_governance/03_tests/verification/reduction_diffs";
 
 const main = async () => {
   for (const definition of REDUCTION_CASES) {

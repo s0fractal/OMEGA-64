@@ -2,7 +2,7 @@ import { scriptToGlyphTape } from "@07/04_transpilers/opcode_to_glyph.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
-} from "../../verification/reduction_cases.ts";
+} from "./verification/reduction_cases.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

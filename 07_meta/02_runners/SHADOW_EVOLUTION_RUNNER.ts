@@ -4,7 +4,7 @@
  * Runs in a secure WebAssembly memory sandbox (DollFork) isolated from the main matrix.
  */
 
-import { REDUCTION_CASES } from "../verification/reduction_cases.ts";
+import { REDUCTION_CASES } from "../../03_governance/03_tests/verification/reduction_cases.ts";
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
 import { DollFork } from "./doll_fork/DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "./doll_fork/DOLL_FORK_RUNNER.ts";

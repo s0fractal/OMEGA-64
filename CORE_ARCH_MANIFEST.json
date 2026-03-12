@@ -32,9 +32,7 @@
     "02_metabolism/RIBOSOME_TICK.ts",
     "07_meta/04_transpilers/GlyphIR64.ts",
     "07_meta/04_transpilers/glyph_pretty.ts",
-    "07_meta/04_transpilers/opcode_to_glyph.ts",
-    "verification/golden_trace_catalog.ts",
-    "verification/reduction_harness.ts"
+    "07_meta/04_transpilers/opcode_to_glyph.ts"
   ],
   "core_entry_files": [
     "07_meta/02_runners/SYSTEM_START.ts",

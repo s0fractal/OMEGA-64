@@ -2,7 +2,7 @@ import {
   GOLDEN_TRACE_CATALOG,
   goldenTraceArtifactPaths,
   goldenTraceById,
-} from "../../verification/golden_trace_catalog.ts";
+} from "./verification/golden_trace_catalog.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
@@ -125,7 +125,7 @@ const main = () => {
   const paths = goldenTraceArtifactPaths("gt04_plasmid_inject");
   expect(
     paths.traceJson ===
-      "verification/traces/gt04_plasmid_inject/trace.json",
+      "03_governance/03_tests/verification/traces/gt04_plasmid_inject/trace.json",
     "[golden_trace_catalog] trace artifact path mismatch",
   );
   expect(

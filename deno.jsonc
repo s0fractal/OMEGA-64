@@ -123,7 +123,7 @@
     "test:reduction-cases": "deno run -A 03_governance/03_tests/test_reduction_cases_contract.ts",
     "test:reduction-harness": "deno run -A 03_governance/03_tests/test_reduction_harness_contract.ts",
     "test:reduction-diff-artifacts": "deno run -A 03_governance/03_tests/test_reduction_diff_artifact_contract.ts",
-    "reduction-harness:capture": "deno run -A verification/reduction_harness.ts",
+    "reduction-harness:capture": "deno run -A 03_governance/03_tests/verification/reduction_harness.ts",
     "test:topological-signature": "deno run -A 00_substrate/03_tests/test_topological_signature_runtime.ts",
     "test:invariant-packet": "deno run -A 00_substrate/03_tests/test_invariant_packet_runtime.ts",
     "test:bridge-policy": "deno run -A 03_governance/03_tests/test_bridge_policy_runtime.ts",
