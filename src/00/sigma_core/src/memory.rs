@@ -5,7 +5,8 @@
 pub use crate::constants::{
     ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
     HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
-    SECRETION_STATS_SIZE,
+    SECRETION_STATS_SIZE, MAX_ASCENSION_STATS_RESERVED, MAX_EGRESS_EVENTS, MAX_LEDGER_EVENTS,
+    MAX_ASCENSION_STATS, MAX_MEIOSIS_EVENTS, MAX_SPAWN_REQUESTS,
 };
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
@@ -23,24 +24,23 @@ pub struct SigmaMatrix {
     pub instructions: [[u8; ATOM_INSTRUCTION_SIZE]; MAX_ATOMS],
     pub context: [[i32; ATOM_CONTEXT_SIZE]; MAX_ATOMS],
     pub evolution_reserved: [i32; MAX_ATOMS],
-    pub spawn_requests: [u8; 24584],
-    pub meiosis: [i32; 300000],
-    pub _pad_to_bond_requests: [u8; 4800000],
+    pub spawn_requests: [u8; 8 + (MAX_SPAWN_REQUESTS * 24)],
+    pub meiosis_reserved: [i32; MAX_MEIOSIS_EVENTS], // Size 300,000 bytes
+    pub _pad_to_bond_requests: [u8; 112024584 - (106024584 + (MAX_MEIOSIS_EVENTS * 4))], // 112024584 - 106324584 = 5700000 bytes
     pub bond_requests: [i32; MAX_ATOMS * 3],
-    pub spatial_grid: [i32; 358400],
+    pub spatial_grid: [i32; GRID_CELLS * 32],
     pub roles: [u8; MAX_ATOMS],
     pub structure_grid: [i32; GRID_CELLS],
     pub signal_grid: [i32; GRID_CELLS],
     pub memory_grid: [[u8; 8]; GRID_CELLS],
-    pub ascension_stats: [i32; 250000],
-    pub _pad_to_bond_distances: [u8; 4000000],
+    pub ascension_stats_reserved: [i32; MAX_ASCENSION_STATS_RESERVED],
     pub bond_distances: [u8; MAX_ATOMS * 4],
     pub synaptic_weights: [u8; MAX_ATOMS * 4],
     pub damping: [u8; MAX_ATOMS],
     pub causality: [u8; MAX_ATOMS],
     pub hive_memory: [u8; HIVE_MEMORY_SIZE],
     pub hive_balance: i32,
-    pub quorum: [i32; 89600],
+    pub quorum: [i32; GRID_CELLS * 8],
     pub coherence: i32,
     pub neural_coherence: i32,
     pub physics_read_xs: [i16; MAX_ATOMS],
@@ -64,9 +64,9 @@ pub struct SigmaMatrix {
     pub lineage: [u64; MAX_ATOMS],
     pub mailbox: [[i32; 2]; MAX_ATOMS],
     pub ledger_head: i32,
-    pub ledger_data: [[i32; 4]; 65536],
+    pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
     pub egress_head: i32,
-    pub egress_data: [[u8; 256]; 8192],
+    pub egress_data: [[u8; 256]; MAX_EGRESS_EVENTS],
 }
 
 pub struct SigmaState {
@@ -418,252 +418,252 @@ mod tests {
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
-            14000000,
+            crate::constants::ENERGY_OFFSET,
             "energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance),
-            16000000,
+            crate::constants::RESONANCE_OFFSET,
             "resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, phase),
-            18000000,
+            crate::constants::PHASE_OFFSET,
             "phase"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, logic),
-            20000000,
+            crate::constants::LOGIC_OFFSET,
             "logic"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bonds),
-            24000000,
+            crate::constants::BONDS_OFFSET,
             "bonds"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, stiffness),
-            32000000,
+            crate::constants::STIFFNESS_OFFSET,
             "stiffness"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, instructions),
-            40000000,
+            crate::constants::INSTRUCTIONS_OFFSET,
             "instructions"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, context),
-            72000000,
+            crate::constants::CONTEXT_OFFSET,
             "context"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, evolution_reserved),
-            104000000,
+            crate::constants::EVOLUTION_OFFSET,
             "evolution_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spawn_requests),
-            106000000,
+            crate::constants::SPAWN_REQUESTS_OFFSET,
             "spawn_requests"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis),
-            106024584,
-            "meiosis"
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
+            crate::constants::MEIOSIS_OFFSET,
+            "meiosis_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
-            112024584,
+            crate::constants::BOND_REQUESTS_OFFSET,
             "bond_requests"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spatial_grid),
-            118024584,
+            crate::constants::SPATIAL_GRID_OFFSET,
             "spatial_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, roles),
-            119458184,
+            crate::constants::ROLES_OFFSET,
             "roles"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_grid),
-            119958184,
+            crate::constants::STRUCTURE_GRID_OFFSET,
             "structure_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, signal_grid),
-            120002984,
+            crate::constants::SIGNAL_GRID_OFFSET,
             "signal_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, memory_grid),
-            120047784,
+            crate::constants::MEMORY_GRID_OFFSET,
             "memory_grid"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats),
-            120137384,
-            "ascension_stats"
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats_reserved),
+            crate::constants::ASCENSION_STATS_OFFSET,
+            "ascension_stats_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_distances),
-            125137384,
+            crate::constants::BOND_DISTANCES_OFFSET,
             "bond_distances"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, synaptic_weights),
-            127137384,
+            crate::constants::SYNAPTIC_WEIGHTS_OFFSET,
             "synaptic_weights"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, damping),
-            129137384,
+            crate::constants::DAMPING_OFFSET,
             "damping"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, causality),
-            129637384,
+            crate::constants::CAUSALITY_OFFSET,
             "causality"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_memory),
-            130137384,
+            crate::constants::HIVE_MEMORY_OFFSET,
             "hive_memory"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_balance),
-            130138408,
+            crate::constants::HIVE_BALANCE_OFFSET,
             "hive_balance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, quorum),
-            130138412,
+            crate::constants::QUORUM_OFFSET,
             "quorum"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, coherence),
-            130496812,
+            crate::constants::COHERENCE_OFFSET,
             "coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, neural_coherence),
-            130496816,
+            crate::constants::NEURAL_COHERENCE_OFFSET,
             "neural_coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_xs),
-            130496820,
+            crate::constants::PHYSICS_READ_XS_OFFSET,
             "physics_read_xs"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_ys),
-            131496820,
+            crate::constants::PHYSICS_READ_YS_OFFSET,
             "physics_read_ys"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_energy),
-            132496820,
+            crate::constants::PHYSICS_READ_ENERGY_OFFSET,
             "physics_read_energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_resonance),
-            134496820,
+            crate::constants::PHYSICS_READ_RESONANCE_OFFSET,
             "physics_read_resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy_delta),
-            136496820,
+            crate::constants::ENERGY_DELTA_OFFSET,
             "energy_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance_delta),
-            138496820,
+            crate::constants::RESONANCE_DELTA_OFFSET,
             "resonance_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_owner),
-            140496820,
+            crate::constants::STRUCTURE_BUILD_OWNER_OFFSET,
             "structure_build_owner"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_value),
-            140541620,
+            crate::constants::STRUCTURE_BUILD_VALUE_OFFSET,
             "structure_build_value"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_charge_intent),
-            140586420,
+            crate::constants::STRUCTURE_CHARGE_INTENT_OFFSET,
             "structure_charge_intent"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, attention_field),
-            140631220,
+            crate::constants::ATTENTION_FIELD_OFFSET,
             "attention_field"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_energy_pool),
-            140676020,
+            crate::constants::HIVE_ENERGY_POOL_OFFSET,
             "hive_energy_pool"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_header),
-            140677044,
+            crate::constants::GLYPH_HEADER_OFFSET,
             "glyph_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_payload),
-            140721844,
+            crate::constants::GLYPH_PAYLOAD_OFFSET,
             "glyph_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_header),
-            140811444,
+            crate::constants::GLYPH_SCRATCH_HEADER_OFFSET,
             "glyph_scratch_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_payload),
-            140856244,
+            crate::constants::GLYPH_SCRATCH_PAYLOAD_OFFSET,
             "glyph_scratch_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            140945844,
+            crate::constants::HORMONE_OFFSET,
             "hormones"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, secretion_stats),
-            140945860,
+            crate::constants::SECRETION_STATS_OFFSET,
             "secretion_stats"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, lineage),
-            140945912,
+            crate::constants::LINEAGE_OFFSET,
             "lineage"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, mailbox),
-            144945912,
+            crate::constants::MAILBOX_OFFSET,
             "mailbox"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_head),
-            148945912,
+            crate::constants::LEDGER_HEAD_OFFSET,
             "ledger_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_data),
-            148945916,
+            crate::constants::LEDGER_DATA_OFFSET,
             "ledger_data"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_head),
-            149994492,
+            crate::constants::EGRESS_HEAD_OFFSET,
             "egress_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_data),
-            149994496,
+            crate::constants::EGRESS_DATA_OFFSET,
             "egress_data"
         );
     }
