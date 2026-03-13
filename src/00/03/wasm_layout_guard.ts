@@ -1,8 +1,8 @@
 import * as OFFSETS from "@00";
 
-const ASM_SOURCE_PATH = new URL("../01/assembly/index.ts", import.meta.url);
+const ASM_SOURCE_PATH = new URL("../01/assembly/constants.assembly.ts", import.meta.url);
 
-const CONST_DEF_RE = /^\s*const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
+const CONST_DEF_RE = /^\s*export\s+const\s+([A-Z0-9_]+)\s*:\s*[^=]+\s*=\s*([^;]+);/gm;
 
 const parseLiteral = (token: string): number | null => {
   if (/^0x[0-9a-f]+$/i.test(token)) return Number.parseInt(token, 16);
