@@ -15,7 +15,7 @@ const CELL_CAPACITY = 32; // slots per cell in spatialGrid
 function makeSpatialGrid(cellPhaseAvg = 0): Int32Array {
   // GRID_W * GRID_H cells * 32 ints each
   const arr = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4));
-  // Cell at (500,400) → gx=50, gy=40 → cellBase=(40*140+50)*32 = 5650*32=180800
+  // Cell at (500,400) → gx=50, gy=40 → cellBase=(40 * GRID_W+50)*32 = 5650*32=180800
   const cellBase = (40 * GRID_W + 50) * CELL_CAPACITY;
   arr[cellBase + 31] = cellPhaseAvg; // slot 31 = phase average
   return arr;

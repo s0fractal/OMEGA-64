@@ -12,35 +12,31 @@ const OFFSETS_FILE = resolve("./src/00/OFFSETS.ts");
 // 5. Hardcoded const declarations: const GRID_COLS = 140;
 
 const replacements = [
-  // Standalone and common multiplications
+  // 1. Array creations or direct products
   { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
-  { regex: /\bgy\s*\*\s*140\b/g, replacement: "gy * GRID_W" },
-  { regex: /\bpy\s*\*\s*140\b/g, replacement: "py * GRID_W" },
-  { regex: /\by\s*\*\s*140\b/g, replacement: "y * GRID_W" },
-  { regex: /\bgPy\s*\*\s*140\b/g, replacement: "gPy * GRID_W" },
-  { regex: /\bmPy\s*\*\s*140\b/g, replacement: "mPy * GRID_W" },
-  { regex: /\bnGridY\s*\*\s*140\b/g, replacement: "nGridY * GRID_W" },
-  { regex: /\b\(\s*py\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(py $1 1) * GRID_W" },
-  { regex: /\b\(\s*gy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gy $1 1) * GRID_W" },
-  { regex: /\b\(\s*y\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(y $1 1) * GRID_W" },
-  { regex: /\b\(\s*gPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gPy $1 1) * GRID_W" },
-  { regex: /\b\(\s*mPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(mPy $1 1) * GRID_W" },
-  { regex: /\bMath\.floor\(\s*gCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(gCell / GRID_W)" },
-  { regex: /\bgCell\s*%\s*140\b/g, replacement: "gCell % GRID_W" },
-  { regex: /\bpCell\s*%\s*140\b/g, replacement: "pCell % GRID_W" },
-  { regex: /\bMath\.floor\(\s*pCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(pCell / GRID_W)" },
+  { regex: /\bGRID_W\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
+  { regex: /\b80\s*\*\s*GRID_W\b/g, replacement: "GRID_H * GRID_W" },
 
-  // Boundaries checks
-  { regex: /\b< 140\b/g, replacement: "< GRID_W" },
-  { regex: /\b>= 140\b/g, replacement: ">= GRID_W" },
-  { regex: /\b< 80\b/g, replacement: "< GRID_H" },
-  { regex: /\b>= 80\b/g, replacement: ">= GRID_H" },
-  
-  // Loops
-  { regex: /\b(x)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
-  { regex: /\b(y)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
-  { regex: /\b(gx)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
-  { regex: /\b(gy)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
+  // 2. Linear Indexing (y * width + x)
+  { regex: /\b([a-zA-Z]*y|Y)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
+  { regex: /\b\(\s*([a-zA-Z]*y|Y)\s*(\+|\-)\s*\d+\s*\)\s*\*\s*140\b/g, replacement: "($1 $2 1) * GRID_W" },
+  { regex: /\b(\d+)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
+  { regex: /\b140\s*\*\s*(\d+)\b/g, replacement: "GRID_W * $1" },
+
+  // 3. Grid bounds clamping/checking (e.g. x < 140, gx >= 140)
+  { regex: /\b([a-zA-Z]*x|X)\s*<\s*140\b/g, replacement: "$1 < GRID_W" },
+  { regex: /\b([a-zA-Z]*x|X)\s*>=\s*140\b/g, replacement: "$1 >= GRID_W" },
+  { regex: /\b([a-zA-Z]*y|Y)\s*<\s*80\b/g, replacement: "$1 < GRID_H" },
+  { regex: /\b([a-zA-Z]*y|Y)\s*>=\s*80\b/g, replacement: "$1 >= GRID_H" },
+  { regex: /\b140\s*>\s*([a-zA-Z]*x|X)\b/g, replacement: "GRID_W > $1" },
+  { regex: /\b80\s*>\s*([a-zA-Z]*y|Y)\b/g, replacement: "GRID_H > $1" },
+
+  // 4. Modulo/Div math
+  { regex: /\bMath\.floor\(\s*([a-zA-Z]*Cell)\s*\/\s*140\s*\)/g, replacement: "Math.floor($1 / GRID_W)" },
+  { regex: /\b([a-zA-Z]*Cell)\s*%\s*140\b/g, replacement: "$1 % GRID_W" },
+
+  // 5. Specific test hardcodes (Array instantiations like Array(140))
+  // We'll let the second pass of replacing `Array(80)` to `Array(GRID_H)` handle this safely.
 ];
 
 function getRelativeImportPath(fromFile: string, toFile: string): string {

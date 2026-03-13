@@ -1,4 +1,4 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_symbiosis.ts | Era 61: Symbiotic Bonding Verification
 // Tests ISA.SHARE (energy transfer to bonded neighbor) and ISA.EAT (nutrient consumption).
 
@@ -16,11 +16,11 @@ function baseState(overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,
@@ -128,9 +128,9 @@ Deno.test("Era 61: ISA.EAT emits eatRequest but doesn't instantly change energyD
 
 // ---------- Test 5: PULSE_WORKER applies eatRequest by draining grid ----------
 Deno.test("Era 61: PULSE_WORKER drains nutrients grid correctly", () => {
-  const nutrients = new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4));
-  // x=500, y=400 -> gx=50, gy=40 -> idx=40*140+50 = 5650
-  const cellBase = 40 * 140 + 50;
+  const nutrients = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4));
+  // x=500, y=400 -> gx=50, gy=40 -> idx=40 * GRID_W+50 = 5650
+  const cellBase = 40 * GRID_W + 50;
   nutrients[cellBase] = 100; // 100 nutrients available
 
   // Simulate PULSE_WORKER
@@ -150,8 +150,8 @@ Deno.test("Era 61: PULSE_WORKER drains nutrients grid correctly", () => {
 
 // ---------- Test 6: PULSE_WORKER eat clamping ----------
 Deno.test("Era 61: PULSE_WORKER clamps EAT to available nutrients", () => {
-  const nutrients = new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4));
-  const cellBase = 40 * 140 + 50;
+  const nutrients = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4));
+  const cellBase = 40 * GRID_W + 50;
   nutrients[cellBase] = 10; // Only 10 available
 
   const req = { amount: 50 }; // Requesting 50

@@ -12,8 +12,8 @@ import {
 
 function makeHiveMemory(refWeight = 0): Uint8Array {
   const arr = new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 16));
-  // Pre-fill cell at (500,400) → gx=50, gy=40 → hBase=(40*140+50)*16=5650*16=90400
-  const hBase = (40 * 140 + 50) * 16;
+  // Pre-fill cell at (500,400) → gx=50, gy=40 → hBase=(40 * GRID_W+50)*16=5650*16=90400
+  const hBase = (40 * GRID_W + 50) * 16;
   arr[hBase + 1] = refWeight; // intensity octet = reference weight
   return arr;
 }
@@ -206,7 +206,7 @@ Deno.test("Era 56: ISA.INHERIT uses amplitude=1 when p2=0", () => {
 // ---------- Test 6: SENSE type 0x0C reads imprint age ----------
 Deno.test("Era 56: ISA.SENSE type 0x0C reads imprint age into register", () => {
   const hm = makeHiveMemory(0);
-  const hBase = (40 * 140 + 50) * 16;
+  const hBase = (40 * GRID_W + 50) * 16;
   // Write imprintTick=5 in bytes 8-11
   hm[hBase + 8] = 5;
   hm[hBase + 9] = 0;

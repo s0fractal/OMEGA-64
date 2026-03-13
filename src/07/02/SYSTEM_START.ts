@@ -1324,7 +1324,7 @@ setInterval(() => {
     GRID_W * GRID_H,
   );
   // Seed a strong signal in the center
-  const center = 40 * 140 + 70;
+  const center = 40 * GRID_W + 70;
   Atomics.store(signalGrid, center, 1000);
   Atomics.store(memoryGrid, center, 500);
 }, 100);

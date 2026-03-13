@@ -18,11 +18,11 @@ async function runTest() {
 
   for (const [cx, cy] of junctions) {
     const cells = [
-      cy * 140 + cx,
+      cy * GRID_W + cx,
       (cy - 1) * 140 + cx,
       (cy + 1) * 140 + cx,
-      cy * 140 + (cx - 1),
-      cy * 140 + (cx + 1),
+      cy * GRID_W + (cx - 1),
+      cy * GRID_W + (cx + 1),
     ];
     for (const c of cells) {
       Atomics.store(STATE_MATRIX.structureGrid, c, CRYSTAL_STANDARD);
@@ -30,9 +30,9 @@ async function runTest() {
     // Arms get high signal → convergence into center
     Atomics.store(STATE_MATRIX.signalGrid, (cy - 1) * 140 + cx, 900);
     Atomics.store(STATE_MATRIX.signalGrid, (cy + 1) * 140 + cx, 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * 140 + (cx - 1), 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * 140 + (cx + 1), 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * 140 + cx, 50);
+    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + (cx - 1), 900);
+    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + (cx + 1), 900);
+    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + cx, 50);
   }
 
   // ── TEST 1: Oscillators form, coherence accumulates ───────────────────
@@ -52,7 +52,7 @@ async function runTest() {
   const MEMORY_BASE = 33000000 + 1000000;
   let totalAmplitude = 0;
   for (const [cx, cy] of junctions) {
-    const cellIdx = cy * 140 + cx;
+    const cellIdx = cy * GRID_W + cx;
     const ampView = new Uint32Array(
       STATE_MATRIX.buffer,
       MEMORY_BASE + cellIdx * 8,

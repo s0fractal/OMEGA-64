@@ -69,7 +69,7 @@ Deno.test({
       OFFSETS.STRUCTURE_GRID_OFFSET,
       GRID_W * GRID_H,
     );
-    const targetIdx = 50 * 140 + 50;
+    const targetIdx = 50 * GRID_W + 50;
 
     assertEquals(
       structureGrid[targetIdx] & 0xFF,

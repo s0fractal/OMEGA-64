@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_arms_race.ts | Phase 16: Territorial Arms Race Verification
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -46,8 +47,8 @@ async function runTest() {
   }
 
   // First plant a colony crystal at (400,400) manually (simulate prior formation)
-  Atomics.store(STATE_MATRIX.structureGrid, 40 * 140 + 40, CRYSTAL_COLONY);
-  Atomics.store(STATE_MATRIX.signalGrid, 40 * 140 + 40, 800);
+  Atomics.store(STATE_MATRIX.structureGrid, 40 * GRID_W + 40, CRYSTAL_COLONY);
+  Atomics.store(STATE_MATRIX.signalGrid, 40 * GRID_W + 40, 800);
 
   const crystalsBefore = MATRIX_ENGINE.getCrystalCount();
   // Run 5 ticks — each annex tick probes 4 neighbors
@@ -82,7 +83,7 @@ async function runTest() {
   ]);
 
   // Plant a Colony A crystal target — manually set genome A beacon
-  const contestCell = 41 * 140 + 41; // neighbor of (400,400)
+  const contestCell = 41 * GRID_W + 41; // neighbor of (400,400)
   Atomics.store(STATE_MATRIX.structureGrid, contestCell, CRYSTAL_COLONY);
   Atomics.store(STATE_MATRIX.signalGrid, contestCell, 200);
   // Write Colony A's genome into the beacon

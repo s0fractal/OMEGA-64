@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_vector10_planetary.ts | Vector 10 Verification
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -17,8 +18,8 @@ async function runTest() {
   // 1. RECRYSTALLIZATION TEST (VOID -> WIRE)
   console.log("\n--- [1] Recrystallization Test ---");
   const tx = 70, ty = 40;
-  const targetIdx = ty * 140 + tx;
-  const sourceIdx = ty * 140 + (tx - 1);
+  const targetIdx = ty * GRID_W + tx;
+  const sourceIdx = ty * GRID_W + (tx - 1);
 
   // Set source next to VOID
   STATE_MATRIX.setGridType(sourceIdx, 4); // STR_SOURCE

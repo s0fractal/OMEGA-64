@@ -1,4 +1,4 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_hgt.ts | Era 60: Horizontal Gene Transfer Verification
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
@@ -13,7 +13,7 @@ import { STATE_MATRIX } from "@00";
 
 
 function makeViralGrid(): Uint8Array {
-  return new Uint8Array(new SharedArrayBuffer(GRID_W * 80 * 9));
+  return new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9));
 }
 
 function baseState(
@@ -30,11 +30,11 @@ function baseState(
   return {
     x,
     y,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
     viralGrid,
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 32 * 4)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,
@@ -77,7 +77,7 @@ Deno.test("Era 60: ISA.SECRETE_PLASMID emits Request with own logic and intensit
 Deno.test("Era 60: PULSE_WORKER applying secretePlasmidRequest deposits to viralGrid", () => {
   // Actually simulated in PULSE_WORKER logic or just tested functionally here
   const vGrid = makeViralGrid();
-  const cellBase = (40 * 140 + 50) * 9; // x=500, y=400 translates to gx=50, gy=40
+  const cellBase = (40 * GRID_W + 50) * 9; // x=500, y=400 translates to gx=50, gy=40
 
   // Simulate PULSE_WORKER handling
   const req = {
@@ -97,7 +97,7 @@ Deno.test("Era 60: PULSE_WORKER applying secretePlasmidRequest deposits to viral
 // ---------- Test 3: ISA.INCORPORATE_PLASMID succeeds when intensity > threshold ----------
 Deno.test("Era 60: ISA.INCORPORATE_PLASMID emits Request when intensity > p1", () => {
   const vGrid = makeViralGrid();
-  const cellBase = (40 * 140 + 50) * 9;
+  const cellBase = (40 * GRID_W + 50) * 9;
   vGrid[cellBase + 0] = 99; // Some plasmid logic
   vGrid[cellBase + 8] = 100; // Plasmid intensity = 100
 
@@ -129,7 +129,7 @@ Deno.test("Era 60: ISA.INCORPORATE_PLASMID emits Request when intensity > p1", (
 // ---------- Test 4: ISA.INCORPORATE_PLASMID fails when intensity <= threshold ----------
 Deno.test("Era 60: ISA.INCORPORATE_PLASMID ignores plasmid if intensity <= p1", () => {
   const vGrid = makeViralGrid();
-  const cellBase = (40 * 140 + 50) * 9;
+  const cellBase = (40 * GRID_W + 50) * 9;
   vGrid[cellBase + 8] = 40; // Plasmid intensity = 40
 
   const logic = new Uint8Array(8);
@@ -160,7 +160,7 @@ Deno.test("Era 60: PULSE_WORKER applying incorporatePlasmidRequest overwrites lo
   if (rolesArray) Atomics.store(rolesArray, idx, 3); // Role 3
 
   const vGrid = makeViralGrid();
-  const cellBase = (40 * 140 + 50) * 9;
+  const cellBase = (40 * GRID_W + 50) * 9;
   vGrid[cellBase + 8] = 100; // Original intensity
 
   // Simulated PULSE_WORKER execution

@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_morpho.ts | Phase 13: Crystalline Intelligence Verification
 // Tests: WASM-accelerated matrix tick, signal propagation, and Memetic Nodes.
 
@@ -63,7 +64,7 @@ async function runTest() {
   MATRIX_ENGINE.establishMeme(700, 400, testGenome);
 
   const retrieved = MATRIX_ENGINE.readMeme(700, 400);
-  const structType = Atomics.load(STATE_MATRIX.structureGrid, 40 * 140 + 70);
+  const structType = Atomics.load(STATE_MATRIX.structureGrid, 40 * GRID_W + 70);
 
   if (retrieved === testGenome[0] && structType === CRYSTAL_MEME) {
     console.log(

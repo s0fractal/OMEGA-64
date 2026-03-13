@@ -1348,7 +1348,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         signalCount: 1,
         registers: [100, 0, 0, 0, 0, 0, 0, 0],
         finalStructureChargeIntent: {
-          [5 * 140 + 5]: 100,
+          [5 * GRID_W + 5]: 100,
         },
       },
     },

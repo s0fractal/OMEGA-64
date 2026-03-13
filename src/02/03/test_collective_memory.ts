@@ -48,7 +48,7 @@ function baseState(
 Deno.test("Era 51: ISA.IMPRINT emits imprintRequest when resonance > 20", () => {
   const phero = makePhero();
   // Pre-seed a pheromone at position of atom (500, 400) → cell (50, 40) → idx 5650
-  const pIdx = 40 * 140 + 50; // 5650
+  const pIdx = 40 * GRID_W + 50; // 5650
   Atomics.store(phero, pIdx, (100 << 8) | 3); // intensity=100, type=3
 
   const logic = new Uint8Array(8);

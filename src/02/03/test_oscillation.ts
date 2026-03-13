@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_oscillation.ts | Phase 18: Neural Oscillation Loops
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -17,11 +18,11 @@ async function runTest() {
   //     [S]
   // Center = (50,40), N=(50,39), S=(50,41), W=(49,40), E=(51,40)
   const cx = 50, cy = 40;
-  const center = cy * 140 + cx;
+  const center = cy * GRID_W + cx;
   const north = (cy - 1) * 140 + cx;
   const south = (cy + 1) * 140 + cx;
-  const west = cy * 140 + (cx - 1);
-  const east = cy * 140 + (cx + 1);
+  const west = cy * GRID_W + (cx - 1);
+  const east = cy * GRID_W + (cx + 1);
 
   // Plant the cross-shaped crystal junction
   for (const cell of [center, north, south, west, east]) {
@@ -72,7 +73,7 @@ async function runTest() {
   console.log(
     "\n🔇 Test 2: Isolated crystal — no convergence, no oscillation...",
   );
-  const isolated = 20 * 140 + 20;
+  const isolated = 20 * GRID_W + 20;
   Atomics.store(STATE_MATRIX.structureGrid, isolated, 1);
   Atomics.store(STATE_MATRIX.signalGrid, isolated, 800);
   for (let t = 0; t < 5; t++) await PULSE.tick();

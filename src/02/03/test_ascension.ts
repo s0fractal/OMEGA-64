@@ -1,4 +1,4 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_ascension.ts | Era 63 & 64: The Final Fractal Convergence Verification
 // Tests ISA.PHI (Golden Angle phase shift) and ISA.ASCEND (Crystallization to Matrixland).
 
@@ -15,11 +15,11 @@ function baseState(overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 6000,
     resonance: 600,
@@ -119,7 +119,7 @@ Deno.test("Era 64: PULSE_WORKER transforms atom into Crystal structure", () => {
   const ids = new BigUint64Array(new SharedArrayBuffer(16));
   ids[0] = 777n;
 
-  const structureGrid = new Int32Array(new SharedArrayBuffer(GRID_W * 80 * 4));
+  const structureGrid = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4));
   const x = 500;
   const y = 400;
   const gx = 50;

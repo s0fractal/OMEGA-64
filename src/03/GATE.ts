@@ -1,3 +1,4 @@
+import { GRID_H } from "../00/OFFSETS.ts";
 import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@00";
 import { type LedgerEvent } from "@00";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP, I16_LIMITS_I16_LIMITS as I16_LIMITS, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
@@ -395,7 +396,7 @@ export const GATE = {
       if (!hasBonds && feedCount > 2) malignancy += 30;
 
       // Apply Audit Decisions
-      if (malignancy >= 80) {
+      if (malignancy >= GRID_H) {
         stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
         LOGGER.warn(
           `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,

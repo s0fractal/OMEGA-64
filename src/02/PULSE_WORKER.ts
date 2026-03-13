@@ -219,7 +219,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_READ_MEM: {
       const gx = r1, gy = r2;
       let val = 0;
-      if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
@@ -234,7 +234,7 @@ function handle_syscall(atomIdx: number) {
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
-        gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView &&
+        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && buildOwnerView &&
         buildValueView
       ) {
         const cellIdx = gy * GRID_W + gx;
@@ -246,7 +246,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_SPAWN: {
       const childGx = r1, childGy = r2;
       if (
-        childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80 &&
+        childGx >= 0 && childGx < GRID_W && childGy >= 0 && childGy < GRID_H &&
         spawnHeadView && spawnDataView
       ) {
         const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;

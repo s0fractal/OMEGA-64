@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_evolution.ts | Phase 17: Evolutionary Fitness Landscape
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -112,7 +113,7 @@ async function runTest() {
   for (let t = 0; t < 5; t++) await PULSE.tick();
 
   const CRYSTAL_MEME = 10;
-  const cellIdx = 30 * 140 + 41; // (x=410/10, y=300/10) → gx=41, gy=30
+  const cellIdx = 30 * GRID_W + 41; // (x=410/10, y=300/10) → gx=41, gy=30
   const cellType = Atomics.load(STATE_MATRIX.structureGrid, cellIdx);
 
   if (cellType === CRYSTAL_MEME) {

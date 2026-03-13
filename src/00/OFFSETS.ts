@@ -4,8 +4,6 @@
 
 export const MAX_ATOMS = 500000;
 export const SAFETY_BUFFER = 8000000;
-export const GRID_W = 140;
-export const GRID_H = 80;
 export const GRID_CELLS = 11200;
 export const SCALE = 1000;
 export const CELL_CAPACITY = 32;
@@ -16,6 +14,9 @@ export const MAX_LEDGER_EVENTS = 65536;
 export const MAX_EGRESS_EVENTS = 8192;
 export const WASM_PAGE_BYTES = 65536;
 export const WASM_MEMORY_PAGES = 7630;
+
+export const GRID_W = 140;
+export const GRID_H = 80;
 
 const U64_BYTES = 8;
 const I32_BYTES = 4;

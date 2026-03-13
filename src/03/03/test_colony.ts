@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_colony.ts | Phase 15: Emergent Colonies Verification
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -37,7 +38,7 @@ async function runTest() {
   // 3 ticks — each BROADCAST tick accumulates the count, 5+ triggers CRYSTAL_COLONY
   for (let t = 0; t < 3; t++) await PULSE.tick();
 
-  const colonyType = Atomics.load(STATE_MATRIX.structureGrid, 50 * 140 + 50);
+  const colonyType = Atomics.load(STATE_MATRIX.structureGrid, 50 * GRID_W + 50);
   if (colonyType === 3) {
     console.log(`✅ CRYSTAL_COLONY formed! Type at (50,50): ${colonyType}`);
     const colonySignal = MATRIX_ENGINE.read(500, 500);
