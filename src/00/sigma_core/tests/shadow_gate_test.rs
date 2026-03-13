@@ -67,7 +67,7 @@ fn test_shadow_catastrophe_rejection() {
 
     destruct_genome[18] = GlyphOp::Set as u8;
     destruct_genome[19] = 0; // R0
-    destruct_genome[20] = sigma_core::isa::SYS_TRANSFER as u8;
+    destruct_genome[20] = sigma_core::constants::SYS_TRANSFER as u8;
     destruct_genome[21] = GlyphOp::Syscall as u8;
 
     // Attacker needs high resonance to bypass target's shield!

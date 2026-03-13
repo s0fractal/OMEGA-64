@@ -7,6 +7,26 @@ import {
   LOGGER,
   SCALE,
   WASM_PATH,
+  SYS_YIELD,
+  SYS_READ_MEM,
+  SYS_WRITE_MEM,
+  SYS_SPAWN,
+  SYS_BIND,
+  SYS_SET_ROLE,
+  SYS_MUTATE,
+  SYS_MSG,
+  SYS_READ_INBOX,
+  SYS_TRANSFER,
+  SYS_REPLICATE,
+  SYS_EMIT,
+  SYS_SCAN,
+  SYS_MOVE,
+  SYS_EAT,
+  SYS_BET,
+  SYS_ATTRACT,
+  SYS_FOLD,
+  SYS_SPORE_DRIVE,
+  SYS_SENSE_PHASE,
 } from "@00";
 import { STATE_MATRIX } from "@00";
 const resolveWithPhase = (
@@ -96,26 +116,7 @@ let ledgerDataView: Int32Array | null = null;
 let marketState: Int32Array | null = null;
 let betPoolInt: Int32Array | null = null;
 
-const SYS_YIELD = 1;
-const SYS_READ_MEM = 2;
-const SYS_WRITE_MEM = 3;
-const SYS_SPAWN = 4;
-const SYS_BIND = 5;
-const SYS_SET_ROLE = 6;
-const SYS_MUTATE = 7;
-const SYS_MSG = 8;
-const SYS_READ_INBOX = 9;
-const SYS_TRANSFER = 10;
-const SYS_REPLICATE = 11;
-const SYS_EMIT = 12;
-const SYS_SCAN = 13;
-const SYS_MOVE = 14;
-const SYS_EAT = 15;
-const SYS_BET = 16;
-const SYS_ATTRACT = 17;
-const SYS_FOLD = 18;
-const SYS_SPORE_DRIVE = 20;
-const SYS_SENSE_PHASE = 21;
+
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;

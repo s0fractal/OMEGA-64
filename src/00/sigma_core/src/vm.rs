@@ -1,10 +1,11 @@
 //! LambdaVM Execution Engine
 
 use crate::constants::{
-    GRID_H, GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
+    GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
 use crate::environment::in_grid;
-use crate::isa::{GlyphOp, SYS_TRANSFER};
+use crate::isa::GlyphOp;
+use crate::constants::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
 
@@ -814,7 +815,7 @@ impl LambdaVM {
                     let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
 
                     match sys_id {
-                        crate::isa::SYS_ATTRACT => {
+                        SYS_ATTRACT => {
                             let target_idx = r1 as usize;
                             let attract_force = r2;
 
@@ -881,10 +882,10 @@ impl LambdaVM {
                             }
                             gas_used += 10;
                         }
-                        crate::isa::SYS_FOLD => {
+                        SYS_FOLD => {
                             gas_used += 10;
                         }
-                        crate::isa::SYS_SPAWN => {
+                        SYS_SPAWN => {
                             let child_energy = r1 * 1000;
                             let dx = r2;
                             let dy = r3;
@@ -901,7 +902,7 @@ impl LambdaVM {
                             }
                             gas_used += 20;
                         }
-                        crate::isa::SYS_BIND => {
+                        SYS_BIND => {
                             let target_idx = r1 as usize;
                             if target_idx > 0 && target_idx < MAX_ATOMS && target_idx != atom_idx {
                                 state.push_bond_request(atom_idx, atom_idx, target_idx);
