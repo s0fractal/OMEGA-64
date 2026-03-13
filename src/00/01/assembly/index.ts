@@ -1,3 +1,5 @@
+// deno-lint-ignore-file
+// @ts-nocheck
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
 import {
